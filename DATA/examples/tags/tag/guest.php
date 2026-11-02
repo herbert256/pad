@@ -5,8 +5,8 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{guest} ... {/guest}
-{guest} ... {else} ... {/guest}
+{pad:guest} ... {/pad:guest}
+{pad:guest} ... {pad:else} ... {/pad:guest}
 PAD;
 
   $tagParms   = [];

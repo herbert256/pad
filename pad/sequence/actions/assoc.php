@@ -11,7 +11,7 @@
 
   // One action that totals the terms into a value - count, sum, product, average, median,
   // distinct - with nothing to invert reads no key, and the total is no term: the copy under x
-  // keys, as large again as the terms, is left out. {sequence '1..1000000', count} took 141
+  // keys, as large again as the terms, is left out. {sequence:range '1..1000000', count} took 141
   // MB, half of it this copy.
 
   if ( count ( $pqActions ) == 1 and ! $pqNegative

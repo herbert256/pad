@@ -1,6 +1,6 @@
 <table>
   <tr><th>Genre</th><th class="n">Albums</th><th class="n">Average price</th></tr>
-  {albums fields="genre_code, count(*) as n, round(avg(price), 2) as average", group="genre_code", order="n desc, genre_code"}
-  <tr><td>{genres}{$genre}{/genres}</td><td class="n">{$n}</td><td class="n">{$average}</td></tr>
-  {/albums}
+  {select:albums fields="genre_code, count(*) as n, round(avg(price), 2) as average", group="genre_code", order="n desc, genre_code"}
+  <tr><td>{select:genres}{$genre}{/select:genres}</td><td class="n">{$n}</td><td class="n">{$average}</td></tr>
+  {/select:albums}
 </table>

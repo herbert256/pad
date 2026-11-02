@@ -1,6 +1,6 @@
 <?php
 
-  // A block tag and a <br> part the words on their sides in an {excerpt ..., html}, where
+  // A block tag and a <br> part the words on their sides in an {pad:excerpt ..., html}, where
   // strip_tags dropped them whole: step.</p><p>PAD was the one word step.PAD, and a
   // highlight= of beta found no word starting with it in alphabeta.
 

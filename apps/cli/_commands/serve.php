@@ -5,7 +5,7 @@
   // at the root every application is at http://host:port/<app>/. --mount=pad serves it under
   // /pad/ instead, the way the Apache setup mounts it: a docroot under DATA/serve/ holds one
   // symlink, pad -> www. Several workers by default, so a page can fetch another page of the
-  // same server ({get}, the regression runner) while it is being served.
+  // same server ({pad:get}, the regression runner) while it is being served.
   //
   // The server replaces this process where PHP can do that (pcntl), so Ctrl-C - or a kill -
   // stops the server itself rather than leaving it running behind a parent that went away.

@@ -1,5 +1,5 @@
-{meta title='Paths into nested data', about='Field names descend into objects; a key=value step picks the matching row.'/}
-{data 'atShop'}
+{pad:meta title='Paths into nested data', about='Field names descend into objects; a key=value step picks the matching row.'/}
+{pad:data 'atShop'}
 {
   "name": "Corner Shop",
   "owner": { "name": "Eve", "phone": "555-0142" },
@@ -8,6 +8,6 @@
     { "sku": "k2", "title": "Teapot", "price": 18 }
   ]
 }
-{/data}
-<p>Owner: {at 'owner.name@atShop'/}, phone {at 'owner.phone@atShop'/}</p>
-<p>Item k2: {at "items.sku='k2'.title@atShop"/} at {at "items.sku='k2'.price@atShop"/}</p>
+{/pad:data}
+<p>Owner: {pad:at 'owner.name@atShop'/}, phone {pad:at 'owner.phone@atShop'/}</p>
+<p>Item k2: {pad:at "items.sku='k2'.title@atShop"/} at {pad:at "items.sku='k2'.price@atShop"/}</p>

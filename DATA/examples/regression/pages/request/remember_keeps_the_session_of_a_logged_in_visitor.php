@@ -3,7 +3,7 @@
   // A visitor whose session holds the login keeps that session: the remember-me cookie is
   // read only for a visitor without one. Read on every request, it renewed the session id -
   // and dropped the CSRF token - each time, so the post of a form shown before another
-  // request of the same visitor was refused. rememberform writes a token and an {auth}.
+  // request of the same visitor was refused. rememberform writes a token and an {pad:auth}.
 
   $padAuthRemember = 'pagesRememberFind';
 

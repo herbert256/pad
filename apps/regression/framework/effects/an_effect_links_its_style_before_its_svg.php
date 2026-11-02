@@ -8,6 +8,6 @@
 
   $padAssetLinks = TRUE;
 
-  $fxHtml = padUnprotect ( padCode ( '{typewriter}typed{/typewriter}' ) );
+  $fxHtml = padUnprotect ( padCode ( '{effect:typewriter}typed{/effect:typewriter}' ) );
 
 ?>

@@ -6,11 +6,11 @@
   if ( isset ( $back ) )
     padRedirect ();
 
-  // Asked with ?paged, the page shows a list in pages of two with its {pager} (pagerroute).
+  // Asked with ?paged, the page shows a list in pages of two with its {pad:pager} (pagerroute).
 
   $pagedList = isset ( $paged );
 
-  // Asked with ?crumbs, it shows its {breadcrumb/} (breadcrumbroute).
+  // Asked with ?crumbs, it shows its {widget:breadcrumb/} (breadcrumbroute).
 
   $crumbed = isset ( $crumbs );
 

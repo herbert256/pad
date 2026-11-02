@@ -1,6 +1,6 @@
 <?php
 
-  // An ordered list of a {pdf} whose start= is no number counts from 1, as a browser and
+  // An ordered list of a {pad:pdf} whose start= is no number counts from 1, as a browser and
   // the preview sheet do - start="" and start="x" counted from 0 - and a start with a sign,
   // spaces or a tail after its digits is read as HTML reads it.
 

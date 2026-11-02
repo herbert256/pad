@@ -1,1 +1,1 @@
-product {$id}{if $pagedList} {data 'xs'}[1,2,3,4,5]{/data}{xs page=$pg ?? 1, rows=2}{$xs}{/xs}{pager 'xs'/}{/if}{if $crumbed} {breadcrumb/}{/if}
+product {$id}{pad:if $pagedList} {pad:data 'xs'}[1,2,3,4,5]{/pad:data}{data:xs page=$pg ?? 1, rows=2}{$xs}{/data:xs}{pad:pager 'xs'/}{/pad:if}{pad:if $crumbed} {widget:breadcrumb/}{/pad:if}

@@ -1,7 +1,7 @@
-{sequence '1..10', push='ten'/}
-a[{sequence '1..10', randomly, unique, count}{$sequence}{/sequence}]
-b[{sequence '1..10', randomly, unique, sort}{$sequence} {/sequence}]
-c[{sequence prime, randomly, unique, rows=8, to=30, count}{$sequence}{/sequence}]
-d[{sequence prime, randomly, unique, to=30, sort}{$sequence} {/sequence}]
+{sequence:range '1..10', push='ten'/}
+a[{sequence:range '1..10', randomly, unique, count}{$sequence}{/sequence:range}]
+b[{sequence:range '1..10', randomly, unique, sort}{$sequence} {/sequence:range}]
+c[{sequence:prime randomly, unique, rows=8, to=30, count}{$sequence}{/sequence:prime}]
+d[{sequence:prime randomly, unique, to=30, sort}{$sequence} {/sequence:prime}]
 e[{pull:ten randomly, unique, count}{$sequence}{/pull:ten}]
-f[{sequence '1;1;2', randomly, unique, sort}{$sequence} {/sequence}]
+f[{sequence:list '1;1;2', randomly, unique, sort}{$sequence} {/sequence:list}]

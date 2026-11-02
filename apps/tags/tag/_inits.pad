@@ -14,17 +14,17 @@
     <h2 id="syntax">Syntax</h2>
     <pre class="code"><code>{!tagSyntaxHtml}</code></pre>
 
-    {tagParmRows}
-    {first@tagParmRows}<h3>Parameters</h3><dl class="defs">{/first@tagParmRows}
+    {array:tagParmRows}
+    {property:first@tagParmRows}<h3>Parameters</h3><dl class="defs">{/property:first@tagParmRows}
       <dt><code>{$parm}</code></dt><dd>{!meaning}</dd>
-    {last@tagParmRows}</dl>{/last@tagParmRows}
-    {/tagParmRows}
+    {property:last@tagParmRows}</dl>{/property:last@tagParmRows}
+    {/array:tagParmRows}
 
-    {tagOptionRows}
-    {first@tagOptionRows}<h3>Options</h3><dl class="defs">{/first@tagOptionRows}
+    {array:tagOptionRows}
+    {property:first@tagOptionRows}<h3>Options</h3><dl class="defs">{/property:first@tagOptionRows}
       <dt><code>{$option}</code></dt><dd>{!meaning}</dd>
-    {last@tagOptionRows}</dl>{/last@tagOptionRows}
-    {/tagOptionRows}
+    {property:last@tagOptionRows}</dl>{/property:last@tagOptionRows}
+    {/array:tagOptionRows}
   </section>
 
   <section class="block prose" aria-labelledby="description">

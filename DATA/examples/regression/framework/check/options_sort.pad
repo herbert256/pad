@@ -1,4 +1,4 @@
-{content 'myContent'}
+{pad:content 'myContent'}
   <table border=1>
     <tr>
       <th> volume   </th>
@@ -13,19 +13,19 @@
       </tr>    
     @end@
   </table>
-{/content}
+{/pad:content}
 
-{data 'myData'}
+{pad:data 'myData'}
   [ { "volume": 55, "edition": 3, "file": "file1.xml"  },
     { "volume": 33, "edition": 1, "file": "file2.xml"  },
     { "volume": 55, "edition": 2, "file": "file11.xml" },
     { "volume": 33, "edition": 3, "file": "file12.xml" },
     { "volume": 55, "edition": 1, "file": "file21.xml" },
     { "volume": 33, "edition": 2, "file": "file8.xml"  } ]
-{/data}
+{/pad:data}
 
-{myContent data='myData'/}
-{myContent data='myData', sort='volume;edition'/}
-{myContent data='myData', sort='volume DESC; edition DESC'/}
-{myContent data='myData', sort='file'/}
-{myContent data='myData', sort='file NATURAL'/}
+{content:myContent data='myData'/}
+{content:myContent data='myData', sort='volume;edition'/}
+{content:myContent data='myData', sort='volume DESC; edition DESC'/}
+{content:myContent data='myData', sort='file'/}
+{content:myContent data='myData', sort='file NATURAL'/}

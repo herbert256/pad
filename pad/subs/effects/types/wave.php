@@ -1,6 +1,6 @@
 <?php
 
-  // {wave}Hello there{/wave} or {wave 'Hello there'/} - the letters rise and fall one after
+  // {effect:wave}Hello there{/effect:wave} or {effect:wave 'Hello there'/} - the letters rise and fall one after
   // the other, a wave running through the word. The moving letters are a copy hidden from a
   // screen reader; the text stands once beside it for assistive technology, as written. One
   // wave runs through in duration= seconds (1.6), repeat= times (3, or forever), after delay=
@@ -17,7 +17,7 @@
   $padFxRepeat   = padEffectRepeat ( 3 );
 
   if ( $padFxText === '' )
-    return padEffectNeedsText ( "{wave}Hello there{/wave} or {wave 'Hello there'/}" );
+    return padEffectNeedsText ( "{effect:wave}Hello there{/effect:wave} or {effect:wave 'Hello there'/}" );
 
   // A letter's place in the wave is its place among the spans of the copy, a gap counting too:
   // the rule of the n-th child gives it --pad-effect-i, written once per page for each place

@@ -27,7 +27,7 @@
   // subtraction, 5 * -3 and $x eq -3 keep their sign. Before anything that is no digit it is
   // the prefix NEG or POS - 5 * -$b, mid(2, -$n) - where an operator, an opening bracket or a
   // comma stands before it; at the head of an expression or of a pipe segment it stays the
-  // operator whose missing left side is the piped value: {echo 10 | - 3} is 7.
+  // operator whose missing left side is the piped value: {pad:echo 10 | - 3} is 7.
 
   // The tokens of an expression, kept for the request: a loop evaluates the same text once
   // per row, and the text alone decides what the validation and the scanner make of it.
@@ -35,7 +35,7 @@
   // FALSE and is checked again next time, so it is reported as often as it is written; and
   // the scanner's own complaints are about a backslash, so an expression holding one is
   // never kept. Nor is a text of more than 1 KB, which no hand-written expression reaches: a
-  // value spliced into a loop's expression - {echo {$body} | php:strlen} - makes a text of its
+  // value spliced into a loop's expression - {pad:echo {$body} | php:strlen} - makes a text of its
   // own per row, which never comes back, and the memos of the scanner, the tree and the pipe
   // check held 2000 rows of 20 KB five times over, 284 MB at the peak.
 
@@ -60,7 +60,7 @@
 
   // A pipe segment that opens with a printf conversion is a format: one '%' token, which
   // the evaluator fills with the segment's input. The other segments are scanned as text:
-  // {echo $p | * 1.21 | %.2f}, {echo $n | %05.2f | trim}.
+  // {pad:echo $p | * 1.21 | %.2f}, {pad:echo $n | %05.2f | trim}.
 
   function padEvalScan ( $eval ) {
 
@@ -599,8 +599,8 @@
   }
 
   // An @ after a property name - one with a file in pad/properties/ - and a target, a level
-  // name or a relative -N, is one reference: {if first@items} asks for the iteration
-  // property. With no target - {if current@ eq 2} - it is the property of the loop the
+  // name or a relative -N, is one reference: {pad:if first@items} asks for the iteration
+  // property. With no target - {pad:if current@ eq 2} - it is the property of the loop the
   // expression stands in. Any other @ is the placeholder for the value piped in.
 
   function padEvalScanAt ( $in, $at, &$tok, $word ) {

@@ -1,4 +1,4 @@
-<p><code>{error 'message'/}</code> calls <code>padError()</code> - the same function the engine
+<p><code>{pad:error 'message'/}</code> calls <code>padError()</code> - the same function the engine
 uses for its own errors - from a template. What happens next is up to
 <code>$padErrorAction</code> in <code>_config/config.php</code>:</p>
 
@@ -22,7 +22,7 @@ uses for its own errors - from a template. What happens next is up to
 the tag itself renders nothing: <code>padError()</code> returns FALSE.</p>
 
 <p>Use it to stop on a state a page must never reach - an unknown value in a
-<a href="?tag/case">{case}</a>, a required row that is not there. For a check that only test
-runs should hold the page to, use <a href="?tag/assert">{assert}</a>; to end the request
-quietly, <a href="?tag/exit">{exit}</a>; to throw a real PHP exception instead,
-<a href="?tag/exception">{exception}</a>.</p>
+<a href="?tag/case">{pad:case}</a>, a required row that is not there. For a check that only test
+runs should hold the page to, use <a href="?tag/assert">{pad:assert}</a>; to end the request
+quietly, <a href="?tag/exit">{pad:exit}</a>; to throw a real PHP exception instead,
+<a href="?tag/exception">{pad:exception}</a>.</p>

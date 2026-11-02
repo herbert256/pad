@@ -3,7 +3,7 @@
   // waves - rows of wavy lines the size apart, the inks taking turns, each row shifted along
   // the one above by a step the seed chooses, so the crests run in a slant of their own.
   //
-  //   {pattern 'waves', size=14, seed=4, colors='#f2f7fb, #9cc3dd, #5b9bc4, #2e6f9e'/}
+  //   {pattern:waves size=14, seed=4, colors='#f2f7fb, #9cc3dd, #5b9bc4, #2e6f9e'/}
 
   return [
 

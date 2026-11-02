@@ -9,7 +9,7 @@
   // A {select} level has had its page cut by the SQL limit already - padSelectLimit marks
   // the two options 'limit' - and paging those rows again would keep nothing past page 1.
   //
-  // A level written with page= books its page, rows and total for a {pager} first -
+  // A level written with page= books its page, rows and total for a {pad:pager} first -
   // padPagerKeep in lib/pager.php - counted after the handling options written before it.
 
   if ( isset ( $padPrm [$pad] ['page'] ) ) {
@@ -21,7 +21,7 @@
     return;
 
   // A page below one - ?pg=0, a page value that is no number - is the first page, as the
-  // SQL limit of a select (padSelectLimit) and the {pager} take it; it kept no rows at all,
+  // SQL limit of a select (padSelectLimit) and the {pad:pager} take it; it kept no rows at all,
   // under a pager that marked page 1 as the one shown.
 
   $padHandPage  = max ( 1, (int) ($padPrm [$pad] ['page'] ??  1) );

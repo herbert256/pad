@@ -1,4 +1,4 @@
-{meta title='Ending the Request'/}
+{pad:meta title='Ending the Request'/}
 
 <p>Some pages do not end by reaching their last line: a form handler redirects, a guard
 refuses, an error stops everything. PAD has a tag or a function for each - and none of them
@@ -10,10 +10,10 @@ The examples are therefore shown, not run.</p>
 <p>From a page's PHP, <code>padRedirect()</code> sends the browser to another page and ends
 the request cleanly - session closed, buffers flushed, headers sent:</p>
 
-{ignore}
+{pad:ignore}
 <pre><code>padRedirect ( 'tickets/index' );           // to a page of this application
 padRedirect ( 'tickets/index', $vars );    // with variables carried along</code></pre>
-{/ignore}
+{/pad:ignore}
 
 <p><b>Never use PHP's <code>exit</code> or <code>die</code></b>, and not
 <code>header()</code> either: they end PHP mid-request, skipping everything PAD still had to
@@ -24,10 +24,10 @@ place of this one without a round trip to the browser.</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
   <tr><th>tag</th><th>what it does</th></tr>
-  <tr><td><code>{open/}exit{close/}</code></td><td>ends the request where it stands - nothing is shipped, not even the output so far</td></tr>
-  <tr><td><code>{open/}error 'message'/{close/}</code></td><td>reports an error through the configured error action, which normally ends the request with a 500</td></tr>
-  <tr><td><code>{open/}exception 'message'/{close/}</code></td><td>throws a real PHP exception, for testing the nets that catch one</td></tr>
-  <tr><td><code>{open/}dump{close/}</code></td><td>stops the request on a dump of the engine state, the heavy debugging tool</td></tr>
+  <tr><td><code>{pad:open/}pad:exit{pad:close/}</code></td><td>ends the request where it stands - nothing is shipped, not even the output so far</td></tr>
+  <tr><td><code>{pad:open/}pad:error 'message'/{pad:close/}</code></td><td>reports an error through the configured error action, which normally ends the request with a 500</td></tr>
+  <tr><td><code>{pad:open/}pad:exception 'message'/{pad:close/}</code></td><td>throws a real PHP exception, for testing the nets that catch one</td></tr>
+  <tr><td><code>{pad:open/}pad:dump{pad:close/}</code></td><td>stops the request on a dump of the engine state, the heavy debugging tool</td></tr>
 </table>
 
 <h2>What happens on an error</h2>
@@ -43,5 +43,5 @@ both the page carries on,
 a PAD error is an uncaught exception.</p>
 
 <p>A <code>demand</code> option turns an empty tag into an error: a page that is meaningless
-without its data can say so - <code>{open/}users demand{close/}...{open/}/users{close/}</code> -
+without its data can say so - <code>{pad:open/}users demand{pad:close/}...{pad:open/}/users{pad:close/}</code> -
 instead of rendering a hole.</p>

@@ -5,9 +5,9 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{progress 72/}
-{progress $done, max=100, label='text', color='success', size='small'/}
-{progress 3, max=5, steps, label='text'/}
+{pad:progress 72/}
+{pad:progress $done, max=100, label='text', color='success', size='small'/}
+{pad:progress 3, max=5, steps, label='text'/}
 PAD;
 
   $tagParms   = [

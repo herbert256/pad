@@ -1,5 +1,5 @@
-{products page=$pg ?? 1, rows=5}
+{array:products page=$pg ?? 1, rows=5}
   {$products}
-{/products}
+{/array:products}
 
-{pager 'products', window=1/}
+{pad:pager 'products', window=1/}

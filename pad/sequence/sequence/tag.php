@@ -2,7 +2,7 @@
 
   // Runs one complete sequence for a template tag: set up, generate, exit.
   //
-  // This is where every {sequence}, {make}, {keep}, {remove}, {flag}, {pull} and {action}
+  // This is where every {sequence:loop}, {make:loop}, {keep:loop}, {remove:loop}, {pad:flag}, {pad:pull} and {action:loop}
   // ends up, whether the name arrived as the tag ( start/tags/ ) or as a prefixed type
   // ( start/types/ via sequence/type.php ). inits/ resolves which sequence type, stored
   // sequence or action was meant and reads the parameters, build/ generates the values,

@@ -5,8 +5,8 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{exists $path} ... {/exists}
-{exists $path} ... @else@ ... {/exists}
+{pad:exists $path} ... {/pad:exists}
+{pad:exists $path} ... @else@ ... {/pad:exists}
 PAD;
 
   $tagParms   = [

@@ -9,7 +9,7 @@
   // elsewhere: what it lists - SQL, variables, the session - is the same material the error
   // report keeps for this machine, so padLocalView() decides, and $padDiagnostics = FALSE closes
   // it like the rest. It stays out of a bare fragment (&padInclude) and a response fragment
-  // ({fragment}), out of anything that is not a web page answering 200, and out of the page
+  // ({pad:fragment}), out of anything that is not a web page answering 200, and out of the page
   // cache: it is added to the response on its way out, after the cache stored the page.
   //
   // padToolbarOn     whether this request gets the bar
@@ -21,7 +21,7 @@
   // Read only with $padToolbar on: level/setup.php and exits/output.php include this file
   // before they call it.
   //
-  // The state lives in $padToolbarData, which a nested pass ({page}, {code}) does not put
+  // The state lives in $padToolbarData, which a nested pass ({pad:page}, {pad:code}) does not put
   // back to what it was before - lib/checks.php keeps it out of that snapshot - so the
   // levels and the fragment hits of a page built inside the page are counted too.
 

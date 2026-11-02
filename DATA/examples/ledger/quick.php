@@ -41,6 +41,6 @@
   $entry   = $ok ? db ( "RECORD t.id, t.day, t.amount, t.note, c.name AS category FROM transactions t JOIN categories c ON c.id = t.category_id WHERE t.id={0}", [ $booked ] ) : NULL;
 
   $padExpose  = [ 'ok', 'error', 'entry', 'month', 'totals', 'shown' ];
-  $ledgerPage = 'Quick entry';
+  $title      = 'Quick entry';
 
 ?>

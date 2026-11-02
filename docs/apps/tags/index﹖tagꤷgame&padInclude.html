@@ -1,12 +1,10 @@
 
-<p><code>{game}</code> puts a little game on the page, played in the browser: the server checks
+<p><code>{game:memory}</code> puts a little game on the page, played in the browser: the server checks
 what the game is given and writes its board, and the game's script - written once per page, with
 the CSP nonce - plays it. Every game is a file of <code>pad/subs/games/types/</code>, its script and
-its style in <code>pad/subs/games/assets/</code>; the files of <code>types/</code> are the games there are.</p>
+its style in <code>www/assets/games/</code>; the files of <code>types/</code> are the games there are.</p>
 
-<p>A game is written three ways, the same game each time: the tag with the game's name,
-<code>{game 'memory'/}</code>; the game: type, <code>{game:memory/}</code>; and the bare name,
-<code>{memory/}</code>, when no tag, store, field or sequence has that name. The words of a word
+<p>The game is selected by its prefix and name: <code>{game:memory/}</code>. The words of a word
 game, the clues of a crossword, the questions of a quiz and the picture of a nonogram stand
 between the tags, one a line - taken as written, so they may hold braces - or come from a store
 named by <code>data=</code>.</p>

@@ -1,6 +1,6 @@
 <?php
 
-  // {decipher}ACCESS GRANTED{/decipher} or {decipher 'ACCESS GRANTED'/} - a short heading that
+  // {effect:decipher}ACCESS GRANTED{/effect:decipher} or {effect:decipher 'ACCESS GRANTED'/} - a short heading that
   // resolves out of scrambled signs: for duration= seconds (1.2, 0.2 to 10) its letters are
   // signs that change, then they settle into the text one after the other, left to right -
   // when it comes into view, after delay= seconds, and again when the pointer comes on it or
@@ -13,7 +13,7 @@
   // text simply stands there. A short text, 80 letters at most - not for what has to be read
   // while it changes: a password, a figure, a menu.
   //
-  //   <h2>{decipher glyphs='binary', mono}SIGNAL FOUND{/decipher}</h2>
+  //   <h2>{effect:decipher glyphs='binary', mono}SIGNAL FOUND{/effect:decipher}</h2>
 
   $padFxSource   = padEffectSource ();
   $padFxText     = padEffectPlain ( $padFxSource );
@@ -23,7 +23,7 @@
   $padFxMono     = padEffectFlag ( 'mono' );
 
   if ( $padFxText === '' )
-    return padEffectNeedsText ( "{decipher}ACCESS GRANTED{/decipher} or {decipher 'ACCESS GRANTED'/}" );
+    return padEffectNeedsText ( "{effect:decipher}ACCESS GRANTED{/effect:decipher} or {effect:decipher 'ACCESS GRANTED'/}" );
 
   $padFxCount = count ( padEffectLetters ( $padFxText ) );
 

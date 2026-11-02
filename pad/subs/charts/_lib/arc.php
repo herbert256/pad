@@ -1,6 +1,6 @@
 <?php
 
-  // Connections along a line: {chart 'arc', data='scenes', source='a', target='b', value='scenes'}.
+  // Connections along a line: {chart:arc data='scenes', source='a', target='b', value='scenes'}.
   //
   // A row is a link between two nodes; source= and target= name the fields - else the
   // first two that are no number. value= names a numeric field that makes a link thicker;

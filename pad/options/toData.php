@@ -15,7 +15,7 @@
   $padStoreText ??= $padContent;
 
   // A level on its @else@ branch has no rows - its one occurrence is the stand-in that renders
-  // the branch, and stored, a later {pad data='x'} rendered a row of an empty list.
+  // the branch, and stored, a later {pad:pad data='x'} rendered a row of an empty list.
 
   if ( $padElse [$pad] ) {
     $padDataStore [$padStoreName] = [];

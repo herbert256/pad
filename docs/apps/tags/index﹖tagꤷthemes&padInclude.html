@@ -1,0 +1,20 @@
+
+<p><code>{pad:themes/}</code> writes a switcher of the themes of <code>pad/subs/themes/types/</code>:
+a list of them, with Default first. Choosing one posts it back to the page, which keeps it in a
+cookie of the PAD applications - their pages are in that theme from then on, this one already:
+the pages built on the frame, and every page of an application that sets a
+<code>$padTheme</code>. Default takes the choice away: the application's <code>$padTheme</code>,
+or the frame's own colours.</p>
+
+<p>A small script posts the form the moment a theme is chosen; without JavaScript a button
+does it. The list's label is there for a screen reader, not shown. The post is answered before
+the application runs, with a redirect back to the page, so the page's own PHP never sees it.
+The form writes no token of its own, so showing it or choosing starts no session, and a post
+from another site changes nothing; with <code>$padCsrf</code> on it carries the session's token
+as every form then does. <code>$padTheme = FALSE</code> turns themes off, the visitor's choice
+too.</p>
+
+
+<h3>Themes</h3>
+<p>Each kind has its own description and usage example:</p>
+<p><a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7blueprint.html"><code>blueprint</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7contrast.html"><code>contrast</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7contrast-dark.html"><code>contrast-dark</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7dark.html"><code>dark</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7forest.html"><code>forest</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7light.html"><code>light</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7mono.html"><code>mono</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7newspaper.html"><code>newspaper</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7night.html"><code>night</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7ocean.html"><code>ocean</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7paper.html"><code>paper</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7readable.html"><code>readable</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7sepia.html"><code>sepia</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7solarized-dark.html"><code>solarized-dark</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7solarized-light.html"><code>solarized-light</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7terminal.html"><code>terminal</code></a></p>

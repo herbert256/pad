@@ -1,16 +1,16 @@
-bool:     {bool 'oB'}1{/bool}{oB bool='x'}y{/oB}.
-demand:   {data 'oXs'}[1,2,3]{/data}{oXs demand}{$oXs},{/oXs}
-dump:     {true dump}d{/true}
-else:     {if 1 eq 2}A{else}B{/if}
-error:    {true error='e'}x{/true}
-glue:     {data 'oG'}["b","a"]{/data}{oG print, glue=', '/}
-ignore:   {data 'oI' ignore}{"k":5}{/data}{oI}{key@oI/}={firstFieldValue@oI/}{/oI}
-noError:  {nosuch noError}x{/nosuch}
-notOk:    {content 'oops'}bad{/content}{false notOk='oops'}yes{/false}
-null:     {null null='oops'}y{/null}
-print:    {data 'oP'}["b","a"]{/data}{oP print/}
-quote:    {oP print, quote='"'/}
-tidy:     {true tidy}<i >y</i >{/true}
-toBool:   {data 'oE'}[]{/data}{oE toBool='oF'}{$oE}{/oE}{bool:oF}yes{/bool:oF}no
-toContent: {data 'oC'}[1,2]{/data}{oC toContent='oK'}{$oC},{/oC}{content:oK/}
-toData:   {data 'oD'}["b","a"]{/data}{oD toData='oY'/}{data:oY}{$oD},{/data:oY}
+bool:     {pad:bool 'oB'}1{/pad:bool}{bool:oB bool='x'}y{/bool:oB}.
+demand:   {pad:data 'oXs'}[1,2,3]{/pad:data}{data:oXs demand}{$oXs},{/data:oXs}
+dump:     {pad:true dump}d{/pad:true}
+else:     {pad:if 1 eq 2}A{pad:else}B{/pad:if}
+error:    {pad:true error='e'}x{/pad:true}
+glue:     {pad:data 'oG'}["b","a"]{/pad:data}{data:oG print, glue=', '/}
+ignore:   {pad:data 'oI' ignore}{"k":5}{/pad:data}{data:oI}{property:key@oI/}={property:firstFieldValue@oI/}{/data:oI}
+noError:  {pad:nosuch noError}x{/pad:nosuch}
+notOk:    {pad:content 'oops'}bad{/pad:content}{pad:false notOk='oops'}yes{/pad:false}
+null:     {pad:null null='oops'}y{/pad:null}
+print:    {pad:data 'oP'}["b","a"]{/pad:data}{data:oP print/}
+quote:    {data:oP print, quote='"'/}
+tidy:     {pad:true tidy}<i >y</i >{/pad:true}
+toBool:   {pad:data 'oE'}[]{/pad:data}{data:oE toBool='oF'}{$oE}{/data:oE}{bool:oF}yes{/bool:oF}no
+toContent: {pad:data 'oC'}[1,2]{/pad:data}{data:oC toContent='oK'}{$oC},{/data:oC}{content:oK/}
+toData:   {pad:data 'oD'}["b","a"]{/pad:data}{data:oD toData='oY'/}{data:oY}{$oD},{/data:oY}

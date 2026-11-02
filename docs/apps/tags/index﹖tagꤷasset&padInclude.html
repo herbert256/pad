@@ -1,5 +1,5 @@
 
-<p><code>{asset 'charts.css'/}</code> answers the address of <code>www/&lt;app&gt;/charts.css</code>
+<p><code>{pad:asset 'charts.css'/}</code> answers the address of <code>www/&lt;app&gt;/charts.css</code>
 with <code>?v=</code> and the first ten hex digits of a hash of the file's contents:
 <code>/charts/charts.css?v=1f3a9c0b2e</code>. The hash is made once per request. A changed file
 gets a new address, so the server can send its assets with a cache lifetime of a year and a
@@ -15,5 +15,5 @@ when <code>$padCsp</code> asks for one. From PHP, <code>padAsset ( 'charts.css' 
 <p>A name never leaves <code>www/&lt;app&gt;/</code>. A file that is not there is written as
 the plain address and, under the strict check, reported as an error. The hash follows the
 file, so the examples are shown rather than run. For the bundles of a Vite build, use
-<a href="index%EF%B9%96tag%EA%A4%B7vite.html"><code>{vite}</code></a>.</p>
+<a href="index%EF%B9%96tag%EA%A4%B7vite.html"><code>{pad:vite}</code></a>.</p>
 

@@ -19,7 +19,7 @@
   $pqSole = $pqParms ['sole']      ?? NULL        ;
 
   // min= and max= are the short spellings of minimal= and maximal=: they were accepted and
-  // read by nothing, so {sequence random, min=1, max=6} drew from the whole integer range.
+  // read by nothing, so {sequence:random min=1, max=6} drew from the whole integer range.
 
   $pqMin  = $pqParms ['minimal']   ?? $pqParms ['min'] ?? PHP_INT_MIN ;
   $pqMax  = $pqParms ['maximal']   ?? $pqParms ['max'] ?? PHP_INT_MAX ;
@@ -33,7 +33,7 @@
 
   // page= pages through the terms as it pages through the rows of a data tag, rows= being
   // the page's size (inits/limits.php, exits/page.php). It is a start option of every tag,
-  // and the sequence's own handling left it to nothing: {sequence '1..10', page=2, rows=3}
+  // and the sequence's own handling left it to nothing: {sequence:range '1..10', page=2, rows=3}
   // gave 1 2 3 in silence.
 
   $pqPage      = ( $pqEntry == 'tag' ) ? ( $pqParms ['page'] ?? '' ) : '';

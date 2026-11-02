@@ -1,9 +1,9 @@
 // The build of the islands application: the components of every framework in src/, made
-// into www/islands/build/ with a manifest - {vite 'src/main.js'/} in the templates reads it.
+// into www/islands/build/ with a manifest - {pad:vite 'src/main.js'/} in the templates reads it.
 //
 //   npm install
 //   npm run build      www/islands/build/ - what the pages load
-//   npm run dev        the dev server: its address goes into build/hot, and {vite} asks it
+//   npm run dev        the dev server: its address goes into build/hot, and {pad:vite} asks it
 //
 // Each framework compiles its own files: React *.react.jsx/tsx, Solid *.solid.jsx, Vue
 // *.vue, Svelte *.svelte; Preact needs no compiler here - its components are written with
@@ -22,7 +22,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const www = process.env.PAD_ISLANDS_WWW || path.resolve(here, '../../../www/islands');
 const outDir = path.join(www, 'build');
 
-// The dev server's address in build/hot while it runs, gone when it stops: {vite} asks the
+// The dev server's address in build/hot while it runs, gone when it stops: {pad:vite} asks the
 // dev server while the file is there, and the build when it is not.
 
 function padHot() {

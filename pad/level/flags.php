@@ -8,16 +8,16 @@
   // walk/end.php, which call the tag handler again and need the flags refreshed.
   //
   // Such a later pass - one after the level rendered an occurrence - does not judge the level
-  // again when it answers nothing: that answer ends the walk, {while} returns NULL when its
-  // condition fails, and the rows already rendered stand. Judged as a miss, a {while} that
-  // looped failed its demand and stored FALSE for its toBool, and so did a {spaceless} or
-  // {tidy} around an {if} that did not hold - its end pass read the result of whichever tag
+  // again when it answers nothing: that answer ends the walk, {pad:while} returns NULL when its
+  // condition fails, and the rows already rendered stand. Judged as a miss, a {pad:while} that
+  // looped failed its demand and stored FALSE for its toBool, and so did a {pad:spaceless} or
+  // {pad:tidy} around an {pad:if} that did not hold - its end pass read the result of whichever tag
   // ran last inside it.
 
   $padFlagsBefore = [ $padNull [$pad], $padElse [$pad], $padHit [$pad] ];
 
-  // A tag whose rows came from data= and found none - {pad data='x'} over an empty store - is
-  // a tag that came back empty, as {x} or {data:x} reading the same store is: it answered
+  // A tag whose rows came from data= and found none - {pad:pad data='x'} over an empty store - is
+  // a tag that came back empty, as {data:x} or {data:x} reading the same store is: it answered
   // TRUE, and no @else@, else= or demand ever saw the empty list. An empty list written as
   // data= - data=[] - is such data as well (level/start.php).
 
@@ -53,7 +53,7 @@
 
   // The demand option marks the tag as required: a level that still has no hit once the
   // recovery options had their chance ends the request. The handler file only returned TRUE
-  // and nothing read it, so {tag demand} used to have no effect at all.
+  // and nothing read it, so {function:tag demand} used to have no effect at all.
 
   if ( ! $padHit [$pad] and padTagParm ( 'demand' ) )
     padError ( "Tag '" . $padTag [$pad] . "' carries demand and produced nothing" );

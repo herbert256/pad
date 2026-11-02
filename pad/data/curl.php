@@ -14,10 +14,10 @@
   //     <ttl>600</ttl>
   //   </curl>
   //
-  // The tag the data arrives for can give the ttl as well - {pad data='https://...',
+  // The tag the data arrives for can give the ttl as well - {pad:pad data='https://...',
   // ttl=600}, {rates ttl=600} - and the tag's wins. With a ttl the fetch goes through
   // padCurlCached (lib/curlCache.php), which also serves the last good copy when the
-  // source fails. SELF:// stands for $padHost, as in {curl}.
+  // source fails. SELF:// stands for $padHost, as in {pad:curl}.
   //
   // padCurlData (lib/prefetch.php) turns the answer into data - padPrefetch's answers go
   // the same way. A fetched body is data: PAD's own list syntax - ( 'a', $b, 2 * 3 ) -

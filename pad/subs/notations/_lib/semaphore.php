@@ -1,6 +1,6 @@
 <?php
 
-  // Semaphore - the semaphore notation, {semaphore 'PAD'/}. A text in flag semaphore: a figure
+  // Semaphore - the semaphore notation, {notation:semaphore 'PAD'/}. A text in flag semaphore: a figure
   // per letter, holding two flags at two of eight positions around the body.
   //
   // The positions are counted as a clock face seen by the reader, from straight down: 0 down,

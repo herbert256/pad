@@ -1,6 +1,6 @@
 <?php
 
-  // {nudge}<a class="button" href="?signup">Try it free</a>{/nudge} or {nudge 'New'/} - a
+  // {effect:nudge}<a class="button" href="?signup">Try it free</a>{/effect:nudge} or {effect:nudge 'New'/} - a
   // short movement that draws the eye to something, then lets it be: style= bounce (the
   // default, a hop and a smaller one), shake (side to side, as a field that was filled in
   // wrong), pulse (it swells and settles), wiggle (it rocks about its middle) or heartbeat (two
@@ -9,7 +9,7 @@
   // is - a link or a button inside keeps its click and its focus - and nothing around it moves:
   // the nudge is a transform. Under reduced motion it stands still.
   //
-  //   {nudge style='shake', delay=1}<p class="error">Fill in your e-mail address</p>{/nudge}
+  //   {effect:nudge style='shake', delay=1}<p class="error">Fill in your e-mail address</p>{/effect:nudge}
 
   $padFxSource = padEffectSource ();
   $padFxStyle  = padEffectChoice ( 'style', 'bounce', [ 'bounce', 'shake', 'pulse', 'wiggle', 'heartbeat' ] );
@@ -18,7 +18,7 @@
   $padFxRepeat = padEffectRepeat ( 2 );
 
   if ( padEffectPlain ( $padFxSource ) === '' and ! preg_match ( '/<(img|svg|picture|video|input|button|select|textarea)\b/i', $padFxSource ) )
-    return padEffectNeedsText ( "{nudge}<button>Try it</button>{/nudge} or {nudge 'New'/}" );
+    return padEffectNeedsText ( "{effect:nudge}<button>Try it</button>{/effect:nudge} or {effect:nudge 'New'/}" );
 
   $padFxElement = padEffectBlock ( $padFxSource ) ? 'div' : 'span';
 

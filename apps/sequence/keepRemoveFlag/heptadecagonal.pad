@@ -1,13 +1,13 @@
-{table}
+{common:table}
 
-{demo}{sequence 25, push='mySequence'/} {/demo}
+{common:demo}{sequence:loop 25, push='mySequence'/} {/common:demo}
 
-{demo}{pull mySequence, make,   heptadecagonal} {$sequence} {/pull}{/demo}
+{common:demo}{pad:pull mySequence, make,   heptadecagonal} {$sequence} {/pad:pull}{/common:demo}
 
-{demo}{pull mySequence, keep,   heptadecagonal} {$sequence} {/pull}{/demo}
+{common:demo}{pad:pull mySequence, keep,   heptadecagonal} {$sequence} {/pad:pull}{/common:demo}
 
-{demo}{pull mySequence, remove, heptadecagonal} {$sequence} {/pull}{/demo}
+{common:demo}{pad:pull mySequence, remove, heptadecagonal} {$sequence} {/pad:pull}{/common:demo}
 
-{demo}{pull mySequence, flag,   heptadecagonal} {$sequence} {/pull}{/demo}
+{common:demo}{pad:pull mySequence, flag,   heptadecagonal} {$sequence} {/pad:pull}{/common:demo}
 
-{/table}
+{/common:table}

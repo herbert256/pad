@@ -1,7 +1,7 @@
 <?php
 
   // pull: - returns a stored sequence by name from $pqStore, the sequence subsystem's store of
-  // sequences that {keep}/{make} have put aside.
+  // sequences that {keep:loop}/{make:loop} have put aside.
 
   global $pqStore, $padCheckSyntax;
 

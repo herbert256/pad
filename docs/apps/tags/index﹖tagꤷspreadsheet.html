@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {spreadsheet:*} · PAD tags
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="tags.css">
+    <link rel="stylesheet" href="/pad/assets/formulas/sheet.css?v=570799721c">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+    <style>
+    :where(.pad-sheet){--pad-sheet-text:#1f1f1d;--pad-sheet-muted:#6b6a66;--pad-sheet-line:#dcdbd6;--pad-sheet-head:#f2f1ed;--pad-sheet-formula:#f7f9fd;--pad-sheet-input:#fffdf2;--pad-sheet-error:#b42318;--pad-sheet-accent:#2a78d6;}@supports (color:light-dark(#000,#fff)){:where(.pad-sheet){--pad-sheet-text:light-dark(#1f1f1d,#ecebe6);--pad-sheet-muted:light-dark(#6b6a66,#9d9c93);--pad-sheet-line:light-dark(#dcdbd6,#3a3a37);--pad-sheet-head:light-dark(#f2f1ed,#262624);--pad-sheet-formula:light-dark(#f7f9fd,#1d2330);--pad-sheet-input:light-dark(#fffdf2,#2a2818);--pad-sheet-error:light-dark(#b42318,#f97066);--pad-sheet-accent:light-dark(#2a78d6,#5598e7);}}
+    </style>
+  </head>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>tags</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags and kinds</label> <input type="search" id="q" name="q" value="" placeholder="Search 1220 entries" autocomplete="off">
+        </form>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#widgets">Widgets</a><span>/</span><span aria-current="page">spreadsheet:*</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              <span class="brace">{</span>spreadsheet:*<span class="brace">}</span>
+            </h1>
+            <p class="tag-about">
+              A grid of cells whose spreadsheet formulas are computed on the server, as a table - formats, totals and cells to edit.
+            </p>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#widgets">Widgets</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> Item,Price ... Tea,=B2*<span class="hl-num">2</span> <span class="hl-brc">{</span><span class="hl-tag">/pad:spreadsheet</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-str">'name'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'rows'</span>, <span class="hl-opt">formulas</span>=<span class="hl-str">'total=B2*C2'</span>, <span class="hl-opt">totals</span>=<span class="hl-str">'total'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-str">'name'</span>, <span class="hl-opt">formats</span>=<span class="hl-str">'B:0.00, D:€ #,##0.00'</span>, <span class="hl-opt">headers</span>=FALSE, <span class="hl-opt">caption</span>=<span class="hl-str">'Caption'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-str">'name'</span>, <span class="hl-opt">editable</span>=<span class="hl-str">'B2:C9'</span>, <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:spreadsheet</span><span class="hl-brc">}</span></code></pre>
+            <h3>
+              Parameters
+            </h3>
+            <dl class="defs">
+              <dt>
+                <code>name</code>
+              </dt>
+              <dd>
+                The sheet's name: its edited cells post as <code>padSheet[name][B2]</code>. Unnamed, a sheet is sheet1, sheet2 ... in the order of the page.
+              </dd>
+            </dl>
+            <h3>
+              Options
+            </h3>
+            <dl class="defs">
+              <dt>
+                <code>data</code>
+              </dt>
+              <dd>
+                The cells: records under a first row of their field names - their values are never formulas - a list of rows of values, or cells by name. As a pair the content is the cells, a line a row, a comma between cells.
+              </dd>
+              <dt>
+                <code>formulas</code>
+              </dt>
+              <dd>
+                Formulas put in: <code>total=B2*C2</code> fills a column down every row below the first, <code>D2:D9=B2*C2</code> a range, <code>F1=SUM(D:D)</code> one cell.
+              </dd>
+              <dt>
+                <code>totals</code>
+              </dt>
+              <dd>
+                A row below the last with the SUM of each column named - its letters or the name in its first row.
+              </dd>
+              <dt>
+                <code>formats</code>
+              </dt>
+              <dd>
+                A format code per column, cell or range: <code>B:0.00, total:€ #,##0.00, B5:B8:0.0%</code>, as TEXT writes them.
+              </dd>
+              <dt>
+                <code>headers</code>
+              </dt>
+              <dd>
+                The column letters and the row numbers; <code>headers=FALSE</code> leaves them out.
+              </dd>
+              <dt>
+                <code>caption</code>
+              </dt>
+              <dd>
+                The table's <code>&lt;caption&gt;</code>.
+              </dd>
+              <dt>
+                <code>editable</code>
+              </dt>
+              <dd>
+                Cells to edit: bare, every number, date and logical value; or the cells and ranges named. An edit posts back and the sheet is computed again.
+              </dd>
+              <dt>
+                <code>seed</code>
+              </dt>
+              <dd>
+                The seed of RAND, 0 when not given: the same numbers on every request.
+              </dd>
+            </dl>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              <code>{pad:spreadsheet}</code> computes a grid of cells on the server and writes it as a table, the column letters and row numbers around it. A cell starting with <code>=</code> is a formula in spreadsheet syntax - <code>=B2*C2</code>, <code>=SUM(D2:D9)</code>, <code>=VLOOKUP(E2,$I$2:$J$6,2)</code> - read by a parser of its own and computed with the functions of <code>pad/subs/formulas/types/</code>, which answer what Excel answers; the cells are worked through in the order the formulas need them, and a circle of references answers <code>#REF!</code> in each of its cells. The cells come from the content - a line a row, a comma between cells - or from <code>data=</code>.
+            </p>
+            <h3>
+              Formulas, totals and formats
+            </h3>
+            <p>
+              <code>formulas=</code> puts formulas in: a name fills a column down the rows, the formula being the one of row 2 and its references moving with each row, as a spreadsheet's fill moves them; a range is filled from its first cell; a cell takes one formula. <code>totals=</code> adds a row of sums. <code>formats=</code> gives a column, a cell or a range a format code - <code>0.00</code>, <code>#,##0</code>, <code>0%</code>, <code>yyyy-mm-dd</code>; a cell typed as <code>12%</code> or <code>2024-01-15</code> keeps that look without one, and a formula takes the look of its first cell. Numbers stand right, errors are marked and explained in their title, and every formula is in its cell's <code>title</code> and <code>data-formula</code>.
+            </p>
+            <h3>
+              Cells to edit
+            </h3>
+            <p>
+              <code>editable</code> makes cells fields. In a <a href="index%EF%B9%96tag%EA%A4%B7form.html"><code>{pad:form}</code></a> they post with it; in a <a href="index%EF%B9%96tag%EA%A4%B7live.html"><code>{pad:live}</code></a> region a change posts the region and it comes back computed, without a script of the page's own; anywhere else the sheet is a form of its own with a Recalculate button. Under the strict check a formula of the template that cannot be read is an error naming its cell and the place in it.
+            </p>
+            <h3>
+              Spreadsheet functions
+            </h3>
+            <p>
+              Each kind has its own description and usage example:
+            </p>
+            <p>
+              <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7abs.html"><code>abs</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7and.html"><code>and</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7average.html"><code>average</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7averageif.html"><code>averageif</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7averageifs.html"><code>averageifs</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7ceiling.html"><code>ceiling</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7choose.html"><code>choose</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7concat.html"><code>concat</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7count.html"><code>count</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7counta.html"><code>counta</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7countblank.html"><code>countblank</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7countif.html"><code>countif</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7countifs.html"><code>countifs</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7date.html"><code>date</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7datevalue.html"><code>datevalue</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7day.html"><code>day</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7days.html"><code>days</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7edate.html"><code>edate</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7eomonth.html"><code>eomonth</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7exact.html"><code>exact</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7exp.html"><code>exp</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7find.html"><code>find</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7floor.html"><code>floor</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7fv.html"><code>fv</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7hlookup.html"><code>hlookup</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7hour.html"><code>hour</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7if.html"><code>if</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7iferror.html"><code>iferror</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7ifna.html"><code>ifna</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7ifs.html"><code>ifs</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7index.html"><code>index</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7int.html"><code>int</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7ipmt.html"><code>ipmt</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7irr.html"><code>irr</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7isblank.html"><code>isblank</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7iserr.html"><code>iserr</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7iserror.html"><code>iserror</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7iseven.html"><code>iseven</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7islogical.html"><code>islogical</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7isna.html"><code>isna</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7isnontext.html"><code>isnontext</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7isnumber.html"><code>isnumber</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7isodd.html"><code>isodd</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7istext.html"><code>istext</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7large.html"><code>large</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7left.html"><code>left</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7len.html"><code>len</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7ln.html"><code>ln</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7log.html"><code>log</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7lower.html"><code>lower</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7match.html"><code>match</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7max.html"><code>max</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7maxifs.html"><code>maxifs</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7median.html"><code>median</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7mid.html"><code>mid</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7min.html"><code>min</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7minifs.html"><code>minifs</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7minute.html"><code>minute</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7mod.html"><code>mod</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7month.html"><code>month</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7mround.html"><code>mround</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7networkdays.html"><code>networkdays</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7networkdays.intl.html"><code>networkdays.intl</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7not.html"><code>not</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7now.html"><code>now</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7nper.html"><code>nper</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7npv.html"><code>npv</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7or.html"><code>or</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7percentile.html"><code>percentile</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7percentile.exc.html"><code>percentile.exc</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7percentile.inc.html"><code>percentile.inc</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7pi.html"><code>pi</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7pmt.html"><code>pmt</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7power.html"><code>power</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7ppmt.html"><code>ppmt</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7product.html"><code>product</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7proper.html"><code>proper</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7pv.html"><code>pv</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7quartile.html"><code>quartile</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7quartile.exc.html"><code>quartile.exc</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7quartile.inc.html"><code>quartile.inc</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7quotient.html"><code>quotient</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7rand.html"><code>rand</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7randbetween.html"><code>randbetween</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7rank.html"><code>rank</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7rate.html"><code>rate</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7replace.html"><code>replace</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7rept.html"><code>rept</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7right.html"><code>right</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7round.html"><code>round</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7rounddown.html"><code>rounddown</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7roundup.html"><code>roundup</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7search.html"><code>search</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7second.html"><code>second</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7sign.html"><code>sign</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7small.html"><code>small</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7sqrt.html"><code>sqrt</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7stdev.html"><code>stdev</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7stdev.p.html"><code>stdev.p</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7stdev.s.html"><code>stdev.s</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7stdevp.html"><code>stdevp</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7substitute.html"><code>substitute</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7sum.html"><code>sum</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7sumif.html"><code>sumif</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7sumifs.html"><code>sumifs</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7sumproduct.html"><code>sumproduct</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7text.html"><code>text</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7textjoin.html"><code>textjoin</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7time.html"><code>time</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7timevalue.html"><code>timevalue</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7today.html"><code>today</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7trim.html"><code>trim</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7trunc.html"><code>trunc</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7upper.html"><code>upper</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7value.html"><code>value</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7var.html"><code>var</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7var.p.html"><code>var.p</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7var.s.html"><code>var.s</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7varp.html"><code>varp</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7vlookup.html"><code>vlookup</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7weekday.html"><code>weekday</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7workday.html"><code>workday</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7workday.intl.html"><code>workday.intl</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7xlookup.html"><code>xlookup</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7xor.html"><code>xor</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7formula%EA%A4%B7year.html"><code>year</code></a>
+            </p>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Examples
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                Cells as content
+              </h3>
+              <p class="example-about">
+                A line a row, a comma between cells; a cell starting with = is a formula, computed on the server, its column formatted.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/spreadsheet/1-shop.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-str">'shop'</span>, <span class="hl-opt">formats</span>=<span class="hl-str">'B:€ #,##0.00, D:€ #,##0.00'</span>, <span class="hl-opt">totals</span>=<span class="hl-str">'D'</span><span class="hl-brc">}</span>
+  Item,Price,Qty,Total
+  Apples,<span class="hl-num">1.20</span>,<span class="hl-num">3</span>,=B2*C2
+  Pears,<span class="hl-num">0.80</span>,<span class="hl-num">5</span>,=B3*C3
+  Plums,<span class="hl-num">2.25</span>,<span class="hl-num">2</span>,=B4*C4
+<span class="hl-brc">{</span><span class="hl-tag">/pad:spreadsheet</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7spreadsheet%EA%A4%B71-shop.html">open alone</a></span>
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdzaG9wJywgZm9ybWF0cz0nQjrigqwgIywjIzAuMDAsIEQ64oKsICMsIyMwLjAwJywgdG90YWxzPSdEJ31cbiAgSXRlbSxQcmljZSxRdHksVG90YWxcbiAgQXBwbGVzLDEuMjAsMyw9QjIqQzJcbiAgUGVhcnMsMC44MCw1LD1CMypDM1xuICBQbHVtcywyLjI1LDIsPUI0KkM0XG57L3BhZDpzcHJlYWRzaGVldH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdzaG9wJywgZm9ybWF0cz0nQjrigqwgIywjIzAuMDAsIEQ64oKsICMsIyMwLjAwJywgdG90YWxzPSdEJ31cbiAgSXRlbSxQcmljZSxRdHksVG90YWxcbiAgQXBwbGVzLDEuMjAsMyw9QjIqQzJcbiAgUGVhcnMsMC44MCw1LD1CMypDM1xuICBQbHVtcywyLjI1LDIsPUI0KkM0XG57L3BhZDpzcHJlYWRzaGVldH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <div class="pad-sheet" data-sheet="shop">
+                      <table class="pad-sheet-table">
+                        <thead>
+                          <tr>
+                            <td class="pad-sheet-corner"></td>
+                            <th scope="col">
+                              A
+                            </th>
+                            <th scope="col">
+                              B
+                            </th>
+                            <th scope="col">
+                              C
+                            </th>
+                            <th scope="col">
+                              D
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">
+                              1
+                            </th>
+                            <td>
+                              Item
+                            </td>
+                            <td>
+                              Price
+                            </td>
+                            <td>
+                              Qty
+                            </td>
+                            <td>
+                              Total
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              2
+                            </th>
+                            <td>
+                              Apples
+                            </td>
+                            <td class="num">
+                              € 1.20
+                            </td>
+                            <td class="num">
+                              3
+                            </td>
+                            <td class="num fx" title="=B2*C2" data-formula="=B2*C2" data-value="3.6">
+                              € 3.60
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              3
+                            </th>
+                            <td>
+                              Pears
+                            </td>
+                            <td class="num">
+                              € 0.80
+                            </td>
+                            <td class="num">
+                              5
+                            </td>
+                            <td class="num fx" title="=B3*C3" data-formula="=B3*C3" data-value="4">
+                              € 4.00
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              4
+                            </th>
+                            <td>
+                              Plums
+                            </td>
+                            <td class="num">
+                              € 2.25
+                            </td>
+                            <td class="num">
+                              2
+                            </td>
+                            <td class="num fx" title="=B4*C4" data-formula="=B4*C4" data-value="4.5">
+                              € 4.50
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              5
+                            </th>
+                            <td>
+                              Total
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td class="num fx" title="=SUM(D2:D4)" data-formula="=SUM(D2:D4)" data-value="12.1">
+                              € 12.10
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-2">
+              <h3>
+                Rows and a computed column
+              </h3>
+              <p class="example-about">
+                The rows of data= under their field names; formulas= fills a new column down the rows, as a spreadsheet fills one.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/spreadsheet/2-rows.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:data</span> <span class="hl-str">'scores'</span><span class="hl-brc">}</span>
+  name,test1,test2
+  Anna,<span class="hl-num">92</span>,<span class="hl-num">88</span>
+  Bram,<span class="hl-num">61</span>,<span class="hl-num">70</span>
+  Chen,<span class="hl-num">78</span>,<span class="hl-num">82</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:data</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-str">'scores'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'scores'</span>, <span class="hl-opt">formulas</span>=<span class="hl-str">'mean=AVERAGE(B2:C2), grade=IF(D2&gt;=75,"pass","retry")'</span>, <span class="hl-opt">formats</span>=<span class="hl-str">'mean:0.0'</span><span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7spreadsheet%EA%A4%B72-rows.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3Njb3Jlcyd9XG4gIG5hbWUsdGVzdDEsdGVzdDJcbiAgQW5uYSw5Miw4OFxuICBCcmFtLDYxLDcwXG4gIENoZW4sNzgsODJcbnsvcGFkOmRhdGF9XG57cGFkOnNwcmVhZHNoZWV0ICdzY29yZXMnLCBkYXRhPSdzY29yZXMnLCBmb3JtdWxhcz0nbWVhbj1BVkVSQUdFKEIyOkMyKSwgZ3JhZGU9SUYoRDI+PTc1LFwicGFzc1wiLFwicmV0cnlcIiknLCBmb3JtYXRzPSdtZWFuOjAuMCcvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3Njb3Jlcyd9XG4gIG5hbWUsdGVzdDEsdGVzdDJcbiAgQW5uYSw5Miw4OFxuICBCcmFtLDYxLDcwXG4gIENoZW4sNzgsODJcbnsvcGFkOmRhdGF9XG57cGFkOnNwcmVhZHNoZWV0ICdzY29yZXMnLCBkYXRhPSdzY29yZXMnLCBmb3JtdWxhcz0nbWVhbj1BVkVSQUdFKEIyOkMyKSwgZ3JhZGU9SUYoRDI+PTc1LFwicGFzc1wiLFwicmV0cnlcIiknLCBmb3JtYXRzPSdtZWFuOjAuMCcvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <div class="pad-sheet" data-sheet="scores">
+                      <table class="pad-sheet-table">
+                        <thead>
+                          <tr>
+                            <td class="pad-sheet-corner"></td>
+                            <th scope="col">
+                              A
+                            </th>
+                            <th scope="col">
+                              B
+                            </th>
+                            <th scope="col">
+                              C
+                            </th>
+                            <th scope="col">
+                              D
+                            </th>
+                            <th scope="col">
+                              E
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">
+                              1
+                            </th>
+                            <td>
+                              name
+                            </td>
+                            <td>
+                              test1
+                            </td>
+                            <td>
+                              test2
+                            </td>
+                            <td>
+                              mean
+                            </td>
+                            <td>
+                              grade
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              2
+                            </th>
+                            <td>
+                              Anna
+                            </td>
+                            <td class="num">
+                              92
+                            </td>
+                            <td class="num">
+                              88
+                            </td>
+                            <td class="num fx" title="=AVERAGE(B2:C2)" data-formula="=AVERAGE(B2:C2)" data-value="90">
+                              90.0
+                            </td>
+                            <td class="fx" title="=IF(D2&gt;=75,&quot;pass&quot;,&quot;retry&quot;)" data-formula="=IF(D2&gt;=75,&quot;pass&quot;,&quot;retry&quot;)">
+                              pass
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              3
+                            </th>
+                            <td>
+                              Bram
+                            </td>
+                            <td class="num">
+                              61
+                            </td>
+                            <td class="num">
+                              70
+                            </td>
+                            <td class="num fx" title="=AVERAGE(B3:C3)" data-formula="=AVERAGE(B3:C3)" data-value="65.5">
+                              65.5
+                            </td>
+                            <td class="fx" title="=IF(D3&gt;=75,&quot;pass&quot;,&quot;retry&quot;)" data-formula="=IF(D3&gt;=75,&quot;pass&quot;,&quot;retry&quot;)">
+                              retry
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">
+                              4
+                            </th>
+                            <td>
+                              Chen
+                            </td>
+                            <td class="num">
+                              78
+                            </td>
+                            <td class="num">
+                              82
+                            </td>
+                            <td class="num fx" title="=AVERAGE(B4:C4)" data-formula="=AVERAGE(B4:C4)" data-value="80">
+                              80.0
+                            </td>
+                            <td class="fx" title="=IF(D4&gt;=75,&quot;pass&quot;,&quot;retry&quot;)" data-formula="=IF(D4&gt;=75,&quot;pass&quot;,&quot;retry&quot;)">
+                              pass
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-3">
+              <h3>
+                Cells to edit
+              </h3>
+              <p class="example-about">
+                editable makes the numbers fields; outside a form or a live region the sheet is a form of its own and Recalculate computes it again on the server.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/spreadsheet/3-editable.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-str">'loan'</span>, editable, <span class="hl-opt">formats</span>=<span class="hl-str">'B4:€ #,##0.00'</span><span class="hl-brc">}</span>
+  Amount,<span class="hl-num">10000</span>
+  Interest,<span class="hl-num">5</span>%
+  Years,<span class="hl-num">3</span>
+  Monthly,=PMT(B2/<span class="hl-num">12</span>,B3*<span class="hl-num">12</span>,-B1)
+<span class="hl-brc">{</span><span class="hl-tag">/pad:spreadsheet</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7spreadsheet%EA%A4%B73-editable.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdsb2FuJywgZWRpdGFibGUsIGZvcm1hdHM9J0I0OuKCrCAjLCMjMC4wMCd9XG4gIEFtb3VudCwxMDAwMFxuICBJbnRlcmVzdCw1JVxuICBZZWFycywzXG4gIE1vbnRobHksPVBNVChCMi8xMixCMyoxMiwtQjEpXG57L3BhZDpzcHJlYWRzaGVldH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdsb2FuJywgZWRpdGFibGUsIGZvcm1hdHM9J0I0OuKCrCAjLCMjMC4wMCd9XG4gIEFtb3VudCwxMDAwMFxuICBJbnRlcmVzdCw1JVxuICBZZWFycywzXG4gIE1vbnRobHksPVBNVChCMi8xMixCMyoxMiwtQjEpXG57L3BhZDpzcHJlYWRzaGVldH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <div class="pad-sheet" data-sheet="loan">
+                      <form method="post" class="pad-sheet-form">
+                        <table class="pad-sheet-table">
+                          <thead>
+                            <tr>
+                              <td class="pad-sheet-corner"></td>
+                              <th scope="col">
+                                A
+                              </th>
+                              <th scope="col">
+                                B
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">
+                                1
+                              </th>
+                              <td>
+                                Amount
+                              </td>
+                              <td class="num in">
+                                <input name="padSheet[loan][B1]" value="10000" aria-label="B1, Amount" inputmode="decimal" autocomplete="off">
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                2
+                              </th>
+                              <td>
+                                Interest
+                              </td>
+                              <td class="num in">
+                                <input name="padSheet[loan][B2]" value="5%" aria-label="B2, Interest" inputmode="decimal" autocomplete="off">
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                3
+                              </th>
+                              <td>
+                                Years
+                              </td>
+                              <td class="num in">
+                                <input name="padSheet[loan][B3]" value="3" aria-label="B3, Years" inputmode="decimal" autocomplete="off">
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                4
+                              </th>
+                              <td>
+                                Monthly
+                              </td>
+                              <td class="num fx" title="=PMT(B2/12,B3*12,-B1)" data-formula="=PMT(B2/12,B3*12,-B1)" data-value="299.708971046655">
+                                € 299.71
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table><button type="submit" class="pad-sheet-recalc">Recalculate</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="block" aria-labelledby="see">
+            <h2 id="see">
+              See also
+            </h2>
+            <ul class="list">
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7datatable.html">{pad:datatable}</a> <span class="about">Rows as a complete HTML table - formatted numbers, a totals row, sorting and paging on the server.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7live.html">{pad:live}</a> <span class="about">A region of the page that re-renders on the server when something in it is clicked, submitted or changed, and swaps itself in.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{pad:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
+              </li>
+            </ul>
+          </section>
+          <nav class="prevnext" aria-label="Other tags">
+            <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7ylorrd.html">← palette / ylorrd</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7ajax.html">{pad:ajax} →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            1220 tags and kinds of PAD, with syntax and usage examples. Safe, self-contained examples run here; examples requiring credentials, delivery or application files are shown as source.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

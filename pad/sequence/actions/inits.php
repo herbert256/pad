@@ -9,14 +9,14 @@
   // goes into an include path, so it must be a plain name before it is looked up - with
   // ../ in it, action= reached any .php on disk.
 
-  // An option of the tag's own action is its parameter, not a second mention: {a:shift shift=3}
+  // An option of the tag's own action is its parameter, not a second mention: {action:shift pull='a', shift=3}
   // ran shift twice, the first time with a count of 1, so it showed 1 and took 1 out of the
   // store. The action keeps the first place, with the option's value.
   //
   // So is an action= whose first '|' segment names it, the same one mention written the other
-  // way: {a:shift action='shift|3'} ran shift with a count of 1 and then with 3, showed 1 and
-  // took only 1 out of the store, {a:reverse action='reverse'} reversed twice and gave the
-  // store as it was, and {a:splice action='splice|1|2'} ended on "splice= takes an offset,
+  // way: {action:shift pull='a', action='shift|3'} ran shift with a count of 1 and then with 3, showed 1 and
+  // took only 1 out of the store, {action:reverse pull='a', action='reverse'} reversed twice and gave the
+  // store as it was, and {action:splice pull='a', action='splice|1|2'} ended on "splice= takes an offset,
   // not ''".
 
   // The rows kept beside the store the run pulls, as they are before it builds: the columns
@@ -87,7 +87,7 @@
       }
 
       // action= names an action, as action='nope' is named when it names none: a list was
-      // dropped without a word, {sequence '1..6', action=['sort']} answered 1 2 3 4 5 6.
+      // dropped without a word, {sequence:range '1..6', action=['sort']} answered 1 2 3 4 5 6.
 
       if ( is_array ( $pqActionParm ) ) {
         padError ( "action= takes the name of an action, not a list" );

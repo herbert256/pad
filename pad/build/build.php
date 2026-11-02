@@ -19,7 +19,7 @@
 
   // A remember-me cookie logs its user in now, after _lib - where the application's finder
   // is - and before the guards ask for the user and anything of the page is written: the
-  // login makes a new session, and made at the first {auth}, {can} or padUser of the page
+  // login makes a new session, and made at the first {pad:auth}, {pad:can} or padUser of the page
   // it dropped the CSRF token a form above it had already written - the post was refused.
   // padUser asks the session first: a visitor whose session holds the login keeps it -
   // read on every request, the cookie renewed the session id and the token each time, and
@@ -29,7 +29,7 @@
     padUser ();
 
   // The directory guards decide before any _inits.php runs. A refused request is answered
-  // 403; a page a {page} tag includes renders as nothing when its guard refuses - an
+  // 403; a page a {pad:page} tag includes renders as nothing when its guard refuses - an
   // allowed page must not show a guarded one's content, nor be refused for holding it.
 
   include PAD . 'build/guards.php';
@@ -39,9 +39,9 @@
       ? 'Forbidden: ' . str_replace ( APPS, '', $padBuildRefused ) . " refused the page '$padPage'"
       : 'Forbidden' );
 
-  // A page-cache hit of a page with {nocache} parts renders the stored page with the parts
+  // A page-cache hit of a page with {pad:nocache} parts renders the stored page with the parts
   // in it - cache/inits.php found it - in place of building the page: no _inits.php and no
-  // page PHP run. Only the request's own page; a {page} it includes builds as ever.
+  // page PHP run. Only the request's own page; a {pad:page} it includes builds as ever.
 
   if ( $padBuildRefused )
 
@@ -75,21 +75,21 @@
 
   // Strict mode reads the assembled source for construct typos: an @word@ that names no
   // file in pad/constructs/ renders as nothing anywhere, silently. What sits between
-  // {ignore} tags is the author saying hands off, so it stays out of the scan - written with
-  // whitespace control too, {~ignore~}, and so does a {highlight} sample, code shown as it
-  // stands, and the content of a pair carrying the ignore option, {markdown ignore}: only
-  // the plain {ignore} was skipped, and a sample showing a placeholder, "Hello @name@",
+  // {pad:ignore} tags is the author saying hands off, so it stays out of the scan - written with
+  // whitespace control too, {~pad:ignore~}, and so does a {pad:highlight} sample, code shown as it
+  // stands, and the content of a pair carrying the ignore option, {pad:markdown ignore}: only
+  // the plain {pad:ignore} was skipped, and a sample showing a placeholder, "Hello @name@",
   // failed as "there is no @name@ construct".
   //
   // The comments are out of the scan as they are out of the render (occurrence/init.php),
   // written over with spaces so a place found stays the template's: a {# @todo@ #} note
   // failed as "there is no @todo@ construct" though it never renders, and a comment naming
-  // the {ignore} tag opened a span to the next real {/ignore} that hid an @typo@ in between.
+  // the {pad:ignore} tag opened a span to the next real {/pad:ignore} that hid an @typo@ in between.
   //
   // The samples are the text pairs the render reads as text (padTextSpans, lib/template.php),
   // written over with spaces as well, and the place reported is the @word@ the scan found: a
   // pattern of its own paired them, which read no pad: prefix - {pad:ignore}Hello
-  // @name@{/pad:ignore} failed - and ended a {highlight} sample at the closer of a sample it
+  // @name@{/pad:ignore} failed - and ended a {pad:highlight} sample at the closer of a sample it
   // shows; and the place was the first @word@ of the text, a sample's too, so a typo on line 3
   // was pointed at in a sample on line 1.
 

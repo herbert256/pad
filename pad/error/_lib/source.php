@@ -211,7 +211,7 @@
 
     }
 
-    // A nested pass over the very text of the tag that started it - {code}...{/code}.
+    // A nested pass over the very text of the tag that started it - {pad:code}...{/pad:code}.
 
     if ( $level > 0 and $base !== '' and ! ( $padPair [$level] ?? FALSE ) and ( $padBase [$level-1] ?? NULL ) === $base )
       return padSrcBase ( $level - 1, $pos );
@@ -324,7 +324,7 @@
       if ( $file === NULL )
         return NULL;
 
-      // A page built inside another one - {page} - opens its levels on top of the tag
+      // A page built inside another one - {pad:page} - opens its levels on top of the tag
       // that asked for it, and that tag stands in the level below that.
 
       $via   = ( $where ['root'] > 1 ) ? $where ['root'] - 1 : 0;
@@ -356,7 +356,7 @@
       return NULL;
 
     // The marker goes under what the message names when the tag holds it - the field of
-    // {$totl | money}, the function of {echo $x | uppr} - and under the tag otherwise.
+    // {$totl | money}, the function of {pad:echo $x | uppr} - and under the tag otherwise.
 
     $tag   = substr ( $source, $pos, max ( 1, $length ) );
     $mark  = $pos;
@@ -440,6 +440,11 @@
     if ( preg_match ( "/there is no tag named '([A-Za-z_]\\w*)'/", $error, $m ) )
       return padErrorNear ( $m [1], array_merge ( padErrorNames ( 'tags', '_tags' ), padErrorNames ( '', '_include' ) ) );
 
+    if ( preg_match ( "/there is no (built-in|application) tag named '([A-Za-z_]\\w*)'/", $error, $m ) )
+      return padErrorNear ( $m [2], $m [1] === 'built-in'
+        ? array_map ( fn ( $file ) => basename ( $file, '.php' ), glob ( PAD . 'tags/*.php' ) )
+        : padErrorNames ( '', '_tags' ), $m [1] === 'built-in' ? 'pad:' : 'app:' );
+
     return '';
 
   }
@@ -469,7 +474,7 @@
 
   }
 
-  // The field names visible where the error stands: the rows and {set} names of the levels
+  // The field names visible where the error stands: the rows and {pad:set} names of the levels
   // around it, and the application's own variables.
 
   function padErrorFields () {

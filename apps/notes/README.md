@@ -8,9 +8,9 @@ A notebook in Markdown - tags, search as you type, pinned notes, pictures and PD
 
 | Page | What it does |
 |------|--------------|
-| `index` | The notes, pinned first: all, one tag's - the tags are the frame's menu - or what a search finds. The list is a `{live}` region - the star pins a note - and a `{fragment}` that `notes.js` asks for while a search is typed |
-| `note` | One note: its Markdown, tags, files - pictures shown - and a `{live}` region for the pin and the colour; removing a file and the note are posts |
-| `edit` | A new note or a change: `{form}` with `rules=` on the fields, tags, a colour, a file to attach (`padUpload`); the Preview tab posts the text to `preview` |
+| `index` | The notes, pinned first: all, one tag's - the tags are the frame's menu - or what a search finds. The list is a `{pad:live}` region - the star pins a note - and a `{pad:fragment}` that `notes.js` asks for while a search is typed |
+| `note` | One note: its Markdown, tags, files - pictures shown - and a `{pad:live}` region for the pin and the colour; removing a file and the note are posts |
+| `edit` | A new note or a change: `{pad:form}` with `rules=` on the fields, tags, a colour, a file to attach (`padUpload`); the Preview tab posts the text to `preview` |
 | `preview` | The editor's Markdown rendered as the note page renders it - a POST with the session's token in `X-CSRF-Token` |
 | `file` | A file of a note, sent back with `padUploadSend` - shown or, with `&download`, downloaded |
 | `backup` | The numbers, the notes as JSON (`export`), the database file (`database`), an import of a JSON export |

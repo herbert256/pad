@@ -1,10 +1,10 @@
 <h1>Orders for {$customer | upper}</h1>
-{badge/}
+{app:badge/}
 <ul>
-{orders callback='double'}
-  {first@orders}<li class="first">{/first@orders}
+{array:orders callback='double'}
+  {property:first@orders}<li class="first">{/property:first@orders}
   <li>{$id}: {$amount}</li>
-{/orders}
+{/array:orders}
 </ul>
-{if $total gt 0}<p>Total: {echo $total | money/}</p>{/if}
+{pad:if $total gt 0}<p>Total: {pad:echo $total | money/}</p>{/pad:if}
 {include:footer/}

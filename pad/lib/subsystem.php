@@ -1,18 +1,12 @@
 <?php
 
-  // The subsystems whose kinds are the files of a directory - the charts, the games, the toys
-  // ... - each a tag type of its own, handled by pad/types/<type>.php: written <type>:<kind>,
-  // {chart:pie/}, and - when the subsystem allows it - bare, {pie/}, after every other kind of
-  // tag (padTypeCommon, lib/type.php), so a tag, a store, a field or a sequence of the name
-  // wins. The kinds of a subsystem are the names of the files of pad/subs/<directory>/types/,
-  // their extensions left off: a kind is added by adding its file. The subsystems of
-  // padSubsystemKinds below are of pad/subs/ too, their kinds read the same way (padKinds), but
-  // no tag type: a view is the parameter of {map}, a rule a word of padValidate.
-  //
-  // The list says, per type: its directory under pad/subs/, whether its kinds are reached bare -
-  // the icons and the fakes are not: their names, home or email, are the names of fields and
-  // pages - and what a miss of the type: prefix is called (level/no.php). The bare names are
-  // tried in its order, so where two subsystems have a kind of one name the first has it.
+  // Registered subsystem namespaces. Each kind is a file of its types/ directory.
+  // Named template tags always require the prefix, for example {chart:pie/}.
+  // The middle registry field retains expression-lookup compatibility; it does not
+  // authorize unprefixed template tags. The final field names a missing kind in errors.
+
+  // Sequence namespaces with an explicit auto selector for parameter-driven runs.
+  const padSequenceOperations = [ 'sequence', 'action', 'keep', 'make', 'remove' ];
 
   const padSubsystems = [
     'chart'   => [ 'charts',   TRUE,  'chart type'     ],
@@ -34,8 +28,8 @@
     'jsonld'  => [ 'jsonld',   FALSE, 'JSON-LD kind'   ],
   ];
 
-  // The subsystems of pad/subs/ whose kinds are no tag type - a view of {map}, a rule of
-  // padValidate, a provider of padOAuthStart, a format of {data}, a function of {spreadsheet} ...
+  // The subsystems of pad/subs/ whose kinds are no tag type - a view of {pad:map}, a rule of
+  // padValidate, a provider of padOAuthStart, a format of {pad:data}, a function of {pad:spreadsheet} ...
   // - by the name the use of a kind is recorded under (padInfoXref, which files every kind of a
   // subsystem whatever the page's text says) and their directory.
 

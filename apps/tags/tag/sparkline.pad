@@ -1,10 +1,10 @@
-{ignore}
-<p><code>{sparkline}</code> is <a href="?tag/chart">{chart 'sparkline'}</a> by a name of its
+{pad:ignore}
+<p><code>{chart:sparkline}</code> is <a href="?tag/chart">{chart:sparkline}</a> by a name of its
 own: a small line with no axes, no grid and no labels, the last point marked with a dot. Its
 job is the shape of a series - up, down, flat or jumpy - in the space of a word, so it fits in
 running text or in a cell of a table.</p>
 
-<p>The data is found as for a chart: <code>data=</code> names a <code>{data}</code> store, a
+<p>The data is found as for a chart: <code>data=</code> names a <code>{pad:data}</code> store, a
 sequence store, an array of the page or a <code>_data</code> file - and inside a loop a field
 of the current row that holds a list, so each row of a table can draw its own line.
 <code>sequence=</code> plots the first <code>rows</code> terms of a sequence type, and as a
@@ -16,4 +16,4 @@ zero, so even a small change shows; equal values draw a flat line through the mi
 finite number is taken - a sparkline has no axis to keep in range. Unlike the bigger kinds it
 has only the chart's one <code>&lt;title&gt;</code>, no tooltip per point; the colour is
 <code>--pad-chart-series</code> on <code>.pad-chart</code>.</p>
-{/ignore}
+{/pad:ignore}

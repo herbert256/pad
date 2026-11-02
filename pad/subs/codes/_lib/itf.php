@@ -6,9 +6,9 @@
   // narrow elements opens it, a wide bar, a narrow space and a narrow bar close it. An odd
   // number of digits gets a 0 in front.
   //
-  //   {itf '12345670'/}
-  //   {itf '1234567', check/}           the check digit of weights 3 and 1 added
-  //   {itf14 '1540014128876'/}          ITF-14, the number of a carton (subs/codes/types/itf14.php)
+  //   {barcode:itf '12345670'/}
+  //   {barcode:itf '1234567', check/}           the check digit of weights 3 and 1 added
+  //   {barcode:itf14 '1540014128876'/}          ITF-14, the number of a carton (subs/codes/types/itf14.php)
   //
   // padCodeItf   the bars, or the message why the text is no ITF
 

@@ -7,14 +7,14 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{fake 'kind', seed=7/}
+{fake:kind seed=7/}
 {fake:kind from=1, to=6/}
-{fake 'name, email', rows=5, toData='store'/}
-{fake 'field:kind, field:kind', rows=3} ... {/fake}
+{fake:rows 'name, email', rows=5, toData='store'/}
+{fake:rows 'field:kind, field:kind', rows=3} ... {/fake:rows}
 PAD;
 
   $tagParms   = [
-    'kind' => 'The kind, a file of <code>pad/subs/fakes/types/</code>: '
+    'fields (fake:rows)' => 'The kind, a file of <code>pad/subs/fakes/types/</code>: '
                 . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padFakeKinds () ) )
                 . ' - or several, each a field under its kind\'s name or as <code>field:kind</code> says. The fake type names one as well, <code>{fake:email/}</code>.' ];
 

@@ -7,7 +7,7 @@
 
   // The snapshot is keyed by name, so membership is a key test. in_array searched the
   // values, and searched them loosely: a page variable holding TRUE matched every name the
-  // pass invented, and {code sandbox} on such a page unset nothing at all.
+  // pass invented, and {pad:code sandbox} on such a page unset nothing at all.
 
   foreach ( array_diff_key ( padAppVars ( $GLOBALS ), $padStrApp [$padStrCnt] ) as $padStrKey => $padStrVal )
     unset ( $GLOBALS [$padStrKey] );

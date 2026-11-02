@@ -1,11 +1,11 @@
-{data 'myXml', 'level_demo.xml'/}
+{pad:data 'myXml', 'level_demo.xml'/}
 
 <table border='1'>
-  {myXml}
+  {data:myXml}
     <tr>
-      {column}
+      {array:column}
         <td>{$column}</td>
-      {/column}
+      {/array:column}
     </tr>
-  {/myXml}
+  {/data:myXml}
 </table>

@@ -1,9 +1,9 @@
 <?php
 
-  // {flush} sends the page above it at once: the first part of the body of flush/slow -
+  // {pad:flush} sends the page above it at once: the first part of the body of flush/slow -
   // the part above the flush, and only that - arrives before the slow part below it is
   // rendered. Measured on the body, not on the first byte: PHP's own flush(), which a bare
-  // {flush} used to call, sent the headers early and the whole body still at the end. The
+  // {pad:flush} used to call, sent the headers early and the whole body still at the end. The
   // response carries no Content-Length - it cannot be known before the whole page is - and
   // the page arrives whole.
 

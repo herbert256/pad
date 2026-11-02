@@ -12,16 +12,16 @@
   // padFrameEnd snippet:
   //
   //   {common:padFrame}
-  //     {slot 'head'}{asset 'admin.css', tag}{/slot}    in <head>
-  //     {slot 'foot'}...{/slot}                           at the bottom of the side
-  //     {slot 'tools'}...{/slot}                          in the bar, before the theme switcher
+  //     {pad:slot 'head'}{pad:asset 'admin.css', tag}{/pad:slot}    in <head>
+  //     {pad:slot 'foot'}...{/pad:slot}                           at the bottom of the side
+  //     {pad:slot 'tools'}...{/pad:slot}                          in the bar, before the theme switcher
   //   {/common:padFrame}
   //   @page@
   //   {common:padFrameEnd}
   //
-  // and further {slot 'side'} - the side's room under the menu, the editor's files - and
-  // {slot 'title'}, the bar's left half in place of the title. The page stays outside the
-  // tag, at the top level of the wrapper, where {flush} and the rest that must stand there
+  // and further {pad:slot 'side'} - the side's room under the menu, the editor's files - and
+  // {pad:slot 'title'}, the bar's left half in place of the title. The page stays outside the
+  // tag, at the top level of the wrapper, where {pad:flush} and the rest that must stand there
   // can. The common: prefix reaches the tag from an application that switched $padCommon
   // off.
   //
@@ -36,9 +36,9 @@
   // and the option fill - {common:padFrame fill} - for a page that fills the window
   // instead of scrolling: the editor. The stylesheet and the script are www/_common/pad.css
   // and pad.js - and the brand's brand.css and brand.js - with a version from their contents
-  // as {asset} writes it.
+  // as {pad:asset} writes it.
   //
-  // The theme switcher - {themes/}, the themes of pad/subs/themes/ - stands in the bar of
+  // The theme switcher - {pad:themes/}, the themes of pad/subs/themes/ - stands in the bar of
   // every page, at the end of the bar after the tools slot, so the visitor's
   // choice is at hand in every application; $padTheme = FALSE, which turns the themes off,
   // takes it out of the bar.
@@ -84,7 +84,7 @@
   $frameMenu = $frameRows;
   $frameNav  = $frameRows ? 1 : 0;
 
-  // www/_common/ - the stylesheet and the script - with the version {asset} gives a file of
+  // www/_common/ - the stylesheet and the script - with the version {pad:asset} gives a file of
   // an application's own: ten hex digits of a hash of the contents.
 
   $frameCss = $frameJs = $frameBrandCss = $frameBrandJs = '';

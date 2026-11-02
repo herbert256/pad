@@ -29,7 +29,7 @@
   </div>
   <div class="flow-step">
     <h3>PAD writes</h3>
-    <p>The template places the islands and hands each its props: <code>data-props="{open/}^field{close/}"</code>.</p>
+    <p>The template places the islands and hands each its props: <code>data-props="{pad:open/}^field{pad:close/}"</code>.</p>
   </div>
   <div class="flow-step is-client">
     <h3>React mounts</h3>
@@ -41,23 +41,23 @@
   </div>
 </div>
 
-{groups}
+{array:groups}
 <div class="group-head">
   <h2>{$title}</h2>
   <span class="badge">{$count} examples</span>
 </div>
 <p class="group-text">{$text}</p>
 <div class="grid">
-  {examples}
+  {array:examples}
   <a class="card rise" href="?{$page}">
     <span class="card-icon" aria-hidden="true">{$icon}</span>
     <span class="card-go" aria-hidden="true">→</span>
     <h3>{$title}</h3>
     <p>{$lede}</p>
-    <div class="chips">{server}<code class="chip is-server">{$server}</code>{/server}{client}<code class="chip is-client">{$client}</code>{/client}</div>
+    <div class="chips">{array:server}<code class="chip is-server">{$server}</code>{/array:server}{array:client}<code class="chip is-client">{$client}</code>{/array:client}</div>
   </a>
-  {/examples}
+  {/array:examples}
 </div>
-{/groups}
+{/array:groups}
 
 <script type="text/babel" src="{$padRoot}react/index.js"></script>

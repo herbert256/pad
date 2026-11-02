@@ -13,7 +13,8 @@
 
   function padEmbedProviders () {
 
-    return padKinds ( 'embeds' );
+    // auto selects a provider; it is not itself a remote provider.
+    return array_values ( array_diff ( padKinds ( 'embeds' ), [ 'auto' ] ) );
 
   }
 

@@ -9,7 +9,7 @@
   // it moves.
 
   // The default max follows a min= past it: held to the min=, the default 100 refused
-  // {slider 'v', min=200/} for a max the template never wrote.
+  // {input:slider 'v', min=200/} for a max the template never wrote.
 
   $padInputMin  = padInputNumber ( 'min',  0 );
   $padInputMax  = padInputNumber ( 'max',  $padInputMin < 100 ? 100 : $padInputMin + 100, $padInputMin );

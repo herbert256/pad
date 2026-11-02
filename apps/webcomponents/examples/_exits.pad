@@ -3,10 +3,10 @@
 <section class="how">
   <h2>How it is built</h2>
   <p class="how-legend"><span class="is-server">PAD, on the server</span> <span class="is-client">the browser</span></p>
-  {source files=$sourceFiles/}
+  {pad:source files=$sourceFiles/}
 </section>
 
 <nav class="prev-next" aria-label="More examples">
-  {if $prev.page}<a class="prev" href="?{$prev.page}"><small>Previous</small>{$prev.title}</a>{else}<span></span>{/if}
-  {if $next.page}<a class="next" href="?{$next.page}"><small>Next</small>{$next.title}</a>{/if}
+  {pad:if $prev.page}<a class="prev" href="?{$prev.page}"><small>Previous</small>{$prev.title}</a>{pad:else}<span></span>{/pad:if}
+  {pad:if $next.page}<a class="next" href="?{$next.page}"><small>Next</small>{$next.title}</a>{/pad:if}
 </nav>

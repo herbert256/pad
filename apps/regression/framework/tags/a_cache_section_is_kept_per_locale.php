@@ -1,6 +1,6 @@
 <?php
 
-  // With several locales a {cache} section is kept per locale, as a cached page is: the
+  // With several locales a {pad:cache} section is kept per locale, as a cached page is: the
   // section written for nl was served to en - "Je winkelwagen" for every language.
 
   $padLocales = [ 'en', 'nl' ];

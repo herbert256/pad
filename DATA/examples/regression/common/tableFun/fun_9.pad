@@ -1,11 +1,11 @@
 <table border='1'>
-  {row}
+  {array:row}
     <tr>
-      {set $col = 1/}
-      {while $col LE 5}
-        {cell $row + $col/}
-        {increment $col/}
-      {/while}
+      {pad:set $col = 1/}
+      {pad:while $col LE 5}
+        {content:cell $row + $col/}
+        {pad:increment $col/}
+      {/pad:while}
     </tr>
-  {/row}
+  {/array:row}
 </table>

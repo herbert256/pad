@@ -1,6 +1,6 @@
 <?php
 
-  // Parts of a hierarchy as circles in circles: {chart 'pack', data='files', levels='folder',
+  // Parts of a hierarchy as circles in circles: {chart:pack data='files', levels='folder',
   // label='file', value='kb'}.
   //
   // The rows and options of the treemap: label= names the parts - else the first field

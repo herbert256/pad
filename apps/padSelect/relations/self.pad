@@ -1,10 +1,10 @@
 <table>
   <tr><th>Genre</th><th>Part of</th><th>Sub-genres</th></tr>
-  {genres}
+  {select:genres}
   <tr>
     <td>{$genre}</td>
-    <td>{parents}{$genre}@else@<span class="dim">-</span>{/parents}</td>
-    <td>{subgenres}{$genre}{notLast@subgenres}, {/notLast@subgenres}{/subgenres}</td>
+    <td>{select:parents}{$genre}@else@<span class="dim">-</span>{/select:parents}</td>
+    <td>{select:subgenres}{$genre}{property:notLast@subgenres}, {/property:notLast@subgenres}{/select:subgenres}</td>
   </tr>
-  {/genres}
+  {/select:genres}
 </table>

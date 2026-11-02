@@ -4,8 +4,8 @@ This document explains how the PAD expression evaluator works.
 
 ## Overview
 
-The evaluator turns the text of an expression - `{echo $price * 1.1 | round/}`, the condition
-of an `{if}`, a `where=` option - into a value. It works in four steps:
+The evaluator turns the text of an expression - `{pad:echo $price * 1.1 | round/}`, the condition
+of an `{pad:if}`, a `where=` option - into a value. It works in four steps:
 
 ```
 text ── validate ── scan ── parse ── evaluate ── value
@@ -141,12 +141,12 @@ is the answer itself.
 ### What an operator lacks, the piped value stands in for
 
 - An operator where a value should be takes the piped value as its left side:
-  `{echo 10 | - 3/}` is 7, `{echo $x | * 2 + 1/}` is `$x * 2 + 1`
+  `{pad:echo 10 | - 3/}` is 7, `{pad:echo $x | * 2 + 1/}` is `$x * 2 + 1`
 - One operator closing a range takes everything before it as its left side and the piped
-  value as its right one: `{echo 5 | 2 + 3 */}` is 25
+  value as its right one: `{pad:echo 5 | 2 + 3 */}` is 25
 - Of two operators side by side the first takes the piped value on both sides and stands as
-  a value: `{echo 50 | '"' . . '"'/}` is `"5050"`; an operator alone squares the value -
-  `{echo 5 | */}` is 25
+  a value: `{pad:echo 50 | '"' . . '"'/}` is `"5050"`; an operator alone squares the value -
+  `{pad:echo 5 | */}` is 25
 - A prefix operator alone works on the piped value: `{$flag | !}`
 
 ### Calls and tests
@@ -159,7 +159,7 @@ is the answer itself.
   value and a test denies the test: `$s not in ('a', 'b')`
 - A built-in written as a call with nothing piped into it - at the head of an expression
   that is no pipe body, or as an argument of another call - reads its first argument as the
-  value: `{echo upper($s)/}`, `replace('l', upper('x'))`, and an application's function the
+  value: `{pad:echo upper($s)/}`, `replace('l', upper('x'))`, and an application's function the
   same: `exclaim('ab')`. `date` keeps PHP's order: `date('Y', 0)` is 1970
 - A lookup - `field:x`, `data:rows`, a bare word naming a field - takes no arguments
 
@@ -299,19 +299,19 @@ Under `$padCheckSyntax` (the default) errors are reported via `padError()`. Befo
 runs, `lib/eval/validate.php` reads the expression and names the fault and its position -
 `Expression error: ...`:
 - a `(` or `[` that is never closed, a `)` or `]` that closes nothing, a string never closed -
-  inside a quoted expression `{users where='$admin eq 1)'}` gives "the ) at position 12 closes
-  nothing that was opened"; written bare in a tag's parameters, `{echo 1 + 2)/}`, the parameter
+  inside a quoted expression `{array:users where='$admin eq 1)'}` gives "the ) at position 12 closes
+  nothing that was opened"; written bare in a tag's parameters, `{pad:echo 1 + 2)/}`, the parameter
   split reports it first: "Closing ) without an opening ("
 - a pipe function that does not exist, a word called like a function that names none
 - a comparison or logical operator - or `??` - with nothing on its left or its right, where no
   pipe value stands in for it, at either end of the expression or of a group, an argument or
-  a list item in it - `(1 eq)`, `php:max(1, 2 gt)`; an arithmetic one is not named: `{echo 5
+  a list item in it - `(1 eq)`, `php:max(1, 2 gt)`; an arithmetic one is not named: `{pad:echo 5
   */}` answers 0
 - a comma with no argument before it - `php:pow(2,,3)`, `[,1]`; one before the closing
   bracket is a trailing comma, as in PHP
 - two operators side by side after a value, where no pipe value stands in for the operand
   between them - `$n + * 3`, `$n eq eq 3`; in a pipe the first of the two works on the piped
-  value on both sides - `{echo 50 | '"' . . '"'/}` is `"5050"`, the regression/common page
+  value on both sides - `{pad:echo 50 | '"' . . '"'/}` is `"5050"`, the regression/common page
   misc/eval shows the form
 - `===` and `!==`, named as the PHP spellings they are - `eq` (`==`) and `ne` (`!=`) compare
 - a word of punctuation alone - `&`, `~`, `^`, `;` - and a `:` with no `?` before it
@@ -325,7 +325,7 @@ While it runs:
   as the name `$$x` holds; "the field '$x' is a list, not a value", "... an object ...".
   A field whose value goes straight into a fallback may be missing (`padEvalTreeMissing`):
   the left side of `??`, the value piped into `default` or `optional` - with a prefix too -
-  brackets around it or not, and the whole answer of an `{echo}` whose tag pipe begins with
+  brackets around it or not, and the whole answer of an `{pad:echo}` whose tag pipe begins with
   one (`padEvalFallbackPipe`). A field that is part of more - `$x + 1 | default(0)`,
   `'a' . $x ?? 'b'` - is no fallback's, and is named
 - "'a' is not a number for +", "a division by zero in /" - arithmetic

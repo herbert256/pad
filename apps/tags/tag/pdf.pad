@@ -1,10 +1,10 @@
-{ignore}
-<p><code>{pdf}</code> turns HTML into a PDF on the server with a writer in plain PHP
+{pad:ignore}
+<p><code>{pad:pdf}</code> turns HTML into a PDF on the server with a writer in plain PHP
 (<code>tags/_lib/pdf.php</code>): PDF 1.4, the standard fonts every reader has, no library and no
 headless browser. A pair renders its content as ever - fields, loops, tags - and the
 response becomes the PDF of it (<code>application/pdf</code>, with the file name) instead of
 the page; the page cache and tidy are left out. Written as a single tag,
-<code>{pdf download}</code>, the whole page is the document. Several <code>{pdf}</code> pairs
+<code>{pad:pdf download}</code>, the whole page is the document. Several <code>{pad:pdf}</code> pairs
 on one page make one document, the first one's options counting.</p>
 
 <h3>What is read</h3>
@@ -23,11 +23,11 @@ bytes.</p>
 <h3>Preview and nesting</h3>
 <p>With <code>preview</code> the page stays a page: the content is shown on a sheet with links
 "Open name.pdf" and "Download", and the same address with <code>&amp;padPdf</code> answers
-the document. Only the page the request asked for answers a PDF: a <code>{pdf}</code> inside
-a page included by <a href="?tag/page">{page}</a> shows its content on its sheet, and the
+the document. Only the page the request asked for answers a PDF: a <code>{pad:pdf}</code> inside
+a page included by <a href="?tag/page">{pad:page}</a> shows its content on its sheet, and the
 response stays the including page's.</p>
 
 <p>An unknown <code>size</code> or <code>font</code> is an error under the strict check. From
 PHP, <code>padPdf ( $html, [ 'size' =&gt; 'Letter' ] )</code> answers the bytes - for a
 mail attachment, say.</p>
-{/ignore}
+{/pad:ignore}

@@ -11,7 +11,7 @@
 
   padFilePut ( 'develop/generate.txt', $type );
 
-  $fixed = padCode ( "{sequence $type, rows=10000, try=10000}{\$sequence},{/sequence}" );
+  $fixed = padCode ( "{sequence:auto $type, rows=10000, try=10000}{\$sequence},{/sequence:auto}" );
   $fixed = substr ($fixed, 0, -1);
 
   $code = "<?php const PAD$type=[$fixed]; ?>";

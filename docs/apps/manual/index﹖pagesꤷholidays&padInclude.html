@@ -1,0 +1,510 @@
+
+
+<p>The public holidays of twenty-eight countries, computed from rules - no service to ask, no
+table of dates to keep up to date. A country is a file of <code>pad/subs/holidays/types/</code>,
+named by its two-letter ISO code: at, be, br, ca, ch, cz, de, dk, es, fi, fr, gb, hu, ie, it, jp, lu, mx, nl, no, nz, pl, pt, ro,
+se, sk, us and za. <b>{pad:holidays}</b> lists the holidays of a year; four helpers answer a page's PHP;
+<b>{pad:calendar}</b> marks them in a month.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/holidays_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><link rel="stylesheet" href="../_common/play.css"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtwYWQ6aG9saWRheXMgJ25sJywgeWVhcj0yMDI2fVxuICAgIDxsaT57JGRhdGV9IC0geyRuYW1lfSA8aT57JGxvY2FsfTwvaT57cGFkOmlmICR0eXBlIGVxICdvYnNlcnZhbmNlJ30gKG5vIGRheSBvZmYpey9wYWQ6aWZ9PC9saT5cbiAgey9wYWQ6aG9saWRheXN9XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtwYWQ6aG9saWRheXMgJ25sJywgeWVhcj0yMDI2fVxuICAgIDxsaT57JGRhdGV9IC0geyRuYW1lfSA8aT57JGxvY2FsfTwvaT57cGFkOmlmICR0eXBlIGVxICdvYnNlcnZhbmNlJ30gKG5vIGRheSBvZmYpey9wYWQ6aWZ9PC9saT5cbiAgey9wYWQ6aG9saWRheXN9XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays </font><font color="red"><font color="black">'</font>nl<font color="black">'</font><font color="black">,</font> year=2026</font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>date</font>}</b> - <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;i&gt;<b>{<font color="green"><font color="red">$</font>local</font>}</b>&lt;/i&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red"><font color="red">$</font>type eq <font color="black">'</font>observance<font color="black">'</font></font>}</b> (no day off)<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <ul>
+  
+    <li>2026-01-01 - New Year&#039;s Day <i>Nieuwjaarsdag</i></li>
+  
+    <li>2026-04-03 - Good Friday <i>Goede Vrijdag</i> (no day off)</li>
+  
+    <li>2026-04-05 - Easter Sunday <i>Eerste Paasdag</i></li>
+  
+    <li>2026-04-06 - Easter Monday <i>Tweede Paasdag</i></li>
+  
+    <li>2026-04-27 - King&#039;s Day <i>Koningsdag</i></li>
+  
+    <li>2026-05-05 - Liberation Day <i>Bevrijdingsdag</i> (no day off)</li>
+  
+    <li>2026-05-14 - Ascension Day <i>Hemelvaartsdag</i></li>
+  
+    <li>2026-05-24 - Whit Sunday <i>Eerste Pinksterdag</i></li>
+  
+    <li>2026-05-25 - Whit Monday <i>Tweede Pinksterdag</i></li>
+  
+    <li>2026-12-25 - Christmas Day <i>Eerste Kerstdag</i></li>
+  
+    <li>2026-12-26 - Second Day of Christmas <i>Tweede Kerstdag</i></li>
+  
+</ul>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li>Every row has <code>date</code>, <code>name</code> (English), <code>local</code> (the
+  country's own language), <code>type</code>, <code>region</code> and
+  <code>substitute</code>.</li>
+  <li><code>type</code> is <code>public</code> for a day off and <code>observance</code> for a
+  national day that is none: Good Friday in the Netherlands, and Liberation Day there in the
+  years that do not divide by five - a day off for the civil service only in 2025, 2030 ...</li>
+  <li>King's Day is the 27th of April, or the 26th when the 27th is a Sunday (2025).</li>
+  <li><code>where</code>, <code>sort</code>, <code>first</code> and the other handling options
+  work on the rows; <code>lang='fr'</code> picks the language of <code>local</code> for a
+  country of more than one - Belgium, Luxembourg, Switzerland, Canada, Finland.</li>
+</ul>
+
+<h2>A region, a table</h2>
+
+<p>A region follows its country as ISO 3166-2 writes it: <code>de-by</code> is Bavaria, with
+Epiphany, Corpus Christi and All Saints' Day added - their <code>region</code> is
+<code>by</code>. Germany's sixteen states, Scotland and Northern Ireland
+(<code>gb-sct</code>, <code>gb-nir</code>), Alsace-Moselle and France's overseas departments
+have holidays of their own. Written as a single tag, the holidays are a table.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/holidays_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmhvbGlkYXlzICdkZS1ieScsIHllYXI9MjAyNi99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmhvbGlkYXlzICdkZS1ieScsIHllYXI9MjAyNi99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays </font><font color="red"><font color="black">'</font>de-by<font color="black">'</font><font color="black">,</font> year=2026</font>/}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <style>:where(.pad-holidays){border-collapse:collapse;font-size:14px}:where(.pad-holidays caption){padding:6px 0;font-weight:600;text-align:left}:where(.pad-holidays th,.pad-holidays td){padding:3px 12px 3px 0;text-align:left;vertical-align:top}:where(.pad-holidays th){font-size:12px;opacity:.7}:where(.pad-holidays td:first-child){white-space:nowrap;font-variant-numeric:tabular-nums}:where(.pad-holidays span){opacity:.7}:where(.pad-holidays tr.observance){opacity:.6}</style><table class="pad-holidays"><caption>Germany, Bavaria 2026</caption><thead><tr><th scope="col">Date</th><th scope="col">Holiday</th></tr></thead><tbody><tr><td><time datetime="2026-01-01">Thu 1 Jan</time></td><td>New Year&#039;s Day <span lang="de">Neujahr</span></td></tr><tr><td><time datetime="2026-01-06">Tue 6 Jan</time></td><td>Epiphany <span lang="de">Heilige Drei Könige</span></td></tr><tr><td><time datetime="2026-04-03">Fri 3 Apr</time></td><td>Good Friday <span lang="de">Karfreitag</span></td></tr><tr><td><time datetime="2026-04-06">Mon 6 Apr</time></td><td>Easter Monday <span lang="de">Ostermontag</span></td></tr><tr><td><time datetime="2026-05-01">Fri 1 May</time></td><td>Labour Day <span lang="de">Tag der Arbeit</span></td></tr><tr><td><time datetime="2026-05-14">Thu 14 May</time></td><td>Ascension Day <span lang="de">Christi Himmelfahrt</span></td></tr><tr><td><time datetime="2026-05-25">Mon 25 May</time></td><td>Whit Monday <span lang="de">Pfingstmontag</span></td></tr><tr><td><time datetime="2026-06-04">Thu 4 Jun</time></td><td>Corpus Christi <span lang="de">Fronleichnam</span></td></tr><tr><td><time datetime="2026-10-03">Sat 3 Oct</time></td><td>Day of German Unity <span lang="de">Tag der Deutschen Einheit</span></td></tr><tr><td><time datetime="2026-11-01">Sun 1 Nov</time></td><td>All Saints&#039; Day <span lang="de">Allerheiligen</span></td></tr><tr><td><time datetime="2026-12-25">Fri 25 Dec</time></td><td>Christmas Day <span lang="de">Erster Weihnachtstag</span></td></tr><tr><td><time datetime="2026-12-26">Sat 26 Dec</time></td><td>Second Day of Christmas <span lang="de">Zweiter Weihnachtstag</span></td></tr></tbody></table>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Holidays on a weekend</h2>
+
+<p>In the United Kingdom a bank holiday on a Saturday or Sunday gets the next weekday that is
+no holiday yet: Christmas 2021 on a Saturday was made up for on Monday the 27th, Boxing Day on
+the Sunday on Tuesday the 28th. In the United States a federal holiday on a Saturday is
+observed on the Friday before, on a Sunday on the Monday after - New Year's Day 2022 on Friday
+31 December 2021. Such a day is a row of its own with <code>substitute</code> TRUE.
+<code>from</code> and <code>to</code> ask for the days between two dates instead of a
+year.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/holidays_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5EZWNlbWJlciAyMDIxIGluIEVuZ2xhbmQ6PC9wPlxuPHVsPlxuICB7cGFkOmhvbGlkYXlzICdnYicsIGZyb209JzIwMjEtMTItMjAnLCB0bz0nMjAyMi0wMS0wNSd9XG4gICAgPGxpPnskZGF0ZX0geyRuYW1lfTwvbGk+XG4gIHsvcGFkOmhvbGlkYXlzfVxuPC91bD5cbjxwPlRoZSBVbml0ZWQgU3RhdGVzLCAyMDIxOjwvcD5cbjx1bD5cbiAge3BhZDpob2xpZGF5cyAndXMnLCB5ZWFyPTIwMjEsIHdoZXJlPSckc3Vic3RpdHV0ZSd9XG4gICAgPGxpPnskZGF0ZX0geyRuYW1lfTwvbGk+XG4gIHsvcGFkOmhvbGlkYXlzfVxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5EZWNlbWJlciAyMDIxIGluIEVuZ2xhbmQ6PC9wPlxuPHVsPlxuICB7cGFkOmhvbGlkYXlzICdnYicsIGZyb209JzIwMjEtMTItMjAnLCB0bz0nMjAyMi0wMS0wNSd9XG4gICAgPGxpPnskZGF0ZX0geyRuYW1lfTwvbGk+XG4gIHsvcGFkOmhvbGlkYXlzfVxuPC91bD5cbjxwPlRoZSBVbml0ZWQgU3RhdGVzLCAyMDIxOjwvcD5cbjx1bD5cbiAge3BhZDpob2xpZGF5cyAndXMnLCB5ZWFyPTIwMjEsIHdoZXJlPSckc3Vic3RpdHV0ZSd9XG4gICAgPGxpPnskZGF0ZX0geyRuYW1lfTwvbGk+XG4gIHsvcGFkOmhvbGlkYXlzfVxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;December 2021 in England:&lt;/p&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays </font><font color="red"><font color="black">'</font>gb<font color="black">'</font><font color="black">,</font> from=<font color="black">'</font>2021-12-20<font color="black">'</font><font color="black">,</font> to=<font color="black">'</font>2022-01-05<font color="black">'</font></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>date</font>}</b> <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;The United States, 2021:&lt;/p&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays </font><font color="red"><font color="black">'</font>us<font color="black">'</font><font color="black">,</font> year=2021<font color="black">,</font> where=<font color="black">'</font><font color="red">$</font>substitute<font color="black">'</font></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>date</font>}</b> <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>December 2021 in England:</p>
+<ul>
+  
+    <li>2021-12-25 Christmas Day</li>
+  
+    <li>2021-12-26 Boxing Day</li>
+  
+    <li>2021-12-27 Christmas Day (substitute day)</li>
+  
+    <li>2021-12-28 Boxing Day (substitute day)</li>
+  
+    <li>2022-01-01 New Year&#039;s Day</li>
+  
+    <li>2022-01-03 New Year&#039;s Day (substitute day)</li>
+  
+</ul>
+<p>The United States, 2021:</p>
+<ul>
+  
+    <li>2021-06-18 Juneteenth National Independence Day (observed)</li>
+  
+    <li>2021-07-05 Independence Day (observed)</li>
+  
+    <li>2021-12-24 Christmas Day (observed)</li>
+  
+    <li>2021-12-31 New Year&#039;s Day (observed)</li>
+  
+</ul>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Other calendars, other rules</h2>
+
+<p>Romania counts Good Friday, Easter and Whitsun from the Orthodox Easter, the Julian
+computus's Sunday as a Gregorian date - in 2027 five weeks after the Western one. Japan makes
+up for a holiday on a Sunday on the next day that is no holiday yet, and holds a day between
+two holidays as the Citizens' Holiday. New Zealand observes Anzac Day on a weekend on the
+following Monday, a holiday already or not: in 2038 it is Easter Sunday, and Easter Monday is
+its day. South Africa makes up for a Sunday on the Monday after it.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/holidays_6.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5FYXN0ZXIgU3VuZGF5IDIwMjc6PC9wPlxuPHVsPlxuICB7cGFkOmhvbGlkYXlzICdybycsIHllYXI9MjAyNywgd2hlcmU9JyRuYW1lIGVxIFwiRWFzdGVyIFN1bmRheVwiJ308bGk+Um9tYW5pYSB7JGRhdGV9PC9saT57L3BhZDpob2xpZGF5c31cbiAge3BhZDpob2xpZGF5cyAnbmwnLCB5ZWFyPTIwMjcsIHdoZXJlPSckbmFtZSBlcSBcIkVhc3RlciBTdW5kYXlcIid9PGxpPk5ldGhlcmxhbmRzIHskZGF0ZX08L2xpPnsvcGFkOmhvbGlkYXlzfVxuPC91bD5cbjxwPkphcGFuLCBNYXkgMjAyNjo8L3A+XG48dWw+XG4gIHtwYWQ6aG9saWRheXMgJ2pwJywgZnJvbT0nMjAyNi0wNS0wMScsIHRvPScyMDI2LTA1LTMxJ31cbiAgICA8bGk+eyRkYXRlfSB7JG5hbWV9PC9saT5cbiAgey9wYWQ6aG9saWRheXN9XG48L3VsPlxuPHA+TmV3IFplYWxhbmQsIEFwcmlsIDIwMzg6PC9wPlxuPHVsPlxuICB7cGFkOmhvbGlkYXlzICdueicsIGZyb209JzIwMzgtMDQtMDEnLCB0bz0nMjAzOC0wNC0zMCd9XG4gICAgPGxpPnskZGF0ZX0geyRuYW1lfTwvbGk+XG4gIHsvcGFkOmhvbGlkYXlzfVxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5FYXN0ZXIgU3VuZGF5IDIwMjc6PC9wPlxuPHVsPlxuICB7cGFkOmhvbGlkYXlzICdybycsIHllYXI9MjAyNywgd2hlcmU9JyRuYW1lIGVxIFwiRWFzdGVyIFN1bmRheVwiJ308bGk+Um9tYW5pYSB7JGRhdGV9PC9saT57L3BhZDpob2xpZGF5c31cbiAge3BhZDpob2xpZGF5cyAnbmwnLCB5ZWFyPTIwMjcsIHdoZXJlPSckbmFtZSBlcSBcIkVhc3RlciBTdW5kYXlcIid9PGxpPk5ldGhlcmxhbmRzIHskZGF0ZX08L2xpPnsvcGFkOmhvbGlkYXlzfVxuPC91bD5cbjxwPkphcGFuLCBNYXkgMjAyNjo8L3A+XG48dWw+XG4gIHtwYWQ6aG9saWRheXMgJ2pwJywgZnJvbT0nMjAyNi0wNS0wMScsIHRvPScyMDI2LTA1LTMxJ31cbiAgICA8bGk+eyRkYXRlfSB7JG5hbWV9PC9saT5cbiAgey9wYWQ6aG9saWRheXN9XG48L3VsPlxuPHA+TmV3IFplYWxhbmQsIEFwcmlsIDIwMzg6PC9wPlxuPHVsPlxuICB7cGFkOmhvbGlkYXlzICdueicsIGZyb209JzIwMzgtMDQtMDEnLCB0bz0nMjAzOC0wNC0zMCd9XG4gICAgPGxpPnskZGF0ZX0geyRuYW1lfTwvbGk+XG4gIHsvcGFkOmhvbGlkYXlzfVxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;Easter Sunday 2027:&lt;/p&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays </font><font color="red"><font color="black">'</font>ro<font color="black">'</font><font color="black">,</font> year=2027<font color="black">,</font> where=<font color="black">'</font><font color="red">$</font>name eq "Easter Sunday"<font color="black">'</font></font>}</b>&lt;li&gt;Romania <b>{<font color="green"><font color="red">$</font>date</font>}</b>&lt;/li&gt;<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays</font><font color="red"></font>}</b><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays </font><font color="red"><font color="black">'</font>nl<font color="black">'</font><font color="black">,</font> year=2027<font color="black">,</font> where=<font color="black">'</font><font color="red">$</font>name eq "Easter Sunday"<font color="black">'</font></font>}</b>&lt;li&gt;Netherlands <b>{<font color="green"><font color="red">$</font>date</font>}</b>&lt;/li&gt;<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;Japan, May 2026:&lt;/p&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays </font><font color="red"><font color="black">'</font>jp<font color="black">'</font><font color="black">,</font> from=<font color="black">'</font>2026-05-01<font color="black">'</font><font color="black">,</font> to=<font color="black">'</font>2026-05-31<font color="black">'</font></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>date</font>}</b> <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;New Zealand, April 2038:&lt;/p&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays </font><font color="red"><font color="black">'</font>nz<font color="black">'</font><font color="black">,</font> from=<font color="black">'</font>2038-04-01<font color="black">'</font><font color="black">,</font> to=<font color="black">'</font>2038-04-30<font color="black">'</font></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>date</font>}</b> <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>holidays</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Easter Sunday 2027:</p>
+<ul>
+  <li>Romania 2027-05-02</li>
+  <li>Netherlands 2027-03-28</li>
+</ul>
+<p>Japan, May 2026:</p>
+<ul>
+  
+    <li>2026-05-03 Constitution Memorial Day</li>
+  
+    <li>2026-05-04 Greenery Day</li>
+  
+    <li>2026-05-05 Children&#039;s Day</li>
+  
+    <li>2026-05-06 Constitution Memorial Day (substitute holiday)</li>
+  
+</ul>
+<p>New Zealand, April 2038:</p>
+<ul>
+  
+    <li>2038-04-23 Good Friday</li>
+  
+    <li>2038-04-25 Anzac Day</li>
+  
+    <li>2038-04-26 Easter Monday</li>
+  
+    <li>2038-04-26 Anzac Day (observed)</li>
+  
+</ul>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Workdays in PHP</h2>
+
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>function</th><th>what it answers</th></tr>
+  <tr><td><code>padHolidays ( $country, $year, $region = '' )</code></td><td>the rows of a year, as <b>{pad:holidays}</b> hands them over</td></tr>
+  <tr><td><code>padIsHoliday ( $date, $country )</code></td><td>whether the date is a public holiday there</td></tr>
+  <tr><td><code>padWorkdays ( $from, $to, $country )</code></td><td>the weekdays from one date to the other that are no public holiday, both counted</td></tr>
+  <tr><td><code>padAddWorkdays ( $date, $n, $country )</code></td><td>the date <code>$n</code> workdays later - or earlier, for a negative <code>$n</code></td></tr>
+</table>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/holidays_4.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/holidays_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $kingsDay </span><span style="color: #007700">= </span><span style="color: #0000BB">padIsHoliday </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-04-27'</span><span style="color: #007700">, </span><span style="color: #DD0000">'nl' </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'a holiday' </span><span style="color: #007700">: </span><span style="color: #DD0000">'a workday'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$april    </span><span style="color: #007700">= </span><span style="color: #0000BB">padWorkdays </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-04-01'</span><span style="color: #007700">, </span><span style="color: #DD0000">'2026-04-30'</span><span style="color: #007700">, </span><span style="color: #DD0000">'nl' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$after    </span><span style="color: #007700">= </span><span style="color: #0000BB">padAddWorkdays </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-04-24'</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'nl' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$bavaria  </span><span style="color: #007700">= </span><span style="color: #0000BB">padWorkdays </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-01-01'</span><span style="color: #007700">, </span><span style="color: #DD0000">'2026-12-31'</span><span style="color: #007700">, </span><span style="color: #DD0000">'de-by' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD4yNyBBcHJpbCAyMDI2IGluIHRoZSBOZXRoZXJsYW5kcyBpcyB7JGtpbmdzRGF5fS48L3A+XG48cD5BcHJpbCAyMDI2IGhhcyB7JGFwcmlsfSB3b3JrZGF5cyB0aGVyZS48L3A+XG48cD5PbmUgd29ya2RheSBhZnRlciBGcmlkYXkgMjQgQXByaWw6IHskYWZ0ZXJ9LjwvcD5cbjxwPkJhdmFyaWEgaGFzIHskYmF2YXJpYX0gd29ya2RheXMgaW4gMjAyNi48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGtpbmdzRGF5ID0gcGFkSXNIb2xpZGF5ICggJzIwMjYtMDQtMjcnLCAnbmwnICkgPyAnYSBob2xpZGF5JyA6ICdhIHdvcmtkYXknO1xuICAkYXByaWwgICAgPSBwYWRXb3JrZGF5cyAoICcyMDI2LTA0LTAxJywgJzIwMjYtMDQtMzAnLCAnbmwnICk7XG4gICRhZnRlciAgICA9IHBhZEFkZFdvcmtkYXlzICggJzIwMjYtMDQtMjQnLCAxLCAnbmwnICk7XG4gICRiYXZhcmlhICA9IHBhZFdvcmtkYXlzICggJzIwMjYtMDEtMDEnLCAnMjAyNi0xMi0zMScsICdkZS1ieScgKTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD4yNyBBcHJpbCAyMDI2IGluIHRoZSBOZXRoZXJsYW5kcyBpcyB7JGtpbmdzRGF5fS48L3A+XG48cD5BcHJpbCAyMDI2IGhhcyB7JGFwcmlsfSB3b3JrZGF5cyB0aGVyZS48L3A+XG48cD5PbmUgd29ya2RheSBhZnRlciBGcmlkYXkgMjQgQXByaWw6IHskYWZ0ZXJ9LjwvcD5cbjxwPkJhdmFyaWEgaGFzIHskYmF2YXJpYX0gd29ya2RheXMgaW4gMjAyNi48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGtpbmdzRGF5ID0gcGFkSXNIb2xpZGF5ICggJzIwMjYtMDQtMjcnLCAnbmwnICkgPyAnYSBob2xpZGF5JyA6ICdhIHdvcmtkYXknO1xuICAkYXByaWwgICAgPSBwYWRXb3JrZGF5cyAoICcyMDI2LTA0LTAxJywgJzIwMjYtMDQtMzAnLCAnbmwnICk7XG4gICRhZnRlciAgICA9IHBhZEFkZFdvcmtkYXlzICggJzIwMjYtMDQtMjQnLCAxLCAnbmwnICk7XG4gICRiYXZhcmlhICA9IHBhZFdvcmtkYXlzICggJzIwMjYtMDEtMDEnLCAnMjAyNi0xMi0zMScsICdkZS1ieScgKTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;27 April 2026 in the Netherlands is <b>{<font color="green"><font color="red">$</font>kingsDay</font>}</b>.&lt;/p&gt;<br>&lt;p&gt;April 2026 has <b>{<font color="green"><font color="red">$</font>april</font>}</b> workdays there.&lt;/p&gt;<br>&lt;p&gt;One workday after Friday 24 April: <b>{<font color="green"><font color="red">$</font>after</font>}</b>.&lt;/p&gt;<br>&lt;p&gt;Bavaria has <b>{<font color="green"><font color="red">$</font>bavaria</font>}</b> workdays in 2026.&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>27 April 2026 in the Netherlands is a holiday.</p>
+<p>April 2026 has 20 workdays there.</p>
+<p>One workday after Friday 24 April: 2026-04-28.</p>
+<p>Bavaria has 252 workdays in 2026.</p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li>A country takes its region the same way: <code>'de-by'</code>, <code>'gb-sct'</code>.</li>
+  <li>An observance counts as a workday; a holiday on a weekend counts once - the weekend
+  already is no workday - and its substitute day is a day off.</li>
+  <li>A country without a file, a region it does not have or a year before 1583 is an error
+  that names what there is.</li>
+  <li>So is a year the country's file does not know: New Zealand's Matariki dates are fixed by
+  law to 2052, and its file knows 2010 to 2052.</li>
+</ul>
+
+<h2>In the calendar</h2>
+
+<p><code>holidays=</code> on <b>{pad:calendar}</b> marks the days of a country: the cell gets the
+class <code>holiday</code> - <code>observance</code> for a day that is no day off - and the
+name stands under the number, in the country's language when the request's locale is in
+it.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/holidays_5.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmNhbGVuZGFyICcyMDI2LTA1JywgaG9saWRheXM9J2RlLWJ5Jy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmNhbGVuZGFyICcyMDI2LTA1JywgaG9saWRheXM9J2RlLWJ5Jy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>calendar </font><font color="red"><font color="black">'</font>2026-05<font color="black">'</font><font color="black">,</font> holidays=<font color="black">'</font>de-by<font color="black">'</font></font>/}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <style>:where(.pad-calendar){border-collapse:collapse;width:100%;table-layout:fixed;font-size:14px}:where(.pad-calendar caption){padding:6px;font-weight:600;font-size:16px}:where(.pad-calendar caption a){display:inline-block;padding:0 10px;text-decoration:none;color:inherit}:where(.pad-calendar th){padding:4px;font-weight:600;font-size:12px;text-align:center;opacity:.7}:where(.pad-calendar td){vertical-align:top;height:72px;padding:4px;border:1px solid rgba(128,128,128,.25)}:where(.pad-calendar td.other){opacity:.4}:where(.pad-calendar td.weekend){background:rgba(128,128,128,.06)}:where(.pad-calendar td.today time){display:inline-block;min-width:1.6em;text-align:center;border-radius:1em;background:#2a78d6;color:#fff}:where(.pad-calendar ul){margin:4px 0 0;padding:0;list-style:none;font-size:12px}:where(.pad-calendar li){margin:2px 0;padding:1px 4px;border-radius:3px;background:rgba(42,120,214,.12);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}</style><style>:where(.pad-calendar td.holiday){background:rgba(214,90,42,.09)}:where(.pad-calendar .pad-calendar-holiday){display:block;font-size:11px;line-height:1.25;opacity:.75;overflow:hidden;text-overflow:ellipsis}</style><table class="pad-calendar"><caption><span>May 2026</span></caption><thead><tr><th scope="col">Mon</th><th scope="col">Tue</th><th scope="col">Wed</th><th scope="col">Thu</th><th scope="col">Fri</th><th scope="col">Sat</th><th scope="col">Sun</th></tr></thead><tbody><tr><td class="other"><time datetime="2026-04-27">27</time></td><td class="other"><time datetime="2026-04-28">28</time></td><td class="other"><time datetime="2026-04-29">29</time></td><td class="other"><time datetime="2026-04-30">30</time></td><td class="holiday"><time datetime="2026-05-01">1</time><small class="pad-calendar-holiday">Labour Day</small></td><td class="weekend"><time datetime="2026-05-02">2</time></td><td class="weekend"><time datetime="2026-05-03">3</time></td></tr><tr><td><time datetime="2026-05-04">4</time></td><td><time datetime="2026-05-05">5</time></td><td><time datetime="2026-05-06">6</time></td><td><time datetime="2026-05-07">7</time></td><td><time datetime="2026-05-08">8</time></td><td class="weekend"><time datetime="2026-05-09">9</time></td><td class="weekend"><time datetime="2026-05-10">10</time></td></tr><tr><td><time datetime="2026-05-11">11</time></td><td><time datetime="2026-05-12">12</time></td><td><time datetime="2026-05-13">13</time></td><td class="holiday"><time datetime="2026-05-14">14</time><small class="pad-calendar-holiday">Ascension Day</small></td><td><time datetime="2026-05-15">15</time></td><td class="weekend"><time datetime="2026-05-16">16</time></td><td class="weekend"><time datetime="2026-05-17">17</time></td></tr><tr><td><time datetime="2026-05-18">18</time></td><td><time datetime="2026-05-19">19</time></td><td><time datetime="2026-05-20">20</time></td><td><time datetime="2026-05-21">21</time></td><td><time datetime="2026-05-22">22</time></td><td class="weekend"><time datetime="2026-05-23">23</time></td><td class="weekend"><time datetime="2026-05-24">24</time></td></tr><tr><td class="holiday"><time datetime="2026-05-25">25</time><small class="pad-calendar-holiday">Whit Monday</small></td><td><time datetime="2026-05-26">26</time></td><td><time datetime="2026-05-27">27</time></td><td><time datetime="2026-05-28">28</time></td><td><time datetime="2026-05-29">29</time></td><td class="weekend"><time datetime="2026-05-30">30</time></td><td class="weekend"><time datetime="2026-05-31">31</time></td></tr></tbody></table>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+

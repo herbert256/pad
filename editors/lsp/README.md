@@ -9,7 +9,7 @@ Zero-dependency Node server (stdio, Node 18 or newer). Provides:
 - **diagnostics** when a page is opened or saved: PAD itself renders the page on the
   command line (`php editors/render.php <app> <page>`) under the strict syntax check, and
   the JSON error of `pad/error/claude.php` becomes a diagnostic on the tag it names - `the
-  pair {if 1 eq 1} never closes`, `Field '$typo' not found`, a PHP error in the paired
+  pair {pad:if 1 eq 1} never closes`, `Field '$typo' not found`, a PHP error in the paired
   `.php` with its file and line. A `_inits.pad` / `_exits.pad` is checked through the
   `index` page of its directory; snippets in `_include/`, `_tags/` and the other `_xxx`
   directories have no page of their own and are not rendered - an error in one a page
@@ -26,11 +26,11 @@ Zero-dependency Node server (stdio, Node 18 or newer). Provides:
 
   | Under the cursor | Goes to |
   |------------------|---------|
-  | `{mytag}` | the nearest `_tags/mytag.php` / `.pad` from the page's directory up to the application root, then `_common/_tags/`, then the engine's `pad/tags/mytag.php`; failing those a `{data 'mytag'}` block of the template, `_include/mytag.pad`, or the line that sets `$mytag` |
+  | `{data:mytag}` | the nearest `_tags/mytag.php` / `.pad` from the page's directory up to the application root, then `_common/_tags/`, then the engine's `pad/tags/mytag.php`; failing those a `{pad:data 'mytag'}` block of the template, `_include/mytag.pad`, or the line that sets `$mytag` |
   | `{app:x}` `{common:x}` `{include:x}` `{pad:x}` | that type's file only |
   | `\| money` | `_functions/money.php` up the directories, then `pad/functions/money.php` |
   | `callback='x'` | `_callbacks/x.php` up the directories |
-  | `{$total}`, `$total`, `%total` | the line of the paired `orders.php` that assigns it, a `{set $total = .../}` of the template, then `_inits.php`, `_exits.php` and `_lib/*.php` up the directories; when nothing assigns it, an array key `'total' =>` (a row field) |
+  | `{$total}`, `$total`, `%total` | the line of the paired `orders.php` that assigns it, a `{pad:set $total = .../}` of the template, then `_inits.php`, `_exits.php` and `_lib/*.php` up the directories; when nothing assigns it, an array key `'total' =>` (a row field) |
   | `first@items`, an option, `app:` | the engine file under `pad/properties`, `pad/options` / `pad/handling/types`, `pad/types` |
 
 The application a file belongs to is found from the path: nested applications

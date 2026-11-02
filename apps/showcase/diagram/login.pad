@@ -1,5 +1,5 @@
-{meta title='Signing in with a provider', about='A sequence diagram - lifelines, numbered messages, replies dashed, an alt frame with its else and a note.'/}
-{diagram type='sequence', title='OAuth sign-in'}
+{pad:meta title='Signing in with a provider', about='A sequence diagram - lifelines, numbered messages, replies dashed, an alt frame with its else and a note.'/}
+{diagram:sequence title='OAuth sign-in'}
   actor U as User
   participant B as Browser
   participant A as App
@@ -17,4 +17,4 @@
     A -->> B: Try again
   end
   Note over A,P: The token never reaches the browser
-{/diagram}
+{/diagram:sequence}

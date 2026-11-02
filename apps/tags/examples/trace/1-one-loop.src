@@ -1,8 +1,8 @@
-{meta title='Trace one loop', about='Only the loop inside the pair is traced; the output is the same as without the tag.'/}
+{pad:meta title='Trace one loop', about='Only the loop inside the pair is traced; the output is the same as without the tag.'/}
 <h2>Orders</h2>
-{trace}
-  {orders where='$total gt 100'}
+{pad:trace}
+  {array:orders where='$total gt 100'}
     <p>{$number}: {$total}</p>
-  {/orders}
-{/trace}
+  {/array:orders}
+{/pad:trace}
 <p>Not traced.</p>

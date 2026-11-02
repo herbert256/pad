@@ -1,17 +1,17 @@
 {# These demos draw their terms, so the values differ from one render to the next. The crawl
    reads the word random here and compares the page with the draw masked instead, which still
    checks the sources, the headings and the shape of each table. #}
-{table}
-{demo}{sequence '5;10;15;20',  name='one'/}{/demo}
-{demo}{sequence '15;20;25;30', name='two'/}{/demo}
-{demo}{sequence one}                     {$sequence} {/sequence}{/demo}
-{demo}{sequence two}                     {$sequence} {/sequence}{/demo}
-{demo}{sequence one, append='two'}       {$sequence} {/sequence}{/demo}
-{demo}{sequence one, prepend='two'}      {$sequence} {/sequence}{/demo}
-{demo}{sequence one, combine='two'}      {$sequence} {/sequence}{/demo}
-{demo}{sequence one, merge='two'}        {$sequence} {/sequence}{/demo}
-{demo}{sequence one, intersection='two'} {$sequence} {/sequence}{/demo}
-{demo}{sequence one, difference='two'}   {$sequence} {/sequence}{/demo}
-{demo}{sequence one, onlyNow='two'}      {$sequence} {/sequence}{/demo}
-{demo}{sequence one, onlyStore='two'}    {$sequence} {/sequence}{/demo}
-{/table}
+{common:table}
+{common:demo}{sequence:list '5;10;15;20',  name='one'/}{/common:demo}
+{common:demo}{sequence:list '15;20;25;30', name='two'/}{/common:demo}
+{common:demo}{sequence:auto one}                     {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto two}                     {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, append='two'}       {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, prepend='two'}      {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, combine='two'}      {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, merge='two'}        {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, intersection='two'} {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, difference='two'}   {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, onlyNow='two'}      {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, onlyStore='two'}    {$sequence} {/sequence:auto}{/common:demo}
+{/common:table}

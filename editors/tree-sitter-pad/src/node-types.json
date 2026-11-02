@@ -353,10 +353,14 @@
     "fields": {
       "name": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -367,16 +371,6 @@
         "types": [
           {
             "type": "prefix",
-            "named": true
-          }
-        ]
-      },
-      "property": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "property",
             "named": true
           }
         ]

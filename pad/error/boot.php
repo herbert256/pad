@@ -293,12 +293,12 @@
   }
 
   // Whether the page goes to this machine's own screen: what only the developer may see in
-  // a page - the toolbar, live reload, the output check's panel, a {debug} box - asks it;
+  // a page - the toolbar, live reload, the output check's panel, a {pad:debug} box - asks it;
   // the fetches the page makes of this site ask padLocal (padSelfFetchHeaders). pad export
   // renders each page on the command line, local to padLocal, for a static copy any visitor
   // reads, so it gets what a visitor gets (apps/cli/_commands/render.php sets
   // $padExportRun): a page whose own PHP said $padToolbar = 'local' put the bar, its
-  // variables and SQL with it, into the copy, and every {debug} box went along. So does a
+  // variables and SQL with it, into the copy, and every {pad:debug} box went along. So does a
   // page that page fetches of this site, which comes with X-PAD-Export (padSelfFetchHeaders)
   // - a header that only takes away, whoever sends it.
 

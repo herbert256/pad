@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +11,9 @@
     <script src="../_common/pad.js"></script>
     <script src="../_common/brand.js" defer></script>
     <link rel="stylesheet" href="types.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
   </head>
   <body class="frame app-types">
     <aside class="frame-side">
@@ -24,89 +27,113 @@
             </summary>
             <nav class="pad-brand-apps" aria-label="PAD applications">
               <div class="pad-brand-columns">
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    PAD
-                  </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
-                  <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
-                  <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Showcases
-                  </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                  <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                  <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                  <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Front ends
-                  </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
-                  <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
-                  <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
-                  <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Offline
-                  </div><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                  <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
-                  <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
-                  <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Examples
-                  </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/playground/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
-                  <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>playground</b><small>Type a template, see the result</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-                  <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Tools
-                  </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
-                  <circle cx="9" cy="7" r="2"></circle>
-                  <circle cx="15" cy="12" r="2"></circle>
-                  <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
-                  <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
-                  <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
                 </div>
               </div>
             </nav>
@@ -120,7 +147,7 @@
         <path d="M17 2.5l3 3-3 3"></path>
         <path d="M4 11.5v-2a4 4 0 0 1 4-4h12"></path>
         <path d="M7 21.5l-3-3 3-3"></path>
-        <path d="M20 12.5v2a4 4 0 0 1-4 4H4"></path></svg> Order</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 12.5v2a4 4 0 0 1-4 4H4"></path></svg> Type prefixes</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
         <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
         <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
@@ -132,13 +159,67 @@
     <main class="frame-main">
       <header class="frame-top">
         <form class="search" action="" method="get" role="search">
-          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the types</label> <input type="search" id="q" name="q" value="" placeholder="Search 37 types" autocomplete="off">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search types and kind families</label> <input type="search" id="q" name="q" value="" placeholder="Search 56 entries" autocomplete="off">
         </form>
         <div class="frame-tools">
-          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
         </div>
       </header>
       <div class="frame-body">
@@ -146,7 +227,7 @@
           Cheat sheet
         </h1>
         <p class="lead">
-          How every type is written, with its prefix and without it, by group.
+          How every tag type and subsystem family is used, by group.
         </p>
         <section class="section" id="tags">
           <div class="section-head">
@@ -157,8 +238,7 @@
           <div class="cheat">
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7app.html">app:</a> <span class="about">A tag of the application, a file of a _tags/ directory from the page up to the root.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">app:greeting</span> <span class="hl-opt">name</span>=<span class="hl-str">'Ann'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">greeting</span> <span class="hl-opt">name</span>=<span class="hl-str">'Ann'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">app:greeting</span> <span class="hl-opt">name</span>=<span class="hl-str">'Ann'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7common.html">common:</a> <span class="about">A tag or a snippet of the shared _common application.</span>
@@ -166,42 +246,35 @@
 <span class="hl-brc">{</span><span class="hl-tag">common:padFrame</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/common:padFrame</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96type%EA%A4%B7define.html">define:</a> <span class="about">A tag defined in the template by {define} - its body the template of the tag.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">define</span> <span class="hl-str">'hello'</span><span class="hl-brc">}</span>Hello <span class="hl-brc">{</span><span class="hl-var">#name</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/define</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">define:hello</span> <span class="hl-opt">name</span>=<span class="hl-str">'Ann'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">hello</span> <span class="hl-opt">name</span>=<span class="hl-str">'Ann'</span><span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7define.html">define:</a> <span class="about">A tag defined in the template by {pad:define} - its body the template of the tag.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:define</span> <span class="hl-str">'hello'</span><span class="hl-brc">}</span>Hello <span class="hl-brc">{</span><span class="hl-var">#name</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/pad:define</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">define:hello</span> <span class="hl-opt">name</span>=<span class="hl-str">'Ann'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7function.html">function:</a> <span class="about">A pipe function used as a tag, over the content between its tags.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">function:upper</span><span class="hl-brc">}</span>shout<span class="hl-brc">{</span><span class="hl-tag">/function:upper</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">upper</span><span class="hl-brc">}</span>shout<span class="hl-brc">{</span><span class="hl-tag">/upper</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">function:upper</span><span class="hl-brc">}</span>shout<span class="hl-brc">{</span><span class="hl-tag">/function:upper</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7include.html">include:</a> <span class="about">A snippet of the application, a file of an _include/ directory.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">include:card</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">card</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">include:card</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96type%EA%A4%B7macro.html">macro:</a> <span class="about">A tag defined in the template by {macro} - its body rendered once with the options as its fields.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">macro</span> <span class="hl-str">'card'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;b</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/b</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/macro</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">macro:card</span> <span class="hl-opt">title</span>=<span class="hl-str">'One'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">card</span> <span class="hl-opt">title</span>=<span class="hl-str">'One'</span><span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7macro.html">macro:</a> <span class="about">A tag defined in the template by {pad:macro} - its body rendered once with the options as its fields.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:macro</span> <span class="hl-str">'card'</span>, title<span class="hl-brc">}</span><span class="hl-htm">&lt;b</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/b</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:macro</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">macro:card</span> <span class="hl-opt">title</span>=<span class="hl-str">'One'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7pad.html">pad:</a> <span class="about">A built-in tag of the engine - a file of pad/tags/.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:if</span> <span class="hl-var">$count</span> gt <span class="hl-num">0</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:if</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$count</span> gt <span class="hl-num">0</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:if</span> <span class="hl-var">$count</span> gt <span class="hl-num">0</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:if</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7php.html">php:</a> <span class="about">A PHP function called as a tag, its parameters the function's arguments.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">php:strtoupper</span> <span class="hl-str">'abc'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">strtoupper</span> <span class="hl-str">'abc'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">echo</span> php:strtoupper(<span class="hl-str">'abc'</span>)<span class="hl-brc">/}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">pad:echo</span> php:strtoupper(<span class="hl-str">'abc'</span>)<span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7script.html">script:</a> <span class="about">A shell script of a _scripts/ directory, its output the tag's.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">script:backup</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">backup</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">script:backup</span><span class="hl-brc">/}</span></code></pre>
             </div>
           </div>
         </section>
@@ -213,33 +286,29 @@
           </div>
           <div class="cheat">
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96type%EA%A4%B7bool.html">bool:</a> <span class="about">A boolean store - a flag set by {bool}, its pair showing when it is true.</span>
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7bool.html">bool:</a> <span class="about">A boolean store - a flag set by {pad:bool}, its pair showing when it is true.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">bool:isAdmin</span><span class="hl-brc">}</span>...<span class="hl-var">@else@</span>...<span class="hl-brc">{</span><span class="hl-tag">/bool:isAdmin</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">isAdmin</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/isAdmin</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">bool:isAdmin</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/bool:isAdmin</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96type%EA%A4%B7content.html">content:</a> <span class="about">A content store - a piece of template kept by {content} to be shown elsewhere.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">content:footer</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">footer</span><span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7content.html">content:</a> <span class="about">A content store - a piece of template kept by {pad:content} to be shown elsewhere.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">content:footer</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96type%EA%A4%B7data.html">data:</a> <span class="about">A data store - rows kept by {data} or a .json, .xml, .yaml or .csv file of _data/.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data:colors</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$colors</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/data:colors</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">colors</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$colors</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/colors</span><span class="hl-brc">}</span></code></pre>
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7data.html">data:</a> <span class="about">A data store - rows kept by {pad:data} or a file of _data/ read through the format registry.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data:colors</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$colors</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/data:colors</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7local.html">local:</a> <span class="about">A data file of a _data/ directory, read by its file name.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">local:menu</span>.json<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$label</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/local:menu</span>.json<span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96type%EA%A4%B7pull.html">pull:</a> <span class="about">A stored sequence - the terms a {sequence} pushed to the store under a name.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pull:nums</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/pull:nums</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">nums</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/nums</span><span class="hl-brc">}</span></code></pre>
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7pull.html">pull:</a> <span class="about">A stored sequence - the terms a {sequence:*} pushed to the store under a name.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pull:nums</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/pull:nums</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7select.html">select:</a> <span class="about">A table declared in $padSelect - its rows read from the database, joins and all.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">select:users</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/select:users</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">users</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/users</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">select:users</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/select:users</span><span class="hl-brc">}</span></code></pre>
             </div>
           </div>
         </section>
@@ -252,13 +321,11 @@
           <div class="cheat">
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7array.html">array:</a> <span class="about">An array of the current row or of the page, its elements the rows of the tag.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">array:items</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$items</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/array:items</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">items</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$items</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/items</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">array:items</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$items</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/array:items</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7constant.html">constant:</a> <span class="about">A PHP constant, by its name.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">constant:PHP_INT_SIZE</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">PHP_INT_SIZE</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">constant:PHP_INT_SIZE</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7field.html">field:</a> <span class="about">A field of the current row, or a variable of the page.</span>
@@ -312,7 +379,6 @@
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7sequence.html">sequence:</a> <span class="about">A sequence type of the sequence subsystem, its terms the rows of the tag.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sequence:fibonacci</span> <span class="hl-opt">rows</span>=<span class="hl-num">10</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$fibonacci</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/sequence:fibonacci</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">fibonacci</span> <span class="hl-opt">rows</span>=<span class="hl-num">10</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$fibonacci</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/fibonacci</span><span class="hl-brc">}</span>
 sequence:fibonacci(<span class="hl-num">8</span>)</code></pre>
             </div>
           </div>
@@ -327,65 +393,173 @@ sequence:fibonacci(<span class="hl-num">8</span>)</code></pre>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7barcode.html">barcode:</a> <span class="about">A barcode symbology, a file of pad/subs/codes/types/, encoded on the server.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">barcode:ean13</span> <span class="hl-str">'400638133393'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">barcode</span> <span class="hl-str">'400638133393'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'ean13'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">ean13</span> <span class="hl-str">'400638133393'</span><span class="hl-brc">/}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">barcode:ean13</span> <span class="hl-str">'400638133393'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7chart.html">chart:</a> <span class="about">A chart type, a file of pad/subs/charts/types/, drawn as inline SVG.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart:pie</span> <span class="hl-opt">data</span>=<span class="hl-str">'rows'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'amount'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'pie'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'rows'</span>, ...<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pie</span> <span class="hl-opt">data</span>=<span class="hl-str">'rows'</span>, ...<span class="hl-brc">/}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">chart:pie</span> <span class="hl-opt">data</span>=<span class="hl-str">'rows'</span>, ...<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">chart:pie</span> <span class="hl-opt">data</span>=<span class="hl-str">'rows'</span>, ...<span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7diagram.html">diagram:</a> <span class="about">A diagram type, a file of pad/subs/diagrams/types/, laid out on the server.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:state</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/diagram:state</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">type</span>=<span class="hl-str">'state'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:state</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/diagram:state</span><span class="hl-brc">}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7effect.html">effect:</a> <span class="about">An effect, a file of pad/subs/effects/types/ - motion and decoration, CSS first, still under reduced motion.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">effect:typewriter</span><span class="hl-brc">}</span>Hello<span class="hl-brc">{</span><span class="hl-tag">/effect:typewriter</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">effect:typewriter</span><span class="hl-brc">}</span>Hello<span class="hl-brc">{</span><span class="hl-tag">/effect:typewriter</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7embed.html">embed:</a> <span class="about">An embed provider, a file of pad/subs/embeds/types/ - loaded only on a click.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">embed:youtube</span> <span class="hl-str">'aqz-KE-bpKQ'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Big Buck Bunny'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">embed</span> <span class="hl-str">'https://youtu.be/aqz-KE-bpKQ'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">youtube</span> <span class="hl-str">'aqz-KE-bpKQ'</span><span class="hl-brc">/}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">embed:auto</span> <span class="hl-str">'https://youtu.be/aqz-KE-bpKQ'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">embed:youtube</span> <span class="hl-str">'aqz-KE-bpKQ'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7fake.html">fake:</a> <span class="about">A fake kind, a file of pad/subs/fakes/types/ - the same values for the same seed, never bare.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">fake:email</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">fake</span> <span class="hl-str">'email'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">fake</span> <span class="hl-str">'name, email'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">3</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/fake</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">fake:email</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">fake:rows</span> <span class="hl-str">'name, email'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">3</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/fake:rows</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7game.html">game:</a> <span class="about">A game, a file of pad/subs/games/types/, played in the browser.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">game:memory</span> <span class="hl-opt">pairs</span>=<span class="hl-num">6</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">game</span> <span class="hl-str">'memory'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">memory</span><span class="hl-brc">/}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">game:memory</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">game:memory</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7icon.html">icon:</a> <span class="about">An icon, a file of pad/subs/icons/types/, drawn as inline SVG - never bare.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon:star</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'star'</span>, <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">icon:star</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7input.html">input:</a> <span class="about">A rich form field, a file of pad/subs/inputs/types/, posted by any form.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:slider</span> <span class="hl-str">'volume'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Volume'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">slider</span> <span class="hl-str">'volume'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Volume'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:slider</span> <span class="hl-str">'volume'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Volume'</span><span class="hl-brc">/}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7jsonld.html">jsonld:</a> <span class="about">A JSON-LD kind, a file of pad/subs/jsonld/types/ - the structured data of a page as a Schema.org object, never bare.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:article</span> <span class="hl-opt">headline</span>=<span class="hl-var">$title</span>, <span class="hl-opt">author</span>=<span class="hl-var">$author</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:article</span> <span class="hl-opt">data</span>=<span class="hl-str">'post'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:faq</span> <span class="hl-opt">data</span>=<span class="hl-str">'questions'</span><span class="hl-brc">/}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7notation.html">notation:</a> <span class="about">A notation, a file of pad/subs/notations/types/ - a formula, a tune, a word or a position drawn on the server.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">notation:braille</span> <span class="hl-str">'Hello'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">notation:braille</span> <span class="hl-str">'Hello'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">notation:math</span><span class="hl-brc">}</span>a/b<span class="hl-brc">{</span><span class="hl-tag">/notation:math</span><span class="hl-brc">}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7pattern.html">pattern:</a> <span class="about">A pattern, a file of pad/subs/patterns/types/ - a seeded SVG background, never bare.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pattern:topography</span> <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pattern:topography</span> <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7printable.html">printable:</a> <span class="about">A printable, a file of pad/subs/printables/types/ - pages made for paper, the same on the screen, printed and as a PDF, never bare.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">printable:labels</span> <span class="hl-opt">data</span>=<span class="hl-str">'rows'</span>, <span class="hl-opt">sheet</span>=<span class="hl-str">'a4-3x8'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/printable:labels</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">printable:labels</span> <span class="hl-opt">data</span>=<span class="hl-str">'rows'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/printable:labels</span><span class="hl-brc">}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7section.html">section:</a> <span class="about">A section of a landing page, a file of pad/subs/sections/types/ - pure CSS, coloured by the theme, never bare.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">section:hero</span> <span class="hl-opt">title</span>=<span class="hl-str">'Build faster'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/section:hero</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">section:hero</span> <span class="hl-opt">title</span>=<span class="hl-str">'Build faster'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/section:hero</span><span class="hl-brc">}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7sound.html">sound:</a> <span class="about">A sound, a file of pad/subs/sounds/types/ - a recipe the browser plays and the server writes as a WAV, never bare.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sound:chime</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">sound:chime</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">sound:pop</span> <span class="hl-opt">on</span>=<span class="hl-str">'click'</span>, <span class="hl-opt">target</span>=<span class="hl-str">'#save'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7toy.html">toy:</a> <span class="about">A toy, a file of pad/subs/toys/types/ - a live simulation in the browser.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">toy:life</span> <span class="hl-opt">pattern</span>=<span class="hl-str">'glider'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">toy</span> <span class="hl-str">'life'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">life</span><span class="hl-brc">/}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">toy:life</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">toy:life</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96type%EA%A4%B7widget.html">widget:</a> <span class="about">A widget, a file of pad/subs/widgets/types/, that works without JavaScript.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:tabs</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">tab</span> <span class="hl-str">'One'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:tabs</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">widget</span> <span class="hl-str">'tabs'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">tabs</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/tabs</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:tabs</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'One'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:tabs</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:tabs</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tabs</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:tabs</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tabs</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="section" id="kinds">
+          <div class="section-head">
+            <h2>
+              Options and helpers
+            </h2>
+          </div>
+          <div class="cheat">
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7ai.html">AI providers</a> <span class="about">The provider= option of {pad:ai} or padAi.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:ai</span> <span class="hl-str">'Name three rivers of France.'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'anthropic'</span><span class="hl-brc">/}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7channel.html">Notification channels</a> <span class="about">Delivery channels selected in the fourth argument of padNotify.</span>
+              <pre class="code"><code><span class="hl-fn">padNotify</span> <span class="hl-pun">(</span> <span class="hl-var">$recipient</span><span class="hl-pun">,</span> <span class="hl-str">'order-shipped'</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">'order'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">42</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">'mail'</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+<span class="hl-var">$results</span> <span class="hl-pun">=</span> <span class="hl-fn">padNotifyResults</span> <span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7filter.html">Image filters</a> <span class="about">The filter= option of {pad:img} selects a filter or placeholder.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:img</span> <span class="hl-str">'photo.jpg'</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'A landscape'</span>, <span class="hl-opt">width</span>=<span class="hl-num">320</span>, <span class="hl-opt">filter</span>=<span class="hl-str">'grayscale'</span><span class="hl-brc">/}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7format.html">Data formats</a> <span class="about">The format= option of {pad:data}, file extensions and the format helpers.</span>
+              <pre class="code"><code><span class="hl-var">$rows</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatRead</span> <span class="hl-pun">(</span> <span class="hl-str">'toml'</span><span class="hl-pun">,</span> <span class="hl-var">$contents</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+<span class="hl-var">$contents</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatWrite</span> <span class="hl-pun">(</span> <span class="hl-str">'toml'</span><span class="hl-pun">,</span> <span class="hl-var">$rows</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7formula.html">Spreadsheet functions</a> <span class="about">Functions inside the formulas of {pad:spreadsheet} cells.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-opt">formulas</span>=<span class="hl-str">'G1=SUM(1, 2, 3)'</span><span class="hl-brc">}</span>
+Item,Qty,Price,Date,Flow
+Apples,<span class="hl-num">10</span>,<span class="hl-num">1.20</span>,<span class="hl-num">2024</span>-<span class="hl-num">01</span>-<span class="hl-num">15</span>,-<span class="hl-num">70000</span>
+Pears,<span class="hl-num">5</span>,<span class="hl-num">0.80</span>,<span class="hl-num">2024</span>-<span class="hl-num">02</span>-<span class="hl-num">29</span>,<span class="hl-num">12000</span>
+Cherries,<span class="hl-num">20</span>,<span class="hl-num">3.50</span>,<span class="hl-num">2024</span>-<span class="hl-num">03</span>-<span class="hl-num">31</span>,<span class="hl-num">15000</span>
+Apples,<span class="hl-num">15</span>,<span class="hl-num">1.10</span>,<span class="hl-num">2024</span>-<span class="hl-num">04</span>-<span class="hl-num">01</span>,<span class="hl-num">18000</span>
+Plums,<span class="hl-num">0</span>,<span class="hl-num">2.25</span>,<span class="hl-num">2024</span>-<span class="hl-num">12</span>-<span class="hl-num">31</span>,<span class="hl-num">21000</span>
+Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class="hl-num">2025</span>-<span class="hl-num">06</span>-<span class="hl-num">30</span>,<span class="hl-num">26000</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:spreadsheet</span><span class="hl-brc">}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7holidays.html">Holiday calendars</a> <span class="about">The country parameter of {pad:holidays}, with optional regions.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:holidays</span> <span class="hl-str">'nl'</span>, <span class="hl-opt">year</span>=<span class="hl-num">2026</span><span class="hl-brc">/}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7map.html">Map views</a> <span class="about">The view parameter of {pad:map} selects a country or region.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:map</span> <span class="hl-str">'world'</span>, <span class="hl-opt">width</span>=<span class="hl-num">540</span><span class="hl-brc">/}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7oauth.html">OAuth providers</a> <span class="about">The provider parameter of {pad:oauth}, padOAuthStart and padOAuthUser.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'github'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7palette.html">Colour palettes</a> <span class="about">The name parameter of {pad:palette}, or palette= on a chart.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'viridis'</span><span class="hl-brc">/}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7rule.html">Validation rules</a> <span class="about">Rules passed to padValidate or a form field's rules= option.</span>
+              <pre class="code"><code><span class="hl-var">$errors</span> <span class="hl-pun">=</span> <span class="hl-fn">padValidate</span> <span class="hl-pun">(</span> <span class="hl-pun">[</span> <span class="hl-str">'value'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'required'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-var">$values</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7search.html">Search languages</a> <span class="about">The lang= option of {pad:search} selects stop words and a stemmer.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:data</span> <span class="hl-str">'catalogDocs'</span><span class="hl-brc">}</span>
+[ <span class="hl-brc">{</span> <span class="hl-str">"title"</span>: <span class="hl-str">"PAD"</span>, <span class="hl-str">"body"</span>: <span class="hl-str">"Templates on the server"</span> <span class="hl-brc">}</span> ]
+<span class="hl-brc">{</span><span class="hl-tag">/pad:data</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'catalogDocs'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'PAD'</span>, <span class="hl-opt">fields</span>=<span class="hl-str">'title, body'</span>, <span class="hl-opt">lang</span>=<span class="hl-str">'en'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">!excerpt</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span></code></pre>
+            </div>
+            <div class="cheat-item">
+              <a class="name" href="index%EF%B9%96type%EA%A4%B7theme.html">Themes</a> <span class="about">The name parameter of {pad:theme} selects page or box colours.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'paper'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the paper theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
           </div>
         </section>
         <footer class="foot">
           <p>
-            37 types of PAD tags - the prefix before the colon of <code>{pad:if}</code> - each with what it reaches, the order a bare name is tried in and live examples; every tag of them in the <a href="../tags/index.html">tags application</a>.
+            44 tag types and 12 subsystem families selected by options or helpers, with their syntax, descriptions and examples. Their individual tags and kinds are in the <a href="../tags/index.html">tags application</a>.
           </p>
         </footer>
       </div>

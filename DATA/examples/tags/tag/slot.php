@@ -5,9 +5,9 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{slot 'name'} default content {/slot}
-{slot 'name'} <footer>@content@</footer> {/slot}
-{slot 'name'/}
+{pad:slot 'name'} default content {/pad:slot}
+{pad:slot 'name'} <footer>@content@</footer> {/pad:slot}
+{pad:slot 'name'/}
 PAD;
 
   $tagParms   = [

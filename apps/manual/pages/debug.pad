@@ -1,12 +1,12 @@
-{meta title='Inline debug'/}
+{pad:meta title='Inline debug'/}
 
-<p>{tag 'debug'/} shows a value as a collapsible tree in the page, where the template uses
-it, and the rendering goes on - unlike {tag 'dump'/}, which stops the request.</p>
+<p>{app:tag 'debug'/} shows a value as a collapsible tree in the page, where the template uses
+it, and the rendering goes on - unlike {app:tag 'dump'/}, which stops the request.</p>
 
-{example 'fragments/debug_1'/}
+{common:example 'fragments/debug_1'/}
 
 <ul>
-  <li><code>{open/}debug $name/{close/}</code> - one value; an array is a tree to unfold, a missing name says so.</li>
-  <li><code>{open/}debug{close/}</code> - every field visible where it stands: the rows of the enclosing levels, innermost first, and the application's variables.</li>
+  <li><code>{pad:open/}pad:debug $name/{pad:close/}</code> - one value; an array is a tree to unfold, a missing name says so.</li>
+  <li><code>{pad:open/}pad:debug{pad:close/}</code> - every field visible where it stands: the rows of the enclosing levels, innermost first, and the application's variables.</li>
   <li>Only a local request sees it: the command line, or this machine asking itself with nothing forwarded. Anyone else gets nothing, and <code>$padDiagnostics = FALSE</code> switches it off for every web request - the command line still gets it.</li>
 </ul>

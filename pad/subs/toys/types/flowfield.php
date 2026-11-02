@@ -7,7 +7,7 @@
   // 6000); scale= how wide the currents are (4, 1 to 10); speed= how fast the particles go
   // (3, 1 to 10); fade= how soon the trails fade (3, 0 - never - to 10).
   //
-  //   {flowfield particles=3000, scale=6, fade=0/}
+  //   {toy:flowfield particles=3000, scale=6, fade=0/}
 
   return padToy ( 'flowfield', 'Flow field', [
     'particles' => padToyInt ( 'particles', 1500, 100, 6000 ),

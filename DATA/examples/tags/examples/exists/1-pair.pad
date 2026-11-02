@@ -1,13 +1,13 @@
-{meta title='Content when the file is there', about='The path is used as given - built here from APP, the application\'s directory; @else@ renders when it is missing.'/}
-{set $notes = APP . '_data/filesDemo/notes.txt'/}
-{exists $notes}
+{pad:meta title='Content when the file is there', about='The path is used as given - built here from APP, the application\'s directory; @else@ renders when it is missing.'/}
+{pad:set $notes = APP . '_data/filesDemo/notes.txt'/}
+{pad:exists $notes}
   <p>The notes are there.</p>
 @else@
   <p>No notes yet.</p>
-{/exists}
-{set $todo = APP . '_data/filesDemo/todo.txt'/}
-{exists $todo}
+{/pad:exists}
+{pad:set $todo = APP . '_data/filesDemo/todo.txt'/}
+{pad:exists $todo}
   <p>The to-do list is there.</p>
 @else@
   <p>No to-do list yet.</p>
-{/exists}
+{/pad:exists}

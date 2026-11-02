@@ -4,7 +4,7 @@
   // the seed picks, a few as large as the size and many small ones filling in between them,
   // each turned its own way, none touching another.
   //
-  //   {pattern 'terrazzo', size=36, seed=5, colors='#f2eee8, #d1495b, #edae49, #00798c, #30638e'/}
+  //   {pattern:terrazzo size=36, seed=5, colors='#f2eee8, #d1495b, #edae49, #00798c, #30638e'/}
   //
   // A chip is tried at a place the seed picks, as large as the room there allows - its corners
   // within a circle that keeps clear of every chip laid, less a gap of an eighth of the size -

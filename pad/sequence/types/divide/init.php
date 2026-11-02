@@ -7,7 +7,7 @@
   include PQ . 'inits/number.php';
 
   // A 0 spelled '0.0', '-0' or '00' is the zero it is: ! $pqParm let those strings through, and
-  // {sequence divide='0.0'} ended the request on "Division by zero".
+  // {sequence:divide '0.0'} ended the request on "Division by zero".
 
   if ( is_numeric ( $pqParm ) and $pqParm == 0 )
     padError ( 'The divide sequence cannot divide by zero' );

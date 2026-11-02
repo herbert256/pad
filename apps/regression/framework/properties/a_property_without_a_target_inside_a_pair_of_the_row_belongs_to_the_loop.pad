@@ -1,5 +1,5 @@
-A{items}{ifchanged $g}{notFirst@}</ul>{/notFirst@}<h2>{$g}</h2><ul>{/ifchanged}<li>{$n}</li>{/items}</ul>
-B{items}[{ifchanged $g}{current@/}{/ifchanged}]{/items}
-C{items}<li>{spaceless}{$n}{notLast@}, {/notLast@}{/spaceless}</li>{/items}
-D{items}{guest}{if current@ eq 2}two{/if}{&current}{/guest};{/items}
-E{items}{fragment 'row'}{first@}<ul>{/first@}{$n}{/fragment}{/items}
+A{array:items}{pad:ifchanged $g}{property:notFirst@}</ul>{/property:notFirst@}<h2>{$g}</h2><ul>{/pad:ifchanged}<li>{$n}</li>{/array:items}</ul>
+B{array:items}[{pad:ifchanged $g}{property:current@/}{/pad:ifchanged}]{/array:items}
+C{array:items}<li>{pad:spaceless}{$n}{property:notLast@}, {/property:notLast@}{/pad:spaceless}</li>{/array:items}
+D{array:items}{pad:guest}{pad:if current@ eq 2}two{/pad:if}{&current}{/pad:guest};{/array:items}
+E{array:items}{pad:fragment 'row'}{property:first@}<ul>{/property:first@}{$n}{/pad:fragment}{/array:items}

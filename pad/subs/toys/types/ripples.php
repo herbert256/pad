@@ -7,7 +7,7 @@
   // wave through two slits in a wall) or pond (raindrops); frequency= how fast the sources
   // beat (4, 1 to 10).
   //
-  //   {ripples setup='slits', frequency=6/}
+  //   {toy:ripples setup='slits', frequency=6/}
 
   return padToy ( 'ripples', 'Ripple tank', [
     'setup'     => padToyChoice ( 'setup', 'two', [ 'two', 'slits', 'pond' ] ),

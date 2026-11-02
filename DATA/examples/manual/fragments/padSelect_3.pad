@@ -1,4 +1,4 @@
-{offices where="country = 'USA'"}
-  <p><b>{$city}</b>, {employees fields="count(*) as n"}{$n}{/employees} people:
-    {employees}{$firstName} {$lastName}{notLast@employees}, {/notLast@employees}{/employees}</p>
-{/offices}
+{select:offices where="country = 'USA'"}
+  <p><b>{$city}</b>, {select:employees fields="count(*) as n"}{$n}{/select:employees} people:
+    {select:employees}{$firstName} {$lastName}{property:notLast@employees}, {/property:notLast@employees}{/select:employees}</p>
+{/select:offices}

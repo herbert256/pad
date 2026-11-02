@@ -3,7 +3,7 @@
   // The fragment cache: a section of a page kept rendered, so a hit skips the tags inside it
   // - and the tag's own data retrieval - while the page around it stays dynamic.
   //
-  //   {cache 'top-products', ttl=300} ... {/cache}    a named section
+  //   {pad:cache 'top-products', ttl=300} ... {/pad:cache}    a named section
   //   {topProducts cache=300} ... {/topProducts}       any tag, the option form
   //
   // level/start.php asks padFragmentHit() before the tag handler runs. A hit skips the
@@ -22,12 +22,12 @@
   // $padFragmentCache picks the store: 'file' (DATA/cache/fragments/), 'apcu', or FALSE to
   // render every time.
   //
-  // A {push} made while a section renders is part of what the section does, so it is kept
+  // A {pad:push} made while a section renders is part of what the section does, so it is kept
   // with the rendering ('stacks') and made again on a hit - lib/stack.php records it. So is
   // the page booking of a paged tag in it ('pagers', padPagerKeep in lib/pager.php): a
-  // {pager} after the section found no paged tag on a hit, or one with a single page.
+  // {pad:pager} after the section found no paged tag on a hit, or one with a single page.
   //
-  // A {nocache} part of the section renders on a hit too: kept as its source ('nocache'),
+  // A {pad:nocache} part of the section renders on a hit too: kept as its source ('nocache'),
   // the stored rendering is then made a template again and rendered - lib/nocache.php.
 
   function padFragmentHit () {
@@ -45,9 +45,9 @@
     ];
 
     // A request for one response fragment alone (lib/respond.php) renders the section: a
-    // {fragment} inside it must close to be the response, and a stored rendering has no
+    // {pad:fragment} inside it must close to be the response, and a stored rendering has no
     // levels that close - the request ended in "there is no fragment named ...". So does
-    // the post of a live region (lib/live.php), whose {live} must render to be answered;
+    // the post of a live region (lib/live.php), whose {pad:live} must render to be answered;
     // what such a post renders follows its event, so it is not stored either.
 
     if ( (string) $padFragmentOnly !== '' or padLive () !== '' )
@@ -89,7 +89,7 @@
 
     if ( $fragment ['hit'] ) {
 
-      // A section with {nocache} parts rendered its stored text as a template, the parts
+      // A section with {pad:nocache} parts rendered its stored text as a template, the parts
       // made again (level/cached.php) - that rendering is the result.
 
       if ( ! $fragment ['nocache'] )
@@ -103,7 +103,7 @@
 
     } elseif ( $padFragmentCache ) {
 
-      // The {nocache} parts are kept as their source (lib/nocache.php): what they rendered
+      // The {pad:nocache} parts are kept as their source (lib/nocache.php): what they rendered
       // this time - a token of this visitor's among it - is not what is stored.
 
       $body   = padFragmentNonce ( padNocacheCut ( $padResult [$pad], $nocache ), FALSE );
@@ -121,7 +121,7 @@
   // names - so a section holding it was not kept at all, and under a style-src 'nonce' no
   // section with a chart, a datatable or a widget, whose <style> carries it, was ever kept.
 
-  // The marker is sealed (padMarkSeal), as a {stack} marker is: a fixed one that a value
+  // The marker is sealed (padMarkSeal), as a {pad:stack} marker is: a fixed one that a value
   // brought into the section unescaped took each later request's real nonce, and a script
   // injected with it passed the policy.
 
@@ -148,11 +148,11 @@
 
   }
 
-  // The sections being kept round this level are not kept after all - what a {pdf} in one
+  // The sections being kept round this level are not kept after all - what a {pad:pdf} in one
   // makes is the answer of the request, and on a hit its handler did not run: the first
-  // request got the document, every later one the page's HTML. Up to a {nocache} round the
+  // request got the document, every later one the page's HTML. Up to a {pad:nocache} round the
   // level: that part renders again on a hit, the caller with it, so the sections round the
-  // part are kept - a {poll} in a {nocache} kept no section round it at all.
+  // part are kept - a {widget:poll} in a {pad:nocache} kept no section round it at all.
 
   function padFragmentKeepNot () {
 
@@ -169,7 +169,7 @@
 
   // A rendering that holds something of this visitor's or of this request's is not kept,
   // as the page cache keeps no such page (padCacheStorable): the session's CSRF token - a
-  // {form}, {csrf}, a live region - went to every later visitor of the section, who could
+  // {pad:form}, {pad:csrf}, a live region - went to every later visitor of the section, who could
   // post with it on the first one's behalf, and a CSP nonce left in it is one no later
   // header names (padFragmentNonce keeps the response's as a marker). Neither are the
   // visitor's own ids.
@@ -184,7 +184,7 @@
       if ( $id !== '' and str_contains ( $text, $id ) )
         return FALSE;
 
-    // Nor what this machine alone is shown - a {debug} box (padCacheLocalOnly): the body
+    // Nor what this machine alone is shown - a {pad:debug} box (padCacheLocalOnly): the body
     // is still in the engine's encoding here, so it is read as the page will go out.
 
     if ( padCacheLocalOnly ( padUnprotect ( padUnescape ( $text ) ) ) )
@@ -232,7 +232,7 @@
 
   }
 
-  // A section is written in the request's locale - {trans}, currency, localDate - as a cached
+  // A section is written in the request's locale - {pad:trans}, currency, localDate - as a cached
   // page is: with several locales each has an entry of its own, where the first visitor's
   // language was served to every other. An application of one locale keeps the key it had.
 
@@ -279,7 +279,7 @@
   }
 
   // An entry is [ 'body' => the rendering, 'stacks' => the pushes it made, 'pagers' => the
-  // page bookings it made, 'nocache' => the sources of its {nocache} parts or NULL ]. A file
+  // page bookings it made, 'nocache' => the sources of its {pad:nocache} parts or NULL ]. A file
   // holds the expiry time on its first line, followed - when there were pushes, bookings or
   // parts - by the length of the three serialized together, which then stand in front of
   // the body. An entry written when only the pushes were kept holds their list there, and

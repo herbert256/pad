@@ -5,8 +5,8 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{sitemap} ... {$page} {$url} {$lastmod} ... {/sitemap}
-{sitemap 'dir'} ... {/sitemap}
+{pad:sitemap} ... {$page} {$url} {$lastmod} ... {/pad:sitemap}
+{pad:sitemap 'dir'} ... {/pad:sitemap}
 PAD;
 
   $tagParms   = [

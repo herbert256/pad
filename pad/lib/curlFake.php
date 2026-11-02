@@ -11,7 +11,7 @@
   //     '*'                              => 'ok'
   //   ] );
   //
-  //   {curl 'https://api.example.com/rates'}         answers {"eur":1.08}
+  //   {pad:curl 'https://api.example.com/rates'}         answers {"eur":1.08}
   //   padCurlRecorded ()                              [ [ url, method, headers, post ], ... ]
   //
   // padCurlFake      fakes the fetches of the rest of the request; called again, its fakes
@@ -31,7 +31,7 @@
   // would go out to the real service.
   //
   // The answer goes through padCurlParse as a real response does, so its content type,
-  // cookies and headers are read alike, and every road a fetch takes is faked: {curl},
+  // cookies and headers are read alike, and every road a fetch takes is faked: {pad:curl},
   // padCurl, data='https://...', a _data/*.curl file, padCurlCached and padPrefetch. A
   // fetch with a ttl does not read or keep the cache while faking - a fake answer kept
   // would be served to the real requests after it. A _data/ file read by name is no fetch

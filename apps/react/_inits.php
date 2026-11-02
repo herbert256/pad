@@ -25,7 +25,7 @@
   // The version of www/react/ - when its newest file was saved - for the addresses of the
   // components Babel fetches: a browser keeps such a file a while without asking again, and
   // would run the old copy of a component that changed (pad-react.js). The stylesheet and
-  // the runtime carry the version {asset} gives them.
+  // the runtime carry the version {pad:asset} gives them.
   //
   // The files are the ones the globs *.css, *.js and examples/*.js matched, found in the
   // listings of the two directories PAD keeps between requests (padDirList) - a file added

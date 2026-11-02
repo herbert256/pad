@@ -1,9 +1,9 @@
 <?php
 
   // Pipe function trans(count): the value as a key of the _lang/ catalogs, translated into
-  // the request's locale - {echo 'cart.title' | trans}, {echo 'cart.items' | trans($n)},
+  // the request's locale - {pad:echo 'cart.title' | trans}, {pad:echo 'cart.items' | trans($n)},
   // where the count picks the plural form and replaces %d. padTrans in lib/locale.php; the
-  // {trans} tag takes named substitutions as well.
+  // {pad:trans} tag takes named substitutions as well.
 
   $padTransVars = [];
 

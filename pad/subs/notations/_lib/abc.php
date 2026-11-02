@@ -1,6 +1,6 @@
 <?php
 
-  // Tunes in ABC - the abc notation, {abc}. ABC is the plain-text notation folk musicians have
+  // Tunes in ABC - the abc notation, {notation:abc}. ABC is the plain-text notation folk musicians have
   // written tunes in since 1991: a few header lines - T: the title, M: the meter, L: the unit
   // note length, K: the key - and then the notes as letters, C middle C and c the octave above,
   // a number behind a note a multiple of the unit. This file reads a useful part of ABC 2.1 and

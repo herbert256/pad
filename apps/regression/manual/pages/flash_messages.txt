@@ -1,7 +1,9 @@
+
+
 <p>A page that takes a post redirects the browser to a plain page, so a refresh cannot post
 twice - and then the page the browser lands on has to say what happened. A flash message
 carries that: <code>padFlash ( 'Thanks, your message was sent.' )</code> before the
-<code>padRedirect ()</code>, and <b>{flash}</b> on the page it leads to.</p>
+<code>padRedirect ()</code>, and <b>{pad:flash}</b> on the page it leads to.</p>
 
 
 
@@ -40,7 +42,7 @@ carries that: <code>padFlash ( 'Thanks, your message was sent.' )</code> before 
           <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padFlash </span><span style="color: #007700">( </span><span style="color: #DD0000">'Your message was sent.'</span><span style="color: #007700">, </span><span style="color: #DD0000">'success' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiJ7Zmxhc2h9XG4gIDxwIGNsYXNzPVwibm90aWNlIHskdHlwZX1cIj57JG1lc3NhZ2V9PC9wPlxuQGVsc2VAXG4gIDxwPk5vdGhpbmcgdG8gcmVwb3J0LjwvcD5cbnsvZmxhc2h9XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgcGFkRmxhc2ggKCAnWW91ciBtZXNzYWdlIHdhcyBzZW50LicsICdzdWNjZXNzJyApO1xuXG4/PlxuIn0=" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Zmxhc2h9XG4gIDxwIGNsYXNzPVwibm90aWNlIHskdHlwZX1cIj57JG1lc3NhZ2V9PC9wPlxuQGVsc2VAXG4gIDxwPk5vdGhpbmcgdG8gcmVwb3J0LjwvcD5cbnsvZmxhc2h9XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgcGFkRmxhc2ggKCAnWW91ciBtZXNzYWdlIHdhcyBzZW50LicsICdzdWNjZXNzJyApO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue">flash</font><font color="red"></font>}</b><br>  &lt;p class="notice <b>{<font color="green"><font color="red">$</font>type</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;Nothing to report.&lt;/p&gt;<br><b>{/<font color="blue">flash</font><font color="red"></font>}</b></code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmZsYXNofVxuICA8cCBjbGFzcz1cIm5vdGljZSB7JHR5cGV9XCI+eyRtZXNzYWdlfTwvcD5cbkBlbHNlQFxuICA8cD5Ob3RoaW5nIHRvIHJlcG9ydC48L3A+XG57L3BhZDpmbGFzaH1cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICBwYWRGbGFzaCAoICdZb3VyIG1lc3NhZ2Ugd2FzIHNlbnQuJywgJ3N1Y2Nlc3MnICk7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmZsYXNofVxuICA8cCBjbGFzcz1cIm5vdGljZSB7JHR5cGV9XCI+eyRtZXNzYWdlfTwvcD5cbkBlbHNlQFxuICA8cD5Ob3RoaW5nIHRvIHJlcG9ydC48L3A+XG57L3BhZDpmbGFzaH1cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICBwYWRGbGFzaCAoICdZb3VyIG1lc3NhZ2Ugd2FzIHNlbnQuJywgJ3N1Y2Nlc3MnICk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>flash</font><font color="red"></font>}</b><br>  &lt;p class="notice <b>{<font color="green"><font color="red">$</font>type</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;Nothing to report.&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>flash</font><font color="red"></font>}</b></code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -65,9 +67,9 @@ carries that: <code>padFlash ( 'Thanks, your message was sent.' )</code> before 
 
 
 <ul>
-  <li><b>{flash}</b> renders its content once per message, with <code>{$message}</code>
+  <li><b>{pad:flash}</b> renders its content once per message, with <code>{$message}</code>
   and <code>{$type}</code>; without a message the <b>@</b><b>else</b><b>@</b> half renders.
-  <code>{flash 'error'}</code> shows the messages of that type only.</li>
+  <code>{pad:flash 'error'}</code> shows the messages of that type only.</li>
   <li>The type is the second argument of <code>padFlash</code>, <code>info</code> when it is
   left out.</li>
   <li>A message lives exactly one request after the one that flashed it - the redirect's

@@ -5,10 +5,10 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{pad} ... {/pad}
-{pad data='store', name='rows'} ... {/pad}
-{pad $name = 'value'} ... {/pad}
-{pad} ... {/pad | upper}
+{pad:pad} ... {/pad:pad}
+{pad:pad data='store', name='rows'} ... {/pad:pad}
+{pad:pad $name = 'value'} ... {/pad:pad}
+{pad:pad} ... {/pad:pad | upper}
 PAD;
 
   $tagParms   = [];

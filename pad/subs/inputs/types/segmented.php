@@ -9,7 +9,7 @@
   // post. After a post it shows the choice posted - none when the form came back without one,
   // and a posted value that is no choice is not shown: rules='required|in:...' holds the
   // field to the list. The first choice has the field's id, the others the id with their
-  // place, size-2, as the boxes of {input}'s group have.
+  // place, size-2, as the boxes of {pad:input}'s group have.
 
   $padInputField   = (string) padInputTake ( 'field', '' );
   $padInputChoices = padInputList ( 'options', $padInputField );

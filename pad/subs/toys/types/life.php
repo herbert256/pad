@@ -9,12 +9,12 @@
   // the family, B36/S23 for HighLife. A pattern of your own stands between the tags, a line
   // per row, O or # for a live cell and . for a dead one.
   //
-  //   {life pattern='gun', wrap/}
-  //   {life}
+  //   {toy:life pattern='gun', wrap/}
+  //   {toy:life}
   //     .O.
   //     ..O
   //     OOO
-  //   {/life}
+  //   {/toy:life}
 
   // The patterns to pick from, a row a line - O alive, . dead; random scatters cells, empty
   // leaves the grid to be drawn on.

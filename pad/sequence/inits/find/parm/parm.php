@@ -6,7 +6,7 @@
   // A type that declares flags/parm - one that genuinely takes an argument, such as multiply
   // or repeat - claims it first; then the action, when it is the action's kind of parameter
   // (parm/kind.php); what neither takes is named by parm/none.php. An action of actions/double/
-  // or merge/ took any parameter, a store or not: {reverse 'abc'} and {append 'abc'} reversed
+  // or merge/ took any parameter, a store or not: {action:reverse 'abc'} and {action:append 'abc'} reversed
   // and appended nothing, without a word.
 
   if ( ! is_array ( $pqFindParm ) and (string) $pqFindParm === '' )
@@ -25,7 +25,7 @@
 
   // Beside a store pulled with neither, a name is named too: {pull:s 'abc'} and {pull:s reverse,
   // 'abc'} dropped it without a word. A number there is left as it was, the parameter of the
-  // type the tag plays with - {make add=3, mySequence, 3} - parm/inits.php.
+  // type the tag plays with - {make:auto add=3, mySequence, 3} - parm/inits.php.
 
       if ( $pqSeq    and padFileExists ( PT . "$pqSeq/flags/parm")  ) $pqParm       = $pqFindParm;
   elseif ( $pqFindKind and is_array ( $pqFindParm )                  ) $pqActionParm = pqActionList ( $pqAction, $pqFindParm ) ?? '';

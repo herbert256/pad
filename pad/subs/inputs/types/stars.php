@@ -5,7 +5,7 @@
   // them as along any radio group, and the style alone fills the stars up to the one chosen
   // or pointed at. The script shows a button that takes the rating back, unless the field is
   // required - a radio group, once chosen, cannot be emptied otherwise. The first star has the
-  // field's id, the others the id with their value, as the boxes of {input}'s group have.
+  // field's id, the others the id with their value, as the boxes of {pad:input}'s group have.
 
   $padInputMax = padInputNumber ( 'max', 5, 2, 10, TRUE );
 

@@ -13,7 +13,7 @@
   //
   // Both searches use padOpenCloseCount from lib/template.php to skip markers that belong
   // to an inner tag, so nesting cannot be broken by a marker in a child. An @content@
-  // inside a {slot} pair is that slot's frame for its fill (tags/slot.php), not the place
+  // inside a {pad:slot} pair is that slot's frame for its fill (tags/slot.php), not the place
   // the tag's own content goes; padContentOwn says which pairs an @content@ belongs to.
 
   function padContentMerge ( &$true, &$false, $new, $condition ) {
@@ -69,7 +69,7 @@
   // comment, which was then stripped with it.
   //
   // And a marker inside the braces of a tag is written over: it is a value of the tag - a
-  // quoted parameter, {echo 'x@else@y'}, {if $s eq '@else@'} - never the content of a level.
+  // quoted parameter, {pad:echo 'x@else@y'}, {pad:if $s eq '@else@'} - never the content of a level.
   // The balance of the pairs did not see it, a single tag being no pair, and the level was
   // cut in the middle of the tag: "No close } found for open {".
 
@@ -90,13 +90,13 @@
   }
 
   // The text an @else@ is looked for in: padMarkerText, with the content of its text pairs -
-  // what an {ignore} or a {highlight} sample shows - written over with spaces as well
+  // what an {pad:ignore} or a {pad:highlight} sample shows - written over with spaces as well
   // (padTextFree, lib/template.php), the same length. A sample is text: the marker in one is
   // no marker, and neither is an opener or closer it shows - but those were counted, a
-  // {/echo} in a sample put echo among the pairs to balance and threw its count off, so
-  // [{sequence '1..2'}{ignore}{/echo}{/ignore}{echo 'a'}{echo 'b'}@else@ x{/sequence}] left
+  // {/pad:echo} in a sample put echo among the pairs to balance and threw its count off, so
+  // [{sequence:range '1..2'}{pad:ignore}{/pad:echo}{/pad:ignore}{pad:echo 'a'}{pad:echo 'b'}@else@ x{/sequence:range}] left
   // the @else@ to no tag at all - "an @else@ stands where no tag takes it" - and so did a
-  // {/dd} shown in front of two uses of a {define}d dd. With one {echo} the counts met by
+  // {/define:dd} shown in front of two uses of a {pad:define}d dd. With one {pad:echo} the counts met by
   // chance. A text pair still open at the end leaves the text as it is.
 
   function padElseText ( $text ) {
@@ -109,12 +109,12 @@
   }
 
   // A tag opens with a { that a name, a sigil or a slash follows, and ends at the } that
-  // brings the brace depth back - a parameter may hold a tag of its own, {echo {$x}}. One
+  // brings the brace depth back - a parameter may hold a tag of its own, {pad:echo {$x}}. One
   // that never closes ends the search: what follows stays as it is.
   //
   // The text is read once and written once, the tags that hold an @ written over as they
   // are passed - rewriting the whole text for each of them made the search grow with the
-  // size times the tags, 139 ms for a template of 375 KB full of {current@items}. Where the
+  // size times the tags, 139 ms for a template of 375 KB full of {property:current@items}. Where the
   // next @ stands is kept, so a tag without one costs no search either.
 
   function padMarkerInTags ( $text ) {
@@ -238,12 +238,12 @@
 
   }
 
-  // content= on a tag that chooses among branches - an {if}, a {case}, a condition tag -
-  // whose own content frames it, {if $x, content='c'}<b>@content@</b>{/if}: the frame goes
-  // round each branch of the stored text, the part behind each of its own {else}, {elseif}
-  // or {when}, so whichever the tag keeps is framed whole. Put in at the one @content@, the
-  // stored yes{else}no made <b>yes{else}no</b>, and the tag kept <b>yes or no</b> - the
-  // frame's two halves in its two branches. For a {case} the text before its first {when}
+  // content= on a tag that chooses among branches - an {pad:if}, a {pad:case}, a condition tag -
+  // whose own content frames it, {pad:if $x, content='c'}<b>@content@</b>{/pad:if}: the frame goes
+  // round each branch of the stored text, the part behind each of its own {pad:else}, {pad:elseif}
+  // or {pad:when}, so whichever the tag keeps is framed whole. Put in at the one @content@, the
+  // stored yes{pad:else}no made <b>yes{pad:else}no</b>, and the tag kept <b>yes or no</b> - the
+  // frame's two halves in its two branches. For a {pad:case} the text before its first {pad:when}
   // stays as it is: it never renders. Without branch tags, or with a stored text that frames
   // the tag's own, it is padContentSet as for any tag.
 
@@ -254,7 +254,7 @@
 
     $words = $case ? 'when[\s}]|else\}' : 'elseif[\s}]|else\}';
 
-    preg_match_all ( '/\{(?:' . $words . ')/', $new, $found, PREG_OFFSET_CAPTURE );
+    preg_match_all ( '/\{pad:(?:' . $words . ')/', $new, $found, PREG_OFFSET_CAPTURE );
 
     $out  = '';
     $last = 0;
@@ -328,9 +328,9 @@
 
   }
 
-  // Whether an @content@ at this place is the text's own: not inside a {content} or {slot}
-  // pair, whose frame it is, nor inside a {define} or {macro} written in the template - that
-  // tag's own marker, filled where it is used - nor inside an {ignore} or {highlight} sample,
+  // Whether an @content@ at this place is the text's own: not inside a {pad:content} or {pad:slot}
+  // pair, whose frame it is, nor inside a {pad:define} or {pad:macro} written in the template - that
+  // tag's own marker, filled where it is used - nor inside an {pad:ignore} or {pad:highlight} sample,
   // where it is text to show. Loops and conditions stay transparent: the content goes in
   // where the template puts it. A nested define's marker took the caller's content, and a
   // sample explaining @content@ printed the caller's template as its source.
@@ -347,7 +347,7 @@
 
   // Where those pairs stand in the text: a closing tag pairs with the nearest opening tag
   // before it that has none yet, as the engine pairs them, and an opening tag left over is a
-  // single tag that opens nothing - {highlight file='orders.pad'}, a {slot 'title'} with no
+  // single tag that opens nothing - {pad:highlight file='orders.pad'}, a {pad:slot 'title'} with no
   // default. Counted as openers in front of the marker, as the balance of the pairs counts
   // them, they took the template's own @content@ for one inside a sample or a slot, and the
   // tag failed "an @content@ stands where nothing merges content into it".
@@ -356,7 +356,7 @@
 
     $pairs = [];
 
-    preg_match_all ( '/\{(\/?)(content|slot|define|macro|ignore|highlight)(?=[\s}|])/', $text, $tags,
+    preg_match_all ( '/\{(\/?)pad:(content|slot|define|macro|ignore|highlight)(?=[\s}|])/', $text, $tags,
                      PREG_SET_ORDER | PREG_OFFSET_CAPTURE );
 
     $open = [];

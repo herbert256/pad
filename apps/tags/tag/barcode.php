@@ -7,21 +7,18 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{barcode 'number'/}
-{barcode $code, type='code128', height=60, scale=2, title='text', plain, color='#000', background='#fff'/}
+{barcode:auto 'number'/}
+{barcode:code128 $code, height=60, scale=2, title='text', plain, color='#000', background='#fff'/}
 {barcode:ean13 'number'/}
-{code39 'TEXT', check/}
-{barcode $text, type='datamatrix', size=160/}
-{gs1128 '(01)09501101530003(10)LOT1'/}
+{barcode:code39 'TEXT', check/}
+{barcode:datamatrix $text, size=160/}
+{barcode:gs1128 '(01)09501101530003(10)LOT1'/}
 PAD;
 
   $tagParms   = [
     'code' => 'The number or text. An EAN or UPC number may leave its check digit off - it is added; one given is checked.' ];
 
   $tagOptions = [
-    'type'       => 'The symbology, a file of <code>pad/subs/codes/types/</code>: '
-                      . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padKinds ( 'codes' ) ) )
-                      . '. Left out, twelve or thirteen digits are an EAN-13 and anything else Code 128. The barcode type names it as well - <code>{barcode:upce \'0425261\'/}</code>, or bare, <code>{itf14 \'1540014128876\'/}</code>, when nothing else has the name.',
     'height'     => 'The height of the bars in pixels, default 60.',
     'scale'      => 'The width of one module - the thinnest bar - in pixels, default 2 (1 to 10).',
     'title'      => 'The accessible name, by default the code.',
@@ -36,6 +33,6 @@ PAD;
     'level'      => '<code>qr</code>: the error correction, <code>L</code>, <code>M</code> (default), <code>Q</code> or <code>H</code>. <code>pdf417</code>: 0 to 8, by default the standard\'s recommendation for the size of the data.',
     'columns'    => '<code>pdf417</code>: the data columns, 1 to 30 - by default those that make the symbol about three times as wide as high. Its rows are three modules high, <code>scale=</code> the width of a module.' ];
 
-  $tagSee     = [ 'qr' ];
+  $tagSee     = [ 'barcode:qr' ];
 
 ?>

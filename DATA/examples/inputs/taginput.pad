@@ -1,13 +1,12 @@
-{meta title='Tag input'/}
-{about/}
+{pad:meta title='Tag input'/}
+{include:about/}
 
-{form 'try', class='inputs-try', error}
-  {taginput 'topics', label='Topics', value='pad, forms', suggestions='pad, php, forms, htmx, charts, games', rules='required|max:80'/}
-  {taginput 'guests', label='Guests', most=5/}
+{pad:form 'try', class='inputs-try', error}
+  {input:taginput 'topics', label='Topics', value='pad, forms', suggestions='pad, php, forms, htmx, charts, games', rules='required|max:80'/}
+  {input:taginput 'guests', label='Guests', most=5/}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-<h2>The template</h2>
-{source/}
+{include:template/}

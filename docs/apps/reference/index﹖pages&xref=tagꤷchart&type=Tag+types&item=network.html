@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Reference - Tag types - network · PAD reference
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/play.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+  </head>
+  <body class="frame app-reference">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>reference</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="reference">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Index</a>
+        <div class="frame-head">
+          Tags
+        </div><a href="index%EF%B9%96index.html#pad-tags">PAD tags</a> <a href="index%EF%B9%96index.html#tag-types">Tag types</a> <a href="index%EF%B9%96index.html#tag-properties">Tag properties</a> <a href="index%EF%B9%96index.html#tag-options">Tag options</a> <a href="index%EF%B9%96index.html#common-tags">Common tags</a> <a href="index%EF%B9%96index.html#common-includes">Common includes</a>
+        <div class="frame-head">
+          Functions
+        </div><a href="index%EF%B9%96index.html#pad-functions">PAD functions</a> <a href="index%EF%B9%96index.html#single-functions">Single functions</a> <a href="index%EF%B9%96index.html#parms-functions">Parms functions</a>
+        <div class="frame-head">
+          Configuration
+        </div><a href="index%EF%B9%96index.html#error-actions">Error actions</a> <a href="index%EF%B9%96index.html#output-types">Output types</a> <a href="index%EF%B9%96index.html#info-modes">Info modes</a> <a href="index%EF%B9%96index.html#cache-backends">Cache backends</a>
+        <div class="frame-head">
+          At (x@y)
+        </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
+        <div class="frame-head">
+          More
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#oauth-providers">OAuth providers</a> <a href="index%EF%B9%96index.html#notification-channels">Notification channels</a> <a href="index%EF%B9%96index.html#ai-providers">AI providers</a> <a href="index%EF%B9%96index.html#pattern-types">Pattern types</a> <a href="index%EF%B9%96index.html#image-filters">Image filters</a> <a href="index%EF%B9%96index.html#holiday-countries">Holiday countries</a> <a href="index%EF%B9%96index.html#search-languages">Search languages</a> <a href="index%EF%B9%96index.html#data-formats">Data formats</a> <a href="index%EF%B9%96index.html#sounds">Sounds</a> <a href="index%EF%B9%96index.html#printables">Printables</a> <a href="index%EF%B9%96index.html#notations">Notations</a> <a href="index%EF%B9%96index.html#formula-functions">Formula functions</a> <a href="index%EF%B9%96index.html#section-types">Section types</a> <a href="index%EF%B9%96index.html#effect-types">Effect types</a> <a href="index%EF%B9%96index.html#json-ld-kinds">JSON-LD kinds</a> <a href="index%EF%B9%96index.html#themes">Themes</a> <a href="index%EF%B9%96index.html#palettes">Palettes</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Reference - Tag types - network
+        </h1>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <center>
+                <hr>
+                App: charts - Page: network/flights<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">network/flights.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6bmV0d29yayBkYXRhPSdmbGlnaHRzJyxcbiAgICAgICBzb3VyY2U9J2Zyb20nLFxuICAgICAgIHRhcmdldD0ndG8nLFxuICAgICAgIHZhbHVlPSdmbGlnaHRzJyxcbiAgICAgICBsYXlvdXQ9J3JhZGlhbCcsXG4gICAgICAgdGl0bGU9J0RpcmVjdCBmbGlnaHRzIHBlciBkYXknLFxuICAgICAgIHdpZHRoPTY0MCxcbiAgICAgICBoZWlnaHQ9NDIwL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6bmV0d29yayBkYXRhPSdmbGlnaHRzJyxcbiAgICAgICBzb3VyY2U9J2Zyb20nLFxuICAgICAgIHRhcmdldD0ndG8nLFxuICAgICAgIHZhbHVlPSdmbGlnaHRzJyxcbiAgICAgICBsYXlvdXQ9J3JhZGlhbCcsXG4gICAgICAgdGl0bGU9J0RpcmVjdCBmbGlnaHRzIHBlciBkYXknLFxuICAgICAgIHdpZHRoPTY0MCxcbiAgICAgICBoZWlnaHQ9NDIwL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network </font><font color="red">data=<font color="black">'</font>flights<font color="black">'</font><font color="black">,</font><br>       source=<font color="black">'</font>from<font color="black">'</font><font color="black">,</font><br>       target=<font color="black">'</font>to<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>flights<font color="black">'</font><font color="black">,</font><br>       layout=<font color="black">'</font>radial<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Direct flights per day<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=420</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax6df272edead962d1359311cf59006ba1"></div>
+                      <script>
+                      padAjax6df272edead962d1359311cf59006ba1 = new XMLHttpRequest();
+                      padAjax6df272edead962d1359311cf59006ba1.onreadystatechange=function() {
+                      if (padAjax6df272edead962d1359311cf59006ba1.readyState === 4) {
+                      if (padAjax6df272edead962d1359311cf59006ba1.status === 200) {
+                      document.getElementById("padAjax6df272edead962d1359311cf59006ba1").innerHTML=padAjax6df272edead962d1359311cf59006ba1.responseText;
+                      } else {
+                      document.getElementById("padAjax6df272edead962d1359311cf59006ba1").innerHTML=padAjax6df272edead962d1359311cf59006ba1.statusText;
+                      }
+                      }
+                      }
+                      padAjax6df272edead962d1359311cf59006ba1.open("GET","http://localhost/pad/charts/?network/flights&padInclude",true);
+                      padAjax6df272edead962d1359311cf59006ba1.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: charts - Page: network/friends<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">network/friends.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6bmV0d29yayBkYXRhPSdmcmllbmRzJyxcbiAgICAgICBzb3VyY2U9J3BlcnNvbicsXG4gICAgICAgdGFyZ2V0PSdmcmllbmQnLFxuICAgICAgIHRpdGxlPSdXaG8gaXMgZnJpZW5kcyB3aXRoIHdob20nLFxuICAgICAgIHdpZHRoPTY0MCxcbiAgICAgICBoZWlnaHQ9NDIwL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6bmV0d29yayBkYXRhPSdmcmllbmRzJyxcbiAgICAgICBzb3VyY2U9J3BlcnNvbicsXG4gICAgICAgdGFyZ2V0PSdmcmllbmQnLFxuICAgICAgIHRpdGxlPSdXaG8gaXMgZnJpZW5kcyB3aXRoIHdob20nLFxuICAgICAgIHdpZHRoPTY0MCxcbiAgICAgICBoZWlnaHQ9NDIwL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network </font><font color="red">data=<font color="black">'</font>friends<font color="black">'</font><font color="black">,</font><br>       source=<font color="black">'</font>person<font color="black">'</font><font color="black">,</font><br>       target=<font color="black">'</font>friend<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Who is friends with whom<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=420</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax68c070f8c0b37d53ccd9de3ead4730f6"></div>
+                      <script>
+                      padAjax68c070f8c0b37d53ccd9de3ead4730f6 = new XMLHttpRequest();
+                      padAjax68c070f8c0b37d53ccd9de3ead4730f6.onreadystatechange=function() {
+                      if (padAjax68c070f8c0b37d53ccd9de3ead4730f6.readyState === 4) {
+                      if (padAjax68c070f8c0b37d53ccd9de3ead4730f6.status === 200) {
+                      document.getElementById("padAjax68c070f8c0b37d53ccd9de3ead4730f6").innerHTML=padAjax68c070f8c0b37d53ccd9de3ead4730f6.responseText;
+                      } else {
+                      document.getElementById("padAjax68c070f8c0b37d53ccd9de3ead4730f6").innerHTML=padAjax68c070f8c0b37d53ccd9de3ead4730f6.statusText;
+                      }
+                      }
+                      }
+                      padAjax68c070f8c0b37d53ccd9de3ead4730f6.open("GET","http://localhost/pad/charts/?network/friends&padInclude",true);
+                      padAjax68c070f8c0b37d53ccd9de3ead4730f6.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: charts - Page: network/modules<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">network/modules.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">network/modules.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Which module of an application imports which, and how many functions it uses.<br><br>  </span><span style="color: #0000BB">$imports </span><span style="color: #007700">= [<br>    </span><span style="color: #DD0000">'app'      </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'router' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">6</span><span style="color: #007700">, </span><span style="color: #DD0000">'auth' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4</span><span style="color: #007700">, </span><span style="color: #DD0000">'views' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'router'   </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'request' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #DD0000">'views' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'auth'     </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'session' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7</span><span style="color: #007700">, </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4</span><span style="color: #007700">, </span><span style="color: #DD0000">'crypt' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'views'    </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'template' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12</span><span style="color: #007700">, </span><span style="color: #DD0000">'i18n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'template' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'cache' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'i18n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'session'  </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'cache' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'crypt' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'db'       </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'cache' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4</span><span style="color: #007700">, </span><span style="color: #DD0000">'log' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'request'  </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'log' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$modules </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$imports </span><span style="color: #007700">as </span><span style="color: #0000BB">$module </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$uses </span><span style="color: #007700">)<br>    foreach ( </span><span style="color: #0000BB">$uses </span><span style="color: #007700">as </span><span style="color: #0000BB">$used </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$functions </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">$modules </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'module' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$module</span><span style="color: #007700">, </span><span style="color: #DD0000">'imports' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$used</span><span style="color: #007700">, </span><span style="color: #DD0000">'functions' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$functions </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6bmV0d29yayBkYXRhPSdtb2R1bGVzJyxcbiAgICAgICBzb3VyY2U9J21vZHVsZScsXG4gICAgICAgdGFyZ2V0PSdpbXBvcnRzJyxcbiAgICAgICB2YWx1ZT0nZnVuY3Rpb25zJyxcbiAgICAgICBhcnJvd3MsXG4gICAgICAgdGl0bGU9J0ltcG9ydHMgYmV0d2VlbiBtb2R1bGVzJyxcbiAgICAgICB3aWR0aD02NDAsXG4gICAgICAgaGVpZ2h0PTQyMC99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gV2hpY2ggbW9kdWxlIG9mIGFuIGFwcGxpY2F0aW9uIGltcG9ydHMgd2hpY2gsIGFuZCBob3cgbWFueSBmdW5jdGlvbnMgaXQgdXNlcy5cblxuICAkaW1wb3J0cyA9IFtcbiAgICAnYXBwJyAgICAgID0+IFsgJ3JvdXRlcicgPT4gNiwgJ2F1dGgnID0+IDQsICd2aWV3cycgPT4gOSBdLFxuICAgICdyb3V0ZXInICAgPT4gWyAncmVxdWVzdCcgPT4gNSwgJ3ZpZXdzJyA9PiAzIF0sXG4gICAgJ2F1dGgnICAgICA9PiBbICdzZXNzaW9uJyA9PiA3LCAnZGInID0+IDQsICdjcnlwdCcgPT4gMyBdLFxuICAgICd2aWV3cycgICAgPT4gWyAndGVtcGxhdGUnID0+IDEyLCAnaTE4bicgPT4gMiBdLFxuICAgICd0ZW1wbGF0ZScgPT4gWyAnY2FjaGUnID0+IDMsICdpMThuJyA9PiAxIF0sXG4gICAgJ3Nlc3Npb24nICA9PiBbICdjYWNoZScgPT4gMiwgJ2NyeXB0JyA9PiAxIF0sXG4gICAgJ2RiJyAgICAgICA9PiBbICdjYWNoZScgPT4gNCwgJ2xvZycgPT4gMiBdLFxuICAgICdyZXF1ZXN0JyAgPT4gWyAnbG9nJyA9PiAxIF1cbiAgXTtcblxuICAkbW9kdWxlcyA9IFtdO1xuXG4gIGZvcmVhY2ggKCAkaW1wb3J0cyBhcyAkbW9kdWxlID0+ICR1c2VzIClcbiAgICBmb3JlYWNoICggJHVzZXMgYXMgJHVzZWQgPT4gJGZ1bmN0aW9ucyApXG4gICAgICAkbW9kdWxlcyBbXSA9IFsgJ21vZHVsZScgPT4gJG1vZHVsZSwgJ2ltcG9ydHMnID0+ICR1c2VkLCAnZnVuY3Rpb25zJyA9PiAkZnVuY3Rpb25zIF07XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6bmV0d29yayBkYXRhPSdtb2R1bGVzJyxcbiAgICAgICBzb3VyY2U9J21vZHVsZScsXG4gICAgICAgdGFyZ2V0PSdpbXBvcnRzJyxcbiAgICAgICB2YWx1ZT0nZnVuY3Rpb25zJyxcbiAgICAgICBhcnJvd3MsXG4gICAgICAgdGl0bGU9J0ltcG9ydHMgYmV0d2VlbiBtb2R1bGVzJyxcbiAgICAgICB3aWR0aD02NDAsXG4gICAgICAgaGVpZ2h0PTQyMC99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gV2hpY2ggbW9kdWxlIG9mIGFuIGFwcGxpY2F0aW9uIGltcG9ydHMgd2hpY2gsIGFuZCBob3cgbWFueSBmdW5jdGlvbnMgaXQgdXNlcy5cblxuICAkaW1wb3J0cyA9IFtcbiAgICAnYXBwJyAgICAgID0+IFsgJ3JvdXRlcicgPT4gNiwgJ2F1dGgnID0+IDQsICd2aWV3cycgPT4gOSBdLFxuICAgICdyb3V0ZXInICAgPT4gWyAncmVxdWVzdCcgPT4gNSwgJ3ZpZXdzJyA9PiAzIF0sXG4gICAgJ2F1dGgnICAgICA9PiBbICdzZXNzaW9uJyA9PiA3LCAnZGInID0+IDQsICdjcnlwdCcgPT4gMyBdLFxuICAgICd2aWV3cycgICAgPT4gWyAndGVtcGxhdGUnID0+IDEyLCAnaTE4bicgPT4gMiBdLFxuICAgICd0ZW1wbGF0ZScgPT4gWyAnY2FjaGUnID0+IDMsICdpMThuJyA9PiAxIF0sXG4gICAgJ3Nlc3Npb24nICA9PiBbICdjYWNoZScgPT4gMiwgJ2NyeXB0JyA9PiAxIF0sXG4gICAgJ2RiJyAgICAgICA9PiBbICdjYWNoZScgPT4gNCwgJ2xvZycgPT4gMiBdLFxuICAgICdyZXF1ZXN0JyAgPT4gWyAnbG9nJyA9PiAxIF1cbiAgXTtcblxuICAkbW9kdWxlcyA9IFtdO1xuXG4gIGZvcmVhY2ggKCAkaW1wb3J0cyBhcyAkbW9kdWxlID0+ICR1c2VzIClcbiAgICBmb3JlYWNoICggJHVzZXMgYXMgJHVzZWQgPT4gJGZ1bmN0aW9ucyApXG4gICAgICAkbW9kdWxlcyBbXSA9IFsgJ21vZHVsZScgPT4gJG1vZHVsZSwgJ2ltcG9ydHMnID0+ICR1c2VkLCAnZnVuY3Rpb25zJyA9PiAkZnVuY3Rpb25zIF07XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network </font><font color="red">data=<font color="black">'</font>modules<font color="black">'</font><font color="black">,</font><br>       source=<font color="black">'</font>module<font color="black">'</font><font color="black">,</font><br>       target=<font color="black">'</font>imports<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>functions<font color="black">'</font><font color="black">,</font><br>       arrows<font color="black">,</font><br>       title=<font color="black">'</font>Imports between modules<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=420</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb1ee02d6c5cc7742a2ba19d49d0f3906"></div>
+                      <script>
+                      padAjaxb1ee02d6c5cc7742a2ba19d49d0f3906 = new XMLHttpRequest();
+                      padAjaxb1ee02d6c5cc7742a2ba19d49d0f3906.onreadystatechange=function() {
+                      if (padAjaxb1ee02d6c5cc7742a2ba19d49d0f3906.readyState === 4) {
+                      if (padAjaxb1ee02d6c5cc7742a2ba19d49d0f3906.status === 200) {
+                      document.getElementById("padAjaxb1ee02d6c5cc7742a2ba19d49d0f3906").innerHTML=padAjaxb1ee02d6c5cc7742a2ba19d49d0f3906.responseText;
+                      } else {
+                      document.getElementById("padAjaxb1ee02d6c5cc7742a2ba19d49d0f3906").innerHTML=padAjaxb1ee02d6c5cc7742a2ba19d49d0f3906.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb1ee02d6c5cc7742a2ba19d49d0f3906.open("GET","http://localhost/pad/charts/?network/modules&padInclude",true);
+                      padAjaxb1ee02d6c5cc7742a2ba19d49d0f3906.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: manual - Page: fragments/charts_9<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/charts_9.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ2ZyaWVuZHMnfVxuICBmcm9tLHRvXG4gIEFubixCb2JcbiAgQW5uLENhc1xuICBCb2IsQ2FzXG4gIENhcyxEaXJrXG4gIERpcmssRXZhXG4gIEV2YSxGYXlcbiAgRmF5LERpcmtcbnsvcGFkOmRhdGF9XG57Y2hhcnQ6bmV0d29yayBkYXRhPSdmcmllbmRzJywgc291cmNlPSdmcm9tJywgdGFyZ2V0PSd0bycsIGFycm93cywgd2lkdGg9NDIwLCBoZWlnaHQ9MjYwL31cbntjaGFydDpuZXR3b3JrIGRhdGE9J2ZyaWVuZHMnLCBzb3VyY2U9J2Zyb20nLCB0YXJnZXQ9J3RvJywgbGF5b3V0PSdyYWRpYWwnLCB3aWR0aD00MjAsIGhlaWdodD0yNjAvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ2ZyaWVuZHMnfVxuICBmcm9tLHRvXG4gIEFubixCb2JcbiAgQW5uLENhc1xuICBCb2IsQ2FzXG4gIENhcyxEaXJrXG4gIERpcmssRXZhXG4gIEV2YSxGYXlcbiAgRmF5LERpcmtcbnsvcGFkOmRhdGF9XG57Y2hhcnQ6bmV0d29yayBkYXRhPSdmcmllbmRzJywgc291cmNlPSdmcm9tJywgdGFyZ2V0PSd0bycsIGFycm93cywgd2lkdGg9NDIwLCBoZWlnaHQ9MjYwL31cbntjaGFydDpuZXR3b3JrIGRhdGE9J2ZyaWVuZHMnLCBzb3VyY2U9J2Zyb20nLCB0YXJnZXQ9J3RvJywgbGF5b3V0PSdyYWRpYWwnLCB3aWR0aD00MjAsIGhlaWdodD0yNjAvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>friends<font color="black">'</font></font>}</b><br>  from,to<br>  Ann,Bob<br>  Ann,Cas<br>  Bob,Cas<br>  Cas,Dirk<br>  Dirk,Eva<br>  Eva,Fay<br>  Fay,Dirk<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network </font><font color="red">data=<font color="black">'</font>friends<font color="black">'</font><font color="black">,</font> source=<font color="black">'</font>from<font color="black">'</font><font color="black">,</font> target=<font color="black">'</font>to<font color="black">'</font><font color="black">,</font> arrows<font color="black">,</font> width=420<font color="black">,</font> height=260</font>/}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network </font><font color="red">data=<font color="black">'</font>friends<font color="black">'</font><font color="black">,</font> source=<font color="black">'</font>from<font color="black">'</font><font color="black">,</font> target=<font color="black">'</font>to<font color="black">'</font><font color="black">,</font> layout=<font color="black">'</font>radial<font color="black">'</font><font color="black">,</font> width=420<font color="black">,</font> height=260</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax2d3eaade2a99b059fc887e58b98d8c3f"></div>
+                      <script>
+                      padAjax2d3eaade2a99b059fc887e58b98d8c3f = new XMLHttpRequest();
+                      padAjax2d3eaade2a99b059fc887e58b98d8c3f.onreadystatechange=function() {
+                      if (padAjax2d3eaade2a99b059fc887e58b98d8c3f.readyState === 4) {
+                      if (padAjax2d3eaade2a99b059fc887e58b98d8c3f.status === 200) {
+                      document.getElementById("padAjax2d3eaade2a99b059fc887e58b98d8c3f").innerHTML=padAjax2d3eaade2a99b059fc887e58b98d8c3f.responseText;
+                      } else {
+                      document.getElementById("padAjax2d3eaade2a99b059fc887e58b98d8c3f").innerHTML=padAjax2d3eaade2a99b059fc887e58b98d8c3f.statusText;
+                      }
+                      }
+                      }
+                      padAjax2d3eaade2a99b059fc887e58b98d8c3f.open("GET","http://localhost/pad/manual/?fragments/charts_9&padInclude",true);
+                      padAjax2d3eaade2a99b059fc887e58b98d8c3f.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_network_of_an_unknown_layout_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_network_of_an_unknown_layout_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ2xpbmtzJ31be1wiZnJvbVwiOlwiYVwiLFwidG9cIjpcImJcIn1dey9wYWQ6ZGF0YX1cbntjaGFydDpuZXR3b3JrIGRhdGE9J2xpbmtzJywgbGF5b3V0PSd0cmVlJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ2xpbmtzJ31be1wiZnJvbVwiOlwiYVwiLFwidG9cIjpcImJcIn1dey9wYWQ6ZGF0YX1cbntjaGFydDpuZXR3b3JrIGRhdGE9J2xpbmtzJywgbGF5b3V0PSd0cmVlJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>links<font color="black">'</font></font>}</b>[{"from":"a","to":"b"}]<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network </font><font color="red">data=<font color="black">'</font>links<font color="black">'</font><font color="black">,</font> layout=<font color="black">'</font>tree<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax356963abae80bdc38934b6783f643c12"></div>
+                      <script>
+                      padAjax356963abae80bdc38934b6783f643c12 = new XMLHttpRequest();
+                      padAjax356963abae80bdc38934b6783f643c12.onreadystatechange=function() {
+                      if (padAjax356963abae80bdc38934b6783f643c12.readyState === 4) {
+                      if (padAjax356963abae80bdc38934b6783f643c12.status === 200) {
+                      document.getElementById("padAjax356963abae80bdc38934b6783f643c12").innerHTML=padAjax356963abae80bdc38934b6783f643c12.responseText;
+                      } else {
+                      document.getElementById("padAjax356963abae80bdc38934b6783f643c12").innerHTML=padAjax356963abae80bdc38934b6783f643c12.statusText;
+                      }
+                      }
+                      }
+                      padAjax356963abae80bdc38934b6783f643c12.open("GET","http://localhost/pad/regression/errors/?syntax/a_network_of_an_unknown_layout_is_reported&padInclude",true);
+                      padAjax356963abae80bdc38934b6783f643c12.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/chart_network_counts_a_link_once<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/chart_network_counts_a_link_once.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6bmV0d29yayBzb3VyY2U9J3MnLCB0YXJnZXQ9J3QnfVxucyx0XG5BLEJcbkEsQlxuQSxCXG5BLEJcbkEsQ1xuey9jaGFydDpuZXR3b3JrfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6bmV0d29yayBzb3VyY2U9J3MnLCB0YXJnZXQ9J3QnfVxucyx0XG5BLEJcbkEsQlxuQSxCXG5BLEJcbkEsQ1xuey9jaGFydDpuZXR3b3JrfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network </font><font color="red">source=<font color="black">'</font>s<font color="black">'</font><font color="black">,</font> target=<font color="black">'</font>t<font color="black">'</font></font>}</b><br>s,t<br>A,B<br>A,B<br>A,B<br>A,B<br>A,C<br><b>{/<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax813776f1822649fbf1362cbc95a7970a"></div>
+                      <script>
+                      padAjax813776f1822649fbf1362cbc95a7970a = new XMLHttpRequest();
+                      padAjax813776f1822649fbf1362cbc95a7970a.onreadystatechange=function() {
+                      if (padAjax813776f1822649fbf1362cbc95a7970a.readyState === 4) {
+                      if (padAjax813776f1822649fbf1362cbc95a7970a.status === 200) {
+                      document.getElementById("padAjax813776f1822649fbf1362cbc95a7970a").innerHTML=padAjax813776f1822649fbf1362cbc95a7970a.responseText;
+                      } else {
+                      document.getElementById("padAjax813776f1822649fbf1362cbc95a7970a").innerHTML=padAjax813776f1822649fbf1362cbc95a7970a.statusText;
+                      }
+                      }
+                      }
+                      padAjax813776f1822649fbf1362cbc95a7970a.open("GET","http://localhost/pad/regression/framework/?tags/chart_network_counts_a_link_once&padInclude",true);
+                      padAjax813776f1822649fbf1362cbc95a7970a.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/chart_network_links_the_nodes_with_arrows<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/chart_network_links_the_nodes_with_arrows.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ2ZyaWVuZHMnfVt7XCJhXCI6XCJBbm5cIixcImJcIjpcIkJvYlwifSx7XCJhXCI6XCJCb2JcIixcImJcIjpcIkNhc1wifSx7XCJhXCI6XCJDYXNcIixcImJcIjpcIkFublwifSx7XCJhXCI6XCJDYXNcIixcImJcIjpcIkRpcmtcIn1dey9wYWQ6ZGF0YX1cbntjaGFydDpuZXR3b3JrIGRhdGE9J2ZyaWVuZHMnLCBhcnJvd3MsIHdpZHRoPTMwMCwgaGVpZ2h0PTIwMC99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ2ZyaWVuZHMnfVt7XCJhXCI6XCJBbm5cIixcImJcIjpcIkJvYlwifSx7XCJhXCI6XCJCb2JcIixcImJcIjpcIkNhc1wifSx7XCJhXCI6XCJDYXNcIixcImJcIjpcIkFublwifSx7XCJhXCI6XCJDYXNcIixcImJcIjpcIkRpcmtcIn1dey9wYWQ6ZGF0YX1cbntjaGFydDpuZXR3b3JrIGRhdGE9J2ZyaWVuZHMnLCBhcnJvd3MsIHdpZHRoPTMwMCwgaGVpZ2h0PTIwMC99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>friends<font color="black">'</font></font>}</b>[{"a":"Ann","b":"Bob"},{"a":"Bob","b":"Cas"},{"a":"Cas","b":"Ann"},{"a":"Cas","b":"Dirk"}]<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network </font><font color="red">data=<font color="black">'</font>friends<font color="black">'</font><font color="black">,</font> arrows<font color="black">,</font> width=300<font color="black">,</font> height=200</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax70871808022b4031753ee9336373c7c8"></div>
+                      <script>
+                      padAjax70871808022b4031753ee9336373c7c8 = new XMLHttpRequest();
+                      padAjax70871808022b4031753ee9336373c7c8.onreadystatechange=function() {
+                      if (padAjax70871808022b4031753ee9336373c7c8.readyState === 4) {
+                      if (padAjax70871808022b4031753ee9336373c7c8.status === 200) {
+                      document.getElementById("padAjax70871808022b4031753ee9336373c7c8").innerHTML=padAjax70871808022b4031753ee9336373c7c8.responseText;
+                      } else {
+                      document.getElementById("padAjax70871808022b4031753ee9336373c7c8").innerHTML=padAjax70871808022b4031753ee9336373c7c8.statusText;
+                      }
+                      }
+                      }
+                      padAjax70871808022b4031753ee9336373c7c8.open("GET","http://localhost/pad/regression/framework/?tags/chart_network_links_the_nodes_with_arrows&padInclude",true);
+                      padAjax70871808022b4031753ee9336373c7c8.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/chart_network_of_two_nodes_stands_on_the_middle_line<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/chart_network_of_two_nodes_stands_on_the_middle_line.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6bmV0d29yayBzb3VyY2U9J3MnLCB0YXJnZXQ9J3QnfVxucyx0XG5BbGljZSxCb2JcbnsvY2hhcnQ6bmV0d29ya31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6bmV0d29yayBzb3VyY2U9J3MnLCB0YXJnZXQ9J3QnfVxucyx0XG5BbGljZSxCb2JcbnsvY2hhcnQ6bmV0d29ya31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network </font><font color="red">source=<font color="black">'</font>s<font color="black">'</font><font color="black">,</font> target=<font color="black">'</font>t<font color="black">'</font></font>}</b><br>s,t<br>Alice,Bob<br><b>{/<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxfbb612db1ad4ad419a95b7fa4a53ad17"></div>
+                      <script>
+                      padAjaxfbb612db1ad4ad419a95b7fa4a53ad17 = new XMLHttpRequest();
+                      padAjaxfbb612db1ad4ad419a95b7fa4a53ad17.onreadystatechange=function() {
+                      if (padAjaxfbb612db1ad4ad419a95b7fa4a53ad17.readyState === 4) {
+                      if (padAjaxfbb612db1ad4ad419a95b7fa4a53ad17.status === 200) {
+                      document.getElementById("padAjaxfbb612db1ad4ad419a95b7fa4a53ad17").innerHTML=padAjaxfbb612db1ad4ad419a95b7fa4a53ad17.responseText;
+                      } else {
+                      document.getElementById("padAjaxfbb612db1ad4ad419a95b7fa4a53ad17").innerHTML=padAjaxfbb612db1ad4ad419a95b7fa4a53ad17.statusText;
+                      }
+                      }
+                      }
+                      padAjaxfbb612db1ad4ad419a95b7fa4a53ad17.open("GET","http://localhost/pad/regression/framework/?tags/chart_network_of_two_nodes_stands_on_the_middle_line&padInclude",true);
+                      padAjaxfbb612db1ad4ad419a95b7fa4a53ad17.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/chart_network_says_when_it_is_not_laid_out_by_force<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/chart_network_says_when_it_is_not_laid_out_by_force.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6bmV0d29yayBzb3VyY2U9J2EnLCB0YXJnZXQ9J2InfVxuYSxiXG5uMSxuMlxubjIsbjNcbm4zLG40XG5uNCxuNVxubjUsbjZcbm42LG43XG5uNyxuOFxubjgsbjlcbm45LG4xMFxubjEwLG4xMVxubjExLG4xMlxubjEyLG4xM1xubjEzLG4xNFxubjE0LG4xNVxubjE1LG4xNlxubjE2LG4xN1xubjE3LG4xOFxubjE4LG4xOVxubjE5LG4yMFxubjIwLG4yMVxubjIxLG4yMlxubjIyLG4yM1xubjIzLG4yNFxubjI0LG4yNVxubjI1LG4yNlxubjI2LG4yN1xubjI3LG4yOFxubjI4LG4yOVxubjI5LG4zMFxubjMwLG4zMVxubjMxLG4zMlxubjMyLG4zM1xubjMzLG4zNFxubjM0LG4zNVxubjM1LG4zNlxubjM2LG4zN1xubjM3LG4zOFxubjM4LG4zOVxubjM5LG40MFxubjQwLG40MVxubjQxLG40MlxubjQyLG40M1xubjQzLG40NFxubjQ0LG40NVxubjQ1LG40NlxubjQ2LG40N1xubjQ3LG40OFxubjQ4LG40OVxubjQ5LG41MFxubjUwLG41MVxubjUxLG41MlxubjUyLG41M1xubjUzLG41NFxubjU0LG41NVxubjU1LG41NlxubjU2LG41N1xubjU3LG41OFxubjU4LG41OVxubjU5LG42MFxubjYwLG42MVxubjYxLG42MlxubjYyLG42M1xubjYzLG42NFxubjY0LG42NVxubjY1LG42NlxubjY2LG42N1xubjY3LG42OFxubjY4LG42OVxubjY5LG43MFxubjcwLG43MVxubjcxLG43MlxubjcyLG43M1xubjczLG43NFxubjc0LG43NVxubjc1LG43Nlxubjc2LG43N1xubjc3LG43OFxubjc4LG43OVxubjc5LG44MFxubjgwLG44MVxubjgxLG44MlxubjgyLG44M1xubjgzLG44NFxubjg0LG44NVxubjg1LG44Nlxubjg2LG44N1xubjg3LG44OFxubjg4LG44OVxubjg5LG45MFxubjkwLG45MVxubjkxLG45MlxubjkyLG45M1xubjkzLG45NFxubjk0LG45NVxubjk1LG45Nlxubjk2LG45N1xubjk3LG45OFxubjk4LG45OVxubjk5LG4xMDBcbm4xMDAsbjEwMVxubjEwMSxuMTAyXG5uMTAyLG4xMDNcbm4xMDMsbjEwNFxubjEwNCxuMTA1XG5uMTA1LG4xMDZcbm4xMDYsbjEwN1xubjEwNyxuMTA4XG5uMTA4LG4xMDlcbm4xMDksbjExMFxubjExMCxuMTExXG5uMTExLG4xMTJcbm4xMTIsbjExM1xubjExMyxuMTE0XG5uMTE0LG4xMTVcbm4xMTUsbjExNlxubjExNixuMTE3XG5uMTE3LG4xMThcbm4xMTgsbjExOVxubjExOSxuMTIwXG5uMTIwLG4xMjFcbm4xMjEsbjEyMlxubjEyMixuMTIzXG5uMTIzLG4xMjRcbm4xMjQsbjEyNVxubjEyNSxuMTI2XG5uMTI2LG4xMjdcbm4xMjcsbjEyOFxubjEyOCxuMTI5XG5uMTI5LG4xMzBcbm4xMzAsbjEzMVxubjEzMSxuMTMyXG5uMTMyLG4xMzNcbm4xMzMsbjEzNFxubjEzNCxuMTM1XG5uMTM1LG4xMzZcbm4xMzYsbjEzN1xubjEzNyxuMTM4XG5uMTM4LG4xMzlcbm4xMzksbjE0MFxubjE0MCxuMTQxXG5uMTQxLG4xNDJcbm4xNDIsbjE0M1xubjE0MyxuMTQ0XG5uMTQ0LG4xNDVcbm4xNDUsbjE0NlxubjE0NixuMTQ3XG5uMTQ3LG4xNDhcbm4xNDgsbjE0OVxubjE0OSxuMTUwXG5uMTUwLG4xNTFcbm4xNTEsbjE1MlxubjE1MixuMTUzXG5uMTUzLG4xNTRcbm4xNTQsbjE1NVxubjE1NSxuMTU2XG5uMTU2LG4xNTdcbm4xNTcsbjE1OFxubjE1OCxuMTU5XG5uMTU5LG4xNjBcbm4xNjAsbjE2MVxubjE2MSxuMTYyXG5uMTYyLG4xNjNcbm4xNjMsbjE2NFxubjE2NCxuMTY1XG5uMTY1LG4xNjZcbm4xNjYsbjE2N1xubjE2NyxuMTY4XG5uMTY4LG4xNjlcbm4xNjksbjE3MFxubjE3MCxuMTcxXG5uMTcxLG4xNzJcbm4xNzIsbjE3M1xubjE3MyxuMTc0XG5uMTc0LG4xNzVcbm4xNzUsbjE3NlxubjE3NixuMTc3XG5uMTc3LG4xNzhcbm4xNzgsbjE3OVxubjE3OSxuMTgwXG5uMTgwLG4xODFcbm4xODEsbjE4MlxubjE4MixuMTgzXG5uMTgzLG4xODRcbm4xODQsbjE4NVxubjE4NSxuMTg2XG5uMTg2LG4xODdcbm4xODcsbjE4OFxubjE4OCxuMTg5XG5uMTg5LG4xOTBcbm4xOTAsbjE5MVxubjE5MSxuMTkyXG5uMTkyLG4xOTNcbm4xOTMsbjE5NFxubjE5NCxuMTk1XG5uMTk1LG4xOTZcbm4xOTYsbjE5N1xubjE5NyxuMTk4XG5uMTk4LG4xOTlcbm4xOTksbjIwMFxubjIwMCxuMjAxXG5uMjAxLG4yMDJcbm4yMDIsbjIwM1xubjIwMyxuMjA0XG5uMjA0LG4yMDVcbm4yMDUsbjIwNlxubjIwNixuMjA3XG5uMjA3LG4yMDhcbm4yMDgsbjIwOVxubjIwOSxuMjEwXG5uMjEwLG4yMTFcbm4yMTEsbjIxMlxubjIxMixuMjEzXG5uMjEzLG4yMTRcbm4yMTQsbjIxNVxubjIxNSxuMjE2XG5uMjE2LG4yMTdcbm4yMTcsbjIxOFxubjIxOCxuMjE5XG5uMjE5LG4yMjBcbm4yMjAsbjIyMVxubjIyMSxuMjIyXG5uMjIyLG4yMjNcbm4yMjMsbjIyNFxubjIyNCxuMjI1XG5uMjI1LG4yMjZcbm4yMjYsbjIyN1xubjIyNyxuMjI4XG5uMjI4LG4yMjlcbm4yMjksbjIzMFxubjIzMCxuMjMxXG5uMjMxLG4yMzJcbm4yMzIsbjIzM1xubjIzMyxuMjM0XG5uMjM0LG4yMzVcbm4yMzUsbjIzNlxubjIzNixuMjM3XG5uMjM3LG4yMzhcbm4yMzgsbjIzOVxubjIzOSxuMjQwXG5uMjQwLG4yNDFcbm4yNDEsbjI0MlxubjI0MixuMjQzXG5uMjQzLG4yNDRcbm4yNDQsbjI0NVxubjI0NSxuMjQ2XG5uMjQ2LG4yNDdcbm4yNDcsbjI0OFxubjI0OCxuMjQ5XG5uMjQ5LG4yNTBcbm4yNTAsbjI1MVxubjI1MSxuMjUyXG5uMjUyLG4yNTNcbm4yNTMsbjI1NFxubjI1NCxuMjU1XG5uMjU1LG4yNTZcbm4yNTYsbjI1N1xubjI1NyxuMjU4XG5uMjU4LG4yNTlcbm4yNTksbjI2MFxubjI2MCxuMjYxXG5uMjYxLG4yNjJcbm4yNjIsbjI2M1xubjI2MyxuMjY0XG5uMjY0LG4yNjVcbm4yNjUsbjI2NlxubjI2NixuMjY3XG5uMjY3LG4yNjhcbm4yNjgsbjI2OVxubjI2OSxuMjcwXG5uMjcwLG4yNzFcbm4yNzEsbjI3MlxubjI3MixuMjczXG5uMjczLG4yNzRcbm4yNzQsbjI3NVxubjI3NSxuMjc2XG5uMjc2LG4yNzdcbm4yNzcsbjI3OFxubjI3OCxuMjc5XG5uMjc5LG4yODBcbm4yODAsbjI4MVxubjI4MSxuMjgyXG5uMjgyLG4yODNcbm4yODMsbjI4NFxubjI4NCxuMjg1XG5uMjg1LG4yODZcbm4yODYsbjI4N1xubjI4NyxuMjg4XG5uMjg4LG4yODlcbm4yODksbjI5MFxubjI5MCxuMjkxXG5uMjkxLG4yOTJcbm4yOTIsbjI5M1xubjI5MyxuMjk0XG5uMjk0LG4yOTVcbm4yOTUsbjI5NlxubjI5NixuMjk3XG5uMjk3LG4yOThcbm4yOTgsbjI5OVxubjI5OSxuMzAwXG5uMzAwLG4zMDFcbm4zMDEsbjMwMlxuey9jaGFydDpuZXR3b3JrfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6bmV0d29yayBzb3VyY2U9J2EnLCB0YXJnZXQ9J2InfVxuYSxiXG5uMSxuMlxubjIsbjNcbm4zLG40XG5uNCxuNVxubjUsbjZcbm42LG43XG5uNyxuOFxubjgsbjlcbm45LG4xMFxubjEwLG4xMVxubjExLG4xMlxubjEyLG4xM1xubjEzLG4xNFxubjE0LG4xNVxubjE1LG4xNlxubjE2LG4xN1xubjE3LG4xOFxubjE4LG4xOVxubjE5LG4yMFxubjIwLG4yMVxubjIxLG4yMlxubjIyLG4yM1xubjIzLG4yNFxubjI0LG4yNVxubjI1LG4yNlxubjI2LG4yN1xubjI3LG4yOFxubjI4LG4yOVxubjI5LG4zMFxubjMwLG4zMVxubjMxLG4zMlxubjMyLG4zM1xubjMzLG4zNFxubjM0LG4zNVxubjM1LG4zNlxubjM2LG4zN1xubjM3LG4zOFxubjM4LG4zOVxubjM5LG40MFxubjQwLG40MVxubjQxLG40MlxubjQyLG40M1xubjQzLG40NFxubjQ0LG40NVxubjQ1LG40NlxubjQ2LG40N1xubjQ3LG40OFxubjQ4LG40OVxubjQ5LG41MFxubjUwLG41MVxubjUxLG41MlxubjUyLG41M1xubjUzLG41NFxubjU0LG41NVxubjU1LG41NlxubjU2LG41N1xubjU3LG41OFxubjU4LG41OVxubjU5LG42MFxubjYwLG42MVxubjYxLG42MlxubjYyLG42M1xubjYzLG42NFxubjY0LG42NVxubjY1LG42NlxubjY2LG42N1xubjY3LG42OFxubjY4LG42OVxubjY5LG43MFxubjcwLG43MVxubjcxLG43MlxubjcyLG43M1xubjczLG43NFxubjc0LG43NVxubjc1LG43Nlxubjc2LG43N1xubjc3LG43OFxubjc4LG43OVxubjc5LG44MFxubjgwLG44MVxubjgxLG44MlxubjgyLG44M1xubjgzLG44NFxubjg0LG44NVxubjg1LG44Nlxubjg2LG44N1xubjg3LG44OFxubjg4LG44OVxubjg5LG45MFxubjkwLG45MVxubjkxLG45MlxubjkyLG45M1xubjkzLG45NFxubjk0LG45NVxubjk1LG45Nlxubjk2LG45N1xubjk3LG45OFxubjk4LG45OVxubjk5LG4xMDBcbm4xMDAsbjEwMVxubjEwMSxuMTAyXG5uMTAyLG4xMDNcbm4xMDMsbjEwNFxubjEwNCxuMTA1XG5uMTA1LG4xMDZcbm4xMDYsbjEwN1xubjEwNyxuMTA4XG5uMTA4LG4xMDlcbm4xMDksbjExMFxubjExMCxuMTExXG5uMTExLG4xMTJcbm4xMTIsbjExM1xubjExMyxuMTE0XG5uMTE0LG4xMTVcbm4xMTUsbjExNlxubjExNixuMTE3XG5uMTE3LG4xMThcbm4xMTgsbjExOVxubjExOSxuMTIwXG5uMTIwLG4xMjFcbm4xMjEsbjEyMlxubjEyMixuMTIzXG5uMTIzLG4xMjRcbm4xMjQsbjEyNVxubjEyNSxuMTI2XG5uMTI2LG4xMjdcbm4xMjcsbjEyOFxubjEyOCxuMTI5XG5uMTI5LG4xMzBcbm4xMzAsbjEzMVxubjEzMSxuMTMyXG5uMTMyLG4xMzNcbm4xMzMsbjEzNFxubjEzNCxuMTM1XG5uMTM1LG4xMzZcbm4xMzYsbjEzN1xubjEzNyxuMTM4XG5uMTM4LG4xMzlcbm4xMzksbjE0MFxubjE0MCxuMTQxXG5uMTQxLG4xNDJcbm4xNDIsbjE0M1xubjE0MyxuMTQ0XG5uMTQ0LG4xNDVcbm4xNDUsbjE0NlxubjE0NixuMTQ3XG5uMTQ3LG4xNDhcbm4xNDgsbjE0OVxubjE0OSxuMTUwXG5uMTUwLG4xNTFcbm4xNTEsbjE1MlxubjE1MixuMTUzXG5uMTUzLG4xNTRcbm4xNTQsbjE1NVxubjE1NSxuMTU2XG5uMTU2LG4xNTdcbm4xNTcsbjE1OFxubjE1OCxuMTU5XG5uMTU5LG4xNjBcbm4xNjAsbjE2MVxubjE2MSxuMTYyXG5uMTYyLG4xNjNcbm4xNjMsbjE2NFxubjE2NCxuMTY1XG5uMTY1LG4xNjZcbm4xNjYsbjE2N1xubjE2NyxuMTY4XG5uMTY4LG4xNjlcbm4xNjksbjE3MFxubjE3MCxuMTcxXG5uMTcxLG4xNzJcbm4xNzIsbjE3M1xubjE3MyxuMTc0XG5uMTc0LG4xNzVcbm4xNzUsbjE3NlxubjE3NixuMTc3XG5uMTc3LG4xNzhcbm4xNzgsbjE3OVxubjE3OSxuMTgwXG5uMTgwLG4xODFcbm4xODEsbjE4MlxubjE4MixuMTgzXG5uMTgzLG4xODRcbm4xODQsbjE4NVxubjE4NSxuMTg2XG5uMTg2LG4xODdcbm4xODcsbjE4OFxubjE4OCxuMTg5XG5uMTg5LG4xOTBcbm4xOTAsbjE5MVxubjE5MSxuMTkyXG5uMTkyLG4xOTNcbm4xOTMsbjE5NFxubjE5NCxuMTk1XG5uMTk1LG4xOTZcbm4xOTYsbjE5N1xubjE5NyxuMTk4XG5uMTk4LG4xOTlcbm4xOTksbjIwMFxubjIwMCxuMjAxXG5uMjAxLG4yMDJcbm4yMDIsbjIwM1xubjIwMyxuMjA0XG5uMjA0LG4yMDVcbm4yMDUsbjIwNlxubjIwNixuMjA3XG5uMjA3LG4yMDhcbm4yMDgsbjIwOVxubjIwOSxuMjEwXG5uMjEwLG4yMTFcbm4yMTEsbjIxMlxubjIxMixuMjEzXG5uMjEzLG4yMTRcbm4yMTQsbjIxNVxubjIxNSxuMjE2XG5uMjE2LG4yMTdcbm4yMTcsbjIxOFxubjIxOCxuMjE5XG5uMjE5LG4yMjBcbm4yMjAsbjIyMVxubjIyMSxuMjIyXG5uMjIyLG4yMjNcbm4yMjMsbjIyNFxubjIyNCxuMjI1XG5uMjI1LG4yMjZcbm4yMjYsbjIyN1xubjIyNyxuMjI4XG5uMjI4LG4yMjlcbm4yMjksbjIzMFxubjIzMCxuMjMxXG5uMjMxLG4yMzJcbm4yMzIsbjIzM1xubjIzMyxuMjM0XG5uMjM0LG4yMzVcbm4yMzUsbjIzNlxubjIzNixuMjM3XG5uMjM3LG4yMzhcbm4yMzgsbjIzOVxubjIzOSxuMjQwXG5uMjQwLG4yNDFcbm4yNDEsbjI0MlxubjI0MixuMjQzXG5uMjQzLG4yNDRcbm4yNDQsbjI0NVxubjI0NSxuMjQ2XG5uMjQ2LG4yNDdcbm4yNDcsbjI0OFxubjI0OCxuMjQ5XG5uMjQ5LG4yNTBcbm4yNTAsbjI1MVxubjI1MSxuMjUyXG5uMjUyLG4yNTNcbm4yNTMsbjI1NFxubjI1NCxuMjU1XG5uMjU1LG4yNTZcbm4yNTYsbjI1N1xubjI1NyxuMjU4XG5uMjU4LG4yNTlcbm4yNTksbjI2MFxubjI2MCxuMjYxXG5uMjYxLG4yNjJcbm4yNjIsbjI2M1xubjI2MyxuMjY0XG5uMjY0LG4yNjVcbm4yNjUsbjI2NlxubjI2NixuMjY3XG5uMjY3LG4yNjhcbm4yNjgsbjI2OVxubjI2OSxuMjcwXG5uMjcwLG4yNzFcbm4yNzEsbjI3MlxubjI3MixuMjczXG5uMjczLG4yNzRcbm4yNzQsbjI3NVxubjI3NSxuMjc2XG5uMjc2LG4yNzdcbm4yNzcsbjI3OFxubjI3OCxuMjc5XG5uMjc5LG4yODBcbm4yODAsbjI4MVxubjI4MSxuMjgyXG5uMjgyLG4yODNcbm4yODMsbjI4NFxubjI4NCxuMjg1XG5uMjg1LG4yODZcbm4yODYsbjI4N1xubjI4NyxuMjg4XG5uMjg4LG4yODlcbm4yODksbjI5MFxubjI5MCxuMjkxXG5uMjkxLG4yOTJcbm4yOTIsbjI5M1xubjI5MyxuMjk0XG5uMjk0LG4yOTVcbm4yOTUsbjI5NlxubjI5NixuMjk3XG5uMjk3LG4yOThcbm4yOTgsbjI5OVxubjI5OSxuMzAwXG5uMzAwLG4zMDFcbm4zMDEsbjMwMlxuey9jaGFydDpuZXR3b3JrfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network </font><font color="red">source=<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> target=<font color="black">'</font>b<font color="black">'</font></font>}</b><br>a,b<br>n1,n2<br>n2,n3<br>n3,n4<br>n4,n5<br>n5,n6<br>n6,n7<br>n7,n8<br>n8,n9<br>n9,n10<br>n10,n11<br>n11,n12<br>n12,n13<br>n13,n14<br>n14,n15<br>n15,n16<br>n16,n17<br>n17,n18<br>n18,n19<br>n19,n20<br>n20,n21<br>n21,n22<br>n22,n23<br>n23,n24<br>n24,n25<br>n25,n26<br>n26,n27<br>n27,n28<br>n28,n29<br>n29,n30<br>n30,n31<br>n31,n32<br>n32,n33<br>n33,n34<br>n34,n35<br>n35,n36<br>n36,n37<br>n37,n38<br>n38,n39<br>n39,n40<br>n40,n41<br>n41,n42<br>n42,n43<br>n43,n44<br>n44,n45<br>n45,n46<br>n46,n47<br>n47,n48<br>n48,n49<br>n49,n50<br>n50,n51<br>n51,n52<br>n52,n53<br>n53,n54<br>n54,n55<br>n55,n56<br>n56,n57<br>n57,n58<br>n58,n59<br>n59,n60<br>n60,n61<br>n61,n62<br>n62,n63<br>n63,n64<br>n64,n65<br>n65,n66<br>n66,n67<br>n67,n68<br>n68,n69<br>n69,n70<br>n70,n71<br>n71,n72<br>n72,n73<br>n73,n74<br>n74,n75<br>n75,n76<br>n76,n77<br>n77,n78<br>n78,n79<br>n79,n80<br>n80,n81<br>n81,n82<br>n82,n83<br>n83,n84<br>n84,n85<br>n85,n86<br>n86,n87<br>n87,n88<br>n88,n89<br>n89,n90<br>n90,n91<br>n91,n92<br>n92,n93<br>n93,n94<br>n94,n95<br>n95,n96<br>n96,n97<br>n97,n98<br>n98,n99<br>n99,n100<br>n100,n101<br>n101,n102<br>n102,n103<br>n103,n104<br>n104,n105<br>n105,n106<br>n106,n107<br>n107,n108<br>n108,n109<br>n109,n110<br>n110,n111<br>n111,n112<br>n112,n113<br>n113,n114<br>n114,n115<br>n115,n116<br>n116,n117<br>n117,n118<br>n118,n119<br>n119,n120<br>n120,n121<br>n121,n122<br>n122,n123<br>n123,n124<br>n124,n125<br>n125,n126<br>n126,n127<br>n127,n128<br>n128,n129<br>n129,n130<br>n130,n131<br>n131,n132<br>n132,n133<br>n133,n134<br>n134,n135<br>n135,n136<br>n136,n137<br>n137,n138<br>n138,n139<br>n139,n140<br>n140,n141<br>n141,n142<br>n142,n143<br>n143,n144<br>n144,n145<br>n145,n146<br>n146,n147<br>n147,n148<br>n148,n149<br>n149,n150<br>n150,n151<br>n151,n152<br>n152,n153<br>n153,n154<br>n154,n155<br>n155,n156<br>n156,n157<br>n157,n158<br>n158,n159<br>n159,n160<br>n160,n161<br>n161,n162<br>n162,n163<br>n163,n164<br>n164,n165<br>n165,n166<br>n166,n167<br>n167,n168<br>n168,n169<br>n169,n170<br>n170,n171<br>n171,n172<br>n172,n173<br>n173,n174<br>n174,n175<br>n175,n176<br>n176,n177<br>n177,n178<br>n178,n179<br>n179,n180<br>n180,n181<br>n181,n182<br>n182,n183<br>n183,n184<br>n184,n185<br>n185,n186<br>n186,n187<br>n187,n188<br>n188,n189<br>n189,n190<br>n190,n191<br>n191,n192<br>n192,n193<br>n193,n194<br>n194,n195<br>n195,n196<br>n196,n197<br>n197,n198<br>n198,n199<br>n199,n200<br>n200,n201<br>n201,n202<br>n202,n203<br>n203,n204<br>n204,n205<br>n205,n206<br>n206,n207<br>n207,n208<br>n208,n209<br>n209,n210<br>n210,n211<br>n211,n212<br>n212,n213<br>n213,n214<br>n214,n215<br>n215,n216<br>n216,n217<br>n217,n218<br>n218,n219<br>n219,n220<br>n220,n221<br>n221,n222<br>n222,n223<br>n223,n224<br>n224,n225<br>n225,n226<br>n226,n227<br>n227,n228<br>n228,n229<br>n229,n230<br>n230,n231<br>n231,n232<br>n232,n233<br>n233,n234<br>n234,n235<br>n235,n236<br>n236,n237<br>n237,n238<br>n238,n239<br>n239,n240<br>n240,n241<br>n241,n242<br>n242,n243<br>n243,n244<br>n244,n245<br>n245,n246<br>n246,n247<br>n247,n248<br>n248,n249<br>n249,n250<br>n250,n251<br>n251,n252<br>n252,n253<br>n253,n254<br>n254,n255<br>n255,n256<br>n256,n257<br>n257,n258<br>n258,n259<br>n259,n260<br>n260,n261<br>n261,n262<br>n262,n263<br>n263,n264<br>n264,n265<br>n265,n266<br>n266,n267<br>n267,n268<br>n268,n269<br>n269,n270<br>n270,n271<br>n271,n272<br>n272,n273<br>n273,n274<br>n274,n275<br>n275,n276<br>n276,n277<br>n277,n278<br>n278,n279<br>n279,n280<br>n280,n281<br>n281,n282<br>n282,n283<br>n283,n284<br>n284,n285<br>n285,n286<br>n286,n287<br>n287,n288<br>n288,n289<br>n289,n290<br>n290,n291<br>n291,n292<br>n292,n293<br>n293,n294<br>n294,n295<br>n295,n296<br>n296,n297<br>n297,n298<br>n298,n299<br>n299,n300<br>n300,n301<br>n301,n302<br><b>{/<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax147e6fb35f5e64e760e71df4328d853a"></div>
+                      <script>
+                      padAjax147e6fb35f5e64e760e71df4328d853a = new XMLHttpRequest();
+                      padAjax147e6fb35f5e64e760e71df4328d853a.onreadystatechange=function() {
+                      if (padAjax147e6fb35f5e64e760e71df4328d853a.readyState === 4) {
+                      if (padAjax147e6fb35f5e64e760e71df4328d853a.status === 200) {
+                      document.getElementById("padAjax147e6fb35f5e64e760e71df4328d853a").innerHTML=padAjax147e6fb35f5e64e760e71df4328d853a.responseText;
+                      } else {
+                      document.getElementById("padAjax147e6fb35f5e64e760e71df4328d853a").innerHTML=padAjax147e6fb35f5e64e760e71df4328d853a.statusText;
+                      }
+                      }
+                      }
+                      padAjax147e6fb35f5e64e760e71df4328d853a.open("GET","http://localhost/pad/regression/framework/?tags/chart_network_says_when_it_is_not_laid_out_by_force&padInclude",true);
+                      padAjax147e6fb35f5e64e760e71df4328d853a.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/chart_network_sets_the_nodes_on_a_circle<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/chart_network_sets_the_nodes_on_a_circle.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ2ZyaWVuZHMnfVt7XCJhXCI6XCJBbm5cIixcImJcIjpcIkJvYlwifSx7XCJhXCI6XCJCb2JcIixcImJcIjpcIkNhc1wifV17L3BhZDpkYXRhfVxue2NoYXJ0Om5ldHdvcmsgZGF0YT0nZnJpZW5kcycsIGxheW91dD0ncmFkaWFsJywgd2lkdGg9MzAwLCBoZWlnaHQ9MjAwL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ2ZyaWVuZHMnfVt7XCJhXCI6XCJBbm5cIixcImJcIjpcIkJvYlwifSx7XCJhXCI6XCJCb2JcIixcImJcIjpcIkNhc1wifV17L3BhZDpkYXRhfVxue2NoYXJ0Om5ldHdvcmsgZGF0YT0nZnJpZW5kcycsIGxheW91dD0ncmFkaWFsJywgd2lkdGg9MzAwLCBoZWlnaHQ9MjAwL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>friends<font color="black">'</font></font>}</b>[{"a":"Ann","b":"Bob"},{"a":"Bob","b":"Cas"}]<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network </font><font color="red">data=<font color="black">'</font>friends<font color="black">'</font><font color="black">,</font> layout=<font color="black">'</font>radial<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=200</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxf25805f1602222405418435651f08fc8"></div>
+                      <script>
+                      padAjaxf25805f1602222405418435651f08fc8 = new XMLHttpRequest();
+                      padAjaxf25805f1602222405418435651f08fc8.onreadystatechange=function() {
+                      if (padAjaxf25805f1602222405418435651f08fc8.readyState === 4) {
+                      if (padAjaxf25805f1602222405418435651f08fc8.status === 200) {
+                      document.getElementById("padAjaxf25805f1602222405418435651f08fc8").innerHTML=padAjaxf25805f1602222405418435651f08fc8.responseText;
+                      } else {
+                      document.getElementById("padAjaxf25805f1602222405418435651f08fc8").innerHTML=padAjaxf25805f1602222405418435651f08fc8.statusText;
+                      }
+                      }
+                      }
+                      padAjaxf25805f1602222405418435651f08fc8.open("GET","http://localhost/pad/regression/framework/?tags/chart_network_sets_the_nodes_on_a_circle&padInclude",true);
+                      padAjaxf25805f1602222405418435651f08fc8.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+              </center>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>

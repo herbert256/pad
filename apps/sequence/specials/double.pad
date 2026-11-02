@@ -1,25 +1,25 @@
-{table}
-{demo}{sequence '5;10;15;20',  name='one'/}{/demo}
-{demo}{sequence '15;20;25;30', name='two'/}{/demo}
-{demo}{sequence one}                     {$sequence} {/sequence}{/demo}
-{demo}{sequence two}                     {$sequence} {/sequence}{/demo}
-{demo}{sequence one, append='two'}       {$sequence} {/sequence}{/demo}
-{demo}{sequence one, prepend='two'}      {$sequence} {/sequence}{/demo}
-{demo}{sequence one, combine='two'}      {$sequence} {/sequence}{/demo}
-{demo}{sequence one, merge='two'}        {$sequence} {/sequence}{/demo}
-{demo}{sequence one, intersection='two'} {$sequence} {/sequence}{/demo}
-{demo}{sequence one, difference='two'}   {$sequence} {/sequence}{/demo}
-{demo}{sequence one, onlyNow='two'}      {$sequence} {/sequence}{/demo}
-{demo}{sequence one, onlyStore='two'}    {$sequence} {/sequence}{/demo}
-{/table}
+{common:table}
+{common:demo}{sequence:list '5;10;15;20',  name='one'/}{/common:demo}
+{common:demo}{sequence:list '15;20;25;30', name='two'/}{/common:demo}
+{common:demo}{sequence:auto one}                     {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto two}                     {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, append='two'}       {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, prepend='two'}      {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, combine='two'}      {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, merge='two'}        {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, intersection='two'} {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, difference='two'}   {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, onlyNow='two'}      {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, onlyStore='two'}    {$sequence} {/sequence:auto}{/common:demo}
+{/common:table}
 
-{table}
-{demo}{sequence '10..90', increment=10, name='one'/}{/demo}
-{demo}{sequence '1..9',                 name='two'/}{/demo}
-{demo}{sequence one}                  {$sequence} {/sequence}{/demo}
-{demo}{sequence two}                  {$sequence} {/sequence}{/demo}
-{demo}{sequence one, add='two'}       {$sequence} {/sequence}{/demo}
-{demo}{sequence one, subtract='two'} {$sequence} {/sequence}{/demo}
-{demo}{sequence one, multiply='two'}  {$sequence} {/sequence}{/demo}
-{demo}{sequence one, divide='two'}    {$sequence} {/sequence}{/demo}
-{/table}
+{common:table}
+{common:demo}{sequence:range '10..90', increment=10, name='one'/}{/common:demo}
+{common:demo}{sequence:range '1..9',                 name='two'/}{/common:demo}
+{common:demo}{sequence:auto one}                  {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto two}                  {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, add='two'}       {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, subtract='two'} {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, multiply='two'}  {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, divide='two'}    {$sequence} {/sequence:auto}{/common:demo}
+{/common:table}

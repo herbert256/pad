@@ -40,8 +40,8 @@
       return;
 
     // A kind of a subsystem - a toy, an icon, a map view, a rule, a format - is filed whatever the text
-    // of the page says: its name comes from a value as often as from the template, {toy $toy}
-    // on the page of each toy, {icon $name} of a gallery, and the page runs it all the same.
+    // of the page says: its name comes from a value as often as from the template, {toy:$toy}
+    // on the page of each toy, {icon:$name} of a gallery, and the page runs it all the same.
     // Looked for in the text, the toys and the games of their applications' pages and the
     // icons of a list were on no page of the reference.
 

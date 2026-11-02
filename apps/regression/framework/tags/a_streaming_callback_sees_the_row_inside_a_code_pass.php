@@ -1,5 +1,5 @@
 <?php
 
-  $src = '{data "n"}[1,2,3]{/data}{n callback="rowfield.php"}{$n},{/n}{$sumRows}';
+  $src = '{pad:data "n"}[1,2,3]{/pad:data}{data:n callback="rowfield.php"}{$n},{/data:n}{$sumRows}';
 
 ?>

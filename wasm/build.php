@@ -1,8 +1,8 @@
 <?php
 
   // Builds www/wasm/pad-bundle.json, the PAD engine as one file a browser can fetch: every
-  // file under pad/ keyed by its path, which www/wasm/pad-wasm.js writes into the in-memory
-  // file system of PHP compiled to WebAssembly before it runs a template.
+  // file under pad/ and the subsystem CSS/JS in www/assets/, keyed by their paths, which
+  // www/wasm/pad-wasm.js writes into PHP's in-memory file system before it runs a template.
   //
   // Left out are the sequence subsystem's large tables - the OEIS sqlite database and the
   // generated lists over 64 KB - which make up 79 of the engine's 82 MB; the sequences that
@@ -40,12 +40,58 @@
 
   }
 
+  // Subsystems read these through padWidgetFile. With PAD_WASM set they embed the files
+  // in the rendered page, so the preview needs neither asset URLs nor a PHP server.
+  $assets = new RecursiveIteratorIterator ( new RecursiveDirectoryIterator ( "$home/www/assets", FilesystemIterator::SKIP_DOTS ) );
+
+  foreach ( $assets as $one ) {
+    if ( ! $one->isFile () or ! in_array ( $one->getExtension (), [ 'css', 'js' ], TRUE ) )
+      continue;
+    $path = str_replace ( '\\', '/', $one->getPathname () );
+    $files [substr ( $path, strlen ( $home ) + 1 )] = file_get_contents ( $path );
+  }
+
+  // The same data reader as full Live pages, installed as the browser app's library.
+  $files ['apps/play/_lib/live.php'] = file_get_contents ( "$home/apps/live/_lib/live.php" );
+
   ksort ( $files );
   ksort ( $binary );
 
+  // The static editor uses the same application list, themes and PAD grammar names as
+  // Live. Include their data so no PHP server is needed by the page.
+  define ( 'PAD', "$home/pad/" );
+  define ( 'APPS', "$home/apps/" );
+  define ( 'DATA', "$home/DATA/" );
+  require PAD . 'lib/dirs.php';
+  require PAD . 'lib/subsystem.php';
+  require PAD . 'subs/themes/_lib/theme.php';
+  require APPS . '_common/_lib/playground.php';
+
+  $padRoot = '../';
+  [ $grammar, $names ] = padPlayEditor ();
+  $apps = require APPS . '_common/_data/padApps.php';
+  $icons = [];
+  $themes = [];
+  $iconNames = [ 'chevron-down', 'code', 'zap' ];
+
+  foreach ( $apps as $group )
+    foreach ( $group as [ , $icon ] )
+      $iconNames [] = $icon;
+
+  foreach ( array_unique ( $iconNames ) as $icon )
+    $icons [$icon] = file_get_contents ( PAD . "subs/icons/types/$icon.svg" );
+
+  foreach ( padThemeTypes () as $name ) {
+    $theme = padThemeData ( $name );
+    $themes [$name] = [ 'name' => $theme ['name'], 'scheme' => $theme ['scheme'], 'css' => padThemeCss ( $name ) ];
+  }
+
+  $editor = [ 'apps' => $apps, 'columns' => require APPS . '_common/_data/padAppColumns.php',
+              'icons' => $icons, 'themes' => $themes, 'grammar' => $grammar, 'names' => $names ];
+
   $commit = trim ( (string) @shell_exec ( 'git -C ' . escapeshellarg ( $home ) . ' rev-parse --short HEAD 2>/dev/null' ) );
 
-  $bundle = json_encode ( [ 'built' => gmdate ( 'Y-m-d H:i:s' ) . ' UTC', 'commit' => $commit, 'files' => $files, 'base64' => (object) $binary ],
+  $bundle = json_encode ( [ 'built' => gmdate ( 'Y-m-d H:i:s' ) . ' UTC', 'commit' => $commit, 'files' => $files, 'base64' => (object) $binary, 'editor' => $editor ],
                           JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
 
   if ( $bundle === FALSE )

@@ -1,6 +1,6 @@
-{meta title='One row template, two lists', about='The stored content is rendered as the body of two loops, with the fields of each row.'/}
-{content 'contentRow'}<li><strong>{$name}</strong> - {$role}</li>{/content}
+{pad:meta title='One row template, two lists', about='The stored content is rendered as the body of two loops, with the fields of each row.'/}
+{pad:content 'contentRow'}<li><strong>{$name}</strong> - {$role}</li>{/pad:content}
 <h4>Staff</h4>
-<ul>{contentStaff content='contentRow'}{/contentStaff}</ul>
+<ul>{array:contentStaff content='contentRow'}{/array:contentStaff}</ul>
 <h4>Volunteers</h4>
-<ul>{contentHelpers}{contentRow/}{/contentHelpers}</ul>
+<ul>{array:contentHelpers}{content:contentRow/}{/array:contentHelpers}</ul>

@@ -3,8 +3,8 @@
   // Estimates with their uncertainty: a point per row and an upright whisker from its low to
   // its high bound.
   //
-  //   {chart 'errorbar', data='trial', label='dose', value='mean', low='lower', high='upper', interval='95% CI'}
-  //   {chart 'errorbar', data='rides', label='line', value='median', interval='min-max'}
+  //   {chart:errorbar data='trial', label='dose', value='mean', low='lower', high='upper', interval='95% CI'}
+  //   {chart:errorbar data='rides', label='line', value='median', interval='min-max'}
   //
   // The rows hold numbers already computed - an estimate and the two ends of its interval;
   // nothing is computed here, no mean, no deviation, no confidence level: the chart draws

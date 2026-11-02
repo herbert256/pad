@@ -1,9 +1,9 @@
-{data 'kv' ignore}
+{pad:data 'kv' ignore}
   {"a":1,"b":2,"c":3}
-{/data}
-{kv}
+{/pad:data}
+{data:kv}
   {$kv},
-  {if $kv eq 2}
-    {cease 'kv'/}
-  {/if}
-{/kv}
+  {pad:if $kv eq 2}
+    {pad:cease 'kv'/}
+  {/pad:if}
+{/data:kv}

@@ -9,7 +9,7 @@
   // a lower power leaves no room for b, and that is what keeps 10 out on its trailing zeros.
   // So n is a member when 10^k - 1 divides n(n - 1) for such a k. That is asked of n itself
   // rather than of its square: the square passes PHP_INT_MAX from n = 3037000500, and cutting
-  // its digits ended the request on a float that is no int - {sequence fibonacci, keep,
+  // its digits ended the request on a float that is no int - {sequence:fibonacci keep,
   // kaprekar} reached 4807526976 and stopped there. 1 is taken as a member by definition.
   //
   // 10^19 - 1 is past PHP_INT_MAX itself, so it is asked as its two coprime factors, 9 and

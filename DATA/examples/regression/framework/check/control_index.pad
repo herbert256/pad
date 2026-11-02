@@ -1,35 +1,35 @@
-{staff}
+{local:staff}
 
   {$name} <br>
 
-{/staff}
+{/local:staff}
 
-{staff}
+{local:staff}
 
-  {if $name eq 'jack'}
-    {continue 'staff'/}
-  {/if}
-
-  {$name} <br>
-
-{/staff}
-
-{staff}
-
-  {if $name eq 'jack'}
-    {cease 'staff'/}
-  {/if}
+  {pad:if $name eq 'jack'}
+    {pad:continue 'staff'/}
+  {/pad:if}
 
   {$name} <br>
 
-{/staff}
+{/local:staff}
 
-{staff}
+{local:staff}
 
-  {if $name eq 'jack'}
-    {break 'staff'/}
-  {/if}
+  {pad:if $name eq 'jack'}
+    {pad:cease 'staff'/}
+  {/pad:if}
 
   {$name} <br>
 
-{/staff}
+{/local:staff}
+
+{local:staff}
+
+  {pad:if $name eq 'jack'}
+    {pad:break 'staff'/}
+  {/pad:if}
+
+  {$name} <br>
+
+{/local:staff}

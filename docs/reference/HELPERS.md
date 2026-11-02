@@ -429,7 +429,7 @@ the session; these do the same by name, whatever those settings let through. Man
 ```php
 <?php                                          // signup/form.php - filled again once
 
-  $email = padOld ( 'email' );                 // {input 'email', value=$email}
+  $email = padOld ( 'email' );                 // {pad:input 'email', value=$email}
 
 ?>
 ```
@@ -575,7 +575,7 @@ Edge rules:
 - Each file is read once per request, kept in a static rather than a global, so its secrets
   are not among the variables a dump lists.
 - No URL reaches `apps/` - the web server serves `www/` only - so an application's
-  `.env` is never served, and the apps browser and `{highlight file=}` refuse every dotfile. The repository's `.gitignore` keeps `/.env`, the PAD home's
+  `.env` is never served, and the apps browser and `{pad:highlight file=}` refuse every dotfile. The repository's `.gitignore` keeps `/.env`, the PAD home's
   file, out of git.
 
 ### Cache and rate limits
@@ -698,7 +698,7 @@ The pipe `ago` is `padAgo` in a template: `{$created | ago}`, `{$start | ago($en
   $year     = padNow ( 'Y' );
 
   if ( ! $comments )
-    padLog ( 'No comments for page {page}', 'notice', [ 'page' => $padPage ] );
+    padLog ( 'No comments for page {pad:page}', 'notice', [ 'page' => $padPage ] );
 
 ?>
 ```
@@ -720,7 +720,7 @@ The pipe `ago` is `padAgo` in a template: `{$created | ago}`, `{$start | ago($en
 A log line - `2026-10-05 14:30:00 INFO Order 1042 paid by Ann {"order":1042,"customer":"Ann"}`:
 
 ```php
-padLog ( 'Order {order} paid by {customer}', 'info', [ 'order' => 1042, 'customer' => 'Ann' ] );
+padLog ( 'Order {array:order} paid by {field:customer}', 'info', [ 'order' => 1042, 'customer' => 'Ann' ] );
 padLog ( 'Import failed', 'error', [ 'exception' => $e, 'file' => $name ] );
 ```
 
@@ -753,7 +753,7 @@ Edge rules:
   `alert`, `emergency` - in any case, spaces around them ignored. Another is reported and
   nothing is written (`FALSE`); so is a context that is no array (`NULL` is no context).
 - **Log message.** Text as it is; `NULL` nothing, a boolean `true`/`false`, a `Throwable`
-  its class and message, anything else JSON. `{name}` (letters, digits, `_`, `.`) is filled
+  its class and message, anything else JSON. `{property:name}` (letters, digits, `_`, `.`) is filled
   from the context the same way when the context has that name, and left as written when it
   has not. The whole context follows as JSON - a `Throwable` in it as class, message, file
   and line, a date as `Y-m-d H:i:s`; an empty context writes nothing after the message. CR
@@ -927,7 +927,7 @@ Edge rules:
 - **The session** is written and closed before the first event: PHP locks it for as long as a
   request holds it, and the visitor's next page waited for the stream to end. A stream holds
   a PHP worker while it runs - keep `for` short and let `EventSource` reconnect.
-- After `{flush}` or anything else that sent the headers, `padSse` is refused.
+- After `{pad:flush}` or anything else that sent the headers, `padSse` is refused.
 - An event needs data: the browser drops one whose data is empty - `$send ( 'done', 'done' )`,
   not `$send ( 'done' )`, for the event a client closes the stream on.
 - **In the browser** (`padWasm ()`, an application packed by `pad pack`) one PHP answers every
@@ -986,9 +986,9 @@ never pasted into SQL: `db ( "RECORD * FROM users WHERE id={0}", [ $id ] )`.
 | `padFakeUnique ( $key, $function, ...$args )`, `padFakeUniqueReset ( $key )` | A value never given twice under the key in the request, a new seed or not; the reset forgets them - after `padFakeSeed` the same values again |
 | `padFactory ( $table, $count, $row )` | Inserts `$count` rows - `$row` an array or `fn ( $i )` - with placeholders; the rows with their ids |
 | `padFake ( $kind, $options = [] )` | A value of a kind by its name - `padFake ( 'email' )`, `padFake ( 'number', [ 'from' => 1, 'to' => 6 ] )` - the kind a file of `pad/subs/fakes/types/`; after the same seed what the kind's own helper gives |
-| `padFakeRows ( $fields, $count, $seed = NULL, $options = [] )` | `$count` rows of fields of kinds: `'name, email'`, `'customer:name, total:price'` or `[ 'customer' => 'name', 'total' => [ 'price', [ 'to' => 500 ] ] ]`; an email beside a name is that name's. With `$seed` the rows of that seed, the sequence put back afterwards - the rows `{fake ..., rows=, seed=}` writes |
+| `padFakeRows ( $fields, $count, $seed = NULL, $options = [] )` | `$count` rows of fields of kinds: `'name, email'`, `'customer:name, total:price'` or `[ 'customer' => 'name', 'total' => [ 'price', [ 'to' => 500 ] ] ]`; an email beside a name is that name's. With `$seed` the rows of that seed, the sequence put back afterwards - the rows `{fake:rows ..., rows=, seed=}` writes |
 | `padFakeKinds ()` | The kinds - the files of `pad/subs/fakes/types/`: address, boolean, city, colour, company, country, currency, date, decimal, ean, email, firstname, iban, ip, ipv6, isbn, job, lastname, latitude, longitude, mac, name, number, paragraph, phone, postcode, price, product, sentence, slug, street, time, timezone, title, url, username, uuid, word |
-| `padFakeOpt ( $name, $default )`, `padFakeInRow ( $kind )` | For a kind's file: an option of the value being made - the tag's own inside `{fake}` - and the value of a kind in the row being made |
+| `padFakeOpt ( $name, $default )`, `padFakeInRow ( $kind )` | For a kind's file: an option of the value being made - the tag's own inside `{fake:rows}` - and the value of a kind in the row being made |
 
 ## Queues, schedule and HTTP fakes
 
@@ -1046,7 +1046,7 @@ naming the variable to set.
 
 | Function | Answers |
 |----------|---------|
-| `padPattern ( $kind, $options = [] )` | The SVG of a pattern - `padPattern ( 'topography', [ 'seed' => 7, 'width' => 960 ] )` - or with `'as' => 'url'` its CSS `url(data:image/svg+xml,...)`: the bytes `{pattern}` writes for the same options. The options are those of the tag (seed, colors as a list or a text, size, width, height, opacity, as, title and the kind's own); an unknown kind answers `''`, a wrong option is reported with `padError` and drawn as its default, a pattern past its budget (the shapes of its size on its picture, topography's grid times its levels) reported and answered `''` |
+| `padPattern ( $kind, $options = [] )` | The SVG of a pattern - `padPattern ( 'topography', [ 'seed' => 7, 'width' => 960 ] )` - or with `'as' => 'url'` its CSS `url(data:image/svg+xml,...)`: the bytes `{pattern:dots}` writes for the same options. The options are those of the tag (seed, colors as a list or a text, size, width, height, opacity, as, title and the kind's own); an unknown kind answers `''`, a wrong option is reported with `padError` and drawn as its default, a pattern past its budget (the shapes of its size on its picture, topography's grid times its levels) reported and answered `''` |
 | `padPatternKinds ()` | The patterns, the files of `pad/subs/patterns/types/`, sorted |
 
 ## Public holidays
@@ -1073,7 +1073,7 @@ are 2010 to 2052, the last year of its Matariki schedule.
 
 | Function | Answers |
 |----------|---------|
-| `padSearch ( $source, $query, $options = [] )` | The rows found, the best first, each with its own fields and `score` (BM25F) and `excerpt` (HTML, the matches in `<mark>`, the style of the marks in front of each) added. `$source` is the name of a Markdown collection (`_content/<name>/`), of a data store, a page's array or a `_data` file - or the rows themselves, a `db()` result. The options: `fields` (`'title^2, body'`), `lang` (`en`, `nl`, `de`, `fr`, `es`, `it`, `pt`, `sv`, `da`, `no`, `ru` - `nb` and `nn` are `no`), `words` (the excerpt's length, 30), `excerpt` (its field), `first` (the best rows only - an excerpt is made for those alone) and `name` - what an index of rows is kept under in `DATA/cache/search/<app>/`, `'rows'` by default; it is made again whenever the fields searched change. The query as `{search}` reads it: words, `"a phrase"`, `prefix*`, `-word` - a list, as `?q[]=` makes one, is searched for its words. A wrong option - one that is no value - is a `padError` naming the function, which then answers no rows |
+| `padSearch ( $source, $query, $options = [] )` | The rows found, the best first, each with its own fields and `score` (BM25F) and `excerpt` (HTML, the matches in `<mark>`, the style of the marks in front of each) added. `$source` is the name of a Markdown collection (`_content/<name>/`), of a data store, a page's array or a `_data` file - or the rows themselves, a `db()` result. The options: `fields` (`'title^2, body'`), `lang` (`en`, `nl`, `de`, `fr`, `es`, `it`, `pt`, `sv`, `da`, `no`, `ru` - `nb` and `nn` are `no`), `words` (the excerpt's length, 30), `excerpt` (its field), `first` (the best rows only - an excerpt is made for those alone) and `name` - what an index of rows is kept under in `DATA/cache/search/<app>/`, `'rows'` by default; it is made again whenever the fields searched change. The query as `{pad:search}` reads it: words, `"a phrase"`, `prefix*`, `-word` - a list, as `?q[]=` makes one, is searched for its words. A wrong option - one that is no value - is a `padError` naming the function, which then answers no rows |
 
 ## Data formats
 
@@ -1089,7 +1089,7 @@ are 2010 to 2052, the last year of its Matariki schedule.
 
 ## Sounds
 
-`pad/lib/sound.php` - the sounds of `pad/subs/sounds/types/`, the recipes `{sound}` plays.
+`pad/lib/sound.php` - the sounds of `pad/subs/sounds/types/`, the recipes `{sound:chime}` plays.
 
 | Function | Answers |
 |----------|---------|
@@ -1099,7 +1099,7 @@ are 2010 to 2052, the last year of its Matariki schedule.
 
 ## Printables
 
-`pad/lib/printable.php` - the kinds of `pad/subs/printables/types/` that `{printable}` lays out.
+`pad/lib/printable.php` - the kinds of `pad/subs/printables/types/` that `{printable:labels}` lays out.
 
 | Function | Answers |
 |----------|---------|
@@ -1108,7 +1108,7 @@ are 2010 to 2052, the last year of its Matariki schedule.
 ## Spreadsheet formulas
 
 `pad/lib/formulas.php` - the entries of the formulas subsystem, whose engine and functions stand
-in `pad/subs/formulas/` and are loaded on the first call; `{spreadsheet}` is the tag. A formula
+in `pad/subs/formulas/` and are loaded on the first call; `{pad:spreadsheet}` is the tag. A formula
 is spreadsheet syntax, never PHP and never a PAD expression - see
 [Spreadsheets](../FEATURES.md#spreadsheets).
 
@@ -1136,7 +1136,7 @@ values, and a formula that is no text, are reported with `padError`.
 
 | Function | Answers |
 |----------|---------|
-| `padPalette ( $name, $steps = NULL )` | The colours of a palette of `pad/subs/palettes/types/`, `'#rrggbb'` each: a sequential or diverging one (viridis, blues, rdbu ...) sampled evenly from its first colour to its last in `$steps` steps, one step its middle; a cyclic one (romao) evenly round its circle, never its first colour twice, one step its first; a categorical one (okabe-ito, tol-bright ...) its colours in order, starting again past its last; without `$steps` a categorical palette's own colours, twelve of a cyclic one, nine of the others. The name is read in any case, as `{palette}` and `palette=` read it - `romaO` is romao. A name that is no palette, or steps that are no whole number from 1 to 256, is reported and answers `[]` |
+| `padPalette ( $name, $steps = NULL )` | The colours of a palette of `pad/subs/palettes/types/`, `'#rrggbb'` each: a sequential or diverging one (viridis, blues, rdbu ...) sampled evenly from its first colour to its last in `$steps` steps, one step its middle; a cyclic one (romao) evenly round its circle, never its first colour twice, one step its first; a categorical one (okabe-ito, tol-bright ...) its colours in order, starting again past its last; without `$steps` a categorical palette's own colours, twelve of a cyclic one, nine of the others. The name is read in any case, as `{pad:palette}` and `palette=` read it - `romaO` is romao. A name that is no palette, or steps that are no whole number from 1 to 256, is reported and answers `[]` |
 
 ```php
 $colors = padPalette ( 'viridis', 5 );   // [ '#440154', '#3b528b', '#21918d', '#5dc863', '#fde725' ]
@@ -1145,12 +1145,12 @@ $series = padPalette ( 'okabe-ito', 3 ); // [ '#e69f00', '#56b4e9', '#009e73' ]
 
 ## Structured data (JSON-LD)
 
-`pad/lib/jsonld.php` - the kinds of `pad/subs/jsonld/types/` that `{jsonld}` writes, the mapping
+`pad/lib/jsonld.php` - the kinds of `pad/subs/jsonld/types/` that `{jsonld:article}` writes, the mapping
 in `pad/subs/jsonld/_lib/`, included when it runs.
 
 | Function | Answers |
 |----------|---------|
-| `padJsonLd ( $kind, $data = [], $id = NULL )` | The Schema.org object `{jsonld}` writes for the same kind and rows, as a plain PHP array with its `@context` - no HTML: json_encode it, put it in an API answer. `$data` is one row of fields or a list of rows (a `@graph` for a kind of one object, the items of faq, breadcrumb and itemlist; none for breadcrumb is the page's trail); only the fields the kind maps are taken, by their PAD name or the Schema.org property, the rest of a row left behind. `$id` is the `@id`. Addresses absolute, dates ISO 8601, as the tag writes them. An unknown kind, data that is no row, a missing required field or a value it cannot write is reported with `padError`, and `[]` comes back for a kind or an object that is not there |
+| `padJsonLd ( $kind, $data = [], $id = NULL )` | The Schema.org object `{jsonld:article}` writes for the same kind and rows, as a plain PHP array with its `@context` - no HTML: json_encode it, put it in an API answer. `$data` is one row of fields or a list of rows (a `@graph` for a kind of one object, the items of faq, breadcrumb and itemlist; none for breadcrumb is the page's trail); only the fields the kind maps are taken, by their PAD name or the Schema.org property, the rest of a row left behind. `$id` is the `@id`. Addresses absolute, dates ISO 8601, as the tag writes them. An unknown kind, data that is no row, a missing required field or a value it cannot write is reported with `padError`, and `[]` comes back for a kind or an object that is not there |
 | `padJsonLdKinds ()` | The kinds, the files of `pad/subs/jsonld/types/`, sorted |
 
 ```php
@@ -1168,7 +1168,7 @@ forms, the current tag's parameters, the database, data, files, mail, evaluation
 
 | Function | Description |
 |----------|-------------|
-| `padRedirect($page, $vars, $app)` | Redirect to a page of this application (or of `$app`) with optional variables - no page: back to the one asked for; never off the site, `{redirect}` also takes an absolute URL |
+| `padRedirect($page, $vars, $app)` | Redirect to a page of this application (or of `$app`) with optional variables - no page: back to the one asked for; never off the site, `{pad:redirect}` also takes an absolute URL |
 | `padRestart($page)` | Restart processing with new page |
 
 ### Forms and Security
@@ -1176,16 +1176,16 @@ forms, the current tag's parameters, the database, data, files, mail, evaluation
 | Function | Description |
 |----------|-------------|
 | `padSessionStart()` | Start the PHP session on demand, strict mode and safe cookie flags |
-| `padCsrfToken()` | The session's CSRF token (`{csrf}` writes it as a hidden field) |
+| `padCsrfToken()` | The session's CSRF token (`{pad:csrf}` writes it as a hidden field) |
 | `padCsrfValid()` | Whether this request brought the session's token back |
-| `padPosted($form)` | Whether this request posted (the `{form}` of that name) - and kept the `rules=` of its template; without a name, on a page whose template has rules, only a post of one of its forms |
+| `padPosted($form)` | Whether this request posted (the `{pad:form}` of that name) - and kept the `rules=` of its template; without a name, on a page whose template has rules, only a post of one of its forms |
 | `padFormFailed($form)` | Whether the form came back and broke the `rules=` of its template |
 | `padUpload($field, types: [...], max: '2M')` | Store an uploaded file safely: real type (finfo), size limit, random name in `DATA/uploads/` - the record, NULL (none sent) or FALSE (refused) |
-| `padUploadError($field)` | Why `padUpload` refused the field's file (also shown by `{input type='file'/}`) |
+| `padUploadError($field)` | Why `padUpload` refused the field's file (also shown by `{pad:input type='file'/}`) |
 | `padUploadSend($file, $name, $download)` | A stored file (`padUpload`'s `file`, a path under `DATA/`) as the page's whole answer - a picture, PDF or text shown, anything else downloaded; a path out of `DATA/` 404 |
-| `padNonce()` | This request's CSP nonce (`{nonce}`), named by `'nonce'` in `$padCsp` |
-| `padFlash($message, $type)` | A message for the next request - `padFlash('Saved.'); padRedirect('list');` then `{flash}<p class="{$type}">{$message}</p>{/flash}` |
-| `padValidate($rules, $data, $messages)` | `['email' => 'required\|email']` - one message per failing field, shown by `{input}` |
+| `padNonce()` | This request's CSP nonce (`{pad:nonce}`), named by `'nonce'` in `$padCsp` |
+| `padFlash($message, $type)` | A message for the next request - `padFlash('Saved.'); padRedirect('list');` then `{pad:flash}<p class="{$type}">{$message}</p>{/pad:flash}` |
+| `padValidate($rules, $data, $messages)` | `['email' => 'required\|email']` - one message per failing field, shown by `{pad:input}` |
 | `padValidateClient($rules, $messages)` | The same rules for the browser's checker - each with the message padValidate would give, and per field the other fields its rules look at (`watch`) |
 | `padFormRules($form)` | The `rules=` the page's template gives the fields of a named form |
 
@@ -1214,7 +1214,7 @@ forms, the current tag's parameters, the database, data, files, mail, evaluation
 | `padDataForcePad($data)` | Force data into PAD format |
 | `padToArray($obj)` | Convert object/resource to array |
 | `padJson($data)` | Convert to JSON |
-| `padPrefetch($sources, $ttl)` | Fetch remote sources in parallel, each kept as named data (`{rates}`) |
+| `padPrefetch($sources, $ttl)` | Fetch remote sources in parallel, each kept as named data (`{field:rates}`) |
 | `padCurlCached($input, $ttl)` | `padCurl()` with a ttl cache and the last good copy on a failure |
 
 ### File Operations

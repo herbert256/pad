@@ -110,7 +110,7 @@
 
     // Integer and floating point columns come back as PHP numbers, everything else - text,
     // dates, the exact DECIMAL - as the string it is. Every column came back a string, and
-    // {reactData} and {select htmlAttrJson} guessed the numbers back from the values, which
+    // {pad:reactData} and {select htmlAttrJson} guessed the numbers back from the values, which
     // made a username "2024" an int and an id "007" a 7.
 
     mysqli_options ( $connect, MYSQLI_OPT_INT_AND_FLOAT_NATIVE, TRUE );
@@ -275,7 +275,7 @@
 
     }
 
-    // A statement with nothing to run - db(''), or a verb alone: {field ''} is db('field ') -
+    // A statement with nothing to run - db(''), or a verb alone: {pad:field ''} is db('field ') -
     // is not sent. The verb alone ended the request on a PHP undefined array key, and an
     // empty statement on the ValueError mysqli_query and PDO::query throw for one.
 
@@ -484,7 +484,7 @@
 
   }
 
-  // A named query: the text of a _data/name.sql file, which {name} then iterates. Every
+  // A named query: the text of a _data/name.sql file, which {property:name} then iterates. Every
   // {$field} in it is resolved where the tag stands - an option of the tag itself first
   // ({topCustomers country='USA'}), then a field or a variable of the page - and bound as a placeholder,
   // so it reaches the database as an escaped literal, a number, or for an array a list. The file
@@ -538,11 +538,11 @@
 
   }
 
-  // The SQL of a database tag - {field}, {record}, {array}, {check} - is the template's own
+  // The SQL of a database tag - {pad:field}, {pad:record}, {pad:array}, {pad:check} - is the template's own
   // text, as the select's where= is: one quoted string, a value put in as $name and bound by
   // padSelectBind as an escaped literal of that variable. The parameter was any expression,
-  // so a request value concatenated in - {field "x from t where city = '" . $city . "'"} - or
-  // a whole statement in a variable - {field $q} - ran the visitor's SQL, while a value put
+  // so a request value concatenated in - {pad:field "x from t where city = '" . $city . "'"} - or
+  // a whole statement in a variable - {pad:field $q} - ran the visitor's SQL, while a value put
   // in as {$city} reached the database as PAD's inert stand-ins and never matched. FALSE
   // refuses the tag.
 
@@ -554,22 +554,22 @@
       if ( $one ['padPrmKind'] == 'parm' and $one ['padPrmName'] === 1 ) {
         $org = trim ( (string) $one ['padPrmOrg'] );
         if ( ! is_numeric ( $org ) and ! is_string ( padMetaLiteral ( $org ) ) )
-          return padError ( "the SQL of {" . $padTag [$pad] . "} is the template's own: give it as a quoted string, and put a value in it as \$name" );
+          return padError ( "the SQL of {" . padTagDisplay () . "} is the template's own: give it as a quoted string, and put a value in it as \$name" );
       }
 
     // A value spliced in with {$n} is resolved before the tag reads its parameter, so the
     // literal test above never sees it: padSpliceQuote refuses one standing outside a quoted
     // literal of the SQL at the splice, where it knows where the value lands (padDbSplice,
-    // below). A tag's answer written into the SQL - {echo $n} - is the template's SQL, as
+    // below). A tag's answer written into the SQL - {pad:echo $n} - is the template's SQL, as
     // DATABASE.md says. A test of the whole SQL against every value the request spliced
     // anywhere refused a tag with nothing spliced in it: "Sorted by {$sort}" with name desc
-    // printed above {array "... order by name desc"}, a guestbook entry reading from staff
-    // above {field "count(*) from staff"}.
+    // printed above {pad:array "... order by name desc"}, a guestbook entry reading from staff
+    // above {pad:field "count(*) from staff"}.
 
     if ( ! padDbSpliceFar () )
       return FALSE;
 
-    return padSelectBind ( (string) ( $padOpt [$pad] [1] ?? '' ), FALSE, '{' . $padTag [$pad] . '}' );
+    return padSelectBind ( (string) ( $padOpt [$pad] [1] ?? '' ), FALSE, '{' . padTagDisplay () . '}' );
 
   }
 
@@ -578,11 +578,11 @@
   // which hands it $inside, the tag's text from its { up to the splice, and the quote open
   // there with where it opened. The value is no plain number: one stands as itself.
   //
-  // The SQL of a database tag - {field "x from t where id = {$n}"}, field("...") in an
-  // expression, the whole of it bare, {field {$q}} - and having=, order=, group=, fields=,
+  // The SQL of a database tag - {pad:field "x from t where id = {$n}"}, field("...") in an
+  // expression, the whole of it bare, {pad:field {$q}} - and having=, order=, group=, fields=,
   // db=, join= and union= of a declared select table took the value as SQL: ?n=0 union
   // select user() read any table, the single word ?n=id made id = id and every row came
-  // back, and {field {$q}} was quoted into one string the tag took for the template's own
+  // back, and {pad:field {$q}} was quoted into one string the tag took for the template's own
   // SQL. Inside a quoted literal of the SQL - name = '{$who}' - a value is text, its quotes
   // PAD's inert stand-ins. where= of a select table is SQL as well, under the same rule: left
   // to padSpliceExpression, which took it for the expression where= is on other tags, a value
@@ -590,12 +590,12 @@
   // {$pick}' became name = "name" with ?pick=name, a column on SQLite, and every row matched.
   //
   // db() and padDb() called from a template - php:db("FIELD ..."), db("...") in an
-  // expression, {php:db "..."}, {db "..."} - take their first argument as SQL just the same,
+  // expression, {php:db "..."}, {macro:db "..."} - take their first argument as SQL just the same,
   // and nothing guarded it: "FIELD count(*) from staff where salary < {$max}" with ?max=0
   // or 1 counted every row. A value spliced anywhere in that argument is judged so, outside
-  // a string or in one (padDbCall). SQL piped into db() - {echo "..." | php:db} - is a string
+  // a string or in one (padDbCall). SQL piped into db() - {pad:echo "..." | php:db} - is a string
   // of the expression until the pipe, which the splice cannot see; DATABASE.md names that
-  // limit, and that SQL the template builds with an expression - {db $q}, {db "..." . $max}
+  // limit, and that SQL the template builds with an expression - {macro:db $q}, {macro:db "..." . $max}
   // - is the template's own, as SQL a PHP file builds is the PHP's.
 
   function padDbSplice ( $inside, $quote, $quoteAt ) {
@@ -606,7 +606,7 @@
     $call = '';
 
     if ( preg_match ( '/^\s*(?:pad:)?(field|record|array|check)\s(.*)$/is', $head, $match ) and padDbSqlParm ( $match [2] ) )
-      $what = 'the SQL of {' . strtolower ( $match [1] ) . '} is the template\'s own';
+      $what = 'the SQL of {pad:' . strtolower ( $match [1] ) . '} is the template\'s own';
     elseif ( preg_match ( '/(?<![\w$:.@])(field|record|array|check)\s*\(\s*$/i', $head, $match ) )
       $what = 'the SQL of ' . strtolower ( $match [1] ) . '() is the template\'s own';
     elseif ( $call = padDbCall ( $inside ) )
@@ -668,7 +668,7 @@
   // value kept for another text at the same place, in another occurrence, is told apart.
   // The page-wide test that stood here, every spliced value against the whole SQL, refused
   // a tag a value printed elsewhere happened to match; this one looks only at the values
-  // that stand in the tag. {field "count(*) from staff where 1 = 1 <4 KB> and salary <
+  // that stand in the tag. {pad:field "count(*) from staff where 1 = 1 <4 KB> and salary <
   // {$max}"} with ?max=0 or 1 counted every row. FALSE refuses the tag.
 
   function padDbSpliceFar () {
@@ -703,7 +703,7 @@
   // (padDbTagSql), whatever options come before it, so every item before the splice is an
   // option - name, name=value - or a $name=value, and the item at the splice has nothing
   // before it yet. The tag's name had to be followed by the SQL at once, and an option
-  // written first - {field name='x', "count(*) from staff where salary < {$max}"} - made
+  // written first - {pad:field name='x', "count(*) from staff where salary < {$max}"} - made
   // the splice an ordinary parameter's: ?max=0 or 1 went in bare and counted every row.
 
   function padDbSqlParm ( $items ) {
@@ -745,16 +745,16 @@
   // positional parameter, options before it passed over as padDbSqlParm does; a call's is
   // what stands between its ( and the first comma at its own depth. Anywhere in it is in it:
   // the splice had to stand in the argument's own string or right after the (, so a
-  // concatenation - {db "... salary < " . {$max}}, php:db('... < ' . {$max}) - or a call
+  // concatenation - {macro:db "... salary < " . {$max}}, php:db('... < ' . {$max}) - or a call
   // around the SQL - php:db(trim("... < {$max}")) - took ?max=0 or 1 bare and counted every
   // row. Whatever the argument builds, the database reads as SQL, so a value there is judged
   // by the string it stands in, and outside one it is refused.
   //
   // Only a name that resolves to PHP's function is one: php:db always, a bare db or padDb
-  // when the application has nothing of its own by that name - a tag, a {macro}, a {define},
+  // when the application has nothing of its own by that name - a tag, a {pad:macro}, a {pad:define},
   // a snippet, a data store, a select table - as the engine resolves the tag (padTypeTag) or
-  // the function in an expression (padTypeFunction). Every {db} was taken for PHP's, and
-  // {macro 'db', label}...{/macro} {db 'Hi {$who}'} with ?who=Ann Smith was refused as SQL.
+  // the function in an expression (padTypeFunction). Every {macro:db} was taken for PHP's, and
+  // {pad:macro 'db', label}...{/pad:macro} {macro:db 'Hi {$who}'} with ?who=Ann Smith was refused as SQL.
 
   function padDbCall ( $inside ) {
 

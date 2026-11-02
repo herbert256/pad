@@ -13,8 +13,8 @@
   // starts as - spots (unless given), center or noise; width= and height= the grid (192 by
   // 128, 64 to 256); speed= the steps a second (1200, 60 to 3000).
   //
-  //   {reactiondiffusion pattern='mitosis', initial='center'/}
-  //   {reactiondiffusion feed=0.03, kill=0.06, seed=5/}
+  //   {toy:reactiondiffusion pattern='mitosis', initial='center'/}
+  //   {toy:reactiondiffusion feed=0.03, kill=0.06, seed=5/}
 
   // The patterns to pick from: the feed rate F and the kill rate k, on Pearson's scale. The
   // rates come from the regions of Munafo's map of the model (mrob.com/pub/comp/xmorphia,

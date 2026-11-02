@@ -2,7 +2,7 @@
 
   // Winds a sequence run down, called from sequence/tag.php once the terms have been built
   // into $pqResult. Runs the stages in order: the sequence type's own exit hook, the
-  // {action} transformations, the named store (push/pull), the toData data store, the shape
+  // {action:loop} transformations, the named store (push/pull), the toData data store, the shape
   // of the rows handed to the template, the extra columns describing how each term came
   // about, the parameters consumed, and the debug info block.
   //

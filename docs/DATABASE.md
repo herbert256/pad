@@ -51,7 +51,7 @@ A read that does not start with `SELECT` - `WITH`, a bracketed `(SELECT ...) UNI
 `SHOW`, `DESCRIBE`, `EXPLAIN`, `PRAGMA`, `VALUES` - is sent as written and answers its rows
 as `ARRAY` does; a `WITH` that writes answers the rows it changed.
 
-**A RECORD in a page variable** is one row to a tag - `{totals}{$total}{/totals}` is one
+**A RECORD in a page variable** is one row to a tag - `{array:totals}{$total}{/array:totals}` is one
 occurrence - while it holds the row's columns and a value still the row's own; a number the
 page formatted (`number_format`, grouped either way, rounded) counts as its own. A record whose
 every value the page rewrote otherwise - a name given a capital - cannot be told from a heading
@@ -66,10 +66,10 @@ answers 0, as if no row changed. Reads run as usual.
 
 ## Template Database Tags
 
-The tag name becomes the `db()` command word - `{field "X"/}` runs `db("field X")`, and so on. Do NOT write `SELECT` in the tag parameter; the command adds it.
+The tag name becomes the `db()` command word - `{pad:field "X"/}` runs `db("field X")`, and so on. Do NOT write `SELECT` in the tag parameter; the command adds it.
 
 The SQL is the template's own: one quoted string, never an expression or a variable -
-`{field "x from t where city = '" . $city . "'"/}` and `{field $q/}` are refused. A value goes
+`{pad:field "x from t where city = '" . $city . "'"/}` and `{pad:field $q/}` are refused. A value goes
 in as `$name`, written bare: it is bound as a quoted, escaped literal of that variable (a
 number as a number, an array as a list), as in the select's `where=`. Inside a loop a field
 of the row is a variable too. `{$name}` there splices the value's text before the tag reads
@@ -78,58 +78,58 @@ excepted - and inside one (`name = '{$who}'`) it is text whose quotes and backsl
 the database as PAD's inert stand-ins, so such a value does not match. Only a `'...'` literal
 holds it as text: inside `"..."` - a name on SQLite and on MySQL under ANSI_QUOTES - it is
 refused too. Only a value written as `{$name}` is guarded this way: a tag's answer written into
-the SQL - `{echo $x/}`, `{field:x}`, `{php:trim $x}` - is the template's SQL as it stands, so a
+the SQL - `{pad:echo $x/}`, `{field:x}`, `{php:trim $x}` - is the template's SQL as it stands, so a
 request value never goes into a query that way; put it in as `$name`. `db()` and `padDb()`
 called from a template - `php:db("FIELD ...")`, `{php:db "..."/}` - are guarded the same way
 anywhere in their first argument: a `{$name}` there, concatenated - `php:db('... < ' .
 {$max})` - or in a call around the SQL - `php:db(trim("..."))` - is refused unless it stands
-inside a `'...'` literal of the string it is spliced into. SQL piped into one - `{echo "..." |
+inside a `'...'` literal of the string it is spliced into. SQL piped into one - `{pad:echo "..." |
 php:db/}` - is a string until the pipe, and a `{$name}` in it goes in unguarded. And only a
-`{$name}` is guarded there: SQL the template builds with an expression - `{db $q}`,
-`{echo php:db($q)/}`, `{db "... < " . $max}` - is the template author's SQL, exactly as SQL a
+`{$name}` is guarded there: SQL the template builds with an expression - `{app:db $q}`,
+`{pad:echo php:db($q)/}`, `{app:db "... < " . $max}` - is the template author's SQL, exactly as SQL a
 PHP file builds is the PHP author's, and runs as it is written. Query with a database tag,
 where a value goes in as `$name`, or call `db()` from PHP with placeholders.
 
 ```
-{field "phone from staff where name = $who"/}
-{array "name from staff where name in ($names)"}{$name}{/array}
-{orders}{field "name from customers where id = $customer_id"/}{/orders}
+{pad:field "phone from staff where name = $who"/}
+{pad:array "name from staff where name in ($names)"}{$name}{/pad:array}
+{array:orders}{pad:field "name from customers where id = $customer_id"/}{/array:orders}
 ```
 
-Called as a function inside an expression the rule is the same: `{echo field("phone from staff
+Called as a function inside an expression the rule is the same: `{pad:echo field("phone from staff
 where name = $who")/}` takes one string written there; `field($q)` is refused.
 
-### {field} - Query Single Value
+### {pad:field} - Query Single Value
 
 ```
-{field "count(*) from users"/}
-{field "name from users where id=5"/}
+{pad:field "count(*) from users"/}
+{pad:field "name from users where id=5"/}
 ```
 
-### {record} - Query Single Record
+### {pad:record} - Query Single Record
 
 ```
-{record "* from users where id=5"}
+{pad:record "* from users where id=5"}
   Name: {$name}, Email: {$email}
-{/record}
+{/pad:record}
 ```
 
-### {array} - Query and Iterate Rows
+### {pad:array} - Query and Iterate Rows
 
 ```
-{array "* from users order by name"}
+{pad:array "* from users order by name"}
   <tr><td>{$name}</td><td>{$email}</td></tr>
-{/array}
+{/pad:array}
 ```
 
-### {check} - Boolean Existence Test
+### {pad:check} - Boolean Existence Test
 
 Uses the same special syntax as `db("CHECK ...")` - table name first, NO `* FROM`:
 
 ```
-{check "users where email='x@y.z'"}
+{pad:check "users where email='x@y.z'"}
   Address is already registered.
-{/check}
+{/pad:check}
 ```
 
 To iterate a whole table by name without writing SQL, use the PAD Select subsystem below.
@@ -150,8 +150,8 @@ select name, phone
 ```
 
 ```
-{staffByPhone}{$name} {/staffByPhone}                    # $pattern and $max of the page
-{staffByPhone pattern='%3%', max=2}{$name} {/staffByPhone}  # options of the tag win
+{array:staffByPhone}{$name} {/array:staffByPhone}                    # $pattern and $max of the page
+{array:staffByPhone pattern='%3%', max=2}{$name} {/array:staffByPhone}  # options of the tag win
 ```
 
 - The file is never run as PAD, so no value is ever spliced into the SQL text: each
@@ -203,33 +203,33 @@ base chain.
 
 ```html
 <!-- List all users -->
-{users}
+{array:users}
   {$username} - {$email}
-{/users}
+{/array:users}
 
 <!-- Filter by ID -->
-{users $id=5}
+{array:users $id=5}
   {$username}
-{/users}
+{/array:users}
 
 <!-- Filter by another field - $field=value on the tag binds the declared key only -->
-{forum_boards where="slug = $slug"}
+{select:forum_boards where="slug = $slug"}
   {$name}
-{/forum_boards}
+{/select:forum_boards}
 
 <!-- The ten newest: order= sorts in the SQL, before rows= - its LIMIT - takes the ten -->
-{news order="created_at desc", rows=10}
+{array:news order="created_at desc", rows=10}
   {$title}
-{/news}
+{/array:news}
 
 <!-- A condition of your own: write it as a quoted string, put values in as $name -->
-{customers where="country = $country and creditLimit > $minimum", order="$sortColumn"}
+{array:customers where="country = $country and creditLimit > $minimum", order="$sortColumn"}
   {$customerName}
-{/customers}
+{/array:customers}
 ```
 
 On a select, `rows=` (and `page=`) is the SQL `LIMIT`, applied before any handling option:
-`sort=` re-sorts the rows that came back, so `{news sort="created_at desc", rows=10}` is the
+`sort=` re-sorts the rows that came back, so `{array:news sort="created_at desc", rows=10}` is the
 first ten rows of the table, sorted - `order=` is what sorts before the limit.
 
 The order a table declares - or its key, when it declares none - sorts the table's rows. A
@@ -251,8 +251,8 @@ else. `{$name}` there splices the value's text instead - in `where=`, `having=`,
 `group=` refused outside a `'...'` literal of the SQL (a plain number excepted; inside `"..."`,
 a name on SQLite and on MySQL under ANSI_QUOTES, refused too), in `fields=`, `db=`, `join=`
 and `union=` refused - use `$name`. Keys bound on the tag
-(`{users $id=5}`) are always escaped. Declarations in `$padSelect` are PHP and taken as written.
-On every other data - a `{array}` query, JSON, page PHP - `where=` and `group=` are the handling
+(`{array:users $id=5}`) are always escaped. Declarations in `$padSelect` are PHP and taken as written.
+On every other data - a `{pad:array}` query, JSON, page PHP - `where=` and `group=` are the handling
 options instead: a PAD expression per row, and grouping with subtotals in the template (see
 [HANDLING.md](reference/HANDLING.md#group)).
 
@@ -261,44 +261,44 @@ options instead: a PAD expression per row, and grouping with subtotals in the te
 When a table tag is nested inside another, PAD automatically uses the defined relation:
 
 ```html
-{forum_topics $id=$id}
+{select:forum_topics $id=$id}
   <h1>{$title}</h1>
 
   <!-- Gets the topic's author via user_id relation -->
-  {users}
+  {array:users}
     Posted by {$username}
-  {/users}
+  {/array:users}
 
   <!-- Gets posts for this topic via topic_id relation -->
-  {forum_posts}
+  {select:forum_posts}
     <div class="post">
       {$content}
       <!-- Gets the post's author -->
-      {users}
+      {array:users}
         by {$username}
-      {/users}
+      {/array:users}
     </div>
-  {/forum_posts}
-{/forum_topics}
+  {/select:forum_posts}
+{/select:forum_topics}
 ```
 
 ### Counting related rows
 
 ```html
-{forum_boards}
-  {$name}: {forum_topics fields='count(*) as n'}{$n}{/forum_topics} topics
-{/forum_boards}
+{select:forum_boards}
+  {$name}: {select:forum_topics fields='count(*) as n'}{$n}{/select:forum_topics} topics
+{/select:forum_boards}
 ```
 
-(`{count 'name'}` is no counter: it is a test whether a data store holds anything, and prints no
+(`{pad:count 'name'}` is no counter: it is a test whether a data store holds anything, and prints no
 number.)
 
-### Combining with {field} for Stats
+### Combining with {pad:field} for Stats
 
 ```html
 <div class="stats">
-  {field "count(*) from users"/} members
-  {field "count(*) from forum_posts"/} posts
+  {pad:field "count(*) from users"/} members
+  {pad:field "count(*) from forum_posts"/} posts
 </div>
 ```
 

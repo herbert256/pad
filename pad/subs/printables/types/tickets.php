@@ -2,7 +2,7 @@
 
   // {printable:tickets data='seats'}...<aside>...</aside>{/printable:tickets} - tickets with a
   // stub to tear off: the content between the tags is one ticket, its <aside> the stub - a
-  // {qr} of the ticket's code, a seat - and the rest the main part, with a dashed perforation
+  // {barcode:qr} of the ticket's code, a seat - and the rest the main part, with a dashed perforation
   // between them; without an <aside> the stub holds the ticket's number, No. 0001 on, from
   // number= on. sheet= a4-1x4 (190 by 65 mm, the default), a4-1x5 (190 by 52) or letter-1x4
   // (7.75 by 2.5 inches), and the grid options of the labels; padding=, size= (10 pt) and
@@ -10,7 +10,7 @@
   //
   //   {printable:tickets data='seats'}
   //     <h2>{$show}</h2>{$date} - row {$row}, seat {$seat}
-  //     <aside>{qr $code, size=90/}{$row}-{$seat}</aside>
+  //     <aside>{barcode:qr $code, size=90/}{$row}-{$seat}</aside>
   //   {/printable:tickets}
 
   $padTicketSheets = [

@@ -5,8 +5,8 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{true/}
-{true} ... {/true}
+{pad:true/}
+{pad:true} ... {/pad:true}
 PAD;
 
   $tagParms   = [];

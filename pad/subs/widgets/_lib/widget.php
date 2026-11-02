@@ -3,9 +3,9 @@
   // The widgets subsystem: interactive parts of a page that work without JavaScript and get
   // better with it - tabs, an accordion, a carousel, a modal, a copy box, a poll ...
   //
-  //   {tabs}{tab 'Overview'}...{/tab}{tab 'Specs'}...{/tab}{/tabs}
+  //   {widget:tabs}{pad:tab 'Overview'}...{/pad:tab}{pad:tab 'Specs'}...{/pad:tab}{/widget:tabs}
   //   {widget:modal 'terms', title='Terms of sale'}...{/widget:modal}
-  //   {widget 'toast', 'Saved', tone='success'/}
+  //   {widget:toast 'Saved', tone='success'/}
   //
   // A widget is a file of subs/widgets/types/ - the tag code of the widget, which checks what it
   // is given and builds its markup - and the files there are the widgets there are
@@ -33,7 +33,7 @@
 
   }
 
-  // The name a widget is given as its first parameter - {drawer 'filters'} - which makes its
+  // The name a widget is given as its first parameter - {widget:drawer 'filters'} - which makes its
   // id: letters, digits, _ and -, at most 64. FALSE, named under the strict check, when it
   // is not.
 
@@ -45,7 +45,7 @@
       return $padParm;
 
     if ( $padCheckSyntax )
-      padError ( "a {" . $kind . "} needs a name of letters, digits, _ and -, like $example" );
+      padError ( "a {" . "widget:$kind" . "} needs a name of letters, digits, _ and -, like $example" );
 
     return FALSE;
 
@@ -65,14 +65,14 @@
       return $value;
 
     if ( $padCheckSyntax )
-      padError ( "the {" . $kind . "} has no $option '" . padMakeSafe ( $value, 20 ) . "' - " . implode ( ', ', $choices ) );
+      padError ( "the {" . "widget:$kind" . "} has no $option '" . padMakeSafe ( $value, 20 ) . "' - " . implode ( ', ', $choices ) );
 
     return $default;
 
   }
 
-  // The rows a data= option names - a {data} store, a sequence store, the page's array, a
-  // field holding a list or a _data file, as {chart} and the games read them - or NULL
+  // The rows a data= option names - a {pad:data} store, a sequence store, the page's array, a
+  // field holding a list or a _data file, as {chart:bar} and the games read them - or NULL
   // without data=. The level got those rows as its data from the data option, and would
   // write the widget once per row: it gets its one default occurrence back.
 
@@ -106,7 +106,7 @@
       return padDataFileData ( $file );
 
     if ( $padCheckSyntax and ! padStrHidden ( $name ) )
-      padError ( "there is no data named '$name' for the {" . $kind . "}" );
+      padError ( "there is no data named '$name' for the {" . "widget:$kind" . "}" );
 
     return [];
 

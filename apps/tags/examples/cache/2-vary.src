@@ -1,8 +1,8 @@
-{meta title='A copy per visitor, and the option form', about='vary= keeps one rendering per user; cache= on any tag caches that tag the same way.'/}
-{cache 'basket', ttl=60, vary=$userId}
-  {basket}<li>{$product}: {$quantity}</li>{/basket}
-{/cache}
+{pad:meta title='A copy per visitor, and the option form', about='vary= keeps one rendering per user; cache= on any tag caches that tag the same way.'/}
+{pad:cache 'basket', ttl=60, vary=$userId}
+  {array:basket}<li>{$product}: {$quantity}</li>{/array:basket}
+{/pad:cache}
 
-{topProducts cache=3600, vary=$country}
+{app:topProducts cache=3600, vary=$country}
   <li>{$name}</li>
-{/topProducts}
+{/app:topProducts}

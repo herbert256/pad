@@ -16,7 +16,7 @@ url. They are parked here, where an unlinked page is what the application is mad
 `manual/hello/index` was the seventh and is not here: it was byte for byte the `hello/index`
 of the check application of the time.
 
-`_tags/` and `_lib/` are the manual's, copied for the pages that need them - `{construct}`,
-`{source}` and `{tag}`, and the `{content 'myContent1'}` definition `doc3` prints through.
+`_tags/` and `_lib/` are the manual's, copied for the pages that need them - `{app:construct}`,
+`{pad:source}` and `{app:tag}`, and the `{pad:content 'myContent1'}` definition `doc3` prints through.
 
 The one link out of here that pointed at a manual page is written absolute, so it still arrives.

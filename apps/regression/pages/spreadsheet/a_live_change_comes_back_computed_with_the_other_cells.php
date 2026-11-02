@@ -1,6 +1,6 @@
 <?php
 
-  // An editable spreadsheet in a {live} region (spreadsheet/live) is a form the live script
+  // An editable spreadsheet in a {pad:live} region (spreadsheet/live) is a form the live script
   // posts (pad-submit), which a change of a cell submits: the region's name its first field,
   // then every cell's text once - no pad-value on the cells. The post carries every cell's
   // field, the changed one and an earlier change alike, and the answer is the region alone,

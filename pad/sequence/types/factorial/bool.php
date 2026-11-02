@@ -2,7 +2,7 @@
 
   // Membership test for factorial, 1, 2, 6, 24, 120, ...: x is divided by 2, 3, 4, ... in turn
   // and must come to 1 before a division leaves a remainder - twenty steps at the most.
-  // build/check.php asks it for {keep factorial}, {remove factorial} and {flag factorial}.
+  // build/check.php asks it for {keep:factorial}, {remove:factorial} and {pad:flag factorial}.
   //
   // Not the type's build: pqBuild() ranks function.php before bool.php.
 

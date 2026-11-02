@@ -12,7 +12,7 @@
 
   // An action that collapses the sequence into one value selects nothing, so there is nothing
   // to invert and the value stands: the total took the first term's key, and "not selected"
-  // was every term but the first - {sequence '1..6', sum, negative} gave 2 3 4 5 6.
+  // was every term but the first - {sequence:range '1..6', sum, negative} gave 2 3 4 5 6.
 
   if ( in_array ( $pqAction, [ 'sum', 'product', 'average', 'median', 'count', 'distinct' ] ) )
     return;
@@ -21,7 +21,7 @@
   // store a splice put in, an append - carries none, so the terms it did not select are the
   // ones whose key is gone as long as one term kept its key. Only a result rebuilt whole - a
   // sort, a merge - is matched by value. Any key without the x sent every term to the values:
-  // {sequence '1;1;2', splice='0|1|s', negative} had no 1, the 1 that stayed taking the
+  // {sequence:list '1;1;2', splice='0|1|s', negative} had no 1, the 1 that stayed taking the
   // other's place, and kept every value it found anywhere in the result.
 
   $pqActionEnd = $pqResult;

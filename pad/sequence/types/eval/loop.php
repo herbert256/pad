@@ -1,14 +1,14 @@
 <?php
 
   // Build strategy 'loop' for the eval sequence: the term is the parameter evaluated as a
-  // PAD expression with the loop value substituted for @, so {eval '@ * @ + 1'} gives 2, 5,
+  // PAD expression with the loop value substituted for @, so {sequence:eval '@ * @ + 1'} gives 2, 5,
   // 10, 17, ... The general escape hatch for a formula that has no sequence type of its
-  // own; as a play, {make eval='@ * 2'} rewrites another sequence's terms.
+  // own; as a play, {make:eval '@ * 2'} rewrites another sequence's terms.
   //
   // The expression is the template's own text, as where= is (handling/types/where.php): one
-  // of the tag's items written as a quoted string - eval='@ * 2', {eval '@ + 1'},
+  // of the tag's items written as a quoted string - eval='@ * 2', {sequence:eval '@ + 1'},
   // make='eval|@ * 2', sequence:eval(3, '@ * 2') in an expression (eval/parms/sequence.php).
-  // From a value - eval=$q, {eval $q}, make=$q holding 'eval|...' - a request value with
+  // From a value - eval=$q, {sequence:eval $q}, make=$q holding 'eval|...' - a request value with
   // php:php_uname('s') in it ran PHP. A value goes into it as $name.
 
   $pqEvalLevel = $GLOBALS ['pad'];

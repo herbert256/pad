@@ -6,7 +6,7 @@
   //
   //   <tag>/_about.txt     three lines: the title, one line about the tag, and its group
   //                        (Visuals, Text & data, Media, Interactive, Games)
-  //   <tag>/<name>.pad     an example, its first line {meta title='...', about='...'} - the
+  //   <tag>/<name>.pad     an example, its first line {pad:meta title='...', about='...'} - the
   //                        title in the menu and the bar, the line about it over the cells
   //
   // The groups are the headings of the menu, in the order of showcaseGroups; the tags in a
@@ -65,7 +65,7 @@
 
   }
 
-  // The title and the line about an example, from the {meta} on its first line.
+  // The title and the line about an example, from the {pad:meta} on its first line.
 
   function showcaseMeta ( $file ) {
 

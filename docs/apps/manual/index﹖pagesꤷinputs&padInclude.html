@@ -1,10 +1,10 @@
 
 
-<p>Beside <code>{input}</code> and <code>{textarea}</code> a form can hold
+<p>Beside <code>{pad:input}</code> and <code>{pad:textarea}</code> a form can hold
 fields that do more: a slider, a row of stars, a switch, a month to choose a day from, a tag input,
-a signature, a Markdown editor with its preview. There are 14 of
+a signature, a Markdown editor with its preview. There are 20 of
 them - every kind is a file of <code>pad/subs/inputs/types/</code>, its script and style in
-<code>pad/subs/inputs/assets/</code>, and the <a href="../inputs/index.html">inputs</a> application shows them all,
+<code>www/assets/inputs/</code>, and the <a href="../inputs/index.html">inputs</a> application shows them all,
 each in a form that posts back.</p>
 
 
@@ -14,7 +14,7 @@ each in a form that posts back.</p>
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -44,188 +44,13 @@ each in a form that posts back.</p>
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">slider </font><font color="red"><font color="black">'</font>volume<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Volume<font color="black">'</font><font color="black">,</font> unit=<font color="black">'</font><font color="black">%</font><font color="black">'</font></font>/}</b><br><b>{<font color="blue">stars </font><font color="red"><font color="black">'</font>score<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your rating<font color="black">'</font></font>/}</b><br><b>{<font color="blue">toggle </font><font color="red"><font color="black">'</font>news<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Send me the newsletter<font color="black">'</font><font color="black">,</font> checked</font>/}</b></code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="../_common/play.css"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6c2xpZGVyICd2b2x1bWUnLCBsYWJlbD0nVm9sdW1lJywgdW5pdD0nJScvfVxue2lucHV0OnN0YXJzICdzY29yZScsIGxhYmVsPSdZb3VyIHJhdGluZycvfVxue2lucHV0OnRvZ2dsZSAnbmV3cycsIGxhYmVsPSdTZW5kIG1lIHRoZSBuZXdzbGV0dGVyJywgY2hlY2tlZC99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6c2xpZGVyICd2b2x1bWUnLCBsYWJlbD0nVm9sdW1lJywgdW5pdD0nJScvfVxue2lucHV0OnN0YXJzICdzY29yZScsIGxhYmVsPSdZb3VyIHJhdGluZycvfVxue2lucHV0OnRvZ2dsZSAnbmV3cycsIGxhYmVsPSdTZW5kIG1lIHRoZSBuZXdzbGV0dGVyJywgY2hlY2tlZC99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>slider </font><font color="red"><font color="black">'</font>volume<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Volume<font color="black">'</font><font color="black">,</font> unit=<font color="black">'</font><font color="black">%</font><font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>stars </font><font color="red"><font color="black">'</font>score<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your rating<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>toggle </font><font color="red"><font color="black">'</font>news<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Send me the newsletter<font color="black">'</font><font color="black">,</font> checked</font>/}</b></code></pre></td>
         
         
           <td style="vertical-align:top">
-  <style>:where(.pad-input){--pad-input-ink:#1a1a19;--pad-input-muted:#6b6a65;--pad-input-line:#c9c8c2;--pad-input-field:#ffffff;--pad-input-shade:#f0efea;--pad-input-accent:#2a78d6;--pad-input-on:#ffffff;--pad-input-good:#1a8a5a;--pad-input-fair:#c98a12;--pad-input-bad:#d43c3b;--pad-input-star:#e8a317;--pad-input-knob:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-input){--pad-input-ink:light-dark(#1a1a19,#f4f3ee);--pad-input-muted:light-dark(#6b6a65,#a8a79f);--pad-input-line:light-dark(#c9c8c2,#4a4a46);--pad-input-field:light-dark(#ffffff,#242422);--pad-input-shade:light-dark(#f0efea,#2c2c29);--pad-input-accent:light-dark(#2a78d6,#5598e7);--pad-input-on:light-dark(#ffffff,#0d1b2a);--pad-input-good:light-dark(#1a8a5a,#3fbf86);--pad-input-fair:light-dark(#c98a12,#e0a83a);--pad-input-bad:light-dark(#d43c3b,#ef6b6a);--pad-input-star:light-dark(#e8a317,#f2b84b);--pad-input-knob:light-dark(#ffffff,#e8e7e2);}}:where(.pad-input){display:block;margin:.4em 0 .8em;color:var(--pad-input-ink);font:inherit;max-width:100%}
-.pad-input *,.pad-input *::before,.pad-input *::after{box-sizing:border-box}
-.pad-input>label,.pad-input>legend,.pad-input .pi-label{display:block;margin:0 0 .3em;font-weight:600}
-.pad-input [hidden]{display:none!important}
-.pad-input input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]),.pad-input textarea{font:inherit;color:var(--pad-input-ink);background:var(--pad-input-field);border:1px solid var(--pad-input-line);border-radius:6px;padding:.4em .55em;max-width:100%}
-.pad-input input:focus-visible,.pad-input textarea:focus-visible,.pad-input button:focus-visible,.pad-input [tabindex]:focus-visible{outline:2px solid var(--pad-input-accent);outline-offset:2px}
-.pad-input [aria-invalid=true]{border-color:var(--pad-input-bad)!important}
-.pad-input .pi-button{font:inherit;font-size:.92em;line-height:1.2;padding:.4em .7em;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);color:var(--pad-input-ink);cursor:pointer}
-.pad-input .pi-button:hover:not(:disabled){border-color:var(--pad-input-accent)}
-.pad-input .pi-button:disabled{opacity:.45;cursor:default}
-.pad-input .pi-row{display:flex;align-items:center;gap:.5em;flex-wrap:wrap}
-.pad-input .pi-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.pad-input .pi-muted{color:var(--pad-input-muted);font-size:.9em}
-.pad-input .pi-popup{position:absolute;z-index:20;margin-top:4px;background:var(--pad-input-field);color:var(--pad-input-ink);border:1px solid var(--pad-input-line);border-radius:8px;box-shadow:0 6px 24px rgb(0 0 0 / .18);padding:.5em}
-.pad-input .pi-anchor{position:relative;display:inline-block;max-width:100%}
-.pad-input .pi-noscript{color:var(--pad-input-muted);margin:.3em 0}
-</style><style>.pad-input-slider .pi-slider-row{flex-wrap:nowrap;align-items:flex-start;max-width:34em}
-.pad-input-slider .pi-slider-track{flex:1 1 auto;min-width:8em}
-.pad-input-slider input[type=range]{display:block;width:100%;accent-color:var(--pad-input-accent);margin:0}
-.pad-input-slider .pi-slider-out{min-width:4em;font-variant-numeric:tabular-nums;font-weight:600;text-align:right;line-height:1.2}
-.pad-input-slider .pi-slider-ends{display:flex;justify-content:space-between;margin-top:.15em;font-size:.8em}
-</style><script>/* The runtime of the PAD inputs (pad/subs/inputs/_lib/input.php writes it once per page). A kind's
-   script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
-   - and is started on every field of its kind: the ones on the page, and the ones a fragment,
-   a live region or a script brings later. frame is the field's .pad-input element, cfg its
-   data-config, kit the helpers below. The server wrote a native control that a form posts
-   as it is; a kind's script makes more of it and keeps the posted control's value true -
-   and says so with the input and change events a typed value sends, which the browser's
-   checker of the rules (pad/subs/rules/assets/validate.js) listens to. */
-
-(function () {
-  'use strict';
-
-  if (window.PadInputs) return;
-
-  var kinds = {};
-  var made = 0;
-
-  function el(tag, cls, text) {
-    var e = document.createElement(tag);
-    if (cls) e.className = cls;
-    if (text !== undefined && text !== null) e.textContent = text;
-    return e;
-  }
-
-  var kit = {
-    el: el,
-
-    // A new id of the page, for an element a script adds: a listbox, an option, a box.
-    id: function (base) {
-      made++;
-      return (base || 'pad-input') + '-js' + made;
-    },
-
-    // The value changed as if typed: the form, the rules' checker and any listener hear it.
-    changed: function (control) {
-      control.dispatchEvent(new Event('input', { bubbles: true }));
-      control.dispatchEvent(new Event('change', { bubbles: true }));
-    },
-
-    // What the server wrote hidden for a script to show - a button, a popup's opener.
-    show: function (root, selector) {
-      var list = root.querySelectorAll(selector);
-      for (var i = 0; i < list.length; i++) list[i].hidden = false;
-    },
-
-    // A click outside the element - or the focus leaving it - closes what it opened.
-    outside: function (root, close) {
-      document.addEventListener('pointerdown', function (event) {
-        if (!root.contains(event.target)) close();
-      });
-      root.addEventListener('focusout', function (event) {
-        if (event.relatedTarget && !root.contains(event.relatedTarget)) close();
-      });
-    },
-
-    // The text of a field's label, for a name a script gives a control it adds.
-    label: function (frame) {
-      return frame.getAttribute('data-pad-label') || '';
-    }
-  };
-
-  function start(frame) {
-    if (frame.padInputReady) return;
-    var init = kinds[frame.getAttribute('data-pad-input')];
-    if (!init) return;
-    var cfg = {};
-    try { cfg = JSON.parse(frame.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
-    frame.padInputReady = true;
-    frame.classList.add('is-ready');
-    init(frame, cfg, kit);
-  }
-
-  function scan(where) {
-    var list = (where || document).querySelectorAll('.pad-input[data-pad-input]');
-    for (var i = 0; i < list.length; i++) start(list[i]);
-  }
-
-  window.PadInputs = {
-    register: function (name, init) { kinds[name] = init; scan(); },
-    scan: scan,
-    kit: kit
-  };
-
-  document.addEventListener('DOMContentLoaded', function () { scan(); });
-
-  if (window.MutationObserver)
-    new MutationObserver(function (records) {
-      for (var i = 0; i < records.length; i++)
-        for (var j = 0; j < records[i].addedNodes.length; j++) {
-          var n = records[i].addedNodes[j];
-          if (n.nodeType === 1 && (n.matches('.pad-input') || n.querySelector('.pad-input'))) { scan(); return; }
-        }
-    }).observe(document.documentElement, { childList: true, subtree: true });
-})();
-</script><script>/* slider - the value beside the range, and the value a screen reader says, as it moves. */
-PadInputs.register('slider', function (frame, cfg) {
-  var range = frame.querySelector('input[type=range]');
-  var out = frame.querySelector('.pi-slider-out');
-  if (!range) return;
-  function say() {
-    var text = range.value + (cfg.unit || '');
-    if (out) out.textContent = text;
-    range.setAttribute('aria-valuetext', text);
-  }
-  range.addEventListener('input', say);
-  say();
-});
-</script><div class="pad-input pad-input-slider" data-pad-input="slider" data-pad-label="Volume" data-config="{&quot;unit&quot;:&quot;%&quot;}"><label for="volume">Volume</label><div class="pi-row pi-slider-row"><div class="pi-slider-track"><input type="range" name="volume" id="volume" min="0" max="100" step="1" value="50" aria-valuetext="50%"><div class="pi-slider-ends pi-muted" aria-hidden="true"><span>0%</span><span>100%</span></div></div><output class="pi-slider-out" for="volume">50%</output></div></div>
-<style>fieldset.pad-input-stars{border:0;padding:0;min-width:0}
-.pad-input-stars legend{padding:0;margin:0 0 .3em;font-weight:600}
-.pad-input-stars .pi-stars{display:inline-flex;align-items:center;vertical-align:middle;margin-right:.5em}
-.pad-input-stars .pi-star-input{position:absolute;width:1px;height:1px;margin:0;opacity:0;pointer-events:none}
-.pad-input-stars .pi-star{cursor:pointer;padding:0 .08em;font-size:1.7em;line-height:1;color:var(--pad-input-line)}
-.pad-input-stars .pi-star::before{content:"\2605"}
-.pad-input-stars .pi-stars:has(:checked) .pi-star{color:var(--pad-input-star)}
-.pad-input-stars .pi-star-input:checked+.pi-star~.pi-star{color:var(--pad-input-line)}
-.pad-input-stars .pi-stars:hover .pi-star.pi-star{color:var(--pad-input-star)}
-.pad-input-stars .pi-stars .pi-star:hover~.pi-star.pi-star{color:var(--pad-input-line)}
-.pad-input-stars .pi-star-input:focus-visible+.pi-star{outline:2px solid var(--pad-input-accent);outline-offset:1px;border-radius:4px}
-.pad-input-stars .pi-star-input:disabled+.pi-star{cursor:default;opacity:.5}
-.pad-input-stars .pi-star-input[aria-invalid=true]+.pi-star{text-shadow:0 0 0 var(--pad-input-bad)}
-@media (forced-colors:active){.pad-input-stars .pi-star{color:CanvasText}.pad-input-stars .pi-star-input:checked+.pi-star{color:Highlight}}
-</style><script>/* stars - the button that takes a rating back, for a field that is not required: a radio
-   group once chosen cannot be emptied otherwise. It shows while a star is chosen. */
-PadInputs.register('stars', function (frame, cfg, kit) {
-  var radios = frame.querySelectorAll('.pi-star-input');
-  var clear = frame.querySelector('.pi-stars-clear');
-  if (!radios.length || !clear || !cfg.clear) return;
-  var name = kit.label(frame);
-  clear.setAttribute('aria-label', 'Clear ' + (name || 'the rating'));
-  function chosen() {
-    for (var i = 0; i < radios.length; i++) if (radios[i].checked) return radios[i];
-    return null;
-  }
-  function sync() { clear.hidden = !chosen(); }
-  frame.addEventListener('change', sync);
-  clear.addEventListener('click', function () {
-    var one = chosen();
-    if (!one) return;
-    one.checked = false;
-    sync();
-    kit.changed(radios[0]);
-    radios[0].focus();
-  });
-  sync();
-});
-</script><fieldset class="pad-input pad-input-stars" data-pad-input="stars" data-pad-label="Your rating" data-config="{&quot;max&quot;:5,&quot;clear&quot;:true}"><legend>Your rating</legend><span class="pi-stars"><input type="radio" class="pi-star-input" name="score" id="score" value="1"><label class="pi-star" for="score"><span class="pi-hide">1 star of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-2" value="2"><label class="pi-star" for="score-2"><span class="pi-hide">2 stars of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-3" value="3"><label class="pi-star" for="score-3"><span class="pi-hide">3 stars of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-4" value="4"><label class="pi-star" for="score-4"><span class="pi-hide">4 stars of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-5" value="5"><label class="pi-star" for="score-5"><span class="pi-hide">5 stars of 5</span></label></span><button type="button" class="pi-button pi-stars-clear" hidden>Clear</button></fieldset>
-<style>.pad-input-toggle .pi-toggle-row{flex-wrap:nowrap;gap:.75em}
-.pad-input-toggle .pi-toggle-row>label{margin:0;font-weight:600;cursor:pointer}
-.pad-input-toggle input[role=switch]{-webkit-appearance:none;appearance:none;position:relative;flex:none;width:2.75em;height:1.55em;margin:0;border-radius:1em;border:1px solid var(--pad-input-line);background:var(--pad-input-line);cursor:pointer;transition:background .15s,border-color .15s}
-.pad-input-toggle input[role=switch]::before{content:"";position:absolute;top:.14em;left:.15em;width:1.15em;height:1.15em;border-radius:50%;background:var(--pad-input-knob);box-shadow:0 1px 3px rgb(0 0 0 / .3);transition:transform .15s}
-.pad-input-toggle input[role=switch]:checked{background:var(--pad-input-accent);border-color:var(--pad-input-accent)}
-.pad-input-toggle input[role=switch]:checked::before{transform:translateX(1.18em)}
-.pad-input-toggle input[role=switch]:disabled{opacity:.45;cursor:default}
-@media (forced-colors:active){.pad-input-toggle input[role=switch]{-webkit-appearance:auto;appearance:auto}.pad-input-toggle input[role=switch]::before{display:none}}
-@media (prefers-reduced-motion:reduce){.pad-input-toggle input[role=switch],.pad-input-toggle input[role=switch]::before{transition:none}}
-</style><div class="pad-input pad-input-toggle" data-pad-input="toggle" data-pad-label="Send me the newsletter"><div class="pi-row pi-toggle-row"><label for="news">Send me the newsletter</label><input type="hidden" name="news" value="0"><input type="checkbox" role="switch" name="news" id="news" value="1" checked></div></div>
+  <style>:where(.pad-input){--pad-input-ink:#1a1a19;--pad-input-muted:#6b6a65;--pad-input-line:#c9c8c2;--pad-input-field:#ffffff;--pad-input-shade:#f0efea;--pad-input-accent:#2a78d6;--pad-input-on:#ffffff;--pad-input-good:#1a8a5a;--pad-input-fair:#c98a12;--pad-input-bad:#d43c3b;--pad-input-star:#e8a317;--pad-input-knob:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-input){--pad-input-ink:light-dark(#1a1a19,#f4f3ee);--pad-input-muted:light-dark(#6b6a65,#a8a79f);--pad-input-line:light-dark(#c9c8c2,#4a4a46);--pad-input-field:light-dark(#ffffff,#242422);--pad-input-shade:light-dark(#f0efea,#2c2c29);--pad-input-accent:light-dark(#2a78d6,#5598e7);--pad-input-on:light-dark(#ffffff,#0d1b2a);--pad-input-good:light-dark(#1a8a5a,#3fbf86);--pad-input-fair:light-dark(#c98a12,#e0a83a);--pad-input-bad:light-dark(#d43c3b,#ef6b6a);--pad-input-star:light-dark(#e8a317,#f2b84b);--pad-input-knob:light-dark(#ffffff,#e8e7e2);}}</style><link rel="stylesheet" href="/pad/assets/inputs/input.css?v=3e57de65c9"><link rel="stylesheet" href="/pad/assets/inputs/slider.css?v=61b86ad177"><script src="/pad/assets/inputs/input.js?v=f84670b3c6"></script><script src="/pad/assets/inputs/slider.js?v=26ddeabc2b"></script><div class="pad-input pad-input-slider" data-pad-input="slider" data-pad-label="Volume" data-config="{&quot;unit&quot;:&quot;%&quot;}"><label for="volume">Volume</label><div class="pi-row pi-slider-row"><div class="pi-slider-track"><input type="range" name="volume" id="volume" min="0" max="100" step="1" value="50" aria-valuetext="50%"><div class="pi-slider-ends pi-muted" aria-hidden="true"><span>0%</span><span>100%</span></div></div><output class="pi-slider-out" for="volume">50%</output></div></div>
+<link rel="stylesheet" href="/pad/assets/inputs/stars.css?v=c907104d73"><script src="/pad/assets/inputs/stars.js?v=8c036cef0f"></script><fieldset class="pad-input pad-input-stars" data-pad-input="stars" data-pad-label="Your rating" data-config="{&quot;max&quot;:5,&quot;clear&quot;:true}"><legend>Your rating</legend><span class="pi-stars"><input type="radio" class="pi-star-input" name="score" id="score" value="1"><label class="pi-star" for="score"><span class="pi-hide">1 star of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-2" value="2"><label class="pi-star" for="score-2"><span class="pi-hide">2 stars of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-3" value="3"><label class="pi-star" for="score-3"><span class="pi-hide">3 stars of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-4" value="4"><label class="pi-star" for="score-4"><span class="pi-hide">4 stars of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-5" value="5"><label class="pi-star" for="score-5"><span class="pi-hide">5 stars of 5</span></label></span><button type="button" class="pi-button pi-stars-clear" hidden>Clear</button></fieldset>
+<link rel="stylesheet" href="/pad/assets/inputs/toggle.css?v=19ef822845"><div class="pad-input pad-input-toggle" data-pad-input="toggle" data-pad-label="Send me the newsletter"><div class="pi-row pi-toggle-row"><label for="news">Send me the newsletter</label><input type="hidden" name="news" value="0"><input type="checkbox" role="switch" name="news" id="news" value="1" checked></div></div>
 
 
 </td>
@@ -243,13 +68,11 @@ PadInputs.register('stars', function (frame, cfg, kit) {
 
 
 
-<h2>Two ways to write one</h2>
+<h2>Writing a field</h2>
 
-<p>The input: type names the kind, <code>{input:slider 'volume'/}</code>, and so does
-the bare name, <code>{slider 'volume'/}</code>, as long as no tag, store, field or
-sequence has that name - an array of the page with a key <code>slider</code> is read first. The
+<p>The input: type names the kind, <code>{input:slider 'volume'/}</code>. The
 first parameter is the field's name, <code>label=</code> its label, and every other item the kind
-does not take is an attribute of its field, as with <code>{input}</code>:
+does not take is an attribute of its field, as with <code>{pad:input}</code>:
 <code>required</code>, <code>placeholder=</code>, <code>autocomplete=</code>.</p>
 
 <h2>A real value, with or without a script</h2>
@@ -266,7 +89,7 @@ colour. Without the script the form works all the same; only the signature needs
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -296,437 +119,13 @@ colour. Without the script the form works all the same; only the signature needs
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">datepicker </font><font color="red"><font color="black">'</font>arrival<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Arrival<font color="black">'</font></font>/}</b><br><b>{<font color="blue">timepicker </font><font color="red"><font color="black">'</font>pickup<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Time<font color="black">'</font><font color="black">,</font> every=15</font>/}</b><br><b>{<font color="blue">colorpicker </font><font color="red"><font color="black">'</font>tint<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Colour<font color="black">'</font></font>/}</b></code></pre></td>
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6ZGF0ZXBpY2tlciAnYXJyaXZhbCcsIGxhYmVsPSdBcnJpdmFsJy99XG57aW5wdXQ6dGltZXBpY2tlciAncGlja3VwJywgbGFiZWw9J1RpbWUnLCBldmVyeT0xNS99XG57aW5wdXQ6Y29sb3JwaWNrZXIgJ3RpbnQnLCBsYWJlbD0nQ29sb3VyJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6ZGF0ZXBpY2tlciAnYXJyaXZhbCcsIGxhYmVsPSdBcnJpdmFsJy99XG57aW5wdXQ6dGltZXBpY2tlciAncGlja3VwJywgbGFiZWw9J1RpbWUnLCBldmVyeT0xNS99XG57aW5wdXQ6Y29sb3JwaWNrZXIgJ3RpbnQnLCBsYWJlbD0nQ29sb3VyJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>datepicker </font><font color="red"><font color="black">'</font>arrival<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Arrival<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>timepicker </font><font color="red"><font color="black">'</font>pickup<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Time<font color="black">'</font><font color="black">,</font> every=15</font>/}</b><br><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>colorpicker </font><font color="red"><font color="black">'</font>tint<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Colour<font color="black">'</font></font>/}</b></code></pre></td>
         
         
           <td style="vertical-align:top">
-  <style>.pad-input-datepicker .pi-date-open{display:inline-flex;align-items:center;justify-content:center;padding:.45em .55em}
-.pad-input-datepicker .pi-calendar{left:0;top:100%;width:max-content}
-.pad-input-datepicker .pi-cal-head{display:flex;align-items:center;justify-content:space-between;gap:.5em;margin-bottom:.35em}
-.pad-input-datepicker .pi-cal-title{font-weight:650;text-align:center;flex:1}
-.pad-input-datepicker .pi-cal-step{padding:.2em .6em;font-size:1.1em}
-.pad-input-datepicker .pi-cal-grid{border-collapse:collapse}
-.pad-input-datepicker .pi-cal-grid th{font-size:.75em;font-weight:600;color:var(--pad-input-muted);padding:.25em 0;text-align:center;width:2.4em}
-.pad-input-datepicker .pi-cal-grid td{padding:1px;text-align:center}
-.pad-input-datepicker .pi-cal-day{width:2.3em;height:2.1em;font:inherit;font-size:.9em;font-variant-numeric:tabular-nums;border:1px solid transparent;border-radius:6px;background:none;color:var(--pad-input-ink);cursor:pointer}
-.pad-input-datepicker .pi-cal-day:hover:not(:disabled){border-color:var(--pad-input-accent)}
-.pad-input-datepicker .pi-cal-day[aria-current=date]{font-weight:700;border-color:var(--pad-input-line)}
-.pad-input-datepicker .pi-cal-day[aria-pressed=true]{background:var(--pad-input-accent);border-color:var(--pad-input-accent);color:var(--pad-input-on)}
-.pad-input-datepicker .pi-cal-day:disabled{color:var(--pad-input-muted);opacity:.45;cursor:default}
-.pad-input-datepicker .pi-cal-foot{display:flex;justify-content:space-between;gap:.5em;margin-top:.4em}
-@media (forced-colors:active){.pad-input-datepicker .pi-cal-day[aria-pressed=true]{border:2px solid Highlight}}
-</style><script>/* datepicker - the month over the date field: a dialog with the month's days as a grid, the
-   way the WAI-ARIA date picker dialog is built. The field stays what the form posts, and the
-   day chosen is written into it as 2026-10-31 - it says it changed, as a typed day does. The
-   arrow keys walk the days, Page Up and Page Down the months (with Shift the years), Home
-   and End the week; Enter or Space takes the day, Escape closes, and the focus goes back to
-   the button that opened it. Days outside min= and max= cannot be chosen. The names of the
-   months and the days are the browser's, in the page's language. */
-PadInputs.register('datepicker', function (frame, cfg, kit) {
-  var field = frame.querySelector('input[type=date]');
-  var opener = frame.querySelector('.pi-date-open');
-  var anchor = frame.querySelector('.pi-anchor');
-  if (!field || !opener || !anchor) return;
-
-  var lang = document.documentElement.lang || undefined;
-  var first = cfg.weekstart === 'sunday' ? 0 : 1;
-  var name = kit.label(frame);
-  var monthName = new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric', timeZone: 'UTC' });
-  var dayName = new Intl.DateTimeFormat(lang, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-  var shortDay = new Intl.DateTimeFormat(lang, { weekday: 'short', timeZone: 'UTC' });
-  var longDay = new Intl.DateTimeFormat(lang, { weekday: 'long', timeZone: 'UTC' });
-
-  // A day is a number of days since 1970-01-01, in UTC: no clock change in between.
-  function parse(text) {
-    var one = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text || '');
-    if (!one) return null;
-    var day = Date.UTC(+one[1], +one[2] - 1, +one[3]) / 86400000;
-    return iso(day) === text ? day : null;
-  }
-  function iso(day) {
-    var d = new Date(day * 86400000);
-    return String(d.getUTCFullYear()).padStart(4, '0') + '-' + String(d.getUTCMonth() + 1).padStart(2, '0') + '-' + String(d.getUTCDate()).padStart(2, '0');
-  }
-  function parts(day) {
-    var d = new Date(day * 86400000);
-    return { y: d.getUTCFullYear(), m: d.getUTCMonth(), d: d.getUTCDate(), w: d.getUTCDay() };
-  }
-  function addMonths(day, n) {
-    var p = parts(day);
-    var last = new Date(Date.UTC(p.y, p.m + n + 1, 0)).getUTCDate();
-    return Date.UTC(p.y, p.m + n, Math.min(p.d, last)) / 86400000;
-  }
-  function today() {
-    var now = new Date();
-    return Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000;
-  }
-
-  var dialog = kit.el('div', 'pi-popup pi-calendar');
-  dialog.id = kit.id((field.id || 'date') + '-calendar');
-  dialog.setAttribute('role', 'dialog');
-  dialog.setAttribute('aria-modal', 'false');
-  dialog.setAttribute('aria-label', 'Choose ' + (name || 'a day'));
-  dialog.hidden = true;
-
-  var head = kit.el('div', 'pi-cal-head');
-  var back = kit.el('button', 'pi-button pi-cal-step', '‹');
-  back.type = 'button';
-  back.setAttribute('aria-label', 'Previous month');
-  var title = kit.el('div', 'pi-cal-title');
-  title.id = dialog.id + '-title';
-  title.setAttribute('aria-live', 'polite');
-  var ahead = kit.el('button', 'pi-button pi-cal-step', '›');
-  ahead.type = 'button';
-  ahead.setAttribute('aria-label', 'Next month');
-  head.appendChild(back);
-  head.appendChild(title);
-  head.appendChild(ahead);
-
-  var grid = kit.el('table', 'pi-cal-grid');
-  grid.setAttribute('role', 'grid');
-  grid.setAttribute('aria-labelledby', title.id);
-  var thead = kit.el('thead');
-  var names = kit.el('tr');
-  for (var i = 0; i < 7; i++) {
-    var sample = Date.UTC(2024, 0, 7 + first + i);  // 2024-01-07 is a Sunday
-    var th = kit.el('th', '', shortDay.format(sample));
-    th.setAttribute('scope', 'col');
-    th.setAttribute('abbr', longDay.format(sample));
-    names.appendChild(th);
-  }
-  thead.appendChild(names);
-  var tbody = kit.el('tbody');
-  grid.appendChild(thead);
-  grid.appendChild(tbody);
-
-  var foot = kit.el('div', 'pi-cal-foot');
-  var now = kit.el('button', 'pi-button', 'Today');
-  now.type = 'button';
-  var close = kit.el('button', 'pi-button', 'Close');
-  close.type = 'button';
-  foot.appendChild(now);
-  foot.appendChild(close);
-
-  dialog.appendChild(head);
-  dialog.appendChild(grid);
-  dialog.appendChild(foot);
-  anchor.appendChild(dialog);
-  opener.setAttribute('aria-controls', dialog.id);
-  opener.hidden = false;
-
-  var focus = today();
-
-  function allowed(day) {
-    var low = parse(field.min), high = parse(field.max);
-    return (low === null || day >= low) && (high === null || day <= high);
-  }
-
-  function within(day) {
-    var low = parse(field.min), high = parse(field.max);
-    if (low !== null && day < low) return low;
-    if (high !== null && day > high) return high;
-    return day;
-  }
-
-  function draw(moveFocus) {
-    var p = parts(focus);
-    var start = Date.UTC(p.y, p.m, 1) / 86400000;
-    var lead = (parts(start).w - first + 7) % 7;
-    var chosen = parse(field.value), now = today();
-    title.textContent = monthName.format(start * 86400000);
-    tbody.textContent = '';
-    var length = new Date(Date.UTC(p.y, p.m + 1, 0)).getUTCDate();
-    var rows = Math.ceil((lead + length) / 7);
-    var day = start - lead;
-    for (var row = 0; row < rows; row++) {
-      var tr = kit.el('tr');
-      for (var col = 0; col < 7; col++, day++) {
-        var td = kit.el('td');
-        var q = parts(day);
-        if (q.m === p.m) {
-          var button = kit.el('button', 'pi-cal-day', String(q.d));
-          button.type = 'button';
-          button.tabIndex = day === focus ? 0 : -1;
-          button.setAttribute('data-day', String(day));
-          button.setAttribute('aria-label', dayName.format(day * 86400000));
-          if (day === chosen) { button.setAttribute('aria-pressed', 'true'); td.setAttribute('aria-selected', 'true'); }
-          if (day === now) button.setAttribute('aria-current', 'date');
-          if (!allowed(day)) button.disabled = true;
-          td.appendChild(button);
-        }
-        tr.appendChild(td);
-      }
-      tbody.appendChild(tr);
-    }
-    var low = parse(field.min), high = parse(field.max);
-    back.disabled = low !== null && start - 1 < low;
-    ahead.disabled = high !== null && start + length > high;
-    now.disabled = !allowed(today());
-    if (moveFocus) {
-      var target = tbody.querySelector('[data-day="' + focus + '"]');
-      if (target) target.focus();
-    }
-  }
-
-  function show() {
-    var chosen = parse(field.value);
-    focus = within(chosen !== null ? chosen : today());
-    dialog.hidden = false;
-    opener.setAttribute('aria-expanded', 'true');
-    draw(true);
-  }
-
-  function hide(giveBack) {
-    if (dialog.hidden) return;
-    dialog.hidden = true;
-    opener.setAttribute('aria-expanded', 'false');
-    if (giveBack) opener.focus();
-  }
-
-  function take(day) {
-    if (!allowed(day)) return;
-    field.value = iso(day);
-    kit.changed(field);
-    hide(true);
-  }
-
-  function move(day) {
-    focus = within(day);
-    draw(true);
-  }
-
-  opener.addEventListener('click', function () { if (dialog.hidden) show(); else hide(true); });
-  back.addEventListener('click', function () { focus = within(addMonths(focus, -1)); draw(false); });
-  ahead.addEventListener('click', function () { focus = within(addMonths(focus, 1)); draw(false); });
-  now.addEventListener('click', function () { take(today()); });
-  close.addEventListener('click', function () { hide(true); });
-
-  tbody.addEventListener('click', function (event) {
-    var button = event.target.closest('.pi-cal-day');
-    if (button && !button.disabled) take(+button.getAttribute('data-day'));
-  });
-
-  tbody.addEventListener('keydown', function (event) {
-    var key = event.key, to = null;
-    var w = (parts(focus).w - first + 7) % 7;
-    if (key === 'ArrowLeft') to = focus - 1;
-    else if (key === 'ArrowRight') to = focus + 1;
-    else if (key === 'ArrowUp') to = focus - 7;
-    else if (key === 'ArrowDown') to = focus + 7;
-    else if (key === 'Home') to = focus - w;
-    else if (key === 'End') to = focus + 6 - w;
-    else if (key === 'PageUp') to = addMonths(focus, event.shiftKey ? -12 : -1);
-    else if (key === 'PageDown') to = addMonths(focus, event.shiftKey ? 12 : 1);
-    else if (key === 'Enter' || key === ' ') { event.preventDefault(); take(focus); return; }
-    if (to === null) return;
-    event.preventDefault();
-    move(to);
-  });
-
-  dialog.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); hide(true); }
-  });
-
-  kit.outside(anchor, function () { hide(false); });
-});
-</script><div class="pad-input pad-input-datepicker" data-pad-input="datepicker" data-pad-label="Arrival" data-config="{&quot;weekstart&quot;:&quot;monday&quot;}"><label for="arrival">Arrival</label><div class="pi-anchor"><div class="pi-row"><input type="date" name="arrival" id="arrival" value=""><button type="button" class="pi-button pi-date-open" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose Arrival" hidden><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="1.5" y="3" width="13" height="11.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 6.5h13M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.4" fill="none"/></svg></button></div></div></div>
-<style>.pad-input-timepicker .pi-time-open{display:inline-flex;align-items:center;justify-content:center;padding:.45em .55em}
-.pad-input-timepicker .pi-time-list{left:0;top:100%;list-style:none;margin:4px 0 0;padding:.25em;max-height:15em;overflow-y:auto;min-width:7em}
-.pad-input-timepicker .pi-time-option{padding:.3em .7em;border-radius:5px;cursor:pointer;font-variant-numeric:tabular-nums}
-.pad-input-timepicker .pi-time-option:hover{background:var(--pad-input-shade)}
-.pad-input-timepicker .pi-time-option.is-active{outline:2px solid var(--pad-input-accent);outline-offset:-2px}
-.pad-input-timepicker .pi-time-option[aria-selected=true]{background:var(--pad-input-accent);color:var(--pad-input-on)}
-.pad-input-timepicker .pi-time-list:focus{outline:none}
-</style><script>/* timepicker - the times to choose from as a list under the time field: a listbox the arrow
-   keys walk, Home and End to its ends, a typed digit to the first time it begins with; Enter
-   takes the time, Escape closes and gives the focus back. The list starts at the field's
-   time, or the last one before it. The field stays what the form posts; the browser's own
-   list of the datalist is left out where this one is. */
-PadInputs.register('timepicker', function (frame, cfg, kit) {
-  var field = frame.querySelector('input[type=time]');
-  var opener = frame.querySelector('.pi-time-open');
-  var anchor = frame.querySelector('.pi-anchor');
-  var slots = cfg.slots || [];
-  if (!field || !opener || !anchor || !slots.length) return;
-
-  field.removeAttribute('list');
-
-  var list = kit.el('ul', 'pi-popup pi-time-list');
-  list.id = kit.id((field.id || 'time') + '-times');
-  list.setAttribute('role', 'listbox');
-  list.setAttribute('aria-label', kit.label(frame) || 'Times');
-  list.tabIndex = -1;
-  list.hidden = true;
-
-  var options = slots.map(function (slot) {
-    var li = kit.el('li', 'pi-time-option', slot);
-    li.id = kit.id(list.id);
-    li.setAttribute('role', 'option');
-    li.setAttribute('data-time', slot);
-    li.setAttribute('aria-selected', 'false');
-    list.appendChild(li);
-    return li;
-  });
-
-  anchor.appendChild(list);
-  opener.setAttribute('aria-controls', list.id);
-  opener.hidden = false;
-
-  var active = -1;
-
-  function activate(at) {
-    if (active >= 0) options[active].classList.remove('is-active');
-    active = Math.max(0, Math.min(options.length - 1, at));
-    options[active].classList.add('is-active');
-    list.setAttribute('aria-activedescendant', options[active].id);
-    options[active].scrollIntoView({ block: 'nearest' });
-  }
-
-  // A list that runs past midnight - 22:00 to 06:00 - is in the order of its times from its
-  // first: 01:00 comes after 23:30 there.
-  var wraps = slots.some(function (slot, i) { return i > 0 && slot < slots[i - 1]; });
-  function since(time) {
-    var minutes = +time.slice(0, 2) * 60 + +time.slice(3, 5);
-    return wraps ? (minutes - (+slots[0].slice(0, 2) * 60 + +slots[0].slice(3, 5)) + 1440) % 1440 : minutes;
-  }
-
-  function show() {
-    var value = (field.value || '').slice(0, 5);
-    var at = 0;
-    options.forEach(function (one, i) {
-      var time = one.getAttribute('data-time');
-      one.setAttribute('aria-selected', time === value ? 'true' : 'false');
-      if (value && since(time) <= since(value)) at = i;
-    });
-    list.hidden = false;
-    opener.setAttribute('aria-expanded', 'true');
-    activate(at);
-    list.focus();
-  }
-
-  function hide(giveBack) {
-    if (list.hidden) return;
-    list.hidden = true;
-    opener.setAttribute('aria-expanded', 'false');
-    if (giveBack) opener.focus();
-  }
-
-  function take(at) {
-    field.value = options[at].getAttribute('data-time');
-    kit.changed(field);
-    hide(true);
-  }
-
-  opener.addEventListener('click', function () { if (list.hidden) show(); else hide(true); });
-
-  list.addEventListener('click', function (event) {
-    var li = event.target.closest('.pi-time-option');
-    if (li) take(options.indexOf(li));
-  });
-
-  list.addEventListener('keydown', function (event) {
-    var key = event.key;
-    if (key === 'ArrowDown') activate(active + 1);
-    else if (key === 'ArrowUp') activate(active - 1);
-    else if (key === 'Home') activate(0);
-    else if (key === 'End') activate(options.length - 1);
-    else if (key === 'PageDown') activate(active + 6);
-    else if (key === 'PageUp') activate(active - 6);
-    else if (key === 'Enter' || key === ' ') take(active);
-    else if (key === 'Escape') hide(true);
-    else if (key === 'Tab') { hide(false); return; }
-    else if (/^\d$/.test(key)) {
-      for (var i = 1; i <= options.length; i++) {
-        var at = (active + i) % options.length;
-        if (options[at].getAttribute('data-time').charAt(0) === key || options[at].getAttribute('data-time').replace(/^0/, '').charAt(0) === key) { activate(at); break; }
-      }
-    } else return;
-    event.preventDefault();
-  });
-
-  kit.outside(anchor, function () { hide(false); });
-});
-</script><div class="pad-input pad-input-timepicker" data-pad-input="timepicker" data-pad-label="Time" data-config="{&quot;slots&quot;:[&quot;00:00&quot;,&quot;00:15&quot;,&quot;00:30&quot;,&quot;00:45&quot;,&quot;01:00&quot;,&quot;01:15&quot;,&quot;01:30&quot;,&quot;01:45&quot;,&quot;02:00&quot;,&quot;02:15&quot;,&quot;02:30&quot;,&quot;02:45&quot;,&quot;03:00&quot;,&quot;03:15&quot;,&quot;03:30&quot;,&quot;03:45&quot;,&quot;04:00&quot;,&quot;04:15&quot;,&quot;04:30&quot;,&quot;04:45&quot;,&quot;05:00&quot;,&quot;05:15&quot;,&quot;05:30&quot;,&quot;05:45&quot;,&quot;06:00&quot;,&quot;06:15&quot;,&quot;06:30&quot;,&quot;06:45&quot;,&quot;07:00&quot;,&quot;07:15&quot;,&quot;07:30&quot;,&quot;07:45&quot;,&quot;08:00&quot;,&quot;08:15&quot;,&quot;08:30&quot;,&quot;08:45&quot;,&quot;09:00&quot;,&quot;09:15&quot;,&quot;09:30&quot;,&quot;09:45&quot;,&quot;10:00&quot;,&quot;10:15&quot;,&quot;10:30&quot;,&quot;10:45&quot;,&quot;11:00&quot;,&quot;11:15&quot;,&quot;11:30&quot;,&quot;11:45&quot;,&quot;12:00&quot;,&quot;12:15&quot;,&quot;12:30&quot;,&quot;12:45&quot;,&quot;13:00&quot;,&quot;13:15&quot;,&quot;13:30&quot;,&quot;13:45&quot;,&quot;14:00&quot;,&quot;14:15&quot;,&quot;14:30&quot;,&quot;14:45&quot;,&quot;15:00&quot;,&quot;15:15&quot;,&quot;15:30&quot;,&quot;15:45&quot;,&quot;16:00&quot;,&quot;16:15&quot;,&quot;16:30&quot;,&quot;16:45&quot;,&quot;17:00&quot;,&quot;17:15&quot;,&quot;17:30&quot;,&quot;17:45&quot;,&quot;18:00&quot;,&quot;18:15&quot;,&quot;18:30&quot;,&quot;18:45&quot;,&quot;19:00&quot;,&quot;19:15&quot;,&quot;19:30&quot;,&quot;19:45&quot;,&quot;20:00&quot;,&quot;20:15&quot;,&quot;20:30&quot;,&quot;20:45&quot;,&quot;21:00&quot;,&quot;21:15&quot;,&quot;21:30&quot;,&quot;21:45&quot;,&quot;22:00&quot;,&quot;22:15&quot;,&quot;22:30&quot;,&quot;22:45&quot;,&quot;23:00&quot;,&quot;23:15&quot;,&quot;23:30&quot;,&quot;23:45&quot;]}"><label for="pickup">Time</label><div class="pi-anchor"><div class="pi-row"><input type="time" name="pickup" id="pickup" value="" list="pickup-times"><button type="button" class="pi-button pi-time-open" aria-haspopup="listbox" aria-expanded="false" aria-label="Choose Time" hidden><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.2V8l2.6 1.6" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg></button></div></div><datalist id="pickup-times"><option value="00:00"></option><option value="00:15"></option><option value="00:30"></option><option value="00:45"></option><option value="01:00"></option><option value="01:15"></option><option value="01:30"></option><option value="01:45"></option><option value="02:00"></option><option value="02:15"></option><option value="02:30"></option><option value="02:45"></option><option value="03:00"></option><option value="03:15"></option><option value="03:30"></option><option value="03:45"></option><option value="04:00"></option><option value="04:15"></option><option value="04:30"></option><option value="04:45"></option><option value="05:00"></option><option value="05:15"></option><option value="05:30"></option><option value="05:45"></option><option value="06:00"></option><option value="06:15"></option><option value="06:30"></option><option value="06:45"></option><option value="07:00"></option><option value="07:15"></option><option value="07:30"></option><option value="07:45"></option><option value="08:00"></option><option value="08:15"></option><option value="08:30"></option><option value="08:45"></option><option value="09:00"></option><option value="09:15"></option><option value="09:30"></option><option value="09:45"></option><option value="10:00"></option><option value="10:15"></option><option value="10:30"></option><option value="10:45"></option><option value="11:00"></option><option value="11:15"></option><option value="11:30"></option><option value="11:45"></option><option value="12:00"></option><option value="12:15"></option><option value="12:30"></option><option value="12:45"></option><option value="13:00"></option><option value="13:15"></option><option value="13:30"></option><option value="13:45"></option><option value="14:00"></option><option value="14:15"></option><option value="14:30"></option><option value="14:45"></option><option value="15:00"></option><option value="15:15"></option><option value="15:30"></option><option value="15:45"></option><option value="16:00"></option><option value="16:15"></option><option value="16:30"></option><option value="16:45"></option><option value="17:00"></option><option value="17:15"></option><option value="17:30"></option><option value="17:45"></option><option value="18:00"></option><option value="18:15"></option><option value="18:30"></option><option value="18:45"></option><option value="19:00"></option><option value="19:15"></option><option value="19:30"></option><option value="19:45"></option><option value="20:00"></option><option value="20:15"></option><option value="20:30"></option><option value="20:45"></option><option value="21:00"></option><option value="21:15"></option><option value="21:30"></option><option value="21:45"></option><option value="22:00"></option><option value="22:15"></option><option value="22:30"></option><option value="22:45"></option><option value="23:00"></option><option value="23:15"></option><option value="23:30"></option><option value="23:45"></option></datalist></div>
-<style>.pad-input-colorpicker input[type=color]{width:3em;height:2.2em;padding:2px;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);cursor:pointer}
-.pad-input-colorpicker .pi-color-code{width:6.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.pad-input-colorpicker .pi-swatches{display:flex;flex-wrap:wrap;gap:.35em;margin-top:.45em}
-.pad-input-colorpicker .pi-swatch{width:1.9em;height:1.9em;padding:0;border-radius:50%;border:2px solid var(--pad-input-field);box-shadow:0 0 0 1px var(--pad-input-line);cursor:pointer}
-.pad-input-colorpicker .pi-swatch[aria-pressed=true]{box-shadow:0 0 0 2px var(--pad-input-ink)}
-.pad-input-colorpicker .pi-swatch:focus-visible{outline:2px solid var(--pad-input-accent);outline-offset:3px}
-@media (forced-colors:active){.pad-input-colorpicker .pi-swatch{forced-color-adjust:none}}
-</style><script>/* colorpicker - the swatches and the code field beside the colour field, all three in step:
-   a swatch chosen, a code typed - #rgb or #rrggbb - or a colour picked sets the other two,
-   and the colour field, the one the form posts, says it changed. The swatch of the colour
-   is pressed. The swatches are buttons in a group, the arrow keys move along them. */
-PadInputs.register('colorpicker', function (frame, cfg, kit) {
-  var colour = frame.querySelector('input[type=color]');
-  var code = frame.querySelector('.pi-color-code');
-  var row = frame.querySelector('.pi-swatches');
-  if (!colour) return;
-  var buttons = [];
-
-  function full(text) {
-    var one = String(text).trim().toLowerCase().match(/^#?([0-9a-f]{3}|[0-9a-f]{6})$/);
-    if (!one) return null;
-    var hex = one[1];
-    return '#' + (hex.length === 3 ? hex.replace(/./g, '$&$&') : hex);
-  }
-
-  function mark() {
-    buttons.forEach(function (button) {
-      button.setAttribute('aria-pressed', button.getAttribute('data-colour') === colour.value ? 'true' : 'false');
-    });
-  }
-
-  function set(value, from) {
-    if (value === null) return;
-    if (colour.value !== value) {
-      colour.value = value;
-      kit.changed(colour);
-    }
-    if (code && from !== code) code.value = value;
-    mark();
-  }
-
-  (cfg.swatches || []).forEach(function (one, i) {
-    var button = kit.el('button', 'pi-swatch');
-    button.type = 'button';
-    button.setAttribute('data-colour', one);
-    button.setAttribute('aria-label', one);
-    button.title = one;
-    button.tabIndex = i === 0 ? 0 : -1;
-    button.style.background = one;
-    button.addEventListener('click', function () { set(one); });
-    buttons.push(button);
-    row.appendChild(button);
-  });
-
-  // One tab stop for the row: the arrows move between the swatches, as in a toolbar.
-  row.addEventListener('keydown', function (event) {
-    var at = buttons.indexOf(document.activeElement);
-    if (at < 0) return;
-    var to = { ArrowRight: at + 1, ArrowDown: at + 1, ArrowLeft: at - 1, ArrowUp: at - 1, Home: 0, End: buttons.length - 1 }[event.key];
-    if (to === undefined) return;
-    event.preventDefault();
-    to = (to + buttons.length) % buttons.length;
-    buttons[at].tabIndex = -1;
-    buttons[to].tabIndex = 0;
-    buttons[to].focus();
-  });
-
-  // A colour picked in the browser's own picker; the code being typed is left as it is typed.
-  colour.addEventListener('input', function () { if (code && document.activeElement !== code) code.value = colour.value; mark(); });
-
-  if (code) {
-    code.addEventListener('input', function () { set(full(code.value), code); });
-    code.addEventListener('change', function () { var value = full(code.value); code.value = value || colour.value; set(value); });
-  }
-
-  if (buttons.length) row.hidden = false;
-  if (code) code.hidden = false;
-  mark();
-});
-</script><div class="pad-input pad-input-colorpicker" data-pad-input="colorpicker" data-pad-label="Colour" data-config="{&quot;swatches&quot;:[&quot;#2a78d6&quot;,&quot;#1a8a5a&quot;,&quot;#e8a317&quot;,&quot;#eb6834&quot;,&quot;#d43c3b&quot;,&quot;#8e44ad&quot;,&quot;#1a1a19&quot;,&quot;#ffffff&quot;]}"><label for="tint">Colour</label><div class="pi-row pi-color-row"><input type="color" name="tint" id="tint" value="#000000"><input type="text" class="pi-color-code" value="#000000" size="8" maxlength="7" spellcheck="false" autocomplete="off" aria-label="Colour, hexadecimal code" hidden></div><div class="pi-swatches" role="group" aria-label="Swatches for Colour" hidden></div></div>
+  <link rel="stylesheet" href="/pad/assets/inputs/datepicker.css?v=9de34172ad"><script src="/pad/assets/inputs/datepicker.js?v=23dbe0b505"></script><div class="pad-input pad-input-datepicker" data-pad-input="datepicker" data-pad-label="Arrival" data-config="{&quot;weekstart&quot;:&quot;monday&quot;}"><label for="arrival">Arrival</label><div class="pi-anchor"><div class="pi-row"><input type="date" name="arrival" id="arrival" value=""><button type="button" class="pi-button pi-date-open" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose Arrival" hidden><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="1.5" y="3" width="13" height="11.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 6.5h13M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.4" fill="none"/></svg></button></div></div></div>
+<link rel="stylesheet" href="/pad/assets/inputs/timepicker.css?v=68c8da3a22"><script src="/pad/assets/inputs/timepicker.js?v=e982a7d01b"></script><div class="pad-input pad-input-timepicker" data-pad-input="timepicker" data-pad-label="Time" data-config="{&quot;slots&quot;:[&quot;00:00&quot;,&quot;00:15&quot;,&quot;00:30&quot;,&quot;00:45&quot;,&quot;01:00&quot;,&quot;01:15&quot;,&quot;01:30&quot;,&quot;01:45&quot;,&quot;02:00&quot;,&quot;02:15&quot;,&quot;02:30&quot;,&quot;02:45&quot;,&quot;03:00&quot;,&quot;03:15&quot;,&quot;03:30&quot;,&quot;03:45&quot;,&quot;04:00&quot;,&quot;04:15&quot;,&quot;04:30&quot;,&quot;04:45&quot;,&quot;05:00&quot;,&quot;05:15&quot;,&quot;05:30&quot;,&quot;05:45&quot;,&quot;06:00&quot;,&quot;06:15&quot;,&quot;06:30&quot;,&quot;06:45&quot;,&quot;07:00&quot;,&quot;07:15&quot;,&quot;07:30&quot;,&quot;07:45&quot;,&quot;08:00&quot;,&quot;08:15&quot;,&quot;08:30&quot;,&quot;08:45&quot;,&quot;09:00&quot;,&quot;09:15&quot;,&quot;09:30&quot;,&quot;09:45&quot;,&quot;10:00&quot;,&quot;10:15&quot;,&quot;10:30&quot;,&quot;10:45&quot;,&quot;11:00&quot;,&quot;11:15&quot;,&quot;11:30&quot;,&quot;11:45&quot;,&quot;12:00&quot;,&quot;12:15&quot;,&quot;12:30&quot;,&quot;12:45&quot;,&quot;13:00&quot;,&quot;13:15&quot;,&quot;13:30&quot;,&quot;13:45&quot;,&quot;14:00&quot;,&quot;14:15&quot;,&quot;14:30&quot;,&quot;14:45&quot;,&quot;15:00&quot;,&quot;15:15&quot;,&quot;15:30&quot;,&quot;15:45&quot;,&quot;16:00&quot;,&quot;16:15&quot;,&quot;16:30&quot;,&quot;16:45&quot;,&quot;17:00&quot;,&quot;17:15&quot;,&quot;17:30&quot;,&quot;17:45&quot;,&quot;18:00&quot;,&quot;18:15&quot;,&quot;18:30&quot;,&quot;18:45&quot;,&quot;19:00&quot;,&quot;19:15&quot;,&quot;19:30&quot;,&quot;19:45&quot;,&quot;20:00&quot;,&quot;20:15&quot;,&quot;20:30&quot;,&quot;20:45&quot;,&quot;21:00&quot;,&quot;21:15&quot;,&quot;21:30&quot;,&quot;21:45&quot;,&quot;22:00&quot;,&quot;22:15&quot;,&quot;22:30&quot;,&quot;22:45&quot;,&quot;23:00&quot;,&quot;23:15&quot;,&quot;23:30&quot;,&quot;23:45&quot;]}"><label for="pickup">Time</label><div class="pi-anchor"><div class="pi-row"><input type="time" name="pickup" id="pickup" value="" list="pickup-times"><button type="button" class="pi-button pi-time-open" aria-haspopup="listbox" aria-expanded="false" aria-label="Choose Time" hidden><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.2V8l2.6 1.6" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg></button></div></div><datalist id="pickup-times"><option value="00:00"></option><option value="00:15"></option><option value="00:30"></option><option value="00:45"></option><option value="01:00"></option><option value="01:15"></option><option value="01:30"></option><option value="01:45"></option><option value="02:00"></option><option value="02:15"></option><option value="02:30"></option><option value="02:45"></option><option value="03:00"></option><option value="03:15"></option><option value="03:30"></option><option value="03:45"></option><option value="04:00"></option><option value="04:15"></option><option value="04:30"></option><option value="04:45"></option><option value="05:00"></option><option value="05:15"></option><option value="05:30"></option><option value="05:45"></option><option value="06:00"></option><option value="06:15"></option><option value="06:30"></option><option value="06:45"></option><option value="07:00"></option><option value="07:15"></option><option value="07:30"></option><option value="07:45"></option><option value="08:00"></option><option value="08:15"></option><option value="08:30"></option><option value="08:45"></option><option value="09:00"></option><option value="09:15"></option><option value="09:30"></option><option value="09:45"></option><option value="10:00"></option><option value="10:15"></option><option value="10:30"></option><option value="10:45"></option><option value="11:00"></option><option value="11:15"></option><option value="11:30"></option><option value="11:45"></option><option value="12:00"></option><option value="12:15"></option><option value="12:30"></option><option value="12:45"></option><option value="13:00"></option><option value="13:15"></option><option value="13:30"></option><option value="13:45"></option><option value="14:00"></option><option value="14:15"></option><option value="14:30"></option><option value="14:45"></option><option value="15:00"></option><option value="15:15"></option><option value="15:30"></option><option value="15:45"></option><option value="16:00"></option><option value="16:15"></option><option value="16:30"></option><option value="16:45"></option><option value="17:00"></option><option value="17:15"></option><option value="17:30"></option><option value="17:45"></option><option value="18:00"></option><option value="18:15"></option><option value="18:30"></option><option value="18:45"></option><option value="19:00"></option><option value="19:15"></option><option value="19:30"></option><option value="19:45"></option><option value="20:00"></option><option value="20:15"></option><option value="20:30"></option><option value="20:45"></option><option value="21:00"></option><option value="21:15"></option><option value="21:30"></option><option value="21:45"></option><option value="22:00"></option><option value="22:15"></option><option value="22:30"></option><option value="22:45"></option><option value="23:00"></option><option value="23:15"></option><option value="23:30"></option><option value="23:45"></option></datalist></div>
+<link rel="stylesheet" href="/pad/assets/inputs/colorpicker.css?v=a01d166121"><script src="/pad/assets/inputs/colorpicker.js?v=941544001e"></script><div class="pad-input pad-input-colorpicker" data-pad-input="colorpicker" data-pad-label="Colour" data-config="{&quot;swatches&quot;:[&quot;#2a78d6&quot;,&quot;#1a8a5a&quot;,&quot;#e8a317&quot;,&quot;#eb6834&quot;,&quot;#d43c3b&quot;,&quot;#8e44ad&quot;,&quot;#1a1a19&quot;,&quot;#ffffff&quot;]}"><label for="tint">Colour</label><div class="pi-row pi-color-row"><input type="color" name="tint" id="tint" value="#000000"><input type="text" class="pi-color-code" value="#000000" size="8" maxlength="7" spellcheck="false" autocomplete="off" aria-label="Colour, hexadecimal code" hidden></div><div class="pi-swatches" role="group" aria-label="Swatches for Colour" hidden></div></div>
 
 
 </td>
@@ -757,7 +156,7 @@ tags.</p>
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -787,404 +186,13 @@ tags.</p>
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">taginput </font><font color="red"><font color="black">'</font>topics<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Topics<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>pad<font color="black">,</font> forms<font color="black">'</font></font>/}</b><br><b>{<font color="blue">combobox </font><font color="red"><font color="black">'</font>city<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>City<font color="black">'</font></font>}</b><br>  Amsterdam<br>  Berlin<br>  Paris<br><b>{/<font color="blue">combobox</font><font color="red"></font>}</b><br><b>{<font color="blue">otp </font><font color="red"><font color="black">'</font>code<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Code<font color="black">'</font><font color="black">,</font> length=4</font>/}</b></code></pre></td>
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dGFnaW5wdXQgJ3RvcGljcycsIGxhYmVsPSdUb3BpY3MnLCB2YWx1ZT0ncGFkLCBmb3JtcycvfVxue2lucHV0OmNvbWJvYm94ICdjaXR5JywgbGFiZWw9J0NpdHknfVxuICBBbXN0ZXJkYW1cbiAgQmVybGluXG4gIFBhcmlzXG57L2lucHV0OmNvbWJvYm94fVxue2lucHV0Om90cCAnY29kZScsIGxhYmVsPSdDb2RlJywgbGVuZ3RoPTQvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dGFnaW5wdXQgJ3RvcGljcycsIGxhYmVsPSdUb3BpY3MnLCB2YWx1ZT0ncGFkLCBmb3JtcycvfVxue2lucHV0OmNvbWJvYm94ICdjaXR5JywgbGFiZWw9J0NpdHknfVxuICBBbXN0ZXJkYW1cbiAgQmVybGluXG4gIFBhcmlzXG57L2lucHV0OmNvbWJvYm94fVxue2lucHV0Om90cCAnY29kZScsIGxhYmVsPSdDb2RlJywgbGVuZ3RoPTQvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>taginput </font><font color="red"><font color="black">'</font>topics<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Topics<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>pad<font color="black">,</font> forms<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>combobox </font><font color="red"><font color="black">'</font>city<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>City<font color="black">'</font></font>}</b><br>  Amsterdam<br>  Berlin<br>  Paris<br><b>{/<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>combobox</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>otp </font><font color="red"><font color="black">'</font>code<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Code<font color="black">'</font><font color="black">,</font> length=4</font>/}</b></code></pre></td>
         
         
           <td style="vertical-align:top">
-  <style>.pad-input-taginput.is-ready .pi-tags{display:flex;flex-wrap:wrap;align-items:center;gap:.3em;max-width:32em;padding:.3em;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);cursor:text}
-.pad-input-taginput.is-ready .pi-tags:focus-within{outline:2px solid var(--pad-input-accent);outline-offset:2px}
-.pad-input-taginput.is-ready .pi-tags input[type=text]{flex:1 1 8em;min-width:6em;border:0!important;padding:.2em .3em;outline:none;background:transparent}
-.pad-input-taginput:not(.is-ready) .pi-tags input[type=text]{width:100%;max-width:32em}
-.pad-input-taginput .pi-tags:has([aria-invalid=true]){border-color:var(--pad-input-bad)}
-.pad-input-taginput .pi-chips{display:contents;list-style:none;margin:0;padding:0}
-.pad-input-taginput .pi-chip{display:inline-flex;align-items:center;gap:.15em;padding:.1em .2em .1em .55em;border-radius:1em;background:var(--pad-input-shade);border:1px solid var(--pad-input-line);font-size:.92em}
-.pad-input-taginput .pi-chip-x{border:0;background:none;color:var(--pad-input-muted);font:inherit;font-size:1.1em;line-height:1;width:1.4em;height:1.4em;border-radius:50%;cursor:pointer;padding:0}
-.pad-input-taginput .pi-chip-x:hover{color:var(--pad-input-bad);background:var(--pad-input-field)}
-</style><script>/* taginput - chips over the comma list. The text field the server wrote gives its name to a
-   hidden field, which holds the words joined with ', ' - what the form posts, the same text
-   the field posted without the script - and becomes the field a word is typed in. Enter or a
-   comma adds the word, a pasted list adds each of its words, leaving the field adds what was
-   typed; Backspace in the empty field takes the last word back, and every chip has a button
-   that takes it out. A word is in the list once, in the case it was first written in. What
-   happens is said to a screen reader. A required list stays one: the text field the words
-   leave holds the browser's required check while there is no word, and lets it go once a
-   chip holds one - kept on the emptied field, it refused every list. */
-PadInputs.register('taginput', function (frame, cfg, kit) {
-  var box = frame.querySelector('.pi-tags input[type=text]');
-  var wrap = frame.querySelector('.pi-tags');
-  var said = frame.querySelector('.pi-tags-said');
-  if (!box || !wrap) return;
-
-  var needed = box.required;
-  if (needed) box.setAttribute('aria-required', 'true');
-
-  var words = [];
-  var hidden = document.createElement('input');
-  hidden.type = 'hidden';
-  hidden.name = box.name;
-  if (box.id) hidden.setAttribute('data-pad-shows', box.id);
-  box.removeAttribute('name');
-  box.value.split(',').forEach(function (one) { add(one, true); });
-  box.value = '';
-
-  var chips = kit.el('ul', 'pi-chips');
-  chips.setAttribute('aria-label', kit.label(frame) || 'Words');
-  wrap.insertBefore(chips, box);
-  wrap.appendChild(hidden);
-
-  function say(text) { if (said) said.textContent = text; }
-
-  function sync(quiet) {
-    hidden.value = words.join(', ');
-    if (needed) box.required = !words.length;
-    chips.textContent = '';
-    words.forEach(function (word, i) {
-      var li = kit.el('li', 'pi-chip');
-      li.appendChild(kit.el('span', 'pi-chip-text', word));
-      var x = kit.el('button', 'pi-chip-x', '×');
-      x.type = 'button';
-      x.setAttribute('aria-label', 'Remove ' + word);
-      x.addEventListener('click', function () {
-        words.splice(i, 1);
-        sync();
-        say(word + ' removed');
-        box.focus();
-      });
-      li.appendChild(x);
-      chips.appendChild(li);
-    });
-    chips.hidden = !words.length;
-    if (!quiet) kit.changed(hidden);
-  }
-
-  function add(text, quiet) {
-    var word = String(text).replace(/\s+/g, ' ').trim();
-    if (!word) return false;
-    var lower = word.toLowerCase();
-    if (words.some(function (one) { return one.toLowerCase() === lower; })) { if (!quiet) say(word + ' is there already'); return false; }
-    if (cfg.most && words.length >= cfg.most) { if (!quiet) say('No more than ' + cfg.most); return false; }
-    words.push(word);
-    if (!quiet) say(word + ' added');
-    return true;
-  }
-
-  function take() {
-    var parts = box.value.split(',');
-    var added = false;
-    parts.forEach(function (one) { if (add(one)) added = true; });
-    box.value = '';
-    if (added) sync();
-  }
-
-  box.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter' || event.key === ',') {
-      if (box.value.trim() !== '' || event.key === ',') event.preventDefault();
-      take();
-    } else if (event.key === 'Backspace' && box.value === '' && words.length) {
-      var word = words.pop();
-      sync();
-      say(word + ' removed');
-    }
-  });
-
-  box.addEventListener('input', function () {
-    if (box.value.indexOf(',') >= 0) take();
-  });
-
-  box.addEventListener('change', function () {
-    if (box.value.trim() !== '') take();
-  });
-
-  box.addEventListener('blur', function () { if (box.value.trim() !== '') take(); });
-
-  // A click in the frame of chips puts the focus in the field, as in a text field.
-  wrap.addEventListener('click', function (event) { if (event.target === wrap) box.focus(); });
-
-  sync(true);
-});
-</script><div class="pad-input pad-input-taginput" data-pad-input="taginput" data-pad-label="Topics" data-config="{&quot;most&quot;:0}"><label for="topics">Topics</label><div class="pi-tags"><input type="text" name="topics" id="topics" value="pad, forms" autocomplete="off"></div><span class="pi-hide pi-tags-said" aria-live="polite"></span></div>
-<style>.pad-input-combobox .pi-anchor{width:20em}
-.pad-input-combobox .pi-anchor input[type=text]{width:100%}
-.pad-input-combobox .pi-combo-list{left:0;right:0;top:100%;list-style:none;margin:4px 0 0;padding:.25em;max-height:16em;overflow-y:auto}
-.pad-input-combobox .pi-combo-option{padding:.35em .6em;border-radius:5px;cursor:pointer}
-.pad-input-combobox .pi-combo-option:hover{background:var(--pad-input-shade)}
-.pad-input-combobox .pi-combo-option.is-active{background:var(--pad-input-accent);color:var(--pad-input-on)}
-.pad-input-combobox .pi-combo-option mark{background:none;color:inherit;font-weight:700;text-decoration:underline}
-</style><script>/* combobox - the WAI-ARIA combobox with a list that autocompletes: the field gets
-   role="combobox" and the list under it role="listbox", the choice the arrow keys stand on is
-   the field's aria-activedescendant - the focus stays in the field, typing goes on. The list
-   holds the choices that contain what is typed - in any case, accents or not - at most 50,
-   those that begin with it first, the matching part marked; it opens as the field is typed
-   in, with Alt+Down or Down, and closes with Escape, a choice taken, or the focus leaving.
-   Escape in a closed list empties the field. How many choices there are is said to a screen
-   reader. The browser's own list of the datalist is left out where this one is. */
-PadInputs.register('combobox', function (frame, cfg, kit) {
-  var field = frame.querySelector('.pi-anchor input[type=text]');
-  var anchor = frame.querySelector('.pi-anchor');
-  var said = frame.querySelector('.pi-combo-said');
-  var choices = cfg.choices || [];
-  if (!field || !anchor || !choices.length) return;
-
-  field.removeAttribute('list');
-
-  var list = kit.el('ul', 'pi-popup pi-combo-list');
-  list.id = kit.id((field.id || 'combo') + '-list');
-  list.setAttribute('role', 'listbox');
-  list.setAttribute('aria-label', kit.label(frame) || 'Choices');
-  list.hidden = true;
-  anchor.appendChild(list);
-
-  field.setAttribute('role', 'combobox');
-  field.setAttribute('aria-autocomplete', 'list');
-  field.setAttribute('aria-expanded', 'false');
-  field.setAttribute('aria-controls', list.id);
-
-  function fold(text) {
-    return String(text).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
-  }
-
-  var folded = choices.map(fold);
-  var shown = [], active = -1, timer = null;
-
-  function say(text) {
-    clearTimeout(timer);
-    timer = setTimeout(function () { if (said) said.textContent = text; }, 400);
-  }
-
-  function option(text, at, typed) {
-    var li = kit.el('li', 'pi-combo-option');
-    li.id = list.id + '-' + at;
-    li.setAttribute('role', 'option');
-    li.setAttribute('aria-selected', 'false');
-    var found = typed ? fold(text).indexOf(typed) : -1;
-    if (found >= 0 && fold(text).length === text.length) {
-      li.appendChild(document.createTextNode(text.slice(0, found)));
-      li.appendChild(kit.el('mark', '', text.slice(found, found + typed.length)));
-      li.appendChild(document.createTextNode(text.slice(found + typed.length)));
-    } else li.textContent = text;
-    return li;
-  }
-
-  function fill() {
-    var typed = fold(field.value.trim());
-    var starts = [], holds = [];
-    folded.forEach(function (one, i) {
-      if (!typed || one.indexOf(typed) === 0) starts.push(i);
-      else if (one.indexOf(typed) > 0) holds.push(i);
-    });
-    shown = starts.concat(holds).slice(0, 50);
-    list.textContent = '';
-    shown.forEach(function (i, at) { list.appendChild(option(choices[i], at, typed)); });
-    active = -1;
-    field.removeAttribute('aria-activedescendant');
-    return typed;
-  }
-
-  function open() {
-    fill();
-    if (!shown.length) { close(); say('No choices hold what is typed'); return; }
-    list.hidden = false;
-    field.setAttribute('aria-expanded', 'true');
-    say(shown.length === 1 ? '1 choice' : shown.length + ' choices');
-  }
-
-  function close() {
-    list.hidden = true;
-    field.setAttribute('aria-expanded', 'false');
-    field.removeAttribute('aria-activedescendant');
-    active = -1;
-  }
-
-  function activate(at) {
-    var items = list.children;
-    if (active >= 0 && items[active]) { items[active].classList.remove('is-active'); items[active].setAttribute('aria-selected', 'false'); }
-    active = (at + shown.length) % shown.length;
-    items[active].classList.add('is-active');
-    items[active].setAttribute('aria-selected', 'true');
-    field.setAttribute('aria-activedescendant', items[active].id);
-    items[active].scrollIntoView({ block: 'nearest' });
-  }
-
-  // A choice taken says the field changed, as typing does - and that is no typing that opens
-  // the list again.
-  var taking = false;
-
-  function take(at) {
-    field.value = choices[shown[at]];
-    close();
-    taking = true;
-    kit.changed(field);
-    taking = false;
-  }
-
-  field.addEventListener('input', function () { if (!taking) open(); });
-
-  field.addEventListener('keydown', function (event) {
-    var key = event.key;
-    if (key === 'ArrowDown') {
-      event.preventDefault();
-      if (list.hidden) { open(); if (!event.altKey && shown.length) activate(0); }
-      else if (shown.length) activate(active + 1);
-    } else if (key === 'ArrowUp') {
-      event.preventDefault();
-      if (list.hidden) { open(); if (shown.length) activate(shown.length - 1); }
-      else if (shown.length) activate(active - 1);
-    } else if (key === 'Enter') {
-      if (!list.hidden && active >= 0) { event.preventDefault(); take(active); }
-    } else if (key === 'Escape') {
-      if (!list.hidden) { event.preventDefault(); close(); }
-      else if (field.value !== '') { event.preventDefault(); field.value = ''; taking = true; kit.changed(field); taking = false; }
-    } else if (key === 'Tab') close();
-  });
-
-  // A pointer chooses without the field losing the focus.
-  list.addEventListener('mousedown', function (event) { event.preventDefault(); });
-  list.addEventListener('click', function (event) {
-    var li = event.target.closest('.pi-combo-option');
-    if (li) { take(Array.prototype.indexOf.call(list.children, li)); field.focus(); }
-  });
-
-  kit.outside(anchor, close);
-  field.addEventListener('blur', function () { setTimeout(function () { if (document.activeElement !== field) close(); }, 0); });
-});
-</script><div class="pad-input pad-input-combobox" data-pad-input="combobox" data-pad-label="City" data-config="{&quot;choices&quot;:[&quot;Amsterdam&quot;,&quot;Berlin&quot;,&quot;Paris&quot;]}"><label for="city">City</label><div class="pi-anchor"><input type="text" name="city" id="city" value="" list="city-choices" autocomplete="off"></div><datalist id="city-choices"><option value="Amsterdam"></option><option value="Berlin"></option><option value="Paris"></option></datalist><span class="pi-hide pi-combo-said" aria-live="polite"></span></div>
-<style>.pad-input-otp .pi-otp-whole{width:calc(var(--pi-otp,6) * 1.2em + 2em);letter-spacing:.3em;font-variant-numeric:tabular-nums}
-.pad-input-otp .pi-otp-boxes{display:inline-flex;gap:.4em}
-.pad-input-otp .pi-otp-box{width:2.3em;height:2.6em;text-align:center;font-size:1.15em;font-weight:600;font-variant-numeric:tabular-nums;padding:0!important}
-</style><script>/* otp - a box per character over the one-time code. The text field the server wrote becomes
-   the hidden field the form posts; the boxes - a group named by the field's label - take one
-   character each, and the first box takes the field's id, so the label and the messages are
-   its. A character typed moves the focus on, Backspace back - emptying the box before it when
-   it is empty itself - the arrow keys, Home and End move along, and a code pasted or offered
-   by the phone (autocomplete="one-time-code", on the first box) fills the boxes from where it
-   lands - the boxes have no maxlength, so a code a phone puts in the first box whole is
-   spread over them rather than cut to its first character. A character the code cannot hold
-   is not taken. The checks the field carried - required, pattern=, minlength= - stay the
-   code's: a hidden field is one the browser does not check, so the first box holds the code
-   to them, with the browser's own message. */
-PadInputs.register('otp', function (frame, cfg, kit) {
-  var whole = frame.querySelector('.pi-otp-whole');
-  if (!whole) return;
-  var length = cfg.length || 6;
-  var allowed = cfg.letters ? /[A-Za-z0-9]/ : /[0-9]/;
-  var id = whole.id;
-  var label = frame.querySelector('label[for="' + (window.CSS && CSS.escape ? CSS.escape(id) : id) + '"]');
-  var invalid = whole.getAttribute('aria-invalid');
-  var described = whole.getAttribute('aria-describedby');
-
-  var group = kit.el('div', 'pi-otp-boxes');
-  group.setAttribute('role', 'group');
-  if (label) {
-    if (!label.id) label.id = kit.id(id + '-label');
-    group.setAttribute('aria-labelledby', label.id);
-  } else group.setAttribute('aria-label', kit.label(frame));
-
-  var boxes = [];
-  for (var i = 0; i < length; i++) {
-    var box = document.createElement('input');
-    box.type = 'text';
-    box.className = 'pi-otp-box';
-    box.setAttribute('inputmode', cfg.letters ? 'text' : 'numeric');
-    box.setAttribute('autocomplete', i === 0 ? 'one-time-code' : 'off');
-    box.setAttribute('aria-label', 'Character ' + (i + 1) + ' of ' + length);
-    box.spellcheck = false;
-    if (cfg.letters) box.setAttribute('autocapitalize', 'characters');
-    if (whole.disabled) box.disabled = true;
-    boxes.push(box);
-    group.appendChild(box);
-  }
-
-  // The first box is the field the label and the messages point at.
-  whole.removeAttribute('id');
-  boxes[0].id = id;
-  if (invalid) boxes.forEach(function (box) { box.setAttribute('aria-invalid', invalid); });
-  if (described) boxes[0].setAttribute('aria-describedby', described);
-  whole.removeAttribute('aria-invalid');
-  whole.removeAttribute('aria-describedby');
-  whole.setAttribute('data-pad-shows', id);
-
-  // The field's checks on a field of their own, outside the form, that the code is put in:
-  // its answer - and the browser's message - is the first box's. A length is checked by the
-  // browser only on what was typed, so minlength= is a pattern here.
-  var probe = document.createElement('input');
-  probe.type = 'text';
-  probe.required = whole.required;
-  var least = parseInt(whole.getAttribute('minlength'), 10);
-  var shape = whole.getAttribute('pattern');
-  if (least > 0 || shape !== null)
-    probe.pattern = (least > 0 ? '(?=[\\s\\S]{' + least + ',})' : '') + '(?:' + (shape !== null ? shape : '[\\s\\S]*') + ')';
-  if (whole.required) boxes[0].setAttribute('aria-required', 'true');
-
-  whole.type = 'hidden';
-  whole.parentNode.insertBefore(group, whole);
-
-  function clean(text) {
-    return Array.from(String(text)).filter(function (c) { return allowed.test(c); }).map(function (c) { return c.toUpperCase(); });
-  }
-
-  function hold() {
-    probe.value = whole.value;
-    boxes[0].setCustomValidity(probe.checkValidity() ? '' : probe.validationMessage);
-  }
-
-  function post() {
-    whole.value = boxes.map(function (box) { return box.value; }).join('');
-    hold();
-    kit.changed(whole);
-  }
-
-  function fill(from, text) {
-    var chars = clean(text);
-    for (var i = 0; i < chars.length && from + i < length; i++) boxes[from + i].value = chars[i];
-    var next = Math.min(length - 1, from + chars.length);
-    boxes[next].focus();
-    boxes[next].select();
-    post();
-  }
-
-  clean(whole.value).slice(0, length).forEach(function (c, i) { boxes[i].value = c; });
-  hold();
-
-  boxes.forEach(function (box, i) {
-    box.addEventListener('focus', function () { box.select(); });
-
-    box.addEventListener('input', function () {
-      var chars = clean(box.value);
-      box.value = '';
-      if (chars.length > 1) { fill(i, chars.join('')); return; }
-      if (chars.length === 1) {
-        box.value = chars[0];
-        if (i < length - 1) boxes[i + 1].focus();
-      }
-      post();
-    });
-
-    box.addEventListener('keydown', function (event) {
-      var to = null;
-      if (event.key === 'Backspace' && box.value === '' && i > 0) {
-        boxes[i - 1].value = '';
-        to = i - 1;
-        post();
-      } else if (event.key === 'ArrowLeft') to = i - 1;
-      else if (event.key === 'ArrowRight') to = i + 1;
-      else if (event.key === 'Home') to = 0;
-      else if (event.key === 'End') to = length - 1;
-      else if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey && !allowed.test(event.key)) { event.preventDefault(); return; }
-      if (to === null) return;
-      event.preventDefault();
-      to = Math.max(0, Math.min(length - 1, to));
-      boxes[to].focus();
-    });
-
-    box.addEventListener('paste', function (event) {
-      var text = (event.clipboardData || window.clipboardData).getData('text');
-      if (!text) return;
-      event.preventDefault();
-      fill(i, text);
-    });
-  });
-});
-</script><div class="pad-input pad-input-otp" data-pad-input="otp" data-pad-label="Code" data-config="{&quot;length&quot;:4,&quot;letters&quot;:false}"><label for="code">Code</label><input type="text" class="pi-otp-whole" name="code" id="code" value="" maxlength="4" inputmode="numeric" autocomplete="one-time-code" spellcheck="false"></div>
+  <link rel="stylesheet" href="/pad/assets/inputs/taginput.css?v=3b66eda45d"><script src="/pad/assets/inputs/taginput.js?v=9abb16db44"></script><div class="pad-input pad-input-taginput" data-pad-input="taginput" data-pad-label="Topics" data-config="{&quot;most&quot;:0}"><label for="topics">Topics</label><div class="pi-tags"><input type="text" name="topics" id="topics" value="pad, forms" autocomplete="off"></div><span class="pi-hide pi-tags-said" aria-live="polite"></span></div>
+<link rel="stylesheet" href="/pad/assets/inputs/combobox.css?v=42f633d8a1"><script src="/pad/assets/inputs/combobox.js?v=e6483198a3"></script><div class="pad-input pad-input-combobox" data-pad-input="combobox" data-pad-label="City" data-config="{&quot;choices&quot;:[&quot;Amsterdam&quot;,&quot;Berlin&quot;,&quot;Paris&quot;]}"><label for="city">City</label><div class="pi-anchor"><input type="text" name="city" id="city" value="" list="city-choices" autocomplete="off"></div><datalist id="city-choices"><option value="Amsterdam"></option><option value="Berlin"></option><option value="Paris"></option></datalist><span class="pi-hide pi-combo-said" aria-live="polite"></span></div>
+<link rel="stylesheet" href="/pad/assets/inputs/otp.css?v=d6a0087e47"><script src="/pad/assets/inputs/otp.js?v=482405f109"></script><div class="pad-input pad-input-otp" data-pad-input="otp" data-pad-label="Code" data-config="{&quot;length&quot;:4,&quot;letters&quot;:false}"><label for="code">Code</label><input type="text" class="pi-otp-whole" name="code" id="code" value="" maxlength="4" inputmode="numeric" autocomplete="one-time-code" spellcheck="false"></div>
 
 
 </td>
@@ -1204,10 +212,10 @@ PadInputs.register('otp', function (frame, cfg, kit) {
 
 <h2>Refilled, with the message beside it</h2>
 
-<p>The fields are fields of the <a href="index%EF%B9%96pages%EA%A4%B7forms.html">{form}</a> around them: after a
+<p>The fields are fields of the <a href="index%EF%B9%96pages%EA%A4%B7forms.html">{pad:form}</a> around them: after a
 post of that form they show what was posted, and the message <code>padValidate</code> left for them
 after their frame, in the words of their label. <code>rules=</code> on a field is read from the
-template before the page's PHP runs, as on <code>{input}</code>, and <code>client</code>
+template before the page's PHP runs, as on <code>{pad:input}</code>, and <code>client</code>
 on the form checks the same rules in the browser. Here the post is pretended in the PHP:</p>
 
 
@@ -1217,7 +225,7 @@ on the form checks the same rules in the browser. Here the post is pretended in 
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -1247,55 +255,11 @@ on the form checks the same rules in the browser. Here the post is pretended in 
           <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// As if the form had been posted.<br><br>  </span><span style="color: #0000BB">$_SERVER </span><span style="color: #007700">[</span><span style="color: #DD0000">'REQUEST_METHOD'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'POST'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$_POST </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'guests' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'12' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$errors </span><span style="color: #007700">= </span><span style="color: #0000BB">padValidate </span><span style="color: #007700">( [<br>    </span><span style="color: #DD0000">'guests' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'integer|between:1,8'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'score'  </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required' </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">stepper </font><font color="red"><font color="black">'</font>guests<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Guests<font color="black">'</font></font>/}</b><br><b>{<font color="blue">stars </font><font color="red"><font color="black">'</font>score<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Rating<font color="black">'</font></font>/}</b></code></pre></td>
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6c3RlcHBlciAnZ3Vlc3RzJywgbGFiZWw9J0d1ZXN0cycvfVxue2lucHV0OnN0YXJzICdzY29yZScsIGxhYmVsPSdSYXRpbmcnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBBcyBpZiB0aGUgZm9ybSBoYWQgYmVlbiBwb3N0ZWQuXG5cbiAgJF9TRVJWRVIgWydSRVFVRVNUX01FVEhPRCddID0gJ1BPU1QnO1xuICAkX1BPU1QgPSBbICdndWVzdHMnID0+ICcxMicgXTtcblxuICAkZXJyb3JzID0gcGFkVmFsaWRhdGUgKCBbXG4gICAgJ2d1ZXN0cycgPT4gJ2ludGVnZXJ8YmV0d2VlbjoxLDgnLFxuICAgICdzY29yZScgID0+ICdyZXF1aXJlZCcgXSApO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6c3RlcHBlciAnZ3Vlc3RzJywgbGFiZWw9J0d1ZXN0cycvfVxue2lucHV0OnN0YXJzICdzY29yZScsIGxhYmVsPSdSYXRpbmcnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBBcyBpZiB0aGUgZm9ybSBoYWQgYmVlbiBwb3N0ZWQuXG5cbiAgJF9TRVJWRVIgWydSRVFVRVNUX01FVEhPRCddID0gJ1BPU1QnO1xuICAkX1BPU1QgPSBbICdndWVzdHMnID0+ICcxMicgXTtcblxuICAkZXJyb3JzID0gcGFkVmFsaWRhdGUgKCBbXG4gICAgJ2d1ZXN0cycgPT4gJ2ludGVnZXJ8YmV0d2VlbjoxLDgnLFxuICAgICdzY29yZScgID0+ICdyZXF1aXJlZCcgXSApO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>stepper </font><font color="red"><font color="black">'</font>guests<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Guests<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>stars </font><font color="red"><font color="black">'</font>score<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Rating<font color="black">'</font></font>/}</b></code></pre></td>
         
         
           <td style="vertical-align:top">
-  <style>.pad-input-stepper .pi-stepper-row{display:inline-flex;align-items:stretch}
-.pad-input-stepper input[type=number]{width:6em;text-align:center;font-variant-numeric:tabular-nums;border-radius:0!important;-moz-appearance:textfield}
-.pad-input-stepper.is-ready input[type=number]::-webkit-inner-spin-button,.pad-input-stepper.is-ready input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
-.pad-input-stepper:not(.is-ready) input[type=number]{border-radius:6px!important}
-.pad-input-stepper .pi-step{min-width:2.4em;font-size:1.1em;font-weight:600}
-.pad-input-stepper .pi-step[data-step="-1"]{border-radius:6px 0 0 6px;border-right:0}
-.pad-input-stepper .pi-step[data-step="1"]{border-radius:0 6px 6px 0;border-left:0}
-</style><script>/* stepper - the minus and the plus: a step of the number within its bounds, as the arrow keys
-   step it. The buttons stay out of the tab order - the number itself takes the arrows - and
-   held down they keep stepping. */
-PadInputs.register('stepper', function (frame, cfg, kit) {
-  var number = frame.querySelector('input[type=number]');
-  if (!number) return;
-  kit.show(frame, '.pi-step');
-
-  function step(by) {
-    if (number.disabled || number.readOnly) return;
-    if (number.value === '') {
-      number.value = number.min !== '' ? number.min : '0';
-      if (by > 0 && number.min !== '') { kit.changed(number); return; }
-    }
-    try {
-      if (by > 0) number.stepUp(); else number.stepDown();
-    } catch (e) {
-      var size = parseFloat(number.step) || 1;
-      number.value = String((parseFloat(number.value) || 0) + by * size);
-    }
-    kit.changed(number);
-  }
-
-  Array.prototype.forEach.call(frame.querySelectorAll('.pi-step'), function (button) {
-    var by = +button.getAttribute('data-step');
-    var timer = null;
-    function stop() { clearTimeout(timer); clearInterval(timer); timer = null; }
-    button.addEventListener('click', function (event) { if (event.detail === 0) step(by); });
-    button.addEventListener('pointerdown', function (event) {
-      event.preventDefault();
-      step(by);
-      number.focus();
-      timer = setTimeout(function () { timer = setInterval(function () { step(by); }, 80); }, 400);
-    });
-    ['pointerup', 'pointerleave', 'pointercancel'].forEach(function (type) { button.addEventListener(type, stop); });
-  });
-});
-</script><div class="pad-input pad-input-stepper" data-pad-input="stepper" data-pad-label="Guests"><label for="guests">Guests</label><div class="pi-stepper-row"><button type="button" class="pi-button pi-step" data-step="-1" aria-controls="guests" aria-label="Decrease Guests" tabindex="-1" hidden>&minus;</button><input type="number" name="guests" id="guests" inputmode="decimal" step="1" value="12" aria-invalid="true" aria-describedby="guests-error"><button type="button" class="pi-button pi-step" data-step="1" aria-controls="guests" aria-label="Increase Guests" tabindex="-1" hidden>+</button></div></div><span class="error" id="guests-error">Guests must be between 1 and 8</span>
+  <link rel="stylesheet" href="/pad/assets/inputs/stepper.css?v=dcb4932d74"><script src="/pad/assets/inputs/stepper.js?v=aaab60ec4b"></script><div class="pad-input pad-input-stepper" data-pad-input="stepper" data-pad-label="Guests"><label for="guests">Guests</label><div class="pi-stepper-row"><button type="button" class="pi-button pi-step" data-step="-1" aria-controls="guests" aria-label="Decrease Guests" tabindex="-1" hidden>&minus;</button><input type="number" name="guests" id="guests" inputmode="decimal" step="1" value="12" aria-invalid="true" aria-describedby="guests-error"><button type="button" class="pi-button pi-step" data-step="1" aria-controls="guests" aria-label="Increase Guests" tabindex="-1" hidden>+</button></div></div><span class="error" id="guests-error">Guests must be between 1 and 8</span>
 <fieldset class="pad-input pad-input-stars" data-pad-input="stars" data-pad-label="Rating" data-config="{&quot;max&quot;:5,&quot;clear&quot;:true}"><legend>Rating</legend><span class="pi-stars"><input type="radio" class="pi-star-input" name="score" id="score" value="1" aria-invalid="true" aria-describedby="score-error"><label class="pi-star" for="score"><span class="pi-hide">1 star of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-2" value="2" aria-invalid="true" aria-describedby="score-error"><label class="pi-star" for="score-2"><span class="pi-hide">2 stars of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-3" value="3" aria-invalid="true" aria-describedby="score-error"><label class="pi-star" for="score-3"><span class="pi-hide">3 stars of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-4" value="4" aria-invalid="true" aria-describedby="score-error"><label class="pi-star" for="score-4"><span class="pi-hide">4 stars of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-5" value="5" aria-invalid="true" aria-describedby="score-error"><label class="pi-star" for="score-5"><span class="pi-hide">5 stars of 5</span></label></span><button type="button" class="pi-button pi-stars-clear" hidden>Clear</button></fieldset><span class="error" id="score-error">Rating is required</span>
 
 
@@ -1315,7 +279,7 @@ PadInputs.register('stepper', function (frame, cfg, kit) {
 
 
 <ul>
-  <li>The kinds: colorpicker, combobox, datepicker, dropzone, mdeditor, newpassword, otp, signature, slider, stars, stepper, taginput, timepicker, toggle.</li>
+  <li>The kinds: colorpicker, combobox, datepicker, daterange, dropzone, durationpicker, mdeditor, multiselect, newpassword, otp, rangeslider, segmented, signature, slider, stars, stepper, taginput, timepicker, toggle, treepicker.</li>
   <li>The colours are custom properties on <code>.pad-input</code> - <code>--pad-input-accent</code>,
   <code>--pad-input-line</code>, <code>--pad-input-star</code> and their like - with light and dark
   defaults.</li>

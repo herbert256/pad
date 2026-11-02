@@ -3,8 +3,8 @@
   // How values spread, without bins: the empirical cumulative distribution - for every value
   // along the bottom, the share of the observations at or below it.
   //
-  //   {chart 'ecdf', data='trials', label='group', value='ms'}
-  //   {chart 'ecdf', data='deliveries', value='days'}
+  //   {chart:ecdf data='trials', label='group', value='ms'}
+  //   {chart:ecdf data='deliveries', value='days'}
   //
   // value= names the numbers - else the first numeric field; label= groups them, a step line
   // per group in its colour with a legend - all values one line without it. The values of a

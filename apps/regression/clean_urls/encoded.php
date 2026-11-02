@@ -2,7 +2,7 @@
 
   // A clean URL keeps a segment's encoded & as part of the segment: the path was decoded
   // before its &name=value tail was split off, so products/a%26b reached products/[id] as
-  // a with a value b - and {get}, {ajax} and padRedirect (), which encode a routed segment,
+  // a with a value b - and {pad:get}, {pad:ajax} and padRedirect (), which encode a routed segment,
   // had the encoding undone, a visitor's a%26padStats becoming a switch of the request this
   // server makes to itself. A real & still starts the tail. Every path is asked in the
   // index.php/... form, which every server runs without being told (the README): a bare

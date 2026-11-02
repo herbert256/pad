@@ -1,19 +1,19 @@
-{data 'myJson'}
+{pad:data 'myJson'}
 [
   { "column": [ 11, 12, 13, 14, 15 ] },
   { "column": [ 21, 22, 23, 24, 25 ] },
   { "column": [ 31, 32, 33, 34, 35 ] }
 ]
-{/data}
+{/pad:data}
 
-{pad data='myJson'}
+{pad:pad data='myJson'}
   <table border='1'>
     @start@
       <tr>
-        {column}
+        {array:column}
           <td>{$column}</td>
-        {/column}
+        {/array:column}
       </tr>
     @end@
   </table>
-{/pad}
+{/pad:pad}

@@ -293,7 +293,7 @@
     padHeader ('Expires: '       . gmdate('D, d M Y H:i:s', $_SERVER['REQUEST_TIME'] + $age ) . ' GMT');
     padHeader ('Last-Modified: ' . gmdate('D, d M Y H:i:s', $padTime                       ) . ' GMT');
 
-    // No body to describe, no tag: the headers of a {flush} go out before the page is whole
+    // No body to describe, no tag: the headers of a {pad:flush} go out before the page is whole
     // (lib/flush.php), and said Etag: "", one tag for every flushed page.
 
     if ( (string) $padEtag !== '' )

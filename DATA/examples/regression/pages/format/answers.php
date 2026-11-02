@@ -7,8 +7,9 @@
   //            content type; the template does not run
   //   csv      ?page&padFormat=csv - the first exposed list, a header row and a line per
   //            row, quoted where a value holds a comma, named after the page
-  //   accept   an Accept header that prefers JSON or CSV gets data, a browser's gets the page,
-  //            and every answer of an exposing page says Vary: Accept; a page that exposes
+  //   accept   an Accept header that asks for JSON or CSV and not for text/html gets data, a
+  //            browser's - and any that names text/html, at any quality - gets the page, and
+  //            every answer of an exposing page says Vary: Accept; a page that exposes
   //            nothing - format/host, which embeds one that does - renders its HTML
   //   refused  asked outright for what the page cannot give: 406 for a page exposing nothing,
   //            for a format that does not exist and for CSV without a list; JSON carries a

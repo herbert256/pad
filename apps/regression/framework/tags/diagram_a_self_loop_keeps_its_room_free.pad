@@ -1,8 +1,8 @@
-{diagram direction='LR'}
+{diagram:auto direction='LR'}
 A[Fetch] -->|retry on failure| A
 A --> B[Parse]
-{/diagram}
-{diagram}
+{/diagram:auto}
+{diagram:auto}
 A[Start] --> B[Fetch] & C[Parse]
 B -->|again| B
-{/diagram}
+{/diagram:auto}

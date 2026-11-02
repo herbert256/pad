@@ -7,7 +7,7 @@
   //
   //   {section:hero title='Ship pages, not plumbing', button='Start', link='?start'}
   //     Templates drive the page: no routes, no controllers.
-  //     {slot 'eyebrow'}New in 2026{/slot}
+  //     {pad:slot 'eyebrow'}New in 2026{/pad:slot}
   //   {/section:hero}
   //
   //   {section:pricing title='Plans'}
@@ -15,7 +15,7 @@
   //     {section:item 'Pro', price='€12', period='month', featured}Every project{/section:item}
   //   {/section:pricing}
   //
-  //   {section 'faq', title='Questions', data='questions'/}
+  //   {section:faq title='Questions', data='questions'/}
   //
   // A section is a file of subs/sections/types/ - the markup of one kind - and the files there
   // are the sections there are (padSectionTypes, padKinds). Its style is www/assets/sections/section.css,
@@ -26,7 +26,7 @@
   // dark steps of its own (light-dark(), padWidgetColors). Every section is a size container,
   // its layout following the room it has (@container), not the window.
   //
-  // A section's parts come three ways, the first that has one winning: a {slot 'name'} pair
+  // A section's parts come three ways, the first that has one winning: a {pad:slot 'name'} pair
   // standing directly in its content, an option of the part's name, and - for the text - the
   // rest of the content. The slots are taken out of the content before it renders, wrapped in
   // sealed markers and put back, so they render where the content renders, in its scope - a
@@ -34,7 +34,7 @@
   // (padSectionOpen, padSectionSplit). A list section - features, pricing, faq ... - takes its
   // items from the rows data= names, and from {section:item} pairs inside it, which render
   // with the content and hand themselves to the nearest section below them (padSectionOwner),
-  // as a {tab} hands itself to its {tabs}.
+  // as a {pad:tab} hands itself to its {widget:tabs}.
   //
   // The kind's file runs in padSectionBuild, which knows the section being built
   // ($padSectionNow); the functions it calls are these:
@@ -47,7 +47,7 @@
   //   padSectionItems    the items of a list section, from rows and from {section:item} pairs
   //   padSectionField    an item's field as markup, escaped where it was a value
   //   padSectionRaw      an item's field as it was given
-  //   padSectionForm     a form that posts back, the way {form} writes one
+  //   padSectionForm     a form that posts back, the way {pad:form} writes one
   //   padSection         the section around what the kind built, its style once per page
 
   // A link a section writes is judged as a widget's is (padWidgetLink): the widgets' library
@@ -78,7 +78,7 @@
   }
 
   // The tag the section is written as, for a message: {section:hero}, {hero} never (sections
-  // are not reached bare), or {section 'hero'}.
+  // are not reached bare), or {section:hero}.
 
   function padSectionWhat ( $kind = NULL ) {
 
@@ -86,13 +86,11 @@
 
     $kind = $kind ?? ( $GLOBALS ['padSectionNow'] ['kind'] ?? '' );
 
-    return ( ( $padType [$pad] ?? '' ) == 'pad' ) ? "{section '$kind'}" : "{section:$kind}";
+    return ( ( $padType [$pad] ?? '' ) == 'pad' ) ? "{section:$kind}" : "{section:$kind}";
 
   }
 
-  // The first value the section is given - the heading of {section:cta 'Ready?'}, the name of
-  // an item - the second of {section 'cta', 'Ready?'}, whose first names the section. NULL
-  // when there is none.
+  // The section's first parameter, such as the heading in {section:cta 'Ready?'}, or NULL.
 
   function padSectionValue () {
 
@@ -149,8 +147,8 @@
 
   }
 
-  // The rows data= names - a {data} store, a sequence store, the page's array, a field
-  // holding a list or a _data file, as {chart} and the widgets read them - or NULL without
+  // The rows data= names - a {pad:data} store, a sequence store, the page's array, a field
+  // holding a list or a _data file, as {chart:bar} and the widgets read them - or NULL without
   // data=. The level got those rows as its data from the data option, and would write the
   // section once per row: it gets its one default occurrence back.
 
@@ -191,7 +189,7 @@
   }
 
   // Whether the template between a section's tags writes items - a {section:item} or a
-  // {section 'item'}, in a loop or not - whatever they render to.
+  // {section:item}, in a loop or not - whatever they render to.
 
   function padSectionWritesItems ( $content ) {
 
@@ -507,7 +505,7 @@
 
   }
 
-  // An icon of {icon} by its name (subs/icons/), decoration beside the text it goes with; ''
+  // An icon of {icon:star} by its name (subs/icons/), decoration beside the text it goes with; ''
   // without a name, and a name that is no icon is reported with the names close to it.
 
   function padSectionIcon ( $name ) {
@@ -852,7 +850,7 @@
 
   }
 
-  // A form that posts back to the page, the way {form 'name'} writes one (lib/form.php): the
+  // A form that posts back to the page, the way {pad:form 'name'} writes one (lib/form.php): the
   // session's CSRF token when it posts here, the hidden padForm field with its name - so
   // padPosted ( 'name' ) tells it came back - and fields that refill from the post and show
   // the message padValidate found, while it stands on the stack of forms. $fields is a
@@ -943,7 +941,7 @@
   }
 
   // Which form of its name on the page a section's form is - [ count, place ] - counted with
-  // the {form}s of the name as padFormOpen counts them (lib/form.php), once per section: two
+  // the {pad:form}s of the name as padFormOpen counts them (lib/form.php), once per section: two
   // newsletter sections are one form, by its name, and the second carries its place, so only
   // the one that was sent says thanks, refills and shows the messages - both did after one
   // post.

@@ -3,15 +3,15 @@
   // The embed subsystem: a video, a sound, a map, a pen or a document of another site in a
   // page - without the page asking anything of that site before the visitor does.
   //
-  //   {embed 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'/}
+  //   {embed:auto 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'/}
   //   {embed:vimeo '76979871', title='The new Vimeo player'/}
-  //   {openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}
-  //   {audio 'sounds/bell.mp3', title='The bell'/}
+  //   {embed:openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}
+  //   {embed:audio 'sounds/bell.mp3', title='The bell'/}
   //
   // A provider is a file of subs/embeds/types/: the files there are the providers there are
-  // (padEmbedProviders), the {embed} tag picks the one that knows the address it is given,
-  // the embed: type names one - {embed:youtube 'id'}, or bare, {youtube 'id'}, when nothing
-  // else has the name - and {video} is the video form of the same providers, its markup kept
+  // (padEmbedProviders), the {embed:auto} tag picks the one that knows the address it is given,
+  // the embed: type names one - {embed:youtube 'id'}, or bare, {embed:youtube 'id'}, when nothing
+  // else has the name - and {pad:video} is the video form of the same providers, its markup kept
   // as it was (subs/embeds/_lib/video.php). A provider's file answers an array:
   //
   //   name      the provider as the visitor reads it - YouTube
@@ -93,7 +93,7 @@
   }
 
   // A file of www/<application>/ or of the web by its extension: [ url, extension ], the
-  // application's file versioned as an {asset} - or NULL when the name has none of them.
+  // application's file versioned as an {pad:asset} - or NULL when the name has none of them.
 
   function padEmbedFile ( $source, $extensions ) {
 

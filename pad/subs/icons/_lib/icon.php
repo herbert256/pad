@@ -7,8 +7,8 @@
   // The files there are the icons there are (padIconNames, lib/icon.php): an icon is added by
   // adding its file.
   //
-  //   {icon 'arrow-right'/}
-  //   {icon 'trash', size=16, label='Delete'/}
+  //   {icon:arrow-right/}
+  //   {icon:trash size=16, label='Delete'/}
   //   {icon:star size=20/}
   //
   // padIcon         the SVG of an icon, or '' when there is no icon of that name

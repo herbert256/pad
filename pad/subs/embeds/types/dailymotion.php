@@ -1,7 +1,7 @@
 <?php
 
   // dailymotion - A Dailymotion video: dailymotion.com/video/<id>, dai.ly/<id> and
-  // dailymotion.com/embed/video/<id>; named, a bare id as well, {dailymotion 'x8j4k2c'}.
+  // dailymotion.com/embed/video/<id>; named, a bare id as well, {embed:dailymotion 'x8j4k2c'}.
   // at= is the moment to start at; a ?start= in the address says it too.
 
   return [

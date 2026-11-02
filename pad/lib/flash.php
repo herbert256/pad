@@ -11,7 +11,7 @@
   // padFlashTake   inits/flash.php: a request bringing the sign takes the messages out of
   //                the session for itself, so they are there for this request and gone
   //                from the session whether a page shows them or not
-  // padFlashShow   {flash}: the messages of this request - the ones taken at the start,
+  // padFlashShow   {pad:flash}: the messages of this request - the ones taken at the start,
   //                and any flashed while the page is being made - each shown once
   //
   // A message survives exactly one request after the one that flashed it, the redirect's
@@ -59,18 +59,18 @@
 
   }
 
-  // {flash} or {flash 'error'}: the messages of this request - of that type only, when
-  // one is named - as rows with message and type, taken out so that no second {flash}
+  // {pad:flash} or {pad:flash 'error'}: the messages of this request - of that type only, when
+  // one is named - as rows with message and type, taken out so that no second {pad:flash}
   // shows them again. Those flashed during this very request come along: a page that
   // flashes and renders itself shows them now, not on the next page. One of those this
-  // {flash} does not show stays in the session, for the next request - a {flash 'error'}
+  // {pad:flash} does not show stays in the session, for the next request - a {pad:flash 'error'}
   // took the success flashed beside it out of the session too, and nothing ever showed it.
 
   function padFlashShow ( $type = '' ) {
 
     global $padFlashNow;
 
-    // What it shows is this visitor's, so a {cache} section round it is not kept: stored, the
+    // What it shows is this visitor's, so a {pad:cache} section round it is not kept: stored, the
     // first visitor's message showed to every later one for the ttl, and their own never did.
 
     padFragmentKeepNot ();

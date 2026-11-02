@@ -7,7 +7,7 @@ with no PHP server. Two things are built on that:
 - **Offline applications** (`pad pack`, `wasm/app.mjs`): whole PAD applications packed into one
   directory that runs from the disk or installs from any https host, with their SQLite
   databases kept in the browser between visits.
-- **The template page** (`www/wasm/`, `wasm/build.php`): type a template and JSON data, see it
+- **The template page** (`www/wasm/`, `wasm/build.php`): type a template and data or PHP, see it
   rendered in the tab.
 
 ## Offline applications
@@ -123,8 +123,8 @@ and the binary is handed to PHP as `wasmBinary` instead of being fetched.
 
 ### Limits
 
-- No MySQL; no network from PHP - `{curl}`, `padCurl`, `padPrefetch`, `SELF://` and a
-  `{page app=.../}` fetched over HTTP answer nothing offline. No sodium (`padEncrypt`) and no
+- No MySQL; no network from PHP - `{pad:curl}`, `padCurl`, `padPrefetch`, `SELF://` and a
+  `{pad:page app=.../}` fetched over HTTP answer nothing offline. No sodium (`padEncrypt`) and no
   intl in the build; the sequence subsystem's large tables are left out.
 - One PHP answers one request at a time: a page that sleeps holds the others.
 - Opened from the disk: a module script of the application (`type="module"`) gets a blob:
@@ -135,20 +135,42 @@ and the binary is handed to PHP as `wasmBinary` instead of being fetched.
 
 ## The template page
 
-`www/wasm/` renders one template with JSON data in the tab: `php wasm/build.php` writes
-`www/wasm/pad-bundle.json` (the engine, about 1.8 MB), and the page loads PHP 8.4 from
-jsDelivr. `www/wasm/pad-wasm.js` holds `padInstall(php, bundle)` and
-`padRender(php, template, data)`; `wasm/verify.mjs` renders eight templates with them in Node.
+`www/wasm/` renders a template with data or PHP in the browser. `php wasm/build.php`
+writes `www/wasm/pad-bundle.json` (the engine, subsystem CSS/JS, shared data reader and editor metadata).
+The page loads PHP 8.4 from jsDelivr and uses the common frame styles, menu, theme
+selector and Monaco/PAD editors. `editor.js` handles the UI; `pad-wasm.js` installs
+and runs PHP. Rebuild the bundle after engine, asset, menu, theme or completion-name changes.
+
+Data supports JSON, YAML, XML, CSV and PAD's other formats recognised on sight, with
+record keys as variables and lists under `rows`. PHP mode executes the paired code
+in browser memory, including its output. Browser PHP has no yaml extension, so PAD
+identifies YAML in the data pane and the bundled [js-yaml 4.1.1](https://github.com/nodeca/js-yaml/tree/4.1.1)
+reader converts it locally. YAML inside arbitrary PHP/template code still requires
+an extension; the adapter is for the data pane. `vendor/` records the source and license.
+
+Render, Show the HTML and Ctrl/Cmd+Enter execute in the browser. Shared links preserve
+template, data, PHP and mode and wait for Render; the built-in example runs on load.
+Open in live transfers those editors to the combined server app, whose Open in WASM
+link transfers them back. Theme choices share the `padTheme` cookie with server apps.
+Output scripts run in an opaque-origin iframe sandbox.
+
+CSS and JavaScript can be written directly in the template using `<style>` and `<script>`.
+Subsystems such as games, widgets, inputs, sections, effects and client-rendered charts
+include their CSS and JavaScript automatically: the bundle carries `www/assets/`, and
+`PAD_WASM` makes PAD embed the required files in the output, once per page and in dependency
+order. These built-in assets need no network requests from the preview. External styles
+and scripts still need reachable URLs and the browser's usual cross-origin permissions;
+server routes, sessions and databases remain capabilities of Live.
 
 ```bash
-php wasm/build.php                                   # www/wasm/pad-bundle.json
+php wasm/build.php
 open http://localhost/pad/wasm/                      # any static web server will do
 NODE_PATH=~/.cache/pad-wasm/node_modules node wasm/verify.mjs
 ```
 
-The playground on a server (`apps/playground`) has to defend the server - local requests only,
-no PHP functions, limits. In the browser a template can only reach the tab it runs in, so the
-page sets no PHP function list; its output still renders in a sandboxed frame.
+Live's template preview (`apps/live/render.php`) preserves the former Playground
+limits. Full Live pages retain server request/session/database capabilities. WASM
+executes in browser memory and cannot access that server state.
 
 ## Checking it
 
@@ -162,9 +184,9 @@ What was verified, and on what, is listed at the end of this file.
 
 | Application | What it shows offline |
 |-------------|-----------------------|
-| `notes` | SQLite from `padSqlSetup`; a `{live}` list (pins) and note (colour); search as you type through a `{fragment}` fetched by `notes.js`; a preview posted with `X-CSRF-Token`; pictures attached (`padUpload`, multipart) and served back (`padUploadSend`); the notes as JSON (`$padExpose`), the database file as a download, a JSON import |
-| `ledger` | A schema in `_migrations/`, run by `_inits.php` when one is pending - a later migration brings a database a visitor kept up to date; `{chart}`s, `{progress}`, a sortable paged `{datatable}`; a quick entry posted as JSON and answered as JSON; CSV out (`padFormat=csv`) and in |
-| `kanban` | Drag and drop posted as JSON; the columns asked for again as a `{fragment}`; an `EventSource` on `padSse` keeping every open window in step - through the one service worker when installed, through the BroadcastChannel of the runtimes when opened from the disk |
+| `notes` | SQLite from `padSqlSetup`; a `{pad:live}` list (pins) and note (colour); search as you type through a `{pad:fragment}` fetched by `notes.js`; a preview posted with `X-CSRF-Token`; pictures attached (`padUpload`, multipart) and served back (`padUploadSend`); the notes as JSON (`$padExpose`), the database file as a download, a JSON import |
+| `ledger` | A schema in `_migrations/`, run by `_inits.php` when one is pending - a later migration brings a database a visitor kept up to date; `{chart:bar}`s, `{pad:progress}`, a sortable paged `{pad:datatable}`; a quick entry posted as JSON and answered as JSON; CSV out (`padFormat=csv`) and in |
+| `kanban` | Drag and drop posted as JSON; the columns asked for again as a `{pad:fragment}`; an `EventSource` on `padSse` keeping every open window in step - through the one service worker when installed, through the BroadcastChannel of the runtimes when opened from the disk |
 
 `pad pack notes,ledger,kanban` packs the three with a launcher.
 

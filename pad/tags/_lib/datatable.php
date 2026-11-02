@@ -1,13 +1,13 @@
 <?php
 
-  // Tables from rows - the {datatable} tag. A complete HTML table is written on the server:
+  // Tables from rows - the {pad:datatable} tag. A complete HTML table is written on the server:
   // a header from the field names, numbers right-aligned and formatted alike down their
   // column, a totals row, header links that sort and page links that page - each a plain
   // link to the same page, so it needs no JavaScript and works in print and in an e-mail.
   //
-  //   {datatable data='orders', columns='number, customer, total', totals='total'}
-  //   {datatable data='orders', sortable, rows=10, striped, caption='Orders'}
-  //   {datatable totals='amount'} month,amount ... {/datatable}
+  //   {pad:datatable data='orders', columns='number, customer, total', totals='total'}
+  //   {pad:datatable data='orders', sortable, rows=10, striped, caption='Orders'}
+  //   {pad:datatable totals='amount'} month,amount ... {/pad:datatable}
   //
   // padDatatableColumns  the columns: those columns= names, else every scalar field of the
   //                      first row
@@ -28,7 +28,7 @@
   // custom properties with light and dark defaults on .pad-datatable - --pad-datatable-text,
   // -line, -head, -stripe, -accent and -muted - which a page overrides.
 
-  // The rows and their fields are read as {chart} reads them, subs/charts/_lib/chart.php.
+  // The rows and their fields are read as {chart:bar} reads them, subs/charts/_lib/chart.php.
 
   include_once PAD . 'subs/charts/_lib/chart.php';
 
@@ -133,7 +133,7 @@
   }
 
   // A format is a pipe written after the column's name - total:money, created:date('j M Y')
-  // - and run as {echo $value | money} would run it.
+  // - and run as {pad:echo $value | money} would run it.
 
   function padDatatableCell ( $value, $column ) {
 
@@ -295,7 +295,7 @@
 
   }
 
-  // The page links, from the rows padPagerItems makes for the {pager} tag - its own markup
+  // The page links, from the rows padPagerItems makes for the {pad:pager} tag - its own markup
   // and class, so a page's .pager style is not the table's.
 
   function padDatatablePager ( $items, $catalog ) {

@@ -1,2 +1,2 @@
-key: [{orderLines $orderNumber=10100}{$product} {/orderLines}]
-nested: [{customers $customerNumber=103}{orders join="payments on payments.customerNumber = orders.customerNumber", fields="count(*) as n"}{$n}{/orders}{/customers}]
+key: [{select:orderLines $orderNumber=10100}{$product} {/select:orderLines}]
+nested: [{select:customers $customerNumber=103}{select:orders join="payments on payments.customerNumber = orders.customerNumber", fields="count(*) as n"}{$n}{/select:orders}{/select:customers}]

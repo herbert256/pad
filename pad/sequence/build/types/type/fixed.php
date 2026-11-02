@@ -17,7 +17,7 @@
   $pqSkipNow   = 0;
   $pqSkipCount = 0;
   // A list ends with its data, so its candidates are not counted - unless the tag counts them
-  // itself: try= is a limit every run has, and {sequence '1..100', keep, prime, try=10} gave
+  // itself: try= is a limit every run has, and {sequence:range '1..100', keep, prime, try=10} gave
   // all 25 primes where the same over a loop gives 2 3 5 7.
 
   if ( ! isset ( $pqParms ['try'] ) )

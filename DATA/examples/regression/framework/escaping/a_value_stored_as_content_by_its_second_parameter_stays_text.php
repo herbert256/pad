@@ -1,1 +1,1 @@
-<?php $v = "{echo 6 * 7}"; ?>
+<?php $v = "{pad:echo 6 * 7}"; ?>

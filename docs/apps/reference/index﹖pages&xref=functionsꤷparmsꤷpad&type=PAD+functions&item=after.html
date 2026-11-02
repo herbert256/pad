@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="../_common/brand.css">
     <script src="../_common/pad.js"></script>
     <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/play.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
   </head>
   <body class="frame app-reference">
     <aside class="frame-side">
@@ -23,89 +27,113 @@
             </summary>
             <nav class="pad-brand-apps" aria-label="PAD applications">
               <div class="pad-brand-columns">
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    PAD
-                  </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
-                  <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
-                  <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Showcases
-                  </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                  <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                  <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                  <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Front ends
-                  </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
-                  <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
-                  <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
-                  <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Offline
-                  </div><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                  <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
-                  <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
-                  <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Examples
-                  </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/playground/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
-                  <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>playground</b><small>Type a template, see the result</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-                  <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Tools
-                  </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
-                  <circle cx="9" cy="7" r="2"></circle>
-                  <circle cx="15" cy="12" r="2"></circle>
-                  <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
-                  <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
-                  <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
                 </div>
               </div>
             </nav>
@@ -129,7 +157,7 @@
         </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
         <div class="frame-head">
           More
-        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#oauth-providers">OAuth providers</a> <a href="index%EF%B9%96index.html#notification-channels">Notification channels</a> <a href="index%EF%B9%96index.html#ai-providers">AI providers</a> <a href="index%EF%B9%96index.html#pattern-types">Pattern types</a> <a href="index%EF%B9%96index.html#image-filters">Image filters</a> <a href="index%EF%B9%96index.html#holiday-countries">Holiday countries</a> <a href="index%EF%B9%96index.html#search-languages">Search languages</a> <a href="index%EF%B9%96index.html#data-formats">Data formats</a> <a href="index%EF%B9%96index.html#sounds">Sounds</a> <a href="index%EF%B9%96index.html#printables">Printables</a> <a href="index%EF%B9%96index.html#notations">Notations</a> <a href="index%EF%B9%96index.html#formula-functions">Formula functions</a> <a href="index%EF%B9%96index.html#section-types">Section types</a> <a href="index%EF%B9%96index.html#effect-types">Effect types</a> <a href="index%EF%B9%96index.html#json-ld-kinds">JSON-LD kinds</a> <a href="index%EF%B9%96index.html#themes">Themes</a> <a href="index%EF%B9%96index.html#palettes">Palettes</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
       </nav>
     </aside>
     <main class="frame-main">
@@ -138,10 +166,64 @@
           Reference - PAD functions - after
         </h1>
         <div class="frame-tools">
-          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
         </div>
       </header>
       <div class="frame-body">
@@ -184,50 +266,8 @@
                 padAjax747f0f1231966ff1ef75e1fc703980de.send();
                 </script><br>
                 <hr>
-                App: regression/framework - Page: functions/a_field_inside_a_quoted_literal_reaches_a_pipe_as_its_characters<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">functions/a_field_inside_a_quoted_literal_reaches_a_pipe_as_its_characters.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">functions/a_field_inside_a_quoted_literal_reaches_a_pipe_as_its_characters.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $subject </span><span style="color: #007700">= </span><span style="color: #DD0000">'Order 12, shipped'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000">1[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Re<font color="black">:</font> <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>subject</font><font color="black">}</font></b><font color="black">'</font> <font color="black">|</font> url</font>/}</b>] 2[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Re<font color="black">:</font> <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>subject</font><font color="black">}</font></b><font color="black">'</font> <font color="black">|</font> contains(<font color="black">'</font><font color="black">,</font><font color="black">'</font>)</font>/}</b>] 3[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Re<font color="black">:</font> <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>subject</font><font color="black">}</font></b><font color="black">'</font> <font color="black">|</font> replace(<font color="black">'</font><font color="black">,</font> <font color="black">'</font><font color="black">,</font> <font color="black">'</font> - <font color="black">'</font>)</font>/}</b>] 4[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Re<font color="black">:</font> <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>subject</font><font color="black">}</font></b><font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font><font color="black">,</font><font color="black">'</font>)</font>/}</b>] 5[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Re<font color="black">:</font> <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>subject</font><font color="black">}</font></b><font color="black">'</font> <font color="black">|</font> escape(<font color="black">'</font>js<font color="black">'</font>)</font>/}</b>]</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax24ca4eca05bfdd56614cd1a372d8db89"></div>
-                      <script>
-                      padAjax24ca4eca05bfdd56614cd1a372d8db89 = new XMLHttpRequest();
-                      padAjax24ca4eca05bfdd56614cd1a372d8db89.onreadystatechange=function() {
-                      if (padAjax24ca4eca05bfdd56614cd1a372d8db89.readyState === 4) {
-                      if (padAjax24ca4eca05bfdd56614cd1a372d8db89.status === 200) {
-                      document.getElementById("padAjax24ca4eca05bfdd56614cd1a372d8db89").innerHTML=padAjax24ca4eca05bfdd56614cd1a372d8db89.responseText;
-                      } else {
-                      document.getElementById("padAjax24ca4eca05bfdd56614cd1a372d8db89").innerHTML=padAjax24ca4eca05bfdd56614cd1a372d8db89.statusText;
-                      }
-                      }
-                      }
-                      padAjax24ca4eca05bfdd56614cd1a372d8db89.open("GET","http://localhost/pad/regression/framework/?functions/a_field_inside_a_quoted_literal_reaches_a_pipe_as_its_characters&padInclude",true);
-                      padAjax24ca4eca05bfdd56614cd1a372d8db89.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: functions/after_drops_a_multi_character_delimiter_whole<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: formulas/a_circular_reference_answers_ref_and_names_its_cells<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -235,7 +275,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">functions/after_drops_a_multi_character_delimiter_whole.pad</font>
+                      <font size="-2">formulas/a_circular_reference_answers_ref_and_names_its_cells.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -244,30 +284,33 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a--b--c<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font>--<font color="black">'</font>)</font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdsb29wJ31cbiAgPUIxKzEsPUMxKzEsPUExKzEsNVxuICA9QTIrMSw9QTEqMiw9RDEqMiw9QjIrQzJcbnsvcGFkOnNwcmVhZHNoZWV0IHwgYWZ0ZXIoJzwvc3R5bGU+Jyl9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdsb29wJ31cbiAgPUIxKzEsPUMxKzEsPUExKzEsNVxuICA9QTIrMSw9QTEqMiw9RDEqMiw9QjIrQzJcbnsvcGFkOnNwcmVhZHNoZWV0IHwgYWZ0ZXIoJzwvc3R5bGU+Jyl9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>loop<font color="black">'</font></font>}</b><br>  =B1+1,=C1+1,=A1+1,5<br>  =A2+1,=A1*2,=D1*2,=B2+C2<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">|</font> after(<font color="black">'</font>&lt;/style&gt;<font color="black">'</font>)</font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjaxfa755cb4095a7e3288f5b31aa1611d22"></div>
+                      <div id="padAjaxd1a1587e2d2b52068c49d75bd2d6c379"></div>
                       <script>
-                      padAjaxfa755cb4095a7e3288f5b31aa1611d22 = new XMLHttpRequest();
-                      padAjaxfa755cb4095a7e3288f5b31aa1611d22.onreadystatechange=function() {
-                      if (padAjaxfa755cb4095a7e3288f5b31aa1611d22.readyState === 4) {
-                      if (padAjaxfa755cb4095a7e3288f5b31aa1611d22.status === 200) {
-                      document.getElementById("padAjaxfa755cb4095a7e3288f5b31aa1611d22").innerHTML=padAjaxfa755cb4095a7e3288f5b31aa1611d22.responseText;
+                      padAjaxd1a1587e2d2b52068c49d75bd2d6c379 = new XMLHttpRequest();
+                      padAjaxd1a1587e2d2b52068c49d75bd2d6c379.onreadystatechange=function() {
+                      if (padAjaxd1a1587e2d2b52068c49d75bd2d6c379.readyState === 4) {
+                      if (padAjaxd1a1587e2d2b52068c49d75bd2d6c379.status === 200) {
+                      document.getElementById("padAjaxd1a1587e2d2b52068c49d75bd2d6c379").innerHTML=padAjaxd1a1587e2d2b52068c49d75bd2d6c379.responseText;
                       } else {
-                      document.getElementById("padAjaxfa755cb4095a7e3288f5b31aa1611d22").innerHTML=padAjaxfa755cb4095a7e3288f5b31aa1611d22.statusText;
+                      document.getElementById("padAjaxd1a1587e2d2b52068c49d75bd2d6c379").innerHTML=padAjaxd1a1587e2d2b52068c49d75bd2d6c379.statusText;
                       }
                       }
                       }
-                      padAjaxfa755cb4095a7e3288f5b31aa1611d22.open("GET","http://localhost/pad/regression/framework/?functions/after_drops_a_multi_character_delimiter_whole&padInclude",true);
-                      padAjaxfa755cb4095a7e3288f5b31aa1611d22.send();
+                      padAjaxd1a1587e2d2b52068c49d75bd2d6c379.open("GET","http://localhost/pad/regression/framework/?formulas/a_circular_reference_answers_ref_and_names_its_cells&padInclude",true);
+                      padAjaxd1a1587e2d2b52068c49d75bd2d6c379.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/framework - Page: functions/after_takes_what_follows_the_delimiter<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: formulas/a_code_like_e1_typed_into_a_cell_is_text_not_0<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -275,7 +318,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">functions/after_takes_what_follows_the_delimiter.pad</font>
+                      <font size="-2">formulas/a_code_like_e1_typed_into_a_cell_is_text_not_0.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -284,30 +327,33 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>hello/world/test<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font>/<font color="black">'</font>)</font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdjb2RlcycsIGhlYWRlcnM9RkFMU0V9XG4gIENvZGUsUXR5XG4gIEUxLDNcbiAgZTEwLDRcbiAgLUUzLDVcbiAgMUUzLDZcbiAgLjVlMSw3XG4gIFwiMSwyNTBlMlwiLDhcbnsvcGFkOnNwcmVhZHNoZWV0IHwgYWZ0ZXIoJzwvc3R5bGU+Jyl9e3BhZDpkYXRhICdwYXJ0cyd9XG4gIFsgeyBcImNvZGVcIjogXCJFMlwiLCBcInF0eVwiOiBcIjJcIiB9LCB7IFwiY29kZVwiOiBcImU1XCIsIFwicXR5XCI6IFwiMWUyXCIgfSBdXG57L3BhZDpkYXRhfXtwYWQ6c3ByZWFkc2hlZXQgJ3BhcnRzJywgZGF0YT0ncGFydHMnLCBoZWFkZXJzPUZBTFNFL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdjb2RlcycsIGhlYWRlcnM9RkFMU0V9XG4gIENvZGUsUXR5XG4gIEUxLDNcbiAgZTEwLDRcbiAgLUUzLDVcbiAgMUUzLDZcbiAgLjVlMSw3XG4gIFwiMSwyNTBlMlwiLDhcbnsvcGFkOnNwcmVhZHNoZWV0IHwgYWZ0ZXIoJzwvc3R5bGU+Jyl9e3BhZDpkYXRhICdwYXJ0cyd9XG4gIFsgeyBcImNvZGVcIjogXCJFMlwiLCBcInF0eVwiOiBcIjJcIiB9LCB7IFwiY29kZVwiOiBcImU1XCIsIFwicXR5XCI6IFwiMWUyXCIgfSBdXG57L3BhZDpkYXRhfXtwYWQ6c3ByZWFkc2hlZXQgJ3BhcnRzJywgZGF0YT0ncGFydHMnLCBoZWFkZXJzPUZBTFNFL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>codes<font color="black">'</font><font color="black">,</font> headers=FALSE</font>}</b><br>  Code,Qty<br>  E1,3<br>  e10,4<br>  -E3,5<br>  1E3,6<br>  .5e1,7<br>  "1,250e2",8<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">|</font> after(<font color="black">'</font>&lt;/style&gt;<font color="black">'</font>)</font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>parts<font color="black">'</font></font>}</b><br>  [ { "code": "E2", "qty": "2" }, { "code": "e5", "qty": "1e2" } ]<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>parts<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>parts<font color="black">'</font><font color="black">,</font> headers=FALSE</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjaxffd0b4e829108c179a0a181d713a2afa"></div>
+                      <div id="padAjaxd6699a7c7f220043da0b1bc6dd3fa609"></div>
                       <script>
-                      padAjaxffd0b4e829108c179a0a181d713a2afa = new XMLHttpRequest();
-                      padAjaxffd0b4e829108c179a0a181d713a2afa.onreadystatechange=function() {
-                      if (padAjaxffd0b4e829108c179a0a181d713a2afa.readyState === 4) {
-                      if (padAjaxffd0b4e829108c179a0a181d713a2afa.status === 200) {
-                      document.getElementById("padAjaxffd0b4e829108c179a0a181d713a2afa").innerHTML=padAjaxffd0b4e829108c179a0a181d713a2afa.responseText;
+                      padAjaxd6699a7c7f220043da0b1bc6dd3fa609 = new XMLHttpRequest();
+                      padAjaxd6699a7c7f220043da0b1bc6dd3fa609.onreadystatechange=function() {
+                      if (padAjaxd6699a7c7f220043da0b1bc6dd3fa609.readyState === 4) {
+                      if (padAjaxd6699a7c7f220043da0b1bc6dd3fa609.status === 200) {
+                      document.getElementById("padAjaxd6699a7c7f220043da0b1bc6dd3fa609").innerHTML=padAjaxd6699a7c7f220043da0b1bc6dd3fa609.responseText;
                       } else {
-                      document.getElementById("padAjaxffd0b4e829108c179a0a181d713a2afa").innerHTML=padAjaxffd0b4e829108c179a0a181d713a2afa.statusText;
+                      document.getElementById("padAjaxd6699a7c7f220043da0b1bc6dd3fa609").innerHTML=padAjaxd6699a7c7f220043da0b1bc6dd3fa609.statusText;
                       }
                       }
                       }
-                      padAjaxffd0b4e829108c179a0a181d713a2afa.open("GET","http://localhost/pad/regression/framework/?functions/after_takes_what_follows_the_delimiter&padInclude",true);
-                      padAjaxffd0b4e829108c179a0a181d713a2afa.send();
+                      padAjaxd6699a7c7f220043da0b1bc6dd3fa609.open("GET","http://localhost/pad/regression/framework/?formulas/a_code_like_e1_typed_into_a_cell_is_text_not_0&padInclude",true);
+                      padAjaxd6699a7c7f220043da0b1bc6dd3fa609.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/framework - Page: functions/after_with_no_delimiter_gives_the_value_back<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: formulas/a_record_s_value_is_text_never_a_formula<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -315,7 +361,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">functions/after_with_no_delimiter_gives_the_value_back.pad</font>
+                      <font size="-2">formulas/a_record_s_value_is_text_never_a_formula.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -324,30 +370,33 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font>/<font color="black">'</font>)</font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ25vdGVzJ31cbiAgWyB7IFwid2hvXCI6IFwiQW5uXCIsIFwibm90ZVwiOiBcIj0xKzFcIiwgXCJzY29yZVwiOiBcIjdcIiB9LFxuICAgIHsgXCJ3aG9cIjogXCJCb2JcIiwgXCJub3RlXCI6IFwiJ3F1b3RlZFwiLCBcInNjb3JlXCI6IFwiVFJVRVwiIH0gXVxuey9wYWQ6ZGF0YX1cbntwYWQ6c3ByZWFkc2hlZXQgJ25vdGVzJywgZGF0YT0nbm90ZXMnLCBmb3JtdWxhcz0ndHdpY2U9QzIqMid9ey9wYWQ6c3ByZWFkc2hlZXQgfCBhZnRlcignPC9zdHlsZT4nKX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ25vdGVzJ31cbiAgWyB7IFwid2hvXCI6IFwiQW5uXCIsIFwibm90ZVwiOiBcIj0xKzFcIiwgXCJzY29yZVwiOiBcIjdcIiB9LFxuICAgIHsgXCJ3aG9cIjogXCJCb2JcIiwgXCJub3RlXCI6IFwiJ3F1b3RlZFwiLCBcInNjb3JlXCI6IFwiVFJVRVwiIH0gXVxuey9wYWQ6ZGF0YX1cbntwYWQ6c3ByZWFkc2hlZXQgJ25vdGVzJywgZGF0YT0nbm90ZXMnLCBmb3JtdWxhcz0ndHdpY2U9QzIqMid9ey9wYWQ6c3ByZWFkc2hlZXQgfCBhZnRlcignPC9zdHlsZT4nKX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>notes<font color="black">'</font></font>}</b><br>  [ { "who": "Ann", "note": "=1+1", "score": "7" },<br>    { "who": "Bob", "note": "'quoted", "score": "TRUE" } ]<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>notes<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>notes<font color="black">'</font><font color="black">,</font> formulas=<font color="black">'</font>twice=C2*2<font color="black">'</font></font>}</b><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">|</font> after(<font color="black">'</font>&lt;/style&gt;<font color="black">'</font>)</font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax4d3a09c4fdfd10481d09f1f3bb8bccf8"></div>
+                      <div id="padAjax58b2f11f071dd5d11db1e0e2dca35e04"></div>
                       <script>
-                      padAjax4d3a09c4fdfd10481d09f1f3bb8bccf8 = new XMLHttpRequest();
-                      padAjax4d3a09c4fdfd10481d09f1f3bb8bccf8.onreadystatechange=function() {
-                      if (padAjax4d3a09c4fdfd10481d09f1f3bb8bccf8.readyState === 4) {
-                      if (padAjax4d3a09c4fdfd10481d09f1f3bb8bccf8.status === 200) {
-                      document.getElementById("padAjax4d3a09c4fdfd10481d09f1f3bb8bccf8").innerHTML=padAjax4d3a09c4fdfd10481d09f1f3bb8bccf8.responseText;
+                      padAjax58b2f11f071dd5d11db1e0e2dca35e04 = new XMLHttpRequest();
+                      padAjax58b2f11f071dd5d11db1e0e2dca35e04.onreadystatechange=function() {
+                      if (padAjax58b2f11f071dd5d11db1e0e2dca35e04.readyState === 4) {
+                      if (padAjax58b2f11f071dd5d11db1e0e2dca35e04.status === 200) {
+                      document.getElementById("padAjax58b2f11f071dd5d11db1e0e2dca35e04").innerHTML=padAjax58b2f11f071dd5d11db1e0e2dca35e04.responseText;
                       } else {
-                      document.getElementById("padAjax4d3a09c4fdfd10481d09f1f3bb8bccf8").innerHTML=padAjax4d3a09c4fdfd10481d09f1f3bb8bccf8.statusText;
+                      document.getElementById("padAjax58b2f11f071dd5d11db1e0e2dca35e04").innerHTML=padAjax58b2f11f071dd5d11db1e0e2dca35e04.statusText;
                       }
                       }
                       }
-                      padAjax4d3a09c4fdfd10481d09f1f3bb8bccf8.open("GET","http://localhost/pad/regression/framework/?functions/after_with_no_delimiter_gives_the_value_back&padInclude",true);
-                      padAjax4d3a09c4fdfd10481d09f1f3bb8bccf8.send();
+                      padAjax58b2f11f071dd5d11db1e0e2dca35e04.open("GET","http://localhost/pad/regression/framework/?formulas/a_record_s_value_is_text_never_a_formula&padInclude",true);
+                      padAjax58b2f11f071dd5d11db1e0e2dca35e04.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/framework - Page: functions/an_empty_delimiter_is_found_at_the_start_after_gives_everything<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: formulas/a_spreadsheet_shows_letters_numbers_values_and_formulas<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -355,7 +404,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">functions/an_empty_delimiter_is_found_at_the_start_after_gives_everything.pad</font>
+                      <font size="-2">formulas/a_spreadsheet_shows_letters_numbers_values_and_formulas.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -364,30 +413,33 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font><font color="black">'</font>)</font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdzaG9wJ31cbiAgSXRlbSxQcmljZSxRdHksVG90YWxcbiAgQXBwbGVzLDEuMjAsMyw9QjIqQzJcbiAgUGVhcnMsMC44MCw1LD1CMypDM1xuICBUb3RhbCwsLD1TVU0oRDI6RDMpXG4gIEluIHN0b2NrLFRSVUUsLD1END41XG57L3BhZDpzcHJlYWRzaGVldCB8IGFmdGVyKCc8L3N0eWxlPicpfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdzaG9wJ31cbiAgSXRlbSxQcmljZSxRdHksVG90YWxcbiAgQXBwbGVzLDEuMjAsMyw9QjIqQzJcbiAgUGVhcnMsMC44MCw1LD1CMypDM1xuICBUb3RhbCwsLD1TVU0oRDI6RDMpXG4gIEluIHN0b2NrLFRSVUUsLD1END41XG57L3BhZDpzcHJlYWRzaGVldCB8IGFmdGVyKCc8L3N0eWxlPicpfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>shop<font color="black">'</font></font>}</b><br>  Item,Price,Qty,Total<br>  Apples,1.20,3,=B2*C2<br>  Pears,0.80,5,=B3*C3<br>  Total,,,=SUM(D2:D3)<br>  In stock,TRUE,,=D4&gt;5<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">|</font> after(<font color="black">'</font>&lt;/style&gt;<font color="black">'</font>)</font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjaxa27c7af1ee341b56b9dae09ba32470c3"></div>
+                      <div id="padAjaxae21e1673c51efcefcdab81d52e65e0b"></div>
                       <script>
-                      padAjaxa27c7af1ee341b56b9dae09ba32470c3 = new XMLHttpRequest();
-                      padAjaxa27c7af1ee341b56b9dae09ba32470c3.onreadystatechange=function() {
-                      if (padAjaxa27c7af1ee341b56b9dae09ba32470c3.readyState === 4) {
-                      if (padAjaxa27c7af1ee341b56b9dae09ba32470c3.status === 200) {
-                      document.getElementById("padAjaxa27c7af1ee341b56b9dae09ba32470c3").innerHTML=padAjaxa27c7af1ee341b56b9dae09ba32470c3.responseText;
+                      padAjaxae21e1673c51efcefcdab81d52e65e0b = new XMLHttpRequest();
+                      padAjaxae21e1673c51efcefcdab81d52e65e0b.onreadystatechange=function() {
+                      if (padAjaxae21e1673c51efcefcdab81d52e65e0b.readyState === 4) {
+                      if (padAjaxae21e1673c51efcefcdab81d52e65e0b.status === 200) {
+                      document.getElementById("padAjaxae21e1673c51efcefcdab81d52e65e0b").innerHTML=padAjaxae21e1673c51efcefcdab81d52e65e0b.responseText;
                       } else {
-                      document.getElementById("padAjaxa27c7af1ee341b56b9dae09ba32470c3").innerHTML=padAjaxa27c7af1ee341b56b9dae09ba32470c3.statusText;
+                      document.getElementById("padAjaxae21e1673c51efcefcdab81d52e65e0b").innerHTML=padAjaxae21e1673c51efcefcdab81d52e65e0b.statusText;
                       }
                       }
                       }
-                      padAjaxa27c7af1ee341b56b9dae09ba32470c3.open("GET","http://localhost/pad/regression/framework/?functions/an_empty_delimiter_is_found_at_the_start_after_gives_everything&padInclude",true);
-                      padAjaxa27c7af1ee341b56b9dae09ba32470c3.send();
+                      padAjaxae21e1673c51efcefcdab81d52e65e0b.open("GET","http://localhost/pad/regression/framework/?formulas/a_spreadsheet_shows_letters_numbers_values_and_formulas&padInclude",true);
+                      padAjaxae21e1673c51efcefcdab81d52e65e0b.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/framework - Page: harness/a_test_url_carries_padInclude<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: formulas/a_stray_tab_at_a_line_s_end_leaves_the_commas_the_separator<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -395,7 +447,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">harness/a_test_url_carries_padInclude.pad</font>
+                      <font size="-2">formulas/a_stray_tab_at_a_line_s_end_leaves_the_commas_the_separator.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -404,30 +456,33 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>getSuiteUrl(<font color="black">'</font>regression/pages<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pairing<font color="black">'</font>) <font color="black">|</font> after(<font color="black">'</font>?<font color="black">'</font>)</font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICd0cmFpbGluZycsIGhlYWRlcnM9RkFMU0V9XG4gIEl0ZW0sUHJpY2VcdFxuICBBcHBsZXMsMS4yMFxuICBQZWFycywwLjgwXG57L3BhZDpzcHJlYWRzaGVldCB8IGFmdGVyKCc8L3N0eWxlPicpfXtwYWQ6c3ByZWFkc2hlZXQgJ2luZGVudGVkJywgaGVhZGVycz1GQUxTRX1cbkl0ZW0sUHJpY2Vcblx0QXBwbGVzLDEuMjBcblx0UGVhcnMsMC44MFxuey9wYWQ6c3ByZWFkc2hlZXR9e3BhZDpzcHJlYWRzaGVldCAnY29waWVkJywgaGVhZGVycz1GQUxTRX1cbiAgSXRlbVx0UHJpY2VcbiAgQXBwbGVzXHQxLjIwXG57L3BhZDpzcHJlYWRzaGVldH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICd0cmFpbGluZycsIGhlYWRlcnM9RkFMU0V9XG4gIEl0ZW0sUHJpY2VcdFxuICBBcHBsZXMsMS4yMFxuICBQZWFycywwLjgwXG57L3BhZDpzcHJlYWRzaGVldCB8IGFmdGVyKCc8L3N0eWxlPicpfXtwYWQ6c3ByZWFkc2hlZXQgJ2luZGVudGVkJywgaGVhZGVycz1GQUxTRX1cbkl0ZW0sUHJpY2Vcblx0QXBwbGVzLDEuMjBcblx0UGVhcnMsMC44MFxuey9wYWQ6c3ByZWFkc2hlZXR9e3BhZDpzcHJlYWRzaGVldCAnY29waWVkJywgaGVhZGVycz1GQUxTRX1cbiAgSXRlbVx0UHJpY2VcbiAgQXBwbGVzXHQxLjIwXG57L3BhZDpzcHJlYWRzaGVldH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>trailing<font color="black">'</font><font color="black">,</font> headers=FALSE</font>}</b><br>  Item,Price    <br>  Apples,1.20<br>  Pears,0.80<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">|</font> after(<font color="black">'</font>&lt;/style&gt;<font color="black">'</font>)</font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>indented<font color="black">'</font><font color="black">,</font> headers=FALSE</font>}</b><br>Item,Price<br>    Apples,1.20<br>    Pears,0.80<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>copied<font color="black">'</font><font color="black">,</font> headers=FALSE</font>}</b><br>  Item    Price<br>  Apples    1.20<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax3250244fd044cd46b6fc02dcecaa5fd7"></div>
+                      <div id="padAjax622f9aedead593783f978b6b3099001c"></div>
                       <script>
-                      padAjax3250244fd044cd46b6fc02dcecaa5fd7 = new XMLHttpRequest();
-                      padAjax3250244fd044cd46b6fc02dcecaa5fd7.onreadystatechange=function() {
-                      if (padAjax3250244fd044cd46b6fc02dcecaa5fd7.readyState === 4) {
-                      if (padAjax3250244fd044cd46b6fc02dcecaa5fd7.status === 200) {
-                      document.getElementById("padAjax3250244fd044cd46b6fc02dcecaa5fd7").innerHTML=padAjax3250244fd044cd46b6fc02dcecaa5fd7.responseText;
+                      padAjax622f9aedead593783f978b6b3099001c = new XMLHttpRequest();
+                      padAjax622f9aedead593783f978b6b3099001c.onreadystatechange=function() {
+                      if (padAjax622f9aedead593783f978b6b3099001c.readyState === 4) {
+                      if (padAjax622f9aedead593783f978b6b3099001c.status === 200) {
+                      document.getElementById("padAjax622f9aedead593783f978b6b3099001c").innerHTML=padAjax622f9aedead593783f978b6b3099001c.responseText;
                       } else {
-                      document.getElementById("padAjax3250244fd044cd46b6fc02dcecaa5fd7").innerHTML=padAjax3250244fd044cd46b6fc02dcecaa5fd7.statusText;
+                      document.getElementById("padAjax622f9aedead593783f978b6b3099001c").innerHTML=padAjax622f9aedead593783f978b6b3099001c.statusText;
                       }
                       }
                       }
-                      padAjax3250244fd044cd46b6fc02dcecaa5fd7.open("GET","http://localhost/pad/regression/framework/?harness/a_test_url_carries_padInclude&padInclude",true);
-                      padAjax3250244fd044cd46b6fc02dcecaa5fd7.send();
+                      padAjax622f9aedead593783f978b6b3099001c.open("GET","http://localhost/pad/regression/framework/?formulas/a_stray_tab_at_a_line_s_end_leaves_the_commas_the_separator&padInclude",true);
+                      padAjax622f9aedead593783f978b6b3099001c.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/framework - Page: harness/the_root_index_is_the_one_test_fetched_full<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: formulas/an_editable_spreadsheet_in_a_form_posts_with_it_and_names_its_cells<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -435,7 +490,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">harness/the_root_index_is_the_one_test_fetched_full.pad</font>
+                      <font size="-2">formulas/an_editable_spreadsheet_in_a_form_posts_with_it_and_names_its_cells.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -444,275 +499,327 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>getSuiteUrl(<font color="black">'</font>regression/common<font color="black">'</font><font color="black">,</font> <font color="black">'</font>index<font color="black">'</font>) <font color="black">|</font> after(<font color="black">'</font>?<font color="black">'</font>)</font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ29yZGVyJ317cGFkOnNwcmVhZHNoZWV0ICdvcmRlcicsIGVkaXRhYmxlPSdCMjpDMywgRDEnfVxuICBJdGVtLFF0eSxQcmljZSw9MiszXG4gIFRlYSwyLDMuNTAsPUIyKkMyXG4gIENha2UsMSwsPUIzKkMzXG57L3BhZDpzcHJlYWRzaGVldCB8IGFmdGVyKCc8L3N0eWxlPicpfXsvcGFkOmZvcm19XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ29yZGVyJ317cGFkOnNwcmVhZHNoZWV0ICdvcmRlcicsIGVkaXRhYmxlPSdCMjpDMywgRDEnfVxuICBJdGVtLFF0eSxQcmljZSw9MiszXG4gIFRlYSwyLDMuNTAsPUIyKkMyXG4gIENha2UsMSwsPUIzKkMzXG57L3BhZDpzcHJlYWRzaGVldCB8IGFmdGVyKCc8L3N0eWxlPicpfXsvcGFkOmZvcm19XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form </font><font color="red"><font color="black">'</font>order<font color="black">'</font></font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>order<font color="black">'</font><font color="black">,</font> editable=<font color="black">'</font>B2<font color="black">:</font>C3<font color="black">,</font> D1<font color="black">'</font></font>}</b><br>  Item,Qty,Price,=2+3<br>  Tea,2,3.50,=B2*C2<br>  Cake,1,,=B3*C3<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">|</font> after(<font color="black">'</font>&lt;/style&gt;<font color="black">'</font>)</font>}</b><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjaxc73c5c54e1cc44b23477caba063f8acf"></div>
+                      <div id="padAjaxb7a4c16e5b8e3ec02f2842be38c684b4"></div>
                       <script>
-                      padAjaxc73c5c54e1cc44b23477caba063f8acf = new XMLHttpRequest();
-                      padAjaxc73c5c54e1cc44b23477caba063f8acf.onreadystatechange=function() {
-                      if (padAjaxc73c5c54e1cc44b23477caba063f8acf.readyState === 4) {
-                      if (padAjaxc73c5c54e1cc44b23477caba063f8acf.status === 200) {
-                      document.getElementById("padAjaxc73c5c54e1cc44b23477caba063f8acf").innerHTML=padAjaxc73c5c54e1cc44b23477caba063f8acf.responseText;
+                      padAjaxb7a4c16e5b8e3ec02f2842be38c684b4 = new XMLHttpRequest();
+                      padAjaxb7a4c16e5b8e3ec02f2842be38c684b4.onreadystatechange=function() {
+                      if (padAjaxb7a4c16e5b8e3ec02f2842be38c684b4.readyState === 4) {
+                      if (padAjaxb7a4c16e5b8e3ec02f2842be38c684b4.status === 200) {
+                      document.getElementById("padAjaxb7a4c16e5b8e3ec02f2842be38c684b4").innerHTML=padAjaxb7a4c16e5b8e3ec02f2842be38c684b4.responseText;
                       } else {
-                      document.getElementById("padAjaxc73c5c54e1cc44b23477caba063f8acf").innerHTML=padAjaxc73c5c54e1cc44b23477caba063f8acf.statusText;
+                      document.getElementById("padAjaxb7a4c16e5b8e3ec02f2842be38c684b4").innerHTML=padAjaxb7a4c16e5b8e3ec02f2842be38c684b4.statusText;
                       }
                       }
                       }
-                      padAjaxc73c5c54e1cc44b23477caba063f8acf.open("GET","http://localhost/pad/regression/framework/?harness/the_root_index_is_the_one_test_fetched_full&padInclude",true);
-                      padAjaxc73c5c54e1cc44b23477caba063f8acf.send();
+                      padAjaxb7a4c16e5b8e3ec02f2842be38c684b4.open("GET","http://localhost/pad/regression/framework/?formulas/an_editable_spreadsheet_in_a_form_posts_with_it_and_names_its_cells&padInclude",true);
+                      padAjaxb7a4c16e5b8e3ec02f2842be38c684b4.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/framework - Page: helpers/strings_after_before_and_between_cut_as_the_pipes_do<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: formulas/an_editable_spreadsheet_in_a_live_region_sends_the_other_cells_with_a_change<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
-                      <font size="-2">helpers/strings_after_before_and_between_cut_as_the_pipes_do.php</font>
+                      <font size="-2"></font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">helpers/strings_after_before_and_between_cut_as_the_pipes_do.pad</font>
+                      <font size="-2">formulas/an_editable_spreadsheet_in_a_live_region_sends_the_other_cells_with_a_change.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
                     </th>
                   </tr>
                   <tr>
+                    <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $cuts </span><span style="color: #007700">= [];<br><br>  foreach ( [ [ </span><span style="color: #DD0000">'a/b/c'</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'a::b::c'</span><span style="color: #007700">, </span><span style="color: #DD0000">'::' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'a/b/c'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">, </span><span style="color: #DD0000">'' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'één/twee/drie'</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">],<br>              [ </span><span style="color: #0000BB">NULL</span><span style="color: #007700">, </span><span style="color: #DD0000">'x' </span><span style="color: #007700">], [ </span><span style="color: #0000BB">12345</span><span style="color: #007700">, </span><span style="color: #0000BB">3 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'0'</span><span style="color: #007700">, </span><span style="color: #DD0000">'0' </span><span style="color: #007700">] ] as [ </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">$search </span><span style="color: #007700">] )<br>    </span><span style="color: #0000BB">$cuts </span><span style="color: #007700">[] = [ </span><span style="color: #0000BB">padStrAfter </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">$search </span><span style="color: #007700">), </span><span style="color: #0000BB">padStrAfterLast </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">$search </span><span style="color: #007700">),<br>                 </span><span style="color: #0000BB">padStrBefore </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">$search </span><span style="color: #007700">), </span><span style="color: #0000BB">padStrBeforeLast </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">$search </span><span style="color: #007700">) ];<br><br>  </span><span style="color: #0000BB">$r </span><span style="color: #007700">= </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( </span><span style="color: #0000BB">$cuts</span><span style="color: #007700">, </span><span style="color: #0000BB">JSON_UNESCAPED_UNICODE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$b </span><span style="color: #007700">= </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( [<br>    </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #DD0000">'This is my name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'This'</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #DD0000">'[a] and [b]'</span><span style="color: #007700">, </span><span style="color: #DD0000">'['</span><span style="color: #007700">, </span><span style="color: #DD0000">']' </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padStrBefore </span><span style="color: #007700">( </span><span style="color: #0000BB">padStrAfter </span><span style="color: #007700">( </span><span style="color: #DD0000">'[a] and [b]'</span><span style="color: #007700">, </span><span style="color: #DD0000">'[' </span><span style="color: #007700">), </span><span style="color: #DD0000">']' </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x'</span><span style="color: #007700">, </span><span style="color: #DD0000">'y' </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">, </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'y' </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">, </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #DD0000">'' </span><span style="color: #007700">),<br>    </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #0000BB">NULL</span><span style="color: #007700">, </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'b' </span><span style="color: #007700">)<br>  ], </span><span style="color: #0000BB">JSON_UNESCAPED_UNICODE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$path </span><span style="color: #007700">= </span><span style="color: #DD0000">'shop/orders/list.pad'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmxpdmUgJ2NhbGMnfXtwYWQ6c3ByZWFkc2hlZXQgJ2NhbGMnLCBlZGl0YWJsZT0nQjE6QjInLCBoZWFkZXJzPUZBTFNFfVxuICBQcmljZSwxLjIwXG4gIFF0eSwzXG4gIFRvdGFsLD1CMSpCMlxuey9wYWQ6c3ByZWFkc2hlZXQgfCBhZnRlcignPC9zdHlsZT4nKX17L3BhZDpsaXZlIHwgYmVmb3JlTGFzdCgnPHNjcmlwdCcpfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmxpdmUgJ2NhbGMnfXtwYWQ6c3ByZWFkc2hlZXQgJ2NhbGMnLCBlZGl0YWJsZT0nQjE6QjInLCBoZWFkZXJzPUZBTFNFfVxuICBQcmljZSwxLjIwXG4gIFF0eSwzXG4gIFRvdGFsLD1CMSpCMlxuey9wYWQ6c3ByZWFkc2hlZXQgfCBhZnRlcignPC9zdHlsZT4nKX17L3BhZDpsaXZlIHwgYmVmb3JlTGFzdCgnPHNjcmlwdCcpfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>live </font><font color="red"><font color="black">'</font>calc<font color="black">'</font></font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>calc<font color="black">'</font><font color="black">,</font> editable=<font color="black">'</font>B1<font color="black">:</font>B2<font color="black">'</font><font color="black">,</font> headers=FALSE</font>}</b><br>  Price,1.20<br>  Qty,3<br>  Total,=B1*B2<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">|</font> after(<font color="black">'</font>&lt;/style&gt;<font color="black">'</font>)</font>}</b><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>live </font><font color="red"><font color="black">|</font> beforeLast(<font color="black">'</font>&lt;script<font color="black">'</font>)</font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="green"><font color="red">!</font>r</font>}</b><br><b>{<font color="green"><font color="red">!</font>b</font>}</b><br>[<b>{<font color="green">$path</font> <font color="black">|</font> <font color="blue">after('/')</font>}</b>|<b>{<font color="green">$path</font> <font color="black">|</font> <font color="blue">afterLast('/')</font>}</b>|<b>{<font color="green">$path</font> <font color="black">|</font> <font color="blue">before('/')</font>}</b>|<b>{<font color="green">$path</font> <font color="black">|</font> <font color="blue">beforeLast('/')</font>}</b>]<br>[<b>{<font color="blue">echo </font><font color="red">padStrAfter ( <font color="red">$</font>path<font color="black">,</font> <font color="black">'</font>/<font color="black">'</font> )</font>/}</b>|<b>{<font color="blue">echo </font><font color="red">padStrAfterLast ( <font color="red">$</font>path<font color="black">,</font> <font color="black">'</font>/<font color="black">'</font> )</font>/}</b>|<b>{<font color="blue">echo </font><font color="red">padStrBefore ( <font color="red">$</font>path<font color="black">,</font> <font color="black">'</font>/<font color="black">'</font> )</font>/}</b>|<b>{<font color="blue">echo </font><font color="red">padStrBeforeLast ( <font color="red">$</font>path<font color="black">,</font> <font color="black">'</font>/<font color="black">'</font> )</font>/}</b>]</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax4569d42e168c192b2ba4a922a7fb569f"></div>
+                      <div id="padAjax10a8e5fddd8cdadadbfaaa7e59455fa6"></div>
                       <script>
-                      padAjax4569d42e168c192b2ba4a922a7fb569f = new XMLHttpRequest();
-                      padAjax4569d42e168c192b2ba4a922a7fb569f.onreadystatechange=function() {
-                      if (padAjax4569d42e168c192b2ba4a922a7fb569f.readyState === 4) {
-                      if (padAjax4569d42e168c192b2ba4a922a7fb569f.status === 200) {
-                      document.getElementById("padAjax4569d42e168c192b2ba4a922a7fb569f").innerHTML=padAjax4569d42e168c192b2ba4a922a7fb569f.responseText;
+                      padAjax10a8e5fddd8cdadadbfaaa7e59455fa6 = new XMLHttpRequest();
+                      padAjax10a8e5fddd8cdadadbfaaa7e59455fa6.onreadystatechange=function() {
+                      if (padAjax10a8e5fddd8cdadadbfaaa7e59455fa6.readyState === 4) {
+                      if (padAjax10a8e5fddd8cdadadbfaaa7e59455fa6.status === 200) {
+                      document.getElementById("padAjax10a8e5fddd8cdadadbfaaa7e59455fa6").innerHTML=padAjax10a8e5fddd8cdadadbfaaa7e59455fa6.responseText;
                       } else {
-                      document.getElementById("padAjax4569d42e168c192b2ba4a922a7fb569f").innerHTML=padAjax4569d42e168c192b2ba4a922a7fb569f.statusText;
+                      document.getElementById("padAjax10a8e5fddd8cdadadbfaaa7e59455fa6").innerHTML=padAjax10a8e5fddd8cdadadbfaaa7e59455fa6.statusText;
                       }
                       }
                       }
-                      padAjax4569d42e168c192b2ba4a922a7fb569f.open("GET","http://localhost/pad/regression/framework/?helpers/strings_after_before_and_between_cut_as_the_pipes_do&padInclude",true);
-                      padAjax4569d42e168c192b2ba4a922a7fb569f.send();
+                      padAjax10a8e5fddd8cdadadbfaaa7e59455fa6.open("GET","http://localhost/pad/regression/framework/?formulas/an_editable_spreadsheet_in_a_live_region_sends_the_other_cells_with_a_change&padInclude",true);
+                      padAjax10a8e5fddd8cdadadbfaaa7e59455fa6.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/framework - Page: helpers/strings_the_slug_after_and_before_pipes_answer_as_they_did<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: formulas/an_editable_spreadsheet_outside_a_form_is_a_form_of_its_own<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
-                      <font size="-2">helpers/strings_the_slug_after_and_before_pipes_answer_as_they_did.php</font>
+                      <font size="-2"></font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">helpers/strings_the_slug_after_and_before_pipes_answer_as_they_did.pad</font>
+                      <font size="-2">formulas/an_editable_spreadsheet_outside_a_form_is_a_form_of_its_own.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
                     </th>
                   </tr>
                   <tr>
+                    <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $texts </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'Crème Brûlée & Co.'</span><span style="color: #007700">, </span><span style="color: #DD0000">' Hello, World! '</span><span style="color: #007700">, </span><span style="color: #DD0000">'a/b::c/d'</span><span style="color: #007700">, </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #DD0000">'0'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Ελληνικά & Ӄириллица'</span><span style="color: #007700">, </span><span style="color: #DD0000">"tab\there"</span><span style="color: #007700">, </span><span style="color: #DD0000">'ÆØÅ æøå ß'</span><span style="color: #007700">, </span><span style="color: #DD0000">'--a--b--'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x/y' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdsb2FuJywgZWRpdGFibGUsIGNhcHRpb249J0EgbG9hbid9XG4gIEFtb3VudCwxMDAwMFxuICBSYXRlLDUlXG4gIFllYXJzLDNcbiAgUGF5bWVudCw9Uk9VTkQoUE1UKEIyLzEyLEIzKjEyLC1CMSksMilcbiAgRml4ZWQsVFJVRVxuey9wYWQ6c3ByZWFkc2hlZXQgfCBhZnRlcignPC9zdHlsZT4nKX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdsb2FuJywgZWRpdGFibGUsIGNhcHRpb249J0EgbG9hbid9XG4gIEFtb3VudCwxMDAwMFxuICBSYXRlLDUlXG4gIFllYXJzLDNcbiAgUGF5bWVudCw9Uk9VTkQoUE1UKEIyLzEyLEIzKjEyLC1CMSksMilcbiAgRml4ZWQsVFJVRVxuey9wYWQ6c3ByZWFkc2hlZXQgfCBhZnRlcignPC9zdHlsZT4nKX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>loan<font color="black">'</font><font color="black">,</font> editable<font color="black">,</font> caption=<font color="black">'</font>A loan<font color="black">'</font></font>}</b><br>  Amount,10000<br>  Rate,5%<br>  Years,3<br>  Payment,=ROUND(PMT(B2/12,B3*12,-B1),2)<br>  Fixed,TRUE<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">|</font> after(<font color="black">'</font>&lt;/style&gt;<font color="black">'</font>)</font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">texts</font><font color="red"></font>}</b><br>  [<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">slug</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">slug('_')</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">slug('')</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">after('/')</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">afterLast('/')</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">before('/')</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">beforeLast('/')</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="purple">after('</font><font color="black">:</font><font color="blue">:')</font>}</b>|<b>{<font color="green">$texts</font> <font color="black">|</font> <font color="blue">beforeLast('zz')</font>}</b>]<br><b>{/<font color="blue">texts</font><font color="red"></font>}</b><br>[<b>{<font color="blue">echo </font><font color="red">12345 <font color="black">|</font> after(3)</font>/}</b>|<b>{<font color="blue">echo </font><font color="red">12345 <font color="black">|</font> before(3)</font>/}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font><font color="black">'</font>)</font>/}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> afterLast(<font color="black">'</font><font color="black">'</font>)</font>/}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> before(<font color="black">'</font><font color="black">'</font>)</font>/}</b>|<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> beforeLast(<font color="black">'</font><font color="black">'</font>)</font>/}</b>]</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjaxc2a96139e3dfa499f2bc900e3c6ee911"></div>
+                      <div id="padAjax73c54db7e938e1453bea9d885b379b33"></div>
                       <script>
-                      padAjaxc2a96139e3dfa499f2bc900e3c6ee911 = new XMLHttpRequest();
-                      padAjaxc2a96139e3dfa499f2bc900e3c6ee911.onreadystatechange=function() {
-                      if (padAjaxc2a96139e3dfa499f2bc900e3c6ee911.readyState === 4) {
-                      if (padAjaxc2a96139e3dfa499f2bc900e3c6ee911.status === 200) {
-                      document.getElementById("padAjaxc2a96139e3dfa499f2bc900e3c6ee911").innerHTML=padAjaxc2a96139e3dfa499f2bc900e3c6ee911.responseText;
+                      padAjax73c54db7e938e1453bea9d885b379b33 = new XMLHttpRequest();
+                      padAjax73c54db7e938e1453bea9d885b379b33.onreadystatechange=function() {
+                      if (padAjax73c54db7e938e1453bea9d885b379b33.readyState === 4) {
+                      if (padAjax73c54db7e938e1453bea9d885b379b33.status === 200) {
+                      document.getElementById("padAjax73c54db7e938e1453bea9d885b379b33").innerHTML=padAjax73c54db7e938e1453bea9d885b379b33.responseText;
                       } else {
-                      document.getElementById("padAjaxc2a96139e3dfa499f2bc900e3c6ee911").innerHTML=padAjaxc2a96139e3dfa499f2bc900e3c6ee911.statusText;
+                      document.getElementById("padAjax73c54db7e938e1453bea9d885b379b33").innerHTML=padAjax73c54db7e938e1453bea9d885b379b33.statusText;
                       }
                       }
                       }
-                      padAjaxc2a96139e3dfa499f2bc900e3c6ee911.open("GET","http://localhost/pad/regression/framework/?helpers/strings_the_slug_after_and_before_pipes_answer_as_they_did&padInclude",true);
-                      padAjaxc2a96139e3dfa499f2bc900e3c6ee911.send();
+                      padAjax73c54db7e938e1453bea9d885b379b33.open("GET","http://localhost/pad/regression/framework/?formulas/an_editable_spreadsheet_outside_a_form_is_a_form_of_its_own&padInclude",true);
+                      padAjax73c54db7e938e1453bea9d885b379b33.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/framework - Page: lenient/a_list_handed_to_a_pipe_function_as_its_parameter_is_empty<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: formulas/cells_split_on_commas_outside_brackets_and_texts_and_on_tabs<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
-                      <font size="-2">lenient/a_list_handed_to_a_pipe_function_as_its_parameter_is_empty.php</font>
+                      <font size="-2"></font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">lenient/a_list_handed_to_a_pipe_function_as_its_parameter_is_empty.pad</font>
+                      <font size="-2">formulas/cells_split_on_commas_outside_brackets_and_texts_and_on_tabs.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
                     </th>
                   </tr>
                   <tr>
+                    <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk: a list where a pipe function wants a value as its parameter is empty.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdjb21tYXMnLCBoZWFkZXJzPUZBTFNFfVxuICAxLDIsPVNVTShBMSxCMSksPUlGKEExPjAsXCJhLGJcIixcImNcIilcbiAgXCIxLDAwMFwiLFwieCBcIlwieVwiXCJcIiw9QTIqMiwnID1ub3QgYSBmb3JtdWxhXG57L3BhZDpzcHJlYWRzaGVldCB8IGFmdGVyKCc8L3N0eWxlPicpfVxue3BhZDpzcHJlYWRzaGVldCAndGFicycsIGhlYWRlcnM9RkFMU0V9XG5cdGFcdGIsIGNcdD1MRU4oQjEpXG5cdDNcdDRcdD1BMitCMlxuey9wYWQ6c3ByZWFkc2hlZXQgfCBhZnRlcignPC9zdHlsZT4nKX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdjb21tYXMnLCBoZWFkZXJzPUZBTFNFfVxuICAxLDIsPVNVTShBMSxCMSksPUlGKEExPjAsXCJhLGJcIixcImNcIilcbiAgXCIxLDAwMFwiLFwieCBcIlwieVwiXCJcIiw9QTIqMiwnID1ub3QgYSBmb3JtdWxhXG57L3BhZDpzcHJlYWRzaGVldCB8IGFmdGVyKCc8L3N0eWxlPicpfVxue3BhZDpzcHJlYWRzaGVldCAndGFicycsIGhlYWRlcnM9RkFMU0V9XG5cdGFcdGIsIGNcdD1MRU4oQjEpXG5cdDNcdDRcdD1BMitCMlxuey9wYWQ6c3ByZWFkc2hlZXQgfCBhZnRlcignPC9zdHlsZT4nKX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>commas<font color="black">'</font><font color="black">,</font> headers=FALSE</font>}</b><br>  1,2,=SUM(A1,B1),=IF(A1&gt;0,"a,b","c")<br>  "1,000","x ""y""",=A2*2,' =not a formula<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">|</font> after(<font color="black">'</font>&lt;/style&gt;<font color="black">'</font>)</font>}</b><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>tabs<font color="black">'</font><font color="black">,</font> headers=FALSE</font>}</b><br>    a    b, c    =LEN(B1)<br>    3    4    =A2+B2<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">|</font> after(<font color="black">'</font>&lt;/style&gt;<font color="black">'</font>)</font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">1[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> contains([<font color="black">'</font>a<font color="black">'</font>])</font>/}</b>] 2[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> like [<font color="black">'</font>a<font color="black">'</font>]</font>/}</b>] 3[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> matches([<font color="black">'</font>a<font color="black">'</font>])</font>/}</b>] 4[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> after([<font color="black">'</font>a<font color="black">'</font>])</font>/}</b>] 5[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> left([1])</font>/}</b>] 6[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> truncate([2])</font>/}</b>] 7[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> escape([<font color="black">'</font>js<font color="black">'</font>])</font>/}</b>] 8[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>b<font color="black">'</font> <font color="black">|</font> between([<font color="black">'</font>a<font color="black">'</font>]<font color="black">,</font> <font color="black">'</font>z<font color="black">'</font>)</font>/}</b>]</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax56b54f13f14e30cae66f99c896fa98d3"></div>
+                      <div id="padAjax7824f91363026417263570ad9dc5042a"></div>
                       <script>
-                      padAjax56b54f13f14e30cae66f99c896fa98d3 = new XMLHttpRequest();
-                      padAjax56b54f13f14e30cae66f99c896fa98d3.onreadystatechange=function() {
-                      if (padAjax56b54f13f14e30cae66f99c896fa98d3.readyState === 4) {
-                      if (padAjax56b54f13f14e30cae66f99c896fa98d3.status === 200) {
-                      document.getElementById("padAjax56b54f13f14e30cae66f99c896fa98d3").innerHTML=padAjax56b54f13f14e30cae66f99c896fa98d3.responseText;
+                      padAjax7824f91363026417263570ad9dc5042a = new XMLHttpRequest();
+                      padAjax7824f91363026417263570ad9dc5042a.onreadystatechange=function() {
+                      if (padAjax7824f91363026417263570ad9dc5042a.readyState === 4) {
+                      if (padAjax7824f91363026417263570ad9dc5042a.status === 200) {
+                      document.getElementById("padAjax7824f91363026417263570ad9dc5042a").innerHTML=padAjax7824f91363026417263570ad9dc5042a.responseText;
                       } else {
-                      document.getElementById("padAjax56b54f13f14e30cae66f99c896fa98d3").innerHTML=padAjax56b54f13f14e30cae66f99c896fa98d3.statusText;
+                      document.getElementById("padAjax7824f91363026417263570ad9dc5042a").innerHTML=padAjax7824f91363026417263570ad9dc5042a.statusText;
                       }
                       }
                       }
-                      padAjax56b54f13f14e30cae66f99c896fa98d3.open("GET","http://localhost/pad/regression/framework/?lenient/a_list_handed_to_a_pipe_function_as_its_parameter_is_empty&padInclude",true);
-                      padAjax56b54f13f14e30cae66f99c896fa98d3.send();
+                      padAjax7824f91363026417263570ad9dc5042a.open("GET","http://localhost/pad/regression/framework/?formulas/cells_split_on_commas_outside_brackets_and_texts_and_on_tabs&padInclude",true);
+                      padAjax7824f91363026417263570ad9dc5042a.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/framework - Page: tags/asset_takes_a_field_inside_its_quoted_name_as_its_characters<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: formulas/elapsed_hours_count_the_time_rounded_to_the_second<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
-                      <font size="-2">tags/asset_takes_a_field_inside_its_quoted_name_as_its_characters.php</font>
+                      <font size="-2"></font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">tags/asset_takes_a_field_inside_its_quoted_name_as_its_characters.pad</font>
+                      <font size="-2">formulas/elapsed_hours_count_the_time_rounded_to_the_second.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
                     </th>
                   </tr>
                   <tr>
+                    <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A field written inside the quoted name of {asset} - and of {img} and {video}, which<br>  // check their file the same way - is the name it holds: the @ of logo@2x.css came as its<br>  // stand-in, and the name was refused as no file name below www/&lt;application&gt;/. The<br>  // fixture is www/regression/framework/assets/logo@2x.css.<br><br>  </span><span style="color: #0000BB">$f </span><span style="color: #007700">= </span><span style="color: #DD0000">'logo@2x.css'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdob3VycycsIGhlYWRlcnM9RkFMU0UsIGZvcm1hdHM9J0M6W2hdOm1tLCBEOmg6bW0nfVxuICBTdGFydCxFbmQsV29ya2VkLFdvcmtlZFxuICAxOjQ1LDEzOjQ1LD1CMi1BMiw9QjItQTJcbiAgPVRFWFQoQjItQTIsXCJbaF06bW1cIiksPVRFWFQoMS8yNC0xRS05LFwiW2hdOm1tXCIpLD1URVhUKDAuNS0xRS0xMixcIlttXVwiKSw9VEVYVCgwLjUtMUUtMTIsXCJbc11cIilcbiAgPVRFWFQoNDUzMDYuOTk5OTk5OTksXCJ5eXl5LW1tLWRkIGhoOm1tOnNzXCIpLD1URVhUKDQ1MzA2Ljk5OTk5OTk5LFwiZGRkZFwiKSw9VEVYVCgxLjUsXCJbaF06bW1cIiksPVRFWFQoNDUzMDYuNzUsXCJ5eXl5LW1tLWRkIGhoOm1tOnNzXCIpXG57L3BhZDpzcHJlYWRzaGVldCB8IGFmdGVyKCc8L3N0eWxlPicpfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdob3VycycsIGhlYWRlcnM9RkFMU0UsIGZvcm1hdHM9J0M6W2hdOm1tLCBEOmg6bW0nfVxuICBTdGFydCxFbmQsV29ya2VkLFdvcmtlZFxuICAxOjQ1LDEzOjQ1LD1CMi1BMiw9QjItQTJcbiAgPVRFWFQoQjItQTIsXCJbaF06bW1cIiksPVRFWFQoMS8yNC0xRS05LFwiW2hdOm1tXCIpLD1URVhUKDAuNS0xRS0xMixcIlttXVwiKSw9VEVYVCgwLjUtMUUtMTIsXCJbc11cIilcbiAgPVRFWFQoNDUzMDYuOTk5OTk5OTksXCJ5eXl5LW1tLWRkIGhoOm1tOnNzXCIpLD1URVhUKDQ1MzA2Ljk5OTk5OTk5LFwiZGRkZFwiKSw9VEVYVCgxLjUsXCJbaF06bW1cIiksPVRFWFQoNDUzMDYuNzUsXCJ5eXl5LW1tLWRkIGhoOm1tOnNzXCIpXG57L3BhZDpzcHJlYWRzaGVldCB8IGFmdGVyKCc8L3N0eWxlPicpfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>hours<font color="black">'</font><font color="black">,</font> headers=FALSE<font color="black">,</font> formats=<font color="black">'</font>C<font color="black">:</font>[h]<font color="black">:</font>mm<font color="black">,</font> D<font color="black">:</font>h<font color="black">:</font>mm<font color="black">'</font></font>}</b><br>  Start,End,Worked,Worked<br>  1:45,13:45,=B2-A2,=B2-A2<br>  =TEXT(B2-A2,"[h]:mm"),=TEXT(1/24-1E-9,"[h]:mm"),=TEXT(0.5-1E-12,"[m]"),=TEXT(0.5-1E-12,"[s]")<br>  =TEXT(45306.99999999,"yyyy-mm-dd hh:mm:ss"),=TEXT(45306.99999999,"dddd"),=TEXT(1.5,"[h]:mm"),=TEXT(45306.75,"yyyy-mm-dd hh:mm:ss")<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">|</font> after(<font color="black">'</font>&lt;/style&gt;<font color="black">'</font>)</font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">asset </font><font color="red"><font color="black">'</font>assets/<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>f</font><font color="black">}</font></b><font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font>framework/<font color="black">'</font>)</font>/}</b> | <b>{<font color="blue">asset </font><font color="red"><font color="black">'</font>assets/<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>f</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> tag <font color="black">|</font> after(<font color="black">'</font>framework/<font color="black">'</font>)</font>/}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax5373dfa2efa938f05ff9b85c86bad530"></div>
+                      <div id="padAjaxf94f8d7f5717a7b7cb2d495751811a81"></div>
                       <script>
-                      padAjax5373dfa2efa938f05ff9b85c86bad530 = new XMLHttpRequest();
-                      padAjax5373dfa2efa938f05ff9b85c86bad530.onreadystatechange=function() {
-                      if (padAjax5373dfa2efa938f05ff9b85c86bad530.readyState === 4) {
-                      if (padAjax5373dfa2efa938f05ff9b85c86bad530.status === 200) {
-                      document.getElementById("padAjax5373dfa2efa938f05ff9b85c86bad530").innerHTML=padAjax5373dfa2efa938f05ff9b85c86bad530.responseText;
+                      padAjaxf94f8d7f5717a7b7cb2d495751811a81 = new XMLHttpRequest();
+                      padAjaxf94f8d7f5717a7b7cb2d495751811a81.onreadystatechange=function() {
+                      if (padAjaxf94f8d7f5717a7b7cb2d495751811a81.readyState === 4) {
+                      if (padAjaxf94f8d7f5717a7b7cb2d495751811a81.status === 200) {
+                      document.getElementById("padAjaxf94f8d7f5717a7b7cb2d495751811a81").innerHTML=padAjaxf94f8d7f5717a7b7cb2d495751811a81.responseText;
                       } else {
-                      document.getElementById("padAjax5373dfa2efa938f05ff9b85c86bad530").innerHTML=padAjax5373dfa2efa938f05ff9b85c86bad530.statusText;
+                      document.getElementById("padAjaxf94f8d7f5717a7b7cb2d495751811a81").innerHTML=padAjaxf94f8d7f5717a7b7cb2d495751811a81.statusText;
                       }
                       }
                       }
-                      padAjax5373dfa2efa938f05ff9b85c86bad530.open("GET","http://localhost/pad/regression/framework/?tags/asset_takes_a_field_inside_its_quoted_name_as_its_characters&padInclude",true);
-                      padAjax5373dfa2efa938f05ff9b85c86bad530.send();
+                      padAjaxf94f8d7f5717a7b7cb2d495751811a81.open("GET","http://localhost/pad/regression/framework/?formulas/elapsed_hours_count_the_time_rounded_to_the_second&padInclude",true);
+                      padAjaxf94f8d7f5717a7b7cb2d495751811a81.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/framework - Page: tags/asset_writes_the_address_with_a_hash_of_the_contents<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: formulas/formats_split_where_a_column_of_the_sheet_follows_a_comma<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
-                      <font size="-2">tags/asset_writes_the_address_with_a_hash_of_the_contents.php</font>
+                      <font size="-2"></font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">tags/asset_writes_the_address_with_a_hash_of_the_contents.pad</font>
+                      <font size="-2">formulas/formats_split_where_a_column_of_the_sheet_follows_a_comma.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
                     </th>
                   </tr>
                   <tr>
+                    <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The fixtures are www/regression/framework/assets/case.css, case.js and case.mjs. The<br>  // version is the start of the contents' hash; a policy that asks for a nonce gets it on<br>  // the element. The addresses are shown from the application on: the mount prefix before<br>  // it is the server's.<br><br>  </span><span style="color: #0000BB">$same </span><span style="color: #007700">= ( </span><span style="color: #0000BB">padAsset </span><span style="color: #007700">( </span><span style="color: #DD0000">'assets/case.css' </span><span style="color: #007700">) == </span><span style="color: #0000BB">$padRoot </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/framework/assets/case.css?v='<br>            </span><span style="color: #007700">. </span><span style="color: #0000BB">substr </span><span style="color: #007700">( </span><span style="color: #0000BB">hash_file </span><span style="color: #007700">( </span><span style="color: #DD0000">'xxh128'</span><span style="color: #007700">, </span><span style="color: #0000BB">dirname </span><span style="color: #007700">( </span><span style="color: #0000BB">APPS </span><span style="color: #007700">) . </span><span style="color: #DD0000">'/www/regression/framework/assets/case.css' </span><span style="color: #007700">), </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">10 </span><span style="color: #007700">) )<br>        ? </span><span style="color: #DD0000">'the hash of the contents' </span><span style="color: #007700">: </span><span style="color: #DD0000">'another hash'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$cspWas </span><span style="color: #007700">= </span><span style="color: #0000BB">$padCsp</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padCsp </span><span style="color: #007700">= </span><span style="color: #DD0000">"script-src 'nonce'"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$nonced </span><span style="color: #007700">= </span><span style="color: #0000BB">str_replace </span><span style="color: #007700">( [ </span><span style="color: #0000BB">padNonce </span><span style="color: #007700">(), </span><span style="color: #0000BB">$padRoot </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'NONCE'</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">], </span><span style="color: #0000BB">padAssetTag </span><span style="color: #007700">( </span><span style="color: #DD0000">'assets/case.mjs' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$padCsp </span><span style="color: #007700">= </span><span style="color: #0000BB">$cspWas</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICd0aW1lcycsIGhlYWRlcnM9RkFMU0UsIGZvcm1hdHM9J0E6bW1tIGQsIGhoOm1tLCBCOjAuMDAnfVxuICAyMDI0LTAxLTE1IDEzOjQ1LDIuNVxuey9wYWQ6c3ByZWFkc2hlZXQgfCBhZnRlcignPC9zdHlsZT4nKX17cGFkOnNwcmVhZHNoZWV0ICdsaW5lcycsIGhlYWRlcnM9RkFMU0UsIGZvcm11bGFzPSdMaW5lIHRvdGFsPUIyKkMyJywgdG90YWxzPSdMaW5lIHRvdGFsJywgZm9ybWF0cz0nTGluZSB0b3RhbDowLjAwLCBDOlwi4oKsIFwiIywjIzAuMDAsIEQ0Olwic3VtLCBcIjAuMDAnfVxuICBJdGVtLFF0eSxQcmljZVxuICBBcHBsZXMsMywxLjJcbiAgUGVhcnMsNSwwLjhcbnsvcGFkOnNwcmVhZHNoZWV0fVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICd0aW1lcycsIGhlYWRlcnM9RkFMU0UsIGZvcm1hdHM9J0E6bW1tIGQsIGhoOm1tLCBCOjAuMDAnfVxuICAyMDI0LTAxLTE1IDEzOjQ1LDIuNVxuey9wYWQ6c3ByZWFkc2hlZXQgfCBhZnRlcignPC9zdHlsZT4nKX17cGFkOnNwcmVhZHNoZWV0ICdsaW5lcycsIGhlYWRlcnM9RkFMU0UsIGZvcm11bGFzPSdMaW5lIHRvdGFsPUIyKkMyJywgdG90YWxzPSdMaW5lIHRvdGFsJywgZm9ybWF0cz0nTGluZSB0b3RhbDowLjAwLCBDOlwi4oKsIFwiIywjIzAuMDAsIEQ0Olwic3VtLCBcIjAuMDAnfVxuICBJdGVtLFF0eSxQcmljZVxuICBBcHBsZXMsMywxLjJcbiAgUGVhcnMsNSwwLjhcbnsvcGFkOnNwcmVhZHNoZWV0fVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>times<font color="black">'</font><font color="black">,</font> headers=FALSE<font color="black">,</font> formats=<font color="black">'</font>A<font color="black">:</font>mmm d<font color="black">,</font> hh<font color="black">:</font>mm<font color="black">,</font> B<font color="black">:</font>0.00<font color="black">'</font></font>}</b><br>  2024-01-15 13:45,2.5<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">|</font> after(<font color="black">'</font>&lt;/style&gt;<font color="black">'</font>)</font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>lines<font color="black">'</font><font color="black">,</font> headers=FALSE<font color="black">,</font> formulas=<font color="black">'</font>Line total=B2*C2<font color="black">'</font><font color="black">,</font> totals=<font color="black">'</font>Line total<font color="black">'</font><font color="black">,</font> formats=<font color="black">'</font>Line total<font color="black">:</font>0.00<font color="black">,</font> C<font color="black">:</font>"€ "#<font color="black">,</font>##0.00<font color="black">,</font> D4<font color="black">:</font>"sum<font color="black">,</font> "0.00<font color="black">'</font></font>}</b><br>  Item,Qty,Price<br>  Apples,3,1.2<br>  Pears,5,0.8<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>same</font>}</b> | <b>{<font color="blue">asset </font><font color="red"><font color="black">'</font>assets/case.css<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font>framework/<font color="black">'</font>)</font>/}</b> | <b>{<font color="blue">asset </font><font color="red"><font color="black">'</font>assets/case.js<font color="black">'</font><font color="black">,</font> tag <font color="black">|</font> after(<font color="black">'</font>framework/<font color="black">'</font>)</font>/}</b> | <b>{<font color="blue">asset </font><font color="red"><font color="black">'</font>assets/case.css<font color="black">'</font><font color="black">,</font> tag <font color="black">|</font> after(<font color="black">'</font>framework/<font color="black">'</font>)</font>/}</b> | <b>{<font color="green"><font color="red">!</font>nonced</font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjaxa30426e7c776b721b4b454c05fca983f"></div>
+                      <div id="padAjax0426d8e23dbaad992eb083a4d3e895c5"></div>
                       <script>
-                      padAjaxa30426e7c776b721b4b454c05fca983f = new XMLHttpRequest();
-                      padAjaxa30426e7c776b721b4b454c05fca983f.onreadystatechange=function() {
-                      if (padAjaxa30426e7c776b721b4b454c05fca983f.readyState === 4) {
-                      if (padAjaxa30426e7c776b721b4b454c05fca983f.status === 200) {
-                      document.getElementById("padAjaxa30426e7c776b721b4b454c05fca983f").innerHTML=padAjaxa30426e7c776b721b4b454c05fca983f.responseText;
+                      padAjax0426d8e23dbaad992eb083a4d3e895c5 = new XMLHttpRequest();
+                      padAjax0426d8e23dbaad992eb083a4d3e895c5.onreadystatechange=function() {
+                      if (padAjax0426d8e23dbaad992eb083a4d3e895c5.readyState === 4) {
+                      if (padAjax0426d8e23dbaad992eb083a4d3e895c5.status === 200) {
+                      document.getElementById("padAjax0426d8e23dbaad992eb083a4d3e895c5").innerHTML=padAjax0426d8e23dbaad992eb083a4d3e895c5.responseText;
                       } else {
-                      document.getElementById("padAjaxa30426e7c776b721b4b454c05fca983f").innerHTML=padAjaxa30426e7c776b721b4b454c05fca983f.statusText;
+                      document.getElementById("padAjax0426d8e23dbaad992eb083a4d3e895c5").innerHTML=padAjax0426d8e23dbaad992eb083a4d3e895c5.statusText;
                       }
                       }
                       }
-                      padAjaxa30426e7c776b721b4b454c05fca983f.open("GET","http://localhost/pad/regression/framework/?tags/asset_writes_the_address_with_a_hash_of_the_contents&padInclude",true);
-                      padAjaxa30426e7c776b721b4b454c05fca983f.send();
+                      padAjax0426d8e23dbaad992eb083a4d3e895c5.open("GET","http://localhost/pad/regression/framework/?formulas/formats_split_where_a_column_of_the_sheet_follows_a_comma&padInclude",true);
+                      padAjax0426d8e23dbaad992eb083a4d3e895c5.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/pages - Page: catalog/functions<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: formulas/formats_write_a_column_a_cell_or_a_range_and_typed_cells_keep_theirs<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
-                      <font size="-2">catalog/functions.php</font>
+                      <font size="-2"></font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">catalog/functions.pad</font>
+                      <font size="-2">formulas/formats_write_a_column_a_cell_or_a_range_and_typed_cells_keep_theirs.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
                     </th>
                   </tr>
                   <tr>
+                    <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The value the stripLow line cleans: printable letters around two control characters.<br><br>  </span><span style="color: #0000BB">$catLow </span><span style="color: #007700">= </span><span style="color: #DD0000">"a\x01b\x02c"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdmb3JtYXRzJywgaGVhZGVycz1GQUxTRSwgZm9ybWF0cz0nQjE6MC4wMCwgQTQ6QjQ6IywjIzAsIEI1Onl5eXktbW0tZGQgaGg6bW0nfVxuICAxMi41JSwzXG4gIDIwMjQtMDEtMTUsPUEyKzMwXG4gICQxMjUwLjUwLD1BMyoyXG4gIDEyMzQuNSwxMjM0LjVcbiAgMTM6NDUsPUEyK0E1XG4gID1FT01PTlRIKEEyLDApLD1BMSs1JVxuey9wYWQ6c3ByZWFkc2hlZXQgfCBhZnRlcignPC9zdHlsZT4nKX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNwcmVhZHNoZWV0ICdmb3JtYXRzJywgaGVhZGVycz1GQUxTRSwgZm9ybWF0cz0nQjE6MC4wMCwgQTQ6QjQ6IywjIzAsIEI1Onl5eXktbW0tZGQgaGg6bW0nfVxuICAxMi41JSwzXG4gIDIwMjQtMDEtMTUsPUEyKzMwXG4gICQxMjUwLjUwLD1BMyoyXG4gIDEyMzQuNSwxMjM0LjVcbiAgMTM6NDUsPUEyK0E1XG4gID1FT01PTlRIKEEyLDApLD1BMSs1JVxuey9wYWQ6c3ByZWFkc2hlZXQgfCBhZnRlcignPC9zdHlsZT4nKX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>formats<font color="black">'</font><font color="black">,</font> headers=FALSE<font color="black">,</font> formats=<font color="black">'</font>B1<font color="black">:</font>0.00<font color="black">,</font> A4<font color="black">:</font>B4<font color="black">:</font>#<font color="black">,</font>##0<font color="black">,</font> B5<font color="black">:</font>yyyy-mm-dd hh<font color="black">:</font>mm<font color="black">'</font></font>}</b><br>  12.5%,3<br>  2024-01-15,=A2+30<br>  $1250.50,=A3*2<br>  1234.5,1234.5<br>  13:45,=A2+A5<br>  =EOMONTH(A2,0),=A1+5%<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">|</font> after(<font color="black">'</font>&lt;/style&gt;<font color="black">'</font>)</font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">after:      <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a/b<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font>/<font color="black">'</font>)</font>/}</b><br>afterLast:  <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a/b/c<font color="black">'</font> <font color="black">|</font> afterLast(<font color="black">'</font>/<font color="black">'</font>)</font>/}</b><br>before:     <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a/b<font color="black">'</font> <font color="black">|</font> before(<font color="black">'</font>/<font color="black">'</font>)</font>/}</b><br>beforeLast: <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a.b.c<font color="black">'</font> <font color="black">|</font> beforeLast(<font color="black">'</font>.<font color="black">'</font>)</font>/}</b><br>between:    <b>{<font color="blue">echo </font><font color="red">17 <font color="black">|</font> between(10<font color="black">,</font> 66)</font>/}</b>.<br>bold:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>important<font color="black">'</font> <font color="black">|</font> bold</font>/}</b><br>close:      <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>items<font color="black">'</font> <font color="black">|</font> close <font color="black">|</font> ignore</font>/}</b><br>contains:   <b>{<font color="blue">echo </font><font color="red">12345 <font color="black">|</font> contains(<font color="black">'</font>34<font color="black">'</font>)</font>/}</b>.<br>cut:        <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>banana<font color="black">'</font> <font color="black">|</font> cut(<font color="black">'</font>an<font color="black">'</font>)</font>/}</b><br>encodeHigh: <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>café<font color="black">'</font> <font color="black">|</font> encodeHigh</font>/}</b><br>exists:     <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>hello/index.pad<font color="black">'</font> <font color="black">|</font> exists</font>/}</b>.<br>html:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>&lt;b&gt;<font color="black">'</font> <font color="black">|</font> html</font>/}</b><br>in:         <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a<font color="black">'</font> <font color="black">|</font> in(<font color="black">'</font>a<font color="black">'</font>)</font>/}</b>.<br>left:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> left(2)</font>/}</b><br>like:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> like(<font color="black">'</font>a<font color="black">%</font><font color="black">'</font>)</font>/}</b>.<br>max_len:    <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> max_len(4)</font>/}</b><br>mid:        <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> mid(2<font color="black">,</font> 3)</font>/}</b><br>nbsp:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>hello world<font color="black">'</font> <font color="black">|</font> nbsp</font>/}</b><br>open:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>items<font color="black">'</font> <font color="black">|</font> open <font color="black">|</font> ignore</font>/}</b><br>optional:   <b>{<font color="green">$catNoSuch</font> <font color="black">|</font> <font color="blue">optional</font>}</b>ok<br>range:      <b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> range(0<font color="black">,</font> 100)</font>/}</b>.<br>replace:    <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> replace(<font color="black">'</font>b<font color="black">'</font><font color="black">,</font> <font color="black">'</font>x<font color="black">'</font>)</font>/}</b><br>right:      <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> right(2)</font>/}</b><br>sanitize:   <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>&lt;b&gt;x&lt;/b&gt;<font color="black">'</font> <font color="black">|</font> sanitize</font>/}</b><br>slashes:    <b>{<font color="blue">echo </font><font color="red">"it<font color="black">'</font>s" <font color="black">|</font> slashes</font>/}</b><br>stripLow:   <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>catLow <font color="black">|</font> stripLow</font>/}</b><br>stripslashes: <b>{<font color="blue">echo </font><font color="red">"it<font color="black">'</font>s" <font color="black">|</font> slashes <font color="black">|</font> stripslashes</font>/}</b><br>tag:        <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>items<font color="black">'</font> <font color="black">|</font> tag <font color="black">|</font> ignore</font>/}</b><br>time:       <b>{<font color="blue">echo </font><font color="red">1702483200 <font color="black">|</font> time(<font color="black">'</font>Y<font color="black">'</font>)</font>/}</b><br>timestamp:  <b>{<font color="blue">echo </font><font color="red">1702483200 <font color="black">|</font> timestamp(<font color="black">'</font>Y<font color="black">'</font>)</font>/}</b><br>trim:       <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>  a b  <font color="black">'</font> <font color="black">|</font> trim</font>/}</b><br>ucwords:    <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>hello world<font color="black">'</font> <font color="black">|</font> ucwords</font>/}</b><br>white:      <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a       b<font color="black">'</font> <font color="black">|</font> white</font>/}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax12fb4e8bbfec5ccb52f69bf2165aa981"></div>
+                      <div id="padAjax0067edbe43f025c563229bb34bf967fb"></div>
                       <script>
-                      padAjax12fb4e8bbfec5ccb52f69bf2165aa981 = new XMLHttpRequest();
-                      padAjax12fb4e8bbfec5ccb52f69bf2165aa981.onreadystatechange=function() {
-                      if (padAjax12fb4e8bbfec5ccb52f69bf2165aa981.readyState === 4) {
-                      if (padAjax12fb4e8bbfec5ccb52f69bf2165aa981.status === 200) {
-                      document.getElementById("padAjax12fb4e8bbfec5ccb52f69bf2165aa981").innerHTML=padAjax12fb4e8bbfec5ccb52f69bf2165aa981.responseText;
+                      padAjax0067edbe43f025c563229bb34bf967fb = new XMLHttpRequest();
+                      padAjax0067edbe43f025c563229bb34bf967fb.onreadystatechange=function() {
+                      if (padAjax0067edbe43f025c563229bb34bf967fb.readyState === 4) {
+                      if (padAjax0067edbe43f025c563229bb34bf967fb.status === 200) {
+                      document.getElementById("padAjax0067edbe43f025c563229bb34bf967fb").innerHTML=padAjax0067edbe43f025c563229bb34bf967fb.responseText;
                       } else {
-                      document.getElementById("padAjax12fb4e8bbfec5ccb52f69bf2165aa981").innerHTML=padAjax12fb4e8bbfec5ccb52f69bf2165aa981.statusText;
+                      document.getElementById("padAjax0067edbe43f025c563229bb34bf967fb").innerHTML=padAjax0067edbe43f025c563229bb34bf967fb.statusText;
                       }
                       }
                       }
-                      padAjax12fb4e8bbfec5ccb52f69bf2165aa981.open("GET","http://localhost/pad/regression/pages/?catalog/functions&padInclude",true);
-                      padAjax12fb4e8bbfec5ccb52f69bf2165aa981.send();
+                      padAjax0067edbe43f025c563229bb34bf967fb.open("GET","http://localhost/pad/regression/framework/?formulas/formats_write_a_column_a_cell_or_a_range_and_typed_cells_keep_theirs&padInclude",true);
+                      padAjax0067edbe43f025c563229bb34bf967fb.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: formulas/formulas_fill_a_column_of_the_rows_and_totals_add_a_row<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">formulas/formulas_fill_a_column_of_the_rows_and_totals_add_a_row.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ29yZGVycyd9XG4gIGl0ZW0scHJpY2UscXR5XG4gIEFwcGxlcywxLjIwLDNcbiAgUGVhcnMsMC44MCw1XG4gIFBsdW1zLDIuMjUsMlxuey9wYWQ6ZGF0YX1cbntwYWQ6c3ByZWFkc2hlZXQgJ29yZGVycycsIGRhdGE9J29yZGVycycsIGZvcm11bGFzPSd0b3RhbD1CMipDMiwgc2hhcmU9RDIvJEQkNScsIHRvdGFscz0ncXR5LCB0b3RhbCcsIGZvcm1hdHM9J3ByaWNlOjAuMDAsIHRvdGFsOjAuMDAsIHNoYXJlOjAlJ317L3BhZDpzcHJlYWRzaGVldCB8IGFmdGVyKCc8L3N0eWxlPicpfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ29yZGVycyd9XG4gIGl0ZW0scHJpY2UscXR5XG4gIEFwcGxlcywxLjIwLDNcbiAgUGVhcnMsMC44MCw1XG4gIFBsdW1zLDIuMjUsMlxuey9wYWQ6ZGF0YX1cbntwYWQ6c3ByZWFkc2hlZXQgJ29yZGVycycsIGRhdGE9J29yZGVycycsIGZvcm11bGFzPSd0b3RhbD1CMipDMiwgc2hhcmU9RDIvJEQkNScsIHRvdGFscz0ncXR5LCB0b3RhbCcsIGZvcm1hdHM9J3ByaWNlOjAuMDAsIHRvdGFsOjAuMDAsIHNoYXJlOjAlJ317L3BhZDpzcHJlYWRzaGVldCB8IGFmdGVyKCc8L3N0eWxlPicpfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>orders<font color="black">'</font></font>}</b><br>  item,price,qty<br>  Apples,1.20,3<br>  Pears,0.80,5<br>  Plums,2.25,2<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">'</font>orders<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>orders<font color="black">'</font><font color="black">,</font> formulas=<font color="black">'</font>total=B2*C2<font color="black">,</font> share=D2/<font color="red">$</font>D<font color="red">$</font>5<font color="black">'</font><font color="black">,</font> totals=<font color="black">'</font>qty<font color="black">,</font> total<font color="black">'</font><font color="black">,</font> formats=<font color="black">'</font>price<font color="black">:</font>0.00<font color="black">,</font> total<font color="black">:</font>0.00<font color="black">,</font> share<font color="black">:</font>0<font color="black">%</font><font color="black">'</font></font>}</b><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spreadsheet </font><font color="red"><font color="black">|</font> after(<font color="black">'</font>&lt;/style&gt;<font color="black">'</font>)</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxa114e4de8f597e500dc27f9c28f6c977"></div>
+                      <script>
+                      padAjaxa114e4de8f597e500dc27f9c28f6c977 = new XMLHttpRequest();
+                      padAjaxa114e4de8f597e500dc27f9c28f6c977.onreadystatechange=function() {
+                      if (padAjaxa114e4de8f597e500dc27f9c28f6c977.readyState === 4) {
+                      if (padAjaxa114e4de8f597e500dc27f9c28f6c977.status === 200) {
+                      document.getElementById("padAjaxa114e4de8f597e500dc27f9c28f6c977").innerHTML=padAjaxa114e4de8f597e500dc27f9c28f6c977.responseText;
+                      } else {
+                      document.getElementById("padAjaxa114e4de8f597e500dc27f9c28f6c977").innerHTML=padAjaxa114e4de8f597e500dc27f9c28f6c977.statusText;
+                      }
+                      }
+                      }
+                      padAjaxa114e4de8f597e500dc27f9c28f6c977.open("GET","http://localhost/pad/regression/framework/?formulas/formulas_fill_a_column_of_the_rows_and_totals_add_a_row&padInclude",true);
+                      padAjaxa114e4de8f597e500dc27f9c28f6c977.send();
                       </script>
                     </td>
                   </tr>

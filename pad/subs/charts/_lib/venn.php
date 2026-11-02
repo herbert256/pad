@@ -3,7 +3,7 @@
   // How two or three sets overlap: a circle per set, its area its size, the overlaps as
   // large as the data says.
   //
-  //   {chart 'venn', data='speakers', sets='sets', value='people'}
+  //   {chart:venn data='speakers', sets='sets', value='people'}
   //
   // A row names one set - 'English' - or the overlap of two or three - 'English&Spanish',
   // or 'English, Spanish' - in sets=, else the first field that is no number, and its size

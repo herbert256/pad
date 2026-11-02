@@ -3,7 +3,7 @@
   // {section:features title='heading'} {section:item 'Fast', icon='zap'}...{/section:item} ...
   // {/section:features} - what a product does, a card per feature in a grid: an icon, a short
   // heading and a line or two. The features are the rows of data= - their fields title, text,
-  // icon (a name of {icon}) and link - or {section:item} pairs, the item's first value its
+  // icon (a name of {icon:star}) and link - or {section:item} pairs, the item's first value its
   // title and its content its text. columns= the cards side by side at the widest, 1 to 6
   // (3); the grid takes fewer as the section narrows.
   //

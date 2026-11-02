@@ -1,6 +1,6 @@
 <?php
 
-  // Type handler for a {macro} of the template: its body is the tag's template, rendered
+  // Type handler for a {pad:macro} of the template: its body is the tag's template, rendered
   // once with the parameters of this use as the fields of its one row - tags/_lib/macro.php.
 
   include_once PAD . 'tags/_lib/macro.php';

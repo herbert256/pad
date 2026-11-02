@@ -1,12 +1,12 @@
 <?php
 
-  // QR codes - the qr symbology of the codes subsystem, written {qr 'text'/}, {barcode:qr
-  // 'text'/} or {barcode 'text', type='qr'/}. The text is encoded the way ISO/IEC 18004 says,
+  // QR codes - the qr symbology of the codes subsystem, written {barcode:qr 'text'/}, {barcode:qr
+  // 'text'/} or {barcode:qr 'text'/}. The text is encoded the way ISO/IEC 18004 says,
   // and the symbol is written as inline SVG: no image library, no remote service, no
   // JavaScript.
   //
-  //   {qr 'https://example.com/order/42'/}
-  //   {qr $url, size=200, level='H', title='Open the order on your phone'/}
+  //   {barcode:qr 'https://example.com/order/42'/}
+  //   {barcode:qr $url, size=200, level='H', title='Open the order on your phone'/}
   //
   // padQr          the SVG of a text, or '' when it does not fit in a version 40 symbol
   // padQrMatrix    the symbol itself: rows of TRUE (dark) and FALSE (light), no quiet zone

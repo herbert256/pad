@@ -1,6 +1,6 @@
 <?php
 
-  // The {breadcrumb/} of a routed page links the page to itself by the name it was asked
+  // The {widget:breadcrumb/} of a routed page links the page to itself by the name it was asked
   // by, every segment encoded: asked as products/a%23b%26c%20d it binds a#b&c d, and its
   // link wrote that as it stands - products/a#b&amp;c d - which a browser follows to
   // products/a with a fragment. Asked in the index.php/ form, which every server routes

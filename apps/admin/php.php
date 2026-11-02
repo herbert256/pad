@@ -27,9 +27,9 @@
 
   $wanted = [
     'mbstring' => 'text functions, required', 'json' => 'JSON, required', 'ctype' => 'name checks, required',
-    'mysqli' => 'MySQL through db ()', 'pdo_sqlite' => 'SQLite through db ()', 'curl' => '{curl}, padCurl, padPrefetch',
-    'sodium' => 'padEncrypt and padDecrypt', 'intl' => 'currency, localDate, {trans} plurals',
-    'gd' => '{img} thumbnails', 'apcu' => "the 'apcu' caches", 'redis' => "the 'redis' cache",
+    'mysqli' => 'MySQL through db ()', 'pdo_sqlite' => 'SQLite through db ()', 'curl' => '{pad:curl}, padCurl, padPrefetch',
+    'sodium' => 'padEncrypt and padDecrypt', 'intl' => 'currency, localDate, {pad:trans} plurals',
+    'gd' => '{pad:img} thumbnails', 'apcu' => "the 'apcu' caches", 'redis' => "the 'redis' cache",
     'memcached' => "the 'memcached' cache", 'fileinfo' => 'padUpload, the real type of a file',
     'zlib' => 'gzip of the output', 'pcntl' => 'pad work --timeout, pad serve', 'tidy' => '$padTidy',
     'opcache' => 'compiled scripts kept between requests', 'xdebug' => 'the step debugger of the editor'

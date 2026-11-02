@@ -1,5 +1,5 @@
 // The form: the rules are the page's PHP's, exported by padValidateClient into the argument
-// - signup({^start}) - and padValidate, the checker {validator} brought, judges them in the
+// - signup({^start}) - and padValidate, the checker {pad:validator} brought, judges them in the
 // browser with the server's own messages. Untick "check in the browser" and the post goes as
 // it is: the server's answer holds the same messages.
 

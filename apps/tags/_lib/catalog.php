@@ -1,5 +1,7 @@
 <?php
 
+  include_once COMMON . '_lib/subsystemCatalog.php';
+
   // The tags application: a page per tag, and the indexes over them - every built-in tag,
   // listed with its type prefix, {pad:if}, and every kind of the subsystems and every
   // sequence type, {chart:pie}, {sequence:fibonacci}, read from the engine (_lib/kinds.php).
@@ -14,7 +16,7 @@
   //                            $tagSee (related tags)
   //   tag/<name>.pad           the longer description
   //   examples/<name>/<x>.pad  an example, rendered live; its first line
-  //                            {meta title='...', about='...'} names it
+  //                            {pad:meta title='...', about='...'} names it
   //   examples/<name>/<x>.php  the data of an example that builds it in PHP
   //   examples/<name>/<x>.src  an example that is shown but never run - a redirect, an
   //                            exit, a mail - first line as above
@@ -44,16 +46,19 @@
       'debug'      => [ 'Debugging and errors',  'Looking inside, and stopping on purpose'        ],
       'sequences'  => [ 'Sequences',             'Number sequences and what is done to them'      ],
     ] + array_combine ( array_map ( fn ( $type ) => "kind-$type", array_keys ( tagsKindTypes () ) ),
-                        array_map ( fn ( $one ) => [ $one [0], $one [1] ], tagsKindTypes () ) );
+                        array_map ( fn ( $one ) => [ $one [0], $one [1] ], tagsKindTypes () ) )
+      + array_combine ( array_map ( fn ( $key ) => "subsystem-$key", array_keys ( appSubsystemFamilies () ) ),
+                        array_map ( fn ( $one ) => [ $one ['label'], $one ['about'] ], appSubsystemFamilies () ) );
 
   }
 
   function tagsForms () {
 
     return [
-      'single' => [ 'Single tags', 'Written alone - {name ...} - and replaced by what they answer' ],
-      'pair'   => [ 'Tag pairs',   'Written around content - {name ...} ... {/name}'                ],
+      'single' => [ 'Single tags', 'Written alone - {property:name ...} - and replaced by what they answer' ],
+      'pair'   => [ 'Tag pairs',   'Written around content - {property:name ...} ... {/property:name}'                ],
       'both'   => [ 'Either form', 'Alone or as a pair - the pair form gives them content to use'   ],
+      'usage'  => [ 'Options and helpers', 'Subsystem kinds selected by an option, parameter or helper call' ],
     ];
 
   }
@@ -73,10 +78,10 @@
     $files   = tagsFiles ( 'tag', [ '.php' ] );
 
     foreach ( $files as $file )
-      if ( basename ( $file ) [0] != '_' )
+      if ( basename ( $file ) [0] != '_' and padTagBuiltIn ( basename ( $file, '.php' ) ) )
         $catalog [ 'pad:' . basename ( $file, '.php' ) ] = tagsRead ( $file );
 
-    return $catalog += tagsKinds ();
+    return $catalog += tagsKinds () + appSubsystemCatalog ();
 
   }
 
@@ -179,7 +184,7 @@
 
   }
 
-  // A source file of the application as highlighted HTML, its {meta} line left out: that
+  // A source file of the application as highlighted HTML, its {pad:meta} line left out: that
   // line belongs to the catalog, not to the example.
 
   function tagsSource ( $file, $lang ) {
@@ -187,7 +192,7 @@
     $source = (string) file_get_contents ( APP . $file );
 
     if ( $lang == 'pad' )
-      $source = preg_replace ( '/\A\{meta [^\n]*\}\R?/', '', $source );
+      $source = preg_replace ( '/\A\{pad:meta [^\n]*\}\R?/', '', $source );
 
     return padHighlightTokens ( trim ( $source ), $lang );
 
@@ -269,9 +274,14 @@
 
     $options = [];
 
-    foreach ( tagsCatalog () as $key => $tag )
+    $catalog = tagsCatalog ();
+    foreach ( array_merge ( array_keys ( padSubsystems ), padSequenceOperations ) as $type )
+      if ( is_file ( APPS . "tags/tag/$type.php" ) && ! padTagBuiltIn ( $type ) )
+        $catalog ["$type:*"] = tagsRead ( APPS . "tags/tag/$type.php" );
+
+    foreach ( $catalog as $key => $tag )
       foreach ( $tag ['options'] as $option => $meaning )
-        $options [ (string) $option ] [] = [ 'name' => $tag ['name'], 'key' => $key, 'link' => $tag ['link'], 'meaning' => $meaning ];
+        $options [ (string) $option ] [] = [ 'name' => $tag ['name'], 'key' => $key, 'label' => $tag ['label'] ?? '{' . $key . '}', 'link' => $tag ['link'], 'meaning' => $meaning ];
 
     ksort ( $options, SORT_NATURAL | SORT_FLAG_CASE );
 
@@ -295,7 +305,7 @@
       $tags = [];
 
       foreach ( $group ['tags'] as $tag )
-        $tags [] = $tag + [ 'syntaxHtml' => padHighlightTokens ( tagsCatalog () [ $tag ['key'] ] ['syntax'], 'pad' ) ];
+        $tags [] = $tag + [ 'syntaxHtml' => padHighlightTokens ( tagsCatalog () [ $tag ['key'] ] ['syntax'], tagsCatalog () [ $tag ['key'] ] ['language'] ?? 'pad' ) ];
 
       $rows [] = [ 'key' => $group ['key'], 'label' => $group ['label'], 'tags' => $tags ];
 
@@ -311,6 +321,7 @@
 
     return [ 'name'       => $tag ['name'],
              'key'        => $tag ['key'],
+             'label'      => $tag ['label'] ?? '{' . $tag ['key'] . '}',
              'link'       => $tag ['link'],
              'about'      => $tag ['about'],
              'group'      => $tag ['group'],

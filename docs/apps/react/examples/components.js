@@ -19,7 +19,7 @@ function TodoItem({ todo, onToggle, onDelete }) {
   return (
     <li className="rise" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0', borderBottom: '1px solid var(--line)' }}>
       <input type="checkbox" checked={todo.done} onChange={() => onToggle(todo.id)} aria-label={todo.text} />
-      <span style={{ flex: 1, textDecoration: todo.done ? 'line-through' : 'none', color: todo.done ? 'var(--faint)' : 'inherit' }}>{todo.text}</span>
+      <span style={{ flex: 1, textDecoration: todo.done ? 'line-through' : 'none', color: todo.done ? 'var(--dim)' : 'inherit' }}>{todo.text}</span>
       <button className="btn-icon btn-ghost" onClick={() => onDelete(todo.id)} aria-label={'Delete ' + todo.text}>×</button>
     </li>
   );

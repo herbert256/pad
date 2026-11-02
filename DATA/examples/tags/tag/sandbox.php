@@ -5,9 +5,9 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{sandbox} ... {/sandbox}
-{sandbox function='name'} ... {/sandbox}
-{echo $snippet | sandbox/}
+{pad:sandbox} ... {/pad:sandbox}
+{pad:sandbox function='name'} ... {/pad:sandbox}
+{pad:echo $snippet | sandbox/}
 PAD;
 
   $tagParms   = [];

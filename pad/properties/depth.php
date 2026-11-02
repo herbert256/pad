@@ -1,7 +1,7 @@
 <?php
 
-  // The depth@tag property: how deep level $padIdx stands in a recursion - for a {tree},
-  // 1 for its own rows and one more per {recurse}, for indenting a tree. Any other level
+  // The depth@tag property: how deep level $padIdx stands in a recursion - for a {pad:tree},
+  // 1 for its own rows and one more per {pad:recurse}, for indenting a tree. Any other level
   // counts the levels of its own name from the top down to itself, so a tag that calls
   // itself has a depth as well, and a level that does not is at depth 1.
 

@@ -5,8 +5,8 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{file dir='exports', name='orders', ext='csv'} ... {/file}
-{file dir='reports', name='daily', ext='html', date, stamp, id=8} ... {/file}
+{pad:file dir='exports', name='orders', ext='csv'} ... {/pad:file}
+{pad:file dir='reports', name='daily', ext='html', date, stamp, id=8} ... {/pad:file}
 PAD;
 
   $tagParms   = [];

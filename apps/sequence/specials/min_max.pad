@@ -1,16 +1,16 @@
-{table}
+{common:table}
 
-{demo} {sequence '11..30', shuffle, push='mySequence' /} {/demo}
+{common:demo} {sequence:range '11..30', shuffle, push='mySequence' /} {/common:demo}
 
-{demo} {mySequence} {$sequence} {/mySequence}        {/demo}
+{common:demo} {pull:mySequence} {$sequence} {/pull:mySequence}        {/common:demo}
 
-{demo} {mySequence minimum } {$sequence} {/mySequence} {/demo}
-{demo} {mySequence maximum } {$sequence} {/mySequence} {/demo}
+{common:demo} {pull:mySequence minimum } {$sequence} {/pull:mySequence} {/common:demo}
+{common:demo} {pull:mySequence maximum } {$sequence} {/pull:mySequence} {/common:demo}
 
-{demo} {mySequence minimum=5 } {$sequence} {/mySequence} {/demo}
-{demo} {mySequence maximum=5 } {$sequence} {/mySequence} {/demo}
+{common:demo} {pull:mySequence minimum=5 } {$sequence} {/pull:mySequence} {/common:demo}
+{common:demo} {pull:mySequence maximum=5 } {$sequence} {/pull:mySequence} {/common:demo}
 
-{demo} {mySequence minimum=5, negative } {$sequence} {/mySequence} {/demo}
-{demo} {mySequence maximum=5, negative } {$sequence} {/mySequence} {/demo}
+{common:demo} {pull:mySequence minimum=5, negative } {$sequence} {/pull:mySequence} {/common:demo}
+{common:demo} {pull:mySequence maximum=5, negative } {$sequence} {/pull:mySequence} {/common:demo}
 
-{/table}
+{/common:table}

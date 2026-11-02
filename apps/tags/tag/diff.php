@@ -5,9 +5,9 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{diff $old, $new/}
-{diff $old, $new, lines, from='Monday', to='Friday'/}
-{diff $old, $new, side, from='before', to='after'/}
+{pad:diff $old, $new/}
+{pad:diff $old, $new, lines, from='Monday', to='Friday'/}
+{pad:diff $old, $new, side, from='before', to='after'/}
 PAD;
 
   $tagParms   = [

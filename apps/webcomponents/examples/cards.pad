@@ -1,11 +1,11 @@
 <div class="grid">
-{cards}
-  {card title=$title, tone=$tone}
+{array:cards}
+  {app:card title=$title, tone=$tone}
     <p class="stat">{$value}</p>
     <p class="muted">{$note}</p>
     <a slot="footer" href="?examples/cards">Details →</a>
-  {/card}
-{/cards}
+  {/app:card}
+{/array:cards}
 </div>
 
 <p class="muted small" style="margin-top: 18px">

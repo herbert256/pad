@@ -1,1 +1,1 @@
-joined: [{staffSel join="staff as b on b.name = staff.name", fields="staff.name, b.name", union="phones", order="1, 2", page=1, rows=3}{$name} {/staffSel}] ({pager 'staffSel', window=0}{$kind}:{$page} {/pager})
+joined: [{select:staffSel join="staff as b on b.name = staff.name", fields="staff.name, b.name", union="phones", order="1, 2", page=1, rows=3}{$name} {/select:staffSel}] ({pad:pager 'staffSel', window=0}{$kind}:{$page} {/pad:pager})

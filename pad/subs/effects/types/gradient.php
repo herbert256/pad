@@ -1,6 +1,6 @@
 <?php
 
-  // {gradient}Build pages, not plumbing{/gradient} or {gradient 'PAD'/} - text painted with a
+  // {effect:gradient}Build pages, not plumbing{/effect:gradient} or {effect:gradient 'PAD'/} - text painted with a
   // gradient: colors= two to six CSS colours between commas, the accent colours
   // --pad-effect-accent and --pad-effect-accent2 when not given; angle= the direction in
   // degrees (90, left to right). animate lets the colours flow along the letters, one pass in
@@ -8,7 +8,7 @@
   // reduced motion. The letters stay text; where a browser cannot paint into letters they
   // are the text's own colour.
   //
-  //   {gradient colors='#f97316, #db2777, #7c3aed', animate}Launch week{/gradient}
+  //   {effect:gradient colors='#f97316, #db2777, #7c3aed', animate}Launch week{/effect:gradient}
 
   $padFxSource   = padEffectSource ();
   $padFxColors   = padEffectColors ( 'colors', [], 2, 6 );
@@ -19,7 +19,7 @@
   $padFxRepeat   = padEffectRepeat ( 3 );
 
   if ( padEffectPlain ( $padFxSource ) === '' )
-    return padEffectNeedsText ( "{gradient}Launch week{/gradient} or {gradient 'PAD'/}" );
+    return padEffectNeedsText ( "{effect:gradient}Launch week{/effect:gradient} or {effect:gradient 'PAD'/}" );
 
   // Flowing, the gradient is twice as wide as the text and starts again with its first
   // colour, so a pass ends where the next one starts.

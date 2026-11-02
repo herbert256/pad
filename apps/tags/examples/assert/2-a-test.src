@@ -1,8 +1,8 @@
-{meta title='In an application test', about='apps/shop/_tests/cart.pad - pad test shop turns asserts on, and a false one fails the test.'/}
-{set $total = 0/}
-{cart}
-  {assert $price gt 0, 'every line has a price'/}
-  {set $total = $total + $price * $qty/}
-{/cart}
-{assert $total eq 42, 'the cart total'/}
+{pad:meta title='In an application test', about='apps/shop/_tests/cart.pad - pad test shop turns asserts on, and a false one fails the test.'/}
+{pad:set $total = 0/}
+{array:cart}
+  {pad:assert $price gt 0, 'every line has a price'/}
+  {pad:set $total = $total + $price * $qty/}
+{/array:cart}
+{pad:assert $total eq 42, 'the cart total'/}
 <p>{$total}</p>

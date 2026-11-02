@@ -9,7 +9,7 @@ Demonstrates how to combine PAD (server-side template engine) with React (client
 PAD builds the page on the server - the data, the HTML, the routing by file name. React takes
 over the parts that move: islands in the page, each handed its first data by PAD and talking
 back to PAD while it runs. Fourteen examples, each a page with the live component on top and
-its template, PHP and component underneath (coloured on the server by the `{source}` tag).
+its template, PHP and component underneath (coloured on the server by the `{pad:source}` tag).
 
 - `?index` - the home page: what goes where, and an island that asks the server again
 - `?patterns` - every example, grouped
@@ -30,7 +30,7 @@ theme colours them too.
 | `examples/props` | Islands with props: `data-props="{^field}"`, one island per row of a PAD loop |
 | `examples/enhance` | Progressive enhancement: a complete PAD table that React takes over |
 | `examples/products` | A custom tag (`_tags/json.php`) writing `_data/products.json` into an attribute |
-| `examples/topic` | `{reactData}` with four providers in `_providers/` querying the database |
+| `examples/topic` | `{pad:reactData}` with four providers in `_providers/` querying the database |
 
 **React back to PAD** - the component asks the server while it runs.
 
@@ -39,7 +39,7 @@ theme colours them too.
 | `examples/search` | One page, two answers: HTML for the browser, JSON for `fetch()` through `$padExpose` |
 | `examples/feedback` | A React form checked by `padValidate`, posted with the CSRF token in a header |
 | `examples/cart` | Two islands sharing a cart kept in the PHP session |
-| `examples/chart` | React holds the controls, PAD draws the `{chart}` and answers one `{fragment}` |
+| `examples/chart` | React holds the controls, PAD draws the `{chart:bar}` and answers one `{pad:fragment}` |
 | `examples/live` | Polling a page's JSON, paused while the tab is hidden |
 
 **React basics** - `examples/counter`, `components`, `form`, `toggle`, `click`.
@@ -53,8 +53,8 @@ apps/react/
 ├── _inits.pad, _inits.php # the shared frame: React, the runtime, the menu
 ├── _data/                 # examples.json (the catalogue - and the menu), products, team, sales
 ├── _lib/react.php         # reactData, reactGroups, reactExample, reactCart, reactText
-├── _tags/json.php         # {json 'products'/} - a _data file for an attribute
-├── _providers/            # the {reactData/} providers of the topic example
+├── _tags/json.php         # {app:json 'products'/} - a _data file for an attribute
+├── _providers/            # the {pad:reactData/} providers of the topic example
 ├── _guide/                # the sample files the guide shows
 ├── index, patterns, guide # the three pages on top of the menu
 └── examples/
@@ -83,7 +83,7 @@ unpkg.com; Babel turns the JSX into JavaScript in the browser, so there is no bu
 | `PadReact.island(name, Component)` | Renders the component on every `[data-island=name]`, the JSON of `data-props` as props (a list arrives as `props.data`), what PAD rendered inside as `props.serverHtml` |
 | `PadReact.get(page, params)` | `?page&...&padFormat=json` - the variables the page names in `$padExpose` |
 | `PadReact.post(page, body, { token })` | A form-encoded post with the `X-CSRF-Token` header from `<meta name="csrf-token">` |
-| `PadReact.fragment(page, name, params)` | One `{fragment}` of the page, as HTML |
+| `PadReact.fragment(page, name, params)` | One `{pad:fragment}` of the page, as HTML |
 | `PadReact.useData(page, params, first)` | A hook: the page's data, asked again when the params change |
 | `PadReact.useDebounced(value, ms)` | The value once it stood still - for a search box |
 

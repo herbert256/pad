@@ -4,7 +4,7 @@
   // reaches, $padSeqMaxTries positions. The terms are made by pqVanEckUpTo () in function.php,
   // as far as the test needs them - doubled while x has not turned up - and kept for the
   // request with the position each value was last seen at, so the question is an isset.
-  // build/check.php asks it for {keep vanEck}, {remove vanEck} and {flag vanEck}, as
+  // build/check.php asks it for {keep:vanEck}, {remove:vanEck} and {pad:flag vanEck}, as
   // recaman/bool.php does for recaman.
   //
   // Without it the check read the PADvanEck table, the first 10,000 terms: a value first turns

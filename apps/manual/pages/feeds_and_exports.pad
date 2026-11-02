@@ -1,17 +1,17 @@
-{meta title='Feeds and exports'/}
+{pad:meta title='Feeds and exports'/}
 
 <p>A page that exposes its data with <code>$padExpose</code> answers it as JSON and CSV
-({manual 'data_answers'/}) - and in every other format of <code>pad/subs/formats/</code> that
+({app:manual 'data_answers'/}) - and in every other format of <code>pad/subs/formats/</code> that
 writes: a calendar, a feed, a spreadsheet, a map. <code>$padFormatOptions</code> gives the
 writer what the rows do not say, here the name of the calendar:</p>
 
-{example 'fragments/feeds_and_exports_1'/}
+{common:example 'fragments/feeds_and_exports_1'/}
 
 <p>Asked with <code>&amp;padFormat=ics</code> - or by a calendar application sending
 <code>Accept: text/calendar</code> - the page answers an iCalendar file, with
 <code>&amp;padFormat=md</code> a Markdown table. The template does not run for either:</p>
 
-{example 'fragments/feeds_and_exports_2'/}
+{common:example 'fragments/feeds_and_exports_2'/}
 
 <ul>
   <li>The formats that write: ics, vcf, xlsx, rss, atom, jsonfeed, geojson, gpx, kml, vtt, srt,
@@ -31,10 +31,10 @@ writer what the rows do not say, here the name of the calendar:</p>
 <h2>A feed of a collection</h2>
 
 <p><code>padFormatWrite</code> writes rows in a format in a page's PHP. The rows of a
-{manual 'collections'/} work as they are for the feeds - title, date, slug and body - the
+{app:manual 'collections'/} work as they are for the feeds - title, date, slug and body - the
 slug behind the feed's link is an entry's address:</p>
 
-{example 'fragments/feeds_and_exports_3'/}
+{common:example 'fragments/feeds_and_exports_3'/}
 
 <ul>
   <li>rss, atom and jsonfeed take <code>title</code>, <code>link</code>, <code>self</code>,

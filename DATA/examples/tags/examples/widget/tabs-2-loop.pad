@@ -1,8 +1,8 @@
-{meta title='A tab per row', about='The tabs made in a loop over the data - one per plan.'/}
-{tabs}
-  {plans}
-    {tab $name}
+{pad:meta title='A tab per row', about='The tabs made in a loop over the data - one per plan.'/}
+{widget:tabs}
+  {array:plans}
+    {pad:tab $name}
       <p><strong>{$price}</strong> a month - {$about}</p>
-    {/tab}
-  {/plans}
-{/tabs}
+    {/pad:tab}
+  {/array:plans}
+{/widget:tabs}

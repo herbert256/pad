@@ -5,7 +5,7 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{error 'message'/}
+{pad:error 'message'/}
 PAD;
 
   $tagParms   = [

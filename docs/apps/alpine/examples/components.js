@@ -4,7 +4,7 @@
 
 document.addEventListener('alpine:init', () => {
 
-  // Which question is open - the index PAD's {current@faq} wrote, starting at 1.
+  // Which question is open - the index PAD's {property:current@faq} wrote, starting at 1.
   Alpine.data('accordion', (items) => ({
     items,
     open: 1,

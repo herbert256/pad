@@ -1,5 +1,5 @@
 // The PAD live application's editor: no framework, nothing PAD needs to parse - a static file.
-// The same as the playground's (www/playground/playground.js), but Run saves the page and the
+// The same as the WASM editor's (www/wasm/editor.js), but Run saves the page and the
 // output frame shows it as this server answers it - same origin, a real request - with its
 // address under "open alone".
 // The panes live in the URL hash (#s= base64 of a JSON object), so the address bar is always
@@ -33,7 +33,7 @@
     try { return JSON.parse(decodeURIComponent(escape(atob(text)))); } catch (e) { return null; }
   }
 
-  // The link to the playground beside the buttons carries the same hash: it opens the
+  // The link to WASM beside the buttons carries the same hash: it opens the
   // boxes there as they stand here, and waits there for its button as any link does.
 
   var other     = document.getElementById('toOther');
@@ -62,6 +62,10 @@
 
   function show(which) {
     mode.value = which;
+    if (which === 'php' && php.value.trim() === '') {
+      php.value = '<?php\n\n?>';
+      if (php.editor) php.editor.setValue(php.value);
+    }
     document.querySelectorAll('[data-mode]').forEach(function (element) {
       element.hidden = element.getAttribute('data-mode') !== which;
     });
@@ -114,7 +118,7 @@
   if (shared) {
     source.value = shared.source || '';
     data.value   = shared.data   || '';
-    if (typeof shared.php === 'string') php.value = shared.php;
+    php.value    = typeof shared.php === 'string' ? shared.php : '';
   }
 
   show(shared && shared.mode === 'php' ? 'php' : 'data');
@@ -145,17 +149,30 @@
   // so its address can be read once it has loaded.
 
   var frame = document.getElementById('liveOut');
+  var preview = document.getElementById('previewOut');
   var open  = document.getElementById('liveOpen');
+
+  form.addEventListener('submit', function (event) {
+    remember();
+    var nested = event.submitter && event.submitter.getAttribute('formtarget') === 'previewOut';
+    frame.hidden = !!nested;
+    preview.hidden = !nested;
+    // Stop the old document when changing execution modes; preview output always uses
+    // its own opaque-origin frame, never the full page's same-origin permissions.
+    if (nested) frame.src = 'about:blank';
+    else preview.src = 'about:blank';
+    open.hidden = true;
+  });
 
   frame.addEventListener('load', function () {
     var at = '';
     try { at = frame.contentWindow.location.href; } catch (e) { at = ''; }
-    open.hidden = !at || at === 'about:blank';
+    open.hidden = frame.hidden || !at || at === 'about:blank';
     if (!open.hidden) open.href = at;
   });
 
   // An example from a link is shown, not run: its template - and its PHP code - is whoever
-  // made the link's, and it runs on this machine - a {curl} in it fetches what it likes and
+  // made the link's, and it runs on this machine - a {pad:curl} in it fetches what it likes and
   // sends what it read where it likes, PHP code does anything at all. A page on another site
   // only had to open such a link for it to run. It waits for Run, which the visitor presses
   // having read it; the sample runs at once.
@@ -288,9 +305,7 @@
 
   if (shared) {
     var hint = document.querySelector('.hint');
-    if (hint) hint.textContent = mode.value === 'php'
-      ? 'An example from a link, with PHP code: read both, then Run (Ctrl+Enter) runs them on this machine.'
-      : 'An example from a link: read it, then Run (Ctrl+Enter) runs it on this machine.';
+    if (hint) hint.remove();
   } else
     render();
 

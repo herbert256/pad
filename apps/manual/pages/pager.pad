@@ -1,11 +1,11 @@
-{meta title='Page links'/}
+{pad:meta title='Page links'/}
 
 <p>The <code>page</code> and <code>rows</code> options cut one page out of a tag's rows. The
-<code>{open/}pager{close/}</code> tag writes the links to the other pages: the first and the last
+<code>{pad:open/}pad:pager{pad:close/}</code> tag writes the links to the other pages: the first and the last
 page, a window of pages on each side of the current one, a gap where pages are left out, and
 previous and next. The current page is marked <code>aria-current="page"</code>.</p>
 
-{example 'fragments/pager_1'/}
+{common:example 'fragments/pager_1'/}
 
 <p>The pager reads what the paged tag left, so it comes after it, and names it - without a
 name it follows the last paged tag of the page. It counts the rows that the options written
@@ -27,9 +27,9 @@ value is not there yet, hence <code>$pg ?? 1</code>.</p>
 <code>prev</code>, <code>next</code>, <code>page</code>, <code>current</code> or
 <code>gap</code>, with <code>$page</code>, <code>$label</code> and <code>$href</code> - empty for
 a gap, and for a previous or next that does not exist. With a single page there are no rows,
-and the pair shows its {construct 'else'/}.</p>
+and the pair shows its {app:construct 'else'/}.</p>
 
-{example 'fragments/pager_2'/}
+{common:example 'fragments/pager_2'/}
 
 <p>A Select table is paged by its SQL limit, so the rows do not hold the total: the pager then
 counts with one more query, and only when it is there.</p>

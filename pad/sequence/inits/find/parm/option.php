@@ -1,10 +1,10 @@
 <?php
 
   // A number written right after an option that names a type taking a parameter or an action
-  // that counts, the option written bare, is that option's value: {sequence '1..3', add, 2} is
-  // {sequence '1..3', add=2}, {pull:a first, 2} is {pull:a first=2}, as {sequence add, 3} gave
+  // that counts, the option written bare, is that option's value: {sequence:range '1..3', add, 2} is
+  // {sequence:range '1..3', add=2}, {pull:a first, 2} is {pull:a first=2}, as {sequence:add 3} gave
   // add its 3. Nothing read it: {pull:a first, 2} took one term and {pull:a add, 2} added 1,
-  // without a word, and {sequence '1..3', add, 2} ended on "a parameter '2' that nothing reads".
+  // without a word, and {sequence:range '1..3', add, 2} ended on "a parameter '2' that nothing reads".
   //
   // The value goes into the option where plays/inits.php, actions/inits.php and find/loop.php
   // read it, and the places taken - by $padOpt index - are left out of the rest of find/:

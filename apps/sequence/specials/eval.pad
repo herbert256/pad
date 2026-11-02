@@ -1,17 +1,17 @@
-{table}
+{common:table}
 
-{demo}{sequence '1..15', name='mySeq'/}{/demo}
+{common:demo}{sequence:range '1..15', name='mySeq'/}{/common:demo}
 
-{demo}{mySeq}
+{common:demo}{pull:mySeq}
   {$sequence}
-{/mySeq}{/demo} 
+{/pull:mySeq}{/common:demo} 
 
-{demo}{mySeq eval='* 10 | - 1'}
+{common:demo}{pull:mySeq eval='* 10 | - 1'}
   {$sequence}
-{/mySeq}{/demo} 
+{/pull:mySeq}{/common:demo} 
 
-{demo}{mySeq eval='15 + @'}
+{common:demo}{pull:mySeq eval='15 + @'}
   {$sequence}
-{/mySeq}{/demo} 
+{/pull:mySeq}{/common:demo} 
 
-{/table}
+{/common:table}

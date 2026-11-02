@@ -4,7 +4,7 @@
   // ink the seed picks and set a little apart, so the background shows as the mortar between
   // them.
   //
-  //   {pattern 'hexagons', size=14, seed=3/}
+  //   {pattern:hexagons size=14, seed=3/}
 
   return [
 

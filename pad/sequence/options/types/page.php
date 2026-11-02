@@ -7,7 +7,7 @@
   // the page's size: inits/parms.php reads it into $pqPage, inits/limits.php widens the run
   // for it and exits/page.php cuts the page out. Without this marker 'page' was no option
   // name to the subsystem, so a store could be named page - push='page', or a loop pair named
-  // page - and every later page= pulled that store: {sequence prime, page=2, rows=3} answered
+  // page - and every later page= pulled that store: {sequence:prime page=2, rows=3} answered
   // the store's terms made into primes.
 
   return TRUE;

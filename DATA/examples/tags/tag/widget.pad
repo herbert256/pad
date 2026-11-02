@@ -1,23 +1,18 @@
-{ignore}
-<p><code>{widget}</code> puts an interactive part on the page - tabs, an accordion, a carousel,
-a wizard, a lightbox, a modal, a drawer, a dropdown, a tooltip, a toast, a copy box, a poll, a
-breadcrumb. Every one is built on the server and works without JavaScript: radio buttons and
+{pad:ignore}
+<p><code>{widget:tabs}</code> puts an interactive part on the page - tabs, an accordion, a carousel,
+a wizard, a lightbox, a split pane, a modal, a drawer, a dropdown, a context menu, a command
+palette, a tooltip, a toast, a copy box, a poll, a breadcrumb, a sortable list. Every one is built on the server and works without JavaScript: radio buttons and
 CSS, <code>&lt;details&gt;</code>, <code>&lt;dialog&gt;</code>, the <code>popover</code>
 attribute, <code>:target</code>. Where a widget has a script it only makes it handier - Escape,
 the arrow keys, the focus - and is written once per page, with the CSP nonce. Every widget is a
 file of <code>pad/subs/widgets/types/</code>, its functions in <code>pad/subs/widgets/_lib/</code>, its
-style and script in <code>pad/subs/widgets/assets/</code>; the files of <code>types/</code> are the
+style and script in <code>www/assets/widgets/</code>; the files of <code>types/</code> are the
 widgets there are.</p>
 
-<p>A widget is written three ways, the same widget each time: the tag with the widget's name,
-<code>{widget 'modal', 'terms'}</code>, whose second parameter is the widget's own first; the
-widget: type, <code>{widget:modal 'terms'}</code>; and the bare name, <code>{modal 'terms'}</code>.
-The bare name comes after every other kind of tag, so a store, a field or an array of the name
-wins - a page's <code>$tabs</code> array is the data of <code>{tabs}</code>. Two names stay
-built-in tags: <a href="?tag/copy"><code>{copy}</code></a>, as PHP has a <code>copy()</code>
-function a bare name would reach first, and <a href="?tag/tab"><code>{tab}</code></a>, the item
-of the widgets that take a list of labelled parts - tabs, accordion, carousel, wizard and
-lightbox.</p>
+<p>A widget uses a qualified name: <code>{widget:modal 'terms'}</code>. Its first parameter is the widget's value. The <code>widget:</code> prefix selects the widget even when the page has an array or store
+with the same name. <a href="?tag/widget/copy"><code>{widget:copy}</code></a> writes a copy box;
+<a href="?tag/tab"><code>{pad:tab}</code></a> supplies the labelled parts of tabs, accordion,
+carousel, wizard, lightbox, splitpane and sortable.</p>
 
 <ul>
   <li><b>tabs</b> - panels behind a row of tabs: a radio button and a label per tab, the arrow
@@ -25,17 +20,25 @@ lightbox.</p>
   <code>&lt;details&gt;</code>; <code>single</code> one open at a time. <b>carousel</b> - slides
   that scroll and snap sideways, links to the slides before and after, a dot per slide, no
   autoplay. <b>wizard</b> - steps one at a time, numbered above, Back and Next under each.
-  <b>lightbox</b> - thumbnails whose picture opens large over the page.</li>
+  <b>lightbox</b> - thumbnails whose picture opens large over the page. <b>splitpane</b> - two
+  panes and the bar between them, dragged or moved by the arrow keys; the browser's resize grip
+  without scripting.</li>
   <li><b>modal</b> - a <code>&lt;dialog&gt;</code> and its button, opened by the invoker
   commands, a script where the browser has none, or a <code>:target</code> link without
-  scripting. <b>drawer</b> - the same along the side of the window.</li>
+  scripting. <b>drawer</b> - the same along the side of the window. <b>commandpalette</b> - a
+  dialog with a search box over the commands, opened by its button or Ctrl+K: typing narrows
+  them, Enter runs one; without scripting the whole list.</li>
   <li><b>dropdown</b> - a menu under a button, a popover the browser opens, closes and places.
+  <b>contextmenu</b> - the actions on a part of the page: a right click, Shift+F10 or its button
+  of three dots, which opens the same popover without scripting.
   <b>tooltip</b> - a tip on hover and focus, by CSS; Escape hides it. <b>toast</b> - a notice in
   an open <code>&lt;dialog&gt;</code> whose button closes it by an invoker command, a script where
   the browser has none - no form of its own, so it stands inside a form too;
   <code>timeout=</code> closes it by itself.</li>
   <li><b>copy</b> - a text and a copy-to-clipboard button. <b>poll</b> - a vote once per visitor,
-  the results as bars. <b>breadcrumb</b> - the trail from home to the page, from the page's
+  the results as bars. <b>sortable</b> - a short list put in order by hand, every item posted
+  with its place: dragged, moved by buttons or the keyboard, number fields without scripting.
+  <b>breadcrumb</b> - the trail from home to the page, from the page's
   path, the lines of a pair or <code>data=</code>.</li>
 </ul>
 
@@ -46,4 +49,4 @@ dark ones in dark mode. A name that is no widget, an option a widget does not kn
 without what it needs - a name, a label, a tab - are errors under the strict check. The poll's
 examples are shown but not run: what it shows depends on the votes and the visitor's
 session.</p>
-{/ignore}
+{/pad:ignore}

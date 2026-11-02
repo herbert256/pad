@@ -2,6 +2,8 @@
 
 This directory contains reference documentation for PAD template syntax elements.
 
+Every named tag requires a type prefix, including closing tags and branches: `{pad:if}`, `{pad:else}`, `{/pad:if}`, `{array:items}` and `{app:card}`. Variable and expression shorthand such as `{$name}`, `{!html}` and `{^data}` is unchanged. See [TYPES.md](TYPES.md) for the namespace map.
+
 ## Template Syntax
 
 | File | Description |
@@ -36,7 +38,7 @@ This directory contains reference documentation for PAD template syntax elements
 ## Quick Reference
 
 ### Most Used Tags
-`{if}`, `{while}`, `{data}`, `{set}`, `{echo}`, `{get}`, `{case}`
+`{pad:if}`, `{pad:while}`, `{pad:data}`, `{pad:set}`, `{pad:echo}`, `{pad:get}`, `{pad:case}`
 
 ### Most Used Functions
 `trim`, `upper`, `lower`, `html`, `date`, `+ n`, `- n`

@@ -3,27 +3,27 @@
     <td>
       
       <table border=1>
-        {offices sort}
-          {employees}
+        {select:offices sort}
+          {select:employees}
             <tr>
               <td> {$city} </td>
               <td> {$lastName}, {$firstName} </td>
             </tr>          
-          {/employees}
-        {/offices}
+          {/select:employees}
+        {/select:offices}
       </table>
       
     </td> <td> &nbsp; </td> <td>
 
       <table border=1>
-        {employees}
-          {offices}
+        {select:employees}
+          {select:offices}
             <tr>
               <td> {$lastName}, {$firstName} </td>
               <td> {$city} </td>
             </tr>
-          {/offices}
-        {/employees}
+          {/select:offices}
+        {/select:employees}
       </table>
 
     </td>

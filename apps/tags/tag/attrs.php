@@ -5,9 +5,9 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{attrs name=$value, other=$value/}
-{attrs required, aria-expanded=$open/}
-{attrs $array/}
+{pad:attrs name=$value, other=$value/}
+{pad:attrs required, aria-expanded=$open/}
+{pad:attrs $array/}
 PAD;
 
   $tagParms   = [

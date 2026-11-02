@@ -19,13 +19,13 @@ compares the index, so a backend that stops caching turns the page from yes to N
 | `guarded.php/pad` | A page under a `_guard.php` is built fresh for the request the guard lets in, and refused to one it does not - never answered from the cache |
 | `locked/` | The guarded directory: its `_guard.php` wants the header `X-Key: open`, its probe differs on every build |
 | `nonce.php/pad` | A page holding the request's CSP nonce (`script.pad`) is built fresh for each fetch, never stored |
-| `meta.php/pad` | Fetches `metaoff` twice: a page with `{meta cache=0/}` is built every time though the application caches |
-| `metaoff.php/pad` | A page that keeps itself out of the cache with `{meta cache=0/}`, its body its build moment |
+| `meta.php/pad` | Fetches `metaoff` twice: a page with `{pad:meta cache=0/}` is built every time though the application caches |
+| `metaoff.php/pad` | A page that keeps itself out of the cache with `{pad:meta cache=0/}`, its body its build moment |
 | `validators.php/pad` | The cache's validators belong to one URL: the probe's ETag gets a 304 from the probe only, and a date older than the cached copy gets the page |
 | `etaglist.php/pad` | On a cache miss the 304 reads the whole If-None-Match list: its tag second in a list, and `*`, get a 304, another tag the page |
 | `stable.pad` | A page that never changes, fetched by etaglist at a fresh address each time |
-| `nocache.php/pad` | Fetches `nocacheprobe` twice at a fresh address: the second fetch is a hit - the same build moment - while its `{nocache}` parts render again, the one in a loop with its row |
-| `nocacheprobe.php/pad` | A page whose build moment is cached and whose `{nocache}` parts are not |
+| `nocache.php/pad` | Fetches `nocacheprobe` twice at a fresh address: the second fetch is a hit - the same build moment - while its `{pad:nocache}` parts render again, the one in a loop with its row |
+| `nocacheprobe.php/pad` | A page whose build moment is cached and whose `{pad:nocache}` parts are not |
 | `a_visitor_with_an_identity_is_never_answered_public.php/pad` | Fetches `proxied` as a guest, with a cookie of its own, with an Authorization header and with a padLang cookie: public to the guest only, private to the other three |
 | `a_public_answer_among_several_locales_varies_on_the_cookie.php/pad` | Fetches `proxied` as a guest: the public answer says `Vary: Cookie` beside Accept-Language - a padLang cookie can choose the locale, and a shared cache must not hand the guest's page to that visitor |
 | `proxied.php/pad` | A page that greets the visitor it knows; shared caches may keep it and it sets no PAD cookie |
@@ -35,5 +35,5 @@ compares the index, so a backend that stops caching turns the page from yes to N
 | `exposed.php/pad` | A page that exposes its rows as data |
 | `a_304_carries_the_etag_its_200_carries.php/pad` | Fetches `stable` at a fresh address - the miss, the gzipped hit - and asks again with the hit's tag: the 304 carries that same tag |
 | `a_push_in_a_nocache_part_is_made_on_every_fetch.php/pad` | Fetches `nocachepush` twice at a fresh address: the part and its push are new both times - such a page is not kept |
-| `nocachepush.pad` | A page whose `{nocache}` part pushes to a stack in its head |
+| `nocachepush.pad` | A page whose `{pad:nocache}` part pushes to a stack in its head |
 | `_config/config.php` | Switches the file cache on, 60 seconds, `_common` off; for `proxied` a proxy and a client age, two locales and `$padCookies` off; for `proxiedone` the same with one locale |

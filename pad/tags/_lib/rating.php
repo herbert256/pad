@@ -1,11 +1,11 @@
 <?php
 
-  // Ratings - the {rating} tag. A score as a row of stars, or hearts, as inline SVG: the
+  // Ratings - the {pad:rating} tag. A score as a row of stars, or hearts, as inline SVG: the
   // whole ones filled, a part of one filled as far as the score goes, the rest empty - and
   // said in words for a screen reader, "4.5 out of 5".
   //
-  //   {rating 4.5, max=5}
-  //   {rating $score, icon='heart', size=16}
+  //   {pad:rating 4.5, max=5}
+  //   {pad:rating $score, icon='heart', size=16}
   //
   // padRating        the SVG of a score
   // padRatingShape   the outline of one icon on a 24 by 24 cell: star or heart

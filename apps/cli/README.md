@@ -76,7 +76,7 @@ pad help                           # the list
   `cart.php` when it needs data - next to its answer `cart.txt`: the exact output, a
   `/regex/` over it, or `HTTP 500` with an optional `/regex/` on the next line, the forms
   the framework's suites use. Each test page renders bare, in a process of its own, with
-  every `{assert}` checked; no URL reaches `_tests/`. A test without an answer counts against
+  every `{pad:assert}` checked; no URL reaches `_tests/`. A test without an answer counts against
   the run until `--record` writes it from what the page renders now (an existing answer is
   never overwritten; output that would read as a `/regex/` or an `HTTP` line is written as the
   pattern of exactly that output). `./ci.sh` runs `pad test --all --brief` as its `apptests`
@@ -88,7 +88,7 @@ pad help                           # the list
     FAIL  checkout
           want: <p>Total 42</p>
           got:  HTTP 500 - assert failed: $total eq 42
-                apps/shop/_tests/checkout.pad:2:1  {assert $total eq 42/}
+                apps/shop/_tests/checkout.pad:2:1  {pad:assert $total eq 42/}
     2 tests, 1 failed
   ```
 

@@ -1,6 +1,6 @@
 <?php
 
-  // The HTML attribute helpers behind {attrs} and {classes}. Both tags take their items raw -
+  // The HTML attribute helpers behind {pad:attrs} and {pad:classes}. Both tags take their items raw -
   // level/parms/parms.php routes every item to the positional path and parameter.php leaves
   // it unevaluated - because an item is an attribute, not an engine option: content=,
   // data-id= and aria-expanded= are attribute names here, and as options they would have
@@ -9,11 +9,11 @@
   // padAttrsItems splits the raw items into [ name, expression ] pairs at the first = (a
   // name is an HTML attribute name; an item without one is [ '', expression ]).
 
-  // Whether the tag on this level takes its items raw - the built-in {attrs}, {classes},
-  // {trans}, {debug}, {parms}, {assert}, the form tags {form}, {input} and {textarea},
-  // {can} and {cannot}, and {jsonview}, whose values may be arrays - a row, an answer of an
+  // Whether the tag on this level takes its items raw - the built-in {pad:attrs}, {pad:classes},
+  // {pad:trans}, {pad:debug}, {pad:parms}, {pad:assert}, the form tags {pad:form}, {pad:input} and {pad:textarea},
+  // {pad:can} and {pad:cannot}, and {pad:jsonview}, whose values may be arrays - a row, an answer of an
   // API - that an expression cannot hold. So does every rich form field of pad/subs/inputs/, the
-  // input: type: its items are the field's, as {input}'s are - min= of a slider, rows= of a
+  // input: type: its items are the field's, as {pad:input}'s are - min= of a slider, rows= of a
   // markdown editor are no handling options.
 
   function padParmsRaw () {
@@ -76,7 +76,7 @@
 
   // The value of an item. $extra naming an array - of the page or of the row - is that
   // array: the expression evaluator reads a $field as one value only, so the documented
-  // {attrs $extra} and {classes $list} ended in "there is no field named", and so did a
+  // {pad:attrs $extra} and {pad:classes $list} ended in "there is no field named", and so did a
   // named item - class=$list, joined with spaces, or active=$items, in when not empty.
 
   function padAttrsValue ( $expr ) {
@@ -156,13 +156,13 @@
 
   }
 
-  // {attrs disabled=$busy, title=$help, aria-expanded=$open}: the attributes, quoted and
+  // {pad:attrs disabled=$busy, title=$help, aria-expanded=$open}: the attributes, quoted and
   // escaped, space-separated. A boolean HTML attribute - disabled, checked, ... - is written
   // bare when its value is true and left out when it is not. Any other attribute is left
   // out for FALSE and NULL, written bare for TRUE, and otherwise written with its value -
   // 'false' stays aria-expanded="false" - an array joined with spaces. A name alone is a
-  // bare attribute: {attrs required}. An item without a name is an expression whose array
-  // value adds its keys as attributes: {attrs $extra}. A key that is no attribute name is
+  // bare attribute: {pad:attrs required}. An item without a name is an expression whose array
+  // value adds its keys as attributes: {pad:attrs $extra}. A key that is no attribute name is
   // left out - written as it was, x" onmouseover="... ended the attribute list's quoting.
 
   function padAttrs () {
@@ -232,7 +232,7 @@
 
   }
 
-  // {classes 'panel', active=$isActive, invalid=$hasErrors}: the class names, deduplicated
+  // {pad:classes 'panel', active=$isActive, invalid=$hasErrors}: the class names, deduplicated
   // and space-separated. An item without a name is an expression whose value - a string of
   // one or more names, or an array of them - is always in; name=condition puts that name in
   // when the condition holds.
@@ -258,7 +258,7 @@
 
     }
 
-    // An entity a field's sanitize step put in a quoted name - {classes '{$c}'} - is left as
+    // An entity a field's sanitize step put in a quoted name - {pad:classes '{$c}'} - is left as
     // it is, the way the sanitize chain leaves one: escaped twice, a&b was class="a&amp;amp;b".
     // A class list is no address and runs nothing, so an entity in it stays harmless text.
 

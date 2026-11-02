@@ -10,41 +10,41 @@
     return [
 
       'pad'      => [ 'A built-in tag of the engine - a file of pad/tags/.', 'tags',
-                      "{pad:if \$count gt 0}...{/pad:if}\n{if \$count gt 0}...{/if}" ],
+                      "{pad:if \$count gt 0}...{/pad:if}" ],
       'app'      => [ 'A tag of the application, a file of a _tags/ directory from the page up to the root.', 'tags',
-                      "{app:greeting name='Ann'/}\n{greeting name='Ann'/}" ],
+                      "{app:greeting name='Ann'/}" ],
       'common'   => [ 'A tag or a snippet of the shared _common application.', 'tags',
                       "{common:demo}...{/common:demo}\n{common:padFrame}...{/common:padFrame}" ],
-      'define'   => [ 'A tag defined in the template by {define} - its body the template of the tag.', 'tags',
-                      "{define 'hello'}Hello {#name}{/define}\n{define:hello name='Ann'/}\n{hello name='Ann'/}" ],
-      'macro'    => [ 'A tag defined in the template by {macro} - its body rendered once with the options as its fields.', 'tags',
-                      "{macro 'card'}<b>{\$title}</b>{/macro}\n{macro:card title='One'/}\n{card title='One'/}" ],
+      'define'   => [ 'A tag defined in the template by {pad:define} - its body the template of the tag.', 'tags',
+                      "{pad:define 'hello'}Hello {#name}{/pad:define}\n{define:hello name='Ann'/}" ],
+      'macro'    => [ 'A tag defined in the template by {pad:macro} - its body rendered once with the options as its fields.', 'tags',
+                      "{pad:macro 'card', title}<b>{\$title}</b>{/pad:macro}\n{macro:card title='One'/}" ],
       'include'  => [ 'A snippet of the application, a file of an _include/ directory.', 'tags',
-                      "{include:card/}\n{card/}" ],
+                      "{include:card/}" ],
       'function' => [ 'A pipe function used as a tag, over the content between its tags.', 'tags',
-                      "{function:upper}shout{/function:upper}\n{upper}shout{/upper}" ],
+                      "{function:upper}shout{/function:upper}" ],
       'php'      => [ 'A PHP function called as a tag, its parameters the function\'s arguments.', 'tags',
-                      "{php:strtoupper 'abc'/}\n{strtoupper 'abc'/}\n{echo php:strtoupper('abc')/}" ],
+                      "{php:strtoupper 'abc'/}\n{pad:echo php:strtoupper('abc')/}" ],
       'script'   => [ 'A shell script of a _scripts/ directory, its output the tag\'s.', 'tags',
-                      "{script:backup/}\n{backup/}" ],
+                      "{script:backup/}" ],
 
-      'data'     => [ 'A data store - rows kept by {data} or a .json, .xml, .yaml or .csv file of _data/.', 'stores',
-                      "{data:colors}{\$colors} {/data:colors}\n{colors}{\$colors} {/colors}" ],
-      'content'  => [ 'A content store - a piece of template kept by {content} to be shown elsewhere.', 'stores',
-                      "{content:footer/}\n{footer/}" ],
-      'bool'     => [ 'A boolean store - a flag set by {bool}, its pair showing when it is true.', 'stores',
-                      "{bool:isAdmin}...@else@...{/bool:isAdmin}\n{isAdmin}...{/isAdmin}" ],
+      'data'     => [ 'A data store - rows kept by {pad:data} or a file of _data/ read through the format registry.', 'stores',
+                      "{data:colors}{\$colors} {/data:colors}" ],
+      'content'  => [ 'A content store - a piece of template kept by {pad:content} to be shown elsewhere.', 'stores',
+                      "{content:footer/}" ],
+      'bool'     => [ 'A boolean store - a flag set by {pad:bool}, its pair showing when it is true.', 'stores',
+                      "{bool:isAdmin}...@else@...{/bool:isAdmin}\n{bool:isAdmin}...{/bool:isAdmin}" ],
       'select'   => [ 'A table declared in $padSelect - its rows read from the database, joins and all.', 'stores',
-                      "{select:users}{\$name}{/select:users}\n{users}{\$name}{/users}" ],
+                      "{select:users}{\$name}{/select:users}" ],
       'local'    => [ 'A data file of a _data/ directory, read by its file name.', 'stores',
                       "{local:menu.json}{\$label}{/local:menu.json}" ],
-      'pull'     => [ 'A stored sequence - the terms a {sequence} pushed to the store under a name.', 'stores',
-                      "{pull:nums}{\$sequence} {/pull:nums}\n{nums}{\$sequence} {/nums}" ],
+      'pull'     => [ 'A stored sequence - the terms a {sequence:*} pushed to the store under a name.', 'stores',
+                      "{pull:nums}{\$sequence} {/pull:nums}" ],
 
       'field'    => [ 'A field of the current row, or a variable of the page.', 'values',
                       "{field:name/}\n{\$name}" ],
       'array'    => [ 'An array of the current row or of the page, its elements the rows of the tag.', 'values',
-                      "{array:items}{\$items} {/array:items}\n{items}{\$items} {/items}" ],
+                      "{array:items}{\$items} {/array:items}" ],
       'level'    => [ 'An array field of a row of an enclosing tag, its elements the rows of the tag.', 'values',
                       "{level:kids}{\$name}{/level:kids}" ],
       'parm'     => [ 'A parameter or option of the tag around it, read by its name.', 'values',
@@ -52,10 +52,10 @@
       'property' => [ 'A property of the tag around it - its count, its current row, whether it is the first.', 'values',
                       "{property:count/}\n{&count}" ],
       'constant' => [ 'A PHP constant, by its name.', 'values',
-                      "{constant:PHP_INT_SIZE/}\n{PHP_INT_SIZE/}" ],
+                      "{constant:PHP_INT_SIZE/}" ],
 
       'sequence' => [ 'A sequence type of the sequence subsystem, its terms the rows of the tag.', 'sequences',
-                      "{sequence:fibonacci rows=10}{\$fibonacci} {/sequence:fibonacci}\n{fibonacci rows=10}{\$fibonacci} {/fibonacci}\nsequence:fibonacci(8)" ],
+                      "{sequence:fibonacci rows=10}{\$fibonacci} {/sequence:fibonacci}\nsequence:fibonacci(8)" ],
       'action'   => [ 'A sequence action - reverse, sort, sum, first ... - over the terms it is given.', 'sequences',
                       "{action:reverse '1..5'}{\$sequence} {/action:reverse}\n{pull:nums reverse}{\$sequence} {/pull:nums}" ],
       'flag'     => [ 'Every term a 1 or a 0: whether it belongs to the sequence type named.', 'sequences',
@@ -68,39 +68,39 @@
                       "{remove:prime rows=6}{\$sequence} {/remove:prime}" ],
 
       'chart'    => [ 'A chart type, a file of pad/subs/charts/types/, drawn as inline SVG.', 'subsystems',
-                      "{chart:pie data='rows', label='name', value='amount'/}\n{chart 'pie', data='rows', ...}\n{pie data='rows', .../}" ],
+                      "{chart:pie data='rows', label='name', value='amount'/}\n{chart:pie data='rows', ...}\n{chart:pie data='rows', .../}" ],
       'game'     => [ 'A game, a file of pad/subs/games/types/, played in the browser.', 'subsystems',
-                      "{game:memory pairs=6/}\n{game 'memory'/}\n{memory/}" ],
+                      "{game:memory pairs=6/}\n{game:memory/}\n{game:memory/}" ],
       'toy'      => [ 'A toy, a file of pad/subs/toys/types/ - a live simulation in the browser.', 'subsystems',
-                      "{toy:life pattern='glider'/}\n{toy 'life'/}\n{life/}" ],
+                      "{toy:life pattern='glider'/}\n{toy:life/}\n{toy:life/}" ],
       'diagram'  => [ 'A diagram type, a file of pad/subs/diagrams/types/, laid out on the server.', 'subsystems',
-                      "{diagram:state}...{/diagram:state}\n{diagram type='state'}...{/diagram}" ],
+                      "{diagram:state}...{/diagram:state}\n{diagram:state}...{/diagram:state}" ],
       'widget'   => [ 'A widget, a file of pad/subs/widgets/types/, that works without JavaScript.', 'subsystems',
-                      "{widget:tabs}{tab 'One'}...{/tab}{/widget:tabs}\n{widget 'tabs'}...{/widget}\n{tabs}...{/tabs}" ],
+                      "{widget:tabs}{pad:tab 'One'}...{/pad:tab}{/widget:tabs}\n{widget:tabs}...{/widget:tabs}\n{widget:tabs}...{/widget:tabs}" ],
       'barcode'  => [ 'A barcode symbology, a file of pad/subs/codes/types/, encoded on the server.', 'subsystems',
-                      "{barcode:ean13 '400638133393'/}\n{barcode '400638133393', type='ean13'/}\n{ean13 '400638133393'/}" ],
+                      "{barcode:ean13 '400638133393'/}\n{barcode:ean13 '400638133393'/}" ],
       'embed'    => [ 'An embed provider, a file of pad/subs/embeds/types/ - loaded only on a click.', 'subsystems',
-                      "{embed:youtube 'aqz-KE-bpKQ', title='Big Buck Bunny'/}\n{embed 'https://youtu.be/aqz-KE-bpKQ'/}\n{youtube 'aqz-KE-bpKQ'/}" ],
+                      "{embed:youtube 'aqz-KE-bpKQ', title='Big Buck Bunny'/}\n{embed:auto 'https://youtu.be/aqz-KE-bpKQ'/}\n{embed:youtube 'aqz-KE-bpKQ'/}" ],
       'input'    => [ 'A rich form field, a file of pad/subs/inputs/types/, posted by any form.', 'subsystems',
-                      "{input:slider 'volume', label='Volume'/}\n{slider 'volume', label='Volume'/}" ],
+                      "{input:slider 'volume', label='Volume'/}" ],
       'icon'     => [ 'An icon, a file of pad/subs/icons/types/, drawn as inline SVG - never bare.', 'subsystems',
-                      "{icon:star size=24/}\n{icon 'star', size=24/}" ],
+                      "{icon:star size=24/}\n{icon:star size=24/}" ],
       'fake'     => [ 'A fake kind, a file of pad/subs/fakes/types/ - the same values for the same seed, never bare.', 'subsystems',
-                      "{fake:email/}\n{fake 'email'/}\n{fake 'name, email', rows=3}...{/fake}" ],
+                      "{fake:email/}\n{fake:email/}\n{fake:rows 'name, email', rows=3}...{/fake:rows}" ],
       'pattern'  => [ 'A pattern, a file of pad/subs/patterns/types/ - a seeded SVG background, never bare.', 'subsystems',
-                      "{pattern:topography seed=7/}\n{pattern 'topography', seed=7/}" ],
+                      "{pattern:topography seed=7/}\n{pattern:topography seed=7/}" ],
       'sound'    => [ 'A sound, a file of pad/subs/sounds/types/ - a recipe the browser plays and the server writes as a WAV, never bare.', 'subsystems',
-                      "{sound:chime/}\n{sound 'chime'/}\n{sound:pop on='click', target='#save'/}" ],
+                      "{sound:chime/}\n{sound:chime/}\n{sound:pop on='click', target='#save'/}" ],
       'printable' => [ 'A printable, a file of pad/subs/printables/types/ - pages made for paper, the same on the screen, printed and as a PDF, never bare.', 'subsystems',
-                      "{printable:labels data='rows', sheet='a4-3x8'}...{/printable:labels}\n{printable 'labels', data='rows'}...{/printable}" ],
+                      "{printable:labels data='rows', sheet='a4-3x8'}...{/printable:labels}\n{printable:labels data='rows'}...{/printable:labels}" ],
       'notation' => [ 'A notation, a file of pad/subs/notations/types/ - a formula, a tune, a word or a position drawn on the server.', 'subsystems',
-                      "{notation:braille 'Hello'/}\n{notation 'braille', 'Hello'/}\n{braille 'Hello'/}\n{math}a/b{/math}" ],
+                      "{notation:braille 'Hello'/}\n{notation:braille 'Hello'/}\n{notation:math}a/b{/notation:math}" ],
       'section'  => [ 'A section of a landing page, a file of pad/subs/sections/types/ - pure CSS, coloured by the theme, never bare.', 'subsystems',
-                      "{section:hero title='Build faster'}...{/section:hero}\n{section 'hero', title='Build faster'}...{/section}" ],
+                      "{section:hero title='Build faster'}...{/section:hero}\n{section:hero title='Build faster'}...{/section:hero}" ],
       'effect'   => [ 'An effect, a file of pad/subs/effects/types/ - motion and decoration, CSS first, still under reduced motion.', 'subsystems',
-                      "{effect:typewriter}Hello{/effect:typewriter}\n{effect 'typewriter'}Hello{/effect}\n{typewriter}Hello{/typewriter}" ],
+                      "{effect:typewriter}Hello{/effect:typewriter}\n{effect:typewriter}Hello{/effect:typewriter}" ],
       'jsonld'   => [ 'A JSON-LD kind, a file of pad/subs/jsonld/types/ - the structured data of a page as a Schema.org object, never bare.', 'subsystems',
-                      "{jsonld:article headline=\$title, author=\$author/}\n{jsonld 'article', data='post'/}\n{jsonld:faq data='questions'/}" ],
+                      "{jsonld:article headline=\$title, author=\$author/}\n{jsonld:article data='post'/}\n{jsonld:faq data='questions'/}" ],
 
     ];
 
@@ -116,22 +116,16 @@
       'values'     => [ 'Values of the page', 'Fields, arrays, parameters and properties where the tag stands'                   ],
       'sequences'  => [ 'Sequences',          'Number sequences and what is done to them'                                        ],
       'subsystems' => [ 'Subsystems',         'A kind per file of a directory of the engine'                                     ],
+      'kinds'      => [ 'Options and helpers', 'Subsystem kinds selected by parameters, options, helper calls or spreadsheet formulas' ],
     ];
 
   }
 
-  // The order a bare name is tried in, as padTypeTag and padTypeCommon try it (lib/type.php),
-  // the subsystems that reach their kinds bare in the order of padSubsystems: a name is the
-  // first of these that has it. php gives way to function when a pipe function has the name
-  // as well - {trim}, {date}, {substr}. The other types are reached by their prefix alone.
+  // Named tags no longer participate in automatic lookup. All types need a prefix.
 
   function typesOrder () {
 
-    $subsystems = array_keys ( array_filter ( padSubsystems, fn ( $one ) => $one [1] ) );
-
-    return array_merge ( [ 'app', 'common', 'pad', 'pull', 'bool', 'content', 'define', 'macro', 'select', 'data', 'include',
-                           'property', 'field', 'array', 'parm', 'level', 'constant', 'local', 'script', 'php',
-                           'sequence', 'action' ], $subsystems, [ 'function' ] );
+    return [];
 
   }
 

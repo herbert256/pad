@@ -3,8 +3,8 @@
   // Template emails: a mail is a PAD template rendered to an HTML part and a text part and
   // handed to a transport.
   //
-  //   {mail to=$email, template='order', subject='Order confirmation'}
-  //   {mail to=$email, subject='Welcome'}<p>Hello {$name}</p>{/mail}
+  //   {pad:mail to=$email, template='order', subject='Order confirmation'}
+  //   {pad:mail to=$email, subject='Welcome'}<p>Hello {$name}</p>{/pad:mail}
   //   padMail ( $email, 'order', 'Order confirmation', [ 'order' => $order ] );
   //
   // A template lives in _mail/, looked up like _include/ from the page's directory up to
@@ -14,7 +14,7 @@
   // same _mail/ are the email's layout around the HTML part with its @page@, _inits.txt and
   // _exits.txt around the text. Both parts see the page's variables, the ones handed over
   // and what the mail's PHP sets, and leave the page's as they were; they render like
-  // {code}, through a nested pass.
+  // {pad:code}, through a nested pass.
   //
   // $padMailTransport says where the message goes: 'file', the default, writes it as an
   // .eml under DATA/mail/<app>/ instead of sending it - development and the suites need no
@@ -82,7 +82,7 @@
 
     } elseif ( $html === NULL and $text === NULL )
 
-      return padError ( "a mail needs a template or a body - {mail template='order'/}, or the body between {mail} and {/mail}" );
+      return padError ( "a mail needs a template or a body - {pad:mail template='order'/}, or the body between {pad:mail} and {/pad:mail}" );
 
     if ( trim ( (string) $subject ) === '' )
       return padError ( "a mail needs a subject" );

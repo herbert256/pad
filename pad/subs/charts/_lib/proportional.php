@@ -3,8 +3,8 @@
   // Sizes compared by area - a circle per row, or a square with square, whose area grows
   // with its value.
   //
-  //   {chart 'proportional', data='emissions', label='country', value='mt'}
-  //   {chart 'proportional', data='oceans', label='ocean', value='area', square}
+  //   {chart:proportional data='emissions', label='country', value='mt'}
+  //   {chart:proportional data='oceans', label='ocean', value='area', square}
   //
   // value= names the number - else the first numeric field - and label= the row, both
   // written under its shape; a row without a number above 0 is left out. The shapes stand

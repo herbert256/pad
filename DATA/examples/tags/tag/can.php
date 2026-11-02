@@ -5,9 +5,9 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{can 'ability'} ... {/can}
-{can 'ability', $value} ... {else} ... {/can}
-{rows}{can 'ability', $rows} ... {/can}{/rows}
+{pad:can 'ability'} ... {/pad:can}
+{pad:can 'ability', $value} ... {pad:else} ... {/pad:can}
+{array:rows}{pad:can 'ability', $rows} ... {/pad:can}{/array:rows}
 PAD;
 
   $tagParms   = [

@@ -6,7 +6,7 @@
   // is two sines, the second two or three times as fast; their lengths, weights and phase are
   // the seed's. The inks take turns line by line. Decoration only - no security printing.
   //
-  //   {pattern 'guilloche', size=70, lines=16, seed=4, colors='#fbf8f1, #2c6e63, #b08d57'/}
+  //   {pattern:guilloche size=70, lines=16, seed=4, colors='#fbf8f1, #2c6e63, #b08d57'/}
   //
   // The wave reaches 0.6 of the size either way, so the bands beside each other interlace too.
   // It is drawn once, a polyline from a wavelength left of the picture to its right edge, its

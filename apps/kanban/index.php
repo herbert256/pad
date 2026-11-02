@@ -1,6 +1,6 @@
 <?php
 
-  // The board. Its columns are a fragment - {fragment 'columns'} - that kanban.js asks for
+  // The board. Its columns are a fragment - {pad:fragment 'columns'} - that kanban.js asks for
   // again when the board moved on, and so is the activity: ?index&padFragment=columns. A new
   // card comes from the dialog's form, posted here.
 

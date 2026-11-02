@@ -1,14 +1,14 @@
 <?php
 
-  // {timeline data='releases', date='when', label='what', text='detail'} - events on a time
-  // axis as inline SVG, drawn by tags/_lib/timeline.php. data= names the rows as for {chart} - a
-  // {data} store, a page array or a _data file - and as a pair the content is the rows,
+  // {pad:timeline data='releases', date='when', label='what', text='detail'} - events on a time
+  // axis as inline SVG, drawn by tags/_lib/timeline.php. data= names the rows as for {chart:bar} - a
+  // {pad:data} store, a page array or a _data file - and as a pair the content is the rows,
   // JSON, YAML, XML or CSV:
   //
-  //   {timeline date='year', label='what'}
+  //   {pad:timeline date='year', label='what'}
   //     year,what
   //     1969,Moon landing
-  //   {/timeline}
+  //   {/pad:timeline}
   //
   // date= names the field of a moment - a year (1969), a month (2026-10) or anything
   // strtotime reads - else the first field that reads as one; from= and to= name the

@@ -1,12 +1,12 @@
-{data 'xs'}
+{pad:data 'xs'}
   [1,2,3,4,5]
-{/data}
-{xs first=3}
-  {first@xs}<ul>{/first@xs}<li>{$xs}</li>{last@xs}</ul>{/last@xs}
-{/xs}
-{xs last=2}
-  {first@xs ? '[' : ''/}{$xs}{last@xs ? ']' : ''/}
-{/xs}
-{xs first=2}
+{/pad:data}
+{data:xs first=3}
+  {property:first@xs}<ul>{/property:first@xs}<li>{$xs}</li>{property:last@xs}</ul>{/property:last@xs}
+{/data:xs}
+{data:xs last=2}
+  {property:first@xs ? '[' : ''/}{$xs}{property:last@xs ? ']' : ''/}
+{/data:xs}
+{data:xs first=2}
   {$first@xs}
-{/xs}
+{/data:xs}

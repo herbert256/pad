@@ -22,7 +22,7 @@
   // padMiss is the internal "not found" marker, never a value; padField retries a plain field
   // as a property and then as an option before shaping padMiss into ''/FALSE for the caller.
   // It was INF, which a value can be: a page's $big = INF, a float overflowing to it, read as
-  // no field at all - "Field '$big' not found" - and {if $big gt 1} as "there is no field
+  // no field at all - "Field '$big' not found" - and {pad:if $big gt 1} as "there is no field
   // named '$big'". The case of an enum of the engine's own is a value no page holds by chance,
   // compared with ===. The at/ subsystem answers it as well, so a value found by a path or a
   // target - {$s.m}, {$m@d} - is INF when it holds INF.
@@ -117,16 +117,16 @@
     }
 
     // A NAN - fdiv ( 0, 0 ), an average of nothing - is no value to print, as NULL is not:
-    // the field is there and answers empty, as {echo $x} already wrote it. Handed on, PHP
+    // the field is there and answers empty, as {pad:echo $x} already wrote it. Handed on, PHP
     // 8.5 warned "unexpected NAN value was coerced to string" in sanitize or the first pipe
     // that took it as text, and {$avg} ended the request.
 
     if ( is_float ( $value ) and is_nan ( $value ) and $type == 2 )
       $value = NULL;
 
-    // A date object is a value - the moment {timeago}, {countdown}, ago and date take as it
+    // A date object is a value - the moment {pad:timeago}, {pad:countdown}, ago and date take as it
     // is - and an object that writes itself as text is that text. Both were no field at all:
-    // {timeago $created} with a DateTime from the page's PHP answered "there is no field named
+    // {pad:timeago $created} with a DateTime from the page's PHP answered "there is no field named
     // '$created'". Any other object stays neither a value nor a list.
 
     if ( $value instanceof Stringable and ! $value instanceof DateTimeInterface and ( $type == 1 or $type == 2 ) )
@@ -154,7 +154,7 @@
   // A path starts in the application's data, not in PHP's arrays nor in the engine's: the
   // search of the global arrays no longer hands those out (padFieldLevel), but a path that
   // names one at its head walked straight in - {$_SERVER.DB_PASSWORD} and
-  // {echo $_SERVER.DB_PASSWORD} printed a SetEnv secret, {$_COOKIE.x} a cookie never
+  // {pad:echo $_SERVER.DB_PASSWORD} printed a SetEnv secret, {$_COOKIE.x} a cookie never
   // promoted, {$padCurlLast.input.password} the password of the engine's last fetch. Such a
   // head is a path not found. $padMailLast is the engine array TAGS.md hands to templates
   // ({$padMailLast.subject}), and stays.

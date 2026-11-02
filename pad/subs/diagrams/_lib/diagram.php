@@ -4,16 +4,16 @@
   // them, laid out on the server and written as inline SVG - no JavaScript, so a diagram
   // works in print and in an e-mail, and the same text always draws the same picture.
   //
-  //   {diagram}                          {diagram type='sequence'}
+  //   {diagram:auto}                          {diagram:sequence}
   //     A[Order placed] --> B{Paid?}       Shop ->> Bank: Charge 20 EUR
   //     B -->|yes| C((Ship))               Bank -->> Shop: Approved
-  //     B -.->|no| D[Remind]             {/diagram}
-  //   {/diagram}
+  //     B -.->|no| D[Remind]             {/diagram:sequence}
+  //   {/diagram:auto}
   //
   // A diagram kind is a file of subs/diagrams/types/: the kinds there are are the kinds a diagram
-  // has (padDiagramTypes), the {diagram} tag names one by its type=, the diagram: type by its
-  // name - {diagram:flowchart}, or bare, {flowchart}, when nothing else has the name - and
-  // subs/diagrams/diagram.php is the body all of them run. A kind's file reads its options and
+  // has (padDiagramTypes). The name after the colon selects it, as in {diagram:flowchart};
+  // {diagram:auto} selects from the source header. subs/diagrams/diagram.php is the shared
+  // body. A kind's file reads its options and
   // answers the SVG, drawn by the functions of this directory: this file the parts every
   // kind shares and the flowchart, the files beside it the other kinds.
   //
@@ -25,13 +25,13 @@
   // padDiagramSequence   the SVG of a sequence diagram: lifelines and the messages between
   //                      (sequence.php)
   //
-  // The picture opens as a {chart} does (padChartOpen): role="img", a <title> and a <desc>
+  // The picture opens as a {chart:bar} does (padChartOpen): role="img", a <title> and a <desc>
   // that says every edge or message in words. The colours are custom properties on
   // .pad-chart-diagram - --pad-diagram-node, --pad-diagram-border, --pad-diagram-decision,
   // --pad-diagram-decision-border, --pad-diagram-round, --pad-diagram-round-border,
   // --pad-diagram-edge and --pad-diagram-note - with light-dark() defaults.
 
-  // The SVG opening and its coordinates are {chart}'s, subs/charts/_lib/chart.php.
+  // The SVG opening and its coordinates are {chart:bar}'s, subs/charts/_lib/chart.php.
 
   include_once PAD . 'subs/charts/_lib/chart.php';
 
@@ -85,7 +85,7 @@
   // no list of Mermaid's words is kept. A name with Diagram or Graph names the kind whatever
   // the tag says, as a first line sequenceDiagram did: the lines are written for that kind,
   // and no other can read them. A name alone is the kind only where the tag names none -
-  // {diagram} without type= - since it could be the first line of the kind the tag does
+  // {diagram:auto} - since it could be the first line of the kind the tag does
   // name: the root of a tree called journey. The line stands alone, a direction after a
   // name with Graph aside (gitGraph LR:), so a flowchart whose first line is a node called
   // mindmap, and an edge from it, stays one.
@@ -107,7 +107,8 @@
 
     $kind = ( $match [1] == 'ishikawa' ? 'fishbone' : $match [1] ) . ( str_starts_with ( $more, 'Graph' ) ? 'graph' : '' );
 
-    return padDiagramType ( $kind ) ? $kind : '';
+    // auto is a selector, not a source format or a Mermaid header.
+    return $kind !== 'auto' && padDiagramType ( $kind ) ? $kind : '';
 
   }
 
@@ -417,7 +418,7 @@
 
   }
 
-  // The colours, as {chart} writes its own: the light steps, then light-dark() where the
+  // The colours, as {chart:bar} writes its own: the light steps, then light-dark() where the
   // browser has it.
 
   function padDiagramStyle () {

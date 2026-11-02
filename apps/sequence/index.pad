@@ -1,16 +1,16 @@
-{lines}
-  {concepts}
-    {if &concepts:key NE $concept}
+{common:lines}
+  {array:concepts}
+    {pad:if &concepts:key NE $concept}
       <a href="?index&go=index&concept={&concepts:key}">{&concepts:key | ucfirst}</a>
     @else@
       <b> {&concepts:key | ucfirst} </b>
-    {/if}
-    {notLast} | {/notLast}
-  {/concepts}
-{/lines}
+    {/pad:if}
+    {property:notLast} | {/property:notLast}
+  {/array:concepts}
+{/common:lines}
 
 <h2>{$conceptTitle}</h2>
 
-{block}
-  {page 'concepts/{$concept}', include/}
-{/block}
+{common:block}
+  {pad:page 'concepts/{$concept}', include/}
+{/common:block}

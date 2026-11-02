@@ -68,7 +68,7 @@ Content merge placeholder for inserting content into parent templates.
 
 **Usage:**
 ```html
-<!-- _tags/article.pad - used as {article}<p>child</p>{/article} -->
+<!-- _tags/article.pad - used as {app:article}<p>child</p>{/app:article} -->
 <article>
   <header>Article Header</header>
   @content@
@@ -78,7 +78,7 @@ Content merge placeholder for inserting content into parent templates.
 
 **Behavior:**
 - Used in the content merging system (`lib/content.php`): a custom tag's template, the
-  `content=` option, a `{slot}` frame - written in a page with nothing merging into it, the
+  `content=` option, a `{pad:slot}` frame - written in a page with nothing merging into it, the
   strict check stops it ("an @content@ stands where nothing merges content into it")
 - Content before `@content@` becomes the prefix
 - Content after `@content@` becomes the suffix
@@ -103,13 +103,13 @@ Start marker: what stands before it is a prelude, rendered once before the rows.
 
 **Usage:**
 ```html
-{myTag}
+{app:myTag}
   <header>once, before the rows</header>
   @start@
   <li>per row</li>
   @end@
   <footer>once, after the rows</footer>
-{/myTag}
+{/app:myTag}
 ```
 
 **Behavior:**
@@ -151,17 +151,17 @@ End marker: what stands after it is a coda, rendered once after all rows.
 
 True/false branch separator inside a tag's content.
 
-**Purpose:** Splits a tag's content into a "truthy" part and a fallback part - a compact alternative to the `{else}` tag.
+**Purpose:** Splits a tag's content into a "truthy" part and a fallback part - a compact alternative to the `{pad:else}` tag.
 
 **Usage:**
 ```html
-{if $hasEntries}
-  {entries}
+{pad:if $hasEntries}
+  {array:entries}
     <div>{$name}: {$comment}</div>
-  {/entries}
+  {/array:entries}
 @else@
   <p>No entries yet. Be the first to sign!</p>
-{/if}
+{/pad:if}
 ```
 
 **Behavior:**
@@ -233,7 +233,7 @@ Constructs are registered by files in `PAD/constructs/`:
 
 The files are a registry, never included: under the strict check, when the page is built
 (`build/build.php`), an `@word@` of the template without its file here is an error -
-"there is no @foo@ construct". Text inside `{ignore}` is not read.
+"there is no @foo@ construct". Text inside `{pad:ignore}` is not read.
 
 ---
 
@@ -277,26 +277,26 @@ The files are a registry, never included: under the strict check, when the page 
 
 **Child content, in a page:**
 ```html
-{layout}
+{include:layout}
   <h1>Page Title</h1>
   <p>Page content goes here...</p>
-{/layout}
+{/include:layout}
 ```
 
 ### Empty-Data Fallback
 
 ```html
-{entries}
+{array:entries}
   <div>{$name}: {$comment}</div>
 @else@
   <p>No entries found.</p>
-{/entries}
+{/array:entries}
 ```
 
 ### Two-Phase Processing
 
 ```html
-{users}
+{array:users}
   {-- Header processed first --}
   <table>
     <tr><th>Name</th><th>Email</th></tr>
@@ -306,16 +306,16 @@ The files are a registry, never included: under the strict check, when the page 
   @end@
   {-- Footer processed last --}
   </table>
-  <p>Total: {count@users/} users</p>
-{/users}
+  <p>Total: {property:count@users/} users</p>
+{/array:users}
 ```
 
 ### Conditional Tidy
 
 ```html
-{if $debug eq 1}
+{pad:if $debug eq 1}
   @tidy@
-{/if}
+{/pad:if}
 <html>
   <!-- HTML will be tidied only in debug mode -->
 </html>

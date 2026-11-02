@@ -1,8 +1,8 @@
 
 <h1>Types by group</h1>
-<p class="lead">The types by what they reach, in 5 groups.</p>
+<p class="lead">Tag types and kind families by what they reach, in 6 groups.</p>
 
-<nav class="jump" aria-label="Groups"><a href="#tags">Tags</a><a href="#stores">Stores and data</a><a href="#values">Values of the page</a><a href="#sequences">Sequences</a><a href="#subsystems">Subsystems</a></nav>
+<nav class="jump" aria-label="Groups"><a href="#tags">Tags</a><a href="#stores">Stores and data</a><a href="#values">Values of the page</a><a href="#sequences">Sequences</a><a href="#subsystems">Subsystems</a><a href="#kinds">Options and helpers</a></nav>
 
 
 <section class="section" id="tags">
@@ -13,13 +13,13 @@
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7common.html">common:</a> <span class="about">A tag or a snippet of the shared _common application.</span></li>
     
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7define.html">define:</a> <span class="about">A tag defined in the template by {define} - its body the template of the tag.</span></li>
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7define.html">define:</a> <span class="about">A tag defined in the template by {pad:define} - its body the template of the tag.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7function.html">function:</a> <span class="about">A pipe function used as a tag, over the content between its tags.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7include.html">include:</a> <span class="about">A snippet of the application, a file of an _include/ directory.</span></li>
     
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7macro.html">macro:</a> <span class="about">A tag defined in the template by {macro} - its body rendered once with the options as its fields.</span></li>
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7macro.html">macro:</a> <span class="about">A tag defined in the template by {pad:macro} - its body rendered once with the options as its fields.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7pad.html">pad:</a> <span class="about">A built-in tag of the engine - a file of pad/tags/.</span></li>
     
@@ -34,15 +34,15 @@
   <div class="section-head"><h2>Stores and data</h2><span>What a page keeps under a name and reads back - 6 types</span></div>
   <ul class="list">
     
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7bool.html">bool:</a> <span class="about">A boolean store - a flag set by {bool}, its pair showing when it is true.</span></li>
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7bool.html">bool:</a> <span class="about">A boolean store - a flag set by {pad:bool}, its pair showing when it is true.</span></li>
     
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7content.html">content:</a> <span class="about">A content store - a piece of template kept by {content} to be shown elsewhere.</span></li>
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7content.html">content:</a> <span class="about">A content store - a piece of template kept by {pad:content} to be shown elsewhere.</span></li>
     
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7data.html">data:</a> <span class="about">A data store - rows kept by {data} or a .json, .xml, .yaml or .csv file of _data/.</span></li>
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7data.html">data:</a> <span class="about">A data store - rows kept by {pad:data} or a file of _data/ read through the format registry.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7local.html">local:</a> <span class="about">A data file of a _data/ directory, read by its file name.</span></li>
     
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7pull.html">pull:</a> <span class="about">A stored sequence - the terms a {sequence} pushed to the store under a name.</span></li>
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7pull.html">pull:</a> <span class="about">A stored sequence - the terms a {sequence:*} pushed to the store under a name.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7select.html">select:</a> <span class="about">A table declared in $padSelect - its rows read from the database, joins and all.</span></li>
     
@@ -88,7 +88,7 @@
 </section>
 
 <section class="section" id="subsystems">
-  <div class="section-head"><h2>Subsystems</h2><span>A kind per file of a directory of the engine - 10 types</span></div>
+  <div class="section-head"><h2>Subsystems</h2><span>A kind per file of a directory of the engine - 17 types</span></div>
   <ul class="list">
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7barcode.html">barcode:</a> <span class="about">A barcode symbology, a file of pad/subs/codes/types/, encoded on the server.</span></li>
@@ -96,6 +96,8 @@
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7chart.html">chart:</a> <span class="about">A chart type, a file of pad/subs/charts/types/, drawn as inline SVG.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7diagram.html">diagram:</a> <span class="about">A diagram type, a file of pad/subs/diagrams/types/, laid out on the server.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7effect.html">effect:</a> <span class="about">An effect, a file of pad/subs/effects/types/ - motion and decoration, CSS first, still under reduced motion.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7embed.html">embed:</a> <span class="about">An embed provider, a file of pad/subs/embeds/types/ - loaded only on a click.</span></li>
     
@@ -107,9 +109,52 @@
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7input.html">input:</a> <span class="about">A rich form field, a file of pad/subs/inputs/types/, posted by any form.</span></li>
     
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7jsonld.html">jsonld:</a> <span class="about">A JSON-LD kind, a file of pad/subs/jsonld/types/ - the structured data of a page as a Schema.org object, never bare.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7notation.html">notation:</a> <span class="about">A notation, a file of pad/subs/notations/types/ - a formula, a tune, a word or a position drawn on the server.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7pattern.html">pattern:</a> <span class="about">A pattern, a file of pad/subs/patterns/types/ - a seeded SVG background, never bare.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7printable.html">printable:</a> <span class="about">A printable, a file of pad/subs/printables/types/ - pages made for paper, the same on the screen, printed and as a PDF, never bare.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7section.html">section:</a> <span class="about">A section of a landing page, a file of pad/subs/sections/types/ - pure CSS, coloured by the theme, never bare.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7sound.html">sound:</a> <span class="about">A sound, a file of pad/subs/sounds/types/ - a recipe the browser plays and the server writes as a WAV, never bare.</span></li>
+    
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7toy.html">toy:</a> <span class="about">A toy, a file of pad/subs/toys/types/ - a live simulation in the browser.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7widget.html">widget:</a> <span class="about">A widget, a file of pad/subs/widgets/types/, that works without JavaScript.</span></li>
+    
+  </ul>
+</section>
+
+<section class="section" id="kinds">
+  <div class="section-head"><h2>Options and helpers</h2><span>Subsystem kinds selected by parameters, options, helper calls or spreadsheet formulas - 12 families</span></div>
+  <ul class="list">
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7ai.html">AI providers</a> <span class="about">The provider= option of {pad:ai} or padAi.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7channel.html">Notification channels</a> <span class="about">Delivery channels selected in the fourth argument of padNotify.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7filter.html">Image filters</a> <span class="about">The filter= option of {pad:img} selects a filter or placeholder.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7format.html">Data formats</a> <span class="about">The format= option of {pad:data}, file extensions and the format helpers.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7formula.html">Spreadsheet functions</a> <span class="about">Functions inside the formulas of {pad:spreadsheet} cells.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7holidays.html">Holiday calendars</a> <span class="about">The country parameter of {pad:holidays}, with optional regions.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7map.html">Map views</a> <span class="about">The view parameter of {pad:map} selects a country or region.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7oauth.html">OAuth providers</a> <span class="about">The provider parameter of {pad:oauth}, padOAuthStart and padOAuthUser.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7palette.html">Colour palettes</a> <span class="about">The name parameter of {pad:palette}, or palette= on a chart.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7rule.html">Validation rules</a> <span class="about">Rules passed to padValidate or a form field&#039;s rules= option.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7search.html">Search languages</a> <span class="about">The lang= option of {pad:search} selects stop words and a stemmer.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7theme.html">Themes</a> <span class="about">The name parameter of {pad:theme} selects page or box colours.</span></li>
     
   </ul>
 </section>

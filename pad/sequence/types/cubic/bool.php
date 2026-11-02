@@ -2,7 +2,7 @@
 
   // Membership test for the cubic sequence, 1, 8, 27, 64, ...: n^3 for a whole n from 0 up,
   // decided from the cube root - the whole n next to it are tried exactly. build/check.php
-  // asks it for {keep cubic}, {remove cubic} and {flag cubic}; without it the check
+  // asks it for {keep:cubic}, {remove:cubic} and {pad:flag cubic}; without it the check
   // generated the cubes up to the candidate, stopped at the million-candidate ceiling and
   // answered no past it - 8 * 10^18, the cube of 2000000, was no cube.
 

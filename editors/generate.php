@@ -19,11 +19,9 @@
   // Every list is the directory it comes from, sorted: pad/tags, pad/functions, pad/properties,
   // pad/types (the type prefixes), pad/sequence/types (one directory per type), and for the
   // options pad/options, the start-phase names of inits/const.php and pad/handling/types. The
-  // kinds a subsystem reaches bare - {pie/}, {tabs}, {slider/} - are the files of the types/
-  // of every subsystem padSubsystems (lib/subsystem.php) lets be written bare, a name taken
-  // once, by the first of the list, and never when a tag of pad/tags has it.
+  // subsystem names are offered with their required namespace, including colliding names.
   // Sublime inserts a property with its @, ready for the tag name. No list says which tags are
-  // single: a single tag is written {tag/}, so the close-tag help of every kit reads that from
+  // single: a single tag is written {function:tag/}, so the close-tag help of every kit reads that from
   // the template itself.
 
   $root = dirname ( __DIR__ );
@@ -60,24 +58,17 @@
   }
 
 
-  // The bare kinds: [ name => what a miss of its type: prefix calls a kind ] - 'chart type',
-  // 'widget' ... - for the detail of the completion.
-
+  // Subsystem kind names are qualified; identical names in different types coexist.
   include "$pad/lib/subsystem.php";
 
-  // A name a bare tag reaches before the kind - a tag of pad/tags, a property, a sequence type
-  // or action, a PHP function (lib/type.php padTypeCommon) - is no bare kind: {pack/} is PHP's
-  // pack(), which the list offered as a chart type.
-
   $kinds = [];
-  $tags  = array_flip ( array_merge ( generateNames ( "$pad/tags" ), generateNames ( "$pad/properties" ),
-                                      generateNames ( "$pad/sequence/types", TRUE ), generateNames ( "$pad/sequence/actions/types" ) ) );
-
-  foreach ( padSubsystems as [ $kindDir, $kindBare, $kindLabel ] )
-    if ( $kindBare and is_dir ( "$pad/subs/$kindDir/types" ) )
+  foreach ( padSubsystems as $kindType => [ $kindDir, $kindBare, $kindLabel ] )
+    if ( is_dir ( "$pad/subs/$kindDir/types" ) )
       foreach ( generateNames ( "$pad/subs/$kindDir/types" ) as $kindName )
-        if ( ! isset ( $tags [$kindName] ) and ! function_exists ( $kindName ) )
-          $kinds [$kindName] ??= $kindLabel;
+        $kinds ["$kindType:$kindName"] = $kindLabel;
+
+  foreach ( padSequenceOperations as $operation )
+    $kinds ["$operation:auto"] = 'sequence parameter selector';
 
   uksort ( $kinds, 'strcasecmp' );
 
@@ -92,7 +83,8 @@
   // label list, VS Code kind, detail, Sublime kind, Sublime annotation
 
   $groups = [
-    [ generateNames ( "$pad/tags" ),                       'Keyword',    'PAD tag',       [ 'keyword',  't', 'Tag'      ], 'tag'           ],
+    [ array_map ( fn ( $name ) => "pad:$name", array_merge ( generateNames ( "$pad/tags" ), [ 'else', 'elseif', 'when' ] ) ),
+                                                           'Keyword',    'PAD tag',       [ 'keyword',  't', 'Tag'      ], 'tag'           ],
     [ generateNames ( "$pad/functions" ),                  'Function',   'pipe function', [ 'function', 'f', 'Function' ], 'pipe function' ],
     [ generateNames ( "$pad/properties" ),                 'Property',   'property@tag',  [ 'variable', 'p', 'Property' ], 'property@tag'  ],
     [ array_values ( $options ),                           'EnumMember', 'option',        [ 'keyword',  'o', 'Option'   ], 'option'        ],
@@ -100,7 +92,8 @@
                                                            'Module',     'type prefix',   [ 'type',     'x', 'Prefix'   ], 'type prefix'   ],
     [ [ 'eq', 'ne', 'gt', 'lt', 'ge', 'le', 'and', 'or', 'xor', 'not', 'range' ],
                                                            'Operator',   'operator',      [ 'operator', '=', 'Operator' ], 'operator'      ],
-    [ generateNames ( "$pad/sequence/types", TRUE ),       'Class',      'sequence type', [ 'type',     's', 'Sequence' ], 'sequence'      ],
+    [ array_map ( fn ( $name ) => "sequence:$name", generateNames ( "$pad/sequence/types", TRUE ) ),
+                                                           'Class',      'sequence type', [ 'type',     's', 'Sequence' ], 'sequence'      ],
   ];
 
   foreach ( $kinds as $kindName => $kindLabel )
@@ -165,7 +158,7 @@
 
   }
 
-  $tsTags = array_unique ( array_merge ( generateNames ( "$pad/tags" ), array_keys ( $kinds ), [ 'else', 'elseif', 'when' ] ) );
+  $tsTags = array_unique ( array_merge ( generateNames ( "$pad/tags" ), array_map ( fn ( $name ) => explode ( ':', $name, 2 ) [1], array_keys ( $kinds ) ), [ 'else', 'elseif', 'when' ] ) );
   sort ( $tsTags, SORT_STRING | SORT_FLAG_CASE );
 
   $tsGenerated =

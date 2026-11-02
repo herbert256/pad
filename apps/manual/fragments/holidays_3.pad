@@ -1,12 +1,12 @@
 <p>December 2021 in England:</p>
 <ul>
-  {holidays 'gb', from='2021-12-20', to='2022-01-05'}
+  {pad:holidays 'gb', from='2021-12-20', to='2022-01-05'}
     <li>{$date} {$name}</li>
-  {/holidays}
+  {/pad:holidays}
 </ul>
 <p>The United States, 2021:</p>
 <ul>
-  {holidays 'us', year=2021, where='$substitute'}
+  {pad:holidays 'us', year=2021, where='$substitute'}
     <li>{$date} {$name}</li>
-  {/holidays}
+  {/pad:holidays}
 </ul>

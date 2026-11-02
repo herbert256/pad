@@ -5,10 +5,10 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{input 'name'/}
-{input 'email', type='email', label='E-mail', value='', id='mail', placeholder='you@example.org', required/}
-{input 'terms', type='checkbox', label='I agree', value='yes', checked/}
-{input 'email', type='email', label='E-mail', rules='required|email'/}
+{pad:input 'name'/}
+{pad:input 'email', type='email', label='E-mail', value='', id='mail', placeholder='you@example.org', required/}
+{pad:input 'terms', type='checkbox', label='I agree', value='yes', checked/}
+{pad:input 'email', type='email', label='E-mail', rules='required|email'/}
 {input:slider 'volume', label='Volume', min=0, max=100/}
 PAD;
 
@@ -21,7 +21,7 @@ PAD;
     'value'   => 'The value before anything was sent; for a checkbox or radio its own value (<code>on</code> by default).',
     'id'      => 'The id, by default the name.',
     'checked' => 'Bare option: a checkbox or radio is checked before a post.',
-    'rules'   => 'The field\'s rules - <code>required|email|max:80</code> - read from the page\'s own template and checked before its PHP runs. Only in a named <code>{form}</code> of the page itself.' ];
+    'rules'   => 'The field\'s rules - <code>required|email|max:80</code> - read from the page\'s own template and checked before its PHP runs. Only in a named <code>{pad:form}</code> of the page itself.' ];
 
   $tagSee     = [ 'form', 'textarea', 'attrs', 'validator' ];
 

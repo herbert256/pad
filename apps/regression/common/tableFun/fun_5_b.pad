@@ -1,9 +1,9 @@
 <table border='1'>
-  {sequence '10..30', increment=10, name='row'}
+  {sequence:range '10..30', increment=10, name='row'}
     <tr>
-      {sequence '1..5', name='column'}
-        {cell $row + $column/}
-      {/sequence}
+      {sequence:range '1..5', name='column'}
+        {content:cell $row + $column/}
+      {/sequence:range}
     </tr>
-  {/sequence}
+  {/sequence:range}
 </table>

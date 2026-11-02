@@ -1,13 +1,13 @@
 <?php
 
-  // {dir '/path'} lists a directory as this level's data, one occurrence per entry, with
+  // {pad:dir '/path'} lists a directory as this level's data, one occurrence per entry, with
   // . and .. left out by padFiles(). The path must lie inside the applications, the engine
-  // or DATA (padDirContained); {files} is the version with a base, masks, recursion and a
+  // or DATA (padDirContained); {pad:files} is the version with a base, masks, recursion and a
   // field per entry.
   //
   // The path is kept in a name of its own: it was kept in $padDir, the directory of the
   // page, which every later _tags/, _include/ and _lang/ lookup of the request walks up from
-  // (padDirs), so after a {dir} the page no longer found what its own directory holds.
+  // (padDirs), so after a {pad:dir} the page no longer found what its own directory holds.
 
   $padDirScan = $padParm;
 
@@ -25,7 +25,7 @@
   if ( ! is_dir ( $padDirScan ) ) {
 
     if ( $padCheckSyntax )
-      padError ( "there is no directory named '$padDirScan' for {dir}" );
+      padError ( "there is no directory named '$padDirScan' for {pad:dir}" );
 
     return [];
 

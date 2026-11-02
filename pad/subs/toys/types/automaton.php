@@ -9,7 +9,7 @@
   // single for one cell on in the middle, random for a row of chance; speed= the rows a
   // second (30, 1 to 120).
   //
-  //   {automaton rule=110, initial='random'/}
+  //   {toy:automaton rule=110, initial='random'/}
 
   return padToy ( 'automaton', 'Cellular automaton', [
     'rule'    => padToyInt ( 'rule', 30, 0, 255 ),

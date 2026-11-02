@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Map / us-states · PAD tags
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="tags.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
+    </style>
+    <style>
+    :where(.pad-chart-map){--pad-map-empty:#e4e3df;--pad-map-border:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-map){--pad-map-empty:light-dark(#e4e3df,#3a3a37);--pad-map-border:light-dark(#fcfcfb,#1a1a19);}}.pad-chart-map .pm-land{stroke:var(--pad-map-border);stroke-width:.6px;vector-effect:non-scaling-stroke;stroke-linejoin:round}.pad-chart-map .pm-empty{fill:var(--pad-map-empty)}.pad-chart-map .pm-land:hover{opacity:.8}
+    </style>
+  </head>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>tags</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags and kinds</label> <input type="search" id="q" name="q" value="" placeholder="Search 1220 entries" autocomplete="off">
+        </form>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags and subsystem kinds</a><span>/</span><a href="index%EF%B9%96groups.html#subsystem-map">Map views</a><span>/</span><span aria-current="page">us-states</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              map / us-states
+            </h1>
+            <p class="tag-about">
+              The fifty states of the United States and the District of Columbia, each under its ISO 3166-2 code - US-CA, or CA alone, the postal code - or its name; Alaska and Hawaii (its main islands, without the Northwestern Hawaiian Islands) drawn below the lower 48 at the left as on every map of the states.
+            </p>
+            <p>
+              The view parameter of {pad:map} selects a country or region.
+            </p>
+            <p>
+              <a href="../types/index%EF%B9%96type%EA%A4%B7map.html">All Map views</a> · <a href="index%EF%B9%96tag%EA%A4%B7map.html">Using this with {map}</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="example">
+            <h2 id="example">
+              Usage example
+            </h2>
+            <p>
+              The view without data; data= and value= colour its regions.
+            </p>
+            <div class="example-grid">
+              <div class="cell">
+                <div class="cell-head">
+                  Template
+                </div>
+                <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:map</span> <span class="hl-str">'us-states'</span>, <span class="hl-opt">width</span>=<span class="hl-num">540</span><span class="hl-brc">/}</span></code></pre>
+              </div>
+              <div class="cell">
+                <div class="cell-head">
+                  Result
+                </div>
+                <div class="result">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-map" role="img" aria-labelledby="pad-chart-3730e3c2-title pad-chart-3730e3c2-desc" width="540" height="341" viewbox="0 0 540 341">
+                  <title id="pad-chart-3730e3c2-title">
+                    United States
+                  </title>
+                  <desc id="pad-chart-3730e3c2-desc">
+                    No values
+                  </desc><svg x="0" y="0" width="540" height="341" viewbox="0 0 1000 632" preserveaspectratio="xMidYMid meet">
+                  <path class="pm-land pm-empty" d="M153,486l-1,0-1-1-2,0-1-2-2,0-4,0 0,1-1,0-2-1-1,0-3-1-1,1-2-1-1-1-3-1-2,0-1,0-1,0-2,0-2,0 1-1-2,0 0-1 1-1-1-1-3-1-1,1-1,0-1,0-1-1 1,0-1-2-1,1-1,1-1,1 0-1 1-1 0-1-1-1-2-1-2,2-1,1-1,1-4,0-1-1-1,1-1,1-2,1-1,1-2-1-2,2 0,1-2,1-1,3-2,2-2,1-1,0-2,0-2,0-2-1-1,3-1,1 1,1 0,2 2,1 1,2 1,0 1,2 0,3 0,2 3,1 1,1 2,0 0,1 0,1-1,1 1,1 1,1 1-1 1,0 2,2-1,1-1,0-1-2-2,0-1-1 0-1 0-1-1-2-1,1 1,1 0,1 1,1 0,2 2,1 0,1-1-1-1,1-1,1-1-1-1,0-1-1-1,0-2,0 0-1 0-2 1-1-1-1-2,0-1,1-2-1-1,1-1,1 0,1-2-1-1,0-2,1-1,0-3,2 2,2 1,1 2,1 0,1-2,1 1,1-1,2 1,1 2,2 2,1 3-1 2,1 2,2 0-1 2,0 2-1 1-1 1,1 2-1 0,1 0,1-1,1-1,0 1,3 0,1 0,3-2,2-1,0-2,0-1-1-2,2-1,0-1,1-1,0-1-1 0-1-2-1-1,1 0,1-1,0-1,1-1,2 0,1-1,0-3,3-1,1 1,1-2,0 0,1-1,0 1,2-1,0 0,1 1,1 0,1 1,1 1-1 0,1-1,1 2,1 1,1 2,0 1,0 1,1 0,1-2,1 0-2-1,0 0-1-2,0-2,0-1,1 1,2 1,2 0,1 1,1 0,2 2,1 3,0 2-1 1-1 1,2 1,4-1,1-1,1 0,1 1,1-1,0 0,2-1,1 2,1 1-1 3-1 2-1 0,1 1,1 0,1 1-1 2,1 1,3 1,1 0-1 0-2 0-1 2,1 0,1 1,0 3,0 2-1 0,1-2,2-1,2 0,1-1,3 0,2-2,0 0,1-2,1-2,2 0,2-1-1-3,2-1,0-3,1-1,1-1,2 0,1-2,1-1-2-1,0-2,0-3,1-2,2-2,2-1-1-1,1 1,0 1,2 1-1 1-2 0,2 1,1 2-1 0-1 1-1 1-2 1,1-1,1 1,1 2-1 2,0 1,0 1-1 2-1 1,0 3,0 1,0 0-1 2,0 1-1 0-1-1,0 1-1 2,0 0-1 3-1 1,0 2-2 1,1 1-1 0-1 0-1 1-1 2-1 2-1 1-1 1,0 0-2 2,1 1-1 1,0 0-1 0-1 1,0 1-2 1,0 1-1 1-2-2-1-2,0 1-3 1-1 1-1 1,0 2,0 0-1 1-1 1-2-1,0 2-1 0-2 1-2 1,0 1-2 1,0 1-1 1-1 2-1 0,1 2,0 0,1 2,1-2,1-2-1-2,2-2,0 1,2-1,3-1,1-1,2 0,1 1,1 2-2-1,2-3,2 0,1 1,1 2-1 1,0 2-1 1-1 2-2 1,0 0-1 1,0 1-1 2,0 1,0 1,0 1-2-1-1 2-1-1-1 0-1 0-1-2,0 1-1 1-1 1,1 2,0 1-1 2,0 0,1 1,1 0,1 1-1 2,1-1,2 2,0 1,0 1-1 1,0 0,1 1,2 1,0 2,1 2,0 3-1 4,0 1,1 1-1 1,0 0,2 2,0 2,1 3-2 1,1-1,1-1,1 3,1 1,0 4,2 1,1 1,1 2,1 0,1 2,1 2,1 3-2-2-3 1-1 1,3 0,1 1-1 1,0 1,2 1-1-1-3 0-1-1-1 0-2 1,2 2,3 0,1 2,0 1,1 1-1 0,2 1,1 2,2 1,1 1,2-1,1 2,0 2,1 0,1 2,1 0,1 2,1 1,0 1,1 0,1 0,1 0,2-1,1 1,1 1,1 0-2 0-2 1-1 2,0 2,1 1,4-1,1 1,1 0,2 2,0 1-2 1-3-1-2-1-2 0-1 0-2-2,0-1,0-2-1-1,0-3-1-1,0 0-2-2,0 0-1-1,0 0-2-2-2-4-5-1-1-1-1-2-2-2,0-1-1 0-1-2-1-1-1-1-1 0-1-2-2-2,2-1,1 0,1-1,0 0,2 0,1-1,0-2,3-2-3-4-4-1-1-2-1 0-3-3,1-1,1-2-1 0,1-2-1zM208,609l-2-2 0-1-1,0 1,2 1,1zM215,600l0-1-2-2-1,0-1,1 0,2 0,1 0,1 1,0 2,1 1-1zM201,598l-1,2 1,0 1-1zM206,595l-1,1 1,2 0-1 1,1 1,0 0-1zM211,607l-1-3-2-2-1-2-2-2-1,0-1-1-1-1-1,0 0,1 1,0 1,3 1,0-1,1 1,1 0,3 2,0 2,1 0,1 2,0 0,1 1,0zM205,595l-1-1-1,1 1,1 1,0zM208,594l-1,1-1-1 0,1 2,1 1,0zM203,592l0,1 0,1 1,0 1-1zM199,595l1-1-1-1-2-1-1,1 0,1 2,2-1,1 1,1 1,1 0-1 0-1 0-1zM198,590l-1,1 2,1 1,3 2,0 1-2-1-1 0-1 0-1-2,0zM109,596l-2-1-1,1 0,1zM190,591l-1-1-1,0 1,2zM195,594l-2-4-1-1-2-1-1,2 2,2 1,1-1,1 1,0 1,2 2,2 1,0zM112,592l-1,0 0-3-3,0 0,1-2,0-1-1-1,1 0,1 1,1-1,1 0-2-1,0-2,1-1,1 1,2 0,2 1,1 0-1 2,0-2,2 1,0 2-2 2-2 1,0 2,0 0-2 1,1zM188,589l1,1 0-1 0-2 3,1 1,0-1-3-2,1 0-1 2,0-1-2-2,0-2-1-1,1-2,1 1,0 0,2zM196,591l0-2 1-1 0-2-2-2-1-1 1-1-1-1-2,1 1,5 2,1-1,2 0,1 1,0zM114,586l-1,0-2,0 0-2-1,2-1,0-1,1 1,1 1,1 2-2 1,0zM74,577l-1,0 0,2 1,0 1-2zM135,569l-2,3-1,1 0,1 2-2 1-1 1-1zM30,614l0-1-1-1-1,0-1,1 0,1-1,0-1,0-1,2 2,0 1-2zM38,613l0-1-1-2-2,0-1,1 1,2-1,0-1,1-1,0-3,1 1,0 2,0 3,0 1,0 1-1zM42,611l-1-1-1,0 0,1zM56,610l0-1-1-1 0-2-2,0-2,0-2,0-1,2-1,0 0,2 1,0 1,0 1-1 1,0 2,0 0,1 2-1zM70,608l-1-2-1,0 0,1 1,1zM56,562l0-2 1-1-2-1-1-1-2,1-2,0-1,0 1,1 2,3 1,1zM52,530l0-1-2,0-2-2 0-2-2,0-1,0-2-1 0-1-1,1 0,2 1,1 1-1 1,0 1,2 1,1 1,1 0,1 2-1 2,1z">
+                    <title>
+                      Alaska
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M667,502l1,0 4,0 0,1 1,0 0-3 0-3 1-2 1-1 1,1 1,2 0,2 0,1 2,2 1,1 1,0-1,1 3,0 1-1 0-1 1,0 1-1 2-2-1-1-1-1 1-3 0-1-2,0-3-4 1-1-1-2 8,0 12-2 13-1 19-2 0-2-1-2-1,0-1-2 1-1 0-3 0-2 0-2-2-2-1-3 1-2 0-2 0-1 0-3 1-1 2-1 0-1-1-1-1,0 0-3-1-2-2-2-1-3-1-1 0-1-1-2-5-18-3-13-4-11-1-5-6,1-15,1-15,1-13,1 1,2 1,1-1,17 0,19-1,24 0,11z">
+                    <title>
+                      Alabama
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M552,446l18,0 14-1 10,0 14-1 0-3 2,0-1-3-1-1 1-2 0-2-2-1-1-1 2,0 0-2-1,0 0-1 2-2 1-1-1-2 1-1-1-1 2-1 1,0 1-1 0-1-2-1 2-1 1-2 1-1 0-2 1,0 2-1 0-3-1-2 1-2 2,0 0-1 0-2 2-1 1-1 0-1-1-1 2-1 1-2 1,0 0-2 0-2-1-1 1-1 1-2 0-1 2-1-1-1 1-2-1-1 0-1 3-1 1-1-1-1 0-1 2,0-1-2-12,1 0-2 1-1 1-1 0-1 2-1 0-1 1,0 0-2-1-1-1-2-17,1-15,0-10,1-11,0-15,1-15,0 3,26 0,41 1,1 1,1 1,0 1-1 1,1 1-1 0,1 2,0 1,0z">
+                    <title>
+                      Arkansas
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M147,417l0,2-2,1 0,1-1,1 16,9 15,9 15,9 15,8 8,5 1,0 10,2 11,2 18,2 18-132-14-3-11-1-15-3-14-2-9-1-17-4-11-2-4,19-1,1-1,2-2,0-1,0-1-3-2,0-2-1-1,0-2,1-1,2 1,3-1,1 0,3 0,2 0,1-1,2 1,4 0,3-1,1-1,0 0,2 0,1 0,1-1,3 1,0 0,2 1,1 1,3 0,1 1,2-1,1 4,4 0,1-3,2-2,1-1,0-1,2-2,2 0,1-1,3 1,1-1,1-1,2-1,1-1,2-2,0 0,1-1,2 1,1 0,1-1,3 1,1 1,1 1,1 0,2 0,1-1,1-1,1-1,0-2,0z">
+                    <title>
+                      Arizona
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M160,365l-9-13-5-7-9-14-7-11-5-8-6-8-10-16-10-14-6-9-10-15 18-69-13-3-9-2-13-4-9-2-13-4-13-4-1,1-1,2-1,1 1,2 1,0-1,2 1,1-1,4-1,3-2,3-1,0 0,2 0,1-1,4 1,0-1,1-1,0-1,2-1,0-1,1-3,2-1,2 1,1 0,2-1,1 2,3 0,1 1,1 0,2 1,0 1,3 0,1 1,1-1,3 1,1-1,2 0,1-1,2-1,3 0,3 0,1 0,4-1,1 0,1 1,2 1,2 1,3 1,2 0,1 1,2 1,1 1,1 0,1 0,2 1,0 0,2 0,2-2,3 2,0 1,1 1,3 1,0 2,2 0,1 1,0 1-1-1-1 1-1 0-1 1-2 2-1 1,2 1,1 2,1 2-2 1,0 0,2 1,0 2,1 1,1-2,0-1-1-2-1-1,0-2,0-1-1-3,1-1,1 1,1 1,2-1,1 1,1 0,1 1,0 0,1 0,2 0,2 1,1 0,1-1-1-1-1-1,0 0-2-2-1 0-3 1,0 0-2-1,0-2,0 0,3-1,3 0,1 0,1 1,2-1,2-1,2 2,3 0,1 2,2 1,1 2,0 2,2 0,3-1,2-2,2-1-1-1,1 1,1-1,1 0,3 0,2 1,1 1,2 2,2 0,3 1,1 0,2 2,3 0,2 0,1 2,2 1,2 1,2 2,1 0,1 0,2-1,2 0,1 1,1 2,0 1,2-1,1 0,2-1,2 0,1-1,2 1,2-2,2 0,1 1,0 1,1 1,2 3,1 3,0 1,1 1,0 2,1 0,1 2,0 1,1 2,0 3,2 1,1 2,2 0,3 2,2 3,2 1,0 1,1 1,0 2,0 2,1 1,1 1,1 0,3-1,1 0,1 2,1 1-1 2,1 1,1 2,2 1,2 2,2 1,1 1,1 1,2 1,1 2,5 0,1 1,3 0,3-1,1 0,1 0,2 1,1 0,2 0,2 13,1 13,2 10,1 11,1 1,0 2,0 1,0 1-1 1-1 0-1 0-2-1-1-1-1-1-1 1-3 0-1-1-1 1-2 0-1 2,0 1-2 1-1 1-2 1-1-1-1 1-3 0-1 2-2 1-2 1,0 2-1 3-2 0-1-4-4 1-1-1-2 0-1-1-3-1-1 0-2-1,0zM78,399l-2-2-1-3-1-1 1,3 1,2 1,2zM59,384l-1-1-1,1 1,0 1,1zM78,385l1,0 0,2 2,1 0,1 1-1-1-2-1-1-2-1-1,0zM53,364l-1,0-1-1-1,0 0,3 1,1 2-1 1-1-1,0zM63,366l-1,0-1,0-1,0-1-1-1-1-1,0-1,1 0,1 3,1 1,0 2,0z">
+                    <title>
+                      California
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M383,347l18,2 5-71 1-24-9-1-13,0-13-2-11,0-8-1-11-1-11-1-11-2-11-1-11-1-14-2-13,94 11,1 10,1 14,2 11,1 14,2 14,1 17,2 14,1z">
+                    <title>
+                      Colorado
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M904,211l1,0 4-4 1,0 1-2 1,1 0-1 2-1 1-3 1,2 1-1 2-1 1-1 2,1 1-1 1,0 0-1 2,0 1-1 1,0 1-1 1,0 1-1 1,0 1,0 0-2 0-2-3-12-2,1-16,3-11,2 3,18 2,2-4,3z">
+                    <title>
+                      Connecticut
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M855,273l1,1 0,1 2-2-3-2-1,1z">
+                    <title>
+                      District of Columbia
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M874,249l0,2 8,27 4-1 6-1 1,0-1-2-1-1 0-2 1,0-1-3-2,0-3-2 0-1-2-2-1-2 0-2-1-2-1,0-3-2 1-2-2-2 2-3 0-1 1-1-2,0-2,0-1,1-1,1z">
+                    <title>
+                      Delaware
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M687,498l1,0 1,1-1,1-1,1 0,1 2,0 1-2 2-1 0-1 0-3 2,2 1-2 1,0-1,1 2,2-1,1-3,1 2,0 3-1 4-1 2,0 0-1 2-1 1,1 1-1 2,0 1,0 2,0 0,2-2-1-1,1-1-1 0,1 6,2 4,1 3,2-1-3-1,1-1-1 2-1 1,1 1,2 1,0 1,1 1-1 1,1 0,1 1,0 0,1-1-1-1-1-3,0 4,3 2,1 1,1 1,2 1,2 1,0 2-1 3,0 0-1 2-1 0,1 2-1 1-1 2-1 0-1 2-1 2,0 2,0 0-1-3,0 0-1 2,0-1-1 3-2 1,0 1,0 2-1 2,1 2,1 2,1 2,1 2,2 1,1 1,1 1,1 1,0 1,1 0,2 1,0 2,2 1,0 1,2 0,1 2,0 1,2 1,0 1,0 1,0 1,0 2,1 0,1 1,0 0,1 1,2 1,1 1,1-1,1 1,1 0,5 0,2-1,4 0,2 0,2 0,4 0,2 0,1 1,0 2,2 1,0 0-1 1-2-1-1-2-1 0-2 2,1 2,0 0,3 1,0 0-2 0-1 1,1 1,2-1,2-2,2 0,2 0,1-2,1 1,1 2,1 1,2-1,1 2,2 1,2 2,3 1,0 1,2 2,1 1-2-1-2 1,0 2,2 0,1 0,3 1,2 0,1 1,1 2-1 0-2 1-2 0,1-1,1 0,1-1,2 1,1 2,0 0,2 1,1 1,3 0,2 2,1 0,1 1,0 0,1 3,0 3,1 1,0 1,1 0,1 1,1 1,0 2,4 1,1 0,2 2,0 2,1 2,1-1,1-3-1-1-1-1,3 1,1 2,1 3-1 1-2 2,1 2,0 1-1 1,0 0-2 2,0-1,1 2-1 1-2 1-2 0-1-1-1 1-2-1-1 1-1 0-2 1-1 0-2 1-1 0-4-1-1 1-1 0-3 0-4-1-3 1,0-1-3-1-2 1-1-2-3-2-4-1,0-5-8-1-3-9-13-2-4-1-3-1-1-1-3 3,1-1,1 1,1 1,1 1-1 1,0 0,1 1,1 0,3 0,4 1,0-1-4 1-2-1-2-2-2-3-3-4-6-4-6-3-5-3-4 0-2-2-4-1-3-1-3 0-2-1-1-1-1 0-4-2-1-1,0-3,0-4-1-2,0 0,1-1,1 0,2 1,2 0,3 0,2-2,0-1-1 0-1-1-1 0-1-12,1-10,0-12,1-19,1-1-1-1-3-2-2-19,2-13,1-12,2-8,0 1,2-1,1 3,4 2,0 0,1-1,3zM850,600l0-2-1,1 0,1-1,2 0,2 1-2zM806,576l1-2-1-1-1,0 1,2zM839,544l1,2 1,3 3,5 1,1-5-9zM830,525l-1,2 0,2 2,2-1-3 1-3-1-1zM735,513l1,0 0-1-1,0-1,0zM743,510l-1,0-4,3 1,0 1-1 2-1zM702,498l-4,1-1,1-2,0-1,0-3,1 14-3-2,0z">
+                    <title>
+                      Florida
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M734,481l2,2 1,3 1,1 19-1 12-1 10,0 12-1 0,1 1,1 0,1 1,1 2,0 0-2 0-3-1-2 0-2 1-1 0-1 2,0 4,1 3,0 1,0 0-1-1-2 1-2-1-1 1-1 1,0-2-4 2,1 2-4-2,0-2,0 0-1 2,0-1-2 1-1 0-2 2-4 1-1 1-1-1-1 0-1 2,0 1-1-1-1 1,0 2-2-2,0-2-1-1,0-2-1 0-1 0-3-1-1-1-2 0-1-1-1-2-1-1,0-1-1 0-1 0-1-1-3-2-1 0-2-1-1-2-1-2,0-1-1 0-1-1,0-1-2-1,0-1-1 0-2-2-2-2-1-2-1-1-2-3-2-2-1-1-1-1-1-1-1-1-2-2-1-1-3-1-1-1-2-1-1-2,1-1-1-2-1-4-2 0-1 0-2 3-4 0-1-13,2-10,1-10,1-10,2-4,0 1,5 4,11 3,13 5,18 1,2 0,1 1,1 1,3 2,2 1,2 0,3 1,0 1,1 0,1-2,1-1,1 0,3 0,1 0,2-1,2 1,3 2,2 0,2 0,2 0,3-1,1 1,2 1,0 1,2zM805,476l1-1 0-2-1,1zM807,459l0,2 0,1 2-4-1,0z">
+                    <title>
+                      Georgia
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M338,597l-1-1-1-2 0-1 0-1-2,1 0-3-2-2-3-3-2-1-3,0-1,0-1-1-2-1 0-1-3-1-1,2 0,2 2,2-1,1 0,1-2,2-2,2-1,1 1,1 1,2 2,6 0,5 0,1 1,1 1,1 3,2 1-1 1-1 1-1 0-1 1-1 2-2 1,0 2-1 2,0 2-1 1-1 1,0 2-1 1-1 1-1-1-2zM301,573l-1,0-2,1 1,1 2,0 1,0 0-2zM295,566l-1-1-2,0-1,0 0,1 1,1 0,2 1,1 1-1 1,0 1-1zM314,568l-3-1-3-2-1-1-2,1-2,1-1-2-1-1-2,0-1,2 1,1 1,2 2,1 1-1 1,0 0,3 0,1 1,1 2,0 2-1 2,0 2-1 1,0 0-2zM297,559l-1,0-2,0-6-1-2,0 0,1-1,1 1,1 4,0 3,1 2,0 2-1 1-1zM276,555l0-1-1-1-2-1 1-1-2-3-1-1-1,0-1,1-2,1-2,0 0,3 1,1 0,1 1,1 0,1 1,0 2,0 2,0 2,1 2,0 1,0 1-1zM224,539l0,1-2,1-1,1 0,1 0,1 1,0 1-2 2-1 0-1 0-1zM242,536l-1-2-1,0-2,0-1,0-1,0-2,1-1,0-1,1-1,2 0,1 1,1 2,0 1,2 3,0 1,0 2-2 0-2 1-1z">
+                    <title>
+                      Hawaii
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M506,198l-2,0 0,2 1,1-1,2 0,1 0,1 1,0 1,2 0,2-1,0 0,2-1,1 0,2-1,1 0,1 0,1 2,1 0,4 2,0 0,1 0,2 1,2 0,2 0,1 1,1 0,1 2,2 0,2 0,1 2,2-1,3 0,1 0,1 2,1 0,1 1,0 0,2-1,1 2,1-1,1 0,2 1,1 0,1 0,1 0,1 0,1 1,2-1,2 1,0-1,2 0,1 2,1 0,1 15,0 8,0 8,0 8,0 8,0 13-1 7-1 4,0 1,1 3,2 0,1 2,1 1,0 0-3-1-1 0-1 2-1 2,0 1-2 0-3 2-3 1,0-1-3 0-1-2-1 0-2 0-3 1-1 5-1 1,0 1-1 3-1 1-2 0-1 1-2 2-2 0-1 0-4 0-2-2-1-2-1-1-1 0-2-1-1-1-1-2-1 0-1 0-1-1-2-2-1-3,0-1-1-1-1 0-1-1-2-1-6 1-3 0-1-2,0-1-3 0-1-11,1-16,1-17,0-16,0-17,0z">
+                    <title>
+                      Iowa
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M174,102l0,2 1,2 1,1 3,2 0,3 0,1-1,1-1,2-2,2-1,1-1,3-3,3-1,2-1,3-2,0-3,3 0,1-2,2 0,2-1,2 1,1 1,0 1,1 1-1 0,2 1,1-1,1-1,1 0,1-1,3-1,1 0,2-10,41 7,1 15,3 10,2 9,2 10,2 13,3 16,2 16,3 6,1 9-58 0-1-2-2-1-3-1-1-1,1-1,1-1,3-1-1-2,0-2,0-1-1-3,0-3-1-1,1-1,1-1,0-1,0-3-2-2,1-1,1-2,0-1-2 1-1-1-1 0-1 0-1 0-2-1-2-1-1-2,1 0-1-1-1-1-2 1-1 0-2 0-2-1,0 0-2-2-2 0-2 0-1 0-2-1-1 1-1 0-1-1-1-1-1-2,1-1,1-2,1-1,1-1,0-2-2-1-1 0-1 1-1 0-1 0-2 1-1 1,0 1-1-1-1 1-1-1-1 0-1 1-1-1-1 1-1 0-2 1-1 2-3-1-1 1,0 1-3 0-1-2,0-2,0-1-1 1-1-1-1-2,1 1-1-1-1-1-1 0-2-3-5 0-1-1-2-1-2-3-1 0-2-2-2 1-1-1-2 1,0 0-2 0-1-1-2 0-1-1-2-2-3 5-22-15-3-3,14-2,7-2,11-4,18-2,9 1,3 0,2-1,1-1,1 1,1z">
+                    <title>
+                      Idaho
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M595,270l-1,2 0,3 0,4 1,1 0,2 1,2 1,2 5,4 1,2 4,3 1,1 1,1 0,2 0,1 0,1 1,1 1,2 1,1 1-1 1-1 1,0 1,0 1,0 2,1 1,2-1,2 0,2-1,2-1,3 0,2-1,1 1,3 1,0 1,2 1,0 2,2 2,1 1,0 2,2 2,1 2,2 2,1 0,2 0,1 1,1 1,2 0,1-1,2 0,1 1,0 0,1 2,3-1,0 2,1 1,0-1-1 1,0 0,1 2,1 1,0-1-1-1-1 2-3 1,0 1-1 1,0 5,2 2,1 1,0 1-1 0-1-1-3-1-1 1-2 2,0 1-1 3-1 1-1-2-3 1-1 1-2 0-1 0-2 0-4 0-1 1-2-1-1 1-2 2,0 0-1 1-2 0-1 1-1 1-1-1,0 1-1 0-2 1-1 1-1-1-3 0-1 0-1-1-1-1-2-1-1 1-2 0-1 0-1 0-1 1-1-5-55-1-2-1-3-1-2 0-1-1-1-1-2-1-2 0-2 0-3-15,1-9,1-10,0-15,1 0,1 2,1 1,1 1,1 0,2 1,1 2,1 2,1 0,2 0,4 0,1-2,2-1,2 0,1-1,2-3,1-1,1-1,0-5,1-1,1 0,3 0,2 2,1 0,1 1,3-1,0-2,3 0,3-1,2-2,0-2,1 0,1 1,1 0,3z">
+                    <title>
+                      Illinois
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M673,232l-3,2-3,1-1,1-3-1-2-1 5,55-1,1 0,1 0,1 0,1-1,2 1,1 1,2 1,1 0,1 0,1 1,3-1,1-1,1 0,2-1,1 1,0-1,1-1,1 0,1-1,2 0,1-2,0-1,2 1,1-1,2 0,1 0,4 0,2 2,0 1-1-1-1 1-1 1,1 3-1 0,2 1-1 1-1 2-1 4,1 1,1 1,1 1-1 0-2 1-1 1,0 2-2 1,2 1,0 1,0 2,0 0-3 1-1 1-1 1-1 0-1 2,1 0,2 2,1 1,0 1,1 0-1 2,0 0-2 0-3 2-2 1,0 1-1 1-1 0-2 0-1 1,0 2-2 0-1 0-1-1-2 0-1 4,0 1,1 1,0 2-2 2-1 1,0 0-1 1-2-2,0 1-1 0-1-1-1 0-1-5-52-1-9-1-2-9,1-16,2z">
+                    <title>
+                      Indiana
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M401,349l14,0 17,1 17,1 13,0 9,1 12,0 9,0 13,0 13,0 8,0 13,0 0-50 0-1-1,0-1,0-2-1 0-1-1-1-1-2-1-1-1-1-1-2 0-1 1,0 0-2 1-1 0-1 2,0 0-2-1,0-1-2-1,0-1,1-2-1-2-2-19,0-15,0-15,0-15-1-19,0-15-1-11-1-11,0z">
+                    <title>
+                      Kansas
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M715,291l0,1 1,1 0,1-1,1 2,0-1,2 0,1-1,0-2,1-2,2-1,0-1-1-4,0 0,1 1,2 0,1 0,1-2,2-1,0 0,1 0,2-1,1-1,1-1,0-2,2 0,3 0,2-2,0 0,1-1-1-1,0-2-1 0-2-2-1 0,1-1,1-1,1-1,1 0,3-2,0-1,0-1,0-1-2-2,2-1,0-1,1 0,2-1,1-1-1-1-1-4-1-2,1-1,1-1,1 0-2-3,1-1-1-1,1 1,1-1,1-2,0 0,1-1,2-1,1 2,3-1,1-3,1-1,1-2,0-1,2 1,1 1,3 0,1-1,1-1,0-2-1-5-2-1,0-1,1-1,0-2,3 1,1 1,1 0,2-1,1 1,2 0,1-1,3-1,1-1,0-1-2-1,1 0,3 16-1 10-1 0-2-1-3 4,0 0,1 16-2 8,0 2-1 4,0 3,0 12-1 6-1 9,0 17-2 1,0 1-1 2-1 1-1 2-1 1-1 2,0 1-2 3-2 1-1 0-1 0-1 2-1 0-1 0-1 1-1 5-4 6-7-1,0-2,0-1-1-2-1-1-2-2-1 0-2-2-1 0-1-1-1-2-2 1-3 0-1-1-2 0-1-1-1-2-1-2-1-1-1-1-3-2,1-1,2-1,1-2,0-1,1-1-1-1,0-2-1-1,0-1,2-1,0-2-2-1-1-2,0-2,1-2-1-1-1-1-1 0-1-1-2-2,0-1-1-1,0-1,1-1,0-2-2zM634,360l1,0 0-1-1,0z">
+                    <title>
+                      Kentucky
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M558,517l1,1 0,2-1,1-1,0 0,2 1,1 2-1 3-1 3,0 2,0 2,0 1,0 3,1 7,2 3,1 5,1 1,0 3-2 0-1-1-2 1-1 2-1 1-1 1,1 0-1 1,0 0,2 0,1 2-1 2,0 1,1 0,1 1,0 1,3 2-1 0,1 2,1 1-1 2,3 2,1 0,2-1,0-1-2-1-1-1,1 0,1 2,2 2,0 1,0 3,1 1,1 1-1 3,1 1-1 0-1 1-3 2,1 1-2 1,1 1,0 1,1 1,0-1,2 1,2 2-1 1-1 0-3 1,0 0-2-1-2-1,0-2-2 1-1 0,1 2,0 2,2 1-1 2,1 1,1 1,1-2,1 4,1 1,0 2,1 0-1 3,4 1-1 0-1 1,0-1,2-2,3 1,0 1-2 1-1 1,0 1,1 1-1 1-1 1,0 0-1-2-2 0-1-2-2-1,1-1-1-1,1-1-1-1,0-1,0-1-2-3-1-1-2 0-1 2,1-1-1 2-1 0-1 2-2 1,0 1,0 0-1 0-1-1,0-1-1 0-2 0-1-1,0 0,1-2,1 0,1 0,2-2,0-1-2-1,0-1-1 1-1 1,0 1-1 1-1-1-1 0,1-2,1-2-1-1,1-2,1-3,1-2-1-1,0-2-1 0-2 2-2 1-2 1,0 1,0 2,0 1,1 1,1 2,0 1,1 1-1 1,1 0,1 3-1 0,1 1-1-1,0-1-2-1-2 0-1 0-1-2-1-1-1 0-2-1-1 2-6 0-1-20,1-19,1 1-2-1-2 1-1-1-1 0-1 2,0 0-1 1-2-1-1 0-1 0-1 2-1 0-4 1-3 2,0 2-3 1-1 0-1 0-1 0-1 1,0 1-3 1-1-1-1-1-1-1-1-1-1 0-1-1-2 0-1 1-1 0-1-1,0 0-2 1-2 0-1-2,0 0-1-14,1-10,0-14,1-18,0 0,24 2,1 1,2 2,2 0,1 0,3 1,2 1,0 0,1 1,2 1,0-1,1 1,2 1,2 1,0 0,2 1,1-2,1 1,1-1,2 1,1-1,2 0,1-1,1-1,2 0,3-1,1 0,2 1,1 0,1 0,2 0,2zM600,527l1-2-1,0-2-1-1,0-2,1 0,1 2,0 2,1zM652,510l-1,0-2,1 2,0z">
+                    <title>
+                      Louisiana
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M901,186l11-2 16-3 2-1 6-2 1,3 1,0 1,2 1,1 1,1 1,0 1,0 1,4 1-2 0,1 2-1 0-2 2-1 1-1-1-1 2,0 0,1 1,3 1-1 1,0 1-2 3-1 4-2 1,0-1-3-1-1 1-1-2-2-1-1 0,1 2,2 0,2-1,1-2,1-1,1-3,0-2-1 0-1-1-2-2,0 0-1 0-2-2-1 0-1-2-1-2,0-1,1 0-1-1,0 0-2 0-1 1-1 1-1-1-1 2-2 1,0 1-2-1,0-1,1-1,0-1-1 0-2-1-2-2,0-2,2 0,1-1,0-1,2-1,1-9,2-11,3-7,1-6,2-1,16zM963,187l0,1 0,1-3,0 2,1 3,0 0-1zM954,188l-1-1-2,2 0,2 1,0 1-1 2-1 0-1z">
+                    <title>
+                      Massachusetts
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M809,262l2,12 2-2 1-1 0-1 1-1 1-2 1-1 2,1 1-2 1-3 1,0 0,1 1,1 2,0 2-1 0-2 2-1 1,0 1-1 1-1 3,2 1,0 1-1 1,3 1,0 1,1 1,1 0,1 3,1 1,0 1,1 1,0-1,1 0,1 2,1 1,0 2,0 1,2 1,0 1,0 1-1 3,2-2,2 0,2 0,1-1,0 0,2-1,0-1,3 1,3 1,0 2-2 1-1 1,3 1,1 4,1 1-1 1,0 4,2 2,1 0-2-2-2 0-2-1,1-2-2-1,0-2-1 0-1-1-4 2,4 2,2 1,0 0,1 1,0 0-2-2-2-1-3 0-1 0-1-1-1 0-1 0-1 0-1 1,0-1-2 1-1-1-3-2,0-1-1 0-1 3,1 0-1 0-1-1-1 3-1 0-1 1,0 1-1 1-2-1,0 0-2 2,0 1,0-1,2 1,0 1-2 0,1-1,1-1,2-1,1-1,1-1,4 1,1 0,1 1-1 1,0-1,1 1,1-1,1-2,0-1,1 1,3 0-1 0-1 1-1 2,1 0,2-1,0-1,0 0,2 2,0 1,1 1,0 0,1 2,0 0,1-3-1-2,1 1,1 0,2-1,0 3,3 0-1 2,2 2,0-1-1 1-1 0,1 1,1 1-1 1,1-1,1 0,1 1,0 1,0 0,2-1,2 1,1 1-1 3-1 4-2 1-2 1,0 0-2 0-1 1-1 1-2-1-1 0-2-6,1-4,1-8-27 0-2-10,2-13,3-8,2-16,3zM878,291l1,0 0-2-2,1z">
+                    <title>
+                      Maryland
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M941,151l0-1 1,1 1-4-1-1 1-2 1,0 1-2 0-1-1-2 3-1-1-1-1-2 1-2 1-1 1-2 2,1 1-1 0,2 1,1 0-1-2-5-1,0 1-2 1,3 2,3 0-1-1-2 1-3 0,3 1,1 0-3 2,2 0-1 0-2 1-1 1,0 1,1 2-1-1-1 1,0 0-1 1,0-1-2 0-2 0-2 1-1 0-1-1-1 2-2 0-2 1,0 0,2 0,3 1,0 1,0 1,0 2,1 0-2-1,0 0-1 0-1 1-1 1,0 1-1 1-1 1,0 1-1 1,2 1,1 1-1 1-1 1-2-1-1 1-1 2,1 0-1 1,0 0-1 0-2 2,0 1,0 0-1 0-1 0-1 1,1 1,0 2-2 0-1 1-1 0-1-1-1-1,1-1,0 0-1 1-1 0-1-1-1-1-1-1-1-1-1-1,0-1,1-3-2 0-2-1-2-1-1 1-1-1-1-1,0-2,0-2-1-1,0-1-1 1-2-1-1 0-1-1-1-7-24-1-1-1,0-1-1-1,0-4-3-2,0-1,1 0,1-2,1-2,2-1,0-2,2-3-1-1-1 0-2 0-1-3,0 0,1-5,15-2,5 0,1 1,5 0,1-2,1 0,2 0,2 1,2-1,1 0,2 1,1 1,1-1,1-1,1 0,1 1,2-3,2-1,2 0,2 0,1 2,1-1,1-1-1-1,1 0,2 0,2-2-2-1,0-1,1 6,17 7,22 1,4 2,2 1,1 1,2zM953,126l-1,2 1,1zM965,118l-1,0 0,1 1,0zM972,116l0-1-2,1zM963,117l0-2-1,0zM965,119l0,2 1,0 0-2zM967,115l0,2 1,0 0-1zM973,109l-1,0-1,1-1,1 0,2 1,1 2,0 0-1-1,0 2-1 0-1z">
+                    <title>
+                      Maine
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M653,154l0-1 0-1 3-5 1-3 1-2 1-1 1-1 0-3 1-1 1,2 0,2 2-1 1-3 0-1 2,1 1-2 1,1-1,2-1,0-1,3 2,1 0-1 1-3 3-1 1-3 3-1 3,0 0-1 2,0 2,0 1-3 4-1 1,1 2,0 2,1 2,2 1,0 1,1 1,0 0-2 1-1 0-2 2,1 1,0 4,0 3,0 2-1-1-1-1-1 0-1-4-1 1-1-1-3 2,1 0-1-1-1 0-3-1,0-2,1-2,0-1,2-1,1-1-2-2,1-1,0-2-1-1,1-1-1 1-1-1-1 0-3 1-1-1,0-3,1-1,0-3,2-1,0-5,0-4,1-1,0-2,2-3,2-2,3-1-1-1,0-1,0-1,1-1-1-1-1-2,0 0,1-2,0-2,0-1-1 0-1-1,0-1-2-1-1-1-2-2,0-1-1-2,0-2-1-2,1-1-1-2,3-1,1-1-1 1-3-1-1-1-1 0-1-2-1 0-1-1-1-3,3-1,3-1,0-2,0-1,2-1,1-2,1-6,1-1,0-2,3-1,1-3,1-1,0-2,1 1,1 2,1 1,0 1,4 17,3 5,2 2,0 1,1 2-1 3,1 3,0 1,1 0,1 0,1 1,1 1,0 2,1 1,1 0,1 1,1-1,1 1,2-1,1 0,2 2,0 1-1 1,1-1,2 0,2 1,1zM732,226l0-1 0-1 1-2 1-1 1,0-1-2 1,0 1-6 0-1 1-1 2-1 0-1 1-1-1-1 0-2 2-1-1-1 2-2 1,1 0,2 1,0 1-2 0-3 0-1 0-2 1-2-1-1-1-2-1-4-1-4-1-1-2-7-1-2-1-1-2-1-2-1-1,1-1,1-3,1-2,3 0,1-1,3-1-1-1,2-1,1-4-1-1-1 0-3 1-2 1-2 2,0 0-1 1,0 0-1 0-3 1-1 1-1 1-1 1-2-1-5 0-2 0-3-1-1-2-2 0-1 0-1 1-1 1,1 0-1-1-2-1-1 0-1-2-2-2,0-1,0-1-1-2,0-2-1-2,0-1-2-2-1-1-1-3,1-2-1-3-2-1,1-3,1 1,0-1,2-1,1 0,1 0,1 1,2 1,0 1,0 0,1-2,1-2,0-2,2-1,1 0,1 1,3 0,2-1,2-1,4 0-2 0-1 0-2-1,1 0,1 0,2-1,0 0-1 0-2 0-2 0-1 0-2 1-1-2,0-1,2-1,1 0,3-1,0-1,0-1,1-1,0 0,4-1,0-1,1-1,1 1,2 0,3 0,1 0,1-2,6-2,2 0,1 2,2 0,3 0,1-1,2 0,1 1,2 3,7 2,0-1,1 1,2 1,3 1,6-1,6 0,2-1,3-2,4-1,4-1,2-1,1-2,2 10-1 16-2 9-1 1,2 8-2zM630,88l1-1 0-1 2-2-1,0-2,1-1,1-2,1-2,1-2,2-1,1 0,1 1,1 3-2 0-1zM666,121l-1-2 0,2zM646,101l0-1-1-1-4,1-3,1-3,2-1,2-2,1 0,2 2,0 1,1 0,1 1,2 0-2 1-1 1-1 1,0-1-1 1-1 2-2 2-2-1,0 1-1 2,0zM686,139l0-3-1,0 0,1-1,2 1,1zM718,126l-1,0 0-1-1-1-2,0 1,2-2,0 0,2 2,0 2,0 1,0zM704,133l-1-1 0,1-2,0 2,1 1,0zM680,152l0-1-1-1-1,1 1,1zM707,122l0-1-1-1 0,1z">
+                    <title>
+                      Michigan
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M505,141l-1,2-1,2-3,3-1,1 2,2 1,2 2,1 1,1 1,1 0,42 11,0 17,0 16,0 17,0 16-1 11-1 0-4 0-2-1-1 0-2-1-1-1-2-1,0-1-1-2,0-3-2-2-4-3-2-3-1-1-1-1-1-3-1-1,0-2-2-1-1 0-2 0-1 1-1-1-2 0-2 1,0-1-2 0-3 1-1 1-1 0-1-1-1-1-2-2,0 0-1 0-3 1-1 1-1 1-2 2-1 1-1 1,0 0-1 1,0 1-1 0-14 1,0 0-1 2-2 3-3 1-1 1-1 2-1 1-2 1,0 7-9 1-1 3-2 4-3 7-3 5-3 1-1-1,0-1-1-1,1-2,0-1-2-2-1-6,1-1,0-1,1-2-1-1-2-1-1-2,2-3,3-2,0-1,0-1,0-1,0 0-1-2,0 0-1-1-1-2,0-1-1-1-1-1-1-2,0-1,0-1,1 0,1-1,0-1-2-1-1-1-1-2,0 0-1 1-1-1-1-3,0-2-1-4,0-3,0-1,2-4,0-1,0 0-2-1,0-6-1-1-1-2,0-2,0-2-1 0-1 0-2-2-6 0-1 0-2-1-1-2-1-1,0-1,0 0,8 0,1-11,0-14,0-8,0 2,8 0,1-1,1 1,3 0,1 0,2 0,3 0,2 1,3 1,1 0,1 0,1 0,1 1,2 1,3 0,2 0,1 0,1 0,3 0,2 0,4 1,2 0,1 0,2 0,2 0,2 0,1 1,1 0,2 2,3 0,2 0,2 1,1-1,2z">
+                    <title>
+                      Minnesota
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M526,281l2,2 2,1 1-1 1,0 1,2 1,0 0,2-2,0 0,1-1,1 0,2-1,0 0,1 1,2 1,1 1,1 1,2 1,1 0,1 2,1 1,0 1,0 0,1 0,50 1,12 15,0 15-1 11,0 10-1 15,0 17-1 1,2 1,1 0,2-1,0 0,1-2,1 0,1-1,1-1,1 0,2 12-1 1-3 1-1-2-2 2,0-1-2 2-1-1-2 0-1 0-1 1,0 0,1 1,1 1-1 0-3 1-1 1,2 1,0 1-1 1-3 0-1-1-2 1-1 0-2-1,0-2-1 0-1-1,0 1,1-1,0-2-1 1,0-2-3 0-1-1,0 0-1 1-2 0-1-1-2-1-1 0-1 0-2-2-1-2-2-2-1-2-2-1,0-2-1-2-2-1,0-1-2-1,0-1-3 1-1 0-2 1-3 1-2 0-2 1-2-1-2-2-1-1,0-1,0-1,0-1,1-1,1-1-1-1-2-1-1 0-1 0-1 0-2-1-1-1-1-4-3-1-2-5-4-1-2-1-2 0-2-1-1 0-4 0-3 1-2-2-1 0-1-3-2-1-1-4,0-7,1-13,1-8,0-8,0-8,0-8,0-15,0 0,1 1,1 0,1 1,1 0,2 2,2 1,0 0,1 1,2 0,2z">
+                    <title>
+                      Missouri
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M645,508l2,0 0-1 2-2 0-1 1,0 1,1 4-2 1-1 1,0 1,0 3,1 1,0 1-1 1,1 2,1 1-1 0-1-4-35 0-11 1-24 0-19 1-17-1-1-1-2-8,1-13,1-10,1-10,0 1,1 0,1-1,1-2,1 0,2 0,1-2,0-1,2 1,2 0,3-2,1-1,0 0,2-1,1-1,2-2,1 2,1 0,1-1,1-1,0-2,1 1,1-1,1 1,2-1,1-2,2 0,1 1,0 0,2-2,0 1,1 2,1 0,2-1,2 1,1 1,3-2,0 0,3 0,1 2,0 0,1-1,2 0,2 1,0 0,1-1,1 0,1 1,2 0,1 1,1 1,1 1,1 1,1-1,1-1,3-1,0 0,1 0,1 0,1-1,1-2,3-2,0-1,3 0,4-2,1 0,1 0,1 1,1-1,2 0,1-2,0 0,1 1,1-1,1 1,2-1,2 19-1 20-1 0,1-2,6 1,1 0,2 1,1 2,1 0,1 0,1 1,2 1,2zM654,506l-1,1 1,1z">
+                    <title>
+                      Mississippi
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M262,155l2-12 14,2 18,3 14,2 18,2 14,2 13,1 12,1 13,1 2-22 0-4 5-62 1-5-9,0-14-2-17-1-10-2-17-2-14-2-7-1-13-2-14-2-14-2-10-2-10-2-13-2-11-2-13-3-5,22 2,3 1,2 0,1 1,2 0,1 0,2-1,0 1,2-1,1 2,2 0,2 3,1 1,2 1,2 0,1 3,5 0,2 1,1 1,1-1,1 2-1 1,1-1,1 1,1 2,0 2,0 0,1-1,3-1,0 1,1-2,3-1,1 0,2-1,1 1,1-1,1 0,1 1,1-1,1 1,1-1,1-1,0-1,1 0,2 0,1-1,1 0,1 1,1 2,2 1,0 1-1 2-1 1-1 2-1 1,1 1,1 0,1-1,1 1,1 0,2 0,1 0,2 2,2 0,2 1,0 0,2 0,2-1,1 1,2 1,1 0,1 2-1 1,1 1,2 0,2 0,1 0,1 1,1-1,1 1,2 2,0 1-1 2-1 3,2 1,0 1,0 1-1 1-1 3,1 3,0 1,1 2,0 2,0 1,1 1-3 1-1 1-1 1,1 1,3 2,2z">
+                    <title>
+                      Montana
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M759,383l1,0 5-3 1,0 2-2 1,0 2-1 1-1 1,0 1,0 10-1 13-1 1,0 0,1 0,1 2-2 3,3 1,3 12-1 8-2 1,0 10,7 15,11 4-2 2,0 2,0 2,0 1-2 1,0 0-4 0-2 1-1 2-4 2-2 1-2 2,0-1-1-1,0 1-2 1,0-1,1 1,1 2-1 0-2 1-1 1-1 1,1 2-2 1,0 3-1 1-1 0,1 1,0 0-2 1,1 0,1 1,0 0-1 1-2 1-2 1-2-2,1-1-1-1-1 0,2-1,0-1,1-1-1-1,2-1,0-1,0-2,0-2-2 1-1 3,2 1,0 2-3 1-1 0-1-2,0 3-2 0-1-1-1-3,0-2-1-1,0-2,0-1,0-1-1 2,0 2,0 1,1 1-1 2,1 0-3-1,0 1-1 1,0-1,1 1,1 1,0 0,1 1,0 0-2 2,2 1,0 3,0 1-2 0-1 2-3 3-2 0-1-1-1 1,0-1-1 0-2-2-2-1-1 0,1-1,0-1,2 1,3-1,0-1,0 0-1-1-1 1-1-1-1 0-1-1,0-1,0-4,2 0-1-1,1-2,1-3,0 0-1-1-3 0-1 1,3 2,0 2,0 1-1 0-1 3-1 1,0 0-1 1,0 1-1 0-1-3-2 1,0 2,1 1,1 3,0 1,1 1,1-3-5-1-1 0-1-2-1-1-1 0-1-6,1-17,3-11,3-17,3-13,2-11,2-11,1-10,2-7,0-1,0-1,2 1,1-1,2 1,2-2-1-2,2-1,4-1,1-1,0-1-1-2,1-2,1-1,3-1,1-1,0 0-2-1,0-3,1 0,2-1,0-1,0 0,1 0,2-1,1-2,0-1,1-1,1-1,2-1,0-2,1-1,1-4,1-3,2-1,1-1,1 0,3-1,1-3,1-1,1 0,5 10-1zM887,323l-1,0-1,1 1,1 2-1zM888,323l2,3 0,2 2,4 1,2 1,0 0,1 2,1 1,1-4-5-2-3zM899,341l0-1-1,0 2,3 0,1 1,7-1,0-2,2 3-1 0-1 0-1 0-4 0-2zM894,337l1,1 0,1 1-1-1-1z">
+                    <title>
+                      North Carolina
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M382,135l8,1 11,1 8,0 12,1 15,1 7,0 16,1 7,0 16,1 11,0 12,0-1-2 1-2-1-1 0-2 0-2-2-3 0-2-1-1 0-1 0-2 0-2 0-2 0-1-1-2 0-4 0-2 0-3 0-1 0-1 0-2-1-3-1-2 0-1 0-1 0-1-1-1-1-3 0-2 0-3 0-2 0-1-1-3 1-1 0-1-2-8-12-1-11,0-17,0-13-1-11-1-10,0-14-1-10-1-8-1-1,5-5,62z">
+                    <title>
+                      North Dakota
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M372,251l13,2 13,0 9,1-1,24 11,0 11,1 15,1 19,0 15,1 15,0 15,0 19,0-2-1 0-2-1-2 0-1-1,0-2-2 0-2-1-1 0-1-1-1 0-1 0-1-2-1 0-1 1-2-1,0 1-2-1-2 0-1 0-1 0-1 0-1-1-1 0-2 1-1-2-1 1-1 0-2-1,0 0-1-2-1 0-1 0-1 1-3-2-2 0-1 0-2-2-2 0-1-1-1 0-1 0-2-1-2 0-2 0-1-2,0-2-1-1-1 0-1-1-1-1,0-1-2-2,0-1-1-2,0-2-2-1,0-3,0-2,0-1,0-3,0-1,0-1,2-1,0-1,0-1-1-2-1-3-3-1,0-10-1-9,0-15-1-17,0-12-1-14-1-18-2-1,9z">
+                    <title>
+                      Nebraska
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M914,167l11-3 9-2 1-1 1-2 1,0 0-1 2-2 2,0 0-2 0-1 0-2-2-1-1-2-1-1-2-2-1-4-7-22-6-17 0,2-1,0-2-1 0,1-1,1 0,3-1,2 0,1 1,2-1,3 0,1 2,3 0,1 0,1-1,2-1,2-1,1-2,1-1,2 1,3 0,1 0,2 0,1-1,2 0,3-1,1 0,3 0,1 0,1 1,5 0,1 0,3 0,1 0,3 0,3 1,1 1,1z">
+                    <title>
+                      New Hampshire
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M885,240l0,1 0,1-1,1-3,2-1,0-1,2 0,1 0,2-1,1 1,1 0,2 1,1 3,2 1,0 1,0 2,1 0,1 3-1 0,1 1-1 1,1 0,1 0,3 0,1 2,0 1-2 0-1 1-4 1-2-1,0 1-1 1-2 2,0-2-1 2-3 0-2 1,0 1-3-1,0 1-2 0-1 0-1 0-1-1-2 1,0 0-5 0-3-1-3 0,1-2,0-1,0-2,0 0-2 0-2 1-1 1,0 1-1 0-2 1-4 0-1-16-6-1,1-1,2 0,2-1,2-1,2-1,0-1,2 2,1 0,3-1,0 0,1 0,3 1,1 2,0 0,1 0,2 2,1 0-1 1,1 1,1 2,2 2,1-1,1-1,1-1,1z">
+                    <title>
+                      New Jersey
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M253,468l17,2 1-10 16,2 18,2-2-1 0-2-1-3 14,2 9,1 13,1 18,2 17,1 4-46 5-59 1-1 0-12-7,0-14-1-17-2-14-1-14-2-11-1-14-2-10-1-11-1z">
+                    <title>
+                      New Mexico
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M151,194l-15-4-13-3-13-3-9-3-18,69 10,15 6,9 10,14 10,16 6,8 5,8 7,11 9,14 5,7 9,13 0-1 0-1 0-2 1,0 1-1 0-3-1-4 1-2 0-1 0-2 0-3 1-1-1-3 1-2 2-1 1,0 2,1 2,0 1,3 1,0 2,0 1-2 1-1 4-19 22-116-10-2-9-2-10-2-15-3z">
+                    <title>
+                      Nevada
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M884,207l16,6-1-3-1-1 1,0 1,3 0,5 2-1 0-2 1-1 1,0 0-2-2-2 4-3-2-2-3-18-1,0 1-16-1-1 0-2-3-16-2-1-1,0 0,1-1,0 0-1 0-3 0-2 0-1-1-1-1-2 0-1 0-3 0-1 0-2 0-1 0-2 0-1-2-2-1-2 0-3-1-1 0-3 0-1-17,4-6,2-2,0-2,1-1,1-1,1-2,2-5,8-1,2 0,1-3,5-2,2-3,2 0,1 2,1 1-1 1,1 0,1 1,2-1,1-1,0-1,1 2,0 1,2 0,1 1,0-1,2 1,0-1,2-1,0-2,0-1,2-1,1-1,1-1,2-4,2-7,1-2,2-2,0-2-2-6,0-2,1-3,0-5,2-1,1-2,0-2,2-1,0 1,2 0,2 2,0 1,1-1,2 2,2 0,2 0,1-2,1-2,3-1,1 0,1-2,1-1,2-2,2-1,1-2,2 1,6 15-3 14-2 16-4 9-1 14-3 8-2 1,1 1,1 1,0 2,1 0,1 1,0 0,1 0,1 0,2 2,2 2,1 3,0zM913,218l-2,0-3,2 0,1 4-3zM898,222l-1,0 0,2 0,1 2-2 0-1-1-1zM933,203l-1,0-1,1-1,1-1-1-1,0 0,1-2,1-1,2-1,1-1-1 0-1 2-1 0-1-1,0-2,2-3,2-5,1-1,0-1,1 0,1-3,0-1,1-1,0-2,1-1,1-1,0 0,1-1,1-1,0-1,3-1,1 1,2 1-1 1-1 1-1 1,1-1,1 2-1 2-2 4-1 1-1 1-1 1,0 3-2 1,0 1,0 1-1 1-1 1,0 1,0 2-2 1-1 5-4zM804,185l1-2-1-1-1,1 0,1z">
+                    <title>
+                      New York
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M709,230l1,9 5,52 2-2 2,2 1,0 1-1 1,0 1,1 2,0 1,2 0,1 1,1 1,1 2,1 2-1 2,0 1,1 2,2 1,0 1-2 1,0 2,1 1,0 1,1 1-1 2,0 1-1 1-2 2-1 1,3 1,1 2,1 2,1 1,1 1,0 2,0 1-1 1-1 0-2 0-1 1,0 0-3-1-1 1-1 0-2 1-3 1,0 2,0 0,1 0,1 1,1 0-1 1-1 1,0-1-2-1-1 1-1 0-2 1-2 2-1 0-1 1-2 1,0 1,1 1,0 0-1 2,0 1-2 1-2 2-2 1-1 0-2 0-1 0-1 1-2-1,0 1-1 0-3 1-5 0-2 0-2 0-1-2-3 2-1 1,0-6-32-5,3-1,1-2,1-5,4-5,5-1,1-1,0-1,1-3-1-2,1-1,1-2,1-1,1-2,0-2-1-1,0-3,0-1,2-1-1 0-1 2,0 1,0 0-1-1-1-1,1-1,0-1,0-2-1-2-1-2-1-1,0-1,0-15,2z">
+                    <title>
+                      Ohio
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M383,359l12,1 10,1 10,0 10,1 14,0-2,46 1,0 1,0 3,4 1,0 1,1 1-1 2,1 1,0 0-2 3,1 0,1 1,1 0,3 3,0 2,0 1,1 3,1 1,0 2,0 1,2 2,0 1-2 3,1 2-1 0,3 3,1 0,2 1,1 2-1 2-2 2,0 0,2 2,0 0,2 2,0 2-1 1-1 1,1-1,2 1,1 1,0 1-1 2-3 0-1 1,0 1,2 1,0 1,1 1-1 1-1 1,0 0,2 2,0 0,1 2,0 1,2 1-1 2,0 1-2 1,0 1,0 2-1 1,1 2-1 1,0 2-2 1,1 1,1 1,0 2,0 2-1 0-1 1,0 1,0 2,2 1,0 3,3 2,0 1,1 1,0 2,1 1,0 0-41-3-26-1-12-13,0-8,0-13,0-13,0-9,0-12,0-9-1-13,0-17-1-17-1-14,0-18-2z">
+                    <title>
+                      Oklahoma
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M75,72l-1,1-2-1 0-1-1-1-2,0-2,0-1-1-1,1-1-2-1,0 0,3-1,2-1,1 0,2-1,2 0,1 0,1-1,2 1,1-1,1-1,1 1,1-2,1 0,1-1,2 0,2-1,2-2,4-1,1-1,4-1,3-1,2-1,2-1,3-2,6-2,3-4,7-1,2-1,0-1,1-2,5-2,2-1,2 0,2 0,1 0,1 1,1-1,2 0,1-2,4 0,1 0,1 0,1 0,2 1,2 1,2 13,4 13,4 9,2 13,4 9,2 13,3 9,3 13,3 13,3 15,4 10-41 0-2 1-1 1-3 0-1 1-1 1-1-1-1 0-2-1,1-1-1-1,0-1-1 1-2 0-2 2-2 0-1 3-3 2,0 1-3 1-2 3-3 1-3 1-1 2-2 1-2 1-1 0-1 0-3-3-2-1-1-1-2 0-2-10-2-15-4-9-2-1,1-4-1-3,0-1,0-2,1-4-1-4,1-2,0-1,0-1,0-2,0-2-1-1,0-2,0-2,1-2-1-2,0 0-2-1,0-5-2-2,0-2-1-1,0-2,1-5,0-1,0-1-1-2-1-2-1-1-1 0-2 1-1-1-1 1-1 0-2 0-1 0-2-1-1-2-2z">
+                    <title>
+                      Oregon
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M787,244l3,21 19-3 18-3 16-3 8-2 13-3 10-2 0-1 1-1 1-1 2,0 2,0 0-1 1-1 1,0 2-1 0-2 1-1 2-2 1-1 1-1 1-1-2-1-2-2-1-1-1-1 0,1-2-1 0-2 0-1-2,0-1-1 0-3 0-1 1,0 0-3-2-1 1-2 1,0 1-2 1-2 0-2 1-2 1-1-1-1-3,0-2-1-2-2 0-2 0-1 0-1-1,0 0-1-2-1-1,0-1-1-1-1-8,2-14,3-9,1-16,4-14,2-15,3-1-6-2,1-2,2-2,1-3,3-3,1z">
+                    <title>
+                      Pennsylvania
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M903,608l-2,0 0,1 1,0zM959,608l1-1-2,0-2,0-1,1-1,0 2,0zM960,604l1-1-2,0zM953,604l0-2-1,0-3-1-1,0 0-1-4,0-2,0-4-1-1,1-1-1-2,1-1-1-2,0-1,0-3,0-1,0-2,0-4-1-2,1 0,2-2,1 1,2 1,0 1,2-1,1 0,2-1,2 2,1 1-1 2,0 1,1 1,0 2,0 1-1 4,1 3-1 1,1 2-1 1,1 3,0 1,0 2-1 2,0 1,0 1-1 1-2 1-2 3-1z">
+                    <title>
+                      Puerto Rico
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M933,196l4-2 2,0 0-1 0-2 0-2-1,0 0-1 1-4 1,1 0,1 1,0 0-1-1-1-1-1-1-2-1,0-1-3-6,2 3,12 0,2zM944,189l-1-4-1,0 0,1 1,3 0,1zM941,188l0,1 0,2 1-1 0-3z">
+                    <title>
+                      Rhode Island
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M812,446l0-1 3-3 1-1-1-1-1,0-1-1 0-1-1-2 1-1 1,3 1,1 1-1-1-1 1,0 0,1 0,1 2,0 2-1 0-2-1-1-2-1-2,0 0-1 2,0 1,0 2,1 2-1 3-2 2-2 1-1 1-1 0-1-1,0 0-2 2,1 2-1 1-1 1-2-1-1 1-1 1-1 1,1 2-1 0-1 1-1 2-3-1-1-1-1 1,0 1,1 0-3 0-1 3-6 1-2 2-2 1-2 2,0 0-1-15-11-10-7-1,0-8,2-12,1-1-3-3-3-2,2 0-1 0-1-1,0-13,1-10,1-1,0-1,0-1,1-2,1-1,0-2,2-1,0-5,3-1,0 0,1-3,4 0,2 0,1 4,2 2,1 1,1 2-1 1,1 1,2 1,1 1,3 2,1 1,2 1,1 1,1 1,1 2,1 3,2 1,2 2,1 2,1 2,2 0,2 1,1 1,0 1,2 1,0 0,1 1,1 2,0 2,1 1,1 0,2 2,1 1,3 0,1 0,1 1,1 1,0 2,1 1,1 0,1 1,2 1,1 0,3 0,1 2,1 1,0z">
+                    <title>
+                      South Carolina
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M380,157l-3,39-1,8 18,2 14,1 12,1 17,0 15,1 9,0 10,1 1,0 3,3 2,1 1,1 1,0 1,0 1-2 1,0 3,0 1,0 2,0 3,0 1,0 2,2 2,0 1,1 2,0 1,2 1,0 1,1 0,1 1,1 2,1 0-4-2-1 0-1 0-1 1-1 0-2 1-1 0-2 1,0 0-2-1-2-1,0 0-1 0-1 1-2-1-1 0-2 2,0 0-42-1-1-1-1-2-1-1-2-2-2 1-1 3-3 1-2 1-2-12,0-11,0-16-1-7,0-16-1-7,0-15-1-12-1-8,0-11-1-8-1z">
+                    <title>
+                      South Dakota
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M663,393l13-1 15-1 15-1 6-1 4,0 10-2 10-1 0-5 1-1 3-1 1-1 0-3 1-1 1-1 3-2 4-1 1-1 2-1 1,0 1-2 1-1 1-1 2,0 1-1 0-2 0-1 1,0 1,0 0-2 3-1 1,0 0,2 1,0 1-1 1-3 2-1 2-1 1,1 1,0 1-1 1-4 2-2 2,1-1-2 1-2-1-1 1-2-5,1-17,3-15,2-1,0-17,2-9,0-6,1-12,1-3,0-4,0-2,1-8,0-16,2 0-1-4,0 1,3 0,2-10,1-16,1-1,1-1-1-1,0 0,1 1,2-2,1 1,2-2,0 2,2-1,1-1,3 1,2-2,0 0,1 1,1-1,1-3,1 0,1 1,1-1,2 1,1-2,1 0,1-1,2-1,1 1,1 0,2 0,2-1,0-1,2-2,1 10,0 10-1 13-1z">
+                    <title>
+                      Tennessee
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M305,464l1,1 2,1 0,1 1,2 1,3 1,0 3,2 1,1 0,1 1,1 2,2 2,2 1,1 1,2 2,3 1,1 3,1 2,2 1,1 1,1 0,1 1,0 1,2 1,3 1,4 1,0 1,2-1,3 0,2 1,2 0,1 1,1 0,3 2,2 2,2 2,0 1,1 0,1 2,2 0,1 3,1 3,1 0,1 2,1 3,1 1,2 2,1 1,0 0,1 2,0 1,0 1,0 0-1 2-2 1-1 2-1 0-1 1-2 1-2 1-3 2-4 2,0 2,0 2,0 1-2 1-1 1,1 1,1 2,1 3,0 1,0 1,0 1,0 4,1 1,0 1,0 1,0 1,1 1,2 2,1 1,0 0,2 1,1 2,1 1,2 2,1 1,1 1,1 1,1 0,1 2,2 0,3 0,1 1,1 1,2 1,2 2,3 0,1 0,1 1,3 1,1 0,1 1,2 3,2 1,2 0,1 3,3-1,0 1,2 2,2 1,1 1,1 1,0 2,2 0,1 1,1 0,1-1,2 0,1 1,1 0,1 0,4 1,1 0,1 1,1 2,2 1,5 1,2 1,0 0,2 0,1 3,0 1,1 2,0 1,1 0,1 2,1 2,0 4,1 2,2 1,1 2,1 1-1 1,1 1,0 1,0 3,0 1,0 2,0 1,1 1,1 1,1 2,1 0,1 2,0 0-2 1,0 1-1 2,0 0-2-2,2 0-1 0-1-1-2 0-1-1-2 0-2-1-1-1,0 0-3-1-6 0-1-1,0 0-1 0-1 0-2 1,0 0-2 1-1 0-3-1,1-3-1 0-1-2-2 1-1 1,2 1,0 2-1 1,1 1,0 2-5 1-3-2-1-1-2 1,0-2,0-1-1 3,0 1,0 1,0 2,1 3-5 0-1-1,0-1,1-1,0-1-1 2-1 3-2-1,2 2,0 1-1 1-1 1-1 0-1 0-1-1-2 2,0 1,1 0,1 1,0 5-2 0-1-1-1-1-1-1-1-2-2 1-1 1,2 2,0 1,0 1-1 0,1 2-1 2,0-1,1 0,1 3-1 1,0 1,1 2,0 1-1 1-1-3,1 0-1 2-1 3,0 2-1 4-2 0-1 3-2 2-2 0-2 2-1 2-3 1,0 0-1-1-1-1-3 0-2 0-2 1,0 1,1 1,0 1-2 1-1 1,1 0,1 0,2-1,2 3-1 1,1-1,1-2,1-1,1 0,1 2-2 7-3 2-1 2-1 1-1 4,0 0-1-1-1 0-2 1-3 1,0 2-2 0-2 0-2 0-1-1-1 0-2 1-1 0-3 1-2 1-1 0-1 1-2-1-1 1-2-1-1 2-1-1-1 0-2-1,0-1-2-1-2 1-1-1,0-1-2 0-1-1,0-1-2 0-3 0-1-2-2-1-2-2-1 0-24 0-13-1,0-2,0 0-1-1,1-1-1-1,1-1,0-1-1-1-1-1,0-2-1-1,0-1-1-2,0-3-3-1,0-2-2-1,0-1,0 0,1-2,1-2,0-1,0-1-1-1-1-2,2-1,0-2,1-1-1-2,1-1,0-1,0-1,2-2,0-1,1-1-2-2,0 0-1-2,0 0-2-1,0-1,1-1,1-1-1-1,0-1-2-1,0 0,1-2,3-1,1-1,0-1-1 1-2-1-1-1,1-2,1-2,0 0-2-2,0 0-2-2,0-2,2-2,1-1-1 0-2-3-1 0-3-2,1-3-1-1,2-2,0-1-2-2,0-1,0-3-1-1-1-2,0-3,0 0-3-1-1 0-1-3-1 0,2-1,0-2-1-1,1-1-1-1,0-3-4-1,0-1,0 2-46-14,0-10-1-10,0-10-1-12-1-1,1-5,59-4,46-17-1-18-2-13-1-9-1-14-2 1,3 0,2zM488,604l-1-4-2-7 0-4 0-6-1,1 0,2 0,3 0,2 1,1 0,1 1,5 1,1 0,2zM491,568l-1,2-2,2-3,7-1,2 1,1 1-3 1-3 2-4zM495,561l0,1-2,2 1,0 2-2 0-1zM505,555l-1,1-1,0-3,2-1,1-2,1 0,1 2-1 2-1 2-2 2-1zM538,532l-3,3-2,2 0,1 3-3 4-2z">
+                    <title>
+                      Texas
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M202,204l-22,116 11,2 17,4 9,1 14,2 15,3 11,1 14,3 13-94-11-2-13-2-11-1 4-24-6-1-16-3-16-2z">
+                    <title>
+                      Utah
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M885,324l1-1 0-1-1-2 1,0 2,3 0-1-3-5-1-2-1,0-1,0-1,1-2-1-1,1 0,1-3,0 0-1-2-1-2,0 0-2-1-2 0,1-1,0-1-1-2,1-2-1-1-1 0,1-2-1 1,0 1,0 1,0 1,1 1-1 3,1 1-1 1,1 1,2 2,1 1,0 1,1 1-1 1,0 0-1-1-2-1-1-1-1-1,1-3-1-2-2-1-1-1-1 1-1 1,2 1,0 1,2 2,1 2-1-1-1-1-1 1-1 2,0 0,2 1-1 0-2-3-2 1-1-2,0-1-1-1,1-1-1-1-1 0-1-1,0-3-1-1-3 1,1 1,1 1,0 2,1 2,3 1-1 2,1 0-1 1-1-1-1 0-1-1-1 2,0-1-2-5-2-1-1-1,0 0-1-2,0-1,1 0-1-2,0-2,0 0-2-2,0 0-2-1,0-3,2-2-3 1-2 0-3 1,1 1-1 0-1 1-1 0-3-1-1-1-1-1,0-1,0-1-2-2,0-1,0-2-1 0-1 1-1-1,0-1-1-1,0-3-1-1,5-10-5 0,1 0,2 0,1 0,3-2,3 0,1-1,1-1,1-1,0-2,4-2-1-1,1 0,2 0,1-1,1 0,3-2,3-4-1 0-1-1-1-2,0 0,2 0,2 0,1-1,1 0,1 0,1-2,2 0,3-1,2-3,5-1,3 1,1 1,1-2,1 1,1-3,3-1-1-2,1-2,1-2,0 0,1 0,1-1,1-4,1-1,1-3-2 0,1-1,1-1,1-1,1-2,0-1,0-1-1-1,0-3-2 0-1-1-1 1-1-1-1-6,7-5,4-1,1 0,1 0,1-2,1 0,1 0,1-1,1-3,2-1,2-2,0-1,1-2,1-1,1-2,1-1,1 15-2 17-3 5-1 1,0 7,0 10-2 11-1 11-2 13-2 17-3 11-3 17-3zM889,287l-4,2-2,2 2,0-1,2 1,0-2,1 1,1-1,2 0,1-1,1 0,1 0,1 0,1 0,1 0,3 0,1 0,2 1,1 1,0 0-3 0-3 1-1-1-1 1-1 1-2 2-5 0-2 1-1 0-3z">
+                    <title>
+                      Virginia
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M901,170l6-2 7-1 0-1-1-1-1-1 0-3 0-3 0-1 0-3 0-1-1-5 0-1 0-1 0-3 1-1 0-3 1-2 0-1 0-2 0-1-1-3 1-2 2-1 1-1 1-2 1-2 0-1 0-1-2-3 0-1 1-3-1-2-12,3-17,4 0,1 0,3 1,1 0,3 1,2 2,2 0,1 0,2 0,1 0,2 0,1 0,3 0,1 1,2 1,1 0,1 0,2 0,3 0,1 1,0 0-1 1,0 2,1 3,16 0,2z">
+                    <title>
+                      Vermont
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M187,34l-12-3-13-3-10-3-14-3-13-4-16-4-9-3 0,1 0,1-1,1 2,3 1,0 1,1-1,2 1,2-2,1 0,1-2-2-1,2 0,1 1-1 1,2 2,2 0,1-1,0-2,0 0,2 0,1 1-2 1,0 0,2 0,2 1,2-2,1 0,1-1,1-1,1 0,1-1,2 1,1-1,0 0,3-1,1 1,1-1,1-1,0-1,1-1,0-1,1-2,1-1,1-1-2-1,0-1,0 0,1-1,0 1-2-1,0 2-2 1-1 0,1 0,2 2,0 0-2 0-1 2,0-1,1 1,2 0-1 0-1 3-4-1-1-1,0 0-1 1,0 0-2 1,0 1-1 1,0 0-2 0-1-1-1-1,2-2,1-1,2-4,1-1,1-2,2 0-1 1-1 1-1 2-1 2-3 1,0-1,2 1,0 1-2 1-1 1-1 0-1-1-4 1,0-1-1-2,1-1-1-1-1-1-1-2,1-2-1-1-1-2,0-1-1-4-2-2,0 0-2-2-1-2-2-2-2-2-1-1,0 1,2-1,2-1,1 0,1 0,3 0,2 0,1 1,1 0,1 0,1 1,1 0,1 0,3-1,5 0,1 1,2-1,4-1,3 1,0 0-2 1,0 1,0 0,1 2,2-3,0-1,1-1,1 0,1 2,1 1,1-1,1 0,3-1,1 0,1-1,1-1,0 0-3 1-1 0-1-2,5 1,2 0,1 1,1 1-1 2,0 1,1 0,1 2,0 1,2 1,1 2,0 2,1 2,2 1,1 0,2 0,1 0,2-1,1 1,1-1,1 0,2 1,1 2,1 2,1 1,1 1,0 5,0 2-1 1,0 2,1 2,0 5,2 1,0 0,2 2,0 2,1 2-1 2,0 1,0 2,1 2,0 1,0 1,0 2,0 4-1 4,1 2-1 1,0 3,0 4,1 1-1 9,2 15,4 10,2 0-1-1-1 1-1 1-1 0-2-1-3 2-9 4-18 2-11 2-7zM95,48l0-2-1,1-1,2 1,1 2-1zM95,43l1-2-1,0 0,1-1,1 1,1zM100,36l0-1-1-1-2,0 1-2 0-2-1-1 1-2 1-1 0-1-1,1-2,2-1,1 1,1 1,1 0,1 0,2 0,1 1,0 0,2 1,0zM96,22l0-1-1,0-1,1 2,2 0-1zM93,21l1,0-2-3-1,0 0,2 1,1zM98,19l-1-2-1,0-2,1 1,1 1,1zM87,49l-1,1 1,1z">
+                    <title>
+                      Washington
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M594,196l0,1 1,3 2,0 0,1-1,3 1,6 1,2 0,1 1,1 1,1 3,0 2,1 1,2 0,1 15-1 10,0 9-1 15-1-1-4 1-1 0-1 0-1-1-2-1-2-1-2 0-1 0-1 0-1 0-2 0-2 1-3 0-3 1-3 0-1-1-1 0-3 1-2 0-2 2-1 1-2-1-1-1-1 1-2 0-3 1-2 1-2 0-3-1,0-1-2-2,1-1,1-2,4-1,1-1,1 0,1-1,0-1,0 0-2 0-1 1-1 0-1 0-1 1-2 1-2 2,0 1-1-1-1 1-2-1,0-1-1 0-2 1-2-1-1-1,1-2,0 0-2 1-1-1-2 1-1-1-1 0-1-1-1-2-1-1,0-1-1 0-1 0-1-1-1-3,0-3-1-2,1-1-1-2,0-5-2-17-3-1-4-1,0-2-1-1-1 0,1-2-1-3-2-1,1-2,1-1,0 2-2 0-1 0-1 0-1 1-2-1-1-2,0-2,2-1,1-1-1-1,1-2,1-3,1-3,2-3,0-2-1 0-1-2,2 0,1-1,0 0,14-1,1-1,0 0,1-1,0-1,1-2,1-1,2-1,1-1,1 0,3 0,1 2,0 1,2 1,1 0,1-1,1-1,1 0,3 1,2-1,0 0,2 1,2-1,1 0,1 0,2 1,1 2,2 1,0 3,1 1,1 1,1 3,1 3,2 2,4 3,2 2,0 1,1 1,0 1,2 1,1 0,2 1,1 0,2zM602,115l0-1-2,1 1,1zM601,117l-1,0-2,2 1,0 1-1zM663,151l0-2-1,0-1,1-1,2-1,0-1,3-1,2 0,1 0,2 2,1 1-2 0-2 1-2 1,0-1-2 1-1 0-2zM665,147l-1-1-1,0 0,2 1,0z">
+                    <title>
+                      Wisconsin
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M758,301l0,1 1,2 0,1-1,3 2,2 1,1 0,1 2,1 0,2 2,1 1,2 2,1 1,1 2,0 1,0 1,1-1,1 1,1 0,1 3,2 1,0 1,1 1,0 2,0 1-1 1-1 1-1 0-1 3,2 1-1 4-1 1-1 0-1 0-1 2,0 2-1 2-1 1,1 3-3-1-1 2-1-1-1-1-1 1-3 3-5 1-2 0-3 2-2 0-1 0-1 1-1 0-1 0-2 0-2 2,0 1,1 0,1 4,1 2-3 0-3 1-1 0-1 0-2 1-1 2,1 2-4 1,0 1-1 1-1 0-1 2-3 0-3 0-1 0-2 0-1 10,5 1-5 0-1-1-1-1-1-1,0-1-3-1,1-1,0-3-2-1,1-1,1-1,0-2,1 0,2-2,1-2,0-1-1 0-1-1,0-1,3-1,2-2-1-1,1-1,2-1,1 0,1-1,1-2,2-2-12-19,3-3-21-1,0-2,1 2,3 0,1 0,2 0,2-1,5 0,3-1,1 1,0-1,2 0,1 0,1 0,2-1,1-2,2-1,2-1,2-2,0 0,1-1,0-1-1-1,0-1,2 0,1-2,1-1,2 0,2-1,1 1,1 1,2-1,0-1,1 0,1-1-1 0-1 0-1-2,0-1,0-1,3 0,2-1,1 1,1 0,3-1,0 0,1 0,2-1,1-1,1-2,0z">
+                    <title>
+                      West Virginia
+                    </title>
+                  </path>
+                  <path class="pm-land pm-empty" d="M253,213l-4,24 11,1 13,2 11,2 14,2 11,1 11,1 11,2 11,1 11,1 8,1 11,0 3-38 1-9 1-8 3-39-13-1-12-1-13-1-14-2-18-2-14-2-18-3-14-2-2,12z">
+                    <title>
+                      Wyoming
+                    </title>
+                  </path></svg></svg>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p style="white-space:pre-wrap">
+              us-states - The fifty states of the United States and the District of Columbia, each under its ISO 3166-2 code - US-CA, or CA alone, the postal code - or its name; Alaska and Hawaii (its main islands, without the Northwestern Hawaiian Islands) drawn below the lower 48 at the left as on every map of the states. The outlines are subs/maps/_lib/ us-states.json, from Natural Earth's 1:10m admin-1 states and provinces with the large lakes cut out (public domain, naturalearthdata.com), in the Albers equal-area conic projection of the United States with Alaska and Hawaii moved in - the composite of d3's geoAlbersUsa. Puerto Rico, Guam, the Virgin Islands, American Samoa, the Northern Mariana Islands and the minor outlying islands have their ISO 3166-2 codes too, but no outline here: a value of theirs is named in the title as one the view does not show.
+            </p>
+          </section>
+          <section class="block" aria-labelledby="related">
+            <h2 id="related">
+              Map views
+            </h2>
+            <div class="tagcloud">
+              <a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7africa.html">africa</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7asia.html">asia</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7au-states.html">au-states</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7balkans.html">balkans</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7baltic.html">baltic</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7benelux.html">benelux</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7british-isles.html">british-isles</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7caribbean.html">caribbean</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7central-america.html">central-america</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7central-asia.html">central-asia</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7dach.html">dach</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7de-states.html">de-states</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7east-asia.html">east-asia</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7eu.html">eu</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7europe.html">europe</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7iberia.html">iberia</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7mediterranean.html">mediterranean</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7middle-east.html">middle-east</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7nl-provinces.html">nl-provinces</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7nordic.html">nordic</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7north-america.html">north-america</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7oceania.html">oceania</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7south-america.html">south-america</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7south-asia.html">south-asia</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7southeast-asia.html">southeast-asia</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7us-states.html">us-states</a><a href="index%EF%B9%96kind%EA%A4%B7map%EA%A4%B7world.html">world</a>
+            </div>
+          </section>
+        </article>
+        <footer class="foot">
+          <p>
+            1220 tags and kinds of PAD, with syntax and usage examples. Safe, self-contained examples run here; examples requiring credentials, delivery or application files are shown as source.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

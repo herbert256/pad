@@ -1,6 +1,6 @@
 <?php
 
-  // Fetching remote (and local) content for the {curl} tag, padPageGet and the curl data
+  // Fetching remote (and local) content for the {pad:curl} tag, padPageGet and the curl data
   // type. Everything goes through padCurl, which always returns the same array shape -
   // url, input, options, result, type, info, headers, cookies, data (plus ERROR on
   // failure) - and leaves a copy in $padCurlLast.
@@ -41,7 +41,7 @@
 
     // http and https only, as padCurl's PROTOCOLS_STR has it: without ext-curl a fetch of
     // file:///... or php://filter/... was read by file_get_contents as it stood, so a URL
-    // from a value - data=$url, {curl $url} - read any file the PHP user could.
+    // from a value - data=$url, {pad:curl $url} - read any file the PHP user could.
 
     if ( str_contains ( $output ['url'], '://' ) and ! preg_match ( '#^https?://#i', $output ['url'] ) )
       return padCurlError ( $output, 'padNoCurl: only http and https are fetched' );
@@ -140,7 +140,7 @@
   // name goes along as the Host header and, over https, as the name the certificate must
   // carry; padNoCurl follows a redirect itself, hop by hop. Without ext-curl the URL
   // was read as it stood - its host made of the visitor's Host header, so Host:
-  // 169.254.169.254 had every SELF://, {get} and {page app=} fetch from there - as a GET
+  // 169.254.169.254 had every SELF://, {pad:get} and {pad:page app=} fetch from there - as a GET
   // with none of the rest.
 
   function padNoCurlContext ( $url, $options ) {
@@ -260,7 +260,7 @@
 
     if ( ! strpos( $url, '://') ) {
 
-      // The name stays inside _data/: {curl $name} with a .. segment walked out of the
+      // The name stays inside _data/: {pad:curl $name} with a .. segment walked out of the
       // directory, and whatever file it reached was read, a .php among them run.
 
       if ( preg_match ( '#(^|[/\\\\])\.\.([/\\\\]|$)#', $url ) ) {

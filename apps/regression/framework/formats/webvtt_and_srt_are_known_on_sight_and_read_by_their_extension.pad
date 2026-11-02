@@ -1,4 +1,4 @@
-{data 'captions'}
+{pad:data 'captions'}
   WEBVTT
 
   00:01.000 --> 00:04.000
@@ -7,14 +7,14 @@
   00:05.000 --> 00:09.000
   — It will perforate your stomach.
   — You could die.
-{/data}
-{data 'subtitles'}
+{/pad:data}
+{pad:data 'subtitles'}
   1
   00:00:01,000 --> 00:00:04,000
   <i>Never</i> drink liquid nitrogen.
-{/data}
-[{captions}{$start}-{$end} {$plain};{/captions}]
-[{subtitles}{$id} {$startms} {$plain};{/subtitles}]
-[{chapters}{$id}: {$text} at {$start};{/chapters}]
-[{film}{$id} {$start}-{$end} {$text};{/film}]
+{/pad:data}
+[{data:captions}{$start}-{$end} {$plain};{/data:captions}]
+[{data:subtitles}{$id} {$startms} {$plain};{/data:subtitles}]
+[{local:chapters}{$id}: {$text} at {$start};{/local:chapters}]
+[{local:film}{$id} {$start}-{$end} {$text};{/local:film}]
 [{local:chapters.vtt}{$id};{/local:chapters.vtt}]

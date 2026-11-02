@@ -3,7 +3,7 @@
   // The binding of the template's SQL: a $name outside a quoted literal becomes an escaped
   // literal of that application variable. The select subsystem binds its where=, having=,
   // order= and group= here (select/_lib/select.php, read when a page walks a select
-  // table), and the database tags - {field}, {record}, {array}, {check} - bind their SQL
+  // table), and the database tags - {pad:field}, {pad:record}, {pad:array}, {pad:check} - bind their SQL
   // (padDbTagSql, lib/db.php).
 
   // Replaces each $name outside a quoted literal with the value of that application

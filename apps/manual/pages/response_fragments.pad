@@ -1,12 +1,12 @@
-{meta title='Response fragments'/}
+{pad:meta title='Response fragments'/}
 
-<p>A search result, a page of a list, a counter: a part of a page that the browser wants to refresh on its own. <code>{open/}fragment 'name'{close/}...{open/}/fragment{close/}</code> names such a part. A normal request renders the whole page, the fragment in its place:</p>
+<p>A search result, a page of a list, a counter: a part of a page that the browser wants to refresh on its own. <code>{pad:open/}pad:fragment 'name'{pad:close/}...{pad:open/}/pad:fragment{pad:close/}</code> names such a part. A normal request renders the whole page, the fragment in its place:</p>
 
-{example 'fragments/response_fragments_1'/}
+{common:example 'fragments/response_fragments_1'/}
 
 <p>A request that adds <code>&amp;padFragment=order-list</code> to the URL gets that fragment and nothing else - the same template serves the full page and the update:</p>
 
-{example 'fragments/response_fragments_2'/}
+{common:example 'fragments/response_fragments_2'/}
 
 <h2>How it works</h2>
 
@@ -20,7 +20,7 @@
 <h2>With ajax and HTMX</h2>
 
 <ul>
-  <li><code>{open/}ajax 'orders', fragment='order-list'/{close/}</code> fetches only that fragment of the page into its div.</li>
+  <li><code>{pad:open/}pad:ajax 'orders', fragment='order-list'/{pad:close/}</code> fetches only that fragment of the page into its div.</li>
   <li>HTMX: <code>&lt;div hx-get="?orders&amp;padFragment=order-list" hx-trigger="every 5s"&gt;</code> swaps in the fresh list.</li>
-  <li>An HTMX request needs no <code>padFragment</code> when it swaps an element named like the fragment: <code>hx-target="#order-list"</code> sends <code>HX-Target: order-list</code>, and a page with a fragment of that name answers it alone. A page without one renders whole, as it would otherwise. See {manual 'htmx'/}.</li>
+  <li>An HTMX request needs no <code>padFragment</code> when it swaps an element named like the fragment: <code>hx-target="#order-list"</code> sends <code>HX-Target: order-list</code>, and a page with a fragment of that name answers it alone. A page without one renders whole, as it would otherwise. See {app:manual 'htmx'/}.</li>
 </ul>

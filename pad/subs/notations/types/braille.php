@@ -7,8 +7,8 @@
   // dots instead, an SVG with the character each cell stands for under it - cells=12 breaks
   // the lines at 12 cells (24 unless given).
   //
-  //   {braille 'Hello, World!'/}
-  //   {braille 'Room 101', cells/}
+  //   {notation:braille 'Hello, World!'/}
+  //   {notation:braille 'Room 101', cells/}
 
   $padBrailleCells = padTagParm ( 'cells', FALSE );
 

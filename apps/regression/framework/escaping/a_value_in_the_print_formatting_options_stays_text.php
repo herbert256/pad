@@ -1,1 +1,1 @@
-<?php $sep = '{echo 6 * 7}'; ?>
+<?php $sep = '{pad:echo 6 * 7}'; ?>

@@ -1,10 +1,10 @@
-{meta title='Sequences'/}
+{pad:meta title='Sequences'/}
 
-<p>The <code>{open/}sequence{close/}</code> tag generates values instead of reading them: a
-range, a mathematical series, letters - 122 types, each iterated like any data
-tag:</p>
+<p>The <code>sequence:</code> namespace generates values instead of reading them: a
+range, a mathematical series or letters. Each selector names a source, such as
+<code>{pad:open/}sequence:prime{pad:close/}</code>, iterated like any data tag:</p>
 
-{example 'fragments/sequences_1'/}
+{common:example 'fragments/sequences_1'/}
 
 <p>That is the smallest corner of a whole subsystem: plays that keep, remove or flag terms,
 stores that pass a sequence from one tag to the next, actions that transform it, and random
@@ -14,10 +14,10 @@ draws with their own rules. It has an application of its own, which is its manua
 action and option, demonstrated live.</p>
 <h2>Seeing and hearing them</h2>
 
-<p>A sequence is data like any other, so {tag 'chart'/} and {tag 'sparkline'/} draw it
+<p>A sequence is data like any other, so {app:tag 'chart:bar'/} and {app:tag 'chart:sparkline'/} draw it
 straight away with <code>sequence=</code>:</p>
 
-{example 'fragments/sequences_2'/}
+{common:example 'fragments/sequences_2'/}
 
 <p>The sequence application has three pages built on that: the
 <a href="{$padHost}sequence/?gallery">Gallery</a> draws every type beside the OEIS entry its

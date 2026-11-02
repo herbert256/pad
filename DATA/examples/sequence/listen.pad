@@ -1,8 +1,8 @@
-<p>{choices}{notFirst} | {/notFirst}{if $choices eq $type}<b>{$choices}</b>@else@<a href="?listen&type={$choices}">{$choices}</a>{/if}{/choices}</p>
+<p>{array:choices}{property:notFirst} | {/property:notFirst}{pad:if $choices eq $type}<b>{$choices}</b>@else@<a href="?listen&type={$choices}">{$choices}</a>{/pad:if}{/array:choices}</p>
 
-<h3>{$type | ucfirst}{if $oeis ne ''} - <a href="https://oeis.org/{$oeis}">{$oeis}</a>{/if}</h3>
+<h3>{$type | ucfirst}{pad:if $oeis ne ''} - <a href="https://oeis.org/{$oeis}">{$oeis}</a>{/pad:if}</h3>
 
-{chart 'line', data='terms', title='{$type | ucfirst}, the first 32 terms', width=640, height=220/}
+{chart:line data='terms', title='{$type | ucfirst}, the first 32 terms', width=640, height=220/}
 
 <p><audio controls preload="none" src="{$audio}"></audio></p>
 

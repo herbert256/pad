@@ -5,8 +5,8 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{while condition} ... {/while}
-{while} ... {/while condition}
+{pad:while condition} ... {/pad:while}
+{pad:while} ... {/pad:while condition}
 PAD;
 
   $tagParms   = [

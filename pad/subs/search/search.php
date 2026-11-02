@@ -1,6 +1,6 @@
 <?php
 
-  // The body of {search}: the rows of a source a query finds, the best first - the search
+  // The body of {pad:search}: the rows of a source a query finds, the best first - the search
   // subsystem, subs/search/_lib/search.php. The first parameter names the source: a Markdown
   // collection (_content/<name>/), else a data store, a page's array (a db() result) or a
   // _data file of the name. q= is the query - words, "a phrase", prefix*, -left out;
@@ -16,11 +16,11 @@
   // tag a list of them - the first= best: the first field of fields= as the title, a link
   // to the field link= names, and the excerpt.
   //
-  //   {search 'blog', q=$q, fields='title^2, body', lang='en'}
+  //   {pad:search 'blog', q=$q, fields='title^2, body', lang='en'}
   //     <a href="?blog/post&slug={$slug}">{$title}</a> {$score} {!excerpt}
   //   @else@
   //     Nothing found.
-  //   {/search}
+  //   {/pad:search}
 
   include_once PAD . 'subs/search/_lib/search.php';
 
@@ -28,7 +28,7 @@
 
   if ( is_string ( $padSearchSource ) ) {
     if ( $padCheckSyntax )
-      padError ( "{search}: $padSearchSource" );
+      padError ( "{pad:search}: $padSearchSource" );
     return [];
   }
 
@@ -60,19 +60,19 @@
 
   if ( is_string ( $padSearchRows ) ) {
     if ( $padCheckSyntax )
-      padError ( "{search}: $padSearchRows" );
+      padError ( "{pad:search}: $padSearchRows" );
     return [];
   }
 
   // The style of the excerpts' marks once, before the first row shown, when the pair's
   // template prints the excerpt - a value, so its braces stay text. It went with the
   // excerpt of the best row, and a page that sorted the rows, cut them or printed no
-  // excerpt lost it, for every {excerpt} after it as well; the page's own once is left to
-  // the {excerpt} tags, which then write it too.
+  // excerpt lost it, for every {pad:excerpt} after it as well; the page's own once is left to
+  // the {pad:excerpt} tags, which then write it too.
 
   if ( $padPair [$pad] ) {
     if ( $padSearchRows and str_contains ( $padContent, 'excerpt' ) )
-      $padContent = '{first}' . padProtect ( padSearchExcerptStyle () ) . '{/first}' . $padContent;
+      $padContent = '{property:first}' . padProtect ( padSearchExcerptStyle () ) . '{/property:first}' . $padContent;
     return $padSearchRows;
   }
 

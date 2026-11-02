@@ -6,7 +6,7 @@
   // the picture; 0 lays it as a staircase). A tile repeated by a <pattern>: the seed changes
   // nothing.
   //
-  //   {pattern 'herringbone', size=10, ratio=4, colors='#3b2f2f, #c8a27a, #a47551'/}
+  //   {pattern:herringbone size=10, ratio=4, colors='#3b2f2f, #c8a27a, #a47551'/}
   //
   // In units of the size, with r the ratio, the k-th block lying is [k, k+r] by [k, k+1] and
   // the k-th standing [k+r, k+r+1] by [k+1-r, k+1]: a staircase that goes on by (1, 1), the

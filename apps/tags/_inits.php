@@ -1,7 +1,7 @@
 <?php
 
   // Every page: the menu and the counts. The tag pages and the indexes draw examples
-  // through {page}, which runs this file again for each: only the first run - the page that
+  // through {pad:page}, which runs this file again for each: only the first run - the page that
   // was asked for - sets the frame.
 
   if ( isset ( $tagsFrame ) )

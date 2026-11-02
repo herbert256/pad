@@ -5,14 +5,14 @@
   // padPagerKeep   called by the handling walk for every level written with a page option,
   //                once its other handling options have run up to the page: it books the
   //                page, the rows per page and the number of rows to page through under the
-  //                level's name, in $padPager, where {pager 'name'} finds it later in the
+  //                level's name, in $padPager, where {pad:pager 'name'} finds it later in the
   //                page. A Select table has had its page cut by the SQL limit, so the total
   //                is not in the rows: its count statement is booked instead and run only
   //                when a pager asks. The request value the links set is the one the page
   //                option was written with - page=$pg makes them set pg - and 'page'
   //                otherwise. A sequence, which pages its terms itself (sequence/exits/
   //                page.php), hands over the page and the page's size it used: the size
-  //                of {prime 5, page=2} is its count, 5, where rows= read 10, and a rows=
+  //                of {sequence:prime 5, page=2} is its count, 5, where rows= read 10, and a rows=
   //                past the integer range, which the run took as every term, ended the
   //                page on PHP's cast of it.
   // padPagerBook   books one level's page, and keeps it with every fragment-cache section
@@ -61,8 +61,8 @@
   }
 
   // Books a level's page under its name. Every fragment-cache section rendering round it
-  // keeps the booking with its rendering, as it keeps a {push}, so a hit - which runs no tag
-  // inside it - books it again (lib/fragment.php); a {pager} after the section found no
+  // keeps the booking with its rendering, as it keeps a {pad:push}, so a hit - which runs no tag
+  // inside it - books it again (lib/fragment.php); a {pad:pager} after the section found no
   // paged tag on a hit, or a single page.
 
   function padPagerBook ( $name, $booking ) {

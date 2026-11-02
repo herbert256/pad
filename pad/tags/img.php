@@ -1,6 +1,6 @@
 <?php
 
-  // {img 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'} - a picture
+  // {pad:img 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'} - a picture
   // of www/<application>/ as a thumbnail of the size the page shows it at, made once with
   // GD and kept in www/<application>/_thumbs/ for the web server to send (tags/_lib/img.php).
   // width= and height= are the box; fit= cover (default: fill it, cut around the centre) or
@@ -15,10 +15,10 @@
   // written, each reading its own options from the tag - colors=, levels=, cell=, radius=,
   // amount=, columns=, chars=, components=:
   //
-  //   {img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='...'/}
-  //   {img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='...'/}
-  //   {img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='...'/}
-  //   {img 'photos/harbour.jpg', width=400, filter='blurhash', alt='...'/}
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='...'/}
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='...'/}
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='...'/}
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='blurhash', alt='...'/}
 
   $padImgAlt = padTagParm ( 'alt', NULL );
 

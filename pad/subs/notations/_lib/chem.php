@@ -1,12 +1,12 @@
 <?php
 
-  // Chemistry as MathML - the chem notation, {chem}. A formula or an equation typed the way
+  // Chemistry as MathML - the chem notation, {notation:chem}. A formula or an equation typed the way
   // chemists type it, and the way mhchem's \ce{...} reads it, without any backslash, drawn by
   // the browser from MathML Core: no script, the same bytes for the same text.
   //
-  //   {chem 'H2SO4'/}   {chem '[Cu(NH3)4]^2+'/}   {chem '^{227}_{90}Th'/}
+  //   {notation:chem 'H2SO4'/}   {notation:chem '[Cu(NH3)4]^2+'/}   {notation:chem '^{227}_{90}Th'/}
   //   {notation:chem 'CH4 + 2O2 -> CO2 + 2H2O'/}
-  //   {chem}CaCO3 ->[Delta] CaO + CO2 ^{/chem}
+  //   {notation:chem}CaCO3 ->[Delta] CaO + CO2 ^{/notation:chem}
   //
   // padChemMl  the <math> element of a formula or an equation, with the problems it met
   //
@@ -43,7 +43,7 @@
   //
   // Spaces separate the items of an equation, several spaces are one; a word of small letters
   // alone (heat, light) is text. What it cannot read it names in $problems, a phrase that
-  // completes "the {chem} ..." - has no element 'Xy', has a ( that never closes - and draws
+  // completes "the {notation:chem} ..." - has no element 'Xy', has a ( that never closes - and draws
   // as it stands: the element as written, the group without the bracket it lacks.
 
   const PAD_CHEM_ELEMENTS = 'H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As '

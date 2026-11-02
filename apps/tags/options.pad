@@ -1,4 +1,4 @@
-{meta title='Tags by option'/}
+{pad:meta title='Tags by option'/}
 <h1>Tags by option</h1>
 <p class="lead">Every option a tag takes of its own, and what it does there. The handling
 options every tag takes - <code>sort</code>, <code>where</code>, <code>first</code>,
@@ -7,14 +7,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
 <table class="options-table">
   <thead><tr><th scope="col">Option</th><th scope="col">Tag</th><th scope="col">Meaning</th></tr></thead>
   <tbody>
-  {optionRows}
-    {tags}
+  {array:optionRows}
+    {array:tags}
     <tr>
-      {first@tags}<td class="opt" rowspan="{$count}">{$option}</td>{/first@tags}
-      <td><a class="name" href="?{$link}">&#123;{$key}&#125;</a></td>
+      {property:first@tags}<td class="opt" rowspan="{$count}">{$option}</td>{/property:first@tags}
+      <td><a class="name" href="?{$link}">{$label}</a></td>
       <td>{!meaning}</td>
     </tr>
-    {/tags}
-  {/optionRows}
+    {/array:tags}
+  {/array:optionRows}
   </tbody>
 </table>

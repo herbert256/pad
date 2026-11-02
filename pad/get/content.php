@@ -1,6 +1,6 @@
 <?php
 
-  // Resolves the name in $padGetName to content and returns it: a stored {content} block
+  // Resolves the name in $padGetName to content and returns it: a stored {pad:content} block
   // first, then an app _include/ snippet, then an app page; '' when nothing of that name
   // exists.
   //

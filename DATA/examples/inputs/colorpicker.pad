@@ -1,13 +1,12 @@
-{meta title='Colour picker'/}
-{about/}
+{pad:meta title='Colour picker'/}
+{include:about/}
 
-{form 'try', class='inputs-try', error}
-  {colorpicker 'tint', label='Theme colour', value='#2a78d6', rules='required|color'/}
-  {colorpicker 'mark', label='Marker', swatches='#fff1b8, #ffd6a5, #caffbf, #9bf6ff, #bdb2ff, #ffc6ff'/}
+{pad:form 'try', class='inputs-try', error}
+  {input:colorpicker 'tint', label='Theme colour', value='#2a78d6', rules='required|color'/}
+  {input:colorpicker 'mark', label='Marker', swatches='#fff1b8, #ffd6a5, #caffbf, #9bf6ff, #bdb2ff, #ffc6ff'/}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-<h2>The template</h2>
-{source/}
+{include:template/}

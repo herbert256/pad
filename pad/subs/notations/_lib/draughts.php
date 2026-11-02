@@ -1,6 +1,6 @@
 <?php
 
-  // Draughts - the draughts notation, {draughts 'W:W31-50:B1-20'/}. A draughts position written
+  // Draughts - the draughts notation, {notation:draughts 'W:W31-50:B1-20'/}. A draughts position written
   // as the FEN of PDN, the Portable Draughts Notation, drawn as an SVG board: international
   // draughts on 10 by 10, or the 8 by 8 board of English draughts and checkers.
   //

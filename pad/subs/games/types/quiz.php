@@ -6,10 +6,10 @@
   // By data= a row is question, answer and a comma list wrong. order keeps the questions in
   // the order written.
   //
-  //   {quiz}
-  //     Which tag repeats its content? | {while} | {if} | {set}
+  //   {game:quiz}
+  //     Which tag repeats its content? | {pad:while} | {pad:if} | {pad:set}
   //     What does | upper do? | makes text upper case | removes spaces
-  //   {/quiz}
+  //   {/game:quiz}
 
   $padQuizRows = padGameRows ();
   $padQuiz     = [];

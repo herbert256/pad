@@ -36,7 +36,7 @@
   include PQ . 'actions/inits.php';
 
   // A type with a formula of its position - function.php - answers every position from the
-  // formula, as {sequence square, from=500000, rows=1} does: it is the term the walk makes
+  // formula, as {sequence:square from=500000, rows=1} does: it is the term the walk makes
   // there, square's loop.php makes its terms through it, and prime's is the nth of the values
   // its test accepts. Taken past the ceiling of candidates only, a walk answered below it, a
   // term at a time through the build, which the five seconds a run has cut off from some
@@ -78,7 +78,7 @@
 
   // The terms a position lookup made are kept for the request, per type and parameter, so a
   // later lookup at or below them is answered from them: made afresh for every lookup, one
-  // per row was quadratic - {sequence '1..400'}{echo sequence:happy($sequence)}{/sequence}
+  // per row was quadratic - {sequence:range '1..400'}{pad:echo sequence:happy($sequence)}{/sequence:range}
   // walked from 1 four hundred times. Not for a type that draws at random or evaluates an
   // expression, a parameter drawn per term or naming a store, nor under {info}, which records
   // every run (pqTermsKey in lib/sequence.php).
@@ -86,7 +86,7 @@
   // A walk that came up short of what it was asked - the type ends, or the candidates or the
   // time a run has ran out - is as far as the request reaches, and is kept with the reason: a
   // lookup past it is named at once, where it walked to the ceiling or the clock again on
-  // every call, {sequence '1..8'}{echo sequence:strong($sequence)} {/sequence} five seconds a
+  // every call, {sequence:range '1..8'}{pad:echo sequence:strong($sequence)} {/sequence:range} five seconds a
   // row under the lenient walk. A lookup past the terms kept goes on from the candidate after
   // the last one when the type tests the values it walks - a bool type, strong, happy - for
   // the terms missing only, with what is left of the candidates; any other walk is made again

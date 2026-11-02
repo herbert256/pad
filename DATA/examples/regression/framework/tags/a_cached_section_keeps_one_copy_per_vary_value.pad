@@ -1,1 +1,1 @@
-{set $who = 'a'/}{cache 'fw-vary', vary=$who}{echo $who/}{/cache}{set $who = 'b'/}{cache 'fw-vary', vary=$who}{echo $who/}{/cache}{set $who = 'a'/}{cache 'fw-vary', vary=$who}{echo 'changed'/}{/cache}
+{pad:set $who = 'a'/}{pad:cache 'fw-vary', vary=$who}{pad:echo $who/}{/pad:cache}{pad:set $who = 'b'/}{pad:cache 'fw-vary', vary=$who}{pad:echo $who/}{/pad:cache}{pad:set $who = 'a'/}{pad:cache 'fw-vary', vary=$who}{pad:echo 'changed'/}{/pad:cache}

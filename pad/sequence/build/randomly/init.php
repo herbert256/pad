@@ -31,8 +31,7 @@
 
   }
 
-  // Without a to= the window was every integer up to PHP_INT_MAX: {sequence prime,
-  // randomly} drew 19-digit candidates. It is the first $padSeqDefaultTries steps from
+  // Without a to= the window was every integer up to PHP_INT_MAX: {sequence:prime // randomly} drew 19-digit candidates. It is the first $padSeqDefaultTries steps from
   // from= instead, the same reach an ordered run has by default.
 
   if ( ! pqStore ( $pqBuild ) and $pqRandomlyEnd == PHP_INT_MAX )
@@ -44,7 +43,7 @@
 
   // A range the type built has taken the increment itself (types/range/build.php marks it
   // done, as type/fixed.php reads it), so its list is walked a step of 1: stepped again,
-  // {sequence '1..20', randomly, increment=5} drew from the first entry of 1 6 11 16 only.
+  // {sequence:range '1..20', randomly, increment=5} drew from the first entry of 1 6 11 16 only.
 
   $pqRandomlyInc = pqStore ( $pqBuild ) ? max ( 1, (int) ceil ( $pqInc ) ) : $pqInc;
 
@@ -55,8 +54,8 @@
 
   // With unique a point of the window is drawn once at most: each iterator offers one draw
   // per point - per entry of a store, per step of a loop - and a repeat that unique turned
-  // down was a draw lost, so {sequence '1..10', randomly, unique} gave seven or eight of the
-  // ten and {sequence prime, randomly, unique, rows=8, to=30} as few as five of the ten
+  // down was a draw lost, so {sequence:range '1..10', randomly, unique} gave seven or eight of the
+  // ten and {sequence:prime randomly, unique, rows=8, to=30} as few as five of the ten
   // primes. build/randomly/randomly.php draws the steps as a shuffle does, one at a time:
   // $pqRandomlyDrawn of them are out, $pqRandomlySwap holds the ones swapped into their
   // places - a window of any width costs a slot per draw.

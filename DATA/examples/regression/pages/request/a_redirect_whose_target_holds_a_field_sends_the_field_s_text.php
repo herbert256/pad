@@ -1,6 +1,6 @@
 <?php
 
-  // A {redirect} whose target holds a field sends the text the field holds, and the {?t}
+  // A {pad:redirect} whose target holds a field sends the text the field holds, and the {?t}
   // query fragment as the url's own name=value: the target went into the Location header as
   // the tag's parameter holds it - the field escaped for a page, , = | @ ' " \ as their
   // stand-ins - so q=O&#039;Neil cut q at the &, n=a,b arrived as a private-use character

@@ -1,6 +1,6 @@
 <?php
 
-  // {files 'dir', mask='*.pad', recursive} scans a directory and returns it as this
+  // {pad:files 'dir', mask='*.pad', recursive} scans a directory and returns it as this
   // level's data, one occurrence per entry with the fields path, file, ext, item and dir.
   // item is the entry relative to the scanned directory, with its extension taken off for
   // files, so it is the name a page or template is addressed by; dir is the part of item
@@ -39,7 +39,7 @@
   if ( ! is_dir ( $padFilesScan ) ) {
 
     if ( $padCheckSyntax )
-      padError ( "there is no directory named '$padFilesDir' for {files}" );
+      padError ( "there is no directory named '$padFilesDir' for {pad:files}" );
 
     return [];
 

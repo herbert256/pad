@@ -9,7 +9,7 @@
   //   padSheet ( [ [ 2, 3, '=A1*B1' ] ] )                     [ [ 2, 3, 6 ] ]
   //
   // The cells are named - [ 'A1' => 10 ] - or rows of values, the first row row 1; a text
-  // starting with = is a formula, as in {spreadsheet}. A whole number comes back as an int,
+  // starting with = is a formula, as in {pad:spreadsheet}. A whole number comes back as an int,
   // an error as its code - '#DIV/0!', '#N/A', '#REF!' for a circle of references, '#ERROR!'
   // for a formula that cannot be read; an empty result is 0, as a spreadsheet shows it. RAND
   // gives the same numbers for the same $seed. A formula is never PHP and never a PAD

@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{asset 'file'/}
-{asset 'file', tag/}
+{pad:asset 'file'/}
+{pad:asset 'file', tag/}
 PAD;
 
   $tagParms   = [

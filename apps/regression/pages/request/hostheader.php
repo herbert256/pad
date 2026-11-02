@@ -1,6 +1,6 @@
 <?php
 
-  // The engine fetches its own pages - {get}, {curl 'SELF://...'}, {page} over HTTP - from
+  // The engine fetches its own pages - {pad:get}, {pad:curl 'SELF://...'}, {pad:page} over HTTP - from
   // this server, whatever Host the request named: the address was built from the visitor's
   // Host header, and a request saying Host: 127.0.0.1:1 - or attacker.example - made the
   // server fetch from there and splice what came back into the page. request/hostfetch is

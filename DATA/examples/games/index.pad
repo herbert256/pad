@@ -1,10 +1,10 @@
 <p class="games-lead">Little games played in the page, each one a tag of its own - a file of
-<code>pad/subs/games/types/</code> in the engine, written <code>{open/}game 'name'/{close/}</code>, as
-<code>{open/}game:name/{close/}</code> or, when nothing else has the name, bare. The server writes
+<code>pad/subs/games/types/</code> in the engine, written <code>{pad:open/}game:name/{pad:close/}</code>, as
+<code>{pad:open/}game:name/{pad:close/}</code>. The server writes
 the board, a script in the page plays it.</p>
 
 <ul class="games-cards">
-  {games}
-  <li><a class="games-card" href="?{$game}"><b>{$name}</b><span>{$line}</span><code>{open/}{$game}/{close/}</code></a></li>
-  {/games}
+  {array:games}
+  <li><a class="games-card" href="?{$game}"><b>{$name}</b><span>{$line}</span><code>{pad:open/}{$game}/{pad:close/}</code></a></li>
+  {/array:games}
 </ul>

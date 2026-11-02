@@ -1,11 +1,11 @@
 <?php
 
   // The cart is the session's: product id => quantity. A button posts its product - op=add
-  // or op=remove - and the answer is the {fragment 'item'} of that product: the card with its
+  // or op=remove - and the answer is the {pad:fragment 'item'} of that product: the card with its
   // new count, then the parts elsewhere on the page that changed too, each marked
   // hx-swap-oob - htmx puts the card back where the button was and the rest where their ids
   // are: the count in the header, the summary beside the shelf. Emptying the cart is an
-  // ordinary {form} post that ends in a redirect, the page coming back whole.
+  // ordinary {pad:form} post that ends in a redirect, the page coming back whole.
 
   $counts   = padSession ( 'htmxCart', [] );
   $products = array_slice ( htmxData ( 'products' ), 0, 8 );
@@ -33,7 +33,7 @@
 
     // A product the shelf does not have - a stale or made-up request - has no card to
     // answer: a 404, which htmx swaps nothing for, where the empty loop rendered no
-    // {fragment 'item'} and the answer was a 500, "there is no fragment named 'item'".
+    // {pad:fragment 'item'} and the answer was a 500, "there is no fragment named 'item'".
 
     if ( ! $products )
       padAbort ( 404, 'There is no such product' );

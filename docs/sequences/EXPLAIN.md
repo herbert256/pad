@@ -75,7 +75,7 @@ position - and an action over the finished list are not cut off while they run, 
 deadline for the request; PHP's `max_execution_time` is.
 
 A run that ran out of candidates or time answers the terms it found, as one that came to its
-end does: `{sequence prime, rows=10, try=5}` gives the three primes up to 5, and `count` after
+end does: `{sequence:prime rows=10, try=5}` gives the three primes up to 5, and `count` after
 it says 3, with no mark that seven are missing. A position lookup does say so - under the
 strict check `sequence:strong(5)` is an error naming the limit it ran into.
 
@@ -154,7 +154,7 @@ cheapest test the type has decides: its `bool.php`, the whole list its `fixed.ph
   them is not followed there;
 - of `chance` and `random` as far as the value, which is drawn at its own position.
 
-A term past the ceiling is no term of the run: `{sequence list='9223372036854775806', flag,
+A term past the ceiling is no term of the run: `{sequence:list '9223372036854775806', flag,
 eval='@ * 2'}` is 0, though `@ * 2` makes it at position 4611686018427387903.
 
 ### 8. Pull Build (`build/types/pull.php`)
@@ -525,41 +525,41 @@ sequence/
 
 ### Simple Range
 ```
-{sequence '1..10'}
+{sequence:range '1..10'}
 → [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
 
 ### First 10 Primes
 ```
-{sequence prime, rows=10}
+{sequence:prime rows=10}
 → [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 ```
 
 ### Fibonacci until 100 is reached
 ```
-{sequence fibonacci, stop=100}
+{sequence:fibonacci stop=100}
 → [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]
 ```
 `stop` ends the run at the first term that reaches it - that term included.
 
 ### Even Numbers with Sum
 ```
-{sequence even, stop=20, sum}
+{sequence:even stop=20, sum}
 → [110]
 ```
 For a type such as `even`, `from` and `to` count terms rather than name values:
-`{sequence even, from=2, to=20, sum}` sums the 2nd to 20th even numbers, 4 to 40, and gives
+`{sequence:even from=2, to=20, sum}` sums the 2nd to 20th even numbers, 4 to 40, and gives
 [418]. `stop` always names a value.
 
 ### Primes Filtered by Palindrome
 ```
-{sequence prime, rows=20, keep, palindrome}
+{sequence:prime rows=20, keep, palindrome}
 → [2, 3, 5, 7, 11, 101, 131, 151, 181, 191...]
 ```
 
 ### Random Selection
 ```
-{sequence prime, rows=5, randomly}
+{sequence:prime rows=5, randomly}
 → [17, 3, 41, 7, 23] (random primes)
 ```
 

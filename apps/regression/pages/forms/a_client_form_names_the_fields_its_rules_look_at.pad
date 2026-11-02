@@ -1,11 +1,11 @@
-{form 'trip', client, error}
+{pad:form 'trip', client, error}
 <label for="delivery">Delivery</label> <select name="delivery" id="delivery"><option>collect</option><option>ship</option></select>
-{input 'address', label='Address', rules='required_if:delivery,ship'/}
-{input 'password', type='password', label='Password'/}
-{input 'confirm', type='password', label='Confirm', rules='same:password'/}
-{input 'start', type='date', label='Start'/}
-{input 'end', type='date', label='End', rules='after:start'/}
-{input 'kinds[]', type='checkbox', value='gift', label='Gift'/}
-{input 'card', label='Card text', rules='required_if:kinds[],gift|not_in:none'/}
+{pad:input 'address', label='Address', rules='required_if:delivery,ship'/}
+{pad:input 'password', type='password', label='Password'/}
+{pad:input 'confirm', type='password', label='Confirm', rules='same:password'/}
+{pad:input 'start', type='date', label='Start'/}
+{pad:input 'end', type='date', label='End', rules='after:start'/}
+{pad:input 'kinds[]', type='checkbox', value='gift', label='Gift'/}
+{pad:input 'card', label='Card text', rules='required_if:kinds[],gift|not_in:none'/}
 <button>Send</button>
-{/form}
+{/pad:form}

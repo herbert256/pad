@@ -14,8 +14,8 @@
   // padInfoXmlLevel, and padWhileRound and padOptionsAppStartCall missing.
   //
   // padStrSto and padStrDat name the stores and the data-carrying level arrays that the
-  // string/store machinery has to treat specially. The stack store of {push} is one of
-  // the stores: a {page} pass adds to the page's stacks, a sandboxed one leaves no trace. padOptionsStart and padOptionsEnd list
+  // string/store machinery has to treat specially. The stack store of {pad:push} is one of
+  // the stores: a {pad:page} pass adds to the page's stacks, a sandboxed one leaves no trace. padOptionsStart and padOptionsEnd list
   // the tag options handled before and after a level's content is produced.
   //
   // PQ, PT and PA are the sequence subsystem's path shorthands, the counterparts of PAD.

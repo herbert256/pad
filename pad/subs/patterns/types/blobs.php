@@ -3,7 +3,7 @@
   // blobs - soft organic shapes about the size across, scattered by the seed, each a closed
   // curve through seven points around its centre at radii of their own, filled with an ink.
   //
-  //   {pattern 'blobs', size=90, seed=12, opacity=0.8/}
+  //   {pattern:blobs size=90, seed=12, opacity=0.8/}
   //
   // The curve is a Catmull-Rom spline through the points, written as the cubic Béziers it
   // is: from each point to the next, the handles a sixth of the way along the line between

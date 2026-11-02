@@ -4,7 +4,7 @@
   // quarters of each pixel's error carried on, to six neighbours - lighter, higher contrast;
   // levels= and colors= as dither's.
   //
-  //   {img 'photos/harbour.jpg', width=400, filter='atkinson', colors='#222, #f4f1e8', alt='The harbour'/}
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='atkinson', colors='#222, #f4f1e8', alt='The harbour'/}
 
   return [
 

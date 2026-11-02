@@ -4,16 +4,16 @@
   // Ctrl+K or ⌘K, open a dialog with a search box over a list of links and buttons; typing
   // narrows the list, the arrow keys choose, Enter runs the chosen one.
   //
-  //   {commandpalette 'Go to'}
+  //   {widget:commandpalette 'Go to'}
   //     <p>Pages</p>
   //     <a href="?orders">Orders</a>
   //     <a href="?customers">Customers</a>
   //     <p>Actions</p>
   //     <a href="?orders/new">New order</a>
-  //   {/commandpalette}
-  //   {commandpalette data='commands'/}         rows: label, link, group, keywords
+  //   {/widget:commandpalette}
+  //   {widget:commandpalette data='commands'/}         rows: label, link, group, keywords
   //
-  // The dialog is a modal <dialog> opened as {modal} opens its own (subs/widgets/_lib/
+  // The dialog is a modal <dialog> opened as {widget:modal} opens its own (subs/widgets/_lib/
   // modal.php): the button's invoker commands, a small script where the browser has none,
   // and with scripting off a link to the dialog's id that the CSS shows as an overlay
   // (:target) - the whole list then, links to follow, and no search box, which only a

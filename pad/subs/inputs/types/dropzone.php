@@ -3,7 +3,7 @@
   // dropzone - a file dropped on a frame or chosen, its name and size listed: a native
   // <input type="file"> in a frame a file can be dropped on - the whole frame its label, so a
   // click opens the browser's file chooser as well. The form that holds it posts multipart by
-  // itself ({form} sees the file field), and the page's PHP takes the file with padUpload (
+  // itself ({pad:form} sees the file field), and the page's PHP takes the file with padUpload (
   // 'name', $types, $max ), whose refusal - a file too large, of a type the page does not take
   // - the field shows as its message. accept= is the file field's own and says which files the
   // chooser offers; a file dropped that it does not take is refused in the page, and so is one

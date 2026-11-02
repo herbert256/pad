@@ -1,6 +1,6 @@
-{ignore}
-<p><code>{pager 'products'}</code> writes the page links for a tag that the <code>page</code>
-handling option slices - <code>{products page=$pg ?? 1, rows=12}</code>. While that tag
+{pad:ignore}
+<p><code>{pad:pager 'products'}</code> writes the page links for a tag that the <code>page</code>
+handling option slices - <code>{array:products page=$pg ?? 1, rows=12}</code>. While that tag
 renders, its paging books the current page, the rows per page and the number of rows it pages
 through (after the options written before <code>page</code>, such as a <code>where</code>);
 the pager reads that booking. So the paged tag must come first: under the strict check a pager
@@ -25,4 +25,4 @@ gives <code>&amp;pg=3</code>), or <code>query=</code>.</p>
 <code>href</code> - empty for a gap and for a missing previous or next. A single page gives no
 rows, so the pair shows its <code>&#64;else&#64;</code> branch. A table of the Select subsystem is
 paged by its SQL limit; the pager then counts the same query to know the total.</p>
-{/ignore}
+{/pad:ignore}

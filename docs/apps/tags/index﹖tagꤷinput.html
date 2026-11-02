@@ -1,73 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      {pad:input} · PAD tags
+      {input:*} · PAD tags
     </title>
     <link rel="stylesheet" href="../_common/pad.css">
     <link rel="stylesheet" href="../_common/brand.css">
     <script src="../_common/pad.js"></script>
     <script src="../_common/brand.js" defer></script>
     <link rel="stylesheet" href="tags.css">
+    <link rel="stylesheet" href="/pad/assets/inputs/input.css?v=3e57de65c9">
+    <link rel="stylesheet" href="/pad/assets/inputs/slider.css?v=61b86ad177">
+    <link rel="stylesheet" href="/pad/assets/inputs/stars.css?v=c907104d73">
+    <link rel="stylesheet" href="/pad/assets/inputs/datepicker.css?v=9de34172ad">
     <style>
-    :where(.pad-input){--pad-input-ink:#1a1a19;--pad-input-muted:#6b6a65;--pad-input-line:#c9c8c2;--pad-input-field:#ffffff;--pad-input-shade:#f0efea;--pad-input-accent:#2a78d6;--pad-input-on:#ffffff;--pad-input-good:#1a8a5a;--pad-input-fair:#c98a12;--pad-input-bad:#d43c3b;--pad-input-star:#e8a317;--pad-input-knob:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-input){--pad-input-ink:light-dark(#1a1a19,#f4f3ee);--pad-input-muted:light-dark(#6b6a65,#a8a79f);--pad-input-line:light-dark(#c9c8c2,#4a4a46);--pad-input-field:light-dark(#ffffff,#242422);--pad-input-shade:light-dark(#f0efea,#2c2c29);--pad-input-accent:light-dark(#2a78d6,#5598e7);--pad-input-on:light-dark(#ffffff,#0d1b2a);--pad-input-good:light-dark(#1a8a5a,#3fbf86);--pad-input-fair:light-dark(#c98a12,#e0a83a);--pad-input-bad:light-dark(#d43c3b,#ef6b6a);--pad-input-star:light-dark(#e8a317,#f2b84b);--pad-input-knob:light-dark(#ffffff,#e8e7e2);}}:where(.pad-input){display:block;margin:.4em 0 .8em;color:var(--pad-input-ink);font:inherit;max-width:100%}
-    .pad-input *,.pad-input *::before,.pad-input *::after{box-sizing:border-box}
-    .pad-input>label,.pad-input>legend,.pad-input .pi-label{display:block;margin:0 0 .3em;font-weight:600}
-    .pad-input [hidden]{display:none!important}
-    .pad-input input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]),.pad-input textarea{font:inherit;color:var(--pad-input-ink);background:var(--pad-input-field);border:1px solid var(--pad-input-line);border-radius:6px;padding:.4em .55em;max-width:100%}
-    .pad-input input:focus-visible,.pad-input textarea:focus-visible,.pad-input button:focus-visible,.pad-input [tabindex]:focus-visible{outline:2px solid var(--pad-input-accent);outline-offset:2px}
-    .pad-input [aria-invalid=true]{border-color:var(--pad-input-bad)!important}
-    .pad-input .pi-button{font:inherit;font-size:.92em;line-height:1.2;padding:.4em .7em;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);color:var(--pad-input-ink);cursor:pointer}
-    .pad-input .pi-button:hover:not(:disabled){border-color:var(--pad-input-accent)}
-    .pad-input .pi-button:disabled{opacity:.45;cursor:default}
-    .pad-input .pi-row{display:flex;align-items:center;gap:.5em;flex-wrap:wrap}
-    .pad-input .pi-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-    .pad-input .pi-muted{color:var(--pad-input-muted);font-size:.9em}
-    .pad-input .pi-popup{position:absolute;z-index:20;margin-top:4px;background:var(--pad-input-field);color:var(--pad-input-ink);border:1px solid var(--pad-input-line);border-radius:8px;box-shadow:0 6px 24px rgb(0 0 0 / .18);padding:.5em}
-    .pad-input .pi-anchor{position:relative;display:inline-block;max-width:100%}
-    .pad-input .pi-noscript{color:var(--pad-input-muted);margin:.3em 0}
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
     </style>
     <style>
-    .pad-input-slider .pi-slider-row{flex-wrap:nowrap;align-items:flex-start;max-width:34em}
-    .pad-input-slider .pi-slider-track{flex:1 1 auto;min-width:8em}
-    .pad-input-slider input[type=range]{display:block;width:100%;accent-color:var(--pad-input-accent);margin:0}
-    .pad-input-slider .pi-slider-out{min-width:4em;font-variant-numeric:tabular-nums;font-weight:600;text-align:right;line-height:1.2}
-    .pad-input-slider .pi-slider-ends{display:flex;justify-content:space-between;margin-top:.15em;font-size:.8em}
-    </style>
-    <style>
-    fieldset.pad-input-stars{border:0;padding:0;min-width:0}
-    .pad-input-stars legend{padding:0;margin:0 0 .3em;font-weight:600}
-    .pad-input-stars .pi-stars{display:inline-flex;align-items:center;vertical-align:middle;margin-right:.5em}
-    .pad-input-stars .pi-star-input{position:absolute;width:1px;height:1px;margin:0;opacity:0;pointer-events:none}
-    .pad-input-stars .pi-star{cursor:pointer;padding:0 .08em;font-size:1.7em;line-height:1;color:var(--pad-input-line)}
-    .pad-input-stars .pi-star::before{content:"\2605"}
-    .pad-input-stars .pi-stars:has(:checked) .pi-star{color:var(--pad-input-star)}
-    .pad-input-stars .pi-star-input:checked+.pi-star~.pi-star{color:var(--pad-input-line)}
-    .pad-input-stars .pi-stars:hover .pi-star.pi-star{color:var(--pad-input-star)}
-    .pad-input-stars .pi-stars .pi-star:hover~.pi-star.pi-star{color:var(--pad-input-line)}
-    .pad-input-stars .pi-star-input:focus-visible+.pi-star{outline:2px solid var(--pad-input-accent);outline-offset:1px;border-radius:4px}
-    .pad-input-stars .pi-star-input:disabled+.pi-star{cursor:default;opacity:.5}
-    .pad-input-stars .pi-star-input[aria-invalid=true]+.pi-star{text-shadow:0 0 0 var(--pad-input-bad)}
-    @media (forced-colors:active){.pad-input-stars .pi-star{color:CanvasText}.pad-input-stars .pi-star-input:checked+.pi-star{color:Highlight}}
-    </style>
-    <style>
-    .pad-input-datepicker .pi-date-open{display:inline-flex;align-items:center;justify-content:center;padding:.45em .55em}
-    .pad-input-datepicker .pi-calendar{left:0;top:100%;width:max-content}
-    .pad-input-datepicker .pi-cal-head{display:flex;align-items:center;justify-content:space-between;gap:.5em;margin-bottom:.35em}
-    .pad-input-datepicker .pi-cal-title{font-weight:650;text-align:center;flex:1}
-    .pad-input-datepicker .pi-cal-step{padding:.2em .6em;font-size:1.1em}
-    .pad-input-datepicker .pi-cal-grid{border-collapse:collapse}
-    .pad-input-datepicker .pi-cal-grid th{font-size:.75em;font-weight:600;color:var(--pad-input-muted);padding:.25em 0;text-align:center;width:2.4em}
-    .pad-input-datepicker .pi-cal-grid td{padding:1px;text-align:center}
-    .pad-input-datepicker .pi-cal-day{width:2.3em;height:2.1em;font:inherit;font-size:.9em;font-variant-numeric:tabular-nums;border:1px solid transparent;border-radius:6px;background:none;color:var(--pad-input-ink);cursor:pointer}
-    .pad-input-datepicker .pi-cal-day:hover:not(:disabled){border-color:var(--pad-input-accent)}
-    .pad-input-datepicker .pi-cal-day[aria-current=date]{font-weight:700;border-color:var(--pad-input-line)}
-    .pad-input-datepicker .pi-cal-day[aria-pressed=true]{background:var(--pad-input-accent);border-color:var(--pad-input-accent);color:var(--pad-input-on)}
-    .pad-input-datepicker .pi-cal-day:disabled{color:var(--pad-input-muted);opacity:.45;cursor:default}
-    .pad-input-datepicker .pi-cal-foot{display:flex;justify-content:space-between;gap:.5em;margin-top:.4em}
-    @media (forced-colors:active){.pad-input-datepicker .pi-cal-day[aria-pressed=true]{border:2px solid Highlight}}
+    :where(.pad-input){--pad-input-ink:#1a1a19;--pad-input-muted:#6b6a65;--pad-input-line:#c9c8c2;--pad-input-field:#ffffff;--pad-input-shade:#f0efea;--pad-input-accent:#2a78d6;--pad-input-on:#ffffff;--pad-input-good:#1a8a5a;--pad-input-fair:#c98a12;--pad-input-bad:#d43c3b;--pad-input-star:#e8a317;--pad-input-knob:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-input){--pad-input-ink:light-dark(#1a1a19,#f4f3ee);--pad-input-muted:light-dark(#6b6a65,#a8a79f);--pad-input-line:light-dark(#c9c8c2,#4a4a46);--pad-input-field:light-dark(#ffffff,#242422);--pad-input-shade:light-dark(#f0efea,#2c2c29);--pad-input-accent:light-dark(#2a78d6,#5598e7);--pad-input-on:light-dark(#ffffff,#0d1b2a);--pad-input-good:light-dark(#1a8a5a,#3fbf86);--pad-input-fair:light-dark(#c98a12,#e0a83a);--pad-input-bad:light-dark(#d43c3b,#ef6b6a);--pad-input-star:light-dark(#e8a317,#f2b84b);--pad-input-knob:light-dark(#ffffff,#e8e7e2);}}
     </style>
   </head>
   <body class="frame app-tags">
@@ -82,89 +34,113 @@
             </summary>
             <nav class="pad-brand-apps" aria-label="PAD applications">
               <div class="pad-brand-columns">
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    PAD
-                  </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
-                  <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
-                  <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Showcases
-                  </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                  <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                  <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                  <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Front ends
-                  </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
-                  <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
-                  <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
-                  <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Offline
-                  </div><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                  <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
-                  <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
-                  <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Examples
-                  </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/playground/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
-                  <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>playground</b><small>Type a template, see the result</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-                  <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Tools
-                  </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
-                  <circle cx="9" cy="7" r="2"></circle>
-                  <circle cx="15" cy="12" r="2"></circle>
-                  <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
-                  <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
-                  <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
                 </div>
               </div>
             </nav>
@@ -188,23 +164,77 @@
     <main class="frame-main">
       <header class="frame-top">
         <form class="search" action="" method="get" role="search">
-          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 634 tags" autocomplete="off">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags and kinds</label> <input type="search" id="q" name="q" value="" placeholder="Search 1220 entries" autocomplete="off">
         </form>
         <div class="frame-tools">
-          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
         </div>
       </header>
       <div class="frame-body">
         <article class="tag">
           <nav class="crumbs" aria-label="Where you are">
-            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#forms">Forms and security</a><span>/</span><span aria-current="page">pad:input</span>
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#forms">Forms and security</a><span>/</span><span aria-current="page">input:*</span>
           </nav>
           <header class="tag-head">
             <h1>
-              <span class="brace">{</span>pad:input<span class="brace">}</span>
+              <span class="brace">{</span>input:*<span class="brace">}</span>
             </h1>
             <p class="tag-about">
               A form field with its label that refills from what its form sent and shows the error validation found for it.
@@ -217,10 +247,10 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">value</span>=<span class="hl-str">''</span>, <span class="hl-opt">id</span>=<span class="hl-str">'mail'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'you@example.org'</span>, required<span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'terms'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'checkbox'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'I agree'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'yes'</span>, checked<span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">/}</span>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">value</span>=<span class="hl-str">''</span>, <span class="hl-opt">id</span>=<span class="hl-str">'mail'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'you@example.org'</span>, required<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'terms'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'checkbox'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'I agree'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'yes'</span>, checked<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">input:slider</span> <span class="hl-str">'volume'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Volume'</span>, <span class="hl-opt">min</span>=<span class="hl-num">0</span>, <span class="hl-opt">max</span>=<span class="hl-num">100</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
@@ -271,7 +301,7 @@
                 <code>rules</code>
               </dt>
               <dd>
-                The field's rules - <code>required|email|max:80</code> - read from the page's own template and checked before its PHP runs. Only in a named <code>{form}</code> of the page itself.
+                The field's rules - <code>required|email|max:80</code> - read from the page's own template and checked before its PHP runs. Only in a named <code>{pad:form}</code> of the page itself.
               </dd>
             </dl>
           </section>
@@ -280,19 +310,19 @@
               Description
             </h2>
             <p>
-              <code>{input 'email', type='email', label='E-mail'/}</code> writes a <code>&lt;label for&gt;</code> and an <code>&lt;input&gt;</code> with the name and an id - the name with every character an id cannot hold made a dash, so <code>user[email]</code> gets the id <code>user-email</code>. The name is required: a field without one is an error under the strict check.
+              <code>{pad:input 'email', type='email', label='E-mail'/}</code> writes a <code>&lt;label for&gt;</code> and an <code>&lt;input&gt;</code> with the name and an id - the name with every character an id cannot hold made a dash, so <code>user[email]</code> gets the id <code>user-email</code>. The name is required: a field without one is an error under the strict check.
             </p>
             <p>
-              The tag takes <code>type</code>, <code>label</code>, <code>value</code>, <code>id</code>, <code>checked</code> and <code>rules</code> itself; every other item is an attribute of the input, written as <a href="index%EF%B9%96tag%EA%A4%B7attrs.html">{attrs}</a> writes it - a bare word such as <code>required</code> is a bare attribute, a false value leaves the attribute out.
+              The tag takes <code>type</code>, <code>label</code>, <code>value</code>, <code>id</code>, <code>checked</code> and <code>rules</code> itself; every other item is an attribute of the input, written as <a href="index%EF%B9%96tag%EA%A4%B7attrs.html">{pad:attrs}</a> writes it - a bare word such as <code>required</code> is a bare attribute, a false value leaves the attribute out.
             </p>
             <p>
-              Before a post a field shows <code>value=</code>. After a post of its own <a href="index%EF%B9%96tag%EA%A4%B7form.html">{form}</a> it shows the posted value, escaped, found where PHP files the name (<code>user[email]</code> is <code>$_POST['user']['email']</code>). A checkbox or radio is checked when the posted value is its own value - before a post when <code>checked</code> is given - and its label comes after it. A password or file field is never refilled; a submit, button, reset or image input has no label and no error.
+              Before a post a field shows <code>value=</code>. After a post of its own <a href="index%EF%B9%96tag%EA%A4%B7form.html">{pad:form}</a> it shows the posted value, escaped, found where PHP files the name (<code>user[email]</code> is <code>$_POST['user']['email']</code>). A checkbox or radio is checked when the posted value is its own value - before a post when <code>checked</code> is given - and its label comes after it. A password or file field is never refilled; a submit, button, reset or image input has no label and no error.
             </p>
             <p>
-              When <code>padValidate</code> - or the field's own <code>rules=</code> - found something wrong, the message follows the field in <code>&lt;span class="error" id="email-error"&gt;</code>, worded with the field's label, and the field gets <code>aria-invalid="true"</code> and <code>aria-describedby</code>, so a screen reader says the message with the field. A file field shows why <code>padUpload</code> refused its file the same way. Outside a <code>{form}</code> the tag still writes the field, but it never refills.
+              When <code>padValidate</code> - or the field's own <code>rules=</code> - found something wrong, the message follows the field in <code>&lt;span class="error" id="email-error"&gt;</code>, worded with the field's label, and the field gets <code>aria-invalid="true"</code> and <code>aria-describedby</code>, so a screen reader says the message with the field. A file field shows why <code>padUpload</code> refused its file the same way. Outside a <code>{pad:form}</code> the tag still writes the field, but it never refills.
             </p>
             <p>
-              The input: type writes the rich fields of <code>pad/subs/inputs/types/</code> the same way - named, labelled, refilled, with their message and their <code>rules=</code> - each a native field its script makes more of: <code>{input:slider 'volume', label='Volume'/}</code>, or bare, <code>{slider 'volume'/}</code>. The kinds are the files there: colorpicker, combobox, datepicker, dropzone, mdeditor, newpassword, otp, signature, slider, stars, stepper, taginput, timepicker, toggle; the <a href="../inputs/index.html">inputs</a> application shows each one in a form that posts back.
+              The input: type writes the rich fields of <code>pad/subs/inputs/types/</code> the same way - named, labelled, refilled, with their message and their <code>rules=</code> - each a native field its script makes more of: <code>{input:slider 'volume', label='Volume'/}</code>. The prefix is required. The kinds are the files there: colorpicker, combobox, datepicker, daterange, dropzone, durationpicker, mdeditor, multiselect, newpassword, otp, rangeslider, segmented, signature, slider, stars, stepper, taginput, timepicker, toggle, treepicker; the <a href="../inputs/index.html">inputs</a> application shows each one in a form that posts back.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -309,19 +339,22 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/input/1-types.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/input/1-types.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'order'</span>, <span class="hl-opt">method</span>=<span class="hl-str">'get'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'name'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Name'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Ann'</span><span class="hl-brc">/}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'size'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'radio'</span>, <span class="hl-opt">id</span>=<span class="hl-str">'size-s'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Small'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'S'</span><span class="hl-brc">/}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'size'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'radio'</span>, <span class="hl-opt">id</span>=<span class="hl-str">'size-l'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Large'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'L'</span>, checked<span class="hl-brc">/}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'gift'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'checkbox'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Gift wrap'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'yes'</span><span class="hl-brc">/}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'step'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'hidden'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'2'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:form</span> <span class="hl-str">'order'</span>, <span class="hl-opt">method</span>=<span class="hl-str">'get'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'name'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Name'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Ann'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'size'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'radio'</span>, <span class="hl-opt">id</span>=<span class="hl-str">'size-s'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Small'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'S'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'size'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'radio'</span>, <span class="hl-opt">id</span>=<span class="hl-str">'size-l'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Large'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'L'</span>, checked<span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'gift'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'checkbox'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Gift wrap'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'yes'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'step'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'hidden'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'2'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:form</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7input%EA%A4%B71-types.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7input%EA%A4%B71-types.html">open alone</a></span>
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ29yZGVyJywgbWV0aG9kPSdnZXQnfVxuICB7cGFkOmlucHV0ICduYW1lJywgbGFiZWw9J05hbWUnLCB2YWx1ZT0nQW5uJy99XG4gIHtwYWQ6aW5wdXQgJ3NpemUnLCB0eXBlPSdyYWRpbycsIGlkPSdzaXplLXMnLCBsYWJlbD0nU21hbGwnLCB2YWx1ZT0nUycvfVxuICB7cGFkOmlucHV0ICdzaXplJywgdHlwZT0ncmFkaW8nLCBpZD0nc2l6ZS1sJywgbGFiZWw9J0xhcmdlJywgdmFsdWU9J0wnLCBjaGVja2VkL31cbiAge3BhZDppbnB1dCAnZ2lmdCcsIHR5cGU9J2NoZWNrYm94JywgbGFiZWw9J0dpZnQgd3JhcCcsIHZhbHVlPSd5ZXMnL31cbiAge3BhZDppbnB1dCAnc3RlcCcsIHR5cGU9J2hpZGRlbicsIHZhbHVlPScyJy99XG57L3BhZDpmb3JtfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ29yZGVyJywgbWV0aG9kPSdnZXQnfVxuICB7cGFkOmlucHV0ICduYW1lJywgbGFiZWw9J05hbWUnLCB2YWx1ZT0nQW5uJy99XG4gIHtwYWQ6aW5wdXQgJ3NpemUnLCB0eXBlPSdyYWRpbycsIGlkPSdzaXplLXMnLCBsYWJlbD0nU21hbGwnLCB2YWx1ZT0nUycvfVxuICB7cGFkOmlucHV0ICdzaXplJywgdHlwZT0ncmFkaW8nLCBpZD0nc2l6ZS1sJywgbGFiZWw9J0xhcmdlJywgdmFsdWU9J0wnLCBjaGVja2VkL31cbiAge3BhZDppbnB1dCAnZ2lmdCcsIHR5cGU9J2NoZWNrYm94JywgbGFiZWw9J0dpZnQgd3JhcCcsIHZhbHVlPSd5ZXMnL31cbiAge3BhZDppbnB1dCAnc3RlcCcsIHR5cGU9J2hpZGRlbicsIHZhbHVlPScyJy99XG57L3BhZDpmb3JtfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <form method="get">
@@ -341,15 +374,17 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/input/2-attributes.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/input/2-attributes.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$busy</span> = FALSE<span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'qty'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'number'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Quantity'</span>, <span class="hl-opt">value</span>=<span class="hl-num">1</span>, <span class="hl-opt">min</span>=<span class="hl-num">1</span>, <span class="hl-opt">max</span>=<span class="hl-num">10</span>, required, <span class="hl-opt">disabled</span>=<span class="hl-var">$busy</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'user[email]'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'you@example.org'</span>, <span class="hl-opt">autocomplete</span>=<span class="hl-str">'email'</span><span class="hl-brc">/}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:set</span> <span class="hl-var">$busy</span> = FALSE<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'qty'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'number'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Quantity'</span>, <span class="hl-opt">value</span>=<span class="hl-num">1</span>, <span class="hl-opt">min</span>=<span class="hl-num">1</span>, <span class="hl-opt">max</span>=<span class="hl-num">10</span>, required, <span class="hl-opt">disabled</span>=<span class="hl-var">$busy</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'user[email]'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'you@example.org'</span>, <span class="hl-opt">autocomplete</span>=<span class="hl-str">'email'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7input%EA%A4%B72-attributes.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7input%EA%A4%B72-attributes.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkYnVzeSA9IEZBTFNFL31cbntwYWQ6aW5wdXQgJ3F0eScsIHR5cGU9J251bWJlcicsIGxhYmVsPSdRdWFudGl0eScsIHZhbHVlPTEsIG1pbj0xLCBtYXg9MTAsIHJlcXVpcmVkLCBkaXNhYmxlZD0kYnVzeS99XG57cGFkOmlucHV0ICd1c2VyW2VtYWlsXScsIHR5cGU9J2VtYWlsJywgbGFiZWw9J0UtbWFpbCcsIHBsYWNlaG9sZGVyPSd5b3VAZXhhbXBsZS5vcmcnLCBhdXRvY29tcGxldGU9J2VtYWlsJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkYnVzeSA9IEZBTFNFL31cbntwYWQ6aW5wdXQgJ3F0eScsIHR5cGU9J251bWJlcicsIGxhYmVsPSdRdWFudGl0eScsIHZhbHVlPTEsIG1pbj0xLCBtYXg9MTAsIHJlcXVpcmVkLCBkaXNhYmxlZD0kYnVzeS99XG57cGFkOmlucHV0ICd1c2VyW2VtYWlsXScsIHR5cGU9J2VtYWlsJywgbGFiZWw9J0UtbWFpbCcsIHBsYWNlaG9sZGVyPSd5b3VAZXhhbXBsZS5vcmcnLCBhdXRvY29tcGxldGU9J2VtYWlsJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <label for="qty">Quantity</label><input type="number" name="qty" id="qty" value="1" min="1" max="10" required=""> <label for="user-email">E-mail</label><input type="email" name="user[email]" id="user-email" value="" placeholder="you@example.org" autocomplete="email">
@@ -367,13 +402,14 @@
               <div class="example-grid is-static">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/input/3-errors.src</span>
+                    <span>Template</span><span><span class="cell-file">examples/input/3-errors.src</span><a class="pad-play pad-live pad-play-inline pad-live-alone" href="/pad/live/#s=eyJzb3VyY2UiOiJ7IyBjb250YWN0LnBocDogaWYgKCBwYWRQb3N0ZWQgKCAnY29udGFjdCcgKSApICRlcnJvcnMgPSBwYWRWYWxpZGF0ZSAoIFsgJ2VtYWlsJyA9PiAncmVxdWlyZWR8ZW1haWwnIF0gKTsgI31cbntwYWQ6Zm9ybSAnY29udGFjdCd9XG4gIHtwYWQ6aW5wdXQgJ2VtYWlsJywgdHlwZT0nZW1haWwnLCBsYWJlbD0nRS1tYWlsJy99XG4gIDxidXR0b24+U2VuZDwvYnV0dG9uPlxuey9wYWQ6Zm9ybX1cblxueyMgYWZ0ZXIgcG9zdGluZyBcImFubkBcIiB0aGUgZmllbGQgcmVuZGVycyBhczpcbjxsYWJlbCBmb3I9XCJlbWFpbFwiPkUtbWFpbDwvbGFiZWw+PGlucHV0IHR5cGU9XCJlbWFpbFwiIG5hbWU9XCJlbWFpbFwiIGlkPVwiZW1haWxcIiB2YWx1ZT1cImFubkBcIlxuICBhcmlhLWludmFsaWQ9XCJ0cnVlXCIgYXJpYS1kZXNjcmliZWRieT1cImVtYWlsLWVycm9yXCI+PHNwYW4gY2xhc3M9XCJlcnJvclwiIGlkPVwiZW1haWwtZXJyb3JcIj5FLW1haWwgbXVzdCBiZSBhIHZhbGlkIGUtbWFpbCBhZGRyZXNzPC9zcGFuPiAjfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <pre class="code"><code><span class="hl-com">{# contact.php: if ( padPosted ( 'contact' ) ) $errors = padValidate ( [ 'email' =&gt; 'required|email' ] ); #}</span>
-<span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'contact'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:form</span> <span class="hl-str">'contact'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span><span class="hl-brc">/}</span>
   <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:form</span><span class="hl-brc">}</span>
 
 <span class="hl-com">{# after posting "ann@" the field renders as:
 &lt;label for="email"&gt;E-mail&lt;/label&gt;&lt;input type="email" name="email" id="email" value="ann@"
@@ -391,131 +427,24 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/input/4-rich.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/input/4-rich.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'trip'</span>, <span class="hl-opt">method</span>=<span class="hl-str">'get'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:form</span> <span class="hl-str">'trip'</span>, <span class="hl-opt">method</span>=<span class="hl-str">'get'</span><span class="hl-brc">}</span>
   <span class="hl-brc">{</span><span class="hl-tag">input:slider</span> <span class="hl-str">'volume'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Volume'</span>, <span class="hl-opt">unit</span>=<span class="hl-str">'%'</span><span class="hl-brc">/}</span>
   <span class="hl-brc">{</span><span class="hl-tag">input:stars</span> <span class="hl-str">'score'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Your rating'</span><span class="hl-brc">/}</span>
   <span class="hl-brc">{</span><span class="hl-tag">input:datepicker</span> <span class="hl-str">'day'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Day'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:form</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7input%EA%A4%B74-rich.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7input%EA%A4%B74-rich.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ3RyaXAnLCBtZXRob2Q9J2dldCd9XG4gIHtpbnB1dDpzbGlkZXIgJ3ZvbHVtZScsIGxhYmVsPSdWb2x1bWUnLCB1bml0PSclJy99XG4gIHtpbnB1dDpzdGFycyAnc2NvcmUnLCBsYWJlbD0nWW91ciByYXRpbmcnL31cbiAge2lucHV0OmRhdGVwaWNrZXIgJ2RheScsIGxhYmVsPSdEYXknL31cbnsvcGFkOmZvcm19XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ3RyaXAnLCBtZXRob2Q9J2dldCd9XG4gIHtpbnB1dDpzbGlkZXIgJ3ZvbHVtZScsIGxhYmVsPSdWb2x1bWUnLCB1bml0PSclJy99XG4gIHtpbnB1dDpzdGFycyAnc2NvcmUnLCBsYWJlbD0nWW91ciByYXRpbmcnL31cbiAge2lucHV0OmRhdGVwaWNrZXIgJ2RheScsIGxhYmVsPSdEYXknL31cbnsvcGFkOmZvcm19XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <form method="get">
-                      <script>
-                      /* The runtime of the PAD inputs (pad/subs/inputs/_lib/input.php writes it once per page). A kind's
-                      script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
-                      - and is started on every field of its kind: the ones on the page, and the ones a fragment,
-                      a live region or a script brings later. frame is the field's .pad-input element, cfg its
-                      data-config, kit the helpers below. The server wrote a native control that a form posts
-                      as it is; a kind's script makes more of it and keeps the posted control's value true -
-                      and says so with the input and change events a typed value sends, which the browser's
-                      checker of the rules (pad/subs/rules/assets/validate.js) listens to. */
-
-                      (function () {
-                      'use strict';
-
-                      if (window.PadInputs) return;
-
-                      var kinds = {};
-                      var made = 0;
-
-                      function el(tag, cls, text) {
-                      var e = document.createElement(tag);
-                      if (cls) e.className = cls;
-                      if (text !== undefined && text !== null) e.textContent = text;
-                      return e;
-                      }
-
-                      var kit = {
-                      el: el,
-
-                      // A new id of the page, for an element a script adds: a listbox, an option, a box.
-                      id: function (base) {
-                      made++;
-                      return (base || 'pad-input') + '-js' + made;
-                      },
-
-                      // The value changed as if typed: the form, the rules' checker and any listener hear it.
-                      changed: function (control) {
-                      control.dispatchEvent(new Event('input', { bubbles: true }));
-                      control.dispatchEvent(new Event('change', { bubbles: true }));
-                      },
-
-                      // What the server wrote hidden for a script to show - a button, a popup's opener.
-                      show: function (root, selector) {
-                      var list = root.querySelectorAll(selector);
-                      for (var i = 0; i < list.length; i++) list[i].hidden = false;
-                      },
-
-                      // A click outside the element - or the focus leaving it - closes what it opened.
-                      outside: function (root, close) {
-                      document.addEventListener('pointerdown', function (event) {
-                      if (!root.contains(event.target)) close();
-                      });
-                      root.addEventListener('focusout', function (event) {
-                      if (event.relatedTarget && !root.contains(event.relatedTarget)) close();
-                      });
-                      },
-
-                      // The text of a field's label, for a name a script gives a control it adds.
-                      label: function (frame) {
-                      return frame.getAttribute('data-pad-label') || '';
-                      }
-                      };
-
-                      function start(frame) {
-                      if (frame.padInputReady) return;
-                      var init = kinds[frame.getAttribute('data-pad-input')];
-                      if (!init) return;
-                      var cfg = {};
-                      try { cfg = JSON.parse(frame.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
-                      frame.padInputReady = true;
-                      frame.classList.add('is-ready');
-                      init(frame, cfg, kit);
-                      }
-
-                      function scan(where) {
-                      var list = (where || document).querySelectorAll('.pad-input[data-pad-input]');
-                      for (var i = 0; i < list.length; i++) start(list[i]);
-                      }
-
-                      window.PadInputs = {
-                      register: function (name, init) { kinds[name] = init; scan(); },
-                      scan: scan,
-                      kit: kit
-                      };
-
-                      document.addEventListener('DOMContentLoaded', function () { scan(); });
-
-                      if (window.MutationObserver)
-                      new MutationObserver(function (records) {
-                      for (var i = 0; i < records.length; i++)
-                      for (var j = 0; j < records[i].addedNodes.length; j++) {
-                      var n = records[i].addedNodes[j];
-                      if (n.nodeType === 1 && (n.matches('.pad-input') || n.querySelector('.pad-input'))) { scan(); return; }
-                      }
-                      }).observe(document.documentElement, { childList: true, subtree: true });
-                      })();
-                      </script>
-                      <script>
-                      /* slider - the value beside the range, and the value a screen reader says, as it moves. */
-                      PadInputs.register('slider', function (frame, cfg) {
-                      var range = frame.querySelector('input[type=range]');
-                      var out = frame.querySelector('.pi-slider-out');
-                      if (!range) return;
-                      function say() {
-                      var text = range.value + (cfg.unit || '');
-                      if (out) out.textContent = text;
-                      range.setAttribute('aria-valuetext', text);
-                      }
-                      range.addEventListener('input', say);
-                      say();
-                      });
-                      </script>
+                      <script src="/pad/assets/inputs/input.js?v=f84670b3c6"></script>
+                      <script src="/pad/assets/inputs/slider.js?v=26ddeabc2b"></script>
                       <div class="pad-input pad-input-slider" data-pad-input="slider" data-pad-label="Volume" data-config="{&quot;unit&quot;:&quot;%&quot;}">
                         <label for="volume">Volume</label>
                         <div class="pi-row pi-slider-row">
@@ -527,251 +456,11 @@
                           </div><output class="pi-slider-out" for="volume">50%</output>
                         </div>
                       </div>
-                      <script>
-                      /* stars - the button that takes a rating back, for a field that is not required: a radio
-                      group once chosen cannot be emptied otherwise. It shows while a star is chosen. */
-                      PadInputs.register('stars', function (frame, cfg, kit) {
-                      var radios = frame.querySelectorAll('.pi-star-input');
-                      var clear = frame.querySelector('.pi-stars-clear');
-                      if (!radios.length || !clear || !cfg.clear) return;
-                      var name = kit.label(frame);
-                      clear.setAttribute('aria-label', 'Clear ' + (name || 'the rating'));
-                      function chosen() {
-                      for (var i = 0; i < radios.length; i++) if (radios[i].checked) return radios[i];
-                      return null;
-                      }
-                      function sync() { clear.hidden = !chosen(); }
-                      frame.addEventListener('change', sync);
-                      clear.addEventListener('click', function () {
-                      var one = chosen();
-                      if (!one) return;
-                      one.checked = false;
-                      sync();
-                      kit.changed(radios[0]);
-                      radios[0].focus();
-                      });
-                      sync();
-                      });
-                      </script>
+                      <script src="/pad/assets/inputs/stars.js?v=8c036cef0f"></script>
                       <fieldset class="pad-input pad-input-stars" data-pad-input="stars" data-pad-label="Your rating" data-config="{&quot;max&quot;:5,&quot;clear&quot;:true}">
                         <legend>Your rating</legend><span class="pi-stars"><input type="radio" class="pi-star-input" name="score" id="score" value="1"><label class="pi-star" for="score"><span class="pi-hide">1 star of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-2" value="2"><label class="pi-star" for="score-2"><span class="pi-hide">2 stars of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-3" value="3"><label class="pi-star" for="score-3"><span class="pi-hide">3 stars of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-4" value="4"><label class="pi-star" for="score-4"><span class="pi-hide">4 stars of 5</span></label><input type="radio" class="pi-star-input" name="score" id="score-5" value="5"><label class="pi-star" for="score-5"><span class="pi-hide">5 stars of 5</span></label></span><button type="button" class="pi-button pi-stars-clear" hidden="">Clear</button>
                       </fieldset>
-                      <script>
-                      /* datepicker - the month over the date field: a dialog with the month's days as a grid, the
-                      way the WAI-ARIA date picker dialog is built. The field stays what the form posts, and the
-                      day chosen is written into it as 2026-10-31 - it says it changed, as a typed day does. The
-                      arrow keys walk the days, Page Up and Page Down the months (with Shift the years), Home
-                      and End the week; Enter or Space takes the day, Escape closes, and the focus goes back to
-                      the button that opened it. Days outside min= and max= cannot be chosen. The names of the
-                      months and the days are the browser's, in the page's language. */
-                      PadInputs.register('datepicker', function (frame, cfg, kit) {
-                      var field = frame.querySelector('input[type=date]');
-                      var opener = frame.querySelector('.pi-date-open');
-                      var anchor = frame.querySelector('.pi-anchor');
-                      if (!field || !opener || !anchor) return;
-
-                      var lang = document.documentElement.lang || undefined;
-                      var first = cfg.weekstart === 'sunday' ? 0 : 1;
-                      var name = kit.label(frame);
-                      var monthName = new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric', timeZone: 'UTC' });
-                      var dayName = new Intl.DateTimeFormat(lang, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-                      var shortDay = new Intl.DateTimeFormat(lang, { weekday: 'short', timeZone: 'UTC' });
-                      var longDay = new Intl.DateTimeFormat(lang, { weekday: 'long', timeZone: 'UTC' });
-
-                      // A day is a number of days since 1970-01-01, in UTC: no clock change in between.
-                      function parse(text) {
-                      var one = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text || '');
-                      if (!one) return null;
-                      var day = Date.UTC(+one[1], +one[2] - 1, +one[3]) / 86400000;
-                      return iso(day) === text ? day : null;
-                      }
-                      function iso(day) {
-                      var d = new Date(day * 86400000);
-                      return String(d.getUTCFullYear()).padStart(4, '0') + '-' + String(d.getUTCMonth() + 1).padStart(2, '0') + '-' + String(d.getUTCDate()).padStart(2, '0');
-                      }
-                      function parts(day) {
-                      var d = new Date(day * 86400000);
-                      return { y: d.getUTCFullYear(), m: d.getUTCMonth(), d: d.getUTCDate(), w: d.getUTCDay() };
-                      }
-                      function addMonths(day, n) {
-                      var p = parts(day);
-                      var last = new Date(Date.UTC(p.y, p.m + n + 1, 0)).getUTCDate();
-                      return Date.UTC(p.y, p.m + n, Math.min(p.d, last)) / 86400000;
-                      }
-                      function today() {
-                      var now = new Date();
-                      return Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000;
-                      }
-
-                      var dialog = kit.el('div', 'pi-popup pi-calendar');
-                      dialog.id = kit.id((field.id || 'date') + '-calendar');
-                      dialog.setAttribute('role', 'dialog');
-                      dialog.setAttribute('aria-modal', 'false');
-                      dialog.setAttribute('aria-label', 'Choose ' + (name || 'a day'));
-                      dialog.hidden = true;
-
-                      var head = kit.el('div', 'pi-cal-head');
-                      var back = kit.el('button', 'pi-button pi-cal-step', '‹');
-                      back.type = 'button';
-                      back.setAttribute('aria-label', 'Previous month');
-                      var title = kit.el('div', 'pi-cal-title');
-                      title.id = dialog.id + '-title';
-                      title.setAttribute('aria-live', 'polite');
-                      var ahead = kit.el('button', 'pi-button pi-cal-step', '›');
-                      ahead.type = 'button';
-                      ahead.setAttribute('aria-label', 'Next month');
-                      head.appendChild(back);
-                      head.appendChild(title);
-                      head.appendChild(ahead);
-
-                      var grid = kit.el('table', 'pi-cal-grid');
-                      grid.setAttribute('role', 'grid');
-                      grid.setAttribute('aria-labelledby', title.id);
-                      var thead = kit.el('thead');
-                      var names = kit.el('tr');
-                      for (var i = 0; i < 7; i++) {
-                      var sample = Date.UTC(2024, 0, 7 + first + i);  // 2024-01-07 is a Sunday
-                      var th = kit.el('th', '', shortDay.format(sample));
-                      th.setAttribute('scope', 'col');
-                      th.setAttribute('abbr', longDay.format(sample));
-                      names.appendChild(th);
-                      }
-                      thead.appendChild(names);
-                      var tbody = kit.el('tbody');
-                      grid.appendChild(thead);
-                      grid.appendChild(tbody);
-
-                      var foot = kit.el('div', 'pi-cal-foot');
-                      var now = kit.el('button', 'pi-button', 'Today');
-                      now.type = 'button';
-                      var close = kit.el('button', 'pi-button', 'Close');
-                      close.type = 'button';
-                      foot.appendChild(now);
-                      foot.appendChild(close);
-
-                      dialog.appendChild(head);
-                      dialog.appendChild(grid);
-                      dialog.appendChild(foot);
-                      anchor.appendChild(dialog);
-                      opener.setAttribute('aria-controls', dialog.id);
-                      opener.hidden = false;
-
-                      var focus = today();
-
-                      function allowed(day) {
-                      var low = parse(field.min), high = parse(field.max);
-                      return (low === null || day >= low) && (high === null || day <= high);
-                      }
-
-                      function within(day) {
-                      var low = parse(field.min), high = parse(field.max);
-                      if (low !== null && day < low) return low;
-                      if (high !== null && day > high) return high;
-                      return day;
-                      }
-
-                      function draw(moveFocus) {
-                      var p = parts(focus);
-                      var start = Date.UTC(p.y, p.m, 1) / 86400000;
-                      var lead = (parts(start).w - first + 7) % 7;
-                      var chosen = parse(field.value), now = today();
-                      title.textContent = monthName.format(start * 86400000);
-                      tbody.textContent = '';
-                      var length = new Date(Date.UTC(p.y, p.m + 1, 0)).getUTCDate();
-                      var rows = Math.ceil((lead + length) / 7);
-                      var day = start - lead;
-                      for (var row = 0; row < rows; row++) {
-                      var tr = kit.el('tr');
-                      for (var col = 0; col < 7; col++, day++) {
-                      var td = kit.el('td');
-                      var q = parts(day);
-                      if (q.m === p.m) {
-                      var button = kit.el('button', 'pi-cal-day', String(q.d));
-                      button.type = 'button';
-                      button.tabIndex = day === focus ? 0 : -1;
-                      button.setAttribute('data-day', String(day));
-                      button.setAttribute('aria-label', dayName.format(day * 86400000));
-                      if (day === chosen) { button.setAttribute('aria-pressed', 'true'); td.setAttribute('aria-selected', 'true'); }
-                      if (day === now) button.setAttribute('aria-current', 'date');
-                      if (!allowed(day)) button.disabled = true;
-                      td.appendChild(button);
-                      }
-                      tr.appendChild(td);
-                      }
-                      tbody.appendChild(tr);
-                      }
-                      var low = parse(field.min), high = parse(field.max);
-                      back.disabled = low !== null && start - 1 < low;
-                      ahead.disabled = high !== null && start + length > high;
-                      now.disabled = !allowed(today());
-                      if (moveFocus) {
-                      var target = tbody.querySelector('[data-day="' + focus + '"]');
-                      if (target) target.focus();
-                      }
-                      }
-
-                      function show() {
-                      var chosen = parse(field.value);
-                      focus = within(chosen !== null ? chosen : today());
-                      dialog.hidden = false;
-                      opener.setAttribute('aria-expanded', 'true');
-                      draw(true);
-                      }
-
-                      function hide(giveBack) {
-                      if (dialog.hidden) return;
-                      dialog.hidden = true;
-                      opener.setAttribute('aria-expanded', 'false');
-                      if (giveBack) opener.focus();
-                      }
-
-                      function take(day) {
-                      if (!allowed(day)) return;
-                      field.value = iso(day);
-                      kit.changed(field);
-                      hide(true);
-                      }
-
-                      function move(day) {
-                      focus = within(day);
-                      draw(true);
-                      }
-
-                      opener.addEventListener('click', function () { if (dialog.hidden) show(); else hide(true); });
-                      back.addEventListener('click', function () { focus = within(addMonths(focus, -1)); draw(false); });
-                      ahead.addEventListener('click', function () { focus = within(addMonths(focus, 1)); draw(false); });
-                      now.addEventListener('click', function () { take(today()); });
-                      close.addEventListener('click', function () { hide(true); });
-
-                      tbody.addEventListener('click', function (event) {
-                      var button = event.target.closest('.pi-cal-day');
-                      if (button && !button.disabled) take(+button.getAttribute('data-day'));
-                      });
-
-                      tbody.addEventListener('keydown', function (event) {
-                      var key = event.key, to = null;
-                      var w = (parts(focus).w - first + 7) % 7;
-                      if (key === 'ArrowLeft') to = focus - 1;
-                      else if (key === 'ArrowRight') to = focus + 1;
-                      else if (key === 'ArrowUp') to = focus - 7;
-                      else if (key === 'ArrowDown') to = focus + 7;
-                      else if (key === 'Home') to = focus - w;
-                      else if (key === 'End') to = focus + 6 - w;
-                      else if (key === 'PageUp') to = addMonths(focus, event.shiftKey ? -12 : -1);
-                      else if (key === 'PageDown') to = addMonths(focus, event.shiftKey ? 12 : 1);
-                      else if (key === 'Enter' || key === ' ') { event.preventDefault(); take(focus); return; }
-                      if (to === null) return;
-                      event.preventDefault();
-                      move(to);
-                      });
-
-                      dialog.addEventListener('keydown', function (event) {
-                      if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); hide(true); }
-                      });
-
-                      kit.outside(anchor, function () { hide(false); });
-                      });
-                      </script>
+                      <script src="/pad/assets/inputs/datepicker.js?v=23dbe0b505"></script>
                       <div class="pad-input pad-input-datepicker" data-pad-input="datepicker" data-pad-label="Day" data-config="{&quot;weekstart&quot;:&quot;monday&quot;}">
                         <label for="day">Day</label>
                         <div class="pi-anchor">
@@ -808,12 +497,12 @@
             </ul>
           </section>
           <nav class="prevnext" aria-label="Other tags">
-            <a href="index%EF%B9%96tag%EA%A4%B7increment.html">← {pad:increment}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7jsonview.html">{pad:jsonview} →</a>
+            <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7ylorrd.html">← palette / ylorrd</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7ajax.html">{pad:ajax} →</a>
           </nav>
         </article>
         <footer class="foot">
           <p>
-            634 tags of PAD - the built-in tags, the kinds of the subsystems and the sequence types - each with its syntax and live examples, every result on this site rendered by the tag it documents.
+            1220 tags and kinds of PAD, with syntax and usage examples. Safe, self-contained examples run here; examples requiring credentials, delivery or application files are shown as source.
           </p>
         </footer>
       </div>

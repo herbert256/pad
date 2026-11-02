@@ -1,12 +1,12 @@
 {common:padFrame}
-  {slot 'head'}
-  <meta name="csrf-token" content="{csrf token/}">
-  {asset 'alpine.css', tag/}
+  {pad:slot 'head'}
+  <meta name="csrf-token" content="{pad:csrf token/}">
+  {pad:asset 'alpine.css', tag/}
   <!-- The application's own helpers first - pad.get, pad.post, the request log - then Alpine,
        deferred: the components of a page register themselves before Alpine starts -->
-  <script src="{asset 'alpine-app.js'/}"></script>
+  <script src="{pad:asset 'alpine-app.js'/}"></script>
   <script defer src="https://unpkg.com/alpinejs@3.17.4/dist/cdn.min.js"></script>
-  {/slot}
+  {/pad:slot}
 {/common:padFrame}
 @page@
 {common:padFrameEnd/}

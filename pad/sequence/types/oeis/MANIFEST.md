@@ -1,7 +1,7 @@
 # The OEIS table
 
 `oeis.sqlite` holds the terms of the sequences of the On-Line Encyclopedia of Integer
-Sequences that `{sequence oeis=45}` reads, through `read.php`. This file records where they
+Sequences that `{sequence:oeis 45}` reads, through `read.php`. This file records where they
 came from and what the table holds, so a copy can be checked against it and a newer one built
 the same way.
 

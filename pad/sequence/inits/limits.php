@@ -6,7 +6,7 @@
   // A run that already has a natural end - it pulls a store, names a stop or to value, or
   // builds from a fixed or given array - is let run unbounded. Everything else falls back to
   // the configured $padSeqDefaultRows / $padSeqDefaultTries, so an open-ended generator such
-  // as {prime} cannot spin forever.
+  // as {sequence:prime} cannot spin forever.
 
   // A pulled store and a fixed or given array end with their data, so their candidates are
   // not counted. A given array - the values an action is handed, sequence:sum([..]) - is
@@ -38,14 +38,14 @@
   if ( ! $pqTry  ) $pqTry  = $padSeqDefaultTries;
 
   // A count of 0 is a count: no rows. Unset - NULL - takes the default. They used to be one
-  // and the same, so {sequence $n} with $n 0, {loop 0} and rows=0 all ran ten rows; the
+  // and the same, so {sequence:auto $n} with $n 0, {sequence:loop 0} and rows=0 all ran ten rows; the
   // engine's own 'no limit' is PHP_INT_MAX now, where it was 0 too.
 
   if ( $pqRows === NULL or $pqRows === '' )
     $pqRows = $padSeqDefaultRows;
 
   // A count past the integer range is as many as there are: cast, it ended the request on
-  // "The float 1.0E+30 is not representable as an int" - {sequence $n} with $n 10 ** 30.
+  // "The float 1.0E+30 is not representable as an int" - {sequence:auto $n} with $n 10 ** 30.
 
   if ( is_numeric ( $pqRows ) and ( $pqRows >= PHP_INT_MAX or $pqRows <= PHP_INT_MIN ) )
     $pqRows = ( $pqRows > 0 ) ? PHP_INT_MAX : 0;
@@ -55,10 +55,10 @@
   // page= pages through the terms as the page option pages through the rows of a data tag
   // (handling/types/page.php): rows= is the page's size, 10 when it is not given, and a page
   // below 1, or one that is no number, is page 1. exits/page.php takes the terms of the other
-  // pages off again and books the page for a {pager} with the number of terms there are. Rows
-  // were every term of a run with an end of its own, {sequence '1..30', page=2} showed all
+  // pages off again and books the page for a {pad:pager} with the number of terms there are. Rows
+  // were every term of a run with an end of its own, {sequence:range '1..30', page=2} showed all
   // thirty, page=0 and page='x' ended the page under the strict check where they are a data
-  // tag's first page, and {pager 'sequence'} found no paged tag.
+  // tag's first page, and {pad:pager 'sequence'} found no paged tag.
   //
   // A range, a list, a store or a type made in one go, where nothing can turn a term down - no
   // play, unique, min=, max=, stop=, try=, randomly= or random increment, no parameter drawn or
@@ -66,9 +66,9 @@
   // counts the terms of the rest of the list for the pager without making them,
   // $pqPageCount. Any other run is made up to the end of the page after the one shown, so the
   // pager has a next page while there are more terms: the pager of such a run knows the pages
-  // made. Every term of the list was made to count them: {sequence '1..100000', page=2,
+  // made. Every term of the list was made to count them: {sequence:range '1..100000', page=2,
   // rows=10} took five to nine seconds where it takes a tenth, '1..1000000' a minute, and with a
-  // play the five seconds a run has cut the walk, so the pager of {sequence '1..100000', keep,
+  // play the five seconds a run has cut the walk, so the pager of {sequence:range '1..100000', keep,
   // even, page=2, rows=10} ended at page 1758 of 5000.
 
   $pqPageSkip  = 0;

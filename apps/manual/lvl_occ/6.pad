@@ -1,9 +1,9 @@
 <table border='1'>
-  {sequence 3}
+  {sequence:loop 3}
     <tr>
-      {sequence 5}
-        <td>{echo ($-2 * 10) + $-1/}</td>      
-      {/sequence}
+      {sequence:loop 5}
+        <td>{pad:echo ($-2 * 10) + $-1/}</td>      
+      {/sequence:loop}
     </tr>
-  {/sequence}
+  {/sequence:loop}
 </table>

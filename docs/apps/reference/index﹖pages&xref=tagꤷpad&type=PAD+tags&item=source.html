@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="../_common/brand.css">
     <script src="../_common/pad.js"></script>
     <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/play.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
   </head>
   <body class="frame app-reference">
     <aside class="frame-side">
@@ -23,89 +27,113 @@
             </summary>
             <nav class="pad-brand-apps" aria-label="PAD applications">
               <div class="pad-brand-columns">
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    PAD
-                  </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
-                  <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
-                  <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Showcases
-                  </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                  <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                  <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                  <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Front ends
-                  </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
-                  <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
-                  <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
-                  <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Offline
-                  </div><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                  <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
-                  <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
-                  <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Examples
-                  </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/playground/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
-                  <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>playground</b><small>Type a template, see the result</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-                  <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Tools
-                  </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
-                  <circle cx="9" cy="7" r="2"></circle>
-                  <circle cx="15" cy="12" r="2"></circle>
-                  <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
-                  <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
-                  <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
                 </div>
               </div>
             </nav>
@@ -129,7 +157,7 @@
         </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
         <div class="frame-head">
           More
-        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#oauth-providers">OAuth providers</a> <a href="index%EF%B9%96index.html#notification-channels">Notification channels</a> <a href="index%EF%B9%96index.html#ai-providers">AI providers</a> <a href="index%EF%B9%96index.html#pattern-types">Pattern types</a> <a href="index%EF%B9%96index.html#image-filters">Image filters</a> <a href="index%EF%B9%96index.html#holiday-countries">Holiday countries</a> <a href="index%EF%B9%96index.html#search-languages">Search languages</a> <a href="index%EF%B9%96index.html#data-formats">Data formats</a> <a href="index%EF%B9%96index.html#sounds">Sounds</a> <a href="index%EF%B9%96index.html#printables">Printables</a> <a href="index%EF%B9%96index.html#notations">Notations</a> <a href="index%EF%B9%96index.html#formula-functions">Formula functions</a> <a href="index%EF%B9%96index.html#section-types">Section types</a> <a href="index%EF%B9%96index.html#effect-types">Effect types</a> <a href="index%EF%B9%96index.html#json-ld-kinds">JSON-LD kinds</a> <a href="index%EF%B9%96index.html#themes">Themes</a> <a href="index%EF%B9%96index.html#palettes">Palettes</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
       </nav>
     </aside>
     <main class="frame-main">
@@ -138,10 +166,64 @@
           Reference - PAD tags - source
         </h1>
         <div class="frame-tools">
-          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
         </div>
       </header>
       <div class="frame-body">
@@ -150,8 +232,8 @@
             <td>
               <center>
                 <hr>
-                App: inputs - Page: colorpicker<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/errors - Page: source/source_shows_no_config_file_in_another_case<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -159,7 +241,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">colorpicker.pad</font>
+                      <font size="-2">source/source_shows_no_config_file_in_another_case.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -168,30 +250,33 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Colour picker<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">colorpicker </font><font color="red"><font color="black">'</font>tint<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Theme colour<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>#2a78d6<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>color<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">colorpicker </font><font color="red"><font color="black">'</font>mark<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Marker<font color="black">'</font><font color="black">,</font> swatches=<font color="black">'</font>#fff1b8<font color="black">,</font> #ffd6a5<font color="black">,</font> #caffbf<font color="black">,</font> #9bf6ff<font color="black">,</font> #bdb2ff<font color="black">,</font> #ffc6ff<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSBvbmx5PSdfQ29uZmlnL2NvbmZpZy5waHAnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSBvbmx5PSdfQ29uZmlnL2NvbmZpZy5waHAnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>source </font><font color="red">only=<font color="black">'</font>_Config/config.php<font color="black">'</font></font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax64545a58db560021751365b85c21a905"></div>
+                      <div id="padAjax1b650844b7ef4458f3f9421b45ed8dbb"></div>
                       <script>
-                      padAjax64545a58db560021751365b85c21a905 = new XMLHttpRequest();
-                      padAjax64545a58db560021751365b85c21a905.onreadystatechange=function() {
-                      if (padAjax64545a58db560021751365b85c21a905.readyState === 4) {
-                      if (padAjax64545a58db560021751365b85c21a905.status === 200) {
-                      document.getElementById("padAjax64545a58db560021751365b85c21a905").innerHTML=padAjax64545a58db560021751365b85c21a905.responseText;
+                      padAjax1b650844b7ef4458f3f9421b45ed8dbb = new XMLHttpRequest();
+                      padAjax1b650844b7ef4458f3f9421b45ed8dbb.onreadystatechange=function() {
+                      if (padAjax1b650844b7ef4458f3f9421b45ed8dbb.readyState === 4) {
+                      if (padAjax1b650844b7ef4458f3f9421b45ed8dbb.status === 200) {
+                      document.getElementById("padAjax1b650844b7ef4458f3f9421b45ed8dbb").innerHTML=padAjax1b650844b7ef4458f3f9421b45ed8dbb.responseText;
                       } else {
-                      document.getElementById("padAjax64545a58db560021751365b85c21a905").innerHTML=padAjax64545a58db560021751365b85c21a905.statusText;
+                      document.getElementById("padAjax1b650844b7ef4458f3f9421b45ed8dbb").innerHTML=padAjax1b650844b7ef4458f3f9421b45ed8dbb.statusText;
                       }
                       }
                       }
-                      padAjax64545a58db560021751365b85c21a905.open("GET","http://localhost/pad/inputs/?colorpicker&padInclude",true);
-                      padAjax64545a58db560021751365b85c21a905.send();
+                      padAjax1b650844b7ef4458f3f9421b45ed8dbb.open("GET","http://localhost/pad/regression/errors/?source/source_shows_no_config_file_in_another_case&padInclude",true);
+                      padAjax1b650844b7ef4458f3f9421b45ed8dbb.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: inputs - Page: combobox<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/errors - Page: syntax/source_names_a_page_there_is<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -199,7 +284,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">combobox.pad</font>
+                      <font size="-2">syntax/source_names_a_page_there_is.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -208,30 +293,33 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Combobox<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">combobox </font><font color="red"><font color="black">'</font>city<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>City<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>in<font color="black">:</font>Amsterdam<font color="black">,</font>Antwerp<font color="black">,</font>Athens<font color="black">,</font>Berlin<font color="black">,</font>Bern<font color="black">,</font>Brussels<font color="black">,</font>Lisbon<font color="black">,</font>London<font color="black">,</font>Madrid<font color="black">,</font>Paris<font color="black">,</font>Prague<font color="black">,</font>Rome<font color="black">,</font>Vienna<font color="black">'</font></font>}</b><br>    Amsterdam<br>    Antwerp<br>    Athens<br>    Berlin<br>    Bern<br>    Brussels<br>    Lisbon<br>    London<br>    Madrid<br>    Paris<br>    Prague<br>    Rome<br>    Vienna<br>  <b>{/<font color="blue">combobox</font><font color="red"></font>}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>combobox </font><font color="red"><font color="black">'</font>fruit<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Fruit<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>Apple<font color="black">,</font> Apricot<font color="black">,</font> Banana<font color="black">,</font> Cherry<font color="black">,</font> Grape<font color="black">,</font> Lemon<font color="black">,</font> Mango<font color="black">,</font> Orange<font color="black">,</font> Pear<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSAnbm8vc3VjaC9wYWdlJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSAnbm8vc3VjaC9wYWdlJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>source </font><font color="red"><font color="black">'</font>no/such/page<font color="black">'</font></font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax6cc4477e90e8105faaad2f2e87207617"></div>
+                      <div id="padAjax42f48dd36094e9c5a1b01834d44dc528"></div>
                       <script>
-                      padAjax6cc4477e90e8105faaad2f2e87207617 = new XMLHttpRequest();
-                      padAjax6cc4477e90e8105faaad2f2e87207617.onreadystatechange=function() {
-                      if (padAjax6cc4477e90e8105faaad2f2e87207617.readyState === 4) {
-                      if (padAjax6cc4477e90e8105faaad2f2e87207617.status === 200) {
-                      document.getElementById("padAjax6cc4477e90e8105faaad2f2e87207617").innerHTML=padAjax6cc4477e90e8105faaad2f2e87207617.responseText;
+                      padAjax42f48dd36094e9c5a1b01834d44dc528 = new XMLHttpRequest();
+                      padAjax42f48dd36094e9c5a1b01834d44dc528.onreadystatechange=function() {
+                      if (padAjax42f48dd36094e9c5a1b01834d44dc528.readyState === 4) {
+                      if (padAjax42f48dd36094e9c5a1b01834d44dc528.status === 200) {
+                      document.getElementById("padAjax42f48dd36094e9c5a1b01834d44dc528").innerHTML=padAjax42f48dd36094e9c5a1b01834d44dc528.responseText;
                       } else {
-                      document.getElementById("padAjax6cc4477e90e8105faaad2f2e87207617").innerHTML=padAjax6cc4477e90e8105faaad2f2e87207617.statusText;
+                      document.getElementById("padAjax42f48dd36094e9c5a1b01834d44dc528").innerHTML=padAjax42f48dd36094e9c5a1b01834d44dc528.statusText;
                       }
                       }
                       }
-                      padAjax6cc4477e90e8105faaad2f2e87207617.open("GET","http://localhost/pad/inputs/?combobox&padInclude",true);
-                      padAjax6cc4477e90e8105faaad2f2e87207617.send();
+                      padAjax42f48dd36094e9c5a1b01834d44dc528.open("GET","http://localhost/pad/regression/errors/?syntax/source_names_a_page_there_is&padInclude",true);
+                      padAjax42f48dd36094e9c5a1b01834d44dc528.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: inputs - Page: datepicker<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/errors - Page: syntax/source_refuses_a_configuration_file<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -239,7 +327,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">datepicker.pad</font>
+                      <font size="-2">syntax/source_refuses_a_configuration_file.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -248,30 +336,33 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Date picker<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">datepicker </font><font color="red"><font color="black">'</font>arrival<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Arrival<font color="black">'</font><font color="black">,</font> min=<font color="black">'</font>2026-01-01<font color="black">'</font><font color="black">,</font> max=<font color="black">'</font>2027-12-31<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>date<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">datepicker </font><font color="red"><font color="black">'</font>birthday<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Birthday<font color="black">'</font><font color="black">,</font> weekstart=<font color="black">'</font>sunday<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSBvbmx5PSdfY29uZmlnL2NvbmZpZy5waHAnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSBvbmx5PSdfY29uZmlnL2NvbmZpZy5waHAnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>source </font><font color="red">only=<font color="black">'</font>_config/config.php<font color="black">'</font></font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax37db85c08dc92f4d70caf6542de9fbd0"></div>
+                      <div id="padAjax3d5e6db55311e83590e3d646cc028fb9"></div>
                       <script>
-                      padAjax37db85c08dc92f4d70caf6542de9fbd0 = new XMLHttpRequest();
-                      padAjax37db85c08dc92f4d70caf6542de9fbd0.onreadystatechange=function() {
-                      if (padAjax37db85c08dc92f4d70caf6542de9fbd0.readyState === 4) {
-                      if (padAjax37db85c08dc92f4d70caf6542de9fbd0.status === 200) {
-                      document.getElementById("padAjax37db85c08dc92f4d70caf6542de9fbd0").innerHTML=padAjax37db85c08dc92f4d70caf6542de9fbd0.responseText;
+                      padAjax3d5e6db55311e83590e3d646cc028fb9 = new XMLHttpRequest();
+                      padAjax3d5e6db55311e83590e3d646cc028fb9.onreadystatechange=function() {
+                      if (padAjax3d5e6db55311e83590e3d646cc028fb9.readyState === 4) {
+                      if (padAjax3d5e6db55311e83590e3d646cc028fb9.status === 200) {
+                      document.getElementById("padAjax3d5e6db55311e83590e3d646cc028fb9").innerHTML=padAjax3d5e6db55311e83590e3d646cc028fb9.responseText;
                       } else {
-                      document.getElementById("padAjax37db85c08dc92f4d70caf6542de9fbd0").innerHTML=padAjax37db85c08dc92f4d70caf6542de9fbd0.statusText;
+                      document.getElementById("padAjax3d5e6db55311e83590e3d646cc028fb9").innerHTML=padAjax3d5e6db55311e83590e3d646cc028fb9.statusText;
                       }
                       }
                       }
-                      padAjax37db85c08dc92f4d70caf6542de9fbd0.open("GET","http://localhost/pad/inputs/?datepicker&padInclude",true);
-                      padAjax37db85c08dc92f4d70caf6542de9fbd0.send();
+                      padAjax3d5e6db55311e83590e3d646cc028fb9.open("GET","http://localhost/pad/regression/errors/?syntax/source_refuses_a_configuration_file&padInclude",true);
+                      padAjax3d5e6db55311e83590e3d646cc028fb9.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: inputs - Page: dropzone<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/errors - Page: syntax/source_refuses_a_file_outside_the_application<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -279,7 +370,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">dropzone.pad</font>
+                      <font size="-2">syntax/source_refuses_a_file_outside_the_application.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -288,30 +379,33 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Drop zone<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">dropzone </font><font color="red"><font color="black">'</font>resume<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your CV<font color="black">'</font><font color="black">,</font> accept=<font color="black">'</font>.pdf<font color="black">,</font> .txt<font color="black">,</font> application/pdf<font color="black">'</font><font color="black">,</font> limit=<font color="black">'</font>2M<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">dropzone </font><font color="red"><font color="black">'</font>photos[]<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Photos<font color="black">'</font><font color="black">,</font> accept=<font color="black">'</font>image/*<font color="black">'</font><font color="black">,</font> multiple</font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSBvbmx5PScuLi8uLi8uLi9wYWQvcGFkLnBocCcvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSBvbmx5PScuLi8uLi8uLi9wYWQvcGFkLnBocCcvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>source </font><font color="red">only=<font color="black">'</font>../../../pad/pad.php<font color="black">'</font></font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax44aebeefdb20dc26e613a603fe9f344d"></div>
+                      <div id="padAjaxa7a6ea1c8061da13d086eabbc915f4d0"></div>
                       <script>
-                      padAjax44aebeefdb20dc26e613a603fe9f344d = new XMLHttpRequest();
-                      padAjax44aebeefdb20dc26e613a603fe9f344d.onreadystatechange=function() {
-                      if (padAjax44aebeefdb20dc26e613a603fe9f344d.readyState === 4) {
-                      if (padAjax44aebeefdb20dc26e613a603fe9f344d.status === 200) {
-                      document.getElementById("padAjax44aebeefdb20dc26e613a603fe9f344d").innerHTML=padAjax44aebeefdb20dc26e613a603fe9f344d.responseText;
+                      padAjaxa7a6ea1c8061da13d086eabbc915f4d0 = new XMLHttpRequest();
+                      padAjaxa7a6ea1c8061da13d086eabbc915f4d0.onreadystatechange=function() {
+                      if (padAjaxa7a6ea1c8061da13d086eabbc915f4d0.readyState === 4) {
+                      if (padAjaxa7a6ea1c8061da13d086eabbc915f4d0.status === 200) {
+                      document.getElementById("padAjaxa7a6ea1c8061da13d086eabbc915f4d0").innerHTML=padAjaxa7a6ea1c8061da13d086eabbc915f4d0.responseText;
                       } else {
-                      document.getElementById("padAjax44aebeefdb20dc26e613a603fe9f344d").innerHTML=padAjax44aebeefdb20dc26e613a603fe9f344d.statusText;
+                      document.getElementById("padAjaxa7a6ea1c8061da13d086eabbc915f4d0").innerHTML=padAjaxa7a6ea1c8061da13d086eabbc915f4d0.statusText;
                       }
                       }
                       }
-                      padAjax44aebeefdb20dc26e613a603fe9f344d.open("GET","http://localhost/pad/inputs/?dropzone&padInclude",true);
-                      padAjax44aebeefdb20dc26e613a603fe9f344d.send();
+                      padAjaxa7a6ea1c8061da13d086eabbc915f4d0.open("GET","http://localhost/pad/regression/errors/?syntax/source_refuses_a_file_outside_the_application&padInclude",true);
+                      padAjaxa7a6ea1c8061da13d086eabbc915f4d0.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: inputs - Page: form<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: tags/source_colours_an_html_template_as_pad<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -319,7 +413,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">form.pad</font>
+                      <font size="-2">tags/source_colours_an_html_template_as_pad.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -328,30 +422,33 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>One form<font color="black">'</font></font>/}</b><br>&lt;p class="inputs-lead"&gt;Every kind of field in one form, each with rules. &lt;code&gt;client&lt;/code&gt; on the<br>form checks the rules in the browser before the form leaves, with the messages the server gives -<br>the server checks the post again all the same. Send it empty to see them.&lt;/p&gt;<br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>booking<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> client<font color="black">,</font> error=<font color="black">'</font>Please correct the fields marked below.<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">slider </font><font color="red"><font color="black">'</font>volume<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Volume<font color="black">'</font><font color="black">,</font> unit=<font color="black">'</font><font color="black">%</font><font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>integer<font color="black">|</font>between<font color="black">:</font>10<font color="black">,</font>90<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">stepper </font><font color="red"><font color="black">'</font>guests<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Guests<font color="black">'</font><font color="black">,</font> min=1<font color="black">,</font> max=12<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>integer<font color="black">|</font>between<font color="black">:</font>1<font color="black">,</font>12<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">toggle </font><font color="red"><font color="black">'</font>terms<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>I accept the terms<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>accepted<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">stars </font><font color="red"><font color="black">'</font>score<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your rating<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">colorpicker </font><font color="red"><font color="black">'</font>tint<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Colour<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>#2a78d6<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>color<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">datepicker </font><font color="red"><font color="black">'</font>arrival<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Arrival<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>date<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">timepicker </font><font color="red"><font color="black">'</font>pickup<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Pick-up time<font color="black">'</font><font color="black">,</font> min=<font color="black">'</font>08<font color="black">:</font>00<font color="black">'</font><font color="black">,</font> max=<font color="black">'</font>18<font color="black">:</font>00<font color="black">'</font><font color="black">,</font> every=30<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>time<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">taginput </font><font color="red"><font color="black">'</font>topics<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Topics<font color="black">'</font><font color="black">,</font> suggestions=<font color="black">'</font>pad<font color="black">,</font> php<font color="black">,</font> forms<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>60<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">signature </font><font color="red"><font color="black">'</font>signed<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Signature<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">mdeditor </font><font color="red"><font color="black">'</font>note<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>A note<font color="black">'</font><font color="black">,</font> rows=4<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>min<font color="black">:</font>10<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">dropzone </font><font color="red"><font color="black">'</font>resume<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your CV<font color="black">'</font><font color="black">,</font> accept=<font color="black">'</font>.pdf<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">newpassword </font><font color="red"><font color="black">'</font>password<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Password<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>min<font color="black">:</font>12<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">otp </font><font color="red"><font color="black">'</font>code<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Code<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>digits<font color="black">:</font>6<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">combobox </font><font color="red"><font color="black">'</font>city<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>City<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>Amsterdam<font color="black">,</font> Berlin<font color="black">,</font> Paris<font color="black">,</font> Rome<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>in<font color="black">:</font>Amsterdam<font color="black">,</font>Berlin<font color="black">,</font>Paris<font color="black">,</font>Rome<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSBvbmx5PSdfZGF0YS9zb3VyY2VfdGVtcGxhdGUuaHRtbCcvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSBvbmx5PSdfZGF0YS9zb3VyY2VfdGVtcGxhdGUuaHRtbCcvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>source </font><font color="red">only=<font color="black">'</font>_data/source_template.html<font color="black">'</font></font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax1f940a5f140e35a3ba2377e001c04982"></div>
+                      <div id="padAjax4463de8c4ebe31dd2bba2c3f2e1cbb70"></div>
                       <script>
-                      padAjax1f940a5f140e35a3ba2377e001c04982 = new XMLHttpRequest();
-                      padAjax1f940a5f140e35a3ba2377e001c04982.onreadystatechange=function() {
-                      if (padAjax1f940a5f140e35a3ba2377e001c04982.readyState === 4) {
-                      if (padAjax1f940a5f140e35a3ba2377e001c04982.status === 200) {
-                      document.getElementById("padAjax1f940a5f140e35a3ba2377e001c04982").innerHTML=padAjax1f940a5f140e35a3ba2377e001c04982.responseText;
+                      padAjax4463de8c4ebe31dd2bba2c3f2e1cbb70 = new XMLHttpRequest();
+                      padAjax4463de8c4ebe31dd2bba2c3f2e1cbb70.onreadystatechange=function() {
+                      if (padAjax4463de8c4ebe31dd2bba2c3f2e1cbb70.readyState === 4) {
+                      if (padAjax4463de8c4ebe31dd2bba2c3f2e1cbb70.status === 200) {
+                      document.getElementById("padAjax4463de8c4ebe31dd2bba2c3f2e1cbb70").innerHTML=padAjax4463de8c4ebe31dd2bba2c3f2e1cbb70.responseText;
                       } else {
-                      document.getElementById("padAjax1f940a5f140e35a3ba2377e001c04982").innerHTML=padAjax1f940a5f140e35a3ba2377e001c04982.statusText;
+                      document.getElementById("padAjax4463de8c4ebe31dd2bba2c3f2e1cbb70").innerHTML=padAjax4463de8c4ebe31dd2bba2c3f2e1cbb70.statusText;
                       }
                       }
                       }
-                      padAjax1f940a5f140e35a3ba2377e001c04982.open("GET","http://localhost/pad/inputs/?form&padInclude",true);
-                      padAjax1f940a5f140e35a3ba2377e001c04982.send();
+                      padAjax4463de8c4ebe31dd2bba2c3f2e1cbb70.open("GET","http://localhost/pad/regression/framework/?tags/source_colours_an_html_template_as_pad&padInclude",true);
+                      padAjax4463de8c4ebe31dd2bba2c3f2e1cbb70.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: inputs - Page: mdeditor<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: tags/source_shows_every_tab_past_the_twelfth<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -359,7 +456,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">mdeditor.pad</font>
+                      <font size="-2">tags/source_shows_every_tab_past_the_twelfth.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -368,70 +465,78 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Markdown editor<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">mdeditor </font><font color="red"><font color="black">'</font>post<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your post<font color="black">'</font><font color="black">,</font> rows=8<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>min<font color="black">:</font>20<font color="black">|</font>max<font color="black">:</font>5000<font color="black">'</font></font>}</b><br>    # A title<br><br>    Some **bold** text, some *italic* and a [link](https://example.com).<br><br>    - a list<br>    - of things<br>  <b>{/<font color="blue">mdeditor</font><font color="red"></font>}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSBvbmx5PSd0YWdzL3NvdXJjZV9zaG93c19ldmVyeV90YWJfcGFzdF90aGVfdHdlbGZ0aC5wYWQsdGFncy9zb3VyY2Vfc2hvd3NfZXZlcnlfdGFiX3Bhc3RfdGhlX3R3ZWxmdGgucGFkLHRhZ3Mvc291cmNlX3Nob3dzX2V2ZXJ5X3RhYl9wYXN0X3RoZV90d2VsZnRoLnBhZCx0YWdzL3NvdXJjZV9zaG93c19ldmVyeV90YWJfcGFzdF90aGVfdHdlbGZ0aC5wYWQsdGFncy9zb3VyY2Vfc2hvd3NfZXZlcnlfdGFiX3Bhc3RfdGhlX3R3ZWxmdGgucGFkLHRhZ3Mvc291cmNlX3Nob3dzX2V2ZXJ5X3RhYl9wYXN0X3RoZV90d2VsZnRoLnBhZCx0YWdzL3NvdXJjZV9zaG93c19ldmVyeV90YWJfcGFzdF90aGVfdHdlbGZ0aC5wYWQsdGFncy9zb3VyY2Vfc2hvd3NfZXZlcnlfdGFiX3Bhc3RfdGhlX3R3ZWxmdGgucGFkLHRhZ3Mvc291cmNlX3Nob3dzX2V2ZXJ5X3RhYl9wYXN0X3RoZV90d2VsZnRoLnBhZCx0YWdzL3NvdXJjZV9zaG93c19ldmVyeV90YWJfcGFzdF90aGVfdHdlbGZ0aC5wYWQsdGFncy9zb3VyY2Vfc2hvd3NfZXZlcnlfdGFiX3Bhc3RfdGhlX3R3ZWxmdGgucGFkLHRhZ3Mvc291cmNlX3Nob3dzX2V2ZXJ5X3RhYl9wYXN0X3RoZV90d2VsZnRoLnBhZCx0YWdzL3NvdXJjZV9zaG93c19ldmVyeV90YWJfcGFzdF90aGVfdHdlbGZ0aC5wYWQsdGFncy9zb3VyY2Vfc2hvd3NfZXZlcnlfdGFiX3Bhc3RfdGhlX3R3ZWxmdGgucGFkJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSBvbmx5PSd0YWdzL3NvdXJjZV9zaG93c19ldmVyeV90YWJfcGFzdF90aGVfdHdlbGZ0aC5wYWQsdGFncy9zb3VyY2Vfc2hvd3NfZXZlcnlfdGFiX3Bhc3RfdGhlX3R3ZWxmdGgucGFkLHRhZ3Mvc291cmNlX3Nob3dzX2V2ZXJ5X3RhYl9wYXN0X3RoZV90d2VsZnRoLnBhZCx0YWdzL3NvdXJjZV9zaG93c19ldmVyeV90YWJfcGFzdF90aGVfdHdlbGZ0aC5wYWQsdGFncy9zb3VyY2Vfc2hvd3NfZXZlcnlfdGFiX3Bhc3RfdGhlX3R3ZWxmdGgucGFkLHRhZ3Mvc291cmNlX3Nob3dzX2V2ZXJ5X3RhYl9wYXN0X3RoZV90d2VsZnRoLnBhZCx0YWdzL3NvdXJjZV9zaG93c19ldmVyeV90YWJfcGFzdF90aGVfdHdlbGZ0aC5wYWQsdGFncy9zb3VyY2Vfc2hvd3NfZXZlcnlfdGFiX3Bhc3RfdGhlX3R3ZWxmdGgucGFkLHRhZ3Mvc291cmNlX3Nob3dzX2V2ZXJ5X3RhYl9wYXN0X3RoZV90d2VsZnRoLnBhZCx0YWdzL3NvdXJjZV9zaG93c19ldmVyeV90YWJfcGFzdF90aGVfdHdlbGZ0aC5wYWQsdGFncy9zb3VyY2Vfc2hvd3NfZXZlcnlfdGFiX3Bhc3RfdGhlX3R3ZWxmdGgucGFkLHRhZ3Mvc291cmNlX3Nob3dzX2V2ZXJ5X3RhYl9wYXN0X3RoZV90d2VsZnRoLnBhZCx0YWdzL3NvdXJjZV9zaG93c19ldmVyeV90YWJfcGFzdF90aGVfdHdlbGZ0aC5wYWQsdGFncy9zb3VyY2Vfc2hvd3NfZXZlcnlfdGFiX3Bhc3RfdGhlX3R3ZWxmdGgucGFkJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>source </font><font color="red">only=<font color="black">'</font>tags/source_shows_every_tab_past_the_twelfth.pad<font color="black">,</font>tags/source_shows_every_tab_past_the_twelfth.pad<font color="black">,</font>tags/source_shows_every_tab_past_the_twelfth.pad<font color="black">,</font>tags/source_shows_every_tab_past_the_twelfth.pad<font color="black">,</font>tags/source_shows_every_tab_past_the_twelfth.pad<font color="black">,</font>tags/source_shows_every_tab_past_the_twelfth.pad<font color="black">,</font>tags/source_shows_every_tab_past_the_twelfth.pad<font color="black">,</font>tags/source_shows_every_tab_past_the_twelfth.pad<font color="black">,</font>tags/source_shows_every_tab_past_the_twelfth.pad<font color="black">,</font>tags/source_shows_every_tab_past_the_twelfth.pad<font color="black">,</font>tags/source_shows_every_tab_past_the_twelfth.pad<font color="black">,</font>tags/source_shows_every_tab_past_the_twelfth.pad<font color="black">,</font>tags/source_shows_every_tab_past_the_twelfth.pad<font color="black">,</font>tags/source_shows_every_tab_past_the_twelfth.pad<font color="black">'</font></font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax1cd4a3584a99b005f410ba98bb15b316"></div>
+                      <div id="padAjax47254f42d899cfb19b6bc893794a2786"></div>
                       <script>
-                      padAjax1cd4a3584a99b005f410ba98bb15b316 = new XMLHttpRequest();
-                      padAjax1cd4a3584a99b005f410ba98bb15b316.onreadystatechange=function() {
-                      if (padAjax1cd4a3584a99b005f410ba98bb15b316.readyState === 4) {
-                      if (padAjax1cd4a3584a99b005f410ba98bb15b316.status === 200) {
-                      document.getElementById("padAjax1cd4a3584a99b005f410ba98bb15b316").innerHTML=padAjax1cd4a3584a99b005f410ba98bb15b316.responseText;
+                      padAjax47254f42d899cfb19b6bc893794a2786 = new XMLHttpRequest();
+                      padAjax47254f42d899cfb19b6bc893794a2786.onreadystatechange=function() {
+                      if (padAjax47254f42d899cfb19b6bc893794a2786.readyState === 4) {
+                      if (padAjax47254f42d899cfb19b6bc893794a2786.status === 200) {
+                      document.getElementById("padAjax47254f42d899cfb19b6bc893794a2786").innerHTML=padAjax47254f42d899cfb19b6bc893794a2786.responseText;
                       } else {
-                      document.getElementById("padAjax1cd4a3584a99b005f410ba98bb15b316").innerHTML=padAjax1cd4a3584a99b005f410ba98bb15b316.statusText;
+                      document.getElementById("padAjax47254f42d899cfb19b6bc893794a2786").innerHTML=padAjax47254f42d899cfb19b6bc893794a2786.statusText;
                       }
                       }
                       }
-                      padAjax1cd4a3584a99b005f410ba98bb15b316.open("GET","http://localhost/pad/inputs/?mdeditor&padInclude",true);
-                      padAjax1cd4a3584a99b005f410ba98bb15b316.send();
+                      padAjax47254f42d899cfb19b6bc893794a2786.open("GET","http://localhost/pad/regression/framework/?tags/source_shows_every_tab_past_the_twelfth&padInclude",true);
+                      padAjax47254f42d899cfb19b6bc893794a2786.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: inputs - Page: newpassword<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: tags/source_shows_its_page_template_and_php_as_tabs<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
-                      <font size="-2"></font>
+                      <font size="-2">tags/source_shows_its_page_template_and_php_as_tabs.php</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">newpassword.pad</font>
+                      <font size="-2">tags/source_shows_its_page_template_and_php_as_tabs.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
                     </th>
                   </tr>
                   <tr>
-                    <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>New password<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">newpassword </font><font color="red"><font color="black">'</font>password<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Choose a password<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>min<font color="black">:</font>12<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">newpassword </font><font color="red"><font color="black">'</font>old<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your password now<font color="black">'</font><font color="black">,</font> known</font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $shown </span><span style="color: #007700">= </span><span style="color: #DD0000">'the PHP tab'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db"></div>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZS99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHNob3duID0gJ3RoZSBQSFAgdGFiJztcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZS99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHNob3duID0gJ3RoZSBQSFAgdGFiJztcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>source</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax6e2387c63651fd28b0fe89ba1929bc29"></div>
                       <script>
-                      padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db = new XMLHttpRequest();
-                      padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db.onreadystatechange=function() {
-                      if (padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db.readyState === 4) {
-                      if (padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db.status === 200) {
-                      document.getElementById("padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db").innerHTML=padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db.responseText;
+                      padAjax6e2387c63651fd28b0fe89ba1929bc29 = new XMLHttpRequest();
+                      padAjax6e2387c63651fd28b0fe89ba1929bc29.onreadystatechange=function() {
+                      if (padAjax6e2387c63651fd28b0fe89ba1929bc29.readyState === 4) {
+                      if (padAjax6e2387c63651fd28b0fe89ba1929bc29.status === 200) {
+                      document.getElementById("padAjax6e2387c63651fd28b0fe89ba1929bc29").innerHTML=padAjax6e2387c63651fd28b0fe89ba1929bc29.responseText;
                       } else {
-                      document.getElementById("padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db").innerHTML=padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db.statusText;
+                      document.getElementById("padAjax6e2387c63651fd28b0fe89ba1929bc29").innerHTML=padAjax6e2387c63651fd28b0fe89ba1929bc29.statusText;
                       }
                       }
                       }
-                      padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db.open("GET","http://localhost/pad/inputs/?newpassword&padInclude",true);
-                      padAjaxc28a62a1ac4582cfeb7589c9a4f9e5db.send();
+                      padAjax6e2387c63651fd28b0fe89ba1929bc29.open("GET","http://localhost/pad/regression/framework/?tags/source_shows_its_page_template_and_php_as_tabs&padInclude",true);
+                      padAjax6e2387c63651fd28b0fe89ba1929bc29.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: inputs - Page: otp<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: tags/source_shows_the_named_files_alone_and_marks_the_side<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -439,7 +544,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">otp.pad</font>
+                      <font size="-2">tags/source_shows_the_named_files_alone_and_marks_the_side.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -448,70 +553,78 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>One-time code<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">otp </font><font color="red"><font color="black">'</font>code<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>The code we sent you<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>digits<font color="black">:</font>6<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">otp </font><font color="red"><font color="black">'</font>voucher<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Voucher<font color="black">'</font><font color="black">,</font> length=8<font color="black">,</font> letters</font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSBvbmx5PSdfZGF0YS9jb21wYWN0Lmpzb24sIHd3dzppbmRleC5waHAnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSBvbmx5PSdfZGF0YS9jb21wYWN0Lmpzb24sIHd3dzppbmRleC5waHAnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>source </font><font color="red">only=<font color="black">'</font>_data/compact.json<font color="black">,</font> www<font color="black">:</font>index.php<font color="black">'</font></font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9"></div>
+                      <div id="padAjax88dbd3cf8da24eb4de1523f1e1b4a22a"></div>
                       <script>
-                      padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9 = new XMLHttpRequest();
-                      padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9.onreadystatechange=function() {
-                      if (padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9.readyState === 4) {
-                      if (padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9.status === 200) {
-                      document.getElementById("padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9").innerHTML=padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9.responseText;
+                      padAjax88dbd3cf8da24eb4de1523f1e1b4a22a = new XMLHttpRequest();
+                      padAjax88dbd3cf8da24eb4de1523f1e1b4a22a.onreadystatechange=function() {
+                      if (padAjax88dbd3cf8da24eb4de1523f1e1b4a22a.readyState === 4) {
+                      if (padAjax88dbd3cf8da24eb4de1523f1e1b4a22a.status === 200) {
+                      document.getElementById("padAjax88dbd3cf8da24eb4de1523f1e1b4a22a").innerHTML=padAjax88dbd3cf8da24eb4de1523f1e1b4a22a.responseText;
                       } else {
-                      document.getElementById("padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9").innerHTML=padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9.statusText;
+                      document.getElementById("padAjax88dbd3cf8da24eb4de1523f1e1b4a22a").innerHTML=padAjax88dbd3cf8da24eb4de1523f1e1b4a22a.statusText;
                       }
                       }
                       }
-                      padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9.open("GET","http://localhost/pad/inputs/?otp&padInclude",true);
-                      padAjax5c6ab24bbac2b7a9ec52a4c5f77adea9.send();
+                      padAjax88dbd3cf8da24eb4de1523f1e1b4a22a.open("GET","http://localhost/pad/regression/framework/?tags/source_shows_the_named_files_alone_and_marks_the_side&padInclude",true);
+                      padAjax88dbd3cf8da24eb4de1523f1e1b4a22a.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: inputs - Page: signature<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: tags - Page: examples/source/1-self<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
-                      <font size="-2"></font>
+                      <font size="-2">examples/source/1-self.php</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">signature.pad</font>
+                      <font size="-2">examples/source/1-self.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
                     </th>
                   </tr>
                   <tr>
-                    <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Signature<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">signature </font><font color="red"><font color="black">'</font>signed<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Signature<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $greeting </span><span style="color: #007700">= </span><span style="color: #DD0000">'Good morning'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$visitor  </span><span style="color: #007700">= </span><span style="color: #DD0000">'Ana'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax8b9e6b3768974b0bc0d2328d3eec2b00"></div>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J1RoZSBwYWdlIGl0c2VsZicsIGFib3V0PSdXaXRob3V0IGEgcGFyYW1ldGVyOiB0aGUgdGVtcGxhdGUgYW5kIHRoZSBQSFAgb2YgdGhlIHBhZ2UgYXNrZWQgZm9yLCBhcyB0YWJzLicvfVxuPHA+eyRncmVldGluZ30sIHskdmlzaXRvcn0hPC9wPlxue3BhZDpzb3VyY2UvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRncmVldGluZyA9ICdHb29kIG1vcm5pbmcnO1xuICAkdmlzaXRvciAgPSAnQW5hJztcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J1RoZSBwYWdlIGl0c2VsZicsIGFib3V0PSdXaXRob3V0IGEgcGFyYW1ldGVyOiB0aGUgdGVtcGxhdGUgYW5kIHRoZSBQSFAgb2YgdGhlIHBhZ2UgYXNrZWQgZm9yLCBhcyB0YWJzLicvfVxuPHA+eyRncmVldGluZ30sIHskdmlzaXRvcn0hPC9wPlxue3BhZDpzb3VyY2UvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRncmVldGluZyA9ICdHb29kIG1vcm5pbmcnO1xuICAkdmlzaXRvciAgPSAnQW5hJztcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>meta </font><font color="red">title=<font color="black">'</font>The page itself<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>Without a parameter<font color="black">:</font> the template and the PHP of the page asked for<font color="black">,</font> as tabs.<font color="black">'</font></font>/}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>greeting</font>}</b>, <b>{<font color="green"><font color="red">$</font>visitor</font>}</b>!&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>source</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax39688240150aabb4da618ae84b34f6b4"></div>
                       <script>
-                      padAjax8b9e6b3768974b0bc0d2328d3eec2b00 = new XMLHttpRequest();
-                      padAjax8b9e6b3768974b0bc0d2328d3eec2b00.onreadystatechange=function() {
-                      if (padAjax8b9e6b3768974b0bc0d2328d3eec2b00.readyState === 4) {
-                      if (padAjax8b9e6b3768974b0bc0d2328d3eec2b00.status === 200) {
-                      document.getElementById("padAjax8b9e6b3768974b0bc0d2328d3eec2b00").innerHTML=padAjax8b9e6b3768974b0bc0d2328d3eec2b00.responseText;
+                      padAjax39688240150aabb4da618ae84b34f6b4 = new XMLHttpRequest();
+                      padAjax39688240150aabb4da618ae84b34f6b4.onreadystatechange=function() {
+                      if (padAjax39688240150aabb4da618ae84b34f6b4.readyState === 4) {
+                      if (padAjax39688240150aabb4da618ae84b34f6b4.status === 200) {
+                      document.getElementById("padAjax39688240150aabb4da618ae84b34f6b4").innerHTML=padAjax39688240150aabb4da618ae84b34f6b4.responseText;
                       } else {
-                      document.getElementById("padAjax8b9e6b3768974b0bc0d2328d3eec2b00").innerHTML=padAjax8b9e6b3768974b0bc0d2328d3eec2b00.statusText;
+                      document.getElementById("padAjax39688240150aabb4da618ae84b34f6b4").innerHTML=padAjax39688240150aabb4da618ae84b34f6b4.statusText;
                       }
                       }
                       }
-                      padAjax8b9e6b3768974b0bc0d2328d3eec2b00.open("GET","http://localhost/pad/inputs/?signature&padInclude",true);
-                      padAjax8b9e6b3768974b0bc0d2328d3eec2b00.send();
+                      padAjax39688240150aabb4da618ae84b34f6b4.open("GET","http://localhost/pad/tags/?examples/source/1-self&padInclude",true);
+                      padAjax39688240150aabb4da618ae84b34f6b4.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: inputs - Page: slider<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: tags - Page: examples/source/2-files<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -519,7 +632,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">slider.pad</font>
+                      <font size="-2">examples/source/2-files.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -528,30 +641,33 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Slider<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">slider </font><font color="red"><font color="black">'</font>volume<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Volume<font color="black">'</font><font color="black">,</font> unit=<font color="black">'</font><font color="black">%</font><font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>integer<font color="black">|</font>between<font color="black">:</font>10<font color="black">,</font>90<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>slider </font><font color="red"><font color="black">'</font>tempo<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Tempo<font color="black">'</font><font color="black">,</font> min=40<font color="black">,</font> max=200<font color="black">,</font> step=4<font color="black">,</font> value=120<font color="black">,</font> unit=<font color="black">'</font> bpm<font color="black">'</font><font color="black">,</font> marks=<font color="black">'</font>60<font color="black">,</font> 90<font color="black">,</font> 120<font color="black">,</font> 150<font color="black">,</font> 180<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J0Fub3RoZXIgcGFnZSBhbmQgbW9yZSBmaWxlcycsIGFib3V0PSdUaGUgZmlyc3QgcGFyYW1ldGVyIG5hbWVzIHRoZSBwYWdlIHdob3NlIHRlbXBsYXRlIGFuZCBQSFAgY29tZSBmaXJzdDsgZmlsZXM9IGFkZHMgYSBmaWxlIG9mIHRoZSBhcHBsaWNhdGlvbi4nL31cbntwYWQ6c291cmNlICdleGFtcGxlcy9zb3VyY2UvMS1zZWxmJywgZmlsZXM9J19sYW5nL2VuLmpzb24nL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J0Fub3RoZXIgcGFnZSBhbmQgbW9yZSBmaWxlcycsIGFib3V0PSdUaGUgZmlyc3QgcGFyYW1ldGVyIG5hbWVzIHRoZSBwYWdlIHdob3NlIHRlbXBsYXRlIGFuZCBQSFAgY29tZSBmaXJzdDsgZmlsZXM9IGFkZHMgYSBmaWxlIG9mIHRoZSBhcHBsaWNhdGlvbi4nL31cbntwYWQ6c291cmNlICdleGFtcGxlcy9zb3VyY2UvMS1zZWxmJywgZmlsZXM9J19sYW5nL2VuLmpzb24nL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>meta </font><font color="red">title=<font color="black">'</font>Another page and more files<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The first parameter names the page whose template and PHP come first; files= adds a file of the application.<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>source </font><font color="red"><font color="black">'</font>examples/source/1-self<font color="black">'</font><font color="black">,</font> files=<font color="black">'</font>_lang/en.json<font color="black">'</font></font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjaxba6dfa1bd4a3a69f1a8dcad960e7368a"></div>
+                      <div id="padAjaxa57120697b27021e0ef8409516babacb"></div>
                       <script>
-                      padAjaxba6dfa1bd4a3a69f1a8dcad960e7368a = new XMLHttpRequest();
-                      padAjaxba6dfa1bd4a3a69f1a8dcad960e7368a.onreadystatechange=function() {
-                      if (padAjaxba6dfa1bd4a3a69f1a8dcad960e7368a.readyState === 4) {
-                      if (padAjaxba6dfa1bd4a3a69f1a8dcad960e7368a.status === 200) {
-                      document.getElementById("padAjaxba6dfa1bd4a3a69f1a8dcad960e7368a").innerHTML=padAjaxba6dfa1bd4a3a69f1a8dcad960e7368a.responseText;
+                      padAjaxa57120697b27021e0ef8409516babacb = new XMLHttpRequest();
+                      padAjaxa57120697b27021e0ef8409516babacb.onreadystatechange=function() {
+                      if (padAjaxa57120697b27021e0ef8409516babacb.readyState === 4) {
+                      if (padAjaxa57120697b27021e0ef8409516babacb.status === 200) {
+                      document.getElementById("padAjaxa57120697b27021e0ef8409516babacb").innerHTML=padAjaxa57120697b27021e0ef8409516babacb.responseText;
                       } else {
-                      document.getElementById("padAjaxba6dfa1bd4a3a69f1a8dcad960e7368a").innerHTML=padAjaxba6dfa1bd4a3a69f1a8dcad960e7368a.statusText;
+                      document.getElementById("padAjaxa57120697b27021e0ef8409516babacb").innerHTML=padAjaxa57120697b27021e0ef8409516babacb.statusText;
                       }
                       }
                       }
-                      padAjaxba6dfa1bd4a3a69f1a8dcad960e7368a.open("GET","http://localhost/pad/inputs/?slider&padInclude",true);
-                      padAjaxba6dfa1bd4a3a69f1a8dcad960e7368a.send();
+                      padAjaxa57120697b27021e0ef8409516babacb.open("GET","http://localhost/pad/tags/?examples/source/2-files&padInclude",true);
+                      padAjaxa57120697b27021e0ef8409516babacb.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: inputs - Page: stars<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: tags - Page: examples/source/3-only<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -559,7 +675,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">stars.pad</font>
+                      <font size="-2">examples/source/3-only.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -568,30 +684,33 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Stars<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">stars </font><font color="red"><font color="black">'</font>score<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>How was your stay?<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>integer<font color="black">|</font>between<font color="black">:</font>1<font color="black">,</font>5<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">stars </font><font color="red"><font color="black">'</font>food<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>The food<font color="black">'</font><font color="black">,</font> max=10</font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J0Nob3NlbiBmaWxlcyBhbG9uZScsIGFib3V0PSdvbmx5PSBzaG93cyB0aG9zZSBmaWxlcyBhbmQgbGVhdmVzIHRoZSBwYWdlXFwncyBvd24gb3V0LicvfVxue3BhZDpzb3VyY2Ugb25seT0nZXhhbXBsZXMvc291cmNlLzEtc2VsZi5waHAsIF9sYW5nL2VuLmpzb24nL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J0Nob3NlbiBmaWxlcyBhbG9uZScsIGFib3V0PSdvbmx5PSBzaG93cyB0aG9zZSBmaWxlcyBhbmQgbGVhdmVzIHRoZSBwYWdlXFwncyBvd24gb3V0LicvfVxue3BhZDpzb3VyY2Ugb25seT0nZXhhbXBsZXMvc291cmNlLzEtc2VsZi5waHAsIF9sYW5nL2VuLmpzb24nL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>meta </font><font color="red">title=<font color="black">'</font>Chosen files alone<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>only= shows those files and leaves the page\<font color="black">'</font>s own out.<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>source </font><font color="red">only=<font color="black">'</font>examples/source/1-self.php<font color="black">,</font> _lang/en.json<font color="black">'</font></font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjaxb0572838e27df089a177c19bb216bfad"></div>
+                      <div id="padAjax5552eabf1dd4c599b47d5e80ff359275"></div>
                       <script>
-                      padAjaxb0572838e27df089a177c19bb216bfad = new XMLHttpRequest();
-                      padAjaxb0572838e27df089a177c19bb216bfad.onreadystatechange=function() {
-                      if (padAjaxb0572838e27df089a177c19bb216bfad.readyState === 4) {
-                      if (padAjaxb0572838e27df089a177c19bb216bfad.status === 200) {
-                      document.getElementById("padAjaxb0572838e27df089a177c19bb216bfad").innerHTML=padAjaxb0572838e27df089a177c19bb216bfad.responseText;
+                      padAjax5552eabf1dd4c599b47d5e80ff359275 = new XMLHttpRequest();
+                      padAjax5552eabf1dd4c599b47d5e80ff359275.onreadystatechange=function() {
+                      if (padAjax5552eabf1dd4c599b47d5e80ff359275.readyState === 4) {
+                      if (padAjax5552eabf1dd4c599b47d5e80ff359275.status === 200) {
+                      document.getElementById("padAjax5552eabf1dd4c599b47d5e80ff359275").innerHTML=padAjax5552eabf1dd4c599b47d5e80ff359275.responseText;
                       } else {
-                      document.getElementById("padAjaxb0572838e27df089a177c19bb216bfad").innerHTML=padAjaxb0572838e27df089a177c19bb216bfad.statusText;
+                      document.getElementById("padAjax5552eabf1dd4c599b47d5e80ff359275").innerHTML=padAjax5552eabf1dd4c599b47d5e80ff359275.statusText;
                       }
                       }
                       }
-                      padAjaxb0572838e27df089a177c19bb216bfad.open("GET","http://localhost/pad/inputs/?stars&padInclude",true);
-                      padAjaxb0572838e27df089a177c19bb216bfad.send();
+                      padAjax5552eabf1dd4c599b47d5e80ff359275.open("GET","http://localhost/pad/tags/?examples/source/3-only&padInclude",true);
+                      padAjax5552eabf1dd4c599b47d5e80ff359275.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: inputs - Page: stepper<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: webcomponents - Page: guide<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -599,7 +718,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">stepper.pad</font>
+                      <font size="-2">guide.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -608,143 +727,26 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Stepper<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">stepper </font><font color="red"><font color="black">'</font>guests<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Guests<font color="black">'</font><font color="black">,</font> min=1<font color="black">,</font> max=12<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>integer<font color="black">|</font>between<font color="black">:</font>1<font color="black">,</font>12<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>stepper </font><font color="red"><font color="black">'</font>weight<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Weight in kg<font color="black">'</font><font color="black">,</font> min=0<font color="black">,</font> step=0.5<font color="black">,</font> value=70</font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J1dlYiBjb21wb25lbnRzIG9uIGEgUEFEIHBhZ2UnL31cbjxwIGNsYXNzPVwibGVkZVwiPlxuICBDdXN0b20gZWxlbWVudHMgYW5kIHNoYWRvdyBET00gYXJlIHRoZSBicm93c2VyJ3Mgb3duIGNvbXBvbmVudHMuIFBBRCB3cml0ZXMgdGhlbSB3aXRoIHRoZWlyXG4gIHNoYWRvdyByb290IGFscmVhZHkgaW4gcGxhY2UgLSBkZWNsYXJhdGl2ZSBzaGFkb3cgRE9NIC0gYW5kIGEgc21hbGwgbW9kdWxlIGFkZHMgYmVoYXZpb3VyLlxuPC9wPlxuXG48aDI+MS4gQSBQQUQgY3VzdG9tIHRhZyB3cml0ZXMgdGhlIGVsZW1lbnQ8L2gyPlxuPHA+QSA8Y29kZT4ucGFkPC9jb2RlPiBmaWxlIGluIDxjb2RlPl90YWdzLzwvY29kZT4gaXMgYSB0YWcgb2YgdGhlIGFwcGxpY2F0aW9uLiBJdCB3cml0ZXMgdGhlIGN1c3RvbSBlbGVtZW50LCBhbmRcbiAgIHtwYWQ6b3Blbi99cGFkOnNoYWRvd3twYWQ6Y2xvc2UvfSB3cml0ZXMgaXRzIHNoYWRvdyByb290IGFzIGEgPGNvZGU+Jmx0O3RlbXBsYXRlIHNoYWRvd3Jvb3Rtb2RlPVwib3BlblwiJmd0OzwvY29kZT4gLSB3aXRoIHRoZVxuICAgc3R5bGVzaGVldCBpbmxpbmVkLCBzaW5jZSBhIHNoYWRvdyByb290IHRha2VzIG5vIHN0eWxlcyBmcm9tIHRoZSBwYWdlIGFuZCBhIDxjb2RlPiZsdDtzdHlsZSZndDs8L2NvZGU+IGluIGFcbiAgIHRlbXBsYXRlIHdvdWxkIGhhdmUgaXRzIGJyYWNlcyByZWFkIGFzIFBBRCB0YWdzOjwvcD5cbntwYWQ6aGlnaGxpZ2h0ICdwYWQnLCBmaWxlPSdfdGFncy9jYXJkLnBhZCcvfVxuXG48aDI+Mi4gVGhlIHBhZ2UgdXNlcyBpdCBsaWtlIGFueSB0YWc8L2gyPlxuPHA+UGFyYW1ldGVycyBmb3Igd2hhdCB0aGUgdGFnIHdyaXRlcywgY29udGVudCBmb3IgdGhlIGxpZ2h0IERPTSB0aGUgYnJvd3NlciBzbG90cyBpbiAtXG4gICA8Y29kZT5zbG90PVwiZm9vdGVyXCI8L2NvZGU+IGdvZXMgdG8gdGhlIDxjb2RlPiZsdDtzbG90IG5hbWU9XCJmb290ZXJcIiZndDs8L2NvZGU+IG9mIHRoZSByb290OjwvcD5cbntwYWQ6aGlnaGxpZ2h0ICdwYWQnfVxue2FwcDpjYXJkIHRpdGxlPSdSZXZlbnVlJywgdG9uZT0nZ29vZCd9XG4gIDxwIGNsYXNzPVwic3RhdFwiPnskcmV2ZW51ZX08L3A+XG4gIDxhIHNsb3Q9XCJmb290ZXJcIiBocmVmPVwiP3JlcG9ydFwiPkRldGFpbHM8L2E+XG57L2FwcDpjYXJkfVxuey9wYWQ6aGlnaGxpZ2h0fVxuXG48aDI+My4gQSBtb2R1bGUgdXBncmFkZXMgaXQ8L2gyPlxuPHA+PGNvZGU+Y3VzdG9tRWxlbWVudHMuZGVmaW5lPC9jb2RlPiBpbiBhIG1vZHVsZSBvZiA8Y29kZT53d3cvPC9jb2RlPi4gVGhlIGVsZW1lbnQgZmluZHMgdGhlIHJvb3QgUEFEIHJlbmRlcmVkIGluXG4gICA8Y29kZT50aGlzLnNoYWRvd1Jvb3Q8L2NvZGU+IGFuZCBvbmx5IGFkZHMgYmVoYXZpb3VyOyBiZWZvcmUgdGhlIG1vZHVsZSByYW4sIHRoZSBlbGVtZW50IGFscmVhZHkgc2hvd2VkOjwvcD5cbntwYWQ6c291cmNlIG9ubHk9J3d3dzplbGVtZW50cy90YWJzLmpzJy99XG5cbjxoMj40LiBEYXRhLCBwb3N0cyBhbmQgZm9ybXM8L2gyPlxuPHVsPlxuICA8bGk+QXR0cmlidXRlcyBjYXJyeSB2YWx1ZXMgKDxjb2RlPnZhbHVlPVwie3BhZDpvcGVuL30kbWluZXtwYWQ6Y2xvc2UvfVwiPC9jb2RlPikgYW5kIEpTT04gKDxjb2RlPml0ZW1zPVwie3BhZDpvcGVuL31eaXRlbXN7cGFkOmNsb3NlL31cIjwvY29kZT4pO1xuICAgICAgQ1NTIGNhbiBzdHlsZSBieSBhbiBhdHRyaWJ1dGUgYmVmb3JlIGFueSBzY3JpcHQgcnVuczogPGNvZGU+Omhvc3QoW3ZhbHVlPVwiM1wiXSk8L2NvZGU+LjwvbGk+XG4gIDxsaT5BIHBvc3Qgc2VuZHMgdGhlIHNlc3Npb24ncyBDU1JGIHRva2VuIGluIHRoZSA8Y29kZT5YLUNTUkYtVG9rZW48L2NvZGU+IGhlYWRlciwgcmVhZCBmcm9tXG4gICAgICA8Y29kZT4mbHQ7bWV0YSBuYW1lPVwiY3NyZi10b2tlblwiJmd0OzwvY29kZT47IHRoZSBwYWdlIGFuc3dlcnMgdGhlIEpTT04gb2YgPGNvZGU+JHBhZEV4cG9zZTwvY29kZT4uPC9saT5cbiAgPGxpPkEgZm9ybS1hc3NvY2lhdGVkIGVsZW1lbnQgLSA8Y29kZT5zdGF0aWMgZm9ybUFzc29jaWF0ZWQgPSB0cnVlPC9jb2RlPiBhbmRcbiAgICAgIDxjb2RlPkVsZW1lbnRJbnRlcm5hbHMuc2V0Rm9ybVZhbHVlPC9jb2RlPiAtIHBvc3RzIGl0cyB2YWx1ZSB3aXRoIGEge3BhZDpvcGVuL31wYWQ6Zm9ybXtwYWQ6Y2xvc2UvfSBsaWtlIGFuXG4gICAgICA8Y29kZT4mbHQ7aW5wdXQmZ3Q7PC9jb2RlPiwgYW5kIDxjb2RlPnBhZFZhbGlkYXRlPC9jb2RlPiBjaGVja3MgaXQgb24gdGhlIHNlcnZlci48L2xpPlxuICA8bGk+QSBsaWJyYXJ5IHdvcmtzIHRoZSBzYW1lOiBMaXQgcmVhZHMgUEFEJ3MgSlNPTiBmcm9tIGFuIGF0dHJpYnV0ZSBpbnRvIGEgcHJvcGVydHkuPC9saT5cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J1dlYiBjb21wb25lbnRzIG9uIGEgUEFEIHBhZ2UnL31cbjxwIGNsYXNzPVwibGVkZVwiPlxuICBDdXN0b20gZWxlbWVudHMgYW5kIHNoYWRvdyBET00gYXJlIHRoZSBicm93c2VyJ3Mgb3duIGNvbXBvbmVudHMuIFBBRCB3cml0ZXMgdGhlbSB3aXRoIHRoZWlyXG4gIHNoYWRvdyByb290IGFscmVhZHkgaW4gcGxhY2UgLSBkZWNsYXJhdGl2ZSBzaGFkb3cgRE9NIC0gYW5kIGEgc21hbGwgbW9kdWxlIGFkZHMgYmVoYXZpb3VyLlxuPC9wPlxuXG48aDI+MS4gQSBQQUQgY3VzdG9tIHRhZyB3cml0ZXMgdGhlIGVsZW1lbnQ8L2gyPlxuPHA+QSA8Y29kZT4ucGFkPC9jb2RlPiBmaWxlIGluIDxjb2RlPl90YWdzLzwvY29kZT4gaXMgYSB0YWcgb2YgdGhlIGFwcGxpY2F0aW9uLiBJdCB3cml0ZXMgdGhlIGN1c3RvbSBlbGVtZW50LCBhbmRcbiAgIHtwYWQ6b3Blbi99cGFkOnNoYWRvd3twYWQ6Y2xvc2UvfSB3cml0ZXMgaXRzIHNoYWRvdyByb290IGFzIGEgPGNvZGU+Jmx0O3RlbXBsYXRlIHNoYWRvd3Jvb3Rtb2RlPVwib3BlblwiJmd0OzwvY29kZT4gLSB3aXRoIHRoZVxuICAgc3R5bGVzaGVldCBpbmxpbmVkLCBzaW5jZSBhIHNoYWRvdyByb290IHRha2VzIG5vIHN0eWxlcyBmcm9tIHRoZSBwYWdlIGFuZCBhIDxjb2RlPiZsdDtzdHlsZSZndDs8L2NvZGU+IGluIGFcbiAgIHRlbXBsYXRlIHdvdWxkIGhhdmUgaXRzIGJyYWNlcyByZWFkIGFzIFBBRCB0YWdzOjwvcD5cbntwYWQ6aGlnaGxpZ2h0ICdwYWQnLCBmaWxlPSdfdGFncy9jYXJkLnBhZCcvfVxuXG48aDI+Mi4gVGhlIHBhZ2UgdXNlcyBpdCBsaWtlIGFueSB0YWc8L2gyPlxuPHA+UGFyYW1ldGVycyBmb3Igd2hhdCB0aGUgdGFnIHdyaXRlcywgY29udGVudCBmb3IgdGhlIGxpZ2h0IERPTSB0aGUgYnJvd3NlciBzbG90cyBpbiAtXG4gICA8Y29kZT5zbG90PVwiZm9vdGVyXCI8L2NvZGU+IGdvZXMgdG8gdGhlIDxjb2RlPiZsdDtzbG90IG5hbWU9XCJmb290ZXJcIiZndDs8L2NvZGU+IG9mIHRoZSByb290OjwvcD5cbntwYWQ6aGlnaGxpZ2h0ICdwYWQnfVxue2FwcDpjYXJkIHRpdGxlPSdSZXZlbnVlJywgdG9uZT0nZ29vZCd9XG4gIDxwIGNsYXNzPVwic3RhdFwiPnskcmV2ZW51ZX08L3A+XG4gIDxhIHNsb3Q9XCJmb290ZXJcIiBocmVmPVwiP3JlcG9ydFwiPkRldGFpbHM8L2E+XG57L2FwcDpjYXJkfVxuey9wYWQ6aGlnaGxpZ2h0fVxuXG48aDI+My4gQSBtb2R1bGUgdXBncmFkZXMgaXQ8L2gyPlxuPHA+PGNvZGU+Y3VzdG9tRWxlbWVudHMuZGVmaW5lPC9jb2RlPiBpbiBhIG1vZHVsZSBvZiA8Y29kZT53d3cvPC9jb2RlPi4gVGhlIGVsZW1lbnQgZmluZHMgdGhlIHJvb3QgUEFEIHJlbmRlcmVkIGluXG4gICA8Y29kZT50aGlzLnNoYWRvd1Jvb3Q8L2NvZGU+IGFuZCBvbmx5IGFkZHMgYmVoYXZpb3VyOyBiZWZvcmUgdGhlIG1vZHVsZSByYW4sIHRoZSBlbGVtZW50IGFscmVhZHkgc2hvd2VkOjwvcD5cbntwYWQ6c291cmNlIG9ubHk9J3d3dzplbGVtZW50cy90YWJzLmpzJy99XG5cbjxoMj40LiBEYXRhLCBwb3N0cyBhbmQgZm9ybXM8L2gyPlxuPHVsPlxuICA8bGk+QXR0cmlidXRlcyBjYXJyeSB2YWx1ZXMgKDxjb2RlPnZhbHVlPVwie3BhZDpvcGVuL30kbWluZXtwYWQ6Y2xvc2UvfVwiPC9jb2RlPikgYW5kIEpTT04gKDxjb2RlPml0ZW1zPVwie3BhZDpvcGVuL31eaXRlbXN7cGFkOmNsb3NlL31cIjwvY29kZT4pO1xuICAgICAgQ1NTIGNhbiBzdHlsZSBieSBhbiBhdHRyaWJ1dGUgYmVmb3JlIGFueSBzY3JpcHQgcnVuczogPGNvZGU+Omhvc3QoW3ZhbHVlPVwiM1wiXSk8L2NvZGU+LjwvbGk+XG4gIDxsaT5BIHBvc3Qgc2VuZHMgdGhlIHNlc3Npb24ncyBDU1JGIHRva2VuIGluIHRoZSA8Y29kZT5YLUNTUkYtVG9rZW48L2NvZGU+IGhlYWRlciwgcmVhZCBmcm9tXG4gICAgICA8Y29kZT4mbHQ7bWV0YSBuYW1lPVwiY3NyZi10b2tlblwiJmd0OzwvY29kZT47IHRoZSBwYWdlIGFuc3dlcnMgdGhlIEpTT04gb2YgPGNvZGU+JHBhZEV4cG9zZTwvY29kZT4uPC9saT5cbiAgPGxpPkEgZm9ybS1hc3NvY2lhdGVkIGVsZW1lbnQgLSA8Y29kZT5zdGF0aWMgZm9ybUFzc29jaWF0ZWQgPSB0cnVlPC9jb2RlPiBhbmRcbiAgICAgIDxjb2RlPkVsZW1lbnRJbnRlcm5hbHMuc2V0Rm9ybVZhbHVlPC9jb2RlPiAtIHBvc3RzIGl0cyB2YWx1ZSB3aXRoIGEge3BhZDpvcGVuL31wYWQ6Zm9ybXtwYWQ6Y2xvc2UvfSBsaWtlIGFuXG4gICAgICA8Y29kZT4mbHQ7aW5wdXQmZ3Q7PC9jb2RlPiwgYW5kIDxjb2RlPnBhZFZhbGlkYXRlPC9jb2RlPiBjaGVja3MgaXQgb24gdGhlIHNlcnZlci48L2xpPlxuICA8bGk+QSBsaWJyYXJ5IHdvcmtzIHRoZSBzYW1lOiBMaXQgcmVhZHMgUEFEJ3MgSlNPTiBmcm9tIGFuIGF0dHJpYnV0ZSBpbnRvIGEgcHJvcGVydHkuPC9saT5cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>meta </font><font color="red">title=<font color="black">'</font>Web components on a PAD page<font color="black">'</font></font>/}</b><br>&lt;p class="lede"&gt;<br>  Custom elements and shadow DOM are the browser's own components. PAD writes them with their<br>  shadow root already in place - declarative shadow DOM - and a small module adds behaviour.<br>&lt;/p&gt;<br><br>&lt;h2&gt;1. A PAD custom tag writes the element&lt;/h2&gt;<br>&lt;p&gt;A &lt;code&gt;.pad&lt;/code&gt; file in &lt;code&gt;_tags/&lt;/code&gt; is a tag of the application. It writes the custom element, and<br>   <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>shadow</font><font color="red"></font>}</b> writes its shadow root as a &lt;code&gt;&lt;template shadowrootmode="open"&gt;&lt;/code&gt; - with the<br>   stylesheet inlined, since a shadow root takes no styles from the page and a &lt;code&gt;&lt;style&gt;&lt;/code&gt; in a<br>   template would have its braces read as PAD tags:&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font><font color="black">,</font> file=<font color="black">'</font>_tags/card.pad<font color="black">'</font></font>/}</b><br><br>&lt;h2&gt;2. The page uses it like any tag&lt;/h2&gt;<br>&lt;p&gt;Parameters for what the tag writes, content for the light DOM the browser slots in -<br>   &lt;code&gt;slot="footer"&lt;/code&gt; goes to the &lt;code&gt;&lt;slot name="footer"&gt;&lt;/code&gt; of the root:&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><br><b>{<font color="blue"><font color="purple">app</font><font color="black"><b>:</b></font>card </font><font color="red">title=<font color="black">'</font>Revenue<font color="black">'</font><font color="black">,</font> tone=<font color="black">'</font>good<font color="black">'</font></font>}</b><br>  &lt;p class="stat"&gt;<b>{<font color="green"><font color="red">$</font>revenue</font>}</b>&lt;/p&gt;<br>  &lt;a slot="footer" href="?report"&gt;Details&lt;/a&gt;<br><b>{/<font color="blue"><font color="purple">app</font><font color="black"><b>:</b></font>card</font><font color="red"></font>}</b><br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>highlight</font><font color="red"></font>}</b><br><br>&lt;h2&gt;3. A module upgrades it&lt;/h2&gt;<br>&lt;p&gt;&lt;code&gt;customElements.define&lt;/code&gt; in a module of &lt;code&gt;www/&lt;/code&gt;. The element finds the root PAD rendered in<br>   &lt;code&gt;this.shadowRoot&lt;/code&gt; and only adds behaviour; before the module ran, the element already showed:&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>source </font><font color="red">only=<font color="black">'</font>www<font color="black">:</font>elements/tabs.js<font color="black">'</font></font>/}</b><br><br>&lt;h2&gt;4. Data, posts and forms&lt;/h2&gt;<br>&lt;ul&gt;<br>  &lt;li&gt;Attributes carry values (&lt;code&gt;value="<b>{<font color="green"><font color="red">$</font>mine</font>}</b>"&lt;/code&gt;) and JSON (&lt;code&gt;items="{^items}"&lt;/code&gt;);<br>      CSS can style by an attribute before any script runs: &lt;code&gt;:host([value="3"])&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A post sends the session's CSRF token in the &lt;code&gt;X-CSRF-Token&lt;/code&gt; header, read from<br>      &lt;code&gt;&lt;meta name="csrf-token"&gt;&lt;/code&gt;; the page answers the JSON of &lt;code&gt;$padExpose&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A form-associated element - &lt;code&gt;static formAssociated = true&lt;/code&gt; and<br>      &lt;code&gt;ElementInternals.setFormValue&lt;/code&gt; - posts its value with a <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form</font><font color="red"></font>}</b> like an<br>      &lt;code&gt;&lt;input&gt;&lt;/code&gt;, and &lt;code&gt;padValidate&lt;/code&gt; checks it on the server.&lt;/li&gt;<br>  &lt;li&gt;A library works the same: Lit reads PAD's JSON from an attribute into a property.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjaxf631c2dde0df7b375511865237c659e3"></div>
+                      <div id="padAjaxd01572eb91c756703e87ef26ab029682"></div>
                       <script>
-                      padAjaxf631c2dde0df7b375511865237c659e3 = new XMLHttpRequest();
-                      padAjaxf631c2dde0df7b375511865237c659e3.onreadystatechange=function() {
-                      if (padAjaxf631c2dde0df7b375511865237c659e3.readyState === 4) {
-                      if (padAjaxf631c2dde0df7b375511865237c659e3.status === 200) {
-                      document.getElementById("padAjaxf631c2dde0df7b375511865237c659e3").innerHTML=padAjaxf631c2dde0df7b375511865237c659e3.responseText;
+                      padAjaxd01572eb91c756703e87ef26ab029682 = new XMLHttpRequest();
+                      padAjaxd01572eb91c756703e87ef26ab029682.onreadystatechange=function() {
+                      if (padAjaxd01572eb91c756703e87ef26ab029682.readyState === 4) {
+                      if (padAjaxd01572eb91c756703e87ef26ab029682.status === 200) {
+                      document.getElementById("padAjaxd01572eb91c756703e87ef26ab029682").innerHTML=padAjaxd01572eb91c756703e87ef26ab029682.responseText;
                       } else {
-                      document.getElementById("padAjaxf631c2dde0df7b375511865237c659e3").innerHTML=padAjaxf631c2dde0df7b375511865237c659e3.statusText;
+                      document.getElementById("padAjaxd01572eb91c756703e87ef26ab029682").innerHTML=padAjaxd01572eb91c756703e87ef26ab029682.statusText;
                       }
                       }
                       }
-                      padAjaxf631c2dde0df7b375511865237c659e3.open("GET","http://localhost/pad/inputs/?stepper&padInclude",true);
-                      padAjaxf631c2dde0df7b375511865237c659e3.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: inputs - Page: taginput<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2"></font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">taginput.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top"></td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Tag input<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">taginput </font><font color="red"><font color="black">'</font>topics<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Topics<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>pad<font color="black">,</font> forms<font color="black">'</font><font color="black">,</font> suggestions=<font color="black">'</font>pad<font color="black">,</font> php<font color="black">,</font> forms<font color="black">,</font> htmx<font color="black">,</font> charts<font color="black">,</font> games<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>80<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">taginput </font><font color="red"><font color="black">'</font>guests<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Guests<font color="black">'</font><font color="black">,</font> most=5</font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax7f094c744a018aad39adea53399369be"></div>
-                      <script>
-                      padAjax7f094c744a018aad39adea53399369be = new XMLHttpRequest();
-                      padAjax7f094c744a018aad39adea53399369be.onreadystatechange=function() {
-                      if (padAjax7f094c744a018aad39adea53399369be.readyState === 4) {
-                      if (padAjax7f094c744a018aad39adea53399369be.status === 200) {
-                      document.getElementById("padAjax7f094c744a018aad39adea53399369be").innerHTML=padAjax7f094c744a018aad39adea53399369be.responseText;
-                      } else {
-                      document.getElementById("padAjax7f094c744a018aad39adea53399369be").innerHTML=padAjax7f094c744a018aad39adea53399369be.statusText;
-                      }
-                      }
-                      }
-                      padAjax7f094c744a018aad39adea53399369be.open("GET","http://localhost/pad/inputs/?taginput&padInclude",true);
-                      padAjax7f094c744a018aad39adea53399369be.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: inputs - Page: timepicker<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2"></font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">timepicker.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top"></td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Time picker<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">timepicker </font><font color="red"><font color="black">'</font>pickup<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Pick-up time<font color="black">'</font><font color="black">,</font> min=<font color="black">'</font>08<font color="black">:</font>00<font color="black">'</font><font color="black">,</font> max=<font color="black">'</font>18<font color="black">:</font>00<font color="black">'</font><font color="black">,</font> every=15<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>time<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">timepicker </font><font color="red"><font color="black">'</font>alarm<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Alarm<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax5d62b92d5d033a5fca591e20c643a4f8"></div>
-                      <script>
-                      padAjax5d62b92d5d033a5fca591e20c643a4f8 = new XMLHttpRequest();
-                      padAjax5d62b92d5d033a5fca591e20c643a4f8.onreadystatechange=function() {
-                      if (padAjax5d62b92d5d033a5fca591e20c643a4f8.readyState === 4) {
-                      if (padAjax5d62b92d5d033a5fca591e20c643a4f8.status === 200) {
-                      document.getElementById("padAjax5d62b92d5d033a5fca591e20c643a4f8").innerHTML=padAjax5d62b92d5d033a5fca591e20c643a4f8.responseText;
-                      } else {
-                      document.getElementById("padAjax5d62b92d5d033a5fca591e20c643a4f8").innerHTML=padAjax5d62b92d5d033a5fca591e20c643a4f8.statusText;
-                      }
-                      }
-                      }
-                      padAjax5d62b92d5d033a5fca591e20c643a4f8.open("GET","http://localhost/pad/inputs/?timepicker&padInclude",true);
-                      padAjax5d62b92d5d033a5fca591e20c643a4f8.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: inputs - Page: toggle<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2"></font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">toggle.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top"></td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>Toggle<font color="black">'</font></font>/}</b><br><b>{<font color="blue">about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue">toggle </font><font color="red"><font color="black">'</font>news<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Send me the newsletter<font color="black">'</font><font color="black">,</font> checked</font>/}</b><br>  <b>{<font color="blue">toggle </font><font color="red"><font color="black">'</font>dark<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Dark mode<font color="black">'</font><font color="black">,</font> on=<font color="black">'</font>dark<font color="black">'</font><font color="black">,</font> off=<font color="black">'</font>light<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue">toggle </font><font color="red"><font color="black">'</font>terms<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>I accept the terms<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>accepted<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b><br><br><b>{<font color="blue">received</font><font color="red"></font>/}</b><br><br>&lt;h2&gt;The template&lt;/h2&gt;<br><b>{<font color="blue">source</font><font color="red"></font>/}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjaxc6eb9bb117f4b17ebd62cd465ac317eb"></div>
-                      <script>
-                      padAjaxc6eb9bb117f4b17ebd62cd465ac317eb = new XMLHttpRequest();
-                      padAjaxc6eb9bb117f4b17ebd62cd465ac317eb.onreadystatechange=function() {
-                      if (padAjaxc6eb9bb117f4b17ebd62cd465ac317eb.readyState === 4) {
-                      if (padAjaxc6eb9bb117f4b17ebd62cd465ac317eb.status === 200) {
-                      document.getElementById("padAjaxc6eb9bb117f4b17ebd62cd465ac317eb").innerHTML=padAjaxc6eb9bb117f4b17ebd62cd465ac317eb.responseText;
-                      } else {
-                      document.getElementById("padAjaxc6eb9bb117f4b17ebd62cd465ac317eb").innerHTML=padAjaxc6eb9bb117f4b17ebd62cd465ac317eb.statusText;
-                      }
-                      }
-                      }
-                      padAjaxc6eb9bb117f4b17ebd62cd465ac317eb.open("GET","http://localhost/pad/inputs/?toggle&padInclude",true);
-                      padAjaxc6eb9bb117f4b17ebd62cd465ac317eb.send();
+                      padAjaxd01572eb91c756703e87ef26ab029682.open("GET","http://localhost/pad/webcomponents/?guide&padInclude",true);
+                      padAjaxd01572eb91c756703e87ef26ab029682.send();
                       </script>
                     </td>
                   </tr>

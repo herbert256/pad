@@ -211,7 +211,7 @@
     // of this application. The marker goes on this file's own tag that brought it in, the
     // first of the engine's includers (file:line:column, innermost first) that is this file
     // - line 1 when none is, as the language server does. The text search below found the
-    // snippet's tag where this file held the same text, the {$lost} of an {if} branch that
+    // snippet's tag where this file held the same text, the {$lost} of an {pad:if} branch that
     // never runs, instead of the {lost} that included it.
 
     $other = NULL;
@@ -306,7 +306,7 @@
 
   // A place the engine names in a text - a line, and a column counted in characters - as
   // [ column, width ] in the editor's units (editUnits): the width the tag's when the line
-  // holds it there, else the name or the {tag} that starts there - pad-lsp.js's spot().
+  // holds it there, else the name or the {function:tag} that starts there - pad-lsp.js's spot().
   // NULL when the text has no such line.
 
   function editSpot ( $text, $line, $column, $tag ) {

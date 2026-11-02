@@ -1,4 +1,4 @@
-{data 'xs'}[{"n":"a"},{"n":"b"},{"n":"c"}]{/data}
-{xs}{if 1 eq 1}[{&current}{property:current/}{current@/}{first@}F{/first@}]{/if}{/xs}
-{xs}{case 1}{when 1}[{&current}{&last}]{/case}{/xs}
-{xs}{if 1 eq 1}{if 2 eq 2}[{&count}]{/if}{/if}{/xs}
+{pad:data 'xs'}[{"n":"a"},{"n":"b"},{"n":"c"}]{/pad:data}
+{data:xs}{pad:if 1 eq 1}[{&current}{property:current/}{property:current@/}{property:first@}F{/property:first@}]{/pad:if}{/data:xs}
+{data:xs}{pad:case 1}{pad:when 1}[{&current}{&last}]{/pad:case}{/data:xs}
+{data:xs}{pad:if 1 eq 1}{pad:if 2 eq 2}[{&count}]{/pad:if}{/pad:if}{/data:xs}

@@ -1,6 +1,6 @@
 <?php
 
-  // The image filters of {img} - the files of pad/subs/filters/types/, as the engine reads them
+  // The image filters of {pad:img} - the files of pad/subs/filters/types/, as the engine reads them
   // - each on the same picture, www/patterns/photos/tulips.jpg, with the template that makes
   // it: the example the filter's own file gives, its picture this application's, and the
   // first sentence of that file's comment as its line. A placeholder is shown with the

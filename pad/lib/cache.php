@@ -26,7 +26,7 @@
   // Whether a hit could send this page as this request sends it, to anyone: the configured
   // content type, status 200, no header the page's PHP added - a hit sends none of them -
   // and nothing of this visitor in it. A page that prints the visitor's own padSesID, as
-  // {ajax} URLs do, handed that id to everyone who hit it - and a page holding the
+  // {pad:ajax} URLs do, handed that id to everyone who hit it - and a page holding the
   // session's CSRF token would hand that to everyone, whose own posts it then fails, and
   // one holding the request's CSP nonce would carry a nonce no later header names.
 
@@ -56,7 +56,7 @@
     if ( count ( (array) ( $GLOBALS ['padExpose'] ?? [] ) ) )
       return FALSE;
 
-    // A {push} inside a {nocache} part pushes anew on every hit, into a page kept with its
+    // A {pad:push} inside a {pad:nocache} part pushes anew on every hit, into a page kept with its
     // stacks already filled in - lib/stack.php: the stack showed the first visitor's push.
 
     if ( $GLOBALS ['padStackNocache'] ?? FALSE )
@@ -66,7 +66,7 @@
       if ( ! preg_match ( '/^(X-Powered-By:|Set-Cookie: pad(Ses|Req)ID=)/i', $header ) )
         return FALSE;
 
-    // What is stored is judged - for a page with {nocache} parts the text without them, the
+    // What is stored is judged - for a page with {pad:nocache} parts the text without them, the
     // parts rendering afresh on every hit (lib/nocache.php).
 
     $body = $body ?? $padOutput;
@@ -82,9 +82,9 @@
 
   }
 
-  // What a page shows this machine alone: the box of a {debug}, which padDebug writes for a
+  // What a page shows this machine alone: the box of a {pad:debug}, which padDebug writes for a
   // local request only (tags/_lib/debug.php). Built for one, the page went into the cache, and
-  // every visitor after it was answered with the values {debug} keeps from them.
+  // every visitor after it was answered with the values {pad:debug} keeps from them.
 
   function padCacheLocalOnly ( $html ) {
 

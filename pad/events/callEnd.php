@@ -6,7 +6,7 @@
   // pad/info/types/stats/end.php reports that total as 'call' and subtracts it from the
   // request time, so the 'usr' figure measures the engine itself and not the code it ran.
 
-  // The start can be missing: the {trace} tag switches $padInfo on in the middle of exactly
+  // The start can be missing: the {pad:trace} tag switches $padInfo on in the middle of exactly
   // such a call, so this end arrives for a call that began while the events were off. A call
   // that was not stamped is not charged.
 

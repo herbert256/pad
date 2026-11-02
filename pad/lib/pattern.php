@@ -8,7 +8,7 @@
   //   $css  = padPattern ( 'dots', [ 'as' => 'url', 'colors' => [ '#fff', '#c9d6e3' ] ] );
   //
   // padPattern       the SVG of a pattern - or with 'as' => 'url' its CSS url() - the same
-  //                  bytes as {pattern} writes for the same options; a wrong argument is
+  //                  bytes as {pattern:dots} writes for the same options; a wrong argument is
   //                  reported with padError, an unknown kind answers ''
   // padPatternKinds  the kinds, sorted
 

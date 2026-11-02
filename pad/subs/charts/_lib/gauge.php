@@ -2,8 +2,8 @@
 
   // One number against its range: a half ring filled up to the value.
   //
-  //   {chart 'gauge', value=72, label='Disk in use', unit='%'}
-  //   {chart 'gauge', data='server', value='cpu', from=0, to=100, bands='60, 85', target=75}
+  //   {chart:gauge value=72, label='Disk in use', unit='%'}
+  //   {chart:gauge data='server', value='cpu', from=0, to=100, bands='60, 85', target=75}
   //
   // value= is the number itself, or the field of the first row that holds it - else the
   // first numeric field. from= and to= are the ends of the scale (0 and 100); a value past

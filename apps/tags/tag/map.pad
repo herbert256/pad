@@ -1,5 +1,5 @@
-{ignore}
-<p><code>{map}</code> draws countries filled by a value of their row - a choropleth - as
+{pad:ignore}
+<p><code>{pad:map}</code> draws countries filled by a value of their row - a choropleth - as
 inline SVG on the server (the map subsystem in <code>pad/subs/maps/</code>), from Natural Earth's
 outlines kept in PAD itself: no JavaScript, no map tiles, no remote service. The first
 parameter picks the view, a file of <code>pad/subs/maps/types/</code>: the whole world, or a crop of
@@ -20,7 +20,7 @@ territories of Australia in the Australian Albers projection. There
 (<code>Noord-Holland</code>), and the title reads <code>by state</code> or <code>by
 province</code>.</p>
 
-<p>The rows come from <code>data=</code> as for <a href="?tag/chart">{chart}</a>, or from the
+<p>The rows come from <code>data=</code> as for <a href="?tag/chart">{chart:bar}</a>, or from the
 content of the pair - JSON, YAML, XML or CSV, read before the level walks it. <code>key</code>
 names the country, written as an alpha-2 code (<code>NL</code>), an alpha-3 code
 (<code>NLD</code>) or the English name; <code>value</code> the number. Rows of one country
@@ -37,5 +37,9 @@ drawn all in grey.</p>
 <p>Every country has a <code>&lt;title&gt;</code> - <code>Netherlands: 1,234</code>, the
 tooltip on hover - and the <code>&lt;desc&gt;</code> lists the values for a screen reader.
 Countries too small to keep an outline at the scale drawn are shown as small diamonds. For a
-single flag, see <a href="?tag/country">{country}</a>.</p>
-{/ignore}
+single flag, see <a href="?tag/country">{pad:country}</a>.</p>
+{/pad:ignore}
+
+<h3>Map views</h3>
+<p>Each kind has its own description and usage example:</p>
+<p>{!subsystemKindLinks}</p>

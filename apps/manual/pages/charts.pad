@@ -1,11 +1,11 @@
-{meta title='Charts'/}
+{pad:meta title='Charts'/}
 
-<p>{tag 'chart'/} draws a chart as inline SVG on the server. There is no JavaScript, so the
+<p>{app:tag 'chart:bar'/} draws a chart as inline SVG on the server. There is no JavaScript, so the
 chart prints, works where scripts do not run, and caches like any other output. A
 <code>bar</code> chart puts columns on a zero baseline; a <code>line</code> chart draws a line
 over a light wash with the last point marked.</p>
 
-{example 'fragments/charts_1'/}
+{common:example 'fragments/charts_1'/}
 
 <p>The first word picks the kind of chart, after the job the data has to do:</p>
 
@@ -27,15 +27,12 @@ for a name.</p>
 
 <p>Every kind is a file of <code>pad/subs/charts/types/</code>, and the files there are the kinds
 there are - the <a href="../reference/">reference</a> lists them, each with the pages that draw
-it. The kind can also be the name of the tag: <code>{open/}chart:pie data='budget'/{close/}</code>
-is the chart type, the same chart as <code>{open/}chart 'pie', data='budget'/{close/}</code>, and
-so is the bare <code>{open/}pie data='budget'/{close/}</code> when no tag, store, field or
-sequence has the name.</p>
+it. Select a kind with its qualified name: <code>{pad:open/}chart:pie data='budget'/{pad:close/}</code>.</p>
 
 <h2>Where the numbers come from</h2>
 
 <ul>
-  <li><code>data='sales'</code> - a {tag 'data'/} store, a sequence store, an array of the page's PHP, or a <code>_data</code> file of that name.</li>
+  <li><code>data='sales'</code> - a {app:tag 'data'/} store, a sequence store, an array of the page's PHP, or a <code>_data</code> file of that name.</li>
   <li><code>value=</code> names the field with the number, <code>label=</code> the field for the axis. Without them the first numeric field is the value and the first other field the label.</li>
   <li><code>sequence='fibonacci', rows=12</code> - the first terms of a sequence, for demo data straight away.</li>
 </ul>
@@ -46,14 +43,14 @@ sequence has the name.</p>
 each other with <code>stacked</code>, or a line each, named at its end. A legend above the plot
 names them in the fixed order of the colours; eight series at most.</p>
 
-{example 'fragments/charts_3'/}
+{common:example 'fragments/charts_3'/}
 
 <h2>Horizontal bars</h2>
 
 <p><code>hbar</code> lays the bars down, the names on the left - for long names or many
 categories.</p>
 
-{example 'fragments/charts_4'/}
+{common:example 'fragments/charts_4'/}
 
 <h2>Pie and donut</h2>
 
@@ -61,7 +58,7 @@ categories.</p>
 each value and its share. Past eight parts the smallest are folded into one grey
 <em>Other</em>. A donut shows the total in its middle.</p>
 
-{example 'fragments/charts_5'/}
+{common:example 'fragments/charts_5'/}
 
 <h2>Scatter and bubble</h2>
 
@@ -69,14 +66,14 @@ each value and its share. Past eight parts the smallest are folded into one grey
 colours the dots by a field, <code>trend</code> draws the least-squares line. A bubble's
 <code>size=</code> sets its area.</p>
 
-{example 'fragments/charts_6'/}
+{common:example 'fragments/charts_6'/}
 
 <h2>Heatmap</h2>
 
 <p>Two categories as columns (<code>x=</code>) and rows (<code>y=</code>), each cell coloured by
 its value in seven steps of one hue, with the scale underneath.</p>
 
-{example 'fragments/charts_7'/}
+{common:example 'fragments/charts_7'/}
 
 <h2>Sankey</h2>
 
@@ -84,7 +81,7 @@ its value in seven steps of one hue, with the scale underneath.</p>
 <code>value=</code>. The columns follow the flows; flows that go round in a circle are an
 error.</p>
 
-{example 'fragments/charts_8'/}
+{common:example 'fragments/charts_8'/}
 
 <h2>Network</h2>
 
@@ -92,21 +89,21 @@ error.</p>
 together - the same data always draws the same picture - and <code>layout='radial'</code> sets
 them on a circle; <code>arrows</code> shows the direction.</p>
 
-{example 'fragments/charts_9'/}
+{common:example 'fragments/charts_9'/}
 
 <h2>Treemap and sunburst</h2>
 
 <p><code>levels=</code> lists the fields above the parts, the outermost first. A treemap nests
 rectangles, a sunburst rings; the colour is that of the outermost level.</p>
 
-{example 'fragments/charts_10'/}
+{common:example 'fragments/charts_10'/}
 
 <h2>Sparklines</h2>
 
-<p>{tag 'sparkline'/} is a line chart the size of a word, without axes, to stand in a sentence
+<p>{app:tag 'chart:sparkline'/} is a line chart the size of a word, without axes, to stand in a sentence
 or a table cell.</p>
 
-{example 'fragments/charts_2'/}
+{common:example 'fragments/charts_2'/}
 
 <h2>Drawn in the browser</h2>
 
@@ -114,7 +111,7 @@ or a table cell.</p>
 options and draws nothing itself, and a script draws the same SVG - character for character -
 where the chart stands. Every kind has it.</p>
 
-{example 'fragments/charts_11'/}
+{common:example 'fragments/charts_11'/}
 
 <h2>Accessible and themeable</h2>
 

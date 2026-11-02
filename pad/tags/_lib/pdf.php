@@ -1,17 +1,17 @@
 <?php
 
-  // PDF documents - the {pdf} tag. What a page renders between {pdf} and {/pdf} is laid out
+  // PDF documents - the {pad:pdf} tag. What a page renders between {pad:pdf} and {/pad:pdf} is laid out
   // as a PDF and sent instead of the page: an invoice, a ticket, a report made from the same
   // template language as the page, with no library and no browser behind it. The writer is
   // PHP alone: PDF 1.4 with the standard fonts every reader has - Helvetica, Times and
   // Courier, WinAnsi encoded, measured with their AFM widths so lines wrap where a reader
   // draws them - on A4 or Letter pages with margins.
   //
-  //   {pdf file='invoice-2026-114', size='A4'}
+  //   {pad:pdf file='invoice-2026-114', size='A4'}
   //     <h1>Invoice</h1> <table>...</table>
-  //   {/pdf}
-  //   {pdf download}                      the whole page as the document, as an attachment
-  //   {pdf preview} ... {/pdf}            the content on a sheet, with links to its PDF
+  //   {/pad:pdf}
+  //   {pad:pdf download}                      the whole page as the document, as an attachment
+  //   {pad:pdf preview} ... {/pad:pdf}            the content on a sheet, with links to its PDF
   //
   // The HTML it reads is a small part of HTML, enough for a document: h1-h6, p, b/strong,
   // i/em, u, code, a (blue, and a link in the document for an http, https or mailto
@@ -21,11 +21,11 @@
   // (DCTDecode). Any other element is read for its text; script, style, svg, forms and the
   // head are left out.
   //
-  // padPdfAsk      a {pdf} of the page - its content, or the whole page - and its options
+  // padPdfAsk      a {pad:pdf} of the page - its content, or the whole page - and its options
   // padPdfAnswer   the document for exits/exits.php, its headers set: Content-Type
   //                application/pdf, Content-Disposition inline (or attachment) with a name
-  // padPdfSheet    the content as HTML on a sheet of paper - a preview, or a {pdf} that a
-  //                {page} renders into another page - with the links to the document
+  // padPdfSheet    the content as HTML on a sheet of paper - a preview, or a {pad:pdf} that a
+  //                {pad:page} renders into another page - with the links to the document
   // padPdfMake     HTML to the bytes of a PDF
   //
   // What the printables (subs/printables/) write is laid out by place, not by flow: an
@@ -39,14 +39,14 @@
   // is left out. The sheets carry no page numbers (padPdfPrintSheet and the functions after
   // it, at the end of this file).
   //
-  // This file is the {pdf} tag's, included when a page uses it. lib/pdf.php, loaded on
-  // every request, keeps what is asked of every page - padPdfStore, the request's {pdf},
+  // This file is the {pad:pdf} tag's, included when a page uses it. lib/pdf.php, loaded on
+  // every request, keeps what is asked of every page - padPdfStore, the request's {pad:pdf},
   // and padPdfAsked, whether it answers a document - and padPdf, padPdfMake for a page's
   // own PHP, which includes this file on its call:
   //                padPdf ( $html, [ 'size' => 'Letter', 'title' => 'Report' ] )
   //
-  // A page with a {pdf} answers the document only when it is the page a request asked for:
-  // rendered by {page} into another page - a preview, a card - the content is shown on its
+  // A page with a {pad:pdf} answers the document only when it is the page a request asked for:
+  // rendered by {pad:page} into another page - a preview, a card - the content is shown on its
   // sheet and the response stays the page's. With preview the page asked for shows the
   // sheet too, until it is asked with &padPdf. A data answer (json, csv) and a live
   // region's answer go first. The document carries no date of its making, so the same page
@@ -114,10 +114,10 @@
       '500 500 500 500 500 500 722 444 444 444 444 444 278 278 278 278 500 556 500 500 500 500 500 570 500 556 556 556 556 444 500 444' ];
 
   // ------------------------------------------------------------------------------------
-  // The request: a {pdf} asks, exits/exits.php answers.
+  // The request: a {pad:pdf} asks, exits/exits.php answers.
   // ------------------------------------------------------------------------------------
 
-  // The first {pdf} of a page sets the options; the content of every one is taken, in
+  // The first {pad:pdf} of a page sets the options; the content of every one is taken, in
   // order. $html NULL is the single tag: the whole page.
 
   function padPdfAsk ( $html, $opts ) {
@@ -137,7 +137,7 @@
   }
 
   // The document in place of the page. The parts are still in the engine's encoding, as a
-  // {live} region's are; the whole page is $padOutput itself. Tidy knows only HTML, and the
+  // {pad:live} region's are; the whole page is $padOutput itself. Tidy knows only HTML, and the
   // page cache keeps the content type the request started with - both stay out.
 
   function padPdfAnswer ( $page ) {
@@ -166,9 +166,9 @@
 
   }
 
-  // The HTML the document is made of: the whole page, or the parts of the {pdf} pairs with
+  // The HTML the document is made of: the whole page, or the parts of the {pad:pdf} pairs with
   // their tables of contents filled from their own headings - the page's are filled when
-  // the page is written out, after the parts were taken, and a {toc} in a document was its
+  // the page is written out, after the parts were taken, and a {pad:toc} in a document was its
   // raw marker in the PDF.
 
   function padPdfHtml ( $page ) {
@@ -182,13 +182,13 @@
 
   }
 
-  // The content as HTML on a sheet - the preview of a document, and a {pdf} inside a
-  // {page} - with, for a preview, the links that ask this page for its PDF. The rules come
+  // The content as HTML on a sheet - the preview of a document, and a {pad:pdf} inside a
+  // {pad:page} - with, for a preview, the links that ask this page for its PDF. The rules come
   // once per request; the markup goes into content still to be walked, so it is protected.
 
   function padPdfSheet ( $content, $file, $nested ) {
 
-    // Once per output - the page, a {cache} section being kept, a mail - as the widgets have
+    // Once per output - the page, a {pad:cache} section being kept, a mail - as the widgets have
     // it, where once per PHP process: a kept section was stored without it, and on a page
     // where it came back alone the sheet had no paper, no shadow and no table rules.
 
@@ -330,7 +330,7 @@
 
     // A NUL byte ended libxml's reading there, and past 256 nested elements it dropped the
     // rest: everything after either was missing from the document - text from a database or
-    // a file, echoed into a {pdf} or handed to padPdf, can hold both.
+    // a file, echoed into a {pad:pdf} or handed to padPdf, can hold both.
 
     $html = str_replace ( "\0", '', mb_scrub ( (string) $html, 'UTF-8' ) );
 
@@ -1445,7 +1445,7 @@
   }
 
   // The bytes of a JPEG an address names: a data: address, or a file of www/<application>/
-  // by its name or by the root-relative address {asset} and {img} write. Anything else - a
+  // by its name or by the root-relative address {pad:asset} and {pad:img} write. Anything else - a
   // PNG, another site's picture - is NULL, and the alt text stands in.
 
   function padPdfImageData ( $src ) {

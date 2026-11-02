@@ -1,16 +1,16 @@
-{data 'myCsv'}
+{pad:data 'myCsv'}
 AA,BB,CC,DD,EE
 11,12,13,14,15
 21,22,23,24,25
 31,32,33,34,35
-{/data}
+{/pad:data}
 
 <table border='1'>
-  {myCsv}
+  {data:myCsv}
     <tr>
-      {fields}
+      {property:fields}
         <td>{$value}</td>
-      {/fields}
+      {/property:fields}
     </tr>
-  {/myCsv}
+  {/data:myCsv}
 </table>

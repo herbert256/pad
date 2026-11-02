@@ -3,8 +3,8 @@
   // The sitemap, generated from the file tree: in PAD every page is a file, so the list of
   // pages needs no route table - the application directory is the list.
   //
-  //   {sitemap} ... {/sitemap}          every page as a row: page, url, lastmod
-  //   {sitemap 'docs'} ... {/sitemap}   the pages below one directory
+  //   {pad:sitemap} ... {/pad:sitemap}          every page as a row: page, url, lastmod
+  //   {pad:sitemap 'docs'} ... {/pad:sitemap}   the pages below one directory
   //   ?sitemap.xml   /shop/sitemap.xml  the XML sitemap, with $padSitemap on
   //   ?robots.txt    /shop/robots.txt   a robots.txt that points to it
   //
@@ -12,7 +12,7 @@
   // _lib, _include, _inits files and their kind), a directory with a _guard.php in it (its
   // pages are guarded), a bracketed route like products/[id] (it has no one address), a page
   // with no template whose PHP only redirects - padBack included - restarts or writes (an
-  // action, like todoPost), a page whose template says {meta sitemap=false}, and every name
+  // action, like todoPost), a page whose template says {pad:meta sitemap=false}, and every name
   // $padSitemapSkip lists - a page, or a directory and all below it. lastmod is the newest
   // time among the page's files.
   //
@@ -30,7 +30,7 @@
   // padSitemapAnswer the request for one of the two answered, when the application has no
   //                  page of that name and $padSitemap is on
   //
-  // Read when a page uses {sitemap} (types/pad.php), when padSitemapPages runs and when
+  // Read when a page uses {pad:sitemap} (types/pad.php), when padSitemapPages runs and when
   // inits/sitemap.php answers sitemap.xml or robots.txt.
 
   function padSitemapWalk ( $prefix ) {
@@ -112,8 +112,8 @@
 
     }
 
-    // The {meta} tags are found as the page assembly finds them - padMetaFind over the text
-    // with its comments and {ignore} parts set aside (padLayoutMask) - so a {meta
+    // The {pad:meta} tags are found as the page assembly finds them - padMetaFind over the text
+    // with its comments and {pad:ignore} parts set aside (padLayoutMask) - so a {pad:meta
     // sitemap=false} that is commented out leaves the page listed, where a pattern over the
     // raw file took it for the real one.
 

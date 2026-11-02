@@ -7,7 +7,7 @@
   // which of them, 'analog, binary, words' unless given; zone= the time zone they tell, the
   // visitor's own unless given - Europe/Amsterdam, America/New_York ...
   //
-  //   {clocks show='analog, words', zone='Asia/Tokyo'/}
+  //   {toy:clocks show='analog, words', zone='Asia/Tokyo'/}
 
   $padClockShow = [];
 

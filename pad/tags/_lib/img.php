@@ -1,13 +1,13 @@
 <?php
 
-  // Thumbnails - the {img} tag. A picture of www/<application>/ is resized with GD to the
+  // Thumbnails - the {pad:img} tag. A picture of www/<application>/ is resized with GD to the
   // size the page shows it at, once, and written beside the entry point as a file the web
   // server sends on its own: www/<application>/_thumbs/<hash>.<ext>. The page gets an
   // <img> with its width and height (no layout shift), loading="lazy", decoding="async"
   // and a srcset whose second picture is made at twice the size for a sharp screen.
   //
-  //   {img 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'}
-  //   {img 'photos/dunes.jpg', width=300, fit='contain', format='webp', quality=70, alt=''}
+  //   {pad:img 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'}
+  //   {pad:img 'photos/dunes.jpg', width=300, fit='contain', format='webp', quality=70, alt=''}
   //
   // padImg         the <img> element of a picture, '' when it cannot be made
   // padImgSource   the picture's path, checked: inside www/<application>/, a JPEG, PNG,
@@ -226,7 +226,7 @@
 
   }
 
-  // The source: a name below www/<application>/ as {asset} takes it - the same check of
+  // The source: a name below www/<application>/ as {pad:asset} takes it - the same check of
   // its form, then the real path must still be inside - and a picture GD reads. A JPEG
   // whose camera stood on its side says so in its EXIF orientation; the sizes are those of
   // the picture turned upright.

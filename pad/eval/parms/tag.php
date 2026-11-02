@@ -1,17 +1,17 @@
 <?php
 
   // Invokes a PAD tag as though it were a function: padTagAsFunction() rebuilds the source
-  // {name 'parm',...}$value{/name} and runs it back through the engine, returning what it
+  // {property:name 'parm',...}$value{/property:name} and runs it back through the engine, returning what it
   // renders. This is how an ordinary tag can appear in the middle of an expression or pipe.
   //
   // The piped value becomes the content of that source, so under $padProtectValues it goes
-  // in protected and the tag works on it as text. Piping into {code} or {sandbox} is the
+  // in protected and the tag works on it as text. Piping into {pad:code} or {pad:sandbox} is the
   // one way to ask for the opposite - run this value as PAD - and there it goes in whole.
 
   // The SQL of a database tag is the template's own (padDbTagSql, lib/db.php), called as a
   // function too: field("phone from staff where name = $who") - one string written in the
   // expression, a value put in as $name. Rebuilt below as the tag's quoted parameter, any
-  // value passed for a string the template wrote: {echo field($q)} ran a whole statement of
+  // value passed for a string the template wrote: {pad:echo field($q)} ran a whole statement of
   // the visitor's, field("x from t where city = '" . $city . "'") the SQL a request value
   // closed the quote of.
 
@@ -23,7 +23,7 @@
     $value = padProtect ( $value );
 
   // The arguments are values as well, written into that source between quotes: as they
-  // were, {echo 'x' | echo($v)} with $v = '{php:getcwd}' ran the PHP function. Their braces
+  // were, {pad:echo 'x' | echo($v)} with $v = '{php:getcwd}' ran the PHP function. Their braces
   // go in as &open; and &close;, which the quoted parameter hands the tag as the braces
   // themselves - text, never a tag - and padTagAsFunction escapes the backslash and the
   // quote. They went in wholly protected for a while, and the tag was handed the stand-ins

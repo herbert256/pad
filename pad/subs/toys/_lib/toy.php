@@ -2,20 +2,20 @@
 
   // The toys subsystem: small live simulations and visual toys played in the browser.
   //
-  //   {toy 'life', pattern='glider'/}
+  //   {toy:life pattern='glider'/}
   //   {toy:mandelbrot iterations=400/}
-  //   {boids birds=150/}
-  //   {lsystem}
+  //   {toy:boids birds=150/}
+  //   {toy:lsystem}
   //     axiom: X
   //     X: F+[[X]-X]-F[-FX]+X
   //     F: FF
   //     angle: 25
-  //   {/lsystem}
+  //   {/toy:lsystem}
   //
   // A toy is a file of subs/toys/types/ - <toy>.php checks the options the toy is given and hands
   // them on - and the files there are the toys there are (padToyTypes, lib/toy.php);
   // www/assets/toys/ holds its script, <toy>.js, which runs it, and its style, <toy>.css.
-  // subs/toys/toy.php is the body the {toy} tag and the toy: type both run; a toy's file runs in
+  // subs/toys/toy.php is the body the {toy:life} tag and the toy: type both run; a toy's file runs in
   // padToyTag and answers padToy ( ... ), the frame every toy shares: its name, a status line
   // its script writes to, the stage it draws on, a line for its counters, a bar for its
   // controls, and its configuration as JSON for the script.
@@ -72,7 +72,7 @@
 
   }
 
-  // The tag the toy is written as, for what a message says: {toy 'x'}, {toy:x} or {x}.
+  // The tag the toy is written as, for what a message says: {toy:x}, {toy:x} or {data:x}.
 
   function padToyWhat () {
 
@@ -87,8 +87,7 @@
 
   }
 
-  // The first value the toy is given - the parameter of {lsystem 'dragon'} and {toy:lsystem
-  // 'dragon'}, the second of {toy 'lsystem', 'dragon'}, whose first names the toy - as text.
+  // The toy's first parameter as text, such as 'dragon' in {toy:lsystem 'dragon'}.
 
   function padToyValue ( $default = '' ) {
 
@@ -207,7 +206,7 @@
 
   }
 
-  // A bare option given or not - {life wrap/}.
+  // A bare option given or not - {toy:life wrap/}.
 
   function padToyFlag ( $option ) {
 

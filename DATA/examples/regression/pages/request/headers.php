@@ -2,7 +2,7 @@
 
   // Every web response carries the security headers - no type sniffing, the address kept
   // out of other sites' Referer, no framing by another site - and a page with a strict
-  // policy gets this request's nonce in its script-src, the same one {nonce} wrote into its
+  // policy gets this request's nonce in its script-src, the same one {pad:nonce} wrote into its
   // script tag; a header the page sent itself stands. There were none of these headers.
 
   $plain  = padCurl ( $padGoExt . 'request/vars&padInclude' );

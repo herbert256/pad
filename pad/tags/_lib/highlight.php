@@ -3,7 +3,7 @@
   // The workings of the syntax colouring (lib/highlight.php): the language a name stands
   // for, the combined pattern of each language, PHP through PHP's own tokenizer, the
   // escaping, the marked lines - read by padHighlightTokens, padHighlight and
-  // padHighlightKnown when they colour a text, and with the {highlight} tag.
+  // padHighlightKnown when they colour a text, and with the {pad:highlight} tag.
 
   function padHighlightLanguage ( $lang ) {
 

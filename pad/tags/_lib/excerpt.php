@@ -1,11 +1,11 @@
 <?php
 
-  // Excerpts - the {excerpt} tag. A long text cut to a number of whole words, with an
+  // Excerpts - the {pad:excerpt} tag. A long text cut to a number of whole words, with an
   // ellipsis where it was cut; given search words, the cut is centred on the first place
   // one of them stands and every match is marked.
   //
-  //   {excerpt $post, words=40}
-  //   {excerpt $page.body, words=30, highlight=$q, html}
+  //   {pad:excerpt $post, words=40}
+  //   {pad:excerpt $page.body, words=30, highlight=$q, html}
   //
   // padExcerpt        the excerpt as HTML: escaped, the matches in <mark>
   // padExcerptTerms   the search words of a query, longest first - fifty at most, each cut

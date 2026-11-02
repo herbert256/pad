@@ -11,7 +11,7 @@
 
   // The tag form takes a bare function name and its arguments after a space -
   // {php:strlen 'abc'}; a call written out with ( ) is the expression form,
-  // {echo $x | php:strlen(@)}. As a tag the ( ) stayed in the name, and {php:strlen(@)} or
+  // {pad:echo $x | php:strlen(@)}. As a tag the ( ) stayed in the name, and {php:strlen(@)} or
   // {php:intdiv(1,0)} ended on a raw call_user_func_array TypeError.
 
   if ( str_contains ( $padTag [$pad], '(' ) )

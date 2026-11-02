@@ -4,7 +4,7 @@
   // neither sheets nor a bar - the text of the half as it is.
 
   $answer = trim ( padUnprotect ( padUnescape ( padCode ( <<<'PAD'
-{data 'nobody'}[]{/data}
+{pad:data 'nobody'}[]{/pad:data}
 {printable:labels data='nobody'}{$name}@else@No labels to print.{/printable:labels}
 PAD ) ) ) );
 

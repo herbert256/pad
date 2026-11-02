@@ -7,7 +7,7 @@
   // The terms made so far are kept between calls, with the values they took as keys, so a
   // term is one step on from the last one kept and the "is it new" question is an isset.
   // Each term rebuilt the whole history and searched it with in_array, on the order of m^3
-  // for m terms: {sequence recaman, rows=6000} took 16 seconds and sequence:recaman(6000) ran
+  // for m terms: {sequence:recaman rows=6000} took 16 seconds and sequence:recaman(6000) ran
   // into the time limit. The kept terms are pqRecamanMade()'s, which bool.php asks as well. A
   // position between two whole ones has no term.
 
@@ -48,7 +48,7 @@ function pqRecaman($n)
   // for it outgrew the memory a request has - from=100000000 asked for gigabytes and ended
   // the request on the memory limit. It answers a float past the integer range, which ends
   // the run as an overflowed term does, as pell and polite do: answered FALSE it only dropped
-  // the candidate, and {sequence recaman, from=100000000, to=200000000} walked a million
+  // the candidate, and {sequence:recaman from=100000000, to=200000000} walked a million
   // positions that have no term here.
 
   if ( ! pqBoolWhole ( $n ) )

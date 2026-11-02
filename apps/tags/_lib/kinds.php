@@ -16,24 +16,24 @@
   function tagsKindTypes () {
 
     return [
-      'chart'    => [ 'Chart types',       'A kind of {chart} each, inline SVG',                 'both',   " data='rows', label='field', value='field'/}", 'chart'   ],
-      'game'     => [ 'Games',             'A game of {game} each, played in the browser',       'both',   '/}',                                           'game'    ],
-      'toy'      => [ 'Toys',              'A toy of {toy} each, a live simulation',             'both',   '/}',                                           'toy'     ],
-      'diagram'  => [ 'Diagram types',     'A kind of {diagram} each, laid out on the server',   'pair',   "}\n  ...\n{/diagram:%s}",                     'diagram' ],
-      'widget'   => [ 'Widgets',           'A widget of {widget} each, working without script',  'both',   " 'name'}...{/widget:%s}",                     'widget'  ],
-      'barcode'  => [ 'Barcode types',     'A symbology of {barcode} each, encoded on the server', 'single', " 'value'/}",                                'barcode' ],
-      'embed'    => [ 'Embed providers',   'A provider of {embed} each, loaded on a click',      'single', " 'address', title='...'/}",                   'embed'   ],
-      'input'    => [ 'Rich form fields',  'A field of {input} each, posted by any form',        'single', " 'name', label='...'/}",                      'input'   ],
-      'icon'     => [ 'Icons',             'An icon of {icon} each, an outline on a 24 grid',    'single', ' size=24/}',                                  'icon'    ],
-      'fake'     => [ 'Fake kinds',        'A kind of {fake} each, the same for the same seed',  'both',   '/}',                                           'fake'    ],
-      'sequence' => [ 'Sequence types',    'A sequence of {sequence} each, its terms a loop',    'both',   " rows=10}{\$%s} {/sequence:%s}",              'sequence' ],
-      'pattern'  => [ 'Patterns',          'A pattern of {pattern} each, seeded SVG art',        'single', ' seed=7/}',                                   'pattern' ],
-      'sound'    => [ 'Sounds',            'A sound of {sound} each, synthesised in the browser', 'single', '/}',                                          'sound'   ],
-      'printable' => [ 'Printables',       'A kind of {printable} each, pages made for paper',   'pair',   "}\n  ...\n{/printable:%s}",                   'printable' ],
-      'notation' => [ 'Notations',         'A notation of {notation} each, drawn on the server',  'both',   " 'text'/}",                                   'notation' ],
-      'section'  => [ 'Sections',          'A block of a landing page of {section} each, pure CSS', 'pair', " title='...'}\n  ...\n{/section:%s}",          'section' ],
-      'effect'   => [ 'Effects',           'An effect of {effect} each, motion and decoration',  'both',   "}...{/effect:%s}",                             'effect'  ],
-      'jsonld'   => [ 'JSON-LD kinds',     'A Schema.org object of {jsonld} each, for search engines', 'single', " data='rows'/}",                          'jsonld'  ],
+      'chart'    => [ 'Chart types',       'inline SVG',                 'both',   " data='rows', label='field', value='field'/}", 'chart'   ],
+      'game'     => [ 'Games',             'played in the browser',       'both',   '/}',                                           'game'    ],
+      'toy'      => [ 'Toys',              'a live simulation',             'both',   '/}',                                           'toy'     ],
+      'diagram'  => [ 'Diagram types',     'laid out on the server',   'pair',   "}\n  ...\n{/diagram:%s}",                     'diagram' ],
+      'widget'   => [ 'Widgets',           'working without script',  'both',   " 'name'}...{/widget:%s}",                     'widget'  ],
+      'barcode'  => [ 'Barcode types',     'encoded on the server', 'single', " 'value'/}",                                'barcode' ],
+      'embed'    => [ 'Embed providers',   'loaded on a click',      'single', " 'address', title='...'/}",                   'embed'   ],
+      'input'    => [ 'Rich form fields',  'A field of {pad:input} each, posted by any form',        'single', " 'name', label='...'/}",                      'input'   ],
+      'icon'     => [ 'Icons',             'Outlines on a 24 grid',    'single', ' size=24/}',                                  'icon'    ],
+      'fake'     => [ 'Fake kinds',        'the same for the same seed',  'both',   '/}',                                           'fake'    ],
+      'sequence' => [ 'Sequence types',    'Mathematical sequences, sources and operations, iterated as loops',    'both',   " rows=10}{\$%s} {/sequence:%s}",              'sequence' ],
+      'pattern'  => [ 'Patterns',          'seeded SVG art',        'single', ' seed=7/}',                                   'pattern' ],
+      'sound'    => [ 'Sounds',            'synthesised in the browser', 'single', '/}',                                          'sound'   ],
+      'printable' => [ 'Printables',       'pages made for paper',   'pair',   "}\n  ...\n{/printable:%s}",                   'printable' ],
+      'notation' => [ 'Notations',         'drawn on the server',  'both',   " 'text'/}",                                   'notation' ],
+      'section'  => [ 'Sections',          'pure CSS', 'pair', " title='...'}\n  ...\n{/section:%s}",          'section' ],
+      'effect'   => [ 'Effects',           'Motion and decoration',  'both',   "}...{/effect:%s}",                             'effect'  ],
+      'jsonld'   => [ 'JSON-LD kinds',     'for search engines', 'single', " data='rows'/}",                          'jsonld'  ],
     ];
 
   }
@@ -89,9 +89,18 @@
           'syntax'  => $syntax,
           'parms'   => [],
           'options' => [],
-          'see'     => [ "pad:$tag" ] ];
+          'see'     => padTagBuiltIn ( $tag ) ? [ "pad:$tag" ] : [] ];
 
       }
+
+    foreach ( padSequenceOperations as $operation ) {
+      $sample = tagsKindExample ( $operation, 'auto' );
+      $kinds ["$operation:auto"] = [
+        'name' => 'auto', 'type' => $operation, 'key' => "$operation:auto",
+        'link' => "tag/$operation/auto", 'about' => 'Selects the source from the parameters, preserving their order.',
+        'text' => '', 'group' => 'kind-sequence', 'form' => 'both', 'syntax' => $sample ['source'],
+        'parms' => [], 'options' => [], 'see' => [ 'sequence:range', 'sequence:prime' ] ];
+    }
 
     return $kinds;
 
@@ -208,13 +217,22 @@
 
     $example = fn ( $title, $about, $source = '', $page = '', $app = '', $run = TRUE ) => compact ( 'title', 'about', 'source', 'page', 'app', 'run' );
 
+    if ( $kind === 'auto' and in_array ( $type, padSequenceOperations, TRUE ) ) {
+      $args = [ 'sequence' => "'1..5'", 'action' => "'1..5', reverse",
+                'keep' => "'1..10', prime", 'make' => "'1..5', add=10",
+                'remove' => "'1..10', prime" ] [$type];
+      return $example ( 'A source selected from its parameters',
+                        'A range, list, count, stored sequence or type can be supplied at runtime.',
+                        "{{$type}:auto $args}{\$sequence} {/{$type}:auto}" );
+    }
+
     switch ( $type ) {
 
       case 'chart':
         foreach ( tagsKindAppPages ( 'charts' ) as $page => $source )
-          if ( preg_match ( "/\\{(?:chart '$kind'|chart:$kind\\b|$kind\\b)/", $source ) )
+          if ( preg_match ( "/\\{chart:$kind\\b/", $source ) )
             return $example ( 'From the charts application', "Its example $page there, with the data it draws.", '', $page, 'charts' );
-        return $example ( "A $kind chart", '', "{chart:$kind data='rows', label='label', value='value'/}" );
+        return $example ( "A $kind chart", 'Provide the chart data as rows.', "{chart:$kind data='rows', label='label', value='value'/}", '', '', FALSE );
 
       case 'game':
         $file = APPS . "games/_games/$kind.pad";
@@ -227,30 +245,27 @@
       case 'widget':
       case 'diagram':
       case 'notation':
-        if ( $type == 'notation' and is_file ( PAD . "tags/$kind.php" ) and $first = tagsExamples ( $kind ) [0] ?? NULL )
-          return $example ( 'From the tags application', "Its example on the page of {pad:$kind}, the built-in tag that draws it.", '', $first ['page'] );
-        $dir = ( $kind == 'copy' ) ? 'copy' : $type;
+        $dir = in_array ( $kind, [ 'copy', 'chess' ], TRUE ) ? $kind : $type;
         foreach ( tagsKindAppPages ( 'tags', "examples/$dir" ) as $page => $source )
-          if ( $dir == 'copy' or str_starts_with ( basename ( $page ), "$kind-" )
-               or preg_match ( "/\\{(?:$type:$kind\\b|$type '$kind'|$kind\\b)|type='$kind'/", $source )
-               or ( $kind == 'flowchart' and preg_match ( '/\\{diagram[\\s}](?![^}]*type=)/', $source ) ) )
-            return $example ( 'From the tags application', "Its example on the page of {pad:$dir}.", '', $page );
+          if ( in_array ( $dir, [ 'copy', 'chess' ], TRUE ) or str_starts_with ( basename ( $page ), "$kind-" )
+               or preg_match ( "/\\{" . $type . ":$kind\\b/", $source ) )
+            return $example ( 'From the tags application', "Its example in the $dir collection.", '', $page );
         foreach ( tagsKindAppPages ( 'tags', "examples/$dir", '.src' ) as $page => $source )
           if ( str_starts_with ( basename ( $page ), "$kind-" ) )
-            return $example ( 'From the tags application', "Its example on the page of {pad:$dir}, shown but not run here.", $source, '', '', FALSE );
+            return $example ( 'From the tags application', "Its example in the $dir collection, shown but not run here.", $source, '', '', FALSE );
         return $example ( "A $kind", '', "{{$type}:$kind/}" );
 
       case 'input':
-        $line = preg_match ( "/\\{(?:input:)?$kind\\s[^\\n]*?\\/\\}/", padFileGet ( APPS . 'inputs/form.pad' ), $m ) ? $m [0] : "{input:$kind 'field', label='Try it'/}";
-        $line = preg_replace ( [ '/^\{' . $kind . '\s/', "/, rules='[^']*'/" ], [ "{input:$kind ", '' ], $line );
+        $line = preg_match ( "/\\{input:$kind\\s[^\\n]*?\\/\\}/", padFileGet ( APPS . 'inputs/form.pad' ), $m ) ? $m [0] : "{input:$kind 'field', label='Try it'/}";
+        $line = preg_replace ( "/, rules='[^']*'/", '', $line );
         return $example ( 'A field of a form', "As the inputs application's form writes it - its rules= left out, which the page's own template must hold.",
-                          "{form 'try'}\n  $line\n  <button>Send</button>\n{/form}" );
+                          "{pad:form 'try'}\n  $line\n  <button>Send</button>\n{/pad:form}" );
 
       case 'barcode':
         return $example ( "A $kind barcode", '', "{barcode:$kind '" . ( tagsKindBarcodeValues () [$kind] ?? '12345' ) . "'/}" );
 
       case 'embed':
-        list ( $address, $title ) = tagsKindEmbedAddresses () [$kind] ?? [ '', $kind ];
+        list ( $address, $title ) = tagsKindEmbedAddresses () [$kind == 'auto' ? 'youtube' : $kind] ?? [ '', $kind ];
         return $example ( "An $kind embed", 'Nothing of the provider is asked before the click.', "{embed:$kind '$address', title='$title'/}" );
 
       case 'icon':
@@ -258,10 +273,13 @@
                           "{icon:$kind size=16/} {icon:$kind size=24/} {icon:$kind size=48/}\n<span style=\"color:#2a78d6\">{icon:$kind size=48/}</span>" );
 
       case 'fake':
+        if ( $kind == 'rows' )
+          return $example ( 'Rows of several fields', 'Names and mail addresses from one seed.',
+                            "{fake:rows 'name, email', rows=3, seed=7}<p>{\$name} — {\$email}</p>{/fake:rows}" );
         return $example ( "Three fake values", 'The same on every request.', "<ul>\n  <li>{fake:$kind/}</li>\n  <li>{fake:$kind/}</li>\n  <li>{fake:$kind/}</li>\n</ul>" );
 
       case 'pattern':
-        $line = preg_match ( "/^\\s*(\\{pattern '$kind'[^\\n]*\\/\\})\\s*$/m", tagsKindText ( $type, $kind ) [2], $m ) ? $m [1] : "{pattern:$kind seed=7/}";
+        $line = preg_match ( "/^\\s*(\\{pattern:{$kind}[^\\n]*\\/\\})\\s*$/m", tagsKindText ( $type, $kind ) [2], $m ) ? $m [1] : "{pattern:$kind seed=7/}";
         return $example ( "A $kind pattern", 'The example its file gives.', $line );
       case 'sound':
         return $example ( "The $kind sound", 'A button that plays it, and its WAV file.', "{sound:$kind download/}" );
@@ -314,7 +332,7 @@
   }
 
   // The example of each JSON-LD kind: the tag with fields of its own, its script made visible
-  // by the html pipe - a faq's rows from a {data} block, a breadcrumb the trail of its page.
+  // by the html pipe - a faq's rows from a {pad:data} block, a breadcrumb the trail of its page.
 
   function tagsKindJsonLdExamples () {
 
@@ -326,14 +344,14 @@
       'business'     => $pre ( "{jsonld:business type='Bakery', name='The Loaf', street='Main Street 1', city='Utrecht', country='NL', latitude='52.09074', longitude='5.12142', hours='Mo-Fr 08:00-18:00; Sa 08:00-16:00' | html/}" ),
       'course'       => $pre ( "{jsonld:course name='PAD in a day', description='The template language from the first tag to a shop.', provider='PAD Academy', providerurl='https://academy.example', code='PAD101' | html/}" ),
       'event'        => $pre ( "{jsonld:event name='PAD day', starts='2026-11-20 19:30', place='The Hall', address='Main Street 1, Utrecht', price='12.50', currency='EUR', availability='InStock' | html/}" ),
-      'faq'          => "{data 'questions'}\n[ { \"question\": \"Is it free?\", \"answer\": \"Yes, under the GPL.\" } ]\n{/data}\n" . $pre ( "{jsonld:faq data='questions' | html/}" ),
-      'itemlist'     => "{data 'soups'}\n[ { \"title\": \"Pea soup\", \"link\": \"?recipes/pea-soup\" },\n  { \"title\": \"Tomato soup\", \"link\": \"?recipes/tomato-soup\" } ]\n{/data}\n" . $pre ( "{jsonld:itemlist data='soups', name='Soups' | html/}" ),
+      'faq'          => "{pad:data 'questions'}\n[ { \"question\": \"Is it free?\", \"answer\": \"Yes, under the GPL.\" } ]\n{/pad:data}\n" . $pre ( "{jsonld:faq data='questions' | html/}" ),
+      'itemlist'     => "{pad:data 'soups'}\n[ { \"title\": \"Pea soup\", \"link\": \"?recipes/pea-soup\" },\n  { \"title\": \"Tomato soup\", \"link\": \"?recipes/tomato-soup\" } ]\n{/pad:data}\n" . $pre ( "{jsonld:itemlist data='soups', name='Soups' | html/}" ),
       'job'          => $pre ( "{jsonld:job title='Baker', description='Bread from 05:00, four days a week.', posted='2026-11-01', company='The Loaf', city='Utrecht', country='NL', employment='part time', salary='2400-2800', currency='EUR', per='month' | html/}" ),
       'organization' => $pre ( "{jsonld:organization name='PAD', url='https://pad.example', logo='logo.png', profiles='https://github.com/pad', phone='+31 30 123 4567', contact='customer service' | html/}" ),
       'person'       => $pre ( "{jsonld:person name='Ann Smith', job='Engineer', profiles='https://github.com/ann, https://social.example/@ann' | html/}" ),
       'product'      => $pre ( "{jsonld:product name='Aurora kettle', sku='AK-1', brand='Aurora', price='39.95', currency='EUR', availability='InStock' | html/}" ),
       'profile'      => $pre ( "{jsonld:profile name='Ann Smith', handle='ann', image='avatars/ann.jpg', profiles='https://github.com/ann', followers=340, posts=415, created='2025-01-10' | html/}" ),
-      'recipe'       => "{data 'soup'}\n{ \"name\": \"Pea soup\", \"image\": \"soup.jpg\", \"prep\": \"20 min\", \"cook\": \"1 h 30 min\", \"yield\": \"4\",\n  \"ingredients\": [ \"500 g split peas\", \"1 leek, sliced\", \"2 l water\" ],\n  \"steps\": [ \"Soak the peas overnight.\", \"Simmer it all for an hour and a half.\" ] }\n{/data}\n" . $pre ( "{jsonld:recipe data='soup' | html/}" ),
+      'recipe'       => "{pad:data 'soup'}\n{ \"name\": \"Pea soup\", \"image\": \"soup.jpg\", \"prep\": \"20 min\", \"cook\": \"1 h 30 min\", \"yield\": \"4\",\n  \"ingredients\": [ \"500 g split peas\", \"1 leek, sliced\", \"2 l water\" ],\n  \"steps\": [ \"Soak the peas overnight.\", \"Simmer it all for an hour and a half.\" ] }\n{/pad:data}\n" . $pre ( "{jsonld:recipe data='soup' | html/}" ),
       'restaurant'   => $pre ( "{jsonld:restaurant name='De Ketel', cuisine='Dutch', menu='?menu', street='Oudegracht 1', city='Utrecht', country='NL', hours='Tu-Su 17:00-23:00', prices='\$\$' | html/}" ),
       'software'     => $pre ( "{jsonld:software name='Pocket Ledger', type='mobile application', os='Android 12, iOS 17', category='finance application', price=0, rating='4.6', ratings=1523 | html/}" ),
       'video'        => $pre ( "{jsonld:video name='Making pea soup', thumbnail='soup.jpg', uploaded='2026-11-01T10:00:00+01:00', duration='4 min 12 s', player='https://video.example/embed/123', views=2347 | html/}" ),
@@ -376,18 +394,9 @@
 
   }
 
-  // Whether a kind is reached bare - {pie/} - as the engine resolves a bare name: a built-in
-  // tag of the name and a PHP function come first ({calendar} is the month calendar, {pack}
-  // PHP's pack()), and of the subsystems the first of padSubsystems that has the name; the
-  // icons and the fake kinds are never bare.
-
+  // Named subsystem tags always select their namespace explicitly.
   function tagsKindBare ( $type, $kind ) {
-
-    if ( is_file ( PAD . "tags/$kind.php" ) or function_exists ( $kind ) )
-      return FALSE;
-
-    return ( $type == 'sequence' ) ? ! padSubsystemBare ( $kind ) : padSubsystemBare ( $kind ) === $type;
-
+    return FALSE;
   }
 
   // The description on a kind's page: the ways it is written, then the comment at the top of
@@ -397,42 +406,26 @@
 
     $type  = $tag ['type'];
     $kind  = $tag ['name'];
+    if ( $kind === 'auto' and in_array ( $type, padSequenceOperations, TRUE ) )
+      return '<p>The <code>' . $type . ':auto</code> selector reads its source and operations from the parameters, in their written order. '
+           . 'Use a named kind when it is known, such as <code>{sequence:range \'1..5\'}</code> or <code>{action:reverse}</code>. '
+           . 'For a variable that holds only a kind name, use <code>{' . $type . ':$kind}</code>.</p>';
+
     $types = tagsKindTypes ();
     $of    = $types [$type] [4];
     $count = count ( tagsKindNames ( $type ) );
     $code  = fn ( $text ) => '<code>' . htmlspecialchars ( $text ) . '</code>';
 
-    $ways = [
-      'chart'    => [ "{chart:$kind .../}", "{chart '$kind', .../}" ],
-      'game'     => [ "{game:$kind/}", "{game '$kind'/}" ],
-      'toy'      => [ "{toy:$kind/}", "{toy '$kind'/}" ],
-      'diagram'  => [ "{diagram:$kind}...{/diagram:$kind}", "{diagram type='$kind'}...{/diagram}" ],
-      'widget'   => [ "{widget:$kind ...}", "{widget '$kind', ...}" ],
-      'barcode'  => [ "{barcode:$kind 'value'/}", "{barcode 'value', type='$kind'/}" ],
-      'embed'    => [ "{embed:$kind 'address'/}", "{embed 'address'/}, the provider known by the address" ],
-      'input'    => [ "{input:$kind 'name'/}" ],
-      'icon'     => [ "{icon:$kind/}", "{icon '$kind'/}" ],
-      'fake'     => [ "{fake:$kind/}", "{fake '$kind'/}" ],
-      'pattern'  => [ "{pattern:$kind .../}", "{pattern '$kind', .../}" ],
-      'sequence' => [ "{sequence:$kind}...{/sequence:$kind}", "sequence:$kind(8) in an expression, the eighth term" ],
-      'sound'    => [ "{sound:$kind/}", "{sound '$kind'/}" ],
-      'printable' => [ "{printable:$kind}...{/printable:$kind}", "{printable '$kind'}...{/printable}" ],
-      'notation' => [ "{notation:$kind 'text'/}", "{notation '$kind', 'text'/}" ],
-      'section'  => [ "{section:$kind ...}...{/section:$kind}", "{section '$kind', ...}...{/section}" ],
-      'effect'   => [ "{effect:$kind}...{/effect:$kind}", "{effect '$kind'}...{/effect}" ],
-      'jsonld'   => [ "{jsonld:$kind .../}", "{jsonld '$kind', .../}" ] ] [$type];
-
-    if ( tagsKindBare ( $type, $kind ) )
-      $ways [] = "{{$kind} ...}, bare, when no tag, field or store has the name";
-    elseif ( $type == 'notation' and is_file ( PAD . "tags/$kind.php" ) )
-      $ways [] = "{{$kind} ...}, the built-in tag {pad:$kind}, which comes before a field or store of the name";
+    $ways = [ $tag ['syntax'] ];
+    if ( $type == 'sequence' )
+      $ways [] = "sequence:$kind(8) in an expression, the eighth term";
 
     // The group's label in the sentence, lower case - but one that starts with an acronym,
     // JSON-LD kinds, as it is written.
 
     $label = preg_match ( '/^[A-Z]{2}/', $types [$type] [0] ) ? $types [$type] [0] : strtolower ( $types [$type] [0] );
 
-    $html = '<p>One of the ' . $count . ' ' . $label . ' of <a href="?tag/' . $of . '">' . $code ( '{pad:' . $of . '}' ) . '</a>, written '
+    $html = '<p>One of the ' . $count . ' ' . $label . ' of <a href="?tag/' . $of . '">' . $code ( $type . ':*' ) . '</a>, written '
           . implode ( ', ', array_map ( fn ( $way ) => preg_match ( '/^(\{.*?\}|\S+\))(.*)$/', $way, $m ) ? $code ( $m [1] ) . htmlspecialchars ( $m [2] ) : htmlspecialchars ( $way ), $ways ) )
           . '.</p>';
 

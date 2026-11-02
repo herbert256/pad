@@ -4,7 +4,7 @@
   // between them, turned by angle= (45 degrees; 0 stands them upright, 90 lays them down).
   // A tile repeated by a <pattern>: the seed changes nothing.
   //
-  //   {pattern 'stripes', size=12, angle=-30, colors='#fff, #e9c46a, #2a9d8f'/}
+  //   {pattern:stripes size=12, angle=-30, colors='#fff, #e9c46a, #2a9d8f'/}
 
   return [
 

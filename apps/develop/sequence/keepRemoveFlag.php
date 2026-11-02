@@ -7,13 +7,13 @@
 
   $space = str_repeat ( ' ', strlen ( $go ) );
 
-  $one = "{table}\n\n"
-       . "{demo}{sequence 25, push='mySequence'/} {/demo}\n\n"
-       . "{demo}{pull mySequence, make,   $type$go} {\$sequence} {/pull}{/demo}\n\n"
-       . "{demo}{pull mySequence, keep,   $type$go} {\$sequence} {/pull}{/demo}\n\n"
-       . "{demo}{pull mySequence, remove, $type$go} {\$sequence} {/pull}{/demo}\n\n"
-       . "{demo}{pull mySequence, flag,   $type$go} {\$sequence} {/pull}{/demo}\n\n"
-       . "{/table}";
+  $one = "{common:table}\n\n"
+       . "{common:demo}{sequence:loop 25, push='mySequence'/} {/common:demo}\n\n"
+       . "{common:demo}{pad:pull mySequence, make,   $type$go} {\$sequence} {/pad:pull}{/common:demo}\n\n"
+       . "{common:demo}{pad:pull mySequence, keep,   $type$go} {\$sequence} {/pad:pull}{/common:demo}\n\n"
+       . "{common:demo}{pad:pull mySequence, remove, $type$go} {\$sequence} {/pad:pull}{/common:demo}\n\n"
+       . "{common:demo}{pad:pull mySequence, flag,   $type$go} {\$sequence} {/pad:pull}{/common:demo}\n\n"
+       . "{/common:table}";
 
   file_put_contents ( APPS . "sequence/keepRemoveFlag/{$type}.pad", "$one\n", LOCK_EX );
 

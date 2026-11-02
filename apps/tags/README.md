@@ -3,7 +3,7 @@
 ## Introduction
 
 A page for every PAD tag, named with its type prefix: every built-in tag - `{pad:if}` - every
-kind of the ten subsystems - `{chart:pie}`, `{game:memory}`, `{toy:life}`, `{diagram:state}`,
+kind of the seventeen subsystems with tag prefixes - `{chart:pie}`, `{game:memory}`, `{toy:life}`, `{diagram:state}`,
 `{widget:tabs}`, `{barcode:ean13}`, `{embed:youtube}`, `{input:slider}`, `{icon:star}`,
 `{fake:email}` - and every sequence type, `{sequence:fibonacci}`: its name and what it does in
 one line, its syntax with the options that belong to that tag (not the handling options every
@@ -30,7 +30,7 @@ cheat sheet with the syntax of every tag, and a search.
 | `tag/<name>.php` | What the indexes read: the line, the group, the form, the syntax, the parameters, the options, the related tags |
 | `tag/<name>.pad` | The longer description |
 | `tag/_inits.pad`, `tag/_exits.pad`, `tag/_exits.php` | The tag page around the description: syntax, parameters and options above; examples, related tags and the neighbours by name below |
-| `examples/<name>/<n>-<slug>.pad` | A live example - first line `{meta title='...', about='...'/}`; with a paired `.php` for its data |
+| `examples/<name>/<n>-<slug>.pad` | A live example - first line `{pad:meta title='...', about='...'/}`; with a paired `.php` for its data |
 | `examples/<name>/<n>-<slug>.src` | An example that is shown but never run - a redirect, an exit, a mail |
 | `_config/config.php` | Switches `_common` off - the frame is reached as `common:padFrame` - and fixes the timezone |
 
@@ -42,3 +42,16 @@ The stylesheet is `www/tags/tags.css`; the frame's own, with the theme switcher,
 Write `tag/<name>.php` and `tag/<name>.pad`, and its examples under `examples/<name>/` -
 every index picks it up; nothing lists the tags by hand. A kind added to a subsystem, or a
 sequence type, has its page and its place in every index without a change here.
+
+## Subsystem options and helpers
+
+All twelve families in `padSubsystemKinds` are included in the same indexes, search and cheat
+sheet: maps, rules, OAuth providers, notification channels, AI providers, filters, holiday
+calendars, search languages, formats, spreadsheet functions, themes and palettes. Their pages
+are `kind/[family]/[kind]` and their labels use `family / kind`; their usage examples show the
+actual option, parameter or helper call. They do not introduce new tag prefixes.
+
+`apps/_common/_lib/subsystemCatalog.php` supplies both applications with these families, reads
+each kind's description from its source, and supplies usage examples. The engine's registry
+and directories determine membership. Examples needing credentials, files or message delivery
+are source only; safe examples render on their pages. The parent tag pages link every kind.

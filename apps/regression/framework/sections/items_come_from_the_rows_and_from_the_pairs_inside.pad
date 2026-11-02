@@ -1,9 +1,9 @@
-{data 'questions'}
+{pad:data 'questions'}
 [ { "question": "Why?", "answer": "Because." } ]
-{/data}
-{data 'more'}
+{/pad:data}
+{pad:data 'more'}
 [ "Where?", "When?" ]
-{/data}
+{/pad:data}
 {section:faq data='questions', title='FAQ'}
-  {more}{section:item $more}Soon.{/section:item}{/more}
+  {data:more}{section:item $more}Soon.{/section:item}{/data:more}
 {/section:faq}

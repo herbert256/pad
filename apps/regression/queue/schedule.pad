@@ -1,14 +1,14 @@
 <table>
-{entries}  <tr><td>{$name}</td><td>{$cron}</td><td>{$queue}</td><td>{$next}</td></tr>
-{/entries}</table>
+{array:entries}  <tr><td>{$name}</td><td>{$cron}</td><td>{$queue}</td><td>{$next}</td></tr>
+{/array:entries}</table>
 <ul>
-{faults}  <li>fault: {$name} ({$job}): {$error}</li>
-{/faults}</ul>
+{array:faults}  <li>fault: {$name} ({$job}): {$error}</li>
+{/array:faults}</ul>
 <ul>
-{due}  <li>{$at}: {$names}</li>
-{/due}</ul>
+{array:due}  <li>{$at}: {$names}</li>
+{/array:due}</ul>
 <ul>
-{ran}  <li>round {$round}: {$name} {$status}</li>
-{/ran}</ul>
+{array:ran}  <li>round {$round}: {$name} {$status}</li>
+{/array:ran}</ul>
 <p>heard: {$heard}</p>
 <p>again: ran {$againRuns} time, the asker inside it found it {$againInner}</p>

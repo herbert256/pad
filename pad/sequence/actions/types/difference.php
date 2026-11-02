@@ -7,7 +7,7 @@
   // Both of those do nothing without a store to compare against, which left the two halves
   // holding the input and concatenated it with itself, so like them this does nothing when
   // no store was named - or when the one named was never pushed, which doubled the sequence
-  // the same way: {sequence '1..3', difference='nope'} answered 1 2 3 1 2 3.
+  // the same way: {sequence:range '1..3', difference='nope'} answered 1 2 3 1 2 3.
 
   $pqDifferenceAny = FALSE;
 

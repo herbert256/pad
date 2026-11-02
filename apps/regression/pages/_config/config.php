@@ -18,7 +18,7 @@
   if ( $padPage == 'request/every_engine_cookie_of_an_https_site_is_secure' and isset ( $_GET ['behind'] ) )
     $padHostBase = 'https://shop.example.com/';
 
-  // The remember-me test writes a form before its {auth}: its token checked on the post.
+  // The remember-me test writes a form before its {pad:auth}: its token checked on the post.
 
   if ( $padPage == 'request/rememberform' ) {
     $padCsrf         = TRUE;

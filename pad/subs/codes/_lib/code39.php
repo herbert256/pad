@@ -5,8 +5,8 @@
   // between them - of which three are wide, between the start and stop symbol *. A wide
   // element is three modules, a narrow one one, and a narrow space stands between symbols.
   //
-  //   {code39 'PAD-2026'/}
-  //   {code39 'PAD-2026', check/}       with the check symbol of modulo 43 behind the text
+  //   {barcode:code39 'PAD-2026'/}
+  //   {barcode:code39 'PAD-2026', check/}       with the check symbol of modulo 43 behind the text
   //
   // padCode39   the bars, or the message why the text is no Code 39
 

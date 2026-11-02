@@ -1,10 +1,10 @@
 <?php
 
-  // A month as a calendar - the {calendar} tag.
+  // A month as a calendar - the {pad:calendar} tag.
   //
-  //   {calendar}                                            this month, a table
-  //   {calendar '2026-10', data='events', date='when', title='what'}
-  //   {calendar data='events'} <tr>{days}<td>{$day}</td>{/days}</tr> {/calendar}
+  //   {pad:calendar}                                            this month, a table
+  //   {pad:calendar '2026-10', data='events', date='when', title='what'}
+  //   {pad:calendar data='events'} <tr>{array:days}<td>{$day}</td>{/array:days}</tr> {/pad:calendar}
   //
   // padCalendarWeeks   the weeks of a month as rows - week and days - each day a row of its
   //                    own: date, day, weekday, month, other, today, weekend, count, events
@@ -17,13 +17,13 @@
   // or on Sunday with sunday. padCalendarMonth, which reads a month and which a page's PHP
   // uses as well, is in lib/calendar.php.
 
-  // The rows and their dates are read as {chart} reads them, subs/charts/_lib/chart.php.
+  // The rows and their dates are read as {chart:bar} reads them, subs/charts/_lib/chart.php.
 
   include_once PAD . 'subs/charts/_lib/chart.php';
 
   // A day has the field holiday only on a calendar of holidays= ($holidays an array, maybe
   // empty): handed to every day of every calendar it hid a page's own $holiday inside
-  // {days} - a calendar without holidays= gave it '' on every day.
+  // {array:days} - a calendar without holidays= gave it '' on every day.
 
   function padCalendarWeeks ( $month, $rows, $dField, $sunday, $holidays = NULL ) {
 

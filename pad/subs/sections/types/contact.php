@@ -3,7 +3,7 @@
   // {section:contact title='Get in touch', mail='hello@example.com', phone='+31 20 123 4567',
   // address='Damrak 1, Amsterdam', form/} - how to reach you: the address, the mail address
   // and the phone number as links, the opening hours, and - with form - a message form beside
-  // them that posts back to the page as {form 'contact'} does: its name, e-mail and message
+  // them that posts back to the page as {pad:form 'contact'} does: its name, e-mail and message
   // fields, required, refilled and with their messages when the post came back wrong, thanks=
   // ('Thanks - we will get back to you.') in its place once it came back right. form='name'
   // names the form ('contact'), button= its button ('Send'). The details slot replaces the

@@ -3,11 +3,11 @@
   // A panel that slides in from the side - the drawer widget: an HTML <dialog> along an edge
   // of the window and the button that opens it.
   //
-  //   {drawer 'filters', title='Filters', button='Show filters', side='left'}
-  //     {form 'filter'}...{/form}
-  //   {/drawer}
+  //   {widget:drawer 'filters', title='Filters', button='Show filters', side='left'}
+  //     {pad:form 'filter'}...{/pad:form}
+  //   {/widget:drawer}
   //
-  // It is opened the way {modal} opens its dialog (subs/widgets/_lib/modal.php): the button's
+  // It is opened the way {widget:modal} opens its dialog (subs/widgets/_lib/modal.php): the button's
   // invoker commands where the browser has them; a small script, once per page with the CSP
   // nonce, where it has not; and with scripting off a link to the panel's id, which the CSS
   // shows as an overlay (:target) with a close link back to the opener - @media (scripting)

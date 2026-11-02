@@ -7,16 +7,16 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{printable 'name', data='rows', ...} ... {/printable}
+{printable:name data='rows', ...} ... {/printable:name}
 {printable:labels data='products', sheet='a4-3x8'}<b>{$name}</b>{/printable:labels}
-{printable:tickets data='seats', pdf}<h2>{$show}</h2><aside>{qr $code/}</aside>{/printable:tickets}
+{printable:tickets data='seats', pdf}<h2>{$show}</h2><aside>{barcode:qr $code/}</aside>{/printable:tickets}
 {printable:letter data='customers', sender='PAD, Utrecht'}<address>{$name}</address><p>...</p>{/printable:letter}
 PAD;
 
   $tagParms   = [
-    'name' => 'The kind, a file of <code>pad/subs/printables/types/</code>: '
+    'kind after colon' => 'The kind, a file of <code>pad/subs/printables/types/</code>: '
             . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padPrintableKinds () ) )
-            . '. The printable: type names it as well - <code>{printable:labels}...{/printable:labels}</code>; it is never reached bare.' ];
+            . '. The printable: prefix selects it - <code>{printable:labels}...{/printable:labels}</code>; it is never reached bare.' ];
 
   $tagOptions = [
     'sheet'     => 'The grid of a sheet, named by its paper and its grid: <code>a4-3x8</code>, <code>a4-2x7</code>, <code>letter-3x10</code> ... - each kind of a grid has its own.',
@@ -48,6 +48,6 @@ PAD;
     'rastral'   => 'staffpaper: the size of a staff as engravers number them, 0 (9.2 mm) to 8 (3.7 mm), 3 (7.0 mm) the default.',
     'staves'    => 'staffpaper: how many staves; <code>lines</code> the lines of a staff, 5, 6 for tablature; <code>grand</code> pairs them for the piano.' ];
 
-  $tagSee     = [ 'pdf', 'barcode', 'qr', 'fake' ];
+  $tagSee     = [ 'pdf', 'barcode:auto', 'barcode:qr', 'fake:name' ];
 
 ?>

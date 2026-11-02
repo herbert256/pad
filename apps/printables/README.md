@@ -6,7 +6,7 @@ Every kind of the engine's printables subsystem - pages made for paper - on a pa
 template beside what it prints, sheets on a grey desk at their size, with a link to the same sheets
 as a PDF. The kinds are the files of `pad/subs/printables/types/` - the list, the names and the
 descriptions are read from them (`_lib/printables.php`), so a kind added to the engine is here
-without a change to this application. The sample data comes from `{fake}` with fixed seeds, the
+without a change to this application. The sample data comes from `{fake:rows}` with fixed seeds, the
 same on every request.
 
 ## Files

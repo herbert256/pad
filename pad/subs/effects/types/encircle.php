@@ -1,6 +1,6 @@
 <?php
 
-  // {encircle}the one word{/encircle} or {encircle 'this'/} - a ring drawn round a word or a
+  // {effect:encircle}the one word{/effect:encircle} or {effect:encircle 'this'/} - a ring drawn round a word or a
   // short phrase as a pen circles it on paper: the stroke goes round once and runs a little
   // past where it began. style= circle (the default, an oval) or box, a rectangle drawn by
   // hand; color= the ink (--pad-effect-accent2 when not given); thickness= whole pixels (1 to
@@ -12,7 +12,7 @@
   // holds one box, so a long text wraps inside it rather than across lines. Under reduced
   // motion the ring stands drawn, or comes at once on hover.
   //
-  //   The answer is {encircle style='box'}42{/encircle}.
+  //   The answer is {effect:encircle style='box'}42{/effect:encircle}.
 
   $padFxSource   = padEffectSource ();
   $padFxStyle    = padEffectChoice ( 'style', 'circle', [ 'circle', 'box' ] );
@@ -23,7 +23,7 @@
   $padFxWhen     = padEffectWhen ();
 
   if ( padEffectPlain ( $padFxSource ) === '' )
-    return padEffectNeedsText ( "{encircle}this{/encircle} or {encircle 'this'/}" );
+    return padEffectNeedsText ( "{effect:encircle}this{/effect:encircle} or {effect:encircle 'this'/}" );
 
   // The ring in a square of 100 the svg stretches over the words, the pen going round with
   // the clock - the way the mask that uncovers it turns - from the lower left for the oval,

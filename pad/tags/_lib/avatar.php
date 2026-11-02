@@ -1,11 +1,11 @@
 <?php
 
-  // Initials avatars - the {avatar} tag. A name becomes a circle (or a rounded square) with
+  // Initials avatars - the {pad:avatar} tag. A name becomes a circle (or a rounded square) with
   // its initials, as inline SVG: no image, no remote service, the same picture for the same
   // name on every page and in every e-mail.
   //
-  //   {avatar 'Herbert Jebbink'}
-  //   {avatar $name, size=32, shape='square'}
+  //   {pad:avatar 'Herbert Jebbink'}
+  //   {pad:avatar $name, size=32, shape='square'}
   //
   // padAvatar          the SVG of a name
   // padAvatarInitials  the one or two letters drawn: the first letters of the first and the

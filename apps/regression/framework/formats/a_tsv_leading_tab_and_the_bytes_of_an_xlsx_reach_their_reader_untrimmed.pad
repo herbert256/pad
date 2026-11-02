@@ -1,8 +1,8 @@
-{data 'cross', format='tsv'}
+{pad:data 'cross', format='tsv'}
   	Q1	Q2
   North	1	2
   South	3	4
-{/data}
-[{cross}{$Q1}+{$Q2} {/cross}] {echo $tsvRead/} | {echo $tsvXlsx/}
-{data 'book', $tsvBook, format='xlsx'/}
-{book}{$a}{$b}{/book}
+{/pad:data}
+[{data:cross}{$Q1}+{$Q2} {/data:cross}] {pad:echo $tsvRead/} | {pad:echo $tsvXlsx/}
+{pad:data 'book', $tsvBook, format='xlsx'/}
+{data:book}{$a}{$b}{/data:book}

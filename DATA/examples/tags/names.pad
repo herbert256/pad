@@ -1,16 +1,16 @@
-{meta title='Tags by name'/}
+{pad:meta title='Tags by name'/}
 <h1>Tags by name</h1>
-<p class="lead">All {$tagsCount} tags from A to Z, by their name after the type prefix.</p>
+<p class="lead">All {$tagsCount} tags and subsystem kinds from A to Z, by their name after the type prefix.</p>
 
-<nav class="jump" aria-label="Letters">{letters}<a href="#letter-{$letter}">{$letter}</a>{/letters}</nav>
+<nav class="jump" aria-label="Letters">{array:letters}<a href="#letter-{$letter}">{$letter}</a>{/array:letters}</nav>
 
-{letters}
+{array:letters}
 <section class="section" id="letter-{$letter}">
-  <div class="section-head"><h2>{$letter}</h2><span>{$count} {echo $count eq 1 ? 'tag' : 'tags'/}</span></div>
+  <div class="section-head"><h2>{$letter}</h2><span>{$count} {pad:echo $count eq 1 ? 'entry' : 'entries'/}</span></div>
   <ul class="list">
-    {tags}
-    <li><a class="name" href="?{$link}">&#123;{$key}&#125;</a> <span class="about">{$about} <a class="meta" href="?groups#{$group}">{$groupLabel}</a></span></li>
-    {/tags}
+    {array:tags}
+    <li><a class="name" href="?{$link}">{$label}</a> <span class="about">{$about} <a class="meta" href="?groups#{$group}">{$groupLabel}</a></span></li>
+    {/array:tags}
   </ul>
 </section>
-{/letters}
+{/array:letters}

@@ -2,7 +2,7 @@
  * Tree-sitter grammar for PAD templates (https://github.com/herbert256/pad).
  *
  * A PAD template is text - usually HTML, injected by queries/injections.scm - with tags in
- * braces. A single tag is written with a slash, {echo $x/}, and a tag without one opens a
+ * braces. A single tag is written with a slash, {pad:echo $x/}, and a tag without one opens a
  * pair: {orders} opens a block that a {/orders} closes further on. The strict check of the
  * engine holds every tag to that; the lenient walk still takes a tag nothing closes for a
  * single one, as templates were written before the slash was required. The external
@@ -52,7 +52,7 @@ module.exports = grammar({
     ),
 
     // Text runs to the next brace or @; the whitespace in front of it is an extra, as in
-    // front of every node. A brace that cannot open a tag - {"a": 1} in a {data} block, {
+    // front of every node. A brace that cannot open a tag - {"a": 1} in a {pad:data} block, {
     // in a script - is text with the character after it.
     text: _ => token(choice(
       /[^{@\s][^{@]*/,
@@ -88,7 +88,7 @@ module.exports = grammar({
 
     body: $ => repeat1($._node),
 
-    // {ignore} ... {/ignore}: the content is not PAD - JavaScript, CSS, JSON - and is kept
+    // {pad:ignore} ... {/pad:ignore}: the content is not PAD - JavaScript, CSS, JSON - and is kept
     // as one raw_text node, which the injections hand to HTML.
     ignore_block: $ => seq(
       $._block_start,
@@ -105,7 +105,7 @@ module.exports = grammar({
       $._close,
     ),
 
-    _ignore_name: $ => field('name', alias('ignore', $.identifier)),
+    _ignore_name: $ => field('name', alias('pad:ignore', $.identifier)),
 
     tag: $ => seq($._open, $.tag_name, optional($.arguments), $._close),
 
@@ -120,19 +120,12 @@ module.exports = grammar({
     _open: _ => seq('{', optional(token.immediate('~'))),
     _close: _ => seq(optional('~'), '}'),
 
-    // if, app:mytag, first@items - a prefix and a property are written against the name.
-    tag_name: $ => choice(
-      field('name', $.identifier),
-      seq(
-        field('prefix', alias($.identifier, $.prefix)),
-        token.immediate(':'),
-        field('name', alias(token.immediate(NAME), $.identifier)),
-      ),
-      seq(
-        field('property', alias($.identifier, $.property)),
-        token.immediate('@'),
-        optional(field('target', alias(token.immediate(TARGET), $.identifier))),
-      ),
+    // Every named tag selects a namespace; @ still selects a property target.
+    tag_name: $ => seq(
+      field('prefix', alias($.identifier, $.prefix)),
+      token.immediate(':'),
+      field('name', choice(alias(token.immediate(NAME), $.identifier), alias(token.immediate(/\$[A-Za-z][A-Za-z0-9_]*/), $.variable))),
+      optional(seq(token.immediate('@'), optional(field('target', alias(token.immediate(TARGET), $.identifier))))),
     ),
 
     // Everything after the name, as written: parameters, options, an expression, pipes.
@@ -185,7 +178,7 @@ module.exports = grammar({
       field('target', alias(token.immediate(TARGET), $.identifier)),
     ),
 
-    // the current value in an expression: {echo 50 | @ * 4}
+    // the current value in an expression: {pad:echo 50 | @ * 4}
     placeholder: _ => '@',
 
     // $name, $user.name, $1 (a parameter), $-2 (a level back), &cool:parameter:1,

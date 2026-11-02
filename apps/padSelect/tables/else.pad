@@ -1,13 +1,13 @@
 <h3>Singles after 2025</h3>
-{singles where="released > 2025"}
+{select:singles where="released > 2025"}
   <p>{$title}</p>
 @else@
   <p class="dim">No single came out after 2025.</p>
-{/singles}
+{/select:singles}
 
 <h3>Each artist's albums</h3>
 <ul>
-  {artists where="artist_id in (4, 8)"}
-  <li>{$name}: {albums}{$title}@else@<span class="dim">no album yet</span>{/albums}</li>
-  {/artists}
+  {select:artists where="artist_id in (4, 8)"}
+  <li>{$name}: {select:albums}{$title}@else@<span class="dim">no album yet</span>{/select:albums}</li>
+  {/select:artists}
 </ul>

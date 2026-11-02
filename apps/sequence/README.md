@@ -39,7 +39,7 @@ sequence/
 - **Interactive examples**: Live sequence generation
 - **Type demonstrations**: Various sequence types and patterns
 - **Sequences you can see and hear** (`_lib/fun.php`): the Gallery draws the first 24 terms
-  of every type that needs no parameter with `{sparkline sequence=$type}` and links the OEIS
+  of every type that needs no parameter with `{chart:sparkline sequence=$type}` and links the OEIS
   entry the terms come from - found in the table the `oeis` type reads, the answers kept in
   `DATA/sequence/oeis.json`; Listen turns the terms into notes (the term modulo 60, up from
   C2) and writes them as a WAV file into the page, so `<audio>` plays them without

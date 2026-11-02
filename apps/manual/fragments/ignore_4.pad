@@ -1,6 +1,6 @@
-<div id="ignore-example-4" data-users="{echo $usersJson | ignore/}"></div>
+<div id="ignore-example-4" data-users="{pad:echo $usersJson | ignore/}"></div>
 
-{ignore}<script>
+{pad:ignore}<script>
   const element = document.getElementById('ignore-example-4');
   const users = JSON.parse(element.dataset.users);
 
@@ -9,4 +9,4 @@
   ).join('') + '</ul>';
 
   element.innerHTML = html;
-</script>{/ignore}
+</script>{/pad:ignore}

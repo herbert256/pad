@@ -1,4 +1,4 @@
-<p><code>{map}</code> draws countries filled by a value of their row - a choropleth - as
+<p><code>{pad:map}</code> draws countries filled by a value of their row - a choropleth - as
 inline SVG on the server (the map subsystem in <code>pad/subs/maps/</code>), from Natural Earth's
 outlines kept in PAD itself: no JavaScript, no map tiles, no remote service. The first
 parameter picks the view, a file of <code>pad/subs/maps/types/</code>: the whole world, or a crop of
@@ -19,7 +19,7 @@ territories of Australia in the Australian Albers projection. There
 (<code>Noord-Holland</code>), and the title reads <code>by state</code> or <code>by
 province</code>.</p>
 
-<p>The rows come from <code>data=</code> as for <a href="?tag/chart">{chart}</a>, or from the
+<p>The rows come from <code>data=</code> as for <a href="?tag/chart">{chart:bar}</a>, or from the
 content of the pair - JSON, YAML, XML or CSV, read before the level walks it. <code>key</code>
 names the country, written as an alpha-2 code (<code>NL</code>), an alpha-3 code
 (<code>NLD</code>) or the English name; <code>value</code> the number. Rows of one country
@@ -36,4 +36,9 @@ drawn all in grey.</p>
 <p>Every country has a <code>&lt;title&gt;</code> - <code>Netherlands: 1,234</code>, the
 tooltip on hover - and the <code>&lt;desc&gt;</code> lists the values for a screen reader.
 Countries too small to keep an outline at the scale drawn are shown as small diamonds. For a
-single flag, see <a href="?tag/country">{country}</a>.</p>
+single flag, see <a href="?tag/country">{pad:country}</a>.</p>
+
+
+<h3>Map views</h3>
+<p>Each kind has its own description and usage example:</p>
+<p><a href="?kind/map/africa"><code>africa</code></a>, <a href="?kind/map/asia"><code>asia</code></a>, <a href="?kind/map/au-states"><code>au-states</code></a>, <a href="?kind/map/balkans"><code>balkans</code></a>, <a href="?kind/map/baltic"><code>baltic</code></a>, <a href="?kind/map/benelux"><code>benelux</code></a>, <a href="?kind/map/british-isles"><code>british-isles</code></a>, <a href="?kind/map/caribbean"><code>caribbean</code></a>, <a href="?kind/map/central-america"><code>central-america</code></a>, <a href="?kind/map/central-asia"><code>central-asia</code></a>, <a href="?kind/map/dach"><code>dach</code></a>, <a href="?kind/map/de-states"><code>de-states</code></a>, <a href="?kind/map/east-asia"><code>east-asia</code></a>, <a href="?kind/map/eu"><code>eu</code></a>, <a href="?kind/map/europe"><code>europe</code></a>, <a href="?kind/map/iberia"><code>iberia</code></a>, <a href="?kind/map/mediterranean"><code>mediterranean</code></a>, <a href="?kind/map/middle-east"><code>middle-east</code></a>, <a href="?kind/map/nl-provinces"><code>nl-provinces</code></a>, <a href="?kind/map/nordic"><code>nordic</code></a>, <a href="?kind/map/north-america"><code>north-america</code></a>, <a href="?kind/map/oceania"><code>oceania</code></a>, <a href="?kind/map/south-america"><code>south-america</code></a>, <a href="?kind/map/south-asia"><code>south-asia</code></a>, <a href="?kind/map/southeast-asia"><code>southeast-asia</code></a>, <a href="?kind/map/us-states"><code>us-states</code></a>, <a href="?kind/map/world"><code>world</code></a></p>

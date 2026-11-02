@@ -1,13 +1,13 @@
 {common:padFrame}
-  {slot 'head'}{asset 'home.css', tag/}{/slot}
-  {slot 'side'}
+  {pad:slot 'head'}{pad:asset 'home.css', tag/}{/pad:slot}
+  {pad:slot 'side'}
     <nav class="frame-nav home-apps" aria-label="Applications">
-      {homeMenu}
+      {array:homeMenu}
         <div class="frame-head">{$head}</div>
-        {homeApps}<a href="{$href}"{if $current} aria-current="page"{/if}>{icon $icon, size=16/}<span><b>{$name}</b><small>{$about}</small></span></a>{/homeApps}
-      {/homeMenu}
+        {array:homeApps}<a href="{$href}"{pad:if $current} aria-current="page"{/pad:if}>{icon:$icon size=16/}<span><b>{$name}</b><small>{$about}</small></span></a>{/array:homeApps}
+      {/array:homeMenu}
     </nav>
-  {/slot}
+  {/pad:slot}
 {/common:padFrame}
 @page@
 {common:padFrameEnd/}

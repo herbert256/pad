@@ -1,7 +1,7 @@
 <?php
 
-  // {recurse} inside a {tree}: renders the tree's body once more, for the children of the
-  // current row - each child a row of its own, with {branch} and {recurse} working again
+  // {pad:recurse} inside a {pad:tree}: renders the tree's body once more, for the children of the
+  // current row - each child a row of its own, with {pad:branch} and {pad:recurse} working again
   // one level down. A row without children renders nothing here.
   //
   // The new level is named as the tree is, so depth@tree, first@tree and count@tree speak of
@@ -15,7 +15,7 @@
   if ( $padTreeLvl === FALSE ) {
 
     if ( $padCheckSyntax )
-      padError ( "a {recurse} belongs inside a {tree}" );
+      padError ( "a {pad:recurse} belongs inside a {pad:tree}" );
 
     return FALSE;
 

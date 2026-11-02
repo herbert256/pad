@@ -1,6 +1,6 @@
 <?php
 
-  // {chart ..., client/}: the server draws no SVG - it writes the browser's scripts once a page
+  // {chart:bar ..., client/}: the server draws no SVG - it writes the browser's scripts once a page
   // (core.js, then the files of the families drawn: pie.js and series.js for bar and line),
   // and per chart a span with the rows and the options as JSON, the rows as ordered pairs so
   // a key keeps its kind and place (2024 an integer key, as PHP has it), and a script that puts
@@ -8,8 +8,8 @@
   // takes none of them for unread.
 
   $rows   = [ [ 'name' => 'Jan', 'n' => 5 ], [ 'name' => '2024', 'n' => '7.5', 2024 => 'x' ] ];
-  $out    = padUnprotect ( padUnescape ( padCode ( "{chart 'bar', data='rows', label='name', value='n', title='Mine', client/}"
-                                                 . "{chart 'line', data='rows', label='name', value='n', client/}" ) ) );
+  $out    = padUnprotect ( padUnescape ( padCode ( "{chart:bar data='rows', label='name', value='n', title='Mine', client/}"
+                                                 . "{chart:line data='rows', label='name', value='n', client/}" ) ) );
 
   preg_match_all ( '/data-pad-chart="([^"]*)"/', $out, $found );
 

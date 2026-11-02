@@ -1,8 +1,8 @@
 
 
-<p>The <code>{sequence}</code> tag generates values instead of reading them: a
-range, a mathematical series, letters - 122 types, each iterated like any data
-tag:</p>
+<p>The <code>sequence:</code> namespace generates values instead of reading them: a
+range, a mathematical series or letters. Each selector names a source, such as
+<code>{sequence:prime}</code>, iterated like any data tag:</p>
 
 
 
@@ -11,7 +11,7 @@ tag:</p>
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -41,7 +41,7 @@ tag:</p>
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..8<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">sequence </font><font color="red">fibonacci<font color="black">,</font> rows=8</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">sequence </font><font color="red">prime<font color="black">,</font> from=10<font color="black">,</font> rows=6</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>A..F<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="../_common/play.css"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57c2VxdWVuY2U6cmFuZ2UgJzEuLjgnfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6cmFuZ2V9PC9wPlxuPHA+e3NlcXVlbmNlOmZpYm9uYWNjaSByb3dzPTh9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9PC9wPlxuPHA+e3NlcXVlbmNlOnByaW1lIGZyb209MTAsIHJvd3M9Nn17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnByaW1lfTwvcD5cbjxwPntzZXF1ZW5jZTpyYW5nZSAnQS4uRid9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpyYW5nZX08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57c2VxdWVuY2U6cmFuZ2UgJzEuLjgnfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6cmFuZ2V9PC9wPlxuPHA+e3NlcXVlbmNlOmZpYm9uYWNjaSByb3dzPTh9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9PC9wPlxuPHA+e3NlcXVlbmNlOnByaW1lIGZyb209MTAsIHJvd3M9Nn17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnByaW1lfTwvcD5cbjxwPntzZXF1ZW5jZTpyYW5nZSAnQS4uRid9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpyYW5nZX08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range </font><font color="red"><font color="black">'</font>1..8<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">rows=8</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">from=10<font color="black">,</font> rows=6</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range </font><font color="red"><font color="black">'</font>A..F<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -74,7 +74,7 @@ draws with their own rules. It has an application of its own, which is its manua
 action and option, demonstrated live.</p>
 <h2>Seeing and hearing them</h2>
 
-<p>A sequence is data like any other, so <b>{chart}</b> and <b>{sparkline}</b> draw it
+<p>A sequence is data like any other, so <b>{chart:bar}</b> and <b>{chart:sparkline}</b> draw it
 straight away with <code>sequence=</code>:</p>
 
 
@@ -84,7 +84,7 @@ straight away with <code>sequence=</code>:</p>
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -114,7 +114,7 @@ straight away with <code>sequence=</code>:</p>
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Primes: <b>{<font color="blue">sparkline </font><font color="red">sequence=<font color="black">'</font>prime<font color="black">'</font><font color="black">,</font> rows=20</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;Recamán: <b>{<font color="blue">sparkline </font><font color="red">sequence=<font color="black">'</font>recaman<font color="black">'</font><font color="black">,</font> rows=40<font color="black">,</font> width=200</font>/}</b>&lt;/p&gt;</code></pre></td>
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5QcmltZXM6IHtjaGFydDpzcGFya2xpbmUgc2VxdWVuY2U9J3ByaW1lJywgcm93cz0yMC99PC9wPlxuPHA+UmVjYW3DoW46IHtjaGFydDpzcGFya2xpbmUgc2VxdWVuY2U9J3JlY2FtYW4nLCByb3dzPTQwLCB3aWR0aD0yMDAvfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5QcmltZXM6IHtjaGFydDpzcGFya2xpbmUgc2VxdWVuY2U9J3ByaW1lJywgcm93cz0yMC99PC9wPlxuPHA+UmVjYW3DoW46IHtjaGFydDpzcGFya2xpbmUgc2VxdWVuY2U9J3JlY2FtYW4nLCByb3dzPTQwLCB3aWR0aD0yMDAvfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;Primes: <b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>sparkline </font><font color="red">sequence=<font color="black">'</font>prime<font color="black">'</font><font color="black">,</font> rows=20</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;Recamán: <b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>sparkline </font><font color="red">sequence=<font color="black">'</font>recaman<font color="black">'</font><font color="black">,</font> rows=40<font color="black">,</font> width=200</font>/}</b>&lt;/p&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">

@@ -1,34 +1,34 @@
-{meta title='Files and orders', about='A right click on a file or an order opens its actions at the pointer, Shift+F10 at the focus; the dots open the same menu, with and without scripting.'/}
+{pad:meta title='Files and orders', about='A right click on a file or an order opens its actions at the pointer, Shift+F10 at the focus; the dots open the same menu, with and without scripting.'/}
 <div style="width:100%; max-width:560px; min-height:300px">
   <ul class="files">
     <li>report.pdf
-      {contextmenu 'Actions for report.pdf'}
+      {widget:contextmenu 'Actions for report.pdf'}
         <a href="?contextmenu/files">Open</a>
         <a href="?contextmenu/files">Rename</a>
         <a href="?contextmenu/files">Download</a>
         <hr>
         <button type="button" disabled>Delete - shared with you</button>
-      {/contextmenu}
+      {/widget:contextmenu}
     </li>
     <li>kettles.xlsx
-      {contextmenu 'Actions for kettles.xlsx'}
+      {widget:contextmenu 'Actions for kettles.xlsx'}
         <a href="?contextmenu/files">Open</a>
         <a href="?contextmenu/files">Rename</a>
         <a href="?contextmenu/files">Download</a>
         <hr>
         <a href="?contextmenu/files">Delete</a>
-      {/contextmenu}
+      {/widget:contextmenu}
     </li>
   </ul>
   <table>
     <tr><th>Order</th><th>Total</th><th>Actions</th></tr>
     <tr tabindex="0"><td>1041</td><td>€ 79.00</td><td>
-      {contextmenu 'Actions for order 1041', area='tr'}
+      {widget:contextmenu 'Actions for order 1041', area='tr'}
         <p>Order 1041</p>
         <a href="?contextmenu/files">Show</a>
         <a href="?contextmenu/files">Print the invoice</a>
         <a href="?contextmenu/files">Refund</a>
-      {/contextmenu}
+      {/widget:contextmenu}
     </td></tr>
   </table>
 </div>

@@ -5,7 +5,7 @@
   // sole= collapses from and to onto one value; the level's tag, type and prefix are copied
   // into $pqTag / $pqType / $pqPrefix, which inits/find/ and inits/check/ then read; $pqPlay
   // is fixed to whichever of make, keep, remove or flag the tag or type named, defaulting to
-  // make; {resume} and a bare pull= are pointed at the last pushed store with build 'pull'.
+  // make; {pad:resume} and a bare pull= are pointed at the last pushed store with build 'pull'.
   //
   // Finally the random forms are resolved: increment='1...5' is kept in $pqRandomInc so it can
   // be redrawn each iteration, while from, to, increment, rows, stop and skip each have their
@@ -27,24 +27,30 @@
   $pqPrefix = $padPrefix [$pad];
   $pqTag    = $padTag    [$pad];
 
+  // auto leaves the source to the parameters; it is not a sequence or a store.
+  // The namespace still chooses the operation (make, keep, remove, action).
+  if ( $pqTag === 'auto' and in_array ( $pqType, padSequenceOperations, TRUE ) )
+    $pqTag = '';
+
+
       if ( pqPlay ( $pqTag  ) ) $pqPlay = $pqTag;
   elseif ( pqPlay ( $pqType ) ) $pqPlay = $pqType;
   else                          $pqPlay = 'make';
 
   $pqNameGiven = $pqName;
 
-  // Only the tag's own run: a run started from an expression inside {resume} is that
-  // expression's - sequence:prime(3) in {resume add=sequence:prime(3)} built the store
+  // Only the tag's own run: a run started from an expression inside {pad:resume} is that
+  // expression's - sequence:prime(3) in {pad:resume add=sequence:prime(3)} built the store
   // pushed last and answered its third value, 3.
 
-  // {resume} takes a store it names - pull='s', an option s, a first parameter 's' - and the
-  // store pushed last otherwise: the store named was passed over, and {resume s, reverse}
+  // {pad:resume} takes a store it names - pull='s', an option s, a first parameter 's' - and the
+  // store pushed last otherwise: the store named was passed over, and {pad:resume s, reverse}
   // reversed the last push.
 
   if ( $pqEntry == 'tag' and $pqTag == 'resume' ) {
 
     // A number right after a bare option of an action that counts is its value, as on the
-    // other sequence tags: {resume first, 2} looked for a store named 2.
+    // other sequence tags: {pad:resume first, 2} looked for a store named 2.
 
     include PQ . 'inits/find/parm/option.php';
 
@@ -63,7 +69,7 @@
     }
 
     // A first parameter that names an action is that action, as it is on a pull since
-    // inits/find/parm/name.php: {resume 'reverse'} left the store as it was.
+    // inits/find/parm/name.php: {pad:resume 'reverse'} left the store as it was.
 
     if ( is_string ( $pqResumeFirst ) and preg_match ( '/^[A-Za-z][A-Za-z0-9_]*$/', $pqResumeFirst )
          and ! isset ( $pqStore [$pqResumeFirst] ) and pqAction ( $pqResumeFirst ) ) {
@@ -74,10 +80,10 @@
 
     // The parameters past the first are read as on the other sequence tags,
     // inits/find/parm/second.php: after an action, its kind of parameter (parm/kind.php);
-    // a name of an action is the action when none is named yet - after a store, {resume 's',
+    // a name of an action is the action when none is named yet - after a store, {pad:resume 's',
     // 'reverse'} - and the option of that name when one is (parm/as.php); what is left is named
-    // by the strict check. Nothing read them: {resume 'first', 2} kept one term of the store,
-    // {resume 's', 'reverse'} left it as it was, both without a word.
+    // by the strict check. Nothing read them: {pad:resume 'first', 2} kept one term of the store,
+    // {pad:resume 's', 'reverse'} left it as it was, both without a word.
 
     foreach ( $padOpt [$pad] as $pqFindAt => $pqFindParm ) {
 
@@ -100,7 +106,7 @@
       } elseif ( pqAction ( $pqFindParm ) )
         include PQ . 'inits/find/parm/as.php';
       elseif ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
-        padError ( "the tag {resume} was given "
+        padError ( "the tag {pad:resume} was given "
                  . ( is_array ( $pqFindParm ) ? "a list as a parameter" : "a parameter '$pqFindParm'" ) . " that nothing reads" );
 
     }
@@ -108,13 +114,13 @@
     // A name given that is no store - pull='typo', a first parameter 'typo' or 3 - is still the
     // store asked for, and build/types/pull.php names the miss as it does for {pull:typo}; only
     // a resume that names none takes the store pushed last. The miss fell back to it without a
-    // word: {resume pull='typo', reverse} reversed the store pushed last.
+    // word: {pad:resume pull='typo', reverse} reversed the store pushed last.
 
     if ( $pqResumeOf === '' ) {
       if ( is_string ( $pqPull ) and $pqPull !== '' )
         $pqResumeOf = $pqPull;
       elseif ( is_array ( $pqResumeFirst ) )
-        padError ( "{resume} takes the name of a store, not a list" );
+        padError ( "{pad:resume} takes the name of a store, not a list" );
       elseif ( $pqResumeFirst !== '' and $pqResumeFirst !== TRUE and $pqResumeFirst !== NULL )
         $pqResumeOf = (string) $pqResumeFirst;
     }

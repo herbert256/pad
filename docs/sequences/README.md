@@ -5,7 +5,7 @@ The PAD sequence subsystem is a powerful mathematical sequence generation and ma
 ## Quick Example
 
 ```
-{fibonacci rows=10}{$fibonacci} {/fibonacci}
+{sequence:fibonacci rows=10}{$fibonacci} {/sequence:fibonacci}
 ```
 
 Output: `0 1 1 2 3 5 8 13 21 34`
@@ -28,25 +28,25 @@ Output: `0 1 1 2 3 5 8 13 21 34`
 - **Aggregations:** `sum`, `average`, `minimum`, `maximum`, `count`
 - **Multi-sequence:** `append`, `merge`, `intersection`, `difference`
 - **OEIS Integration:** Look up an OEIS sequence by A-number in a local copy of the OEIS table
-- **Charts:** `{chart 'line', sequence='recaman', rows=32}` and `{sparkline sequence='prime', rows=20}` draw the terms as inline SVG; the sequence application's Gallery, Listen and Guess pages draw, play and quiz every type
+- **Charts:** `{chart:line sequence='recaman', rows=32}` and `{chart:sparkline sequence='prime', rows=20}` draw the terms as inline SVG; the sequence application's Gallery, Listen and Guess pages draw, play and quiz every type
 
 ## Getting Started
 
 Generate a simple range:
 ```
-{sequence '1..10', name='n'}{$n} {/sequence}
+{sequence:range '1..10', name='n'}{$n} {/sequence:range}
 ```
 
 Store and transform:
 ```
-{sequence '1..10', push='nums'/}
-{resume reverse/}
+{sequence:range '1..10', push='nums'/}
+{pad:resume reverse/}
 {pull:nums}{$sequence} {/pull:nums}
 ```
 
 Aggregate values:
 ```
-{sequence '1..100', push='nums'/}
+{sequence:range '1..100', push='nums'/}
 Sum: {pull:nums sum}{$sequence}{/pull:nums}
 ```
 
@@ -67,7 +67,7 @@ Sum: {pull:nums sum}{$sequence}{/pull:nums}
 - A tag's terms are made in full before its rows render; `rows=`, `try=` and the limits in
   [EXPLAIN.md](EXPLAIN.md#limits) bound how many
 - Use `push` to store sequences for later transformation
-- Use `{resume}` to apply transformations to the last pushed sequence
+- Use `{pad:resume}` to apply transformations to the last pushed sequence
 - Use `{pull:name}` to iterate over a stored sequence
 - The `@` symbol represents the current value in `eval` expressions
 

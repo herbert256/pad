@@ -11,14 +11,14 @@
   //   {rates}{$code}: {$rate}{/rates}
   //
   // Each source is fetched through padCurlMulti, all of them on the wire together, so the
-  // page waits as long as the slowest answer, where data= and {curl} on one page fetched
+  // page waits as long as the slowest answer, where data= and {pad:curl} on one page fetched
   // one after another and the wait was the sum of them all. A source is a URL - SELF://
   // stands for $padHost - or an input array as padCurl takes it (url, headers, post ...).
   //
   // Each answer is parsed as data= parses a remote document (padCurlData) and kept in the
-  // data store under its name, so {name} iterates it like a {data 'name'} block; the sets
+  // data store under its name, so {data:name} iterates it like a {pad:data 'name'} block; the sets
   // are returned too, under the same names. The optional ttl keeps the answers as
-  // {curl ..., ttl=} does (lib/curlCache.php): a fresh copy is not fetched at all, and a
+  // {pad:curl ..., ttl=} does (lib/curlCache.php): a fresh copy is not fetched at all, and a
   // failing source is answered with its last good copy. A source that fails without one is
   // an error, as a failing data= is.
 

@@ -1,11 +1,11 @@
-{products page=$p ?? 1, rows=10}{/products}
+{array:products page=$p ?? 1, rows=10}{/array:products}
 
-{pager 'products'}
-  {if $href eq ''}
+{pad:pager 'products'}
+  {pad:if $href eq ''}
     <span>{$label}</span>
-  {elseif $kind eq 'current'}
+  {pad:elseif $kind eq 'current'}
     <strong>{$label}</strong>
-  {else}
+  {pad:else}
     <a href="{$href}">{$label}</a>
-  {/if}
-{/pager}
+  {/pad:if}
+{/pad:pager}

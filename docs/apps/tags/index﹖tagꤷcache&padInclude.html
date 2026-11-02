@@ -1,5 +1,5 @@
 
-<p><code>{cache 'name', ttl=300}</code> ... <code>{/cache}</code> renders its content once and
+<p><code>{pad:cache 'name', ttl=300}</code> ... <code>{/pad:cache}</code> renders its content once and
 keeps the result; for the next <code>ttl</code> seconds every request gets the stored rendering
 and nothing inside the section runs - no tag, no query, no remote fetch. It is for the parts of
 a page that cost more than the rest: a list of best sellers, a menu built from the database, a
@@ -13,23 +13,23 @@ once (with a vary value as its second argument to drop one copy), and
 <code>padFragmentForget ()</code> drops them all.</p>
 
 <p>The <code>cache=&lt;seconds&gt;</code> option does the same for any tag:
-<code>{topProducts cache=3600}...{/topProducts}</code> is keyed on the page, the tag as written
+<code>{app:topProducts cache=3600}...{/app:topProducts}</code> is keyed on the page, the tag as written
 and its evaluated parameters, and skips the tag's own handler on a hit. Closing pipes and end
 options run on a stored rendering as on a fresh one. What the section leaves for the rest of the
-page is kept with it and made again on a hit: its <code>{push}</code>es, and the booking of a
-paged tag for a <code>{pager}</code> further down.</p>
+page is kept with it and made again on a hit: its <code>{pad:push}</code>es, and the booking of a
+paged tag for a <code>{pad:pager}</code> further down.</p>
 
 <p>Otherwise a section keeps its text, not its effects: what it sets, stores or defines - a
-<code>{set}</code>, <code>{increment}</code>, a <code>{data}</code>, <code>{content}</code> or
-<code>{bool}</code> store, a <code>{define}</code> or <code>{macro}</code>, the totals of a
+<code>{pad:set}</code>, <code>{pad:increment}</code>, a <code>{pad:data}</code>, <code>{pad:content}</code> or
+<code>{pad:bool}</code> store, a <code>{pad:define}</code> or <code>{pad:macro}</code>, the totals of a
 <code>callback=</code> - happens on the miss only, and on a hit the page goes on with the
 variables and stores this request has. Put such a tag before the section, or in a
-<a href="index%EF%B9%96tag%EA%A4%B7nocache.html"><code>{nocache}</code></a> part, which renders every time.</p>
+<a href="index%EF%B9%96tag%EA%A4%B7nocache.html"><code>{pad:nocache}</code></a> part, which renders every time.</p>
 
 <p>Some renderings are never stored: one that holds the visitor's CSRF token (a
-<code>{form}</code>, <code>{csrf}</code>, a live region) or the request's
-<code>{nonce}</code>, and a request for one response fragment or the post of a live region.
+<code>{pad:form}</code>, <code>{pad:csrf}</code>, a live region) or the request's
+<code>{pad:nonce}</code>, and a request for one response fragment or the post of a live region.
 <code>$padFragmentCache</code> chooses the store - <code>'file'</code> (the default, under
 <code>DATA/cache/fragments/</code>), <code>'apcu'</code>, or <code>FALSE</code> to render every
-time. A <code>{cache}</code> without a name, or without its closing tag, is a strict error.</p>
+time. A <code>{pad:cache}</code> without a name, or without its closing tag, is a strict error.</p>
 

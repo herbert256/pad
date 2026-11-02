@@ -2,7 +2,7 @@
 
   // Membership test for motzkin, 1, 1, 2, 4, 9, 21, ...: the terms are walked until one
   // reaches x - 45 of them at the most before the integer range ends. build/check.php asks it
-  // for {keep motzkin}, {remove motzkin} and {flag motzkin}.
+  // for {keep:motzkin}, {remove:motzkin} and {pad:flag motzkin}.
   //
   // Not the type's build: pqBuild() ranks function.php before bool.php.
 

@@ -1,27 +1,27 @@
 <p class="patterns-lead">{$text}</p>
 
 <div class="patterns-play">
-  {echo $template | code/}
+  {pad:echo $template | code/}
 </div>
 
-<p class="patterns-seeds">{if $seeded}Seed {$seed} - another picture with
-<a href="?{$kind}&amp;seed={$prev}">seed {$prev}</a> or <a href="?{$kind}&amp;seed={$next}">seed {$next}</a>.{else}A tile
-repeated: the seed changes nothing here.{/if}</p>
+<p class="patterns-seeds">{pad:if $seeded}Seed {$seed} - another picture with
+<a href="?{$kind}&amp;seed={$prev}">seed {$prev}</a> or <a href="?{$kind}&amp;seed={$next}">seed {$next}</a>.{pad:else}A tile
+repeated: the seed changes nothing here.{/pad:if}</p>
 
 <div class="pad-play-box">{!play}<pre class="patterns-source"><code>{!source}</code></pre></div>
 
-{if $example}
+{pad:if $example}
 <h2>Its own example</h2>
 <div class="patterns-play">
-  {echo $example | code/}
+  {pad:echo $example | code/}
 </div>
 <div class="pad-play-box">{!examplePlay}<pre class="patterns-source"><code>{!exampleSource}</code></pre></div>
-{/if}
+{/pad:if}
 
 <h2>As a background</h2>
 <p><code>as='url'</code> writes the pattern as a CSS <code>url()</code> of a data URI, for a style
 attribute or a style sheet.</p>
 <div class="patterns-play">
-  {echo $backdrop | code/}
+  {pad:echo $backdrop | code/}
 </div>
 <div class="pad-play-box">{!backdropPlay}<pre class="patterns-source"><code>{!backdropSource}</code></pre></div>

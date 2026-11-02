@@ -2,8 +2,8 @@
 
   // Several goals at once - concentric progress rings, the activity rings of a watch.
   //
-  //   {chart 'rings', data='today', label='goal', value='done', to='target'}
-  //   {chart 'rings', data='projects', label='name', value='percent'}
+  //   {chart:rings data='today', label='goal', value='done', to='target'}
+  //   {chart:rings data='projects', label='name', value='percent'}
   //
   // A row is a ring, the first outermost, eight at most: an arc of value= - else the first
   // numeric field - against to=, one number for every row (100) or a field of the row,

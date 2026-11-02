@@ -1,11 +1,11 @@
 <?php
 
-  // Image placeholders - the {placeholder} tag. A grey box of the size an image will have,
+  // Image placeholders - the {pad:placeholder} tag. A grey box of the size an image will have,
   // with its corners joined by two lines and the size or a text in the middle, as inline
   // SVG: a wireframe or a layout that waits for its pictures, without a placeholder service.
   //
-  //   {placeholder '600x300', text='Hero image'}
-  //   {placeholder ratio='16:9', fluid}
+  //   {pad:placeholder '600x300', text='Hero image'}
+  //   {pad:placeholder ratio='16:9', fluid}
   //
   // padPlaceholder      the SVG of a width and height
   // padPlaceholderSize  '600x300' as [ 600, 300 ], or NULL when it is no size

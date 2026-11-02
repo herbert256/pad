@@ -1,12 +1,12 @@
-{meta title='Printables'/}
+{pad:meta title='Printables'/}
 
-<p>{tag 'printable'/} makes pages for paper - sheets of labels, name badges, business cards, tickets
+<p>{app:tag 'printable:labels'/} makes pages for paper - sheets of labels, name badges, business cards, tickets
 with a stub, a certificate, envelopes, a letter and an invoice for a window envelope, index cards and
-place cards. There are {echo php:count(padPrintableKinds())/} kinds - every kind is a file of
+place cards. There are {pad:echo php:count(padPrintableKinds())/} kinds - every kind is a file of
 <code>pad/subs/printables/types/</code>, and the <a href="../printables/">printables</a> application
 shows them all, each with its PDF.</p>
 
-{example 'fragments/printables_1'/}
+{common:example 'fragments/printables_1'/}
 
 <h2>One item, repeated over the data</h2>
 
@@ -17,17 +17,17 @@ the first labels of a sheet used before empty. A kind takes the parts of an item
 that say what they are: a ticket's stub is its <code>&lt;aside&gt;</code>, a letter's address its
 <code>&lt;address&gt;</code>.</p>
 
-{example 'fragments/printables_2'/}
+{common:example 'fragments/printables_2'/}
 
 <h2>The screen, the paper and the PDF</h2>
 
 <p>On the screen the sheets lie on a grey desk at their size in millimetres - <code>scale=</code>
 makes the preview smaller. Printed, the page prints the sheets alone, each on a page of its own size
-without a margin. And in a <code>{open/}pdf{close/}</code>, or with <code>pdf</code> on the tag, PAD's
+without a margin. And in a <code>{pad:open/}pad:pdf{pad:close/}</code>, or with <code>pdf</code> on the tag, PAD's
 own PDF writer lays out the same sheets: <code>pdf</code> links them, the page asked again with
 <code>&amp;padPdf</code>.</p>
 
-{example 'fragments/printables_3'/}
+{common:example 'fragments/printables_3'/}
 
 <ul>
   <li>A sheet of one's own: <code>across=</code>, <code>down=</code>, <code>width=</code> and

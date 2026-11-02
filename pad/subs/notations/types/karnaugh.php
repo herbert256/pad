@@ -10,9 +10,9 @@
   // of sums; numbers writes the number of every cell in its corner; title= is the accessible
   // name. A screen reader hears the rows of the map, its groups and the expression in words.
   //
-  //   {karnaugh 'm(6,8,9,10,11,12,13,14)'/}
-  //   {karnaugh numbers}F = AB + A'C + BC{/karnaugh}
-  //   {karnaugh 'M(0,1,2,3,4,5,7,15)', vars='A, B, C, D', form='pos'/}
+  //   {notation:karnaugh 'm(6,8,9,10,11,12,13,14)'/}
+  //   {notation:karnaugh numbers}F = AB + A'C + BC{/notation:karnaugh}
+  //   {notation:karnaugh 'M(0,1,2,3,4,5,7,15)', vars='A, B, C, D', form='pos'/}
 
   if ( trim ( $padNotationText ) === '' )
     return '';

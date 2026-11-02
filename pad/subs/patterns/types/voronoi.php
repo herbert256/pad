@@ -3,7 +3,7 @@
   // voronoi - a Voronoi diagram: cells around points the seed scatters, one in every square of
   // the size, each cell in an ink the seed picks and the background as the seams between.
   //
-  //   {pattern 'voronoi', size=50, seed=9/}
+  //   {pattern:voronoi size=50, seed=9/}
   //
   // A cell is the picture's rectangle cut by the half-plane of every neighbouring point - the
   // side of the line halfway between the two that is nearer to its own point. A point lies in

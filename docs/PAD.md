@@ -94,9 +94,9 @@ $items = ['Apple', 'Banana', 'Cherry'];
 <body>
   <h1>{$message}</h1>
   <ul>
-    {items}
+    {array:items}
       <li>{$items}</li>
-    {/items}
+    {/array:items}
   </ul>
 </body>
 </html>
@@ -126,16 +126,16 @@ $items = ['Apple', 'Banana', 'Cherry'];
 Transform values with pipe functions:
 
 ```
-{echo $name | upper/}           {# Uppercase #}
-{echo $text | trim | lower/}    {# Chain multiple functions #}
-{echo $date | date('Y-m-d')/}   {# With parameters #}
-{echo $value | + 1/}            {# Arithmetic (space required) #}
-{echo $text | after('@')/}      {# String manipulation #}
-{echo $html | html/}            {# Escape HTML #}
-{echo $name | contains('admin')/} {# String contains #}
+{pad:echo $name | upper/}           {# Uppercase #}
+{pad:echo $text | trim | lower/}    {# Chain multiple functions #}
+{pad:echo $date | date('Y-m-d')/}   {# With parameters #}
+{pad:echo $value | + 1/}            {# Arithmetic (space required) #}
+{pad:echo $text | after('@')/}      {# String manipulation #}
+{pad:echo $html | html/}            {# Escape HTML #}
+{pad:echo $name | contains('admin')/} {# String contains #}
 ```
 
-A field tag pipes as it stands - `{$var | upper}` - and a literal goes through `{echo}`: `{echo 'text' | upper/}`.
+A field tag pipes as it stands - `{$var | upper}` - and a literal goes through `{pad:echo}`: `{pad:echo 'text' | upper/}`.
 
 Common functions: `trim`, `upper`, `lower`, `html`, `url`, `date`, `replace`, `left`, `right`, `contains`, `in`, `between`, `exists`
 
@@ -143,55 +143,55 @@ Common functions: `trim`, `upper`, `lower`, `html`, `url`, `date`, `replace`, `l
 
 **Conditionals:**
 ```
-{if $condition}
+{pad:if $condition}
   Content if true
-{elseif $other}
+{pad:elseif $other}
   Alternative
-{else}
+{pad:else}
   Default
-{/if}
+{/pad:if}
 
-{case $status}
-  {when 'active'}Active
-  {when 'pending'}Pending
-  {else}Unknown
-{/case}
+{pad:case $status}
+  {pad:when 'active'}Active
+  {pad:when 'pending'}Pending
+  {pad:else}Unknown
+{/pad:case}
 ```
 
 **Loops:**
 ```
-{users}                        {# Iterate data tag #}
+{array:users}                        {# Iterate data tag #}
   <li>{$name} - {$email}</li>
-{/users}
+{/array:users}
 
-{while $i le 10}               {# While loop #}
+{pad:while $i le 10}               {# While loop #}
   Item {$i}
-  {increment $i/}
-{/while}
+  {pad:increment $i/}
+{/pad:while}
 
-{files 'images', base='app', mask='*.jpg'}  {# _data, images ... of the application #}
+{pad:files 'images', base='app', mask='*.jpg'}  {# _data, images ... of the application #}
   <li>{$file}</li>
-{/files}
+{/pad:files}
 ```
 
 **Loop Control:**
 ```
-{continue 'tagname'/}    # Skip to next iteration
-{cease 'tagname'/}       # Soft stop (graceful end)
-{break 'tagname'/}       # Hard stop (immediate exit)
+{pad:continue 'tagname'/}    # Skip to next iteration
+{pad:cease 'tagname'/}       # Soft stop (graceful end)
+{pad:break 'tagname'/}       # Hard stop (immediate exit)
 ```
 
 ### Tag Properties
 
 Access iteration state with `property@tag` syntax - as a tag pair (content renders only when
-the property is true), in a ternary, or as a value in any condition (`{if first@items}`):
+the property is true), in a ternary, or as a value in any condition (`{pad:if first@items}`):
 
 ```
-{items}
-  {first@items}<ul>{/first@items}
-  <li class="{odd@items ? odd : even}">{$name}</li>
-  {last@items}</ul>{/last@items}
-{/items}
+{array:items}
+  {property:first@items}<ul>{/property:first@items}
+  <li class="{property:odd@items ? odd : even}">{$name}</li>
+  {property:last@items}</ul>{/property:last@items}
+{/array:items}
 ```
 
 Properties: `first@tag`, `last@tag`, `even@tag`, `odd@tag`, `current@tag`, `count@tag`, `remaining@tag`, `key@tag`, `data@tag`
@@ -201,20 +201,20 @@ Properties: `first@tag`, `last@tag`, `even@tag`, `odd@tag`, `current@tag`, `coun
 Control tag behavior with options:
 
 ```
-{users sort='name', first=10}           {# Sort and limit - options are comma-separated #}
-{products sort='price DESC', page=1, rows=20}
-{items shuffle, first=5}                 {# Random selection #}
-{users sort='name', toData='sorted'}     {# Data operations - the sorted rows as {sorted} #}
+{array:users sort='name', first=10}           {# Sort and limit - options are comma-separated #}
+{array:products sort='price DESC', page=1, rows=20}
+{array:items shuffle, first=5}                 {# Random selection #}
+{array:users sort='name', toData='sorted'}     {# Data operations - the sorted rows as {data:sorted} #}
 ```
 
 ### Data Definition
 
 ```
-{data 'colors'}
+{pad:data 'colors'}
   ["red", "green", "blue"]
-{/data}
+{/pad:data}
 
-{colors}{$colors} {/colors}
+{data:colors}{$colors} {/data:colors}
 ```
 
 Supports JSON, XML, YAML, and CSV formats.
@@ -227,10 +227,10 @@ Resolve naming conflicts with explicit type prefixes:
 ```
 {app:mytag/}              # App tag from _tags/
 {pad:tagname/}            # Built-in PAD tag
-{php:strlen 'abc'/}       # Call PHP function - {echo $x | php:strlen(@)/} in an expression
+{php:strlen 'abc'/}       # Call PHP function - {pad:echo $x | php:strlen(@)/} in an expression
 {data:items/}             # Defined data block
 {pull:mySequence/}        # Stored sequence
-{field "name from users"/}  # Database single value (the field: prefix reads a variable)
+{pad:field "name from users"/}  # Database single value (the field: prefix reads a variable)
 ```
 
 ### Custom Tags
@@ -243,11 +243,11 @@ return "Output: $format";
 ?>
 ```
 
-Use as `{mytag 'value'}` or `{mytag format='value'}`.
+Use as `{app:mytag 'value'}` or `{app:mytag format='value'}`.
 
 A tag with a `.pad` template is a component: the caller's content goes to `@content@`,
-`{slot 'footer'}...{/slot}` pairs in the content fill the template's named slots - each use
-of the tag has its own - and `{parms title, tone='info'/}` declares the parameters, a bare name
+`{pad:slot 'footer'}...{/pad:slot}` pairs in the content fill the template's named slots - each use
+of the tag has its own - and `{pad:parms title, tone='info'/}` declares the parameters, a bare name
 required and `name=default` filled in.
 
 ### Database Operations
@@ -262,18 +262,18 @@ $exists = db("CHECK users WHERE email='{0}'", [$email]);
 
 ```
 // In templates (the tag name becomes the db() command word)
-{field "count(*) from users"/}
-{record "* from users where id=5"}
+{pad:field "count(*) from users"/}
+{pad:record "* from users where id=5"}
   Name: {$name}
-{/record}
-{array "* from users order by name"}
+{/pad:record}
+{pad:array "* from users order by name"}
   <tr><td>{$name}</td></tr>
-{/array}
+{/pad:array}
 
 // Or declare tables in _lib/select.php ($padSelect) and use them as tags
-{users}
+{array:users}
   {$name} - {$email}
-{/users}
+{/array:users}
 ```
 
 See [DATABASE.md](DATABASE.md) for the `db()` command words and the Select subsystem.
@@ -282,9 +282,9 @@ See [DATABASE.md](DATABASE.md) for the `db()` command words and the Select subsy
 
 120+ mathematical sequences with transformations:
 ```
-{fibonacci rows=10}{$fibonacci} {/fibonacci}
-{sequence '1..10', push='nums'/}
-{resume add=5/}
+{sequence:fibonacci rows=10}{$fibonacci} {/sequence:fibonacci}
+{sequence:range '1..10', push='nums'/}
+{pad:resume add=5/}
 {pull:nums}{$sequence} {/pull:nums}
 ```
 
@@ -333,11 +333,11 @@ The `@page@` placeholder is replaced with the page content, creating a nested st
 PAD processes templates through a level-based system. Each tag creates a new level:
 
 ```
-{outer}                 ← Level 0
-  {inner}               ← Level 1
-    {field/}             ← Level 2
-  {/inner}
-{/outer}
+{array:outer}                 ← Level 0
+  {array:inner}               ← Level 1
+    {pad:field/}             ← Level 2
+  {/array:inner}
+{/array:outer}
 ```
 
 The level processor (`level/level.php`):
@@ -362,8 +362,8 @@ When a tag is encountered, PAD determines its type:
 | `!` | Raw field (no sanitize chain) | `{!snippet}` |
 | `?` | Field as a query fragment | `{?id}` → `&id=7` |
 | `^` | Field as JSON for an attribute | `data-props="{^product}"` |
-| `@` | Property | `{first@tag}` |
-| (none) | Tag/Field | `{users}`, `{if}` |
+| `@` | Property | `{property:first@tag}` |
+| (none) | Tag/Field | `{array:users}`, `{pad:if}` |
 
 Types are resolved in order: app → common → pad → pull → bool → content → select → data → include → property → field → array → parm → level → constant → local → script → php → sequence → action → chart → game → toy → diagram → widget → barcode → embed → input → function
 
@@ -372,10 +372,10 @@ Types are resolved in order: app → common → pad → pull → bool → conten
 When a tag has data (array), PAD iterates through each item:
 
 ```
-{users}                        ← Data: [{name: 'A'}, {name: 'B'}]
+{array:users}                        ← Data: [{name: 'A'}, {name: 'B'}]
   <li>{$name}</li>             ← Occurrence 1: name = 'A'
                                ← Occurrence 2: name = 'B'
-{/users}
+{/array:users}
 ```
 
 The occurrence system (`occurrence/`) manages:
@@ -389,7 +389,7 @@ The occurrence system (`occurrence/`) manages:
 Expressions in templates are parsed and evaluated by the eval subsystem:
 
 ```
-{echo $price * 1.1 | round(@, 2)/}
+{pad:echo $price * 1.1 | round(@, 2)/}
 ```
 
 Evaluation pipeline:
@@ -559,13 +559,13 @@ apcu, db, file, memcached or redis. The fragment cache keeps one section of a pa
 rendered while the rest stays dynamic:
 
 ```
-{cache 'top-products', ttl=300}  {# a named section, five minutes #}
-  {topProducts}<li>{$name}</li>{/topProducts}
-{/cache}
+{pad:cache 'top-products', ttl=300}  {# a named section, five minutes #}
+  {app:topProducts}<li>{$name}</li>{/app:topProducts}
+{/pad:cache}
 
-{expensive_query cache=3600}      {# any tag: its handler is skipped on a hit #}
+{app:expensive_query cache=3600}      {# any tag: its handler is skipped on a hit #}
   ...
-{/expensive_query}
+{/app:expensive_query}
 ```
 
 `vary=` adds what else the rendering depends on (`vary=$userId`); `$padFragmentCache`
@@ -574,7 +574,7 @@ drops a named section when what it shows has changed.
 
 ### Early flush
 
-`{flush}` in the wrapper, after `</head>`, sends the page rendered so far at once, so the
+`{pad:flush}` in the wrapper, after `</head>`, sends the page rendered so far at once, so the
 browser fetches stylesheets and fonts while a slow part of the page renders. Tidy, whole-body
 gzip, the ETag and `Content-Length` are off for such a request - they need the whole body.
 
@@ -608,17 +608,17 @@ data.
 ### Layouts and Components
 
 A component declares the assets it needs where it is used; the layout prints them where
-they belong. `{stack}` is filled in after the whole page has rendered, so a stack in the
+they belong. `{pad:stack}` is filled in after the whole page has rendered, so a stack in the
 `<head>` gets the pushes of everything below it:
 
 ```
-<head>{stack 'scripts'/}</head>
+<head>{pad:stack 'scripts'/}</head>
 
-{push 'scripts', once='chart'}     {# once per key, however often the component is used #}
+{pad:push 'scripts', once='chart'}     {# once per key, however often the component is used #}
   <script src="chart.js"></script>
-{/push}
+{/pad:push}
 ```
-Remote data has a cache of its own: `{curl 'https://...', ttl=600}`, `data='https://...'`
+Remote data has a cache of its own: `{pad:curl 'https://...', ttl=600}`, `data='https://...'`
 with a `ttl=` and a `_data/*.curl` file with a `<ttl>` keep the answer that long, and serve
 the last good copy - logging the failure - when the source is down. `$padCurlCache` picks
 the store: `'file'` (default), `'apcu'`, `'redis'`, `'memcached'` or `FALSE`.
@@ -627,18 +627,18 @@ A page picks a layout of its own and overrides its regions, resolved in the text
 page is assembled:
 
 ```
-{extends '_layouts/report'/}                {# instead of the _inits.pad/_exits.pad frame #}
-{block 'title'}Sales report{/block}
-{block 'sidebar'}{parent/}<a href="?export">Export</a>{/block}
+{pad:extends '_layouts/report'/}                {# instead of the _inits.pad/_exits.pad frame #}
+{pad:block 'title'}Sales report{/pad:block}
+{pad:block 'sidebar'}{pad:parent/}<a href="?export">Export</a>{/pad:block}
 ```
 
-Without `{extends}`, a page's `{block 'title'}` overrides the region of that name in its
+Without `{pad:extends}`, a page's `{pad:block 'title'}` overrides the region of that name in its
 directories' wrappers.
 
-A page without PHP says what a `.php` would with `{meta}`, read while the page is assembled:
+A page without PHP says what a `.php` would with `{pad:meta}`, read while the page is assembled:
 
 ```
-{meta title='Monthly report', layout='_layouts/print', cache=600/}
+{pad:meta title='Monthly report', layout='_layouts/print', cache=600/}
 ```
 
 ### AJAX Support
@@ -646,18 +646,18 @@ A page without PHP says what a `.php` would with `{meta}`, read while the page i
 Embed a page the browser fetches after load:
 
 ```
-{ajax 'orders'/}   {# a <div> the browser fills with ?orders&padInclude #}
+{pad:ajax 'orders'/}   {# a <div> the browser fills with ?orders&padInclude #}
 ```
 
 A named response fragment lets one template serve both the full page and the region an
 update refreshes - `?orders&padFragment=order-list` answers with that fragment alone:
 
 ```
-{fragment 'order-list'}
-  {orders}<li>{$number}</li>{/orders}
-{/fragment}
+{pad:fragment 'order-list'}
+  {array:orders}<li>{$number}</li>{/array:orders}
+{/pad:fragment}
 
-{ajax 'orders', fragment='order-list'/}           {# or hx-get="?orders&padFragment=order-list" #}
+{pad:ajax 'orders', fragment='order-list'/}           {# or hx-get="?orders&padFragment=order-list" #}
 ```
 
 ### PAD in the Browser
@@ -674,20 +674,20 @@ directory: opened from the disk it runs in the browser tab, served over https it
 application whose service worker runs PHP for every window, offline after the first visit. What
 the application writes under `DATA/` - its SQLite database, uploads, sessions - is kept in the
 browser's IndexedDB between visits, and a panel exports and imports the database. The page's
-own `fetch`, XHR, `{live}`, `{ajax}`, fragments and `EventSource` reach PHP there as they would
+own `fetch`, XHR, `{pad:live}`, `{pad:ajax}`, fragments and `EventSource` reach PHP there as they would
 a server; `padSse` answers one round per connection. Manual page *Offline applications*,
 `wasm/README.md`; the `notes`, `ledger` and `kanban` applications show it.
 
 ### Live Regions
 
-A `{live}` region re-renders on the server when something in it is clicked, submitted or
+A `{pad:live}` region re-renders on the server when something in it is clicked, submitted or
 changed, and swaps itself in - no JavaScript of the application's own:
 
 ```
-{live 'counter'}
+{pad:live 'counter'}
   <p>{$count}</p>
   <button pad-click="add" pad-value="{$count}">+1</button>
-{/live}
+{/pad:live}
 ```
 
 The page's PHP reads the event with `padLiveEvent()` and `padLiveValue()`; the response to
@@ -698,16 +698,16 @@ the event is that region's content alone.
 Execute code in isolation:
 
 ```
-{sandbox}
+{pad:sandbox}
   {# Isolated execution environment #}
-{/sandbox}
+{/pad:sandbox}
 ```
 
-`{sandbox}` isolates PAD's state, not PHP. To try templates someone else typed, use the
+`{pad:sandbox}` isolates PAD's state, not PHP. To try templates someone else typed, use the
 playground (`apps/playground`, `http://localhost/pad/playground/`): it answers local
 requests only, renders with `$padPhpFunctions = []` and `$padRequestVars = []`, limits run
 time and source and output size, and shows the result in a sandboxed frame. Its data is a
-text in any data format - JSON, YAML, XML, CSV, its type recognised as `{data}` recognises it
+text in any data format - JSON, YAML, XML, CSV, its type recognised as `{pad:data}` recognises it
 - or, switched with the button beside it, PHP code as a page's `.php`, which runs as written,
 unlimited. The URL hash carries the template and its data, so a link shares an
 example; one opened from a link waits for Render.
@@ -724,9 +724,9 @@ in `pad/events/` serve the info modes - trace, stats, xref - and run only under 
 Execute PHP code at specific points:
 
 ```
-{staff callback='totals'}
+{local:staff callback='totals'}
   {# _callbacks/totals.php runs at init, for each row and at exit #}
-{/staff}
+{/local:staff}
 ```
 
 ## Configuration
@@ -769,10 +769,10 @@ $padSqlPassword
   `?page&padReload` for the newest file time under the application, its `www/` directory and
   `_common` (`'engine'`: `pad/` too) and reloads itself when a file is saved
   (`pad/exits/_lib/reload.php`); never for a visitor, a fragment, the page cache or `pad export`
-- Use `{dump}` tag for variable inspection
-- Use `{trace}` tag for execution trace
+- Use `{pad:dump}` tag for variable inspection
+- Use `{pad:trace}` tag for execution trace
 - Set `$padCheckOutput = TRUE` to have every local HTML response checked once it has rendered: duplicate ids, images without alt, form fields without a label and `?page` links to pages that do not exist are named in a panel at the end of the page and counted in a `PAD-Output-Check` header (one request: `?page&padCheckOutput`; every application's templates at once: `develop/?links`)
-- Set `$padCoverage = TRUE` (or a run name) to record template coverage of local requests - which templates were read, which tags ran, which `{if}`/`{case}` branch was taken - in `DATA/coverage/<run>.jsonl`; `develop/?coverage` starts and stops a recording of every application around a suite run and shows each template with what never ran marked
+- Set `$padCoverage = TRUE` (or a run name) to record template coverage of local requests - which templates were read, which tags ran, which `{pad:if}`/`{pad:case}` branch was taken - in `DATA/coverage/<run>.jsonl`; `develop/?coverage` starts and stops a recording of every application around a suite run and shows each template with what never ran marked
 - Set `$padRecord = TRUE` (or a store name) to keep every GET answered 200 - one that brought no cookie but PAD's own ids - with its answer in `DATA/replay/<store>/`; `develop/?replay` replays a store against the current code and names every page whose answer changed. A replay never writes: `db()` refuses statements that change the database and `padFilePut` the application's own writes
 - Check `DATA/` directory for error dumps and logs
 
@@ -806,7 +806,7 @@ APP/
 
 1. **Use caching** - Cache expensive operations; remote data takes a `ttl=`
 1. **Fetch remote sources together** - `padPrefetch ( [ 'rates' => $url1, 'weather' => $url2 ] )`
-   in the page PHP fetches them in parallel and keeps each as named data for `{rates}`
+   in the page PHP fetches them in parallel and keeps each as named data for `{data:rates}`
 2. **Limit data** - Use `first`, `page`, `rows` options
 3. **Sort server-side** - Let database handle sorting when possible
 4. **Minimize nesting** - Deep nesting impacts performance
@@ -853,9 +853,9 @@ outlives it.
 
 ### Key Syntax Rules
 
-1. **A literal pipes through `{echo}`** - `{echo 'x' | upper/}`; a field tag pipes as it stands, `{$var | upper}`
-2. **Arithmetic needs space** - `{echo $x | + 1/}` not `| +1`
-3. **Quote literal strings** - `{count 'items'}` not `{count items}`
+1. **A literal pipes through `{pad:echo}`** - `{pad:echo 'x' | upper/}`; a field tag pipes as it stands, `{$var | upper}`
+2. **Arithmetic needs space** - `{pad:echo $x | + 1/}` not `| +1`
+3. **Quote literal strings** - `{pad:count 'items'}` not `{pad:count items}`
 4. **No inline CSS/JS** - PAD parses `{ }` as tags; use external files
 5. **Use `padRedirect()`** - Don't use `exit` or `die` in PAD apps
 

@@ -1,7 +1,7 @@
 <?php
 
   // pdffile - A PDF in the browser's own viewer, with a link to open it under the frame. A
-  // file of www/<application>/, versioned as an {asset}, is a frame of the application's
+  // file of www/<application>/, versioned as an {pad:asset}, is a frame of the application's
   // own, loaded lazily; one of another site is a facade first - a drawn page, the title and
   // a button - its frame loaded on the click. 4:5 unless ratio= says otherwise.
 

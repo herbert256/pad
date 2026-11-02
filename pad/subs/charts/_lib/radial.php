@@ -2,8 +2,8 @@
 
   // Values around a centre: the rose, and bars bent into rings.
   //
-  //   {chart 'rose', data='deaths', label='month', value='disease, wounds, other'}
-  //   {chart 'radialbar', data='funds', label='class', value='raised', to=5000}
+  //   {chart:rose data='deaths', label='month', value='disease, wounds, other'}
+  //   {chart:radialbar data='funds', label='class', value='raised', to=5000}
   //
   // rose - Nightingale's rose, the polar area chart: a wedge per row, all of one angle,
   // clockwise in the order of the rows, the first centred on twelve o'clock - so a wind

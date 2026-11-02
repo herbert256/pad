@@ -14,17 +14,17 @@
     <th>Description</th>
     <th>Code</th>
   </tr>
-  {apps}
+  {array:apps}
   <tr>
     <td>
-      {if $link ne ''}<a href="{$link}">{$name}</a>{/if}
-      {if $link eq ''}{$name}{/if}
+      {pad:if $link ne ''}<a href="{$link}">{$name}</a>{/pad:if}
+      {pad:if $link eq ''}{$name}{/pad:if}
     </td>
     <td>
-      {if $description ne ''}{$description}{/if}
-      {if $description eq ''}<i>No description available</i>{/if}
+      {pad:if $description ne ''}{$description}{/pad:if}
+      {pad:if $description eq ''}<i>No description available</i>{/pad:if}
     </td>
-    <td><a href="{$padRoot}edit/?index&app={$name}">edit</a></td>
+    <td>{pad:if $name ne 'wasm'}<a href="{$padRoot}edit/?index&app={$name}">edit</a>{/pad:if}</td>
   </tr>
-  {/apps}
+  {/array:apps}
 </table>

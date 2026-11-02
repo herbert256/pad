@@ -1,6 +1,6 @@
 <?php
 
-  // {timeago $created} - how long ago a moment was, in words, inside a <time> with the
+  // {pad:timeago $created} - how long ago a moment was, in words, inside a <time> with the
   // moment as its datetime and, in full, as its title: tags/_lib/timeago.php. The words are the
   // ago pipe's - just now, 5 minutes ago, yesterday, in 3 weeks. The moment is a Unix
   // timestamp, a date in text or a date object; now= counts from that moment instead of

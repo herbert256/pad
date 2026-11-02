@@ -2,13 +2,13 @@
 
   // The palettes subsystem: colour scales for charts and anything else.
   //
-  //   {palette 'viridis', steps=7/}                     swatches, each with its hex value
+  //   {pad:palette 'viridis', steps=7/}                     swatches, each with its hex value
   //   padPalette ( 'viridis', 7 )                       the colours, '#rrggbb' each
-  //   {chart 'bar', data='sales', palette='okabe-ito'/} a chart in the palette's colours
+  //   {chart:bar data='sales', palette='okabe-ito'/} a chart in the palette's colours
   //
   // A palette is a file of subs/palettes/types/ - its name, its type and its colours - and the
   // files there are the palettes there are (padKinds, lib/subsystem.php); no tag type: a palette
-  // is the parameter of {palette}, the option palette= of {chart} and the first argument of
+  // is the parameter of {pad:palette}, the option palette= of {chart:bar} and the first argument of
   // padPalette. Four types:
   //
   //   sequential   a scale from low to high - viridis, magma, plasma, inferno and cividis from
@@ -36,7 +36,7 @@
   // and past its last starts again: an eighth of a palette of seven is its first. Without
   // steps, a categorical palette gives all its colours, a cyclic one twelve, the others nine.
   //
-  // Included on use - by {palette}, by a chart given palette= and by padPalette (lib/palette.php).
+  // Included on use - by {pad:palette}, by a chart given palette= and by padPalette (lib/palette.php).
 
   function padPaletteTypes () {
 

@@ -1,24 +1,24 @@
 {common:padFrame}
 
-  {slot 'head'}
+  {pad:slot 'head'}
     <meta name="theme-color" content="#d97706">
-    <meta name="csrf-token" content="{csrf token/}">
-    <link rel="icon" href="{asset 'icon.svg'/}" type="image/svg+xml">
-    {asset 'notes.css', tag/}
-    <script src="{asset 'notes.js'/}" defer></script>
-  {/slot}
+    <meta name="csrf-token" content="{pad:csrf token/}">
+    <link rel="icon" href="{pad:asset 'icon.svg'/}" type="image/svg+xml">
+    {pad:asset 'notes.css', tag/}
+    <script src="{pad:asset 'notes.js'/}" defer></script>
+  {/pad:slot}
 
-  {slot 'tools'}
+  {pad:slot 'tools'}
     <form class="search" method="get" role="search">
       <input type="hidden" name="index" value="">
       <input type="search" name="q" value="{$search}" placeholder="Search notes" aria-label="Search notes" autocomplete="off">
     </form>
     <a class="button primary" href="{$padGo}edit">New note</a>
-  {/slot}
+  {/pad:slot}
 
 {/common:padFrame}
 
-{flash}<p class="flash {$type}" role="status">{$message}</p>{/flash}
+{pad:flash}<p class="flash {$type}" role="status">{$message}</p>{/pad:flash}
 
 @page@
 

@@ -69,7 +69,7 @@
 
     global $padInfoTrace, $padInfoTraceDir;
 
-    // A trace that runs, not one that ran: a {trace} tag loads this library and, once it has
+    // A trace that runs, not one that ran: a {pad:trace} tag loads this library and, once it has
     // ended, puts its directory away - the report went to dumps/<app>//ERROR, the file layer
     // refused the path, and that second error replaced the report of the first.
 
@@ -205,7 +205,7 @@
     else
       $add = $padInfoTraceLevel [$pad] . '/' . padInfoTraceOccur ( $pad );
 
-    // Inside a {trace} tag scope the level path opens empty, and the slash it would have
+    // Inside a {pad:trace} tag scope the level path opens empty, and the slash it would have
     // carried doubles - which padFileCheck refuses. Collapsed here the way
     // padInfoTraceCheckLocalOne already does for the same paths.
 

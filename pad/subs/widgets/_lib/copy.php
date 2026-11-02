@@ -1,9 +1,9 @@
 <?php
 
-  // A text with a copy-to-clipboard button - the copy widget, {copy}.
+  // A text with a copy-to-clipboard button - the copy widget, {widget:copy}.
   //
-  //   {copy 'composer require pad/pad'}
-  //   {copy label='Copy the command'}npm install {$package}{/copy}
+  //   {widget:copy 'composer require pad/pad'}
+  //   {widget:copy label='Copy the command'}npm install {$package}{/widget:copy}
   //
   // The text stands in a <pre><code> that selects as a whole with one click, so it can be
   // copied by hand in any browser. The button is there when scripting is: a small script,
@@ -44,7 +44,7 @@
 
   }
 
-  // The click is caught on the document, so a box a {live} region swaps in works the same.
+  // The click is caught on the document, so a box a {pad:live} region swaps in works the same.
 
   function padCopyScript () {
 

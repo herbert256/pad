@@ -10,7 +10,7 @@
   // are settled (base, before-pipe, data, name and handling/), the dump and app option
   // hooks fire, a callback= is initialised and an @end@ section is put aside. Finally
   // occurrence/occurrence.php renders the first occurrence - unless an @start@ section
-  // defers the body, or a {break}/{continue} asked to jump to an outer level.
+  // defers the body, or a {pad:break}/{pad:continue} asked to jump to an outer level.
 
   include PAD . 'level/setup.php';
 

@@ -1,29 +1,29 @@
-{table}{demo}
+{common:table}{common:demo}
 
-{set $abc = 10/}
+{pad:set $abc = 10/}
 
-{content 'myContent'}
+{pad:content 'myContent'}
   {$abc} <br>
-{/content}
+{/pad:content}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{increment $abc/} {myContent/}
-{increment $abc/} {myContent/}
-{increment $abc/} {myContent/}
+{pad:increment $abc/} {content:myContent/}
+{pad:increment $abc/} {content:myContent/}
+{pad:increment $abc/} {content:myContent/}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{set $abc = 10/}
+{pad:set $abc = 10/}
 
-{content}
+{pad:content}
   {$abc} <br>
-{/content 'myContent'}
+{/pad:content 'myContent'}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{increment $abc/} {myContent/}
-{increment $abc/} {myContent/}
-{increment $abc/} {myContent/}
+{pad:increment $abc/} {content:myContent/}
+{pad:increment $abc/} {content:myContent/}
+{pad:increment $abc/} {content:myContent/}
 
-{/demo}{/table}
+{/common:demo}{/common:table}

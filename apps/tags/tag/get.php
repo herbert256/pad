@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{get 'name'/}
-{get 'name', $colour = 'red'/}
+{pad:get 'name'/}
+{pad:get 'name', $colour = 'red'/}
 PAD;
 
   $tagParms   = [

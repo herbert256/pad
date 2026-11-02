@@ -3,7 +3,7 @@
   // {jsonld:breadcrumb/} or {jsonld:breadcrumb data='trail'/} - a BreadcrumbList: where the
   // page stands, from the home page down, each step a ListItem numbered by its position.
   //
-  // Alone it is the trail the breadcrumb widget {breadcrumb/} shows for the page - Home, every
+  // Alone it is the trail the breadcrumb widget {widget:breadcrumb/} shows for the page - Home, every
   // directory of the page's path and the page itself, home= naming the first step - read from
   // the widget, so the two say the same, but for a directory that is no page, which has no
   // address to give and is left out. With data= the steps are its rows, the rows the

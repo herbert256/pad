@@ -1,9 +1,7 @@
 <?php
 
-  // The body of a printable, whichever way it is written: {printable 'labels'} ... {/printable},
-  // or the printable: type - {printable:labels} ... {/printable:labels}. The caller sets
-  // $padPrintableKind; a printable is a file of subs/printables/types/, and the files there
-  // are all the kinds there are (padPrintableKinds, lib/printable.php).
+  // The shared body of printable:kind tags, such as {printable:labels}. The caller sets
+  // $padPrintableKind; registered kinds are files in subs/printables/types/.
   //
   // The content between the tags is the template of one item. On its first walk the pair
   // puts a marker in front of it and asks for the end walk: the level then renders the

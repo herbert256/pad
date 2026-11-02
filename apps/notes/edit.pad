@@ -1,26 +1,26 @@
 <div class="editor">
 
-  {form 'note', error}
+  {pad:form 'note', error}
 
-    {input 'title', label='Title', value=$draft.title, rules='required|max:120', placeholder='What is it about?'/}
+    {pad:input 'title', label='Title', value=$draft.title, rules='required|max:120', placeholder='What is it about?'/}
 
     <div class="tabs" role="tablist" aria-label="Text">
       <button type="button" role="tab" data-tab="write" aria-selected="true">Write</button>
       <button type="button" role="tab" data-tab="preview" aria-selected="false">Preview</button>
     </div>
-    {textarea 'body', label='Text, in Markdown', value=$draft.body, rows=16, rules='max:20000'/}
+    {pad:textarea 'body', label='Text, in Markdown', value=$draft.body, rows=16, rules='max:20000'/}
     <div id="preview" class="preview body" hidden></div>
 
-    {input 'tags', label='Tags', value=$draftTags, placeholder='work, ideas - separated by commas', rules='max:200'/}
+    {pad:input 'tags', label='Tags', value=$draftTags, placeholder='work, ideas - separated by commas', rules='max:200'/}
 
     <fieldset class="colors">
       <legend>Colour</legend>
-      {choices}<label class="color-{$key}"><input type="radio" name="color" value="{$key}"{if $chosen} checked{/if}> {$label}</label>{/choices}
+      {array:choices}<label class="color-{$key}"><input type="radio" name="color" value="{$key}"{pad:if $chosen} checked{/pad:if}> {$label}</label>{/array:choices}
     </fieldset>
 
     <div class="drop">
       <span>Drop a picture, a PDF or a text file here - or choose one</span>
-      {input 'file', type='file', label='Attach a file', accept='image/*,application/pdf,text/plain,text/markdown,text/csv'/}
+      {pad:input 'file', type='file', label='Attach a file', accept='image/*,application/pdf,text/plain,text/markdown,text/csv'/}
       <span class="chosen"></span>
     </div>
 
@@ -30,6 +30,6 @@
       <small><kbd>Ctrl</kbd> + <kbd>S</kbd> saves</small>
     </div>
 
-  {/form}
+  {/pad:form}
 
 </div>

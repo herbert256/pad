@@ -21,7 +21,7 @@
   <button class="btn-sm btn-ghost" @click="clear()" x-show="done() > 0" x-cloak>Clear the done ones</button>
 
   <ul class="todo-list" x-show="false">
-    {todos}<li>{$text}</li>{/todos}
+    {array:todos}<li>{$text}</li>{/array:todos}
   </ul>
 </div>
 

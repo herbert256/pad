@@ -1,12 +1,12 @@
-{meta title='Date picker'/}
-{about/}
+{pad:meta title='Date picker'/}
+{include:about/}
 
-{form 'try', class='inputs-try', error}
-  {datepicker 'arrival', label='Arrival', min='2026-01-01', max='2027-12-31', rules='required|date'/}
-  {datepicker 'birthday', label='Birthday', weekstart='sunday'/}
+{pad:form 'try', class='inputs-try', error}
+  {input:datepicker 'arrival', label='Arrival', min='2026-01-01', max='2027-12-31', rules='required|date'/}
+  {input:datepicker 'birthday', label='Birthday', weekstart='sunday'/}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-{template/}
+{include:template/}

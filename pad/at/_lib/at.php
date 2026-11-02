@@ -1,7 +1,7 @@
 <?php
 
   // Resolver behind every field reference that contains an @ or a dot - {$name@users},
-  // {first@items}, {at "country.id='f0_325'@mondial"}. Reached from padField() via
+  // {property:first@items}, {pad:at "country.id='f0_325'@mondial"}. Reached from padField() via
   // lib/field/at.php; $cor is a level correction added to the level a reference lands on.
   //
   // A reference reads as names@parts: the dot-separated $names are the path to look up,
@@ -9,7 +9,7 @@
   // tag name, a group or a type, $second a group within that level or a store within that
   // type. padMiss (lib/field/field.php) is the "nothing here" sentinel, passed back unchanged
   // so a caller can tell a miss from a legitimately empty value. It was INF, which a value can
-  // be: a field holding INF reached by a path or a target - {$s.m}, {$m@d}, {if $d.m gt 1} -
+  // be: a field holding INF reached by a path or a target - {$s.m}, {$m@d}, {pad:if $d.m gt 1} -
   // read as no field at all, where the plain {$m} printed INF.
   //
   // padAtValue tries the resolvers in order, first hit wins: padAtTag (one whole level,
@@ -43,8 +43,8 @@
     $name  = reset ($names);
 
     // The head of the path names the level only when the reference is the tag itself -
-    // {rows@data}...{/rows@data}, {at 'x.y@z'}. A reference inside an expression reads a
-    // value: the parameter of {if $draft.id} named its level 'draft', the level's value
+    // {property:rows@data}...{/property:rows@data}, {pad:at 'x.y@z'}. A reference inside an expression reads a
+    // value: the parameter of {pad:if $draft.id} named its level 'draft', the level's value
     // then stood in $draft for the content, and {$draft.title} there was not found.
 
     if ( ! ( $padEvalBusy ?? 0 ) ) {
@@ -109,10 +109,10 @@
 
     $check = str_replace ( '@*', '', $field );
 
-    // The nearest level that is not a property tag itself - the loop a bare {first@} stands
+    // The nearest level that is not a property tag itself - the loop a bare {property:first@} stands
     // in. The + 1 this had made up for the loop being marked as a property tag by mistake
     // (padAtSetTag); in a loop at the top of the page it landed on the property's own
-    // level, and {current@} answered 0 on every row.
+    // level, and {property:current@} answered 0 on every row.
 
     if ( padPropertyName ( $check ) ) {
       $idx   = padFieldFirstNonTag ( $cor, $check );
@@ -325,7 +325,7 @@
 
   }
 
-  // The property-only resolution behind the bare spelling in expressions: {if first@orders}
+  // The property-only resolution behind the bare spelling in expressions: {pad:if first@orders}
   // asks for the property and nothing else, where the $-spelling asks the whole resolver
   // chain - fields first - as it always has. The sigil is the meaning: $first@orders is a
   // field of the row, first@orders is the iteration state, and a row field named 'first'
@@ -334,7 +334,7 @@
   // A property written without a target - current@ in an expression - is the loop's the
   // expression stands in: the level itself when it is iterating (a field's pipe), the level
   // below it when it is a tag whose parameters are being read - its occurrence has not
-  // started - and past an {if}, a {case} and any other level that renders once for the row
+  // started - and past an {pad:if}, a {pad:case} and any other level that renders once for the row
   // (padFieldFirstNonTag).
 
   function padPropertyValue ( $field ) {
@@ -354,11 +354,11 @@
     $first = $parts [0] ?? '';
 
     // A relative -N counts the enclosing levels from the tag the reference is written in, as
-    // the tag form {current@-1} and a field's pipe count them. While a tag's parameters are
+    // the tag form {property:current@-1} and a field's pipe count them. While a tag's parameters are
     // read its own level is open and its occurrence has not started, so the count starts a
     // level further down - the step a $cor of 1 takes in padAtIdx, from the same base the
-    // target-less form uses above. Counted from the tag's own level, {echo current@-1}
-    // answered about the {echo} itself, 0, and {if first@-1} was never true.
+    // target-less form uses above. Counted from the tag's own level, {pad:echo current@-1}
+    // answered about the {pad:echo} itself, 0, and {pad:if first@-1} was never true.
 
     // The expression's scanner (lib/eval/scan.php) takes a name for a property when a file
     // of that name is there, which on macOS and Windows is so in any case: a name that is
@@ -371,9 +371,9 @@
     $idx      = padAtIdx ( $first, ( $relative and ! ( $padOccur [$pad] ?? 0 ) ) ? 1 : 0 );
 
     // A target that names no enclosing level is a missing reference, as an undefined $field
-    // is, and the strict check names it with the words of the tag form {count@nosuch}
-    // (level/no.php): a misspelt {if last@itms} never closed its list, and count@d of a {data}
-    // store outside its loop was '' - {while $i lt count@d} never ran - in silence. With the
+    // is, and the strict check names it with the words of the tag form {property:count@nosuch}
+    // (level/no.php): a misspelt {pad:if last@itms} never closed its list, and count@d of a {pad:data}
+    // store outside its loop was '' - {pad:while $i lt count@d} never ran - in silence. With the
     // check off it answers '' as before.
 
     if ( $written and $idx === FALSE and $GLOBALS ['padCheckSyntax'] )
@@ -392,8 +392,8 @@
 
     // A relative -N names enclosing levels counted from the tag the property is written in,
     // and a property pair is itself the level the resolution stands in - so the pair's own
-    // step is taken back out. Without this {first@-2} answered about one level nearer than
-    // {first -2} over the same nesting: the vars/at/10 case had every row of a five-row loop
+    // step is taken back out. Without this {property:first@-2} answered about one level nearer than
+    // {property:first -2} over the same nesting: the vars/at/10 case had every row of a five-row loop
     // recorded as first and last at once, which is a one-occurrence level's answer.
 
     if ( $cor and strlen ( $first ) > 1 and $first [0] == '-' and is_numeric ( substr ( $first, 1 ) ) )
@@ -413,7 +413,7 @@
 
     global $padInfo;
 
-    // Only option, parameter and variable read a name behind them - {variable.x@items}. For
+    // Only option, parameter and variable read a name behind them - {property:variable.x@items}. For
     // any other a second name is a path into a field named like the property: $data.title,
     // $count.total and $name.first answered the level's data, row count and name.
 

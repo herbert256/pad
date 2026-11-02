@@ -1,7 +1,7 @@
 <?php
 
   // The body of a rich form field, written {input:slider 'volume'/} or - when nothing else has
-  // the name - bare, {slider 'volume'/}. The caller sets $padInputKind; a kind is a file of
+  // the name - bare, {input:slider 'volume'/}. The caller sets $padInputKind; a kind is a file of
   // subs/inputs/types/ - its script and its style are www/assets/inputs/<kind>.js and .css - and the
   // files there are all the kinds there are (padInputTypes, subs/inputs/_lib/input.php).
   //

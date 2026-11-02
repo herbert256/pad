@@ -7,17 +7,17 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{pattern 'name'/}
-{pattern 'topography', seed=7, width=960, height=320/}
-{pattern 'dots', size=24, colors='#fdfbf7, #e0c9a6'/}
+{pattern:name/}
+{pattern:topography seed=7, width=960, height=320/}
+{pattern:dots size=24, colors='#fdfbf7, #e0c9a6'/}
 {pattern:voronoi seed=3, title='Shards of colour'/}
-<div style="background-image:{pattern 'waves', as='url'/}">...</div>
+<div style="background-image:{pattern:waves as='url'/}">...</div>
 PAD;
 
   $tagParms   = [
-    'name' => 'The pattern, a file of <code>pad/subs/patterns/types/</code>: '
+    'kind after colon' => 'The pattern, a file of <code>pad/subs/patterns/types/</code>: '
             . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padPatternKinds () ) )
-            . '. The pattern: type names it as well - <code>{pattern:topography/}</code>; a pattern is never reached bare.' ];
+            . '. The pattern: prefix selects it - <code>{pattern:topography/}</code>; a pattern is never reached bare.' ];
 
   $tagOptions = [
     'seed'    => 'A number or a word: what the pattern picks at random, the same for the same seed (1 when left out). A tile repeated - stripes, dots, grid, checks, chevron, isometric, herringbone, scales, houndstooth, a brick wall of one ink - does not change with it.',
@@ -36,6 +36,6 @@ PAD;
     'rings'   => 'scales: the circles in a scale (3) - 1 a plain fish scale, more the waves of seigaiha.',
     'lines'   => 'guilloche: the lines of a band (12), copies of one wave a step apart along it, every second upside down.' ];
 
-  $tagSee     = [ 'placeholder', 'identicon', 'chart' ];
+  $tagSee     = [ 'placeholder', 'identicon', 'chart:bar' ];
 
 ?>

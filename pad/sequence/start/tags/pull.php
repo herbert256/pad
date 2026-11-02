@@ -1,6 +1,6 @@
 <?php
 
-  // Tag entry for {pull}: iterate a sequence that an earlier push= stored, or the last one
+  // Tag entry for {pad:pull}: iterate a sequence that an earlier push= stored, or the last one
   // pushed when no name is given. Reached from tags/pull.php; notes the entry point for
   // {info} in $pqSetStart and runs the tag pipeline.
 

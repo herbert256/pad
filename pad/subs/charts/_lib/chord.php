@@ -1,6 +1,6 @@
 <?php
 
-  // Flows between the members of one group: {chart 'chord', data='migration', source='from',
+  // Flows between the members of one group: {chart:chord data='migration', source='from',
   // target='to', value='people'}.
   //
   // A row is a flow from one node to another; source= and target= name the fields - else

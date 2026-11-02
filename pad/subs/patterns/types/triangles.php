@@ -4,7 +4,7 @@
   // their inks running from the first at the top left to the last at the bottom right with
   // the seed's scatter: a low-poly gradient. Write the inks from light to dark, or back.
   //
-  //   {pattern 'triangles', size=32, seed=11/}
+  //   {pattern:triangles size=32, seed=11/}
 
   return [
 

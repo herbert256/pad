@@ -1,4 +1,4 @@
-{offices order='officeCode', rows=3}
-{$officeCode} reps:  {salesReps}{$lastName} {/salesReps}
-{$officeCode} staff: {staffOf}{$lastName} {/staffOf}
-{/offices}
+{select:offices order='officeCode', rows=3}
+{$officeCode} reps:  {select:salesReps}{$lastName} {/select:salesReps}
+{$officeCode} staff: {select:staffOf}{$lastName} {/select:staffOf}
+{/select:offices}

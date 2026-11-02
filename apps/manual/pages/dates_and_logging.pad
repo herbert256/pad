@@ -1,4 +1,4 @@
-{meta title='Dates and logging'/}
+{pad:meta title='Dates and logging'/}
 
 <p>A page's PHP asks for the date all the time: to stamp a record, to say how old a comment
 is, to write down what happened. These helpers give "now" in the application's timezone, read
@@ -20,7 +20,7 @@ application's own - plain functions, loaded on every request.</p>
 <p>The example freezes the clock first, so it shows the same on every day it is read - what a
 test does too. Without the freeze, now is the real moment.</p>
 
-{example 'fragments/dates_and_logging_1'/}
+{common:example 'fragments/dates_and_logging_1'/}
 
 <ul>
   <li>A number is a Unix timestamp, as the <code>date</code> pipe reads it; text is read the
@@ -45,9 +45,9 @@ run, and a page can be looked at as it will be on another day.
 <h2>How long ago</h2>
 
 <p><code>padAgo</code> says the age of a moment in words, and the <code>ago</code> pipe does
-the same in a template: <code>{open/}$posted | ago{close/}</code>.</p>
+the same in a template: <code>{pad:open/}$posted | ago{pad:close/}</code>.</p>
 
-{example 'fragments/dates_and_logging_2'/}
+{common:example 'fragments/dates_and_logging_2'/}
 
 <ul>
   <li>Under ten seconds is <em>just now</em>, then seconds, minutes and hours. From a day on
@@ -56,7 +56,7 @@ the same in a template: <code>{open/}$posted | ago{close/}</code>.</p>
   <li>A moment still to come is said the other way round: <em>in 3 days</em>,
   <em>tomorrow</em>.</li>
   <li>A second argument - <code>padAgo ( $start, $end )</code>, or
-  <code>{open/}$start | ago($end){close/}</code> - counts from that moment instead of now. An
+  <code>{pad:open/}$start | ago($end){pad:close/}</code> - counts from that moment instead of now. An
   empty value answers nothing.</li>
 </ul>
 
@@ -65,10 +65,10 @@ the same in a template: <code>{open/}$posted | ago{close/}</code>.</p>
 <p><code>padLog</code> appends one line to
 <code>DATA/logs/&lt;application&gt;/&lt;Y-m-d&gt;.log</code>: the time, the level, the
 message and the context as JSON. The levels are those of PSR-3 - debug, info, notice,
-warning, error, critical, alert and emergency - and <code>{open/}name{close/}</code> in the
+warning, error, critical, alert and emergency - and <code>{pad:open/}name{pad:close/}</code> in the
 message is filled from the context.</p>
 
-{example 'fragments/dates_and_logging_3'/}
+{common:example 'fragments/dates_and_logging_3'/}
 
 <ul>
   <li>One call is always one line: a newline in the message is written <code>\n</code>.</li>

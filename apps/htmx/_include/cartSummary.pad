@@ -1,9 +1,9 @@
-<aside id="cart-summary" class="card cart-summary"{if $posted} hx-swap-oob="true"{/if}>
+<aside id="cart-summary" class="card cart-summary"{pad:if $posted} hx-swap-oob="true"{/pad:if}>
   <h3>🛒 Your cart</h3>
-  {lines}
+  {array:lines}
   <div class="line"><span>{$emoji} {$name} × {$quantity}</span><span>€ {$amount}</span></div>
-  {/lines}
-  {if $cartCount eq 0}<p class="muted small">Empty - add something from the shelf.</p>{/if}
+  {/array:lines}
+  {pad:if $cartCount eq 0}<p class="muted small">Empty - add something from the shelf.</p>{/pad:if}
   <div class="line total"><span>Total</span><span>€ {$total}</span></div>
-  {if $cartCount}{form 'empty'}<input type="hidden" name="op" value="clear"><button class="btn-sm btn-ghost">Empty the cart</button>{/form}{/if}
+  {pad:if $cartCount}{pad:form 'empty'}<input type="hidden" name="op" value="clear"><button class="btn-sm btn-ghost">Empty the cart</button>{/pad:form}{/pad:if}
 </aside>

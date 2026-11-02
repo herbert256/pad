@@ -8,8 +8,8 @@
   // value through untouched - the one thing a pipe must never do is swallow it. Reading
   // a missing parameter was a PHP error before either could speak.
 
-  // The pad: prefix names the kind outright - {echo $x | pad:upper} - and a name with no
-  // file here went to the include as it was: {echo $x | pad:strtoupper} ended the request
+  // The pad: prefix names the kind outright - {pad:echo $x | pad:upper} - and a name with no
+  // file here went to the include as it was: {pad:echo $x | pad:strtoupper} ended the request
   // on a PHP warning in either mode. Named under the strict check, empty in the lenient
   // walk, as an unknown pipe function is.
 
@@ -52,7 +52,7 @@
 
   }
 
-  // A list or an object handed along the chain where a function wants a value - {echo $s |
+  // A list or an object handed along the chain where a function wants a value - {pad:echo $s |
   // php:explode(',', @) | trim} - is named under the strict check and is empty in the
   // lenient walk, as a missing parameter is: the function files hand $value to PHP's
   // string functions, and the page ended on a PHP TypeError or "Array to string conversion"
@@ -118,7 +118,7 @@
 
   }
 
-  // And more than it reads is named too: {echo ',a,' | trim(',')} - the character list PHP's
+  // And more than it reads is named too: {pad:echo ',a,' | trim(',')} - the character list PHP's
   // trim takes - trimmed only white space, and left(1, 2) cut one character, in silence.
   // in takes any number; a function not listed here takes what it reads.
 
@@ -137,9 +137,9 @@
                   'timestamp'  => 2, 'trans'     => 1, 'trim'       => 0, 'truncate'     => 2,
                   'ucwords'    => 0, 'upper'     => 0, 'url'        => 0, 'white'        => 0 ];
 
-  // An empty one is not counted - a function written as a tag with none, {upper}ab{/upper},
+  // An empty one is not counted - a function written as a tag with none, {function:upper}ab{/function:upper},
   // is handed the empty parameter list of the tag - nor the value itself, which upper(@)
-  // writes where the function works on: {echo 'pad' | @ . ' ' . upper(@)}.
+  // writes where the function works on: {pad:echo 'pad' | @ . ' ' . upper(@)}.
 
   $padFnGiven = count ( array_filter ( (array) $parm, fn ( $one ) => $one !== '' and $one !== NULL and $one !== $value ) );
 
@@ -147,7 +147,7 @@
     padError ( "the function '$name' takes " . ( $padFnTakes [$name] ? $padFnTakes [$name] . " parameter" . ( $padFnTakes [$name] > 1 ? 's' : '' ) : 'no parameters' )
                     . ", not $padFnGiven" );
 
-  // A field inside a quoted literal - {echo 'Re: {$subject}' | url} - reaches the function
+  // A field inside a quoted literal - {pad:echo 'Re: {$subject}' | url} - reaches the function
   // with its syntax characters as the stand-ins of padProtect (lib/encoding.php), which the
   // page's exit puts back: url wrote %EE%80%AC for the comma, escape('js') \uE02C, and
   // contains(','), after(',') and replace(', ', ...) never found it. The function is handed

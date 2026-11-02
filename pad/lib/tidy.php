@@ -63,7 +63,7 @@
       return $data;
 
     // The settings are config/tidy.php's when the application set none. That file is read at
-    // the end of the request, for the page's own pass, and the tidy option and the {tidy} tag
+    // the end of the request, for the page's own pass, and the tidy option and the {pad:tidy} tag
     // ran before it with PHP's defaults - without custom-tags, so a <my-card> inside them was
     // deleted and its text kept. It fills in only what is unset, so its read at the end
     // changes nothing.

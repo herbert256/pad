@@ -1,12 +1,12 @@
-{meta title='Range slider'/}
-{about/}
+{pad:meta title='Range slider'/}
+{include:about/}
 
-{form 'try', class='inputs-try', error}
-  {rangeslider 'price', label='Price', min=0, max=500, step=10, unit=' EUR', value='100, 400'/}
+{pad:form 'try', class='inputs-try', error}
+  {input:rangeslider 'price', label='Price', min=0, max=500, step=10, unit=' EUR', value='100, 400'/}
   {input:rangeslider 'age', label='Age', min=18, max=99, names='age_min, age_max', labels='Youngest, Oldest'/}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-{template/}
+{include:template/}

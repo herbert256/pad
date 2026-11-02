@@ -1,5 +1,5 @@
-{set $price = 12.5/}
-{set $qty   = 3/}
-<p>Total: {echo $price * $qty/}</p>
-{set $total = $price * $qty/}
-<p>{if $total gt 30}Free shipping{else}Shipping: 4.95{/if}</p>
+{pad:set $price = 12.5/}
+{pad:set $qty   = 3/}
+<p>Total: {pad:echo $price * $qty/}</p>
+{pad:set $total = $price * $qty/}
+<p>{pad:if $total gt 30}Free shipping{pad:else}Shipping: 4.95{/pad:if}</p>

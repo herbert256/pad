@@ -179,7 +179,7 @@
     $where = isset ( $where ['file'] ) ? ' - ' . $where ['file'] . ':' . $where ['line'] . ':' . $where ['column'] : '';
 
     // The message as the rest of a report shows values (padRedactText, error/claude.php): a
-    // failed {curl} quotes its address, and a login in it went to the log in clear.
+    // failed {pad:curl} quotes its address, and a login in it went to the log in clear.
 
     error_log ( '[PAD] ' . padID () . ' ' . padMakeSafe ( padRedactText ( (string) $error ) ) . $where, 4 );
 

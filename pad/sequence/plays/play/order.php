@@ -11,7 +11,7 @@
   // no term here, where it ended the request on the arithmetic or the array key it made.
 
   // The sequence starts at position 1: position 0 has no term, where it read the table at -1,
-  // found none, and the run with sole=0 answered the first term - {sequence '0;1;2;3', make,
+  // found none, and the run with sole=0 answered the first term - {sequence:list '0;1;2;3', make,
   // lucas} gave 1 1 3 4.
 
   if ( ! pqBoolWhole ( $pqLoop ) or $pqLoop < 1 )

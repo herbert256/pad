@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{rating 4.5/}
-{rating $score, max=5, size=20, icon='heart', label='text'/}
+{pad:rating 4.5/}
+{pad:rating $score, max=5, size=20, icon='heart', label='text'/}
 PAD;
 
   $tagParms   = [
@@ -18,6 +18,6 @@ PAD;
     'icon'  => '<code>star</code> (default) or <code>heart</code>.',
     'label' => 'The accessible name, default <code>4.5 out of 5</code>.' ];
 
-  $tagSee     = [ 'progress', 'icon', 'widget' ];
+  $tagSee     = [ 'progress', 'icon:star', 'widget:tabs' ];
 
 ?>

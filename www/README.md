@@ -45,7 +45,8 @@ The app name and the mount prefix (`$padRoot`) are derived in `pad.php` from `SC
 | `apps/` | Application listing | - |
 | `chess/` | Standalone static page (not a PAD app) | index.html |
 | `wasm/` | PAD in the browser on PHP compiled to WebAssembly - static, not a PAD app (see `wasm/README.md`) | index.html, pad-wasm.js, pad-bundle.json (built by `php wasm/build.php`) |
-| `playground/` | The playground application | playground.js, playground.css |
+| `wasm/` | Browser template/PHP editor | editor.js, pad-wasm.js, editor.css |
+| `playground/` | Compatibility redirect to WASM | index.php |
 | `cli/` | CLI app (web entry) | - |
 | `demo/` | Demo application | style.css |
 | `develop/` | Development tools | - |

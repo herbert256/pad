@@ -1,60 +1,6 @@
 
-<style>:where(.pad-dropdown){--pad-dropdown-accent:#2a78d6;--pad-dropdown-text:#1f1f1d;--pad-dropdown-muted:#62615c;--pad-dropdown-line:#e4e3df;--pad-dropdown-surface:#ffffff;--pad-dropdown-hover:#f1f0ec;}@supports (color:light-dark(#000,#fff)){:where(.pad-dropdown){--pad-dropdown-accent:light-dark(#2a78d6,#5598e7);--pad-dropdown-text:light-dark(#1f1f1d,#ecebe6);--pad-dropdown-muted:light-dark(#62615c,#a9a8a0);--pad-dropdown-line:light-dark(#e4e3df,#3a3a37);--pad-dropdown-surface:light-dark(#ffffff,#242422);--pad-dropdown-hover:light-dark(#f1f0ec,#30302d);}}.pad-dropdown{position:relative;display:inline-block}.pad-dropdown-button{display:inline-flex;align-items:center;gap:.5em;padding:.5em .9em;border:1px solid var(--pad-dropdown-line);border-radius:8px;background:var(--pad-dropdown-surface);color:var(--pad-dropdown-text);font:inherit;font-weight:550;cursor:pointer}.pad-dropdown-button:hover{border-color:var(--pad-dropdown-muted)}.pad-dropdown-button:focus-visible{outline:2px solid var(--pad-dropdown-accent);outline-offset:2px}.pad-dropdown-caret{width:.4em;height:.4em;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-25%) rotate(45deg);opacity:.7}.pad-dropdown-menu{box-sizing:border-box;min-width:12rem;max-width:min(22rem,calc(100vw - 2rem));padding:.35em;border:1px solid var(--pad-dropdown-line);border-radius:10px;background:var(--pad-dropdown-surface);color:var(--pad-dropdown-text);box-shadow:0 10px 30px rgba(0,0,0,.18)}@supports (position-area:bottom){.pad-dropdown-menu{inset:auto;margin:.35em 0;position-area:bottom span-right;position-try-fallbacks:flip-block}.pad-dropdown-end{position-area:bottom span-left}}.pad-dropdown-menu>a,.pad-dropdown-menu>button{display:block;box-sizing:border-box;width:100%;padding:.5em .75em;border:0;border-radius:6px;background:none;color:inherit;font:inherit;text-align:left;text-decoration:none;cursor:pointer}.pad-dropdown-menu>a:hover,.pad-dropdown-menu>button:hover{background:var(--pad-dropdown-hover)}.pad-dropdown-menu>a:focus-visible,.pad-dropdown-menu>button:focus-visible{outline:none;background:var(--pad-dropdown-hover);box-shadow:inset 0 0 0 2px var(--pad-dropdown-accent)}.pad-dropdown-menu>hr{margin:.35em .25em;border:0;border-top:1px solid var(--pad-dropdown-line)}.pad-dropdown-menu>p{margin:.4em .75em;color:var(--pad-dropdown-muted);font-size:.85em}@media print{.pad-dropdown-menu{display:none}}</style><div class="pad-dropdown" id="pad-dropdown-feac949e"><button type="button" class="pad-dropdown-button" popovertarget="pad-dropdown-feac949e-menu">Account<span class="pad-dropdown-caret" aria-hidden="true"></span></button><div class="pad-dropdown-menu pad-dropdown-start" id="pad-dropdown-feac949e-menu" popover><p>Signed in as Ann</p>
+<style>:where(.pad-dropdown){--pad-dropdown-accent:#2a78d6;--pad-dropdown-text:#1f1f1d;--pad-dropdown-muted:#62615c;--pad-dropdown-line:#e4e3df;--pad-dropdown-surface:#ffffff;--pad-dropdown-hover:#f1f0ec;}@supports (color:light-dark(#000,#fff)){:where(.pad-dropdown){--pad-dropdown-accent:light-dark(#2a78d6,#5598e7);--pad-dropdown-text:light-dark(#1f1f1d,#ecebe6);--pad-dropdown-muted:light-dark(#62615c,#a9a8a0);--pad-dropdown-line:light-dark(#e4e3df,#3a3a37);--pad-dropdown-surface:light-dark(#ffffff,#242422);--pad-dropdown-hover:light-dark(#f1f0ec,#30302d);}}</style><link rel="stylesheet" href="/pad/assets/widgets/dropdown.css?v=b9bd885318"><div class="pad-dropdown" id="pad-dropdown-feac949e"><button type="button" class="pad-dropdown-button" popovertarget="pad-dropdown-feac949e-menu">Account<span class="pad-dropdown-caret" aria-hidden="true"></span></button><div class="pad-dropdown-menu pad-dropdown-start" id="pad-dropdown-feac949e-menu" popover><p>Signed in as Ann</p>
   <a href="index%EF%B9%96index.html">Profile</a>
   <a href="index%EF%B9%96groups.html">Settings</a>
   <hr>
-  <a href="index%EF%B9%96names.html">Log out</a></div></div><script>(function () {
-  if (window.padDropdownReady) return;
-  window.padDropdownReady = true;
-  var anchored = window.CSS && CSS.supports && CSS.supports('position-area: bottom');
-  function items(menu) {
-    return Array.prototype.filter.call(menu.querySelectorAll('a[href], button:not([disabled])'), function (item) {
-      return item.offsetParent !== null || item.getClientRects().length;
-    });
-  }
-  function place(menu) {
-    var button = menu.parentNode.querySelector('.pad-dropdown-button');
-    if (anchored || !button) return;
-    var box = button.getBoundingClientRect();
-    menu.style.inset = 'auto';
-    menu.style.margin = '0';
-    var left = menu.classList.contains('pad-dropdown-end') ? box.right - menu.offsetWidth : box.left;
-    var top = box.bottom + 6;
-    if (top + menu.offsetHeight > innerHeight && box.top - menu.offsetHeight - 6 > 0) top = box.top - menu.offsetHeight - 6;
-    menu.style.left = Math.max(8, Math.min(left, innerWidth - menu.offsetWidth - 8)) + 'px';
-    menu.style.top = Math.max(8, top) + 'px';
-  }
-  document.addEventListener('toggle', function (e) {
-    var menu = e.target;
-    if (menu.classList && menu.classList.contains('pad-dropdown-menu') && e.newState === 'open') place(menu);
-  }, true);
-  document.addEventListener('keydown', function (e) {
-    var target = e.target;
-    if (!target.closest) return;
-    var button = target.closest('.pad-dropdown-button');
-    if (button && e.key === 'ArrowDown') {
-      var opens = button.parentNode.querySelector('.pad-dropdown-menu');
-      if (!opens) return;
-      e.preventDefault();
-      if (!opens.matches(':popover-open')) opens.showPopover({ source: button });
-      var first = items(opens)[0];
-      if (first) first.focus();
-      return;
-    }
-    var menu = target.closest('.pad-dropdown-menu');
-    if (!menu || ['ArrowDown', 'ArrowUp', 'Home', 'End'].indexOf(e.key) < 0) return;
-    var list = items(menu), at = list.indexOf(target);
-    if (!list.length) return;
-    e.preventDefault();
-    if (e.key === 'Home') at = 0;
-    else if (e.key === 'End') at = list.length - 1;
-    else if (e.key === 'ArrowDown') at = (at + 1) % list.length;
-    else at = (at - 1 + list.length) % list.length;
-    list[at].focus();
-  });
-  document.addEventListener('click', function (e) {
-    var item = e.target.closest && e.target.closest('.pad-dropdown-menu a[href], .pad-dropdown-menu button');
-    var menu = item && item.closest('.pad-dropdown-menu');
-    if (menu && menu.matches(':popover-open')) menu.hidePopover();
-  });
-})();</script>
+  <a href="index%EF%B9%96names.html">Log out</a></div></div><script src="/pad/assets/widgets/dropdown.js?v=6e24830082"></script>

@@ -5,12 +5,12 @@
   // element, and a small button beside it opens the same menu for whoever looks for one.
   //
   //   <li>report.pdf
-  //     {contextmenu 'Actions for report.pdf'}
+  //     {widget:contextmenu 'Actions for report.pdf'}
   //       <a href="?open&file=report.pdf">Open</a>
   //       <a href="?rename&file=report.pdf">Rename</a>
   //       <hr>
   //       <button type="submit" form="delete-report">Delete</button>
-  //     {/contextmenu}
+  //     {/widget:contextmenu}
   //   </li>
   //
   // The part is the element the menu stands in - the <li> above - or, with area=, the
@@ -91,7 +91,7 @@
       return $text;
 
     if ( $padCheckSyntax )
-      padError ( "the {contextmenu} has no usable area '" . padMakeSafe ( $text, 30 ) . "' - a tag name or a class, like tr, li or .card" );
+      padError ( "the {widget:contextmenu} has no usable area '" . padMakeSafe ( $text, 30 ) . "' - a tag name or a class, like tr, li or .card" );
 
     return '';
 

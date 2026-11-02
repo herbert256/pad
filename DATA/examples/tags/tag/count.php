@@ -5,12 +5,12 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{count 'name'} ... {/count}
-{count 'name'} ... @else@ ... {/count}
+{pad:count 'name'} ... {/pad:count}
+{pad:count 'name'} ... @else@ ... {/pad:count}
 PAD;
 
   $tagParms   = [
-    'name' => 'The quoted name of a <code>{data}</code> set or of a page array. A data set of that name goes before a variable.' ];
+    'name' => 'The quoted name of a <code>{pad:data}</code> set or of a page array. A data set of that name goes before a variable.' ];
 
   $tagOptions = [];
 

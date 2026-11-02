@@ -1,10 +1,10 @@
 <?php
 
-  // Implements the {tag ? true : false} option form. The option text after the '?' is cut
+  // Implements the {function:tag ? true : false} option form. The option text after the '?' is cut
   // at the first unquoted colon and only the matching side answers - the true side onto
   // $padContent, the false side onto $padFalse - which level/base.php then picks between.
   //
-  // A side that is one bare word is that word: {even@rows ? even : odd} answers 'even' or
+  // A side that is one bare word is that word: {property:even@rows ? even : odd} answers 'even' or
   // 'odd', the way every manual example reads. Evaluating it, as this used to, read the
   // word as a property of this transient one-occurrence level instead - 'odd' answered 1
   // whatever row the target stood on, and 'even' answered nothing, which the audit caught
@@ -24,8 +24,8 @@
     $padTernaryGo = padEval ( $padTernaryGo );
 
     // The side is spliced into the content as text, so a list or object has no place there -
-    // {true ? [1,2] : x} ended the request on "Array to string conversion"; an array answers
-    // empty, as {echo [1,2]} does, rather than crash.
+    // {pad:true ? [1,2] : x} ended the request on "Array to string conversion"; an array answers
+    // empty, as {pad:echo [1,2]} does, rather than crash.
 
     if ( ! is_scalar ( $padTernaryGo ) )
       $padTernaryGo = '';

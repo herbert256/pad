@@ -2,7 +2,7 @@
 
   // blur - the picture out of focus by radius= CSS pixels (6), the same on the 2x picture.
   //
-  //   {img 'photos/harbour.jpg', width=400, filter='blur', radius=10, alt='The harbour'/}
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='blur', radius=10, alt='The harbour'/}
   //
   // Up to 2 pixels GD's 3 by 3 Gaussian blur runs once a pixel; beyond that the picture is
   // made smaller by half the radius - each pixel the average of what it covered - and large

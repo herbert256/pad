@@ -1,12 +1,11 @@
 <?php
 
-  // Type handler for a diagram kind: {diagram:sequence}...{/diagram:sequence}, or a bare pair
-  // naming a file of subs/diagrams/types/ when nothing else has the name, {flowchart}...{/flowchart}.
-  // The kind is the tag's name, and the diagram is drawn as {diagram type='sequence'} draws
-  // it, by subs/diagrams/diagram.php - run as a built-in tag's PHP half is run, types/_go/tag.php.
+  // diagram:kind selects a registered kind from its subsystem. The type handler
+  // runs the subsystem with the kind in the tag name and its own parameters unchanged.
 
-  $padDiagramKind  = $padTag [$pad];
-  $padDiagramNamed = TRUE;
+
+  $padDiagramNamed = $padTag [$pad] !== 'auto';
+  $padDiagramKind  = $padDiagramNamed ? $padTag [$pad] : 'flowchart';
 
   $padTagGo = PAD . 'subs/diagrams/diagram';
 

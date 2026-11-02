@@ -1,4 +1,4 @@
-{rows where='$user.name eq "Bob"'}{$a} {/rows}|{rows}{$a}:{$user.name} {/rows}
-{orders}{$id}:{$address.city} {/orders}
-{users}{$name}:{$bought.0.id | optional} {/users}
-{items}{if $a.n eq 1}one:{$a.n}{else}other:{$a.n}{/if} {/items}
+{array:rows where='$user.name eq "Bob"'}{$a} {/array:rows}|{array:rows}{$a}:{$user.name} {/array:rows}
+{array:orders}{$id}:{$address.city} {/array:orders}
+{array:users}{$name}:{$bought.0.id | optional} {/array:users}
+{array:items}{pad:if $a.n eq 1}one:{$a.n}{pad:else}other:{$a.n}{/pad:if} {/array:items}

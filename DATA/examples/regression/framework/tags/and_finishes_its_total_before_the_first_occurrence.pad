@@ -1,7 +1,7 @@
-{data 'n'}
+{pad:data 'n'}
   [1,2,3]
-{/data}
-{n callback='before.php', before}
-  {first}{$sum}:{/first}
+{/pad:data}
+{data:n callback='before.php', before}
+  {property:first}{$sum}:{/property:first}
   {$n},
-{/n}
+{/data:n}

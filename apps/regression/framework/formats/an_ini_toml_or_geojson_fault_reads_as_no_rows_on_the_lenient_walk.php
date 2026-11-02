@@ -10,7 +10,7 @@
   $lenientRead = implode ( ' ', array_map ( fn ( $one ) => '[' . count ( padFormatRead ( $one [0], $one [1] ) ) . ']', [
     [ 'ini',     "a = 1\n[a]\nb = 2" ],
     [ 'toml',    'a = ' . str_repeat ( '[', 200000 ) . str_repeat ( ']', 200000 ) ],
-    [ 'toml',    'a = ' . str_repeat ( '{b = ', 100000 ) . '1' . str_repeat ( '}', 100000 ) ],
+    [ 'toml',    'a = ' . str_repeat ( '{local:b = ', 100000 ) . '1' . str_repeat ( '}', 100000 ) ],
     [ 'geojson', '{"type":"Feature","geometry":{"type":["x"]},"properties":{}}' ],
     [ 'toml',    'a = ' . str_repeat ( '[', 512 ) . str_repeat ( ']', 512 ) ]
   ] ) );

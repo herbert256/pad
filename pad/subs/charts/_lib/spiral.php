@@ -3,8 +3,8 @@
   // A long series wound up: a turn per period, so a season lies along a spoke and the
   // years lie outward ring after ring.
   //
-  //   {chart 'spiral', data='sales', label='month', value='amount', turn='year'}
-  //   {chart 'spiral', data='visits', value='count', period=7}
+  //   {chart:spiral data='sales', label='month', value='amount', turn='year'}
+  //   {chart:spiral data='visits', value='count', period=7}
   //
   // The rows go clockwise from twelve o'clock along an Archimedean spiral, period= of them
   // to a turn (12; 7 for the days of a week, 52 for weeks). Each row is a segment of the

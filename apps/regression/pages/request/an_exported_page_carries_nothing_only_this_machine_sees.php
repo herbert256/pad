@@ -2,10 +2,10 @@
 
   // pad export renders each page on the command line, which counts as this machine, for a
   // static copy any visitor reads: it gets what a visitor gets. A page whose own PHP switches
-  // the toolbar, live reload or the output check on, or that shows a value with {debug},
+  // the toolbar, live reload or the output check on, or that shows a value with {pad:debug},
   // carries them to this machine's browser and none of them into the export - which held
   // the bar with the page's variables, a poller of a server the copy does not have, the
-  // check's panel and the {debug} box.
+  // check's panel and the {pad:debug} box.
 
   $exMarks = [ 'toolbar' => 'id="padToolbar"', 'reload' => 'id="padReload"', 'check' => 'class="pad-check"', 'debug' => 'class="pad-debug"' ];
 

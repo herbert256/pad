@@ -1,16 +1,16 @@
 <?php
 
   // A short list put in order by hand - the sortable widget: a to-do list ranked, the
-  // tracks of a playlist, the steps of a recipe. Every {tab} is an item, its parameter the
+  // tracks of a playlist, the steps of a recipe. Every {pad:tab} is an item, its parameter the
   // item's key, its content what the item shows; the order is posted with the form the list
   // stands in.
   //
-  //   {form 'ranking'}
-  //     {sortable 'priority', label='The tasks, most urgent first'}
-  //       {tasks}{tab $id}{$title}{/tab}{/tasks}
-  //     {/sortable}
+  //   {pad:form 'ranking'}
+  //     {widget:sortable 'priority', label='The tasks, most urgent first'}
+  //       {tasks}{pad:tab $id}{$title}{/pad:tab}{/tasks}
+  //     {/widget:sortable}
   //     <button>Save the order</button>
-  //   {/form}
+  //   {/pad:form}
   //
   //   if ( padPosted ( 'ranking' ) ) {
   //     asort ( $priority );                     // [ key => place ], the places from 1
@@ -108,14 +108,14 @@
 
       if ( ! preg_match ( '/^[A-Za-z0-9_.:-]{1,64}$/D', $key ) ) {
         if ( $padCheckSyntax )
-          padError ( "a {tab} of a {sortable} is named by its key - letters, digits, _, -, . and :, like {tab 'a1'} - not '"
+          padError ( "a {pad:tab} of a {widget:sortable} is named by its key - letters, digits, _, -, . and :, like {pad:tab 'a1'} - not '"
                      . padMakeSafe ( $key, 30 ) . "'" );
         return FALSE;
       }
 
       if ( isset ( $seen [$key] ) ) {
         if ( $padCheckSyntax )
-          padError ( "the {sortable} has two items with the key '$key' - every {tab} names its own" );
+          padError ( "the {widget:sortable} has two items with the key '$key' - every {pad:tab} names its own" );
         return FALSE;
       }
 

@@ -2,9 +2,9 @@
 
   // A modal dialog - the modal widget: an HTML <dialog> and the button that opens it.
   //
-  //   {modal 'terms', title='Terms of sale', button='Read the terms'}
+  //   {widget:modal 'terms', title='Terms of sale', button='Read the terms'}
   //     <p>...</p>
-  //   {/modal}
+  //   {/widget:modal}
   //
   // It is opened in the first of three ways the browser can:
   //

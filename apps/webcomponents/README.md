@@ -8,10 +8,10 @@ PAD custom tags write custom elements with their shadow root already in them - d
 
 | Page | Shows |
 |------|-------|
-| `examples/cards` | `{card}` - a custom tag of `_tags/card.pad` writing `<pad-card>` with its shadow root, the stylesheet inlined by `{shadow css=}`, named slots - no script |
+| `examples/cards` | `{app:card}` - a custom tag of `_tags/card.pad` writing `<pad-card>` with its shadow root, the stylesheet inlined by `{pad:shadow css=}`, named slots - no script |
 | `examples/tabs` | `<pad-tabs>` complete before its module ran (the first panel shows), then upgraded with clicks and arrow keys |
 | `examples/rating` | `<pad-rating value="4">` lit by its attribute in CSS, posting a vote with the CSRF token, showing PAD's average |
-| `examples/stepper` | `<pad-stepper>`, form-associated: `ElementInternals` gives the `{form}` its value, `padValidate` checks it on the server |
+| `examples/stepper` | `<pad-stepper>`, form-associated: `ElementInternals` gives the `{pad:form}` its value, `padValidate` checks it on the server |
 | `examples/lit` | A Lit element fed by PAD through `items="{^items}"` |
 
 The pages stand in the frame of the PAD applications (`{common:padFrame}`): the brand and a menu
@@ -20,7 +20,7 @@ switch in the bar.
 
 ## How it works
 
-- `{shadow css='www:elements/card.css'} ... {/shadow}` writes `<template shadowrootmode="open">`
+- `{pad:shadow css='www:elements/card.css'} ... {/pad:shadow}` writes `<template shadowrootmode="open">`
   with the stylesheet inlined: a shadow root takes no styles from the page, and a `<style>` in a
   template would have its braces read as PAD tags. The browser builds the root while it parses.
 - A module in `www/webcomponents/elements/` defines the element; it finds the root PAD rendered

@@ -8,15 +8,15 @@
   // _lib and _inits.pad. Whatever those files echo is kept as content; the page's return
   // value decides the rest - an array becomes the page data ($padBuild), a scalar is
   // appended as content, NULL drops the page's content and template (the _exits.php chain
-  // still runs), FALSE selects the @else@ half. Ahead of all of it a post of a {form} is
+  // still runs), FALSE selects the @else@ half. Ahead of all of it a post of a {pad:form} is
   // checked against the rules= its fields carry in the page's template (lib/form.php), so
   // padPosted tells the PHP whether the post passed.
   //
   // The .pad template is appended - or the text an entry point handed over in
-  // $padPageSource - its {meta} tags applied by lib/meta.php and its layout blocks resolved
+  // $padPageSource - its {pad:meta} tags applied by lib/meta.php and its layout blocks resolved
   // against the frame by lib/layout.php - build/split.php cuts the text at an @else@, and
   // unless the page produced no data of its own the result is wrapped in
-  // {padBuild for="..."} so the level engine iterates $padBuild, one occurrence per row.
+  // {array:padBuild for="..."} so the level engine iterates $padBuild, one occurrence per row.
   //
   // Where the template sits in that text - $padSrcAt, $padSrcSize, $padSrcFile - is kept
   // for the source map: what this returns becomes $padSrcPage, the template as its own
@@ -30,7 +30,7 @@
 
   // The designer preview (lib/sample.php): with a sample for this page, its entries are the
   // variables and no PHP runs - not the page's, nor an _inits.php or _exits.php around it,
-  // whose login check or database would be the reason for the preview. A page a {page} tag
+  // whose login check or database would be the reason for the preview. A page a {pad:page} tag
   // builds in a nested pass ($padStrCnt >= 0) uses its own sample when it has one and runs
   // as usual when it has not; the requested page must have one. A capture runs everything
   // as usual and keeps what the PHP of the requested page made.
@@ -112,21 +112,21 @@
 
     $padBuildTemplate = $padBuildOwn = '';
 
-  // The {meta} tags are applied and the layout blocks resolved now, in the text: a page that
+  // The {pad:meta} tags are applied and the layout blocks resolved now, in the text: a page that
   // extends a layout trades the frame build/base.php made for that layout, and the page's
   // blocks override the frame's - lib/meta.php, lib/layout.php.
   //
   // Those of the half of the page that shows: what the PHP returned decides between the
   // text before the page's @else@ and the text after it (build/split.php), and the half
-  // that is not shown sets nothing - a {block 'title'}Not found{/block} after the @else@
-  // titled the page over the record that was found, a {meta} there was applied as well,
+  // that is not shown sets nothing - a {pad:block 'title'}Not found{/pad:block} after the @else@
+  // titled the page over the record that was found, a {pad:meta} there was applied as well,
   // and a block in each half was refused as standing twice.
   //
-  // What stands in front of the page's content - the {meta}, {extends} and {block}s of its
+  // What stands in front of the page's content - the {pad:meta}, {pad:extends} and {pad:block}s of its
   // first lines (padLayoutLead) - is the page's own, written once for both: it goes with the
-  // @else@ half as well, where a {block} or an {extends} of the same name that half writes
+  // @else@ half as well, where a {pad:block} or an {pad:extends} of the same name that half writes
   // itself takes its place. Taken for the found half only, a page with no rows lost the
-  // title of its {meta} on the first line and the layout of its {extends}.
+  // title of its {pad:meta} on the first line and the layout of its {pad:extends}.
 
   $padBuildElseAt = ( $padBuildCall !== NULL ) ? padLayoutElse ( $padBuildTemplate ) : FALSE;
 
@@ -157,7 +157,7 @@
   }
 
   // The source map (lib/source.php) places the page's template where it lands in the joined
-  // text, by its offsets in the file. A page whose {meta} was taken out, or whose {block}s
+  // text, by its offsets in the file. A page whose {pad:meta} was taken out, or whose {pad:block}s
   // went to a layout, is no longer the file's text from start to end, and an offset into it
   // would name a wrong line, so that page is left out of the map - an error there names no
   // line rather than a wrong one.
@@ -212,8 +212,8 @@
     return $padBuildTrue;
   }
 
-  $padBuildWrap = "{padBuild for=\"$padPage\"}$padBuildTrue{/padBuild}";
-  $padSrcPage   = padSrcPage ( $padBuildWrap, strlen ( "{padBuild for=\"$padPage\"}" ), 0, strlen ( $padBuildTrue ), $padSrcAt, $padSrcSize, $padSrcFile );
+  $padBuildWrap = "{array:padBuild for=\"$padPage\"}$padBuildTrue{/array:padBuild}";
+  $padSrcPage   = padSrcPage ( $padBuildWrap, strlen ( "{array:padBuild for=\"$padPage\"}" ), 0, strlen ( $padBuildTrue ), $padSrcAt, $padSrcSize, $padSrcFile );
 
   return $padBuildWrap;
 

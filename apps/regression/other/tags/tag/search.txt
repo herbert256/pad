@@ -1,7 +1,7 @@
-<p><code>{search 'blog', q=$q}...{/search}</code> hands over the rows of the source that the
+<p><code>{pad:search 'blog', q=$q}...{/pad:search}</code> hands over the rows of the source that the
 query finds, the best first: each the source's own row with <code>$score</code> and
 <code>$excerpt</code> added - the words around the first match, every matched word in a
-<code>&lt;mark&gt;</code>, escaped as <code>{excerpt}</code> escapes it. It is HTML: print it
+<code>&lt;mark&gt;</code>, escaped as <code>{pad:excerpt}</code> escapes it. It is HTML: print it
 with <code>{!excerpt}</code>. Nothing found is the <code>@else@</code>; the handling options
 work on the rows, <code>first=10</code> for the ten best.</p>
 
@@ -19,3 +19,8 @@ row out. Written as a single tag the hits are a numbered list. <code>padSearch</
 same rows to a page's PHP. A source that is not there, a language without a file, a
 <code>fields</code> that is no list of fields or a <code>words</code> that is no number is a
 strict error.</p>
+
+
+<h3>Search languages</h3>
+<p>Each kind has its own description and usage example:</p>
+<p><a href="?kind/search/da"><code>da</code></a>, <a href="?kind/search/de"><code>de</code></a>, <a href="?kind/search/en"><code>en</code></a>, <a href="?kind/search/es"><code>es</code></a>, <a href="?kind/search/fr"><code>fr</code></a>, <a href="?kind/search/it"><code>it</code></a>, <a href="?kind/search/nl"><code>nl</code></a>, <a href="?kind/search/no"><code>no</code></a>, <a href="?kind/search/pt"><code>pt</code></a>, <a href="?kind/search/ru"><code>ru</code></a>, <a href="?kind/search/sv"><code>sv</code></a></p>

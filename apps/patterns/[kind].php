@@ -22,13 +22,13 @@
 
   $seeded = padPattern ( $kind, [ 'seed' => 1, 'as' => 'url' ] ) !== padPattern ( $kind, [ 'seed' => 2, 'as' => 'url' ] );
 
-  $template = "{pattern '$kind', seed=$seed, width=960, height=320/}";
+  $template = "{pattern:$kind seed=$seed, width=960, height=320/}";
   $example  = $one ['example'];
-  $backdrop = "<div style=\"background-image:{pattern '$kind', seed=$seed, as='url'/}; background-size:cover; padding:48px 24px\">\n"
+  $backdrop = "<div style=\"background-image:{pattern:$kind seed=$seed, as='url'/}; background-size:cover; padding:48px 24px\">\n"
             . "  <p style=\"margin:0; padding:12px 16px; background:#fffc; color:#222; display:inline-block\">Text over a pattern</p>\n"
             . "</div>";
 
-  // The templates coloured, and the icons at their top right that take them to the playground
+  // The templates coloured, and the icons at their top right that take them to the WASM editor
   // and the live application (_common/_lib/playground.php).
 
   include_once COMMON . '_lib/playground.php';

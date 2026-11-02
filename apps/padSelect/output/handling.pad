@@ -1,10 +1,10 @@
 <h3>order= sorts in the SQL, sort= sorts what came back</h3>
-<p>{albums order="price", rows=4, sort="title"}{$title} {$price}{notLast@albums}, {/notLast@albums}{/albums}</p>
+<p>{select:albums order="price", rows=4, sort="title"}{$title} {$price}{property:notLast@albums}, {/property:notLast@albums}{/select:albums}</p>
 
 <h3>first= and last= after the query</h3>
-<p>{artists first=3}{$name}{notLast@artists}, {/notLast@artists}{/artists}</p>
+<p>{select:artists first=3}{$name}{property:notLast@artists}, {/property:notLast@artists}{/select:artists}</p>
 
 <h3>The properties of the loop</h3>
 <ul>
-  {labels}<li>{current@labels/} of {count@labels/}: {$name}{if first@labels} <span class="dim">(first)</span>{/if}</li>{/labels}
+  {select:labels}<li>{property:current@labels/} of {property:count@labels/}: {$name}{pad:if first@labels} <span class="dim">(first)</span>{/pad:if}</li>{/select:labels}
 </ul>

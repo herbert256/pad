@@ -14,7 +14,7 @@
   // Referer of other sites, or to stay out of another site's frame, and an application had
   // no way to allow its own inline scripts and no others.
   //
-  // The nonce is written by {nonce} where the template asks for it, never added to the
+  // The nonce is written by {pad:nonce} where the template asks for it, never added to the
   // page's <script> tags by the engine: a script an attacker managed to get into the page
   // would be given it too, and the policy would let it run.
 

@@ -1,1 +1,1 @@
-[{sequence '1..6', add=10, push='a'/}{pull:a shift=2, toData='d'}{$sequence} {/pull:a}|{d}{$d} {/d}|{pull:a}{$sequence} {/pull:a}][{sequence '1..6', push='b'/}{pull:b pop=2, toData='e'/}{e}{$e} {/e}|{pull:b}{$sequence} {/pull:b}]
+[{sequence:range '1..6', add=10, push='a'/}{pull:a shift=2, toData='d'}{$sequence} {/pull:a}|{data:d}{$d} {/data:d}|{pull:a}{$sequence} {/pull:a}][{sequence:range '1..6', push='b'/}{pull:b pop=2, toData='e'/}{data:e}{$e} {/data:e}|{pull:b}{$sequence} {/pull:b}]

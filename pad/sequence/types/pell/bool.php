@@ -2,8 +2,8 @@
 
   // Membership test for the pell sequence, 0, 1, 2, 5, 12, 29, ...: the recurrence P(n) =
   // 2P(n-1) + P(n-2) from P(0) = 0 and P(1) = 1, walked until a term reaches x - some fifty
-  // steps at the most before the integer range ends. build/check.php asks it for {keep pell},
-  // {remove pell} and {flag pell}; without it the check read the PADpell table, which starts
+  // steps at the most before the integer range ends. build/check.php asks it for {keep:pell},
+  // {remove:pell} and {pad:flag pell}; without it the check read the PADpell table, which starts
   // at P(1) and turned down the 0 the type makes at position 0.
   //
   // Not the type's build: pqBuild() ranks function.php before bool.php.

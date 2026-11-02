@@ -3,7 +3,7 @@
   // Decides whether this request is answered with the page's data instead of its template
   // (lib/expose.php). Runs from build/build.php once the PHP chain - _inits.php, the page's
   // own .php, _exits.php - has run, because that is where $padExpose is set; for the
-  // request's own page only, which inits/app.php marks - a {page} rendered inside it never
+  // request's own page only, which inits/app.php marks - a {pad:page} rendered inside it never
   // turns the response into data.
   //
   // The json and csv output types answer data for every page, in the one of the two the

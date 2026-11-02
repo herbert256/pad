@@ -5,9 +5,9 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{cache 'name'} ... {/cache}
-{cache 'name', ttl=300, vary=$value} ... {/cache}
-{anytag cache=3600, vary=$value} ... {/anytag}
+{pad:cache 'name'} ... {/pad:cache}
+{pad:cache 'name', ttl=300, vary=$value} ... {/pad:cache}
+{type:tag cache=3600, vary=$value} ... {/type:tag}
 PAD;
 
   $tagParms   = [

@@ -27,7 +27,7 @@
       "icon":   "🧩",
       "title":  "Components in a file",
       "lede":   "Tabs, an accordion and a dialog registered with Alpine.data in www/alpine/ - the template calls them by name and hands them PAD's data as the argument: x-data=\"accordion({^faq})\".",
-      "server": [ "{^field}", "{faq}" ],
+      "server": [ "{^field}", "{array:faq}" ],
       "client": [ "Alpine.data", "x-show", "x-transition" ],
       "files":  [ "www:examples/components.js" ]
     },
@@ -45,8 +45,8 @@
       "group":  "talk",
       "icon":   "📝",
       "title":  "One set of rules",
-      "lede":   "The rules live in the page's PHP: padValidate checks the post with them, padValidateClient hands them to Alpine, and {validator} checks them in the browser first - the same messages on both sides.",
-      "server": [ "padValidateClient", "padValidate", "{validator}" ],
+      "lede":   "The rules live in the page's PHP: padValidate checks the post with them, padValidateClient hands them to Alpine, and {pad:validator} checks them in the browser first - the same messages on both sides.",
+      "server": [ "padValidateClient", "padValidate", "{pad:validator}" ],
       "client": [ "@blur", "padValidate.check" ]
     },
     {

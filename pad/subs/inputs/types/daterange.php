@@ -1,7 +1,7 @@
 <?php
 
   // daterange - a first and a last day chosen as one, a stay or a leave: two native <input
-  // type="date">, one for each end, under a legend - two fields of the form, {daterange 'stay'}
+  // type="date">, one for each end, under a legend - two fields of the form, {input:daterange 'stay'}
   // posting stay_from and stay_to as 2026-06-01, names= two others - typed into as they are,
   // and where the script runs a button that opens one month to choose both from, the WAI-ARIA
   // date picker dialog: the arrow keys walk the days, Page Up and Page Down the months (with

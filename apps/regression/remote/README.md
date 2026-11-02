@@ -13,18 +13,18 @@ their own could leave the local server no worker to answer them.
 |------|-------------|
 | `stamp.php` | A JSON document new on every fetch |
 | `slow.php` | A JSON source that takes 200 ms and says when it started and ended |
-| `curl_ttl.pad` | `{curl ..., ttl=60}` twice answers alike |
+| `curl_ttl.pad` | `{pad:curl ..., ttl=60}` twice answers alike |
 | `curl_data_ttl.php/pad` | A `_data/*.curl` file with a `<ttl>`, and `data=` with the ttl option - an address the page's PHP built |
-| `curl_data_self.pad` | `data='SELF://...'` is fetched from this server, as `{curl}` has it |
-| `padcurlforget_drops_the_copy_the_curl_tag_keeps.php/pad` | `padCurlForget ( $url )` drops the copy `{curl $url, ttl=}` keeps |
+| `curl_data_self.pad` | `data='SELF://...'` is fetched from this server, as `{pad:curl}` has it |
+| `padcurlforget_drops_the_copy_the_curl_tag_keeps.php/pad` | `padCurlForget ( $url )` drops the copy `{pad:curl $url, ttl=}` keeps |
 | `an_address_written_after_a_printed_value_is_fetched.php/pad` | A written address is fetched though a value printed before it starts it |
-| `an_address_a_component_is_given_in_the_template_is_fetched.pad` | A {define} fetching the address its caller wrote, data='{#src}' |
-| `an_address_written_inside_a_condition_of_close_named_data_is_fetched.pad` | A written address inside an {if} of a {data} named at its close |
-| `a_page_variable_address_is_fetched.php/pad` | An address in a page variable, in {data 'd', $u} and through `{$padHost}` - the page's own, fetched |
+| `an_address_a_component_is_given_in_the_template_is_fetched.pad` | A {pad:define} fetching the address its caller wrote, data='{#src}' |
+| `an_address_written_inside_a_condition_of_close_named_data_is_fetched.pad` | A written address inside an {pad:if} of a {pad:data} named at its close |
+| `a_page_variable_address_is_fetched.php/pad` | An address in a page variable, in {pad:data 'd', $u} and through `{$padHost}` - the page's own, fetched |
 | `an_address_the_page_built_is_fetched_beside_values_holding_its_host.php/pad` | Request values that merely hold the host's text do not refuse the page's own address |
 | `disposition.php` | A download named `report.file` whose body is the name of a data file here |
 | `curl_data_disposition.pad` | That download is read as the text it is - `_data/localOnly.json` is never read |
-| `debugged.php/pad` | A page with a `{debug}` box, which only a local request sees |
+| `debugged.php/pad` | A page with a `{pad:debug}` box, which only a local request sees |
 | `curl_ttl_stores_no_debug.php/pad` | A ttl fetch of it for a local request shows the box but keeps no copy |
 | `prefetch.php/pad` | `padPrefetch`: two slow sources served together, each read as named data |
 | `prefetch_ttl.php/pad` | `padPrefetch` with a ttl: the second prefetch is answered from the copy |

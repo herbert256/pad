@@ -5,7 +5,7 @@
   // $padOptionsAppEnd [$pad] while the parameters were parsed. Included by level/end.php as
   // the level closes, just before the built-in end phase, and like it works on the rendered
   // $padResult [$pad] - where an _options/ handler only ever saw the template, so an option
-  // could not touch what the tag produced: {report minify}, {price highlight}.
+  // could not touch what the tag produced: {array:report minify}, {price highlight}.
 
   $padOptions = 'appEnd';
 

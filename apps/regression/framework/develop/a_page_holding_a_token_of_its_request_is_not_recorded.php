@@ -1,6 +1,6 @@
 <?php
 
-  // A page holding a token its request made - the session's CSRF token, which every {form}
+  // A page holding a token its request made - the session's CSRF token, which every {pad:form}
   // writes, the CSP nonce, PAD's session or request id - is not recorded: the replay gets a
   // new one, and the case was reported changed on every replay, accepted or not. The page
   // beside it, the same in every request, is.

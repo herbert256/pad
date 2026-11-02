@@ -3,7 +3,7 @@
   // Works out which name this run stores under, from name=, push= and pull=:
   //
   //   $pqStoreName  the name the sequence is known by, falling back to 'default'
-  //   $padLastPush  the store key actually written, and what a bare {pull} or {resume}
+  //   $padLastPush  the store key actually written, and what a bare {pad:pull} or {pad:resume}
   //                 later picks up - it outlives the run (it is not a $pq* global, so
   //                 inits/clear.php leaves it alone)
   //

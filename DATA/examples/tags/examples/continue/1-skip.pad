@@ -1,7 +1,7 @@
-{meta title='Skipping rows', about='Rows that are out of stock are skipped; the loop goes on with the next one.'/}
+{pad:meta title='Skipping rows', about='Rows that are out of stock are skipped; the loop goes on with the next one.'/}
 <ul>
-{products}
-  {if $stock eq 0}{continue/}{/if}
+{array:products}
+  {pad:if $stock eq 0}{pad:continue/}{/pad:if}
   <li>{$name}: {$stock} left</li>
-{/products}
+{/array:products}
 </ul>

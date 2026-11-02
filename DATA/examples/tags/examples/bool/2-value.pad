@@ -1,9 +1,9 @@
-{meta title='From a value', about='Without content the second parameter\'s own truth is the flag: blank and 0 are FALSE.'/}
-{bool 'boolName', 'Ann'/}
-{bool 'boolZero', 0/}
-{bool 'boolBlank', ''/}
+{pad:meta title='From a value', about='Without content the second parameter\'s own truth is the flag: blank and 0 are FALSE.'/}
+{pad:bool 'boolName', 'Ann'/}
+{pad:bool 'boolZero', 0/}
+{pad:bool 'boolBlank', ''/}
 <ul>
-  <li>'Ann': {boolName}TRUE@else@FALSE{/boolName}</li>
-  <li>0: {boolZero}TRUE@else@FALSE{/boolZero}</li>
-  <li>blank: {boolBlank}TRUE@else@FALSE{/boolBlank}</li>
+  <li>'Ann': {bool:boolName}TRUE@else@FALSE{/bool:boolName}</li>
+  <li>0: {bool:boolZero}TRUE@else@FALSE{/bool:boolZero}</li>
+  <li>blank: {bool:boolBlank}TRUE@else@FALSE{/bool:boolBlank}</li>
 </ul>

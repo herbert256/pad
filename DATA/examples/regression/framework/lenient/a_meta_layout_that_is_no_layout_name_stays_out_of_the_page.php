@@ -5,6 +5,6 @@
 
   $padCheckSyntax = FALSE;
 
-  $layout = 'nolayout}{echo 6 * 7}{x';
+  $layout = 'nolayout}{pad:echo 6 * 7}{x';
 
 ?>

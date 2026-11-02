@@ -2,7 +2,7 @@
 
   // The manual's subjects by group, in the order the contents page (index, _include/
   // manualMenu.pad) and the menu of the frame (_inits.php) show them - each a page in
-  // pages/, linked the way {manual 'name'} links one.
+  // pages/, linked the way {app:manual 'name'} links one.
 
   function manualTopics () {
 
@@ -43,7 +43,7 @@
   }
 
   // The name of a subject as its link shows it: escaping_special_PAD_chars reads
-  // "Escaping special PAD chars", as the {manual} tag writes it.
+  // "Escaping special PAD chars", as the {app:manual} tag writes it.
 
   function manualLabel ( $topic ) {
 

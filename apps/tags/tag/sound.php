@@ -7,17 +7,17 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{sound 'name'/}
-{sound 'pop', button='Pop!', volume=60/}
+{sound:name/}
+{sound:pop button='Pop!', volume=60/}
 {sound:chime/}
 {sound:success on='click', target='#save'/}
 {sound:bell download/}
 PAD;
 
   $tagParms   = [
-    'name' => 'The sound, a file of <code>pad/subs/sounds/types/</code>: '
+    'kind after colon' => 'The sound, a file of <code>pad/subs/sounds/types/</code>: '
             . implode ( ', ', array_map ( fn ( $sound ) => "<code>$sound</code>", padSoundKinds () ) )
-            . '. The sound: type names it as well - <code>{sound:chime/}</code>; it is never reached bare.' ];
+            . '. The sound: prefix selects it - <code>{sound:chime/}</code>; it is never reached bare.' ];
 
   $tagOptions = [
     'button'   => 'The label of the button that plays the sound, else the title of its recipe. With <code>target=</code> a button is written only when <code>button=</code> asks for one.',
@@ -26,6 +26,6 @@ PAD;
     'volume'   => 'A whole number 0 to 100: the share of the sound\'s own level it plays at.',
     'download' => 'Bare option: a link to the sound as a WAV file - the page asked again with <code>&amp;padSound=</code>; <code>download=\'text\'</code> its text.' ];
 
-  $tagSee     = [ 'toast', 'toy', 'embed' ];
+  $tagSee     = [ 'toast', 'toy:life', 'embed:auto' ];
 
 ?>

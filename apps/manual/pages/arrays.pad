@@ -1,4 +1,4 @@
-{meta title='Array helpers'/}
+{pad:meta title='Array helpers'/}
 
 <p>A page's PHP file mostly works on arrays: a row from the database, a list of rows, a
 decoded JSON answer, nested settings. The array helpers do the everyday work on them - read
@@ -16,7 +16,7 @@ item of that level and answers a list: <code>'lines.*.sku'</code> is every produ
 <code>padArrGet</code> answers the default when the path is not there - a Closure as the
 default is called only then - and <code>padArrSet</code> makes the levels on the way.</p>
 
-{example 'fragments/arrays_1'/}
+{common:example 'fragments/arrays_1'/}
 
 <p><code>padArrHas</code> is true when every path given exists, also when its value is NULL
 - where <code>isset()</code> says no. <code>padArrSet</code> and <code>padArrForget</code>
@@ -28,7 +28,7 @@ change the array they are given and answer it as well.</p>
 <code>padArrExcept</code> drops them, and takes dot paths. Keys are an array or a
 comma-separated string.</p>
 
-{example 'fragments/arrays_2'/}
+{common:example 'fragments/arrays_2'/}
 
 <h2>Working with rows</h2>
 
@@ -36,7 +36,7 @@ comma-separated string.</p>
 given - the id and name pairs of a select box. <code>padArrKeyBy</code> keys the rows
 themselves, to find one without a loop.</p>
 
-{example 'fragments/arrays_3'/}
+{common:example 'fragments/arrays_3'/}
 
 <p><code>padArrWhere</code> keeps the rows that pass, with their keys: a field equal to a
 value, a field compared with an operator, or a callback. The operators are
@@ -48,7 +48,7 @@ SQL's <code>%</code> and <code>_</code>, ignoring case. Equality is PHP's loose
 <code>'desc'</code> descending; <code>padArrFirst</code> and <code>padArrLast</code> answer the
 first and last row a callback passes.</p>
 
-{example 'fragments/arrays_4'/}
+{common:example 'fragments/arrays_4'/}
 
 <h2>Groups and numbers</h2>
 
@@ -58,7 +58,7 @@ first row came, each group a list. <code>padArrSum</code>, <code>padArrAvg</code
 among a field of every row: a NULL or a text that is no number is left out rather than
 counted as 0. The sum of no numbers is 0, the others answer NULL.</p>
 
-{example 'fragments/arrays_5'/}
+{common:example 'fragments/arrays_5'/}
 
 <h2>Reshaping</h2>
 
@@ -67,7 +67,7 @@ counted as 0. The sum of no numbers is 0, the others answer NULL.</p>
 of nested arrays as one list, to a depth when one is given; <code>padArrWrap</code> makes any
 value an array - NULL none, an array itself, anything else one item.</p>
 
-{example 'fragments/arrays_6'/}
+{common:example 'fragments/arrays_6'/}
 
 <h2>The functions</h2>
 

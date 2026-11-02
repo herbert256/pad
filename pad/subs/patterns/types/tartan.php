@@ -6,7 +6,7 @@
   // a fine twill runs over the cloth at 45 degrees. The size is the sett, the repeat, in pixels.
   // A tile repeated by a <pattern>, the seed choosing the sett.
   //
-  //   {pattern 'tartan', size=120, seed=3, colors='#1f3a5f, #2e6b4f, #c0392b, #f1c40f'/}
+  //   {pattern:tartan size=120, seed=3, colors='#1f3a5f, #2e6b4f, #c0392b, #f1c40f'/}
   //
   // The sett: the number of stripes, then for each a colour - never the one of the stripe
   // before it - and a count of threads from 2 to 24, the background's twice as wide; the

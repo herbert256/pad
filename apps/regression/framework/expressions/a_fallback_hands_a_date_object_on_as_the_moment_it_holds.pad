@@ -1,1 +1,1 @@
-[{echo $moment | date('U')/}][{echo ($moment ?? 'none') | date('U')/}][{echo ($nothing ?? $moment) | date('U')/}][{echo $moment | default('x') | date('U')/}][{$moment | optional | date('U')}][{echo [$moment ?? 'none'] | php:count/}]
+[{pad:echo $moment | date('U')/}][{pad:echo ($moment ?? 'none') | date('U')/}][{pad:echo ($nothing ?? $moment) | date('U')/}][{pad:echo $moment | default('x') | date('U')/}][{$moment | optional | date('U')}][{pad:echo [$moment ?? 'none'] | php:count/}]

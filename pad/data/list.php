@@ -7,7 +7,7 @@
   // with ( and closes with ).
   //
   // The elements are split at the commas outside quotes and brackets, as the values of a
-  // {when} are: split at every comma, ( 'a, b', 'c' ) was cut inside its string and the
+  // {pad:when} are: split at every comma, ( 'a, b', 'c' ) was cut inside its string and the
   // halves were no expressions, and ( max(1, 2), 3 ) inside its call.
 
   $result = [];

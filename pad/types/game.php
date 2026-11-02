@@ -1,9 +1,8 @@
 <?php
 
-  // Type handler for a game: {game:memory pairs=6/}, or a bare tag naming a file of
-  // subs/games/types/ when nothing else has the name, {sudoku/}. The game is the tag's name, and
-  // it is set up as {game 'memory'} sets it up, by subs/games/game.php - run as a built-in tag's
-  // PHP half is run, types/_go/tag.php.
+  // game:kind selects a registered kind from its subsystem. The type handler
+  // runs the subsystem with the kind in the tag name and its own parameters unchanged.
+
 
   $padGameKind = $padTag [$pad];
 

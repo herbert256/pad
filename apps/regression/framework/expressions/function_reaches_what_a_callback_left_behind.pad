@@ -1,6 +1,6 @@
-{data 'n'}
+{pad:data 'n'}
   [1,2,3]
-{/data}
-{n callback='before.php', before}
-  {last@n}{echo $sum@function/}{/last@n}
-{/n}
+{/pad:data}
+{data:n callback='before.php', before}
+  {property:last@n}{pad:echo $sum@function/}{/property:last@n}
+{/data:n}

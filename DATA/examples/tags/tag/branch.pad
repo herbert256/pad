@@ -1,8 +1,8 @@
-{ignore}
-<p><code>{branch}</code> ... <code>{/branch}</code> is a condition for the body of a
-<a href="?tag/tree">{tree}</a>: its content renders when the current row of the tree has
+{pad:ignore}
+<p><code>{pad:branch}</code> ... <code>{/pad:branch}</code> is a condition for the body of a
+<a href="?tag/tree">{pad:tree}</a>: its content renders when the current row of the tree has
 children, and is skipped when the row is a leaf. Its usual content is the list markup around a
-<a href="?tag/recurse">{recurse}</a> - <code>{branch}&lt;ul&gt;{recurse}&lt;/ul&gt;{/branch}</code>
+<a href="?tag/recurse">{pad:recurse}</a> - <code>{pad:branch}&lt;ul&gt;{pad:recurse}&lt;/ul&gt;{/pad:branch}</code>
 - so a leaf does not get an empty <code>&lt;ul&gt;&lt;/ul&gt;</code>.</p>
 
 <p>An <code>&#64;else&#64;</code> part renders for a leaf instead: a different icon, a link where a
@@ -11,6 +11,6 @@ option names (<code>children</code> by default); a field that is missing or empt
 children.</p>
 
 <p>The tag takes no parameters. It belongs inside a tree: under the strict syntax check a
-<code>{branch}</code> with no <code>{tree}</code> around it, or without its closing tag, is an
+<code>{pad:branch}</code> with no <code>{pad:tree}</code> around it, or without its closing tag, is an
 error.</p>
-{/ignore}
+{/pad:ignore}

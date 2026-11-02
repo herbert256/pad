@@ -17,8 +17,7 @@
   // and once its position is below the step no later pass reaches it. The steps are the
   // lucky numbers themselves, and only those up to about n / ln n are needed, so the sieve
   // is grown in doubling steps only as far as the steps run out. Sieving up to twice the
-  // candidate instead cost a time that grows with its square: {sequence lucky,
-  // from=1000000} sieved two million numbers and ran into the time limit.
+  // candidate instead cost a time that grows with its square: {sequence:lucky // from=1000000} sieved two million numbers and ran into the time limit.
   //
   // $pqLuckyList, $pqLuckySteps and $pqLuckyLimit are pq* globals, so inits/clear.php drops
   // them between runs and the first candidate of the next run builds them again.

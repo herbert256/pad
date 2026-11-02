@@ -7,7 +7,7 @@
   // separation=, alignment= and cohesion= the weights of the rules (5, 0 to 10); speed= how
   // fast they fly (5, 1 to 10).
   //
-  //   {boids birds=300, cohesion=8/}
+  //   {toy:boids birds=300, cohesion=8/}
 
   return padToy ( 'boids', 'Boids', [
     'birds'      => padToyInt ( 'birds', 150, 10, 600 ),

@@ -1,9 +1,9 @@
-{sequence '1..5', push='nums'/}
-a[{fibonacci rows=6, reverse}{$fibonacci}/{$sequence} {/fibonacci}]
-b[{fibonacci rows=6, last=2}{$fibonacci}/{$sequence} {/fibonacci}]
-c[{fibonacci rows=6, sum}{$fibonacci}/{$sequence} {/fibonacci}]
-d[{fibonacci rows=5, make, multiply=2, reverse}{$fibonacci}/{$multiply}/{$sequence} {/fibonacci}]
-e[{fibonacci rows=6, name='f', reverse}{$fibonacci}/{$f} {/fibonacci}]
-f[{nums reverse}{$nums} {/nums}]
+{sequence:range '1..5', push='nums'/}
+a[{sequence:fibonacci rows=6, reverse}{$fibonacci}/{$sequence} {/sequence:fibonacci}]
+b[{sequence:fibonacci rows=6, last=2}{$fibonacci}/{$sequence} {/sequence:fibonacci}]
+c[{sequence:fibonacci rows=6, sum}{$fibonacci}/{$sequence} {/sequence:fibonacci}]
+d[{sequence:fibonacci rows=5, make, multiply=2, reverse}{$fibonacci}/{$multiply}/{$sequence} {/sequence:fibonacci}]
+e[{sequence:fibonacci rows=6, name='f', reverse}{$fibonacci}/{$f} {/sequence:fibonacci}]
+f[{pull:nums reverse}{$nums} {/pull:nums}]
 g[{pull:nums reverse}{$nums}/{$sequence} {/pull:nums}]
-h[{nums sum}{$nums}{/nums}]
+h[{pull:nums sum}{$nums}{/pull:nums}]

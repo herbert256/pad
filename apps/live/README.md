@@ -2,64 +2,36 @@
 
 ## Introduction
 
-Type a PAD page - its template, and its data or PHP code - and run it on this server: the
-page is saved and asked for like any other page, so its PHP, request values, sessions, forms
-that post back and scripts all work as they do in an application.
+Run a PAD page or preview a template on the HTTP server, with JSON, YAML, XML, CSV or PHP data. Live combines the former Live and Playground editors.
 
 ## Usage
 
-Open `http://localhost/pad/live/`. It looks like the [playground](../playground/README.md):
-the frame every PAD application shares, filling the window - the brand and the menu on the
-side, the bar with the title, **Run**, **Open in the playground** and the theme
-switcher - and in it the template on the left, under it the data - a text in any format PAD reads, JSON, YAML,
-XML, CSV, recognised on sight, a record's keys the page's variables and a list the variable
-`rows` - or, with **Switch to PHP**, PHP code written as a page's `.php`. The boxes are
-editors with PAD's colours when Monaco loads (`$liveMonaco`), light or dark with the frame.
+Open `http://localhost/pad/live/`. The template and data/PHP editors stand on the left, the output on the right, in PAD's shared frame.
 
-**Run** (or Ctrl+Enter) saves the template with its data or PHP as a page of this server and
-shows it on the right as the server answers it - a request of its own, `?page/<id>`, which
-**open alone** opens in a tab of its own. Where the playground renders a template inside its
-own request, here the page is a page: `padPosted`, `padRequest` and `?name=value` values, a
-`{form}` that posts back to it, `{live}` regions, sessions, the database of the PAD home and
-scripts all work, and its PHP may call any function a page's PHP may.
+- **Run page** (Ctrl/Cmd+Enter) saves the template and data/PHP as `live/?page/<id>`. This is a full page with request values, sessions, forms that post back, scripts, `_common` and its demo database. **open alone** opens that page separately.
+- **Render template** runs the template inside the current request using `padCode()`, with the former Playground restrictions and an output frame with an opaque origin.
+- **Show HTML** displays the exact HTML from that template preview, with entities preserved.
+- **Switch to PHP** exchanges the data and PHP panes. Each keeps its content; an empty PHP pane starts with only `<?php` and `?>`.
+- **Open in WASM** transfers the template, both data panes and the selected mode to the browser editor. WASM's **Open in live** transfers them back.
 
-The address bar holds the boxes in its `#s=` hash, as the playground's does, so copying it
-shares the page; one opened from such a link fills the boxes and waits for **Run**. **Open in
-the playground**, beside **Run** in the bar, is such a link: the boxes as they stand, in the playground,
-waiting there for **Render** - and the playground's **Open in live** brings them back. Every
-example of the other applications has such a link, the ⚡ icon at its top right beside the
-playground's ▶ - and some have only that one: an example that needs what only a page of this
-server has, as classicModels' database examples
-([The frame of the PAD applications](../../docs/FEATURES.md#the-frame-of-the-pad-applications)).
+The address bar always carries the current editors in its `#s=` hash. A shared link fills the editors and waits for a button; only the built-in example runs automatically. Existing Live links still work. Example icons elsewhere now open WASM (▶) or Live (⚡); server-only examples retain only Live.
 
-The application runs with `_common`, as most PAD applications do: its tags - `{example}`,
-`{demo}` - its library and its demo database are there for a page.
+## Execution modes
 
-## What it allows
+Both server modes require a local request naming localhost or a loopback address and a valid CSRF token for POST. Full pages keep their existing access to PHP, requests and the demo database. The preview endpoint (`?render`) has no `_common`, database credentials, request variables or PHP functions callable from templates. Its PHP data code still runs as written. Preview limits are five seconds, 64 KB of template/data/PHP input, and 256 KB of output. Preview scripts run inside their own sandbox and cannot access the editor.
 
-The live application runs the code it is given, as a page of this server, so:
+Full pages use a separate iframe with their existing same-origin/form permissions. Switching modes stops the previous output document. Saved pages live under `DATA/live/` for a day; their IDs derive from their content.
 
-- **This machine only.** `_guard.php` answers 403 to every request that is not local
-  (`padLocal()`) or that names another host than `localhost`, `127.0.0.1` or `[::1]` - the
-  saved pages as well as the editor.
-- **A post from its own form only.** `$padCsrf = TRUE`: a save carries the token of the
-  editor's form, a post of a saved page the token of that page's form.
-- **Everything a page may do.** The PHP runs as written, with all of PHP's reach, and the
-  template has every tag and function an application's template has. The page is shown in a
-  frame of this site, not kept apart from the editor: a link from elsewhere waits for **Run**.
-- **Kept a day.** A page is saved under `DATA/live/<id>` - the id made of what it holds - and
-  removed a day after it was last saved; 64 KB of template and 64 KB of data or PHP.
+WASM runs PHP in the browser and has no access to this server's files or demo database. Its data pane accepts the same usual text formats and PHP. Old `/playground/` bookmarks redirect to WASM while preserving their URL fragment.
 
 ## Files
 
-| File | Description |
-|------|-------------|
-| `index.php` / `index.pad` | The editor: template, data or PHP, the page - in the shared frame, which this page opens itself (`{common:padFrame fill}`), so the saved pages answer as they are, without it |
-| `save.php` | Saves the posted page under `DATA/live/` and sends the frame to `?page/<id>` |
-| `page/_inits.php` | The PHP of a saved page: its PHP code, or its data text read as PAD reads data |
-| `_lib/live.php` | Where the pages are kept, their id, the sweep, the data reader |
-| `_guard.php` | Turns every non-local request away |
-| `_config/config.php` | CSRF tokens; `$liveMonaco`, where Monaco comes from |
-| `www/live/index.php` | The entry point: hands a saved page's template to the engine (`$padPageSource`) |
-| `www/live/live.js` | The editors, the switch, the boxes in the URL hash and in the link to the playground, Run on Ctrl+Enter, open alone |
-| `www/live/live.css` | The two-pane layout filling the frame, in the frame's colours |
+| File | Purpose |
+|---|---|
+| `index.php`, `index.pad` | Combined editor in the shared frame |
+| `save.php`, `page/_inits.php` | Saved pages and their paired data/PHP |
+| `render.php`, `render.pad` | Template preview and HTML source view |
+| `_lib/live.php` | Saved-page IDs, cleanup and the data reader shared with WASM |
+| `_guard.php`, `_config/config.php` | Local access, CSRF and per-mode configuration |
+| `www/live/live.js`, `live.css` | Editors, output modes, shared links and layout |
+| `www/live/index.php` | Saved-page bootstrap |

@@ -1,10 +1,10 @@
-{meta title='Language models'/}
+{pad:meta title='Language models'/}
 
-<p>{open/}ai{close/} puts the answer of a language model in the page. What stands between the tags
+<p>{pad:open/}pad:ai{pad:close/} puts the answer of a language model in the page. What stands between the tags
 renders first - fields, loops, anything - and what it rendered is the prompt; the answer comes back
 as text. It is a value, never template code: markup in it is shown, not run, and so is a PAD tag:</p>
 
-{example 'fragments/ai_1'/}
+{common:example 'fragments/ai_1'/}
 
 <p>The answer is kept: the same provider, model, system prompt and prompt on a later request is the
 same answer, no request made - for an hour unless <code>ttl=</code> says otherwise, never with
@@ -15,11 +15,11 @@ same answer, no request made - for an hour unless <code>ttl=</code> says otherwi
 <p><code>padAi ( $prompt, $options )</code> asks the same from a page's PHP and answers the text - here
 Ollama, which runs a model on this machine and needs no key:</p>
 
-{example 'fragments/ai_2'/}
+{common:example 'fragments/ai_2'/}
 
 <h2>Providers and options</h2>
 
-<p>Every provider is a file of <code>pad/subs/ai/types/</code> - {echo php:implode(', ', padAiProviders())/} -
+<p>Every provider is a file of <code>pad/subs/ai/types/</code> - {pad:echo php:implode(', ', padAiProviders())/} -
 with its endpoint, its headers, the request it builds and how it reads the text and an error out of
 the answer. A provider is added by adding its file.</p>
 

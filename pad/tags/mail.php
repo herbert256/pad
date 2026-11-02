@@ -1,11 +1,11 @@
 <?php
 
-  // {mail to=$email, template='order', subject='Order confirmation'}: renders the _mail/
+  // {pad:mail to=$email, template='order', subject='Order confirmation'}: renders the _mail/
   // template to an HTML and a text part and sends it - lib/mail.php. As a pair without a
-  // template, {mail to=$email, subject='Welcome'}<p>Hello {$name}</p>{/mail}, the content is
+  // template, {pad:mail to=$email, subject='Welcome'}<p>Hello {$name}</p>{/pad:mail}, the content is
   // the HTML part, rendered where it stands - inside a loop with the fields of the row - and
   // the text part is made from it. from, cc, bcc and replyTo are the other headers. The tag
-  // itself shows nothing. Like {tidy} the pair runs twice: first to ask for the end walk,
+  // itself shows nothing. Like {pad:tidy} the pair runs twice: first to ask for the end walk,
   // then on the rendered content.
 
   // A header is plain text, no HTML: a field inside a quoted header - subject='Welcome

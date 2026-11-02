@@ -1,8 +1,8 @@
 <?php
 
-  // What the widgets share - {tabs}, {accordion}, {modal}, {copy} and the rest of the widgets
+  // What the widgets share - {widget:tabs}, {widget:accordion}, {widget:modal}, {widget:copy} and the rest of the widgets
   // subsystem in subs/widgets/ - with the other tags that draw and play, the charts, the games,
-  // {video} and {chess} among them: an id of their own on the page, their colours as custom
+  // {pad:video} and {notation:chess} among them: an id of their own on the page, their colours as custom
   // properties, their CSS and script written once, the script with this request's CSP nonce.
   //
   // padWidgetTypes   the widgets: the files of subs/widgets/types/ (padKinds, lib/subsystem.php) -
@@ -98,7 +98,7 @@
 
     static $drawn = [];
 
-    // A widget made inside a {cache} section that is rendering - to be kept - is seeded with
+    // A widget made inside a {pad:cache} section that is rendering - to be kept - is seeded with
     // the section's key as well: kept, it comes back on a later request beside a widget of
     // the same names made then, and the two had one id and one radio group - choosing a tab
     // in one emptied the other.
@@ -117,9 +117,9 @@
 
   }
 
-  // Once per output: the page, a {cache} section that is being kept - it comes back on
+  // Once per output: the page, a {pad:cache} section that is being kept - it comes back on
   // other pages, where nothing else wrote its CSS and script - a mail rendered during the
-  // request ($padOnceScope, lib/mail.php) and, for a style, a {shadow} root ($padShadowScope,
+  // request ($padOnceScope, lib/mail.php) and, for a style, a {pad:shadow} root ($padShadowScope,
   // tags/shadow.php). Remembered for the PHP process, a section
   // was kept without the style or the script an earlier widget of its page had written -
   // a video's play button did nothing elsewhere - and a mail took the page's style.
@@ -132,7 +132,7 @@
 
     $scope = (string) ( $padOnceScope ?? '' );
 
-    // A {shadow} root takes no style from the page: what a widget writes once - its style,
+    // A {pad:shadow} root takes no style from the page: what a widget writes once - its style,
     // the rules of its slots - is written once in every shadow root as well; a script runs
     // for the whole document and stays once a page.
 
@@ -237,7 +237,7 @@
   // The files of www/assets/.
   // ------------------------------------------------------------------------------------
 
-  // Linked, or written in. A {cache} section kept in a page links the files as the page
+  // Linked, or written in. A {pad:cache} section kept in a page links the files as the page
   // does; a mail rendered during the request has them written in, the page around it links.
 
   function padWidgetLinked () {
@@ -422,12 +422,12 @@
   }
 
   // The style sheets of www/assets/ a page links stand where the tags wrote them - in a
-  // fragment, a live region's answer, a kept {cache} section they must. In a whole page they
+  // fragment, a live region's answer, a kept {pad:cache} section they must. In a whole page they
   // are moved into its <head>, each once, as tidy moves a <style>: a <link> in a paragraph
   // ended it under tidy, and one in the inline <svg> an effect keeps its style in was never
   // loaded. A whole page without a <head> of its own - a bare template, which tidy makes a
   // document of - has them at its start, where tidy puts them into the head it makes and a
-  // browser into the one it implies. A link inside a <template shadowrootmode> - a {shadow}
+  // browser into the one it implies. A link inside a <template shadowrootmode> - a {pad:shadow}
   // root, whose style the page around it does not reach - stays.
 
   function padWidgetHead ( $html ) {

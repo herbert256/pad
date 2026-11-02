@@ -62,7 +62,7 @@ Field forms: a path, a parameter, a level back, an at-reference
 A brace that opens no tag is text
 ================================================================================
 
-{data 'x'}{"a": 1}{/data} { b } {}
+{pad:data 'x'}{"a": 1}{/pad:data} { b } {}
 
 --------------------------------------------------------------------------------
 
@@ -70,6 +70,7 @@ A brace that opens no tag is text
   (block
     (open_tag
       (tag_name
+        (prefix)
         (identifier))
       (arguments
         (string)))
@@ -78,6 +79,7 @@ A brace that opens no tag is text
       (text))
     (close_tag
       (tag_name
+        (prefix)
         (identifier))))
   (text)
   (text)
@@ -87,8 +89,8 @@ A brace that opens no tag is text
 Comments, and a tag inside one never counts
 ================================================================================
 
-{# {if} #}
-{-- {/orders} --}
+{# {pad:if} #}
+{-- {/array:orders} --}
 
 --------------------------------------------------------------------------------
 

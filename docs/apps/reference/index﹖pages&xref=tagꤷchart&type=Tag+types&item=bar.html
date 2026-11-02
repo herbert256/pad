@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="../_common/brand.css">
     <script src="../_common/pad.js"></script>
     <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/play.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
   </head>
   <body class="frame app-reference">
     <aside class="frame-side">
@@ -23,89 +27,113 @@
             </summary>
             <nav class="pad-brand-apps" aria-label="PAD applications">
               <div class="pad-brand-columns">
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    PAD
-                  </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
-                  <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
-                  <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Showcases
-                  </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                  <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                  <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                  <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Front ends
-                  </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
-                  <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
-                  <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
-                  <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Offline
-                  </div><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                  <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
-                  <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
-                  <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Examples
-                  </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/playground/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
-                  <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>playground</b><small>Type a template, see the result</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-                  <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Tools
-                  </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
-                  <circle cx="9" cy="7" r="2"></circle>
-                  <circle cx="15" cy="12" r="2"></circle>
-                  <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
-                  <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
-                  <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
                 </div>
               </div>
             </nav>
@@ -129,7 +157,7 @@
         </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
         <div class="frame-head">
           More
-        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#oauth-providers">OAuth providers</a> <a href="index%EF%B9%96index.html#notification-channels">Notification channels</a> <a href="index%EF%B9%96index.html#ai-providers">AI providers</a> <a href="index%EF%B9%96index.html#pattern-types">Pattern types</a> <a href="index%EF%B9%96index.html#image-filters">Image filters</a> <a href="index%EF%B9%96index.html#holiday-countries">Holiday countries</a> <a href="index%EF%B9%96index.html#search-languages">Search languages</a> <a href="index%EF%B9%96index.html#data-formats">Data formats</a> <a href="index%EF%B9%96index.html#sounds">Sounds</a> <a href="index%EF%B9%96index.html#printables">Printables</a> <a href="index%EF%B9%96index.html#notations">Notations</a> <a href="index%EF%B9%96index.html#formula-functions">Formula functions</a> <a href="index%EF%B9%96index.html#section-types">Section types</a> <a href="index%EF%B9%96index.html#effect-types">Effect types</a> <a href="index%EF%B9%96index.html#json-ld-kinds">JSON-LD kinds</a> <a href="index%EF%B9%96index.html#themes">Themes</a> <a href="index%EF%B9%96index.html#palettes">Palettes</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
       </nav>
     </aside>
     <main class="frame-main">
@@ -138,10 +166,64 @@
           Reference - Tag types - bar
         </h1>
         <div class="frame-tools">
-          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
         </div>
       </header>
       <div class="frame-body">
@@ -150,8 +232,448 @@
             <td>
               <center>
                 <hr>
+                App: charts - Page: bars/channels<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">bars/channels.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">bars/channels.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Orders per quarter, by where they were placed.<br><br>  </span><span style="color: #0000BB">$channels </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'quarter' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Q1'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">320</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">410</span><span style="color: #007700">, </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">95 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'quarter' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Q2'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">380</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">395</span><span style="color: #007700">, </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">80 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'quarter' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Q3'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">455</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">350</span><span style="color: #007700">, </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">70 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'quarter' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Q4'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">610</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">420</span><span style="color: #007700">, </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">65 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGRhdGE9J2NoYW5uZWxzJyxcbiAgICAgICBsYWJlbD0ncXVhcnRlcicsXG4gICAgICAgdmFsdWU9J29ubGluZSwgc2hvcCwgcGhvbmUnLFxuICAgICAgIHRpdGxlPSdPcmRlcnMgcGVyIHF1YXJ0ZXIgYW5kIGNoYW5uZWwnLFxuICAgICAgIHdpZHRoPTY0MCxcbiAgICAgICBoZWlnaHQ9MzQwL31cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBPcmRlcnMgcGVyIHF1YXJ0ZXIsIGJ5IHdoZXJlIHRoZXkgd2VyZSBwbGFjZWQuXG5cbiAgJGNoYW5uZWxzID0gW1xuICAgIFsgJ3F1YXJ0ZXInID0+ICdRMScsICdvbmxpbmUnID0+IDMyMCwgJ3Nob3AnID0+IDQxMCwgJ3Bob25lJyA9PiAgOTUgXSxcbiAgICBbICdxdWFydGVyJyA9PiAnUTInLCAnb25saW5lJyA9PiAzODAsICdzaG9wJyA9PiAzOTUsICdwaG9uZScgPT4gIDgwIF0sXG4gICAgWyAncXVhcnRlcicgPT4gJ1EzJywgJ29ubGluZScgPT4gNDU1LCAnc2hvcCcgPT4gMzUwLCAncGhvbmUnID0+ICA3MCBdLFxuICAgIFsgJ3F1YXJ0ZXInID0+ICdRNCcsICdvbmxpbmUnID0+IDYxMCwgJ3Nob3AnID0+IDQyMCwgJ3Bob25lJyA9PiAgNjUgXVxuICBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGRhdGE9J2NoYW5uZWxzJyxcbiAgICAgICBsYWJlbD0ncXVhcnRlcicsXG4gICAgICAgdmFsdWU9J29ubGluZSwgc2hvcCwgcGhvbmUnLFxuICAgICAgIHRpdGxlPSdPcmRlcnMgcGVyIHF1YXJ0ZXIgYW5kIGNoYW5uZWwnLFxuICAgICAgIHdpZHRoPTY0MCxcbiAgICAgICBoZWlnaHQ9MzQwL31cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBPcmRlcnMgcGVyIHF1YXJ0ZXIsIGJ5IHdoZXJlIHRoZXkgd2VyZSBwbGFjZWQuXG5cbiAgJGNoYW5uZWxzID0gW1xuICAgIFsgJ3F1YXJ0ZXInID0+ICdRMScsICdvbmxpbmUnID0+IDMyMCwgJ3Nob3AnID0+IDQxMCwgJ3Bob25lJyA9PiAgOTUgXSxcbiAgICBbICdxdWFydGVyJyA9PiAnUTInLCAnb25saW5lJyA9PiAzODAsICdzaG9wJyA9PiAzOTUsICdwaG9uZScgPT4gIDgwIF0sXG4gICAgWyAncXVhcnRlcicgPT4gJ1EzJywgJ29ubGluZScgPT4gNDU1LCAnc2hvcCcgPT4gMzUwLCAncGhvbmUnID0+ICA3MCBdLFxuICAgIFsgJ3F1YXJ0ZXInID0+ICdRNCcsICdvbmxpbmUnID0+IDYxMCwgJ3Nob3AnID0+IDQyMCwgJ3Bob25lJyA9PiAgNjUgXVxuICBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>channels<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>quarter<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>online<font color="black">,</font> shop<font color="black">,</font> phone<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Orders per quarter and channel<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxf8950f8bb864f1eb229a93057521ee58"></div>
+                      <script>
+                      padAjaxf8950f8bb864f1eb229a93057521ee58 = new XMLHttpRequest();
+                      padAjaxf8950f8bb864f1eb229a93057521ee58.onreadystatechange=function() {
+                      if (padAjaxf8950f8bb864f1eb229a93057521ee58.readyState === 4) {
+                      if (padAjaxf8950f8bb864f1eb229a93057521ee58.status === 200) {
+                      document.getElementById("padAjaxf8950f8bb864f1eb229a93057521ee58").innerHTML=padAjaxf8950f8bb864f1eb229a93057521ee58.responseText;
+                      } else {
+                      document.getElementById("padAjaxf8950f8bb864f1eb229a93057521ee58").innerHTML=padAjaxf8950f8bb864f1eb229a93057521ee58.statusText;
+                      }
+                      }
+                      }
+                      padAjaxf8950f8bb864f1eb229a93057521ee58.open("GET","http://localhost/pad/charts/?bars/channels&padInclude",true);
+                      padAjaxf8950f8bb864f1eb229a93057521ee58.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: charts - Page: bars/energy<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">bars/energy.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGRhdGE9J2VuZXJneW1peCcsXG4gICAgICAgbGFiZWw9J3llYXInLFxuICAgICAgIHZhbHVlPSdjb2FsLCBnYXMsIHdpbmQsIHNvbGFyJyxcbiAgICAgICBzdGFja2VkLFxuICAgICAgIHRpdGxlPSdFbGVjdHJpY2l0eSBieSBzb3VyY2UnLFxuICAgICAgIHdpZHRoPTY0MCxcbiAgICAgICBoZWlnaHQ9MzQwL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGRhdGE9J2VuZXJneW1peCcsXG4gICAgICAgbGFiZWw9J3llYXInLFxuICAgICAgIHZhbHVlPSdjb2FsLCBnYXMsIHdpbmQsIHNvbGFyJyxcbiAgICAgICBzdGFja2VkLFxuICAgICAgIHRpdGxlPSdFbGVjdHJpY2l0eSBieSBzb3VyY2UnLFxuICAgICAgIHdpZHRoPTY0MCxcbiAgICAgICBoZWlnaHQ9MzQwL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>energymix<font color="black">'</font><font color="black">,</font><br>       label=<font color="black">'</font>year<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>coal<font color="black">,</font> gas<font color="black">,</font> wind<font color="black">,</font> solar<font color="black">'</font><font color="black">,</font><br>       stacked<font color="black">,</font><br>       title=<font color="black">'</font>Electricity by source<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax87021782414861abb1d12093c3fd14e1"></div>
+                      <script>
+                      padAjax87021782414861abb1d12093c3fd14e1 = new XMLHttpRequest();
+                      padAjax87021782414861abb1d12093c3fd14e1.onreadystatechange=function() {
+                      if (padAjax87021782414861abb1d12093c3fd14e1.readyState === 4) {
+                      if (padAjax87021782414861abb1d12093c3fd14e1.status === 200) {
+                      document.getElementById("padAjax87021782414861abb1d12093c3fd14e1").innerHTML=padAjax87021782414861abb1d12093c3fd14e1.responseText;
+                      } else {
+                      document.getElementById("padAjax87021782414861abb1d12093c3fd14e1").innerHTML=padAjax87021782414861abb1d12093c3fd14e1.statusText;
+                      }
+                      }
+                      }
+                      padAjax87021782414861abb1d12093c3fd14e1.open("GET","http://localhost/pad/charts/?bars/energy&padInclude",true);
+                      padAjax87021782414861abb1d12093c3fd14e1.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: charts - Page: bars/sales<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">bars/sales.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGxhYmVsPSdtb250aCcsXG4gICAgICAgdmFsdWU9J2Ftb3VudCcsXG4gICAgICAgdGl0bGU9J1NhbGVzIHBlciBtb250aCcsXG4gICAgICAgd2lkdGg9NjQwLFxuICAgICAgIGhlaWdodD0zNDB9XG4gIG1vbnRoLGFtb3VudFxuICBKYW4sMTI0MDBcbiAgRmViLDk1MDBcbiAgTWFyLDE0MzAwXG4gIEFwciwxNjEwMFxuICBNYXksMTUyMDBcbiAgSnVuLDE4NzUwXG57L2NoYXJ0OmJhcn1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGxhYmVsPSdtb250aCcsXG4gICAgICAgdmFsdWU9J2Ftb3VudCcsXG4gICAgICAgdGl0bGU9J1NhbGVzIHBlciBtb250aCcsXG4gICAgICAgd2lkdGg9NjQwLFxuICAgICAgIGhlaWdodD0zNDB9XG4gIG1vbnRoLGFtb3VudFxuICBKYW4sMTI0MDBcbiAgRmViLDk1MDBcbiAgTWFyLDE0MzAwXG4gIEFwciwxNjEwMFxuICBNYXksMTUyMDBcbiAgSnVuLDE4NzUwXG57L2NoYXJ0OmJhcn1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font><br>       value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font><br>       title=<font color="black">'</font>Sales per month<font color="black">'</font><font color="black">,</font><br>       width=640<font color="black">,</font><br>       height=340</font>}</b><br>  month,amount<br>  Jan,12400<br>  Feb,9500<br>  Mar,14300<br>  Apr,16100<br>  May,15200<br>  Jun,18750<br><b>{/<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5"></div>
+                      <script>
+                      padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5 = new XMLHttpRequest();
+                      padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5.onreadystatechange=function() {
+                      if (padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5.readyState === 4) {
+                      if (padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5.status === 200) {
+                      document.getElementById("padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5").innerHTML=padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5.responseText;
+                      } else {
+                      document.getElementById("padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5").innerHTML=padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5.statusText;
+                      }
+                      }
+                      }
+                      padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5.open("GET","http://localhost/pad/charts/?bars/sales&padInclude",true);
+                      padAjaxe5c5f9ed6530f6fdd76ee01d74be6ed5.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: ledger - Page: index<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">index.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">index.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The month at a glance: what came in, what went out, what is left; six months of it as a<br>  // chart, this month's spending by category, the budgets, the accounts, the latest entries<br>  // - and a quick entry that ledger.js posts as JSON, answered by quick.php.<br><br>  </span><span style="color: #0000BB">$totals    </span><span style="color: #007700">= </span><span style="color: #0000BB">ledgerTotals </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$history   </span><span style="color: #007700">= </span><span style="color: #0000BB">ledgerHistory </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$spending  </span><span style="color: #007700">= </span><span style="color: #0000BB">ledgerSpending </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$budgets   </span><span style="color: #007700">= </span><span style="color: #0000BB">ledgerBudgets </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$accounts  </span><span style="color: #007700">= </span><span style="color: #0000BB">ledgerAccounts </span><span style="color: #007700">();<br>  </span><span style="color: #0000BB">$latest    </span><span style="color: #007700">= </span><span style="color: #0000BB">array_slice </span><span style="color: #007700">( </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">ledgerRows </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">), fn ( </span><span style="color: #0000BB">$r </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$r </span><span style="color: #007700">[</span><span style="color: #DD0000">'kind'</span><span style="color: #007700">] != </span><span style="color: #DD0000">'transfer' </span><span style="color: #007700">) ), </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">8 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$spendable </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">ledgerCategories </span><span style="color: #007700">(), fn ( </span><span style="color: #0000BB">$c </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$c </span><span style="color: #007700">[</span><span style="color: #DD0000">'kind'</span><span style="color: #007700">] == </span><span style="color: #DD0000">'expense' </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$monthName </span><span style="color: #007700">= </span><span style="color: #0000BB">ledgerMonthName </span><span style="color: #007700">( </span><span style="color: #0000BB">$ledgerMonth </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$today     </span><span style="color: #007700">= </span><span style="color: #0000BB">date </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m-d' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$title     </span><span style="color: #007700">= </span><span style="color: #0000BB">$monthName</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8c2VjdGlvbiBjbGFzcz1cImtwaXNcIiBhcmlhLWxhYmVsPVwiVGhpcyBtb250aFwiPlxuICA8ZGl2IGNsYXNzPVwia3BpIGluXCI+PHNwYW4+SW5jb21lPC9zcGFuPjxiIGRhdGEta3BpPVwiaW5jb21lXCI+eyR0b3RhbHMuaW5jb21lIHwgbW9uZXl9PC9iPjwvZGl2PlxuICA8ZGl2IGNsYXNzPVwia3BpIG91dFwiPjxzcGFuPlNwZW5kaW5nPC9zcGFuPjxiIGRhdGEta3BpPVwic3BlbnRcIj57JHRvdGFscy5zcGVudCB8IG1vbmV5fTwvYj48L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImtwaVwiPjxzcGFuPkxlZnQ8L3NwYW4+PGIgZGF0YS1rcGk9XCJsZWZ0XCI+eyR0b3RhbHMubGVmdCB8IG1vbmV5fTwvYj48L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImtwaVwiPjxzcGFuPktlcHQ8L3NwYW4+PGIgZGF0YS1rcGk9XCJrZXB0XCI+eyR0b3RhbHMua2VwdH0lPC9iPjwvZGl2PlxuPC9zZWN0aW9uPlxuXG48ZGl2IGNsYXNzPVwiY29sdW1uc1wiPlxuXG4gIDxkaXYgY2xhc3M9XCJtYWluXCI+XG5cbiAgICA8c2VjdGlvbiBjbGFzcz1cImNhcmRcIj5cbiAgICAgIDxoMj5TaXggbW9udGhzPC9oMj5cbiAgICAgIHtjaGFydDpiYXIgZGF0YT0naGlzdG9yeScsIGxhYmVsPSdtb250aCcsIHZhbHVlPSdpbmNvbWUsIHNwZW5kaW5nJywgdGl0bGU9J0luY29tZSBhbmQgc3BlbmRpbmcsIHNpeCBtb250aHMnL31cbiAgICA8L3NlY3Rpb24+XG5cbiAgICA8c2VjdGlvbiBjbGFzcz1cImNhcmRcIj5cbiAgICAgIDxoMj5XaGVyZSBpdCB3ZW50PC9oMj5cbiAgICAgIHtwYWQ6aWYgJHRvdGFscy5zcGVudCBndCAwfVxuICAgICAgICB7Y2hhcnQ6ZG9udXQgZGF0YT0nc3BlbmRpbmcnLCBsYWJlbD0nY2F0ZWdvcnknLCB2YWx1ZT0nc3BlbnQnLCB0aXRsZT0nU3BlbmRpbmcgYnkgY2F0ZWdvcnknL31cbiAgICAgIHtwYWQ6ZWxzZX1cbiAgICAgICAgPHAgY2xhc3M9XCJkaW1cIj5Ob3RoaW5nIHNwZW50IHRoaXMgbW9udGguPC9wPlxuICAgICAgey9wYWQ6aWZ9XG4gICAgPC9zZWN0aW9uPlxuXG4gICAgPHNlY3Rpb24gY2xhc3M9XCJjYXJkXCI+XG4gICAgICA8aDI+QnVkZ2V0cyA8YSBjbGFzcz1cIm1vcmVcIiBocmVmPVwieyRwYWRHb31idWRnZXRzez9tb250aH1cIj5DaGFuZ2U8L2E+PC9oMj5cbiAgICAgIDx1bCBjbGFzcz1cImJ1ZGdldHNcIj5cbiAgICAgICAge2FycmF5OmJ1ZGdldHN9XG4gICAgICAgIDxsaSBjbGFzcz1cInskc3RhdGV9XCI+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cImxpbmVcIj48c3BhbiBjbGFzcz1cImRvdFwiIHN0eWxlPVwiYmFja2dyb3VuZDogeyRjb2xvcn1cIj48L3NwYW4+PGI+eyRuYW1lfTwvYj48c3Bhbj57JHNwZW50IHwgbW9uZXl9IG9mIHskbW9udGhseSB8IG1vbmV5fTwvc3Bhbj48L2Rpdj5cbiAgICAgICAgICB7cGFkOnByb2dyZXNzICRzaGFyZSwgbWF4PTEwMCwgbGFiZWw9JG5hbWUsIGNvbG9yPSR0b25lL31cbiAgICAgICAgPC9saT5cbiAgICAgICAgQGVsc2VAXG4gICAgICAgIDxsaSBjbGFzcz1cImRpbVwiPk5vIGJ1ZGdldHMgeWV0LjwvbGk+XG4gICAgICAgIHsvYXJyYXk6YnVkZ2V0c31cbiAgICAgIDwvdWw+XG4gICAgPC9zZWN0aW9uPlxuXG4gIDwvZGl2PlxuXG4gIDxhc2lkZSBjbGFzcz1cInNpZGVcIj5cblxuICAgIDxzZWN0aW9uIGNsYXNzPVwiY2FyZCBxdWlja1wiPlxuICAgICAgPGgyPlF1aWNrIGVudHJ5PC9oMj5cbiAgICAgIHtwYWQ6Zm9ybSAncXVpY2snLCBhY3Rpb249Jz9xdWljaycsIGNsYXNzPSdxdWljay1mb3JtJ31cbiAgICAgICAgPGlucHV0IHR5cGU9XCJoaWRkZW5cIiBuYW1lPVwibW9udGhcIiB2YWx1ZT1cInskbGVkZ2VyTW9udGh9XCI+XG4gICAgICAgIDxsYWJlbCBmb3I9XCJxLWFtb3VudFwiPkFtb3VudDwvbGFiZWw+XG4gICAgICAgIDxpbnB1dCBpZD1cInEtYW1vdW50XCIgbmFtZT1cImFtb3VudFwiIGlucHV0bW9kZT1cImRlY2ltYWxcIiBwbGFjZWhvbGRlcj1cIjEyLjUwXCIgcmVxdWlyZWQgcGF0dGVybj1cIlswLTldKyhbLixdWzAtOV1bMC05XT8pP1wiPlxuICAgICAgICA8bGFiZWwgZm9yPVwicS1jYXRlZ29yeVwiPkNhdGVnb3J5PC9sYWJlbD5cbiAgICAgICAgPHNlbGVjdCBpZD1cInEtY2F0ZWdvcnlcIiBuYW1lPVwiY2F0ZWdvcnlcIj57YXJyYXk6c3BlbmRhYmxlfTxvcHRpb24gdmFsdWU9XCJ7JGlkfVwiPnskbmFtZX08L29wdGlvbj57L2FycmF5OnNwZW5kYWJsZX08L3NlbGVjdD5cbiAgICAgICAgPGxhYmVsIGZvcj1cInEtbm90ZVwiPk5vdGU8L2xhYmVsPlxuICAgICAgICA8aW5wdXQgaWQ9XCJxLW5vdGVcIiBuYW1lPVwibm90ZVwiIHBsYWNlaG9sZGVyPVwiQ29mZmVlXCIgbWF4bGVuZ3RoPVwiMTIwXCI+XG4gICAgICAgIDxidXR0b24gY2xhc3M9XCJidXR0b24gcHJpbWFyeVwiPlNwZW5kIGl0PC9idXR0b24+XG4gICAgICAgIDxwIGNsYXNzPVwic2FpZFwiIHJvbGU9XCJzdGF0dXNcIj48L3A+XG4gICAgICB7L3BhZDpmb3JtfVxuICAgIDwvc2VjdGlvbj5cblxuICAgIDxzZWN0aW9uIGNsYXNzPVwiY2FyZFwiPlxuICAgICAgPGgyPkFjY291bnRzPC9oMj5cbiAgICAgIDx1bCBjbGFzcz1cImFjY291bnRzXCI+XG4gICAgICAgIHthcnJheTphY2NvdW50c308bGk+PHNwYW4+eyRuYW1lfTwvc3Bhbj48YiBjbGFzcz1cIntwYWQ6aWYgJGJhbGFuY2UgbHQgMH1uZWd7L3BhZDppZn1cIj57JGJhbGFuY2UgfCBtb25leX08L2I+PC9saT57L2FycmF5OmFjY291bnRzfVxuICAgICAgPC91bD5cbiAgICA8L3NlY3Rpb24+XG5cbiAgICA8c2VjdGlvbiBjbGFzcz1cImNhcmRcIj5cbiAgICAgIDxoMj5MYXRlc3QgPGEgY2xhc3M9XCJtb3JlXCIgaHJlZj1cInskcGFkR299dHJhbnNhY3Rpb25zez9tb250aH1cIj5BbGwgeyR0b3RhbHMuZW50cmllc308L2E+PC9oMj5cbiAgICAgIDx1bCBjbGFzcz1cImxhdGVzdFwiPlxuICAgICAgICB7YXJyYXk6bGF0ZXN0fTxsaT48c3BhbiBjbGFzcz1cImRheVwiPnskZGF5IHwgZGF0ZSgnaiBNJyl9PC9zcGFuPjxzcGFuIGNsYXNzPVwid2hhdFwiPnskbm90ZX08c21hbGw+eyRjYXRlZ29yeX08L3NtYWxsPjwvc3Bhbj48YiBjbGFzcz1cIntwYWQ6aWYgJGFtb3VudCBsdCAwfW5lZ3twYWQ6ZWxzZX1wb3N7L3BhZDppZn1cIj57JGFtb3VudCB8IG1vbmV5fTwvYj48L2xpPlxuICAgICAgICBAZWxzZUA8bGkgY2xhc3M9XCJkaW1cIj5ObyBlbnRyaWVzIHRoaXMgbW9udGguPC9saT57L2FycmF5OmxhdGVzdH1cbiAgICAgIDwvdWw+XG4gICAgPC9zZWN0aW9uPlxuXG4gIDwvYXNpZGU+XG5cbjwvZGl2PlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBtb250aCBhdCBhIGdsYW5jZTogd2hhdCBjYW1lIGluLCB3aGF0IHdlbnQgb3V0LCB3aGF0IGlzIGxlZnQ7IHNpeCBtb250aHMgb2YgaXQgYXMgYVxuICAvLyBjaGFydCwgdGhpcyBtb250aCdzIHNwZW5kaW5nIGJ5IGNhdGVnb3J5LCB0aGUgYnVkZ2V0cywgdGhlIGFjY291bnRzLCB0aGUgbGF0ZXN0IGVudHJpZXNcbiAgLy8gLSBhbmQgYSBxdWljayBlbnRyeSB0aGF0IGxlZGdlci5qcyBwb3N0cyBhcyBKU09OLCBhbnN3ZXJlZCBieSBxdWljay5waHAuXG5cbiAgJHRvdGFscyAgICA9IGxlZGdlclRvdGFscyAoICRsZWRnZXJNb250aCApO1xuICAkaGlzdG9yeSAgID0gbGVkZ2VySGlzdG9yeSAoICRsZWRnZXJNb250aCApO1xuICAkc3BlbmRpbmcgID0gbGVkZ2VyU3BlbmRpbmcgKCAkbGVkZ2VyTW9udGggKTtcbiAgJGJ1ZGdldHMgICA9IGxlZGdlckJ1ZGdldHMgKCAkbGVkZ2VyTW9udGggKTtcbiAgJGFjY291bnRzICA9IGxlZGdlckFjY291bnRzICgpO1xuICAkbGF0ZXN0ICAgID0gYXJyYXlfc2xpY2UgKCBhcnJheV92YWx1ZXMgKCBhcnJheV9maWx0ZXIgKCBsZWRnZXJSb3dzICggJGxlZGdlck1vbnRoICksIGZuICggJHIgKSA9PiAkciBbJ2tpbmQnXSAhPSAndHJhbnNmZXInICkgKSwgMCwgOCApO1xuICAkc3BlbmRhYmxlID0gYXJyYXlfdmFsdWVzICggYXJyYXlfZmlsdGVyICggbGVkZ2VyQ2F0ZWdvcmllcyAoKSwgZm4gKCAkYyApID0+ICRjIFsna2luZCddID09ICdleHBlbnNlJyApICk7XG4gICRtb250aE5hbWUgPSBsZWRnZXJNb250aE5hbWUgKCAkbGVkZ2VyTW9udGggKTtcbiAgJHRvZGF5ICAgICA9IGRhdGUgKCAnWS1tLWQnICk7XG5cbiAgJHRpdGxlICAgICA9ICRtb250aE5hbWU7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8c2VjdGlvbiBjbGFzcz1cImtwaXNcIiBhcmlhLWxhYmVsPVwiVGhpcyBtb250aFwiPlxuICA8ZGl2IGNsYXNzPVwia3BpIGluXCI+PHNwYW4+SW5jb21lPC9zcGFuPjxiIGRhdGEta3BpPVwiaW5jb21lXCI+eyR0b3RhbHMuaW5jb21lIHwgbW9uZXl9PC9iPjwvZGl2PlxuICA8ZGl2IGNsYXNzPVwia3BpIG91dFwiPjxzcGFuPlNwZW5kaW5nPC9zcGFuPjxiIGRhdGEta3BpPVwic3BlbnRcIj57JHRvdGFscy5zcGVudCB8IG1vbmV5fTwvYj48L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImtwaVwiPjxzcGFuPkxlZnQ8L3NwYW4+PGIgZGF0YS1rcGk9XCJsZWZ0XCI+eyR0b3RhbHMubGVmdCB8IG1vbmV5fTwvYj48L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImtwaVwiPjxzcGFuPktlcHQ8L3NwYW4+PGIgZGF0YS1rcGk9XCJrZXB0XCI+eyR0b3RhbHMua2VwdH0lPC9iPjwvZGl2PlxuPC9zZWN0aW9uPlxuXG48ZGl2IGNsYXNzPVwiY29sdW1uc1wiPlxuXG4gIDxkaXYgY2xhc3M9XCJtYWluXCI+XG5cbiAgICA8c2VjdGlvbiBjbGFzcz1cImNhcmRcIj5cbiAgICAgIDxoMj5TaXggbW9udGhzPC9oMj5cbiAgICAgIHtjaGFydDpiYXIgZGF0YT0naGlzdG9yeScsIGxhYmVsPSdtb250aCcsIHZhbHVlPSdpbmNvbWUsIHNwZW5kaW5nJywgdGl0bGU9J0luY29tZSBhbmQgc3BlbmRpbmcsIHNpeCBtb250aHMnL31cbiAgICA8L3NlY3Rpb24+XG5cbiAgICA8c2VjdGlvbiBjbGFzcz1cImNhcmRcIj5cbiAgICAgIDxoMj5XaGVyZSBpdCB3ZW50PC9oMj5cbiAgICAgIHtwYWQ6aWYgJHRvdGFscy5zcGVudCBndCAwfVxuICAgICAgICB7Y2hhcnQ6ZG9udXQgZGF0YT0nc3BlbmRpbmcnLCBsYWJlbD0nY2F0ZWdvcnknLCB2YWx1ZT0nc3BlbnQnLCB0aXRsZT0nU3BlbmRpbmcgYnkgY2F0ZWdvcnknL31cbiAgICAgIHtwYWQ6ZWxzZX1cbiAgICAgICAgPHAgY2xhc3M9XCJkaW1cIj5Ob3RoaW5nIHNwZW50IHRoaXMgbW9udGguPC9wPlxuICAgICAgey9wYWQ6aWZ9XG4gICAgPC9zZWN0aW9uPlxuXG4gICAgPHNlY3Rpb24gY2xhc3M9XCJjYXJkXCI+XG4gICAgICA8aDI+QnVkZ2V0cyA8YSBjbGFzcz1cIm1vcmVcIiBocmVmPVwieyRwYWRHb31idWRnZXRzez9tb250aH1cIj5DaGFuZ2U8L2E+PC9oMj5cbiAgICAgIDx1bCBjbGFzcz1cImJ1ZGdldHNcIj5cbiAgICAgICAge2FycmF5OmJ1ZGdldHN9XG4gICAgICAgIDxsaSBjbGFzcz1cInskc3RhdGV9XCI+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cImxpbmVcIj48c3BhbiBjbGFzcz1cImRvdFwiIHN0eWxlPVwiYmFja2dyb3VuZDogeyRjb2xvcn1cIj48L3NwYW4+PGI+eyRuYW1lfTwvYj48c3Bhbj57JHNwZW50IHwgbW9uZXl9IG9mIHskbW9udGhseSB8IG1vbmV5fTwvc3Bhbj48L2Rpdj5cbiAgICAgICAgICB7cGFkOnByb2dyZXNzICRzaGFyZSwgbWF4PTEwMCwgbGFiZWw9JG5hbWUsIGNvbG9yPSR0b25lL31cbiAgICAgICAgPC9saT5cbiAgICAgICAgQGVsc2VAXG4gICAgICAgIDxsaSBjbGFzcz1cImRpbVwiPk5vIGJ1ZGdldHMgeWV0LjwvbGk+XG4gICAgICAgIHsvYXJyYXk6YnVkZ2V0c31cbiAgICAgIDwvdWw+XG4gICAgPC9zZWN0aW9uPlxuXG4gIDwvZGl2PlxuXG4gIDxhc2lkZSBjbGFzcz1cInNpZGVcIj5cblxuICAgIDxzZWN0aW9uIGNsYXNzPVwiY2FyZCBxdWlja1wiPlxuICAgICAgPGgyPlF1aWNrIGVudHJ5PC9oMj5cbiAgICAgIHtwYWQ6Zm9ybSAncXVpY2snLCBhY3Rpb249Jz9xdWljaycsIGNsYXNzPSdxdWljay1mb3JtJ31cbiAgICAgICAgPGlucHV0IHR5cGU9XCJoaWRkZW5cIiBuYW1lPVwibW9udGhcIiB2YWx1ZT1cInskbGVkZ2VyTW9udGh9XCI+XG4gICAgICAgIDxsYWJlbCBmb3I9XCJxLWFtb3VudFwiPkFtb3VudDwvbGFiZWw+XG4gICAgICAgIDxpbnB1dCBpZD1cInEtYW1vdW50XCIgbmFtZT1cImFtb3VudFwiIGlucHV0bW9kZT1cImRlY2ltYWxcIiBwbGFjZWhvbGRlcj1cIjEyLjUwXCIgcmVxdWlyZWQgcGF0dGVybj1cIlswLTldKyhbLixdWzAtOV1bMC05XT8pP1wiPlxuICAgICAgICA8bGFiZWwgZm9yPVwicS1jYXRlZ29yeVwiPkNhdGVnb3J5PC9sYWJlbD5cbiAgICAgICAgPHNlbGVjdCBpZD1cInEtY2F0ZWdvcnlcIiBuYW1lPVwiY2F0ZWdvcnlcIj57YXJyYXk6c3BlbmRhYmxlfTxvcHRpb24gdmFsdWU9XCJ7JGlkfVwiPnskbmFtZX08L29wdGlvbj57L2FycmF5OnNwZW5kYWJsZX08L3NlbGVjdD5cbiAgICAgICAgPGxhYmVsIGZvcj1cInEtbm90ZVwiPk5vdGU8L2xhYmVsPlxuICAgICAgICA8aW5wdXQgaWQ9XCJxLW5vdGVcIiBuYW1lPVwibm90ZVwiIHBsYWNlaG9sZGVyPVwiQ29mZmVlXCIgbWF4bGVuZ3RoPVwiMTIwXCI+XG4gICAgICAgIDxidXR0b24gY2xhc3M9XCJidXR0b24gcHJpbWFyeVwiPlNwZW5kIGl0PC9idXR0b24+XG4gICAgICAgIDxwIGNsYXNzPVwic2FpZFwiIHJvbGU9XCJzdGF0dXNcIj48L3A+XG4gICAgICB7L3BhZDpmb3JtfVxuICAgIDwvc2VjdGlvbj5cblxuICAgIDxzZWN0aW9uIGNsYXNzPVwiY2FyZFwiPlxuICAgICAgPGgyPkFjY291bnRzPC9oMj5cbiAgICAgIDx1bCBjbGFzcz1cImFjY291bnRzXCI+XG4gICAgICAgIHthcnJheTphY2NvdW50c308bGk+PHNwYW4+eyRuYW1lfTwvc3Bhbj48YiBjbGFzcz1cIntwYWQ6aWYgJGJhbGFuY2UgbHQgMH1uZWd7L3BhZDppZn1cIj57JGJhbGFuY2UgfCBtb25leX08L2I+PC9saT57L2FycmF5OmFjY291bnRzfVxuICAgICAgPC91bD5cbiAgICA8L3NlY3Rpb24+XG5cbiAgICA8c2VjdGlvbiBjbGFzcz1cImNhcmRcIj5cbiAgICAgIDxoMj5MYXRlc3QgPGEgY2xhc3M9XCJtb3JlXCIgaHJlZj1cInskcGFkR299dHJhbnNhY3Rpb25zez9tb250aH1cIj5BbGwgeyR0b3RhbHMuZW50cmllc308L2E+PC9oMj5cbiAgICAgIDx1bCBjbGFzcz1cImxhdGVzdFwiPlxuICAgICAgICB7YXJyYXk6bGF0ZXN0fTxsaT48c3BhbiBjbGFzcz1cImRheVwiPnskZGF5IHwgZGF0ZSgnaiBNJyl9PC9zcGFuPjxzcGFuIGNsYXNzPVwid2hhdFwiPnskbm90ZX08c21hbGw+eyRjYXRlZ29yeX08L3NtYWxsPjwvc3Bhbj48YiBjbGFzcz1cIntwYWQ6aWYgJGFtb3VudCBsdCAwfW5lZ3twYWQ6ZWxzZX1wb3N7L3BhZDppZn1cIj57JGFtb3VudCB8IG1vbmV5fTwvYj48L2xpPlxuICAgICAgICBAZWxzZUA8bGkgY2xhc3M9XCJkaW1cIj5ObyBlbnRyaWVzIHRoaXMgbW9udGguPC9saT57L2FycmF5OmxhdGVzdH1cbiAgICAgIDwvdWw+XG4gICAgPC9zZWN0aW9uPlxuXG4gIDwvYXNpZGU+XG5cbjwvZGl2PlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBtb250aCBhdCBhIGdsYW5jZTogd2hhdCBjYW1lIGluLCB3aGF0IHdlbnQgb3V0LCB3aGF0IGlzIGxlZnQ7IHNpeCBtb250aHMgb2YgaXQgYXMgYVxuICAvLyBjaGFydCwgdGhpcyBtb250aCdzIHNwZW5kaW5nIGJ5IGNhdGVnb3J5LCB0aGUgYnVkZ2V0cywgdGhlIGFjY291bnRzLCB0aGUgbGF0ZXN0IGVudHJpZXNcbiAgLy8gLSBhbmQgYSBxdWljayBlbnRyeSB0aGF0IGxlZGdlci5qcyBwb3N0cyBhcyBKU09OLCBhbnN3ZXJlZCBieSBxdWljay5waHAuXG5cbiAgJHRvdGFscyAgICA9IGxlZGdlclRvdGFscyAoICRsZWRnZXJNb250aCApO1xuICAkaGlzdG9yeSAgID0gbGVkZ2VySGlzdG9yeSAoICRsZWRnZXJNb250aCApO1xuICAkc3BlbmRpbmcgID0gbGVkZ2VyU3BlbmRpbmcgKCAkbGVkZ2VyTW9udGggKTtcbiAgJGJ1ZGdldHMgICA9IGxlZGdlckJ1ZGdldHMgKCAkbGVkZ2VyTW9udGggKTtcbiAgJGFjY291bnRzICA9IGxlZGdlckFjY291bnRzICgpO1xuICAkbGF0ZXN0ICAgID0gYXJyYXlfc2xpY2UgKCBhcnJheV92YWx1ZXMgKCBhcnJheV9maWx0ZXIgKCBsZWRnZXJSb3dzICggJGxlZGdlck1vbnRoICksIGZuICggJHIgKSA9PiAkciBbJ2tpbmQnXSAhPSAndHJhbnNmZXInICkgKSwgMCwgOCApO1xuICAkc3BlbmRhYmxlID0gYXJyYXlfdmFsdWVzICggYXJyYXlfZmlsdGVyICggbGVkZ2VyQ2F0ZWdvcmllcyAoKSwgZm4gKCAkYyApID0+ICRjIFsna2luZCddID09ICdleHBlbnNlJyApICk7XG4gICRtb250aE5hbWUgPSBsZWRnZXJNb250aE5hbWUgKCAkbGVkZ2VyTW9udGggKTtcbiAgJHRvZGF5ICAgICA9IGRhdGUgKCAnWS1tLWQnICk7XG5cbiAgJHRpdGxlICAgICA9ICRtb250aE5hbWU7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">&lt;section class="kpis" aria-label="This month"&gt;<br>  &lt;div class="kpi in"&gt;&lt;span&gt;Income&lt;/span&gt;&lt;b data-kpi="income"&gt;<b>{<font color="green">$totals.income</font> <font color="black">|</font> <font color="blue">money</font>}</b>&lt;/b&gt;&lt;/div&gt;<br>  &lt;div class="kpi out"&gt;&lt;span&gt;Spending&lt;/span&gt;&lt;b data-kpi="spent"&gt;<b>{<font color="green">$totals.spent</font> <font color="black">|</font> <font color="blue">money</font>}</b>&lt;/b&gt;&lt;/div&gt;<br>  &lt;div class="kpi"&gt;&lt;span&gt;Left&lt;/span&gt;&lt;b data-kpi="left"&gt;<b>{<font color="green">$totals.left</font> <font color="black">|</font> <font color="blue">money</font>}</b>&lt;/b&gt;&lt;/div&gt;<br>  &lt;div class="kpi"&gt;&lt;span&gt;Kept&lt;/span&gt;&lt;b data-kpi="kept"&gt;<b>{<font color="green"><font color="red">$</font>totals.kept</font>}</b>%&lt;/b&gt;&lt;/div&gt;<br>&lt;/section&gt;<br><br>&lt;div class="columns"&gt;<br><br>  &lt;div class="main"&gt;<br><br>    &lt;section class="card"&gt;<br>      &lt;h2&gt;Six months&lt;/h2&gt;<br>      <b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>history<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>income<font color="black">,</font> spending<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>Income and spending<font color="black">,</font> six months<font color="black">'</font></font>/}</b><br>    &lt;/section&gt;<br><br>    &lt;section class="card"&gt;<br>      &lt;h2&gt;Where it went&lt;/h2&gt;<br>      <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red"><font color="red">$</font>totals.spent gt 0</font>}</b><br>        <b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>donut </font><font color="red">data=<font color="black">'</font>spending<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>category<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>spent<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>Spending by category<font color="black">'</font></font>/}</b><br>      <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>else</font><font color="red"></font>}</b><br>        &lt;p class="dim"&gt;Nothing spent this month.&lt;/p&gt;<br>      <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b><br>    &lt;/section&gt;<br><br>    &lt;section class="card"&gt;<br>      &lt;h2&gt;Budgets &lt;a class="more" href="<b>{<font color="green"><font color="red">$</font>padGo</font>}</b>budgets<b>{<font color="green">?month</font>}</b>"&gt;Change&lt;/a&gt;&lt;/h2&gt;<br>      &lt;ul class="budgets"&gt;<br>        <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>budgets</font><font color="red"></font>}</b><br>        &lt;li class="<b>{<font color="green"><font color="red">$</font>state</font>}</b>"&gt;<br>          &lt;div class="line"&gt;&lt;span class="dot" style="background: <b>{<font color="green"><font color="red">$</font>color</font>}</b>"&gt;&lt;/span&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/b&gt;&lt;span&gt;<b>{<font color="green">$spent</font> <font color="black">|</font> <font color="blue">money</font>}</b> of <b>{<font color="green">$monthly</font> <font color="black">|</font> <font color="blue">money</font>}</b>&lt;/span&gt;&lt;/div&gt;<br>          <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>progress </font><font color="red"><font color="red">$</font>share<font color="black">,</font> max=100<font color="black">,</font> label=<font color="red">$</font>name<font color="black">,</font> color=<font color="red">$</font>tone</font>/}</b><br>        &lt;/li&gt;<br>        <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>        &lt;li class="dim"&gt;No budgets yet.&lt;/li&gt;<br>        <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>budgets</font><font color="red"></font>}</b><br>      &lt;/ul&gt;<br>    &lt;/section&gt;<br><br>  &lt;/div&gt;<br><br>  &lt;aside class="side"&gt;<br><br>    &lt;section class="card quick"&gt;<br>      &lt;h2&gt;Quick entry&lt;/h2&gt;<br>      <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form </font><font color="red"><font color="black">'</font>quick<font color="black">'</font><font color="black">,</font> action=<font color="black">'</font>?quick<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>quick-form<font color="black">'</font></font>}</b><br>        &lt;input type="hidden" name="month" value="<b>{<font color="green"><font color="red">$</font>ledgerMonth</font>}</b>"&gt;<br>        &lt;label for="q-amount"&gt;Amount&lt;/label&gt;<br>        &lt;input id="q-amount" name="amount" inputmode="decimal" placeholder="12.50" required pattern="[0-9]+([.,][0-9][0-9]?)?"&gt;<br>        &lt;label for="q-category"&gt;Category&lt;/label&gt;<br>        &lt;select id="q-category" name="category"&gt;<b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>spendable</font><font color="red"></font>}</b>&lt;option value="<b>{<font color="green"><font color="red">$</font>id</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/option&gt;<b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>spendable</font><font color="red"></font>}</b>&lt;/select&gt;<br>        &lt;label for="q-note"&gt;Note&lt;/label&gt;<br>        &lt;input id="q-note" name="note" placeholder="Coffee" maxlength="120"&gt;<br>        &lt;button class="button primary"&gt;Spend it&lt;/button&gt;<br>        &lt;p class="said" role="status"&gt;&lt;/p&gt;<br>      <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form</font><font color="red"></font>}</b><br>    &lt;/section&gt;<br><br>    &lt;section class="card"&gt;<br>      &lt;h2&gt;Accounts&lt;/h2&gt;<br>      &lt;ul class="accounts"&gt;<br>        <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>accounts</font><font color="red"></font>}</b>&lt;li&gt;&lt;span&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/span&gt;&lt;b class="<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red"><font color="red">$</font>balance lt 0</font>}</b>neg<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b>"&gt;<b>{<font color="green">$balance</font> <font color="black">|</font> <font color="blue">money</font>}</b>&lt;/b&gt;&lt;/li&gt;<b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>accounts</font><font color="red"></font>}</b><br>      &lt;/ul&gt;<br>    &lt;/section&gt;<br><br>    &lt;section class="card"&gt;<br>      &lt;h2&gt;Latest &lt;a class="more" href="<b>{<font color="green"><font color="red">$</font>padGo</font>}</b>transactions<b>{<font color="green">?month</font>}</b>"&gt;All <b>{<font color="green"><font color="red">$</font>totals.entries</font>}</b>&lt;/a&gt;&lt;/h2&gt;<br>      &lt;ul class="latest"&gt;<br>        <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>latest</font><font color="red"></font>}</b>&lt;li&gt;&lt;span class="day"&gt;<b>{<font color="green">$day</font> <font color="black">|</font> <font color="blue">date('j M')</font>}</b>&lt;/span&gt;&lt;span class="what"&gt;<b>{<font color="green"><font color="red">$</font>note</font>}</b>&lt;small&gt;<b>{<font color="green"><font color="red">$</font>category</font>}</b>&lt;/small&gt;&lt;/span&gt;&lt;b class="<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red"><font color="red">$</font>amount lt 0</font>}</b>neg<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>else</font><font color="red"></font>}</b>pos<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b>"&gt;<b>{<font color="green">$amount</font> <font color="black">|</font> <font color="blue">money</font>}</b>&lt;/b&gt;&lt;/li&gt;<br>        <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>&lt;li class="dim"&gt;No entries this month.&lt;/li&gt;<b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>latest</font><font color="red"></font>}</b><br>      &lt;/ul&gt;<br>    &lt;/section&gt;<br><br>  &lt;/aside&gt;<br><br>&lt;/div&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax5a078e3f5a42f30b9db0874239bddb79"></div>
+                      <script>
+                      padAjax5a078e3f5a42f30b9db0874239bddb79 = new XMLHttpRequest();
+                      padAjax5a078e3f5a42f30b9db0874239bddb79.onreadystatechange=function() {
+                      if (padAjax5a078e3f5a42f30b9db0874239bddb79.readyState === 4) {
+                      if (padAjax5a078e3f5a42f30b9db0874239bddb79.status === 200) {
+                      document.getElementById("padAjax5a078e3f5a42f30b9db0874239bddb79").innerHTML=padAjax5a078e3f5a42f30b9db0874239bddb79.responseText;
+                      } else {
+                      document.getElementById("padAjax5a078e3f5a42f30b9db0874239bddb79").innerHTML=padAjax5a078e3f5a42f30b9db0874239bddb79.statusText;
+                      }
+                      }
+                      }
+                      padAjax5a078e3f5a42f30b9db0874239bddb79.open("GET","http://localhost/pad/ledger/?index&padInclude",true);
+                      padAjax5a078e3f5a42f30b9db0874239bddb79.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: manual - Page: fragments/charts_1<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/charts_1.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/charts_1.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $sales </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jan'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1200 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Feb'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">950 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Mar'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1430 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Apr'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1610 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9J2Ftb3VudCcsXG4gICAgICAgICAgICAgIHRpdGxlPSdTYWxlcyBwZXIgbW9udGgnLCB3aWR0aD00ODAsIGhlaWdodD0yMDAvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRzYWxlcyA9IFtcbiAgICBbICdtb250aCcgPT4gJ0phbicsICdhbW91bnQnID0+IDEyMDAgXSxcbiAgICBbICdtb250aCcgPT4gJ0ZlYicsICdhbW91bnQnID0+ICA5NTAgXSxcbiAgICBbICdtb250aCcgPT4gJ01hcicsICdhbW91bnQnID0+IDE0MzAgXSxcbiAgICBbICdtb250aCcgPT4gJ0FwcicsICdhbW91bnQnID0+IDE2MTAgXVxuICBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9J2Ftb3VudCcsXG4gICAgICAgICAgICAgIHRpdGxlPSdTYWxlcyBwZXIgbW9udGgnLCB3aWR0aD00ODAsIGhlaWdodD0yMDAvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRzYWxlcyA9IFtcbiAgICBbICdtb250aCcgPT4gJ0phbicsICdhbW91bnQnID0+IDEyMDAgXSxcbiAgICBbICdtb250aCcgPT4gJ0ZlYicsICdhbW91bnQnID0+ICA5NTAgXSxcbiAgICBbICdtb250aCcgPT4gJ01hcicsICdhbW91bnQnID0+IDE0MzAgXSxcbiAgICBbICdtb250aCcgPT4gJ0FwcicsICdhbW91bnQnID0+IDE2MTAgXVxuICBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font><br>              title=<font color="black">'</font>Sales per month<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=200</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax77a843ea737847b651cbcd8c6cfc0153"></div>
+                      <script>
+                      padAjax77a843ea737847b651cbcd8c6cfc0153 = new XMLHttpRequest();
+                      padAjax77a843ea737847b651cbcd8c6cfc0153.onreadystatechange=function() {
+                      if (padAjax77a843ea737847b651cbcd8c6cfc0153.readyState === 4) {
+                      if (padAjax77a843ea737847b651cbcd8c6cfc0153.status === 200) {
+                      document.getElementById("padAjax77a843ea737847b651cbcd8c6cfc0153").innerHTML=padAjax77a843ea737847b651cbcd8c6cfc0153.responseText;
+                      } else {
+                      document.getElementById("padAjax77a843ea737847b651cbcd8c6cfc0153").innerHTML=padAjax77a843ea737847b651cbcd8c6cfc0153.statusText;
+                      }
+                      }
+                      }
+                      padAjax77a843ea737847b651cbcd8c6cfc0153.open("GET","http://localhost/pad/manual/?fragments/charts_1&padInclude",true);
+                      padAjax77a843ea737847b651cbcd8c6cfc0153.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: manual - Page: fragments/charts_3<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/charts_3.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/charts_3.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $sales </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jan'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1200</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">800 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Feb'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">950</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1100 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Mar'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1430</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">960 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Apr'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1610</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">720 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9J29ubGluZSwgc2hvcCcsIHdpZHRoPTQ4MCwgaGVpZ2h0PTIyMC99XG57Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9J29ubGluZSwgc2hvcCcsIHN0YWNrZWQsIHdpZHRoPTQ4MCwgaGVpZ2h0PTIyMC99XG57Y2hhcnQ6bGluZSBkYXRhPSdzYWxlcycsIGxhYmVsPSdtb250aCcsIHZhbHVlPSdvbmxpbmUsIHNob3AnLCB3aWR0aD00ODAsIGhlaWdodD0yMjAvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRzYWxlcyA9IFtcbiAgICBbICdtb250aCcgPT4gJ0phbicsICdvbmxpbmUnID0+IDEyMDAsICdzaG9wJyA9PiA4MDAgXSxcbiAgICBbICdtb250aCcgPT4gJ0ZlYicsICdvbmxpbmUnID0+ICA5NTAsICdzaG9wJyA9PiAxMTAwIF0sXG4gICAgWyAnbW9udGgnID0+ICdNYXInLCAnb25saW5lJyA9PiAxNDMwLCAnc2hvcCcgPT4gOTYwIF0sXG4gICAgWyAnbW9udGgnID0+ICdBcHInLCAnb25saW5lJyA9PiAxNjEwLCAnc2hvcCcgPT4gNzIwIF1cbiAgXTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9J29ubGluZSwgc2hvcCcsIHdpZHRoPTQ4MCwgaGVpZ2h0PTIyMC99XG57Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9J29ubGluZSwgc2hvcCcsIHN0YWNrZWQsIHdpZHRoPTQ4MCwgaGVpZ2h0PTIyMC99XG57Y2hhcnQ6bGluZSBkYXRhPSdzYWxlcycsIGxhYmVsPSdtb250aCcsIHZhbHVlPSdvbmxpbmUsIHNob3AnLCB3aWR0aD00ODAsIGhlaWdodD0yMjAvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRzYWxlcyA9IFtcbiAgICBbICdtb250aCcgPT4gJ0phbicsICdvbmxpbmUnID0+IDEyMDAsICdzaG9wJyA9PiA4MDAgXSxcbiAgICBbICdtb250aCcgPT4gJ0ZlYicsICdvbmxpbmUnID0+ICA5NTAsICdzaG9wJyA9PiAxMTAwIF0sXG4gICAgWyAnbW9udGgnID0+ICdNYXInLCAnb25saW5lJyA9PiAxNDMwLCAnc2hvcCcgPT4gOTYwIF0sXG4gICAgWyAnbW9udGgnID0+ICdBcHInLCAnb25saW5lJyA9PiAxNjEwLCAnc2hvcCcgPT4gNzIwIF1cbiAgXTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>online<font color="black">,</font> shop<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=220</font>/}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>online<font color="black">,</font> shop<font color="black">'</font><font color="black">,</font> stacked<font color="black">,</font> width=480<font color="black">,</font> height=220</font>/}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>line </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>online<font color="black">,</font> shop<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=220</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax93d42d0fc6b2cd592c28546d0363ed79"></div>
+                      <script>
+                      padAjax93d42d0fc6b2cd592c28546d0363ed79 = new XMLHttpRequest();
+                      padAjax93d42d0fc6b2cd592c28546d0363ed79.onreadystatechange=function() {
+                      if (padAjax93d42d0fc6b2cd592c28546d0363ed79.readyState === 4) {
+                      if (padAjax93d42d0fc6b2cd592c28546d0363ed79.status === 200) {
+                      document.getElementById("padAjax93d42d0fc6b2cd592c28546d0363ed79").innerHTML=padAjax93d42d0fc6b2cd592c28546d0363ed79.responseText;
+                      } else {
+                      document.getElementById("padAjax93d42d0fc6b2cd592c28546d0363ed79").innerHTML=padAjax93d42d0fc6b2cd592c28546d0363ed79.statusText;
+                      }
+                      }
+                      }
+                      padAjax93d42d0fc6b2cd592c28546d0363ed79.open("GET","http://localhost/pad/manual/?fragments/charts_3&padInclude",true);
+                      padAjax93d42d0fc6b2cd592c28546d0363ed79.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: react - Page: examples/chart<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">examples/chart.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/chart.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The chart the request asks for: its kind, how many months, which channels. The browser<br>  // gets the whole page; the component asks for &amp;padFragment=chart with its choices and gets<br>  // the {pad:fragment 'chart'} of chart.pad alone - the SVG PAD drew, nothing around it.<br><br>  </span><span style="color: #0000BB">$kind     </span><span style="color: #007700">= </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'kind'</span><span style="color: #007700">, </span><span style="color: #DD0000">'bar' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$kind     </span><span style="color: #007700">= </span><span style="color: #0000BB">in_array </span><span style="color: #007700">( </span><span style="color: #0000BB">$kind</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'bar'</span><span style="color: #007700">, </span><span style="color: #DD0000">'stacked'</span><span style="color: #007700">, </span><span style="color: #DD0000">'line'</span><span style="color: #007700">, </span><span style="color: #DD0000">'hbar' </span><span style="color: #007700">] ) ? </span><span style="color: #0000BB">$kind </span><span style="color: #007700">: </span><span style="color: #DD0000">'bar'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$months   </span><span style="color: #007700">= </span><span style="color: #0000BB">max </span><span style="color: #007700">( </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #0000BB">min </span><span style="color: #007700">( </span><span style="color: #0000BB">12</span><span style="color: #007700">, (int) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'months'</span><span style="color: #007700">, </span><span style="color: #0000BB">12 </span><span style="color: #007700">) ) );<br>  </span><span style="color: #0000BB">$channels </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">array_intersect </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'online'</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop'</span><span style="color: #007700">, </span><span style="color: #DD0000">'wholesale' </span><span style="color: #007700">], </span><span style="color: #0000BB">explode </span><span style="color: #007700">( </span><span style="color: #DD0000">','</span><span style="color: #007700">, </span><span style="color: #0000BB">reactText </span><span style="color: #007700">( </span><span style="color: #DD0000">'channels'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online,shop,wholesale' </span><span style="color: #007700">) ) ) );<br><br>  if ( ! </span><span style="color: #0000BB">$channels </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$channels </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'online' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$sales     </span><span style="color: #007700">= </span><span style="color: #0000BB">array_slice </span><span style="color: #007700">( </span><span style="color: #0000BB">reactData </span><span style="color: #007700">( </span><span style="color: #DD0000">'sales' </span><span style="color: #007700">), -</span><span style="color: #0000BB">$months </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$value     </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">$channels </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$stacked   </span><span style="color: #007700">= ( </span><span style="color: #0000BB">$kind </span><span style="color: #007700">== </span><span style="color: #DD0000">'stacked' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$chartKind </span><span style="color: #007700">= </span><span style="color: #0000BB">$stacked </span><span style="color: #007700">? </span><span style="color: #DD0000">'bar' </span><span style="color: #007700">: </span><span style="color: #0000BB">$kind</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$total     </span><span style="color: #007700">= </span><span style="color: #0000BB">array_sum </span><span style="color: #007700">( </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$row </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">array_sum </span><span style="color: #007700">( </span><span style="color: #0000BB">array_intersect_key </span><span style="color: #007700">( </span><span style="color: #0000BB">$row</span><span style="color: #007700">, </span><span style="color: #0000BB">array_flip </span><span style="color: #007700">( </span><span style="color: #0000BB">$channels </span><span style="color: #007700">) ) ), </span><span style="color: #0000BB">$sales </span><span style="color: #007700">) );<br><br>  </span><span style="color: #0000BB">$choice </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'kind' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$kind</span><span style="color: #007700">, </span><span style="color: #DD0000">'months' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$months</span><span style="color: #007700">, </span><span style="color: #DD0000">'channels' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$channels </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8ZGl2IGRhdGEtaXNsYW5kPVwiQ2hhcnRTdHVkaW9cIiBkYXRhLXByb3BzPVwie15jaG9pY2V9XCI+XG57cGFkOmZyYWdtZW50ICdjaGFydCd9XG4gIDxkaXYgY2xhc3M9XCJjaGFydC1mcmFtZVwiIGRhdGEtdG90YWw9XCJ7JHRvdGFsfVwiPlxuICAgIHtwYWQ6aWYgJHN0YWNrZWR9XG4gICAgICB7Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9JHZhbHVlLCBzdGFja2VkLCB0aXRsZT0nU2FsZXMgcGVyIG1vbnRoLCBpbiB0aG91c2FuZHMnL31cbiAgICB7cGFkOmVsc2V9XG4gICAgICB7Y2hhcnQ6JGNoYXJ0S2luZCBkYXRhPSdzYWxlcycsIGxhYmVsPSdtb250aCcsIHZhbHVlPSR2YWx1ZSwgdGl0bGU9J1NhbGVzIHBlciBtb250aCwgaW4gdGhvdXNhbmRzJy99XG4gICAgey9wYWQ6aWZ9XG4gIDwvZGl2Plxuey9wYWQ6ZnJhZ21lbnR9XG48L2Rpdj5cblxuPHNjcmlwdCB0eXBlPVwidGV4dC9iYWJlbFwiIHNyYz1cInskcGFkUm9vdH1yZWFjdC9leGFtcGxlcy9jaGFydC5qc1wiPjwvc2NyaXB0PlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBjaGFydCB0aGUgcmVxdWVzdCBhc2tzIGZvcjogaXRzIGtpbmQsIGhvdyBtYW55IG1vbnRocywgd2hpY2ggY2hhbm5lbHMuIFRoZSBicm93c2VyXG4gIC8vIGdldHMgdGhlIHdob2xlIHBhZ2U7IHRoZSBjb21wb25lbnQgYXNrcyBmb3IgJnBhZEZyYWdtZW50PWNoYXJ0IHdpdGggaXRzIGNob2ljZXMgYW5kIGdldHNcbiAgLy8gdGhlIHtwYWQ6ZnJhZ21lbnQgJ2NoYXJ0J30gb2YgY2hhcnQucGFkIGFsb25lIC0gdGhlIFNWRyBQQUQgZHJldywgbm90aGluZyBhcm91bmQgaXQuXG5cbiAgJGtpbmQgICAgID0gcGFkUmVxdWVzdCAoICdraW5kJywgJ2JhcicgKTtcbiAgJGtpbmQgICAgID0gaW5fYXJyYXkgKCAka2luZCwgWyAnYmFyJywgJ3N0YWNrZWQnLCAnbGluZScsICdoYmFyJyBdICkgPyAka2luZCA6ICdiYXInO1xuICAkbW9udGhzICAgPSBtYXggKCAzLCBtaW4gKCAxMiwgKGludCkgcGFkUmVxdWVzdCAoICdtb250aHMnLCAxMiApICkgKTtcbiAgJGNoYW5uZWxzID0gYXJyYXlfdmFsdWVzICggYXJyYXlfaW50ZXJzZWN0ICggWyAnb25saW5lJywgJ3Nob3AnLCAnd2hvbGVzYWxlJyBdLCBleHBsb2RlICggJywnLCByZWFjdFRleHQgKCAnY2hhbm5lbHMnLCAnb25saW5lLHNob3Asd2hvbGVzYWxlJyApICkgKSApO1xuXG4gIGlmICggISAkY2hhbm5lbHMgKVxuICAgICRjaGFubmVscyA9IFsgJ29ubGluZScgXTtcblxuICAkc2FsZXMgICAgID0gYXJyYXlfc2xpY2UgKCByZWFjdERhdGEgKCAnc2FsZXMnICksIC0kbW9udGhzICk7XG4gICR2YWx1ZSAgICAgPSBpbXBsb2RlICggJywgJywgJGNoYW5uZWxzICk7XG4gICRzdGFja2VkICAgPSAoICRraW5kID09ICdzdGFja2VkJyApO1xuICAkY2hhcnRLaW5kID0gJHN0YWNrZWQgPyAnYmFyJyA6ICRraW5kO1xuICAkdG90YWwgICAgID0gYXJyYXlfc3VtICggYXJyYXlfbWFwICggZm4gKCAkcm93ICkgPT4gYXJyYXlfc3VtICggYXJyYXlfaW50ZXJzZWN0X2tleSAoICRyb3csIGFycmF5X2ZsaXAgKCAkY2hhbm5lbHMgKSApICksICRzYWxlcyApICk7XG5cbiAgJGNob2ljZSA9IFsgJ2tpbmQnID0+ICRraW5kLCAnbW9udGhzJyA9PiAkbW9udGhzLCAnY2hhbm5lbHMnID0+ICRjaGFubmVscyBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8ZGl2IGRhdGEtaXNsYW5kPVwiQ2hhcnRTdHVkaW9cIiBkYXRhLXByb3BzPVwie15jaG9pY2V9XCI+XG57cGFkOmZyYWdtZW50ICdjaGFydCd9XG4gIDxkaXYgY2xhc3M9XCJjaGFydC1mcmFtZVwiIGRhdGEtdG90YWw9XCJ7JHRvdGFsfVwiPlxuICAgIHtwYWQ6aWYgJHN0YWNrZWR9XG4gICAgICB7Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9JHZhbHVlLCBzdGFja2VkLCB0aXRsZT0nU2FsZXMgcGVyIG1vbnRoLCBpbiB0aG91c2FuZHMnL31cbiAgICB7cGFkOmVsc2V9XG4gICAgICB7Y2hhcnQ6JGNoYXJ0S2luZCBkYXRhPSdzYWxlcycsIGxhYmVsPSdtb250aCcsIHZhbHVlPSR2YWx1ZSwgdGl0bGU9J1NhbGVzIHBlciBtb250aCwgaW4gdGhvdXNhbmRzJy99XG4gICAgey9wYWQ6aWZ9XG4gIDwvZGl2Plxuey9wYWQ6ZnJhZ21lbnR9XG48L2Rpdj5cblxuPHNjcmlwdCB0eXBlPVwidGV4dC9iYWJlbFwiIHNyYz1cInskcGFkUm9vdH1yZWFjdC9leGFtcGxlcy9jaGFydC5qc1wiPjwvc2NyaXB0PlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBjaGFydCB0aGUgcmVxdWVzdCBhc2tzIGZvcjogaXRzIGtpbmQsIGhvdyBtYW55IG1vbnRocywgd2hpY2ggY2hhbm5lbHMuIFRoZSBicm93c2VyXG4gIC8vIGdldHMgdGhlIHdob2xlIHBhZ2U7IHRoZSBjb21wb25lbnQgYXNrcyBmb3IgJnBhZEZyYWdtZW50PWNoYXJ0IHdpdGggaXRzIGNob2ljZXMgYW5kIGdldHNcbiAgLy8gdGhlIHtwYWQ6ZnJhZ21lbnQgJ2NoYXJ0J30gb2YgY2hhcnQucGFkIGFsb25lIC0gdGhlIFNWRyBQQUQgZHJldywgbm90aGluZyBhcm91bmQgaXQuXG5cbiAgJGtpbmQgICAgID0gcGFkUmVxdWVzdCAoICdraW5kJywgJ2JhcicgKTtcbiAgJGtpbmQgICAgID0gaW5fYXJyYXkgKCAka2luZCwgWyAnYmFyJywgJ3N0YWNrZWQnLCAnbGluZScsICdoYmFyJyBdICkgPyAka2luZCA6ICdiYXInO1xuICAkbW9udGhzICAgPSBtYXggKCAzLCBtaW4gKCAxMiwgKGludCkgcGFkUmVxdWVzdCAoICdtb250aHMnLCAxMiApICkgKTtcbiAgJGNoYW5uZWxzID0gYXJyYXlfdmFsdWVzICggYXJyYXlfaW50ZXJzZWN0ICggWyAnb25saW5lJywgJ3Nob3AnLCAnd2hvbGVzYWxlJyBdLCBleHBsb2RlICggJywnLCByZWFjdFRleHQgKCAnY2hhbm5lbHMnLCAnb25saW5lLHNob3Asd2hvbGVzYWxlJyApICkgKSApO1xuXG4gIGlmICggISAkY2hhbm5lbHMgKVxuICAgICRjaGFubmVscyA9IFsgJ29ubGluZScgXTtcblxuICAkc2FsZXMgICAgID0gYXJyYXlfc2xpY2UgKCByZWFjdERhdGEgKCAnc2FsZXMnICksIC0kbW9udGhzICk7XG4gICR2YWx1ZSAgICAgPSBpbXBsb2RlICggJywgJywgJGNoYW5uZWxzICk7XG4gICRzdGFja2VkICAgPSAoICRraW5kID09ICdzdGFja2VkJyApO1xuICAkY2hhcnRLaW5kID0gJHN0YWNrZWQgPyAnYmFyJyA6ICRraW5kO1xuICAkdG90YWwgICAgID0gYXJyYXlfc3VtICggYXJyYXlfbWFwICggZm4gKCAkcm93ICkgPT4gYXJyYXlfc3VtICggYXJyYXlfaW50ZXJzZWN0X2tleSAoICRyb3csIGFycmF5X2ZsaXAgKCAkY2hhbm5lbHMgKSApICksICRzYWxlcyApICk7XG5cbiAgJGNob2ljZSA9IFsgJ2tpbmQnID0+ICRraW5kLCAnbW9udGhzJyA9PiAkbW9udGhzLCAnY2hhbm5lbHMnID0+ICRjaGFubmVscyBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">&lt;div data-island="ChartStudio" data-props="{^choice}"&gt;<br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>fragment </font><font color="red"><font color="black">'</font>chart<font color="black">'</font></font>}</b><br>  &lt;div class="chart-frame" data-total="<b>{<font color="green"><font color="red">$</font>total</font>}</b>"&gt;<br>    <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red"><font color="red">$</font>stacked</font>}</b><br>      <b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="red">$</font>value<font color="black">,</font> stacked<font color="black">,</font> title=<font color="black">'</font>Sales per month<font color="black">,</font> in thousands<font color="black">'</font></font>/}</b><br>    <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>else</font><font color="red"></font>}</b><br>      {chart:$chartKind data='sales', label='month', value=$value, title='Sales per month, in thousands'/}<br>    <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>fragment</font><font color="red"></font>}</b><br>&lt;/div&gt;<br><br>&lt;script type="text/babel" src="<b>{<font color="green"><font color="red">$</font>padRoot</font>}</b>react/examples/chart.js"&gt;&lt;/script&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax29a7efc24147864f70c20a4824edc839"></div>
+                      <script>
+                      padAjax29a7efc24147864f70c20a4824edc839 = new XMLHttpRequest();
+                      padAjax29a7efc24147864f70c20a4824edc839.onreadystatechange=function() {
+                      if (padAjax29a7efc24147864f70c20a4824edc839.readyState === 4) {
+                      if (padAjax29a7efc24147864f70c20a4824edc839.status === 200) {
+                      document.getElementById("padAjax29a7efc24147864f70c20a4824edc839").innerHTML=padAjax29a7efc24147864f70c20a4824edc839.responseText;
+                      } else {
+                      document.getElementById("padAjax29a7efc24147864f70c20a4824edc839").innerHTML=padAjax29a7efc24147864f70c20a4824edc839.statusText;
+                      }
+                      }
+                      }
+                      padAjax29a7efc24147864f70c20a4824edc839.open("GET","http://localhost/pad/react/?examples/chart&padInclude",true);
+                      padAjax29a7efc24147864f70c20a4824edc839.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_chart_of_more_than_eight_series_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_chart_of_more_than_eight_series_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3dpZGUnfVt7XCJhXCI6MSxcImJcIjoyLFwiY1wiOjMsXCJkXCI6NCxcImVcIjo1LFwiZlwiOjYsXCJnXCI6NyxcImhcIjo4LFwiaVwiOjl9XXsvcGFkOmRhdGF9XG57Y2hhcnQ6YmFyIGRhdGE9J3dpZGUnLCB2YWx1ZT0nYSxiLGMsZCxlLGYsZyxoLGknL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3dpZGUnfVt7XCJhXCI6MSxcImJcIjoyLFwiY1wiOjMsXCJkXCI6NCxcImVcIjo1LFwiZlwiOjYsXCJnXCI6NyxcImhcIjo4LFwiaVwiOjl9XXsvcGFkOmRhdGF9XG57Y2hhcnQ6YmFyIGRhdGE9J3dpZGUnLCB2YWx1ZT0nYSxiLGMsZCxlLGYsZyxoLGknL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>wide<font color="black">'</font></font>}</b>[{"a":1,"b":2,"c":3,"d":4,"e":5,"f":6,"g":7,"h":8,"i":9}]<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>wide<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>a<font color="black">,</font>b<font color="black">,</font>c<font color="black">,</font>d<font color="black">,</font>e<font color="black">,</font>f<font color="black">,</font>g<font color="black">,</font>h<font color="black">,</font>i<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxe30db4e68afc998da6f95fad18a30a15"></div>
+                      <script>
+                      padAjaxe30db4e68afc998da6f95fad18a30a15 = new XMLHttpRequest();
+                      padAjaxe30db4e68afc998da6f95fad18a30a15.onreadystatechange=function() {
+                      if (padAjaxe30db4e68afc998da6f95fad18a30a15.readyState === 4) {
+                      if (padAjaxe30db4e68afc998da6f95fad18a30a15.status === 200) {
+                      document.getElementById("padAjaxe30db4e68afc998da6f95fad18a30a15").innerHTML=padAjaxe30db4e68afc998da6f95fad18a30a15.responseText;
+                      } else {
+                      document.getElementById("padAjaxe30db4e68afc998da6f95fad18a30a15").innerHTML=padAjaxe30db4e68afc998da6f95fad18a30a15.statusText;
+                      }
+                      }
+                      }
+                      padAjaxe30db4e68afc998da6f95fad18a30a15.open("GET","http://localhost/pad/regression/errors/?syntax/a_chart_of_more_than_eight_series_is_reported&padInclude",true);
+                      padAjaxe30db4e68afc998da6f95fad18a30a15.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_chart_palette_that_is_no_palette_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_chart_palette_that_is_no_palette_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGxhYmVsPSdtb250aCcsIHZhbHVlPSdhbW91bnQnLCBwYWxldHRlPSdyYWluYm93J31cbiAgbW9udGgsYW1vdW50XG4gIEphbiwzXG57L2NoYXJ0OmJhcn1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGxhYmVsPSdtb250aCcsIHZhbHVlPSdhbW91bnQnLCBwYWxldHRlPSdyYWluYm93J31cbiAgbW9udGgsYW1vdW50XG4gIEphbiwzXG57L2NoYXJ0OmJhcn1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> palette=<font color="black">'</font>rainbow<font color="black">'</font></font>}</b><br>  month,amount<br>  Jan,3<br><b>{/<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax04aa50010f6f4b2cfff4934fde67bcf4"></div>
+                      <script>
+                      padAjax04aa50010f6f4b2cfff4934fde67bcf4 = new XMLHttpRequest();
+                      padAjax04aa50010f6f4b2cfff4934fde67bcf4.onreadystatechange=function() {
+                      if (padAjax04aa50010f6f4b2cfff4934fde67bcf4.readyState === 4) {
+                      if (padAjax04aa50010f6f4b2cfff4934fde67bcf4.status === 200) {
+                      document.getElementById("padAjax04aa50010f6f4b2cfff4934fde67bcf4").innerHTML=padAjax04aa50010f6f4b2cfff4934fde67bcf4.responseText;
+                      } else {
+                      document.getElementById("padAjax04aa50010f6f4b2cfff4934fde67bcf4").innerHTML=padAjax04aa50010f6f4b2cfff4934fde67bcf4.statusText;
+                      }
+                      }
+                      }
+                      padAjax04aa50010f6f4b2cfff4934fde67bcf4.open("GET","http://localhost/pad/regression/errors/?syntax/a_chart_palette_that_is_no_palette_is_reported&padInclude",true);
+                      padAjax04aa50010f6f4b2cfff4934fde67bcf4.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_chart_without_data_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_chart_without_data_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxce674645671b5f38480b28bb542e82b0"></div>
+                      <script>
+                      padAjaxce674645671b5f38480b28bb542e82b0 = new XMLHttpRequest();
+                      padAjaxce674645671b5f38480b28bb542e82b0.onreadystatechange=function() {
+                      if (padAjaxce674645671b5f38480b28bb542e82b0.readyState === 4) {
+                      if (padAjaxce674645671b5f38480b28bb542e82b0.status === 200) {
+                      document.getElementById("padAjaxce674645671b5f38480b28bb542e82b0").innerHTML=padAjaxce674645671b5f38480b28bb542e82b0.responseText;
+                      } else {
+                      document.getElementById("padAjaxce674645671b5f38480b28bb542e82b0").innerHTML=padAjaxce674645671b5f38480b28bb542e82b0.statusText;
+                      }
+                      }
+                      }
+                      padAjaxce674645671b5f38480b28bb542e82b0.open("GET","http://localhost/pad/regression/errors/?syntax/a_chart_without_data_is_reported&padInclude",true);
+                      padAjaxce674645671b5f38480b28bb542e82b0.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: regression/errors - Page: syntax/an_option_nothing_reads_on_a_prefixed_chart_is_reported<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -168,7 +690,10 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>sales<font color="black">'</font></font>}</b>[{"month":"Jan","online":1}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>online<font color="black">'</font><font color="black">,</font> colour=<font color="black">'</font>red<font color="black">'</font></font>/}</b></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3NhbGVzJ31be1wibW9udGhcIjpcIkphblwiLFwib25saW5lXCI6MX1dey9wYWQ6ZGF0YX1cbntjaGFydDpiYXIgZGF0YT0nc2FsZXMnLCBsYWJlbD0nbW9udGgnLCB2YWx1ZT0nb25saW5lJywgY29sb3VyPSdyZWQnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3NhbGVzJ31be1wibW9udGhcIjpcIkphblwiLFwib25saW5lXCI6MX1dey9wYWQ6ZGF0YX1cbntjaGFydDpiYXIgZGF0YT0nc2FsZXMnLCBsYWJlbD0nbW9udGgnLCB2YWx1ZT0nb25saW5lJywgY29sb3VyPSdyZWQnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>sales<font color="black">'</font></font>}</b>[{"month":"Jan","online":1}]<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>online<font color="black">'</font><font color="black">,</font> colour=<font color="black">'</font>red<font color="black">'</font></font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax2c64a474d75f52618d4fc44bc4c4491b"></div>
@@ -185,6 +710,182 @@
                       }
                       padAjax2c64a474d75f52618d4fc44bc4c4491b.open("GET","http://localhost/pad/regression/errors/?syntax/an_option_nothing_reads_on_a_prefixed_chart_is_reported&padInclude",true);
                       padAjax2c64a474d75f52618d4fc44bc4c4491b.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: escaping/a_chart_label_is_escaped_and_stays_text<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">escaping/a_chart_label_is_escaped_and_stays_text.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">escaping/a_chart_label_is_escaped_and_stays_text.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $rows </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'&lt;b&gt;{php:getcwd}&lt;/b&gt;'</span><span style="color: #007700">, </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5 </span><span style="color: #007700">] ];<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGRhdGE9J3Jvd3MnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcbiAgJHJvd3MgPSBbIFsgJ25hbWUnID0+ICc8Yj57cGhwOmdldGN3ZH08L2I+JywgJ24nID0+IDUgXSBdO1xuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGRhdGE9J3Jvd3MnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcbiAgJHJvd3MgPSBbIFsgJ25hbWUnID0+ICc8Yj57cGhwOmdldGN3ZH08L2I+JywgJ24nID0+IDUgXSBdO1xuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>rows<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxc41cb394a78fa890319de8eaa09d2568"></div>
+                      <script>
+                      padAjaxc41cb394a78fa890319de8eaa09d2568 = new XMLHttpRequest();
+                      padAjaxc41cb394a78fa890319de8eaa09d2568.onreadystatechange=function() {
+                      if (padAjaxc41cb394a78fa890319de8eaa09d2568.readyState === 4) {
+                      if (padAjaxc41cb394a78fa890319de8eaa09d2568.status === 200) {
+                      document.getElementById("padAjaxc41cb394a78fa890319de8eaa09d2568").innerHTML=padAjaxc41cb394a78fa890319de8eaa09d2568.responseText;
+                      } else {
+                      document.getElementById("padAjaxc41cb394a78fa890319de8eaa09d2568").innerHTML=padAjaxc41cb394a78fa890319de8eaa09d2568.statusText;
+                      }
+                      }
+                      }
+                      padAjaxc41cb394a78fa890319de8eaa09d2568.open("GET","http://localhost/pad/regression/framework/?escaping/a_chart_label_is_escaped_and_stays_text&padInclude",true);
+                      padAjaxc41cb394a78fa890319de8eaa09d2568.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: palettes/a_chart_in_a_palette_keeps_its_colours_under_the_csp_nonce<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">palettes/a_chart_in_a_palette_keeps_its_colours_under_the_csp_nonce.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">palettes/a_chart_in_a_palette_keeps_its_colours_under_the_csp_nonce.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Under the style-src nonce the engine supports a style attribute is dropped - a nonce<br>  // covers no attribute - so the colours of a palette are a rule of the chart's class in its<br>  // own &lt;style&gt;, which carries the nonce: they stood in a style attribute of the svg, and<br>  // under the policy a viridis chart was drawn in the default blue.<br><br>  </span><span style="color: #0000BB">$padCsp </span><span style="color: #007700">= </span><span style="color: #DD0000">"script-src 'nonce'; style-src 'nonce'"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3NhbGVzJ31cbm1vbnRoLG9ubGluZVxuSmFuLDEyXG5GZWIsMTVcbnsvcGFkOmRhdGF9XG57Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9J29ubGluZScsIHBhbGV0dGU9J3ZpcmlkaXMnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBVbmRlciB0aGUgc3R5bGUtc3JjIG5vbmNlIHRoZSBlbmdpbmUgc3VwcG9ydHMgYSBzdHlsZSBhdHRyaWJ1dGUgaXMgZHJvcHBlZCAtIGEgbm9uY2VcbiAgLy8gY292ZXJzIG5vIGF0dHJpYnV0ZSAtIHNvIHRoZSBjb2xvdXJzIG9mIGEgcGFsZXR0ZSBhcmUgYSBydWxlIG9mIHRoZSBjaGFydCdzIGNsYXNzIGluIGl0c1xuICAvLyBvd24gPHN0eWxlPiwgd2hpY2ggY2FycmllcyB0aGUgbm9uY2U6IHRoZXkgc3Rvb2QgaW4gYSBzdHlsZSBhdHRyaWJ1dGUgb2YgdGhlIHN2ZywgYW5kXG4gIC8vIHVuZGVyIHRoZSBwb2xpY3kgYSB2aXJpZGlzIGNoYXJ0IHdhcyBkcmF3biBpbiB0aGUgZGVmYXVsdCBibHVlLlxuXG4gICRwYWRDc3AgPSBcInNjcmlwdC1zcmMgJ25vbmNlJzsgc3R5bGUtc3JjICdub25jZSdcIjtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3NhbGVzJ31cbm1vbnRoLG9ubGluZVxuSmFuLDEyXG5GZWIsMTVcbnsvcGFkOmRhdGF9XG57Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9J29ubGluZScsIHBhbGV0dGU9J3ZpcmlkaXMnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBVbmRlciB0aGUgc3R5bGUtc3JjIG5vbmNlIHRoZSBlbmdpbmUgc3VwcG9ydHMgYSBzdHlsZSBhdHRyaWJ1dGUgaXMgZHJvcHBlZCAtIGEgbm9uY2VcbiAgLy8gY292ZXJzIG5vIGF0dHJpYnV0ZSAtIHNvIHRoZSBjb2xvdXJzIG9mIGEgcGFsZXR0ZSBhcmUgYSBydWxlIG9mIHRoZSBjaGFydCdzIGNsYXNzIGluIGl0c1xuICAvLyBvd24gPHN0eWxlPiwgd2hpY2ggY2FycmllcyB0aGUgbm9uY2U6IHRoZXkgc3Rvb2QgaW4gYSBzdHlsZSBhdHRyaWJ1dGUgb2YgdGhlIHN2ZywgYW5kXG4gIC8vIHVuZGVyIHRoZSBwb2xpY3kgYSB2aXJpZGlzIGNoYXJ0IHdhcyBkcmF3biBpbiB0aGUgZGVmYXVsdCBibHVlLlxuXG4gICRwYWRDc3AgPSBcInNjcmlwdC1zcmMgJ25vbmNlJzsgc3R5bGUtc3JjICdub25jZSdcIjtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>sales<font color="black">'</font></font>}</b><br>month,online<br>Jan,12<br>Feb,15<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>online<font color="black">'</font><font color="black">,</font> palette=<font color="black">'</font>viridis<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax5f9b94050a616c69012eb313b6b7b9a5"></div>
+                      <script>
+                      padAjax5f9b94050a616c69012eb313b6b7b9a5 = new XMLHttpRequest();
+                      padAjax5f9b94050a616c69012eb313b6b7b9a5.onreadystatechange=function() {
+                      if (padAjax5f9b94050a616c69012eb313b6b7b9a5.readyState === 4) {
+                      if (padAjax5f9b94050a616c69012eb313b6b7b9a5.status === 200) {
+                      document.getElementById("padAjax5f9b94050a616c69012eb313b6b7b9a5").innerHTML=padAjax5f9b94050a616c69012eb313b6b7b9a5.responseText;
+                      } else {
+                      document.getElementById("padAjax5f9b94050a616c69012eb313b6b7b9a5").innerHTML=padAjax5f9b94050a616c69012eb313b6b7b9a5.statusText;
+                      }
+                      }
+                      }
+                      padAjax5f9b94050a616c69012eb313b6b7b9a5.open("GET","http://localhost/pad/regression/framework/?palettes/a_chart_in_a_palette_keeps_its_colours_under_the_csp_nonce&padInclude",true);
+                      padAjax5f9b94050a616c69012eb313b6b7b9a5.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: palettes/a_chart_of_four_series_in_paired_takes_its_first_two_pairs<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">palettes/a_chart_of_four_series_in_paired_takes_its_first_two_pairs.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3NhbGVzJ31cbnF1YXJ0ZXIsbm9ydGgyMDI1LG5vcnRoMjAyNixzb3V0aDIwMjUsc291dGgyMDI2XG5RMSwxMiwxNCw4LDlcblEyLDE1LDE3LDksMTFcbnsvcGFkOmRhdGF9XG57Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J3F1YXJ0ZXInLCB2YWx1ZT0nbm9ydGgyMDI1LCBub3J0aDIwMjYsIHNvdXRoMjAyNSwgc291dGgyMDI2JywgcGFsZXR0ZT0ncGFpcmVkJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3NhbGVzJ31cbnF1YXJ0ZXIsbm9ydGgyMDI1LG5vcnRoMjAyNixzb3V0aDIwMjUsc291dGgyMDI2XG5RMSwxMiwxNCw4LDlcblEyLDE1LDE3LDksMTFcbnsvcGFkOmRhdGF9XG57Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J3F1YXJ0ZXInLCB2YWx1ZT0nbm9ydGgyMDI1LCBub3J0aDIwMjYsIHNvdXRoMjAyNSwgc291dGgyMDI2JywgcGFsZXR0ZT0ncGFpcmVkJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>sales<font color="black">'</font></font>}</b><br>quarter,north2025,north2026,south2025,south2026<br>Q1,12,14,8,9<br>Q2,15,17,9,11<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>quarter<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>north2025<font color="black">,</font> north2026<font color="black">,</font> south2025<font color="black">,</font> south2026<font color="black">'</font><font color="black">,</font> palette=<font color="black">'</font>paired<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax1fdcbbc5600d5300ed6c6e07ca7db9f2"></div>
+                      <script>
+                      padAjax1fdcbbc5600d5300ed6c6e07ca7db9f2 = new XMLHttpRequest();
+                      padAjax1fdcbbc5600d5300ed6c6e07ca7db9f2.onreadystatechange=function() {
+                      if (padAjax1fdcbbc5600d5300ed6c6e07ca7db9f2.readyState === 4) {
+                      if (padAjax1fdcbbc5600d5300ed6c6e07ca7db9f2.status === 200) {
+                      document.getElementById("padAjax1fdcbbc5600d5300ed6c6e07ca7db9f2").innerHTML=padAjax1fdcbbc5600d5300ed6c6e07ca7db9f2.responseText;
+                      } else {
+                      document.getElementById("padAjax1fdcbbc5600d5300ed6c6e07ca7db9f2").innerHTML=padAjax1fdcbbc5600d5300ed6c6e07ca7db9f2.statusText;
+                      }
+                      }
+                      }
+                      padAjax1fdcbbc5600d5300ed6c6e07ca7db9f2.open("GET","http://localhost/pad/regression/framework/?palettes/a_chart_of_four_series_in_paired_takes_its_first_two_pairs&padInclude",true);
+                      padAjax1fdcbbc5600d5300ed6c6e07ca7db9f2.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: palettes/a_chart_of_three_series_in_a_scale_takes_three_colours_spread_over_it<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">palettes/a_chart_of_three_series_in_a_scale_takes_three_colours_spread_over_it.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3NhbGVzJ31cbm1vbnRoLG9ubGluZSxzaG9wLHBob25lXG5KYW4sMTIsOCwzXG5GZWIsMTUsOSw0XG57L3BhZDpkYXRhfVxue2NoYXJ0OmJhciBkYXRhPSdzYWxlcycsIGxhYmVsPSdtb250aCcsIHZhbHVlPSdvbmxpbmUsIHNob3AsIHBob25lJywgcGFsZXR0ZT0ndmlyaWRpcycvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3NhbGVzJ31cbm1vbnRoLG9ubGluZSxzaG9wLHBob25lXG5KYW4sMTIsOCwzXG5GZWIsMTUsOSw0XG57L3BhZDpkYXRhfVxue2NoYXJ0OmJhciBkYXRhPSdzYWxlcycsIGxhYmVsPSdtb250aCcsIHZhbHVlPSdvbmxpbmUsIHNob3AsIHBob25lJywgcGFsZXR0ZT0ndmlyaWRpcycvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>sales<font color="black">'</font></font>}</b><br>month,online,shop,phone<br>Jan,12,8,3<br>Feb,15,9,4<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>online<font color="black">,</font> shop<font color="black">,</font> phone<font color="black">'</font><font color="black">,</font> palette=<font color="black">'</font>viridis<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax4fda930f4e81ede2f5070278ca787984"></div>
+                      <script>
+                      padAjax4fda930f4e81ede2f5070278ca787984 = new XMLHttpRequest();
+                      padAjax4fda930f4e81ede2f5070278ca787984.onreadystatechange=function() {
+                      if (padAjax4fda930f4e81ede2f5070278ca787984.readyState === 4) {
+                      if (padAjax4fda930f4e81ede2f5070278ca787984.status === 200) {
+                      document.getElementById("padAjax4fda930f4e81ede2f5070278ca787984").innerHTML=padAjax4fda930f4e81ede2f5070278ca787984.responseText;
+                      } else {
+                      document.getElementById("padAjax4fda930f4e81ede2f5070278ca787984").innerHTML=padAjax4fda930f4e81ede2f5070278ca787984.statusText;
+                      }
+                      }
+                      }
+                      padAjax4fda930f4e81ede2f5070278ca787984.open("GET","http://localhost/pad/regression/framework/?palettes/a_chart_of_three_series_in_a_scale_takes_three_colours_spread_over_it&padInclude",true);
+                      padAjax4fda930f4e81ede2f5070278ca787984.send();
                       </script>
                     </td>
                   </tr>

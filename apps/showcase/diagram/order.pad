@@ -1,5 +1,5 @@
-{meta title='An order, start to finish', about='A flowchart in Mermaid-style lines - a stadium, decisions, a database and dashed loops back, ranked and routed on the server.'/}
-{diagram title='Handling an order'}
+{pad:meta title='An order, start to finish', about='A flowchart in Mermaid-style lines - a stadium, decisions, a database and dashed loops back, ranked and routed on the server.'/}
+{diagram:auto title='Handling an order'}
   A([Order placed]) --> B{In stock?}
   B -->|no| C[Order from supplier]
   C -.->|delivered| B
@@ -7,4 +7,4 @@
   E -->|no| F[Send a reminder]
   F -.-> D
   E -->|yes| G[(Orders database)] --> H((Shipped))
-{/diagram}
+{/diagram:auto}

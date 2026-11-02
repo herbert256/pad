@@ -1,6 +1,6 @@
 <?php
 
-  // {notifications/} - the notifications the database channel of padNotify kept for the user
+  // {pad:notifications/} - the notifications the database channel of padNotify kept for the user
   // logged in (lib/notify.php, subs/channels/), newest first, the unread ones: a list with each
   // one's title, text and time and a "Mark read" link back to this page, which marks it read
   // when the page is asked with it - the link carries a signature of the application, the
@@ -8,8 +8,8 @@
   // for a guest. for= names the recipient instead of the user logged in - an id or an email;
   // all lists the read ones too.
   //
-  //   {notifications/}
-  //   {notifications}<li>{$title} - {$created} <a href="{$link}">done</a></li>{/notifications}
+  //   {pad:notifications/}
+  //   {pad:notifications}<li>{$title} - {$created} <a href="{$link}">done</a></li>{/pad:notifications}
   //
   // As a pair the notifications are its rows: id, name, title, text, html, url, created (as
   // Y-m-d H:i), read (TRUE or FALSE) and link, the mark-read address - the handling options

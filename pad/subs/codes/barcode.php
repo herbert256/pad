@@ -1,19 +1,17 @@
 <?php
 
-  // The body of a code, whichever way it is written: {barcode '8712345678906'/} with type=
-  // naming the symbology, the barcode: type - {barcode:ean13 '400638133393'/}, or a bare
-  // {ean13 '400638133393'/} when nothing else has the name - and {qr 'https://example.com'/},
-  // the QR code's own tag. The caller sets $padCodeKind; a symbology is a file of
-  // subs/codes/types/, and the files there are all the barcode types there are (padKinds
-  // ('codes'), lib/subsystem.php). The first parameter is the text; the options are the
-  // symbology's own, read by its file - the bars of a one-dimensional code take height=,
-  // scale=, title=, plain, color= and background=, a two-dimensional code size=, title=,
-  // color= and background=.
+  // A barcode uses {barcode:kind 'text'/}; {barcode:auto $code/} selects EAN-13 for
+  // twelve or thirteen digits and Code 128 otherwise. The caller sets $padCodeKind.
+  // A symbology is a file of subs/codes/types/; its options include height=, scale=,
+  // title=, plain, color= and background= for bars, or size= for two-dimensional codes.
   //
   // A text the symbology cannot encode - a wrong check digit, a character it has no bars
   // for, too long a text - is an error under the strict check, and the tag writes nothing.
 
   include_once PAD . 'subs/codes/_lib/barcode.php';
+
+  if ( $padCodeKind == 'auto' )
+    $padCodeKind = preg_match ( '/^\d{12,13}$/D', trim ( padParmText ( $padParm ) ) ) ? 'ean13' : 'code128';
 
   if ( ! padKind ( 'codes', $padCodeKind ) ) {
     if ( $padCheckSyntax )

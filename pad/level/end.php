@@ -4,7 +4,7 @@
   // either advance the level or close it down.
   //
   // The occurrence is banked into $padResult [$pad] (occurrence/end.php) and, while rows
-  // remain in $padData [$pad] - or a {walk} asks for another pass, or a deferred @start@ /
+  // remain in $padData [$pad] - or a {data:walk} asks for another pass, or a deferred @start@ /
   // @end@ section is still pending - control goes back to occurrence/occurrence.php.
   // Otherwise the walk end pass, the exit callback, the end-of-level options (the
   // application's _options/end/ ones first) and the
@@ -40,10 +40,10 @@
     return include PAD . 'occurrence/occurrence.php';
 
   // An @start@ prelude that has rendered hands over to the body before the walk asks for
-  // another round. The walk's round came first, and a {while} or {until} - which walks by
+  // another round. The walk's round came first, and a {pad:while} or {pad:until} - which walks by
   // re-running its handler - re-ran it after the prelude with the body still put aside: the
   // body that moves the condition never ran, the prelude rendered again every round and the
-  // loop ran to its ceiling - {while $i lt 3}<ul>@start@<li>{$i}</li>{increment $i}@end@</ul>
+  // loop ran to its ceiling - {pad:while $i lt 3}<ul>@start@<li>{$i}</li>{pad:increment $i}@end@</ul>
   // was "passed 10000 rounds". The @end@ coda stays behind the walk, which has ended then.
 
   if ( $padStartBase [$pad] ) return include PAD . 'level/start_end/start2.php';
@@ -82,7 +82,7 @@
   include PAD . 'options/_go/end.php';
 
   // A fragment-cache hit never ran the tag's handler, so the options only the handler reads
-  // - children= of a {tree}, window= of a {pager} - stand unread on it; the miss that stored
+  // - children= of a {pad:tree}, window= of a {pad:pager} - stand unread on it; the miss that stored
   // the rendering was swept with the same options.
 
   if ( $padCheckSyntax and ! ( $padFragment [$pad] ['hit'] ?? FALSE ) )
@@ -107,9 +107,9 @@
   $pad--;
 
   // What a tag rendered lands in the parent's text as a field does: in a tag's own place -
-  // {{echo $x}}, {php:{echo $x}} - it never becomes a tag (padSpliceQuote). Every level, not
-  // only a value answer: a value wrapped in a content tag, {{if 1}{$t}{/if}} or
-  // {php:{if 1}{$fn}{/if} 'abc'}, landed there just the same.
+  // {{pad:echo $x}}, {php:{pad:echo $x}} - it never becomes a tag (padSpliceQuote). Every level, not
+  // only a value answer: a value wrapped in a content tag, {{pad:if 1}{$t}{/pad:if}} or
+  // {php:{pad:if 1}{$fn}{/pad:if} 'abc'}, landed there just the same.
 
   if ( $pad >= 0 and $padProtectValues )
     $padResult [$pad+1] = padSpliceQuote ( $padResult [$pad+1], FALSE );

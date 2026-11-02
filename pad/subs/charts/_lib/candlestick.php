@@ -3,8 +3,8 @@
   // A price day by day: a candle per row, its body from the open to the close, its wick
   // from the low to the high.
   //
-  //   {chart 'candlestick', data='share', label='date'}
-  //   {chart 'candlestick', data='share', label='day', open='o', high='h', low='l', close='c', volume='traded'}
+  //   {chart:candlestick data='share', label='date'}
+  //   {chart:candlestick data='share', label='day', open='o', high='h', low='l', close='c', volume='traded'}
   //
   // label= names the day - else the first field that is no number; open=, high=, low= and
   // close= name the four prices - else the fields of those names. A day that closed at or

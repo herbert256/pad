@@ -1,7 +1,7 @@
-{ignore}
-<p><code>{timeline}</code> lays events out on a time axis and writes them as inline SVG
+{pad:ignore}
+<p><code>{pad:timeline}</code> lays events out on a time axis and writes them as inline SVG
 (<code>tags/_lib/timeline.php</code>). The rows come from <code>data=</code> as for
-<a href="?tag/chart">{chart}</a>, or from the content of the pair - JSON, YAML, XML or CSV.</p>
+<a href="?tag/chart">{chart:bar}</a>, or from the content of the pair - JSON, YAML, XML or CSV.</p>
 
 <p>A row with a <code>date</code> is a moment: a dot on the axis and a card above or below it
 with the <code>label</code> and, under it, the <code>text</code>. The sides alternate, and a
@@ -20,6 +20,6 @@ cards right, which suits a long list or a narrow column.</p>
 <p>Every event has a <code>&lt;title&gt;</code> and the <code>&lt;desc&gt;</code> lists them
 all. A timeline without rows answers nothing, so its <code>&#64;else&#64;</code> shows; rows of which
 none has a usable date are an error under the strict check. For a month grid see
-<a href="?tag/calendar">{calendar}</a>, for a project plan with progress
-<a href="?tag/chart">{chart 'gantt'}</a>.</p>
-{/ignore}
+<a href="?tag/calendar">{pad:calendar}</a>, for a project plan with progress
+<a href="?tag/chart">{chart:gantt}</a>.</p>
+{/pad:ignore}

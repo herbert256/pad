@@ -1,6 +1,6 @@
 <?php
 
-  // What {vite 'src/main.js'} wrote into this page's <head>, and where it came from: the
+  // What {pad:vite 'src/main.js'} wrote into this page's <head>, and where it came from: the
   // manifest of the build - every source and the file it became - or the dev server, while it
   // runs. The clock is a Solid island started from the server's time.
 

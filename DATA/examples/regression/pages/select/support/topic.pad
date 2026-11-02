@@ -1,25 +1,25 @@
-{content 'who'}
-  {users}
+{pad:content 'who'}
+  {select:users}
     <p>@content@ by {$username}
-  {/users}
+  {/select:users}
   on {$created_at | substr (0, 16)}</p>
-{/content}
+{/pad:content}
 
-{forum_topics $id=1}
+{select:forum_topics $id=1}
 
-  {forum_boards}
+  {select:forum_boards}
     <h1>Board: {$name}</h1>
-  {/forum_boards}
+  {/select:forum_boards}
 
   <h2>Topic: {$title}</h2>
 
-  {who}Started{/who}
+  {content:who}Started{/content:who}
 
-  {forum_posts}
+  {select:forum_posts}
 
     <hr>
 
-    {who}Posted{/who}
+    {content:who}Posted{/content:who}
 
     <p>{$content}</p>
   
@@ -27,6 +27,6 @@
   
     <p>No posts yet</p>
   
-  {/forum_posts}
+  {/select:forum_posts}
 
-{/forum_topics}
+{/select:forum_topics}

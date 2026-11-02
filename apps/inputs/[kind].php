@@ -9,10 +9,10 @@
 
   $title    = $kind;
   $about    = inputsCatalog () [$kind] ['text'];
-  $template = "{form 'try', class='inputs-try'}\n  {input:$kind '$kind', label='" . ucfirst ( $kind ) . "'/}\n  <button class=\"inputs-send\">Send</button>\n{/form}";
+  $template = "{pad:form 'try', class='inputs-try'}\n  {input:$kind '$kind', label='" . ucfirst ( $kind ) . "'/}\n  <button class=\"inputs-send\">Send</button>\n{/pad:form}";
   $source   = padHighlightTokens ( $template, 'pad' );
 
-  // The icon at the top right of the template that takes it to the playground
+  // The icon at the top right of the template that takes it to the WASM editor
   // (_common/_lib/playground.php).
 
   include_once COMMON . '_lib/playground.php';

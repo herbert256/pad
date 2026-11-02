@@ -74,7 +74,7 @@ $items = ['Apple', 'Banana', 'Cherry'];
 <!-- index.pad -->
 <h1>{$message}</h1>
 <ul>
-  {items}<li>{$items}</li>{/items}
+  {array:items}<li>{$items}</li>{/array:items}
 </ul>
 ```
 
@@ -94,7 +94,7 @@ file or directory name binds a segment as a variable before the page's PHP runs:
   wins over the bracket); `blog/[year]/[slug].pad`; `docs/[path+].pad` takes the rest.
 - `?products/42` resolves the same way, so it works on a server that routes no paths, and
   `/myapp/index.php/products/42` works on every server. A bracketed file is never reached
-  by its own name. `{page}` and `{redirect}` resolve routes too; `padRedirect()` with no
+  by its own name. `{pad:page}` and `{pad:redirect}` resolve routes too; `padRedirect()` with no
   page goes back to the name the page was asked by.
 - On a clean URL a query string starting with a bare page name (`?about`) names that page;
   `?sort=x` is a value of the path's page.
@@ -128,8 +128,8 @@ apps/myapp/
 ├── _config/               # Application configuration
 │   └── config.php
 ├── _data/                 # Data files (XML, JSON, YAML, CSV) and named .sql queries
-├── _lang/                 # Translation catalogs: en.json, nl.json ... ({trans 'key'/})
-├── _content/              # Markdown collections: _content/blog/*.md ({collection 'blog'})
+├── _lang/                 # Translation catalogs: en.json, nl.json ... ({pad:trans 'key'/})
+├── _content/              # Markdown collections: _content/blog/*.md ({pad:collection 'blog'})
 ├── _errors/               # Error pages: 404.pad, 403.pad, 5xx.pad ... (optional)
 ├── _migrations/           # Schema changes, run by pad migrate
 ├── _seeds/                # Seeders, run by pad seed
@@ -155,19 +155,19 @@ apps/myapp/
 | Directory | Purpose | Usage |
 |-----------|---------|-------|
 | `_lib/` | PHP functions | All `.php` files auto-included |
-| `_include/` | Template snippets | `{name}` → `name.pad` |
+| `_include/` | Template snippets | `{property:name}` → `name.pad` |
 | `_tags/` | Custom tags | `{mytag}` → `mytag.php` |
-| `_functions/` | Pipe functions | `{echo $x \| myfunc/}` → `myfunc.php` |
+| `_functions/` | Pipe functions | `{pad:echo $x \| myfunc/}` → `myfunc.php` |
 | `_callbacks/` | Iteration hooks | `callback='name'` → `name.php` |
-| `_options/` | Tag options | `{tag name}` → `name.php` on the template; `end/name.php` on the rendered result |
+| `_options/` | Tag options | `{function:tag name}` → `name.php` on the template; `end/name.php` on the rendered result |
 | `_events/` | Event hooks | `error.php`, `sql.php`, `curl.php`, `output.php` - run on every request |
 | `_config/` | App config | `config.php` overrides |
-| `_data/` | Static data, named queries | XML, JSON, YAML, CSV; `name.sql` runs as `{name}` |
+| `_data/` | Static data, named queries | XML, JSON, YAML, CSV; `name.sql` runs as `{property:name}` |
 | `_scripts/` | Shell scripts | On demand |
-| `_mail/` | Email templates | `{mail template='order'}` → `order.pad` + `order.txt` |
+| `_mail/` | Email templates | `{pad:mail template='order'}` → `order.pad` + `order.txt` |
 | `_tests/` | Application tests | `pad test <app>` - `name.pad` + `name.txt` answer |
-| `_lang/` | Translation catalogs | `nl.json` holds the keys `{trans 'key'/}` looks up in locale `nl` |
-| `_content/` | Markdown collections | `_content/blog/*.md` with front matter are the rows of `{collection 'blog'}` |
+| `_lang/` | Translation catalogs | `nl.json` holds the keys `{pad:trans 'key'/}` looks up in locale `nl` |
+| `_content/` | Markdown collections | `_content/blog/*.md` with front matter are the rows of `{pad:collection 'blog'}` |
 | `_errors/` | Error pages | `404.pad`, `403.pad`, `503.pad`, `4xx.pad`, `5xx.pad` answer in place of the plain line |
 | `_migrations/` | Schema changes | `pad migrate <app>` - `.sql` (+ `.down.sql`) or `.php` with up and down |
 | `_seeds/` | Seeders | `pad seed <app>` - plain PHP with `db ()` and `padFactory` |
@@ -191,7 +191,7 @@ A `_guard.php` decides for every page below its directory, before any `_inits.ph
 access control follows the file tree. Returning `FALSE` (or anything not true) answers
 `403 Forbidden`; `TRUE` or no return lets the request through. Guards run root first, after
 `_lib`, in the request's scope (session and request variables, `$padPage`); one can
-`padRedirect('login')`. A `{page}` including a refused page renders it as nothing, and a
+`padRedirect('login')`. A `{pad:page}` including a refused page renders it as nothing, and a
 guarded page never comes from or goes into the page cache.
 
 ```php
@@ -289,7 +289,7 @@ Use in templates: `{json 'products' | ignore/}` - Outputs JSON from `_data/produ
 ?>
 ```
 
-Use in templates: `{echo $price | money/}`
+Use in templates: `{pad:echo $price | money/}`
 
 ### _events/ - Event Hooks
 
@@ -315,18 +315,18 @@ A tag that is not a pair closes itself with a slash before its brace; a tag writ
 the slash opens a pair, and its closing tag must follow:
 
 ```
-{echo $total | money/}         # a single tag
-{page 'header'/}               # one more
-{flush/}                       # one without parameters
-{items}<li>{$name}</li>{/items}  # a pair
-{echo $x /| upper}             # the slash may stand before the opening pipe too
+{pad:echo $total | money/}         # a single tag
+{pad:page 'header'/}               # one more
+{pad:flush/}                       # one without parameters
+{array:items}<li>{$name}</li>{/array:items}  # a pair
+{pad:echo $x /| upper}             # the slash may stand before the opening pipe too
 ```
 
-`{echo $x}` with no `{/echo}` behind it is an error under the strict check: "the pair {echo}
-never closes - a single tag is written {echo .../}". The lenient walk (`$padCheckSyntax =
+`{pad:echo $x}` with no `{/pad:echo}` behind it is an error under the strict check: "the pair {pad:echo}
+never closes - a single tag is written {pad:echo .../}". The lenient walk (`$padCheckSyntax =
 FALSE`) still reads such a tag single. The variable forms - `{$x}`, `{!x}`, `{#x}`, `{&x}`,
-`{?x}`, `{^x}` - are never pairs and take no slash, nor do the branch markers `{else}`,
-`{elseif ...}` and `{when ...}` inside their pair, nor the comments.
+`{?x}`, `{^x}` - are never pairs and take no slash, nor do the branch markers `{pad:else}`,
+`{pad:elseif ...}` and `{pad:when ...}` inside their pair, nor the comments.
 
 ### Variables
 ```
@@ -334,7 +334,7 @@ FALSE`) still reads such a tag single. The variable forms - `{$x}`, `{!x}`, `{#x
 {$user.name}                   # Object/array property
 {$items.0}                     # Array element by key - a dotted path, as above
 {$$name}                       # Indirection - the name comes from another variable (an application one, never pad*);
-                               #   in an expression too: {if $$pick eq 'x'}
+                               #   in an expression too: {pad:if $$pick eq 'x'}
 {!text}                        # The same field, raw - it skips the sanitize chain {$x} runs
 {?text}                        # The field as a url query fragment: &text=url+encoded
 {#name}                        # A parameter or option of the tag
@@ -344,15 +344,15 @@ FALSE`) still reads such a tag single. The variable forms - `{$x}`, `{!x}`, `{#x
 
 ### Pipe Functions
 ```
-{echo $name | upper/}              # Uppercase
-{echo $text | trim | lower/}       # Chained functions
-{echo $date | date('Y-m-d')/}      # With parameters
-{echo $value | + 1/}               # Arithmetic (space required!)
+{pad:echo $name | upper/}              # Uppercase
+{pad:echo $text | trim | lower/}       # Chained functions
+{pad:echo $date | date('Y-m-d')/}      # With parameters
+{pad:echo $value | + 1/}               # Arithmetic (space required!)
 
-{$name | upper}                   # A field tag pipes too - {echo} is for literals
-{echo $value | +1/}                # WRONG - needs space before 1
-{echo ($price | round) * 2/}       # A pipe inside ( ) or [ ] belongs to that group
-{echo php:max(1, $n | + 1)/}       #   - to that argument of a call
+{$name | upper}                   # A field tag pipes too - {pad:echo} is for literals
+{pad:echo $value | +1/}                # WRONG - needs space before 1
+{pad:echo ($price | round) * 2/}       # A pipe inside ( ) or [ ] belongs to that group
+{pad:echo php:max(1, $n | + 1)/}       #   - to that argument of a call
 ```
 
 ### Pipe Timing: Opening vs Closing Tags
@@ -362,50 +362,50 @@ Pipes can be applied to a tag at two points, and they do not act on the same tex
 **Closing tag pipe** - transforms the output, after every occurrence has been rendered and
 joined:
 ```
-{message}
+{array:message}
   Content: {$message}
-{/message | upper}
+{/array:message | upper}
 ```
 They chain left to right, each over what the one before returned.
 
 **Opening tag pipe** - transforms the *content template*, once, before any occurrence is
 rendered. What the function is handed is the source between the tags, not the data:
 ```
-{items | trim}
+{array:items | trim}
   <li>x</li>
-{/items}
+{/array:items}
 ```
 It is not a way to reorder or filter what a tag iterates - a field written inside would be
 transformed along with everything else and then not resolve. Sorting is an option:
 ```
-{items sort}
+{array:items sort}
   <li>{$name}</li>
-{/items}
+{/array:items}
 ```
 
 ### Pipe Arithmetic
 Arithmetic pipes require a space between the operator and operand:
 ```
-{echo $value | + 1/}          # Correct - adds 1
-{echo $value | * 2/}          # Correct - multiplies by 2
-{echo $value | +1/}           # Wrong - no space
+{pad:echo $value | + 1/}          # Correct - adds 1
+{pad:echo $value | * 2/}          # Correct - multiplies by 2
+{pad:echo $value | +1/}           # Wrong - no space
 ```
 
 ### Conditionals
 ```
-{if $count gt 0}
+{pad:if $count gt 0}
   Has items
-{elseif $count eq 0}
+{pad:elseif $count eq 0}
   Empty
-{else}
+{pad:else}
   Invalid
-{/if}
+{/pad:if}
 ```
 
 A bare value is tested for its truth, as PHP tests it - `''`, `'0'`, `0` and FALSE fail:
 ```
-{if $count eq 0}Empty{/if}     # A comparison
-{if $flag}True{/if}            # The value's truth - write a comparison when a value is meant
+{pad:if $count eq 0}Empty{/pad:if}     # A comparison
+{pad:if $flag}True{/pad:if}            # The value's truth - write a comparison when a value is meant
 ```
 
 ### Loops (Data Iteration)
@@ -414,15 +414,15 @@ A bare value is tested for its truth, as PHP tests it - `''`, `'0'`, `0` and FAL
   <li>{$name} - {$email}</li>
 {/users}
 
-{while $i le 10}
+{pad:while $i le 10}
   Item {$i}
-  {increment $i/}
-{/while}
+  {pad:increment $i/}
+{/pad:while}
 
-{until $count eq 0}
+{pad:until $count eq 0}
   Countdown: {$count}
-  {decrement $count/}
-{/until}
+  {pad:decrement $count/}
+{/pad:until}
 ```
 
 ### Filtering, sorting and limiting (handling options)
@@ -438,68 +438,68 @@ with the row's fields first. When the options leave no row, the `@else@` branch 
 
 ### Loop Control
 ```
-{continue 'tagname'/}    # Skip to next iteration (like PHP's continue)
-{cease 'tagname'/}       # Soft stop (graceful end)
-{break 'tagname'/}       # Hard stop (immediate exit)
+{pad:continue 'tagname'/}    # Skip to next iteration (like PHP's continue)
+{pad:cease 'tagname'/}       # Soft stop (graceful end)
+{pad:break 'tagname'/}       # Hard stop (immediate exit)
 ```
 
 ### Iteration Properties (property@tag syntax)
 
 A property is written as a tag pair, in a ternary, or as a value inside a condition -
-`{if first@items}` reads the property alone, `{if current@items eq 2}` with an operator. A
+`{pad:if first@items}` reads the property alone, `{pad:if current@items eq 2}` with an operator. A
 property name followed by `@` and a target is one reference inside an expression; only the
 names in `pad/properties/` read that way, and any other word before `@` leaves `@` as the
-current-value placeholder. Without a target - `{if current@ eq 2}` - it is the loop the
-expression stands in; inside an `{if}`, a `{case}` or any other level that renders once for
-the row - an `{ifchanged}`, a `{guest}`, a snippet - every property spelling belongs to the
+current-value placeholder. Without a target - `{pad:if current@ eq 2}` - it is the loop the
+expression stands in; inside an `{pad:if}`, a `{pad:case}` or any other level that renders once for
+the row - an `{pad:ifchanged}`, a `{pad:guest}`, a snippet - every property spelling belongs to the
 loop around it. The sigil decides a name collision: with a row field named
-`first`, `{if first@orders}` is still the iteration state and `{$first@orders}` is the
+`first`, `{pad:if first@orders}` is still the iteration state and `{$first@orders}` is the
 field.
 
 ```
-{items}
-  {first@items}<ul>{/first@items}
-  <li class="{even@items ? even : odd}">{$name}</li>
-  {last@items}</ul>{/last@items}
-  Index: {current@items/} of {count@items/}
-{/items}
+{array:items}
+  {property:first@items}<ul>{/property:first@items}
+  <li class="{property:even@items ? even : odd}">{$name}</li>
+  {property:last@items}</ul>{/property:last@items}
+  Index: {property:current@items/} of {property:count@items/}
+{/array:items}
 ```
 
 ### Case/Switch
 ```
-{case $color}
-  {when 'red'} Stop
-  {when 'yellow', 'amber'} Caution
-  {when 'green'} Go
-  {else} Unknown
-{/case}
+{pad:case $color}
+  {pad:when 'red'} Stop
+  {pad:when 'yellow', 'amber'} Caution
+  {pad:when 'green'} Go
+  {pad:else} Unknown
+{/pad:case}
 ```
 
 ### Group Headings (ifchanged)
 ```
-{orders sort='customer'}
-  {ifchanged $customer}<h2>{$customer}</h2>{/ifchanged}
+{array:orders sort='customer'}
+  {pad:ifchanged $customer}<h2>{$customer}</h2>{/pad:ifchanged}
   <p>{$number}</p>
-{/orders}
+{/array:orders}
 ```
 Renders when the value differs from the previous row of the loop; the first row always does.
 
 ### Switch Tag (Alternating Values)
 ```
-{items}
-  <tr style="background: {switch '#fff', '#eee'/}">
+{array:items}
+  <tr style="background: {pad:switch '#fff', '#eee'/}">
     <td>{$name}</td>
   </tr>
-{/items}
+{/array:items}
 ```
 
 ### Forms
 ```
-{form 'contact'}                                      # posts back, CSRF token + name
-  {input 'email', type='email', label='E-mail', required/}
-  {textarea 'message', label='Message', rows=6/}
+{pad:form 'contact'}                                      # posts back, CSRF token + name
+  {pad:input 'email', type='email', label='E-mail', required/}
+  {pad:textarea 'message', label='Message', rows=6/}
   <button>Send</button>
-{/form}
+{/pad:form}
 ```
 The fields refill from the post when their form came back and show the message
 `padValidate` found - in the page's PHP:
@@ -518,40 +518,40 @@ before_or_equal and after_or_equal (the same moment too). A
 list passes `required`, the required_* rules, `in:` and `not_in:` (every item), `distinct`, `min_items`, `max_items` only, and only on a field named for one
 (`tags[]`, in the rules too); on a field of one value it is refused - "must be a
 single value" - and any other rule in the `rules=` of a field that posts a list (`tags[]`, a
-`{multiselect}`) is an error when the template is read.
+`{input:multiselect}`) is an error when the template is read.
 
 The rules can also stand on the fields, checked before any PHP runs and in the browser too -
 [Form rules](docs/FEATURES.md#form-rules-on-the-fields-and-in-the-browser).
 
 ### Data Definition
 ```
-{data 'colors'}
+{pad:data 'colors'}
   ["red", "green", "blue"]
-{/data}
+{/pad:data}
 
-{colors}{$colors} {/colors}
+{data:colors}{$colors} {/data:colors}
 ```
 
 Supports JSON, XML, YAML, and CSV formats:
 ```
-{data 'myXML'}
+{pad:data 'myXML'}
   <data><row name="bob" phone="123" /></data>
-{/data}
+{/pad:data}
 
-{data 'myCSV'}
+{pad:data 'myCSV'}
   name,phone
   bob,123
   alice,456
-{/data}
+{/pad:data}
 ```
 
 ### Variable Assignment
 ```
-{set $name = 'Alice'/}              # Assign string
-{set $count = 0/}                   # Assign number
-{set $total = $price * $qty/}       # Assign expression
-{set $tags = ['a', 'b']/}           # Assign a list
-{set $user = ['name' => 'Ann', 'age' => 42]/}   # A list with keys - {$user.name}
+{pad:set $name = 'Alice'/}              # Assign string
+{pad:set $count = 0/}                   # Assign number
+{pad:set $total = $price * $qty/}       # Assign expression
+{pad:set $tags = ['a', 'b']/}           # Assign a list
+{pad:set $user = ['name' => 'Ann', 'age' => 42]/}   # A list with keys - {$user.name}
 ```
 
 ### Level vs Occurrence Variables
@@ -568,16 +568,16 @@ The `%` marks the assignment; the value is read back as an ordinary field, with 
 
 ### Range Expressions
 ```
-{if $value range (20, 40)}
+{pad:if $value range (20, 40)}
   Value is between 20 and 40
-{/if}
+{/pad:if}
 ```
 
 ### The @ Placeholder
 The `@` represents the current value in expressions:
 ```
-{echo 50 | @ * 4/}                # @ represents the current value
-{echo $text | '"' . @ . '"'/}     # Wrap value in quotes
+{pad:echo 50 | @ * 4/}                # @ represents the current value
+{pad:echo $text | '"' . @ . '"'/}     # Wrap value in quotes
 ```
 
 ### Comments
@@ -587,18 +587,18 @@ Two forms, both dropped before the template is scanned, so a tag inside one neve
 {# a comment #}
 {-- a comment, the form the editor kits toggle --}
 ```
-`{--` must be followed by whitespace - `:root{--gap:4px}` inside `{ignore}` is CSS, not a
+`{--` must be followed by whitespace - `:root{--gap:4px}` inside `{pad:ignore}` is CSS, not a
 comment - and both forms close at the first `#}` / `--}` after them.
 
 ### Whitespace control
 A `~` just inside a brace takes the whitespace on that side, newlines included:
 ```
 <ul>
-  {~items~}                  # nothing before the tag, nothing at the start of the content
+  {~array:items~}                  # nothing before the tag, nothing at the start of the content
     <li>{$name}</li>
-  {~/items~}                 # nothing before or after the closing tag
+  {~/array:items~}                 # nothing before or after the closing tag
 </ul>
-{spaceless}...{/spaceless}   # the whitespace between HTML tags goes
+{pad:spaceless}...{/pad:spaceless}   # the whitespace between HTML tags goes
 ```
 Only a brace that opens a tag counts; a `~` in text or a quoted parameter stays.
 
@@ -610,28 +610,28 @@ The `ignore` feature tells PAD not to parse curly braces `{}` as PAD tags. Essen
 
 1. **Tag Pair** - Wrap content in ignore tags:
 ```html
-{ignore}
+{pad:ignore}
 <script>
   const user = { name: 'Alice', role: 'Developer' };
   if (user.active) { console.log('Active'); }
 </script>
-{/ignore}
+{/pad:ignore}
 ```
 
 2. **Pipe Function** - Apply to expression output:
 ```html
 <div data-json="{json 'products' | ignore/}"></div>
-<div data-users="{echo $usersJson | html | ignore/}"></div>
+<div data-users="{pad:echo $usersJson | html | ignore/}"></div>
 ```
 
 3. **Option** - Add to any tag:
 ```
-{data 'rawJson' ignore}
+{pad:data 'rawJson' ignore}
 {
   "theme": "dark",
   "settings": { "notifications": true }
 }
-{/data}
+{/pad:data}
 ```
 
 **When to use:**
@@ -644,18 +644,18 @@ The `ignore` feature tells PAD not to parse curly braces `{}` as PAD tags. Essen
 ### Values Are Text
 
 A value never becomes template code - a field, what a tag answers, a fetched page. With
-`$v = '{php:getcwd}'`, both `{$v}` and `{echo $v/}` print the text `{php:getcwd}`. The
+`$v = '{php:getcwd}'`, both `{$v}` and `{pad:echo $v/}` print the text `{php:getcwd}`. The
 syntax characters of a value travel as inert stand-ins and are restored only when the page
-is written out, so a value inside another tag's quoted parameter - `{echo '{$v}'/}` - stays
+is written out, so a value inside another tag's quoted parameter - `{pad:echo '{$v}'/}` - stays
 text too. To run a value as PAD, say so where it is used - a snippet kept in a database:
 
 ```
-{echo $snippet | code/}       # runs the value as PAD
-{echo $snippet | sandbox/}    # the same, in an isolated pass
+{pad:echo $snippet | code/}       # runs the value as PAD
+{pad:echo $snippet | sandbox/}    # the same, in an isolated pass
 ```
 
-A field written bare into a tag's parameters - `{echo {$v}/}` - is spliced as a quoted
-string, unless it is a plain number, so a value of `php:getcwd` stays text; `{echo $v/}`
+A field written bare into a tag's parameters - `{pad:echo {$v}/}` - is spliced as a quoted
+string, unless it is a plain number, so a value of `php:getcwd` stays text; `{pad:echo $v/}`
 says the same more simply. A tag's rendered output written there is template text, by design.
 
 `$padProtectValues = FALSE` brings back the old behaviour: every value re-read as template
@@ -665,16 +665,16 @@ source.
 
 ## Critical Syntax Rules (Common Mistakes)
 
-1. **Pipe a value through `{echo}` or a field tag** - `{$var | upper}` and `{echo $var | upper/}` both work, but only the field tag runs the sanitize chain - `{echo}` prints the value raw; a literal needs the `{echo}`
-2. **Arithmetic needs space** - `{echo $x | + 1/}` not `| +1`
-3. **Quote literal strings** - `{count 'items'}` not `{count items}`
-4. **No inline CSS/JS** - PAD parses `{ }` as tags; use external files or `{ignore}` wrapper
+1. **Pipe a value through `{pad:echo}` or a field tag** - `{$var | upper}` and `{pad:echo $var | upper/}` both work, but only the field tag runs the sanitize chain - `{pad:echo}` prints the value raw; a literal needs the `{pad:echo}`
+2. **Arithmetic needs space** - `{pad:echo $x | + 1/}` not `| +1`
+3. **Quote literal strings** - `{pad:count 'items'}` not `{pad:count items}`
+4. **No inline CSS/JS** - PAD parses `{ }` as tags; use external files or `{pad:ignore}` wrapper
 5. **Use `padRedirect()`** - Don't use `exit` or `die` in PAD apps
-6. **A bare condition tests truth** - `{if $flag}` fails for `''`, `'0'`, `0` and FALSE; compare when a value is meant: `{if $count eq 0}`
+6. **A bare condition tests truth** - `{pad:if $flag}` fails for `''`, `'0'`, `0` and FALSE; compare when a value is meant: `{pad:if $count eq 0}`
 7. **`$` vs `%` variables** - `$var` is level (constant), `%var` is occurrence (per-iteration)
 8. **CHECK syntax** - Use `db("CHECK table WHERE...")` NOT `db("CHECK * FROM table...")`
-9. **Boolean options** - Use `{tag option}` NOT `{tag option="true"}` - just the option name is enough
-10. **A single tag ends in a slash** - `{echo $x/}`, `{set $n = 1/}`, `{page 'x'/}`, `{current@items/}`; `{echo $x}` opens a pair and needs its `{/echo}`
+9. **Boolean options** - Use `{function:tag option}` NOT `{function:tag option="true"}` - just the option name is enough
+10. **A single tag ends in a slash** - `{pad:echo $x/}`, `{pad:set $n = 1/}`, `{pad:page 'x'/}`, `{property:current@items/}`; `{pad:echo $x}` opens a pair and needs its `{/pad:echo}`
 
 ---
 
@@ -687,13 +687,13 @@ Resolve naming conflicts with explicit prefixes:
 | `app:` | App tag from `_tags/` | `{app:mytag}` |
 | `common:` | Tag from the `_common` app | `{common:padFrame}` |
 | `pad:` | Built-in PAD tag | `{pad:if}` |
-| `php:` | Call PHP function | `{php:strlen 'abc'/}` as a tag, `{echo $x \| php:strlen(@)/}` in an expression |
+| `php:` | Call PHP function | `{php:strlen 'abc'/}` as a tag, `{pad:echo $x \| php:strlen(@)/}` in an expression |
 | `function:` | Custom PAD function | `{$x \| function:myfunc}` |
 | `data:` | Defined data block | `{data:items}` |
 | `content:` | Content block | `{content:header}` |
 | `include:` | Snippet from `_include/` | `{include:header}` |
 | `pull:` | Stored sequence | `{pull:mySeq}` |
-| `field:` | Field (variable) value | `{field:name}` - the database single value is the `{field "col from table..."/}` tag |
+| `field:` | Field (variable) value | `{field:name}` - the database single value is the `{pad:field "col from table..."/}` tag |
 | `select:` | Declared select table | `{select:users}` |
 | `local:` | Files from `_data/` | `{local:menu.json}` |
 | `constant:` | PHP constant | `{constant:PHP_VERSION}` |
@@ -704,25 +704,25 @@ Resolve naming conflicts with explicit prefixes:
 | `property:` | Tag property | `{property:current}` |
 | `script:` | Script from `_scripts/` | `{script:backup}` |
 | `sequence:` | Sequence type | `{sequence:fibonacci}` as a tag, `sequence:fibonacci(8)` in an expression - the 8th term |
-| `chart:` | Chart type | `{chart:pie data='budget'/}`, the same chart as `{chart 'pie', data='budget'/}` - a kind is a file of `pad/subs/charts/types/` |
-| `game:` | Game | `{game:memory pairs=6/}`, the same game as `{game 'memory', pairs=6/}` - a game is a file of `pad/subs/games/types/` |
-| `toy:` | Toy | `{toy:life/}`, as `{toy 'life'/}` - a toy is a file of `pad/subs/toys/types/` |
-| `diagram:` | Diagram kind | `{diagram:state}...{/diagram:state}`, the same as `{diagram type='state'}` - a kind is a file of `pad/subs/diagrams/types/` |
-| `widget:` | Widget | `{widget:modal 'terms'}...{/widget:modal}`, as `{widget 'modal', 'terms'}` or bare `{modal 'terms'}` - a widget is a file of `pad/subs/widgets/types/` |
-| `barcode:` | Barcode symbology | `{barcode:ean13 '400638133393'/}`, as `{barcode '...', type='ean13'/}` - a symbology is a file of `pad/subs/codes/types/` |
-| `icon:` | Icon | `{icon:star size=20/}`, as `{icon 'star', size=20/}` - an icon is a file of `pad/subs/icons/types/`; never bare |
-| `pattern:` | Pattern | `{pattern:topography seed=7/}`, as `{pattern 'topography', seed=7/}` - a pattern is a file of `pad/subs/patterns/types/`; never bare |
-| `embed:` | Embed provider | `{embed:youtube 'id'/}`, as `{embed 'https://youtu.be/id'/}` - a provider is a file of `pad/subs/embeds/types/` |
-| `fake:` | Fake kind | `{fake:email/}`, as `{fake 'email'/}` - a kind is a file of `pad/subs/fakes/types/`; never bare |
-| `notation:` | Notation | `{notation:math}a/b{/notation:math}`, as `{notation 'math', 'a/b'/}` or bare `{math 'a/b'/}` - a notation is a file of `pad/subs/notations/types/`; bare `{chord}` is the charts', so `{notation:chord 'Am'/}` |
-| `input:` | Rich form field | `{input:slider 'volume'/}`, as bare `{slider 'volume'/}` - a kind is a file of `pad/subs/inputs/types/` |
-| `sound:` | Sound | `{sound:chime/}`, as `{sound 'chime'/}` - a sound is a recipe, a file of `pad/subs/sounds/types/`; never bare |
-| `printable:` | Printable | `{printable:labels data='rows'}...{/printable:labels}`, as `{printable 'labels', ...}...{/printable}` - a kind is a file of `pad/subs/printables/types/`; never bare |
+| `chart:` | Chart type | `{chart:pie data='budget'/}`, the same chart as `{chart:pie data='budget'/}` - a kind is a file of `pad/subs/charts/types/` |
+| `game:` | Game | `{game:memory pairs=6/}`, the same game as `{game:memory pairs=6/}` - a game is a file of `pad/subs/games/types/` |
+| `toy:` | Toy | `{toy:life/}`, as `{toy:life/}` - a toy is a file of `pad/subs/toys/types/` |
+| `diagram:` | Diagram kind | `{diagram:state}...{/diagram:state}`, the same as `{diagram:state}` - a kind is a file of `pad/subs/diagrams/types/` |
+| `widget:` | Widget | `{widget:modal 'terms'}...{/widget:modal}`, as `{widget:modal 'terms'}` or bare `{widget:modal 'terms'}` - a widget is a file of `pad/subs/widgets/types/` |
+| `barcode:` | Barcode symbology | `{barcode:ean13 '400638133393'/}`, as `{barcode:ean13 '...'/}` - a symbology is a file of `pad/subs/codes/types/` |
+| `icon:` | Icon | `{icon:star size=20/}`, as `{icon:star size=20/}` - an icon is a file of `pad/subs/icons/types/`; never bare |
+| `pattern:` | Pattern | `{pattern:topography seed=7/}`, as `{pattern:topography seed=7/}` - a pattern is a file of `pad/subs/patterns/types/`; never bare |
+| `embed:` | Embed provider | `{embed:youtube 'id'/}`, as `{embed:auto 'https://youtu.be/id'/}` - a provider is a file of `pad/subs/embeds/types/` |
+| `fake:` | Fake kind | `{fake:email/}`, as `{fake:email/}` - a kind is a file of `pad/subs/fakes/types/`; never bare |
+| `notation:` | Notation | `{notation:math}a/b{/notation:math}`, as `{notation:math 'a/b'/}` or bare `{notation:math 'a/b'/}` - a notation is a file of `pad/subs/notations/types/`; bare `{chart:chord}` is the charts', so `{notation:chord 'Am'/}` |
+| `input:` | Rich form field | `{input:slider 'volume'/}`, as bare `{input:slider 'volume'/}` - a kind is a file of `pad/subs/inputs/types/` |
+| `sound:` | Sound | `{sound:chime/}`, as `{sound:chime/}` - a sound is a recipe, a file of `pad/subs/sounds/types/`; never bare |
+| `printable:` | Printable | `{printable:labels data='rows'}...{/printable:labels}`, as `{printable:labels ...}...{/printable:labels}` - a kind is a file of `pad/subs/printables/types/`; never bare |
 | `action:` | Sequence action | `{action:reverse}` |
 | `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
-| `section:` | Section of a landing page | `{section:hero title='...'}...{/section:hero}`, as `{section 'hero', ...}` - a kind is a file of `pad/subs/sections/types/`; never bare |
-| `effect:` | Effect | `{effect:typewriter}Hi{/effect:typewriter}`, as `{effect 'typewriter'}` or bare `{typewriter}` - a kind is a file of `pad/subs/effects/types/` |
-| `jsonld:` | JSON-LD kind | `{jsonld:article headline=$title/}`, as `{jsonld 'article', data='post'/}` - a kind is a file of `pad/subs/jsonld/types/`; never bare |
+| `section:` | Section of a landing page | `{section:hero title='...'}...{/section:hero}`, as `{section:hero ...}` - a kind is a file of `pad/subs/sections/types/`; never bare |
+| `effect:` | Effect | `{effect:typewriter}Hi{/effect:typewriter}`, as `{effect:typewriter}` or bare `{effect:typewriter}` - a kind is a file of `pad/subs/effects/types/` |
+| `jsonld:` | JSON-LD kind | `{jsonld:article headline=$title/}`, as `{jsonld:article data='post'/}` - a kind is a file of `pad/subs/jsonld/types/`; never bare |
 
 ---
 
@@ -755,8 +755,8 @@ See the following files for complete reference documentation:
 | `like 'A%'` | SQL LIKE match |
 | `matches '/re/'` | Regular expression match (a backslash written `\\`) |
 | `a ?? b` | `a`, or `b` when `a` is empty or a missing field |
-| `c ? a : b` | Inline ternary - `{echo $n gt 1 ? 'items' : 'item'/}` |
-| `a ?: b` | `a` when it is true, else `b` - `{echo $title ?: 'Untitled'/}` |
+| `c ? a : b` | Inline ternary - `{pad:echo $n gt 1 ? 'items' : 'item'/}` |
+| `a ?: b` | `a` when it is true, else `b` - `{pad:echo $title ?: 'Untitled'/}` |
 
 ---
 
@@ -769,86 +769,86 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 
 | Feature | Written as |
 |---------|------------|
-| [Template emails](docs/FEATURES.md#template-emails) | `{mail to=$email, template='order'}`, `padMail ()`, `_mail/` |
-| [Early flush](docs/FEATURES.md#early-flush) | `{flush}` after the wrapper's `</head>` |
+| [Template emails](docs/FEATURES.md#template-emails) | `{pad:mail to=$email, template='order'}`, `padMail ()`, `_mail/` |
+| [Early flush](docs/FEATURES.md#early-flush) | `{pad:flush}` after the wrapper's `</head>` |
 | [Server-sent events](docs/FEATURES.md#server-sent-events) | `padSse ( $producer, $options )` - no template |
-| [Vite builds](docs/FEATURES.md#vite-builds) | `{vite 'src/main.js'/}` |
-| [Sitemap](docs/FEATURES.md#sitemap-from-the-file-tree) | `{sitemap}`, `$padSitemap` → `?sitemap.xml`, `?robots.txt` |
+| [Vite builds](docs/FEATURES.md#vite-builds) | `{pad:vite 'src/main.js'/}` |
+| [Sitemap](docs/FEATURES.md#sitemap-from-the-file-tree) | `{pad:sitemap}`, `$padSitemap` → `?sitemap.xml`, `?robots.txt` |
 | [Structured data (JSON-LD)](docs/FEATURES.md#structured-data-json-ld) | `{jsonld:article data='post'/}`, `{jsonld:faq data='questions'/}`, `{jsonld:breadcrumb/}`, `padJsonLd ( 'product', $row )` - a Schema.org object per kind, explicitly mapped, a kind per file of `pad/subs/jsonld/types/` |
 | [JSON and CSV answers](docs/FEATURES.md#json-and-csv-from-the-same-page) | `$padExpose` + `&padFormat=json` or `Accept` |
-| [Data formats](docs/FEATURES.md#data-formats) | `{data 'x', format='toml'}`, `_data/x.ics`, `&padFormat=xlsx`, `padFormatRead ()`, `padFormatWrite ()` - toml, ini, tsv, ndjson, jsonseq, markdown, ics, vcf, geojson, gpx, kml, vtt, srt, xlsx, rss, atom, jsonfeed: a format per file of `pad/subs/formats/types/` |
+| [Data formats](docs/FEATURES.md#data-formats) | `{pad:data 'x', format='toml'}`, `_data/x.ics`, `&padFormat=xlsx`, `padFormatRead ()`, `padFormatWrite ()` - toml, ini, tsv, ndjson, jsonseq, markdown, ics, vcf, geojson, gpx, kml, vtt, srt, xlsx, rss, atom, jsonfeed: a format per file of `pad/subs/formats/types/` |
 | [Maintenance mode](docs/FEATURES.md#maintenance-mode) | `pad down shop --secret=word`, `pad up shop` |
 | [Custom error pages](docs/FEATURES.md#custom-error-pages) | `_errors/404.pad`, `4xx.pad`, `5xx.pad` |
 | [Health check](docs/FEATURES.md#health-check) | `$padHealth` → `?up`, `_health.php` |
 | [CORS](docs/FEATURES.md#cross-origin-requests-cors) | `$padCors` |
-| [Login, gates, feature flags](docs/FEATURES.md#logging-in-gates-and-feature-flags) | `padLogin`, `padAuthRequire`, `{auth}`, `{guest}`, `{can}`, `padGate`, `{feature}` |
-| [Asset versioning](docs/FEATURES.md#asset-versioning) | `{asset 'app.css', tag/}`, `padAsset ()`; the subsystems' files in `www/assets/<sub>/`, linked by a page (`$padAssetLinks`), written into a mail, offline and a static copy |
-| [Fake data](docs/FEATURES.md#migrations-and-seeders) | `{fake 'email'/}`, `{fake 'name, email', rows=5, toData='people'/}`, `padFake ()`, `padFakeRows ()` - a kind per file of `pad/subs/fakes/types/` |
+| [Login, gates, feature flags](docs/FEATURES.md#logging-in-gates-and-feature-flags) | `padLogin`, `padAuthRequire`, `{pad:auth}`, `{pad:guest}`, `{pad:can}`, `padGate`, `{pad:feature}` |
+| [Asset versioning](docs/FEATURES.md#asset-versioning) | `{pad:asset 'app.css', tag/}`, `padAsset ()`; the subsystems' files in `www/assets/<sub>/`, linked by a page (`$padAssetLinks`), written into a mail, offline and a static copy |
+| [Fake data](docs/FEATURES.md#migrations-and-seeders) | `{fake:email/}`, `{fake:rows 'name, email', rows=5, toData='people'/}`, `padFake ()`, `padFakeRows ()` - a kind per file of `pad/subs/fakes/types/` |
 | [Migrations and seeders](docs/FEATURES.md#migrations-and-seeders) | `_migrations/`, `_seeds/`, `pad migrate`, `padFactory`, `padFake*` |
 | [Queues and the scheduler](docs/FEATURES.md#queues-and-the-scheduler) | `padQueue ()`, `_jobs/`, `pad work`, `_schedule.php` |
 | [Offline applications](docs/FEATURES.md#offline-applications-in-the-browser) | `pad pack notes`, `_offline.json`, `padWasm ()` |
 | [HTTP fakes for tests](docs/FEATURES.md#http-fakes-for-tests) | `padCurlFake ()`, `padCurlRecorded ()` |
-| [Log in with GitHub, Google ... (OAuth)](docs/FEATURES.md#log-in-with-github-google--oauth) | `padOAuthStart ( 'github' )`, `padOAuthUser ()` → `padLogin`, `{oauth 'github'/}` - a provider per file of `pad/subs/oauth/types/` |
-| [Notifications on every channel](docs/FEATURES.md#notifications-on-every-channel) | `padNotify ( $user, 'shipped', $data, [ 'mail', 'slack' ] )`, `_notifications/`, `{notifications/}`, `padWebPushKeys ()` - a channel per file of `pad/subs/channels/types/` |
-| [A language model answering in the page](docs/FEATURES.md#a-language-model-answering-in-the-page) | `{ai provider='anthropic', ttl=86400}...{/ai}`, `padAi ( $prompt, $options )` - a provider per file of `pad/subs/ai/types/` |
-| [Live regions](docs/FEATURES.md#live-regions-interactivity-without-app-javascript) | `{live 'cart'}`, `pad-click`, `padLiveEvent ()` |
+| [Log in with GitHub, Google ... (OAuth)](docs/FEATURES.md#log-in-with-github-google--oauth) | `padOAuthStart ( 'github' )`, `padOAuthUser ()` → `padLogin`, `{pad:oauth 'github'/}` - a provider per file of `pad/subs/oauth/types/` |
+| [Notifications on every channel](docs/FEATURES.md#notifications-on-every-channel) | `padNotify ( $user, 'shipped', $data, [ 'mail', 'slack' ] )`, `_notifications/`, `{pad:notifications/}`, `padWebPushKeys ()` - a channel per file of `pad/subs/channels/types/` |
+| [A language model answering in the page](docs/FEATURES.md#a-language-model-answering-in-the-page) | `{pad:ai provider='anthropic', ttl=86400}...{/pad:ai}`, `padAi ( $prompt, $options )` - a provider per file of `pad/subs/ai/types/` |
+| [Live regions](docs/FEATURES.md#live-regions-interactivity-without-app-javascript) | `{pad:live 'cart'}`, `pad-click`, `padLiveEvent ()` |
 | [Lookups between data sets](docs/FEATURES.md#lookups-between-data-sets) | `\| lookup('customers', 'id', 'name')` |
-| [Grouping with subtotals](docs/FEATURES.md#grouping-with-subtotals-group-option) | `{orders group='customer', sum='total'}` |
-| [Page links](docs/FEATURES.md#page-links-pager-tag) | `page=`, `rows=`, `{pager 'products'}` |
-| [Recursive trees](docs/FEATURES.md#recursive-trees) | `{tree}`, `{branch}`, `{recurse}` |
-| [Form rules](docs/FEATURES.md#form-rules-on-the-fields-and-in-the-browser) | `rules='required\|email'` on a field, `client`, `{validator}` |
-| [Rich form fields](docs/FEATURES.md#rich-form-fields) | `{slider 'v'/}`, `{input:datepicker 'd'/}`, `{stars}`, `{taginput}`, `{multiselect 'tags'/}` (posts the list `tags[]`), `{signature}` ... - native fields made more of, a kind per file of `pad/subs/inputs/types/` |
-| [Layouts](docs/FEATURES.md#layouts-extends--block--parent) | `{extends}`, `{block 'title'}`, `{parent}` |
-| [Components](docs/FEATURES.md#components-slots--parms) | `{slot}`, `{parms}` in a `_tags/x.pad` |
-| [Tags defined in the template](docs/FEATURES.md#tags-defined-in-the-template-define--macro) | `{define}`, `{macro}` |
-| [Web components](docs/FEATURES.md#web-components-declarative-shadow-dom) | `{shadow}` |
-| [Stacks](docs/FEATURES.md#stacks-push--stack) | `{push 'scripts'}`, `{stack 'scripts'/}` |
-| [Page metadata](docs/FEATURES.md#page-metadata) | `{meta title=, layout=, cache=/}` |
-| [Response fragments](docs/FEATURES.md#response-fragments) | `{fragment 'x'}`, `&padFragment=`, `HX-Target` |
-| [HTML attribute helpers](docs/FEATURES.md#html-attribute-helpers) | `{attrs}`, `{classes}` |
-| [Fragment cache](docs/FEATURES.md#fragment-cache) | `{cache 'x', ttl=300}`, `cache=` on a tag, `{nocache}` |
-| [Remote data with a cache](docs/FEATURES.md#remote-data-with-a-cache) | `{curl 'https://...', ttl=600}`, `padPrefetch ()` |
-| [Translations, locale formatting](docs/FEATURES.md#translations-and-locale-formatting) | `{trans}`, `_lang/`, `\| currency`, `\| localDate` |
-| [Markdown](docs/FEATURES.md#markdown) | `{markdown}`, `\| markdown` |
-| [Markdown collections](docs/FEATURES.md#markdown-collections) | `{collection 'blog'}`, `_content/` |
-| [Site search](docs/FEATURES.md#site-search) | `{search 'blog', q=$q, fields='title^2, body'}...{/search}`, `padSearch ()` - BM25, phrases, prefixes, Snowball stemmers en, nl, de, fr, es, it, pt, sv, da, no, ru: a language per file of `pad/subs/search/types/` |
-| [Charts](docs/FEATURES.md#charts) | `{chart 'bar', data=, label=, value=/}` or `{chart:bar .../}` - inline SVG, a kind per file of `pad/subs/charts/types/`; `{sparkline/}`; `client` draws it in the browser (`www/assets/charts/`) |
-| [Games](docs/FEATURES.md#games) | `{game 'memory'/}`, `{game:sudoku/}`, `{crossword}...{/crossword}` - 22 games played in the browser, a game per file of `pad/subs/games/types/` |
-| [Toys](docs/FEATURES.md#toys) | `{toy 'life'/}`, `{toy:mandelbrot/}`, bare `{boids/}` - live simulations in the browser, a toy per file of `pad/subs/toys/types/` |
+| [Grouping with subtotals](docs/FEATURES.md#grouping-with-subtotals-group-option) | `{array:orders group='customer', sum='total'}` |
+| [Page links](docs/FEATURES.md#page-links-pager-tag) | `page=`, `rows=`, `{pad:pager 'products'}` |
+| [Recursive trees](docs/FEATURES.md#recursive-trees) | `{pad:tree}`, `{pad:branch}`, `{pad:recurse}` |
+| [Form rules](docs/FEATURES.md#form-rules-on-the-fields-and-in-the-browser) | `rules='required\|email'` on a field, `client`, `{pad:validator}` |
+| [Rich form fields](docs/FEATURES.md#rich-form-fields) | `{input:slider 'v'/}`, `{input:datepicker 'd'/}`, `{input:stars}`, `{input:taginput}`, `{input:multiselect 'tags'/}` (posts the list `tags[]`), `{input:signature}` ... - native fields made more of, a kind per file of `pad/subs/inputs/types/` |
+| [Layouts](docs/FEATURES.md#layouts-extends--block--parent) | `{pad:extends}`, `{pad:block 'title'}`, `{pad:parent}` |
+| [Components](docs/FEATURES.md#components-slots--parms) | `{pad:slot}`, `{pad:parms}` in a `_tags/x.pad` |
+| [Tags defined in the template](docs/FEATURES.md#tags-defined-in-the-template-define--macro) | `{pad:define}`, `{pad:macro}` |
+| [Web components](docs/FEATURES.md#web-components-declarative-shadow-dom) | `{pad:shadow}` |
+| [Stacks](docs/FEATURES.md#stacks-push--stack) | `{pad:push 'scripts'}`, `{pad:stack 'scripts'/}` |
+| [Page metadata](docs/FEATURES.md#page-metadata) | `{pad:meta title=, layout=, cache=/}` |
+| [Response fragments](docs/FEATURES.md#response-fragments) | `{pad:fragment 'x'}`, `&padFragment=`, `HX-Target` |
+| [HTML attribute helpers](docs/FEATURES.md#html-attribute-helpers) | `{pad:attrs}`, `{pad:classes}` |
+| [Fragment cache](docs/FEATURES.md#fragment-cache) | `{pad:cache 'x', ttl=300}`, `cache=` on a tag, `{pad:nocache}` |
+| [Remote data with a cache](docs/FEATURES.md#remote-data-with-a-cache) | `{pad:curl 'https://...', ttl=600}`, `padPrefetch ()` |
+| [Translations, locale formatting](docs/FEATURES.md#translations-and-locale-formatting) | `{pad:trans}`, `_lang/`, `\| currency`, `\| localDate` |
+| [Markdown](docs/FEATURES.md#markdown) | `{pad:markdown}`, `\| markdown` |
+| [Markdown collections](docs/FEATURES.md#markdown-collections) | `{pad:collection 'blog'}`, `_content/` |
+| [Site search](docs/FEATURES.md#site-search) | `{pad:search 'blog', q=$q, fields='title^2, body'}...{/pad:search}`, `padSearch ()` - BM25, phrases, prefixes, Snowball stemmers en, nl, de, fr, es, it, pt, sv, da, no, ru: a language per file of `pad/subs/search/types/` |
+| [Charts](docs/FEATURES.md#charts) | `{chart:bar data=, label=, value=/}` or `{chart:bar .../}` - inline SVG, a kind per file of `pad/subs/charts/types/`; `{chart:sparkline/}`; `client` draws it in the browser (`www/assets/charts/`) |
+| [Games](docs/FEATURES.md#games) | `{game:memory/}`, `{game:sudoku/}`, `{game:crossword}...{/game:crossword}` - 22 games played in the browser, a game per file of `pad/subs/games/types/` |
+| [Toys](docs/FEATURES.md#toys) | `{toy:life/}`, `{toy:mandelbrot/}`, bare `{toy:boids/}` - live simulations in the browser, a toy per file of `pad/subs/toys/types/` |
 | [Printables](docs/FEATURES.md#printables) | `{printable:labels data='products', sheet='a4-3x8'}...{/printable:labels}`, badges, cards, tickets (`<aside>` the stub), certificate, envelope, letter and invoice (`<address>` in the window), indexcards, placecards, graphpaper (squares, dots or lines, drawn exactly), calendar (a month a sheet, `holidays=` marked), foldcard (a quarter fold, `<header>` the front), staffpaper (music paper, `rastral=`, `grand`) - mm-based sheets that print alone, `pdf` for the same sheets from the PDF writer, a kind per file of `pad/subs/printables/types/` |
-| [Sounds](docs/FEATURES.md#sounds) | `{sound:chime/}`, `{sound 'pop', button='Pop'/}`, `{sound:coin on='click', target='#save'/}`, `data-pad-sound="pop"`, `{toast ..., sound='success'/}`, `padSoundWav ()` - synthesised in the browser, the same samples as the server's WAV, a recipe per file of `pad/subs/sounds/types/` |
-| [Widgets](docs/FEATURES.md#widgets) | `{tabs}`, `{modal 'x'}`, `{toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{tooltip}`, `{wizard}`, `{lightbox}`, `{drawer}`, `{breadcrumb/}` - work without JavaScript, a widget per file of `pad/subs/widgets/types/` |
-| [Diagrams](docs/FEATURES.md#diagrams) | `{diagram}...{/diagram}`, `{diagram:state}`, `{mindmap}`, `{gitgraph}` - flowchart, sequence, state, class, er, mindmap, tree, journey, gitgraph, fishbone, railroad, packet: a kind per file of `pad/subs/diagrams/types/` |
-| [Widgets](docs/FEATURES.md#widgets) | `{tabs}`, `{modal 'x'}`, `{toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{tooltip}`, `{wizard}`, `{lightbox}`, `{drawer}`, `{breadcrumb/}`, `{splitpane}` - work without JavaScript, a widget per file of `pad/subs/widgets/types/` |
-| [Widgets](docs/FEATURES.md#widgets) | `{tabs}`, `{modal 'x'}`, `{toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{tooltip}`, `{wizard}`, `{lightbox}`, `{drawer}`, `{breadcrumb/}`, `{splitpane}`, `{contextmenu}` - work without JavaScript, a widget per file of `pad/subs/widgets/types/` |
-| [Widgets](docs/FEATURES.md#widgets) | `{tabs}`, `{modal 'x'}`, `{toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{tooltip}`, `{wizard}`, `{lightbox}`, `{drawer}`, `{breadcrumb/}`, `{splitpane}`, `{contextmenu}`, `{commandpalette}` - work without JavaScript, a widget per file of `pad/subs/widgets/types/` |
-| [Widgets](docs/FEATURES.md#widgets) | `{tabs}`, `{modal 'x'}`, `{toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{tooltip}`, `{wizard}`, `{lightbox}`, `{drawer}`, `{breadcrumb/}`, `{splitpane}`, `{contextmenu}`, `{commandpalette}`, `{sortable}` - work without JavaScript, a widget per file of `pad/subs/widgets/types/` |
-| [Diagrams](docs/FEATURES.md#diagrams) | `{diagram}...{/diagram}`, `{diagram:state}`, `{mindmap}`, `{gitgraph}` - flowchart, sequence, state, class, er, mindmap, tree, journey, gitgraph: a kind per file of `pad/subs/diagrams/types/` |
-| [Maps](docs/FEATURES.md#maps) | `{map 'eu', data=, key=, value=/}` - a view per file of `pad/subs/maps/types/` |
-| [Spreadsheets](docs/FEATURES.md#spreadsheets) | `{spreadsheet 'x'}Item,Price\nTea,=B1*2{/spreadsheet}`, `data=`, `formulas='total=B2*C2'`, `formats=`, `totals=`, `editable` in a `{form}`/`{live}`; `padFormula ()`, `padSheet ()` - Excel's formulas, a function per file of `pad/subs/formulas/types/` |
-| [Embeds](docs/FEATURES.md#embeds) | `{embed 'url'/}`, `{youtube 'id'/}`, `{openstreetmap 'lat,lon'/}` - click to load, a provider per file of `pad/subs/embeds/types/`; `padEmbedSources ()` |
-| [Month calendar](docs/FEATURES.md#month-calendar) | `{calendar}` |
-| [Public holidays](docs/FEATURES.md#public-holidays) | `{holidays 'nl', year=2026}`, `{calendar holidays='de-by'/}`, `padHolidays`, `padIsHoliday`, `padWorkdays`, `padAddWorkdays` - a country per file of `pad/subs/holidays/types/` |
-| [Syntax highlighting](docs/FEATURES.md#syntax-highlighting) | `{highlight 'php'}`, `{source}` |
-| [QR codes and barcodes](docs/FEATURES.md#qr-codes-and-barcodes) | `{qr}`, `{barcode type='upce'}`, `{barcode:ean13 '...'/}`, bare `{itf14 '...'/}`, `{datamatrix '...'/}`, `{aztec '...'/}`, `{pdf417 '...'/}`, `{gs1128 '(01)...'/}`, `{bookland 'ISBN ...', addon='51995'/}`, `{databar '...'/}` - a symbology per file of `pad/subs/codes/types/` |
-| [Icons](docs/FEATURES.md#icons) | `{icon 'star'/}`, `{icon:star/}` - an icon per file of `pad/subs/icons/types/` (an SVG each) |
-| [Patterns](docs/FEATURES.md#patterns) | `{pattern 'topography', seed=7/}`, `{pattern:dots as='url'/}`, `padPattern ()` - seeded SVG backgrounds, the same bytes for the same seed, a kind per file of `pad/subs/patterns/types/` |
-| [Image filters](docs/FEATURES.md#image-filters) | `{img 'p.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='...'/}`, `filter='grayscale, dither'`, `halftone`, `ascii`, placeholders `blurhash`, `dominant`, `lqip` - a filter per file of `pad/subs/filters/types/` |
-| [Notations](docs/FEATURES.md#notations) | `{math}x^2/2{/math}`, `{chem 'H2SO4'/}`, `{abc}...{/abc}`, `{notation:chord 'Am'/}`, `{piano 'C4 E4 G4'/}`, `{braille 'Hi'/}`, `{morse 'SOS'/}`, `{semaphore}`, `{signals}`, `{chess $fen/}`, `{go 'sgf'/}`, `{draughts 'fen'/}`, `{tablature}e|-0-3-|{/tablature}`, `{karnaugh 'm(1,3,7)'/}`, `{bridge 'N:AKQ.. ...'/}`, `{siteswap '531'/}`, `{cube "R U R' U'"/}` - drawn on the server, a notation per file of `pad/subs/notations/types/` |
-| [Image filters](docs/FEATURES.md#image-filters) | `{img 'p.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='...'/}`, `filter='grayscale, dither'`, `halftone`, `ascii`, placeholders `blurhash`, `thumbhash`, `dominant`, `lqip` - a filter per file of `pad/subs/filters/types/` |
-| [Notations](docs/FEATURES.md#notations) | `{math}x^2/2{/math}`, `{chem 'H2SO4'/}`, `{abc}...{/abc}`, `{notation:chord 'Am'/}`, `{piano 'C4 E4 G4'/}`, `{braille 'Hi'/}`, `{morse 'SOS'/}`, `{semaphore}`, `{signals}`, `{chess $fen/}`, `{go 'sgf'/}`, `{draughts 'fen'/}` - drawn on the server, a notation per file of `pad/subs/notations/types/` |
-| [Showcase tags](docs/FEATURES.md#showcase-tags) | `{avatar}`, `{progress}`, `{rating}`, `{icon}`, `{datatable}`, `{toc}`, `{diagram}`, `{map}`, `{pdf}` ... |
+| [Sounds](docs/FEATURES.md#sounds) | `{sound:chime/}`, `{sound:pop button='Pop'/}`, `{sound:coin on='click', target='#save'/}`, `data-pad-sound="pop"`, `{widget:toast ..., sound='success'/}`, `padSoundWav ()` - synthesised in the browser, the same samples as the server's WAV, a recipe per file of `pad/subs/sounds/types/` |
+| [Widgets](docs/FEATURES.md#widgets) | `{widget:tabs}`, `{widget:modal 'x'}`, `{widget:toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{widget:tooltip}`, `{widget:wizard}`, `{widget:lightbox}`, `{widget:drawer}`, `{widget:breadcrumb/}` - work without JavaScript, a widget per file of `pad/subs/widgets/types/` |
+| [Diagrams](docs/FEATURES.md#diagrams) | `{diagram:auto}...{/diagram:auto}`, `{diagram:state}`, `{diagram:mindmap}`, `{diagram:gitgraph}` - flowchart, sequence, state, class, er, mindmap, tree, journey, gitgraph, fishbone, railroad, packet: a kind per file of `pad/subs/diagrams/types/` |
+| [Widgets](docs/FEATURES.md#widgets) | `{widget:tabs}`, `{widget:modal 'x'}`, `{widget:toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{widget:tooltip}`, `{widget:wizard}`, `{widget:lightbox}`, `{widget:drawer}`, `{widget:breadcrumb/}`, `{widget:splitpane}` - work without JavaScript, a widget per file of `pad/subs/widgets/types/` |
+| [Widgets](docs/FEATURES.md#widgets) | `{widget:tabs}`, `{widget:modal 'x'}`, `{widget:toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{widget:tooltip}`, `{widget:wizard}`, `{widget:lightbox}`, `{widget:drawer}`, `{widget:breadcrumb/}`, `{widget:splitpane}`, `{widget:contextmenu}` - work without JavaScript, a widget per file of `pad/subs/widgets/types/` |
+| [Widgets](docs/FEATURES.md#widgets) | `{widget:tabs}`, `{widget:modal 'x'}`, `{widget:toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{widget:tooltip}`, `{widget:wizard}`, `{widget:lightbox}`, `{widget:drawer}`, `{widget:breadcrumb/}`, `{widget:splitpane}`, `{widget:contextmenu}`, `{widget:commandpalette}` - work without JavaScript, a widget per file of `pad/subs/widgets/types/` |
+| [Widgets](docs/FEATURES.md#widgets) | `{widget:tabs}`, `{widget:modal 'x'}`, `{widget:toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{widget:tooltip}`, `{widget:wizard}`, `{widget:lightbox}`, `{widget:drawer}`, `{widget:breadcrumb/}`, `{widget:splitpane}`, `{widget:contextmenu}`, `{widget:commandpalette}`, `{widget:sortable}` - work without JavaScript, a widget per file of `pad/subs/widgets/types/` |
+| [Diagrams](docs/FEATURES.md#diagrams) | `{diagram:auto}...{/diagram:auto}`, `{diagram:state}`, `{diagram:mindmap}`, `{diagram:gitgraph}` - flowchart, sequence, state, class, er, mindmap, tree, journey, gitgraph: a kind per file of `pad/subs/diagrams/types/` |
+| [Maps](docs/FEATURES.md#maps) | `{pad:map 'eu', data=, key=, value=/}` - a view per file of `pad/subs/maps/types/` |
+| [Spreadsheets](docs/FEATURES.md#spreadsheets) | `{pad:spreadsheet 'x'}Item,Price\nTea,=B1*2{/pad:spreadsheet}`, `data=`, `formulas='total=B2*C2'`, `formats=`, `totals=`, `editable` in a `{pad:form}`/`{pad:live}`; `padFormula ()`, `padSheet ()` - Excel's formulas, a function per file of `pad/subs/formulas/types/` |
+| [Embeds](docs/FEATURES.md#embeds) | `{embed:auto 'url'/}`, `{embed:youtube 'id'/}`, `{embed:openstreetmap 'lat,lon'/}` - click to load, a provider per file of `pad/subs/embeds/types/`; `padEmbedSources ()` |
+| [Month calendar](docs/FEATURES.md#month-calendar) | `{pad:calendar}` |
+| [Public holidays](docs/FEATURES.md#public-holidays) | `{pad:holidays 'nl', year=2026}`, `{pad:calendar holidays='de-by'/}`, `padHolidays`, `padIsHoliday`, `padWorkdays`, `padAddWorkdays` - a country per file of `pad/subs/holidays/types/` |
+| [Syntax highlighting](docs/FEATURES.md#syntax-highlighting) | `{pad:highlight 'php'}`, `{pad:source}` |
+| [QR codes and barcodes](docs/FEATURES.md#qr-codes-and-barcodes) | `{barcode:qr}`, `{barcode:upce}`, `{barcode:ean13 '...'/}`, bare `{barcode:itf14 '...'/}`, `{barcode:datamatrix '...'/}`, `{barcode:aztec '...'/}`, `{barcode:pdf417 '...'/}`, `{barcode:gs1128 '(01)...'/}`, `{barcode:bookland 'ISBN ...', addon='51995'/}`, `{barcode:databar '...'/}` - a symbology per file of `pad/subs/codes/types/` |
+| [Icons](docs/FEATURES.md#icons) | `{icon:star/}`, `{icon:star/}` - an icon per file of `pad/subs/icons/types/` (an SVG each) |
+| [Patterns](docs/FEATURES.md#patterns) | `{pattern:topography seed=7/}`, `{pattern:dots as='url'/}`, `padPattern ()` - seeded SVG backgrounds, the same bytes for the same seed, a kind per file of `pad/subs/patterns/types/` |
+| [Image filters](docs/FEATURES.md#image-filters) | `{pad:img 'p.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='...'/}`, `filter='grayscale, dither'`, `halftone`, `ascii`, placeholders `blurhash`, `dominant`, `lqip` - a filter per file of `pad/subs/filters/types/` |
+| [Notations](docs/FEATURES.md#notations) | `{notation:math}x^2/2{/notation:math}`, `{notation:chem 'H2SO4'/}`, `{notation:abc}...{/notation:abc}`, `{notation:chord 'Am'/}`, `{notation:piano 'C4 E4 G4'/}`, `{notation:braille 'Hi'/}`, `{notation:morse 'SOS'/}`, `{notation:semaphore}`, `{notation:signals}`, `{notation:chess $fen/}`, `{notation:go 'sgf'/}`, `{notation:draughts 'fen'/}`, `{notation:tablature}e|-0-3-|{/notation:tablature}`, `{notation:karnaugh 'm(1,3,7)'/}`, `{notation:bridge 'N:AKQ.. ...'/}`, `{notation:siteswap '531'/}`, `{notation:cube "R U R' U'"/}` - drawn on the server, a notation per file of `pad/subs/notations/types/` |
+| [Image filters](docs/FEATURES.md#image-filters) | `{pad:img 'p.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='...'/}`, `filter='grayscale, dither'`, `halftone`, `ascii`, placeholders `blurhash`, `thumbhash`, `dominant`, `lqip` - a filter per file of `pad/subs/filters/types/` |
+| [Notations](docs/FEATURES.md#notations) | `{notation:math}x^2/2{/notation:math}`, `{notation:chem 'H2SO4'/}`, `{notation:abc}...{/notation:abc}`, `{notation:chord 'Am'/}`, `{notation:piano 'C4 E4 G4'/}`, `{notation:braille 'Hi'/}`, `{notation:morse 'SOS'/}`, `{notation:semaphore}`, `{notation:signals}`, `{notation:chess $fen/}`, `{notation:go 'sgf'/}`, `{notation:draughts 'fen'/}` - drawn on the server, a notation per file of `pad/subs/notations/types/` |
+| [Showcase tags](docs/FEATURES.md#showcase-tags) | `{pad:avatar}`, `{pad:progress}`, `{pad:rating}`, `{icon:star}`, `{pad:datatable}`, `{pad:toc}`, `{diagram:auto}`, `{pad:map}`, `{pad:pdf}` ... |
 | [Settings](docs/FEATURES.md#configuration-settings) | every `$pad*` setting - defaults and comments in `pad/config/config.php` |
 | [Designer preview](docs/FEATURES.md#designer-preview-with-sample-data) | `?page&padSample`, `_samples/`, `pad sample` |
 | [Expression errors](docs/FEATURES.md#expression-errors) | what the strict check says about a malformed expression |
 | [Errors in the template](docs/FEATURES.md#errors-point-into-the-template) | file, line, column and excerpt in every error report |
-| [Application tests](docs/FEATURES.md#application-tests) | `_tests/name.pad` + `name.txt`, `{assert}`, `pad test` |
+| [Application tests](docs/FEATURES.md#application-tests) | `_tests/name.pad` + `name.txt`, `{pad:assert}`, `pad test` |
 | [The frame of the PAD apps](docs/FEATURES.md#the-frame-of-the-pad-applications) | `{common:padFrame}`, `$frameMenu`, `www/_common/pad.css`, the theme switcher in its bar; the brand top left of every app `{common:padBrand/}`; the playground and live icons top right of every example, `padPlayLink ()` |
 | [Common patterns](docs/FEATURES.md#common-patterns) | zebra rows, comma lists, first/last wrappers, counters |
-| [Sections](docs/FEATURES.md#sections) | `{section:hero title=}`, `{section:pricing data=/}`, `{section:item 'Pro', price=}`, `{slot 'eyebrow'}` - landing-page blocks in pure CSS, a kind per file of `pad/subs/sections/types/` |
-| [Effects](docs/FEATURES.md#effects) | `{typewriter}`, `{highlighter}`, `{underline}`, `{countup to=/}`, `{reveal}`, `{marquee}`, `{spinner/}`, `{skeleton/}`, `{confetti/}` - CSS first, still under reduced motion, a kind per file of `pad/subs/effects/types/` |
-| [Themes](docs/FEATURES.md#themes) | `$padTheme = 'paper'`, `{theme 'terminal'/}`, `{themes/}` - the frame's colours swapped, WCAG AA, a theme per file of `pad/subs/themes/types/` |
-| [Palettes](docs/FEATURES.md#palettes) | `{palette 'viridis', steps=7/}`, `palette=` on `{chart}`, `padPalette ()` - colour scales, a palette per file of `pad/subs/palettes/types/` |
+| [Sections](docs/FEATURES.md#sections) | `{section:hero title=}`, `{section:pricing data=/}`, `{section:item 'Pro', price=}`, `{pad:slot 'eyebrow'}` - landing-page blocks in pure CSS, a kind per file of `pad/subs/sections/types/` |
+| [Effects](docs/FEATURES.md#effects) | `{effect:typewriter}`, `{effect:highlighter}`, `{effect:underline}`, `{effect:countup to=/}`, `{effect:reveal}`, `{effect:marquee}`, `{effect:spinner/}`, `{effect:skeleton/}`, `{effect:confetti/}` - CSS first, still under reduced motion, a kind per file of `pad/subs/effects/types/` |
+| [Themes](docs/FEATURES.md#themes) | `$padTheme = 'paper'`, `{pad:theme 'terminal'/}`, `{pad:themes/}` - the frame's colours swapped, WCAG AA, a theme per file of `pad/subs/themes/types/` |
+| [Palettes](docs/FEATURES.md#palettes) | `{pad:palette 'viridis', steps=7/}`, `palette=` on `{chart:bar}`, `padPalette ()` - colour scales, a palette per file of `pad/subs/palettes/types/` |
 
 ---
 
@@ -856,7 +856,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 
 See [DATABASE.md](docs/DATABASE.md) for complete database documentation including:
 - PHP `db()` function (RECORD, ARRAY, FIELD, CHECK, INSERT, UPDATE)
-- Template database tags ({field}, {record}, {array}, {check})
+- Template database tags ({pad:field}, {pad:record}, {pad:array}, {pad:check})
 - PAD Select Subsystem (declarative table access, relations, automatic joins)
 
 ---
@@ -952,7 +952,7 @@ The `www/` directory can be served as the docroot itself (apps at `http://host/<
 3. Derives `$padApp` and the mount prefix `$padRoot` (e.g. `/` or `/pad/`) from `SCRIPT_NAME`/`SCRIPT_FILENAME`
 4. Includes `pad/pad.php`, which defines the constants (`PAD`, `APP`, `APPS`, `DATA`, `COMMON`) and runs the request
 
-Cross-app URLs (menu links, `padRedirect()`, the regression harness) are built from `$padHost`, which includes the mount prefix (`scheme://host` . `$padRoot`), so they work under any mount prefix. The host is the request's own Host header, but the engine's fetches of its own pages (`{get}`, `{page app=/}`, `SELF://`, `padPrefetch`) always connect to the server's own address (`SERVER_ADDR`:`SERVER_PORT`) - a forged Host cannot make the server fetch from another machine; with `$padHostBase` set (behind a proxy) they go where it says. Off `php -S` a port in the Host header counts only when it is 80/443 or `$padHosts` lists it with the name (`'localhost:8080'`) - Apache fills `SERVER_PORT` from the Host - else they connect to the scheme's port. Page-internal links use `$padGo`/`?page` (from `SCRIPT_NAME`, with `$padGoExt` as the absolute form) and are prefix-safe automatically.
+Cross-app URLs (menu links, `padRedirect()`, the regression harness) are built from `$padHost`, which includes the mount prefix (`scheme://host` . `$padRoot`), so they work under any mount prefix. The host is the request's own Host header, but the engine's fetches of its own pages (`{pad:get}`, `{pad:page app=/}`, `SELF://`, `padPrefetch`) always connect to the server's own address (`SERVER_ADDR`:`SERVER_PORT`) - a forged Host cannot make the server fetch from another machine; with `$padHostBase` set (behind a proxy) they go where it says. Off `php -S` a port in the Host header counts only when it is 80/443 or `$padHosts` lists it with the name (`'localhost:8080'`) - Apache fills `SERVER_PORT` from the Host - else they connect to the scheme's port. Page-internal links use `$padGo`/`?page` (from `SCRIPT_NAME`, with `$padGoExt` as the absolute form) and are prefix-safe automatically.
 
 The CLI variant (`apps/cli/pad`) sets `$padApp = 'cli'` explicitly and includes `pad/pad.php` directly.
 
@@ -986,7 +986,7 @@ Every PAD application shares one frame - `{common:padFrame}` in its `_inits.pad`
 `$frameMenu`, `www/_common/pad.css` - with the same brand top left, `{common:padBrand frame/}`:
 the `{}` logo linking the PAD home and the application's name as the pull-down of the
 applications (`_common/_data/padApps.php`), and the same bar: the page's title and the theme
-switcher `{themes/}` - Default is light, Dark is one of the themes: see
+switcher `{pad:themes/}` - Default is light, Dark is one of the themes: see
 [The frame of the PAD applications](docs/FEATURES.md#the-frame-of-the-pad-applications).
 
 ---
@@ -1039,14 +1039,14 @@ Request → pad.php → config → start/
                           → level/ (tag processing loop)
                           → Response
 
-For each {tag}:
+For each {function:tag}:
   level/level.php → detect type → types/{type}.php → process
                   → if data array: occurrence/ (iterate)
 ```
 
 ### Level System
 
-Each `{tag}` creates a new level scope. PAD maintains global variables per level in arrays indexed by `$pad` (current level, -1 = root):
+Each `{function:tag}` creates a new level scope. PAD maintains global variables per level in arrays indexed by `$pad` (current level, -1 = root):
 - `$padTag[$pad]`, `$padType[$pad]`, `$padOpt[$pad]` - Tag state
 - `$padData[$pad]`, `$padCurrent[$pad]` - Data for iteration
 - `$padBase[$pad]`, `$padOut[$pad]`, `$padResult[$pad]` - Content/output
@@ -1097,11 +1097,11 @@ drawn in [docs/PAD.md](docs/PAD.md#processing-pipeline).
 - Set `$padInfo = 'trace'` for execution tracing
 - Set `$padToolbar = 'local'` for the debug toolbar at the foot of every local page
 - Set `$padReload = 'local'` in `_config/config.php` and a local page reloads itself when a file behind it is saved
-- Use `{debug $order/}` for a collapsible view of a value inside the page (local requests only; `{debug}` alone shows every field visible there)
-- Use `{dump}` tag for variable inspection
-- Use `{trace}` tag for execution trace
+- Use `{pad:debug $order/}` for a collapsible view of a value inside the page (local requests only; `{pad:debug}` alone shows every field visible there)
+- Use `{pad:dump}` tag for variable inspection
+- Use `{pad:trace}` tag for execution trace
 - Set `$padCheckOutput = true` (or add `&padCheckOutput` to a local request) to have the finished HTML checked for duplicate ids, images without alt, unlabelled fields and broken `?page` links; `develop/?links` checks every application's templates at once
-- Template coverage: `develop/?coverage&start=suites`, run `./ci.sh`, `develop/?coverage&stop`, then `develop/?coverage&run=suites` shows every template with the tags and `{if}`/`{case}` branches that never ran marked, and the files no request read (`$padCoverage` records one app's local requests)
+- Template coverage: `develop/?coverage&start=suites`, run `./ci.sh`, `develop/?coverage&stop`, then `develop/?coverage&run=suites` shows every template with the tags and `{pad:if}`/`{pad:case}` branches that never ran marked, and the files no request read (`$padCoverage` records one app's local requests)
 - Replay real traffic: `$padRecord = true` (or `?page&padRecord=name`) keeps each cookie-less GET with its answer; `develop/?replay&store=default` re-asks every recorded page against the current code and lists the pages whose answer changed, to accept or delete
 - Check `DATA/` directory for error dumps and logs
 
@@ -1157,7 +1157,7 @@ go-to-definition along PAD's lookup order - `{mytag}` to the nearest `_tags/myta
 `| money` to `_functions/money.php`, `{$total}` to the line of the paired `.php` that
 assigns it. `node editors/lsp/test.js` tests it; `./ci.sh` runs that as its `lsp` line.
 `editors/tree-sitter-pad` is a Tree-sitter grammar for Zed, Helix and Neovim - highlighting,
-folding of tag pairs, text objects - whose scanner pairs `{x}` with `{/x}` the way the
+folding of tag pairs, text objects - whose scanner pairs `{data:x}` with `{/data:x}` the way the
 engine does; the built-in names in its highlight queries are written by
 `php editors/generate.php`, and `./ci.sh` checks it as its `treesitter` line.
 
@@ -1195,7 +1195,7 @@ the `claude` line of `./ci.sh`.
 | `admin` | Standard | The web PAD console, the successor of `apps`: every application with its pages, parts and settings, files, search, the pad command (lint, test, migrate, queue, schedule ...) with a history, maintenance, queues, schedules, logs, error dumps, the mail outbox, DATA/ storage, PHP, the PAD settings, git and its own users - behind a login, this machine only |
 | `alpine` | Standard | PAD + Alpine: state from PHP with `x-data="{^field}"`, components in `www/` with `Alpine.data`, live search over `$padExpose`, one set of rules for both sides, a list kept in the session, server-sent events |
 | `apps` | Standard | Lists all PAD applications with descriptions from README files |
-| `charts` | Standard | A showcase of the `{chart}` tag - a menu heading per chart family (every kind of `pad/subs/charts/types/`), every example a page of three cells: the data, the tag, the chart |
+| `charts` | Standard | A showcase of the `{chart:bar}` tag - a menu heading per chart family (every kind of `pad/subs/charts/types/`), every example a page of three cells: the data, the tag, the chart |
 | `showcase` | Standard | A showcase of the tags that draw, format and interact - a menu heading per group, a section per tag, every example its template beside the result |
 | `tags` | Standard | A page per tag, named with its type prefix - every built-in tag, `{pad:if}`, every kind of the subsystems, `{chart:pie}`, and every sequence type, `{sequence:fibonacci}` - one line, syntax with the tag's own options, a longer description and live examples - with indexes by name, group, form and option, a cheat sheet and a search |
 | `types` | Standard | A page per type of tag - the prefix of `{pad:if}`, `{chart:pie}`, `{field:name}` - with what it reaches and its tags linked into the tags app, its place in the order a bare name is tried in, its section of TYPES.md and live examples; indexes by name, order and group, a cheat sheet and a search |
@@ -1207,24 +1207,24 @@ the `claude` line of `./ci.sh`.
 | `edit` | Standard | A browser editor for every application, behind a login, this machine only by default - file tree with new, copy, rename, delete, upload and trash; Monaco with PAD colouring, completion, hover, go-to-definition and PAD's own checks, PHP completion; preview, history, search, git, a terminal, an Xdebug step debugger; the framework's own pad/ in the tree too |
 | `games` | Standard | Every game of the games subsystem to play - a card per game, a page per game with the template that plays it, all read from `pad/subs/games/types/` |
 | `toys` | Standard | Every toy of the toys subsystem to play with - a card per toy, a page per toy that runs it beside its template, read from `pad/subs/toys/types/` |
-| `patterns` | Standard | Every pattern of the patterns subsystem - a card per pattern, a page per pattern drawn beside its template with a seed to change by link, its own example and as a background, read from `pad/subs/patterns/types/` - and a page with every image filter of `{img}` on the same picture |
-| `printables` | Standard | Every kind of the printables subsystem - labels, badges, cards, tickets, a certificate, envelopes, letters, invoices, index cards, place cards, folded cards, graph paper, music paper, a wall calendar - a page each with its template beside what it prints and a link to the PDF, sample data from `{fake}` with fixed seeds, read from `pad/subs/printables/types/` |
+| `patterns` | Standard | Every pattern of the patterns subsystem - a card per pattern, a page per pattern drawn beside its template with a seed to change by link, its own example and as a background, read from `pad/subs/patterns/types/` - and a page with every image filter of `{pad:img}` on the same picture |
+| `printables` | Standard | Every kind of the printables subsystem - labels, badges, cards, tickets, a certificate, envelopes, letters, invoices, index cards, place cards, folded cards, graph paper, music paper, a wall calendar - a page each with its template beside what it prints and a link to the PDF, sample data from `{fake:rows}` with fixed seeds, read from `pad/subs/printables/types/` |
 | `sounds` | Standard | A soundboard of the sounds subsystem - every sound a button with its recipe and its WAV download, and the ways a page plays one, read from `pad/subs/sounds/types/` |
 | `inputs` | Standard | Every rich form field of `pad/subs/inputs/` to try - a page per kind in a form that posts back with what the page received, one form with them all checked in the browser too |
 | `examples` | Standard | Search the harvested examples of DATA/examples and view one with its sources beside the rendered result |
 | `notations` | Standard | Every notation of `pad/subs/notations/` - AsciiMath, chemistry, ABC music, chord boxes, piano keys, braille, morse, semaphore, signal flags, chess, go, draughts, guitar tablature, Karnaugh maps, bridge deals, siteswaps, cube moves - a card per kind, a page per kind with its examples, each template beside its result |
 | `hello` | Minimal | Hello World example demonstrating page pairing |
-| `htmx` | Standard | PAD + htmx: active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates and server-sent events - htmx asks for a part, PAD answers its `{fragment}` (by `HX-Target`), each example with a request log and its sources |
-| `islands` | Standard | Islands of any framework: one runtime mounts React, Vue, Svelte, Preact and Solid components on PAD's islands, each framework fetched when needed, a store they share, a TypeScript island typed by `pad types`, built by Vite (`_frontend/`) and linked by `{vite}` |
-| `kanban` | Offline | A task board on SQLite - cards dragged across (a move posted as JSON with `X-CSRF-Token`), the columns refreshed as a `{fragment}`, every open window kept in step by `padSse` - packed by `pad pack kanban` it runs in the browser, two installed windows sharing one database |
-| `ledger` | Offline | A household budget on SQLite built by its `_migrations/` (run on the first request, a later one migrating the kept database) - `{chart}`s, `{progress}` budgets, a `{datatable}`, CSV out (`padFormat=csv`) and in, a quick entry posted as JSON - packed by `pad pack ledger` it runs in the browser |
+| `htmx` | Standard | PAD + htmx: active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates and server-sent events - htmx asks for a part, PAD answers its `{pad:fragment}` (by `HX-Target`), each example with a request log and its sources |
+| `islands` | Standard | Islands of any framework: one runtime mounts React, Vue, Svelte, Preact and Solid components on PAD's islands, each framework fetched when needed, a store they share, a TypeScript island typed by `pad types`, built by Vite (`_frontend/`) and linked by `{pad:vite}` |
+| `kanban` | Offline | A task board on SQLite - cards dragged across (a move posted as JSON with `X-CSRF-Token`), the columns refreshed as a `{pad:fragment}`, every open window kept in step by `padSse` - packed by `pad pack kanban` it runs in the browser, two installed windows sharing one database |
+| `ledger` | Offline | A household budget on SQLite built by its `_migrations/` (run on the first request, a later one migrating the kept database) - `{chart:bar}`s, `{pad:progress}` budgets, a `{pad:datatable}`, CSV out (`padFormat=csv`) and in, a quick entry posted as JSON - packed by `pad pack ledger` it runs in the browser |
 | `manual` | Standard | Interactive documentation and examples |
 | `nono` | Plain PHP | PHP application without PAD templating |
-| `notes` | Offline | A Markdown notebook on SQLite - tags, search as you type (a `{fragment}`), pins and colours (`{live}`), pictures and PDFs attached (`padUpload`, `padUploadSend`), a JSON export (`$padExpose`) and import - packed by `pad pack notes` it runs in the browser |
+| `notes` | Offline | A Markdown notebook on SQLite - tags, search as you type (a `{pad:fragment}`), pins and colours (`{pad:live}`), pictures and PDFs attached (`padUpload`, `padUploadSend`), a JSON export (`$padExpose`) and import - packed by `pad pack notes` it runs in the browser |
 | `pad` | Standard | PAD framework introduction and reference |
-| `live` | Standard | Like the playground, but Run saves the page and this HTTP server answers it as a real page, `live/?page/<id>` - its PHP, request values, forms that post back, sessions, scripts, `_common` and its demo database - local requests only; every example of the other applications opens here from its ⚡ icon |
-| `playground` | Standard | Type a template and its data - JSON, YAML, XML or CSV recognised on sight, or PHP code as a page's `.php` (a button switches) - in editors with PAD's colours and see the result - local requests only, no PHP functions in the template, shareable through the URL hash; every example of the other applications opens here from its icon top right |
-| `react` | Standard | PAD + React: components mounted on islands of PAD pages, JSON answers to `fetch()`, forms checked by PAD with the CSRF header, `{fragment}`s, a cart in the session, polling - fourteen examples, each with its sources |
+| `live` | Standard | Combined server editor with Run page, Render template, Show HTML and a switch to WASM |
+| `wasm` | Browser | Templates, text data or PHP in browser WebAssembly, linked to Live |
+| `react` | Standard | PAD + React: components mounted on islands of PAD pages, JSON answers to `fetch()`, forms checked by PAD with the CSRF header, `{pad:fragment}`s, a cart in the session, polling - fourteen examples, each with its sources |
 | `reference` | Standard | Cross-reference and directory utilities |
 | `regression/main` | Standard | Automated regression testing for PAD - the runner for the eight suites and the fresh build |
 | `regression/pages` | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
@@ -1234,12 +1234,12 @@ the `claude` line of `./ci.sh`.
 | `regression/manual` | Test | The Manual suite's prediction store - one answer per page of the manual application |
 | `regression/other` | Test | The Other suite's prediction store - one answer per page of every application without a suite of its own |
 | `regression/errors` | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
-| `regression/common` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
+| `regression/common` | Test | The pages of the suite that use `_common` - `{common:example}`, `{common:demo}`, `{common:table}` - fetched and compared the same way |
 | `sequence` | Standard | Mathematical sequence subsystem demos - with a gallery of every type beside its OEIS entry, a sequence played as notes, and a guess-the-next-term game |
-| `sheets` | Standard | Spreadsheets made with `{spreadsheet}` - a budget, a loan calculator in a form, grades with VLOOKUP and XLOOKUP, invoice dates, an editable sheet in a live region - each run beside its template, and a page of every function of `pad/subs/formulas/types/` with its examples on a sample sheet |
+| `sheets` | Standard | Spreadsheets made with `{pad:spreadsheet}` - a budget, a loan calculator in a form, grades with VLOOKUP and XLOOKUP, invoice dates, an editable sheet in a live region - each run beside its template, and a page of every function of `pad/subs/formulas/types/` with its examples on a sample sheet |
 | `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |
 | `test` | Minimal | A scratch application for trying things out, `_common` switched off |
-| `webcomponents` | Standard | Web components: PAD custom tags write custom elements with their shadow root (`{shadow}`, declarative shadow DOM) - cards with slots, tabs upgraded by a module, a rating that posts, a form-associated stepper, a Lit element fed with PAD's JSON |
+| `webcomponents` | Standard | Web components: PAD custom tags write custom elements with their shadow root (`{pad:shadow}`, declarative shadow DOM) - cards with slots, tabs upgraded by a module, a rating that posts, a form-associated stepper, a Lit element fed with PAD's JSON |
 | `sections` | Standard | A landing page built from the sections and effects with the theme switcher in the bar, and a page per section, effect, theme (its contrast ratios) and palette (charts in it), every example its template beside its result - read from `pad/subs/{sections,effects,themes,palettes}/types/` |
 
 Every other `regression/<name>` application is the test of one feature - a page cache backend, an error action, an output type, maintenance, CORS ... - listed in [apps/README.md](apps/README.md), with the rest.
@@ -1256,10 +1256,10 @@ header('Location: ?tickets/index'); exit;  // WRONG
 ```
 
 ### CSS and JavaScript
-PAD parses `{ }` as tags. Prefer external files, or use `{ignore}` for inline code:
+PAD parses `{ }` as tags. Prefer external files, or use `{pad:ignore}` for inline code:
 ```html
 <link rel="stylesheet" href="style.css">  <!-- Best -->
-{ignore}<style>body {color: red}</style>{/ignore}  <!-- OK -->
+{pad:ignore}<style>body {color: red}</style>{/pad:ignore}  <!-- OK -->
 <style>body {color: red}</style>        <!-- WRONG - will parse {color: red} -->
 ```
 
@@ -1267,10 +1267,10 @@ PAD parses `{ }` as tags. Prefer external files, or use `{ignore}` for inline co
 
 See [REACT.md](docs/REACT.md) for complete React integration documentation including:
 - Pattern 1: Static data with {json} tag
-- Pattern 2: Dynamic data with {reactData} tag and providers
+- Pattern 2: Dynamic data with {pad:reactData} tag and providers
 - Pattern 3: Islands - `<div data-island="Name" data-props="{^field}">` mounted by the react
   app's runtime (`www/react/pad-react.js`); talking back with `$padExpose` JSON, posts with the
-  `X-CSRF-Token` header, `{fragment}`s, session state and polling
+  `X-CSRF-Token` header, `{pad:fragment}`s, session state and polling
 - Critical: Using `getAttribute('data')` NOT `dataset.data`
 - File organization and common patterns
 
@@ -1279,13 +1279,13 @@ See [REACT.md](docs/REACT.md) for complete React integration documentation inclu
 When creating documentation with examples:
 
 **Manual page** (`manual/topic.pad`) - Contains all explanatory text:
-- The title as `{meta title='...'/}` on the first line - the frame's bar prints it as the
+- The title as `{pad:meta title='...'/}` on the first line - the frame's bar prints it as the
   page's one `<h1>` (from the file name when there is no meta); never an `<h1>` of its own
 - Introduction and description
 - Section headings (`<h2>`, `<h3>`)
 - Explanatory paragraphs
 - Tables and reference content
-- Use `{example 'fragments/topic_N'/}` to embed working examples
+- Use `{common:example 'fragments/topic_N'/}` to embed working examples
 
 **Fragment files** (`fragments/topic_N.pad` + optional `topic_N.php`) - Minimal executable code only:
 - Just the code that demonstrates the feature
@@ -1296,14 +1296,14 @@ When creating documentation with examples:
 **Example:**
 ```html
 <!-- manual/pipes.pad -->
-{meta title='Pipes - Transform Output'/}
+{pad:meta title='Pipes - Transform Output'/}
 <h3>Variable Pipes</h3>
 <p>Apply functions to variables:</p>
-{example 'fragments/pipes_1'/}
+{common:example 'fragments/pipes_1'/}
 
 <!-- fragments/pipes_1.pad -->
 <p>Original: {$name}</p>
-<p>Uppercase: {echo $name | upper/}</p>
+<p>Uppercase: {pad:echo $name | upper/}</p>
 ```
 
 **Benefits:**

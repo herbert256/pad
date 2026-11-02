@@ -73,8 +73,8 @@
 
     $source = str_replace ( '<pre>', '', $source );
     $source = str_replace ( '</pre>', '', $source );
-    $source = str_replace ( [ '{open}', '{open/}' ], '{', $source );
-    $source = str_replace ( [ '{close}', '{close/}' ], '}', $source );
+    $source = str_replace ( [ '{pad:open}', '{pad:open/}' ], '{', $source );
+    $source = str_replace ( [ '{pad:close}', '{pad:close/}' ], '}', $source );
     $source = str_replace ( '&lt;', '<', $source );
     $source = str_replace ( '&gt;', '>', $source );
 
@@ -123,7 +123,7 @@ go: $end = strpos($source, '}');
       goto go;
     }
 
-    // A single tag without parameters carries its slash on the name - {flush/}, {key@rows/}:
+    // A single tag without parameters carries its slash on the name - {pad:flush/}, {property:key@rows/}:
     // the name is the word without it.
 
     if ( count ( $words ) == 1 and str_ends_with ( $tag, '/' ) )

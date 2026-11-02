@@ -1,19 +1,19 @@
-{table}
+{common:table}
 
-{demo}{sequence '11..14', push='one'/}{/demo}
+{common:demo}{sequence:range '11..14', push='one'/}{/common:demo}
 
-{demo}{sequence '5..2',   push='two'/}{/demo}
+{common:demo}{sequence:range '5..2',   push='two'/}{/common:demo}
 
-{demo}{sequence one}
+{common:demo}{sequence:auto one}
   {$sequence}
-{/sequence}{/demo}
+{/sequence:auto}{/common:demo}
 
-{demo}{sequence two}
+{common:demo}{sequence:auto two}
   {$sequence}
-{/sequence}{/demo}
+{/sequence:auto}{/common:demo}
 
-{demo}{sequence one, multiple='two'}
+{common:demo}{sequence:auto one, multiple='two'}
   {$sequence}
-{/sequence}{/demo}
+{/sequence:auto}{/common:demo}
 
-{/table}
+{/common:table}

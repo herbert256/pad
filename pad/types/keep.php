@@ -1,8 +1,7 @@
 <?php
 
-  // Type handler for the sequence keep operation ({keep:prime}, {mySeq:keep prime}):
-  // delegates to the sequence subsystem's entry point, which keeps only the values the named
-  // sequence type accepts - {remove:prime} is its mirror image. Nothing is stored by it.
+  // keep:kind selects a sequence operation; keep:auto reads its source from
+  // the parameters. Both use the shared sequence pipeline.
 
   return include PQ . 'start/types/keep.php';
 

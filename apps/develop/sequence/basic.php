@@ -7,9 +7,9 @@
   elseif ( $type == 'random' ) $go = 'random, minimal=100, maximal=199';
   else                         $go = "$type$parm";
 
-  $one  = "{table}\n\n";
-  $one .= "{demo}{sequence $go}\n  {\$sequence}\n{/sequence}{/demo}\n\n";
-  $one .= "{/table}";
+  $one  = "{common:table}\n\n";
+  $one .= "{common:demo}{sequence:auto $go}\n  {\$sequence}\n{/sequence:auto}{/common:demo}\n\n";
+  $one .= "{/common:table}";
 
   file_put_contents ( APPS . "sequence/basic/{$type}.pad", "$one\n", LOCK_EX );
 

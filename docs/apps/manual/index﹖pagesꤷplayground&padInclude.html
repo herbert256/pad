@@ -1,10 +1,15 @@
 
 
-<p>The <a href="http://localhost/pad/playground/">playground</a> is an application for trying templates:
-type a template and its data - a JSON object whose keys become variables - and the result
-shows beside it. The address bar always holds both, so a link shares the example.</p>
+<p>Use <a href="http://localhost/pad/live/">Live</a> to run code on the PAD HTTP server, or
+<a href="http://localhost/pad/wasm/">WASM</a> to run it in your browser. Both have template and
+data editors, a PHP switch, and a link that transfers the editors to the other app.
+Data may be JSON, YAML, XML or CSV: a record's keys become variables and a list becomes
+<code>rows</code>. The address bar shares the template, data, PHP and selected mode.</p>
 
-<p>It renders the way a page's PHP can render any PAD source, with <code>padCode()</code>:</p>
+<p>Live combines the former Live and Playground apps. <b>Run page</b> saves a full page:
+PHP, request values, forms that post back, sessions, scripts and the demo database work.
+<b>Render template</b> previews through <code>padCode()</code>, and <b>Show HTML</b> displays
+that preview's source. <b>open alone</b> opens a saved page in its own tab.</p>
 
 
 
@@ -13,7 +18,7 @@ shows beside it. The address bar always holds both, so a link shares the example
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -40,10 +45,10 @@ shows beside it. The address bar always holds both, so a link shares the example
 
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $data </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #DD0000">'{ "name": "Ann", "tags": [ "red", "blue" ] }'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$name </span><span style="color: #007700">= </span><span style="color: #0000BB">$data </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$tags </span><span style="color: #007700">= </span><span style="color: #0000BB">$data </span><span style="color: #007700">[</span><span style="color: #DD0000">'tags'</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$html </span><span style="color: #007700">= </span><span style="color: #0000BB">padCode </span><span style="color: #007700">( </span><span style="color: #DD0000">'&lt;b&gt;{$name}&lt;/b&gt;: {tags}{$tags}{notLast@tags}, {/notLast@tags}{/tags}' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $data </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #DD0000">'{ "name": "Ann", "tags": [ "red", "blue" ] }'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$name </span><span style="color: #007700">= </span><span style="color: #0000BB">$data </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$tags </span><span style="color: #007700">= </span><span style="color: #0000BB">$data </span><span style="color: #007700">[</span><span style="color: #DD0000">'tags'</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$html </span><span style="color: #007700">= </span><span style="color: #0000BB">padCode </span><span style="color: #007700">( </span><span style="color: #DD0000">'&lt;b&gt;{$name}&lt;/b&gt;: {array:tags}{$tags}{property:notLast@tags}, {/property:notLast@tags}{/array:tags}' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">!</font>html</font>}</b>&lt;/p&gt;</code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="../_common/play.css"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57IWh0bWx9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRkYXRhID0ganNvbl9kZWNvZGUgKCAneyBcIm5hbWVcIjogXCJBbm5cIiwgXCJ0YWdzXCI6IFsgXCJyZWRcIiwgXCJibHVlXCIgXSB9JywgVFJVRSApO1xuXG4gICRuYW1lID0gJGRhdGEgWyduYW1lJ107XG4gICR0YWdzID0gJGRhdGEgWyd0YWdzJ107XG5cbiAgJGh0bWwgPSBwYWRDb2RlICggJzxiPnskbmFtZX08L2I+OiB7YXJyYXk6dGFnc317JHRhZ3N9e3Byb3BlcnR5Om5vdExhc3RAdGFnc30sIHsvcHJvcGVydHk6bm90TGFzdEB0YWdzfXsvYXJyYXk6dGFnc30nICk7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57IWh0bWx9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRkYXRhID0ganNvbl9kZWNvZGUgKCAneyBcIm5hbWVcIjogXCJBbm5cIiwgXCJ0YWdzXCI6IFsgXCJyZWRcIiwgXCJibHVlXCIgXSB9JywgVFJVRSApO1xuXG4gICRuYW1lID0gJGRhdGEgWyduYW1lJ107XG4gICR0YWdzID0gJGRhdGEgWyd0YWdzJ107XG5cbiAgJGh0bWwgPSBwYWRDb2RlICggJzxiPnskbmFtZX08L2I+OiB7YXJyYXk6dGFnc317JHRhZ3N9e3Byb3BlcnR5Om5vdExhc3RAdGFnc30sIHsvcHJvcGVydHk6bm90TGFzdEB0YWdzfXsvYXJyYXk6dGFnc30nICk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">!</font>html</font>}</b>&lt;/p&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -65,8 +70,12 @@ shows beside it. The address bar always holds both, so a link shares the example
 
 
 
-<p>Because it runs what it is given, the playground answers this machine only, and a template
-there may not call PHP functions, sees no request values and no database, and gets five
-seconds, 64 KB of source and 256 KB of output. The output shows in a sandboxed frame, where
-the rendered page's scripts do not run. Tags that read files or fetch URLs still work - on
-this machine, for its own user.</p>
+<p>Live answers local requests only and checks a CSRF token for posts. Its template preview
+has no PHP function calls from templates, request variables or database; it allows five
+seconds, 64 KB of input and 256 KB of output. PHP in the data pane runs as written. The
+preview frame keeps its scripts separate from the editor; full pages have their own frame.</p>
+
+<p>WASM runs PHP in browser memory. It can use PHP data and the text formats above, but it
+cannot read this server's files or demo database. The ▶ example icon opens WASM; ⚡ opens
+Live. Examples that require the server keep only the Live icon. Links wait for an explicit
+run. Existing Playground bookmarks redirect to WASM.</p>

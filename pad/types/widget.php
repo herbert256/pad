@@ -1,9 +1,8 @@
 <?php
 
-  // Type handler for a widget: {widget:tabs} ... {/widget:tabs}, or a bare tag naming a file
-  // of subs/widgets/types/ when nothing else has the name, {tabs} ... {/tabs}. The widget is the
-  // tag's name, and it runs as {widget 'tabs'} runs it, by subs/widgets/widget.php - itself run as
-  // a built-in tag's PHP half is run, types/_go/tag.php, on every walk the widget asks for.
+  // widget:kind selects a registered kind from its subsystem. The type handler
+  // runs the subsystem with the kind in the tag name and its own parameters unchanged.
+
 
   $padWidgetKind = $padTag [$pad];
 

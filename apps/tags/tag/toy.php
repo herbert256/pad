@@ -7,27 +7,27 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{toy 'name'/}
-{toy 'life', pattern='gun', wrap/}
+{toy:name/}
+{toy:life pattern='gun', wrap/}
 {toy:mandelbrot iterations=500/}
-{boids birds=200/}
-{sorting race/}
-{life}
+{toy:boids birds=200/}
+{toy:sorting race/}
+{toy:life}
   .O.
   ..O
   OOO
-{/life}
-{lsystem}
+{/toy:life}
+{toy:lsystem}
   axiom: X
   X: F[+X]-X
   angle: 25
-{/lsystem}
+{/toy:lsystem}
 PAD;
 
   $tagParms   = [
-    'name' => 'The toy, a file of <code>pad/subs/toys/types/</code>: '
+    'kind after colon' => 'The toy, a file of <code>pad/subs/toys/types/</code>: '
             . implode ( ', ', array_map ( fn ( $toy ) => "<code>$toy</code>", padToyTypes () ) )
-            . '. The toy: type names it as well - <code>{toy:life/}</code>, or bare, <code>{life/}</code>, when nothing else has the name.' ];
+            . '. The toy: prefix selects it - <code>{toy:life/}</code>.' ];
 
   $tagOptions = [
     'seed'       => 'A whole number: what the toy picks at random is the same on every load. Without it the browser picks.',
@@ -63,6 +63,6 @@ PAD;
     'mirrors'    => 'kaleidoscope: how many wedges (8).',
     'levels'     => 'galton: the rows of pegs (12); <code>balls</code> how many, <code>bias</code> the chance of going right in percent.' ];
 
-  $tagSee     = [ 'game', 'chart', 'diagram' ];
+  $tagSee     = [ 'game:memory', 'chart:bar', 'diagram:auto' ];
 
 ?>

@@ -3,7 +3,7 @@
   // Membership test for thabit, 2, 5, 11, 23, 47, ...: x is a term when x + 1 is three times a
   // power of 2 - x leaves 2 divided by 3, and the quotient one more is a power of 2, tested
   // without forming x + 1, which passes the integer range for its largest value. build/check.php
-  // asks it for {keep thabit}, {remove thabit} and {flag thabit}.
+  // asks it for {keep:thabit}, {remove:thabit} and {pad:flag thabit}.
   //
   // Not the type's build: pqBuild() ranks function.php before bool.php.
 

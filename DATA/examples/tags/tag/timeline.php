@@ -5,15 +5,15 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{timeline data='name', date='field', label='field', text='field', color='field', format='Y', title='text', width=720, height=300/}
-{timeline data='name', from='field', to='field', date='field', label='field'/}
-{timeline date='field', label='field', vertical} ... {/timeline}
+{pad:timeline data='name', date='field', label='field', text='field', color='field', format='Y', title='text', width=720, height=300/}
+{pad:timeline data='name', from='field', to='field', date='field', label='field'/}
+{pad:timeline date='field', label='field', vertical} ... {/pad:timeline}
 PAD;
 
   $tagParms   = [];
 
   $tagOptions = [
-    'data'     => 'The rows: a <code>{data}</code> store, a page array or a <code>_data</code> file, as for <code>{chart}</code>. As a pair the content is the rows - JSON, YAML, XML or CSV.',
+    'data'     => 'The rows: a <code>{pad:data}</code> store, a page array or a <code>_data</code> file, as for <code>{chart:bar}</code>. As a pair the content is the rows - JSON, YAML, XML or CSV.',
     'date'     => 'The field of a moment: a year (<code>1969</code>), a month (<code>2026-10</code>) or anything <code>strtotime</code> reads - else the first field that reads as one.',
     'from'     => 'The field with the start of a span, drawn as a bar (with <code>to</code>).',
     'to'       => 'The field with the end of a span.',
@@ -26,6 +26,6 @@ PAD;
     'height'   => 'The height in pixels; by default it follows from the cards (not in the vertical form).',
     'title'    => 'The accessible name, default <code>Timeline</code>.' ];
 
-  $tagSee     = [ 'chart', 'calendar', 'diagram' ];
+  $tagSee     = [ 'chart:bar', 'calendar', 'diagram:auto' ];
 
 ?>

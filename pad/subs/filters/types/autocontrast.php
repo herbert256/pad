@@ -4,7 +4,7 @@
   // black and its lightest white, cutoff= percent (1) of them at each end let go first, so a
   // grey, misty or faded picture gets its depth back - the colours keep their relations.
   //
-  //   {img 'photos/harbour.jpg', width=400, filter='autocontrast', cutoff=2, alt='The harbour'/}
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='autocontrast', cutoff=2, alt='The harbour'/}
   //
   // PIL's ImageOps.autocontrast with preserve_tone, step for step: the histogram of the
   // luminance (Rec. 601, 0 to 255), cutoff percent of the pixels taken off its dark end and as

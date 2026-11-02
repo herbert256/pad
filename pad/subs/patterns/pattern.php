@@ -1,10 +1,7 @@
 <?php
 
-  // The body of a pattern, whichever way it is written: {pattern 'topography', seed=7/}, or the
-  // pattern: type - {pattern:topography seed=7/}. A pattern is never reached bare: its names,
-  // dots, grid or waves, are the names of fields and pages. The caller sets $padPatternKind; a
-  // pattern is a file of subs/patterns/types/, and the files there are all the patterns there
-  // are (padPatternKinds, lib/pattern.php).
+  // The shared body of pattern:kind tags, such as {pattern:topography}. The caller sets
+  // $padPatternKind; registered kinds are files in subs/patterns/types/.
   //
   // The options every kind takes - seed, colors, size, width, height, opacity, as, title - and
   // its own, angle= of the stripes, levels= of the topography, are read here, each with
@@ -16,7 +13,7 @@
 
   if ( $padPatternKind === '' ) {
     if ( $padCheckSyntax )
-      padError ( "the pattern has no kind - {pattern 'dots'/}, one of " . implode ( ', ', padPatternKinds () ) );
+      padError ( "the pattern has no kind - {pattern:dots/}, one of " . implode ( ', ', padPatternKinds () ) );
     return '';
   }
 
@@ -37,7 +34,7 @@
     padInfoXref ( 'pattern', $padPatternKind );
 
   if ( trim ( $padContent ) !== '' and $padCheckSyntax )
-    padError ( "the pattern draws no content - it is a single tag, {pattern '$padPatternKind'/}" );
+    padError ( "the pattern draws no content - it is a single tag, {pattern:$padPatternKind/}" );
 
   $padContent = '';
 

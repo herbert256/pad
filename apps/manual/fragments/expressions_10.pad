@@ -1,6 +1,6 @@
-{define 'gross'}{parms net, vat=21/}{echo #net * (1 + #vat / 100) | %.2f/}{/define}
-<p>{gross net=100/} and {gross net=100, vat=9/}</p>
-{data 'steps'}["plan", "build", "ship"]{/data}
-{steps}
-  <p>{echo &current . ' of ' . &count/}: {$steps}{echo last@steps ? ' - the last one' : ''/}</p>
-{/steps}
+{pad:define 'gross'}{pad:parms net, vat=21/}{pad:echo #net * (1 + #vat / 100) | %.2f/}{/pad:define}
+<p>{define:gross net=100/} and {define:gross net=100, vat=9/}</p>
+{pad:data 'steps'}["plan", "build", "ship"]{/pad:data}
+{data:steps}
+  <p>{pad:echo &current . ' of ' . &count/}: {$steps}{pad:echo last@steps ? ' - the last one' : ''/}</p>
+{/data:steps}

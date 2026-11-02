@@ -1,7 +1,7 @@
 <?php
 
   // Membership test for stern: every whole number from 0 up is a term - k is a(2^k - 1) - so
-  // that is the whole test. build/check.php asks it for {keep stern}, {remove stern} and {flag
+  // that is the whole test. build/check.php asks it for {keep:stern}, {remove:stern} and {pad:flag
   // stern}.
   //
   // Not the type's build: pqBuild() ranks function.php before bool.php.

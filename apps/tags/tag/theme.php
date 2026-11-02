@@ -7,9 +7,9 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{theme 'name'/}
-{theme 'paper'/}
-{theme 'terminal'} ... {/theme}
+{pad:theme 'name'/}
+{pad:theme 'paper'/}
+{pad:theme 'terminal'} ... {/pad:theme}
 $padTheme = 'paper';
 PAD;
 
@@ -19,6 +19,8 @@ PAD;
 
   $tagOptions = [];
 
-  $tagSee     = [ 'themes', 'palette', 'section' ];
+  $tagSee     = [ 'themes', 'palette', 'section:hero' ];
+
+  $subsystemKindLinks = appSubsystemLinks ( 'theme' );
 
 ?>

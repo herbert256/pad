@@ -1,9 +1,8 @@
 <?php
 
-  // Type handler for a barcode type: {barcode:ean13 '400638133393'/}, or a bare tag naming a
-  // file of subs/codes/types/ when nothing else has the name, {itf14 '1540014128876'/}. The
-  // symbology is the tag's name, and the code is drawn as {barcode '...', type='ean13'/} draws
-  // it, by subs/codes/barcode.php - run as a built-in tag's PHP half is run, types/_go/tag.php.
+  // barcode:kind selects a registered kind from its subsystem. The type handler
+  // runs the subsystem with the kind in the tag name and its own parameters unchanged.
+
 
   $padCodeKind = $padTag [$pad];
 

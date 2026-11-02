@@ -11,7 +11,7 @@
 
   // A type built from a list of its own - kolakoski, perfect, a range or a list - is a store to
   // the run only when a play takes the name: with none, the name is the type's, where it was
-  // handed to a play there is not and {sequence kolakoski, build='bool'} answered the list.
+  // handed to a play there is not and {sequence:kolakoski build='bool'} answered the list.
 
   $pqBuildPlay = ( pqStore ( $pqBuild ) and ( ! $pqSeq or count ( $pqPlays ) ) );
 
@@ -24,13 +24,13 @@
 
   // position is the build build='function' turns into for a type that tests values, not a name
   // to write: written, it reached eval and chance, whose terms its memo keeps for the request,
-  // and {sequence eval='@*$n', build='position'} in a loop over 2 and 3 gave the multiples of
+  // and {sequence:eval '@*$n', build='position'} in a loop over 2 and 3 gave the multiples of
   // 2 twice.
 
   // The file is looked for among the names written on disk, pqNames (): asked of a file system
   // that ignores case, build='Bool' found build/types/bool.php, and build/one.php, which knows
   // the names as they are written, made no term and ended the request on "Undefined variable
-  // $pq" - {sequence happy, build='Bool'}, {sequence square, build='Function'}.
+  // $pq" - {sequence:happy build='Bool'}, {sequence:square build='Function'}.
 
   if ( ! padValidName ( $pqBuildName ) or ! isset ( pqNames ( PQ . $pqBuildDir ) ["$pqBuildName.php"] ) or $pqBuildName == 'position' ) {
     padError ( "there is no build strategy named '$pqBuildName'" );

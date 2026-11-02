@@ -4,7 +4,7 @@
   // the middles of its sides, turned one way or the other as the seed says - the arcs meet
   // their neighbours' and wander on as endless curves.
   //
-  //   {pattern 'truchet', size=20, seed=5, colors='#1d1d1b, #f2c14e'/}
+  //   {pattern:truchet size=20, seed=5, colors='#1d1d1b, #f2c14e'/}
 
   return [
 

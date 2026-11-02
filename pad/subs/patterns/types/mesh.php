@@ -3,7 +3,7 @@
   // mesh - a soft mesh gradient: a glow of every ink, the size its radius, at a place the seed
   // picks, each fading out over the background and the glows before it.
   //
-  //   {pattern 'mesh', seed=21, colors='#fdfcfb, #a18cd1, #fbc2eb, #8fd3f4'/}
+  //   {pattern:mesh seed=21, colors='#fdfcfb, #a18cd1, #fbc2eb, #8fd3f4'/}
   //
   // Each glow is a radial gradient from its ink to its ink made transparent; at least three
   // are drawn, the inks taken again from the first when there are fewer.

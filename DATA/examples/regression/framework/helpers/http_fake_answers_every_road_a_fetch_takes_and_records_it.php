@@ -1,7 +1,7 @@
 <?php
 
   // The fetches of this request answered from fakes: padCurl, padCurlCached (which passes
-  // its cache by while faking), padPrefetch, and in the template {curl} and data=. The
+  // its cache by while faking), padPrefetch, and in the template {pad:curl} and data=. The
   // URLs fetched are read back after the template made its own.
 
   padCurlFake ( [

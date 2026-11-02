@@ -1,6 +1,6 @@
 <?php
 
-  // A report, the toolbar and {debug} show a value with its secrets redacted - redacting a
+  // A report, the toolbar and {pad:debug} show a value with its secrets redacted - redacting a
   // copy. An array an application walked with foreach ( ... as &$row ) keeps its rows as
   // references, and the redaction wrote through them: the page went on with its own data
   // redacted. And a global array that holds itself - $loop ['self'] = &$loop - was walked

@@ -6,8 +6,8 @@
   // means hoisted alone. size= is the width of a flag in pixels (40 unless given), title= the
   // accessible name; the description names every flag.
   //
-  //   {signals 'PAD'/}
-  //   {signals 'SOS 112', size=30/}
+  //   {notation:signals 'PAD'/}
+  //   {notation:signals 'SOS 112', size=30/}
 
   list ( $padSignalsWords, $padSignalsUnknown ) = padSignalsWords ( $padNotationText );
 

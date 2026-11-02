@@ -1,20 +1,20 @@
-{block}
-<p>The {construct 'start'/} / {construct 'end'/} & {construct 'else'/}  constructs act on the number of occurences.</p>
-<p>The {tag 'first'/} & {tag 'last'/} tags are part of the special <a href="{$padHost}manual/?pages/properties">Properties</a> tags.</p>
+{common:block}
+<p>The {app:construct 'start'/} / {app:construct 'end'/} & {app:construct 'else'/}  constructs act on the number of occurences.</p>
+<p>The {app:tag 'first'/} & {app:tag 'last'/} tags are part of the special <a href="{$padHost}manual/?pages/properties">Properties</a> tags.</p>
 </p>
-{/block}
+{/common:block}
 
-{table}
+{common:table}
 
-{demo}
+{common:demo}
 
-{data 'myArray'}
+{pad:data 'myArray'}
   [1,2,3]
-{/data}
+{/pad:data}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{myArray}
+{data:myArray}
 
   <table border="1">
     <tr> <td> Before the first occurrence </td> </tr>
@@ -28,37 +28,37 @@
 
   <p> No occurences at all </p>
 
-{/myArray}
+{/data:myArray}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{myArray}
+{data:myArray}
 
-  {first}
+  {property:first}
     <table border="1">
       <tr> <td> Before the first occurrence </td> </tr>
-  {/first}
+  {/property:first}
       <tr> <td> For every occurence </td> </tr>
-  {last}
+  {property:last}
       <tr> <td> After the last occurrence </td> </tr>
     </table>
-  {/last}
+  {/property:last}
 
 @else@
 
   <p> No occurences at all </p>
 
-{/myArray}
+{/data:myArray}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{count 'myArray'}
+{pad:count 'myArray'}
 
   <table border="1">
     <tr> <td> Before the first occurrence </td> </tr>
-  {myArray}
+  {data:myArray}
     <tr> <td> For every occurence </td> </tr>
-  {/myArray}
+  {/data:myArray}
     <tr> <td> After the last occurrence </td> </tr>
   </table>
 
@@ -66,30 +66,30 @@
 
   <p> No occurences at all </p>
 
-{/count}
+{/pad:count}
 
-{/demo}
+{/common:demo}
 
-{/table}
+{/common:table}
 
 <br><hr><br>
 
-{block}
+{common:block}
 <p>Now the same code with an empty array</p>
-<p>The {open/}else{close/} construct comes active when there are zero occurences for a PAD tag.</p>
-{/block}
+<p>The {pad:open/}pad:else{pad:close/} construct comes active when there are zero occurences for a PAD tag.</p>
+{/common:block}
 
-{table}
+{common:table}
 
-{demo}
+{common:demo}
 
-{data 'myArray'}
+{pad:data 'myArray'}
  []
-{/data}
+{/pad:data}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{myArray}
+{data:myArray}
 
   <table border="1">
     <tr> <td> Before the first occurrence </td> </tr>
@@ -103,37 +103,37 @@
 
   <p> No occurences at all </p>
 
-{/myArray}
+{/data:myArray}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{myArray}
+{data:myArray}
 
-  {first}
+  {property:first}
     <table border="1">
       <tr> <td> Before the first occurrence </td> </tr>
-  {/first}
+  {/property:first}
       <tr> <td> For every occurence </td> </tr>
-  {last}
+  {property:last}
       <tr> <td> After the last occurrence </td> </tr>
     </table>
-  {/last}
+  {/property:last}
 
 @else@
 
   <p> No occurences at all </p>
 
-{/myArray}
+{/data:myArray}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{count 'myArray'}
+{pad:count 'myArray'}
 
   <table border="1">
     <tr> <td> Before the first occurrence </td> </tr>
-  {myArray}
+  {data:myArray}
     <tr> <td> For every occurence </td> </tr>
-  {/myArray}
+  {/data:myArray}
     <tr> <td> After the last occurrence </td> </tr>
   </table>
 
@@ -141,8 +141,8 @@
 
   <p> No occurences at all </p>
 
-{/count}
+{/pad:count}
 
-{/demo}
+{/common:demo}
 
-{/table}
+{/common:table}

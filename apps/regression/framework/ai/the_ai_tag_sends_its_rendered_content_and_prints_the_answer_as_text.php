@@ -1,6 +1,6 @@
 <?php
 
-  // The {ai} pair renders its content first and sends what it rendered - a field's value as
+  // The {pad:ai} pair renders its content first and sends what it rendered - a field's value as
   // the text it holds, & and < as themselves, not as their HTML escapes. The answer is a value:
   // a model that answers markup or a PAD tag gets it printed as text. The key is read with
   // padEnv - here from $_ENV, as the server's environment would give it.

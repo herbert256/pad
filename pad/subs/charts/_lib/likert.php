@@ -4,8 +4,8 @@
   // bar per question, its answers in their order from left to right, centred on the zero line
   // so the negative answers lie left of it and the positive ones right of it.
   //
-  //   {chart 'likert', data='survey', label='question', value='Strongly disagree, Disagree, Neutral, Agree, Strongly agree'}
-  //   {chart 'likert', data='ratings', label='item', value='poor, fair, good, great', ranked}
+  //   {chart:likert data='survey', label='question', value='Strongly disagree, Disagree, Neutral, Agree, Strongly agree'}
+  //   {chart:likert data='ratings', label='item', value='poor, fair, good, great', ranked}
   //
   // label= names the question - else the first field that is no number; value= names the
   // fields of the answers in their order, from the most negative to the most positive - two

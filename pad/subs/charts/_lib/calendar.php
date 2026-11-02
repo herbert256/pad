@@ -2,8 +2,8 @@
 
   // A year at a glance: a square per day, a column per week, coloured by the day's value.
   //
-  //   {chart 'calendar', data='commits', date='day', value='count'}
-  //   {chart 'calendar', data='visits', year=2026}
+  //   {chart:calendar data='commits', date='day', value='count'}
+  //   {chart:calendar data='visits', year=2026}
   //
   // date= names the field with the date - anything strtotime reads, 2026-03-14 best - else
   // the first field that is no number. value= is the number - else the first numeric

@@ -1,7 +1,7 @@
 <?php
 
   // Extra column: gives each row a field named after the sequence type ($pqOrgName) holding
-  // the term as generated, before the {make}/{keep}/{remove}/{flag} plays reshaped it.
+  // the term as generated, before the {make:loop}/{keep:loop}/{remove:loop}/{pad:flag} plays reshaped it.
   // Reads $pqOrgHit, filled per accepted term by build/one.php, at the term the row is
   // ($pqRowAt); a row that is no term - an action's total - keeps the value it was given
   // under that name, else 'n/a'.

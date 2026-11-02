@@ -1,6 +1,6 @@
 <?php
 
-  // Past the depth the walk goes in a {pdf}, an element is set as the text it shows: the
+  // Past the depth the walk goes in a {pad:pdf}, an element is set as the text it shows: the
   // code of a <script> and the rules of a <style> in it stay out, as they do above that
   // depth, and a block ends its line - where its textContent wrote "alert(1).x{color:red}"
   // into the document and ran two paragraphs together as one word, "FirstSecond".

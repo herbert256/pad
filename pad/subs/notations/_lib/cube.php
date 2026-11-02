@@ -1,6 +1,6 @@
 <?php
 
-  // Cubes - the cube notation, {cube "R U R' U'"/}. A sequence of moves of a twisty cube written
+  // Cubes - the cube notation, {notation:cube "R U R' U'"/}. A sequence of moves of a twisty cube written
   // in the notation of the World Cube Association's regulations (article 12a) - U D L R F B a
   // face turned a quarter clockwise as seen from that face, ' the other way, 2 a half turn, Rw
   // or r two layers, 3Rw three, M E S the middle slice, x y z the whole cube - applied to a

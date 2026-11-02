@@ -84,17 +84,17 @@
   // inert stand-ins on the way into the page, and they are put back only when the finished
   // page is written out. A field holding {php:getcwd} prints that text instead of running
   // it. Running a value as PAD stays possible, as an explicit choice where it is written:
-  // {echo $snippet | code}. Off, the engine re-reads every value as template source, the
+  // {pad:echo $snippet | code}. Off, the engine re-reads every value as template source, the
   // way it always did.
 
   $padProtectValues = TRUE;
 
-  // The PHP functions a template may call: {php:strlen 'abc'}, {echo $x | php:strrev}, and
+  // The PHP functions a template may call: {php:strlen 'abc'}, {pad:echo $x | php:strrev}, and
   // a bare name that resolves to nothing else, {$title | ucfirst}. TRUE allows them all; a
   // list - [ 'ucfirst', 'number_format' ] - allows those names and no other; FALSE or []
   // allows none. A template author can write PHP in the page's .php file anyway, so the
   // list matters where a template runs text it did not write: an application that turns
-  // $padProtectValues off, or pipes data into {code}.
+  // $padProtectValues off, or pipes data into {pad:code}.
 
   $padPhpFunctions = TRUE;
 
@@ -107,7 +107,7 @@
   $padCheckOutput = FALSE;
 
   // Template coverage: TRUE records, for every local request, which templates it read, which
-  // of their tags ran and which branch each {if} and {case} took, as one JSON line in
+  // of their tags ran and which branch each {pad:if} and {pad:case} took, as one JSON line in
   // DATA/coverage/default.jsonl; a name instead of TRUE records into DATA/coverage/<name>.jsonl.
   // develop/?coverage shows the report and starts and stops a recording of every application
   // around a suite run. See lib/coverage.php.
@@ -169,18 +169,18 @@
   // plain GET for an anonymous visitor and answers the next one from it - 304 or the stored
   // body - before any PHP of the application runs. The ages and the backend are set in
   // config/cache.php ($padCacheServerAge must be above 0 for anything to be kept); a page
-  // under a _guard.php, one with a {nocache} part that pushes, or one that exposes data
+  // under a _guard.php, one with a {pad:nocache} part that pushes, or one that exposes data
   // is never kept.
 
   $padCache = FALSE;
 
-  // The fragment cache - {cache 'name'} ... {/cache} and the cache= option on any tag, see
+  // The fragment cache - {pad:cache 'name'} ... {/pad:cache} and the cache= option on any tag, see
   // lib/fragment.php: 'file' keeps the sections under DATA/cache/fragments/, 'apcu' in shared
   // memory, FALSE renders them every time.
 
   $padFragmentCache = 'file';
 
-  // Remote data with a cache - {curl 'url', ttl=600}, data='url' with a ttl and the <ttl>
+  // Remote data with a cache - {pad:curl 'url', ttl=600}, data='url' with a ttl and the <ttl>
   // of a _data/*.curl file, see lib/curlCache.php: 'file' keeps the copies under
   // DATA/cache/curl/, 'apcu', 'redis' or 'memcached' in that store, FALSE fetches every
   // time. $padCurlStale is how long, in seconds beyond its ttl, a copy is kept to serve
@@ -202,9 +202,9 @@
 
   $padReload = FALSE;
 
-  // {assert $total eq 42} checks its condition only when this is TRUE, and a false one is
+  // {pad:assert $total eq 42} checks its condition only when this is TRUE, and a false one is
   // an error - the test fails. pad test turns it on for its run; FALSE, the default, leaves
-  // every {assert} silent: nothing evaluated, nothing shown.
+  // every {pad:assert} silent: nothing evaluated, nothing shown.
 
   $padAssert = FALSE;
 
@@ -248,7 +248,7 @@
 
   $padFmtDate = 'Y-m-d';
 
-  // The locale - {trans}, and the trans, currency and localDate functions; see lib/locale.php.
+  // The locale - {pad:trans}, and the trans, currency and localDate functions; see lib/locale.php.
   // $padLocales lists the locales the application speaks: when it holds any, the visitor's
   // ?lang= choice (kept in the padLang cookie), or else Accept-Language, picks among them.
   // $padTimezone, when set, is the timezone the request runs in.
@@ -275,7 +275,7 @@
 
   // CSRF protection, see lib/csrf.php. TRUE: every POST (and PUT, PATCH, DELETE) must carry
   // the token of the visitor's session - in the padCsrfToken field, which is added to each
-  // <form method="post"> of the page that posts back to this site, and which {csrf} writes,
+  // <form method="post"> of the page that posts back to this site, and which {pad:csrf} writes,
   // or in an X-CSRF-Token header - or it is answered 403 before the application runs.
 
   $padCsrf = FALSE;
@@ -292,7 +292,7 @@
   // Security headers on every web response, see lib/security.php: name => value, a value
   // of '' or FALSE leaves that one out, [] sends none. A header the page's own PHP sent
   // stands. $padCsp is the Content-Security-Policy, '' none; 'nonce', quotes included, in
-  // a directive is this request's nonce, which {nonce} writes into <script nonce="...">:
+  // a directive is this request's nonce, which {pad:nonce} writes into <script nonce="...">:
   // "default-src 'self'; script-src 'self' 'nonce'; frame-ancestors 'self'".
 
   $padSecurityHeaders = [
@@ -305,7 +305,7 @@
   // The pipes every {$field} - and {#parameter} - runs through (level/var.php):
   // $padDataDefaultStart before the field's own pipes, $padDataDefaultEnd after them.
   // 'sanitize' encodes the characters HTML gives a meaning (functions/sanitize.php); {!x}
-  // skips both chains, {echo} never runs them. Emptying the end chain writes every field
+  // skips both chains, {pad:echo} never runs them. Emptying the end chain writes every field
   // raw - every value then needs its own escaping.
 
   $padDataDefaultStart = [];
@@ -335,10 +335,10 @@
   // The theme of every web page (subs/themes/): the name of a file of pad/subs/themes/types/ -
   // 'paper', 'dark', 'terminal' ... - whose colours replace the frame's, a <style> put in the
   // page's <head> on the way out (subs/themes/_lib/theme.php). '' is none. A visitor's choice
-  // from a {themes/} switcher, kept in a cookie of the application, wins over the setting -
+  // from a {pad:themes/} switcher, kept in a cookie of the application, wins over the setting -
   // on every page when the application sets one, else on the pages built on the frame
   // (www/_common/pad.css); FALSE turns themes off for the application, the visitor's choice
-  // too. {theme 'paper'/} in a template writes a theme into that page alone.
+  // too. {pad:theme 'paper'/} in a template writes a theme into that page alone.
 
   $padTheme = '';
 
@@ -373,12 +373,12 @@
   // The sitemap (tags/_lib/sitemap.php): TRUE answers ?sitemap.xml - every page of the application,
   // from the file tree - and ?robots.txt pointing to it, when the application has no page of
   // that name. $padSitemapSkip lists pages, or directories with all below them, it leaves
-  // out, e.g. [ 'admin', 'login' ]. The {sitemap} tag lists the pages whatever this says.
+  // out, e.g. [ 'admin', 'login' ]. The {pad:sitemap} tag lists the pages whatever this says.
 
   $padSitemap     = FALSE;
   $padSitemapSkip = [];
 
-  // Vite builds ({vite} - lib/vite.php): the scripts and stylesheets of an entry come from the
+  // Vite builds ({pad:vite} - lib/vite.php): the scripts and stylesheets of an entry come from the
   // manifest Vite writes into www/<app>/<$padViteBuild>/.vite/manifest.json. While the dev
   // server runs - $padViteDev names it, or the file hot in that directory holds its address -
   // they come from the dev server instead, with hot module replacement.
@@ -386,7 +386,7 @@
   $padViteBuild = 'build';
   $padViteDev   = '';
 
-  // Template emails ({mail}, padMail - lib/mail.php): 'file' writes every message as an .eml
+  // Template emails ({pad:mail}, padMail - lib/mail.php): 'file' writes every message as an .eml
   // under DATA/mail/<app>/ instead of sending it - development needs no mail server; 'mail'
   // sends through PHP's mail(); any other value names a function of the application that
   // gets the message, for SMTP through a library. $padMailFrom is the sender - empty,
@@ -419,7 +419,7 @@
 
   // Feature flags (lib/feature.php): name => TRUE, FALSE, a share between 0 and 1 of the
   // visitors (the same visitor always gets the same answer), or the name of a function
-  // that decides. padFeature ( 'name' ) and {feature 'name'} read them.
+  // that decides. padFeature ( 'name' ) and {pad:feature 'name'} read them.
 
   $padFeatures = [];
 

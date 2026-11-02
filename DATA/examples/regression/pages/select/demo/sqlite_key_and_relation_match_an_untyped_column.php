@@ -2,7 +2,7 @@
 
   // On SQLite a key bound on a select tag and the relation to the enclosing select compare
   // a number as a number: the value went in as quoted text, and a column declared without
-  // a type has no affinity, so '2' never equalled the integer 2 - {boards $id=2} found no
+  // a type has no affinity, so '2' never equalled the integer 2 - {select:boards $id=2} found no
   // board, and every board's topics came out empty. A key that only looks like a number,
   // '007', stays text.
 

@@ -4,7 +4,7 @@
   // each raised to the number of digits - 153 = 1^3 + 5^3 + 3^3 - which are 88 in all, the
   // largest of 39 digits. These are the 50 inside the integer range, found by trying every
   // multiset of digits of each length up to 19, so the list is all of them that a PHP integer
-  // holds and the index of it settles {keep narcissistic} and its friends.
+  // holds and the index of it settles {keep:narcissistic} and its friends.
 
   return [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 153, 370, 371, 407, 1634, 8208, 9474, 54748, 92727, 93084,
            548834, 1741725, 4210818, 9800817, 9926315, 24678050, 24678051, 88593477, 146511208,

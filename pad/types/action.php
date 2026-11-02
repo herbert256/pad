@@ -1,7 +1,7 @@
 <?php
 
-  // Type handler for a sequence action ({action:sum}, {mySeq:sum}): delegates to the sequence
-  // subsystem, which runs the action found in PQ/actions/types/.
+  // action:kind selects a sequence operation; action:auto reads its source from
+  // the parameters. Both use the shared sequence pipeline.
 
   return include PQ . 'start/types/action.php';
 

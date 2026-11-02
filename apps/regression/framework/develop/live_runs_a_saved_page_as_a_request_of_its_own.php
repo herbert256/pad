@@ -13,7 +13,7 @@
     'url'     => $padHost . 'live/?save',
     'cookies' => $jar,
     'options' => [ 'FOLLOWLOCATION' => FALSE ],
-    'post'    => [ 'source'       => "<p>{\$title | upper} for {echo \$who ?? 'nobody'/}</p>",
+    'post'    => [ 'source'       => "<p>{\$title | upper} for {pad:echo \$who ?? 'nobody'/}</p>",
                    'mode'         => 'php',
                    'php'          => "<?php \$title = 'fruit'; ?>",
                    'padCsrfToken' => $token ]

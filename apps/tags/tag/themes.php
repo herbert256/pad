@@ -7,8 +7,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{themes/}
-{themes label='Colours', button='Use'/}
+{pad:themes/}
+{pad:themes label='Colours', button='Use'/}
 PAD;
 
   $tagParms   = [];
@@ -18,5 +18,7 @@ PAD;
     'button' => 'The text of the button that applies the choice without JavaScript (<code>Apply</code>).' ];
 
   $tagSee     = [ 'theme', 'form' ];
+
+  $subsystemKindLinks = appSubsystemLinks ( 'theme' );
 
 ?>

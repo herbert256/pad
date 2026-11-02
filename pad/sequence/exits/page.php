@@ -5,13 +5,13 @@
   // its place in a pulled store - so the columns of a row stay those of its term.
   // inits/limits.php made the run that much longer, or whole.
   //
-  // The page, its size and the number of terms the run made are booked for a {pager} after
+  // The page, its size and the number of terms the run made are booked for a {pad:pager} after
   // the tag, as the page option books a data tag's (padPagerKeep in lib/pager.php), under the
   // names the rows answer to - the name= given, else sequence, the name of the type or the
-  // store and the tag's own - and not for {resume}, which shows nothing.
+  // store and the tag's own - and not for {pad:resume}, which shows nothing.
   //
   // The size booked is the one the run paged with, $pqPageSize, and the page the one it showed:
-  // rows= as written was booked, 10 for {prime 5, page=2}, whose page of five had a pager
+  // rows= as written was booked, 10 for {sequence:prime 5, page=2}, whose page of five had a pager
   // without a next page, and PHP's cast of a rows= past the integer range ended the page.
 
   if ( $pqPageSize === NULL )
@@ -74,7 +74,7 @@
 
   // The columns of the actions that ran before the cut (exits/extra/actions.php) are read by
   // the row's place, so they are cut as the terms are: kept for the whole run, the row showing
-  // 3 of {sequence '5;3;9;1;7;2', sort, page=2, rows=2} said sort gave 1. Those after the cut
+  // 3 of {sequence:list '5;3;9;1;7;2', sort, page=2, rows=2} said sort gave 1. Those after the cut
   // record the page already.
 
   else
@@ -85,9 +85,9 @@
     return;
 
   // The tag's own name is one of them, as the pager's docs have it, and the prefix it is
-  // written with - other than pad:, which only says the tag is the engine's: {keep '1..30',
-  // even, page=2} was booked as sequence and range only, and {pager 'keep'} after it, {pager
-  // 'pull'} after {pull 's', page=2} and {pager 'make'} after {make:square page=2} found no
+  // written with - other than pad:, which only says the tag is the engine's: {keep:range '1..30',
+  // even, page=2} was booked as sequence and range only, and {pad:pager 'keep'} after it, {pad:pager
+  // 'pull'} after {pad:pull 's', page=2} and {pad:pager 'make'} after {make:square page=2} found no
   // paged tag.
 
   $pqPageName  = $padName [$pad];

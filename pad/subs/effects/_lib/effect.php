@@ -2,17 +2,16 @@
 
   // The effects subsystem: motion and decoration on a text or a block, CSS first.
   //
-  //   {typewriter}Hello, world{/typewriter}
+  //   {effect:typewriter}Hello, world{/effect:typewriter}
   //   {effect:highlighter}the one thing to remember{/effect:highlighter}
-  //   {effect 'countup', to=1250, suffix='+'/}
-  //   {reveal motion='left'}<div class="card">...</div>{/reveal}
+  //   {effect:countup to=1250, suffix='+'/}
+  //   {effect:reveal motion='left'}<div class="card">...</div>{/effect:reveal}
   //
   // An effect is a file of subs/effects/types/ - <kind>.php reads its options and answers its
   // markup - and the files there are the effects there are (padKinds ( 'effects' ),
   // lib/subsystem.php); www/assets/effects/ holds the look of each, <kind>.css, beside the
   // base every effect shares, effect.css, and the two scripts, confetti.js and decipher.js.
-  // subs/effects/effect.php is the body the {effect} tag, the effect: type and a bare name all
-  // run.
+  // subs/effects/effect.php is the shared body of every effect:kind tag.
   //
   // What every effect keeps to:
   //
@@ -41,7 +40,7 @@
   //
   // padEffectTag      runs the file of a kind, its content - the rendered content of the pair,
   //                   or NULL for the single tag - at hand in $padEffectNow
-  // padEffectWhat     the tag as written, for what a message says: {effect:x}, {x}, {effect 'x'}
+  // padEffectWhat     the tag as written, for what a message says: {effect:x}, {data:x}, {effect:x}
   // padEffectBad      reports a mistake under the strict check
   // padEffectInt, padEffectNumber, padEffectChoice, padEffectFlag, padEffectText,
   // padEffectColor, padEffectColors, padEffectRepeat, padEffectWhen, padEffectThickness - the
@@ -85,14 +84,7 @@
 
   function padEffectWhat () {
 
-    global $pad, $padType, $padPrefix;
-
-    $kind = padEffectKind ();
-
-    if ( ( $padType [$pad] ?? '' ) == 'effect' )
-      return ( ( $padPrefix [$pad] ?? '' ) !== '' ? 'effect:' : '' ) . $kind;
-
-    return "effect '$kind'";
+    return 'effect:' . padEffectKind ();
 
   }
 
@@ -168,7 +160,7 @@
 
   }
 
-  // A bare option given or not - {countup to=90, scroll/}.
+  // A bare option given or not - {effect:countup to=90, scroll/}.
 
   function padEffectFlag ( $option ) {
 
@@ -267,8 +259,7 @@
 
   }
 
-  // The effect's own first value - the parameter of {typewriter 'Hello'/}, the second of
-  // {effect 'typewriter', 'Hello'/}, whose first names the effect - as text.
+  // The effect's first parameter, such as the text in {effect:typewriter 'Hello'/}.
 
   function padEffectValue () {
 

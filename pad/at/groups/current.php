@@ -1,7 +1,7 @@
 <?php
 
   // The current group: look the path $names up in the occurrence the level $padIdx is
-  // presently on, i.e. the row a {tag} loop has in hand. padMiss when that level has no
+  // presently on, i.e. the row a {function:tag} loop has in hand. padMiss when that level has no
   // current occurrence.
 
   global $padCurrent;

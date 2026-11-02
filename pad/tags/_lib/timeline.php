@@ -1,11 +1,11 @@
 <?php
 
-  // Events in time - the {timeline} tag. Inline SVG drawn on the server, as {chart} draws:
+  // Events in time - the {pad:timeline} tag. Inline SVG drawn on the server, as {chart:bar} draws:
   // no JavaScript, so a timeline works in print and in an e-mail.
   //
-  //   {timeline data='releases', date='when', label='what', text='detail'}
-  //   {timeline data='eras', from='begin', to='end', label='name', color='kind'}
-  //   {timeline data='history', vertical}
+  //   {pad:timeline data='releases', date='when', label='what', text='detail'}
+  //   {pad:timeline data='eras', from='begin', to='end', label='name', color='kind'}
+  //   {pad:timeline data='history', vertical}
   //
   // padTimelineDate    a date as [ moment, precision ]: a year (1969), a month (2026-10) or
   //                    anything strtotime reads
@@ -25,7 +25,7 @@
   // number of one to four digits is a year: 1969 is a year, not 1969 seconds into 1970, and
   // 0 the year 0, not the first second of 1970.
 
-  // The rows, the dates and the axis are read and drawn as {chart} does, subs/charts/_lib/chart.php.
+  // The rows, the dates and the axis are read and drawn as {chart:bar} does, subs/charts/_lib/chart.php.
 
   include_once PAD . 'subs/charts/_lib/chart.php';
 
@@ -219,7 +219,7 @@
 
   }
 
-  // The colours of the cards and the line, as {chart} writes its own.
+  // The colours of the cards and the line, as {chart:bar} writes its own.
 
   function padTimelineStyle () {
 

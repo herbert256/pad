@@ -8,8 +8,8 @@
   // screen reader without MathML says - the formula as written unless given. The style puts a
   // stroke through cancel(x).
   //
-  //   {math}x = (-b +- sqrt(b^2 - 4ac)) / (2a){/math}
-  //   {math 'sum_(i=1)^n i = (n(n+1))/2', display='block'/}
+  //   {notation:math}x = (-b +- sqrt(b^2 - 4ac)) / (2a){/notation:math}
+  //   {notation:math 'sum_(i=1)^n i = (n(n+1))/2', display='block'/}
 
   if ( trim ( $padNotationText ) === '' )
     return '';

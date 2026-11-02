@@ -4,7 +4,7 @@
   // the hash decoded again as a small PNG behind the <img> - more of the picture than a
   // BlurHash in fewer bytes, its proportion and its transparency kept.
   //
-  //   {img 'photos/harbour.jpg', width=400, filter='thumbhash', alt='The harbour'/}
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='thumbhash', alt='The harbour'/}
   //
   // The hash - some 25 bytes, in base64 in data-thumbhash for a page's own script - is of the
   // 1x picture as shown, every image filter of the list applied wherever the placeholder

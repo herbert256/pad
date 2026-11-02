@@ -1,6 +1,6 @@
 <?php
 
-  // An editable spreadsheet in a {form} (spreadsheet/form): its cells post back with the form
+  // An editable spreadsheet in a {pad:form} (spreadsheet/form): its cells post back with the form
   // and the page computes the sheet again with them - a number, a formula typed into a cell,
   // a formula that cannot be read, which shows #ERROR! in its cell and is no error of the
   // page: a visitor typed it. A cell that is not to be edited (B4, the payment) and a text

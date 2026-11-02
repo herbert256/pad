@@ -1,8 +1,8 @@
-{table}
-{demo} {sequence from=20, rows=10, push='mySequence'/} {/demo}
-{demo} {pull mySequence} {$sequence} {/pull} {/demo}
-{demo} {mySequence} {$sequence} {/mySequence} {/demo}
-{demo} {sequence from=30, rows=10/} {/demo}
-{demo} {pull} {$sequence} {/pull} {/demo}
-{demo} {default} {$sequence} {/default} {/demo}
-{/table}
+{common:table}
+{common:demo} {sequence:auto from=20, rows=10, push='mySequence'/} {/common:demo}
+{common:demo} {pad:pull mySequence} {$sequence} {/pad:pull} {/common:demo}
+{common:demo} {pull:mySequence} {$sequence} {/pull:mySequence} {/common:demo}
+{common:demo} {sequence:auto from=30, rows=10/} {/common:demo}
+{common:demo} {pad:pull} {$sequence} {/pad:pull} {/common:demo}
+{common:demo} {pull:default} {$sequence} {/pull:default} {/common:demo}
+{/common:table}

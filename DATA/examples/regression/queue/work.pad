@@ -1,15 +1,15 @@
 <p>waiting before: {$before}, after: {$after}</p>
 <p>{$counts}</p>
 <ul>
-{runs}  <li>{$job} {$status} (attempt {$attempts})</li>
-{/runs}</ul>
+{array:runs}  <li>{$job} {$status} (attempt {$attempts})</li>
+{/array:runs}</ul>
 <p>heard:</p>
 <ul>
-{queueHeard}  <li>{$queueHeard}</li>
-{/queueHeard}</ul>
+{array:queueHeard}  <li>{$queueHeard}</li>
+{/array:queueHeard}</ul>
 <p>failed:</p>
 <ul>
-{failures}  <li>{$job} after {$attempts}: {$error}</li>
-{/failures}</ul>
+{array:failures}  <li>{$job} after {$attempts}: {$error}</li>
+{/array:failures}</ul>
 <p>queues: default {$queues.default.due} due, {$queues.default.delayed} delayed; later {$queues.later.due} due</p>
 <p>retried {$retried}, ran {$againRan} of them again, {$left} waiting</p>

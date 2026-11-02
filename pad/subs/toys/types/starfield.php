@@ -5,7 +5,7 @@
   // speeds it up, and warp stretches every star into a streak. stars= how many (600 unless
   // given, 50 to 3000); speed= how fast the ship flies (4, 1 to 20); warp starts it at warp.
   //
-  //   {starfield stars=1200, warp/}
+  //   {toy:starfield stars=1200, warp/}
 
   return padToy ( 'starfield', 'Starfield', [
     'stars' => padToyInt ( 'stars', 600, 50, 3000 ),

@@ -1,7 +1,7 @@
 <?php
 
   // Template coverage: which templates a run of requests rendered, which of their tags ran,
-  // and which branch each {if} and {case} took - so a suite run can show the parts of an
+  // and which branch each {pad:if} and {pad:case} took - so a suite run can show the parts of an
   // application no test ever reaches.
   //
   // Recording is for local requests (padLocal) and is switched on in one of three ways, the
@@ -15,18 +15,18 @@
   //                                       starts and stops it around a suite run
   //
   // While a request runs, padCoverageFile notes each template it reads (padFileGet),
-  // padCoverageTag each tag that opens a level - under its text as written, {if $n eq 1} as
-  // 'if $n eq 1' - and padCoverageArm the branch an {if} or {case} took; the PHP files it
+  // padCoverageTag each tag that opens a level - under its text as written, {pad:if $n eq 1} as
+  // 'if $n eq 1' - and padCoverageArm the branch an {pad:if} or {pad:case} took; the PHP files it
   // included are read off get_included_files at the end. padCoverageWrite, called as the
   // request ends (lib/exit.php), appends it all as one JSON line to DATA/coverage/<run>.jsonl.
   // What it collects lives in a static of padCoverageStore, because a nested pass - a
-  // sandbox, a {page} - puts every pad* global back the way it found it when it is done.
+  // sandbox, a {pad:page} - puts every pad* global back the way it found it when it is done.
   //
   // The report side matches that record against the templates' own source: padCoverageItems
   // lists the tags and branches a template holds, padCoverageMark counts how often each ran,
   // padCoverageReport does so for every template a run touched, and padCoverageHtml shows a
   // template with what never ran marked. A tag is matched on its text; one with a tag inside
-  // its parameters, {echo {$x}}, was rendered with that inner tag already replaced, and is
+  // its parameters, {pad:echo {$x}}, was rendered with that inner tag already replaced, and is
   // matched with the inner part as a wildcard.
 
   function padCoverageRun () {
@@ -108,8 +108,8 @@
 
   }
 
-  // The branch an {if} or a {case} took: 'if', 'elseif <condition>', 'when <values>',
-  // 'else', or 'none' when no branch held and there was no {else} to fall to.
+  // The branch an {pad:if} or a {pad:case} took: 'if', 'elseif <condition>', 'when <values>',
+  // 'else', or 'none' when no branch held and there was no {pad:else} to fall to.
 
   function padCoverageArm ( $arm ) {
 
@@ -212,10 +212,10 @@
 
   // The tags and branches a template holds, in source order. Each item has the text as
   // written, its offset and length, its line, and either the tag key it is matched on
-  // (kind 'tag') or the {if}/{case} it belongs to and the branch it is (kind 'arm'). An
-  // {if} is its branches, the first of them 'if'; one without an {else} gets a 'none' item
-  // on its {/if}, for the run in which no branch held. Fields - {$x} and the other sigils -
-  // closing tags and comments are no items; what stands inside {ignore} is text.
+  // (kind 'tag') or the {pad:if}/{pad:case} it belongs to and the branch it is (kind 'arm'). An
+  // {pad:if} is its branches, the first of them 'if'; one without an {pad:else} gets a 'none' item
+  // on its {/pad:if}, for the run in which no branch held. Fields - {$x} and the other sigils -
+  // closing tags and comments are no items; what stands inside {pad:ignore} is text.
 
   function padCoverageItems ( $source ) {
 
@@ -251,9 +251,10 @@
 
       $name = strtolower ( preg_split ( '/[\s|]+/', $tag, 2 ) [0] );
       $key  = padCoverageKey ( $tag );
+      $name = preg_replace ( '/^(\/?)pad:/', '$1', $name );
 
       if ( $name == 'ignore' ) {
-        $close = stripos ( $source, '{/ignore', $next );
+        $close = stripos ( $source, '{/pad:ignore', $next );
         $pos   = ( $close === FALSE ) ? $len : $close;
         continue;
       }
@@ -264,8 +265,8 @@
                                             : [ 'kind' => 'tag', 'key'   => $key               ] );
       } elseif ( in_array ( $name, [ 'auth', 'guest', 'can', 'cannot', 'feature' ] ) ) {
 
-        // The condition tags own an {else} too (padElseFree, lib/template.php): one inside
-        // them is theirs, not an arm of the {if} around them - the tag is the item.
+        // The condition tags own an {pad:else} too (padElseFree, lib/template.php): one inside
+        // them is theirs, not an arm of the {pad:if} around them - the tag is the item.
 
         $stack [] = [ 'name' => $name, 'key' => $key, 'else' => TRUE ];
         $items [] = $item + [ 'kind' => 'tag', 'key' => $key ];
@@ -280,7 +281,7 @@
       } elseif ( in_array ( $name, [ 'else', 'elseif', 'when' ] ) and $stack ) {
         if ( $name == 'else' )
           $stack [ array_key_last ( $stack ) ] ['else'] = TRUE;
-        $items [] = $item + [ 'kind' => 'arm', 'owner' => end ( $stack ) ['key'], 'arm' => $key ];
+        $items [] = $item + [ 'kind' => 'arm', 'owner' => end ( $stack ) ['key'], 'arm' => preg_replace ( '/^pad:/', '', $key ) ];
       } else
         $items [] = $item + [ 'kind' => 'tag', 'key' => $key ];
 
@@ -339,7 +340,7 @@
 
   }
 
-  // The } that closes the { at $pos, by brace depth - {echo {$x}} closes at its last brace.
+  // The } that closes the { at $pos, by brace depth - {pad:echo {$x}} closes at its last brace.
 
   function padCoverageClose ( $source, $pos ) {
 
@@ -357,7 +358,7 @@
   }
 
   // How often each item ran, given what a run recorded for the file: a tag by its key, a
-  // branch under the key of its {if} or {case}.
+  // branch under the key of its {pad:if} or {pad:case}.
 
   function padCoverageMark ( $items, $tags, $arms ) {
 

@@ -16,7 +16,7 @@
 
   // The @else@ branch of an empty level - or of one the handling options emptied - renders
   // on one stand-in row too, which is no row of its data (occurrence/occurrence.php): "none:
-  // {count@orders}" said 1 under a list of none.
+  // {property:count@orders}" said 1 under a list of none.
 
   if ( $padElse [$padIdx] ?? FALSE )
     return 0;

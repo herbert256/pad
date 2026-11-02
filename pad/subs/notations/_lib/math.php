@@ -1,10 +1,10 @@
 <?php
 
-  // AsciiMath as MathML - the math notation, {math}. A formula typed the way it is said,
+  // AsciiMath as MathML - the math notation, {notation:math}. A formula typed the way it is said,
   // x^2 + y^2 = r^2, sum_(i=1)^n i, (a+b)/(c+d), drawn by the browser from MathML Core: no
   // script and no font of PAD's own, the same bytes for the same text.
   //
-  //   {math}x = (-b +- sqrt(b^2-4ac))/(2a){/math}
+  //   {notation:math}x = (-b +- sqrt(b^2-4ac))/(2a){/notation:math}
   //   {notation:math 'int_0^1 f(x) dx', block/}
   //
   // padMathMl  the <math> element of a formula
@@ -1068,7 +1068,7 @@
   }
 
   // A bar: the left of |x| when a bar closes what follows it, else a \mid - a divides sign
-  // U+2223, standing alone, as in {x | x > 0} - and the text is read again from after it.
+  // U+2223, standing alone, as in {data:x | x > 0} - and the text is read again from after it.
 
   function padMathLeftRight ( $str, $symbol, &$state ) {
 

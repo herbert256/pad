@@ -1,6 +1,6 @@
 <?php
 
-  // Siteswaps - the siteswap notation, {siteswap '531'/}. A juggling pattern written in the
+  // Siteswaps - the siteswap notation, {notation:siteswap '531'/}. A juggling pattern written in the
   // siteswap notation jugglers have used since 1985 - each throw by the number of beats until
   // it is thrown again, 3 the cascade, 531, 441, 97531 - drawn as a ladder diagram: the right
   // and the left hand as two rails along the time, every throw a line from the beat it leaves

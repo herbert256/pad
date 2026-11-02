@@ -1,6 +1,6 @@
 <?php
 
-  // Page metadata: {meta title='Monthly report', layout='_layouts/print', cache=600} in a
+  // Page metadata: {pad:meta title='Monthly report', layout='_layouts/print', cache=600} in a
   // page's own template - what a page with PHP says in its .php, said by a plain .pad or a
   // dropped-in .html.
   //
@@ -8,7 +8,7 @@
   // the PHP of _inits.php and the page itself and before the template renders, and taken
   // out of the text. What they say:
   //
-  //   layout   the page is framed by that layout, as {extends} does (lib/layout.php)
+  //   layout   the page is framed by that layout, as {pad:extends} does (lib/layout.php)
   //   cache    the page's own server-cache time in seconds, 0 or false to keep it out of
   //            the cache - in an application that has its page cache on; read from the
   //            file before anything is built (padMetaCache, from inits/cache.php), since a
@@ -23,8 +23,8 @@
 
   const padMetaEngine = [ 'layout', 'cache', 'access', 'sitemap' ];
 
-  // Takes the {meta} tags out of a page's template, evaluates their items and applies them;
-  // returns the template without them. What stands between {ignore} tags is set aside.
+  // Takes the {pad:meta} tags out of a page's template, evaluates their items and applies them;
+  // returns the template without them. What stands between {pad:ignore} tags is set aside.
 
   function padMetaBuild ( $template ) {
 
@@ -32,7 +32,7 @@
 
     $padMeta = [];
 
-    if ( ! str_contains ( (string) $template, '{meta' ) )
+    if ( ! str_contains ( (string) $template, '{pad:meta' ) )
       return $template;
 
     $masks = [];
@@ -49,7 +49,7 @@
       foreach ( padMetaItems ( $one ['parms'] ) as $name => $expr ) {
 
         if ( ! padValidVar ( $name ) ) {
-          padError ( "the {meta} name '$name' is not one a page can set" );
+          padError ( "the {pad:meta} name '$name' is not one a page can set" );
           continue;
         }
 
@@ -62,22 +62,22 @@
 
     $template = padLayoutUnmask ( $text, $masks );
 
-    // The layout is put in front of the page as an {extends} of its name, so a value that is
+    // The layout is put in front of the page as an {pad:extends} of its name, so a value that is
     // no name never gets there: a layout taken from a variable - layout=$which - held
-    // nolayout}{echo 6 * 7}{x and the tag it closed early left the rest to run as the page's
+    // nolayout}{pad:echo 6 * 7}{data:x and the tag it closed early left the rest to run as the page's
     // own template.
 
-    if ( isset ( $padMeta ['layout'] ) and (string) $padMeta ['layout'] !== '' and ! str_contains ( $text, '{extends' ) )
+    if ( isset ( $padMeta ['layout'] ) and (string) $padMeta ['layout'] !== '' and ! str_contains ( $text, '{pad:extends' ) )
       if ( preg_match ( '/^[A-Za-z0-9_\/.-]+$/D', (string) $padMeta ['layout'] ) )
-        $template = "{extends '" . $padMeta ['layout'] . "'/}" . $template;
+        $template = "{pad:extends '" . $padMeta ['layout'] . "'/}" . $template;
       elseif ( $GLOBALS ['padCheckSyntax'] )
-        padError ( "there is no layout named '" . padMakeSafe ( (string) $padMeta ['layout'], 60 ) . "' - {meta layout=} names a template from the application root" );
+        padError ( "there is no layout named '" . padMakeSafe ( (string) $padMeta ['layout'], 60 ) . "' - {pad:meta layout=} names a template from the application root" );
 
     return $template;
 
   }
 
-  // The {meta ...} tags standing directly in a text - one with its {ignore} blocks set
+  // The {pad:meta ...} tags standing directly in a text - one with its {pad:ignore} blocks set
   // aside - with their offsets and the text of their items.
 
   function padMetaFind ( $text ) {
@@ -85,16 +85,16 @@
     $found  = [];
     $offset = 0;
 
-    while ( ( $pos = padPairNext ( $text, '{meta', $offset ) ) !== FALSE ) {
+    while ( ( $pos = padPairNext ( $text, '{pad:meta', $offset ) ) !== FALSE ) {
 
-      $end = padPairTagEnd ( $text, $pos + 5 );
+      $end = padPairTagEnd ( $text, $pos + 9 );
 
       if ( $end === FALSE )
         break;
 
       if ( padPairTopLevel ( $text, $pos ) )
         $found [] = [ 'start' => $pos, 'end' => $end + 1,
-                      'parms' => rtrim ( trim ( substr ( $text, $pos + 5, $end - $pos - 5 ) ), '/' ) ];
+                      'parms' => rtrim ( trim ( substr ( $text, $pos + 9, $end - $pos - 9 ) ), '/' ) ];
 
       $offset = $end + 1;
 
@@ -104,7 +104,7 @@
 
   }
 
-  // Splits the items of a {meta} at the commas that stand outside quotes and brackets into
+  // Splits the items of a {pad:meta} at the commas that stand outside quotes and brackets into
   // name => expression. Inside quotes a backslash escapes the character after it, as the
   // expression evaluator has it: title='Herbert\'s report' ended at the escaped quote, and
   // the rest of the tag - sub='x' and every item after it - became part of the title.
@@ -159,7 +159,7 @@
       elseif ( preg_match ( '/^[A-Za-z_][A-Za-z0-9_]*$/', $part ) )
         $items [$part] = 'TRUE';
       elseif ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
-        padError ( "a {meta} item is name=value - '$part' is not" );
+        padError ( "a {pad:meta} item is name=value - '$part' is not" );
 
     }
 
@@ -167,7 +167,7 @@
 
   }
 
-  // A literal of a {meta} item read from the file - a quoted string, a number, true, false
+  // A literal of a {pad:meta} item read from the file - a quoted string, a number, true, false
   // or null - or NULL for anything that would need evaluating. A string's escapes - \' \"
   // \\ \n \r \t - are read as the expression evaluator reads them. A string is one string:
   // 'required|' . $r . '' starts and ends with a quote too, and passed for a literal - the
@@ -225,7 +225,7 @@
 
   }
 
-  // {meta cache=...} of the requested page, applied before the cache is looked in: a number
+  // {pad:meta cache=...} of the requested page, applied before the cache is looked in: a number
   // of seconds is this page's server-cache time, 0 or false keeps the page out of it. Only
   // an application that has the page cache on - it chose the store - is affected.
 

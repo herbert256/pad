@@ -16,7 +16,7 @@
 
   // A field, option, property, hex value or constant of the expression, read where the walk
   // reaches it - not in a branch a ternary does not take, nor on the right of an and, or or
-  // ?? the left side decides, which were all read first, in the order written: {echo 1 ?
+  // ?? the left side decides, which were all read first, in the order written: {pad:echo 1 ?
   // 'yes' : $missing} named the missing field, and a field read after a function that set
   // it gave its value from before. Under the strict check a field that is not there is named
   // - except one that may be missing (padEvalTreeMissing) - and one holding a list or an
@@ -303,7 +303,7 @@
   // A call: the value it works on is the one before it, or else the value piped in. A
   // built-in written as a call where nothing is piped into it - at the head of an expression
   // that is no pipe body, or as an argument of another call - reads its first argument as the
-  // value, as PHP's functions of those names read theirs: {echo upper($s)}, {if left($code,
+  // value, as PHP's functions of those names read theirs: {pad:echo upper($s)}, {pad:if left($code,
   // 2) eq 'NL'}, replace('l', upper('x')); date keeps PHP's order - the format, then the
   // moment: date('Y', 0) is 1970. A pipe - {$s | left(2)} - still hands its value in, and so
   // does an application's function, exclaim('ab') reading ab.
@@ -449,7 +449,7 @@
     if ( is_float ( $now ) and is_nan ( $now ) )
       $now = '';
 
-    // And PHP's negative zero - 0.00 * -1, 0.00 / -1 - is 0, as {sequence} writes it (pqZero
+    // And PHP's negative zero - 0.00 * -1, 0.00 / -1 - is 0, as {sequence:loop} writes it (pqZero
     // in lib/sequence.php): it went out as -0, a sign error to the reader of a balance of 0.00
     // negated.
 
@@ -502,10 +502,10 @@
     // A boolean compares as PAD writes it, TRUE as 1 and FALSE as empty, and NULL as empty:
     // the bare word true is PHP's TRUE, and 'no' eq true was true because 'no' == TRUE is.
     //
-    // A value spliced into the expression - where='$email eq {$q}', {if '{$c}' eq 'Paris, TX'}
+    // A value spliced into the expression - where='$email eq {$q}', {pad:if '{$c}' eq 'Paris, TX'}
     // - is a string of it holding its syntax characters as the stand-ins of padProtect
     // (lib/encoding.php), which only the page's exit puts back: ann@x.com never equalled the
-    // row's ann@x.com, so a where= on a request value found no row and an {if} took the other
+    // row's ann@x.com, so a where= on a request value found no row and an {pad:if} took the other
     // branch for any value with a comma, an @, a quote or an = in it. A comparison reads the
     // characters the stand-ins are; it answers a truth, so nothing of the value goes on.
 

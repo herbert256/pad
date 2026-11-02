@@ -5,7 +5,7 @@
   // kept as they stand before the page's PHP adds its own; _exits.php, which runs after it,
   // works out what the cells of an example show.
   //
-  // The overview draws no example through {page}, so this runs once a request.
+  // The overview draws no example through {pad:page}, so this runs once a request.
 
   $psSelect    = $padSelect;
   $psRelations = $padRelations;

@@ -69,6 +69,13 @@ gets an empty `<title>`):
 
 ## Directory Structure
 
+Named template tags require a type prefix, including their closing tags:
+`{pad:if $ready}Ready{pad:else}Waiting{/pad:if}` and
+`{array:items}{$name}{/array:items}`. Use `app:` for application tags and the
+subsystem's type for its tags, such as `{chart:pie .../}`. Variable and expression
+shorthand such as `{$name}` and `{!html}` stays unchanged. See the
+[tag types reference](docs/reference/TYPES.md) for the complete syntax.
+
 ```
 pad/
 ├── apps/     # A few PAD applications, including the PAD manual

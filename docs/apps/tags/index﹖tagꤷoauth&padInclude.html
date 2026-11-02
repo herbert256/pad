@@ -1,0 +1,17 @@
+
+<p><code>{pad:oauth 'github'/}</code> is the link that starts a login at GitHub, styled as a button with
+the provider's name - and its icon, when the icon set has one of its name. It goes to the page
+<code>oauth/github</code> of the application unless <code>href=</code> names another: one page,
+<code>oauth/[provider].php</code>, serves every provider - <code>padOAuthStart ( $provider )</code>
+sends the visitor off with a state, a PKCE challenge and (OpenID Connect) a nonce kept in the
+session, and on the way back <code>padOAuthUser ( $provider )</code> checks the state, exchanges the
+code, checks the id_token and answers the user for <code>padLogin</code>.</p>
+
+<p>The button reads no setting and makes no request; the page it links to needs the client id and
+secret - <code>GITHUB_CLIENT_ID</code> and <code>GITHUB_CLIENT_SECRET</code> in <code>.env</code>. An
+unknown provider is an error under the strict check.</p>
+
+
+<h3>OAuth providers</h3>
+<p>Each kind has its own description and usage example:</p>
+<p><a href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7apple.html"><code>apple</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7bitbucket.html"><code>bitbucket</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7discord.html"><code>discord</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7forgejo.html"><code>forgejo</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7github.html"><code>github</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7gitlab.html"><code>gitlab</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7google.html"><code>google</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7linkedin.html"><code>linkedin</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7microsoft.html"><code>microsoft</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7oidc.html"><code>oidc</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7slack.html"><code>slack</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7x.html"><code>x</code></a></p>

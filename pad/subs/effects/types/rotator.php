@@ -1,6 +1,6 @@
 <?php
 
-  // {rotator}teams, makers, you{/rotator} or {rotator 'fast, simple, yours'/} - one place in a
+  // {effect:rotator}teams, makers, you{/effect:rotator} or {effect:rotator 'fast, simple, yours'/} - one place in a
   // line where its phrases take turns: each stands for hold= seconds (2.5, 0.5 to 30), then
   // slides up and away for the next, round after round - repeat= rounds (3, or forever) after
   // delay= seconds - and the first stands again when they end. The phrases are the text
@@ -10,7 +10,7 @@
   // reduced motion, without the style and where a browser has no lh unit they stand there
   // just so - teams, makers, you. The copy of the first that closes a round is hidden.
   //
-  //   <h1>Built for {rotator hold=2}teams, makers, you{/rotator}</h1>
+  //   <h1>Built for {effect:rotator hold=2}teams, makers, you{/effect:rotator}</h1>
 
   $padFxSource = padEffectSource ();
   $padFxHold   = padEffectNumber ( 'hold', 2.5, 0.5, 30 );
@@ -23,12 +23,12 @@
   $padFxText = padUnprotect ( padEffectPlain ( $padFxSource ) );
 
   if ( $padFxText === '' )
-    return padEffectNeedsText ( "{rotator}teams, makers, you{/rotator} or {rotator 'fast, simple'/}" );
+    return padEffectNeedsText ( "{effect:rotator}teams, makers, you{/effect:rotator} or {effect:rotator 'fast, simple'/}" );
 
   $padFxPhrases = array_values ( array_filter ( array_map ( 'trim', explode ( ',', $padFxText ) ), fn ( $phrase ) => $phrase !== '' ) );
 
   if ( count ( $padFxPhrases ) < 2 ) {
-    padEffectBad ( "turns two phrases or more between commas, not '" . padEffectShow ( $padFxText ) . "' - {rotator}teams, makers, you{/rotator}" );
+    padEffectBad ( "turns two phrases or more between commas, not '" . padEffectShow ( $padFxText ) . "' - {effect:rotator}teams, makers, you{/effect:rotator}" );
     return padEffectEscape ( $padFxText );
   }
 

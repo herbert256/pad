@@ -1,4 +1,4 @@
-{meta title='Expressions'/}
+{pad:meta title='Expressions'/}
 
 <p>An expression is the part of a tag that works out a value: <code>1 + 2</code>,
 <code>$price * $qty</code>, <code>$name | upper</code>, <code>$state in ('open',
@@ -8,24 +8,24 @@ is live, its template beside what PAD made of it.</p>
 
 <h2>Where expressions stand</h2>
 
-<p>An expression is read wherever a tag takes a value: the parameter of {tag 'echo'/} and of
-<code>{open/}if{close/}</code> and <code>{open/}elseif{close/}</code>, the right side of
-<code>{open/}set $x = .../{close/}</code>, the value of <code>{open/}case{close/}</code> and its
-<code>{open/}when{close/}</code>s, the condition of <code>{open/}while{close/}</code> and
-<code>{open/}until{close/}</code>, a quoted option such as <code>where='...'</code>, and an
+<p>An expression is read wherever a tag takes a value: the parameter of {app:tag 'echo'/} and of
+<code>{pad:open/}pad:if{pad:close/}</code> and <code>{pad:open/}pad:elseif{pad:close/}</code>, the right side of
+<code>{pad:open/}pad:set $x = .../{pad:close/}</code>, the value of <code>{pad:open/}pad:case{pad:close/}</code> and its
+<code>{pad:open/}pad:when{pad:close/}</code>s, the condition of <code>{pad:open/}pad:while{pad:close/}</code> and
+<code>{pad:open/}pad:until{pad:close/}</code>, a quoted option such as <code>where='...'</code>, and an
 occurrence assignment <code>%name = ...</code> on a tag that loops:</p>
 
-{example 'fragments/expressions_1'/}
+{common:example 'fragments/expressions_1'/}
 
-{example 'fragments/expressions_2'/}
+{common:example 'fragments/expressions_2'/}
 
-{example 'fragments/expressions_3'/}
+{common:example 'fragments/expressions_3'/}
 
-<p>A field tag takes a pipe as it stands - <code>{open/}$name | trim{close/}</code> - and so
+<p>A field tag takes a pipe as it stands - <code>{pad:open/}$name | trim{pad:close/}</code> - and so
 does the closing tag of a pair, over everything the pair rendered. The
 <a href="?pages/pipes">pipes</a> page has the opening and closing tag pipes in full:</p>
 
-{example 'fragments/expressions_4'/}
+{common:example 'fragments/expressions_4'/}
 
 <h2>Values</h2>
 
@@ -36,7 +36,7 @@ exponents (<code>1e3</code>, <code>2.5E-1</code>). A minus before a number belon
 <code>0x</code> followed by hexadecimal digits is not a number but a string of bytes:
 <code>0x41</code> is the letter A.</p>
 
-{example 'fragments/expressions_5'/}
+{common:example 'fragments/expressions_5'/}
 
 <h3>Strings</h3>
 
@@ -46,7 +46,7 @@ escape - <code>\n</code>, <code>\r</code>, <code>\t</code>, <code>\\</code>,
 <code>\'</code> and <code>\"</code>; any other letter after it is an error. The dot joins
 strings, and numbers with them:</p>
 
-{example 'fragments/expressions_6'/}
+{common:example 'fragments/expressions_6'/}
 
 <h3>Bare words</h3>
 
@@ -55,27 +55,27 @@ strings, and numbers with them:</p>
 <code>TRUE</code>, <code>FALSE</code>, <code>NULL</code>, <code>PHP_EOL</code>,
 <code>M_PI</code> - is its value; a word that names nothing stands for its own text.</p>
 
-{example 'fragments/expressions_7'/}
+{common:example 'fragments/expressions_7'/}
 
 <p><b>Quote text.</b> A bare word that names something PAD knows - a function, a tag, a
 property, a data set, a field - is that thing: <code>count</code>, <code>name</code> and
 <code>first</code> are <a href="?pages/properties">properties</a>, so
-<code>{open/}echo count/{close/}</code> does not write the word count. Text in quotes is always
+<code>{pad:open/}pad:echo count/{pad:close/}</code> does not write the word count. Text in quotes is always
 text.</p>
 
 <h3>Fields, paths and indirection</h3>
 
 <p><code>$name</code> reads a field: a variable the page's PHP set, one a
-<code>{open/}set{close/}</code> made, a field of the row a loop stands on. A dot walks into an
+<code>{pad:open/}pad:set{pad:close/}</code> made, a field of the row a loop stands on. A dot walks into an
 array - <code>$user.address.city</code>, and <code>$items.0</code> by position.</p>
 
-{example 'fragments/expressions_8'/}
+{common:example 'fragments/expressions_8'/}
 
 <p><code>$$name</code> reads the field whose name another field holds - a path as well - the
-way <code>{open/}$$name{close/}</code> does as a tag. The name must be one of the application's
+way <code>{pad:open/}$$name{pad:close/}</code> does as a tag. The name must be one of the application's
 fields; the engine's own <code>pad...</code> variables are never read this way.</p>
 
-{example 'fragments/expressions_9'/}
+{common:example 'fragments/expressions_9'/}
 
 <p>A field that holds a list is not a value: <code>$items + 1</code> is an error. Walk the
 list with a loop, or hand it to a function with the <code>array:</code> prefix, below.</p>
@@ -84,7 +84,7 @@ list with a loop, or hand it to a function with the <code>array:</code> prefix, 
 
 <ul>
   <li><code>&#35;name</code> - a parameter or option of the tag; in a
-  <code>{open/}define{close/}</code> or a custom tag, the ones the tag was called with</li>
+  <code>{pad:open/}pad:define{pad:close/}</code> or a custom tag, the ones the tag was called with</li>
   <li><code>&amp;name</code> - a property of the tag, <code>name@tag</code> a property of the
   tag named - <code>first@items</code>, <code>current@items</code>, <code>count@items</code>
   (see <a href="?pages/properties">properties</a>)</li>
@@ -92,27 +92,27 @@ list with a loop, or hand it to a function with the <code>array:</code> prefix, 
   <a href="#pipes">pipes</a> below)</li>
 </ul>
 
-{example 'fragments/expressions_10'/}
+{common:example 'fragments/expressions_10'/}
 
 <h3>Lists</h3>
 
 <p><code>[ ]</code> makes a list, its items separated by commas, with keys written
 <code>key =&gt; value</code> where wanted, mixed with plain items as PHP mixes them. A list is
-what <code>{open/}set{close/}</code> stores, what a loop walks and what a PHP function
+what <code>{pad:open/}pad:set{pad:close/}</code> stores, what a loop walks and what a PHP function
 takes:</p>
 
-{example 'fragments/expressions_11'/}
+{common:example 'fragments/expressions_11'/}
 
 <h3>Type prefixes</h3>
 
 <p>A prefix says what a name is, so nothing else of that name can be meant:
 <code>field:</code>, <code>array:</code> (a list as a value), <code>data:</code> (a
-<code>{open/}data{close/}</code> set), <code>constant:</code>, <code>php:</code> (a PHP
+<code>{pad:open/}pad:data{pad:close/}</code> set), <code>constant:</code>, <code>php:</code> (a PHP
 function), <code>pad:</code> and <code>app:</code> (a built-in or an application pipe
 function), <code>function:</code>, <code>tag:</code> and the others the
 <a href="?pages/prefix">prefix</a> page lists:</p>
 
-{example 'fragments/expressions_12'/}
+{common:example 'fragments/expressions_12'/}
 
 <h2>Operators</h2>
 
@@ -147,11 +147,11 @@ right to left. Round brackets group as usual.</p>
 works on whole numbers. A text that is a number counts as one - <code>'5' + '5'</code> is 10 -
 a text that is not, <code>'a' + 1</code>, is an error, and so is a division by zero.</p>
 
-{example 'fragments/expressions_13'/}
+{common:example 'fragments/expressions_13'/}
 
 <h3>Precedence</h3>
 
-{example 'fragments/expressions_14'/}
+{common:example 'fragments/expressions_14'/}
 
 <h3>Joining text</h3>
 
@@ -160,7 +160,7 @@ sum comes first and is then joined with the 3, and in <code>1 . 5 + 5</code> the
 with 10. After a value a dot is the join, also right against it - <code>'a'.1</code> - and
 only where no value stands before it does a dot start a number.</p>
 
-{example 'fragments/expressions_15'/}
+{common:example 'fragments/expressions_15'/}
 
 <h3>Comparing</h3>
 
@@ -172,7 +172,7 @@ template full of HTML. Numbers, and texts that are numbers, compare as numbers -
 PHP's <code>===</code> and <code>!==</code> are not there. A comparison answers
 <code>1</code> or nothing:</p>
 
-{example 'fragments/expressions_16'/}
+{common:example 'fragments/expressions_16'/}
 
 <h3>Logic</h3>
 
@@ -183,7 +183,7 @@ comparison; <code>!</code> binds as tightly as a sign, so <code>!$a eq $b</code>
 <code>!$a</code> with <code>$b</code>. <code>and</code> and <code>or</code> stop at a left
 side that decides: <code>$n gt 0 and 10 / $n gt 1</code> never divides by zero.</p>
 
-{example 'fragments/expressions_17'/}
+{common:example 'fragments/expressions_17'/}
 
 <h3>A default: ??</h3>
 
@@ -194,7 +194,7 @@ giving it a default is what the operator is for. The right side is worked out on
 is wanted. In a pipe it takes the piped value, and the <code>default</code> function does
 the same:</p>
 
-{example 'fragments/expressions_18'/}
+{common:example 'fragments/expressions_18'/}
 
 <h3>The inline ternary</h3>
 
@@ -206,25 +206,25 @@ being <code>a ? b : (c ? d : e)</code>. The short form <code>a ?: b</code> answe
 <code>a</code> itself when it holds, and with nothing before the <code>?</code> the piped
 value is the condition:</p>
 
-{example 'fragments/expressions_19'/}
+{common:example 'fragments/expressions_19'/}
 
-{example 'fragments/expressions_20'/}
+{common:example 'fragments/expressions_20'/}
 
 <h2>Truth</h2>
 
-<p>Where a condition is wanted - <code>{open/}if{close/}</code>, <code>where=</code>, the
+<p>Where a condition is wanted - <code>{pad:open/}pad:if{pad:close/}</code>, <code>where=</code>, the
 ternary, <code>and</code> and <code>or</code> - a value is tested as PHP tests it:
 <code>''</code>, <code>'0'</code>, 0, NULL, FALSE and an empty list are false, every other
 value is true - the texts <code>'0.0'</code>, <code>'false'</code> and a space among
 them.</p>
 
-{example 'fragments/expressions_21'/}
+{common:example 'fragments/expressions_21'/}
 
 <p>The comparisons, the tests and the logic operators answer <code>1</code> for true and
-<code>''</code> for false: written by {tag 'echo'/} a truth is a 1 or nothing at all, and truths
+<code>''</code> for false: written by {app:tag 'echo'/} a truth is a 1 or nothing at all, and truths
 add up as numbers.</p>
 
-{example 'fragments/expressions_22'/}
+{common:example 'fragments/expressions_22'/}
 
 <h2 id="tests">Tests: in, like, matches, range, between, contains</h2>
 
@@ -243,48 +243,48 @@ add up as numbers.</p>
 <code>not range</code>. The value is everything left of the test - <code>5 + 1 in (6,
 7)</code> tests 6.</p>
 
-{example 'fragments/expressions_23'/}
+{common:example 'fragments/expressions_23'/}
 
 <p><code>like</code> ignores case; <code>_</code> stands for exactly one character:</p>
 
-{example 'fragments/expressions_24'/}
+{common:example 'fragments/expressions_24'/}
 
 <p>A backslash in a PAD string is an escape, so the backslash a regular expression needs is
-written twice: <code>'/a\\.b/'</code>. A <code>{open/}n{close/}</code> quantifier would open a
+written twice: <code>'/a\\.b/'</code>. A <code>{pad:open/}n{pad:close/}</code> quantifier would open a
 tag - repeat the class, as below, or let the page's PHP hand the pattern over.</p>
 
-{example 'fragments/expressions_25'/}
+{common:example 'fragments/expressions_25'/}
 
-{example 'fragments/expressions_26'/}
+{common:example 'fragments/expressions_26'/}
 
 <p><code>contains</code> looks into a text, or into a list for an item equal to the one asked
 for:</p>
 
-{example 'fragments/expressions_27'/}
+{common:example 'fragments/expressions_27'/}
 
 <p>Each test is a pipe function too, so it can stand after a pipe or be called, its value the
 first argument:</p>
 
-{example 'fragments/expressions_28'/}
+{common:example 'fragments/expressions_28'/}
 
 <p>Together with <code>and</code> and <code>or</code> they make the conditions of the
 <code>where</code> option, which the <a href="?pages/data_handling">data handling</a> page
 covers with the other options:</p>
 
-{example 'fragments/expressions_29'/}
+{common:example 'fragments/expressions_29'/}
 
 <h2>Functions</h2>
 
 <p>The built-in pipe functions - <code>upper</code>, <code>left</code>, <code>replace</code>,
-<code>date</code> and the rest of the {tag 'functions'/} list - are used two ways. After a pipe
+<code>date</code> and the rest of the {app:tag 'functions'/} list - are used two ways. After a pipe
 they take the value on its left: <code>$s | left(2)</code>. Written as a call with nothing
 piped in they take it as their first argument: <code>left($s, 2)</code>, as PHP's own
 functions do - so they nest, and stand wherever a value can. The number of parameters is
 checked.</p>
 
-{example 'fragments/expressions_30'/}
+{common:example 'fragments/expressions_30'/}
 
-{example 'fragments/expressions_31'/}
+{common:example 'fragments/expressions_31'/}
 
 <p><code>php:name</code> calls a PHP function, and so does a plain name followed by
 <code>(</code> that is no PAD function - <code>ucfirst('word')</code>; the setting
@@ -292,54 +292,54 @@ checked.</p>
 goes in as the only argument - <code>'abc' | php:strrev</code> - and into a call with
 arguments where <code>@</code> stands: <code>$n | php:number_format(@, 2)</code>.</p>
 
-{example 'fragments/expressions_32'/}
+{common:example 'fragments/expressions_32'/}
 
 <p>A file in the application's <code>_functions/</code> directory is a pipe function as well,
 the piped value its <code>$value</code> - this manual has <code>_functions/stars.php</code>.
 <code>function:</code> asks for whatever function kind the name is, <code>app:</code> for the
 application's own (see <a href="?pages/extending">extending</a>):</p>
 
-{example 'fragments/expressions_33'/}
+{common:example 'fragments/expressions_33'/}
 
 <h2 id="pipes">Pipes</h2>
 
 <p>A <code>|</code> hands the value on its left to what follows; the parts run left to right,
 each over what the one before answered:</p>
 
-{example 'fragments/expressions_34'/}
+{common:example 'fragments/expressions_34'/}
 
 <p>A part after a pipe is an expression of its own, and the piped value fills the place of
 the operand it lacks. An operator that opens the part takes it as its left side -
 <code>| + 1</code>, <code>| . ' EUR'</code>, <code>| ?? 'none'</code>. A space between such an
 operator and its operand is required: <code>| + 1</code>, never <code>| +1</code>.</p>
 
-{example 'fragments/expressions_35'/}
+{common:example 'fragments/expressions_35'/}
 
-{example 'fragments/expressions_36'/}
+{common:example 'fragments/expressions_36'/}
 
 <p><code>@</code> stands for the piped value wherever the part needs it, as often as it
 needs it:</p>
 
-{example 'fragments/expressions_37'/}
+{common:example 'fragments/expressions_37'/}
 
 <p>A part that is a printf format - it starts with <code>%</code> and is one conversion -
 formats the value as PHP's <code>sprintf</code> does. A <code>%</code> that is no format is
 the remainder: <code>| % 3</code>.</p>
 
-{example 'fragments/expressions_38'/}
+{common:example 'fragments/expressions_38'/}
 
 <p>A pipe inside round or square brackets belongs to that group: <code>($n | + 1) * 2</code>
 adds before it multiplies, <code>upper($s | trim)</code> trims the argument, and in a list or
 an argument list the pipe works on its own item. Outside brackets a pipe always ends the
 whole expression before it.</p>
 
-{example 'fragments/expressions_39'/}
+{common:example 'fragments/expressions_39'/}
 
-<p>A field tag with a pipe, <code>{open/}$x | upper{close/}</code>, writes its answer through
-the sanitize chain, like every field tag. {tag 'echo'/} writes it raw - the right one for HTML
+<p>A field tag with a pipe, <code>{pad:open/}$x | upper{pad:close/}</code>, writes its answer through
+the sanitize chain, like every field tag. {app:tag 'echo'/} writes it raw - the right one for HTML
 the page made itself, the wrong one for what a visitor typed:</p>
 
-{example 'fragments/expressions_40'/}
+{common:example 'fragments/expressions_40'/}
 
 <h2>Dates</h2>
 
@@ -350,7 +350,7 @@ the page's PHP made; the modifier is what PHP's <code>strtotime</code> reads, su
 plain text. <code>now</code> is the current time, and the
 <a href="?pages/locale">locale</a> page has <code>localDate</code>:</p>
 
-{example 'fragments/expressions_41'/}
+{common:example 'fragments/expressions_41'/}
 
 <h2>Lists meeting operators</h2>
 
@@ -358,9 +358,9 @@ plain text. <code>now</code> is the current time, and the
 numbers. A list holding more than numbers, or met by the dot, is an error. A field that holds
 a list is handed over with the <code>array:</code> prefix:</p>
 
-{example 'fragments/expressions_42'/}
+{common:example 'fragments/expressions_42'/}
 
-{example 'fragments/expressions_43'/}
+{common:example 'fragments/expressions_43'/}
 
 <h2>Numbers at the edges</h2>
 
@@ -368,7 +368,7 @@ a list is handed over with the <code>array:</code> prefix:</p>
 works on whole numbers, as PHP's does; <code>php:fmod</code> keeps the fraction. Decimals are
 written with PHP's precision, so <code>0.1 + 0.2</code> comes out as 0.3:</p>
 
-{example 'fragments/expressions_44'/}
+{common:example 'fragments/expressions_44'/}
 
 <h2>Values are text</h2>
 
@@ -377,7 +377,7 @@ holds braces - from a database, a form, a file - is written as the text it is. T
 PAD on purpose, say so where it is used, with the <code>code</code> pipe (or
 <code>sandbox</code>, which runs it in an isolated pass):</p>
 
-{example 'fragments/expressions_45'/}
+{common:example 'fragments/expressions_45'/}
 
 <h2>When an expression is wrong</h2>
 
@@ -389,25 +389,25 @@ some mistakes are told:</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
   <tr style="background: #f0f0f0;"><th>written</th><th>the error says</th></tr>
-  <tr><td><code>{open/}echo (1 + 2/{close/}</code></td><td>the ( opened at position 1 is never closed</td></tr>
-  <tr><td><code>{open/}echo 'abc/{close/}</code></td><td>the string opened with ' at position 1 is never closed</td></tr>
-  <tr><td><code>{open/}echo $name | uppr/{close/}</code></td><td>there is no pipe function named 'uppr'</td></tr>
-  <tr><td><code>{open/}echo nofunc(1)/{close/}</code></td><td>there is no function named 'nofunc'</td></tr>
-  <tr><td><code>{open/}if $typo eq 1{close/}</code></td><td>there is no field named '$typo'</td></tr>
-  <tr><td><code>{open/}echo $items + 1/{close/}</code></td><td>the field '$items' is a list, not a value</td></tr>
-  <tr><td><code>{open/}if $n eq{close/}</code></td><td>the operator 'eq' has nothing on its right</td></tr>
-  <tr><td><code>{open/}echo $n + * 3/{close/}</code></td><td>the operators '+' and '*' stand side by side - a value is missing between them</td></tr>
-  <tr><td><code>{open/}if $n === 5{close/}</code></td><td>'===' is no operator - eq (==) compares two values</td></tr>
-  <tr><td><code>{open/}echo $n | +1/{close/}</code></td><td>a pipe operator needs a space before its operand - write '| + 1', not '| +1'</td></tr>
-  <tr><td><code>{open/}echo 5 &amp; 3/{close/}</code></td><td>'&amp;' is no operator or value</td></tr>
-  <tr><td><code>{open/}if $n not 5{close/}</code></td><td>a 'not' after a value denies a test - write $a not in (...), not like, not matches or not range, or put it in front: not $a eq $b</td></tr>
-  <tr><td><code>{open/}echo 7 / 0/{close/}</code></td><td>a division by zero in /</td></tr>
-  <tr><td><code>{open/}echo 'a' * 2/{close/}</code></td><td>'a' is not a number for *</td></tr>
-  <tr><td><code>{open/}echo $n ? 'a'/{close/}</code></td><td>the ? of an inline ternary has no : - write cond ? then : else</td></tr>
-  <tr><td><code>{open/}echo [ 'a' =&gt; ]/{close/}</code></td><td>the key 'a' of a list has no value after its =&gt;</td></tr>
-  <tr><td><code>{open/}echo replace('abc')/{close/}</code></td><td>the function 'replace' wants 2 parameters after the value it works on - written as a call its first argument is that value: replace($value, ...)</td></tr>
-  <tr><td><code>{open/}echo php:str_repeat('x', -1)/{close/}</code></td><td>the PHP function 'str_repeat' refused its arguments: str_repeat(): Argument #2 ($times) must be greater than or equal to 0</td></tr>
-  <tr><td><code>{open/}echo 'a\qb'/{close/}</code></td><td>Unsupported \ char</td></tr>
+  <tr><td><code>{pad:open/}pad:echo (1 + 2/{pad:close/}</code></td><td>the ( opened at position 1 is never closed</td></tr>
+  <tr><td><code>{pad:open/}pad:echo 'abc/{pad:close/}</code></td><td>the string opened with ' at position 1 is never closed</td></tr>
+  <tr><td><code>{pad:open/}pad:echo $name | uppr/{pad:close/}</code></td><td>there is no pipe function named 'uppr'</td></tr>
+  <tr><td><code>{pad:open/}pad:echo nofunc(1)/{pad:close/}</code></td><td>there is no function named 'nofunc'</td></tr>
+  <tr><td><code>{pad:open/}pad:if $typo eq 1{pad:close/}</code></td><td>there is no field named '$typo'</td></tr>
+  <tr><td><code>{pad:open/}pad:echo $items + 1/{pad:close/}</code></td><td>the field '$items' is a list, not a value</td></tr>
+  <tr><td><code>{pad:open/}pad:if $n eq{pad:close/}</code></td><td>the operator 'eq' has nothing on its right</td></tr>
+  <tr><td><code>{pad:open/}pad:echo $n + * 3/{pad:close/}</code></td><td>the operators '+' and '*' stand side by side - a value is missing between them</td></tr>
+  <tr><td><code>{pad:open/}pad:if $n === 5{pad:close/}</code></td><td>'===' is no operator - eq (==) compares two values</td></tr>
+  <tr><td><code>{pad:open/}pad:echo $n | +1/{pad:close/}</code></td><td>a pipe operator needs a space before its operand - write '| + 1', not '| +1'</td></tr>
+  <tr><td><code>{pad:open/}pad:echo 5 &amp; 3/{pad:close/}</code></td><td>'&amp;' is no operator or value</td></tr>
+  <tr><td><code>{pad:open/}pad:if $n not 5{pad:close/}</code></td><td>a 'not' after a value denies a test - write $a not in (...), not like, not matches or not range, or put it in front: not $a eq $b</td></tr>
+  <tr><td><code>{pad:open/}pad:echo 7 / 0/{pad:close/}</code></td><td>a division by zero in /</td></tr>
+  <tr><td><code>{pad:open/}pad:echo 'a' * 2/{pad:close/}</code></td><td>'a' is not a number for *</td></tr>
+  <tr><td><code>{pad:open/}pad:echo $n ? 'a'/{pad:close/}</code></td><td>the ? of an inline ternary has no : - write cond ? then : else</td></tr>
+  <tr><td><code>{pad:open/}pad:echo [ 'a' =&gt; ]/{pad:close/}</code></td><td>the key 'a' of a list has no value after its =&gt;</td></tr>
+  <tr><td><code>{pad:open/}pad:echo replace('abc')/{pad:close/}</code></td><td>the function 'replace' wants 2 parameters after the value it works on - written as a call its first argument is that value: replace($value, ...)</td></tr>
+  <tr><td><code>{pad:open/}pad:echo php:str_repeat('x', -1)/{pad:close/}</code></td><td>the PHP function 'str_repeat' refused its arguments: str_repeat(): Argument #2 ($times) must be greater than or equal to 0</td></tr>
+  <tr><td><code>{pad:open/}pad:echo 'a\qb'/{pad:close/}</code></td><td>Unsupported \ char</td></tr>
 </table>
 
 <h2>The lenient walk</h2>
@@ -423,10 +423,10 @@ typo the lenient walk hides.</p>
 <h2>See also</h2>
 
 <ul>
-  <li><a href="?pages/conditions">Conditions and branching</a> - <code>{open/}if{close/}</code>, <code>{open/}case{close/}</code> and the ternary in templates</li>
+  <li><a href="?pages/conditions">Conditions and branching</a> - <code>{pad:open/}pad:if{pad:close/}</code>, <code>{pad:open/}pad:case{pad:close/}</code> and the ternary in templates</li>
   <li><a href="?pages/pipes">Pipes</a> - pipes on tags, opening and closing</li>
   <li><a href="?pages/properties">Properties</a> - <code>first@items</code> and the others</li>
   <li><a href="?pages/prefix">Prefix</a> - the type prefixes</li>
-  <li><a href="?pages/field_sigils">Field sigils</a> - <code>{open/}!name{close/}</code>, <code>{open/}^name{close/}</code> and the rest</li>
+  <li><a href="?pages/field_sigils">Field sigils</a> - <code>{pad:open/}!name{pad:close/}</code>, <code>{pad:open/}^name{pad:close/}</code> and the rest</li>
   <li><a href="?pages/level_and_occurrence_variables">Level and occurrence variables</a> - <code>$</code> and <code>%</code></li>
 </ul>

@@ -5,23 +5,22 @@
   // the browser draws the same SVG instead, from the rows and options the server hands it
   // (client.php, and www/assets/charts/ the drawing written again in JavaScript).
   //
-  //   {chart 'bar', data='sales', label='month', value='amount'/}
+  //   {chart:bar data='sales', label='month', value='amount'/}
   //   {chart:line data='visits', value='count', title='Visits per day'/}
-  //   {gauge value=72, unit='%'/}
-  //   {sparkline sequence='fibonacci', rows=12/}
+  //   {chart:gauge value=72, unit='%'/}
+  //   {chart:sparkline sequence='fibonacci', rows=12/}
   //
   // A chart kind is a file of subs/charts/types/: the kinds there are are the kinds a chart has
-  // (padChartTypes, lib/chart.php), the {chart} tag names one by its parameter, the chart:
-  // type by its name - {chart:pie}, or bare, {pie}, when nothing else has the name - and
-  // {sparkline} is the sparkline. subs/charts/chart.php is the body all three run; a kind's file
+  // (padChartTypes, lib/chart.php). The name after the colon selects it: {chart:pie} or
+  // {chart:sparkline}. subs/charts/chart.php is the shared body; a kind's file
   // reads the rows with padChartGather, its size with padChartSize - its own default size -
   // and answers the SVG, drawn by the functions of this directory.
   //
-  //   padChartRows       the rows behind a chart: a {data} store or a sequence store by name,
+  //   padChartRows       the rows behind a chart: a {pad:data} store or a sequence store by name,
   //                      the page's own array of that name, a _data file, or the data=
   //                      literal the data option already read - or the first rows terms of a
-  //                      sequence, or the content of a pair, {chart 'bar'}...{/chart}, read
-  //                      as {data} reads its own: JSON, YAML, XML or CSV, told apart on sight
+  //                      sequence, or the content of a pair, {chart:bar}...{/chart:bar}, read
+  //                      as {pad:data} reads its own: JSON, YAML, XML or CSV, told apart on sight
   //                      (type= names it)
   //   padChartPoints     the rows as [ label, value ] points: value= names the field (else
   //                      the first numeric one), label= the field for the axis (else the
@@ -33,7 +32,7 @@
   // The other files of this directory draw the other kinds - scatter.php scatter and bubble,
   // hierarchy.php treemap and sunburst, and so on - and the parts they share: the opening,
   // the style and the number format. They are all included with this file, which is included
-  // when a page draws a chart; {map}, {timeline}, {datatable}, {calendar} and {diagram}, that
+  // when a page draws a chart; {pad:map}, {pad:timeline}, {pad:datatable}, {pad:calendar} and {diagram:auto}, that
   // draw with its parts, include it themselves. padChartAttr and padChartDedent, which tags
   // that draw no chart use as well, are in lib/chart.php, loaded on every request.
   //
@@ -76,7 +75,7 @@
 
     if ( ! isset ( $padPrm [$pad] ['data'] ) ) {
       if ( $padCheckSyntax )
-        padError ( "the $what has no data - data='name', sequence='name' or the data between {" . $what . "} and {/$what}" );
+        padError ( "the $what has no data - data='name', sequence='name' or the data between {" . padTagDisplay () . "} and {/" . padTagDisplay () . "}" );
       return [];
     }
 
@@ -206,8 +205,8 @@
 
   }
 
-  // The tag the chart is written as, for what a message says: {sparkline}, {chart}, and
-  // {chart:bar} or {bar} for the chart type.
+  // The tag the chart is written as, for what a message says: {chart:sparkline}, {chart:bar}, and
+  // {chart:bar} or {chart:bar} for the chart type.
 
   function padChartWhat () {
 
@@ -531,7 +530,7 @@
   // it. The ids are made from the chart itself, so two charts on a page do not share a
   // title: a count per request gave a chart served from the fragment cache and a chart
   // rendered next to it the same pad-chart-1, and so did the charts of two nested passes -
-  // two {example}s - each counting from one again. The same chart drawn twice in a request
+  // two {common:example}s - each counting from one again. The same chart drawn twice in a request
   // is told apart by a number behind the second, kept in a static for the nested passes.
 
   function padChartOpen ( $kind, $hash, $desc, $title, $width, $height, $more = TRUE ) {
@@ -555,7 +554,7 @@
   // The id of a chart, made from what it draws - and, for a chart drawn in the browser
   // (client.php), from its rows and its options.
   //
-  // Inside a {cache} section that is rendering to be kept, the section's key is part of the
+  // Inside a {pad:cache} section that is rendering to be kept, the section's key is part of the
   // id too: kept, the chart came back on a later request beside the same chart drawn then,
   // and the two had one id - as padWidgetId has it for the widgets.
 

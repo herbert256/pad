@@ -1,3 +1,3 @@
-{aztec 'Code 2D!', size=76/}
-{barcode 'Hello, World!', type='aztec', size=92, ecc=50/}
-{barcode:aztec php:str_repeat('7', 1500), size=600 | php:md5(@)/} {aztec php:str_repeat('7', 1500), size=600 | php:substr_count(@, 'viewBox="0 0 99 99"')/}
+{barcode:aztec 'Code 2D!', size=76/}
+{barcode:aztec 'Hello, World!', size=92, ecc=50/}
+{barcode:aztec php:str_repeat('7', 1500), size=600 | php:md5(@)/} {barcode:aztec php:str_repeat('7', 1500), size=600 | php:substr_count(@, 'viewBox="0 0 99 99"')/}

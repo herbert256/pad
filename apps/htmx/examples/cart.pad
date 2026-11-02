@@ -1,22 +1,22 @@
 <div class="shop">
   <div id="shelf" class="grid shelf">
-  {products}
-  {fragment 'item'}
+  {array:products}
+  {pad:fragment 'item'}
     <div class="card item" id="item-{$id}">
-      <div class="item-top"><span class="item-emoji">{$emoji}</span>{if $inCart}<span class="badge is-accent">{$inCart} in cart</span>{/if}</div>
+      <div class="item-top"><span class="item-emoji">{$emoji}</span>{pad:if $inCart}<span class="badge is-accent">{$inCart} in cart</span>{/pad:if}</div>
       <strong>{$name}</strong>
-      <div class="muted small">{$price | currency('EUR')} &middot; {if $stock}{$stock} in stock{else}sold out{/if}</div>
+      <div class="muted small">{$price | currency('EUR')} &middot; {pad:if $stock}{$stock} in stock{pad:else}sold out{/pad:if}</div>
       <div class="item-buttons">
         <button class="btn-sm" hx-post="?examples/cart&id={$id}&op=add&padFragment=item" hx-target="#item-{$id}" hx-swap="outerHTML">+ Add</button>
-        {if $inCart}<button class="btn-sm btn-ghost" hx-post="?examples/cart&id={$id}&op=remove&padFragment=item" hx-target="#item-{$id}" hx-swap="outerHTML">−</button>{/if}
+        {pad:if $inCart}<button class="btn-sm btn-ghost" hx-post="?examples/cart&id={$id}&op=remove&padFragment=item" hx-target="#item-{$id}" hx-swap="outerHTML">−</button>{/pad:if}
       </div>
     </div>
-    {if $posted}
+    {pad:if $posted}
       <span id="cart-count" hx-swap-oob="true">{$cartCount}</span>
-      {cartSummary/}
-    {/if}
-  {/fragment}
-  {/products}
+      {include:cartSummary/}
+    {/pad:if}
+  {/pad:fragment}
+  {/array:products}
   </div>
-  {cartSummary/}
+  {include:cartSummary/}
 </div>

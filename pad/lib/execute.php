@@ -12,7 +12,7 @@
   //                   name; start/pad/parms.php calls it for {start function=...}
   // padFunctionAsTag  runs a pipe function as if it were a tag, through the evaluator's
   //                   own call (padEvalCall); used by types/function.php
-  // padTagAsFunction  the reverse - wraps value and parameters as {tag ...}value{/tag}
+  // padTagAsFunction  the reverse - wraps value and parameters as {function:tag ...}value{/function:tag}
   //                   and renders it with padCode, so a tag can be used in a pipe
 
   function padCode ( $padStrCod ) {
@@ -44,7 +44,7 @@
   // Whether a name was hidden by an enclosing sandboxed pass - an application variable or a
   // store entry the pass started without. A miss of such a name is the isolation working,
   // and the strict check lets it through; a name that exists nowhere is reported as ever.
-  // Asked for a field, a tag, and the rows named by lookup(), {tree}, {chart} and {pager}.
+  // Asked for a field, a tag, and the rows named by lookup(), {pad:tree}, {chart:bar} and {pad:pager}.
   // The head of a dotted, @ or prefixed name - $row.x, count@rows, data:rows - is what is
   // looked up.
 
@@ -98,6 +98,9 @@
   }
 
   function padTagAsFunction ( $tag, $value, $parms ) {
+
+    if ( ! str_contains ( $tag, ':' ) )
+      $tag = ( padTypeTag ( $tag, 0 ) ?: 'pad' ) . ':' . $tag;
 
     $extra = '';
 

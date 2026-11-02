@@ -2,7 +2,7 @@
 
   // slug - The name of a page in an address: lower-case words joined by single dashes, the
   // shape the slug rule takes - in a row with a title before it that title's, as padStrSlug
-  // makes it ({fake 'title, slug, paragraph', rows=3/} - the posts of a blog), else words=
+  // makes it ({fake:rows 'title, slug, paragraph', rows=3/} - the posts of a blog), else words=
   // words of lorem ipsum of its own, two to four: magna-aliqua-consequat.
 
   $title = padFakeInRow ( 'title' );

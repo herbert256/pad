@@ -16,7 +16,7 @@
   $pqUniqueSeen = [];
 
   // The sampled terms are the run's terms, and what each one was before the plays is
-  // recorded again as it is drawn: the ordered pass's record stayed, and {fibonacci
+  // recorded again as it is drawn: the ordered pass's record stayed, and {sequence:fibonacci
   // randomly, rows=5} gave {$fibonacci} 0 1 1 2 3, the first terms of that pass, beside a
   // {$sequence} of the draws.
 
@@ -29,7 +29,7 @@
 
   // The ordered pass has applied the window already - from, to, skip and the increment
   // shaped the list now in $pqFixed - so the sampling pass takes that list whole. Applied a
-  // second time, from= was read as a position in the list, so {sequence happy, from=10,
+  // second time, from= was read as a position in the list, so {sequence:happy from=10,
   // to=50, randomly} sampled from its tenth term on and found none, and skip= and the
   // increment struck twice.
 
@@ -45,7 +45,7 @@
   // The pass walks a list the first pass made, as a pull walks a store, and is not held to the
   // time the first pass may have used up: it answered nothing when that pass ran out of time.
   // Nor to the candidates it used up: try= has bounded the search of the first pass, and the
-  // count it left let the second pass draw none - {sequence happy, randomly, try=1000,
+  // count it left let the second pass draw none - {sequence:happy randomly, try=1000,
   // rows=3} took its else branch.
 
   $pqTriesUntil = INF;

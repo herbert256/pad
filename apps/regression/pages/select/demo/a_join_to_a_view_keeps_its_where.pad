@@ -1,2 +1,2 @@
-inner: [{parisCustomers}{$customerName}/{$rep} {/parisCustomers}]
-left: [{repsLeft}{$customerName}/{if $rep}{$rep}{else}none{/if} {/repsLeft}]
+inner: [{select:parisCustomers}{$customerName}/{$rep} {/select:parisCustomers}]
+left: [{select:repsLeft}{$customerName}/{pad:if $rep}{$rep}{pad:else}none{/pad:if} {/select:repsLeft}]

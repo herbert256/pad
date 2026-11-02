@@ -1,6 +1,6 @@
 <?php
 
-  // One byte that is no UTF-8 in what a {pdf} renders - a raw value from the request, an
+  // One byte that is no UTF-8 in what a {pad:pdf} renders - a raw value from the request, an
   // included file in Latin-1 - becomes one replacement, and the text after it stays as it
   // is written, where libxml read the rest of the document as Latin-1: été was Ã©tÃ©.
 

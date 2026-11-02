@@ -71,6 +71,6 @@
 
   }
 
-  $ledgerPage = 'Import';
+  $title = 'Import';
 
 ?>

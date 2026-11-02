@@ -1,13 +1,13 @@
-{meta title='Toggle'/}
-{about/}
+{pad:meta title='Toggle'/}
+{include:about/}
 
-{form 'try', class='inputs-try', error}
-  {toggle 'news', label='Send me the newsletter', checked/}
-  {toggle 'dark', label='Dark mode', on='dark', off='light'/}
-  {toggle 'terms', label='I accept the terms', rules='accepted'/}
+{pad:form 'try', class='inputs-try', error}
+  {input:toggle 'news', label='Send me the newsletter', checked/}
+  {input:toggle 'dark', label='Dark mode', on='dark', off='light'/}
+  {input:toggle 'terms', label='I accept the terms', rules='accepted'/}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-{template/}
+{include:template/}

@@ -1,4 +1,4 @@
-key:      [{boards $id=2}{$name}@else@none{/boards}]
-request:  [{boards $id=$wanted}{$name}@else@none{/boards}]
-relation: [{boards}{$name}={topics}{$title}{/topics} {/boards}]
-text:     [{codes $code=$code}{$label}@else@none{/codes}]
+key:      [{select:boards $id=2}{$name}@else@none{/select:boards}]
+request:  [{select:boards $id=$wanted}{$name}@else@none{/select:boards}]
+relation: [{select:boards}{$name}={select:topics}{$title}{/select:topics} {/select:boards}]
+text:     [{select:codes $code=$code}{$label}@else@none{/select:codes}]

@@ -1,4 +1,4 @@
-{meta title='Offline applications'/}
+{pad:meta title='Offline applications'/}
 
 <p><code>pad pack</code> puts a whole application - its pages, its PHP, its <code>www/</code> files -
 with the PAD engine and PHP compiled to WebAssembly into one directory. Opened from the disk it
@@ -6,14 +6,14 @@ runs in the browser tab; put on any https host it installs as an application and
 There is no PHP server at all, and what the application writes - its SQLite database first - is
 kept in the browser between visits.</p>
 
-{ignore}
+{pad:ignore}
 <pre><code>pad pack --install            # once: what it packs with, in ~/.cache/pad-wasm
 pad pack notes                # DATA/wasm/notes/
 pad pack notes --serve        # served on http://127.0.0.1:8090/ - installable
 pad pack notes,ledger,kanban  # several, with a launcher</code></pre>
-{/ignore}
+{/pad:ignore}
 
-{example 'fragments/offline_applications_1'/}
+{common:example 'fragments/offline_applications_1'/}
 
 <h2>Two ways to run it</h2>
 
@@ -40,11 +40,11 @@ brings the database a visitor kept up to date - the ledger application does.</p>
 <h2>The database</h2>
 
 <p>PHP in the browser has SQLite and no MySQL. An application that is SQLite already
-(<code>padSqlDriver=sqlite</code>, see {manual 'sqlite'/}) runs as it is. One written for MySQL on its
+(<code>padSqlDriver=sqlite</code>, see {app:manual 'sqlite'/}) runs as it is. One written for MySQL on its
 server can switch for the browser in <code>_offline.json</code>, whose <code>env</code> the runtime passes
 where <code>padEnv</code> looks first:</p>
 
-{ignore}
+{pad:ignore}
 <pre><code>{
   "name": "Shop", "short": "Shop", "theme": "#0f766e",
   "icon": "icon.svg",
@@ -55,7 +55,7 @@ where <code>padEnv</code> looks first:</p>
     "padSqlSetup": "_install/schema.sql"
   }
 }</code></pre>
-{/ignore}
+{/pad:ignore}
 
 <p><code>.env</code> files are never packed: they hold a server's passwords, and whoever has the pack
 can read it.</p>
@@ -72,19 +72,19 @@ browser: the database file with <code>padUploadSend</code>, its rows as JSON or 
 
 <h2>The page's own requests</h2>
 
-<p><code>fetch</code>, <code>XMLHttpRequest</code>, a {tag 'live'/} region, an {tag 'ajax'/}, htmx asking for a
-{tag 'fragment'/}, an <code>EventSource</code> - they all reach PHP in the browser. One PHP answers
+<p><code>fetch</code>, <code>XMLHttpRequest</code>, a {app:tag 'live'/} region, an {app:tag 'ajax'/}, htmx asking for a
+{app:tag 'fragment'/}, an <code>EventSource</code> - they all reach PHP in the browser. One PHP answers
 every request of the application, so a stream that held it would hold the application:
 <code>padSse</code> answers one round per connection there, and <code>EventSource</code> comes back after
-the interval by itself, with the last event's id - see {manual 'server_sent_events'/}. A page
+the interval by itself, with the last event's id - see {app:manual 'server_sent_events'/}. A page
 that should behave differently in the browser asks <code>padWasm()</code>:</p>
 
-{example 'fragments/offline_applications_2'/}
+{common:example 'fragments/offline_applications_2'/}
 
 <h2>Limits</h2>
 
 <ul>
-  <li>No MySQL, and no network from PHP: {tag 'curl'/}, <code>padCurl</code>, <code>padPrefetch</code> and a
+  <li>No MySQL, and no network from PHP: {app:tag 'curl'/}, <code>padCurl</code>, <code>padPrefetch</code> and a
       fetch of the server's own pages answer nothing offline.</li>
   <li>No sodium and no intl in the build - <code>padEncrypt</code> and the intl formatting fall back or
       are not there; the sequence subsystem's large tables are left out.</li>

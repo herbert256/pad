@@ -8,7 +8,7 @@
   //
   // The path padScriptCheck answers is run as it is, as types/script.php runs it: put
   // through glob() a bracketed route directory - blog/[year]/_scripts/ - was a character
-  // class, nothing matched, and {echo 'p' | script:yr} was "not found" on the page where
+  // class, nothing matched, and {pad:echo 'p' | script:yr} was "not found" on the page where
   // {script:yr 'p'} ran the script.
 
   $padExec = padScriptCheck ( $name );

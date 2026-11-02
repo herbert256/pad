@@ -1,35 +1,35 @@
-{users $id=2}
+{select:users $id=2}
 
   {$email} <br>
 
-  {tickets}
-    - {title/} <br> 
-  {/tickets}
+  {select:tickets}
+    - {field:title/} <br> 
+  {/select:tickets}
 
-{/users}
-
-<hr>
-
-{tickets $id=2}
-
-  {$title} -
-
-  {users}
-    - {email/} <br> 
-  {/users}
-
-{/tickets}
+{/select:users}
 
 <hr>
 
-{openBugs}
+{select:tickets $id=2}
 
   {$title} -
 
-  {users}
-    - {email/} <br> 
-  {/users}
+  {select:users}
+    - {field:email/} <br> 
+  {/select:users}
 
-{/openBugs}
+{/select:tickets}
+
+<hr>
+
+{select:openBugs}
+
+  {$title} -
+
+  {select:users}
+    - {field:email/} <br> 
+  {/select:users}
+
+{/select:openBugs}
 
 <hr>

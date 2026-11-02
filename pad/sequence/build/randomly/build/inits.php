@@ -27,7 +27,7 @@
 
   // The first pass makes the whole window the draws come from - as far as to=, or the default
   // try count without it, the reach a point-wise draw has: it made rows= terms when no to= was
-  // given, so {sequence happy, randomly, rows=5, unique} drew 1 7 10 13 19 every time, and a
+  // given, so {sequence:happy randomly, rows=5, unique} drew 1 7 10 13 19 every time, and a
   // keep play set aside for the second pass found nothing among the first three Fibonacci
   // numbers.
 
@@ -51,7 +51,7 @@
   // them over each term to see whether the term they make reaches the stop= put aside,
   // $pqRandomlyStop. A run that stop= alone bounded - inits/limits.php gives it the
   // ceiling of candidates - makes no more than the window of the default try count, as a run
-  // without stop= does, should no played term reach it: walked to the ceiling, {sequence
+  // without stop= does, should no played term reach it: walked to the ceiling, {sequence:auto
   // happy, randomly, stop=50, make, negation} took a second for the first pass.
 
   if ( $pqStop != $pqBoundsRandomly [3] ) {

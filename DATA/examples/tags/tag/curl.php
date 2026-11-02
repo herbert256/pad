@@ -5,11 +5,11 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{curl 'https://example.com/data.json'/}
-{curl url='https://example.com/data.json', ttl=600/}
-{curl 'https://example.com/api', post='a=1&b=2', user='name', password=$secret/}
-{curl 'SELF://shop/?orders', $status='open'/}
-{curl 'https://example.com/api', get=$query, cookies=$jar, headers=$headers, options=$curlOptions/}
+{pad:curl 'https://example.com/data.json'/}
+{pad:curl url='https://example.com/data.json', ttl=600/}
+{pad:curl 'https://example.com/api', post='a=1&b=2', user='name', password=$secret/}
+{pad:curl 'SELF://shop/?orders', $status='open'/}
+{pad:curl 'https://example.com/api', get=$query, cookies=$jar, headers=$headers, options=$curlOptions/}
 PAD;
 
   $tagParms   = [

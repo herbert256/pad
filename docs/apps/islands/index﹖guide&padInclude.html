@@ -1,11 +1,8 @@
 
-<header class="example-head">
-  <h1>Islands of any framework</h1>
-  <p class="lede">
-    PAD writes the page and marks the islands; one small runtime mounts a component of any
-    framework on each; Vite builds the components and {vite} links the build.
-  </p>
-</header>
+<p class="lede">
+  PAD writes the page and marks the islands; one small runtime mounts a component of any
+  framework on each; Vite builds the components and {pad:vite} links the build.
+</p>
 
 <h2>1. The island, in the template</h2>
 <p>An element names its component and carries its props - the ^ sigil writes a field as JSON for the
@@ -15,7 +12,7 @@
   <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$counter.start</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span>
 
-<span class="hl-brc">{</span><span class="hl-tag">vite</span> <span class="hl-str">&#039;src/main.js&#039;</span><span class="hl-brc">/}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">pad:vite</span> <span class="hl-str">&#039;src/main.js&#039;</span><span class="hl-brc">/}</span></code></pre>
 
 <h2>2. The registry, in the build</h2>
 <p><code>_frontend/src/main.js</code> names every island and pairs it with its framework. Both are
@@ -25,7 +22,6 @@
 <span class="hl-com">// pairs a component with its framework; nothing of either is fetched before an island of</span>
 <span class="hl-com">// that name is on the page and due to load (pad-islands.js).</span>
 
-<span class="hl-kwd">import</span> <span class="hl-str">&#039;./theme.js&#039;</span><span class="hl-pun">;</span>
 <span class="hl-kwd">import</span> <span class="hl-pun">{</span> islands<span class="hl-pun">,</span> react<span class="hl-pun">,</span> vue<span class="hl-pun">,</span> svelte<span class="hl-pun">,</span> preact<span class="hl-pun">,</span> solid <span class="hl-pun">}</span> <span class="hl-kwd">from</span> <span class="hl-str">&#039;./pad-islands.js&#039;</span><span class="hl-pun">;</span>
 
 <span class="hl-fn">islands</span><span class="hl-pun">(</span><span class="hl-pun">{</span>
@@ -75,10 +71,10 @@ npm run build     <span class="hl-com"># www/islands/build/ with .vite/manifest.
 npm run dev       <span class="hl-com"># the dev server; build/hot holds its address</span></code></pre>
   </div>
   <div>
-    <p>{vite 'src/main.js'/} reads the manifest and writes the entry's CSS, its chunks as
+    <p>{pad:vite 'src/main.js'/} reads the manifest and writes the entry's CSS, its chunks as
        <code>modulepreload</code> and its module script. While <code>npm run dev</code> runs, a hook of
        <code>vite.config.js</code> writes the dev server's address into <code>build/hot</code>, and
-       {vite} asks the dev server instead - a save in the editor shows at once.</p>
+       {pad:vite} asks the dev server instead - a save in the editor shows at once.</p>
   </div>
 </div>
 

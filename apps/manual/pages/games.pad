@@ -1,17 +1,15 @@
-{meta title='Games'/}
+{pad:meta title='Games'/}
 
-<p>{tag 'game'/} puts a little game on the page that is played in the browser. The server checks
+<p>{app:tag 'game:memory'/} puts a little game on the page that is played in the browser. The server checks
 what the game is given and writes its board; the game's script, written once per page, plays it.
-There are {echo php:count(padGameTypes())/} of them - every game is a file of
+There are {pad:echo php:count(padGameTypes())/} of them - every game is a file of
 <code>pad/subs/games/types/</code>, and the <a href="../games/">games</a> application plays them all.</p>
 
-{example 'fragments/games_1'/}
+{common:example 'fragments/games_1'/}
 
-<h2>Three ways to write one</h2>
+<h2>Select a kind</h2>
 
-<p>The tag names the game: <code>{open/}game 'tictactoe'/{close/}</code>. The game: type does the same,
-<code>{open/}game:tictactoe/{close/}</code>, and so does the bare name,
-<code>{open/}tictactoe/{close/}</code>, as long as no tag, store, field or sequence has that name.
+<p>Use <code>{pad:open/}game:tictactoe/{pad:close/}</code> to select the kind.
 <code>opens='computer'</code> lets the computer open, <code>two</code> makes it a game of two players
 at one screen.</p>
 
@@ -21,12 +19,12 @@ at one screen.</p>
 as they are written - braces and all. A quiz line is the question with its answers after a bar, the
 right one first; they are shuffled when shown.</p>
 
-{example 'fragments/games_2'/}
+{common:example 'fragments/games_2'/}
 
 <p>The same list can come from the page: <code>data=</code> names a store, an array of the page or a
 <code>_data</code> file, as a chart's data does.</p>
 
-{example 'fragments/games_3'/}
+{common:example 'fragments/games_3'/}
 
 <h2>The same game every time</h2>
 
@@ -36,7 +34,7 @@ say which sudoku it hands out. Without a puzzle the sudoku makes a new one with 
 to print instead, with no script, and <code>solve</code> - <code>solution</code> for a crossword -
 fills in the answers.</p>
 
-{example 'fragments/games_4'/}
+{common:example 'fragments/games_4'/}
 
 <ul>
   <li>When a game ends its board carries <code>data-result="won"</code> or <code>"lost"</code>, and a

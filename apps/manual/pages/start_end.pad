@@ -1,16 +1,16 @@
-{block}
-<p>The {construct 'start'/} & {construct 'end'/} constructs limits the occurce content of a tag to the content between those 2 constructs</p>
-{/block}
+{common:block}
+<p>The {app:construct 'start'/} & {app:construct 'end'/} constructs limits the occurce content of a tag to the content between those 2 constructs</p>
+{/common:block}
 
-{table}{demo}
+{common:table}{common:demo}
 
-{data 'myArray'}
+{pad:data 'myArray'}
   [1,2,3]
-{/data}
+{/pad:data}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{myArray}
+{data:myArray}
 
   <table border="1">
     <tr> <td> Before the first occurrence </td> </tr>
@@ -22,17 +22,17 @@
     <tr> <td> After the last occurrence   </td> </tr>
   </table>
 
-{/myArray}
+{/data:myArray}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{data 'myArray'}
+{pad:data 'myArray'}
  []
-{/data}
+{/pad:data}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{myArray}
+{data:myArray}
 
   <table border="1">
     <tr> <td> Before the first occurrence </td> </tr>
@@ -46,6 +46,6 @@
 
   <p> No occurences at all </p>
 
-{/myArray}
+{/data:myArray}
 
-{/demo}{/table}
+{/common:demo}{/common:table}

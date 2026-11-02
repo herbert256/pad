@@ -7,7 +7,7 @@
   // An @page@ inside a comment is no marker (padLayoutNoted, lib/layout.php) - a wrapper
   // that mentioned it in a {# #} note was refused as one with two, and one whose only
   // @page@ stood in a commented-out line put the page in the comment, which dropped it. Nor
-  // is one inside an {ignore} or another text pair, which shows it (padLayoutWrapper).
+  // is one inside an {pad:ignore} or another text pair, which shows it (padLayoutWrapper).
   //
   // A directory that writes its own @page@ in _inits.pad or _exits.pad decides where the
   // inner levels land; when neither contains one, @page@ is appended to _inits.pad so

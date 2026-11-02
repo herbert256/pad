@@ -5,9 +5,9 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{live 'name'} ... <button pad-click="event" pad-value="value">...</button> ... {/live}
-{live 'name'} ... <form pad-submit="event">...</form> ... {/live}
-{live 'name'} ... <select name="field" pad-change="event">...</select> ... {/live}
+{pad:live 'name'} ... <button pad-click="event" pad-value="value">...</button> ... {/pad:live}
+{pad:live 'name'} ... <form pad-submit="event">...</form> ... {/pad:live}
+{pad:live 'name'} ... <select name="field" pad-change="event">...</select> ... {/pad:live}
 PAD;
 
   $tagParms   = [

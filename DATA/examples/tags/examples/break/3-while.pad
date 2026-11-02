@@ -1,12 +1,12 @@
-{meta title='Breaking a while', about='A loop with a generous condition, left as soon as the sum passes 20.'/}
-{set $sum = 0/}
-{set $add = 0/}
+{pad:meta title='Breaking a while', about='A loop with a generous condition, left as soon as the sum passes 20.'/}
+{pad:set $sum = 0/}
+{pad:set $add = 0/}
 <p>
-{while $add lt 100}
-  {increment $add/}
-  {set $sum = $sum + $add/}
-  {if $sum gt 20}{break/}{/if}
+{pad:while $add lt 100}
+  {pad:increment $add/}
+  {pad:set $sum = $sum + $add/}
+  {pad:if $sum gt 20}{pad:break/}{/pad:if}
   {$sum}
-{/while}
+{/pad:while}
 </p>
 <p>Stopped when adding {$add} made {$sum}.</p>

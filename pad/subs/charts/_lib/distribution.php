@@ -2,8 +2,8 @@
 
   // How values spread - the histogram and the box plot.
   //
-  //   {chart 'histogram', data='people', value='height', bins=12}
-  //   {chart 'boxplot', data='salaries', label='department', value='salary'}
+  //   {chart:histogram data='people', value='height', bins=12}
+  //   {chart:boxplot data='salaries', label='department', value='salary'}
   //
   // value= names the numbers - else the first numeric field. A histogram counts them in
   // about bins= (10) bins of one round width, edge to edge - a whole width for whole

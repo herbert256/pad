@@ -1,86 +1,61 @@
 
-<h1>The order of the types</h1>
-<p class="lead">A name written without its prefix - <code>&#123;orders&#125;</code> - is the first of
-these types that has it: an application tag before a built-in one, a store before a field, a field
-before a sequence type of the same name. A prefix says which is meant, <code>&#123;pad:orders&#125;</code>
-or <code>&#123;data:orders&#125;</code>.</p>
-
-<section class="section" id="bare">
-  <div class="section-head"><h2>Tried in this order</h2><span>31 types</span></div>
-  <ol class="list order">
+<h1>Required type prefixes</h1>
+<p class="lead">Every named tag starts with its type: <code>&#123;pad:if&#125;</code>,
+<code>&#123;array:orders&#125;</code>, <code>&#123;data:orders&#125;</code> or
+<code>&#123;app:card&#125;</code>. The prefix selects one namespace. Names are never
+searched across types.</p>
+<p>Close a pair with the same qualified name, such as <code>&#123;/array:orders&#125;</code>.
+Variable and expression forms such as <code>&#123;$name&#125;</code> and
+<code>&#123;!html&#125;</code> keep their shorthand.</p>
+<p>Subsystem kinds selected by options or helpers are listed under
+<a href="index%EF%B9%96groups.html#kinds">Options and helpers</a>.</p>
+<section class="section" id="prefixed">
+  <div class="section-head"><h2>Tag namespaces</h2><span>44 types</span></div>
+  <ul class="list">
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7app.html">app:</a> <span class="about">A tag of the application, a file of a _tags/ directory from the page up to the root.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7common.html">common:</a> <span class="about">A tag or a snippet of the shared _common application.</span></li>
     
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7pad.html">pad:</a> <span class="about">A built-in tag of the engine - a file of pad/tags/.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7pull.html">pull:</a> <span class="about">A stored sequence - the terms a {sequence} pushed to the store under a name.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7bool.html">bool:</a> <span class="about">A boolean store - a flag set by {bool}, its pair showing when it is true.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7content.html">content:</a> <span class="about">A content store - a piece of template kept by {content} to be shown elsewhere.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7define.html">define:</a> <span class="about">A tag defined in the template by {define} - its body the template of the tag.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7macro.html">macro:</a> <span class="about">A tag defined in the template by {macro} - its body rendered once with the options as its fields.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7select.html">select:</a> <span class="about">A table declared in $padSelect - its rows read from the database, joins and all.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7data.html">data:</a> <span class="about">A data store - rows kept by {data} or a .json, .xml, .yaml or .csv file of _data/.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7include.html">include:</a> <span class="about">A snippet of the application, a file of an _include/ directory.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7property.html">property:</a> <span class="about">A property of the tag around it - its count, its current row, whether it is the first.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7field.html">field:</a> <span class="about">A field of the current row, or a variable of the page.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7array.html">array:</a> <span class="about">An array of the current row or of the page, its elements the rows of the tag.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7parm.html">parm:</a> <span class="about">A parameter or option of the tag around it, read by its name.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7level.html">level:</a> <span class="about">An array field of a row of an enclosing tag, its elements the rows of the tag.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7constant.html">constant:</a> <span class="about">A PHP constant, by its name.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7local.html">local:</a> <span class="about">A data file of a _data/ directory, read by its file name.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7script.html">script:</a> <span class="about">A shell script of a _scripts/ directory, its output the tag&#039;s.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7php.html">php:</a> <span class="about">A PHP function called as a tag, its parameters the function&#039;s arguments.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7sequence.html">sequence:</a> <span class="about">A sequence type of the sequence subsystem, its terms the rows of the tag.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7action.html">action:</a> <span class="about">A sequence action - reverse, sort, sum, first ... - over the terms it is given.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7chart.html">chart:</a> <span class="about">A chart type, a file of pad/subs/charts/types/, drawn as inline SVG.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7game.html">game:</a> <span class="about">A game, a file of pad/subs/games/types/, played in the browser.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7toy.html">toy:</a> <span class="about">A toy, a file of pad/subs/toys/types/ - a live simulation in the browser.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7diagram.html">diagram:</a> <span class="about">A diagram type, a file of pad/subs/diagrams/types/, laid out on the server.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7widget.html">widget:</a> <span class="about">A widget, a file of pad/subs/widgets/types/, that works without JavaScript.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7barcode.html">barcode:</a> <span class="about">A barcode symbology, a file of pad/subs/codes/types/, encoded on the server.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7embed.html">embed:</a> <span class="about">An embed provider, a file of pad/subs/embeds/types/ - loaded only on a click.</span></li>
-    
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7input.html">input:</a> <span class="about">A rich form field, a file of pad/subs/inputs/types/, posted by any form.</span></li>
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7define.html">define:</a> <span class="about">A tag defined in the template by {pad:define} - its body the template of the tag.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7function.html">function:</a> <span class="about">A pipe function used as a tag, over the content between its tags.</span></li>
     
-  </ol>
-  <p>A PHP function gives way to a pipe function of the same name - <code>&#123;trim&#125;</code>,
-  <code>&#123;date&#125;</code> - and <code>common:</code> is tried only where the application has
-  <code>_common</code> switched on. A name that is only a request value comes after them all: a
-  visitor's <code>?prime=x</code> never takes the place of what the template names.</p>
-</section>
-
-<section class="section" id="prefixed">
-  <div class="section-head"><h2>Only with their prefix</h2><span>6 types</span></div>
-  <ul class="list">
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7include.html">include:</a> <span class="about">A snippet of the application, a file of an _include/ directory.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7macro.html">macro:</a> <span class="about">A tag defined in the template by {pad:macro} - its body rendered once with the options as its fields.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7pad.html">pad:</a> <span class="about">A built-in tag of the engine - a file of pad/tags/.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7php.html">php:</a> <span class="about">A PHP function called as a tag, its parameters the function&#039;s arguments.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7script.html">script:</a> <span class="about">A shell script of a _scripts/ directory, its output the tag&#039;s.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7bool.html">bool:</a> <span class="about">A boolean store - a flag set by {pad:bool}, its pair showing when it is true.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7content.html">content:</a> <span class="about">A content store - a piece of template kept by {pad:content} to be shown elsewhere.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7data.html">data:</a> <span class="about">A data store - rows kept by {pad:data} or a file of _data/ read through the format registry.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7local.html">local:</a> <span class="about">A data file of a _data/ directory, read by its file name.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7pull.html">pull:</a> <span class="about">A stored sequence - the terms a {sequence:*} pushed to the store under a name.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7select.html">select:</a> <span class="about">A table declared in $padSelect - its rows read from the database, joins and all.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7array.html">array:</a> <span class="about">An array of the current row or of the page, its elements the rows of the tag.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7constant.html">constant:</a> <span class="about">A PHP constant, by its name.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7field.html">field:</a> <span class="about">A field of the current row, or a variable of the page.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7level.html">level:</a> <span class="about">An array field of a row of an enclosing tag, its elements the rows of the tag.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7parm.html">parm:</a> <span class="about">A parameter or option of the tag around it, read by its name.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7property.html">property:</a> <span class="about">A property of the tag around it - its count, its current row, whether it is the first.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7action.html">action:</a> <span class="about">A sequence action - reverse, sort, sum, first ... - over the terms it is given.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7flag.html">flag:</a> <span class="about">Every term a 1 or a 0: whether it belongs to the sequence type named.</span></li>
     
@@ -90,9 +65,41 @@ or <code>&#123;data:orders&#125;</code>.</p>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7remove.html">remove:</a> <span class="about">The terms that do not belong to the sequence type named.</span></li>
     
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7sequence.html">sequence:</a> <span class="about">A sequence type of the sequence subsystem, its terms the rows of the tag.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7barcode.html">barcode:</a> <span class="about">A barcode symbology, a file of pad/subs/codes/types/, encoded on the server.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7chart.html">chart:</a> <span class="about">A chart type, a file of pad/subs/charts/types/, drawn as inline SVG.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7diagram.html">diagram:</a> <span class="about">A diagram type, a file of pad/subs/diagrams/types/, laid out on the server.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7effect.html">effect:</a> <span class="about">An effect, a file of pad/subs/effects/types/ - motion and decoration, CSS first, still under reduced motion.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7embed.html">embed:</a> <span class="about">An embed provider, a file of pad/subs/embeds/types/ - loaded only on a click.</span></li>
+    
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7fake.html">fake:</a> <span class="about">A fake kind, a file of pad/subs/fakes/types/ - the same values for the same seed, never bare.</span></li>
     
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7game.html">game:</a> <span class="about">A game, a file of pad/subs/games/types/, played in the browser.</span></li>
+    
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7icon.html">icon:</a> <span class="about">An icon, a file of pad/subs/icons/types/, drawn as inline SVG - never bare.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7input.html">input:</a> <span class="about">A rich form field, a file of pad/subs/inputs/types/, posted by any form.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7jsonld.html">jsonld:</a> <span class="about">A JSON-LD kind, a file of pad/subs/jsonld/types/ - the structured data of a page as a Schema.org object, never bare.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7notation.html">notation:</a> <span class="about">A notation, a file of pad/subs/notations/types/ - a formula, a tune, a word or a position drawn on the server.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7pattern.html">pattern:</a> <span class="about">A pattern, a file of pad/subs/patterns/types/ - a seeded SVG background, never bare.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7printable.html">printable:</a> <span class="about">A printable, a file of pad/subs/printables/types/ - pages made for paper, the same on the screen, printed and as a PDF, never bare.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7section.html">section:</a> <span class="about">A section of a landing page, a file of pad/subs/sections/types/ - pure CSS, coloured by the theme, never bare.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7sound.html">sound:</a> <span class="about">A sound, a file of pad/subs/sounds/types/ - a recipe the browser plays and the server writes as a WAV, never bare.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7toy.html">toy:</a> <span class="about">A toy, a file of pad/subs/toys/types/ - a live simulation in the browser.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7widget.html">widget:</a> <span class="about">A widget, a file of pad/subs/widgets/types/, that works without JavaScript.</span></li>
     
   </ul>
 </section>

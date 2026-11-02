@@ -2,7 +2,7 @@
 
   // The page asked again with &padSound=<kind> - what the download link and the link that
   // stands in for the button without script ask for - answers the WAV of that sound in place
-  // of the page: the bytes of padSoundWav, as audio/wav. A kind the page plays no {sound} of
+  // of the page: the bytes of padSoundWav, as audio/wav. A kind the page plays no {sound:chime} of
   // is no answer of it: the page itself comes back.
 
   $soundAsk  = $padHost . 'regression/framework/?sounds/download_links_the_page_asked_for_the_wav&padSound=';

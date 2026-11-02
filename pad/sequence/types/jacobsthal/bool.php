@@ -2,7 +2,7 @@
 
   // Membership test for jacobsthal, 0, 1, 1, 3, 5, 11, ...: the recurrence is walked until a
   // term reaches x - 64 steps at the most before the integer range ends. build/check.php asks
-  // it for {keep jacobsthal}, {remove jacobsthal} and {flag jacobsthal}.
+  // it for {keep:jacobsthal}, {remove:jacobsthal} and {pad:flag jacobsthal}.
   //
   // Not the type's build: pqBuild() ranks function.php before bool.php.
 

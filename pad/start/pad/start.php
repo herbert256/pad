@@ -8,7 +8,7 @@
   // must be put back whatever the pass does. On top of that, a sandbox, clean or reset pass
   // also saves the application variables, the per-level data arrays and the stores; sandbox
   // and reset then wipe those, so the pass starts from a blank slate; and all three finish by
-  // seeding the scope with the variables {set} on the calling tag, which is how a caller
+  // seeding the scope with the variables {pad:set} on the calling tag, which is how a caller
   // hands values into an otherwise isolated pass.
 
   $padStrCnt++;
@@ -19,7 +19,7 @@
   // A sandboxed pass renders over hidden state, so a tag over a hidden store or a field the
   // page set is not a typo: those misses pass quietly (padStrHidden, lib/execute.php, asked
   // where a missing field or tag is reported). The strict check itself stays on - it stood
-  // down for the whole pass, and a typo or a broken expression in a {sandbox} said nothing.
+  // down for the whole pass, and a typo or a broken expression in a {pad:sandbox} said nothing.
 
   if ( $padStrBox or $padStrCln or $padStrRes ) {
     include PAD . 'start/start/app.php';

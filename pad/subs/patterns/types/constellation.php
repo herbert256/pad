@@ -4,7 +4,7 @@
   // the size apart and a line joins two that are near, the fainter the farther they are - the
   // lines in the first ink, the stars in the second.
   //
-  //   {pattern 'constellation', size=60, seed=12, colors='#0b1021, #5c6f9e, #e8ecf8'/}
+  //   {pattern:constellation size=60, seed=12, colors='#0b1021, #5c6f9e, #e8ecf8'/}
   //
   // A star lies in every square of the size, at a place in it the seed picks - not too near its
   // edges - a few of them larger. Two stars closer than one and a half sizes are joined; the

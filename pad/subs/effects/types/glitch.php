@@ -1,6 +1,6 @@
 <?php
 
-  // {glitch}SIGNAL LOST{/glitch} or {glitch 'SIGNAL LOST'/} - a digital glitch: for a moment
+  // {effect:glitch}SIGNAL LOST{/effect:glitch} or {effect:glitch 'SIGNAL LOST'/} - a digital glitch: for a moment
   // the text tears into slices that jump aside in two colours, then it stands still again.
   // The slices are two copies of the text laid over it, hidden from a screen reader - the
   // text is there once, as written. A burst opens every cycle of duration= seconds (2.5),
@@ -15,7 +15,7 @@
   $padFxRepeat   = padEffectRepeat ( 3 );
 
   if ( $padFxText === '' )
-    return padEffectNeedsText ( "{glitch}SIGNAL LOST{/glitch} or {glitch 'SIGNAL LOST'/}" );
+    return padEffectNeedsText ( "{effect:glitch}SIGNAL LOST{/effect:glitch} or {effect:glitch 'SIGNAL LOST'/}" );
 
   $padFxCopy = padEffectEscape ( $padFxText );
 

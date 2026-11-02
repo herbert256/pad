@@ -5,13 +5,13 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{cannot 'ability', $value} ... {/cannot}
-{cannot 'ability', $value} ... {else} ... {/cannot}
+{pad:cannot 'ability', $value} ... {/pad:cannot}
+{pad:cannot 'ability', $value} ... {pad:else} ... {/pad:cannot}
 PAD;
 
   $tagParms   = [
     'ability' => 'The name of a gate defined with <code>padGate</code>.',
-    'values'  => 'Optional, any number: what the gate is given after the user, as for <code>{can}</code>.' ];
+    'values'  => 'Optional, any number: what the gate is given after the user, as for <code>{pad:can}</code>.' ];
 
   $tagOptions = [];
 

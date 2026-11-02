@@ -1,5 +1,5 @@
 
-<p><code>{files 'dir', base='app'}</code> scans a directory and iterates its entries, one
+<p><code>{pad:files 'dir', base='app'}</code> scans a directory and iterates its entries, one
 occurrence each, with five fields: <code>path</code> (the full path), <code>file</code> (the
 name), <code>ext</code> (the extension, empty for a directory), <code>item</code> (the entry
 relative to the scanned directory, the extension taken off a file - the name a page is
@@ -19,6 +19,6 @@ and <code>exclude</code> keep or drop names by a shell pattern, <code>onlyFiles<
 <p>The entries come in the order the file system keeps them, which differs between machines:
 add <code>sort='item'</code> (any handling option works) when the order matters. The tag
 reads a <code>group</code> parameter of its own as well, but the handling option of that name
-takes it first, so it cannot be used. <a href="index%EF%B9%96tag%EA%A4%B7dir.html">{dir}</a> is the plain version - the
+takes it first, so it cannot be used. <a href="index%EF%B9%96tag%EA%A4%B7dir.html">{pad:dir}</a> is the plain version - the
 names only.</p>
 

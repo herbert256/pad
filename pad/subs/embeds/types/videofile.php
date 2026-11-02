@@ -1,8 +1,8 @@
 <?php
 
   // videofile - A video file - .mp4, .m4v, .webm, .ogv or .mov - of www/<application>/,
-  // versioned as an {asset}, or of the web, as a <video controls preload="none">: nothing is
-  // loaded before it is played. poster= is a picture of www/<application>/. The {video} tag
+  // versioned as an {pad:asset}, or of the web, as a <video controls preload="none">: nothing is
+  // loaded before it is played. poster= is a picture of www/<application>/. The {pad:video} tag
   // writes a file of the application the same way, in its own markup.
 
   return [

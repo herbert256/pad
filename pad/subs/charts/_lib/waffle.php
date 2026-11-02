@@ -3,8 +3,8 @@
   // Parts of a whole as squares: a grid of cells= squares (100), each part given its share
   // of them in its own colour.
   //
-  //   {chart 'waffle', data='energy', label='use', value='kwh'}
-  //   {chart 'waffle', data='votes', label='party', value='votes', cells=200}
+  //   {chart:waffle data='energy', label='use', value='kwh'}
+  //   {chart:waffle data='votes', label='party', value='votes', cells=200}
   //
   // label= names the parts - else the first field that is no number - and value= their
   // size, else the first numeric field; only a value above zero is a part. The squares are

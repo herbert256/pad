@@ -10,14 +10,14 @@
   // pixels, title= is the accessible name - the T: title unless given; the description says
   // the tune bar by bar.
   //
-  //   {abc}
+  //   {notation:abc}
   //     X:1
   //     T:Speed the Plough
   //     M:4/4
   //     L:1/8
   //     K:G
   //     |:GABc dedB|dedB dedB|c2ec B2dB|c2A2 A2BA:|
-  //   {/abc}
+  //   {/notation:abc}
 
   if ( trim ( $padNotationText ) === '' )
     return '';

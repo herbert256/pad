@@ -9,7 +9,7 @@
   $padContent .= '{&firstFieldValue}';
 
   // Present is not the same as true: tested for truth, a glue, quote, open or close of 0 -
-  // {list print, glue=0} - was dropped as if it had not been written.
+  // {sequence:list print, glue=0} - was dropped as if it had not been written.
 
   if ( padTagParm ('quote') !== '' ) include PAD . 'options/quote.php';
   if ( padTagParm ('open')  !== '' ) include PAD . 'options/open.php';

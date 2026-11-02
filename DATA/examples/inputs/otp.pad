@@ -1,13 +1,12 @@
-{meta title='One-time code'/}
-{about/}
+{pad:meta title='One-time code'/}
+{include:about/}
 
-{form 'try', class='inputs-try', error}
-  {otp 'code', label='The code we sent you', rules='required|digits:6'/}
-  {otp 'voucher', label='Voucher', length=8, letters/}
+{pad:form 'try', class='inputs-try', error}
+  {input:otp 'code', label='The code we sent you', rules='required|digits:6'/}
+  {input:otp 'voucher', label='Voucher', length=8, letters/}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-<h2>The template</h2>
-{source/}
+{include:template/}

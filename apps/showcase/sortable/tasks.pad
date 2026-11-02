@@ -1,10 +1,10 @@
-{meta title='Tasks in order', about='Drag a task by its grip, click its arrows, or press Space on the grip and move it with the arrow keys; the form posts every task with its place - number fields without scripting.'/}
+{pad:meta title='Tasks in order', about='Drag a task by its grip, click its arrows, or press Space on the grip and move it with the arrow keys; the form posts every task with its place - number fields without scripting.'/}
 <div style="width:100%; max-width:520px">
-  {form 'ranking'}
-    {sortable 'priority', label='The tasks, most urgent first'}
-      {tasks}{tab $id}{$title}{/tab}{/tasks}
-    {/sortable}
+  {pad:form 'ranking'}
+    {widget:sortable 'priority', label='The tasks, most urgent first'}
+      {array:tasks}{pad:tab $id}{$title}{/pad:tab}{/array:tasks}
+    {/widget:sortable}
     <button>Save the order</button>
-  {/form}
-  {if $saved}<p>Saved: {$saved}</p>{/if}
+  {/pad:form}
+  {pad:if $saved}<p>Saved: {$saved}</p>{/pad:if}
 </div>

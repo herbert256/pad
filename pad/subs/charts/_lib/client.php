@@ -1,6 +1,6 @@
 <?php
 
-  // A chart drawn in the browser: {chart 'bar', data='sales', client/} - the client option of
+  // A chart drawn in the browser: {chart:bar data='sales', client/} - the client option of
   // every chart kind. The server gathers what the kind draws from - its rows, as padChartGather
   // gives them, after the handling options, and the tag's options - and writes them into the
   // page as JSON; the SVG is drawn in the browser by www/assets/charts/, the PHP of this

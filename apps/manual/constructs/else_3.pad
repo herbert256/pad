@@ -1,25 +1,25 @@
-{table}{demo}
+{common:table}{common:demo}
 
-{data 'myArray'}
+{pad:data 'myArray'}
   []
-{/data}
+{/pad:data}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{content 'nothing'}
+{pad:content 'nothing'}
   Nothing to see here
-{/content}
+{/pad:content}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{myArray else='nothing'}
+{data:myArray else='nothing'}
   Occurence {$myArray} <br>
-{/myArray}
+{/data:myArray}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{if 1 > 2, else='nothing'}
+{pad:if 1 > 2, else='nothing'}
   true
-{/if}
+{/pad:if}
 
-{/demo}{/table}
+{/common:demo}{/common:table}

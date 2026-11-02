@@ -5,9 +5,9 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{flash} {$message} {$type} {/flash}
-{flash} ... @else@ ... {/flash}
-{flash 'error'} {$message} {/flash}
+{pad:flash} {$message} {$type} {/pad:flash}
+{pad:flash} ... @else@ ... {/pad:flash}
+{pad:flash 'error'} {$message} {/pad:flash}
 PAD;
 
   $tagParms   = [

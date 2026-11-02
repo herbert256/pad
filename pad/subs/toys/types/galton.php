@@ -7,7 +7,7 @@
   // to 20); balls= how many the board pours before it stops (500, 10 to 5000); bias= the
   // chance in percent that a ball goes right (50, 5 to 95).
   //
-  //   {galton levels=16, bias=65/}
+  //   {toy:galton levels=16, bias=65/}
 
   return padToy ( 'galton', 'Galton board', [
     'levels' => padToyInt ( 'levels', 12, 4, 20 ),

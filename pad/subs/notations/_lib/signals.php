@@ -1,6 +1,6 @@
 <?php
 
-  // Signals - the signals notation, {signals 'PAD'/}. A text spelt in the flags of the
+  // Signals - the signals notation, {notation:signals 'PAD'/}. A text spelt in the flags of the
   // International Code of Signals: a flag per letter, a numeral pennant per digit, drawn in
   // the colours and patterns of the code - red, blue, yellow, black and white - a flag 60 by 50,
   // a pennant 80 by 40 tapering to its fly.

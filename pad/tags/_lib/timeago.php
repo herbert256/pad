@@ -1,8 +1,8 @@
 <?php
 
-  // How long ago a moment was, as the page shows it - the {timeago} tag.
+  // How long ago a moment was, as the page shows it - the {pad:timeago} tag.
   //
-  //   {timeago $created}        <time datetime="2026-10-08T09:10:00+02:00"
+  //   {pad:timeago $created}        <time datetime="2026-10-08T09:10:00+02:00"
   //                             title="Thursday 8 October 2026, 09:10">5 minutes ago</time>
   //
   // The words are padAgo's (lib/date.php) - the ago pipe's - and the <time> around them

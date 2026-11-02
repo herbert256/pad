@@ -4,7 +4,7 @@
   // of name/value pairs numbered from 1.
   //
   // Lets a template walk a record whose columns it does not know in advance:
-  // {fields@user}{$name}: {$value}{/fields}.
+  // {property:fields@user}{$name}: {$value}{/property:fields}.
 
   global $padCurrent;
 

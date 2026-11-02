@@ -2,9 +2,9 @@
 
   // How two numbers relate: a dot per row on two numeric axes.
   //
-  //   {chart 'scatter', data='cars', x='weight', y='mpg', label='model'}
-  //   {chart 'scatter', data='cars', x='weight', y='mpg', color='origin', trend}
-  //   {chart 'bubble',  data='countries', x='gdp', y='life', size='population', label='name'}
+  //   {chart:scatter data='cars', x='weight', y='mpg', label='model'}
+  //   {chart:scatter data='cars', x='weight', y='mpg', color='origin', trend}
+  //   {chart:bubble data='countries', x='gdp', y='life', size='population', label='name'}
   //
   // x= and y= name the numbers - else the first two numeric fields - and a bubble's size=
   // the third; its area grows with the value. label= names a dot in its tooltip, color=

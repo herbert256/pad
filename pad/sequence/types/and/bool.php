@@ -1,8 +1,8 @@
 <?php
 
   // Membership predicate for and: pqBoolAnd($x, $p) answers whether x is a value of
-  // n AND p for some loop value n of 1 or more - the question {keep and=p},
-  // {remove and=p} and {flag and=p} ask. Generation itself goes through loop.php, which
+  // n AND p for some loop value n of 1 or more - the question {keep:and p},
+  // {remove:and p} and {pad:flag and=p} ask. Generation itself goes through loop.php, which
   // pqBuild() prefers.
   //
   // A value of n AND p keeps only bits that p has, so x is one exactly when x is a submask

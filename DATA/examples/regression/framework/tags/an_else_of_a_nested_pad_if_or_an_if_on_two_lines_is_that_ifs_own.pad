@@ -1,6 +1,6 @@
-[{if 1 eq 2}{pad:if 1 eq 1}X{else}Y{/pad:if}{else}Z{/if}]
-[{if 1 eq 1}{pad:if 1 eq 2}X{elseif 1 eq 1}W{/pad:if}{elseif 2 eq 2}V{/if}]
-[{if 1 eq 2}{if
-1 eq 1}X{else}Y{/if}{else}Z{/if}]
-[{case 2}{when 1}one{when 2}{pad:case 5}{when 5}five{else}other{/pad:case}{else}none{/case}]
-[{auth}{pad:if 1 eq 1}member{else}member too{/pad:if}{else}guest{/auth}]
+[{pad:if 1 eq 2}{pad:if 1 eq 1}X{pad:else}Y{/pad:if}{pad:else}Z{/pad:if}]
+[{pad:if 1 eq 1}{pad:if 1 eq 2}X{pad:elseif 1 eq 1}W{/pad:if}{pad:elseif 2 eq 2}V{/pad:if}]
+[{pad:if 1 eq 2}{pad:if
+1 eq 1}X{pad:else}Y{/pad:if}{pad:else}Z{/pad:if}]
+[{pad:case 2}{pad:when 1}one{pad:when 2}{pad:case 5}{pad:when 5}five{pad:else}other{/pad:case}{pad:else}none{/pad:case}]
+[{pad:auth}{pad:if 1 eq 1}member{pad:else}member too{/pad:if}{pad:else}guest{/pad:auth}]

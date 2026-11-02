@@ -1,9 +1,9 @@
 <table border='1'>
-  {rows}
+  {array:rows}
     <tr>
-      {cols}
-        <td>{echo (&rows:key*10) + &cols:key/}</td>  
-      {/cols}
+      {array:cols}
+        <td>{pad:echo (&rows:key*10) + &cols:key/}</td>  
+      {/array:cols}
     </tr>
-  {/rows}
+  {/array:rows}
 </table>

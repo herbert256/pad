@@ -5,8 +5,8 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{record "* from table where ..."} ... {/record}
-{record "* from users where id=5", name='user'} ... @else@ ... {/record}
+{pad:record "* from table where ..."} ... {/pad:record}
+{pad:record "* from users where id=5", name='user'} ... @else@ ... {/pad:record}
 PAD;
 
   $tagParms   = [

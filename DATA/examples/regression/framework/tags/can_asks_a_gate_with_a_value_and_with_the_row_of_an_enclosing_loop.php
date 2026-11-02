@@ -1,7 +1,7 @@
 <?php
 
-  // A gate gets the user and the values {can} names: $post a page array, $posts inside
-  // {posts} the row of that occurrence.
+  // A gate gets the user and the values {pad:can} names: $post a page array, $posts inside
+  // {array:posts} the row of that occurrence.
 
   padGate ( 'edit-post', fn ( $user, $post ) => $user ['id'] == $post ['user_id'] );
 

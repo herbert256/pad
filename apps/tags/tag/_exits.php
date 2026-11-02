@@ -12,7 +12,12 @@
   // ?tag/chart/pie - that binds the two names.
 
   $tagKey        = str_contains ( $padPage, '[' ) ? "$tagType:$tagKind" : 'pad:' . basename ( $padPage );
-  $tagInfo       = tagsCatalog () [$tagKey];
+  $tagFamily     = ! str_contains ( $padPage, '[' ) and ! isset ( tagsCatalog () [$tagKey] );
+  $tagInfo       = $tagFamily ? tagsRead ( APP . $padPage . '.php' ) : tagsCatalog () [$tagKey];
+  if ( $tagFamily ) {
+    $tagKey = [ 'sparkline' => 'chart:sparkline', 'qr' => 'barcode:qr',
+                'chess' => 'notation:chess', 'copy' => 'widget:copy' ] [ $tagInfo ['name'] ] ?? $tagInfo ['name'] . ':*';
+  }
   $tagName       = $tagInfo ['name'];
   $tagAbout      = $tagInfo ['about'];
   $tagForm       = $tagInfo ['form'];
@@ -44,7 +49,7 @@
 
   $tagExampleRows = [];
 
-  // Each example that runs gets the icons that take it to the playground and the live
+  // Each example that runs gets the icons that take it to the WASM editor and the live
   // application, at the right of its result's head; one shown but not run here - a redirect,
   // an exit - the live icon alone, at the right of its template's head: as a page of its own
   // it runs (_common/_lib/playground.php).
@@ -68,7 +73,7 @@
         'app'     => '',
         'open'    => '?' . $example ['page'],
         'play'    => $example ['run'] ? padPlayPage ( APP, $example ['page'], TRUE )
-                                      : padPlayLink ( trim ( preg_replace ( '/\A\{meta [^\n]*\}\R?/', '', (string) padFileGet ( APP . $file ) ) ) . "\n", '', '', TRUE, 'live' ) ];
+                                      : padPlayLink ( trim ( preg_replace ( '/\A\{pad:meta [^\n]*\}\R?/', '', (string) padFileGet ( APP . $file ) ) ) . "\n", '', '', TRUE, 'live' ) ];
 
     }
 
@@ -79,7 +84,7 @@
     $php     = ( $example ['page'] !== '' and is_file ( $root . $example ['page'] . '.php' ) ) ? $example ['page'] . '.php' : '';
 
     if ( $example ['page'] !== '' ) {
-      $padHtml = padHighlightTokens ( trim ( preg_replace ( '/\A\{meta [^\n]*\}\R?/', '', padFileGet ( $root . $example ['page'] . '.pad' ) ) ), 'pad' );
+      $padHtml = padHighlightTokens ( trim ( preg_replace ( '/\A\{pad:meta [^\n]*\}\R?/', '', padFileGet ( $root . $example ['page'] . '.pad' ) ) ), 'pad' );
       $file    = ( $example ['app'] !== '' ? "{$example ['app']}/" : '' ) . $example ['page'] . '.pad';
       $open    = $example ['app'] !== '' ? $padRoot . "{$example ['app']}/?{$example ['page']}" : "?{$example ['page']}";
     } else {
@@ -113,5 +118,7 @@
   $tagNext  = $tagNames [ ( $tagHere + 1 ) % count ( $tagNames ) ];
   $tagPrevLink = tagsCatalog () [$tagPrev] ['link'];
   $tagNextLink = tagsCatalog () [$tagNext] ['link'];
+  $tagPrevLabel = tagsCatalog () [$tagPrev] ['label'] ?? '{' . $tagPrev . '}';
+  $tagNextLabel = tagsCatalog () [$tagNext] ['label'] ?? '{' . $tagNext . '}';
 
 ?>

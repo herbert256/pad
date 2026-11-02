@@ -3,7 +3,7 @@
   // Membership test for the octahedral sequence, 1, 6, 19, 44, 85, ...: n(2n^2 + 1)/3 for a
   // whole n from 0 up. That is about 2n^3 / 3, so the cube root of 3x/2 gives n give or take
   // one, and the whole n next to it are tried with the exact pqProduct the type generates
-  // with. build/check.php asks it for {keep octahedral}, {remove octahedral} and {flag
+  // with. build/check.php asks it for {keep:octahedral}, {remove:octahedral} and {pad:flag
   // octahedral}; without it the check generated the sequence up to the candidate, stopped at
   // the million-candidate ceiling and answered no past it. It replaces xbool.php, a disabled
   // predicate of the same name that rendered the sequence through padCode to search it.

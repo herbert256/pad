@@ -4,7 +4,7 @@ Code analysis for improvements, refactoring, and modernization opportunities.
 
 > A proposal written early on, kept as it was. Where it describes the code as it stood, the
 > engine has moved since: it needs PHP 8.3 (`array_is_list`, and `CURLOPT_PROTOCOLS_STR` in `padCurl`), it is tested by eight regression
-> suites, `./ci.sh`, `pad test` and `{assert}`, `db()` placeholders are quoted and escaped by
+> suites, `./ci.sh`, `pad test` and `{pad:assert}`, `db()` placeholders are quoted and escaped by
 > a quote-aware scanner and SQLite runs through PDO, `padEnv` reads environment
 > configuration, and `padValidFile` in the test sketch is a function that does not exist.
 
@@ -531,7 +531,7 @@ throw new DatabaseException("Connection failed: $error", previous: $e);
 ### Current: Regression suites
 
 Eight regression suites fetch real pages and compare them with stored answers (`./ci.sh`),
-`pad test` runs an application's own `_tests/`, and `{assert}` checks conditions during a
+`pad test` runs an application's own `_tests/`, and `{pad:assert}` checks conditions during a
 test run - there is no PHPUnit layer.
 
 ### Recommended: PHPUnit Setup

@@ -9,8 +9,8 @@
   // random, reversed, nearly (sorted but for a few) or few (of a few heights); speed= the
   // steps a second (120, 1 to 5000); race sorts with every algorithm side by side.
   //
-  //   {sorting algorithm='heap', bars=100/}
-  //   {sorting race, bars=40/}
+  //   {toy:sorting algorithm='heap', bars=100/}
+  //   {toy:sorting race, bars=40/}
 
   $padSortAlgorithms = [ 'bubble', 'cocktail', 'insertion', 'selection', 'gnome', 'shell', 'comb', 'quick', 'merge', 'heap', 'radix' ];
 

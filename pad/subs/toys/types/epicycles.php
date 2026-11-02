@@ -17,10 +17,10 @@
   // of your own stands between the tags as an SVG polyline's points, x,y pairs - y counted
   // down - and is closed.
   //
-  //   {epicycles shape='square', circles=15/}
-  //   {epicycles}
+  //   {toy:epicycles shape='square', circles=15/}
+  //   {toy:epicycles}
   //     0,0 40,10 80,0 70,40 80,80 40,70 0,80 10,40
-  //   {/epicycles}
+  //   {/toy:epicycles}
 
   // A drawing of your own: x,y pairs between spaces or new lines, as in the points of
   // an SVG polyline - three of them or more, at most 2000, not all on one place. A number

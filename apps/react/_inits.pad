@@ -1,17 +1,17 @@
 {common:padFrame}
-  {slot 'head'}
-  <meta name="csrf-token" content="{csrf token/}">
+  {pad:slot 'head'}
+  <meta name="csrf-token" content="{pad:csrf token/}">
   <meta name="pad-react-version" content="{$reactVersion}">
-  {asset 'react.css', tag/}
+  {pad:asset 'react.css', tag/}
   <!-- React 18 from a CDN, then the runtime of this application - islands, requests back
        to PAD - and Babel, which turns the JSX of the components into JavaScript in the
        browser: no build step -->
   <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
-  <script src="{asset 'pad-react.js'/}"></script>
+  <script src="{pad:asset 'pad-react.js'/}"></script>
   <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
   <script type="text/babel" src="{$padRoot}react/ui.js"></script>
-  {/slot}
+  {/pad:slot}
 {/common:padFrame}
 @page@
 {common:padFrameEnd/}

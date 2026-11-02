@@ -2,8 +2,8 @@
 
   // Parts of a hierarchy: how each part adds up to the whole.
   //
-  //   {chart 'treemap',  data='budget', label='post', value='amount', levels='department'}
-  //   {chart 'sunburst', data='sales',  label='product', value='total', levels='region, country'}
+  //   {chart:treemap data='budget', label='post', value='amount', levels='department'}
+  //   {chart:sunburst data='sales',  label='product', value='total', levels='region, country'}
   //
   // label= names the parts - else the first field that is no number - and value= their
   // size, else the first numeric field; a part of nothing or less is left out. levels= lists

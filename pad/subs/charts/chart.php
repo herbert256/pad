@@ -1,23 +1,20 @@
 <?php
 
-  // The body of a chart, whichever way it is written: {chart 'bar', data='sales', label='month',
-  // value='amount'/}, the chart: type - {chart:bar data='sales'/}, or a bare {gauge value=72/}
-  // when nothing else has the name - and {sparkline data='visits'/}. The caller sets
-  // $padChartKind; a kind is a file of subs/charts/types/, and the files there are all the kinds
-  // there are (padChartTypes, lib/chart.php). The data is a {data} store, a sequence store,
-  // the page's array or a _data file named by data=, or the first rows terms of a sequence=
-  // type; title= names the chart for a screen reader.
+  // A chart uses {chart:bar data='sales', label='month', value='amount'/},
+  // {chart:gauge value=72/} or another kind in subs/charts/types/. The caller sets
+  // $padChartKind. Data comes from a store, page array or _data file named by data=,
+  // or the first rows terms of sequence=. title= names the chart for a screen reader.
   //
-  // As a pair the content is the data - JSON, YAML, XML or CSV, recognised as {data}
+  // As a pair the content is the data - JSON, YAML, XML or CSV, recognised as {pad:data}
   // recognises it - when neither data= nor sequence= names it:
   //
-  //   {chart 'bar', label='month', value='amount'}
+  //   {chart:bar label='month', value='amount'}
   //     month,amount
   //     Jan,120
-  //   {/chart}
+  //   {/chart:bar}
   //
   // The content is taken as it stands, before the level walks it, so the braces of JSON
-  // need no {ignore}; the level is left no content of its own to render.
+  // need no {pad:ignore}; the level is left no content of its own to render.
   //
   // The data= option has already been read into this level's data by level/start.php, and
   // the level would iterate it, writing the chart once per row - so the level gets its one

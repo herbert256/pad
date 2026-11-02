@@ -5,13 +5,13 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{search 'blog', q=$q, fields='title^2, body', lang='en'}{$title} {$score} {!excerpt}@else@...{/search}
-{search 'products', q=$q, words=20, excerpt='about'}...{/search}
-{search 'blog', q=$q, link='url'/}
+{pad:search 'blog', q=$q, fields='title^2, body', lang='en'}{$title} {$score} {!excerpt}@else@...{/pad:search}
+{pad:search 'products', q=$q, words=20, excerpt='about'}...{/pad:search}
+{pad:search 'blog', q=$q, link='url'/}
 PAD;
 
   $tagParms   = [
-    'source' => 'A Markdown collection, <code>_content/&lt;name&gt;/</code> - else a <code>{data}</code> store, a page\'s array (a <code>db()</code> result) or a <code>_data</code> file of the name.' ];
+    'source' => 'A Markdown collection, <code>_content/&lt;name&gt;/</code> - else a <code>{pad:data}</code> store, a page\'s array (a <code>db()</code> result) or a <code>_data</code> file of the name.' ];
 
   $tagOptions = [
     'q'       => 'The query: words (any of them), <code>"a phrase"</code> (required, in order), <code>prefix*</code>, <code>-word</code> and <code>-"a phrase"</code> (left out).',
@@ -22,5 +22,7 @@ PAD;
     'link'    => 'The single tag\'s list: a field with the link of a hit - http(s), a page or an anchor.' ];
 
   $tagSee     = [ 'collection', 'excerpt', 'data' ];
+
+  $subsystemKindLinks = appSubsystemLinks ( 'search' );
 
 ?>

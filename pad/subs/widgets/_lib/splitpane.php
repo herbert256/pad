@@ -3,12 +3,12 @@
   // Two panes and the bar between them - the splitpane widget, the WAI-ARIA window splitter
   // pattern: an editor beside its preview, a list beside the item it shows, an inspector.
   //
-  //   {splitpane size=30, min=20, max=60, collapse}
-  //     {tab 'Folders'}<ul>...</ul>{/tab}
-  //     {tab 'Message'}<p>...</p>{/tab}
-  //   {/splitpane}
+  //   {widget:splitpane size=30, min=20, max=60, collapse}
+  //     {pad:tab 'Folders'}<ul>...</ul>{/pad:tab}
+  //     {pad:tab 'Message'}<p>...</p>{/pad:tab}
+  //   {/widget:splitpane}
   //
-  // The first {tab} is the primary pane, whose size the bar sets - in percent of the whole,
+  // The first {pad:tab} is the primary pane, whose size the bar sets - in percent of the whole,
   // so a window or a column that changes its width keeps the share - and the second takes
   // the rest. Each pane is a region named by its label; the bar is a separator that controls
   // the first pane, named by its label as well, its value the first pane's share: a screen
@@ -29,7 +29,7 @@
   // the one splitpane in a <style> with the CSP nonce, by its id - no style attribute, which
   // a nonce policy refuses.
   //
-  // padSplitpane        the box, the panes and the bar around the rendered {tab}s
+  // padSplitpane        the box, the panes and the bar around the rendered {pad:tab}s
   // padSplitpaneShare   a size=, min= or max= - a whole percentage from 0 to 100
   // padSplitpaneHeight  the height= - a CSS length, '' for none
   // padSplitpaneStyle   the CSS, www/assets/widgets/splitpane.css, once per page
@@ -87,7 +87,7 @@
       return (int) $text;
 
     if ( $padCheckSyntax )
-      padError ( "the {splitpane} has no usable $option '" . padMakeSafe ( $text, 20 ) . "' - a whole percentage from 0 to 100" );
+      padError ( "the {widget:splitpane} has no usable $option '" . padMakeSafe ( $text, 20 ) . "' - a whole percentage from 0 to 100" );
 
     return $default;
 
@@ -110,7 +110,7 @@
       return $text . 'px';
 
     if ( $padCheckSyntax )
-      padError ( "the {splitpane} has no usable height '" . padMakeSafe ( $text, 20 ) . "' - a length like 300px, 24rem or 60vh" );
+      padError ( "the {widget:splitpane} has no usable height '" . padMakeSafe ( $text, 20 ) . "' - a length like 300px, 24rem or 60vh" );
 
     return '';
 

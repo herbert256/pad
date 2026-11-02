@@ -1,6 +1,6 @@
 <?php
 
-  // The {pager} of a routed page links to the name the page was asked by, products/42 - it
+  // The {pad:pager} of a routed page links to the name the page was asked by, products/42 - it
   // linked to the file that answers it, products/[id], which no link reaches: a 404.
 
   $paged = padCurl ( $padHost . 'regression/clean_urls/index.php/products/42&paged&padInclude' );

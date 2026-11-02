@@ -5,10 +5,10 @@
   // way a newspaper numbers them - to play (padCrosswordPlay, for crossword.js), or drawn
   // filled in as inline SVG beside the Across and Down lists, with solution.
   //
-  //   {crossword}
+  //   {game:crossword}
   //     ECHO: Writes a value without the sanitize chain
   //     PIPE: The | that hands a value to a function
-  //   {/crossword}
+  //   {/game:crossword}
   //
   // padCrosswordWords   the words and clues of the content: [ word, letters, clue ] rows,
   //                     or the reason a line is wrong as a string

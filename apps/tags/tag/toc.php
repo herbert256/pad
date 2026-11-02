@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{toc/}
-{toc levels='2-4', title='On this page', list='ul'/}
+{pad:toc/}
+{pad:toc levels='2-4', title='On this page', list='ul'/}
 PAD;
 
   $tagParms   = [];

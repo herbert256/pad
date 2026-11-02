@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{country 'NL'/}
-{country $code, name/}
+{pad:country 'NL'/}
+{pad:country $code, name/}
 PAD;
 
   $tagParms   = [

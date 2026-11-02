@@ -4,7 +4,7 @@
   // each, for a page's PHP: a sequential or diverging palette sampled evenly in $steps steps,
   // a cyclic one evenly round its circle, a categorical one its colours in its order, starting
   // again past its last; without $steps a categorical palette's own colours, twelve of a cyclic
-  // one, nine of the others. The name is read in any case, as {palette} and palette= read
+  // one, nine of the others. The name is read in any case, as {pad:palette} and palette= read
   // it - padPalette ( 'romaO' ) is romao. A name that is no palette, or a
   // number of steps that is no whole number from 1 to 256, is reported with padError and
   // answers []. The palettes themselves are the subsystem in pad/subs/palettes/, included when

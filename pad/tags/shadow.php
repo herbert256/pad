@@ -1,13 +1,13 @@
 <?php
 
-  // {shadow css='www:card.css'} ... {/shadow} - the shadow root of a custom element, rendered
+  // {pad:shadow css='www:card.css'} ... {/pad:shadow} - the shadow root of a custom element, rendered
   // on the server as <template shadowrootmode="open"> with the stylesheets inlined
   // (tags/_lib/shadow.php). mode='closed' for a closed root, focus for delegatesFocus.
   //
-  // Runs twice, like {tidy}: the content renders first, then the tags go round it.
+  // Runs twice, like {pad:tidy}: the content renders first, then the tags go round it.
 
   if ( ! $padPair [$pad] and $padCheckSyntax )
-    padError ( "the pair {shadow} never closes" );
+    padError ( "the pair {pad:shadow} never closes" );
 
   // While the content renders, a style written once a page is written once in this root:
   // the page's does not reach into it (padWidgetOnce). A toy in the root after a toy outside

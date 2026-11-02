@@ -5,7 +5,7 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{block 'name'} {parent/} ... {/block}
+{pad:block 'name'} {pad:parent/} ... {/pad:block}
 PAD;
 
   $tagParms   = [];

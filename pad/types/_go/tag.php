@@ -12,7 +12,7 @@
   // below - anything not already a global - dropped every one of them.
 
   // One snapshot per nesting depth: a tag's PHP can run another tag through this same
-  // file in the same scope - {echo $v | code} does - and a single variable was the inner
+  // file in the same scope - {pad:echo $v | code} does - and a single variable was the inner
   // tag's to clear before the outer one had read it.
 
   // The sifting is padAppVars, the engine's names taken out by one array_diff_key of PHP's

@@ -190,7 +190,7 @@ Configure sequence generation:
 - **from/to**: Define range boundaries - see "What from and to count" below
 - **increment**: Step size between values, 1 or more - a range (`'0..1'`) also counts in a step below 1
 - **rows**: Limit number of results
-- **page**: One page of the terms, as on a data tag - `rows` is the page's size, 10 when not given, a page below 1 or no number is page 1, and `{pager 'sequence'}` - or the name of the type, the store or the tag, `{pager 'prime'}`, `{pager 'keep'}`, or the `name=` given - writes the links to the other pages. The pager of a range, a list or a store counts all its terms, made only up to the page shown; of any other run - a type, or a list with a play, `unique`, `min`/`max`, `stop`, `try` or `randomly` - it knows the pages made, up to the one after the page shown, so it has a next page while there are more. In the order written, as among a data tag's options: an action before `page` acts on every term and the page is cut from its result - `{sequence '5;3;9;1;7;2', sort, page=1, rows=3}` is 1 2 3 - one after it acts on the page. A type without an end of its own - no `to` or `stop` - has no every term: it is cut to its page first, wherever `page` is written - `{sequence 'prime', reverse, page=2, rows=5}` is 29 23 19 17 13 - unless every action before `page` keeps a front of the run and drops none of it (`first`, `shift`, `element`, `prepend`, without `negative`): `{sequence 'prime', first=20, page=5, rows=5}` is past the twenty, no terms. A `dedup`, `intersection` or `onlyNow` before `page` on such a run, or one of these under `negative`, drops terms of that front: the run is made again with twice the terms until what they leave fills the page after the one shown - `{sequence 'golomb', dedup, page=2, rows=3}` is 4 5 6 with a next page - or until doubling the run leaves no more terms than before (`{sequence 'kolakoski', dedup}` has two) - while it leaves none at all, up to a thousand times the terms that page needs - or the run reaches its candidate or time limit
+- **page**: One page of the terms, as on a data tag - `rows` is the page's size, 10 when not given, a page below 1 or no number is page 1, and `{pad:pager 'sequence'}` - or the name of the type, the store or the tag, `{pad:pager 'prime'}`, `{pad:pager 'keep'}`, or the `name=` given - writes the links to the other pages. The pager of a range, a list or a store counts all its terms, made only up to the page shown; of any other run - a type, or a list with a play, `unique`, `min`/`max`, `stop`, `try` or `randomly` - it knows the pages made, up to the one after the page shown, so it has a next page while there are more. In the order written, as among a data tag's options: an action before `page` acts on every term and the page is cut from its result - `{sequence:list '5;3;9;1;7;2', sort, page=1, rows=3}` is 1 2 3 - one after it acts on the page. A type without an end of its own - no `to` or `stop` - has no every term: it is cut to its page first, wherever `page` is written - `{sequence:prime reverse, page=2, rows=5}` is 29 23 19 17 13 - unless every action before `page` keeps a front of the run and drops none of it (`first`, `shift`, `element`, `prepend`, without `negative`): `{sequence:prime first=20, page=5, rows=5}` is past the twenty, no terms. A `dedup`, `intersection` or `onlyNow` before `page` on such a run, or one of these under `negative`, drops terms of that front: the run is made again with twice the terms until what they leave fills the page after the one shown - `{sequence:golomb dedup, page=2, rows=3}` is 4 5 6 with a next page - or until doubling the run leaves no more terms than before (`{sequence:kolakoski dedup}` has two) - while it leaves none at all, up to a thousand times the terms that page needs - or the run reaches its candidate or time limit
 - **stop**: Maximum value constraint
 - **skip**: Skip the first N candidates offered, not the first N kept
 - **try**: Attempt limits for validation
@@ -205,12 +205,12 @@ depends on how the type produces its terms:
 
 - **Types that test candidates** decide whether each number in turn belongs to the
   sequence, so the loop counts **values** and `to` is an upper bound on the terms
-  themselves. `{sequence prime, to=20}` gives the primes up to 20, and
-  `{sequence triangular, to=20}` gives `1 3 6 10 15`.
+  themselves. `{sequence:prime to=20}` gives the primes up to 20, and
+  `{sequence:triangular to=20}` gives `1 3 6 10 15`.
 - **Types that compute the nth term** from a formula or from earlier terms are handed the
   position, so the loop counts **terms** and `to` is how many are produced.
-  `{sequence square, to=20}` gives twenty squares, ending at 400, and
-  `{sequence fibonacci, to=20}` gives twenty Fibonacci numbers.
+  `{sequence:square to=20}` gives twenty squares, ending at 400, and
+  `{sequence:fibonacci to=20}` gives twenty Fibonacci numbers.
 - **Types with a ready-made list** - `perfect`, `mersenne`, `kolakoski`, and any stored
   sequence read back with `pull` - are indexed by position too, so `to` is a position in
   that list.
@@ -228,14 +228,14 @@ the predicate is what `keep`, `remove` and `flag` ask.
 `build=` picks the other kind for one run, and two of the builds serve every type:
 
 - `build='bool'` walks the values and keeps the ones that belong, so `from` and `to` name
-  values: `{sequence fibonacci, build='bool', to=100}` gives `1 2 3 5 8 13 21 34 55 89`, each
+  values: `{sequence:fibonacci build='bool', to=100}` gives `1 2 3 5 8 13 21 34 55 89`, each
   value once. A type without a `bool.php` is asked through its membership check.
 - `build='function'` gives the term at each position, so `from` and `to` count terms:
-  `{sequence happy, build='function', from=5, to=8}` gives the 5th to 8th happy numbers,
+  `{sequence:happy build='function', from=5, to=8}` gives the 5th to 8th happy numbers,
   `19 23 28 31`. A type that tests values has its nth value found by walking them, kept for
   the rest of the request; one that steps through them by itself - `step`, `even`, `odd`,
   `multiple` - has it worked out from its first terms, at any position:
-  `{sequence step=3, build='function', from=2, to=4}` gives `4 7 10`.
+  `{sequence:step 3, build='function', from=2, to=4}` gives `4 7 10`.
 
 ### Storage and Reuse
 - Store sequences in named stores (push, name)
@@ -259,23 +259,23 @@ Sequences are invoked through PAD template tags. The type is named directly - th
 `type=` attribute - and options follow it as a comma-separated list:
 
 ```
-{sequence fibonacci, from=1, to=10}{$sequence} {/sequence}
-{sequence prime, rows=20, sum}{$sequence}{/sequence}
-{sequence range='1..100', increment=5, average}{$sequence}{/sequence}
-{sequence random, minimal=1, maximal=100, rows=10, unique}{$sequence} {/sequence}
+{sequence:fibonacci from=1, to=10}{$sequence} {/sequence:fibonacci}
+{sequence:prime rows=20, sum}{$sequence}{/sequence:prime}
+{sequence:range '1..100', increment=5, average}{$sequence}{/sequence:range}
+{sequence:random minimal=1, maximal=100, rows=10, unique}{$sequence} {/sequence:random}
 ```
 
 Parameters control generation, actions transform results, and outputs can be stored for later use.
 
 ## Example Workflows
 
-1. **Generate Fibonacci numbers** - `{sequence fibonacci, from=1, to=10}` gives ten of them,
+1. **Generate Fibonacci numbers** - `{sequence:fibonacci from=1, to=10}` gives ten of them,
    0 1 1 2 3 5 8 13 21 34
-2. **Sum the first 20 primes** - `{sequence prime, rows=20, sum}` gives 639
-3. **Random unique numbers** - `{sequence random, minimal=1, maximal=100, rows=10, unique}`
-4. **Even numbers descending** - `{sequence even, to=10, reverse}` gives 20 18 16 ... 2.
+2. **Sum the first 20 primes** - `{sequence:prime rows=20, sum}` gives 639
+3. **Random unique numbers** - `{sequence:random minimal=1, maximal=100, rows=10, unique}`
+4. **Even numbers descending** - `{sequence:even to=10, reverse}` gives 20 18 16 ... 2.
    Descending order comes from the `reverse` action; `negative` inverts an action's
    selection and does not reorder anything
-5. **Average of a range** - `{sequence range='1..100', average}` gives 50.5
+5. **Average of a range** - `{sequence:range '1..100', average}` gives 50.5
 
 This module demonstrates PAD's extensibility, providing a complete mathematical sequence engine within the template system.

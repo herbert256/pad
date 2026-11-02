@@ -5,7 +5,7 @@
 
   $padGetPage = padAppPageCheck ( $padGetName );
 
-  // The page's directory guards decide first, as they do for a {page} (build/guards.php):
+  // The page's directory guards decide first, as they do for a {pad:page} (build/guards.php):
   // a refusal renders it as nothing. content='admin/report' ran and showed a page below a
   // _guard.php that refused it to the same visitor. The guards ask $padPage and $padDir,
   // so for the walk they are the pulled page's, and the request's again after it.

@@ -1,16 +1,16 @@
 <?php
 
-  // A wizard without JavaScript - the wizard widget: every {tab} a step, one shown at a time.
+  // A wizard without JavaScript - the wizard widget: every {pad:tab} a step, one shown at a time.
   //
-  //   {form 'order'}
-  //     {wizard}
-  //       {tab 'Address'}{input 'street', label='Street'/}...{/tab}
-  //       {tab 'Delivery'}...{/tab}
-  //       {tab 'Payment'}...<button>Order</button>{/tab}
-  //     {/wizard}
-  //   {/form}
+  //   {pad:form 'order'}
+  //     {widget:wizard}
+  //       {pad:tab 'Address'}{pad:input 'street', label='Street'/}...{/pad:tab}
+  //       {pad:tab 'Delivery'}...{/pad:tab}
+  //       {pad:tab 'Payment'}...<button>Order</button>{/pad:tab}
+  //     {/widget:wizard}
+  //   {/pad:form}
   //
-  // Built as {tabs} is: a radio button and a label per step, the panels behind them, the CSS
+  // Built as {widget:tabs} is: a radio button and a label per step, the panels behind them, the CSS
   // showing the panel whose radio is checked. The labels are the row of steps above the
   // panels - a number in a circle and the step's name - and the CSS marks the current step
   // and the ones before it (:has), with the line between them. The radios are one group: one
@@ -19,7 +19,7 @@
   //
   // Under every panel a Back and a Next: without scripting labels of the radio of the step
   // before and after it, which a click checks; with scripting - @media (scripting) decides,
-  // as for {modal} - real buttons, so the keyboard reaches them, and a small script, once per
+  // as for {widget:modal} - real buttons, so the keyboard reaches them, and a small script, once per
   // page with the CSP nonce, checks the step's radio and moves the focus to it. The first
   // step has no Back, the last no Next: its own content ends it - a submit button. The steps
   // of a form are all in the form, shown or not, so every field is posted; a required field
@@ -27,7 +27,7 @@
   // see - the rules of a step are better checked by the page (padValidate). Printed, every
   // step shows.
   //
-  // The items are collected the way {tabs} collects its tabs - subs/widgets/_lib/tabs.php.
+  // The items are collected the way {widget:tabs} collects its tabs - subs/widgets/_lib/tabs.php.
   //
   // padWizard        the steps, the panels and their buttons
   // padWizardStyle   the CSS, www/assets/widgets/wizard.css with the panels of twelve steps, once per

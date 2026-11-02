@@ -1,13 +1,13 @@
 {# Every demo here draws, and the number of terms drawn varies as well as the terms - two
    renders of this page do not even agree in shape. There is nothing a comparison can conclude,
    which is what the word random tells the crawl. #}
-{table}
+{common:table}
 
-{demo} {sequence from=1, to='15..25'} {$sequence} {/sequence} {/demo}
-{demo} {sequence from='-10..-5', to=10} {$sequence} {/sequence} {/demo}
-{demo} {sequence rows='15..25'} {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=15, increment='1..10'} {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=15, increment='1...10'} {$sequence} {/sequence} {/demo}
-{demo} {sequence from='10..20', to='40..50', rows='10..20', increment='1...10'} {$sequence} {/sequence} {/demo}
+{common:demo} {sequence:auto from=1, to='15..25'} {$sequence} {/sequence:auto} {/common:demo}
+{common:demo} {sequence:auto from='-10..-5', to=10} {$sequence} {/sequence:auto} {/common:demo}
+{common:demo} {sequence:auto rows='15..25'} {$sequence} {/sequence:auto} {/common:demo}
+{common:demo} {sequence:auto rows=15, increment='1..10'} {$sequence} {/sequence:auto} {/common:demo}
+{common:demo} {sequence:auto rows=15, increment='1...10'} {$sequence} {/sequence:auto} {/common:demo}
+{common:demo} {sequence:auto from='10..20', to='40..50', rows='10..20', increment='1...10'} {$sequence} {/sequence:auto} {/common:demo}
 
-{/table}
+{/common:table}

@@ -1,16 +1,24 @@
-{meta title='Icons in buttons and links', about='An icon beside text is decoration; one alone gets label= and is read out. size= and stroke= change its scale and weight.'/}
+{pad:meta title='Icons in buttons and links', about='An icon beside text is decoration; one alone gets label= and is read out. size= and stroke= change its scale and weight.'/}
 <div style="display:grid; gap:18px; justify-items:start">
   <p style="display:flex; gap:10px; flex-wrap:wrap; margin:0">
-    <button type="button">{icon 'download', size=16/} Download</button>
-    <button type="button">{icon 'edit', size=16/} Edit</button>
-    <button type="button">{icon 'trash', size=16/} Delete</button>
-    <button type="button">{icon 'settings', size=16, label='Settings'/}</button>
+    <button type="button">{icon:download size=16/} Download</button>
+    <button type="button">{icon:edit size=16/} Edit</button>
+    <button type="button">{icon:trash size=16/} Delete</button>
+    <button type="button">{icon:settings size=16, label='Settings'/}</button>
   </p>
-  <p style="margin:0"><a href="?icon/gallery">See every icon {icon 'arrow-right', size=16/}</a></p>
+  <div role="group" aria-label="Text formatting" style="display:flex; gap:4px">
+    <button type="button">{icon:bold size=16, label='Bold'/}</button>
+    <button type="button">{icon:italic size=16, label='Italic'/}</button>
+    <button type="button">{icon:underline size=16, label='Underline'/}</button>
+    <button type="button">{icon:strikethrough size=16, label='Strikethrough'/}</button>
+    <button type="button">{icon:list-ordered size=16, label='Numbered list'/}</button>
+    <button type="button">{icon:quote size=16, label='Quote'/}</button>
+  </div>
+  <p style="margin:0"><a href="?icon/gallery">See every icon {icon:arrow-right size=16/}</a></p>
   <p style="display:flex; gap:14px; align-items:center; margin:0">
-    {icon 'heart', size=16/}{icon 'heart', size=24/}{icon 'heart', size=32/}{icon 'heart', size=48, stroke=1.5/}{icon 'heart', size=48, stroke=1/}
+    {icon:heart size=16/}{icon:heart size=24/}{icon:heart size=32/}{icon:heart size=48, stroke=1.5/}{icon:heart size=48, stroke=1/}
   </p>
   <p style="display:flex; gap:14px; align-items:center; margin:0; color:#2a78d6">
-    {icon 'check-circle', size=28, label='Done'/}{icon 'info', size=28, label='Information'/}{icon 'alert', size=28, label='Warning'/}{icon 'x-circle', size=28, label='Failed'/}
+    {icon:check-circle size=28, label='Done'/}{icon:info size=28, label='Information'/}{icon:alert size=28, label='Warning'/}{icon:x-circle size=28, label='Failed'/}
   </p>
 </div>

@@ -7,32 +7,31 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{widget 'name', ...} ... {/widget}
 {widget:name ...} ... {/widget:name}
-{tabs active='label'} {tab 'label'} ... {/tab} ... {/tabs}
-{accordion single, open=1} {tab 'label'} ... {/tab} ... {/accordion}
-{carousel label='name'} {tab 'caption'} ... {/tab} ... {/carousel}
-{wizard active=1, next='Next', back='Back'} {tab 'step'} ... {/tab} ... {/wizard}
-{lightbox label='name'} {tab 'caption'} <img ...> {/tab} ... {/lightbox}
-{splitpane size=30, min=20, max=60, stacked, collapse, height='16rem'} {tab 'label'} ... {/tab} {tab 'label'} ... {/tab} {/splitpane}
-{sortable 'name', label='text'} {tab 'key'} ... {/tab} ... {/sortable}
-{modal 'name', title='heading', button='text'} ... {/modal}
-{drawer 'name', title='heading', button='text', side='left'} ... {/drawer}
-{dropdown 'text', align='end'} <a href="..."> ... </a> ... {/dropdown}
-{contextmenu 'name', area='tr'} <a href="..."> ... </a> ... {/contextmenu}
-{commandpalette 'text', data='rows', key='k', placeholder='hint', empty='text'} <a href="..."> ... </a> ... {/commandpalette}
-{tooltip 'tip'} ... {/tooltip}
-{toast 'title', tone='success', place='top', timeout=5} ... {/toast}
-{copy 'text', label='Copy'/}
-{poll 'name', options='Yes, No', title='question', button='Vote', results/}
-{breadcrumb home='Home', label='Breadcrumb'/}
+{widget:tabs active='label'} {pad:tab 'label'} ... {/pad:tab} ... {/widget:tabs}
+{widget:accordion single, open=1} {pad:tab 'label'} ... {/pad:tab} ... {/widget:accordion}
+{widget:carousel label='name'} {pad:tab 'caption'} ... {/pad:tab} ... {/widget:carousel}
+{widget:wizard active=1, next='Next', back='Back'} {pad:tab 'step'} ... {/pad:tab} ... {/widget:wizard}
+{widget:lightbox label='name'} {pad:tab 'caption'} <img ...> {/pad:tab} ... {/widget:lightbox}
+{widget:splitpane size=30, min=20, max=60, stacked, collapse, height='16rem'} {pad:tab 'label'} ... {/pad:tab} {pad:tab 'label'} ... {/pad:tab} {/widget:splitpane}
+{widget:sortable 'name', label='text'} {pad:tab 'key'} ... {/pad:tab} ... {/widget:sortable}
+{widget:modal 'name', title='heading', button='text'} ... {/widget:modal}
+{widget:drawer 'name', title='heading', button='text', side='left'} ... {/widget:drawer}
+{widget:dropdown 'text', align='end'} <a href="..."> ... </a> ... {/widget:dropdown}
+{widget:contextmenu 'name', area='tr'} <a href="..."> ... </a> ... {/widget:contextmenu}
+{widget:commandpalette 'text', data='rows', key='k', placeholder='hint', empty='text'} <a href="..."> ... </a> ... {/widget:commandpalette}
+{widget:tooltip 'tip'} ... {/widget:tooltip}
+{widget:toast 'title', tone='success', place='top', timeout=5} ... {/widget:toast}
+{widget:copy 'text', label='Copy'/}
+{widget:poll 'name', options='Yes, No', title='question', button='Vote', results/}
+{widget:breadcrumb home='Home', label='Breadcrumb'/}
 PAD;
 
   $tagParms   = [
-    'name' => 'The widget, a file of <code>pad/subs/widgets/types/</code>: '
+    'kind after colon' => 'The widget, a file of <code>pad/subs/widgets/types/</code>: '
             . implode ( ', ', array_map ( fn ( $widget ) => "<code>$widget</code>", padWidgetTypes () ) )
-            . '. The widget: type names it as well - <code>{widget:modal \'terms\'}</code> - and so does the bare name, <code>{modal \'terms\'}</code>, after every other kind of tag: a store, a field or an array of the name wins.',
-    'first'  => 'The widget\'s own first parameter, the second of <code>{widget}</code>: the name of a modal, a drawer, a poll, a context menu or a sortable, the text of a copy box, the title of a toast, the button of a dropdown, the tip of a tooltip, the button of a command palette.' ];
+            . '. The widget: prefix selects it - <code>{widget:modal \'terms\'}</code>.',
+    'first'  => 'The widget\'s own first parameter, used after <code>{widget:modal}</code>: the name of a modal, a drawer, a poll, a context menu or a sortable, the text of a copy box, the title of a toast, the button of a dropdown, the tip of a tooltip, the button of a command palette.' ];
 
   $tagOptions = [
     'active'  => 'tabs, wizard: the tab or step shown first, by its number from 1 or its label.',
@@ -63,6 +62,6 @@ PAD;
     'placeholder' => 'commandpalette: the hint in the search box (<code>Type a command</code>).',
     'empty'   => 'commandpalette: what shows when nothing is found (<code>No command found</code>).' ];
 
-  $tagSee     = [ 'tab', 'copy', 'live', 'form' ];
+  $tagSee     = [ 'tab', 'widget:copy', 'live', 'form' ];
 
 ?>

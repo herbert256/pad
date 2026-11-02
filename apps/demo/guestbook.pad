@@ -1,12 +1,12 @@
 <p>Sign our guestbook and leave a message for other visitors!</p>
 
-{flash}
+{pad:flash}
   <div class="message">{$message}</div>
-{/flash}
+{/pad:flash}
 
-{if $error}
+{pad:if $error}
   <div class="message error">{$error}</div>
-{/if}
+{/pad:if}
 
 <h2>Sign the Guestbook</h2>
 
@@ -27,14 +27,14 @@
 
 <h2>Guestbook Entries</h2>
 
-{if $hasEntries}
-  {entries}
+{pad:if $hasEntries}
+  {array:entries}
     <div class="guest-entry">
       <div class="guest-name">{$name}</div>
       <div class="guest-date">{$date}</div>
       <p>{$comment}</p>
     </div>
-  {/entries}
+  {/array:entries}
 @else@
   <p>No entries yet. Be the first to sign!</p>
-{/if}
+{/pad:if}

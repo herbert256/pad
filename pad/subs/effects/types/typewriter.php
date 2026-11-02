@@ -1,6 +1,6 @@
 <?php
 
-  // {typewriter}Hello, world{/typewriter} or {typewriter 'Hello, world'/} - a line of text typed
+  // {effect:typewriter}Hello, world{/effect:typewriter} or {effect:typewriter 'Hello, world'/} - a line of text typed
   // out letter by letter behind a caret, once, then the caret blinks a few times and stays. The
   // CSS uncovers the text from left to right in as many steps as it has letters - the text
   // itself is whole in the page all the time, so a screen reader reads it at once, never in
@@ -9,7 +9,7 @@
   // monospaced letters, in which every step is one letter exactly. Under reduced motion the
   // line stands typed, without a caret.
   //
-  //   {typewriter speed=20, mono}npm install pad{/typewriter}
+  //   {effect:typewriter speed=20, mono}npm install pad{/effect:typewriter}
 
   $padFxSource = padEffectSource ();
   $padFxCount  = count ( padEffectLetters ( padEffectPlain ( $padFxSource ) ) );
@@ -19,7 +19,7 @@
   $padFxMono   = padEffectFlag ( 'mono' );
 
   if ( $padFxCount == 0 )
-    return padEffectNeedsText ( "{typewriter}Hello{/typewriter} or {typewriter 'Hello'/}" );
+    return padEffectNeedsText ( "{effect:typewriter}Hello{/effect:typewriter} or {effect:typewriter 'Hello'/}" );
 
   $padFxTime = $padFxCount / $padFxSpeed;
 

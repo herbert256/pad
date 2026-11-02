@@ -6,8 +6,8 @@
   // bar between two spaces. One check digit of modulo 10 (Luhn's) is added unless check= says
   // otherwise: mod1010 adds a second one of the same kind, none none.
   //
-  //   {msi '1234567'/}                  12345674
-  //   {msi '1234567', check='mod1010'/} 123456741
+  //   {barcode:msi '1234567'/}                  12345674
+  //   {barcode:msi '1234567', check='mod1010'/} 123456741
   //
   // padCodeMsi        the bars, or the message why the text is no MSI
   // padCodeMsiCheck   the check digit of modulo 10

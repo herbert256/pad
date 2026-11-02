@@ -1,34 +1,34 @@
-current:  {data 'cXs'}[7,8]{/data}{cXs}{current@cXs/},{/cXs}
-done:     {cXs}{done@cXs/},{/cXs}
-key:      {cXs}{key@cXs/},{/cXs}
-remaining: {cXs}{remaining@cXs/},{/cXs}
-count:    {cXs}{count@cXs/},{/cXs}
-nameProp: {cXs}{name@cXs/},{/cXs}
-first:    {cXs}{first@cXs}[{/first@cXs}{$cXs},{/cXs}
-last:     {cXs}{$cXs},{last@cXs}]{/last@cXs}{/cXs}
-notFirst: {cXs}{notFirst@cXs}-{/notFirst@cXs}{$cXs}{/cXs}
-notLast:  {cXs}{$cXs}{notLast@cXs},{/notLast@cXs}{/cXs}
-even:     {cXs}{even@cXs}E{/even@cXs}{/cXs}
-odd:      {cXs}{odd@cXs}O{/odd@cXs}{/cXs}
-border:   {cXs}{border@cXs}|{/border@cXs}{$cXs}{/cXs}
-middle:   {data 'cYs'}[1,2,3]{/data}{cYs}{middle@cYs}M{/middle@cYs}{/cYs}
-fields:   {data 'cU'}[{"a":1,"b":2}]{/data}{cU}{fields@cU}{$name}={$value},{/fields@cU}{/cU}
-firstFieldName:  {cU}{firstFieldName@cU/},{/cU}
-firstFieldValue: {cU}{firstFieldValue@cU/},{/cU}
-keys:     {data 'cKv' ignore}{"a":1,"b":2}{/data}{cKv}{first@cKv}{keys@cKv}[{$name}]{/keys@cKv}{/first@cKv}{/cKv}
-parameter: {true 'p1', 'p2'}{parameter.1@true/}/{echo $parameter.2@true/}{/true}
-variable:  {true $t='9'}{variable.t@true/}/{echo $variable.t@true/}{/true}
-option:    {true opt='v'}{echo $option.opt@true/}{/true}
-any:       {true $cAny='9'}{echo $cAny@any/}{/true}
-options:   {true opt='w'}{echo $opt@options/}{/true}
-parameters: {true 'q1', 'q2'}{echo $2@parameters/}{/true}
-saved:     {data 'cSv'}["x"]{/data}{cSv %catSaved='inner'}{$catSaved}/{echo $catSaved@saved/}{/cSv}
-variables: {true $cV='n'}{echo $cV@variables/}{/true}
-all:       {echo $catAll@all/}
-sequences: {sequence '1..5', push='cSeq'/}{echo $cSeq.3@sequences/}
-tags:      {true $cT='7'}{echo $cT@tags/}{/true}
-level:     {data 'cLv'}["x","y"]{/data}{cLv}{echo $0.cLv@level/}{echo $1.cLv@level/},{/cLv}
-dataAt:    {data 'cAd'}{"cKey":9}{/data}{echo $cKey.cAd@data/}
-function:  {data 'cFn'}[1,2]{/data}{cFn callback='catsum.php', before}{last@cFn}{echo $t@function/}{/last@cFn}{/cFn}
-dataProp:  {cLv}{first@cLv}[{data@cLv}{$cLv},{/data@cLv}]{/first@cLv}{/cLv}
-condition: {cLv}{if first@cLv}F{/if}{$cLv}{if notLast@cLv}-{/if}{/cLv}
+current:  {pad:data 'cXs'}[7,8]{/pad:data}{data:cXs}{property:current@cXs/},{/data:cXs}
+done:     {data:cXs}{property:done@cXs/},{/data:cXs}
+key:      {data:cXs}{property:key@cXs/},{/data:cXs}
+remaining: {data:cXs}{property:remaining@cXs/},{/data:cXs}
+count:    {data:cXs}{property:count@cXs/},{/data:cXs}
+nameProp: {data:cXs}{property:name@cXs/},{/data:cXs}
+first:    {data:cXs}{property:first@cXs}[{/property:first@cXs}{$cXs},{/data:cXs}
+last:     {data:cXs}{$cXs},{property:last@cXs}]{/property:last@cXs}{/data:cXs}
+notFirst: {data:cXs}{property:notFirst@cXs}-{/property:notFirst@cXs}{$cXs}{/data:cXs}
+notLast:  {data:cXs}{$cXs}{property:notLast@cXs},{/property:notLast@cXs}{/data:cXs}
+even:     {data:cXs}{property:even@cXs}E{/property:even@cXs}{/data:cXs}
+odd:      {data:cXs}{property:odd@cXs}O{/property:odd@cXs}{/data:cXs}
+border:   {data:cXs}{property:border@cXs}|{/property:border@cXs}{$cXs}{/data:cXs}
+middle:   {pad:data 'cYs'}[1,2,3]{/pad:data}{data:cYs}{property:middle@cYs}M{/property:middle@cYs}{/data:cYs}
+fields:   {pad:data 'cU'}[{"a":1,"b":2}]{/pad:data}{data:cU}{property:fields@cU}{$name}={$value},{/property:fields@cU}{/data:cU}
+firstFieldName:  {data:cU}{property:firstFieldName@cU/},{/data:cU}
+firstFieldValue: {data:cU}{property:firstFieldValue@cU/},{/data:cU}
+keys:     {pad:data 'cKv' ignore}{"a":1,"b":2}{/pad:data}{data:cKv}{property:first@cKv}{property:keys@cKv}[{$name}]{/property:keys@cKv}{/property:first@cKv}{/data:cKv}
+parameter: {pad:true 'p1', 'p2'}{property:parameter.1@true/}/{pad:echo $parameter.2@true/}{/pad:true}
+variable:  {pad:true $t='9'}{property:variable.t@true/}/{pad:echo $variable.t@true/}{/pad:true}
+option:    {pad:true opt='v'}{pad:echo $option.opt@true/}{/pad:true}
+any:       {pad:true $cAny='9'}{pad:echo $cAny@any/}{/pad:true}
+options:   {pad:true opt='w'}{pad:echo $opt@options/}{/pad:true}
+parameters: {pad:true 'q1', 'q2'}{pad:echo $2@parameters/}{/pad:true}
+saved:     {pad:data 'cSv'}["x"]{/pad:data}{data:cSv %catSaved='inner'}{$catSaved}/{pad:echo $catSaved@saved/}{/data:cSv}
+variables: {pad:true $cV='n'}{pad:echo $cV@variables/}{/pad:true}
+all:       {pad:echo $catAll@all/}
+sequences: {sequence:range '1..5', push='cSeq'/}{pad:echo $cSeq.3@sequences/}
+tags:      {pad:true $cT='7'}{pad:echo $cT@tags/}{/pad:true}
+level:     {pad:data 'cLv'}["x","y"]{/pad:data}{data:cLv}{pad:echo $0.cLv@level/}{pad:echo $1.cLv@level/},{/data:cLv}
+dataAt:    {pad:data 'cAd'}{"cKey":9}{/pad:data}{pad:echo $cKey.cAd@data/}
+function:  {pad:data 'cFn'}[1,2]{/pad:data}{data:cFn callback='catsum.php', before}{property:last@cFn}{pad:echo $t@function/}{/property:last@cFn}{/data:cFn}
+dataProp:  {data:cLv}{property:first@cLv}[{property:data@cLv}{$cLv},{/property:data@cLv}]{/property:first@cLv}{/data:cLv}
+condition: {data:cLv}{pad:if first@cLv}F{/pad:if}{$cLv}{pad:if notLast@cLv}-{/pad:if}{/data:cLv}

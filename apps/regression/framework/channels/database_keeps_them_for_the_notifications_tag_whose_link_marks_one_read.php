@@ -1,7 +1,7 @@
 <?php
 
   // The database channel keeps a notification per recipient under DATA/notifications/, and
-  // {notifications/} lists the unread ones, newest first, each with a link that marks it
+  // {pad:notifications/} lists the unread ones, newest first, each with a link that marks it
   // read. This request comes as the first one's link would bring it - its id and signature in
   // padNotificationRead - so the list shows only the second. The time is frozen, the
   // recipient's file emptied first.

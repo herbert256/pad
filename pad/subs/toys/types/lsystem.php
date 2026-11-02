@@ -10,13 +10,13 @@
   // system's own. A system of your own stands between the tags: axiom: the word to start
   // with, angle: the turn, and a line per rule - X: F+[[X]-X]-F[-FX]+X.
   //
-  //   {lsystem 'dragon', iterations=14/}
-  //   {lsystem}
+  //   {toy:lsystem 'dragon', iterations=14/}
+  //   {toy:lsystem}
   //     axiom: X
   //     X: F[+X]F[-X]+X
   //     F: FF
   //     angle: 20
-  //   {/lsystem}
+  //   {/toy:lsystem}
 
   // The systems to pick from: the word to start with, the rules, the turn, how often they are
   // rewritten unless iterations= says, and the most that still draws in a moment. F and G

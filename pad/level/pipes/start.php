@@ -1,6 +1,6 @@
 <?php
 
-  // Peels the opening pipe off a tag: {tag parms | expr}.
+  // Peels the opening pipe off a tag: {function:tag parms | expr}.
   //
   // $padBetweenOrg keeps the untouched text (level/no.php puts that back when the tag turns
   // out to be unknown), then $padBetween is cut at the first '|' that is not inside quotes

@@ -5,14 +5,14 @@
   <code>_install/padSelect.sql</code>. Every name in it is made up.</p>
 
   <div class="ps-tables">
-    {tables}
+    {array:tables}
     <section class="ps-table">
       <h3>{$table} <small>{$rows} rows</small></h3>
       <ul>
-        {columns}<li>{if $key}<span class="key">{$column}</span>{else}{$column}{/if} <span class="ref">{$type}</span></li>{/columns}
+        {array:columns}<li>{pad:if $key}<span class="key">{$column}</span>{pad:else}{$column}{/pad:if} <span class="ref">{$type}</span></li>{/array:columns}
       </ul>
     </section>
-    {/tables}
+    {/array:tables}
   </div>
 
   <section class="ps-cell">

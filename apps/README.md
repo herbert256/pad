@@ -10,7 +10,7 @@ This directory contains PAD applications and examples.
 | [admin](admin/README.md) | Standard | The web console of the installation: applications, files, search, the pad command, maintenance, queues, schedules, logs, error dumps, mail outbox, storage, PHP, settings, git and users - behind a login, this machine only |
 | [alpine](alpine/README.md) | Standard | PAD + Alpine: state from PHP with `x-data="{^field}"`, components with `Alpine.data`, live search, one set of rules for both sides, a list in the session, server-sent events |
 | [apps](apps/README.md) | Standard | Lists all PAD applications with descriptions from README files |
-| [charts](charts/README.md) | Standard | A showcase of the {chart} tag - a menu heading per chart family, every example with its data, its tag and the chart side by side |
+| [charts](charts/README.md) | Standard | A showcase of the {chart:bar} tag - a menu heading per chart family, every example with its data, its tag and the chart side by side |
 | [showcase](showcase/README.md) | Standard | A showcase of the tags that draw, format and interact - a menu heading per group, every example its template beside the result |
 | [tags](tags/README.md) | Standard | A page per built-in tag - its one line, syntax, own options, description and live examples - with indexes by name, group, form and option, a cheat sheet and a search |
 | [classicModels](classicModels/README.md) | Standard | PAD Select over the Classic Models sample database |
@@ -21,7 +21,7 @@ This directory contains PAD applications and examples.
 | [edit](edit/README.md) | Standard | A browser editor for every application, behind a login - file management, PAD and PHP colouring, completion and checks, preview, history, a terminal, a step debugger |
 | [games](games/README.md) | Standard | Every game of the games subsystem to play - a card per game, a page per game with the template that plays it, read from `pad/subs/games/types/` |
 | [toys](toys/README.md) | Standard | Every toy of the toys subsystem to play with - a card per toy, a page per toy with the template that shows it, read from `pad/subs/toys/types/` |
-| [patterns](patterns/README.md) | Standard | Every pattern of the patterns subsystem - a card per pattern, a page per pattern beside its template with a seed to change by link, read from `pad/subs/patterns/types/` - and every image filter of `{img}` on one picture |
+| [patterns](patterns/README.md) | Standard | Every pattern of the patterns subsystem - a card per pattern, a page per pattern beside its template with a seed to change by link, read from `pad/subs/patterns/types/` - and every image filter of `{pad:img}` on one picture |
 | [printables](printables/README.md) | Standard | Every kind of the printables subsystem on a page of its own - its template beside what it prints, sheets at their size, a link to the PDF, read from `pad/subs/printables/types/` |
 | [sounds](sounds/README.md) | Standard | A soundboard of the sounds subsystem - a card per sound with its button, its recipe and its WAV file, and the ways a page plays one, read from `pad/subs/sounds/types/` |
 | [sections](sections/README.md) | Standard | A landing page built from the sections and effects, the theme switcher in its bar, and a page per section, effect, theme and palette with every example's template beside its result, read from `pad/subs/{sections,effects,themes,palettes}/types/` |
@@ -30,16 +30,16 @@ This directory contains PAD applications and examples.
 | [inputs](inputs/README.md) | Standard | Every rich form field of the inputs subsystem to try - a card per kind, a page per kind in a form that posts back with what the page received, one form with them all checked in the browser too, read from `pad/subs/inputs/types/` |
 | [notations](notations/README.md) | Standard | Every notation of the notations subsystem - AsciiMath, chemistry, ABC music, chord boxes, piano keys, braille, morse, semaphore, signal flags, chess, go, draughts, guitar tablature, Karnaugh maps, bridge deals, siteswaps, cube moves - a card per kind, a page per kind with its examples, each template beside its result, read from `pad/subs/notations/types/` |
 | [htmx](htmx/README.md) | Standard | PAD + htmx: active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates, server-sent events - htmx asks for a part, PAD answers its fragment |
-| [islands](islands/README.md) | Standard | Islands of any framework - React, Vue, Svelte, Preact and Solid on one page through one runtime, built by Vite and linked by `{vite}` |
+| [islands](islands/README.md) | Standard | Islands of any framework - React, Vue, Svelte, Preact and Solid on one page through one runtime, built by Vite and linked by `{pad:vite}` |
 | [kanban](kanban/README.md) | Offline | A task board on SQLite - drag and drop as JSON, fragments, every window in step by server-sent events - that `pad pack kanban` runs in the browser |
 | [ledger](ledger/README.md) | Offline | A household budget on SQLite and its migrations - charts, budgets, CSV, a JSON quick entry - that `pad pack ledger` runs in the browser |
 | [manual](manual/README.md) | Standard | Interactive documentation and examples |
 | [nono](nono/README.md) | Plain PHP | PHP application without PAD templating |
 | [notes](notes/README.md) | Offline | A Markdown notebook on SQLite - search, tags, pins, attachments, JSON export and import - that `pad pack notes` runs in the browser |
 | [pad](pad/README.md) | Standard | PAD framework introduction and reference |
-| [live](live/README.md) | Standard | Type a PAD page - its template, and its data or PHP - and run it on this server as a real page: request values, forms that post back, sessions, scripts - local requests only |
-| [playground](playground/README.md) | Standard | Type a template and its data - JSON, YAML, XML or CSV recognised on sight, or PHP code as a page's `.php` - and see the result - local requests only, shareable through the URL |
-| [react](react/README.md) | Standard | PAD + React: components mounted on islands of PAD pages, JSON answers to `fetch()`, forms checked by PAD, `{fragment}`s, a cart in the session, polling - fourteen examples with their sources |
+| [live](live/README.md) | Standard | Combined server editor: Run page, Render template and Show HTML, with data/PHP and a link to WASM |
+| [wasm](../wasm/README.md) | Browser | Templates, data and PHP running in browser WebAssembly, linked to Live |
+| [react](react/README.md) | Standard | PAD + React: components mounted on islands of PAD pages, JSON answers to `fetch()`, forms checked by PAD, `{pad:fragment}`s, a cart in the session, polling - fourteen examples with their sources |
 | [reference](reference/README.md) | Standard | Cross-reference and directory utilities |
 | [regression/main](regression/main/README.md) | Standard | Automated regression testing for PAD - the runner for the eight suites and the fresh build |
 | [regression/pages](regression/pages/README.md) | Test | The pages suite: every test is a real page, fetched over HTTP and compared with the answer beside it |
@@ -87,12 +87,12 @@ This directory contains PAD applications and examples.
 | [regression/site](regression/site/README.md) | Test | The fixture pad export is tested on - links in every form, a page in a subdirectory, assets |
 | [regression/reload](regression/reload/README.md) | Test | Regression test for live reload - a local page carries the script and its stamp, a fragment, a forwarded request and an export do not |
 | [regression/errors](regression/errors/README.md) | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
-| [regression/common](regression/common/README.md) | Test | The pages of the suite that use _common - {example}, {demo}, {table} - fetched and compared the same way |
+| [regression/common](regression/common/README.md) | Test | The pages of the suite that use _common - {common:example}, {common:demo}, {common:table} - fetched and compared the same way |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos - gallery, listen and guess pages |
-| [sheets](sheets/README.md) | Standard | Spreadsheets made with `{spreadsheet}` - budget, loan, grades, dates, an editable sheet - and every function of `pad/subs/formulas/types/` with its examples |
+| [sheets](sheets/README.md) | Standard | Spreadsheets made with `{pad:spreadsheet}` - budget, loan, grades, dates, an editable sheet - and every function of `pad/subs/formulas/types/` with its examples |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |
 | [test](test/README.md) | Minimal | A scratch application for trying things out, with `_common` switched off |
-| [webcomponents](webcomponents/README.md) | Standard | Web components: custom elements PAD renders with their shadow root (`{shadow}`), upgraded by small modules - cards, tabs, a rating, a form-associated stepper, Lit |
+| [webcomponents](webcomponents/README.md) | Standard | Web components: custom elements PAD renders with their shadow root (`{pad:shadow}`), upgraded by small modules - cards, tabs, a rating, a form-associated stepper, Lit |
 
 ## Application Types
 

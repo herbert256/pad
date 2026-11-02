@@ -5,7 +5,7 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{validator/}
+{pad:validator/}
 PAD;
 
   $tagParms   = [];
@@ -13,5 +13,7 @@ PAD;
   $tagOptions = [];
 
   $tagSee     = [ 'form', 'input', 'nonce' ];
+
+  $subsystemKindLinks = appSubsystemLinks ( 'rule' );
 
 ?>

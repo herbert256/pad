@@ -12,7 +12,7 @@ When integrating React with PAD, the key principle is **separation of concerns**
 
 ---
 
-## Pattern 1: Static Data with {json} Tag
+## Pattern 1: Static Data with {app:json} Tag
 
 Use this pattern for data stored in JSON files in `_data/`.
 
@@ -30,14 +30,14 @@ Use this pattern for data stored in JSON files in `_data/`.
 ```html
 <nav>
   {local:nav.json}
-    <a href="?{$page}" {if $padPage == $page}class="active"{/if}>
+    <a href="?{$page}" {pad:if $padPage == $page}class="active"{/pad:if}>
       {$icon} {$label}
     </a>
   {/local:nav.json}
 </nav>
 ```
 
-### Custom {json} Tag
+### Custom {app:json} Tag
 
 **_tags/json.php:**
 ```php
@@ -55,12 +55,12 @@ Use this pattern for data stored in JSON files in `_data/`.
 
 **template.pad:**
 ```html
-<div id="app" data-products="{json 'products' | ignore/}"></div>
+<div id="app" data-products="{app:json 'products' | ignore/}"></div>
 
-{ignore}<script>
+{pad:ignore}<script>
   const products = JSON.parse(document.getElementById('app').dataset.products);
   // React can now use products
-</script>{/ignore}
+</script>{/pad:ignore}
 ```
 
 ---
@@ -88,7 +88,7 @@ component with `JSON.parse(elem.getAttribute('data-props'))`.
 
 ---
 
-## Pattern 2: Dynamic Data with {reactData} Tag and Providers
+## Pattern 2: Dynamic Data with {pad:reactData} Tag and Providers
 
 Use this pattern for database-driven or dynamic data.
 
@@ -102,9 +102,9 @@ apps/myapp/
     └── posts.php         # Returns posts array
 ```
 
-### The {reactData} Tag
+### The {pad:reactData} Tag
 
-`{reactData}` is a built-in tag (`pad/tags/reactData.php`) - an application writes no tag of
+`{pad:reactData}` is a built-in tag (`pad/tags/reactData.php`) - an application writes no tag of
 its own for it, and a `_tags/reactData.php` would replace the built-in one, since application
 tags are found first. It runs `_providers/<provider>.php` (`provider=` defaults to `id=`),
 keeps the result in `$padProviders[<id>]` for the providers after it, and writes
@@ -130,17 +130,17 @@ the result into 1 or 0. The engine's `$padData` is not a name a provider or tag 
 ?>
 ```
 
-### Using {reactData} in Templates
+### Using {pad:reactData} in Templates
 
 **topic.pad:**
 ```html
 <h1>Forum Topic</h1>
 
 <!-- Multiple data sources - each with unique ID -->
-{reactData id='topic', provider='topic', $id=$id/}
-{reactData id='board', provider='board', $boardId=$boardId/}
-{reactData id='user', provider='user', $userId=$userId/}
-{reactData id='posts', provider='posts', $id=$id/}
+{pad:reactData id='topic', provider='topic', $id=$id/}
+{pad:reactData id='board', provider='board', $boardId=$boardId/}
+{pad:reactData id='user', provider='user', $userId=$userId/}
+{pad:reactData id='posts', provider='posts', $id=$id/}
 
 <div id="react-app"></div>
 <script type="text/babel" src="/react/examples/topic.js"></script>
@@ -243,11 +243,11 @@ PAD's own inside that shows until React takes the element over.
 
 ```html
 <!-- props.pad - one island per row of a PAD loop -->
-{members}
+{array:members}
   <div data-island="MemberCard" data-props="{^card}">
     <strong>{$name}</strong>
   </div>
-{/members}
+{/array:members}
 ```
 
 ```javascript
@@ -269,7 +269,7 @@ answered 403 before the page runs. Write the token where a script can read it an
 the `X-CSRF-Token` header; the page validates as for any form and answers JSON.
 
 ```html
-<meta name="csrf-token" content="{csrf token/}">
+<meta name="csrf-token" content="{pad:csrf token/}">
 ```
 
 ```php
@@ -288,9 +288,9 @@ fetch('?feedback&padFormat=json', {
 });
 ```
 
-**One rendered part.** `{fragment 'chart'}...{/fragment}` in a template is answered alone to
-`?page&padFragment=chart` - a component can let PAD render what it does well (a `{chart}`, a
-`{markdown}` text, a table) and put the HTML in place.
+**One rendered part.** `{pad:fragment 'chart'}...{/pad:fragment}` in a template is answered alone to
+`?page&padFragment=chart` - a component can let PAD render what it does well (a `{chart:bar}`, a
+`{pad:markdown}` text, a table) and put the HTML in place.
 
 **State on the server.** Keep what several islands share in the session (`padSession`,
 `padSessionPut`) and let every change answer the whole state; one island tells the others
@@ -308,11 +308,11 @@ with an event on `window`. A reload starts every island from the session again.
 | Server-side data | Use `_data/*.json` files (static) or `_providers/*.php` (dynamic) |
 | PAD responsibility | Data preparation and HTML structure |
 | React responsibility | Client-side interactivity |
-| JSON in attributes | Use `\| ignore` pipe with {json} tag |
-| JavaScript blocks | Wrap in `{ignore}...{/ignore}` tags |
+| JSON in attributes | Use `\| ignore` pipe with {app:json} tag |
+| JavaScript blocks | Wrap in `{pad:ignore}...{/pad:ignore}` tags |
 | Data attribute access | Use `getAttribute('data')` NOT `dataset.data` |
 | JSON arrays | Use `array_values()` in providers for proper arrays |
-| Unique IDs | Each {reactData} needs unique `id` parameter |
+| Unique IDs | Each {pad:reactData} needs unique `id` parameter |
 | Variable access | Providers have access to all page variables |
 
 ---
@@ -321,15 +321,15 @@ with an event on `window`. A reload starts every island from the session again.
 
 PAD parses `{ }` as tags. When working with JavaScript/React:
 
-### Use {ignore} Tags
+### Use {pad:ignore} Tags
 
 ```html
-{ignore}
+{pad:ignore}
 <script>
   const user = { name: 'Alice', role: 'Developer' };
   if (user.active) { console.log('Active'); }
 </script>
-{/ignore}
+{/pad:ignore}
 ```
 
 ### Use External Files (Preferred)
@@ -342,10 +342,10 @@ PAD parses `{ }` as tags. When working with JavaScript/React:
 ### Use | ignore Pipe
 
 ```html
-<div data-config="{echo $configJson | html | ignore/}"></div>
+<div data-config="{pad:echo $configJson | html | ignore/}"></div>
 ```
 
-`html` escapes the JSON's quotes for the attribute - `{echo}` does not - and `ignore` keeps PAD
+`html` escapes the JSON's quotes for the attribute - `{pad:echo}` does not - and `ignore` keeps PAD
 off the braces. For an array field `data-config="{^config}"` does both:
 
 ```html
@@ -362,15 +362,15 @@ Same principle applies - prefer external CSS files:
 <link rel="stylesheet" href="/css/react-components.css">
 ```
 
-Or use {ignore} for inline styles:
+Or use {pad:ignore} for inline styles:
 
 ```html
-{ignore}
+{pad:ignore}
 <style>
   .topic-display { padding: 20px; }
   .post { margin: 10px 0; }
 </style>
-{/ignore}
+{/pad:ignore}
 ```
 
 ---
@@ -388,7 +388,7 @@ apps/myapp/
 │   ├── user.php
 │   └── posts.php
 ├── _tags/
-│   └── json.php              # {json/} tag for static data - {reactData/} is built in
+│   └── json.php              # {app:json/} tag for static data - {pad:reactData/} is built in
 └── pages/
     └── forum/
         └── topic.pad
@@ -439,9 +439,9 @@ function MyComponent() {
 ### Multiple Data Sources
 
 ```html
-{reactData id='users', provider='users'/}
-{reactData id='roles', provider='roles'/}
-{reactData id='permissions', provider='permissions'/}
+{pad:reactData id='users', provider='users'/}
+{pad:reactData id='roles', provider='roles'/}
+{pad:reactData id='permissions', provider='permissions'/}
 
 <div id="admin-panel"></div>
 ```

@@ -1,6 +1,6 @@
-{meta title='Every column', about='fields@record walks the columns of the row as name and value.'/}
-{record "* from products where code='S10_1678'"}
+{pad:meta title='Every column', about='fields@record walks the columns of the row as name and value.'/}
+{pad:record "* from products where code='S10_1678'"}
   <dl>
-    {fields@record}<dt>{$name}</dt><dd>{$value}</dd>{/fields@record}
+    {property:fields@record}<dt>{$name}</dt><dd>{$value}</dd>{/property:fields@record}
   </dl>
-{/record}
+{/pad:record}

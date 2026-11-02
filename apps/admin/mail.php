@@ -1,6 +1,6 @@
 <?php
 
-  // The outbox of the 'file' mail transport - every mail padMail and {mail} sent while
+  // The outbox of the 'file' mail transport - every mail padMail and {pad:mail} sent while
   // $padMailTransport is 'file', the default: DATA/mail/<app>/*.eml. The list, newest
   // first, and one mail with its text, its HTML in a sandboxed frame, and its source.
 

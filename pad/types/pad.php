@@ -1,6 +1,6 @@
 <?php
 
-  // Type handler for a built-in tag ({if}, {while}, {pad:if}): loads PAD/tags/<name>.php and
+  // Type handler for a built-in tag ({pad:if}, {pad:while}, {pad:if}): loads PAD/tags/<name>.php and
   // .pad through types/_go/tag.php, exactly as an application tag is loaded.
   //
   // The functions only the tag calls stand in tags/_lib/<name>.php, included here the first

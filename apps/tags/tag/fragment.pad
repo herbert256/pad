@@ -1,5 +1,5 @@
-{ignore}
-<p><code>{fragment 'name'}</code> marks a part of the page. A normal request renders it in
+{pad:ignore}
+<p><code>{pad:fragment 'name'}</code> marks a part of the page. A normal request renders it in
 place, as if the tag were not there - which is what the examples below show. A request that
 names it - <code>?orders&amp;padFragment=order-list</code>, or a page whose PHP sets
 <code>$padFragmentOnly = 'order-list'</code> - gets that fragment's rendering and nothing
@@ -9,7 +9,7 @@ is the one sent.</p>
 
 <p>This is the server side of partial page updates: htmx
 (<code>hx-get="?orders&amp;padFragment=order-list"</code>) and
-<a href="?tag/ajax"><code>{ajax 'orders', fragment='order-list'/}</code></a>. An htmx request
+<a href="?tag/ajax"><code>{pad:ajax 'orders', fragment='order-list'/}</code></a>. An htmx request
 that names no fragment asks for the one called like its target: with
 <code>hx-target="#order-list"</code> htmx sends <code>HX-Target: order-list</code>, and a page
 with a fragment of that name answers it alone. A page without one renders whole.</p>
@@ -18,4 +18,4 @@ with a fragment of that name answers it alone. A page without one renders whole.
 rendered is an error under the strict check, and an empty 404 otherwise. A fragment without a
 name, or one that never closes, is an error under the strict check. The page cache never
 stores a fragment the PHP chose, since its key is the address.</p>
-{/ignore}
+{/pad:ignore}

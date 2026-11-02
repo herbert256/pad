@@ -1,6 +1,6 @@
 <?php
 
-  // A {cache} section that holds a printable with pdf is not kept, as a {pdf} keeps none: the
+  // A {pad:cache} section that holds a printable with pdf is not kept, as a {pad:pdf} keeps none: the
   // page asked again with &padPdf answers the sheets as a PDF the second time too. Kept, the
   // section came back on the second request without the printable having run, and its links
   // answered the page's HTML.

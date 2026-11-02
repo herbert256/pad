@@ -1,6 +1,6 @@
-{meta title='A gate that takes a guest', about='read-post takes ?array $user, so a guest is asked too - inside {posts}, $posts is the row of the occurrence.'/}
+{pad:meta title='A gate that takes a guest', about='read-post takes ?array $user, so a guest is asked too - inside {array:posts}, $posts is the row of the occurrence.'/}
 <ul>
-{posts}
-  <li>{can 'read-post', $posts}<a href="#">{$title}</a>{else}{$title} - not published yet{/can}</li>
-{/posts}
+{array:posts}
+  <li>{pad:can 'read-post', $posts}<a href="#">{$title}</a>{pad:else}{$title} - not published yet{/pad:can}</li>
+{/array:posts}
 </ul>

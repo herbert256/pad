@@ -67,7 +67,7 @@
 
     $file = APP . "_toys/$toy.pad";
 
-    return is_file ( $file ) ? trim ( file_get_contents ( $file ) ) : "{toy '$toy'/}";
+    return is_file ( $file ) ? trim ( file_get_contents ( $file ) ) : "{toy:$toy/}";
 
   }
 

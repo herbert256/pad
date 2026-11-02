@@ -3,7 +3,7 @@
   // padParseOptions splits a tag's parameter text on commas, character by character, so
   // that commas inside 'single quotes', "double quotes", (parentheses) or [brackets] are
   // kept as part of one option. This is what lets an option carry a function call or a
-  // list, as in {echo $d | date('D, d M')}. Unbalanced ) or ] raises a padError and the
+  // list, as in {pad:echo $d | date('D, d M')}. Unbalanced ) or ] raises a padError and the
   // whole option list is discarded.
 
   function padParseOptions ( $parms ) {
@@ -52,7 +52,7 @@
       // 'it\'s' is one string, not one that ends at the t and opens another at the s. And a
       // backslash escapes a backslash, as the evaluator reads 'a\\' as a\ - its second one
       // was taken to escape the closing quote, and the string ran on over the comma behind
-      // it: {tag 'a\\', name='x'} lost its name= to the parameter.
+      // it: {function:tag 'a\\', name='x'} lost its name= to the parameter.
 
       if ( $one == '\\' and in_array ( $input [$key+1] ?? '', [ "'", '"', '\\' ] ) ) {
         $skip = TRUE;
@@ -146,16 +146,16 @@
     if ($now !== '')
       $output [] = $now;
 
-    // An option written after a parameter without its comma - {data 'rawJson' ignore}, the
+    // An option written after a parameter without its comma - {pad:data 'rawJson' ignore}, the
     // form CLAUDE.md and the manual's ignore page show - is the option it names: a single
     // value, a space, and the name of an engine or application option. The evaluator read
     // the two as a value piped into the function of that name, so ignore('rawJson') named
     // the store and the option never applied. A word that names no option stays that pipe:
-    // {echo 'abc' upper} is ABC. An application option with only an end-phase file -
-    // _options/end/shout.php - is an option as well: {data 'd' shout} was "a comma is
-    // missing", where {data 'd' frame}, which has both files, worked. The data handlers
+    // {pad:echo 'abc' upper} is ABC. An application option with only an end-phase file -
+    // _options/end/shout.php - is an option as well: {pad:data 'd' shout} was "a comma is
+    // missing", where {pad:data 'd' frame}, which has both files, worked. The data handlers
     // (handling/types) are left out on purpose:
-    // trim, left, right and reverse are pipe functions as well, and {echo $x trim} pipes.
+    // trim, left, right and reverse are pipe functions as well, and {pad:echo $x trim} pipes.
 
     $split = [];
 

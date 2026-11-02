@@ -23,7 +23,7 @@
   if ( isset ( $pqStore [$padCheck] ) )
     return $pqStore [$padCheck];
 
-  // A page array or an array field by its name, as {chart data='staff'} takes it (tags/
+  // A page array or an array field by its name, as {chart:bar data='staff'} takes it (tags/
   // _lib/chart.php): data='staff' read the word as a CSV header with no rows and iterated
   // nothing.
 
@@ -37,7 +37,7 @@
 
   }
 
-  // A list - ( 'a', $b, 2 * 3 ) - evaluates every element as an expression. A {data} block
+  // A list - ( 'a', $b, 2 * 3 ) - evaluates every element as an expression. A {pad:data} block
   // reads one from the template; through data= the text is a value, often a field's, so
   // under $padProtectValues a value that reads as a list is refused rather than run.
 
@@ -70,7 +70,7 @@
   // CSV header with no rows, so a misspelt data='usres' iterated nothing in silence, where
   // {data:usres} is an error. Written in the template it is one under the strict check, as
   // the chart's data= is; a value naming nothing stays silent, and so does a name a
-  // {sandbox} hides.
+  // {pad:sandbox} hides.
 
   $padDataWord = is_string ( $padCheck ) ? trim ( $padCheck ) : '';
 

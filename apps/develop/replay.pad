@@ -2,14 +2,14 @@
 
 <p>
   Stores:
-  {replayStores}
+  {array:replayStores}
     <a href="?replay&amp;store={$store}">{$store}</a> ({$cases} cases)
   @else@
     none - record with <code>$padRecord = TRUE</code> or <code>?page&amp;padRecord=name</code>
-  {/replayStores}
+  {/array:replayStores}
 </p>
 
-{if $replayStore ne ''}
+{pad:if $replayStore ne ''}
 
   <h3>{$replayStore}: {$replayCount} replayed, {$replaySame} the same</h3>
 
@@ -20,7 +20,7 @@
 
   <table border="1" cellpadding="4">
     <tr><th>Page</th><th>Status</th><th>Line</th><th>Recorded</th><th>Now</th><th></th></tr>
-    {replayChanged}
+    {array:replayChanged}
       <tr>
         <td>{$url}</td>
         <td>{$status}</td>
@@ -34,7 +34,7 @@
       </tr>
     @else@
       <tr><td colspan="6">Every recorded page answers as it did.</td></tr>
-    {/replayChanged}
+    {/array:replayChanged}
   </table>
 
-{/if}
+{/pad:if}

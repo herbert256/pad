@@ -1,8 +1,8 @@
 <?php
 
   // Membership predicate for or: pqBoolOr($x, $p) answers whether x is a value of
-  // n OR p for some loop value n of 1 or more - the question {keep or=p},
-  // {remove or=p} and {flag or=p} ask. Generation itself goes through loop.php, which
+  // n OR p for some loop value n of 1 or more - the question {keep:or p},
+  // {remove:or p} and {pad:flag or=p} ask. Generation itself goes through loop.php, which
   // pqBuild() prefers.
   //
   // A value of n OR p carries every bit of p, so x is one exactly when x covers p and some n

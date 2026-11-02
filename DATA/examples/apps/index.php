@@ -65,6 +65,11 @@
     $apps[] = $app;
   }
 
+  // WASM is a static browser app, so it has no directory under apps/ to scan above.
+  $apps[] = [ 'name' => 'wasm', 'path' => dirname ( APPS ) . '/www/wasm/',
+              'link' => $padRoot . 'wasm/',
+              'description' => 'Run PAD templates with data or PHP in browser WebAssembly; switch to Live for server pages.' ];
+
   // Sort: _common first, then alphabetically
   usort($apps, function($a, $b) {
     if ($a['name'] === '_common') return -1;

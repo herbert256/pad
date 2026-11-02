@@ -1,7 +1,7 @@
 <?php
 
   // Opens a 'trace' scope: from info/start/config.php for the whole request, or from
-  // pad/tags/trace.php for a single {trace} tag - hence the $padInfoTraceCnt stack, each entry
+  // pad/tags/trace.php for a single {pad:trace} tag - hence the $padInfoTraceCnt stack, each entry
   // remembering in $padInfoTraceLvl the level the scope started at.
   //
   // Clears the per-scope bookkeeping (level paths, child counts, level filters) and fixes

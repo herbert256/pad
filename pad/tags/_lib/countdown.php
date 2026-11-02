@@ -1,9 +1,9 @@
 <?php
 
-  // The time left until a moment, in words - the {countdown} tag.
+  // The time left until a moment, in words - the {pad:countdown} tag.
   //
-  //   {countdown '2026-12-31 00:00'}              84 days, 3 hours
-  //   {countdown $launch, units=3, past='We are live!', live}
+  //   {pad:countdown '2026-12-31 00:00'}              84 days, 3 hours
+  //   {pad:countdown $launch, units=3, past='We are live!', live}
   //
   // padCountdownText    the seconds left as the largest units that are there - days,
   //                     hours, minutes, seconds - $units of them from the first that is not
@@ -66,7 +66,7 @@
 
   // Written behind the first live countdown of the request. Under a Content-Security-Policy
   // that asks for a nonce ('nonce' in $padCsp) the script carries this request's, as
-  // {asset} writes it (lib/asset.php); without one an inline script runs as it is.
+  // {pad:asset} writes it (lib/asset.php); without one an inline script runs as it is.
 
   function padCountdownScript () {
 

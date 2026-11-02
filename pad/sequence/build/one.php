@@ -21,9 +21,9 @@
   // The walk was the iterators' own loop, which included this file for every candidate - and
   // an include costs what binding every variable the file names to the scope costs, on the
   // way in and again on the way out: some 320 ns a candidate for the 38 names here, three
-  // quarters of what a {sequence '1..50000', count} took, so every variable a fix added here
+  // quarters of what a {sequence:range '1..50000', count} took, so every variable a fix added here
   // made every candidate of every run slower - the bench pages of small sequences lost 9 to
-  // 12% that way. Walked here, {sequence '1..50000', count} takes 7.6 ms where it took 21.9.
+  // 12% that way. Walked here, {sequence:range '1..50000', count} takes 7.6 ms where it took 21.9.
 
   $pqWalkList  = ( $pqWalk == 'fixed' );
   $pqWalkTerms = $pqWalkList ? $pqFixed : [];
@@ -46,7 +46,7 @@
   // numbers - is walked from one member to the next instead of over every value between them:
   // the candidates are the members, each tested as before, and the try limit counts them. Over
   // every value antiprime stopped at its 20th term, 7560, as the 10,000 candidates ran out, and
-  // {sequence antiprime, rows=25} gave 20. Only a walk of every value one at a time takes it:
+  // {sequence:antiprime rows=25} gave 20. Only a walk of every value one at a time takes it:
   // try= and skip= count the values, increment= and a random draw choose them, and keep the
   // walk they had.
 
@@ -106,9 +106,9 @@
       // a fixed or given list end with their data, as inits/limits.php leaves their candidates
       // unbounded, so time does not cut them either - nor a range or a list a type builds whole
       // ('build'), which inits/limits.php gives all its rows as it gives a given list: cut, a
-      // slow request answered {sequence '1..200000', count} with the values it reached. A range
+      // slow request answered {sequence:range '1..200000', count} with the values it reached. A range
       // with a play is held to the budget still: each of its terms costs what the play costs,
-      // and {sequence '1..4000', make, fibonacci} ran 22 seconds, a longer range into PHP's time
+      // and {sequence:range '1..4000', make, fibonacci} ran 22 seconds, a longer range into PHP's time
       // limit and a 500.
 
       // A pulled store, a fixed or a given list with a play is held to it as the range is: with
@@ -173,9 +173,9 @@
 
       // A term out of the integer range ends the run as soon as it is made, before a play is
       // handed it: checked only after the plays, keep even was asked about the overflowed float
-      // and {sequence fibonacci, keep, even, rows=50} ended the request on "not representable as
+      // and {sequence:fibonacci keep, even, rows=50} ended the request on "not representable as
       // an int". 2^63 is out of range too, though as a float it compares equal to PHP_INT_MAX -
-      // tested with >, {sequence power=2, rows=70} ended on 9.2233720368548E+18. A play can make
+      // tested with >, {sequence:power 2, rows=70} ended on 9.2233720368548E+18. A play can make
       // such a value as well, so the same test follows the plays.
       //
       // A value a list, a store or an action's array hands over is given, not computed: it is
@@ -185,7 +185,7 @@
       // -2^63 as a float is an overflow too, a term rounded to it, as 2^63 is on the other side:
       // tested with <, subtract=9223372036854775800 from=-10 printed -9.2233720368548E+18 twice.
       // A random draw past the range is a draw lost, not the end of the run - every later draw
-      // may fit, and {sequence power=2, randomly, to=100, rows=5} gave 0 to 5 rows.
+      // may fit, and {sequence:power 2, randomly, to=100, rows=5} gave 0 to 5 rows.
 
       if ( ! $pqGiven and is_float ( $pq ) and ( $pq <= PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) {
         if ( $pqRandomly ) break;
@@ -202,7 +202,7 @@
 
       // An order build computes each term from the ones before it, so every generated term goes
       // into its history now, before a play or a filter can turn it down: added only once
-      // accepted, a rejected term left a hole the next one read - {sequence fibonacci, keep,
+      // accepted, a rejected term left a hole the next one read - {sequence:fibonacci keep,
       // even} ended on an undefined key.
 
       if ( $pqBuild == 'order' ) {
@@ -240,7 +240,7 @@
       // minimal=, maximal= and stop= count only when given: their defaults, PHP_INT_MIN and
       // PHP_INT_MAX, stand for none, and tested as bounds they turned down a listed value past
       // them - 100000000000000000000 - and ended the list on 9223372036854775807 or 2^63, so
-      // {sequence '9223372036854775808;1'} showed its first value alone.
+      // {sequence:list '9223372036854775808;1'} showed its first value alone.
 
       if ( ( ! $pqGiven or $pq !== $pqOrgSet ) and is_float ($pq) and ( $pq <= PHP_INT_MIN or $pq >= PHP_INT_MAX ) ) {
         if ( $pqRandomly ) break;
@@ -251,7 +251,7 @@
       if ( $pqMin !== PHP_INT_MIN and is_numeric ($pq) and $pq < $pqMin ) break;
       if ( $pqMax !== PHP_INT_MAX and is_numeric ($pq) and $pq > $pqMax ) break;
       // unique keeps a set of the values kept, $pqUniqueSeen: looked up in $pqResult, every
-      // term was compared with all the terms before it, and {sequence '1..200000', unique,
+      // term was compared with all the terms before it, and {sequence:range '1..200000', unique,
       // count} took more than the time a run has and answered 142941.
 
       if ( $pqUnique ) $pqUniqueKey = pqValueKey ( $pq );
@@ -265,7 +265,7 @@
       // term for that test alone, before the term is added as they are, and the pass ends on the
       // term they make reaching stop=, or on a play that ends the run. Without it the window was
       // the default try count, nearly every term of it past stop= once played, so the second pass
-      // ended on its first draw - {sequence happy, randomly, stop=50, make, add=10} was one value
+      // ended on its first draw - {sequence:happy randomly, stop=50, make, add=10} was one value
       // out of 10,000, as was add=0, which changes nothing.
 
       if ( $pqRandomlyStop !== PHP_INT_MAX ) {
@@ -310,7 +310,7 @@
 
       // Out past the integer range a float no longer moves when the step is added - -1e19 + 1
       // is -1e19 - and the walk offered the same candidate again until the try limit, so
-      // {sequence modulo=7, from=-10000000000000000000, rows=3} answered -3 -3 -3. A walk that
+      // {sequence:modulo 7, from=-10000000000000000000, rows=3} answered -3 -3 -3. A walk that
       // does not advance has nothing more to offer. A random increment drawn as 0 stands still
       // by intent, and is no such walk: ended there, increment='0...2' answered a term or two
       // where it asked for eight.
@@ -322,7 +322,7 @@
 
       // Only a counter that is a whole number goes on to the next member: from 2.5 the walk's
       // values are 3.5, 4.5 ..., none a member, as for every other type - moved to the member
-      // at or above them, {sequence antiprime, from=2.5} gave 4 6 12 24.
+      // at or above them, {sequence:antiprime from=2.5} gave 4 6 12 24.
 
       if ( $pqWalkNext and pqBoolWhole ( $pqGo ) )
         $pqGo = $pqWalkNext ( $pqGo );

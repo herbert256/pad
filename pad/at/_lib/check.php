@@ -22,7 +22,7 @@
 
     // A leading ~ is the whitespace-control sigil, which padTildeStrip removes before the
     // scanner reaches the tag, so the engine never sees it here - but the reference's syntax
-    // highlighter checks raw source, where {~notLast@contact} still carries it. It is not
+    // highlighter checks raw source, where {~property:notLast@contact} still carries it. It is not
     // part of the name, so it is dropped before the name is validated; the stricter name
     // check below would otherwise fail ~notLast and the highlighter lose the colour of a
     // valid tag.

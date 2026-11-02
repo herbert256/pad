@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{csrf/}
-{csrf token/}
+{pad:csrf/}
+{pad:csrf token/}
 PAD;
 
   $tagParms   = [];

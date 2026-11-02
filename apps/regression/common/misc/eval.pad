@@ -1,52 +1,52 @@
-{table}
+{common:table}
 
-{demo pre}{echo 50 * 4 * 2/}
-{echo 50 | * 4 | * 2/}
-{echo 50 | @ * 4 | @ * 2/}
-{/demo}
+{common:demo pre}{pad:echo 50 * 4 * 2/}
+{pad:echo 50 | * 4 | * 2/}
+{pad:echo 50 | @ * 4 | @ * 2/}
+{/common:demo}
 
-{demo pre}{echo 50 | '"' . /}
-{echo 50 | . '"' /}
-{echo 50 | '"' . @ . '"' /}
-{echo 50 | '"' . $$ . '"' /}
-{/demo}
+{common:demo pre}{pad:echo 50 | '"' . /}
+{pad:echo 50 | . '"' /}
+{pad:echo 50 | '"' . @ . '"' /}
+{pad:echo 50 | '"' . $$ . '"' /}
+{/common:demo}
 
-{demo pre}{echo 50 | '"' . '"' /}
-{echo 50 | '"' . . '"' /}
-{echo 50 | . @ . /}
-{echo 50 | . /}
-{echo 50 | . . /}
-{/demo}
+{common:demo pre}{pad:echo 50 | '"' . '"' /}
+{pad:echo 50 | '"' . . '"' /}
+{pad:echo 50 | . @ . /}
+{pad:echo 50 | . /}
+{pad:echo 50 | . . /}
+{/common:demo}
 
-{demo}{set $abc = 50/}{/demo}
+{common:demo}{pad:set $abc = 50/}{/common:demo}
 
-{demo pre}{$abc | * 4}
+{common:demo pre}{$abc | * 4}
 {$abc | 4 * 4}
 {$abc | * / 4}
 {$abc | * 4 / 2 + 10 }
 {$abc | * 4 | / 2 | + 10 }
-{/demo}
+{/common:demo}
 
-{demo}{set $abc = 'abc'/}{/demo}
+{common:demo}{pad:set $abc = 'abc'/}{/common:demo}
 
-{demo pre}{$abc | crc32 }
+{common:demo pre}{$abc | crc32 }
 {$abc | pad:substr (1, 1) }
 {$abc | php:substr (@, 1, 1) }
-{/demo}
+{/common:demo}
 
-{demo}{set $line = 'a <test> LiNe'/}{/demo}
+{common:demo}{pad:set $line = 'a <test> LiNe'/}{/common:demo}
 
-{demo pre}{$line} 
+{common:demo pre}{$line} 
 {!line} 
 {$line | capitalize} 
 {$line | upper} 
 {$line | lower} 
 {$line | url} 
-{/demo}
+{/common:demo}
 
-{demo}{set $nbr = 12345.678/}{/demo}
+{common:demo}{pad:set $nbr = 12345.678/}{/common:demo}
 
-{demo pre}{$nbr | %.2f} 
+{common:demo pre}{$nbr | %.2f} 
 {$nbr | %.5f} 
 {$nbr | %'.09d} 
 {$nbr | %d} 
@@ -54,6 +54,6 @@
 {$nbr | %f} 
 {$nbr | %g} 
 {$nbr | %o} 
-{/demo}
+{/common:demo}
 
-{/table}
+{/common:table}

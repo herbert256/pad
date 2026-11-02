@@ -3,48 +3,48 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{if $frameTitle ne ''}{$frameTitle} · {/if}PAD {$frameName}</title>
-  {if $frameOffline}
+  <title>{pad:if $frameTitle ne ''}{$frameTitle} · {/pad:if}PAD {$frameName}</title>
+  {pad:if $frameOffline}
   {!frameStyle}
-  {else}
+  {pad:else}
   <link rel="stylesheet" href="{$frameCss}">
   <link rel="stylesheet" href="{$frameBrandCss}">
   <script src="{$frameJs}"></script>
   <script src="{$frameBrandJs}" defer></script>
-  {/if}
-  {slot 'head'}{/slot}
+  {/pad:if}
+  {pad:slot 'head'}{/pad:slot}
 </head>
-<body class="frame {$frameClass}{if $frameFill} frame-fill{/if}">
+<body class="frame {$frameClass}{pad:if $frameFill} frame-fill{/pad:if}">
 
   <aside class="frame-side">
 
     <div class="frame-brand">{common:padBrand frame/}</div>
 
-    {if $frameNav}
+    {pad:if $frameNav}
       <nav class="frame-nav" aria-label="{$frameName}">
-        {frameMenu}
-          {if $head ne ''}
+        {array:frameMenu}
+          {pad:if $head ne ''}
             <div class="frame-head">{$head}</div>
-          {else}
-            <a href="{$link}"{if $current} aria-current="page"{/if}>{if $icon ne ''}{icon $icon, size=16/} {/if}{$label}</a>
-          {/if}
-        {/frameMenu}
+          {pad:else}
+            <a href="{$link}"{pad:if $current} aria-current="page"{/pad:if}>{pad:if $icon ne ''}{icon:$icon size=16/} {/pad:if}{$label}</a>
+          {/pad:if}
+        {/array:frameMenu}
       </nav>
-    {/if}
+    {/pad:if}
 
-    {slot 'side'}{/slot}
+    {pad:slot 'side'}{/pad:slot}
 
-    {slot 'foot'}{/slot}
+    {pad:slot 'foot'}{/pad:slot}
 
   </aside>
 
   <main class="frame-main">
 
     <header class="frame-top">
-      {slot 'title'}{if $frameTitle ne ''}<h1>{$frameTitle}</h1>{/if}{/slot}
+      {pad:slot 'title'}{pad:if $frameTitle ne ''}<h1>{$frameTitle}</h1>{/pad:if}{/pad:slot}
       <div class="frame-tools">
-        {slot 'tools'}{/slot}
-        {if $frameThemes}{themes/}{/if}
+        {pad:slot 'tools'}{/pad:slot}
+        {pad:if $frameThemes}{pad:themes/}{/pad:if}
       </div>
     </header>
 

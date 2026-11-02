@@ -1,1 +1,1 @@
-{cache 'fwPollSection', ttl=60}{poll 'fw-poll-section', options='Yes, No' | php:substr_count(@, 'padPollAnswer')/}{/cache}|{cache 'fwPollSection', ttl=60}its own{/cache}
+{pad:cache 'fwPollSection', ttl=60}{widget:poll 'fw-poll-section', options='Yes, No' | php:substr_count(@, 'padPollAnswer')/}{/pad:cache}|{pad:cache 'fwPollSection', ttl=60}its own{/pad:cache}

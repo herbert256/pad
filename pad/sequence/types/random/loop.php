@@ -13,7 +13,7 @@
   // increment is not 1.
   //
   // A parameter of 0 is none, however it is spelled: '0.0', '-0' and '00' are true, and as a
-  // one-in-0 chance every draw passed - {sequence '1..3', make, random='0.0'} handed each value
+  // one-in-0 chance every draw passed - {sequence:range '1..3', make, random='0.0'} handed each value
   // back where random=0 draws.
 
   if ( is_numeric ( $pqParm ) ? $pqParm != 0 : $pqParm ) {

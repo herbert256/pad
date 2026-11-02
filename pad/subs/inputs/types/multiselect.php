@@ -1,7 +1,7 @@
 <?php
 
   // multiselect - a few choices of a list: a native select that chooses many, posting every
-  // choice made as the list name[] - {multiselect 'interests'} posts interests[], the list
+  // choice made as the list name[] - {input:multiselect 'interests'} posts interests[], the list
   // $_POST ['interests'] - and where the script shows the choices made as chips, each with a
   // button that takes it out, beside a filter box over the list of the choices: the WAI-ARIA
   // listbox that chooses many, walked with the arrow keys, Space or Enter choosing or letting

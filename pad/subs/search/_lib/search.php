@@ -1,6 +1,6 @@
 <?php
 
-  // Site search without a search server - the search subsystem behind {search} and padSearch
+  // Site search without a search server - the search subsystem behind {pad:search} and padSearch
   // (lib/search.php). A source - a Markdown collection, a data store, a page's rows, a _data
   // file, a db() result - is made into an inverted index the first time it is searched and
   // kept in DATA/cache/search/<app>/; the index is made again when what it is made of
@@ -35,9 +35,9 @@
   // padSearchScores    the documents a query finds, with their scores, best first
   // padSearchRun       all of it: a source and a query to the rows found, each with its score
   //                    and an excerpt with the matches marked (padExcerpt, tags/_lib/excerpt.php)
-  // padSearchSource    the source {search 'name'} names; padSearchSign the sign of rows,
+  // padSearchSource    the source {pad:search 'name'} names; padSearchSign the sign of rows,
   //                    padSearchStamp the sign of the code that makes an index
-  // padSearchList      the hits as the list the single {search/} writes
+  // padSearchList      the hits as the list the single {pad:search/} writes
 
   include_once PAD . 'subs/search/_lib/snowball.php';
   include_once PAD . 'tags/_lib/excerpt.php';
@@ -1007,9 +1007,9 @@
 
   }
 
-  // The source of {search 'name'}: the Markdown collection of the name (_content/<name>/),
-  // else a {data} store, a page's array, a field or a _data file of the name - as data=
-  // finds one for {chart}. [ name, sign (NULL for rows: padSearchRun signs them on the
+  // The source of {pad:search 'name'}: the Markdown collection of the name (_content/<name>/),
+  // else a {pad:data} store, a page's array, a field or a _data file of the name - as data=
+  // finds one for {chart:bar}. [ name, sign (NULL for rows: padSearchRun signs them on the
   // fields searched), rows, keep the rows, the fields when none are given ] - or an error
   // message. A collection is searched in title^2, body by default.
 
@@ -1020,7 +1020,7 @@
     $name = trim ( (string) $name );
 
     if ( $name === '' )
-      return "the search needs a source - {search 'blog'} searches _content/blog/, a data store, a page's array or a _data file of the name";
+      return "the search needs a source - {pad:search 'blog'} searches _content/blog/, a data store, a page's array or a _data file of the name";
 
     if ( $dir = padCollectionDir ( $name ) ) {
 
@@ -1059,7 +1059,7 @@
 
   }
 
-  // How many of the rows found a page can show, for the handling options a {search} pair
+  // How many of the rows found a page can show, for the handling options a {pad:search} pair
   // carries: when they keep the first rows only - first=, page= and rows= - the rows past
   // the last page, or the first, are never shown and need no excerpt. NULL when an option
   // can reorder or filter the rows - sort=, where=, last= ... - or a callback reads them.
@@ -1090,10 +1090,10 @@
   // padExcerpt writes the style of the marks in front of the first excerpt of a page, and
   // that once is spent whether the excerpt is printed or not: made for the first row found
   // and dropped by first= after a sort, or never printed, it took the style with it - and
-  // from every later {excerpt} of the page. The excerpts of a search are made in a scope of
+  // from every later {pad:excerpt} of the page. The excerpts of a search are made in a scope of
   // their own (padSearchQuiet), where the style was written already, so they carry none
   // and spend nothing; what prints them prints the style (padSearchExcerptStyle, made in a
-  // scope of its own as well): the {search} pair before its first row, the single tag
+  // scope of its own as well): the {pad:search} pair before its first row, the single tag
   // before its list, padSearch in every excerpt.
 
   function padSearchQuiet ( $on ) {
@@ -1128,7 +1128,7 @@
 
   }
 
-  // The hits as the single {search/} writes them: a list, each item the title field - a link
+  // The hits as the single {pad:search/} writes them: a list, each item the title field - a link
   // when link= names a field with one that goes nowhere a script runs - and the excerpt.
 
   function padSearchList ( $rows, $title, $link ) {

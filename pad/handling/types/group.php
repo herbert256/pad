@@ -2,7 +2,7 @@
 
   // Handles the group option: folds the tag's rows into one occurrence per distinct value
   // of a field - {orders group='customer', sum='total'} - so a report can print a heading
-  // and a subtotal per customer and the customer's own rows below it, where {ifchanged}
+  // and a subtotal per customer and the customer's own rows below it, where {pad:ifchanged}
   // could only print the heading and the totals needed a sequence action or SQL.
   //
   // Each group occurrence holds the grouping field(s) with the group's value, count - the

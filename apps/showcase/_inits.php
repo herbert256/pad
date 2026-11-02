@@ -4,10 +4,10 @@
   // (_common/_tags/padFrame.pad) - the home page, then a heading per group of tags with a link
   // per example under it - and the title in the frame's bar. An example page also gets what
   // its cells show - its data source, its template and, through @page@, the result - read
-  // from the page's own files, so a cell can never drift from what draws it. The {meta} line
+  // from the page's own files, so a cell can never drift from what draws it. The {pad:meta} line
   // that names the example is left out of the template cell: it belongs to the showcase.
   //
-  // The home page draws every example through {page}, which runs this file again for each:
+  // The home page draws every example through {pad:page}, which runs this file again for each:
   // only the first run - the page that was asked for - sets the frame.
 
   if ( isset ( $showcaseFrame ) )
@@ -58,10 +58,10 @@
 
   if ( $isExample ) {
 
-    // The template, as it stands in the file, less its {meta} line.
+    // The template, as it stands in the file, less its {pad:meta} line.
 
     $tagFile   = "$padPage.pad";
-    $tagSource = trim ( preg_replace ( '/\A\{meta [^\n]*\}\R?/', '', file_get_contents ( APP . $tagFile ) ) );
+    $tagSource = trim ( preg_replace ( '/\A\{pad:meta [^\n]*\}\R?/', '', file_get_contents ( APP . $tagFile ) ) );
     $tagHtml   = padHighlightTokens ( $tagSource, 'pad' );
     $tagPair   = FALSE;
     $tagOnly   = ! str_contains ( $tagSource, '<' );
@@ -86,7 +86,7 @@
     $oneCell   = $dataFile === '';
     $dataHtml  = padHighlightTokens ( $dataSource, $dataLang );
 
-    // The icon at the top right of the example that takes it to the playground
+    // The icon at the top right of the example that takes it to the WASM editor
     // (_common/_lib/playground.php): the template, with the paired PHP in the PHP box or the
     // _data file it names in the data box, under that name.
 

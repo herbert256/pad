@@ -1,25 +1,25 @@
-{bool 'abc'}
+{pad:bool 'abc'}
     true
-{/bool}
+{/pad:bool}
 
-{bool 'xyz'}  
+{pad:bool 'xyz'}  
 
-{/bool}
+{/pad:bool}
 
 <h2>abc = waar</h2>
 
-{abc}
+{bool:abc}
   ja
 @else@
   nee
-{/abc}
+{/bool:abc}
 <hr>
 
 <h2>xyz = niet waar</h2>
 
-{xyz}
+{bool:xyz}
   ja
 @else@
   nee
-{/xyz}
+{/bool:xyz}
 <hr>

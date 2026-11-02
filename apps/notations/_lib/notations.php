@@ -70,8 +70,8 @@
   }
 
   // The examples of a notation, _examples/<kind>/<n>-<slug>.pad - their first line
-  // {meta title='...', about='...'} names them - each with its template as it is shown (the
-  // meta line left out), coloured, and the icons that take it to the playground and to the
+  // {pad:meta title='...', about='...'} names them - each with its template as it is shown (the
+  // meta line left out), coloured, and the icons that take it to the WASM editor and to the
   // live application (_common/_lib/playground.php).
 
   function notationsExamples ( $kind ) {
@@ -94,7 +94,7 @@
       $first    = strtok ( $source, "\n" );
       $title    = preg_match ( "/title='((?:[^'\\\\]|\\\\.)*)'/", $first, $m ) ? stripslashes ( $m [1] ) : basename ( $file, '.pad' );
       $about    = preg_match ( "/about='((?:[^'\\\\]|\\\\.)*)'/", $first, $m ) ? stripslashes ( $m [1] ) : '';
-      $template = trim ( preg_replace ( '/\A\{meta [^\n]*\}\R?/', '', $source ) );
+      $template = trim ( preg_replace ( '/\A\{pad:meta [^\n]*\}\R?/', '', $source ) );
 
       $examples [] = [ 'slug'     => preg_replace ( '/^\d+-/', '', basename ( $file, '.pad' ) ),
                        'title'    => $title,

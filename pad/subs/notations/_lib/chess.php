@@ -1,11 +1,11 @@
 <?php
 
-  // Chess diagrams - {chess}, a notation. A position written as FEN, the notation every chess
+  // Chess diagrams - {notation:chess}, a notation. A position written as FEN, the notation every chess
   // program reads and writes, drawn as inline SVG: the board, the pieces as shapes of PAD's
   // own (no font, no image), the files and ranks along the edge, marked squares and arrows.
   //
-  //   {chess 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'}
-  //   {chess $fen, flip, highlight='e2,e4', arrow='g1-f3, f1-c4', size=320}
+  //   {notation:chess 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'}
+  //   {notation:chess $fen, flip, highlight='e2,e4', arrow='g1-f3, f1-c4', size=320}
   //
   // padChessFen     the position of a FEN: [ squares, side, castling, en passant ], or the
   //                 reason it is no FEN as a string
@@ -290,7 +290,7 @@
 
   }
 
-  // The id of a board, made from the board itself as {chart} makes its own: two boards on
+  // The id of a board, made from the board itself as {chart:bar} makes its own: two boards on
   // a page never share one, and the same board drawn twice gets a number behind the second.
 
   function padChessId ( $board ) {

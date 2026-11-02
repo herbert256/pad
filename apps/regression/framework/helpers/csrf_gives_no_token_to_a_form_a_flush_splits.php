@@ -1,6 +1,6 @@
 <?php
 
-  // The CSRF pass gives no token to a form whose start a {flush} sends while the rest of it -
+  // The CSRF pass gives no token to a form whose start a {pad:flush} sends while the rest of it -
   // its button, which may send it to another site - is still to come; an ordinary form
   // posting here still gets one.
 

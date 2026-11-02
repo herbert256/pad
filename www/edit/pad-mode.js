@@ -6,7 +6,7 @@
 // names without their documentation, and hooks that answer no application - no files, no
 // fields, no pages.
 //
-// tokenizer    a Monarch grammar of PAD inside HTML: comments {# #} and {-- --}, {ignore}
+// tokenizer    a Monarch grammar of PAD inside HTML: comments {# #} and {-- --}, {pad:ignore}
 //              raw text, constructs (@page@), tag names - the built-in ones apart from the
 //              application's -, type prefixes (app:), fields ($x %x !x ?x #x &x ^x), pipe
 //              functions, options (name=), properties (first@items), strings, numbers, word
@@ -16,15 +16,15 @@
 //              editors/lsp/pad-lsp.js (contextAt), and more: after { the tags, after {/ the
 //              tags still open (innermost first), after a prefix its names, after $ the
 //              fields the page's PHP assigns, after | the pipe functions, after the tag name
-//              its options, after name@ the open tags, inside the quotes of {page '...'},
-//              {include '...'}, callback='...', {trans '...'} and {collection '...'} the
+//              its options, after name@ the open tags, inside the quotes of {pad:page '...'},
+//              {include '...'}, callback='...', {pad:trans '...'} and {pad:collection '...'} the
 //              pages, snippets, callbacks, translation keys and collections; @ outside a tag
 //              the constructs; < and </ the HTML tags
 // hover        the reference documentation, an application file's own comment, or the
 //              lines that assign a field
 // definition   PAD's own lookup order (pad-lsp.js targets): {mytag} to the nearest
 //              _tags/mytag.*, | money to _functions/money.php, a snippet to _include,
-//              callback='x' to _callbacks, {page 'x'} to the page, {$total} to the line of
+//              callback='x' to _callbacks, {pad:page 'x'} to the page, {$total} to the line of
 //              the PHP that assigns it
 // structure    tag pairs fold, make the outline (Ctrl+Shift+O), and rename together: the
 //              name of {items} and of its {/items} are edited as one (linked editing)
@@ -50,7 +50,7 @@
   var HTML_VOID = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr'];
 
   var NAME = '[A-Za-z_][A-Za-z0-9_]*';
-  var TAG_RE = /\{(~?\/?~?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)/g;
+  var TAG_RE = /\{(~?\/?~?)([A-Za-z_][A-Za-z0-9_]*:[A-Za-z_][A-Za-z0-9_]*(?:@[A-Za-z0-9_-]*)?)([^{}]*)/g;
 
   // ------------------------------------------------------------------------------------
   // Tag pairs - the scan behind {/ completion, folding, the outline and linked editing.
@@ -63,11 +63,11 @@
     return text
       .replace(/\{#(?![A-Za-z_][A-Za-z0-9_]*\s*[}|])[\s\S]*?#\}/g, blank)
       .replace(/\{--\s[\s\S]*?--\}/g, blank)
-      .replace(/(\{~?ignore\b[^}]*\})([\s\S]*?)(\{~?\/ignore~?\})/g, function (m, a, b, c) { return a + blank(b) + c; });
+      .replace(/(\{~?pad:ignore\b[^}]*\})([\s\S]*?)(\{~?\/pad:ignore~?\})/g, function (m, a, b, c) { return a + blank(b) + c; });
   }
 
   function isSingle(base, name, rest) {
-    return base.pad.single.indexOf(name) >= 0 || base.pad.branch.indexOf(name) >= 0 ||
+    return base.pad.single.indexOf(name) >= 0 || base.pad.branch.indexOf(name.replace(/^pad:/, '')) >= 0 ||
            /\/\s*$/.test(rest) || name.charAt(0) === '$';
   }
 
@@ -200,7 +200,7 @@
         root: [
           [/\{#(?![A-Za-z_]\w*\s*[}|])/, 'comment.pad', '@commentHash'],
           [/\{--(?=\s)/, 'comment.pad', '@commentDash'],
-          [/(\{~?)(ignore)([^}]*)(~?\})/, ['delimiter.pad', 'keyword.tag.pad', 'attribute.name.pad', { token: 'delimiter.pad', next: '@ignored' }]],
+          [/(\{~?)(pad:ignore)([^}]*)(~?\})/, ['delimiter.pad', 'keyword.tag.pad', 'attribute.name.pad', { token: 'delimiter.pad', next: '@ignored' }]],
           [/@(?:page|content|start|end|else|tidy)@/, 'keyword.construct.pad'],
           [START, { token: 'delimiter.pad', next: '@tagStart' }],
           [/<!--/, 'comment.html', '@htmlComment'],
@@ -216,7 +216,7 @@
         commentHash: [[/#\}/, 'comment.pad', '@pop'], [/[^#]+/, 'comment.pad'], [/#/, 'comment.pad']],
         commentDash: [[/--\}/, 'comment.pad', '@pop'], [/[^-]+/, 'comment.pad'], [/-/, 'comment.pad']],
         ignored: [
-          [/(\{~?\/)(ignore)(~?\})/, ['delimiter.pad', 'keyword.tag.pad', { token: 'delimiter.pad', next: '@pop' }]],
+          [/(\{~?\/)(pad:ignore)(~?\})/, ['delimiter.pad', 'keyword.tag.pad', { token: 'delimiter.pad', next: '@pop' }]],
           [/[^{]+/, 'string.raw.pad'],
           [/\{/, 'string.raw.pad']
         ],
@@ -399,20 +399,20 @@
   }
 
   var PAIR_SNIPPETS = {
-    'if': 'if ${1:\\$field} ${2:eq} ${3:1}}\n\t$0\n{/if}',
-    'case': 'case ${1:\\$field}}\n\t{when \'${2:value}\'} $3\n\t{else} $0\n{/case}',
-    'while': 'while ${1:\\$i} ${2:le} ${3:10}}\n\t$0\n\t{increment ${1:\\$i}/}\n{/while}',
-    'data': 'data \'${1:name}\'}\n\t${0:["a", "b"]}\n{/data}',
-    'ignore': 'ignore}\n$0\n{/ignore}',
-    'form': 'form \'${1:name}\', error}\n\t{input \'${2:email}\', type=\'${3:email}\', label=\'${4:E-mail}\', rules=\'${5:required|email}\'/}\n\t<button>${6:Send}</button>\n{/form}',
-    'cache': 'cache \'${1:name}\', ttl=${2:300}}\n\t$0\n{/cache}',
-    'block': 'block \'${1:title}\'}$0{/block}',
-    'fragment': 'fragment \'${1:name}\'}\n\t$0\n{/fragment}',
-    'markdown': 'markdown}\n$0\n{/markdown}',
-    'live': 'live \'${1:region}\'}\n\t$0\n{/live}',
-    'push': 'push \'${1:scripts}\'}\n\t$0\n{/push}',
-    'tree': 'tree \'${1:menu}\', children=\'${2:items}\'}\n\t<li>{${3:\\$title}}{branch}<ul>{recurse/}</ul>{/branch}</li>\n{/tree}',
-    'sequence': 'sequence \'${1:1..10}\', name=\'${2:n}\'}\n\t{\\$${2:n}}$0\n{/sequence}'
+    'if': 'pad:if ${1:\\$field} ${2:eq} ${3:1}}\n\t$0\n{/pad:if}',
+    'case': 'pad:case ${1:\\$field}}\n\t{pad:when \'${2:value}\'} $3\n\t{pad:else} $0\n{/pad:case}',
+    'while': 'pad:while ${1:\\$i} ${2:le} ${3:10}}\n\t$0\n\t{pad:increment ${1:\\$i}/}\n{/pad:while}',
+    'data': 'pad:data \'${1:name}\'}\n\t${0:["a", "b"]}\n{/pad:data}',
+    'ignore': 'pad:ignore}\n$0\n{/pad:ignore}',
+    'form': 'pad:form \'${1:name}\', error}\n\t{pad:input \'${2:email}\', type=\'${3:email}\', label=\'${4:E-mail}\', rules=\'${5:required|email}\'/}\n\t<button>${6:Send}</button>\n{/pad:form}',
+    'cache': 'pad:cache \'${1:name}\', ttl=${2:300}}\n\t$0\n{/pad:cache}',
+    'block': 'pad:block \'${1:title}\'}$0{/pad:block}',
+    'fragment': 'pad:fragment \'${1:name}\'}\n\t$0\n{/pad:fragment}',
+    'markdown': 'pad:markdown}\n$0\n{/pad:markdown}',
+    'live': 'pad:live \'${1:region}\'}\n\t$0\n{/pad:live}',
+    'push': 'pad:push \'${1:scripts}\'}\n\t$0\n{/pad:push}',
+    'tree': 'pad:tree \'${1:menu}\', children=\'${2:items}\'}\n\t<li>{${3:\\$title}}{pad:branch}<ul>{pad:recurse/}</ul>{/pad:branch}</li>\n{/pad:tree}',
+    'sequence': 'sequence:range \'${1:1..10}\', name=\'${2:n}\'}\n\t{\\$${2:n}}$0\n{/sequence:range}'
   };
 
   function completions(monaco, hooks, model, position) {
@@ -479,23 +479,28 @@
       return { suggestions: out };
     }
 
-    // { or {name - every tag there is, and the pair snippets.
+    // { or {property:name - every tag there is, and the pair snippets.
     if ((m = head.match(/^~?(\w*)$/))) {
       base.pad.tags.forEach(function (t) {
         var d = docOf(base, 'tag', t);
-        out.push(item(monaco, t, K.Keyword, range, { detail: 'PAD tag', doc: d && d.text, sort: '1' + t }));
+        out.push(item(monaco, 'pad:' + t, K.Keyword, range, { detail: 'PAD tag', doc: d && d.text, sort: '1' + t }));
         if (PAIR_SNIPPETS[t])
-          out.push(item(monaco, t + ' … {/' + t + '}', K.Snippet, closeRange, { insert: PAIR_SNIPPETS[t], snippet: true, filter: t, detail: 'pair', sort: '0' + t }));
+          out.push(item(monaco, 'pad:' + t + ' … {/pad:' + t + '}', K.Snippet, closeRange, { insert: PAIR_SNIPPETS[t], snippet: true, filter: t, detail: 'pair', sort: '0' + t }));
       });
-      base.pad.branch.forEach(function (t) { out.push(item(monaco, t, K.Keyword, range, { detail: 'branch', sort: '1' + t })); });
+      Object.keys(base.pad.subsystems || {}).forEach(function (prefix) {
+        base.pad.subsystems[prefix].forEach(function (name) {
+          out.push(item(monaco, prefix + ':' + name, K.Class, range, { detail: prefix + ' type' }));
+        });
+      });
+      base.pad.branch.forEach(function (t) { out.push(item(monaco, 'pad:' + t, K.Keyword, range, { detail: 'branch', sort: '1' + t })); });
       appNames(hooks, model, 'tag').forEach(function (n) {
-        out.push(item(monaco, n.name, K.Class, range, { detail: 'tag - ' + n.file, doc: n.doc, sort: '0' + n.name }));
+        out.push(item(monaco, (n.dir === '_common' ? 'common:' : 'app:') + n.name, K.Class, range, { detail: 'tag - ' + n.file, doc: n.doc, sort: '0' + n.name }));
       });
       appNames(hooks, model, 'include').forEach(function (n) {
-        out.push(item(monaco, n.name, K.File, range, { detail: 'snippet - ' + n.file, sort: '2' + n.name }));
+        out.push(item(monaco, (n.dir === '_common' ? 'common:' : 'include:') + n.name, K.File, range, { detail: 'snippet - ' + n.file, sort: '2' + n.name }));
       });
       appNames(hooks, model, 'data').forEach(function (n) {
-        out.push(item(monaco, n.name, K.Struct, range, { detail: 'data - ' + n.file, sort: '2' + n.name }));
+        out.push(item(monaco, 'local:' + n.name, K.Struct, range, { detail: 'data - ' + n.file, sort: '2' + n.name }));
       });
       base.pad.prefixes.forEach(function (p) {
         var d = docOf(base, 'prefix', p);
@@ -504,7 +509,7 @@
       });
       base.pad.properties.forEach(function (p) {
         var d = docOf(base, 'property', p);
-        out.push(item(monaco, p + '@', K.Property, range, { detail: 'property@tag', doc: d && d.text, sort: '4' + p,
+        out.push(item(monaco, 'property:' + p + '@', K.Property, range, { detail: 'property@tag', doc: d && d.text, sort: '4' + p,
                                                             command: { id: 'editor.action.triggerSuggest', title: '' } }));
       });
       fieldItems(monaco, hooks, model, range, '$', '5').forEach(function (s) { out.push(s); });
@@ -512,7 +517,7 @@
     }
 
     // A quoted name: pages, snippets, callbacks, translation keys, collections, mails.
-    if ((m = head.match(/^~?(page|redirect|include|example|trans|collection|script|mail)\b[^'"]*['"]([\w\/.-]*)$/)) ||
+    if ((m = head.match(/^~?(?:pad:|common:)(page|redirect|include|example|trans|collection|script|mail)\b[^'"]*['"]([\w\/.-]*)$/)) ||
         (m = head.match(/(callback|template)\s*=\s*['"]([\w\/.-]*)$/))) {
       var kind = m[1];
       var qRange = { startLineNumber: position.lineNumber, endLineNumber: position.lineNumber, startColumn: position.column - m[2].length, endColumn: position.column };
@@ -557,7 +562,7 @@
       var tag = m[1];
       if (EXPRESSION.indexOf(tag) >= 0) {
         OPERATORS.forEach(function (o) { out.push(item(monaco, o, K.Operator, range, { detail: 'operator', sort: '1' + o })); });
-        base.pad.properties.forEach(function (p) { out.push(item(monaco, p + '@', K.Property, range, { detail: 'property@tag', sort: '2' + p })); });
+        base.pad.properties.forEach(function (p) { out.push(item(monaco, 'property:' + p + '@', K.Property, range, { detail: 'property@tag', sort: '2' + p })); });
       }
       base.pad.options.forEach(function (o) {
         var d = docOf(base, 'option', o);
@@ -582,7 +587,7 @@
       });
     };
     switch (prefix) {
-      case 'pad': add(base.pad.tags, K.Keyword, 'PAD tag'); break;
+      case 'pad': add(base.pad.tags.concat(base.pad.branch), K.Keyword, 'PAD tag'); break;
       case 'app': add(appNames(hooks, model, 'tag').filter(function (n) { return n.dir !== '_common'; }), K.Class, 'tag'); break;
       case 'common': add(appNames(hooks, model, 'tag').filter(function (n) { return n.dir === '_common'; }), K.Class, 'tag'); break;
       case 'include': add(appNames(hooks, model, 'include'), K.File, 'snippet'); break;
@@ -595,7 +600,7 @@
       case 'data': add(appNames(hooks, model, 'data'), K.Struct, 'data'); break;
       case 'script': add(appNames(hooks, model, 'script'), K.File, 'script'); break;
       case 'field': case 'level': case 'array': return fieldItems(monaco, hooks, model, range, '', '0');
-      default: break;
+      default: add((base.pad.subsystems || {})[prefix] || [], K.Class, prefix + ' type'); break;
     }
     return out;
   }
@@ -610,7 +615,7 @@
     };
     (hooks.fields(model) || []).forEach(function (f) { add(f.name, f.file + ':' + f.line, '```php\n' + f.text + '\n```'); });
     var text = model.getValue(), m;
-    var re = /\{(?:set\s+)?[^{}]*?[$%]([A-Za-z_]\w*)\s*=(?![=>])|\{data\s+['"](\w+)['"]/g;
+    var re = /\{(?:set\s+)?[^{}]*?[$%]([A-Za-z_]\w*)\s*=(?![=>])|\{pad:data\s+['"](\w+)['"]/g;
     while ((m = re.exec(text)) !== null) add(m[1] || m[2], 'this template');
     ['padGo', 'padGoExt', 'padHost', 'padRoot', 'padApp', 'padPage'].forEach(function (n) { add(n, 'PAD'); });
     return out;
@@ -675,7 +680,7 @@
 
   function fieldsOf(hooks, model, name) {
     var out = (hooks.fields(model) || []).filter(function (f) { return f.name === name; });
-    var text = model.getValue(), re = new RegExp('\\{[^{}]*?[$%]' + name + '\\s*=(?![=>])|\\{data\\s+[\'"]' + name + '[\'"]', 'g'), m;
+    var text = model.getValue(), re = new RegExp('\\{[^{}]*?[$%]' + name + '\\s*=(?![=>])|\\{pad:data\\s+[\'"]' + name + '[\'"]', 'g'), m;
     while ((m = re.exec(text)) !== null) {
       var pos = model.getPositionAt(m.index);
       out.push({ name: name, file: null, line: pos.lineNumber, text: model.getLineContent(pos.lineNumber).trim() });
@@ -792,8 +797,8 @@
     return null;
   }
 
-  // When the } of a structural tag is typed - {if ...}, {data ...}, {form ...} - and the
-  // rest of the template does not close one, its {/tag} is put in after the cursor.
+  // When the } of a structural tag is typed - {pad:if ...}, {pad:data ...}, {pad:form ...} - and the
+  // rest of the template does not close one, its {/function:tag} is put in after the cursor.
   // The } is either typed into the text or, when the editor closed the brace already, typed
   // over: the one is a change of the text, the other only a key.
   function closeOnType(monaco, hooks, editor) {
@@ -820,8 +825,8 @@
     var base = hooks.base();
     if (!base) return;
     var line = model.getLineContent(pos.lineNumber).slice(0, pos.column - 1);
-    var m = line.match(/\{~?([A-Za-z_]\w*)\b[^{}]*\}$/);
-    if (!m || STRUCTURAL.indexOf(m[1]) < 0) return;
+    var m = line.match(/\{~?(pad:[A-Za-z_]\w*)\b[^{}]*\}$/);
+    if (!m || STRUCTURAL.indexOf(m[1].slice(4)) < 0) return;
     var rest = model.getValueInRange({ startLineNumber: pos.lineNumber, startColumn: pos.column, endLineNumber: model.getLineCount(), endColumn: model.getLineMaxColumn(model.getLineCount()) });
     var prior = model.getValueInRange({ startLineNumber: 1, startColumn: 1, endLineNumber: pos.lineNumber, endColumn: pos.column });
     var opens = (prior.match(new RegExp('\\{~?' + m[1] + '\\b', 'g')) || []).length;
@@ -854,8 +859,8 @@
       surroundingPairs: [{ open: '{', close: '}' }, { open: "'", close: "'" }, { open: '"', close: '"' }, { open: '<', close: '>' }],
       wordPattern: /(-?\d*\.\d\w*)|([^\`\~\!\@\#\$\%\^\&\*\(\)\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\?\s]+)/g,
       indentationRules: {
-        increaseIndentPattern: /\{~?(?:if|while|until|case|data|content|ignore|trace|tidy|record|array|check|sequence|code|form|cache|block|slot|push|fragment|live|markdown|tree|branch)\b[^{}]*\}[^{}]*$|<(?!(?:area|base|br|col|embed|hr|img|input|link|meta|source|track|wbr)\b)(\w[\w-]*)(?:[^>"']|"[^"]*"|'[^']*')*?(?!\/)>[^<]*$/,
-        decreaseIndentPattern: /^\s*(?:\{~?\/[A-Za-z_][A-Za-z0-9_:]*~?\}|\{~?(?:else|elseif|when)\b[^{}]*\}|<\/[\w-]+>)/
+        increaseIndentPattern: /\{~?pad:(?:if|while|until|case|data|content|ignore|trace|tidy|record|array|check|sequence|code|form|cache|block|slot|push|fragment|live|markdown|tree|branch)\b[^{}]*\}[^{}]*$|<(?!(?:area|base|br|col|embed|hr|img|input|link|meta|source|track|wbr)\b)(\w[\w-]*)(?:[^>"']|"[^"]*"|'[^']*')*?(?!\/)>[^<]*$/,
+        decreaseIndentPattern: /^\s*(?:\{~?\/[A-Za-z_][A-Za-z0-9_:]*~?\}|\{~?pad:(?:else|elseif|when)\b[^{}]*\}|<\/[\w-]+>)/
       }
     });
     themes(monaco);

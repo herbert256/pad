@@ -1,6 +1,6 @@
 <?php
 
-  // The options of {spreadsheet} that change its cells, each read into the sheet before it is
+  // The options of {pad:spreadsheet} that change its cells, each read into the sheet before it is
   // computed - see subs/formulas/spreadsheet.php for the tag itself.
   //
   //   padSheetTarget    what a name of formulas=, totals= and formats= points at: a cell (D2),
@@ -286,8 +286,8 @@
 
   }
 
-  // Where the sheet stands, for where its edits go: in a {form} - wherever a {live} region
-  // stands, a form holds no form of its own - in a {live} region, or in neither, when it is a
+  // Where the sheet stands, for where its edits go: in a {pad:form} - wherever a {pad:live} region
+  // stands, a form holds no form of its own - in a {pad:live} region, or in neither, when it is a
   // form of its own. [ mode, the name of the live region ].
 
   function padSheetMode () {

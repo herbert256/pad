@@ -4,7 +4,7 @@
   // north= - -90 to 90 unless said otherwise - written with decimals= places, 6 (a tenth of a
   // metre or so), the zeros at its end kept: 52.370216. Spread evenly over the degrees, not
   // over the earth's surface: a band near a pole gets as many points as one as wide at the
-  // equator. With a longitude it is a point of a box - {fake 'lat:latitude, lon:longitude',
+  // equator. With a longitude it is a point of a box - {fake:rows 'lat:latitude, lon:longitude',
   // south=50.75, north=53.55, west=3.36, east=7.23, rows=5/} - in the Netherlands' box, not
   // always on land.
 

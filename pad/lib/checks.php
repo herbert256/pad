@@ -113,7 +113,7 @@
   // types/pad.php asks for every built-in tag it runs and includes the file the first time.
   // The answer is the file under its name on disk, whatever the case the tag was written in:
   // on a file system that ignores case {Tabs} is the tabs tag, and include_once of
-  // tags/_lib/Tabs.php after tab.php's tags/_lib/tabs.php - or {avatar} and {Avatar} - ended
+  // tags/_lib/Tabs.php after tab.php's tags/_lib/tabs.php - or {pad:avatar} and {Avatar} - ended
   // the page on "Cannot redeclare function".
 
   function padTagLib ( $tag ) {
@@ -305,14 +305,14 @@
 
     // Numeric ends of any sign or with decimals make a range too, as padGetRange counts them:
     // ctype_alnum refuses the - and the ., and -3..3, -5..-1 or 1.5..3 were read as a CSV
-    // header with no rows - an empty set in silence, where {sequence '-3..3'} counts.
+    // header with no rows - an empty set in silence, where {sequence:range '-3..3'} counts.
 
     $parts = padExplode ($content, '..');
     if ( count ($parts) == 2 and ( ( ctype_alnum($parts[0]) and ctype_alnum($parts[1]) )
                                    or ( is_numeric ($parts[0]) and is_numeric ($parts[1]) ) ) )
       return 'range';
 
-    // SELF:// is this server, which data/curl.php turns into $padHost as {curl} does - but
+    // SELF:// is this server, which data/curl.php turns into $padHost as {pad:curl} does - but
     // only once the text has been taken for a URL, and the prefix was not one: data=
     // 'SELF://...' was read as CSV, a header line with no rows, and gave nothing.
 
@@ -421,8 +421,8 @@
   // What the response has issued stays issued whichever pass issued it - the CSRF token's
   // record, the CSP nonce, the flash messages taken out: rolled back at a sandbox's end, a
   // cached section kept one visitor's token for the next, the script nonce differed from the
-  // header's, and a flash shown inside a {code} showed again outside it. So does the count
-  // of the forms of each name (padFormOpen, lib/form.php): put back after a {page} part, the
+  // header's, and a flash shown inside a {pad:code} showed again outside it. So does the count
+  // of the forms of each name (padFormOpen, lib/form.php): put back after a {pad:page} part, the
   // form of a part a page shows twice was the first of its name both times, and a post from
   // either refilled both.
 

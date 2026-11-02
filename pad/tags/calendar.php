@@ -1,9 +1,9 @@
 <?php
 
-  // {calendar} - a month as a calendar, tags/_lib/calendar.php. The month is the first parameter
+  // {pad:calendar} - a month as a calendar, tags/_lib/calendar.php. The month is the first parameter
   // ('2026-10'), else the request value named by query= ('month') - the links to the months
-  // around it set that value - else this month. data= gives events - a {data} store, a page
-  // array or a _data file, as for {chart} - date= names their date field and title= their
+  // around it set that value - else this month. data= gives events - a {pad:data} store, a page
+  // array or a _data file, as for {chart:bar} - date= names their date field and title= their
   // text, else the first field that reads as a date and the first other text; link= names a
   // field with a link for the event. sunday starts the weeks on Sunday instead of Monday.
   // holidays= marks the public holidays of a country, 'nl' or with its region 'de-by' (the
@@ -67,7 +67,7 @@
   if ( $padPair [$pad] )
     return $padCalendarWeeks;
 
-  // The links stay for a parameter that holds the month the request asked for - {calendar
+  // The links stay for a parameter that holds the month the request asked for - {pad:calendar
   // $month}, the request value the links set - as following them changes it: dropped for
   // every parameter, such a calendar could no longer leave the month it showed.
 

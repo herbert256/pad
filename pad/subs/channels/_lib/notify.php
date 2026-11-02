@@ -220,7 +220,7 @@
     padNotifyStore ( 'results', $results );
 
     if ( ! $result ['ok'] )
-      padLog ( 'the notification {name} was not sent on {channel}: {error}', 'warning',
+      padLog ( 'the notification {property:name} was not sent on {field:channel}: {pad:error}', 'warning',
                [ 'name' => (string) $name, 'channel' => $channel, 'error' => $result ['error'] ] );
 
     return $result ['ok'];

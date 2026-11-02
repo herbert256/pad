@@ -17,47 +17,47 @@
 
 <div class="browse-page">
 
-{if $app ne ''}
+{pad:if $app ne ''}
 
   <div class="browse-container">
 
     <div class="file-list">
       <ul>
-        {if $hasParent}
+        {pad:if $hasParent}
           <li class="parent">
-            {if $parentDir ne ''}
+            {pad:if $parentDir ne ''}
               <a href="?browse&app={$app}&dir={$parentDir}">..</a>
             @else@
               <a href="?browse&app={$app}">..</a>
-            {/if}
+            {/pad:if}
           </li>
-        {/if}
-        {appDirs}
+        {/pad:if}
+        {array:appDirs}
           <li class="dir"><a href="?browse&app={$app}&dir={$path}">{$name}/</a></li>
-        {/appDirs}
-        {appFiles}
-          {if $currentFile eq $path}
+        {/array:appDirs}
+        {array:appFiles}
+          {pad:if $currentFile eq $path}
             <li class="current">{$name}</li>
-          {/if}
-          {if $currentFile ne $path}
+          {/pad:if}
+          {pad:if $currentFile ne $path}
             <li><a href="?browse&app={$app}&dir={$dir}&file={$path}">{$name}</a></li>
-          {/if}
-        {/appFiles}
+          {/pad:if}
+        {/array:appFiles}
       </ul>
     </div>
 
-    {if $currentFile ne ''}
+    {pad:if $currentFile ne ''}
       <div class="source-view">
         <h3>{$currentFile}</h3>
         {!source}
       </div>
-    {/if}
+    {/pad:if}
 
   </div>
 
-{/if}
+{/pad:if}
 
-{if $app eq ''}
+{pad:if $app eq ''}
   <p>No application specified. <a href="?index">Return to applications list</a>.</p>
-{/if}
+{/pad:if}
 </div>

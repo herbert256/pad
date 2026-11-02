@@ -1,4 +1,4 @@
-[{countriesPaged fields='distinct country', order='country', page=1, rows=10}{$country}; {/countriesPaged}]
-({pager 'countriesPaged', window=0}{$kind}:{$page} {/pager})
-[{paymentTotals fields='count(*) as n', page=1, rows=10}{$n}{/paymentTotals}]
-({pager 'paymentTotals', window=0}{$kind}:{$page} {/pager})
+[{select:countriesPaged fields='distinct country', order='country', page=1, rows=10}{$country}; {/select:countriesPaged}]
+({pad:pager 'countriesPaged', window=0}{$kind}:{$page} {/pad:pager})
+[{select:paymentTotals fields='count(*) as n', page=1, rows=10}{$n}{/select:paymentTotals}]
+({pad:pager 'paymentTotals', window=0}{$kind}:{$page} {/pad:pager})

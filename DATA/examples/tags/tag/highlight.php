@@ -5,9 +5,9 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{highlight 'lang'} ... {/highlight}
-{highlight 'lang', lines, mark='3, 5-7'} ... {/highlight}
-{highlight file='_data/products.json'/}
+{pad:highlight 'lang'} ... {/pad:highlight}
+{pad:highlight 'lang', lines, mark='3, 5-7'} ... {/pad:highlight}
+{pad:highlight file='_data/products.json'/}
 PAD;
 
   $tagParms   = [

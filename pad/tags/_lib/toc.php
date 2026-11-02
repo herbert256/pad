@@ -1,26 +1,26 @@
 <?php
 
-  // A table of contents - the {toc} tag. It lists the headings of the page that holds it,
+  // A table of contents - the {pad:toc} tag. It lists the headings of the page that holds it,
   // as they came out of the rendering, so a heading a loop or a snippet wrote is in it too:
   //
-  //   {toc}                                   the <h2> and <h3> of the page, nested
-  //   {toc levels='2,3,4', title='On this page', list='ul'}
+  //   {pad:toc}                                   the <h2> and <h3> of the page, nested
+  //   {pad:toc levels='2,3,4', title='On this page', list='ul'}
   //
-  // The page renders from top to bottom, and the headings below a {toc} are not there yet
-  // when it runs. It therefore prints a marker, as {stack} does (lib/stack.php), and the
+  // The page renders from top to bottom, and the headings below a {pad:toc} are not there yet
+  // when it runs. It therefore prints a marker, as {pad:stack} does (lib/stack.php), and the
   // marker is filled in once the page has rendered: padTocFill, from exits/exits.php for
-  // the page of the request, and from start/pad/pad.php for a page a {page} renders, which
+  // the page of the request, and from start/pad/pad.php for a page a {pad:page} renders, which
   // gets the contents of its own headings - padTocFill is in lib/toc.php, loaded on every
   // request, and includes this file for a page that holds a marker, to fill it with
   // padTocFillPage. The marker carries its options in itself -
   // hexadecimal, so no character of it is syntax - and makes the same text on every
-  // request: a {toc} inside a cached fragment still finds its page.
+  // request: a {pad:toc} inside a cached fragment still finds its page.
   //
   // A heading without an id gets one, the slug of its text, made unique on the page with
   // -2, -3 behind it; a heading with an id keeps it. The list nests one level deeper per
   // heading level, a missing level in between makes no empty item. Each entry is a link to
   // its heading; the nav is labelled by its title, which is a paragraph and not a heading,
-  // so a second {toc} does not list it. No heading, and the tag answers nothing.
+  // so a second {pad:toc} does not list it. No heading, and the tag answers nothing.
   //
   // The colours are CSS custom properties with light and dark defaults on .pad-toc -
   // --pad-toc-text, --pad-toc-line and --pad-toc-accent - which a page overrides.
@@ -40,7 +40,7 @@
 
   }
 
-  // The options of a marker the {toc} tag wrote - levels, title, list - or NULL for any
+  // The options of a marker the {pad:toc} tag wrote - levels, title, list - or NULL for any
   // other text between the marker's characters.
 
   function padTocOptions ( $seal, $hex ) {
@@ -95,7 +95,7 @@
 
     $next = [];
 
-    // Every heading of the levels any {toc} of the page asks for gets its id now, once.
+    // Every heading of the levels any {pad:toc} of the page asks for gets its id now, once.
 
     $wanted = [];
 
@@ -263,7 +263,7 @@
 
   }
 
-  // Once per request: the rules hold for every {toc} after the first.
+  // Once per request: the rules hold for every {pad:toc} after the first.
 
   function padTocStyle () {
 

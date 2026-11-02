@@ -1,8 +1,8 @@
-{meta title='Matching a value', about='The branch of the {when} that matches renders; a {when} can list several values.'/}
-{set $light = 'amber'/}
+{pad:meta title='Matching a value', about='The branch of the {pad:when} that matches renders; a {pad:when} can list several values.'/}
+{pad:set $light = 'amber'/}
 <p>The light is {$light}:
-{case $light}
-  {when 'red'} stop.
-  {when 'yellow', 'amber'} slow down.
-  {when 'green'} go.
-{/case}</p>
+{pad:case $light}
+  {pad:when 'red'} stop.
+  {pad:when 'yellow', 'amber'} slow down.
+  {pad:when 'green'} go.
+{/pad:case}</p>

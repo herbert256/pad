@@ -7,7 +7,7 @@
   //   1  a name like -2 is a relative level - return the first scalar of that level's row
   //   2  a numeric name indexes the current level's options
   //   3  levels $pad down to 1: the iteration row $padCurrent, then names registered by
-  //      {set} as occurrence or level variables ($padSetOcc / $padSetLvl, whose values
+  //      {pad:set} as occurrence or level variables ($padSetOcc / $padSetLvl, whose values
   //      live in $GLOBALS)
   //   4  $GLOBALS itself - the variables a page's .php file left behind
   //   5  any global array that happens to carry the key, skipping pad* and pq* engine state
@@ -22,7 +22,7 @@
 
   // An object asked for as a list - a stdClass record, an ArrayObject, an iterator, a
   // generator - is the array it holds, as padData reads one it is handed (padDataObject):
-  // {user}{$name}{/user} over a stdClass was "there is no tag named 'user'". A date and an
+  // {array:user}{$name}{/array:user} over a stdClass was "there is no tag named 'user'". A date and an
   // object with __toString stay values. An iterator that runs once is read once and its
   // array takes its place: a generator, a PDOStatement or a NoRewindIterator, which the type
   // check emptied - the tag over it iterated nothing, in silence. Any other object stays the
@@ -81,10 +81,10 @@
       if ( isset ( $padSetOcc [$i] [$field] ) ) return $GLOBALS [$field] ;
 
       // A level variable is a global once level/set.php has published it, and read there, as a
-      // {set} inside the level may have changed it since. While the level's parameters are
+      // {pad:set} inside the level may have changed it since. While the level's parameters are
       // still being parsed it is not yet: its value is the one registered here. Read from
-      // $GLOBALS then, the second item of {set $a = 1, $b = $a + 1} ended the page on PHP's
-      // "Undefined global variable $a", and {set $title = 'Orders', $heading = $title . ' list'}
+      // $GLOBALS then, the second item of {pad:set $a = 1, $b = $a + 1} ended the page on PHP's
+      // "Undefined global variable $a", and {pad:set $title = 'Orders', $heading = $title . ' list'}
       // on a page with a $title of its own read that old one.
 
       if ( isset ( $padSetLvl [$i] [$field] ) )

@@ -1,8 +1,8 @@
 <?php
 
-  // A {toc} inside a {pdf} pair lists the document's headings in the PDF, as on the page:
+  // A {pad:toc} inside a {pad:pdf} pair lists the document's headings in the PDF, as on the page:
   // the document was made from the parts before the page's tables of contents were filled,
-  // and its contents list was the raw marker. The part is taken as a {pdf} takes it - the
+  // and its contents list was the raw marker. The part is taken as a {pad:pdf} takes it - the
   // request's own store is put back after, so this page stays a page.
 
   include_once PAD . 'tags/_lib/pdf.php';

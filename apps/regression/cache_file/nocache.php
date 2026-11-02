@@ -1,7 +1,7 @@
 <?php
 
   // Fetches nocacheprobe twice at an address new on every run: the second fetch is a hit
-  // of the page cache, so its build moment is the first fetch's, while its {nocache} parts
+  // of the page cache, so its build moment is the first fetch's, while its {pad:nocache} parts
   // render again - the time differs - and the part inside the loop still has its row.
 
   $url = $padHost . 'regression/cache_file/?nocacheprobe&padInclude&run=' . padRandomString ();

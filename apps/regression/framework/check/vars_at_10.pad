@@ -1,4 +1,4 @@
-{content 'myContent'}
+{pad:content 'myContent'}
   <table border=1 valign=center>
     <tr>
       <th>        </th>
@@ -11,48 +11,48 @@
     </tr>
     @content@
   </table>
-{/content}
+{/pad:content}
 
-{myContent}
-  {staff}
+{content:myContent}
+  {local:staff}
     <tr>
       <td> {$name}                          </td>
-      <td> {first@staff}  X {/first@staff}  </td>
-      <td> {border@staff} X {/border@staff} </td>
-      <td> {middle@staff} X {/middle@staff} </td>
-      <td> {last@staff}   X {/last@staff}   </td>
-      <td> {even@staff}   X {/even@staff}   </td>
-      <td> {odd@staff}    X {/odd@staff}    </td>
+      <td> {property:first@staff}  X {/property:first@staff}  </td>
+      <td> {property:border@staff} X {/property:border@staff} </td>
+      <td> {property:middle@staff} X {/property:middle@staff} </td>
+      <td> {property:last@staff}   X {/property:last@staff}   </td>
+      <td> {property:even@staff}   X {/property:even@staff}   </td>
+      <td> {property:odd@staff}    X {/property:odd@staff}    </td>
     </tr>
-  {/staff}
-{/myContent}
+  {/local:staff}
+{/content:myContent}
 
-{myContent}
-  {staff}
-  	{true}
+{content:myContent}
+  {local:staff}
+  	{pad:true}
 	    <tr>
 	      <td> {$name}                     </td>
-	      <td> {first@-2}  X {/first@-2}  </td>
-	      <td> {border@-2} X {/border@-2} </td>
-	      <td> {middle@-2} X {/middle@-2} </td>
-	      <td> {last@-2}   X {/last@-2}   </td>
-	      <td> {even@-2}   X {/even@-2}   </td>
-	      <td> {odd@-2}    X {/odd@-2}    </td>
+	      <td> {property:first@-2}  X {/property:first@-2}  </td>
+	      <td> {property:border@-2} X {/property:border@-2} </td>
+	      <td> {property:middle@-2} X {/property:middle@-2} </td>
+	      <td> {property:last@-2}   X {/property:last@-2}   </td>
+	      <td> {property:even@-2}   X {/property:even@-2}   </td>
+	      <td> {property:odd@-2}    X {/property:odd@-2}    </td>
 	    </tr>
-    {/true}
-  {/staff}
-{/myContent}
+    {/pad:true}
+  {/local:staff}
+{/content:myContent}
 
-{myContent}
-  {staff}
+{content:myContent}
+  {local:staff}
   	<tr>
       <td> {$name}                </td>
-      <td> {first@}  X {/first@}  </td>
-      <td> {border@} X {/border@} </td>
-      <td> {middle@} X {/middle@} </td>
-      <td> {last@}   X {/last@}   </td>
-      <td> {even@}   X {/even@}   </td>
-      <td> {odd@}    X {/odd@}    </td>
+      <td> {property:first@}  X {/property:first@}  </td>
+      <td> {property:border@} X {/property:border@} </td>
+      <td> {property:middle@} X {/property:middle@} </td>
+      <td> {property:last@}   X {/property:last@}   </td>
+      <td> {property:even@}   X {/property:even@}   </td>
+      <td> {property:odd@}    X {/property:odd@}    </td>
     </tr>
-  {/staff}
-{/myContent}
+  {/local:staff}
+{/content:myContent}

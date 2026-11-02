@@ -1,6 +1,6 @@
 <?php
 
-  // The votes of a {poll}, kept in DATA/poll/<app>/<name>.json - the part of the widget
+  // The votes of a {widget:poll}, kept in DATA/poll/<app>/<name>.json - the part of the widget
   // that a page's PHP uses too, to read the counts or to add a vote of its own; the widget
   // is subs/widgets/_lib/poll.php, loaded when a page uses it.
   //

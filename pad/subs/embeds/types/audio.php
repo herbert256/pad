@@ -1,7 +1,7 @@
 <?php
 
   // audio - A sound file - .mp3, .m4a, .aac, .ogg, .oga, .opus, .wav or .flac - of
-  // www/<application>/, versioned as an {asset}, or of the web, as an <audio controls
+  // www/<application>/, versioned as an {pad:asset}, or of the web, as an <audio controls
   // preload="none"> with the title under it: nothing is loaded before it is played.
 
   return [

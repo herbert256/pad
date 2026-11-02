@@ -31,7 +31,7 @@
   // The session cookie is the host's, shared by every application on it, so the login is
   // kept per application: $_SESSION ['padAuth'] [<application>]. Logging in to one is not
   // logging in to another. The fields of the row whose names say password, secret or token
-  // never go into the session - {debug} and an error report would show them - and are
+  // never go into the session - {pad:debug} and an error report would show them - and are
   // only used to sign the remember-me cookie.
   //
   // Remember-me without a table of tokens: the cookie holds the user's id and an expiry,
@@ -82,7 +82,7 @@
       return padError ( 'padLogin: no session can start - the headers have gone out already' );
 
     // A login on the session id from before it is the fixation the new id prevents - below
-    // a {flush}, on a session already open, it was made on the old id without a word.
+    // a {pad:flush}, on a session already open, it was made on the old id without a word.
 
     if ( ! padSessionRegenerate () )
       return padError ( 'padLogin: the session id cannot be renewed - the headers have gone out already' );
@@ -110,7 +110,7 @@
     $app = padAuthApp ();
 
     // A logout that cannot drop the remember-me cookie, or reach the session the login is
-    // in, is no logout - below a {flush} it answered TRUE and the next request was logged in
+    // in, is no logout - below a {pad:flush} it answered TRUE and the next request was logged in
     // again.
 
     if ( headers_sent () and ( isset ( $_COOKIE [ padAuthCookieName () ] ) or ( padSessionExists () and session_status () !== PHP_SESSION_ACTIVE ) ) )
@@ -248,7 +248,7 @@
     if ( padAuthCheck () )
       return TRUE;
 
-    // In the _guard.php of a page a {page} tag includes, a guest is no reason to send the
+    // In the _guard.php of a page a {pad:page} tag includes, a guest is no reason to send the
     // whole request away: the guard refuses, and the part renders as nothing, as it does for
     // a guard returning FALSE (build/guards.php) - a members' box on a public page took the
     // public page from every guest.
@@ -410,7 +410,7 @@
 
   // The fields kept out of the session and signed into the cookie instead: by their names,
   // and any value PHP knows as a password hash, whatever its column is called - a hash in
-  // 'hash' or 'pass_hash' went into the session, {auth} and the dumps, and a new password
+  // 'hash' or 'pass_hash' went into the session, {pad:auth} and the dumps, and a new password
   // left every remember-me cookie valid. A name is judged by its words - split on _ and -
   // and where the case changes, PINCode too - so a secret's word anywhere makes it one
   // (recovery_key, otp_backup_codes, pin_hash, remember_hash, apiKey), and so does a word that
@@ -420,7 +420,7 @@
   // row. So are the public picture hashes in any spelling - email_hash, emailhash, emailHash
   // (a Gravatar's), avatar_hash, blurhash - a hash written together with a word that is no
   // secret's - githash, filehash - and pincode, the postal code of an Indian address: taken
-  // for secrets, {auth}{$pincode}{/auth} ended the page and editing the address ended every
+  // for secrets, {pad:auth}{$pincode}{/pad:auth} ended the page and editing the address ended every
   // remember-me cookie.
 
   function padAuthSecret ( $name, $value = NULL ) {
@@ -449,7 +449,7 @@
   // The words that make a key, a code or a link after them a secret: Yii's auth_key - the
   // column it renews to end remembered logins - and the one-time codes that log in or reset
   // a password, reset_code, login_code, verification_code, activation_key, magic_link, went
-  // into the session, {auth} and the dumps, and renewing one ended no remember-me cookie.
+  // into the session, {pad:auth} and the dumps, and renewing one ended no remember-me cookie.
 
   function padAuthSecretOf () {
 

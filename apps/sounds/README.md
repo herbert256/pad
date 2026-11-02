@@ -14,7 +14,7 @@ the WAV file.
 | File | Description |
 |------|-------------|
 | `index.pad` / `index.php` | The soundboard: a card per sound - its button, its WAV, its recipe |
-| `ways.pad` / `ways.php` | The ways to play a sound, an `{example}` each |
+| `ways.pad` / `ways.php` | The ways to play a sound, an `{common:example}` each |
 | `ways/<way>.pad` | The examples: button, target, attribute, toast, download |
 | `_lib/sounds.php` | The catalog: `padSoundKinds ()`, each type file's comment and recipe |
 | `_inits.php` / `_inits.pad` | The shared frame and its menu |

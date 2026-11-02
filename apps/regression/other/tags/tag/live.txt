@@ -1,4 +1,4 @@
-<p><code>{live 'name'}...{/live}</code> makes a part of the page interactive without
+<p><code>{pad:live 'name'}...{/pad:live}</code> makes a part of the page interactive without
 JavaScript of the application's own. The content is wrapped in
 <code>&lt;div data-pad-live="name"&gt;</code>, and the first region of the page brings a small
 inline script. Inside the region three attributes raise an event:</p>
@@ -20,7 +20,7 @@ page is sent.</p>
 example does with <code>pad-value</code>. With <code>$padCsrf</code> on, the region carries
 the session's token in <code>data-pad-csrf</code> and the script sends it with every event.</p>
 
-<p>Under the strict check a <code>{live}</code> without a name or without its closing tag is an
+<p>Under the strict check a <code>{pad:live}</code> without a name or without its closing tag is an
 error, and so is an event posted for a region the page does not render. For a part that is
-only loaded later, not re-rendered, see <a href="?tag/ajax">{ajax}</a>; htmx and similar
-libraries get the same partial answers through <a href="?tag/fragment">{fragment}</a>.</p>
+only loaded later, not re-rendered, see <a href="?tag/ajax">{pad:ajax}</a>; htmx and similar
+libraries get the same partial answers through <a href="?tag/fragment">{pad:fragment}</a>.</p>

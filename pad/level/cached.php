@@ -4,7 +4,7 @@
   // level renders nothing. level/end.php puts the stored rendering where the level's result
   // goes - padFragmentEnd() in lib/fragment.php.
   //
-  // A rendering with {nocache} parts is rendered instead: the stored text as a template
+  // A rendering with {pad:nocache} parts is rendered instead: the stored text as a template
   // that holds the parts again (lib/nocache.php), so they render here, on every hit.
 
   $padParm       = $padOpt [$pad] [1] ?? '';

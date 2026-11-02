@@ -2,7 +2,7 @@
 
   // Membership test for the biquadratic sequence, 1, 16, 81, 256, ...: n^4 for a whole n from
   // 0 up, decided from the fourth root - the whole n next to it are tried exactly. build/
-  // check.php asks it for {keep biquadratic}, {remove biquadratic} and {flag biquadratic}.
+  // check.php asks it for {keep:biquadratic}, {remove:biquadratic} and {pad:flag biquadratic}.
   // Without it the check read the 10,000 terms of the PADbiquadratic table and generated on
   // past them.
   //

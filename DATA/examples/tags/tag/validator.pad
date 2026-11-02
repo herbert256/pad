@@ -1,13 +1,13 @@
-{ignore}
-<p><code>{validator}</code> writes the browser's half of <code>padValidate</code> into the page
-as one inline script: the runtime, <code>pad/subs/rules/assets/validate.js</code>, with the script of
+{pad:ignore}
+<p><code>{pad:validator}</code> writes the browser's half of <code>padValidate</code> into the page
+as one inline script: the runtime, <code>www/assets/rules/validate.js</code>, with the script of
 every rule beside it - the same rules, the same messages. The rules are the files of
-<code>pad/subs/rules/types/</code>, each with its script in <code>pad/subs/rules/assets/</code>:
-{/ignore}{echo php:implode(', ', padRuleTypes())/}{ignore}. It is written once a page - a second
-<code>{validator}</code>, or one after a <code>{form ..., client}</code> that brought it
+<code>pad/subs/rules/types/</code>, each with its script in <code>www/assets/rules/</code>:
+{/pad:ignore}{pad:echo php:implode(', ', padRuleTypes())/}{pad:ignore}. It is written once a page - a second
+<code>{pad:validator}</code>, or one after a <code>{pad:form ..., client}</code> that brought it
 already, writes nothing.</p>
 
-<p>It is for forms the template does not write as a <a href="?tag/form">{form}</a> - a form a
+<p>It is for forms the template does not write as a <a href="?tag/form">{pad:form}</a> - a form a
 React, Vue or Alpine component draws, or a plain HTML form. Keep the rules in the page's PHP:
 <code>padValidate ( $rules )</code> checks the post, and <code>padValidateClient ( $rules )</code>
 exports the same list for the browser, each rule with the message padValidate would give.</p>
@@ -20,5 +20,9 @@ when it is left. A <code>regex:</code> rule JavaScript cannot read as PCRE does 
 browser and is left to the server, which checks every post anyway.</p>
 
 <p>Under a Content-Security-Policy that names <code>'nonce'</code> the script carries this
-request's <a href="?tag/nonce">{nonce}</a>.</p>
-{/ignore}
+request's <a href="?tag/nonce">{pad:nonce}</a>.</p>
+{/pad:ignore}
+
+<h3>Validation rules</h3>
+<p>Each kind has its own description and usage example:</p>
+<p>{!subsystemKindLinks}</p>

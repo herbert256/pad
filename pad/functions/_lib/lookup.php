@@ -1,21 +1,21 @@
 <?php
 
   // Rows by name, and the lookup pipe function that finds one of them by a key - read by the
-  // lookup pipe (functions/lookup.php) and by {tree} (tags/tree.php) when a page uses them.
+  // lookup pipe (functions/lookup.php) and by {pad:tree} (tags/tree.php) when a page uses them.
   //
-  // padNamedRows  the rows a name stands for: a {data} block, a stored sequence, an array of
+  // padNamedRows  the rows a name stands for: a {pad:data} block, a stored sequence, an array of
   //               the page or of an enclosing row, or a _data/ file - in that order; NULL
-  //               when nothing holds that name. {tree 'menu'} and lookup('customers')
+  //               when nothing holds that name. {pad:tree 'menu'} and lookup('customers')
   //               both read their rows through it. With $keep a _data/ file is read once per
   //               request: a lookup asks for its set on every row it is piped on.
   // padLookup     the value of $field in the first row of $set whose $key equals $value -
-  //               {echo $customer_id | lookup('customers', 'id', 'name')} - '' when no row
+  //               {pad:echo $customer_id | lookup('customers', 'id', 'name')} - '' when no row
   //               matches. Without a field it is the row's first field other than the key.
   //               The set is indexed on the key once and the index kept for the request;
   //               it is built again only when the set itself changed - an unchanged array
   //               is the same array, so telling the two apart costs nothing.
   //
-  // Joins existed for database tables through Select relations, and {at "id=5@customers"}
+  // Joins existed for database tables through Select relations, and {pad:at "id=5@customers"}
   // found one row, but two lists from different sources - JSON and CSV, an API and page
   // PHP - had no join in the template.
 

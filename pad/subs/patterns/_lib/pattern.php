@@ -37,7 +37,7 @@
   //
   // The same options give the same bytes, on every request and every machine: the random
   // numbers are the sequence of lib/fake.php (xorshift32, padFakeSeed), seeded with the kind
-  // and seed= for this one pattern and put back afterwards, as {lorem} does - a page that
+  // and seed= for this one pattern and put back afterwards, as {pad:lorem} does - a page that
   // seeds padFake* for its own data gets the same values with or without a pattern between
   // them - and every number is written rounded to a fixed number of decimals, never as PHP's
   // float to string writes it. A trigonometric value is rounded to ten decimals before it is

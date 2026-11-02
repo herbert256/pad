@@ -3,8 +3,8 @@
   // Small multiples: the same small line chart once per group, on one scale, in a grid -
   // so the eye compares the shapes.
   //
-  //   {chart 'multiples', data='climate', by='city', label='month', value='temperature'}
-  //   {chart 'multiples', data='climate', by='city', columns=3}
+  //   {chart:multiples data='climate', by='city', label='month', value='temperature'}
+  //   {chart:multiples data='climate', by='city', columns=3}
   //
   // by= names the field that groups the rows - else the first field that is no number;
   // label= the field along the x axis - else the next one; value= the number - else the

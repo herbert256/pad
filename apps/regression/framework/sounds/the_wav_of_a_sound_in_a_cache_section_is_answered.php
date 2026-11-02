@@ -1,6 +1,6 @@
 <?php
 
-  // A {cache} section that holds a {sound} with a link to its WAV is not kept: the page asked
+  // A {pad:cache} section that holds a {sound:chime} with a link to its WAV is not kept: the page asked
   // again with &padSound answers the WAV the second time too. Kept, the section came back on
   // the second request without the tag having run, and the link answered the page's HTML -
   // its links carry the request's own values as well, which a kept copy gives every visitor.

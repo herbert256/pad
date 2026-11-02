@@ -1,6 +1,6 @@
 <?php
 
-  // A mail whose template holds a {pdf}, sent from a page's PHP: the PDF was asked for as
+  // A mail whose template holds a {pad:pdf}, sent from a page's PHP: the PDF was asked for as
   // the page's own answer, and the visitor got the mail's invoice instead of the page.
 
   padMail ( 'ann@example.com', 'invoice', 'Invoice' );

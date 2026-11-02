@@ -1,11 +1,11 @@
 <?php
 
-  // Progress bars - the {progress} tag. A value of a maximum as a bar with its label and its
+  // Progress bars - the {pad:progress} tag. A value of a maximum as a bar with its label and its
   // percentage, or as a row of steps, rendered on the server: no script, it prints, and a
   // screen reader hears what it is and how far it has come.
   //
-  //   {progress 72, max=100, label='Upload'}
-  //   {progress 3, max=5, steps, label='Checkout'}
+  //   {pad:progress 72, max=100, label='Upload'}
+  //   {pad:progress 3, max=5, steps, label='Checkout'}
   //
   // padProgress       the bar: the native <progress> element, styled, under a line with the
   //                   label and the percentage

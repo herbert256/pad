@@ -5,7 +5,7 @@
   // twill, so every crossing shows the thread on top - the jagged checks and their teeth. A
   // tile repeated by a <pattern>: the seed changes nothing.
   //
-  //   {pattern 'houndstooth', size=16, colors='#f5f1e8, #1d1d1b'/}
+  //   {pattern:houndstooth size=16, colors='#f5f1e8, #1d1d1b'/}
   //
   // The tile is eight threads square, each a cell: the warp - the thread running down - is the
   // ink in its first four columns, the weft - running across - in its first four rows, and at

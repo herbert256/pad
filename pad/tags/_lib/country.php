@@ -1,9 +1,9 @@
 <?php
 
-  // Countries - the {country} tag: a flag and an English name from an ISO 3166-1 code.
+  // Countries - the {pad:country} tag: a flag and an English name from an ISO 3166-1 code.
   //
-  //   {country 'NL'}             <span class="pad-country" role="img" aria-label="Netherlands">🇳🇱</span>
-  //   {country 'NLD', name}      the flag and the name beside it
+  //   {pad:country 'NL'}             <span class="pad-country" role="img" aria-label="Netherlands">🇳🇱</span>
+  //   {pad:country 'NLD', name}      the flag and the name beside it
   //
   // A flag is no picture of its own: it is the code's two letters written as regional
   // indicator symbols, which a system with flag emoji draws as the flag - one without them
@@ -15,7 +15,7 @@
   //                    as the Unicode CLDR names them in English
   //
   // padCountry, [ alpha-2, alpha-3, name ] of a code or a name, is in lib/country.php: a
-  // page's PHP asks it too, and the call includes this file when no {country} has yet.
+  // page's PHP asks it too, and the call includes this file when no {pad:country} has yet.
 
   function padCountryFlag ( $two ) {
 

@@ -1,7 +1,7 @@
-{meta title='Tree picker'/}
-{about/}
+{pad:meta title='Tree picker'/}
+{include:about/}
 
-{data 'categories'}
+{pad:data 'categories'}
 [
   { "id": 1, "parent": "",  "name": "Books" },
   { "id": 2, "parent": 1,   "name": "Fiction" },
@@ -12,10 +12,10 @@
   { "id": 7, "parent": 6,   "name": "Jazz" },
   { "id": 8, "parent": 6,   "name": "Classical" }
 ]
-{/data}
+{/pad:data}
 
-{form 'try', class='inputs-try', error}
-  {treepicker 'category', label='Category', data='categories', value=4, rules='required|in:1,2,3,4,5,6,7,8'/}
+{pad:form 'try', class='inputs-try', error}
+  {input:treepicker 'category', label='Category', data='categories', value=4, rules='required|in:1,2,3,4,5,6,7,8'/}
   {input:treepicker 'city', label='City', leaves}
     Europe
       France
@@ -30,8 +30,8 @@
         Osaka
   {/input:treepicker}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-{template/}
+{include:template/}

@@ -1,5 +1,5 @@
 
-<p><code>{timeago $created/}</code> writes how long ago the moment was - just now, 5 minutes ago,
+<p><code>{pad:timeago $created/}</code> writes how long ago the moment was - just now, 5 minutes ago,
 yesterday, 3 weeks ago, and for a moment still to come, in 2 days - inside a
 <code>&lt;time class="pad-timeago"&gt;</code>. The element's <code>datetime</code> is the moment in
 ISO 8601, for machines, and its <code>title</code> the moment in full, which a browser shows on
@@ -12,5 +12,5 @@ the same on every request. <code>format=</code> is the PHP date format of the ti
 
 <p>An empty moment writes nothing, so a row without a date leaves no empty element behind. A
 moment, or a <code>now=</code>, that cannot be read as a date is a strict error. For the time
-left until a moment, use <a href="index%EF%B9%96tag%EA%A4%B7countdown.html"><code>&#123;countdown&#125;</code></a>.</p>
+left until a moment, use <a href="index%EF%B9%96tag%EA%A4%B7countdown.html"><code>&#123;pad:countdown&#125;</code></a>.</p>
 

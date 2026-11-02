@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{qr 'text'/}
-{qr $url, size=160, level='M', title='text', color='#000', background='#fff'/}
+{barcode:qr 'text'/}
+{barcode:qr $url, size=160, level='M', title='text', color='#000', background='#fff'/}
 PAD;
 
   $tagParms   = [
@@ -19,6 +19,6 @@ PAD;
     'color'      => 'The dark colour, default <code>#000</code>.',
     'background' => 'The light colour, default <code>#fff</code>.' ];
 
-  $tagSee     = [ 'barcode', 'chart' ];
+  $tagSee     = [ 'barcode:auto', 'chart:bar' ];
 
 ?>

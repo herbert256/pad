@@ -3,31 +3,31 @@
   // Layouts and named blocks, resolved while the page is assembled - build/page.php calls
   // padLayout with the page's own template and the frame round it, before anything renders.
   //
-  //   {extends 'layouts/report'}             layouts/report.pad
-  //   {block 'title'}Sales{/block}           <title>{block 'title'}Reports{/block}</title>
-  //   {block 'sidebar'}                      {block 'sidebar'}<a href="?home">Home</a>{/block}
-  //     {parent} <a href="?x">Export</a>     @page@
-  //   {/block}
+  //   {pad:extends 'layouts/report'}             layouts/report.pad
+  //   {pad:block 'title'}Sales{/pad:block}           <title>{pad:block 'title'}Reports{/pad:block}</title>
+  //   {pad:block 'sidebar'}                      {pad:block 'sidebar'}<a href="?home">Home</a>{/pad:block}
+  //     {pad:parent} <a href="?x">Export</a>     @page@
+  //   {/pad:block}
   //   <p>the rest of the page</p>
   //
-  // A layout is a template named from the application root, like a {page}. A page that
+  // A layout is a template named from the application root, like a {pad:page}. A page that
   // extends one is framed by it instead of by its directories' _inits.pad and _exits.pad
   // (and the _common wrapper): the layout is the page's frame. What the page holds outside
   // its blocks goes where the layout writes @page@ - in front of it when there is none. A
   // layout may extend a layout of its own.
   //
-  // A {block 'name'} standing directly in the page - not inside another tag - overrides the
-  // block of that name in the frame; {parent} inside it is the content it overrides, so a
-  // page can add to a region instead of replacing it. Any other {block 'name'} is a region:
+  // A {pad:block 'name'} standing directly in the page - not inside another tag - overrides the
+  // block of that name in the frame; {pad:parent} inside it is the content it overrides, so a
+  // page can add to a region instead of replacing it. Any other {pad:block 'name'} is a region:
   // its content renders, unless something overrides it. The blocks of the directories'
-  // wrappers are regions as well, so a page without {extends} sets its wrapper's title with
-  // {block 'title'}...{/block} - a block of the page that overrides nothing stays where it
+  // wrappers are regions as well, so a page without {pad:extends} sets its wrapper's title with
+  // {pad:block 'title'}...{/pad:block} - a block of the page that overrides nothing stays where it
   // is. Under the strict check, a block of a page that extends a layout must override one.
   //
   // It all happens in the text, so it costs nothing at render time and the tags are gone
-  // before the page renders: {block 'name'} needs its name quoted, which also keeps the
-  // {block} snippet of the _common application - no name - what it was. What stands
-  // between {ignore} tags is left alone, and so is a {highlight} sample and the content of a
+  // before the page renders: {pad:block 'name'} needs its name quoted, which also keeps the
+  // {pad:block} snippet of the _common application - no name - what it was. What stands
+  // between {pad:ignore} tags is left alone, and so is a {pad:highlight} sample and the content of a
   // pair carrying the ignore option.
 
   function padLayout ( &$template, &$frame ) {
@@ -35,16 +35,16 @@
     $template = padLayoutTilde ( $template );
     $frame    = padLayoutTilde ( $frame );
 
-    if ( ! str_contains ( $template . $frame, '{extends' )
-         and ! str_contains ( $template . $frame, '{block' )
-         and ! str_contains ( $template . $frame, '{parent' ) )
+    if ( ! str_contains ( $template . $frame, '{pad:extends' )
+         and ! str_contains ( $template . $frame, '{pad:block' )
+         and ! str_contains ( $template . $frame, '{pad:parent' ) )
       return;
 
     $masks = [];
     $text  = padLayoutMask ( $template, $masks );
 
-    // A named {block} of the page is resolved here, in the text, and never reaches its tag's
-    // handler, where a tag goes on the xref record (events/tag.php): {block} was on no page of
+    // A named {pad:block} of the page is resolved here, in the text, and never reaches its tag's
+    // handler, where a tag goes on the xref record (events/tag.php): {pad:block} was on no page of
     // the reference, though the pages of every layout write it.
 
     if ( ( $GLOBALS ['padInfoXref'] ?? FALSE ) and padLayoutBlocks ( $text ) )
@@ -82,13 +82,13 @@
 
   }
 
-  // The page and the layouts it extends, most derived first, each loaded and its {extends}
+  // The page and the layouts it extends, most derived first, each loaded and its {pad:extends}
   // taken out: their top-level blocks become the overrides, the blocks of the root layout
   // are resolved, and what is left of each goes into the @page@ of the one it extends.
   //
   // The blocks are filled first and the rests placed after, each @page@ marked with the
   // layout that wrote it: a layout writes its @page@ inside a block it overrides as often
-  // as outside one - base.pad {block 'body'}@page@{/block}, its section layout overriding
+  // as outside one - base.pad {pad:block 'body'}@page@{/pad:block}, its section layout overriding
   // 'body' with <aside>...</aside><main>@page@</main>. Placed before the blocks were
   // filled, the section's rest took the base's @page@ in the default 'body' loses, the
   // page's rest found none left and went in front of <html>, and the section's own @page@
@@ -120,7 +120,7 @@
 
       if ( $source === FALSE ) {
         if ( $GLOBALS ['padCheckSyntax'] )
-          padError ( "there is no layout named '$name' - {extends} names a template from the application root" );
+          padError ( "there is no layout named '$name' - {pad:extends} names a template from the application root" );
         $source = '@page@';
       }
 
@@ -226,8 +226,8 @@
 
   }
 
-  // How long the run of a page's first lines is that holds nothing but its {meta},
-  // {extends} and {block} pairs, with white space and comments between them - what stands in
+  // How long the run of a page's first lines is that holds nothing but its {pad:meta},
+  // {pad:extends} and {pad:block} pairs, with white space and comments between them - what stands in
   // front of the page's content, its own for both halves of an @else@ (build/page.php).
 
   function padLayoutLead ( $text ) {
@@ -245,7 +245,7 @@
           continue 2;
         }
 
-      if ( preg_match ( '/\G\{(meta|extends)[\s}\/]/', $text, $match, 0, $pos ) ) {
+      if ( preg_match ( '/\G\{pad:(meta|extends)[\s}\/]/', $text, $match, 0, $pos ) ) {
         $end = padPairTagEnd ( $text, $pos + 1 );
         if ( $end === FALSE )
           break;
@@ -253,7 +253,7 @@
         continue;
       }
 
-      if ( substr ( $text, $pos, 6 ) === '{block' ) {
+      if ( substr ( $text, $pos, 10 ) === '{pad:block' ) {
         $blocks ??= padLayoutBlocks ( padCommentStrip ( $text, TRUE ), TRUE );
         foreach ( $blocks as $pair )
           if ( $pair ['start'] == $pos ) {
@@ -270,13 +270,13 @@
 
   }
 
-  // That run for the @else@ half: without the {block}s the half writes of its own, and
-  // without its {extends} when the half has one.
+  // That run for the @else@ half: without the {pad:block}s the half writes of its own, and
+  // without its {pad:extends} when the half has one.
   //
-  // Both are read with their comments and {ignore} parts set aside, as padLayout reads
-  // them, and so is the run itself (above, with its comments written over): a {block} or an
-  // {extends} the half commented out took the page's own from it - the half lost its title,
-  // or its layout altogether - and a {/block} written in a comment of the run's block ended
+  // Both are read with their comments and {pad:ignore} parts set aside, as padLayout reads
+  // them, and so is the run itself (above, with its comments written over): a {pad:block} or an
+  // {pad:extends} the half commented out took the page's own from it - the half lost its title,
+  // or its layout altogether - and a {/pad:block} written in a comment of the run's block ended
   // that block there, the rest of the comment left to fail "the comment {# never closes".
 
   function padLayoutLeadFor ( $lead, $half ) {
@@ -343,17 +343,17 @@
 
   }
 
-  // The tags the assembly reads - {block}, {extends}, {parent}, {meta} - written with
-  // whitespace control, {block 'title'~}...{~/block}, are read as written without it, the
+  // The tags the assembly reads - {pad:block}, {pad:extends}, {pad:parent}, {pad:meta} - written with
+  // whitespace control, {pad:block 'title'~}...{~/pad:block}, are read as written without it, the
   // white space beside the ~ taken as the render takes it (padTildeStrip, which the rest of
-  // the page still gets when it renders). Looked for as {block, {~block was no block: the
+  // the page still gets when it renders). Looked for as {pad:block, {~pad:block was no block: the
   // page's override landed in the body and the wrapper kept its default, and
-  // {extends 'x'~} and {meta title='x'~} ended in "'~' is no operator or value". The
-  // content of a {highlight} pair is code shown as it stands (padTildeKeep), and so is
-  // what an {ignore} holds, its pairs found with the comments out of the way: a comment that
-  // named the tag - {# a note on {ignore} #} - left the real pair after it unclosed, one
-  // that wrote {/ignore} closed it early, and {~block 'x'~} in the sample printed
-  // {block 'x'}.
+  // {pad:extends 'x'~} and {pad:meta title='x'~} ended in "'~' is no operator or value". The
+  // content of a {pad:highlight} pair is code shown as it stands (padTildeKeep), and so is
+  // what an {pad:ignore} holds, its pairs found with the comments out of the way: a comment that
+  // named the tag - {# a note on {pad:ignore} #} - left the real pair after it unclosed, one
+  // that wrote {/pad:ignore} closed it early, and {~pad:block 'x'~} in the sample printed
+  // {pad:block 'x'}.
 
   function padLayoutTilde ( $text ) {
 
@@ -362,7 +362,7 @@
 
     $kept = [];
     $text = padTildeKeep ( $text, $kept, TRUE );
-    $name = '\/?(?:block|extends|parent|meta)(?=[\s}~\/])';
+    $name = '\/?pad:(?:block|extends|parent|meta)(?=[\s}~\/])';
 
     $text = preg_replace ( "/\s*\{~(?=$name)/", '{', $text );
     $text = preg_replace ( "/(\{{$name}[^{}]*?)~\}\s*/", '$1}', $text );
@@ -371,31 +371,31 @@
 
   }
 
-  // The {extends 'name'} standing directly in a template: its name and the template without
+  // The {pad:extends 'name'} standing directly in a template: its name and the template without
   // it, or FALSE when there is none.
 
   function padLayoutExtends ( $text ) {
 
     $offset = 0;
 
-    while ( ( $pos = padPairNext ( $text, '{extends', $offset ) ) !== FALSE ) {
+    while ( ( $pos = padPairNext ( $text, '{pad:extends', $offset ) ) !== FALSE ) {
 
-      $end = padPairTagEnd ( $text, $pos + 8 );
+      $end = padPairTagEnd ( $text, $pos + 12 );
 
       if ( $end === FALSE )
         return FALSE;
 
       if ( padPairTopLevel ( $text, $pos ) ) {
 
-        $parms = rtrim ( trim ( substr ( $text, $pos + 8, $end - $pos - 8 ) ), '/' );
+        $parms = rtrim ( trim ( substr ( $text, $pos + 12, $end - $pos - 12 ) ), '/' );
         $name  = padPairName ( $parms );
         $rest  = substr ( $text, 0, $pos ) . substr ( $text, $end + 1 );
 
         if ( $GLOBALS ['padCheckSyntax'] and padLayoutExtends ( $rest ) !== FALSE )
-          padError ( "a page extends one layout - this one has two {extends}" );
+          padError ( "a page extends one layout - this one has two {pad:extends}" );
 
         if ( $name === '' and $GLOBALS ['padCheckSyntax'] )
-          padError ( "the {extends} needs the name of a layout - {extends 'layouts/report'/}" );
+          padError ( "the {pad:extends} needs the name of a layout - {pad:extends 'layouts/report'/}" );
 
         return [ 'name' => $name, 'text' => $rest ];
 
@@ -409,15 +409,15 @@
 
   }
 
-  // The {block 'name'} pairs of a text that are not inside another named block, with their
+  // The {pad:block 'name'} pairs of a text that are not inside another named block, with their
   // names - only those standing directly in the text when $top is set. A name must be
-  // quoted: a {block} without one is not a layout block.
+  // quoted: a {pad:block} without one is not a layout block.
 
   function padLayoutBlocks ( $text, $top = FALSE ) {
 
     $named = [];
 
-    foreach ( padPairScan ( $text, 'block' ) as $pair ) {
+    foreach ( padPairScan ( $text, 'pad:block' ) as $pair ) {
 
       if ( $pair ['single'] or ! preg_match ( '/^([\'"])([^\'"]+)\1$/', trim ( padExplode ( $pair ['parms'], ',' ) [0] ?? '' ), $match ) )
         continue;
@@ -466,11 +466,11 @@
   }
 
   // Replaces every named block of a text by what it stands for: the most derived override,
-  // its {parent} the next one down, the last one the block's own content - and so on for
+  // its {pad:parent} the next one down, the last one the block's own content - and so on for
   // the blocks inside what comes out. $used collects the names met.
   //
   // $open holds the blocks being filled round the text. A block met again inside what it
-  // is filled with - {block 'title'} inside the override of 'title', or 'a' in the override
+  // is filled with - {pad:block 'title'} inside the override of 'title', or 'a' in the override
   // of 'b' and 'b' in that of 'a' - keeps its own content there: filled again it was
   // filled without end, and the request died on PHP's call stack.
 
@@ -501,16 +501,16 @@
 
   }
 
-  // A {parent} with nothing under it is empty. In a chain of layouts that is a mistake the
+  // A {pad:parent} with nothing under it is empty. In a chain of layouts that is a mistake the
   // strict check names; a page in its directories' frame is also fetched without the frame
-  // - padInclude, a {page} - and its block then rightly stands alone.
+  // - padInclude, a {pad:page} - and its block then rightly stands alone.
 
   function padLayoutContent ( $list, $index, $default, $strict ) {
 
     if ( ! isset ( $list [$index] ) ) {
 
       if ( $strict and padLayoutParentAt ( $default ) and $GLOBALS ['padCheckSyntax'] )
-        padError ( "a {parent} stands in a block that overrides nothing" );
+        padError ( "a {pad:parent} stands in a block that overrides nothing" );
 
       return padLayoutParent ( $default, '' );
 
@@ -520,7 +520,7 @@
 
   }
 
-  // The {parent} tags of a block's own content - not those of a block nested in it, which
+  // The {pad:parent} tags of a block's own content - not those of a block nested in it, which
   // have a parent of their own.
 
   function padLayoutParentAt ( $text ) {
@@ -540,13 +540,13 @@
 
   function padLayoutParentList ( $text ) {
 
-    if ( ! str_contains ( $text, '{parent' ) )
+    if ( ! str_contains ( $text, '{pad:parent' ) )
       return [];
 
     $nested = padLayoutBlocks ( $text );
     $list   = [];
 
-    if ( preg_match_all ( '/\{parent\s*\/?\}/', $text, $matches, PREG_OFFSET_CAPTURE ) )
+    if ( preg_match_all ( '/\{pad:parent\s*\/?\}/', $text, $matches, PREG_OFFSET_CAPTURE ) )
       foreach ( $matches [0] as [ $match, $offset ] ) {
         foreach ( $nested as $pair )
           if ( $offset > $pair ['start'] and $offset < $pair ['end'] )
@@ -558,21 +558,21 @@
 
   }
 
-  // What stands between {ignore} tags is set aside while the blocks are resolved and put
+  // What stands between {pad:ignore} tags is set aside while the blocks are resolved and put
   // back after, and so is a comment - {# ... #} and {-- ... --}, found as padCommentStrip
-  // finds them: a tag inside one never runs, and an {extends}, a {block} or a {meta} that
+  // finds them: a tag inside one never runs, and an {pad:extends}, a {pad:block} or a {pad:meta} that
   // was commented out was applied by the assembly all the same.
   //
-  // The comments go first, as the render takes them out before it meets an {ignore}
-  // (occurrence/init.php): a comment that names the tag - {# the @page@ in {ignore} stays
-  // text #} - opened an ignore span there that ran to the layout's next real {/ignore},
+  // The comments go first, as the render takes them out before it meets an {pad:ignore}
+  // (occurrence/init.php): a comment that names the tag - {# the @page@ in {pad:ignore} stays
+  // text #} - opened an ignore span there that ran to the layout's next real {/pad:ignore},
   // and the regions in between were no regions: the page's block "overrides nothing".
   //
   // The text pairs are found as the render finds them (padTextSpans, lib/template.php) and
-  // their content set aside: the {ignore} written with whitespace control, {~ignore~}, a
-  // {highlight} sample and a pair carrying the ignore option, {markdown ignore}, as well as
-  // the plain {ignore} - only that one was, and {~ignore~}{block 'title'}X{/block}{~/ignore~}
-  // overrode the title, a {highlight 'pad'} sample of {block 'x'}X{/block} showed X.
+  // their content set aside: the {pad:ignore} written with whitespace control, {~pad:ignore~}, a
+  // {pad:highlight} sample and a pair carrying the ignore option, {pad:markdown ignore}, as well as
+  // the plain {pad:ignore} - only that one was, and {~pad:ignore~}{pad:block 'title'}X{/pad:block}{~/pad:ignore~}
+  // overrode the title, a {pad:highlight 'pad'} sample of {pad:block 'x'}X{/pad:block} showed X.
 
   function padLayoutMask ( $text, &$masks ) {
 
@@ -602,7 +602,7 @@
 
   // Whether a set-aside text is a comment rather than the content of a text pair: one
   // comment from end to end, as padLayoutMask took it - a sample that opens with the option
-  // sigil, {ignore}{#tone} @page@{/ignore}, is none.
+  // sigil, {pad:ignore}{#tone} @page@{/pad:ignore}, is none.
 
   function padLayoutIsComment ( $mask ) {
 
@@ -616,9 +616,9 @@
 
   // The set-aside texts with an @page@ inside a text pair as text the frame's @page@ is not -
   // the @ as its stand-in, which the page's exit turns back: build/build.php puts the page in
-  // every @page@ of the frame, and since a layout is the frame, one written in an {ignore} of
+  // every @page@ of the frame, and since a layout is the frame, one written in an {pad:ignore} of
   // the layout, or of a block the page overrides, got the page's whole build text, its
-  // {padBuild for="..."} wrapper and raw template.
+  // {array:padBuild for="..."} wrapper and raw template.
 
   function padLayoutIgnored ( $masks ) {
 
@@ -654,7 +654,7 @@
 
   // A wrapper file's text as build/base.php frames the page with it, and in $pieces its
   // source-map pieces: its @page@ in a comment noted (padLayoutNoted), and one inside a text
-  // pair - {ignore}write @page@ here{/ignore}, a {highlight} sample - as text the frame's
+  // pair - {pad:ignore}write @page@ here{/pad:ignore}, a {pad:highlight} sample - as text the frame's
   // @page@ is not, the @ as its stand-in, which the page's exit turns back. Counted as a
   // marker, it refused the wrapper under the strict check - "one @page@ to a wrapper" - and
   // without it the page went into the sample as well. The stand-in is longer than the file's
@@ -707,7 +707,7 @@
 
   }
 
-  // An {ignore} can hold a comment that was set aside first, so what comes back can hold a
+  // An {pad:ignore} can hold a comment that was set aside first, so what comes back can hold a
   // mark of its own.
 
   function padLayoutUnmask ( $text, $masks ) {

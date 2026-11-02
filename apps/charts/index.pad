@@ -2,7 +2,7 @@
 
   <section class="hero">
     <div class="hero-text">
-      <span class="kicker">PAD · {ignore}{chart}{/ignore}</span>
+      <span class="kicker">PAD · {pad:ignore}{chart:bar}{/pad:ignore}</span>
       <p class="lead">One tag turns rows of JSON, YAML, CSV or PHP into an accessible SVG chart -
       lines, areas, streams, bars, funnels, pyramids, waterfalls, pies, waffles, marimekkos,
       parliaments, venns, gauges, radars, roses, bullets, histograms, violins, error bars, ecdfs, ridgelines, likert scales, scatters, hexbins, heatmaps,
@@ -15,28 +15,28 @@
       </ul>
     </div>
     <a class="hero-card" href="?sankey/energy" aria-label="Open the energy sankey">
-      {page 'sankey/energy'/}
+      {pad:page 'sankey/energy'/}
     </a>
   </section>
 
-  {families}
+  {array:families}
   <section class="family" id="{$family}">
     <header class="family-head">
       <h2>{$label}</h2>
       <span class="family-line">{$tagline}</span>
     </header>
     <div class="cards">
-      {examples}
+      {array:examples}
       <a class="card" href="?{$page}">
-        <span class="card-chart">{page $page/}</span>
+        <span class="card-chart">{pad:page $page/}</span>
         <span class="card-body">
           <span class="card-title">{$title}</span>
           <span class="card-text">{$text}</span>
         </span>
       </a>
-      {/examples}
+      {/array:examples}
     </div>
   </section>
-  {/families}
+  {/array:families}
 
 </div>

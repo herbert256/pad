@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      People per state · PAD showcase
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="showcase.css">
+    <script src="showcase.js" defer></script>
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
+    </style>
+    <style>
+    :where(.pad-chart-map){--pad-map-empty:#e4e3df;--pad-map-border:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-map){--pad-map-empty:light-dark(#e4e3df,#3a3a37);--pad-map-border:light-dark(#fcfcfb,#1a1a19);}}.pad-chart-map .pm-land{stroke:var(--pad-map-border);stroke-width:.6px;vector-effect:non-scaling-stroke;stroke-linejoin:round}.pad-chart-map .pm-empty{fill:var(--pad-map-empty)}.pad-chart-map .pm-land:hover{opacity:.8}
+    </style>
+  </head>
+  <body class="frame app-showcase">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>showcase</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="showcase">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> All tags</a>
+        <div class="frame-head">
+          Visuals
+        </div><a href="index%EF%B9%96avatar%EA%A4%B7shapes.html">Sizes and shapes</a> <a href="index%EF%B9%96avatar%EA%A4%B7team.html">A team list</a> <a href="index%EF%B9%96barcode%EA%A4%B7books.html">Books and magazines</a> <a href="index%EF%B9%96barcode%EA%A4%B7pallet.html">A pallet label</a> <a href="index%EF%B9%96barcode%EA%A4%B7products.html">On the products</a> <a href="index%EF%B9%96barcode%EA%A4%B7shipping.html">A shipping label</a> <a href="index%EF%B9%96barcode%EA%A4%B7squares.html">Squares that grow with the text</a> <a href="index%EF%B9%96barcode%EA%A4%B7tickets.html">Tickets</a> <a href="index%EF%B9%96diagram%EA%A4%B7causes.html">Why the deploy failed</a> <a href="index%EF%B9%96diagram%EA%A4%B7classes.html">A shop in classes</a> <a href="index%EF%B9%96diagram%EA%A4%B7commits.html">A release in commits</a> <a href="index%EF%B9%96diagram%EA%A4%B7company.html">The company</a> <a href="index%EF%B9%96diagram%EA%A4%B7grammar.html">The grammar of JSON</a> <a href="index%EF%B9%96diagram%EA%A4%B7header.html">The header of a TCP segment</a> <a href="index%EF%B9%96diagram%EA%A4%B7journey.html">A day at the office</a> <a href="index%EF%B9%96diagram%EA%A4%B7login.html">Signing in with a provider</a> <a href="index%EF%B9%96diagram%EA%A4%B7mindmap.html">PAD on one page</a> <a href="index%EF%B9%96diagram%EA%A4%B7order.html">An order, start to finish</a> <a href="index%EF%B9%96diagram%EA%A4%B7pipeline.html">A deploy pipeline, left to right</a> <a href="index%EF%B9%96diagram%EA%A4%B7tables.html">The tables of a shop</a> <a href="index%EF%B9%96diagram%EA%A4%B7ticket.html">The life of a ticket</a> <a href="index%EF%B9%96icon%EA%A4%B7buttons.html">Icons in buttons and links</a> <a href="index%EF%B9%96icon%EA%A4%B7gallery.html">Every icon</a> <a href="index%EF%B9%96identicon%EA%A4%B7accounts.html">Accounts at a glance</a> <a href="index%EF%B9%96identicon%EA%A4%B7grid.html">A wall of identicons</a> <a href="index%EF%B9%96map%EA%A4%B7australia.html">People per state of Australia</a> <a href="index%EF%B9%96map%EA%A4%B7forest.html">Forest in South America</a> <a href="index%EF%B9%96map%EA%A4%B7holidays.html">Public holidays per German state</a> <a href="index%EF%B9%96map%EA%A4%B7nordic.html">The Nordic countries</a> <a href="index%EF%B9%96map%EA%A4%B7population.html">People per country</a> <a href="index%EF%B9%96map%EA%A4%B7provinces.html">The provinces of the Netherlands</a> <a href="index%EF%B9%96map%EA%A4%B7renewables.html">Renewable energy in Europe</a> <a href="index%EF%B9%96map%EA%A4%B7states.html" aria-current="page">People per state</a> <a href="index%EF%B9%96placeholder%EA%A4%B7sizes.html">Banner sizes</a> <a href="index%EF%B9%96placeholder%EA%A4%B7wireframe.html">A page in wireframe</a> <a href="index%EF%B9%96progress%EA%A4%B7steps.html">Steps and sizes</a> <a href="index%EF%B9%96progress%EA%A4%B7uploads.html">Uploads in progress</a> <a href="index%EF%B9%96rating%EA%A4%B7hearts.html">Hearts and parts</a> <a href="index%EF%B9%96rating%EA%A4%B7reviews.html">Product reviews</a> <a href="index%EF%B9%96timeline%EA%A4%B7php.html">Twenty years of PHP</a> <a href="index%EF%B9%96timeline%EA%A4%B7project.html">A project plan</a> <a href="index%EF%B9%96timeline%EA%A4%B7space.html">The space age</a>
+        <div class="frame-head">
+          Text & data
+        </div><a href="index%EF%B9%96countdown%EA%A4%B7events.html">Upcoming events</a> <a href="index%EF%B9%96countdown%EA%A4%B7launch.html">A launch countdown</a> <a href="index%EF%B9%96country%EA%A4%B7flags.html">Flags from alpha-3 codes</a> <a href="index%EF%B9%96country%EA%A4%B7visitors.html">Visitors by country</a> <a href="index%EF%B9%96datatable%EA%A4%B7expenses.html">A table from inline CSV</a> <a href="index%EF%B9%96datatable%EA%A4%B7orders.html">Orders with totals</a> <a href="index%EF%B9%96datatable%EA%A4%B7paged.html">Paged and sortable</a> <a href="index%EF%B9%96diff%EA%A4%B7lines.html">Line by line</a> <a href="index%EF%B9%96diff%EA%A4%B7paragraph.html">Two versions of a paragraph</a> <a href="index%EF%B9%96diff%EA%A4%B7side.html">Side by side</a> <a href="index%EF%B9%96emoji%EA%A4%B7chat.html">Shortcodes in text</a> <a href="index%EF%B9%96emoji%EA%A4%B7reactions.html">A reaction bar</a> <a href="index%EF%B9%96excerpt%EA%A4%B7search.html">Search results</a> <a href="index%EF%B9%96excerpt%EA%A4%B7teaser.html">Teasers from HTML</a> <a href="index%EF%B9%96jsonview%EA%A4%B7api.html">An API response</a> <a href="index%EF%B9%96jsonview%EA%A4%B7config.html">A PHP array</a> <a href="index%EF%B9%96lorem%EA%A4%B7article.html">A page before its copy</a> <a href="index%EF%B9%96lorem%EA%A4%B7cards.html">A seed per card</a> <a href="index%EF%B9%96timeago%EA%A4%B7comments.html">A comment thread</a> <a href="index%EF%B9%96toc%EA%A4%B7article.html">A long article</a> <a href="index%EF%B9%96toc%EA%A4%B7sidebar.html">Contents in a sidebar</a>
+        <div class="frame-head">
+          Media
+        </div><a href="index%EF%B9%96embed%EA%A4%B7album.html">An album of Apple Music</a> <a href="index%EF%B9%96embed%EA%A4%B7design.html">A design of Figma</a> <a href="index%EF%B9%96embed%EA%A4%B7map.html">A map of a place</a> <a href="index%EF%B9%96embed%EA%A4%B7pen.html">A pen of CodePen</a> <a href="index%EF%B9%96embed%EA%A4%B7podcast.html">A podcast of Apple Podcasts</a> <a href="index%EF%B9%96embed%EA%A4%B7project.html">A project of StackBlitz</a> <a href="index%EF%B9%96embed%EA%A4%B7recording.html">A recording of Loom</a> <a href="index%EF%B9%96embed%EA%A4%B7short.html">A video of TikTok</a> <a href="index%EF%B9%96embed%EA%A4%B7sound.html">A track of SoundCloud</a> <a href="index%EF%B9%96embed%EA%A4%B7stream.html">A channel of Twitch</a> <a href="index%EF%B9%96gravatar%EA%A4%B7comments.html">Comments with Gravatars</a> <a href="index%EF%B9%96gravatar%EA%A4%B7private.html">No request to a third party</a> <a href="index%EF%B9%96img%EA%A4%B7contain.html">The whole picture, as WebP</a> <a href="index%EF%B9%96img%EA%A4%B7gallery.html">Three pictures, one size</a> <a href="index%EF%B9%96pdf%EA%A4%B7invoice.html">An invoice as PDF</a> <a href="index%EF%B9%96video%EA%A4%B7clip.html">A clip of your own</a> <a href="index%EF%B9%96video%EA%A4%B7vimeo.html">Vimeo with a poster of your own</a> <a href="index%EF%B9%96video%EA%A4%B7youtube.html">YouTube without tracking</a>
+        <div class="frame-head">
+          Interactive
+        </div><a href="index%EF%B9%96accordion%EA%A4%B7faq.html">Frequently asked questions</a> <a href="index%EF%B9%96breadcrumb%EA%A4%B7shop_trail.html">A trail through a shop</a> <a href="index%EF%B9%96carousel%EA%A4%B7landscapes.html">Four landscapes</a> <a href="index%EF%B9%96commandpalette%EA%A4%B7shop_admin.html">Go anywhere in a shop</a> <a href="index%EF%B9%96contextmenu%EA%A4%B7files.html">Files and orders</a> <a href="index%EF%B9%96copy%EA%A4%B7config_snippet.html">A snippet as content</a> <a href="index%EF%B9%96copy%EA%A4%B7install_command.html">Install command</a> <a href="index%EF%B9%96drawer%EA%A4%B7shop_filters.html">Filters of a shop</a> <a href="index%EF%B9%96dropdown%EA%A4%B7account_menu.html">An account menu</a> <a href="index%EF%B9%96lightbox%EA%A4%B7skies.html">Skies of a day</a> <a href="index%EF%B9%96modal%EA%A4%B7terms.html">Terms at checkout</a> <a href="index%EF%B9%96poll%EA%A4%B7favorite_language.html">Favourite language</a> <a href="index%EF%B9%96sortable%EA%A4%B7tasks.html">Tasks in order</a> <a href="index%EF%B9%96splitpane%EA%A4%B7mail_reader.html">A mail reader</a> <a href="index%EF%B9%96tabs%EA%A4%B7plans_from_data.html">A tab per row</a> <a href="index%EF%B9%96tabs%EA%A4%B7product_page.html">Product page</a> <a href="index%EF%B9%96toast%EA%A4%B7order_saved.html">An order saved</a> <a href="index%EF%B9%96tooltip%EA%A4%B7plan_terms.html">Plan terms</a> <a href="index%EF%B9%96wizard%EA%A4%B7checkout.html">A checkout in steps</a>
+        <div class="frame-head">
+          Games
+        </div><a href="index%EF%B9%96chess%EA%A4%B7opening.html">After 1.e4, seen by Black</a> <a href="index%EF%B9%96chess%EA%A4%B7opera.html">The Opera game</a> <a href="index%EF%B9%96crossword%EA%A4%B7php.html">A PHP crossword</a> <a href="index%EF%B9%96crossword%EA%A4%B7solution.html">With the solution</a> <a href="index%EF%B9%96sudoku%EA%A4%B7hardest.html">The hardest one</a> <a href="index%EF%B9%96sudoku%EA%A4%B7print.html">To print</a> <a href="index%EF%B9%96sudoku%EA%A4%B7puzzle.html">The puzzle</a> <a href="index%EF%B9%96sudoku%EA%A4%B7solved.html">Solved on the server</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          People per state
+        </h1>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <div class="page example">
+          <p class="lead">
+            <span class="family-name">Map</span> The us-states view - the states in the Albers projection of the United States, Alaska, Hawaii and Puerto Rico moved in below - fed an array of the page's PHP keyed by the postal codes, the second half of the ISO 3166-2 codes; scale=quantile.
+          </p>
+          <div class="stage">
+            <section class="cell cell-data" aria-label="The data">
+              <header class="cell-head">
+                <span class="cell-num">1</span> <span class="cell-name">The data</span> <span class="cell-file">map/states.php</span> <span class="badge badge-php">php</span> <button type="button" class="copy" data-copy="data-src" aria-label="Copy the data">Copy</button>
+              </header>
+              <pre class="code" id="data-src"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-com">// The resident population of each state, the District of Columbia and Puerto Rico - the</span>
+  <span class="hl-com">// 2020 census of the US Census Bureau - keyed by the postal code, which is the part of the</span>
+  <span class="hl-com">// ISO 3166-2 code after US-: a value alone, its key the state.</span>
+
+  <span class="hl-var">$people</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">'AL'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">5024279</span><span class="hl-pun">,</span> <span class="hl-str">'AK'</span> <span class="hl-pun">=&gt;</span>   <span class="hl-num">733391</span><span class="hl-pun">,</span> <span class="hl-str">'AZ'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">7151502</span><span class="hl-pun">,</span> <span class="hl-str">'AR'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">3011524</span><span class="hl-pun">,</span> <span class="hl-str">'CA'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">39538223</span><span class="hl-pun">,</span>
+              <span class="hl-str">'CO'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">5773714</span><span class="hl-pun">,</span> <span class="hl-str">'CT'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">3605944</span><span class="hl-pun">,</span> <span class="hl-str">'DE'</span> <span class="hl-pun">=&gt;</span>   <span class="hl-num">989948</span><span class="hl-pun">,</span> <span class="hl-str">'DC'</span> <span class="hl-pun">=&gt;</span>   <span class="hl-num">689545</span><span class="hl-pun">,</span> <span class="hl-str">'FL'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">21538187</span><span class="hl-pun">,</span>
+              <span class="hl-str">'GA'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">10711908</span><span class="hl-pun">,</span> <span class="hl-str">'HI'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">1455271</span><span class="hl-pun">,</span> <span class="hl-str">'ID'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">1839106</span><span class="hl-pun">,</span> <span class="hl-str">'IL'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">12812508</span><span class="hl-pun">,</span> <span class="hl-str">'IN'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">6785528</span><span class="hl-pun">,</span>
+              <span class="hl-str">'IA'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">3190369</span><span class="hl-pun">,</span> <span class="hl-str">'KS'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">2937880</span><span class="hl-pun">,</span> <span class="hl-str">'KY'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">4505836</span><span class="hl-pun">,</span> <span class="hl-str">'LA'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">4657757</span><span class="hl-pun">,</span> <span class="hl-str">'ME'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">1362359</span><span class="hl-pun">,</span>
+              <span class="hl-str">'MD'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">6177224</span><span class="hl-pun">,</span> <span class="hl-str">'MA'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">7029917</span><span class="hl-pun">,</span> <span class="hl-str">'MI'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">10077331</span><span class="hl-pun">,</span> <span class="hl-str">'MN'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">5706494</span><span class="hl-pun">,</span> <span class="hl-str">'MS'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">2961279</span><span class="hl-pun">,</span>
+              <span class="hl-str">'MO'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">6154913</span><span class="hl-pun">,</span> <span class="hl-str">'MT'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">1084225</span><span class="hl-pun">,</span> <span class="hl-str">'NE'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">1961504</span><span class="hl-pun">,</span> <span class="hl-str">'NV'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">3104614</span><span class="hl-pun">,</span> <span class="hl-str">'NH'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">1377529</span><span class="hl-pun">,</span>
+              <span class="hl-str">'NJ'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">9288994</span><span class="hl-pun">,</span> <span class="hl-str">'NM'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">2117522</span><span class="hl-pun">,</span> <span class="hl-str">'NY'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">20201249</span><span class="hl-pun">,</span> <span class="hl-str">'NC'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">10439388</span><span class="hl-pun">,</span> <span class="hl-str">'ND'</span> <span class="hl-pun">=&gt;</span>   <span class="hl-num">779094</span><span class="hl-pun">,</span>
+              <span class="hl-str">'OH'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">11799448</span><span class="hl-pun">,</span> <span class="hl-str">'OK'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">3959353</span><span class="hl-pun">,</span> <span class="hl-str">'OR'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">4237256</span><span class="hl-pun">,</span> <span class="hl-str">'PA'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">13002700</span><span class="hl-pun">,</span> <span class="hl-str">'RI'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">1097379</span><span class="hl-pun">,</span>
+              <span class="hl-str">'SC'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">5118425</span><span class="hl-pun">,</span> <span class="hl-str">'SD'</span> <span class="hl-pun">=&gt;</span>   <span class="hl-num">886667</span><span class="hl-pun">,</span> <span class="hl-str">'TN'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">6910840</span><span class="hl-pun">,</span> <span class="hl-str">'TX'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">29145505</span><span class="hl-pun">,</span> <span class="hl-str">'UT'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">3271616</span><span class="hl-pun">,</span>
+              <span class="hl-str">'VT'</span> <span class="hl-pun">=&gt;</span>   <span class="hl-num">643077</span><span class="hl-pun">,</span> <span class="hl-str">'VA'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">8631393</span><span class="hl-pun">,</span> <span class="hl-str">'WA'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">7705281</span><span class="hl-pun">,</span> <span class="hl-str">'WV'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">1793716</span><span class="hl-pun">,</span> <span class="hl-str">'WI'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">5893718</span><span class="hl-pun">,</span>
+              <span class="hl-str">'WY'</span> <span class="hl-pun">=&gt;</span>   <span class="hl-num">576851</span><span class="hl-pun">,</span> <span class="hl-str">'PR'</span> <span class="hl-pun">=&gt;</span>  <span class="hl-num">3285874</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+            </section>
+            <section class="cell cell-tag" aria-label="The tag">
+              <header class="cell-head">
+                <span class="cell-num">2</span> <span class="cell-name">The tag</span> <span class="cell-file">map/states.pad</span> <span class="badge badge-pad">pad</span> <button type="button" class="copy" data-copy="tag-src" aria-label="Copy the tag">Copy</button>
+              </header>
+              <pre class="code" id="tag-src"><code><span class="hl-brc">{</span><span class="hl-tag">pad:map</span> <span class="hl-str">'us-states'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'people'</span>, <span class="hl-opt">scale</span>=<span class="hl-str">'quantile'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Resident population, 2020 census'</span><span class="hl-brc">/}</span></code></pre>
+            </section>
+            <section class="cell cell-chart" aria-label="The result">
+              <header class="cell-head">
+                <span class="cell-num">3</span> <span class="cell-name">The result</span> <span class="cell-file">rendered on the server</span>
+                <link rel="stylesheet" href="../_common/play.css"><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOm1hcCAndXMtc3RhdGVzJywgZGF0YT0ncGVvcGxlJywgc2NhbGU9J3F1YW50aWxlJywgdGl0bGU9J1Jlc2lkZW50IHBvcHVsYXRpb24sIDIwMjAgY2Vuc3VzJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gVGhlIHJlc2lkZW50IHBvcHVsYXRpb24gb2YgZWFjaCBzdGF0ZSwgdGhlIERpc3RyaWN0IG9mIENvbHVtYmlhIGFuZCBQdWVydG8gUmljbyAtIHRoZVxuICAvLyAyMDIwIGNlbnN1cyBvZiB0aGUgVVMgQ2Vuc3VzIEJ1cmVhdSAtIGtleWVkIGJ5IHRoZSBwb3N0YWwgY29kZSwgd2hpY2ggaXMgdGhlIHBhcnQgb2YgdGhlXG4gIC8vIElTTyAzMTY2LTIgY29kZSBhZnRlciBVUy06IGEgdmFsdWUgYWxvbmUsIGl0cyBrZXkgdGhlIHN0YXRlLlxuXG4gICRwZW9wbGUgPSBbICdBTCcgPT4gIDUwMjQyNzksICdBSycgPT4gICA3MzMzOTEsICdBWicgPT4gIDcxNTE1MDIsICdBUicgPT4gIDMwMTE1MjQsICdDQScgPT4gMzk1MzgyMjMsXG4gICAgICAgICAgICAgICdDTycgPT4gIDU3NzM3MTQsICdDVCcgPT4gIDM2MDU5NDQsICdERScgPT4gICA5ODk5NDgsICdEQycgPT4gICA2ODk1NDUsICdGTCcgPT4gMjE1MzgxODcsXG4gICAgICAgICAgICAgICdHQScgPT4gMTA3MTE5MDgsICdISScgPT4gIDE0NTUyNzEsICdJRCcgPT4gIDE4MzkxMDYsICdJTCcgPT4gMTI4MTI1MDgsICdJTicgPT4gIDY3ODU1MjgsXG4gICAgICAgICAgICAgICdJQScgPT4gIDMxOTAzNjksICdLUycgPT4gIDI5Mzc4ODAsICdLWScgPT4gIDQ1MDU4MzYsICdMQScgPT4gIDQ2NTc3NTcsICdNRScgPT4gIDEzNjIzNTksXG4gICAgICAgICAgICAgICdNRCcgPT4gIDYxNzcyMjQsICdNQScgPT4gIDcwMjk5MTcsICdNSScgPT4gMTAwNzczMzEsICdNTicgPT4gIDU3MDY0OTQsICdNUycgPT4gIDI5NjEyNzksXG4gICAgICAgICAgICAgICdNTycgPT4gIDYxNTQ5MTMsICdNVCcgPT4gIDEwODQyMjUsICdORScgPT4gIDE5NjE1MDQsICdOVicgPT4gIDMxMDQ2MTQsICdOSCcgPT4gIDEzNzc1MjksXG4gICAgICAgICAgICAgICdOSicgPT4gIDkyODg5OTQsICdOTScgPT4gIDIxMTc1MjIsICdOWScgPT4gMjAyMDEyNDksICdOQycgPT4gMTA0MzkzODgsICdORCcgPT4gICA3NzkwOTQsXG4gICAgICAgICAgICAgICdPSCcgPT4gMTE3OTk0NDgsICdPSycgPT4gIDM5NTkzNTMsICdPUicgPT4gIDQyMzcyNTYsICdQQScgPT4gMTMwMDI3MDAsICdSSScgPT4gIDEwOTczNzksXG4gICAgICAgICAgICAgICdTQycgPT4gIDUxMTg0MjUsICdTRCcgPT4gICA4ODY2NjcsICdUTicgPT4gIDY5MTA4NDAsICdUWCcgPT4gMjkxNDU1MDUsICdVVCcgPT4gIDMyNzE2MTYsXG4gICAgICAgICAgICAgICdWVCcgPT4gICA2NDMwNzcsICdWQScgPT4gIDg2MzEzOTMsICdXQScgPT4gIDc3MDUyODEsICdXVicgPT4gIDE3OTM3MTYsICdXSScgPT4gIDU4OTM3MTgsXG4gICAgICAgICAgICAgICdXWScgPT4gICA1NzY4NTEsICdQUicgPT4gIDMyODU4NzQgXTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOm1hcCAndXMtc3RhdGVzJywgZGF0YT0ncGVvcGxlJywgc2NhbGU9J3F1YW50aWxlJywgdGl0bGU9J1Jlc2lkZW50IHBvcHVsYXRpb24sIDIwMjAgY2Vuc3VzJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gVGhlIHJlc2lkZW50IHBvcHVsYXRpb24gb2YgZWFjaCBzdGF0ZSwgdGhlIERpc3RyaWN0IG9mIENvbHVtYmlhIGFuZCBQdWVydG8gUmljbyAtIHRoZVxuICAvLyAyMDIwIGNlbnN1cyBvZiB0aGUgVVMgQ2Vuc3VzIEJ1cmVhdSAtIGtleWVkIGJ5IHRoZSBwb3N0YWwgY29kZSwgd2hpY2ggaXMgdGhlIHBhcnQgb2YgdGhlXG4gIC8vIElTTyAzMTY2LTIgY29kZSBhZnRlciBVUy06IGEgdmFsdWUgYWxvbmUsIGl0cyBrZXkgdGhlIHN0YXRlLlxuXG4gICRwZW9wbGUgPSBbICdBTCcgPT4gIDUwMjQyNzksICdBSycgPT4gICA3MzMzOTEsICdBWicgPT4gIDcxNTE1MDIsICdBUicgPT4gIDMwMTE1MjQsICdDQScgPT4gMzk1MzgyMjMsXG4gICAgICAgICAgICAgICdDTycgPT4gIDU3NzM3MTQsICdDVCcgPT4gIDM2MDU5NDQsICdERScgPT4gICA5ODk5NDgsICdEQycgPT4gICA2ODk1NDUsICdGTCcgPT4gMjE1MzgxODcsXG4gICAgICAgICAgICAgICdHQScgPT4gMTA3MTE5MDgsICdISScgPT4gIDE0NTUyNzEsICdJRCcgPT4gIDE4MzkxMDYsICdJTCcgPT4gMTI4MTI1MDgsICdJTicgPT4gIDY3ODU1MjgsXG4gICAgICAgICAgICAgICdJQScgPT4gIDMxOTAzNjksICdLUycgPT4gIDI5Mzc4ODAsICdLWScgPT4gIDQ1MDU4MzYsICdMQScgPT4gIDQ2NTc3NTcsICdNRScgPT4gIDEzNjIzNTksXG4gICAgICAgICAgICAgICdNRCcgPT4gIDYxNzcyMjQsICdNQScgPT4gIDcwMjk5MTcsICdNSScgPT4gMTAwNzczMzEsICdNTicgPT4gIDU3MDY0OTQsICdNUycgPT4gIDI5NjEyNzksXG4gICAgICAgICAgICAgICdNTycgPT4gIDYxNTQ5MTMsICdNVCcgPT4gIDEwODQyMjUsICdORScgPT4gIDE5NjE1MDQsICdOVicgPT4gIDMxMDQ2MTQsICdOSCcgPT4gIDEzNzc1MjksXG4gICAgICAgICAgICAgICdOSicgPT4gIDkyODg5OTQsICdOTScgPT4gIDIxMTc1MjIsICdOWScgPT4gMjAyMDEyNDksICdOQycgPT4gMTA0MzkzODgsICdORCcgPT4gICA3NzkwOTQsXG4gICAgICAgICAgICAgICdPSCcgPT4gMTE3OTk0NDgsICdPSycgPT4gIDM5NTkzNTMsICdPUicgPT4gIDQyMzcyNTYsICdQQScgPT4gMTMwMDI3MDAsICdSSScgPT4gIDEwOTczNzksXG4gICAgICAgICAgICAgICdTQycgPT4gIDUxMTg0MjUsICdTRCcgPT4gICA4ODY2NjcsICdUTicgPT4gIDY5MTA4NDAsICdUWCcgPT4gMjkxNDU1MDUsICdVVCcgPT4gIDMyNzE2MTYsXG4gICAgICAgICAgICAgICdWVCcgPT4gICA2NDMwNzcsICdWQScgPT4gIDg2MzEzOTMsICdXQScgPT4gIDc3MDUyODEsICdXVicgPT4gIDE3OTM3MTYsICdXSScgPT4gIDU4OTM3MTgsXG4gICAgICAgICAgICAgICdXWScgPT4gICA1NzY4NTEsICdQUicgPT4gIDMyODU4NzQgXTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              </header>
+              <div class="canvas">
+                <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-map" role="img" aria-labelledby="pad-chart-088ab2eb-title pad-chart-088ab2eb-desc" width="720" height="489" viewbox="0 0 720 489">
+                <title id="pad-chart-088ab2eb-title">
+                  Resident population, 2020 census
+                </title>
+                <desc id="pad-chart-088ab2eb-desc">
+                  Alabama: 5,024,279; Alaska: 733,391; Arizona: 7,151,502; Arkansas: 3,011,524; California: 39,538,223; Colorado: 5,773,714; Connecticut: 3,605,944; Delaware: 989,948; District of Columbia: 689,545; Florida: 21,538,187; Georgia: 10,711,908; Hawaii: 1,455,271; Idaho: 1,839,106; Illinois: 12,812,508; Indiana: 6,785,528; Iowa: 3,190,369; Kansas: 2,937,880; Kentucky: 4,505,836; Louisiana: 4,657,757; Maine: 1,362,359; Maryland: 6,177,224; Massachusetts: 7,029,917; Michigan: 10,077,331; Minnesota: 5,706,494; Mississippi: 2,961,279; Missouri: 6,154,913; Montana: 1,084,225; Nebraska: 1,961,504; Nevada: 3,104,614; New Hampshire: 1,377,529; New Jersey: 9,288,994; New Mexico: 2,117,522; New York: 20,201,249; North Carolina: 10,439,388; North Dakota: 779,094; Ohio: 11,799,448; Oklahoma: 3,959,353; Oregon: 4,237,256; Pennsylvania: 13,002,700; Rhode Island: 1,097,379; South Carolina: 5,118,425; South Dakota: 886,667; Tennessee: 6,910,840; Texas: 29,145,505; Utah: 3,271,616; Vermont: 643,077; Virginia: 8,631,393; Washington: 7,705,281; West Virginia: 1,793,716; Wisconsin: 5,893,718; Wyoming: 576,851; Puerto Rico: 3,285,874
+                </desc><svg x="0" y="0" width="720" height="455" viewbox="0 0 1000 632" preserveaspectratio="xMidYMid meet">
+                <path class="pc-mark pm-land pc-h0" d="M153,486l-1,0-1-1-2,0-1-2-2,0-4,0 0,1-1,0-2-1-1,0-3-1-1,1-2-1-1-1-3-1-2,0-1,0-1,0-2,0-2,0 1-1-2,0 0-1 1-1-1-1-3-1-1,1-1,0-1,0-1-1 1,0-1-2-1,1-1,1-1,1 0-1 1-1 0-1-1-1-2-1-2,2-1,1-1,1-4,0-1-1-1,1-1,1-2,1-1,1-2-1-2,2 0,1-2,1-1,3-2,2-2,1-1,0-2,0-2,0-2-1-1,3-1,1 1,1 0,2 2,1 1,2 1,0 1,2 0,3 0,2 3,1 1,1 2,0 0,1 0,1-1,1 1,1 1,1 1-1 1,0 2,2-1,1-1,0-1-2-2,0-1-1 0-1 0-1-1-2-1,1 1,1 0,1 1,1 0,2 2,1 0,1-1-1-1,1-1,1-1-1-1,0-1-1-1,0-2,0 0-1 0-2 1-1-1-1-2,0-1,1-2-1-1,1-1,1 0,1-2-1-1,0-2,1-1,0-3,2 2,2 1,1 2,1 0,1-2,1 1,1-1,2 1,1 2,2 2,1 3-1 2,1 2,2 0-1 2,0 2-1 1-1 1,1 2-1 0,1 0,1-1,1-1,0 1,3 0,1 0,3-2,2-1,0-2,0-1-1-2,2-1,0-1,1-1,0-1-1 0-1-2-1-1,1 0,1-1,0-1,1-1,2 0,1-1,0-3,3-1,1 1,1-2,0 0,1-1,0 1,2-1,0 0,1 1,1 0,1 1,1 1-1 0,1-1,1 2,1 1,1 2,0 1,0 1,1 0,1-2,1 0-2-1,0 0-1-2,0-2,0-1,1 1,2 1,2 0,1 1,1 0,2 2,1 3,0 2-1 1-1 1,2 1,4-1,1-1,1 0,1 1,1-1,0 0,2-1,1 2,1 1-1 3-1 2-1 0,1 1,1 0,1 1-1 2,1 1,3 1,1 0-1 0-2 0-1 2,1 0,1 1,0 3,0 2-1 0,1-2,2-1,2 0,1-1,3 0,2-2,0 0,1-2,1-2,2 0,2-1-1-3,2-1,0-3,1-1,1-1,2 0,1-2,1-1-2-1,0-2,0-3,1-2,2-2,2-1-1-1,1 1,0 1,2 1-1 1-2 0,2 1,1 2-1 0-1 1-1 1-2 1,1-1,1 1,1 2-1 2,0 1,0 1-1 2-1 1,0 3,0 1,0 0-1 2,0 1-1 0-1-1,0 1-1 2,0 0-1 3-1 1,0 2-2 1,1 1-1 0-1 0-1 1-1 2-1 2-1 1-1 1,0 0-2 2,1 1-1 1,0 0-1 0-1 1,0 1-2 1,0 1-1 1-2-2-1-2,0 1-3 1-1 1-1 1,0 2,0 0-1 1-1 1-2-1,0 2-1 0-2 1-2 1,0 1-2 1,0 1-1 1-1 2-1 0,1 2,0 0,1 2,1-2,1-2-1-2,2-2,0 1,2-1,3-1,1-1,2 0,1 1,1 2-2-1,2-3,2 0,1 1,1 2-1 1,0 2-1 1-1 2-2 1,0 0-1 1,0 1-1 2,0 1,0 1,0 1-2-1-1 2-1-1-1 0-1 0-1-2,0 1-1 1-1 1,1 2,0 1-1 2,0 0,1 1,1 0,1 1-1 2,1-1,2 2,0 1,0 1-1 1,0 0,1 1,2 1,0 2,1 2,0 3-1 4,0 1,1 1-1 1,0 0,2 2,0 2,1 3-2 1,1-1,1-1,1 3,1 1,0 4,2 1,1 1,1 2,1 0,1 2,1 2,1 3-2-2-3 1-1 1,3 0,1 1-1 1,0 1,2 1-1-1-3 0-1-1-1 0-2 1,2 2,3 0,1 2,0 1,1 1-1 0,2 1,1 2,2 1,1 1,2-1,1 2,0 2,1 0,1 2,1 0,1 2,1 1,0 1,1 0,1 0,1 0,2-1,1 1,1 1,1 0-2 0-2 1-1 2,0 2,1 1,4-1,1 1,1 0,2 2,0 1-2 1-3-1-2-1-2 0-1 0-2-2,0-1,0-2-1-1,0-3-1-1,0 0-2-2,0 0-1-1,0 0-2-2-2-4-5-1-1-1-1-2-2-2,0-1-1 0-1-2-1-1-1-1-1 0-1-2-2-2,2-1,1 0,1-1,0 0,2 0,1-1,0-2,3-2-3-4-4-1-1-2-1 0-3-3,1-1,1-2-1 0,1-2-1zM208,609l-2-2 0-1-1,0 1,2 1,1zM215,600l0-1-2-2-1,0-1,1 0,2 0,1 0,1 1,0 2,1 1-1zM201,598l-1,2 1,0 1-1zM206,595l-1,1 1,2 0-1 1,1 1,0 0-1zM211,607l-1-3-2-2-1-2-2-2-1,0-1-1-1-1-1,0 0,1 1,0 1,3 1,0-1,1 1,1 0,3 2,0 2,1 0,1 2,0 0,1 1,0zM205,595l-1-1-1,1 1,1 1,0zM208,594l-1,1-1-1 0,1 2,1 1,0zM203,592l0,1 0,1 1,0 1-1zM199,595l1-1-1-1-2-1-1,1 0,1 2,2-1,1 1,1 1,1 0-1 0-1 0-1zM198,590l-1,1 2,1 1,3 2,0 1-2-1-1 0-1 0-1-2,0zM109,596l-2-1-1,1 0,1zM190,591l-1-1-1,0 1,2zM195,594l-2-4-1-1-2-1-1,2 2,2 1,1-1,1 1,0 1,2 2,2 1,0zM112,592l-1,0 0-3-3,0 0,1-2,0-1-1-1,1 0,1 1,1-1,1 0-2-1,0-2,1-1,1 1,2 0,2 1,1 0-1 2,0-2,2 1,0 2-2 2-2 1,0 2,0 0-2 1,1zM188,589l1,1 0-1 0-2 3,1 1,0-1-3-2,1 0-1 2,0-1-2-2,0-2-1-1,1-2,1 1,0 0,2zM196,591l0-2 1-1 0-2-2-2-1-1 1-1-1-1-2,1 1,5 2,1-1,2 0,1 1,0zM114,586l-1,0-2,0 0-2-1,2-1,0-1,1 1,1 1,1 2-2 1,0zM74,577l-1,0 0,2 1,0 1-2zM135,569l-2,3-1,1 0,1 2-2 1-1 1-1zM30,614l0-1-1-1-1,0-1,1 0,1-1,0-1,0-1,2 2,0 1-2zM38,613l0-1-1-2-2,0-1,1 1,2-1,0-1,1-1,0-3,1 1,0 2,0 3,0 1,0 1-1zM42,611l-1-1-1,0 0,1zM56,610l0-1-1-1 0-2-2,0-2,0-2,0-1,2-1,0 0,2 1,0 1,0 1-1 1,0 2,0 0,1 2-1zM70,608l-1-2-1,0 0,1 1,1zM56,562l0-2 1-1-2-1-1-1-2,1-2,0-1,0 1,1 2,3 1,1zM52,530l0-1-2,0-2-2 0-2-2,0-1,0-2-1 0-1-1,1 0,2 1,1 1-1 1,0 1,2 1,1 1,1 0,1 2-1 2,1z">
+                  <title>
+                    Alaska: 733,391
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h3" d="M667,502l1,0 4,0 0,1 1,0 0-3 0-3 1-2 1-1 1,1 1,2 0,2 0,1 2,2 1,1 1,0-1,1 3,0 1-1 0-1 1,0 1-1 2-2-1-1-1-1 1-3 0-1-2,0-3-4 1-1-1-2 8,0 12-2 13-1 19-2 0-2-1-2-1,0-1-2 1-1 0-3 0-2 0-2-2-2-1-3 1-2 0-2 0-1 0-3 1-1 2-1 0-1-1-1-1,0 0-3-1-2-2-2-1-3-1-1 0-1-1-2-5-18-3-13-4-11-1-5-6,1-15,1-15,1-13,1 1,2 1,1-1,17 0,19-1,24 0,11z">
+                  <title>
+                    Alabama: 5,024,279
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h2" d="M552,446l18,0 14-1 10,0 14-1 0-3 2,0-1-3-1-1 1-2 0-2-2-1-1-1 2,0 0-2-1,0 0-1 2-2 1-1-1-2 1-1-1-1 2-1 1,0 1-1 0-1-2-1 2-1 1-2 1-1 0-2 1,0 2-1 0-3-1-2 1-2 2,0 0-1 0-2 2-1 1-1 0-1-1-1 2-1 1-2 1,0 0-2 0-2-1-1 1-1 1-2 0-1 2-1-1-1 1-2-1-1 0-1 3-1 1-1-1-1 0-1 2,0-1-2-12,1 0-2 1-1 1-1 0-1 2-1 0-1 1,0 0-2-1-1-1-2-17,1-15,0-10,1-11,0-15,1-15,0 3,26 0,41 1,1 1,1 1,0 1-1 1,1 1-1 0,1 2,0 1,0z">
+                  <title>
+                    Arkansas: 3,011,524
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h4" d="M147,417l0,2-2,1 0,1-1,1 16,9 15,9 15,9 15,8 8,5 1,0 10,2 11,2 18,2 18-132-14-3-11-1-15-3-14-2-9-1-17-4-11-2-4,19-1,1-1,2-2,0-1,0-1-3-2,0-2-1-1,0-2,1-1,2 1,3-1,1 0,3 0,2 0,1-1,2 1,4 0,3-1,1-1,0 0,2 0,1 0,1-1,3 1,0 0,2 1,1 1,3 0,1 1,2-1,1 4,4 0,1-3,2-2,1-1,0-1,2-2,2 0,1-1,3 1,1-1,1-1,2-1,1-1,2-2,0 0,1-1,2 1,1 0,1-1,3 1,1 1,1 1,1 0,2 0,1-1,1-1,1-1,0-2,0z">
+                  <title>
+                    Arizona: 7,151,502
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h6" d="M160,365l-9-13-5-7-9-14-7-11-5-8-6-8-10-16-10-14-6-9-10-15 18-69-13-3-9-2-13-4-9-2-13-4-13-4-1,1-1,2-1,1 1,2 1,0-1,2 1,1-1,4-1,3-2,3-1,0 0,2 0,1-1,4 1,0-1,1-1,0-1,2-1,0-1,1-3,2-1,2 1,1 0,2-1,1 2,3 0,1 1,1 0,2 1,0 1,3 0,1 1,1-1,3 1,1-1,2 0,1-1,2-1,3 0,3 0,1 0,4-1,1 0,1 1,2 1,2 1,3 1,2 0,1 1,2 1,1 1,1 0,1 0,2 1,0 0,2 0,2-2,3 2,0 1,1 1,3 1,0 2,2 0,1 1,0 1-1-1-1 1-1 0-1 1-2 2-1 1,2 1,1 2,1 2-2 1,0 0,2 1,0 2,1 1,1-2,0-1-1-2-1-1,0-2,0-1-1-3,1-1,1 1,1 1,2-1,1 1,1 0,1 1,0 0,1 0,2 0,2 1,1 0,1-1-1-1-1-1,0 0-2-2-1 0-3 1,0 0-2-1,0-2,0 0,3-1,3 0,1 0,1 1,2-1,2-1,2 2,3 0,1 2,2 1,1 2,0 2,2 0,3-1,2-2,2-1-1-1,1 1,1-1,1 0,3 0,2 1,1 1,2 2,2 0,3 1,1 0,2 2,3 0,2 0,1 2,2 1,2 1,2 2,1 0,1 0,2-1,2 0,1 1,1 2,0 1,2-1,1 0,2-1,2 0,1-1,2 1,2-2,2 0,1 1,0 1,1 1,2 3,1 3,0 1,1 1,0 2,1 0,1 2,0 1,1 2,0 3,2 1,1 2,2 0,3 2,2 3,2 1,0 1,1 1,0 2,0 2,1 1,1 1,1 0,3-1,1 0,1 2,1 1-1 2,1 1,1 2,2 1,2 2,2 1,1 1,1 1,2 1,1 2,5 0,1 1,3 0,3-1,1 0,1 0,2 1,1 0,2 0,2 13,1 13,2 10,1 11,1 1,0 2,0 1,0 1-1 1-1 0-1 0-2-1-1-1-1-1-1 1-3 0-1-1-1 1-2 0-1 2,0 1-2 1-1 1-2 1-1-1-1 1-3 0-1 2-2 1-2 1,0 2-1 3-2 0-1-4-4 1-1-1-2 0-1-1-3-1-1 0-2-1,0zM78,399l-2-2-1-3-1-1 1,3 1,2 1,2zM59,384l-1-1-1,1 1,0 1,1zM78,385l1,0 0,2 2,1 0,1 1-1-1-2-1-1-2-1-1,0zM53,364l-1,0-1-1-1,0 0,3 1,1 2-1 1-1-1,0zM63,366l-1,0-1,0-1,0-1-1-1-1-1,0-1,1 0,1 3,1 1,0 2,0z">
+                  <title>
+                    California: 39,538,223
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h4" d="M383,347l18,2 5-71 1-24-9-1-13,0-13-2-11,0-8-1-11-1-11-1-11-2-11-1-11-1-14-2-13,94 11,1 10,1 14,2 11,1 14,2 14,1 17,2 14,1z">
+                  <title>
+                    Colorado: 5,773,714
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h3" d="M904,211l1,0 4-4 1,0 1-2 1,1 0-1 2-1 1-3 1,2 1-1 2-1 1-1 2,1 1-1 1,0 0-1 2,0 1-1 1,0 1-1 1,0 1-1 1,0 1,0 0-2 0-2-3-12-2,1-16,3-11,2 3,18 2,2-4,3z">
+                  <title>
+                    Connecticut: 3,605,944
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h0" d="M855,273l1,1 0,1 2-2-3-2-1,1z">
+                  <title>
+                    District of Columbia: 689,545
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h1" d="M874,249l0,2 8,27 4-1 6-1 1,0-1-2-1-1 0-2 1,0-1-3-2,0-3-2 0-1-2-2-1-2 0-2-1-2-1,0-3-2 1-2-2-2 2-3 0-1 1-1-2,0-2,0-1,1-1,1z">
+                  <title>
+                    Delaware: 989,948
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h6" d="M687,498l1,0 1,1-1,1-1,1 0,1 2,0 1-2 2-1 0-1 0-3 2,2 1-2 1,0-1,1 2,2-1,1-3,1 2,0 3-1 4-1 2,0 0-1 2-1 1,1 1-1 2,0 1,0 2,0 0,2-2-1-1,1-1-1 0,1 6,2 4,1 3,2-1-3-1,1-1-1 2-1 1,1 1,2 1,0 1,1 1-1 1,1 0,1 1,0 0,1-1-1-1-1-3,0 4,3 2,1 1,1 1,2 1,2 1,0 2-1 3,0 0-1 2-1 0,1 2-1 1-1 2-1 0-1 2-1 2,0 2,0 0-1-3,0 0-1 2,0-1-1 3-2 1,0 1,0 2-1 2,1 2,1 2,1 2,1 2,2 1,1 1,1 1,1 1,0 1,1 0,2 1,0 2,2 1,0 1,2 0,1 2,0 1,2 1,0 1,0 1,0 1,0 2,1 0,1 1,0 0,1 1,2 1,1 1,1-1,1 1,1 0,5 0,2-1,4 0,2 0,2 0,4 0,2 0,1 1,0 2,2 1,0 0-1 1-2-1-1-2-1 0-2 2,1 2,0 0,3 1,0 0-2 0-1 1,1 1,2-1,2-2,2 0,2 0,1-2,1 1,1 2,1 1,2-1,1 2,2 1,2 2,3 1,0 1,2 2,1 1-2-1-2 1,0 2,2 0,1 0,3 1,2 0,1 1,1 2-1 0-2 1-2 0,1-1,1 0,1-1,2 1,1 2,0 0,2 1,1 1,3 0,2 2,1 0,1 1,0 0,1 3,0 3,1 1,0 1,1 0,1 1,1 1,0 2,4 1,1 0,2 2,0 2,1 2,1-1,1-3-1-1-1-1,3 1,1 2,1 3-1 1-2 2,1 2,0 1-1 1,0 0-2 2,0-1,1 2-1 1-2 1-2 0-1-1-1 1-2-1-1 1-1 0-2 1-1 0-2 1-1 0-4-1-1 1-1 0-3 0-4-1-3 1,0-1-3-1-2 1-1-2-3-2-4-1,0-5-8-1-3-9-13-2-4-1-3-1-1-1-3 3,1-1,1 1,1 1,1 1-1 1,0 0,1 1,1 0,3 0,4 1,0-1-4 1-2-1-2-2-2-3-3-4-6-4-6-3-5-3-4 0-2-2-4-1-3-1-3 0-2-1-1-1-1 0-4-2-1-1,0-3,0-4-1-2,0 0,1-1,1 0,2 1,2 0,3 0,2-2,0-1-1 0-1-1-1 0-1-12,1-10,0-12,1-19,1-1-1-1-3-2-2-19,2-13,1-12,2-8,0 1,2-1,1 3,4 2,0 0,1-1,3zM850,600l0-2-1,1 0,1-1,2 0,2 1-2zM806,576l1-2-1-1-1,0 1,2zM839,544l1,2 1,3 3,5 1,1-5-9zM830,525l-1,2 0,2 2,2-1-3 1-3-1-1zM735,513l1,0 0-1-1,0-1,0zM743,510l-1,0-4,3 1,0 1-1 2-1zM702,498l-4,1-1,1-2,0-1,0-3,1 14-3-2,0z">
+                  <title>
+                    Florida: 21,538,187
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h5" d="M734,481l2,2 1,3 1,1 19-1 12-1 10,0 12-1 0,1 1,1 0,1 1,1 2,0 0-2 0-3-1-2 0-2 1-1 0-1 2,0 4,1 3,0 1,0 0-1-1-2 1-2-1-1 1-1 1,0-2-4 2,1 2-4-2,0-2,0 0-1 2,0-1-2 1-1 0-2 2-4 1-1 1-1-1-1 0-1 2,0 1-1-1-1 1,0 2-2-2,0-2-1-1,0-2-1 0-1 0-3-1-1-1-2 0-1-1-1-2-1-1,0-1-1 0-1 0-1-1-3-2-1 0-2-1-1-2-1-2,0-1-1 0-1-1,0-1-2-1,0-1-1 0-2-2-2-2-1-2-1-1-2-3-2-2-1-1-1-1-1-1-1-1-2-2-1-1-3-1-1-1-2-1-1-2,1-1-1-2-1-4-2 0-1 0-2 3-4 0-1-13,2-10,1-10,1-10,2-4,0 1,5 4,11 3,13 5,18 1,2 0,1 1,1 1,3 2,2 1,2 0,3 1,0 1,1 0,1-2,1-1,1 0,3 0,1 0,2-1,2 1,3 2,2 0,2 0,2 0,3-1,1 1,2 1,0 1,2zM805,476l1-1 0-2-1,1zM807,459l0,2 0,1 2-4-1,0z">
+                  <title>
+                    Georgia: 10,711,908
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h1" d="M338,597l-1-1-1-2 0-1 0-1-2,1 0-3-2-2-3-3-2-1-3,0-1,0-1-1-2-1 0-1-3-1-1,2 0,2 2,2-1,1 0,1-2,2-2,2-1,1 1,1 1,2 2,6 0,5 0,1 1,1 1,1 3,2 1-1 1-1 1-1 0-1 1-1 2-2 1,0 2-1 2,0 2-1 1-1 1,0 2-1 1-1 1-1-1-2zM301,573l-1,0-2,1 1,1 2,0 1,0 0-2zM295,566l-1-1-2,0-1,0 0,1 1,1 0,2 1,1 1-1 1,0 1-1zM314,568l-3-1-3-2-1-1-2,1-2,1-1-2-1-1-2,0-1,2 1,1 1,2 2,1 1-1 1,0 0,3 0,1 1,1 2,0 2-1 2,0 2-1 1,0 0-2zM297,559l-1,0-2,0-6-1-2,0 0,1-1,1 1,1 4,0 3,1 2,0 2-1 1-1zM276,555l0-1-1-1-2-1 1-1-2-3-1-1-1,0-1,1-2,1-2,0 0,3 1,1 0,1 1,1 0,1 1,0 2,0 2,0 2,1 2,0 1,0 1-1zM224,539l0,1-2,1-1,1 0,1 0,1 1,0 1-2 2-1 0-1 0-1zM242,536l-1-2-1,0-2,0-1,0-1,0-2,1-1,0-1,1-1,2 0,1 1,1 2,0 1,2 3,0 1,0 2-2 0-2 1-1z">
+                  <title>
+                    Hawaii: 1,455,271
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h2" d="M506,198l-2,0 0,2 1,1-1,2 0,1 0,1 1,0 1,2 0,2-1,0 0,2-1,1 0,2-1,1 0,1 0,1 2,1 0,4 2,0 0,1 0,2 1,2 0,2 0,1 1,1 0,1 2,2 0,2 0,1 2,2-1,3 0,1 0,1 2,1 0,1 1,0 0,2-1,1 2,1-1,1 0,2 1,1 0,1 0,1 0,1 0,1 1,2-1,2 1,0-1,2 0,1 2,1 0,1 15,0 8,0 8,0 8,0 8,0 13-1 7-1 4,0 1,1 3,2 0,1 2,1 1,0 0-3-1-1 0-1 2-1 2,0 1-2 0-3 2-3 1,0-1-3 0-1-2-1 0-2 0-3 1-1 5-1 1,0 1-1 3-1 1-2 0-1 1-2 2-2 0-1 0-4 0-2-2-1-2-1-1-1 0-2-1-1-1-1-2-1 0-1 0-1-1-2-2-1-3,0-1-1-1-1 0-1-1-2-1-6 1-3 0-1-2,0-1-3 0-1-11,1-16,1-17,0-16,0-17,0z">
+                  <title>
+                    Iowa: 3,190,369
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h2" d="M174,102l0,2 1,2 1,1 3,2 0,3 0,1-1,1-1,2-2,2-1,1-1,3-3,3-1,2-1,3-2,0-3,3 0,1-2,2 0,2-1,2 1,1 1,0 1,1 1-1 0,2 1,1-1,1-1,1 0,1-1,3-1,1 0,2-10,41 7,1 15,3 10,2 9,2 10,2 13,3 16,2 16,3 6,1 9-58 0-1-2-2-1-3-1-1-1,1-1,1-1,3-1-1-2,0-2,0-1-1-3,0-3-1-1,1-1,1-1,0-1,0-3-2-2,1-1,1-2,0-1-2 1-1-1-1 0-1 0-1 0-2-1-2-1-1-2,1 0-1-1-1-1-2 1-1 0-2 0-2-1,0 0-2-2-2 0-2 0-1 0-2-1-1 1-1 0-1-1-1-1-1-2,1-1,1-2,1-1,1-1,0-2-2-1-1 0-1 1-1 0-1 0-2 1-1 1,0 1-1-1-1 1-1-1-1 0-1 1-1-1-1 1-1 0-2 1-1 2-3-1-1 1,0 1-3 0-1-2,0-2,0-1-1 1-1-1-1-2,1 1-1-1-1-1-1 0-2-3-5 0-1-1-2-1-2-3-1 0-2-2-2 1-1-1-2 1,0 0-2 0-1-1-2 0-1-1-2-2-3 5-22-15-3-3,14-2,7-2,11-4,18-2,9 1,3 0,2-1,1-1,1 1,1z">
+                  <title>
+                    Idaho: 1,839,106
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h5" d="M595,270l-1,2 0,3 0,4 1,1 0,2 1,2 1,2 5,4 1,2 4,3 1,1 1,1 0,2 0,1 0,1 1,1 1,2 1,1 1-1 1-1 1,0 1,0 1,0 2,1 1,2-1,2 0,2-1,2-1,3 0,2-1,1 1,3 1,0 1,2 1,0 2,2 2,1 1,0 2,2 2,1 2,2 2,1 0,2 0,1 1,1 1,2 0,1-1,2 0,1 1,0 0,1 2,3-1,0 2,1 1,0-1-1 1,0 0,1 2,1 1,0-1-1-1-1 2-3 1,0 1-1 1,0 5,2 2,1 1,0 1-1 0-1-1-3-1-1 1-2 2,0 1-1 3-1 1-1-2-3 1-1 1-2 0-1 0-2 0-4 0-1 1-2-1-1 1-2 2,0 0-1 1-2 0-1 1-1 1-1-1,0 1-1 0-2 1-1 1-1-1-3 0-1 0-1-1-1-1-2-1-1 1-2 0-1 0-1 0-1 1-1-5-55-1-2-1-3-1-2 0-1-1-1-1-2-1-2 0-2 0-3-15,1-9,1-10,0-15,1 0,1 2,1 1,1 1,1 0,2 1,1 2,1 2,1 0,2 0,4 0,1-2,2-1,2 0,1-1,2-3,1-1,1-1,0-5,1-1,1 0,3 0,2 2,1 0,1 1,3-1,0-2,3 0,3-1,2-2,0-2,1 0,1 1,1 0,3z">
+                  <title>
+                    Illinois: 12,812,508
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h4" d="M673,232l-3,2-3,1-1,1-3-1-2-1 5,55-1,1 0,1 0,1 0,1-1,2 1,1 1,2 1,1 0,1 0,1 1,3-1,1-1,1 0,2-1,1 1,0-1,1-1,1 0,1-1,2 0,1-2,0-1,2 1,1-1,2 0,1 0,4 0,2 2,0 1-1-1-1 1-1 1,1 3-1 0,2 1-1 1-1 2-1 4,1 1,1 1,1 1-1 0-2 1-1 1,0 2-2 1,2 1,0 1,0 2,0 0-3 1-1 1-1 1-1 0-1 2,1 0,2 2,1 1,0 1,1 0-1 2,0 0-2 0-3 2-2 1,0 1-1 1-1 0-2 0-1 1,0 2-2 0-1 0-1-1-2 0-1 4,0 1,1 1,0 2-2 2-1 1,0 0-1 1-2-2,0 1-1 0-1-1-1 0-1-5-52-1-9-1-2-9,1-16,2z">
+                  <title>
+                    Indiana: 6,785,528
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h2" d="M401,349l14,0 17,1 17,1 13,0 9,1 12,0 9,0 13,0 13,0 8,0 13,0 0-50 0-1-1,0-1,0-2-1 0-1-1-1-1-2-1-1-1-1-1-2 0-1 1,0 0-2 1-1 0-1 2,0 0-2-1,0-1-2-1,0-1,1-2-1-2-2-19,0-15,0-15,0-15-1-19,0-15-1-11-1-11,0z">
+                  <title>
+                    Kansas: 2,937,880
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h3" d="M715,291l0,1 1,1 0,1-1,1 2,0-1,2 0,1-1,0-2,1-2,2-1,0-1-1-4,0 0,1 1,2 0,1 0,1-2,2-1,0 0,1 0,2-1,1-1,1-1,0-2,2 0,3 0,2-2,0 0,1-1-1-1,0-2-1 0-2-2-1 0,1-1,1-1,1-1,1 0,3-2,0-1,0-1,0-1-2-2,2-1,0-1,1 0,2-1,1-1-1-1-1-4-1-2,1-1,1-1,1 0-2-3,1-1-1-1,1 1,1-1,1-2,0 0,1-1,2-1,1 2,3-1,1-3,1-1,1-2,0-1,2 1,1 1,3 0,1-1,1-1,0-2-1-5-2-1,0-1,1-1,0-2,3 1,1 1,1 0,2-1,1 1,2 0,1-1,3-1,1-1,0-1-2-1,1 0,3 16-1 10-1 0-2-1-3 4,0 0,1 16-2 8,0 2-1 4,0 3,0 12-1 6-1 9,0 17-2 1,0 1-1 2-1 1-1 2-1 1-1 2,0 1-2 3-2 1-1 0-1 0-1 2-1 0-1 0-1 1-1 5-4 6-7-1,0-2,0-1-1-2-1-1-2-2-1 0-2-2-1 0-1-1-1-2-2 1-3 0-1-1-2 0-1-1-1-2-1-2-1-1-1-1-3-2,1-1,2-1,1-2,0-1,1-1-1-1,0-2-1-1,0-1,2-1,0-2-2-1-1-2,0-2,1-2-1-1-1-1-1 0-1-1-2-2,0-1-1-1,0-1,1-1,0-2-2zM634,360l1,0 0-1-1,0z">
+                  <title>
+                    Kentucky: 4,505,836
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h3" d="M558,517l1,1 0,2-1,1-1,0 0,2 1,1 2-1 3-1 3,0 2,0 2,0 1,0 3,1 7,2 3,1 5,1 1,0 3-2 0-1-1-2 1-1 2-1 1-1 1,1 0-1 1,0 0,2 0,1 2-1 2,0 1,1 0,1 1,0 1,3 2-1 0,1 2,1 1-1 2,3 2,1 0,2-1,0-1-2-1-1-1,1 0,1 2,2 2,0 1,0 3,1 1,1 1-1 3,1 1-1 0-1 1-3 2,1 1-2 1,1 1,0 1,1 1,0-1,2 1,2 2-1 1-1 0-3 1,0 0-2-1-2-1,0-2-2 1-1 0,1 2,0 2,2 1-1 2,1 1,1 1,1-2,1 4,1 1,0 2,1 0-1 3,4 1-1 0-1 1,0-1,2-2,3 1,0 1-2 1-1 1,0 1,1 1-1 1-1 1,0 0-1-2-2 0-1-2-2-1,1-1-1-1,1-1-1-1,0-1,0-1-2-3-1-1-2 0-1 2,1-1-1 2-1 0-1 2-2 1,0 1,0 0-1 0-1-1,0-1-1 0-2 0-1-1,0 0,1-2,1 0,1 0,2-2,0-1-2-1,0-1-1 1-1 1,0 1-1 1-1-1-1 0,1-2,1-2-1-1,1-2,1-3,1-2-1-1,0-2-1 0-2 2-2 1-2 1,0 1,0 2,0 1,1 1,1 2,0 1,1 1-1 1,1 0,1 3-1 0,1 1-1-1,0-1-2-1-2 0-1 0-1-2-1-1-1 0-2-1-1 2-6 0-1-20,1-19,1 1-2-1-2 1-1-1-1 0-1 2,0 0-1 1-2-1-1 0-1 0-1 2-1 0-4 1-3 2,0 2-3 1-1 0-1 0-1 0-1 1,0 1-3 1-1-1-1-1-1-1-1-1-1 0-1-1-2 0-1 1-1 0-1-1,0 0-2 1-2 0-1-2,0 0-1-14,1-10,0-14,1-18,0 0,24 2,1 1,2 2,2 0,1 0,3 1,2 1,0 0,1 1,2 1,0-1,1 1,2 1,2 1,0 0,2 1,1-2,1 1,1-1,2 1,1-1,2 0,1-1,1-1,2 0,3-1,1 0,2 1,1 0,1 0,2 0,2zM600,527l1-2-1,0-2-1-1,0-2,1 0,1 2,0 2,1zM652,510l-1,0-2,1 2,0z">
+                  <title>
+                    Louisiana: 4,657,757
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h4" d="M901,186l11-2 16-3 2-1 6-2 1,3 1,0 1,2 1,1 1,1 1,0 1,0 1,4 1-2 0,1 2-1 0-2 2-1 1-1-1-1 2,0 0,1 1,3 1-1 1,0 1-2 3-1 4-2 1,0-1-3-1-1 1-1-2-2-1-1 0,1 2,2 0,2-1,1-2,1-1,1-3,0-2-1 0-1-1-2-2,0 0-1 0-2-2-1 0-1-2-1-2,0-1,1 0-1-1,0 0-2 0-1 1-1 1-1-1-1 2-2 1,0 1-2-1,0-1,1-1,0-1-1 0-2-1-2-2,0-2,2 0,1-1,0-1,2-1,1-9,2-11,3-7,1-6,2-1,16zM963,187l0,1 0,1-3,0 2,1 3,0 0-1zM954,188l-1-1-2,2 0,2 1,0 1-1 2-1 0-1z">
+                  <title>
+                    Massachusetts: 7,029,917
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h4" d="M809,262l2,12 2-2 1-1 0-1 1-1 1-2 1-1 2,1 1-2 1-3 1,0 0,1 1,1 2,0 2-1 0-2 2-1 1,0 1-1 1-1 3,2 1,0 1-1 1,3 1,0 1,1 1,1 0,1 3,1 1,0 1,1 1,0-1,1 0,1 2,1 1,0 2,0 1,2 1,0 1,0 1-1 3,2-2,2 0,2 0,1-1,0 0,2-1,0-1,3 1,3 1,0 2-2 1-1 1,3 1,1 4,1 1-1 1,0 4,2 2,1 0-2-2-2 0-2-1,1-2-2-1,0-2-1 0-1-1-4 2,4 2,2 1,0 0,1 1,0 0-2-2-2-1-3 0-1 0-1-1-1 0-1 0-1 0-1 1,0-1-2 1-1-1-3-2,0-1-1 0-1 3,1 0-1 0-1-1-1 3-1 0-1 1,0 1-1 1-2-1,0 0-2 2,0 1,0-1,2 1,0 1-2 0,1-1,1-1,2-1,1-1,1-1,4 1,1 0,1 1-1 1,0-1,1 1,1-1,1-2,0-1,1 1,3 0-1 0-1 1-1 2,1 0,2-1,0-1,0 0,2 2,0 1,1 1,0 0,1 2,0 0,1-3-1-2,1 1,1 0,2-1,0 3,3 0-1 2,2 2,0-1-1 1-1 0,1 1,1 1-1 1,1-1,1 0,1 1,0 1,0 0,2-1,2 1,1 1-1 3-1 4-2 1-2 1,0 0-2 0-1 1-1 1-2-1-1 0-2-6,1-4,1-8-27 0-2-10,2-13,3-8,2-16,3zM878,291l1,0 0-2-2,1z">
+                  <title>
+                    Maryland: 6,177,224
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h1" d="M941,151l0-1 1,1 1-4-1-1 1-2 1,0 1-2 0-1-1-2 3-1-1-1-1-2 1-2 1-1 1-2 2,1 1-1 0,2 1,1 0-1-2-5-1,0 1-2 1,3 2,3 0-1-1-2 1-3 0,3 1,1 0-3 2,2 0-1 0-2 1-1 1,0 1,1 2-1-1-1 1,0 0-1 1,0-1-2 0-2 0-2 1-1 0-1-1-1 2-2 0-2 1,0 0,2 0,3 1,0 1,0 1,0 2,1 0-2-1,0 0-1 0-1 1-1 1,0 1-1 1-1 1,0 1-1 1,2 1,1 1-1 1-1 1-2-1-1 1-1 2,1 0-1 1,0 0-1 0-2 2,0 1,0 0-1 0-1 0-1 1,1 1,0 2-2 0-1 1-1 0-1-1-1-1,1-1,0 0-1 1-1 0-1-1-1-1-1-1-1-1-1-1,0-1,1-3-2 0-2-1-2-1-1 1-1-1-1-1,0-2,0-2-1-1,0-1-1 1-2-1-1 0-1-1-1-7-24-1-1-1,0-1-1-1,0-4-3-2,0-1,1 0,1-2,1-2,2-1,0-2,2-3-1-1-1 0-2 0-1-3,0 0,1-5,15-2,5 0,1 1,5 0,1-2,1 0,2 0,2 1,2-1,1 0,2 1,1 1,1-1,1-1,1 0,1 1,2-3,2-1,2 0,2 0,1 2,1-1,1-1-1-1,1 0,2 0,2-2-2-1,0-1,1 6,17 7,22 1,4 2,2 1,1 1,2zM953,126l-1,2 1,1zM965,118l-1,0 0,1 1,0zM972,116l0-1-2,1zM963,117l0-2-1,0zM965,119l0,2 1,0 0-2zM967,115l0,2 1,0 0-1zM973,109l-1,0-1,1-1,1 0,2 1,1 2,0 0-1-1,0 2-1 0-1z">
+                  <title>
+                    Maine: 1,362,359
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h5" d="M653,154l0-1 0-1 3-5 1-3 1-2 1-1 1-1 0-3 1-1 1,2 0,2 2-1 1-3 0-1 2,1 1-2 1,1-1,2-1,0-1,3 2,1 0-1 1-3 3-1 1-3 3-1 3,0 0-1 2,0 2,0 1-3 4-1 1,1 2,0 2,1 2,2 1,0 1,1 1,0 0-2 1-1 0-2 2,1 1,0 4,0 3,0 2-1-1-1-1-1 0-1-4-1 1-1-1-3 2,1 0-1-1-1 0-3-1,0-2,1-2,0-1,2-1,1-1-2-2,1-1,0-2-1-1,1-1-1 1-1-1-1 0-3 1-1-1,0-3,1-1,0-3,2-1,0-5,0-4,1-1,0-2,2-3,2-2,3-1-1-1,0-1,0-1,1-1-1-1-1-2,0 0,1-2,0-2,0-1-1 0-1-1,0-1-2-1-1-1-2-2,0-1-1-2,0-2-1-2,1-1-1-2,3-1,1-1-1 1-3-1-1-1-1 0-1-2-1 0-1-1-1-3,3-1,3-1,0-2,0-1,2-1,1-2,1-6,1-1,0-2,3-1,1-3,1-1,0-2,1 1,1 2,1 1,0 1,4 17,3 5,2 2,0 1,1 2-1 3,1 3,0 1,1 0,1 0,1 1,1 1,0 2,1 1,1 0,1 1,1-1,1 1,2-1,1 0,2 2,0 1-1 1,1-1,2 0,2 1,1zM732,226l0-1 0-1 1-2 1-1 1,0-1-2 1,0 1-6 0-1 1-1 2-1 0-1 1-1-1-1 0-2 2-1-1-1 2-2 1,1 0,2 1,0 1-2 0-3 0-1 0-2 1-2-1-1-1-2-1-4-1-4-1-1-2-7-1-2-1-1-2-1-2-1-1,1-1,1-3,1-2,3 0,1-1,3-1-1-1,2-1,1-4-1-1-1 0-3 1-2 1-2 2,0 0-1 1,0 0-1 0-3 1-1 1-1 1-1 1-2-1-5 0-2 0-3-1-1-2-2 0-1 0-1 1-1 1,1 0-1-1-2-1-1 0-1-2-2-2,0-1,0-1-1-2,0-2-1-2,0-1-2-2-1-1-1-3,1-2-1-3-2-1,1-3,1 1,0-1,2-1,1 0,1 0,1 1,2 1,0 1,0 0,1-2,1-2,0-2,2-1,1 0,1 1,3 0,2-1,2-1,4 0-2 0-1 0-2-1,1 0,1 0,2-1,0 0-1 0-2 0-2 0-1 0-2 1-1-2,0-1,2-1,1 0,3-1,0-1,0-1,1-1,0 0,4-1,0-1,1-1,1 1,2 0,3 0,1 0,1-2,6-2,2 0,1 2,2 0,3 0,1-1,2 0,1 1,2 3,7 2,0-1,1 1,2 1,3 1,6-1,6 0,2-1,3-2,4-1,4-1,2-1,1-2,2 10-1 16-2 9-1 1,2 8-2zM630,88l1-1 0-1 2-2-1,0-2,1-1,1-2,1-2,1-2,2-1,1 0,1 1,1 3-2 0-1zM666,121l-1-2 0,2zM646,101l0-1-1-1-4,1-3,1-3,2-1,2-2,1 0,2 2,0 1,1 0,1 1,2 0-2 1-1 1-1 1,0-1-1 1-1 2-2 2-2-1,0 1-1 2,0zM686,139l0-3-1,0 0,1-1,2 1,1zM718,126l-1,0 0-1-1-1-2,0 1,2-2,0 0,2 2,0 2,0 1,0zM704,133l-1-1 0,1-2,0 2,1 1,0zM680,152l0-1-1-1-1,1 1,1zM707,122l0-1-1-1 0,1z">
+                  <title>
+                    Michigan: 10,077,331
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h4" d="M505,141l-1,2-1,2-3,3-1,1 2,2 1,2 2,1 1,1 1,1 0,42 11,0 17,0 16,0 17,0 16-1 11-1 0-4 0-2-1-1 0-2-1-1-1-2-1,0-1-1-2,0-3-2-2-4-3-2-3-1-1-1-1-1-3-1-1,0-2-2-1-1 0-2 0-1 1-1-1-2 0-2 1,0-1-2 0-3 1-1 1-1 0-1-1-1-1-2-2,0 0-1 0-3 1-1 1-1 1-2 2-1 1-1 1,0 0-1 1,0 1-1 0-14 1,0 0-1 2-2 3-3 1-1 1-1 2-1 1-2 1,0 7-9 1-1 3-2 4-3 7-3 5-3 1-1-1,0-1-1-1,1-2,0-1-2-2-1-6,1-1,0-1,1-2-1-1-2-1-1-2,2-3,3-2,0-1,0-1,0-1,0 0-1-2,0 0-1-1-1-2,0-1-1-1-1-1-1-2,0-1,0-1,1 0,1-1,0-1-2-1-1-1-1-2,0 0-1 1-1-1-1-3,0-2-1-4,0-3,0-1,2-4,0-1,0 0-2-1,0-6-1-1-1-2,0-2,0-2-1 0-1 0-2-2-6 0-1 0-2-1-1-2-1-1,0-1,0 0,8 0,1-11,0-14,0-8,0 2,8 0,1-1,1 1,3 0,1 0,2 0,3 0,2 1,3 1,1 0,1 0,1 0,1 1,2 1,3 0,2 0,1 0,1 0,3 0,2 0,4 1,2 0,1 0,2 0,2 0,2 0,1 1,1 0,2 2,3 0,2 0,2 1,1-1,2z">
+                  <title>
+                    Minnesota: 5,706,494
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h4" d="M526,281l2,2 2,1 1-1 1,0 1,2 1,0 0,2-2,0 0,1-1,1 0,2-1,0 0,1 1,2 1,1 1,1 1,2 1,1 0,1 2,1 1,0 1,0 0,1 0,50 1,12 15,0 15-1 11,0 10-1 15,0 17-1 1,2 1,1 0,2-1,0 0,1-2,1 0,1-1,1-1,1 0,2 12-1 1-3 1-1-2-2 2,0-1-2 2-1-1-2 0-1 0-1 1,0 0,1 1,1 1-1 0-3 1-1 1,2 1,0 1-1 1-3 0-1-1-2 1-1 0-2-1,0-2-1 0-1-1,0 1,1-1,0-2-1 1,0-2-3 0-1-1,0 0-1 1-2 0-1-1-2-1-1 0-1 0-2-2-1-2-2-2-1-2-2-1,0-2-1-2-2-1,0-1-2-1,0-1-3 1-1 0-2 1-3 1-2 0-2 1-2-1-2-2-1-1,0-1,0-1,0-1,1-1,1-1-1-1-2-1-1 0-1 0-1 0-2-1-1-1-1-4-3-1-2-5-4-1-2-1-2 0-2-1-1 0-4 0-3 1-2-2-1 0-1-3-2-1-1-4,0-7,1-13,1-8,0-8,0-8,0-8,0-15,0 0,1 1,1 0,1 1,1 0,2 2,2 1,0 0,1 1,2 0,2z">
+                  <title>
+                    Missouri: 6,154,913
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h2" d="M645,508l2,0 0-1 2-2 0-1 1,0 1,1 4-2 1-1 1,0 1,0 3,1 1,0 1-1 1,1 2,1 1-1 0-1-4-35 0-11 1-24 0-19 1-17-1-1-1-2-8,1-13,1-10,1-10,0 1,1 0,1-1,1-2,1 0,2 0,1-2,0-1,2 1,2 0,3-2,1-1,0 0,2-1,1-1,2-2,1 2,1 0,1-1,1-1,0-2,1 1,1-1,1 1,2-1,1-2,2 0,1 1,0 0,2-2,0 1,1 2,1 0,2-1,2 1,1 1,3-2,0 0,3 0,1 2,0 0,1-1,2 0,2 1,0 0,1-1,1 0,1 1,2 0,1 1,1 1,1 1,1 1,1-1,1-1,3-1,0 0,1 0,1 0,1-1,1-2,3-2,0-1,3 0,4-2,1 0,1 0,1 1,1-1,2 0,1-2,0 0,1 1,1-1,1 1,2-1,2 19-1 20-1 0,1-2,6 1,1 0,2 1,1 2,1 0,1 0,1 1,2 1,2zM654,506l-1,1 1,1z">
+                  <title>
+                    Mississippi: 2,961,279
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h1" d="M262,155l2-12 14,2 18,3 14,2 18,2 14,2 13,1 12,1 13,1 2-22 0-4 5-62 1-5-9,0-14-2-17-1-10-2-17-2-14-2-7-1-13-2-14-2-14-2-10-2-10-2-13-2-11-2-13-3-5,22 2,3 1,2 0,1 1,2 0,1 0,2-1,0 1,2-1,1 2,2 0,2 3,1 1,2 1,2 0,1 3,5 0,2 1,1 1,1-1,1 2-1 1,1-1,1 1,1 2,0 2,0 0,1-1,3-1,0 1,1-2,3-1,1 0,2-1,1 1,1-1,1 0,1 1,1-1,1 1,1-1,1-1,0-1,1 0,2 0,1-1,1 0,1 1,1 2,2 1,0 1-1 2-1 1-1 2-1 1,1 1,1 0,1-1,1 1,1 0,2 0,1 0,2 2,2 0,2 1,0 0,2 0,2-1,1 1,2 1,1 0,1 2-1 1,1 1,2 0,2 0,1 0,1 1,1-1,1 1,2 2,0 1-1 2-1 3,2 1,0 1,0 1-1 1-1 3,1 3,0 1,1 2,0 2,0 1,1 1-3 1-1 1-1 1,1 1,3 2,2z">
+                  <title>
+                    Montana: 1,084,225
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h5" d="M759,383l1,0 5-3 1,0 2-2 1,0 2-1 1-1 1,0 1,0 10-1 13-1 1,0 0,1 0,1 2-2 3,3 1,3 12-1 8-2 1,0 10,7 15,11 4-2 2,0 2,0 2,0 1-2 1,0 0-4 0-2 1-1 2-4 2-2 1-2 2,0-1-1-1,0 1-2 1,0-1,1 1,1 2-1 0-2 1-1 1-1 1,1 2-2 1,0 3-1 1-1 0,1 1,0 0-2 1,1 0,1 1,0 0-1 1-2 1-2 1-2-2,1-1-1-1-1 0,2-1,0-1,1-1-1-1,2-1,0-1,0-2,0-2-2 1-1 3,2 1,0 2-3 1-1 0-1-2,0 3-2 0-1-1-1-3,0-2-1-1,0-2,0-1,0-1-1 2,0 2,0 1,1 1-1 2,1 0-3-1,0 1-1 1,0-1,1 1,1 1,0 0,1 1,0 0-2 2,2 1,0 3,0 1-2 0-1 2-3 3-2 0-1-1-1 1,0-1-1 0-2-2-2-1-1 0,1-1,0-1,2 1,3-1,0-1,0 0-1-1-1 1-1-1-1 0-1-1,0-1,0-4,2 0-1-1,1-2,1-3,0 0-1-1-3 0-1 1,3 2,0 2,0 1-1 0-1 3-1 1,0 0-1 1,0 1-1 0-1-3-2 1,0 2,1 1,1 3,0 1,1 1,1-3-5-1-1 0-1-2-1-1-1 0-1-6,1-17,3-11,3-17,3-13,2-11,2-11,1-10,2-7,0-1,0-1,2 1,1-1,2 1,2-2-1-2,2-1,4-1,1-1,0-1-1-2,1-2,1-1,3-1,1-1,0 0-2-1,0-3,1 0,2-1,0-1,0 0,1 0,2-1,1-2,0-1,1-1,1-1,2-1,0-2,1-1,1-4,1-3,2-1,1-1,1 0,3-1,1-3,1-1,1 0,5 10-1zM887,323l-1,0-1,1 1,1 2-1zM888,323l2,3 0,2 2,4 1,2 1,0 0,1 2,1 1,1-4-5-2-3zM899,341l0-1-1,0 2,3 0,1 1,7-1,0-2,2 3-1 0-1 0-1 0-4 0-2zM894,337l1,1 0,1 1-1-1-1z">
+                  <title>
+                    North Carolina: 10,439,388
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h0" d="M382,135l8,1 11,1 8,0 12,1 15,1 7,0 16,1 7,0 16,1 11,0 12,0-1-2 1-2-1-1 0-2 0-2-2-3 0-2-1-1 0-1 0-2 0-2 0-2 0-1-1-2 0-4 0-2 0-3 0-1 0-1 0-2-1-3-1-2 0-1 0-1 0-1-1-1-1-3 0-2 0-3 0-2 0-1-1-3 1-1 0-1-2-8-12-1-11,0-17,0-13-1-11-1-10,0-14-1-10-1-8-1-1,5-5,62z">
+                  <title>
+                    North Dakota: 779,094
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h2" d="M372,251l13,2 13,0 9,1-1,24 11,0 11,1 15,1 19,0 15,1 15,0 15,0 19,0-2-1 0-2-1-2 0-1-1,0-2-2 0-2-1-1 0-1-1-1 0-1 0-1-2-1 0-1 1-2-1,0 1-2-1-2 0-1 0-1 0-1 0-1-1-1 0-2 1-1-2-1 1-1 0-2-1,0 0-1-2-1 0-1 0-1 1-3-2-2 0-1 0-2-2-2 0-1-1-1 0-1 0-2-1-2 0-2 0-1-2,0-2-1-1-1 0-1-1-1-1,0-1-2-2,0-1-1-2,0-2-2-1,0-3,0-2,0-1,0-3,0-1,0-1,2-1,0-1,0-1-1-2-1-3-3-1,0-10-1-9,0-15-1-17,0-12-1-14-1-18-2-1,9z">
+                  <title>
+                    Nebraska: 1,961,504
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h1" d="M914,167l11-3 9-2 1-1 1-2 1,0 0-1 2-2 2,0 0-2 0-1 0-2-2-1-1-2-1-1-2-2-1-4-7-22-6-17 0,2-1,0-2-1 0,1-1,1 0,3-1,2 0,1 1,2-1,3 0,1 2,3 0,1 0,1-1,2-1,2-1,1-2,1-1,2 1,3 0,1 0,2 0,1-1,2 0,3-1,1 0,3 0,1 0,1 1,5 0,1 0,3 0,1 0,3 0,3 1,1 1,1z">
+                  <title>
+                    New Hampshire: 1,377,529
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h5" d="M885,240l0,1 0,1-1,1-3,2-1,0-1,2 0,1 0,2-1,1 1,1 0,2 1,1 3,2 1,0 1,0 2,1 0,1 3-1 0,1 1-1 1,1 0,1 0,3 0,1 2,0 1-2 0-1 1-4 1-2-1,0 1-1 1-2 2,0-2-1 2-3 0-2 1,0 1-3-1,0 1-2 0-1 0-1 0-1-1-2 1,0 0-5 0-3-1-3 0,1-2,0-1,0-2,0 0-2 0-2 1-1 1,0 1-1 0-2 1-4 0-1-16-6-1,1-1,2 0,2-1,2-1,2-1,0-1,2 2,1 0,3-1,0 0,1 0,3 1,1 2,0 0,1 0,2 2,1 0-1 1,1 1,1 2,2 2,1-1,1-1,1-1,1z">
+                  <title>
+                    New Jersey: 9,288,994
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h2" d="M253,468l17,2 1-10 16,2 18,2-2-1 0-2-1-3 14,2 9,1 13,1 18,2 17,1 4-46 5-59 1-1 0-12-7,0-14-1-17-2-14-1-14-2-11-1-14-2-10-1-11-1z">
+                  <title>
+                    New Mexico: 2,117,522
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h2" d="M151,194l-15-4-13-3-13-3-9-3-18,69 10,15 6,9 10,14 10,16 6,8 5,8 7,11 9,14 5,7 9,13 0-1 0-1 0-2 1,0 1-1 0-3-1-4 1-2 0-1 0-2 0-3 1-1-1-3 1-2 2-1 1,0 2,1 2,0 1,3 1,0 2,0 1-2 1-1 4-19 22-116-10-2-9-2-10-2-15-3z">
+                  <title>
+                    Nevada: 3,104,614
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h6" d="M884,207l16,6-1-3-1-1 1,0 1,3 0,5 2-1 0-2 1-1 1,0 0-2-2-2 4-3-2-2-3-18-1,0 1-16-1-1 0-2-3-16-2-1-1,0 0,1-1,0 0-1 0-3 0-2 0-1-1-1-1-2 0-1 0-3 0-1 0-2 0-1 0-2 0-1-2-2-1-2 0-3-1-1 0-3 0-1-17,4-6,2-2,0-2,1-1,1-1,1-2,2-5,8-1,2 0,1-3,5-2,2-3,2 0,1 2,1 1-1 1,1 0,1 1,2-1,1-1,0-1,1 2,0 1,2 0,1 1,0-1,2 1,0-1,2-1,0-2,0-1,2-1,1-1,1-1,2-4,2-7,1-2,2-2,0-2-2-6,0-2,1-3,0-5,2-1,1-2,0-2,2-1,0 1,2 0,2 2,0 1,1-1,2 2,2 0,2 0,1-2,1-2,3-1,1 0,1-2,1-1,2-2,2-1,1-2,2 1,6 15-3 14-2 16-4 9-1 14-3 8-2 1,1 1,1 1,0 2,1 0,1 1,0 0,1 0,1 0,2 2,2 2,1 3,0zM913,218l-2,0-3,2 0,1 4-3zM898,222l-1,0 0,2 0,1 2-2 0-1-1-1zM933,203l-1,0-1,1-1,1-1-1-1,0 0,1-2,1-1,2-1,1-1-1 0-1 2-1 0-1-1,0-2,2-3,2-5,1-1,0-1,1 0,1-3,0-1,1-1,0-2,1-1,1-1,0 0,1-1,1-1,0-1,3-1,1 1,2 1-1 1-1 1-1 1,1-1,1 2-1 2-2 4-1 1-1 1-1 1,0 3-2 1,0 1,0 1-1 1-1 1,0 1,0 2-2 1-1 5-4zM804,185l1-2-1-1-1,1 0,1z">
+                  <title>
+                    New York: 20,201,249
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h5" d="M709,230l1,9 5,52 2-2 2,2 1,0 1-1 1,0 1,1 2,0 1,2 0,1 1,1 1,1 2,1 2-1 2,0 1,1 2,2 1,0 1-2 1,0 2,1 1,0 1,1 1-1 2,0 1-1 1-2 2-1 1,3 1,1 2,1 2,1 1,1 1,0 2,0 1-1 1-1 0-2 0-1 1,0 0-3-1-1 1-1 0-2 1-3 1,0 2,0 0,1 0,1 1,1 0-1 1-1 1,0-1-2-1-1 1-1 0-2 1-2 2-1 0-1 1-2 1,0 1,1 1,0 0-1 2,0 1-2 1-2 2-2 1-1 0-2 0-1 0-1 1-2-1,0 1-1 0-3 1-5 0-2 0-2 0-1-2-3 2-1 1,0-6-32-5,3-1,1-2,1-5,4-5,5-1,1-1,0-1,1-3-1-2,1-1,1-2,1-1,1-2,0-2-1-1,0-3,0-1,2-1-1 0-1 2,0 1,0 0-1-1-1-1,1-1,0-1,0-2-1-2-1-2-1-1,0-1,0-15,2z">
+                  <title>
+                    Ohio: 11,799,448
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h3" d="M383,359l12,1 10,1 10,0 10,1 14,0-2,46 1,0 1,0 3,4 1,0 1,1 1-1 2,1 1,0 0-2 3,1 0,1 1,1 0,3 3,0 2,0 1,1 3,1 1,0 2,0 1,2 2,0 1-2 3,1 2-1 0,3 3,1 0,2 1,1 2-1 2-2 2,0 0,2 2,0 0,2 2,0 2-1 1-1 1,1-1,2 1,1 1,0 1-1 2-3 0-1 1,0 1,2 1,0 1,1 1-1 1-1 1,0 0,2 2,0 0,1 2,0 1,2 1-1 2,0 1-2 1,0 1,0 2-1 1,1 2-1 1,0 2-2 1,1 1,1 1,0 2,0 2-1 0-1 1,0 1,0 2,2 1,0 3,3 2,0 1,1 1,0 2,1 1,0 0-41-3-26-1-12-13,0-8,0-13,0-13,0-9,0-12,0-9-1-13,0-17-1-17-1-14,0-18-2z">
+                  <title>
+                    Oklahoma: 3,959,353
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h3" d="M75,72l-1,1-2-1 0-1-1-1-2,0-2,0-1-1-1,1-1-2-1,0 0,3-1,2-1,1 0,2-1,2 0,1 0,1-1,2 1,1-1,1-1,1 1,1-2,1 0,1-1,2 0,2-1,2-2,4-1,1-1,4-1,3-1,2-1,2-1,3-2,6-2,3-4,7-1,2-1,0-1,1-2,5-2,2-1,2 0,2 0,1 0,1 1,1-1,2 0,1-2,4 0,1 0,1 0,1 0,2 1,2 1,2 13,4 13,4 9,2 13,4 9,2 13,3 9,3 13,3 13,3 15,4 10-41 0-2 1-1 1-3 0-1 1-1 1-1-1-1 0-2-1,1-1-1-1,0-1-1 1-2 0-2 2-2 0-1 3-3 2,0 1-3 1-2 3-3 1-3 1-1 2-2 1-2 1-1 0-1 0-3-3-2-1-1-1-2 0-2-10-2-15-4-9-2-1,1-4-1-3,0-1,0-2,1-4-1-4,1-2,0-1,0-1,0-2,0-2-1-1,0-2,0-2,1-2-1-2,0 0-2-1,0-5-2-2,0-2-1-1,0-2,1-5,0-1,0-1-1-2-1-2-1-1-1 0-2 1-1-1-1 1-1 0-2 0-1 0-2-1-1-2-2z">
+                  <title>
+                    Oregon: 4,237,256
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h6" d="M787,244l3,21 19-3 18-3 16-3 8-2 13-3 10-2 0-1 1-1 1-1 2,0 2,0 0-1 1-1 1,0 2-1 0-2 1-1 2-2 1-1 1-1 1-1-2-1-2-2-1-1-1-1 0,1-2-1 0-2 0-1-2,0-1-1 0-3 0-1 1,0 0-3-2-1 1-2 1,0 1-2 1-2 0-2 1-2 1-1-1-1-3,0-2-1-2-2 0-2 0-1 0-1-1,0 0-1-2-1-1,0-1-1-1-1-8,2-14,3-9,1-16,4-14,2-15,3-1-6-2,1-2,2-2,1-3,3-3,1z">
+                  <title>
+                    Pennsylvania: 13,002,700
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h3" d="M903,608l-2,0 0,1 1,0zM959,608l1-1-2,0-2,0-1,1-1,0 2,0zM960,604l1-1-2,0zM953,604l0-2-1,0-3-1-1,0 0-1-4,0-2,0-4-1-1,1-1-1-2,1-1-1-2,0-1,0-3,0-1,0-2,0-4-1-2,1 0,2-2,1 1,2 1,0 1,2-1,1 0,2-1,2 2,1 1-1 2,0 1,1 1,0 2,0 1-1 4,1 3-1 1,1 2-1 1,1 3,0 1,0 2-1 2,0 1,0 1-1 1-2 1-2 3-1z">
+                  <title>
+                    Puerto Rico: 3,285,874
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h1" d="M933,196l4-2 2,0 0-1 0-2 0-2-1,0 0-1 1-4 1,1 0,1 1,0 0-1-1-1-1-1-1-2-1,0-1-3-6,2 3,12 0,2zM944,189l-1-4-1,0 0,1 1,3 0,1zM941,188l0,1 0,2 1-1 0-3z">
+                  <title>
+                    Rhode Island: 1,097,379
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h3" d="M812,446l0-1 3-3 1-1-1-1-1,0-1-1 0-1-1-2 1-1 1,3 1,1 1-1-1-1 1,0 0,1 0,1 2,0 2-1 0-2-1-1-2-1-2,0 0-1 2,0 1,0 2,1 2-1 3-2 2-2 1-1 1-1 0-1-1,0 0-2 2,1 2-1 1-1 1-2-1-1 1-1 1-1 1,1 2-1 0-1 1-1 2-3-1-1-1-1 1,0 1,1 0-3 0-1 3-6 1-2 2-2 1-2 2,0 0-1-15-11-10-7-1,0-8,2-12,1-1-3-3-3-2,2 0-1 0-1-1,0-13,1-10,1-1,0-1,0-1,1-2,1-1,0-2,2-1,0-5,3-1,0 0,1-3,4 0,2 0,1 4,2 2,1 1,1 2-1 1,1 1,2 1,1 1,3 2,1 1,2 1,1 1,1 1,1 2,1 3,2 1,2 2,1 2,1 2,2 0,2 1,1 1,0 1,2 1,0 0,1 1,1 2,0 2,1 1,1 0,2 2,1 1,3 0,1 0,1 1,1 1,0 2,1 1,1 0,1 1,2 1,1 0,3 0,1 2,1 1,0z">
+                  <title>
+                    South Carolina: 5,118,425
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h1" d="M380,157l-3,39-1,8 18,2 14,1 12,1 17,0 15,1 9,0 10,1 1,0 3,3 2,1 1,1 1,0 1,0 1-2 1,0 3,0 1,0 2,0 3,0 1,0 2,2 2,0 1,1 2,0 1,2 1,0 1,1 0,1 1,1 2,1 0-4-2-1 0-1 0-1 1-1 0-2 1-1 0-2 1,0 0-2-1-2-1,0 0-1 0-1 1-2-1-1 0-2 2,0 0-42-1-1-1-1-2-1-1-2-2-2 1-1 3-3 1-2 1-2-12,0-11,0-16-1-7,0-16-1-7,0-15-1-12-1-8,0-11-1-8-1z">
+                  <title>
+                    South Dakota: 886,667
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h4" d="M663,393l13-1 15-1 15-1 6-1 4,0 10-2 10-1 0-5 1-1 3-1 1-1 0-3 1-1 1-1 3-2 4-1 1-1 2-1 1,0 1-2 1-1 1-1 2,0 1-1 0-2 0-1 1,0 1,0 0-2 3-1 1,0 0,2 1,0 1-1 1-3 2-1 2-1 1,1 1,0 1-1 1-4 2-2 2,1-1-2 1-2-1-1 1-2-5,1-17,3-15,2-1,0-17,2-9,0-6,1-12,1-3,0-4,0-2,1-8,0-16,2 0-1-4,0 1,3 0,2-10,1-16,1-1,1-1-1-1,0 0,1 1,2-2,1 1,2-2,0 2,2-1,1-1,3 1,2-2,0 0,1 1,1-1,1-3,1 0,1 1,1-1,2 1,1-2,1 0,1-1,2-1,1 1,1 0,2 0,2-1,0-1,2-2,1 10,0 10-1 13-1z">
+                  <title>
+                    Tennessee: 6,910,840
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h6" d="M305,464l1,1 2,1 0,1 1,2 1,3 1,0 3,2 1,1 0,1 1,1 2,2 2,2 1,1 1,2 2,3 1,1 3,1 2,2 1,1 1,1 0,1 1,0 1,2 1,3 1,4 1,0 1,2-1,3 0,2 1,2 0,1 1,1 0,3 2,2 2,2 2,0 1,1 0,1 2,2 0,1 3,1 3,1 0,1 2,1 3,1 1,2 2,1 1,0 0,1 2,0 1,0 1,0 0-1 2-2 1-1 2-1 0-1 1-2 1-2 1-3 2-4 2,0 2,0 2,0 1-2 1-1 1,1 1,1 2,1 3,0 1,0 1,0 1,0 4,1 1,0 1,0 1,0 1,1 1,2 2,1 1,0 0,2 1,1 2,1 1,2 2,1 1,1 1,1 1,1 0,1 2,2 0,3 0,1 1,1 1,2 1,2 2,3 0,1 0,1 1,3 1,1 0,1 1,2 3,2 1,2 0,1 3,3-1,0 1,2 2,2 1,1 1,1 1,0 2,2 0,1 1,1 0,1-1,2 0,1 1,1 0,1 0,4 1,1 0,1 1,1 2,2 1,5 1,2 1,0 0,2 0,1 3,0 1,1 2,0 1,1 0,1 2,1 2,0 4,1 2,2 1,1 2,1 1-1 1,1 1,0 1,0 3,0 1,0 2,0 1,1 1,1 1,1 2,1 0,1 2,0 0-2 1,0 1-1 2,0 0-2-2,2 0-1 0-1-1-2 0-1-1-2 0-2-1-1-1,0 0-3-1-6 0-1-1,0 0-1 0-1 0-2 1,0 0-2 1-1 0-3-1,1-3-1 0-1-2-2 1-1 1,2 1,0 2-1 1,1 1,0 2-5 1-3-2-1-1-2 1,0-2,0-1-1 3,0 1,0 1,0 2,1 3-5 0-1-1,0-1,1-1,0-1-1 2-1 3-2-1,2 2,0 1-1 1-1 1-1 0-1 0-1-1-2 2,0 1,1 0,1 1,0 5-2 0-1-1-1-1-1-1-1-2-2 1-1 1,2 2,0 1,0 1-1 0,1 2-1 2,0-1,1 0,1 3-1 1,0 1,1 2,0 1-1 1-1-3,1 0-1 2-1 3,0 2-1 4-2 0-1 3-2 2-2 0-2 2-1 2-3 1,0 0-1-1-1-1-3 0-2 0-2 1,0 1,1 1,0 1-2 1-1 1,1 0,1 0,2-1,2 3-1 1,1-1,1-2,1-1,1 0,1 2-2 7-3 2-1 2-1 1-1 4,0 0-1-1-1 0-2 1-3 1,0 2-2 0-2 0-2 0-1-1-1 0-2 1-1 0-3 1-2 1-1 0-1 1-2-1-1 1-2-1-1 2-1-1-1 0-2-1,0-1-2-1-2 1-1-1,0-1-2 0-1-1,0-1-2 0-3 0-1-2-2-1-2-2-1 0-24 0-13-1,0-2,0 0-1-1,1-1-1-1,1-1,0-1-1-1-1-1,0-2-1-1,0-1-1-2,0-3-3-1,0-2-2-1,0-1,0 0,1-2,1-2,0-1,0-1-1-1-1-2,2-1,0-2,1-1-1-2,1-1,0-1,0-1,2-2,0-1,1-1-2-2,0 0-1-2,0 0-2-1,0-1,1-1,1-1-1-1,0-1-2-1,0 0,1-2,3-1,1-1,0-1-1 1-2-1-1-1,1-2,1-2,0 0-2-2,0 0-2-2,0-2,2-2,1-1-1 0-2-3-1 0-3-2,1-3-1-1,2-2,0-1-2-2,0-1,0-3-1-1-1-2,0-3,0 0-3-1-1 0-1-3-1 0,2-1,0-2-1-1,1-1-1-1,0-3-4-1,0-1,0 2-46-14,0-10-1-10,0-10-1-12-1-1,1-5,59-4,46-17-1-18-2-13-1-9-1-14-2 1,3 0,2zM488,604l-1-4-2-7 0-4 0-6-1,1 0,2 0,3 0,2 1,1 0,1 1,5 1,1 0,2zM491,568l-1,2-2,2-3,7-1,2 1,1 1-3 1-3 2-4zM495,561l0,1-2,2 1,0 2-2 0-1zM505,555l-1,1-1,0-3,2-1,1-2,1 0,1 2-1 2-1 2-2 2-1zM538,532l-3,3-2,2 0,1 3-3 4-2z">
+                  <title>
+                    Texas: 29,145,505
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h2" d="M202,204l-22,116 11,2 17,4 9,1 14,2 15,3 11,1 14,3 13-94-11-2-13-2-11-1 4-24-6-1-16-3-16-2z">
+                  <title>
+                    Utah: 3,271,616
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h5" d="M885,324l1-1 0-1-1-2 1,0 2,3 0-1-3-5-1-2-1,0-1,0-1,1-2-1-1,1 0,1-3,0 0-1-2-1-2,0 0-2-1-2 0,1-1,0-1-1-2,1-2-1-1-1 0,1-2-1 1,0 1,0 1,0 1,1 1-1 3,1 1-1 1,1 1,2 2,1 1,0 1,1 1-1 1,0 0-1-1-2-1-1-1-1-1,1-3-1-2-2-1-1-1-1 1-1 1,2 1,0 1,2 2,1 2-1-1-1-1-1 1-1 2,0 0,2 1-1 0-2-3-2 1-1-2,0-1-1-1,1-1-1-1-1 0-1-1,0-3-1-1-3 1,1 1,1 1,0 2,1 2,3 1-1 2,1 0-1 1-1-1-1 0-1-1-1 2,0-1-2-5-2-1-1-1,0 0-1-2,0-1,1 0-1-2,0-2,0 0-2-2,0 0-2-1,0-3,2-2-3 1-2 0-3 1,1 1-1 0-1 1-1 0-3-1-1-1-1-1,0-1,0-1-2-2,0-1,0-2-1 0-1 1-1-1,0-1-1-1,0-3-1-1,5-10-5 0,1 0,2 0,1 0,3-2,3 0,1-1,1-1,1-1,0-2,4-2-1-1,1 0,2 0,1-1,1 0,3-2,3-4-1 0-1-1-1-2,0 0,2 0,2 0,1-1,1 0,1 0,1-2,2 0,3-1,2-3,5-1,3 1,1 1,1-2,1 1,1-3,3-1-1-2,1-2,1-2,0 0,1 0,1-1,1-4,1-1,1-3-2 0,1-1,1-1,1-1,1-2,0-1,0-1-1-1,0-3-2 0-1-1-1 1-1-1-1-6,7-5,4-1,1 0,1 0,1-2,1 0,1 0,1-1,1-3,2-1,2-2,0-1,1-2,1-1,1-2,1-1,1 15-2 17-3 5-1 1,0 7,0 10-2 11-1 11-2 13-2 17-3 11-3 17-3zM889,287l-4,2-2,2 2,0-1,2 1,0-2,1 1,1-1,2 0,1-1,1 0,1 0,1 0,1 0,1 0,3 0,1 0,2 1,1 1,0 0-3 0-3 1-1-1-1 1-1 1-2 2-5 0-2 1-1 0-3z">
+                  <title>
+                    Virginia: 8,631,393
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h0" d="M901,170l6-2 7-1 0-1-1-1-1-1 0-3 0-3 0-1 0-3 0-1-1-5 0-1 0-1 0-3 1-1 0-3 1-2 0-1 0-2 0-1-1-3 1-2 2-1 1-1 1-2 1-2 0-1 0-1-2-3 0-1 1-3-1-2-12,3-17,4 0,1 0,3 1,1 0,3 1,2 2,2 0,1 0,2 0,1 0,2 0,1 0,3 0,1 1,2 1,1 0,1 0,2 0,3 0,1 1,0 0-1 1,0 2,1 3,16 0,2z">
+                  <title>
+                    Vermont: 643,077
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h5" d="M187,34l-12-3-13-3-10-3-14-3-13-4-16-4-9-3 0,1 0,1-1,1 2,3 1,0 1,1-1,2 1,2-2,1 0,1-2-2-1,2 0,1 1-1 1,2 2,2 0,1-1,0-2,0 0,2 0,1 1-2 1,0 0,2 0,2 1,2-2,1 0,1-1,1-1,1 0,1-1,2 1,1-1,0 0,3-1,1 1,1-1,1-1,0-1,1-1,0-1,1-2,1-1,1-1-2-1,0-1,0 0,1-1,0 1-2-1,0 2-2 1-1 0,1 0,2 2,0 0-2 0-1 2,0-1,1 1,2 0-1 0-1 3-4-1-1-1,0 0-1 1,0 0-2 1,0 1-1 1,0 0-2 0-1-1-1-1,2-2,1-1,2-4,1-1,1-2,2 0-1 1-1 1-1 2-1 2-3 1,0-1,2 1,0 1-2 1-1 1-1 0-1-1-4 1,0-1-1-2,1-1-1-1-1-1-1-2,1-2-1-1-1-2,0-1-1-4-2-2,0 0-2-2-1-2-2-2-2-2-1-1,0 1,2-1,2-1,1 0,1 0,3 0,2 0,1 1,1 0,1 0,1 1,1 0,1 0,3-1,5 0,1 1,2-1,4-1,3 1,0 0-2 1,0 1,0 0,1 2,2-3,0-1,1-1,1 0,1 2,1 1,1-1,1 0,3-1,1 0,1-1,1-1,0 0-3 1-1 0-1-2,5 1,2 0,1 1,1 1-1 2,0 1,1 0,1 2,0 1,2 1,1 2,0 2,1 2,2 1,1 0,2 0,1 0,2-1,1 1,1-1,1 0,2 1,1 2,1 2,1 1,1 1,0 5,0 2-1 1,0 2,1 2,0 5,2 1,0 0,2 2,0 2,1 2-1 2,0 1,0 2,1 2,0 1,0 1,0 2,0 4-1 4,1 2-1 1,0 3,0 4,1 1-1 9,2 15,4 10,2 0-1-1-1 1-1 1-1 0-2-1-3 2-9 4-18 2-11 2-7zM95,48l0-2-1,1-1,2 1,1 2-1zM95,43l1-2-1,0 0,1-1,1 1,1zM100,36l0-1-1-1-2,0 1-2 0-2-1-1 1-2 1-1 0-1-1,1-2,2-1,1 1,1 1,1 0,1 0,2 0,1 1,0 0,2 1,0zM96,22l0-1-1,0-1,1 2,2 0-1zM93,21l1,0-2-3-1,0 0,2 1,1zM98,19l-1-2-1,0-2,1 1,1 1,1zM87,49l-1,1 1,1z">
+                  <title>
+                    Washington: 7,705,281
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h4" d="M594,196l0,1 1,3 2,0 0,1-1,3 1,6 1,2 0,1 1,1 1,1 3,0 2,1 1,2 0,1 15-1 10,0 9-1 15-1-1-4 1-1 0-1 0-1-1-2-1-2-1-2 0-1 0-1 0-1 0-2 0-2 1-3 0-3 1-3 0-1-1-1 0-3 1-2 0-2 2-1 1-2-1-1-1-1 1-2 0-3 1-2 1-2 0-3-1,0-1-2-2,1-1,1-2,4-1,1-1,1 0,1-1,0-1,0 0-2 0-1 1-1 0-1 0-1 1-2 1-2 2,0 1-1-1-1 1-2-1,0-1-1 0-2 1-2-1-1-1,1-2,0 0-2 1-1-1-2 1-1-1-1 0-1-1-1-2-1-1,0-1-1 0-1 0-1-1-1-3,0-3-1-2,1-1-1-2,0-5-2-17-3-1-4-1,0-2-1-1-1 0,1-2-1-3-2-1,1-2,1-1,0 2-2 0-1 0-1 0-1 1-2-1-1-2,0-2,2-1,1-1-1-1,1-2,1-3,1-3,2-3,0-2-1 0-1-2,2 0,1-1,0 0,14-1,1-1,0 0,1-1,0-1,1-2,1-1,2-1,1-1,1 0,3 0,1 2,0 1,2 1,1 0,1-1,1-1,1 0,3 1,2-1,0 0,2 1,2-1,1 0,1 0,2 1,1 2,2 1,0 3,1 1,1 1,1 3,1 3,2 2,4 3,2 2,0 1,1 1,0 1,2 1,1 0,2 1,1 0,2zM602,115l0-1-2,1 1,1zM601,117l-1,0-2,2 1,0 1-1zM663,151l0-2-1,0-1,1-1,2-1,0-1,3-1,2 0,1 0,2 2,1 1-2 0-2 1-2 1,0-1-2 1-1 0-2zM665,147l-1-1-1,0 0,2 1,0z">
+                  <title>
+                    Wisconsin: 5,893,718
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h1" d="M758,301l0,1 1,2 0,1-1,3 2,2 1,1 0,1 2,1 0,2 2,1 1,2 2,1 1,1 2,0 1,0 1,1-1,1 1,1 0,1 3,2 1,0 1,1 1,0 2,0 1-1 1-1 1-1 0-1 3,2 1-1 4-1 1-1 0-1 0-1 2,0 2-1 2-1 1,1 3-3-1-1 2-1-1-1-1-1 1-3 3-5 1-2 0-3 2-2 0-1 0-1 1-1 0-1 0-2 0-2 2,0 1,1 0,1 4,1 2-3 0-3 1-1 0-1 0-2 1-1 2,1 2-4 1,0 1-1 1-1 0-1 2-3 0-3 0-1 0-2 0-1 10,5 1-5 0-1-1-1-1-1-1,0-1-3-1,1-1,0-3-2-1,1-1,1-1,0-2,1 0,2-2,1-2,0-1-1 0-1-1,0-1,3-1,2-2-1-1,1-1,2-1,1 0,1-1,1-2,2-2-12-19,3-3-21-1,0-2,1 2,3 0,1 0,2 0,2-1,5 0,3-1,1 1,0-1,2 0,1 0,1 0,2-1,1-2,2-1,2-1,2-2,0 0,1-1,0-1-1-1,0-1,2 0,1-2,1-1,2 0,2-1,1 1,1 1,2-1,0-1,1 0,1-1-1 0-1 0-1-2,0-1,0-1,3 0,2-1,1 1,1 0,3-1,0 0,1 0,2-1,1-1,1-2,0z">
+                  <title>
+                    West Virginia: 1,793,716
+                  </title>
+                </path>
+                <path class="pc-mark pm-land pc-h0" d="M253,213l-4,24 11,1 13,2 11,2 14,2 11,1 11,1 11,2 11,1 11,1 8,1 11,0 3-38 1-9 1-8 3-39-13-1-12-1-13-1-14-2-18-2-14-2-18-3-14-2-2,12z">
+                  <title>
+                    Wyoming: 576,851
+                  </title>
+                </path></svg>
+                <text x="10" y="478">
+                  576,851
+                </text>
+                <rect class="pc-h0" x="61.5" y="469" width="18" height="10"></rect>
+                <rect class="pc-h1" x="79.5" y="469" width="18" height="10"></rect>
+                <rect class="pc-h2" x="97.5" y="469" width="18" height="10"></rect>
+                <rect class="pc-h3" x="115.5" y="469" width="18" height="10"></rect>
+                <rect class="pc-h4" x="133.5" y="469" width="18" height="10"></rect>
+                <rect class="pc-h5" x="151.5" y="469" width="18" height="10"></rect>
+                <rect class="pc-h6" x="169.5" y="469" width="18" height="10"></rect>
+                <text x="193.5" y="478">
+                  39,538,223
+                </text>
+                <rect class="pm-empty" x="276.5" y="469" width="18" height="10"></rect>
+                <text x="300.5" y="478">
+                  no value
+                </text></svg>
+              </div>
+            </section>
+          </div>
+          <nav class="pager" aria-label="More examples">
+            <a class="pager-link prev" href="index%EF%B9%96map%EA%A4%B7renewables.html"><span class="pager-dir">← Previous</span><span class="pager-title">Renewable energy in Europe</span></a> <a class="pager-link next" href="index%EF%B9%96placeholder%EA%A4%B7sizes.html"><span class="pager-dir">Next →</span><span class="pager-title">Banner sizes</span></a>
+          </nav>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

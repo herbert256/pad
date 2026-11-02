@@ -1,9 +1,9 @@
 <?php
 
-  // {sitemap} ... {/sitemap}: the pages of the application as rows - page, url, lastmod -
+  // {pad:sitemap} ... {/pad:sitemap}: the pages of the application as rows - page, url, lastmod -
   // generated from the file tree by padSitemapPages (lib/sitemap.php, its walk in
   // tags/_lib/sitemap.php), for an HTML sitemap or a menu. A first parameter names a
-  // directory, {sitemap 'docs'}, and lists the pages below it only.
+  // directory, {pad:sitemap 'docs'}, and lists the pages below it only.
 
   $padSitemapDir = trim ( (string) ( $padParm ?? '' ), '/' );
 
@@ -14,7 +14,7 @@
        and ( ! preg_match ( '/^[a-zA-Z0-9][a-zA-Z0-9_-]*(\/[a-zA-Z0-9][a-zA-Z0-9_-]*)*$/D', $padSitemapDir )
              or ! is_dir ( APP . $padSitemapDir ) ) ) {
     if ( $padCheckSyntax )
-      padError ( "there is no directory '" . padMakeSafe ( $padSitemapDir, 60 ) . "' for {sitemap}" );
+      padError ( "there is no directory '" . padMakeSafe ( $padSitemapDir, 60 ) . "' for {pad:sitemap}" );
     return FALSE;
   }
 

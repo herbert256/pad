@@ -7,36 +7,35 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{effect 'name', ...} ... {/effect}
 {effect:name ...} ... {/effect:name}
-{typewriter speed=14, delay=0, caret='bar', mono} ... {/typewriter}
-{glitch repeat=3, duration=2.5} ... {/glitch}
-{shimmer} ... {/shimmer}
-{gradient colors='#f97316, #db2777', angle=90, animate} ... {/gradient}
-{wave height=0.25} ... {/wave}
-{highlighter color='gold', scroll} ... {/highlighter}
-{underline style='line', color='#e11d48', thickness=2, hover} ... {/underline}
-{strike style='line', scroll} ... {/strike}
-{encircle style='circle', thickness=2, hover} ... {/encircle}
-{rotator hold=2.5, repeat=3} teams, makers, you {/rotator}
-{decipher duration=1.2, glyphs='symbols', mono} ... {/decipher}
-{countup to=1250, from=0, prefix='€', suffix='+', scroll/}
-{marquee duration=20, direction='left', gap=48, label='name'} ... {/marquee}
-{reveal motion='up', distance=32} ... {/reveal}
-{scrollprogress at='top', size=3, color='#e11d48'/}
-{tilt angle=8, toward='top-right', glare} ... {/tilt}
-{nudge style='bounce', repeat=2, delay=0} ... {/nudge}
-{spotlight at='top', color='#f59e0b'} ... {/spotlight}
-{spinner style='ring', label='Loading', size=24/}
-{skeleton shape='text', lines=3, height=160, size=48, label='Loading'/}
-{confetti pieces=120, spread=70, seed=7/}
+{effect:typewriter speed=14, delay=0, caret='bar', mono} ... {/effect:typewriter}
+{effect:glitch repeat=3, duration=2.5} ... {/effect:glitch}
+{effect:shimmer} ... {/effect:shimmer}
+{effect:gradient colors='#f97316, #db2777', angle=90, animate} ... {/effect:gradient}
+{effect:wave height=0.25} ... {/effect:wave}
+{effect:highlighter color='gold', scroll} ... {/effect:highlighter}
+{effect:underline style='line', color='#e11d48', thickness=2, hover} ... {/effect:underline}
+{effect:strike style='line', scroll} ... {/effect:strike}
+{effect:encircle style='circle', thickness=2, hover} ... {/effect:encircle}
+{effect:rotator hold=2.5, repeat=3} teams, makers, you {/effect:rotator}
+{effect:decipher duration=1.2, glyphs='symbols', mono} ... {/effect:decipher}
+{effect:countup to=1250, from=0, prefix='€', suffix='+', scroll/}
+{effect:marquee duration=20, direction='left', gap=48, label='name'} ... {/effect:marquee}
+{effect:reveal motion='up', distance=32} ... {/effect:reveal}
+{effect:scrollprogress at='top', size=3, color='#e11d48'/}
+{effect:tilt angle=8, toward='top-right', glare} ... {/effect:tilt}
+{effect:nudge style='bounce', repeat=2, delay=0} ... {/effect:nudge}
+{effect:spotlight at='top', color='#f59e0b'} ... {/effect:spotlight}
+{effect:spinner style='ring', label='Loading', size=24/}
+{effect:skeleton shape='text', lines=3, height=160, size=48, label='Loading'/}
+{effect:confetti pieces=120, spread=70, seed=7/}
 PAD;
 
   $tagParms   = [
-    'name'  => 'The effect, a file of <code>pad/subs/effects/types/</code>: '
+    'kind after colon'  => 'The effect, a file of <code>pad/subs/effects/types/</code>: '
              . implode ( ', ', array_map ( fn ( $effect ) => "<code>$effect</code>", padKinds ( 'effects' ) ) )
-             . '. The effect: type names it as well - <code>{effect:typewriter}...{/effect:typewriter}</code> - and so does the bare name, <code>{typewriter}...{/typewriter}</code>, after every other kind of tag: a store, a field or an array of the name wins.',
-    'first' => 'The effect\'s own first parameter, the second of <code>{effect}</code>: the text of a single tag - <code>{typewriter \'Hello\'/}</code> - or the number of a count-up, <code>{countup 1250/}</code>.' ];
+             . '. The effect: prefix selects it - <code>{effect:typewriter}...{/effect:typewriter}</code>.',
+    'first' => 'The effect\'s own first parameter, the second of <code>{effect:typewriter}</code>: the text of a single tag - <code>{effect:typewriter \'Hello\'/}</code> - or the number of a count-up, <code>{effect:countup 1250/}</code>.' ];
 
   $tagOptions = [
     'duration'  => 'Seconds one run takes: a glitch\'s cycle, a shimmer\'s sweep, a marquee\'s round, a count.',
@@ -70,6 +69,6 @@ PAD;
     'hold'      => 'rotator: seconds each phrase stands (2.5).',
     'pieces'    => 'confetti: how many (120); <code>spread</code> the angle they fly out in; <code>seed</code> which pieces.' ];
 
-  $tagSee     = [ 'widget', 'toy', 'section' ];
+  $tagSee     = [ 'widget:tabs', 'toy:life', 'section:hero' ];
 
 ?>

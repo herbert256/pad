@@ -19,7 +19,7 @@
     <span class="card-go" aria-hidden="true">→</span>
     <h3>Islands with props</h3>
     <p>PHP prepares the data, the ^ sigil writes a field as JSON into a data attribute, and one small runtime mounts a component on every island of the page - each with its own state.</p>
-    <div class="chips"><code class="chip is-server">{^field}</code><code class="chip is-server">a {loop} of islands</code><code class="chip is-client">PadReact.island</code><code class="chip is-client">props</code></div>
+    <div class="chips"><code class="chip is-server">{^field}</code><code class="chip is-server">a {sequence:loop} of islands</code><code class="chip is-client">PadReact.island</code><code class="chip is-client">props</code></div>
   </a>
   
   <a class="card" href="?examples/enhance">
@@ -27,7 +27,7 @@
     <span class="card-go" aria-hidden="true">→</span>
     <h3>Progressive enhancement</h3>
     <p>PAD renders a complete table - with JavaScript off it is all there. React then takes the same element over and adds search and sorting, and can show you what the server sent.</p>
-    <div class="chips"><code class="chip is-server">{people}</code><code class="chip is-server">{^people}</code><code class="chip is-client">serverHtml</code><code class="chip is-client">useMemo</code></div>
+    <div class="chips"><code class="chip is-server">{array:people}</code><code class="chip is-server">{^people}</code><code class="chip is-client">serverHtml</code><code class="chip is-client">useMemo</code></div>
   </a>
   
   <a class="card" href="?examples/products">
@@ -41,9 +41,9 @@
   <a class="card" href="?examples/topic">
     <span class="card-icon" aria-hidden="true">💬</span>
     <span class="card-go" aria-hidden="true">→</span>
-    <h3>Providers with {reactData}</h3>
-    <p>Four providers in _providers/ query the database, each building on the one before it; {reactData} writes every answer as a mount point and React draws the forum topic.</p>
-    <div class="chips"><code class="chip is-server">{reactData}</code><code class="chip is-server">_providers/</code><code class="chip is-server">db()</code><code class="chip is-client">getAttribute(&#039;data&#039;)</code></div>
+    <h3>Providers with {pad:reactData}</h3>
+    <p>Four providers in _providers/ query the database, each building on the one before it; {pad:reactData} writes every answer as a mount point and React draws the forum topic.</p>
+    <div class="chips"><code class="chip is-server">{pad:reactData}</code><code class="chip is-server">_providers/</code><code class="chip is-server">db()</code><code class="chip is-client">getAttribute(&#039;data&#039;)</code></div>
   </a>
   
 </div>
@@ -83,8 +83,8 @@
     <span class="card-icon" aria-hidden="true">📈</span>
     <span class="card-go" aria-hidden="true">→</span>
     <h3>PAD draws, React steers</h3>
-    <p>React holds the controls; PAD renders the {chart} as SVG and answers just that {fragment}. The first chart is in the HTML before any script ran.</p>
-    <div class="chips"><code class="chip is-server">{chart}</code><code class="chip is-server">{fragment}</code><code class="chip is-server">padFragment</code><code class="chip is-client">dangerouslySetInnerHTML</code></div>
+    <p>React holds the controls; PAD renders the {chart:bar} as SVG and answers just that {pad:fragment}. The first chart is in the HTML before any script ran.</p>
+    <div class="chips"><code class="chip is-server">{chart:bar}</code><code class="chip is-server">{pad:fragment}</code><code class="chip is-server">padFragment</code><code class="chip is-client">dangerouslySetInnerHTML</code></div>
   </a>
   
   <a class="card" href="?examples/live">

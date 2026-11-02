@@ -5,7 +5,7 @@
   // colors= the ink, the second the paper. The alt text names the SVG; alt='' leaves it
   // decoration.
   //
-  //   {img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour'/}
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour'/}
   //
   // The rows are a cell times the height of an equilateral triangle apart, so every dot is a
   // cell from its six neighbours; the picture is made as small as the cells - each pixel the

@@ -1,4 +1,4 @@
-{data 'fruit'}["apple","pear"]{/data}
-<p>A clean pass sees the store: {code clean}{fruit}{$fruit} {/fruit}{/code}</p>
-{code}{sequence '7;8;9', push='nums'/}{/code}
+{pad:data 'fruit'}["apple","pear"]{/pad:data}
+<p>A clean pass sees the store: {pad:code clean}{data:fruit}{$fruit} {/data:fruit}{/pad:code}</p>
+{pad:code}{sequence:list '7;8;9', push='nums'/}{/pad:code}
 <p>A plain pass pushed nums, and it survived: {pull:nums}{$sequence} {/pull:nums}</p>

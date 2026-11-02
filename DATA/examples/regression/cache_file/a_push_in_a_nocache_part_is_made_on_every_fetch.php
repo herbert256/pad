@@ -1,6 +1,6 @@
 <?php
 
-  // A {push} inside a {nocache} part of a page the cache would keep pushes what this fetch
+  // A {pad:push} inside a {pad:nocache} part of a page the cache would keep pushes what this fetch
   // renders: nocachepush, fetched twice at a fresh address, prints a new part and a new push
   // both times. The page was kept with its stack filled in - the part rendered anew on every
   // hit, its push showed the first fetch's text for the entry's whole life.

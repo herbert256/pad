@@ -1,7 +1,7 @@
 <h3>array, found</h3>
 
 <table border=1>
-  {array "name&comma; phone from staff where phone like '%4%'"}
+  {pad:array "name&comma; phone from staff where phone like '%4%'"}
     <tr>
       <td>{$name}</td>
       <td>{$phone}</td>
@@ -11,13 +11,13 @@
       <td>Nothing</td>
       <td>Found</td>
     </tr>
-  {/array}
+  {/pad:array}
 </table>
 
 <h3>array, no records found</h3>
 
 <table border=1>
-  {array "* from staff where name like '%x%'"}
+  {pad:array "* from staff where name like '%x%'"}
     <tr>
       <td>{$name}</td>
       <td>{$phone}</td>
@@ -27,5 +27,5 @@
       <td>Nothing</td>
       <td>Found</td>
     </tr>
-  {/array}
+  {/pad:array}
 </table>

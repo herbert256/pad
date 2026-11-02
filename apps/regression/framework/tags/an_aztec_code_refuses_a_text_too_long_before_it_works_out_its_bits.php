@@ -3,7 +3,7 @@
   // An aztec code of a text no symbol can hold is refused before its bits are worked out - the
   // walk that finds the fewest bits keeps some 3 MB of memory for every 1000 characters, so
   // 60,000 characters took 170 MB before the answer was that they do not fit, and a text of
-  // a request put in {aztec} could end the request at a stock memory limit. The largest
+  // a request put in {barcode:aztec} could end the request at a stock memory limit. The largest
   // symbol holds 1664 codewords of 12 bits less the error correction; at the best rate of 2.5
   // bits a character that is at most 7569 characters (ecc=5), 6134 at the default 23%. The
   // longest texts that still fit are unchanged: 7564 characters of '. ' at ecc=5, 3832 digits.

@@ -1,6 +1,6 @@
 <?php
 
-  // A fetch made for a local request gets the {debug} box of the page it fetches; kept for
+  // A fetch made for a local request gets the {pad:debug} box of the page it fetches; kept for
   // the ttl, that copy was served to every remote visitor after it. The local request still
   // sees its box, but the answer is not kept.
 

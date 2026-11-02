@@ -16,7 +16,7 @@
 //              directories, then _common, then the engine's pad/tags; {include:x} to
 //              _include/x.pad; | money to _functions/money.php; callback='x' to
 //              _callbacks/x.php; and {$total} in orders.pad to the line of orders.php - or
-//              of a _inits.php, _exits.php, _lib file or {set} - that assigns it
+//              of a _inits.php, _exits.php, _lib file or {pad:set} - that assigns it
 
 const fs = require('fs');
 const path = require('path');
@@ -34,9 +34,9 @@ const KIND = {
 
 // A ~ just inside the brace is whitespace control - {~items~}, {~/items} - and no part of
 // the name: without it here such a pair was never opened or never closed for the close-tag help.
-const TAG_RE = /\{~?(\/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)/g;
-// The branch words of {if} and {case} divide a pair; they never open one of their own.
-const BRANCH_TAGS = new Set(['else', 'elseif', 'when']);
+const TAG_RE = /\{~?(\/?)([A-Za-z_][A-Za-z0-9_]*:[A-Za-z_][A-Za-z0-9_]*(?:@[A-Za-z0-9_-]*)?)([^{}]*)/g;
+// The branch words of {pad:if} and {pad:case} divide a pair; they never open one of their own.
+const BRANCH_TAGS = new Set(['pad:else', 'pad:elseif', 'pad:when']);
 
 // The comments the engine drops before it scans - {# ... #}, not the option sigil {#name},
 // and {-- ... --} - with any tag written inside them.
@@ -69,7 +69,7 @@ function textBefore(uri, position) {
 }
 
 // The pairs still open in front of the cursor. A tag written without the slash opens a pair -
-// a single tag is written {tag/}, or {tag ... /| pipe} - so the stack needs no list of the
+// a single tag is written {function:tag/}, or {function:tag ... /| pipe} - so the stack needs no list of the
 // tags that are single: a list kept by hand, or counted from the applications, guessed.
 
 function openTags(before) {
@@ -108,13 +108,22 @@ function completion(params) {
     if (open < 0 || before.indexOf('}', open) >= 0) return [];
     // past the ~ of whitespace control - {~ec - as past the brace itself
     const first = before.charAt(open + 1) === '~' ? before.charAt(open + 2) : before.charAt(open + 1);
-    if (!/[/A-Za-z_$%!@]/.test(first || '')) return [];
+    if (first && !/[/A-Za-z_$%!@?#&^]/.test(first)) return [];
 
-    return COMPLETIONS.map((c) => ({
+    const head = before.slice(open + 1).replace(/^~/, '');
+    const tagPosition = /^[A-Za-z_0-9:]*$/.test(head);
+    const prefix = tagPosition && head.includes(':') ? head.split(':')[0] + ':' : '';
+    const candidates = tagPosition ? COMPLETIONS.flatMap((c) => {
+        if (c.label.includes(':')) return [c];
+        if (c.detail === 'pipe function') return [{ ...c, label: 'function:' + c.label }];
+        if (c.detail === 'property@tag') return [{ ...c, label: 'property:' + c.label }];
+        return [];
+    }).filter((c) => !prefix || c.label.startsWith(prefix)) : COMPLETIONS;
+    return candidates.map((c) => ({
         label: c.label,
         kind: KIND[c.kind] || 1,
         detail: c.detail,
-        insertText: c.insert || c.label,
+        insertText: tagPosition ? c.label.slice(prefix.length) : (c.insert || c.label),
     }));
 }
 
@@ -286,7 +295,7 @@ function hits(file, text, re, group) {
 }
 
 // Where a field gets its value, nearest first: the page's paired .php, the template's own
-// {set $x = ...} or {tag %x = ...}, the _inits.php and _exits.php of the directory chain,
+// {pad:set $x = ...} or {function:tag %x = ...}, the _inits.php and _exits.php of the directory chain,
 // then the _lib files. Only when none assigns it, an array key 'x' => - a row field.
 function assignments(loc, name, docFile, docText) {
     const esc = name.replace(/[^A-Za-z0-9_]/g, '');
@@ -318,7 +327,7 @@ function assignments(loc, name, docFile, docText) {
 
 // ---------------- the word under the cursor ----------------
 
-// What the cursor is on, in PAD's terms: a tag name ({badge}, {/badge}, {app:badge}), a
+// What the cursor is on, in PAD's terms: a tag name ({badge}, {/app:badge}, {app:badge}), a
 // type prefix (app:), a pipe function (| money), a property (first@items), a field
 // ($total, %total, !total, ?total), an option (sort, callback=), a callback name
 // (callback='x') or a construct (@page@).
@@ -411,14 +420,14 @@ function located(uri) {
 
 // What the word under the cursor resolves to, in PAD's lookup order. Each target says what
 // it is: 'file' an application's own (_tags, _include, _functions, _callbacks, _common),
-// 'engine' a file under pad/, 'assign' a line that assigns a field, 'store' a {data} or
-// {content} block of this template.
+// 'engine' a file under pad/, 'assign' a line that assigns a field, 'store' a {pad:data} or
+// {pad:content} block of this template.
 function targets(loc, ctx, docFile, text) {
     const top = { start: { line: 0, character: 0 }, end: { line: 0, character: 0 } };
     const as = (kind) => (files) => files.map((f) => ({ file: f, range: top, kind }));
     const own = as('file'), engine = as('engine');
     const assigned = () => assignments(loc, w, docFile, text).map((a) => Object.assign(a, { kind: 'assign' }));
-    const stored = (kinds) => hits(docFile, text, new RegExp('\\{(?:' + kinds + ")\\s+(['\"]" + w + "['\"])", 'g'), 1)
+    const stored = (kinds) => hits(docFile, text, new RegExp('\\{pad:(?:' + kinds + ")\\s+(['\"]" + w + "['\"])", 'g'), 1)
         .map((a) => Object.assign(a, { kind: 'store' }));
     const w = ctx.word;
     switch (ctx.role) {
@@ -546,7 +555,7 @@ function bomOnDisk(file) {
 
 // A place the engine names in this document - a line, and a column counted in characters
 // (code points) - as a range: the column turned into the UTF-16 units LSP counts, the mark
-// covering the tag when it stands there, else the name or the {tag} it opens on.
+// covering the tag when it stands there, else the name or the {function:tag} it opens on.
 function spot(text, line, column, tag) {
     const lineText = text.split('\n')[line - 1];
     if (lineText === undefined) return null;
@@ -559,7 +568,7 @@ function spot(text, line, column, tag) {
     return { start: { line: line - 1, character }, end: { line: line - 1, character: character + width } };
 }
 
-// Where the error belongs in the template: the tag the message quotes ({if 1 eq 1}), the
+// Where the error belongs in the template: the tag the message quotes ({pad:if 1 eq 1}), the
 // source of the tag the engine was busy with (padBetweenOrg), a quoted name ('$typo') -
 // the first one the text holds. An error raised in a PHP file of this template's own
 // application is reported with that file and line; one PAD cannot place goes on line 1.
@@ -592,7 +601,7 @@ function diagnosticFrom(out, errText, text, file, loc, page) {
     // The engine places the error itself when it can: template names the file the tag stands
     // in, its line, and its column counted in characters (code points). In this document the
     // mark goes there - the quoted text below is only found at its first spot, which put "the
-    // pair {if 1 eq 1} never closes" on an earlier {if 1 eq 1} that closes fine.
+    // pair {pad:if 1 eq 1} never closes" on an earlier {pad:if 1 eq 1} that closes fine.
     const t = json.template;
     if (t && typeof t.path === 'string' && t.line > 0 && t.column > 0) {
         if (path.resolve(t.path) === path.resolve(file)) {

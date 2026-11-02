@@ -14,7 +14,7 @@
 
   // How long, in seconds, the page cache keeps an answer and serves it without building
   // the page again (cache/inits.php). 0 keeps nothing, whatever $padCache says; a page's
-  // {meta cache=} sets its own.
+  // {pad:meta cache=} sets its own.
 
   $padCacheServerAge = $padCacheServerAge ?? 0;
 

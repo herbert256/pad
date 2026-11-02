@@ -1,6 +1,6 @@
 <?php
 
-  // The {oauth 'github'/} button: a link styled as a button, Log in with <the provider's name>,
+  // The {pad:oauth 'github'/} button: a link styled as a button, Log in with <the provider's name>,
   // with the provider's icon when subs/icons/ has one of its name - else the log-in icon. Its
   // style is www/assets/oauth/oauth.css, written once per page (padWidgetStyle), its colours
   // --pad-oauth-* custom properties with light-dark() defaults. Only the provider's name and

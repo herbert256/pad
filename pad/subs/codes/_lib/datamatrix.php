@@ -5,12 +5,12 @@
   // modules up to 144 by 144. Its finder is a solid L along the left and the bottom of every
   // data region, a dotted line along the top and the right.
   //
-  //   {datamatrix 'PAD-2026-0042'/}
+  //   {barcode:datamatrix 'PAD-2026-0042'/}
   //   {barcode:datamatrix $serial, size=120/}
   //
   // padDataMatrix          the SVG, or '' when the text does not fit in a 144 by 144 symbol
   // padDataMatrixMatrix    the symbol: rows of TRUE (dark) and FALSE (light), no quiet zone
-  // padDataMatrixGs1       the codewords of GS1 DataMatrix, FNC1 first ({datamatrix '(01)...', gs1/})
+  // padDataMatrixGs1       the codewords of GS1 DataMatrix, FNC1 first ({barcode:datamatrix '(01)...', gs1/})
   //
   // The text is encoded in the ASCII encodation: two digits to a codeword, a character of
   // ASCII to one, a byte above it - of the text's UTF-8 - to two, after the upper shift, and

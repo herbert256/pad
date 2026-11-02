@@ -1,9 +1,9 @@
 <table border='1'>
-  {row}
+  {array:row}
     <tr>
-      {column}
-        {cell ($row*10) + $column/} 
-      {/column}
+      {array:column}
+        {content:cell ($row*10) + $column/} 
+      {/array:column}
     </tr>
-  {/row}
+  {/array:row}
 </table>

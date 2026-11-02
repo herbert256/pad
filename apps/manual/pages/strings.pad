@@ -1,4 +1,4 @@
-{meta title='String helpers'/}
+{pad:meta title='String helpers'/}
 
 <p>The text a page shows is often made in its PHP first: a title cut to fit a card, a column
 name turned into a label, a slug for a database column, a token for a mail. PHP's own
@@ -34,7 +34,7 @@ a search result: the place the phrase stands, with the text around it.
 <code>padStrSquish</code> makes text pasted into a form field compare and store the same way,
 tabs, newlines and no-break spaces included.</p>
 
-{example 'fragments/strings_1'/}
+{common:example 'fragments/strings_1'/}
 
 <h2>Names in every case</h2>
 
@@ -44,7 +44,7 @@ dash, a space or a change of case separates them - and write them in the case as
 other. <code>padStrHeadline</code> makes a label of a column name; <code>padStrTitle</code>
 recases a sentence and leaves the rest of it as it is.</p>
 
-{example 'fragments/strings_2'/}
+{common:example 'fragments/strings_2'/}
 
 <h2>Slugs and cutting at a marker</h2>
 
@@ -54,7 +54,7 @@ stored when a post is saved is the slug a template makes for its link. The same 
 text without the search string comes back unchanged. <code>padStrBetween</code> takes what
 follows the first <code>$from</code> up to the last <code>$to</code>.</p>
 
-{example 'fragments/strings_3'/}
+{common:example 'fragments/strings_3'/}
 
 <h2>Patterns and masks</h2>
 
@@ -63,7 +63,7 @@ for any run of characters - a list of patterns matches when one of them does - w
 writing a regular expression. <code>padStrMask</code> hides part of a text: a negative index
 counts from the end, a negative length stops that many characters before it.</p>
 
-{example 'fragments/strings_4'/}
+{common:example 'fragments/strings_4'/}
 
 <h2>Plural and singular</h2>
 
@@ -74,7 +74,7 @@ so <code>"$n " . padStrPlural ( 'file', $n )</code> reads right for every number
 or a Countable counts as its size. The case of the word is kept: Person, People;
 PERSON, PEOPLE. <code>padStrSingular</code> goes the other way.</p>
 
-{example 'fragments/strings_5'/}
+{common:example 'fragments/strings_5'/}
 
 <h2>Random strings and UUIDs</h2>
 
@@ -84,7 +84,7 @@ as RFC 9562 writes it: version 4 is random; version 7 starts with the time, so i
 sort later and a database index on them stays in order. The example shows their shape, as
 their value differs on every request.</p>
 
-{example 'fragments/strings_6'/}
+{common:example 'fragments/strings_6'/}
 
 <h2>Wrong input</h2>
 

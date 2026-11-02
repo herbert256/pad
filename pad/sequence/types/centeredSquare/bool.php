@@ -3,7 +3,7 @@
   // Membership test for centeredSquare, 1, 5, 13, 25, 41, ...: x is a term when x - 1 is
   // 2n(n - 1) for a whole n, which stands next to the square root of (x - 1) / 2, so the root
   // is taken once and the whole numbers around it are tried exactly. build/check.php asks it
-  // for {keep centeredSquare}, {remove centeredSquare} and {flag centeredSquare}.
+  // for {keep:centeredSquare}, {remove:centeredSquare} and {pad:flag centeredSquare}.
   //
   // Not the type's build: pqBuild() ranks function.php before bool.php.
 

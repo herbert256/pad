@@ -1,14 +1,14 @@
 <table border=1>
  
-  {customers $customerNumber = 495}
+  {select:customers $customerNumber = 495}
 
-    {orders}
+    {select:orders}
 
-        {details}
+        {select:details}
     
-          {products}
+          {select:products}
     
-            {lines}
+            {common:lines}
 
               <tr>
                 <td> {$customerNumber}  </td>
@@ -20,14 +20,14 @@
                 <td> {$productLine}     </td>
               </tr>
     
-            {/lines}
+            {/common:lines}
           
-          {/products}
+          {/select:products}
     
-        {/details}
+        {/select:details}
         
-    {/orders}
+    {/select:orders}
     
-  {/customers}
+  {/select:customers}
 
 </table>

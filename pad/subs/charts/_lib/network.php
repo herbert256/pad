@@ -1,6 +1,6 @@
 <?php
 
-  // Connections: {chart 'network', data='friends', source='from', target='to'}.
+  // Connections: {chart:network data='friends', source='from', target='to'}.
   //
   // A row is a link between two nodes; source= and target= name the fields - else the
   // first two that are no number. value= names a numeric field that makes a link thicker;

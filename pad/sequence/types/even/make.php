@@ -5,7 +5,7 @@
   // returned unchanged, giving 2, 4, 6, 8, ...
   //
   // init.php has normally already put the range on the even numbers, so for a plain build
-  // this is the identity. It earns its keep as a play, where {make even} rounds each term
+  // this is the identity. It earns its keep as a play, where {make:even} rounds each term
   // of another sequence up to an even value.
 
   // A value that is no whole number has no term here - a word in the list a make play is

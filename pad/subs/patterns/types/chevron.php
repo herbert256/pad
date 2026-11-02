@@ -3,7 +3,7 @@
   // chevron - bold zigzag bands the size apart, the inks taking turns row by row, their
   // corners sharp. Drawn as it is: the seed changes nothing.
   //
-  //   {pattern 'chevron', size=30, colors='#fbf7f0, #3d405b, #e07a5f'/}
+  //   {pattern:chevron size=30, colors='#fbf7f0, #3d405b, #e07a5f'/}
 
   return [
 

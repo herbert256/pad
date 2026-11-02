@@ -18,7 +18,7 @@
   }
 
   // The name a field posts under. A kind that posts a list - a multiselect - posts it as
-  // name[], so PHP hands the page every choice: {multiselect 'interests'} posts interests[],
+  // name[], so PHP hands the page every choice: {input:multiselect 'interests'} posts interests[],
   // and interests[] written out stays as it is. That name is the one the list is judged by -
   // the rules of the template read before the page's PHP runs (lib/form.php
   // padFormRulesField), padValidate, the browser's checker - and the field asks it here too,

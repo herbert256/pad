@@ -1,4 +1,4 @@
-{employees where="officeCode = 4"}
+{select:employees where="officeCode = 4"}
   <p>{$firstName} {$lastName} reports to
-    {managers}{$firstName} {$lastName}@else@nobody{/managers}</p>
-{/employees}
+    {select:managers}{$firstName} {$lastName}@else@nobody{/select:managers}</p>
+{/select:employees}

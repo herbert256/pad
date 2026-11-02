@@ -1,9 +1,9 @@
-{meta title='In Italian', about='lang=\'it\' - Snowball\'s Italian stop words and stemmer: an elided article is no part of the word, a word is found in another form and without its accents.'/}
-{data 'pagine'}
+{pad:meta title='In Italian', about='lang=\'it\' - Snowball\'s Italian stop words and stemmer: an elided article is no part of the word, a word is found in another form and without its accents.'/}
+{pad:data 'pagine'}
 [ { "t": "Le università italiane" }, { "t": "Studiare all'università di Bologna" },
   { "t": "Un viaggio in treno" }, { "t": "Viaggiare con gli amici" } ]
-{/data}
+{/pad:data}
 <ul>
-  <li>universita: {search 'pagine', q='universita', lang='it'}{$t}; {/search}</li>
-  <li>viaggi: {search 'pagine', q='viaggi', lang='it'}{$t}; {/search}</li>
+  <li>universita: {pad:search 'pagine', q='universita', lang='it'}{$t}; {/pad:search}</li>
+  <li>viaggi: {pad:search 'pagine', q='viaggi', lang='it'}{$t}; {/pad:search}</li>
 </ul>

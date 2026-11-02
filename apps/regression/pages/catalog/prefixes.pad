@@ -1,17 +1,17 @@
-action:   {echo 'z' | action:reverse/}.
-bool:     {bool 'catPb'}1{/bool}{bool:catPb}y{/bool:catPb}
+action:   {pad:echo 'z' | action:reverse/}.
+bool:     {pad:bool 'catPb'}1{/pad:bool}{bool:catPb}y{/bool:catPb}
 constant: {constant:PHP_INT_SIZE/}
-content:  {content 'catK'}hello{/content}{content:catK/}
-data:     {data 'catD'}[1,2]{/data}{echo '' | data:catD . data:catD/}
-field:    {set $catF = 'v'/}{echo '' | field:catF . '!'/}
-function: {echo 'ab' | function:exclaim/}
-include:  {set $who = 'bob'/}{include:fixture/}
+content:  {pad:content 'catK'}hello{/pad:content}{content:catK/}
+data:     {pad:data 'catD'}[1,2]{/pad:data}{pad:echo '' | data:catD . data:catD/}
+field:    {pad:set $catF = 'v'/}{pad:echo '' | field:catF . '!'/}
+function: {pad:echo 'ab' | function:exclaim/}
+include:  {pad:set $who = 'bob'/}{include:fixture/}
 keep:     {keep:prime rows=4, from=10}{$sequence},{/keep:prime}
-level:    {data 'catR'}[{"sub":[1,2]}]{/data}{catR}{echo '' | level:sub . level:sub/}={level:sub}{$sub}{/level:sub}{/catR}
-local:    {echo '' | local:nums . local:nums/}
+level:    {pad:data 'catR'}[{"sub":[1,2]}]{/pad:data}{data:catR}{pad:echo '' | level:sub . level:sub/}={level:sub}{$sub}{/level:sub}{/data:catR}
+local:    {pad:echo '' | local:nums . local:nums/}
 make:     {make:fibonacci rows=3}{$sequence},{/make:fibonacci}
-parm:     {true name='v'}{parm:name/}{/true}
-property: {data 'catXs'}[7,8]{/data}{catXs}{property:current/},{/catXs}
-pull:     {sequence '1..3', push='catPp'/}{echo '' | pull:catPp . pull:catPp/}
+parm:     {pad:true name='v'}{parm:name/}{/pad:true}
+property: {pad:data 'catXs'}[7,8]{/pad:data}{data:catXs}{property:current/},{/data:catXs}
+pull:     {sequence:range '1..3', push='catPp'/}{pad:echo '' | pull:catPp . pull:catPp/}
 remove:   {remove:prime rows=6, from=10}{$sequence},{/remove:prime}
-sequence: {echo '' | sequence:fibonacci(8)/}
+sequence: {pad:echo '' | sequence:fibonacci(8)/}

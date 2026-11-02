@@ -1,32 +1,32 @@
-{meta title='One form'/}
+{pad:meta title='One form'/}
 <p class="inputs-lead">Every kind of field in one form, each with rules. <code>client</code> on the
 form checks the rules in the browser before the form leaves, with the messages the server gives -
 the server checks the post again all the same. Send it empty to see them.</p>
 
-{form 'booking', class='inputs-try', client, error='Please correct the fields marked below.'}
-  {slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}
-  {stepper 'guests', label='Guests', min=1, max=12, rules='required|integer|between:1,12'/}
-  {toggle 'terms', label='I accept the terms', rules='accepted'/}
-  {stars 'score', label='Your rating', rules='required'/}
-  {colorpicker 'tint', label='Colour', value='#2a78d6', rules='required|color'/}
-  {datepicker 'arrival', label='Arrival', rules='required|date'/}
-  {timepicker 'pickup', label='Pick-up time', min='08:00', max='18:00', every=30, rules='required|time'/}
-  {taginput 'topics', label='Topics', suggestions='pad, php, forms', rules='required|max:60'/}
-  {signature 'signed', label='Signature', rules='required'/}
-  {mdeditor 'note', label='A note', rows=4, rules='required|min:10'/}
-  {dropzone 'resume', label='Your CV', accept='.pdf'/}
-  {newpassword 'password', label='Password', rules='required|min:12'/}
-  {otp 'code', label='Code', rules='required|digits:6'/}
-  {combobox 'city', label='City', options='Amsterdam, Berlin, Paris, Rome', rules='required|in:Amsterdam,Berlin,Paris,Rome'/}
-  {multiselect 'interests', label='Interests', options='PHP, Maps, Music, Charts', rules='required|in:PHP,Maps,Music,Charts'/}
-  {segmented 'size', label='Size', options='S, M, L, XL', rules='required|in:S,M,L,XL'/}
-  {durationpicker 'length', label='Length', parts='hm', rules='required|integer|between:600,28800'/}
-  {rangeslider 'budget', label='Budget', max=1000, step=50, unit=' EUR', value='200, 600'/}
-  {daterange 'stay', label='Your stay', labels='Arrival, Departure', nights/}
-  {treepicker 'topic', label='Topic', options='Forms > Fields, Forms > Rules, Pages > Layouts, Pages > Wrappers', leaves, rules='required|in:Fields,Rules,Layouts,Wrappers'/}
+{pad:form 'booking', class='inputs-try', client, error='Please correct the fields marked below.'}
+  {input:slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}
+  {input:stepper 'guests', label='Guests', min=1, max=12, rules='required|integer|between:1,12'/}
+  {input:toggle 'terms', label='I accept the terms', rules='accepted'/}
+  {input:stars 'score', label='Your rating', rules='required'/}
+  {input:colorpicker 'tint', label='Colour', value='#2a78d6', rules='required|color'/}
+  {input:datepicker 'arrival', label='Arrival', rules='required|date'/}
+  {input:timepicker 'pickup', label='Pick-up time', min='08:00', max='18:00', every=30, rules='required|time'/}
+  {input:taginput 'topics', label='Topics', suggestions='pad, php, forms', rules='required|max:60'/}
+  {input:signature 'signed', label='Signature', rules='required'/}
+  {input:mdeditor 'note', label='A note', rows=4, rules='required|min:10'/}
+  {input:dropzone 'resume', label='Your CV', accept='.pdf'/}
+  {input:newpassword 'password', label='Password', rules='required|min:12'/}
+  {input:otp 'code', label='Code', rules='required|digits:6'/}
+  {input:combobox 'city', label='City', options='Amsterdam, Berlin, Paris, Rome', rules='required|in:Amsterdam,Berlin,Paris,Rome'/}
+  {input:multiselect 'interests', label='Interests', options='PHP, Maps, Music, Charts', rules='required|in:PHP,Maps,Music,Charts'/}
+  {input:segmented 'size', label='Size', options='S, M, L, XL', rules='required|in:S,M,L,XL'/}
+  {input:durationpicker 'length', label='Length', parts='hm', rules='required|integer|between:600,28800'/}
+  {input:rangeslider 'budget', label='Budget', max=1000, step=50, unit=' EUR', value='200, 600'/}
+  {input:daterange 'stay', label='Your stay', labels='Arrival, Departure', nights/}
+  {input:treepicker 'topic', label='Topic', options='Forms > Fields, Forms > Rules, Pages > Layouts, Pages > Wrappers', leaves, rules='required|in:Fields,Rules,Layouts,Wrappers'/}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-{template/}
+{include:template/}

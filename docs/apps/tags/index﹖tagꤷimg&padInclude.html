@@ -1,5 +1,5 @@
 
-<p><code>{img}</code> shows a picture of <code>www/&lt;application&gt;/</code> at the size the
+<p><code>{pad:img}</code> shows a picture of <code>www/&lt;application&gt;/</code> at the size the
 page needs, not the size the camera made. The first time a size is asked the picture is
 resized with GD (<code>tags/_lib/img.php</code>) and kept in
 <code>www/&lt;application&gt;/_thumbs/</code>, where the web server sends it like any other
@@ -24,5 +24,21 @@ there or is no picture, an unknown <code>fit</code> or <code>format</code> and a
 <code>quality</code> outside 1-100 are errors under the strict check. A
 <code>_thumbs/</code> directory the web server cannot write is an error too, and the
 original picture is written instead. While no picture exists yet,
-<a href="index%EF%B9%96tag%EA%A4%B7placeholder.html">{placeholder}</a> keeps its place.</p>
+<a href="index%EF%B9%96tag%EA%A4%B7placeholder.html">{pad:placeholder}</a> keeps its place.</p>
 
+<p><code>filter=</code> runs the picture through the filters of <code>pad/subs/filters/types/</code>,
+a comma list applied in the order written: grayscale, sepia, duotone, posterize, pixelate, blur,
+sharpen, vignette, invert, edges, threshold, solarize, autocontrast and the dithers - dither (Floyd and Steinberg), atkinson and bayer -
+change the picture, and the filter and its options are part of the thumbnail's name; halftone
+writes it as SVG dots and ascii as text in a <code>&lt;pre&gt;</code>, each named by the alt text;
+blurhash, thumbhash, dominant and lqip are placeholders - a BlurHash or a ThumbHash decoded to a small PNG, the dominant
+colour, a tiny blurred picture - behind the <code>&lt;img&gt;</code> while it loads. A pixel
+filter - pixelate and the dithers - is made at 1x and drawn with its pixels sharp. An unknown
+filter, an option out of its bounds, a filter after halftone or ascii and a placeholder beside
+them are errors under the strict check. The <code>patterns</code> application shows every filter
+on one picture.</p>
+
+
+<h3>Image filters</h3>
+<p>Each kind has its own description and usage example:</p>
+<p><a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7ascii.html"><code>ascii</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7atkinson.html"><code>atkinson</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7autocontrast.html"><code>autocontrast</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7bayer.html"><code>bayer</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7blur.html"><code>blur</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7blurhash.html"><code>blurhash</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7dither.html"><code>dither</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7dominant.html"><code>dominant</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7duotone.html"><code>duotone</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7edges.html"><code>edges</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7grayscale.html"><code>grayscale</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7halftone.html"><code>halftone</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7invert.html"><code>invert</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7lqip.html"><code>lqip</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7pixelate.html"><code>pixelate</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7posterize.html"><code>posterize</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7sepia.html"><code>sepia</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7sharpen.html"><code>sharpen</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7solarize.html"><code>solarize</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7threshold.html"><code>threshold</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7thumbhash.html"><code>thumbhash</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7filter%EA%A4%B7vignette.html"><code>vignette</code></a></p>

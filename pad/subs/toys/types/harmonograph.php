@@ -8,7 +8,7 @@
   // pendulums - x, x, y, y - '2, 3, 3, 2.01' unless given (0.5 to 10 each); damping= how fast
   // they die away (3, 0 to 20); rotary turns the paper in a circle under the pen as well.
   //
-  //   {harmonograph frequencies='3, 2, 2.005, 3', damping=2/}
+  //   {toy:harmonograph frequencies='3, 2, 2.005, 3', damping=2/}
 
   return padToy ( 'harmonograph', 'Harmonograph', [
     'frequencies' => padToyNumbers ( 'frequencies', [ 2, 3, 3, 2.01 ], 0.5, 10, 4, 4 ),

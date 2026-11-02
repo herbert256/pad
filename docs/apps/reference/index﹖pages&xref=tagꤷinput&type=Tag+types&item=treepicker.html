@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Reference - Tag types - treepicker · PAD reference
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/play.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+  </head>
+  <body class="frame app-reference">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>reference</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="reference">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Index</a>
+        <div class="frame-head">
+          Tags
+        </div><a href="index%EF%B9%96index.html#pad-tags">PAD tags</a> <a href="index%EF%B9%96index.html#tag-types">Tag types</a> <a href="index%EF%B9%96index.html#tag-properties">Tag properties</a> <a href="index%EF%B9%96index.html#tag-options">Tag options</a> <a href="index%EF%B9%96index.html#common-tags">Common tags</a> <a href="index%EF%B9%96index.html#common-includes">Common includes</a>
+        <div class="frame-head">
+          Functions
+        </div><a href="index%EF%B9%96index.html#pad-functions">PAD functions</a> <a href="index%EF%B9%96index.html#single-functions">Single functions</a> <a href="index%EF%B9%96index.html#parms-functions">Parms functions</a>
+        <div class="frame-head">
+          Configuration
+        </div><a href="index%EF%B9%96index.html#error-actions">Error actions</a> <a href="index%EF%B9%96index.html#output-types">Output types</a> <a href="index%EF%B9%96index.html#info-modes">Info modes</a> <a href="index%EF%B9%96index.html#cache-backends">Cache backends</a>
+        <div class="frame-head">
+          At (x@y)
+        </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
+        <div class="frame-head">
+          More
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#oauth-providers">OAuth providers</a> <a href="index%EF%B9%96index.html#notification-channels">Notification channels</a> <a href="index%EF%B9%96index.html#ai-providers">AI providers</a> <a href="index%EF%B9%96index.html#pattern-types">Pattern types</a> <a href="index%EF%B9%96index.html#image-filters">Image filters</a> <a href="index%EF%B9%96index.html#holiday-countries">Holiday countries</a> <a href="index%EF%B9%96index.html#search-languages">Search languages</a> <a href="index%EF%B9%96index.html#data-formats">Data formats</a> <a href="index%EF%B9%96index.html#sounds">Sounds</a> <a href="index%EF%B9%96index.html#printables">Printables</a> <a href="index%EF%B9%96index.html#notations">Notations</a> <a href="index%EF%B9%96index.html#formula-functions">Formula functions</a> <a href="index%EF%B9%96index.html#section-types">Section types</a> <a href="index%EF%B9%96index.html#effect-types">Effect types</a> <a href="index%EF%B9%96index.html#json-ld-kinds">JSON-LD kinds</a> <a href="index%EF%B9%96index.html#themes">Themes</a> <a href="index%EF%B9%96index.html#palettes">Palettes</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Reference - Tag types - treepicker
+        </h1>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <center>
+                <hr>
+                App: inputs - Page: form<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">form.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J09uZSBmb3JtJy99XG48cCBjbGFzcz1cImlucHV0cy1sZWFkXCI+RXZlcnkga2luZCBvZiBmaWVsZCBpbiBvbmUgZm9ybSwgZWFjaCB3aXRoIHJ1bGVzLiA8Y29kZT5jbGllbnQ8L2NvZGU+IG9uIHRoZVxuZm9ybSBjaGVja3MgdGhlIHJ1bGVzIGluIHRoZSBicm93c2VyIGJlZm9yZSB0aGUgZm9ybSBsZWF2ZXMsIHdpdGggdGhlIG1lc3NhZ2VzIHRoZSBzZXJ2ZXIgZ2l2ZXMgLVxudGhlIHNlcnZlciBjaGVja3MgdGhlIHBvc3QgYWdhaW4gYWxsIHRoZSBzYW1lLiBTZW5kIGl0IGVtcHR5IHRvIHNlZSB0aGVtLjwvcD5cblxue3BhZDpmb3JtICdib29raW5nJywgY2xhc3M9J2lucHV0cy10cnknLCBjbGllbnQsIGVycm9yPSdQbGVhc2UgY29ycmVjdCB0aGUgZmllbGRzIG1hcmtlZCBiZWxvdy4nfVxuICB7aW5wdXQ6c2xpZGVyICd2b2x1bWUnLCBsYWJlbD0nVm9sdW1lJywgdW5pdD0nJScsIHJ1bGVzPSdpbnRlZ2VyfGJldHdlZW46MTAsOTAnL31cbiAge2lucHV0OnN0ZXBwZXIgJ2d1ZXN0cycsIGxhYmVsPSdHdWVzdHMnLCBtaW49MSwgbWF4PTEyLCBydWxlcz0ncmVxdWlyZWR8aW50ZWdlcnxiZXR3ZWVuOjEsMTInL31cbiAge2lucHV0OnRvZ2dsZSAndGVybXMnLCBsYWJlbD0nSSBhY2NlcHQgdGhlIHRlcm1zJywgcnVsZXM9J2FjY2VwdGVkJy99XG4gIHtpbnB1dDpzdGFycyAnc2NvcmUnLCBsYWJlbD0nWW91ciByYXRpbmcnLCBydWxlcz0ncmVxdWlyZWQnL31cbiAge2lucHV0OmNvbG9ycGlja2VyICd0aW50JywgbGFiZWw9J0NvbG91cicsIHZhbHVlPScjMmE3OGQ2JywgcnVsZXM9J3JlcXVpcmVkfGNvbG9yJy99XG4gIHtpbnB1dDpkYXRlcGlja2VyICdhcnJpdmFsJywgbGFiZWw9J0Fycml2YWwnLCBydWxlcz0ncmVxdWlyZWR8ZGF0ZScvfVxuICB7aW5wdXQ6dGltZXBpY2tlciAncGlja3VwJywgbGFiZWw9J1BpY2stdXAgdGltZScsIG1pbj0nMDg6MDAnLCBtYXg9JzE4OjAwJywgZXZlcnk9MzAsIHJ1bGVzPSdyZXF1aXJlZHx0aW1lJy99XG4gIHtpbnB1dDp0YWdpbnB1dCAndG9waWNzJywgbGFiZWw9J1RvcGljcycsIHN1Z2dlc3Rpb25zPSdwYWQsIHBocCwgZm9ybXMnLCBydWxlcz0ncmVxdWlyZWR8bWF4OjYwJy99XG4gIHtpbnB1dDpzaWduYXR1cmUgJ3NpZ25lZCcsIGxhYmVsPSdTaWduYXR1cmUnLCBydWxlcz0ncmVxdWlyZWQnL31cbiAge2lucHV0Om1kZWRpdG9yICdub3RlJywgbGFiZWw9J0Egbm90ZScsIHJvd3M9NCwgcnVsZXM9J3JlcXVpcmVkfG1pbjoxMCcvfVxuICB7aW5wdXQ6ZHJvcHpvbmUgJ3Jlc3VtZScsIGxhYmVsPSdZb3VyIENWJywgYWNjZXB0PScucGRmJy99XG4gIHtpbnB1dDpuZXdwYXNzd29yZCAncGFzc3dvcmQnLCBsYWJlbD0nUGFzc3dvcmQnLCBydWxlcz0ncmVxdWlyZWR8bWluOjEyJy99XG4gIHtpbnB1dDpvdHAgJ2NvZGUnLCBsYWJlbD0nQ29kZScsIHJ1bGVzPSdyZXF1aXJlZHxkaWdpdHM6NicvfVxuICB7aW5wdXQ6Y29tYm9ib3ggJ2NpdHknLCBsYWJlbD0nQ2l0eScsIG9wdGlvbnM9J0Ftc3RlcmRhbSwgQmVybGluLCBQYXJpcywgUm9tZScsIHJ1bGVzPSdyZXF1aXJlZHxpbjpBbXN0ZXJkYW0sQmVybGluLFBhcmlzLFJvbWUnL31cbiAge2lucHV0Om11bHRpc2VsZWN0ICdpbnRlcmVzdHMnLCBsYWJlbD0nSW50ZXJlc3RzJywgb3B0aW9ucz0nUEhQLCBNYXBzLCBNdXNpYywgQ2hhcnRzJywgcnVsZXM9J3JlcXVpcmVkfGluOlBIUCxNYXBzLE11c2ljLENoYXJ0cycvfVxuICB7aW5wdXQ6c2VnbWVudGVkICdzaXplJywgbGFiZWw9J1NpemUnLCBvcHRpb25zPSdTLCBNLCBMLCBYTCcsIHJ1bGVzPSdyZXF1aXJlZHxpbjpTLE0sTCxYTCcvfVxuICB7aW5wdXQ6ZHVyYXRpb25waWNrZXIgJ2xlbmd0aCcsIGxhYmVsPSdMZW5ndGgnLCBwYXJ0cz0naG0nLCBydWxlcz0ncmVxdWlyZWR8aW50ZWdlcnxiZXR3ZWVuOjYwMCwyODgwMCcvfVxuICB7aW5wdXQ6cmFuZ2VzbGlkZXIgJ2J1ZGdldCcsIGxhYmVsPSdCdWRnZXQnLCBtYXg9MTAwMCwgc3RlcD01MCwgdW5pdD0nIEVVUicsIHZhbHVlPScyMDAsIDYwMCcvfVxuICB7aW5wdXQ6ZGF0ZXJhbmdlICdzdGF5JywgbGFiZWw9J1lvdXIgc3RheScsIGxhYmVscz0nQXJyaXZhbCwgRGVwYXJ0dXJlJywgbmlnaHRzL31cbiAge2lucHV0OnRyZWVwaWNrZXIgJ3RvcGljJywgbGFiZWw9J1RvcGljJywgb3B0aW9ucz0nRm9ybXMgPiBGaWVsZHMsIEZvcm1zID4gUnVsZXMsIFBhZ2VzID4gTGF5b3V0cywgUGFnZXMgPiBXcmFwcGVycycsIGxlYXZlcywgcnVsZXM9J3JlcXVpcmVkfGluOkZpZWxkcyxSdWxlcyxMYXlvdXRzLFdyYXBwZXJzJy99XG4gIDxidXR0b24gY2xhc3M9XCJpbnB1dHMtc2VuZFwiPlNlbmQ8L2J1dHRvbj5cbnsvcGFkOmZvcm19XG5cbntpbmNsdWRlOnJlY2VpdmVkL31cblxue2luY2x1ZGU6dGVtcGxhdGUvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J09uZSBmb3JtJy99XG48cCBjbGFzcz1cImlucHV0cy1sZWFkXCI+RXZlcnkga2luZCBvZiBmaWVsZCBpbiBvbmUgZm9ybSwgZWFjaCB3aXRoIHJ1bGVzLiA8Y29kZT5jbGllbnQ8L2NvZGU+IG9uIHRoZVxuZm9ybSBjaGVja3MgdGhlIHJ1bGVzIGluIHRoZSBicm93c2VyIGJlZm9yZSB0aGUgZm9ybSBsZWF2ZXMsIHdpdGggdGhlIG1lc3NhZ2VzIHRoZSBzZXJ2ZXIgZ2l2ZXMgLVxudGhlIHNlcnZlciBjaGVja3MgdGhlIHBvc3QgYWdhaW4gYWxsIHRoZSBzYW1lLiBTZW5kIGl0IGVtcHR5IHRvIHNlZSB0aGVtLjwvcD5cblxue3BhZDpmb3JtICdib29raW5nJywgY2xhc3M9J2lucHV0cy10cnknLCBjbGllbnQsIGVycm9yPSdQbGVhc2UgY29ycmVjdCB0aGUgZmllbGRzIG1hcmtlZCBiZWxvdy4nfVxuICB7aW5wdXQ6c2xpZGVyICd2b2x1bWUnLCBsYWJlbD0nVm9sdW1lJywgdW5pdD0nJScsIHJ1bGVzPSdpbnRlZ2VyfGJldHdlZW46MTAsOTAnL31cbiAge2lucHV0OnN0ZXBwZXIgJ2d1ZXN0cycsIGxhYmVsPSdHdWVzdHMnLCBtaW49MSwgbWF4PTEyLCBydWxlcz0ncmVxdWlyZWR8aW50ZWdlcnxiZXR3ZWVuOjEsMTInL31cbiAge2lucHV0OnRvZ2dsZSAndGVybXMnLCBsYWJlbD0nSSBhY2NlcHQgdGhlIHRlcm1zJywgcnVsZXM9J2FjY2VwdGVkJy99XG4gIHtpbnB1dDpzdGFycyAnc2NvcmUnLCBsYWJlbD0nWW91ciByYXRpbmcnLCBydWxlcz0ncmVxdWlyZWQnL31cbiAge2lucHV0OmNvbG9ycGlja2VyICd0aW50JywgbGFiZWw9J0NvbG91cicsIHZhbHVlPScjMmE3OGQ2JywgcnVsZXM9J3JlcXVpcmVkfGNvbG9yJy99XG4gIHtpbnB1dDpkYXRlcGlja2VyICdhcnJpdmFsJywgbGFiZWw9J0Fycml2YWwnLCBydWxlcz0ncmVxdWlyZWR8ZGF0ZScvfVxuICB7aW5wdXQ6dGltZXBpY2tlciAncGlja3VwJywgbGFiZWw9J1BpY2stdXAgdGltZScsIG1pbj0nMDg6MDAnLCBtYXg9JzE4OjAwJywgZXZlcnk9MzAsIHJ1bGVzPSdyZXF1aXJlZHx0aW1lJy99XG4gIHtpbnB1dDp0YWdpbnB1dCAndG9waWNzJywgbGFiZWw9J1RvcGljcycsIHN1Z2dlc3Rpb25zPSdwYWQsIHBocCwgZm9ybXMnLCBydWxlcz0ncmVxdWlyZWR8bWF4OjYwJy99XG4gIHtpbnB1dDpzaWduYXR1cmUgJ3NpZ25lZCcsIGxhYmVsPSdTaWduYXR1cmUnLCBydWxlcz0ncmVxdWlyZWQnL31cbiAge2lucHV0Om1kZWRpdG9yICdub3RlJywgbGFiZWw9J0Egbm90ZScsIHJvd3M9NCwgcnVsZXM9J3JlcXVpcmVkfG1pbjoxMCcvfVxuICB7aW5wdXQ6ZHJvcHpvbmUgJ3Jlc3VtZScsIGxhYmVsPSdZb3VyIENWJywgYWNjZXB0PScucGRmJy99XG4gIHtpbnB1dDpuZXdwYXNzd29yZCAncGFzc3dvcmQnLCBsYWJlbD0nUGFzc3dvcmQnLCBydWxlcz0ncmVxdWlyZWR8bWluOjEyJy99XG4gIHtpbnB1dDpvdHAgJ2NvZGUnLCBsYWJlbD0nQ29kZScsIHJ1bGVzPSdyZXF1aXJlZHxkaWdpdHM6NicvfVxuICB7aW5wdXQ6Y29tYm9ib3ggJ2NpdHknLCBsYWJlbD0nQ2l0eScsIG9wdGlvbnM9J0Ftc3RlcmRhbSwgQmVybGluLCBQYXJpcywgUm9tZScsIHJ1bGVzPSdyZXF1aXJlZHxpbjpBbXN0ZXJkYW0sQmVybGluLFBhcmlzLFJvbWUnL31cbiAge2lucHV0Om11bHRpc2VsZWN0ICdpbnRlcmVzdHMnLCBsYWJlbD0nSW50ZXJlc3RzJywgb3B0aW9ucz0nUEhQLCBNYXBzLCBNdXNpYywgQ2hhcnRzJywgcnVsZXM9J3JlcXVpcmVkfGluOlBIUCxNYXBzLE11c2ljLENoYXJ0cycvfVxuICB7aW5wdXQ6c2VnbWVudGVkICdzaXplJywgbGFiZWw9J1NpemUnLCBvcHRpb25zPSdTLCBNLCBMLCBYTCcsIHJ1bGVzPSdyZXF1aXJlZHxpbjpTLE0sTCxYTCcvfVxuICB7aW5wdXQ6ZHVyYXRpb25waWNrZXIgJ2xlbmd0aCcsIGxhYmVsPSdMZW5ndGgnLCBwYXJ0cz0naG0nLCBydWxlcz0ncmVxdWlyZWR8aW50ZWdlcnxiZXR3ZWVuOjYwMCwyODgwMCcvfVxuICB7aW5wdXQ6cmFuZ2VzbGlkZXIgJ2J1ZGdldCcsIGxhYmVsPSdCdWRnZXQnLCBtYXg9MTAwMCwgc3RlcD01MCwgdW5pdD0nIEVVUicsIHZhbHVlPScyMDAsIDYwMCcvfVxuICB7aW5wdXQ6ZGF0ZXJhbmdlICdzdGF5JywgbGFiZWw9J1lvdXIgc3RheScsIGxhYmVscz0nQXJyaXZhbCwgRGVwYXJ0dXJlJywgbmlnaHRzL31cbiAge2lucHV0OnRyZWVwaWNrZXIgJ3RvcGljJywgbGFiZWw9J1RvcGljJywgb3B0aW9ucz0nRm9ybXMgPiBGaWVsZHMsIEZvcm1zID4gUnVsZXMsIFBhZ2VzID4gTGF5b3V0cywgUGFnZXMgPiBXcmFwcGVycycsIGxlYXZlcywgcnVsZXM9J3JlcXVpcmVkfGluOkZpZWxkcyxSdWxlcyxMYXlvdXRzLFdyYXBwZXJzJy99XG4gIDxidXR0b24gY2xhc3M9XCJpbnB1dHMtc2VuZFwiPlNlbmQ8L2J1dHRvbj5cbnsvcGFkOmZvcm19XG5cbntpbmNsdWRlOnJlY2VpdmVkL31cblxue2luY2x1ZGU6dGVtcGxhdGUvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>meta </font><font color="red">title=<font color="black">'</font>One form<font color="black">'</font></font>/}</b><br>&lt;p class="inputs-lead"&gt;Every kind of field in one form, each with rules. &lt;code&gt;client&lt;/code&gt; on the<br>form checks the rules in the browser before the form leaves, with the messages the server gives -<br>the server checks the post again all the same. Send it empty to see them.&lt;/p&gt;<br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form </font><font color="red"><font color="black">'</font>booking<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> client<font color="black">,</font> error=<font color="black">'</font>Please correct the fields marked below.<font color="black">'</font></font>}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>slider </font><font color="red"><font color="black">'</font>volume<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Volume<font color="black">'</font><font color="black">,</font> unit=<font color="black">'</font><font color="black">%</font><font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>integer<font color="black">|</font>between<font color="black">:</font>10<font color="black">,</font>90<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>stepper </font><font color="red"><font color="black">'</font>guests<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Guests<font color="black">'</font><font color="black">,</font> min=1<font color="black">,</font> max=12<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>integer<font color="black">|</font>between<font color="black">:</font>1<font color="black">,</font>12<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>toggle </font><font color="red"><font color="black">'</font>terms<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>I accept the terms<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>accepted<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>stars </font><font color="red"><font color="black">'</font>score<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your rating<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>colorpicker </font><font color="red"><font color="black">'</font>tint<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Colour<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>#2a78d6<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>color<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>datepicker </font><font color="red"><font color="black">'</font>arrival<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Arrival<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>date<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>timepicker </font><font color="red"><font color="black">'</font>pickup<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Pick-up time<font color="black">'</font><font color="black">,</font> min=<font color="black">'</font>08<font color="black">:</font>00<font color="black">'</font><font color="black">,</font> max=<font color="black">'</font>18<font color="black">:</font>00<font color="black">'</font><font color="black">,</font> every=30<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>time<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>taginput </font><font color="red"><font color="black">'</font>topics<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Topics<font color="black">'</font><font color="black">,</font> suggestions=<font color="black">'</font>pad<font color="black">,</font> php<font color="black">,</font> forms<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>max<font color="black">:</font>60<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>signature </font><font color="red"><font color="black">'</font>signed<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Signature<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>mdeditor </font><font color="red"><font color="black">'</font>note<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>A note<font color="black">'</font><font color="black">,</font> rows=4<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>min<font color="black">:</font>10<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>dropzone </font><font color="red"><font color="black">'</font>resume<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your CV<font color="black">'</font><font color="black">,</font> accept=<font color="black">'</font>.pdf<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>newpassword </font><font color="red"><font color="black">'</font>password<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Password<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>min<font color="black">:</font>12<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>otp </font><font color="red"><font color="black">'</font>code<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Code<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>digits<font color="black">:</font>6<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>combobox </font><font color="red"><font color="black">'</font>city<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>City<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>Amsterdam<font color="black">,</font> Berlin<font color="black">,</font> Paris<font color="black">,</font> Rome<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>in<font color="black">:</font>Amsterdam<font color="black">,</font>Berlin<font color="black">,</font>Paris<font color="black">,</font>Rome<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>multiselect </font><font color="red"><font color="black">'</font>interests<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Interests<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>PHP<font color="black">,</font> Maps<font color="black">,</font> Music<font color="black">,</font> Charts<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>in<font color="black">:</font>PHP<font color="black">,</font>Maps<font color="black">,</font>Music<font color="black">,</font>Charts<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>segmented </font><font color="red"><font color="black">'</font>size<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Size<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>S<font color="black">,</font> M<font color="black">,</font> L<font color="black">,</font> XL<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>in<font color="black">:</font>S<font color="black">,</font>M<font color="black">,</font>L<font color="black">,</font>XL<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>durationpicker </font><font color="red"><font color="black">'</font>length<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Length<font color="black">'</font><font color="black">,</font> parts=<font color="black">'</font>hm<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>integer<font color="black">|</font>between<font color="black">:</font>600<font color="black">,</font>28800<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>rangeslider </font><font color="red"><font color="black">'</font>budget<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Budget<font color="black">'</font><font color="black">,</font> max=1000<font color="black">,</font> step=50<font color="black">,</font> unit=<font color="black">'</font> EUR<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>200<font color="black">,</font> 600<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>daterange </font><font color="red"><font color="black">'</font>stay<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your stay<font color="black">'</font><font color="black">,</font> labels=<font color="black">'</font>Arrival<font color="black">,</font> Departure<font color="black">'</font><font color="black">,</font> nights</font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>topic<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Topic<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>Forms &gt; Fields<font color="black">,</font> Forms &gt; Rules<font color="black">,</font> Pages &gt; Layouts<font color="black">,</font> Pages &gt; Wrappers<font color="black">'</font><font color="black">,</font> leaves<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>in<font color="black">:</font>Fields<font color="black">,</font>Rules<font color="black">,</font>Layouts<font color="black">,</font>Wrappers<font color="black">'</font></font>/}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form</font><font color="red"></font>}</b><br><br><b>{<font color="blue"><font color="purple">include</font><font color="black"><b>:</b></font>received</font><font color="red"></font>/}</b><br><br><b>{<font color="blue"><font color="purple">include</font><font color="black"><b>:</b></font>template</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax1f940a5f140e35a3ba2377e001c04982"></div>
+                      <script>
+                      padAjax1f940a5f140e35a3ba2377e001c04982 = new XMLHttpRequest();
+                      padAjax1f940a5f140e35a3ba2377e001c04982.onreadystatechange=function() {
+                      if (padAjax1f940a5f140e35a3ba2377e001c04982.readyState === 4) {
+                      if (padAjax1f940a5f140e35a3ba2377e001c04982.status === 200) {
+                      document.getElementById("padAjax1f940a5f140e35a3ba2377e001c04982").innerHTML=padAjax1f940a5f140e35a3ba2377e001c04982.responseText;
+                      } else {
+                      document.getElementById("padAjax1f940a5f140e35a3ba2377e001c04982").innerHTML=padAjax1f940a5f140e35a3ba2377e001c04982.statusText;
+                      }
+                      }
+                      }
+                      padAjax1f940a5f140e35a3ba2377e001c04982.open("GET","http://localhost/pad/inputs/?form&padInclude",true);
+                      padAjax1f940a5f140e35a3ba2377e001c04982.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: inputs - Page: treepicker<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">treepicker.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J1RyZWUgcGlja2VyJy99XG57aW5jbHVkZTphYm91dC99XG5cbntwYWQ6ZGF0YSAnY2F0ZWdvcmllcyd9XG5bXG4gIHsgXCJpZFwiOiAxLCBcInBhcmVudFwiOiBcIlwiLCAgXCJuYW1lXCI6IFwiQm9va3NcIiB9LFxuICB7IFwiaWRcIjogMiwgXCJwYXJlbnRcIjogMSwgICBcIm5hbWVcIjogXCJGaWN0aW9uXCIgfSxcbiAgeyBcImlkXCI6IDMsIFwicGFyZW50XCI6IDIsICAgXCJuYW1lXCI6IFwiQ3JpbWVcIiB9LFxuICB7IFwiaWRcIjogNCwgXCJwYXJlbnRcIjogMiwgICBcIm5hbWVcIjogXCJGYW50YXN5XCIgfSxcbiAgeyBcImlkXCI6IDUsIFwicGFyZW50XCI6IDEsICAgXCJuYW1lXCI6IFwiQ29va2luZ1wiIH0sXG4gIHsgXCJpZFwiOiA2LCBcInBhcmVudFwiOiBcIlwiLCAgXCJuYW1lXCI6IFwiTXVzaWNcIiB9LFxuICB7IFwiaWRcIjogNywgXCJwYXJlbnRcIjogNiwgICBcIm5hbWVcIjogXCJKYXp6XCIgfSxcbiAgeyBcImlkXCI6IDgsIFwicGFyZW50XCI6IDYsICAgXCJuYW1lXCI6IFwiQ2xhc3NpY2FsXCIgfVxuXVxuey9wYWQ6ZGF0YX1cblxue3BhZDpmb3JtICd0cnknLCBjbGFzcz0naW5wdXRzLXRyeScsIGVycm9yfVxuICB7aW5wdXQ6dHJlZXBpY2tlciAnY2F0ZWdvcnknLCBsYWJlbD0nQ2F0ZWdvcnknLCBkYXRhPSdjYXRlZ29yaWVzJywgdmFsdWU9NCwgcnVsZXM9J3JlcXVpcmVkfGluOjEsMiwzLDQsNSw2LDcsOCcvfVxuICB7aW5wdXQ6dHJlZXBpY2tlciAnY2l0eScsIGxhYmVsPSdDaXR5JywgbGVhdmVzfVxuICAgIEV1cm9wZVxuICAgICAgRnJhbmNlXG4gICAgICAgIEx5b25cbiAgICAgICAgUGFyaXNcbiAgICAgIE5ldGhlcmxhbmRzXG4gICAgICAgIEFtc3RlcmRhbVxuICAgICAgICBVdHJlY2h0XG4gICAgQXNpYVxuICAgICAgSmFwYW5cbiAgICAgICAgS3lvdG9cbiAgICAgICAgT3Nha2FcbiAgey9pbnB1dDp0cmVlcGlja2VyfVxuICA8YnV0dG9uIGNsYXNzPVwiaW5wdXRzLXNlbmRcIj5TZW5kPC9idXR0b24+XG57L3BhZDpmb3JtfVxuXG57aW5jbHVkZTpyZWNlaXZlZC99XG5cbntpbmNsdWRlOnRlbXBsYXRlL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J1RyZWUgcGlja2VyJy99XG57aW5jbHVkZTphYm91dC99XG5cbntwYWQ6ZGF0YSAnY2F0ZWdvcmllcyd9XG5bXG4gIHsgXCJpZFwiOiAxLCBcInBhcmVudFwiOiBcIlwiLCAgXCJuYW1lXCI6IFwiQm9va3NcIiB9LFxuICB7IFwiaWRcIjogMiwgXCJwYXJlbnRcIjogMSwgICBcIm5hbWVcIjogXCJGaWN0aW9uXCIgfSxcbiAgeyBcImlkXCI6IDMsIFwicGFyZW50XCI6IDIsICAgXCJuYW1lXCI6IFwiQ3JpbWVcIiB9LFxuICB7IFwiaWRcIjogNCwgXCJwYXJlbnRcIjogMiwgICBcIm5hbWVcIjogXCJGYW50YXN5XCIgfSxcbiAgeyBcImlkXCI6IDUsIFwicGFyZW50XCI6IDEsICAgXCJuYW1lXCI6IFwiQ29va2luZ1wiIH0sXG4gIHsgXCJpZFwiOiA2LCBcInBhcmVudFwiOiBcIlwiLCAgXCJuYW1lXCI6IFwiTXVzaWNcIiB9LFxuICB7IFwiaWRcIjogNywgXCJwYXJlbnRcIjogNiwgICBcIm5hbWVcIjogXCJKYXp6XCIgfSxcbiAgeyBcImlkXCI6IDgsIFwicGFyZW50XCI6IDYsICAgXCJuYW1lXCI6IFwiQ2xhc3NpY2FsXCIgfVxuXVxuey9wYWQ6ZGF0YX1cblxue3BhZDpmb3JtICd0cnknLCBjbGFzcz0naW5wdXRzLXRyeScsIGVycm9yfVxuICB7aW5wdXQ6dHJlZXBpY2tlciAnY2F0ZWdvcnknLCBsYWJlbD0nQ2F0ZWdvcnknLCBkYXRhPSdjYXRlZ29yaWVzJywgdmFsdWU9NCwgcnVsZXM9J3JlcXVpcmVkfGluOjEsMiwzLDQsNSw2LDcsOCcvfVxuICB7aW5wdXQ6dHJlZXBpY2tlciAnY2l0eScsIGxhYmVsPSdDaXR5JywgbGVhdmVzfVxuICAgIEV1cm9wZVxuICAgICAgRnJhbmNlXG4gICAgICAgIEx5b25cbiAgICAgICAgUGFyaXNcbiAgICAgIE5ldGhlcmxhbmRzXG4gICAgICAgIEFtc3RlcmRhbVxuICAgICAgICBVdHJlY2h0XG4gICAgQXNpYVxuICAgICAgSmFwYW5cbiAgICAgICAgS3lvdG9cbiAgICAgICAgT3Nha2FcbiAgey9pbnB1dDp0cmVlcGlja2VyfVxuICA8YnV0dG9uIGNsYXNzPVwiaW5wdXRzLXNlbmRcIj5TZW5kPC9idXR0b24+XG57L3BhZDpmb3JtfVxuXG57aW5jbHVkZTpyZWNlaXZlZC99XG5cbntpbmNsdWRlOnRlbXBsYXRlL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>meta </font><font color="red">title=<font color="black">'</font>Tree picker<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">include</font><font color="black"><b>:</b></font>about</font><font color="red"></font>/}</b><br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>categories<font color="black">'</font></font>}</b><br>[<br>  { "id": 1, "parent": "",  "name": "Books" },<br>  { "id": 2, "parent": 1,   "name": "Fiction" },<br>  { "id": 3, "parent": 2,   "name": "Crime" },<br>  { "id": 4, "parent": 2,   "name": "Fantasy" },<br>  { "id": 5, "parent": 1,   "name": "Cooking" },<br>  { "id": 6, "parent": "",  "name": "Music" },<br>  { "id": 7, "parent": 6,   "name": "Jazz" },<br>  { "id": 8, "parent": 6,   "name": "Classical" }<br>]<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form </font><font color="red"><font color="black">'</font>try<font color="black">'</font><font color="black">,</font> class=<font color="black">'</font>inputs-try<font color="black">'</font><font color="black">,</font> error</font>}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>category<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Category<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>categories<font color="black">'</font><font color="black">,</font> value=4<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>in<font color="black">:</font>1<font color="black">,</font>2<font color="black">,</font>3<font color="black">,</font>4<font color="black">,</font>5<font color="black">,</font>6<font color="black">,</font>7<font color="black">,</font>8<font color="black">'</font></font>/}</b><br>  <b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>city<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>City<font color="black">'</font><font color="black">,</font> leaves</font>}</b><br>    Europe<br>      France<br>        Lyon<br>        Paris<br>      Netherlands<br>        Amsterdam<br>        Utrecht<br>    Asia<br>      Japan<br>        Kyoto<br>        Osaka<br>  <b>{/<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker</font><font color="red"></font>}</b><br>  &lt;button class="inputs-send"&gt;Send&lt;/button&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form</font><font color="red"></font>}</b><br><br><b>{<font color="blue"><font color="purple">include</font><font color="black"><b>:</b></font>received</font><font color="red"></font>/}</b><br><br><b>{<font color="blue"><font color="purple">include</font><font color="black"><b>:</b></font>template</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax02b8458d9f66f4639b38fcfa273dffce"></div>
+                      <script>
+                      padAjax02b8458d9f66f4639b38fcfa273dffce = new XMLHttpRequest();
+                      padAjax02b8458d9f66f4639b38fcfa273dffce.onreadystatechange=function() {
+                      if (padAjax02b8458d9f66f4639b38fcfa273dffce.readyState === 4) {
+                      if (padAjax02b8458d9f66f4639b38fcfa273dffce.status === 200) {
+                      document.getElementById("padAjax02b8458d9f66f4639b38fcfa273dffce").innerHTML=padAjax02b8458d9f66f4639b38fcfa273dffce.responseText;
+                      } else {
+                      document.getElementById("padAjax02b8458d9f66f4639b38fcfa273dffce").innerHTML=padAjax02b8458d9f66f4639b38fcfa273dffce.statusText;
+                      }
+                      }
+                      }
+                      padAjax02b8458d9f66f4639b38fcfa273dffce.open("GET","http://localhost/pad/inputs/?treepicker&padInclude",true);
+                      padAjax02b8458d9f66f4639b38fcfa273dffce.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_treepicker_cycle_of_parents<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_treepicker_cycle_of_parents.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3Jvd3MnfVt7XCJpZFwiOiAxLCBcIm5hbWVcIjogXCJCb29rc1wifSwge1wiaWRcIjogMiwgXCJwYXJlbnRcIjogMywgXCJuYW1lXCI6IFwiQ3JpbWVcIn0sIHtcImlkXCI6IDMsIFwicGFyZW50XCI6IDIsIFwibmFtZVwiOiBcIkZhbnRhc3lcIn1dey9wYWQ6ZGF0YX17aW5wdXQ6dHJlZXBpY2tlciAnY2F0ZWdvcnknLCBkYXRhPSdyb3dzJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3Jvd3MnfVt7XCJpZFwiOiAxLCBcIm5hbWVcIjogXCJCb29rc1wifSwge1wiaWRcIjogMiwgXCJwYXJlbnRcIjogMywgXCJuYW1lXCI6IFwiQ3JpbWVcIn0sIHtcImlkXCI6IDMsIFwicGFyZW50XCI6IDIsIFwibmFtZVwiOiBcIkZhbnRhc3lcIn1dey9wYWQ6ZGF0YX17aW5wdXQ6dHJlZXBpY2tlciAnY2F0ZWdvcnknLCBkYXRhPSdyb3dzJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>rows<font color="black">'</font></font>}</b>[{"id": 1, "name": "Books"}, {"id": 2, "parent": 3, "name": "Crime"}, {"id": 3, "parent": 2, "name": "Fantasy"}]<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>category<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>rows<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax682bb7d911a65a801af803c38b28efe4"></div>
+                      <script>
+                      padAjax682bb7d911a65a801af803c38b28efe4 = new XMLHttpRequest();
+                      padAjax682bb7d911a65a801af803c38b28efe4.onreadystatechange=function() {
+                      if (padAjax682bb7d911a65a801af803c38b28efe4.readyState === 4) {
+                      if (padAjax682bb7d911a65a801af803c38b28efe4.status === 200) {
+                      document.getElementById("padAjax682bb7d911a65a801af803c38b28efe4").innerHTML=padAjax682bb7d911a65a801af803c38b28efe4.responseText;
+                      } else {
+                      document.getElementById("padAjax682bb7d911a65a801af803c38b28efe4").innerHTML=padAjax682bb7d911a65a801af803c38b28efe4.statusText;
+                      }
+                      }
+                      }
+                      padAjax682bb7d911a65a801af803c38b28efe4.open("GET","http://localhost/pad/regression/errors/?syntax/a_treepicker_cycle_of_parents&padInclude",true);
+                      padAjax682bb7d911a65a801af803c38b28efe4.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_treepicker_needs_items<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_treepicker_needs_items.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dHJlZXBpY2tlciAnY2F0ZWdvcnknL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dHJlZXBpY2tlciAnY2F0ZWdvcnknL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>category<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax9053cb22331f168b6291c11109913593"></div>
+                      <script>
+                      padAjax9053cb22331f168b6291c11109913593 = new XMLHttpRequest();
+                      padAjax9053cb22331f168b6291c11109913593.onreadystatechange=function() {
+                      if (padAjax9053cb22331f168b6291c11109913593.readyState === 4) {
+                      if (padAjax9053cb22331f168b6291c11109913593.status === 200) {
+                      document.getElementById("padAjax9053cb22331f168b6291c11109913593").innerHTML=padAjax9053cb22331f168b6291c11109913593.responseText;
+                      } else {
+                      document.getElementById("padAjax9053cb22331f168b6291c11109913593").innerHTML=padAjax9053cb22331f168b6291c11109913593.statusText;
+                      }
+                      }
+                      }
+                      padAjax9053cb22331f168b6291c11109913593.open("GET","http://localhost/pad/regression/errors/?syntax/a_treepicker_needs_items&padInclude",true);
+                      padAjax9053cb22331f168b6291c11109913593.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_treepicker_row_under_a_parent_that_is_none<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_treepicker_row_under_a_parent_that_is_none.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3Jvd3MnfVt7XCJpZFwiOiAxLCBcIm5hbWVcIjogXCJCb29rc1wifSwge1wiaWRcIjogMiwgXCJwYXJlbnRcIjogOSwgXCJuYW1lXCI6IFwiQ3JpbWVcIn1dey9wYWQ6ZGF0YX17aW5wdXQ6dHJlZXBpY2tlciAnY2F0ZWdvcnknLCBkYXRhPSdyb3dzJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3Jvd3MnfVt7XCJpZFwiOiAxLCBcIm5hbWVcIjogXCJCb29rc1wifSwge1wiaWRcIjogMiwgXCJwYXJlbnRcIjogOSwgXCJuYW1lXCI6IFwiQ3JpbWVcIn1dey9wYWQ6ZGF0YX17aW5wdXQ6dHJlZXBpY2tlciAnY2F0ZWdvcnknLCBkYXRhPSdyb3dzJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>rows<font color="black">'</font></font>}</b>[{"id": 1, "name": "Books"}, {"id": 2, "parent": 9, "name": "Crime"}]<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>category<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>rows<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxafaff472814b4995da581f46cb5bb1b7"></div>
+                      <script>
+                      padAjaxafaff472814b4995da581f46cb5bb1b7 = new XMLHttpRequest();
+                      padAjaxafaff472814b4995da581f46cb5bb1b7.onreadystatechange=function() {
+                      if (padAjaxafaff472814b4995da581f46cb5bb1b7.readyState === 4) {
+                      if (padAjaxafaff472814b4995da581f46cb5bb1b7.status === 200) {
+                      document.getElementById("padAjaxafaff472814b4995da581f46cb5bb1b7").innerHTML=padAjaxafaff472814b4995da581f46cb5bb1b7.responseText;
+                      } else {
+                      document.getElementById("padAjaxafaff472814b4995da581f46cb5bb1b7").innerHTML=padAjaxafaff472814b4995da581f46cb5bb1b7.statusText;
+                      }
+                      }
+                      }
+                      padAjaxafaff472814b4995da581f46cb5bb1b7.open("GET","http://localhost/pad/regression/errors/?syntax/a_treepicker_row_under_a_parent_that_is_none&padInclude",true);
+                      padAjaxafaff472814b4995da581f46cb5bb1b7.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_treepicker_value_names_one_item<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_treepicker_value_names_one_item.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dHJlZXBpY2tlciAncGxhY2UnfVxuICBFdXJvcGVcbiAgICBPdGhlclxuICBBc2lhXG4gICAgT3RoZXJcbnsvaW5wdXQ6dHJlZXBpY2tlcn1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dHJlZXBpY2tlciAncGxhY2UnfVxuICBFdXJvcGVcbiAgICBPdGhlclxuICBBc2lhXG4gICAgT3RoZXJcbnsvaW5wdXQ6dHJlZXBpY2tlcn1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>place<font color="black">'</font></font>}</b><br>  Europe<br>    Other<br>  Asia<br>    Other<br><b>{/<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxcdab106fea638547b58fe2ce89039ff9"></div>
+                      <script>
+                      padAjaxcdab106fea638547b58fe2ce89039ff9 = new XMLHttpRequest();
+                      padAjaxcdab106fea638547b58fe2ce89039ff9.onreadystatechange=function() {
+                      if (padAjaxcdab106fea638547b58fe2ce89039ff9.readyState === 4) {
+                      if (padAjaxcdab106fea638547b58fe2ce89039ff9.status === 200) {
+                      document.getElementById("padAjaxcdab106fea638547b58fe2ce89039ff9").innerHTML=padAjaxcdab106fea638547b58fe2ce89039ff9.responseText;
+                      } else {
+                      document.getElementById("padAjaxcdab106fea638547b58fe2ce89039ff9").innerHTML=padAjaxcdab106fea638547b58fe2ce89039ff9.statusText;
+                      }
+                      }
+                      }
+                      padAjaxcdab106fea638547b58fe2ce89039ff9.open("GET","http://localhost/pad/regression/errors/?syntax/a_treepicker_value_names_one_item&padInclude",true);
+                      padAjaxcdab106fea638547b58fe2ce89039ff9.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: lenient/a_treepicker_leaves_out_a_second_item_an_orphan_and_a_cycle<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">lenient/a_treepicker_leaves_out_a_second_item_an_orphan_and_a_cycle.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">lenient/a_treepicker_leaves_out_a_second_item_an_orphan_and_a_cycle.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: a second row of an id, a row under a parent that is no row<br>  // and the rows of a cycle of parents are left out quietly - the strict check names each<br>  // (errors/syntax/a_treepicker_*) - and the rest of the tree stands.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3Jvd3MnfVt7XCJpZFwiOiAxLCBcIm5hbWVcIjogXCJCb29rc1wifSwge1wiaWRcIjogMSwgXCJuYW1lXCI6IFwiQWdhaW5cIn0sIHtcImlkXCI6IDIsIFwicGFyZW50XCI6IDEsIFwibmFtZVwiOiBcIkNyaW1lXCJ9LCB7XCJpZFwiOiAzLCBcInBhcmVudFwiOiA5LCBcIm5hbWVcIjogXCJPcnBoYW5cIn0sIHtcImlkXCI6IDQsIFwicGFyZW50XCI6IDUsIFwibmFtZVwiOiBcIkxvb3BcIn0sIHtcImlkXCI6IDUsIFwicGFyZW50XCI6IDQsIFwibmFtZVwiOiBcIlJvdW5kXCJ9XXsvcGFkOmRhdGF9e2lucHV0OnRyZWVwaWNrZXIgJ2NhdGVnb3J5JywgZGF0YT0ncm93cycvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBsZW5pZW50IHdhbGsgdW5kZXIgdGVzdDogYSBzZWNvbmQgcm93IG9mIGFuIGlkLCBhIHJvdyB1bmRlciBhIHBhcmVudCB0aGF0IGlzIG5vIHJvd1xuICAvLyBhbmQgdGhlIHJvd3Mgb2YgYSBjeWNsZSBvZiBwYXJlbnRzIGFyZSBsZWZ0IG91dCBxdWlldGx5IC0gdGhlIHN0cmljdCBjaGVjayBuYW1lcyBlYWNoXG4gIC8vIChlcnJvcnMvc3ludGF4L2FfdHJlZXBpY2tlcl8qKSAtIGFuZCB0aGUgcmVzdCBvZiB0aGUgdHJlZSBzdGFuZHMuXG5cbiAgJHBhZENoZWNrU3ludGF4ID0gRkFMU0U7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3Jvd3MnfVt7XCJpZFwiOiAxLCBcIm5hbWVcIjogXCJCb29rc1wifSwge1wiaWRcIjogMSwgXCJuYW1lXCI6IFwiQWdhaW5cIn0sIHtcImlkXCI6IDIsIFwicGFyZW50XCI6IDEsIFwibmFtZVwiOiBcIkNyaW1lXCJ9LCB7XCJpZFwiOiAzLCBcInBhcmVudFwiOiA5LCBcIm5hbWVcIjogXCJPcnBoYW5cIn0sIHtcImlkXCI6IDQsIFwicGFyZW50XCI6IDUsIFwibmFtZVwiOiBcIkxvb3BcIn0sIHtcImlkXCI6IDUsIFwicGFyZW50XCI6IDQsIFwibmFtZVwiOiBcIlJvdW5kXCJ9XXsvcGFkOmRhdGF9e2lucHV0OnRyZWVwaWNrZXIgJ2NhdGVnb3J5JywgZGF0YT0ncm93cycvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBsZW5pZW50IHdhbGsgdW5kZXIgdGVzdDogYSBzZWNvbmQgcm93IG9mIGFuIGlkLCBhIHJvdyB1bmRlciBhIHBhcmVudCB0aGF0IGlzIG5vIHJvd1xuICAvLyBhbmQgdGhlIHJvd3Mgb2YgYSBjeWNsZSBvZiBwYXJlbnRzIGFyZSBsZWZ0IG91dCBxdWlldGx5IC0gdGhlIHN0cmljdCBjaGVjayBuYW1lcyBlYWNoXG4gIC8vIChlcnJvcnMvc3ludGF4L2FfdHJlZXBpY2tlcl8qKSAtIGFuZCB0aGUgcmVzdCBvZiB0aGUgdHJlZSBzdGFuZHMuXG5cbiAgJHBhZENoZWNrU3ludGF4ID0gRkFMU0U7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>rows<font color="black">'</font></font>}</b>[{"id": 1, "name": "Books"}, {"id": 1, "name": "Again"}, {"id": 2, "parent": 1, "name": "Crime"}, {"id": 3, "parent": 9, "name": "Orphan"}, {"id": 4, "parent": 5, "name": "Loop"}, {"id": 5, "parent": 4, "name": "Round"}]<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>category<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>rows<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax07a9d9cb92de0ab79c0601de65561ee4"></div>
+                      <script>
+                      padAjax07a9d9cb92de0ab79c0601de65561ee4 = new XMLHttpRequest();
+                      padAjax07a9d9cb92de0ab79c0601de65561ee4.onreadystatechange=function() {
+                      if (padAjax07a9d9cb92de0ab79c0601de65561ee4.readyState === 4) {
+                      if (padAjax07a9d9cb92de0ab79c0601de65561ee4.status === 200) {
+                      document.getElementById("padAjax07a9d9cb92de0ab79c0601de65561ee4").innerHTML=padAjax07a9d9cb92de0ab79c0601de65561ee4.responseText;
+                      } else {
+                      document.getElementById("padAjax07a9d9cb92de0ab79c0601de65561ee4").innerHTML=padAjax07a9d9cb92de0ab79c0601de65561ee4.statusText;
+                      }
+                      }
+                      }
+                      padAjax07a9d9cb92de0ab79c0601de65561ee4.open("GET","http://localhost/pad/regression/framework/?lenient/a_treepicker_leaves_out_a_second_item_an_orphan_and_a_cycle&padInclude",true);
+                      padAjax07a9d9cb92de0ab79c0601de65561ee4.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/a_disabled_segmented_and_treepicker_keep_their_value_after_a_failed_post<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/a_disabled_segmented_and_treepicker_keep_their_value_after_a_failed_post.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_disabled_segmented_and_treepicker_keep_their_value_after_a_failed_post.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The browser leaves a disabled radio group out of the post, and its padLists[], written<br>  // disabled with it, too: form f came back - the other field to be corrected - with<br>  // neither, so the locked choices show value= again, where a group the post left out was<br>  // always taken for one sent without a choice and showed none.<br><br>  </span><span style="color: #0000BB">$_SERVER </span><span style="color: #007700">[</span><span style="color: #DD0000">'REQUEST_METHOD'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'POST'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$_POST </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'padForm' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'f'</span><span style="color: #007700">, </span><span style="color: #DD0000">'other' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ2YnfXtpbnB1dDpzZWdtZW50ZWQgJ3NpemUnLCBvcHRpb25zPSdTLCBNJywgdmFsdWU9J00nLCBkaXNhYmxlZC99e2lucHV0OnRyZWVwaWNrZXIgJ3Nwb3QnLCBvcHRpb25zPSdYLCBZJywgdmFsdWU9J1knLCBkaXNhYmxlZC99e3BhZDppbnB1dCAnb3RoZXInLCBydWxlcz0ncmVxdWlyZWQnL317L3BhZDpmb3JtfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBicm93c2VyIGxlYXZlcyBhIGRpc2FibGVkIHJhZGlvIGdyb3VwIG91dCBvZiB0aGUgcG9zdCwgYW5kIGl0cyBwYWRMaXN0c1tdLCB3cml0dGVuXG4gIC8vIGRpc2FibGVkIHdpdGggaXQsIHRvbzogZm9ybSBmIGNhbWUgYmFjayAtIHRoZSBvdGhlciBmaWVsZCB0byBiZSBjb3JyZWN0ZWQgLSB3aXRoXG4gIC8vIG5laXRoZXIsIHNvIHRoZSBsb2NrZWQgY2hvaWNlcyBzaG93IHZhbHVlPSBhZ2Fpbiwgd2hlcmUgYSBncm91cCB0aGUgcG9zdCBsZWZ0IG91dCB3YXNcbiAgLy8gYWx3YXlzIHRha2VuIGZvciBvbmUgc2VudCB3aXRob3V0IGEgY2hvaWNlIGFuZCBzaG93ZWQgbm9uZS5cblxuICAkX1NFUlZFUiBbJ1JFUVVFU1RfTUVUSE9EJ10gPSAnUE9TVCc7XG4gICRfUE9TVCA9IFsgJ3BhZEZvcm0nID0+ICdmJywgJ290aGVyJyA9PiAnJyBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ2YnfXtpbnB1dDpzZWdtZW50ZWQgJ3NpemUnLCBvcHRpb25zPSdTLCBNJywgdmFsdWU9J00nLCBkaXNhYmxlZC99e2lucHV0OnRyZWVwaWNrZXIgJ3Nwb3QnLCBvcHRpb25zPSdYLCBZJywgdmFsdWU9J1knLCBkaXNhYmxlZC99e3BhZDppbnB1dCAnb3RoZXInLCBydWxlcz0ncmVxdWlyZWQnL317L3BhZDpmb3JtfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBicm93c2VyIGxlYXZlcyBhIGRpc2FibGVkIHJhZGlvIGdyb3VwIG91dCBvZiB0aGUgcG9zdCwgYW5kIGl0cyBwYWRMaXN0c1tdLCB3cml0dGVuXG4gIC8vIGRpc2FibGVkIHdpdGggaXQsIHRvbzogZm9ybSBmIGNhbWUgYmFjayAtIHRoZSBvdGhlciBmaWVsZCB0byBiZSBjb3JyZWN0ZWQgLSB3aXRoXG4gIC8vIG5laXRoZXIsIHNvIHRoZSBsb2NrZWQgY2hvaWNlcyBzaG93IHZhbHVlPSBhZ2Fpbiwgd2hlcmUgYSBncm91cCB0aGUgcG9zdCBsZWZ0IG91dCB3YXNcbiAgLy8gYWx3YXlzIHRha2VuIGZvciBvbmUgc2VudCB3aXRob3V0IGEgY2hvaWNlIGFuZCBzaG93ZWQgbm9uZS5cblxuICAkX1NFUlZFUiBbJ1JFUVVFU1RfTUVUSE9EJ10gPSAnUE9TVCc7XG4gICRfUE9TVCA9IFsgJ3BhZEZvcm0nID0+ICdmJywgJ290aGVyJyA9PiAnJyBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form </font><font color="red"><font color="black">'</font>f<font color="black">'</font></font>}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>segmented </font><font color="red"><font color="black">'</font>size<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>S<font color="black">,</font> M<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>M<font color="black">'</font><font color="black">,</font> disabled</font>/}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>spot<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>X<font color="black">,</font> Y<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>Y<font color="black">'</font><font color="black">,</font> disabled</font>/}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>input </font><font color="red"><font color="black">'</font>other<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>required<font color="black">'</font></font>/}</b><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax44ca4095c58bb3840dac7a5bda9d8730"></div>
+                      <script>
+                      padAjax44ca4095c58bb3840dac7a5bda9d8730 = new XMLHttpRequest();
+                      padAjax44ca4095c58bb3840dac7a5bda9d8730.onreadystatechange=function() {
+                      if (padAjax44ca4095c58bb3840dac7a5bda9d8730.readyState === 4) {
+                      if (padAjax44ca4095c58bb3840dac7a5bda9d8730.status === 200) {
+                      document.getElementById("padAjax44ca4095c58bb3840dac7a5bda9d8730").innerHTML=padAjax44ca4095c58bb3840dac7a5bda9d8730.responseText;
+                      } else {
+                      document.getElementById("padAjax44ca4095c58bb3840dac7a5bda9d8730").innerHTML=padAjax44ca4095c58bb3840dac7a5bda9d8730.statusText;
+                      }
+                      }
+                      }
+                      padAjax44ca4095c58bb3840dac7a5bda9d8730.open("GET","http://localhost/pad/regression/framework/?tags/a_disabled_segmented_and_treepicker_keep_their_value_after_a_failed_post&padInclude",true);
+                      padAjax44ca4095c58bb3840dac7a5bda9d8730.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/a_segmented_and_a_treepicker_in_a_get_form_keep_their_value_on_a_link_with_a_value<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/a_segmented_and_a_treepicker_in_a_get_form_keep_their_value_on_a_link_with_a_value.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_segmented_and_a_treepicker_in_a_get_form_keep_their_value_on_a_link_with_a_value.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page of a form that asks by GET, asked with a value of its own - a pager link,<br>  // ?page&amp;page=2 - and padLists[] naming two of its groups, as the form sends them without a<br>  // choice: view and cat, not named, show value=, where any value in the query emptied them;<br>  // emptied and spot, named and not in the query, have nothing chosen.<br><br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'page'</span><span style="color: #007700">]     = </span><span style="color: #DD0000">'2'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'padLists'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'emptied'</span><span style="color: #007700">, </span><span style="color: #DD0000">'spot' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ2YnLCBtZXRob2Q9J2dldCd9e2lucHV0OnNlZ21lbnRlZCAndmlldycsIG9wdGlvbnM9J0xpc3QsIEdyaWQnLCB2YWx1ZT0nR3JpZCcvfXtpbnB1dDpzZWdtZW50ZWQgJ2VtcHRpZWQnLCBvcHRpb25zPSdTLCBNJywgdmFsdWU9J00nL317aW5wdXQ6dHJlZXBpY2tlciAnY2F0Jywgb3B0aW9ucz0nQSA+IEIsIEQnLCB2YWx1ZT0nRCcvfXtpbnB1dDp0cmVlcGlja2VyICdzcG90Jywgb3B0aW9ucz0nWCwgWScsIHZhbHVlPSdZJy99ey9wYWQ6Zm9ybX1cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBUaGUgcGFnZSBvZiBhIGZvcm0gdGhhdCBhc2tzIGJ5IEdFVCwgYXNrZWQgd2l0aCBhIHZhbHVlIG9mIGl0cyBvd24gLSBhIHBhZ2VyIGxpbmssXG4gIC8vID9wYWdlJnBhZ2U9MiAtIGFuZCBwYWRMaXN0c1tdIG5hbWluZyB0d28gb2YgaXRzIGdyb3VwcywgYXMgdGhlIGZvcm0gc2VuZHMgdGhlbSB3aXRob3V0IGFcbiAgLy8gY2hvaWNlOiB2aWV3IGFuZCBjYXQsIG5vdCBuYW1lZCwgc2hvdyB2YWx1ZT0sIHdoZXJlIGFueSB2YWx1ZSBpbiB0aGUgcXVlcnkgZW1wdGllZCB0aGVtO1xuICAvLyBlbXB0aWVkIGFuZCBzcG90LCBuYW1lZCBhbmQgbm90IGluIHRoZSBxdWVyeSwgaGF2ZSBub3RoaW5nIGNob3Nlbi5cblxuICAkX0dFVCBbJ3BhZ2UnXSAgICAgPSAnMic7XG4gICRfR0VUIFsncGFkTGlzdHMnXSA9IFsgJ2VtcHRpZWQnLCAnc3BvdCcgXTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ2YnLCBtZXRob2Q9J2dldCd9e2lucHV0OnNlZ21lbnRlZCAndmlldycsIG9wdGlvbnM9J0xpc3QsIEdyaWQnLCB2YWx1ZT0nR3JpZCcvfXtpbnB1dDpzZWdtZW50ZWQgJ2VtcHRpZWQnLCBvcHRpb25zPSdTLCBNJywgdmFsdWU9J00nL317aW5wdXQ6dHJlZXBpY2tlciAnY2F0Jywgb3B0aW9ucz0nQSA+IEIsIEQnLCB2YWx1ZT0nRCcvfXtpbnB1dDp0cmVlcGlja2VyICdzcG90Jywgb3B0aW9ucz0nWCwgWScsIHZhbHVlPSdZJy99ey9wYWQ6Zm9ybX1cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBUaGUgcGFnZSBvZiBhIGZvcm0gdGhhdCBhc2tzIGJ5IEdFVCwgYXNrZWQgd2l0aCBhIHZhbHVlIG9mIGl0cyBvd24gLSBhIHBhZ2VyIGxpbmssXG4gIC8vID9wYWdlJnBhZ2U9MiAtIGFuZCBwYWRMaXN0c1tdIG5hbWluZyB0d28gb2YgaXRzIGdyb3VwcywgYXMgdGhlIGZvcm0gc2VuZHMgdGhlbSB3aXRob3V0IGFcbiAgLy8gY2hvaWNlOiB2aWV3IGFuZCBjYXQsIG5vdCBuYW1lZCwgc2hvdyB2YWx1ZT0sIHdoZXJlIGFueSB2YWx1ZSBpbiB0aGUgcXVlcnkgZW1wdGllZCB0aGVtO1xuICAvLyBlbXB0aWVkIGFuZCBzcG90LCBuYW1lZCBhbmQgbm90IGluIHRoZSBxdWVyeSwgaGF2ZSBub3RoaW5nIGNob3Nlbi5cblxuICAkX0dFVCBbJ3BhZ2UnXSAgICAgPSAnMic7XG4gICRfR0VUIFsncGFkTGlzdHMnXSA9IFsgJ2VtcHRpZWQnLCAnc3BvdCcgXTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form </font><font color="red"><font color="black">'</font>f<font color="black">'</font><font color="black">,</font> method=<font color="black">'</font>get<font color="black">'</font></font>}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>segmented </font><font color="red"><font color="black">'</font>view<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>List<font color="black">,</font> Grid<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>Grid<font color="black">'</font></font>/}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>segmented </font><font color="red"><font color="black">'</font>emptied<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>S<font color="black">,</font> M<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>M<font color="black">'</font></font>/}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>cat<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>A &gt; B<font color="black">,</font> D<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>D<font color="black">'</font></font>/}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>spot<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>X<font color="black">,</font> Y<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>Y<font color="black">'</font></font>/}</b><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax96db810fb4b81a862af445531cc54b31"></div>
+                      <script>
+                      padAjax96db810fb4b81a862af445531cc54b31 = new XMLHttpRequest();
+                      padAjax96db810fb4b81a862af445531cc54b31.onreadystatechange=function() {
+                      if (padAjax96db810fb4b81a862af445531cc54b31.readyState === 4) {
+                      if (padAjax96db810fb4b81a862af445531cc54b31.status === 200) {
+                      document.getElementById("padAjax96db810fb4b81a862af445531cc54b31").innerHTML=padAjax96db810fb4b81a862af445531cc54b31.responseText;
+                      } else {
+                      document.getElementById("padAjax96db810fb4b81a862af445531cc54b31").innerHTML=padAjax96db810fb4b81a862af445531cc54b31.statusText;
+                      }
+                      }
+                      }
+                      padAjax96db810fb4b81a862af445531cc54b31.open("GET","http://localhost/pad/regression/framework/?tags/a_segmented_and_a_treepicker_in_a_get_form_keep_their_value_on_a_link_with_a_value&padInclude",true);
+                      padAjax96db810fb4b81a862af445531cc54b31.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/a_treepicker_is_nested_radios_from_the_rows_of_a_store<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/a_treepicker_is_nested_radios_from_the_rows_of_a_store.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_treepicker_is_nested_radios_from_the_rows_of_a_store.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Flat rows, each naming its parent - empty for a root, and a root may come after its<br>  // children: the tree is made from the roots down, its radios in that order, the value of<br>  // each its id and the text its name; value= chooses one, and the button shows its path.<br><br>  </span><span style="color: #0000BB">$categories </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'parent' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">,  </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Fiction' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'parent' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Books' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'parent' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">,  </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Crime' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4</span><span style="color: #007700">, </span><span style="color: #DD0000">'parent' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">,  </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Fantasy' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">6</span><span style="color: #007700">, </span><span style="color: #DD0000">'parent' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Music' </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dHJlZXBpY2tlciAnY2F0ZWdvcnknLCBsYWJlbD0nQ2F0ZWdvcnknLCBkYXRhPSdjYXRlZ29yaWVzJywgdmFsdWU9NCwgcmVxdWlyZWQvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIEZsYXQgcm93cywgZWFjaCBuYW1pbmcgaXRzIHBhcmVudCAtIGVtcHR5IGZvciBhIHJvb3QsIGFuZCBhIHJvb3QgbWF5IGNvbWUgYWZ0ZXIgaXRzXG4gIC8vIGNoaWxkcmVuOiB0aGUgdHJlZSBpcyBtYWRlIGZyb20gdGhlIHJvb3RzIGRvd24sIGl0cyByYWRpb3MgaW4gdGhhdCBvcmRlciwgdGhlIHZhbHVlIG9mXG4gIC8vIGVhY2ggaXRzIGlkIGFuZCB0aGUgdGV4dCBpdHMgbmFtZTsgdmFsdWU9IGNob29zZXMgb25lLCBhbmQgdGhlIGJ1dHRvbiBzaG93cyBpdHMgcGF0aC5cblxuICAkY2F0ZWdvcmllcyA9IFtcbiAgICBbICdpZCcgPT4gMiwgJ3BhcmVudCcgPT4gMSwgICduYW1lJyA9PiAnRmljdGlvbicgXSxcbiAgICBbICdpZCcgPT4gMSwgJ3BhcmVudCcgPT4gJycsICduYW1lJyA9PiAnQm9va3MnIF0sXG4gICAgWyAnaWQnID0+IDMsICdwYXJlbnQnID0+IDIsICAnbmFtZScgPT4gJ0NyaW1lJyBdLFxuICAgIFsgJ2lkJyA9PiA0LCAncGFyZW50JyA9PiAyLCAgJ25hbWUnID0+ICdGYW50YXN5JyBdLFxuICAgIFsgJ2lkJyA9PiA2LCAncGFyZW50JyA9PiAnJywgJ25hbWUnID0+ICdNdXNpYycgXVxuICBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dHJlZXBpY2tlciAnY2F0ZWdvcnknLCBsYWJlbD0nQ2F0ZWdvcnknLCBkYXRhPSdjYXRlZ29yaWVzJywgdmFsdWU9NCwgcmVxdWlyZWQvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIEZsYXQgcm93cywgZWFjaCBuYW1pbmcgaXRzIHBhcmVudCAtIGVtcHR5IGZvciBhIHJvb3QsIGFuZCBhIHJvb3QgbWF5IGNvbWUgYWZ0ZXIgaXRzXG4gIC8vIGNoaWxkcmVuOiB0aGUgdHJlZSBpcyBtYWRlIGZyb20gdGhlIHJvb3RzIGRvd24sIGl0cyByYWRpb3MgaW4gdGhhdCBvcmRlciwgdGhlIHZhbHVlIG9mXG4gIC8vIGVhY2ggaXRzIGlkIGFuZCB0aGUgdGV4dCBpdHMgbmFtZTsgdmFsdWU9IGNob29zZXMgb25lLCBhbmQgdGhlIGJ1dHRvbiBzaG93cyBpdHMgcGF0aC5cblxuICAkY2F0ZWdvcmllcyA9IFtcbiAgICBbICdpZCcgPT4gMiwgJ3BhcmVudCcgPT4gMSwgICduYW1lJyA9PiAnRmljdGlvbicgXSxcbiAgICBbICdpZCcgPT4gMSwgJ3BhcmVudCcgPT4gJycsICduYW1lJyA9PiAnQm9va3MnIF0sXG4gICAgWyAnaWQnID0+IDMsICdwYXJlbnQnID0+IDIsICAnbmFtZScgPT4gJ0NyaW1lJyBdLFxuICAgIFsgJ2lkJyA9PiA0LCAncGFyZW50JyA9PiAyLCAgJ25hbWUnID0+ICdGYW50YXN5JyBdLFxuICAgIFsgJ2lkJyA9PiA2LCAncGFyZW50JyA9PiAnJywgJ25hbWUnID0+ICdNdXNpYycgXVxuICBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>category<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Category<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>categories<font color="black">'</font><font color="black">,</font> value=4<font color="black">,</font> required</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax1ed4f59c6433a8eba4b7a67cff231b05"></div>
+                      <script>
+                      padAjax1ed4f59c6433a8eba4b7a67cff231b05 = new XMLHttpRequest();
+                      padAjax1ed4f59c6433a8eba4b7a67cff231b05.onreadystatechange=function() {
+                      if (padAjax1ed4f59c6433a8eba4b7a67cff231b05.readyState === 4) {
+                      if (padAjax1ed4f59c6433a8eba4b7a67cff231b05.status === 200) {
+                      document.getElementById("padAjax1ed4f59c6433a8eba4b7a67cff231b05").innerHTML=padAjax1ed4f59c6433a8eba4b7a67cff231b05.responseText;
+                      } else {
+                      document.getElementById("padAjax1ed4f59c6433a8eba4b7a67cff231b05").innerHTML=padAjax1ed4f59c6433a8eba4b7a67cff231b05.statusText;
+                      }
+                      }
+                      }
+                      padAjax1ed4f59c6433a8eba4b7a67cff231b05.open("GET","http://localhost/pad/regression/framework/?tags/a_treepicker_is_nested_radios_from_the_rows_of_a_store&padInclude",true);
+                      padAjax1ed4f59c6433a8eba4b7a67cff231b05.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/a_treepicker_reads_indented_lines_and_paths<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_treepicker_reads_indented_lines_and_paths.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dHJlZXBpY2tlciAnY2l0eScsIGxlYXZlc31cbiAgRXVyb3BlXG4gICAgRnJhbmNlXG4gICAgICBQYXJpc1xuICAgIFNwYWluXG4gIEFzaWFcbnsvaW5wdXQ6dHJlZXBpY2tlcn17aW5wdXQ6dHJlZXBpY2tlciAndG9waWMnLCBvcHRpb25zPSdGb3JtcyA+IEZpZWxkcywgRm9ybXMgPiBSdWxlcywgUGFnZXMnLCBwbGFjZWhvbGRlcj0nUGljayBhIHRvcGljJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dHJlZXBpY2tlciAnY2l0eScsIGxlYXZlc31cbiAgRXVyb3BlXG4gICAgRnJhbmNlXG4gICAgICBQYXJpc1xuICAgIFNwYWluXG4gIEFzaWFcbnsvaW5wdXQ6dHJlZXBpY2tlcn17aW5wdXQ6dHJlZXBpY2tlciAndG9waWMnLCBvcHRpb25zPSdGb3JtcyA+IEZpZWxkcywgRm9ybXMgPiBSdWxlcywgUGFnZXMnLCBwbGFjZWhvbGRlcj0nUGljayBhIHRvcGljJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>city<font color="black">'</font><font color="black">,</font> leaves</font>}</b><br>  Europe<br>    France<br>      Paris<br>    Spain<br>  Asia<br><b>{/<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>topic<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>Forms &gt; Fields<font color="black">,</font> Forms &gt; Rules<font color="black">,</font> Pages<font color="black">'</font><font color="black">,</font> placeholder=<font color="black">'</font>Pick a topic<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax515fa8b8f01b2fef235d6cd3b013c460"></div>
+                      <script>
+                      padAjax515fa8b8f01b2fef235d6cd3b013c460 = new XMLHttpRequest();
+                      padAjax515fa8b8f01b2fef235d6cd3b013c460.onreadystatechange=function() {
+                      if (padAjax515fa8b8f01b2fef235d6cd3b013c460.readyState === 4) {
+                      if (padAjax515fa8b8f01b2fef235d6cd3b013c460.status === 200) {
+                      document.getElementById("padAjax515fa8b8f01b2fef235d6cd3b013c460").innerHTML=padAjax515fa8b8f01b2fef235d6cd3b013c460.responseText;
+                      } else {
+                      document.getElementById("padAjax515fa8b8f01b2fef235d6cd3b013c460").innerHTML=padAjax515fa8b8f01b2fef235d6cd3b013c460.statusText;
+                      }
+                      }
+                      }
+                      padAjax515fa8b8f01b2fef235d6cd3b013c460.open("GET","http://localhost/pad/regression/framework/?tags/a_treepicker_reads_indented_lines_and_paths&padInclude",true);
+                      padAjax515fa8b8f01b2fef235d6cd3b013c460.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/a_treepicker_reads_nested_rows_and_escapes_its_items<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/a_treepicker_reads_nested_rows_and_escapes_its_items.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_treepicker_reads_nested_rows_and_escapes_its_items.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Nested rows - the children of a row in its field sub= - read by key= and field=: texts<br>  // and values holding the characters of HTML and of PAD are written escaped and stay text,<br>  // in the radios, their labels and the path of the choice, value=, on the button.<br><br>  </span><span style="color: #0000BB">$odd </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a&amp;b'</span><span style="color: #007700">, </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'&lt;b&gt;Bold&lt;/b&gt;'</span><span style="color: #007700">, </span><span style="color: #DD0000">'sub' </span><span style="color: #007700">=&gt; [<br>      [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'{php:getcwd}'</span><span style="color: #007700">, </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'O\'Brien "q"' </span><span style="color: #007700">],<br>      [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'x|y'</span><span style="color: #007700">, </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a | b' </span><span style="color: #007700">] ] ]<br>  ];<br><br>  </span><span style="color: #0000BB">$pick </span><span style="color: #007700">= </span><span style="color: #DD0000">'{php:getcwd}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dHJlZXBpY2tlciAnb2RkJywgZGF0YT0nb2RkJywga2V5PSdjb2RlJywgZmllbGQ9J3RpdGxlJywgY2hpbGRyZW49J3N1YicsIHZhbHVlPSRwaWNrLCBsYWJlbD0nT2RkIDxiPiY8L2I+Jy99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gTmVzdGVkIHJvd3MgLSB0aGUgY2hpbGRyZW4gb2YgYSByb3cgaW4gaXRzIGZpZWxkIHN1Yj0gLSByZWFkIGJ5IGtleT0gYW5kIGZpZWxkPTogdGV4dHNcbiAgLy8gYW5kIHZhbHVlcyBob2xkaW5nIHRoZSBjaGFyYWN0ZXJzIG9mIEhUTUwgYW5kIG9mIFBBRCBhcmUgd3JpdHRlbiBlc2NhcGVkIGFuZCBzdGF5IHRleHQsXG4gIC8vIGluIHRoZSByYWRpb3MsIHRoZWlyIGxhYmVscyBhbmQgdGhlIHBhdGggb2YgdGhlIGNob2ljZSwgdmFsdWU9LCBvbiB0aGUgYnV0dG9uLlxuXG4gICRvZGQgPSBbXG4gICAgWyAnY29kZScgPT4gJ2EmYicsICd0aXRsZScgPT4gJzxiPkJvbGQ8L2I+JywgJ3N1YicgPT4gW1xuICAgICAgWyAnY29kZScgPT4gJ3twaHA6Z2V0Y3dkfScsICd0aXRsZScgPT4gJ09cXCdCcmllbiBcInFcIicgXSxcbiAgICAgIFsgJ2NvZGUnID0+ICd4fHknLCAndGl0bGUnID0+ICdhIHwgYicgXSBdIF1cbiAgXTtcblxuICAkcGljayA9ICd7cGhwOmdldGN3ZH0nO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dHJlZXBpY2tlciAnb2RkJywgZGF0YT0nb2RkJywga2V5PSdjb2RlJywgZmllbGQ9J3RpdGxlJywgY2hpbGRyZW49J3N1YicsIHZhbHVlPSRwaWNrLCBsYWJlbD0nT2RkIDxiPiY8L2I+Jy99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gTmVzdGVkIHJvd3MgLSB0aGUgY2hpbGRyZW4gb2YgYSByb3cgaW4gaXRzIGZpZWxkIHN1Yj0gLSByZWFkIGJ5IGtleT0gYW5kIGZpZWxkPTogdGV4dHNcbiAgLy8gYW5kIHZhbHVlcyBob2xkaW5nIHRoZSBjaGFyYWN0ZXJzIG9mIEhUTUwgYW5kIG9mIFBBRCBhcmUgd3JpdHRlbiBlc2NhcGVkIGFuZCBzdGF5IHRleHQsXG4gIC8vIGluIHRoZSByYWRpb3MsIHRoZWlyIGxhYmVscyBhbmQgdGhlIHBhdGggb2YgdGhlIGNob2ljZSwgdmFsdWU9LCBvbiB0aGUgYnV0dG9uLlxuXG4gICRvZGQgPSBbXG4gICAgWyAnY29kZScgPT4gJ2EmYicsICd0aXRsZScgPT4gJzxiPkJvbGQ8L2I+JywgJ3N1YicgPT4gW1xuICAgICAgWyAnY29kZScgPT4gJ3twaHA6Z2V0Y3dkfScsICd0aXRsZScgPT4gJ09cXCdCcmllbiBcInFcIicgXSxcbiAgICAgIFsgJ2NvZGUnID0+ICd4fHknLCAndGl0bGUnID0+ICdhIHwgYicgXSBdIF1cbiAgXTtcblxuICAkcGljayA9ICd7cGhwOmdldGN3ZH0nO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>odd<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>odd<font color="black">'</font><font color="black">,</font> key=<font color="black">'</font>code<font color="black">'</font><font color="black">,</font> field=<font color="black">'</font>title<font color="black">'</font><font color="black">,</font> children=<font color="black">'</font>sub<font color="black">'</font><font color="black">,</font> value=<font color="red">$</font>pick<font color="black">,</font> label=<font color="black">'</font>Odd &lt;b&gt;&amp;&lt;/b&gt;<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax2a91f5a55abf056ada21da113157b0cc"></div>
+                      <script>
+                      padAjax2a91f5a55abf056ada21da113157b0cc = new XMLHttpRequest();
+                      padAjax2a91f5a55abf056ada21da113157b0cc.onreadystatechange=function() {
+                      if (padAjax2a91f5a55abf056ada21da113157b0cc.readyState === 4) {
+                      if (padAjax2a91f5a55abf056ada21da113157b0cc.status === 200) {
+                      document.getElementById("padAjax2a91f5a55abf056ada21da113157b0cc").innerHTML=padAjax2a91f5a55abf056ada21da113157b0cc.responseText;
+                      } else {
+                      document.getElementById("padAjax2a91f5a55abf056ada21da113157b0cc").innerHTML=padAjax2a91f5a55abf056ada21da113157b0cc.statusText;
+                      }
+                      }
+                      }
+                      padAjax2a91f5a55abf056ada21da113157b0cc.open("GET","http://localhost/pad/regression/framework/?tags/a_treepicker_reads_nested_rows_and_escapes_its_items&padInclude",true);
+                      padAjax2a91f5a55abf056ada21da113157b0cc.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/a_treepicker_refills_the_item_its_form_posted<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/a_treepicker_refills_the_item_its_form_posted.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_treepicker_refills_the_item_its_form_posted.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A post of form f: its city shows the item posted in place of value=, the city of form g,<br>  // which did not come back, shows value=; town came back without a choice - a radio group<br>  // with none is left out of the post, the padLists[] beside it says it was there - so none<br>  // is chosen, not value= again; and place was<br>  // posted a value that is no item of it, which is not shown. The page's padValidate left a<br>  // message for the town, tied to its radios.<br><br>  </span><span style="color: #0000BB">$_SERVER </span><span style="color: #007700">[</span><span style="color: #DD0000">'REQUEST_METHOD'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'POST'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$_POST </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'padForm' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'f'</span><span style="color: #007700">, </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Paris'</span><span style="color: #007700">, </span><span style="color: #DD0000">'place' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Tokyo'</span><span style="color: #007700">, </span><span style="color: #DD0000">'padLists' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'city'</span><span style="color: #007700">, </span><span style="color: #DD0000">'town'</span><span style="color: #007700">, </span><span style="color: #DD0000">'place' </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">padValidate </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'town' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'required' </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ2cnfXtpbnB1dDp0cmVlcGlja2VyICdjaXR5Jywgb3B0aW9ucz0nRXVyb3BlID4gUGFyaXMsIEV1cm9wZSA+IFJvbWUnLCB2YWx1ZT0nUm9tZScvfXsvcGFkOmZvcm19e3BhZDpmb3JtICdmJ317aW5wdXQ6dHJlZXBpY2tlciAnY2l0eScsIG9wdGlvbnM9J0V1cm9wZSA+IFBhcmlzLCBFdXJvcGUgPiBSb21lJywgdmFsdWU9J1JvbWUnL317aW5wdXQ6dHJlZXBpY2tlciAndG93bicsIG9wdGlvbnM9J0x5b24sIE5pY2UnLCB2YWx1ZT0nTmljZScvfXtpbnB1dDp0cmVlcGlja2VyICdwbGFjZScsIG9wdGlvbnM9J0t5b3RvLCBPc2FrYScvfXsvcGFkOmZvcm19XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gQSBwb3N0IG9mIGZvcm0gZjogaXRzIGNpdHkgc2hvd3MgdGhlIGl0ZW0gcG9zdGVkIGluIHBsYWNlIG9mIHZhbHVlPSwgdGhlIGNpdHkgb2YgZm9ybSBnLFxuICAvLyB3aGljaCBkaWQgbm90IGNvbWUgYmFjaywgc2hvd3MgdmFsdWU9OyB0b3duIGNhbWUgYmFjayB3aXRob3V0IGEgY2hvaWNlIC0gYSByYWRpbyBncm91cFxuICAvLyB3aXRoIG5vbmUgaXMgbGVmdCBvdXQgb2YgdGhlIHBvc3QsIHRoZSBwYWRMaXN0c1tdIGJlc2lkZSBpdCBzYXlzIGl0IHdhcyB0aGVyZSAtIHNvIG5vbmVcbiAgLy8gaXMgY2hvc2VuLCBub3QgdmFsdWU9IGFnYWluOyBhbmQgcGxhY2Ugd2FzXG4gIC8vIHBvc3RlZCBhIHZhbHVlIHRoYXQgaXMgbm8gaXRlbSBvZiBpdCwgd2hpY2ggaXMgbm90IHNob3duLiBUaGUgcGFnZSdzIHBhZFZhbGlkYXRlIGxlZnQgYVxuICAvLyBtZXNzYWdlIGZvciB0aGUgdG93biwgdGllZCB0byBpdHMgcmFkaW9zLlxuXG4gICRfU0VSVkVSIFsnUkVRVUVTVF9NRVRIT0QnXSA9ICdQT1NUJztcbiAgJF9QT1NUID0gWyAncGFkRm9ybScgPT4gJ2YnLCAnY2l0eScgPT4gJ1BhcmlzJywgJ3BsYWNlJyA9PiAnVG9reW8nLCAncGFkTGlzdHMnID0+IFsgJ2NpdHknLCAndG93bicsICdwbGFjZScgXSBdO1xuXG4gIHBhZFZhbGlkYXRlICggWyAndG93bicgPT4gJ3JlcXVpcmVkJyBdICk7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ2cnfXtpbnB1dDp0cmVlcGlja2VyICdjaXR5Jywgb3B0aW9ucz0nRXVyb3BlID4gUGFyaXMsIEV1cm9wZSA+IFJvbWUnLCB2YWx1ZT0nUm9tZScvfXsvcGFkOmZvcm19e3BhZDpmb3JtICdmJ317aW5wdXQ6dHJlZXBpY2tlciAnY2l0eScsIG9wdGlvbnM9J0V1cm9wZSA+IFBhcmlzLCBFdXJvcGUgPiBSb21lJywgdmFsdWU9J1JvbWUnL317aW5wdXQ6dHJlZXBpY2tlciAndG93bicsIG9wdGlvbnM9J0x5b24sIE5pY2UnLCB2YWx1ZT0nTmljZScvfXtpbnB1dDp0cmVlcGlja2VyICdwbGFjZScsIG9wdGlvbnM9J0t5b3RvLCBPc2FrYScvfXsvcGFkOmZvcm19XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gQSBwb3N0IG9mIGZvcm0gZjogaXRzIGNpdHkgc2hvd3MgdGhlIGl0ZW0gcG9zdGVkIGluIHBsYWNlIG9mIHZhbHVlPSwgdGhlIGNpdHkgb2YgZm9ybSBnLFxuICAvLyB3aGljaCBkaWQgbm90IGNvbWUgYmFjaywgc2hvd3MgdmFsdWU9OyB0b3duIGNhbWUgYmFjayB3aXRob3V0IGEgY2hvaWNlIC0gYSByYWRpbyBncm91cFxuICAvLyB3aXRoIG5vbmUgaXMgbGVmdCBvdXQgb2YgdGhlIHBvc3QsIHRoZSBwYWRMaXN0c1tdIGJlc2lkZSBpdCBzYXlzIGl0IHdhcyB0aGVyZSAtIHNvIG5vbmVcbiAgLy8gaXMgY2hvc2VuLCBub3QgdmFsdWU9IGFnYWluOyBhbmQgcGxhY2Ugd2FzXG4gIC8vIHBvc3RlZCBhIHZhbHVlIHRoYXQgaXMgbm8gaXRlbSBvZiBpdCwgd2hpY2ggaXMgbm90IHNob3duLiBUaGUgcGFnZSdzIHBhZFZhbGlkYXRlIGxlZnQgYVxuICAvLyBtZXNzYWdlIGZvciB0aGUgdG93biwgdGllZCB0byBpdHMgcmFkaW9zLlxuXG4gICRfU0VSVkVSIFsnUkVRVUVTVF9NRVRIT0QnXSA9ICdQT1NUJztcbiAgJF9QT1NUID0gWyAncGFkRm9ybScgPT4gJ2YnLCAnY2l0eScgPT4gJ1BhcmlzJywgJ3BsYWNlJyA9PiAnVG9reW8nLCAncGFkTGlzdHMnID0+IFsgJ2NpdHknLCAndG93bicsICdwbGFjZScgXSBdO1xuXG4gIHBhZFZhbGlkYXRlICggWyAndG93bicgPT4gJ3JlcXVpcmVkJyBdICk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form </font><font color="red"><font color="black">'</font>g<font color="black">'</font></font>}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>city<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>Europe &gt; Paris<font color="black">,</font> Europe &gt; Rome<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>Rome<font color="black">'</font></font>/}</b><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form </font><font color="red"><font color="black">'</font>f<font color="black">'</font></font>}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>city<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>Europe &gt; Paris<font color="black">,</font> Europe &gt; Rome<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>Rome<font color="black">'</font></font>/}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>town<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>Lyon<font color="black">,</font> Nice<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>Nice<font color="black">'</font></font>/}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>place<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>Kyoto<font color="black">,</font> Osaka<font color="black">'</font></font>/}</b><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxc5082c23806f3352f74faabfaa03b03b"></div>
+                      <script>
+                      padAjaxc5082c23806f3352f74faabfaa03b03b = new XMLHttpRequest();
+                      padAjaxc5082c23806f3352f74faabfaa03b03b.onreadystatechange=function() {
+                      if (padAjaxc5082c23806f3352f74faabfaa03b03b.readyState === 4) {
+                      if (padAjaxc5082c23806f3352f74faabfaa03b03b.status === 200) {
+                      document.getElementById("padAjaxc5082c23806f3352f74faabfaa03b03b").innerHTML=padAjaxc5082c23806f3352f74faabfaa03b03b.responseText;
+                      } else {
+                      document.getElementById("padAjaxc5082c23806f3352f74faabfaa03b03b").innerHTML=padAjaxc5082c23806f3352f74faabfaa03b03b.statusText;
+                      }
+                      }
+                      }
+                      padAjaxc5082c23806f3352f74faabfaa03b03b.open("GET","http://localhost/pad/regression/framework/?tags/a_treepicker_refills_the_item_its_form_posted&padInclude",true);
+                      padAjaxc5082c23806f3352f74faabfaa03b03b.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/a_treepicker_takes_a_parent_0_that_is_no_row_for_a_root<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/a_treepicker_takes_a_parent_0_that_is_no_row_for_a_root.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_treepicker_takes_a_parent_0_that_is_no_row_for_a_root.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Rows of a table whose parent_id is NOT NULL DEFAULT 0: a parent 0 that is no row's value<br>  // is a root - Fruit and Veg - where every row was refused as under a parent that is none.<br>  // Where a row has the value 0 - the zone World - a parent 0 is that row, as any other.<br><br>  </span><span style="color: #0000BB">$cats </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Fruit'</span><span style="color: #007700">, </span><span style="color: #DD0000">'parent' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Veg'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'parent' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'0' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Apple'</span><span style="color: #007700">, </span><span style="color: #DD0000">'parent' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$zones </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0</span><span style="color: #007700">,  </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'World'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'above' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Europe'</span><span style="color: #007700">, </span><span style="color: #DD0000">'above' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dHJlZXBpY2tlciAnY2F0JywgbGFiZWw9J0NhdGVnb3J5JywgZGF0YT0nY2F0cycsIHZhbHVlPTMvfXtpbnB1dDp0cmVlcGlja2VyICd6b25lJywgbGFiZWw9J1pvbmUnLCBkYXRhPSd6b25lcycsIGtleT0nY29kZScsIHBhcmVudD0nYWJvdmUnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBSb3dzIG9mIGEgdGFibGUgd2hvc2UgcGFyZW50X2lkIGlzIE5PVCBOVUxMIERFRkFVTFQgMDogYSBwYXJlbnQgMCB0aGF0IGlzIG5vIHJvdydzIHZhbHVlXG4gIC8vIGlzIGEgcm9vdCAtIEZydWl0IGFuZCBWZWcgLSB3aGVyZSBldmVyeSByb3cgd2FzIHJlZnVzZWQgYXMgdW5kZXIgYSBwYXJlbnQgdGhhdCBpcyBub25lLlxuICAvLyBXaGVyZSBhIHJvdyBoYXMgdGhlIHZhbHVlIDAgLSB0aGUgem9uZSBXb3JsZCAtIGEgcGFyZW50IDAgaXMgdGhhdCByb3csIGFzIGFueSBvdGhlci5cblxuICAkY2F0cyA9IFtcbiAgICBbICdpZCcgPT4gMSwgJ25hbWUnID0+ICdGcnVpdCcsICdwYXJlbnQnID0+IDAgXSxcbiAgICBbICdpZCcgPT4gMiwgJ25hbWUnID0+ICdWZWcnLCAgICdwYXJlbnQnID0+ICcwJyBdLFxuICAgIFsgJ2lkJyA9PiAzLCAnbmFtZScgPT4gJ0FwcGxlJywgJ3BhcmVudCcgPT4gMSBdXG4gIF07XG5cbiAgJHpvbmVzID0gW1xuICAgIFsgJ2NvZGUnID0+IDAsICAnbmFtZScgPT4gJ1dvcmxkJywgICdhYm92ZScgPT4gJycgXSxcbiAgICBbICdjb2RlJyA9PiAxMCwgJ25hbWUnID0+ICdFdXJvcGUnLCAnYWJvdmUnID0+IDAgXVxuICBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dHJlZXBpY2tlciAnY2F0JywgbGFiZWw9J0NhdGVnb3J5JywgZGF0YT0nY2F0cycsIHZhbHVlPTMvfXtpbnB1dDp0cmVlcGlja2VyICd6b25lJywgbGFiZWw9J1pvbmUnLCBkYXRhPSd6b25lcycsIGtleT0nY29kZScsIHBhcmVudD0nYWJvdmUnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBSb3dzIG9mIGEgdGFibGUgd2hvc2UgcGFyZW50X2lkIGlzIE5PVCBOVUxMIERFRkFVTFQgMDogYSBwYXJlbnQgMCB0aGF0IGlzIG5vIHJvdydzIHZhbHVlXG4gIC8vIGlzIGEgcm9vdCAtIEZydWl0IGFuZCBWZWcgLSB3aGVyZSBldmVyeSByb3cgd2FzIHJlZnVzZWQgYXMgdW5kZXIgYSBwYXJlbnQgdGhhdCBpcyBub25lLlxuICAvLyBXaGVyZSBhIHJvdyBoYXMgdGhlIHZhbHVlIDAgLSB0aGUgem9uZSBXb3JsZCAtIGEgcGFyZW50IDAgaXMgdGhhdCByb3csIGFzIGFueSBvdGhlci5cblxuICAkY2F0cyA9IFtcbiAgICBbICdpZCcgPT4gMSwgJ25hbWUnID0+ICdGcnVpdCcsICdwYXJlbnQnID0+IDAgXSxcbiAgICBbICdpZCcgPT4gMiwgJ25hbWUnID0+ICdWZWcnLCAgICdwYXJlbnQnID0+ICcwJyBdLFxuICAgIFsgJ2lkJyA9PiAzLCAnbmFtZScgPT4gJ0FwcGxlJywgJ3BhcmVudCcgPT4gMSBdXG4gIF07XG5cbiAgJHpvbmVzID0gW1xuICAgIFsgJ2NvZGUnID0+IDAsICAnbmFtZScgPT4gJ1dvcmxkJywgICdhYm92ZScgPT4gJycgXSxcbiAgICBbICdjb2RlJyA9PiAxMCwgJ25hbWUnID0+ICdFdXJvcGUnLCAnYWJvdmUnID0+IDAgXVxuICBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>cat<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Category<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>cats<font color="black">'</font><font color="black">,</font> value=3</font>/}</b><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>zone<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Zone<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>zones<font color="black">'</font><font color="black">,</font> key=<font color="black">'</font>code<font color="black">'</font><font color="black">,</font> parent=<font color="black">'</font>above<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax8bd1a359c1c80d00451b89b96ba66c09"></div>
+                      <script>
+                      padAjax8bd1a359c1c80d00451b89b96ba66c09 = new XMLHttpRequest();
+                      padAjax8bd1a359c1c80d00451b89b96ba66c09.onreadystatechange=function() {
+                      if (padAjax8bd1a359c1c80d00451b89b96ba66c09.readyState === 4) {
+                      if (padAjax8bd1a359c1c80d00451b89b96ba66c09.status === 200) {
+                      document.getElementById("padAjax8bd1a359c1c80d00451b89b96ba66c09").innerHTML=padAjax8bd1a359c1c80d00451b89b96ba66c09.responseText;
+                      } else {
+                      document.getElementById("padAjax8bd1a359c1c80d00451b89b96ba66c09").innerHTML=padAjax8bd1a359c1c80d00451b89b96ba66c09.statusText;
+                      }
+                      }
+                      }
+                      padAjax8bd1a359c1c80d00451b89b96ba66c09.open("GET","http://localhost/pad/regression/framework/?tags/a_treepicker_takes_a_parent_0_that_is_no_row_for_a_root&padInclude",true);
+                      padAjax8bd1a359c1c80d00451b89b96ba66c09.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/pages - Page: request/form_rules_treepicker<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">request/form_rules_treepicker.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">request/form_rules_treepicker.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The fixture of request/form_rules_treepicker_post: the rules of a tree picker are those of<br>  // the one item it posts, checked before the page's PHP runs, and this file - running after<br>  // the post pass - sees only whether the post kept them, and what it stores.<br><br>  </span><span style="color: #0000BB">$state </span><span style="color: #007700">= </span><span style="color: #0000BB">padPosted </span><span style="color: #007700">( </span><span style="color: #DD0000">'pick' </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'stored ' </span><span style="color: #007700">. ( </span><span style="color: #0000BB">$_POST </span><span style="color: #007700">[</span><span style="color: #DD0000">'topic'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">) : </span><span style="color: #DD0000">'not stored'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ3BpY2snLCBlcnJvcn1cbntpbnB1dDp0cmVlcGlja2VyICd0b3BpYycsIGxhYmVsPSdUb3BpYycsIG9wdGlvbnM9J0Zvcm1zID4gRmllbGRzLCBGb3JtcyA+IFJ1bGVzLCBQYWdlcycsIGxlYXZlcywgcnVsZXM9J3JlcXVpcmVkfGluOkZpZWxkcyxSdWxlcyxQYWdlcycvfVxuey9wYWQ6Zm9ybX1cbnskc3RhdGV9XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gVGhlIGZpeHR1cmUgb2YgcmVxdWVzdC9mb3JtX3J1bGVzX3RyZWVwaWNrZXJfcG9zdDogdGhlIHJ1bGVzIG9mIGEgdHJlZSBwaWNrZXIgYXJlIHRob3NlIG9mXG4gIC8vIHRoZSBvbmUgaXRlbSBpdCBwb3N0cywgY2hlY2tlZCBiZWZvcmUgdGhlIHBhZ2UncyBQSFAgcnVucywgYW5kIHRoaXMgZmlsZSAtIHJ1bm5pbmcgYWZ0ZXJcbiAgLy8gdGhlIHBvc3QgcGFzcyAtIHNlZXMgb25seSB3aGV0aGVyIHRoZSBwb3N0IGtlcHQgdGhlbSwgYW5kIHdoYXQgaXQgc3RvcmVzLlxuXG4gICRzdGF0ZSA9IHBhZFBvc3RlZCAoICdwaWNrJyApID8gJ3N0b3JlZCAnIC4gKCAkX1BPU1QgWyd0b3BpYyddID8/ICcnICkgOiAnbm90IHN0b3JlZCc7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ3BpY2snLCBlcnJvcn1cbntpbnB1dDp0cmVlcGlja2VyICd0b3BpYycsIGxhYmVsPSdUb3BpYycsIG9wdGlvbnM9J0Zvcm1zID4gRmllbGRzLCBGb3JtcyA+IFJ1bGVzLCBQYWdlcycsIGxlYXZlcywgcnVsZXM9J3JlcXVpcmVkfGluOkZpZWxkcyxSdWxlcyxQYWdlcycvfVxuey9wYWQ6Zm9ybX1cbnskc3RhdGV9XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gVGhlIGZpeHR1cmUgb2YgcmVxdWVzdC9mb3JtX3J1bGVzX3RyZWVwaWNrZXJfcG9zdDogdGhlIHJ1bGVzIG9mIGEgdHJlZSBwaWNrZXIgYXJlIHRob3NlIG9mXG4gIC8vIHRoZSBvbmUgaXRlbSBpdCBwb3N0cywgY2hlY2tlZCBiZWZvcmUgdGhlIHBhZ2UncyBQSFAgcnVucywgYW5kIHRoaXMgZmlsZSAtIHJ1bm5pbmcgYWZ0ZXJcbiAgLy8gdGhlIHBvc3QgcGFzcyAtIHNlZXMgb25seSB3aGV0aGVyIHRoZSBwb3N0IGtlcHQgdGhlbSwgYW5kIHdoYXQgaXQgc3RvcmVzLlxuXG4gICRzdGF0ZSA9IHBhZFBvc3RlZCAoICdwaWNrJyApID8gJ3N0b3JlZCAnIC4gKCAkX1BPU1QgWyd0b3BpYyddID8/ICcnICkgOiAnbm90IHN0b3JlZCc7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form </font><font color="red"><font color="black">'</font>pick<font color="black">'</font><font color="black">,</font> error</font>}</b><br><b>{<font color="blue"><font color="purple">input</font><font color="black"><b>:</b></font>treepicker </font><font color="red"><font color="black">'</font>topic<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Topic<font color="black">'</font><font color="black">,</font> options=<font color="black">'</font>Forms &gt; Fields<font color="black">,</font> Forms &gt; Rules<font color="black">,</font> Pages<font color="black">'</font><font color="black">,</font> leaves<font color="black">,</font> rules=<font color="black">'</font>required<font color="black">|</font>in<font color="black">:</font>Fields<font color="black">,</font>Rules<font color="black">,</font>Pages<font color="black">'</font></font>/}</b><br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form</font><font color="red"></font>}</b><br><b>{<font color="green"><font color="red">$</font>state</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax8efaf5bf57384cf6160300b9f60722eb"></div>
+                      <script>
+                      padAjax8efaf5bf57384cf6160300b9f60722eb = new XMLHttpRequest();
+                      padAjax8efaf5bf57384cf6160300b9f60722eb.onreadystatechange=function() {
+                      if (padAjax8efaf5bf57384cf6160300b9f60722eb.readyState === 4) {
+                      if (padAjax8efaf5bf57384cf6160300b9f60722eb.status === 200) {
+                      document.getElementById("padAjax8efaf5bf57384cf6160300b9f60722eb").innerHTML=padAjax8efaf5bf57384cf6160300b9f60722eb.responseText;
+                      } else {
+                      document.getElementById("padAjax8efaf5bf57384cf6160300b9f60722eb").innerHTML=padAjax8efaf5bf57384cf6160300b9f60722eb.statusText;
+                      }
+                      }
+                      }
+                      padAjax8efaf5bf57384cf6160300b9f60722eb.open("GET","http://localhost/pad/regression/pages/?request/form_rules_treepicker&padInclude",true);
+                      padAjax8efaf5bf57384cf6160300b9f60722eb.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+              </center>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>

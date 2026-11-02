@@ -6,10 +6,10 @@
   // - or by data=, a word picked each game; without them a word of a list built in. tries=
   // how many wrong letters end it, 6 unless given (3 to 10).
   //
-  //   {hangman}
+  //   {game:hangman}
   //     template
   //     expression
-  //   {/hangman}
+  //   {/game:hangman}
 
   $padHangWords = padGameWords ( padGameList () );
 

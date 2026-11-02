@@ -5,8 +5,8 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{feature 'flag'} ... {/feature}
-{feature 'flag'} ... {else} ... {/feature}
+{pad:feature 'flag'} ... {/pad:feature}
+{pad:feature 'flag'} ... {pad:else} ... {/pad:feature}
 PAD;
 
   $tagParms   = [

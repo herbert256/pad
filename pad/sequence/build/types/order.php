@@ -15,7 +15,7 @@
   // counts its terms: from= on, a step of increment= - drawn anew at every step when it is
   // random, '1...3'. $pqOrderNext is the next one, build/one.php holds back every other term
   // and takes it back off the try count, so skip= and try= count the positions offered.
-  // increment= was set to 1 whatever was asked, {sequence fibonacci, increment=2} gave every
+  // increment= was set to 1 whatever was asked, {sequence:fibonacci increment=2} gave every
   // term, and a random increment stepped the walk itself, which left holes in the history the
   // recurrence reads - "Undefined array key 1". A position below 1 has no term, so the first
   // one offered is the first of the steps at 1 or above.
@@ -39,7 +39,7 @@
 
   // A random increment by the largest step it can be drawn, as type/loop.php has it: one whose
   // largest step is below 1 is no walk, and the run takes the else branch as square does,
-  // where it was taken for steps of 1 - {sequence fibonacci, increment='0...0'} and
+  // where it was taken for steps of 1 - {sequence:fibonacci increment='0...0'} and
   // increment='-3...-1' gave 0 1 1.
 
   if ( $pqRandomInc ) {

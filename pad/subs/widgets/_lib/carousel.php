@@ -1,15 +1,15 @@
 <?php
 
-  // A carousel without JavaScript - the carousel widget: every {tab} a slide of a row that
+  // A carousel without JavaScript - the carousel widget: every {pad:tab} a slide of a row that
   // scrolls sideways and snaps to a slide (CSS scroll snap), so a finger, a trackpad or the
   // arrow keys on the focused row move it. Each slide carries a link to the slide before and
   // after it, and below the row a dot links to every slide: links to the slides' ids, which
   // the browser scrolls into view - no script, and the address names the slide shown.
   //
-  //   {carousel label='Our kettles'}
-  //     {tab 'Sunrise'}<svg ...>...</svg>{/tab}
-  //     {tab 'Ocean'}<img src="ocean.jpg" alt="...">{/tab}
-  //   {/carousel}
+  //   {widget:carousel label='Our kettles'}
+  //     {pad:tab 'Sunrise'}<svg ...>...</svg>{/pad:tab}
+  //     {pad:tab 'Ocean'}<img src="ocean.jpg" alt="...">{/pad:tab}
+  //   {/widget:carousel}
   //
   // The markup follows the WAI-ARIA carousel pattern: the region says it is a carousel and
   // is named by label=, every slide is a group saying 'slide 2 of 4' with its label. A
@@ -23,7 +23,7 @@
   // scroll the row alone, and the dot of the slide in view - also one reached by swiping -
   // is marked, aria-current for a screen reader.
   //
-  // The items are collected the way {tabs} collects its tabs - subs/widgets/_lib/tabs.php.
+  // The items are collected the way {widget:tabs} collects its tabs - subs/widgets/_lib/tabs.php.
 
   include_once PAD . 'subs/widgets/_lib/tabs.php';
 

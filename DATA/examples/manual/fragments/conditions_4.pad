@@ -1,4 +1,4 @@
-{data 'fruit'}["apple","pear","plum"]{/data}
-{fruit}
-  <p class="{odd@fruit ? odd : even/}">{$fruit}</p>
-{/fruit}
+{pad:data 'fruit'}["apple","pear","plum"]{/pad:data}
+{data:fruit}
+  <p class="{property:odd@fruit ? odd : even/}">{$fruit}</p>
+{/data:fruit}

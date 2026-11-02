@@ -1,21 +1,20 @@
-{meta title='Barcodes and QR codes'/}
+{pad:meta title='Barcodes and QR codes'/}
 
-<p>{tag 'barcode'/} and {tag 'qr'/} write a code a scanner reads. It is encoded on the server and
+<p>{app:tag 'barcode:auto'/} and {app:tag 'barcode:qr'/} write a code a scanner reads. It is encoded on the server and
 drawn as inline SVG - no image library, no font, no remote service - so a page with a code prints,
-caches and goes in an e-mail like any other. There are {echo php:count(padKinds('codes'))/}
+caches and goes in an e-mail like any other. There are {pad:echo php:count(padKinds('codes'))/}
 symbologies, every one a file of <code>pad/subs/codes/types/</code>. Twelve or thirteen digits are an
 EAN-13, with the check digit added when it is left off; any other text is Code 128.</p>
 
-{example 'fragments/codes_1'/}
+{common:example 'fragments/codes_1'/}
 
-<h2>Three ways to write one</h2>
+<h2>Two ways to write one</h2>
 
-<p><code>type=</code> on the tag names the symbology: <code>{open/}barcode '0425261', type='upce'/{close/}</code>.
-The barcode type does the same, <code>{open/}barcode:upce '0425261'/{close/}</code>, and so does the
-name alone, <code>{open/}upce '0425261'/{close/}</code>, as long as no tag, store, field or sequence
-has that name. All three draw the same UPC-E.</p>
+<p>The name after <code>barcode:</code> selects the symbology: <code>{pad:open/}barcode:upce '0425261'/{pad:close/}</code>.
+The barcode type does the same, <code>{pad:open/}barcode:upce '0425261'/{pad:close/}</code>.
+Both forms require their type prefix and draw the same UPC-E.</p>
 
-{example 'fragments/codes_2'/}
+{common:example 'fragments/codes_2'/}
 
 <h2>Products, parcels and labels</h2>
 
@@ -32,11 +31,11 @@ code of libraries and blood banks, <code>msi</code> that of shelf labels.
 and <code>addon=</code> puts two or five more digits beside an EAN or UPC - a magazine's issue, a
 book's price.</p>
 
-{example 'fragments/codes_3'/}
+{common:example 'fragments/codes_3'/}
 
 <h2>Two-dimensional codes</h2>
 
-<p><code>qr</code> is the code of {tag 'qr'/}, which a phone camera reads; <code>datamatrix</code>
+<p><code>qr</code> is the code of {app:tag 'barcode:qr'/}, which a phone camera reads; <code>datamatrix</code>
 the square code of parts and medicine packs. Both take any text and choose the smallest symbol that
 holds it, and both take <code>size=</code> in pixels in place of the height and scale of the bars.
 <code>aztec</code>, the code of train tickets and boarding passes with a bullseye in its middle, does
@@ -45,7 +44,7 @@ the same, with <code>ecc=</code> for the share of its codewords that corrects er
 instead, each row telling the scanner where it stands; <code>columns=</code> sets how wide it is
 and <code>level=</code> its error correction.</p>
 
-{example 'fragments/codes_4'/}
+{common:example 'fragments/codes_4'/}
 
 <ul>
   <li>The colours are black on white unless <code>color=</code> and <code>background=</code> say

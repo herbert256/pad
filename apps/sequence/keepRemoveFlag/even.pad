@@ -1,13 +1,13 @@
-{table}
+{common:table}
 
-{demo}{sequence 25, push='mySequence'/} {/demo}
+{common:demo}{sequence:loop 25, push='mySequence'/} {/common:demo}
 
-{demo}{pull mySequence, make,   even} {$sequence} {/pull}{/demo}
+{common:demo}{pad:pull mySequence, make,   even} {$sequence} {/pad:pull}{/common:demo}
 
-{demo}{pull mySequence, keep,   even} {$sequence} {/pull}{/demo}
+{common:demo}{pad:pull mySequence, keep,   even} {$sequence} {/pad:pull}{/common:demo}
 
-{demo}{pull mySequence, remove, even} {$sequence} {/pull}{/demo}
+{common:demo}{pad:pull mySequence, remove, even} {$sequence} {/pad:pull}{/common:demo}
 
-{demo}{pull mySequence, flag,   even} {$sequence} {/pull}{/demo}
+{common:demo}{pad:pull mySequence, flag,   even} {$sequence} {/pad:pull}{/common:demo}
 
-{/table}
+{/common:table}

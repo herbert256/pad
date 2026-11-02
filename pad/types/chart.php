@@ -1,9 +1,8 @@
 <?php
 
-  // Type handler for a chart kind: {chart:bar data='sales'/}, or a bare tag naming a file of
-  // subs/charts/types/ when nothing else has the name, {gauge value=72/}. The kind is the tag's
-  // name, and the chart is drawn as {chart 'bar'} draws it, by subs/charts/chart.php - run as a
-  // built-in tag's PHP half is run, types/_go/tag.php.
+  // chart:kind selects a registered kind from its subsystem. The type handler
+  // runs the subsystem with the kind in the tag name and its own parameters unchanged.
+
 
   $padChartKind = $padTag [$pad];
 

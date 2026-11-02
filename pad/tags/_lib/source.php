@@ -1,22 +1,22 @@
 <?php
 
-  // The files behind a page as tabs, each coloured by lib/highlight.php - what {source}
+  // The files behind a page as tabs, each coloured by lib/highlight.php - what {pad:source}
   // writes: a documentation page, an example gallery, a tutorial shows the template, the PHP
   // and the script of what it demonstrates, read from the files themselves so the code shown
   // can never drift from the code that runs.
   //
-  //   {source}                                  the page asked for: its template and PHP
-  //   {source 'examples/props'}                 another page of the application
-  //   {source files='_tags/card.pad, www:app.js'}
+  //   {pad:source}                                  the page asked for: its template and PHP
+  //   {pad:source 'examples/props'}                 another page of the application
+  //   {pad:source files='_tags/card.pad, www:app.js'}
   //                                             files after the page's - a file of the
   //                                             application, or www: one in its www/ directory
-  //   {source only='www:app.js'}                those files alone
+  //   {pad:source only='www:app.js'}                those files alone
   //
   // padSourceTabs  the tabs: a radio button and a label per file, then a panel per file -
   //                the tabs work without a script, by CSS alone
-  // padSourceList  the files a {source} names, a list or a text with commas
+  // padSourceList  the files a {pad:source} names, a list or a text with commas
   // padSourcePath  where a name of such a file is on the disk, FALSE for one that is not
-  //                there or may not be shown - the rule of {highlight file=}: inside the
+  //                there or may not be shown - the rule of {pad:highlight file=}: inside the
   //                application (or its www/ directory), not under _config/, no dotfile
   // padSourceStyle the default look, once a page, every rule under :where() so the page's own
   //                CSS wins
@@ -39,7 +39,7 @@
       $php      = padSourcePath ( "$page.php" ) ? "$page.php" : '';
 
       if ( $template === '' and $php === '' ) {
-        padError ( "{source} has no page '" . padMakeSafe ( $page, 60 ) . "' of the application to show" );
+        padError ( "{pad:source} has no page '" . padMakeSafe ( $page, 60 ) . "' of the application to show" );
         return '';
       }
 
@@ -62,7 +62,7 @@
 
       if ( $path === FALSE ) {
         if ( $padCheckSyntax )
-          padError ( "{source} has no file '" . padMakeSafe ( $name, 60 ) . "' of the application to show" );
+          padError ( "{pad:source} has no file '" . padMakeSafe ( $name, 60 ) . "' of the application to show" );
         continue;
       }
 
@@ -135,8 +135,8 @@
   }
 
   // The tabs by CSS: a radio is hidden, its label is the tab, and the n-th checked radio shows
-  // the n-th panel. The code itself looks as {highlight} makes it look. The rules for twelve
-  // tabs come with the look; a {source} of more brings the rule of each further tab, once a
+  // the n-th panel. The code itself looks as {pad:highlight} makes it look. The rules for twelve
+  // tabs come with the look; a {pad:source} of more brings the rule of each further tab, once a
   // page - past the twelfth, a tab showed nothing.
 
   function padSourceStyle ( $tabs = 0 ) {

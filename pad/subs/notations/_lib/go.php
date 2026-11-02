@@ -1,6 +1,6 @@
 <?php
 
-  // Go - the go notation, {go '(;SZ[9]AB[cc][gg]AW[cg];B[ee];W[gc])'/}. A go position from a
+  // Go - the go notation, {notation:go '(;SZ[9]AB[cc][gg]AW[cg];B[ee];W[gc])'/}. A go position from a
   // game record in SGF, the Smart Game Format every go program reads and writes, drawn as an
   // SVG board: the grid, the star points, the coordinates, the stones - a game's moves played
   // out with their captures - its last move marked, or every move numbered.

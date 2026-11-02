@@ -4,7 +4,7 @@
   // element is the same for all - the 24 by 24 grid, no fill, currentColor lines 2 wide with
   // round caps and joins - and inside it stand only path, circle, rect and ellipse elements
   // with their geometry: no fill, no colour, no style, no event attribute, no script, no
-  // reference to another file. {icon} writes what the file holds, so an icon added with
+  // reference to another file. {icon:star} writes what the file holds, so an icon added with
   // anything else in it would carry that into every page. The names of the icons that are
   // not are listed, with what is wrong.
 

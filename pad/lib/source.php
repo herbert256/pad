@@ -68,7 +68,7 @@
   }
 
   // The page's part of the build: what build/page.php returns is $lead characters the
-  // engine wrote ({padBuild ...}), then the stretch of the page source starting at $from
+  // engine wrote ({array:padBuild ...}), then the stretch of the page source starting at $from
   // and $length long, then the engine's closing tag. The template file sat at $at in that
   // source for $size characters; everything else in it is what the PHP files printed.
 

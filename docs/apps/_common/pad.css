@@ -1,9 +1,10 @@
 /* PAD - the frame the PAD applications share: every one that uses _common, and admin, edit
    and tags (apps/_common/_tags/padFrame.pad). A static file: PAD never parses it.
 
-   The colours are custom properties - light and dark follow the system, or the choice the
-   frame's toggle keeps (data-theme on <html>, www/_common/pad.js), the side with its menus
-   as well as the page. The --frame-* ones are the frame's own and no application changes
+   The colours are custom properties - light, as padFrame writes <html data-theme="light">,
+   or dark, or the system's, as a page with a setting of its own sets data-theme
+   (www/_common/pad.js) - the side with its menus as well as the page; a theme from the bar's
+   switcher sets them all (pad/subs/themes/). The --frame-* ones are the frame's own and no application changes
    them, so the frame looks the same in every one;
    the others are the palette the applications' pages build on, and an application may
    redefine them for its own content - the editor does. */
@@ -70,8 +71,12 @@ body.frame {
 .frame a:hover { text-decoration: underline; }
 .frame .pad-icon { vertical-align: -3px; flex: none; }
 
+/* z-index: the side stands beside the page and never over it, but the brand's list of the
+   applications drops out of it - above the bar (z-index 20) when the list is a plain
+   <details>, without brand.js; with it the list is a popover in the top layer. */
+
 .frame-side {
-  position: sticky; top: 0; height: 100vh;
+  position: sticky; top: 0; z-index: 30; height: 100vh;
   display: flex; flex-direction: column; min-width: 0;
   background: var(--frame-side); color: var(--frame-side-text);
   border-right: 1px solid var(--frame-side-line);
@@ -136,20 +141,6 @@ body.frame {
   background: var(--frame-bg); color: var(--frame-text); font: inherit;
 }
 
-.frame-theme {
-  display: grid; place-items: center; flex: none;
-  width: 34px; height: 34px; border-radius: 8px; cursor: pointer;
-  border: 1px solid var(--frame-line); background: transparent; color: var(--frame-dim);
-}
-.frame-theme:hover { color: var(--frame-text); border-color: var(--frame-accent); }
-.frame-theme .pad-icon-moon { display: none; }
-:root[data-theme="dark"] .frame-theme .pad-icon-sun { display: none; }
-:root[data-theme="dark"] .frame-theme .pad-icon-moon { display: inline; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .frame-theme .pad-icon-sun { display: none; }
-  :root:not([data-theme="light"]) .frame-theme .pad-icon-moon { display: inline; }
-}
-
 .frame-body { flex: 1 0 auto; padding: 24px 28px 48px; min-width: 0; overflow-x: auto; }
 
 /* A full-height application - the editor: the page fills what the bar leaves, no scrolling. */
@@ -210,7 +201,7 @@ body.frame-fill .frame-body { flex: 1 1 auto; padding: 0; min-height: 0; overflo
 /* ---------------------------------------------------------------- narrow screens */
 
 @media (max-width: 800px) {
-  body.frame { grid-template-columns: minmax(0, 1fr); }
+  body.frame { grid-template-columns: minmax(0, 1fr); align-content: start; }
   .frame-side { position: static; height: auto; }
   .frame-nav { display: flex; gap: 2px; padding: 8px 10px; overflow-x: auto; white-space: nowrap; scrollbar-width: thin; }
   .frame-nav a { flex: none; }

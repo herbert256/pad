@@ -1,12 +1,9 @@
 <?php
 
-  // The body of a JSON-LD block, whichever way it is written: {jsonld 'article', data='post'/},
-  // or the jsonld: type - {jsonld:article data='post'/}. Never reached bare: article, event,
-  // person and product are the names of fields and pages. The caller sets $padJsonLdKind; a
-  // kind is a file of subs/jsonld/types/, and the files there are all the kinds there are
-  // (padJsonLdKinds, lib/jsonld.php).
+  // The shared body of jsonld:kind tags, such as {jsonld:article}. The caller sets
+  // $padJsonLdKind; registered kinds are files in subs/jsonld/types/.
   //
-  // The fields come from the row or rows data= names - a {data} store, the page's array, a
+  // The fields come from the row or rows data= names - a {pad:data} store, the page's array, a
   // field holding a list, a _data file, as a widget reads them - and from options of their
   // names, which win over a row's field of the same name: {jsonld:article data='post',
   // url=$url/}. Each option is read with padTagParm, so one the kind does not take is
@@ -21,7 +18,7 @@
 
   if ( $padJsonLdKind === '' ) {
     if ( $padCheckSyntax )
-      padError ( "the {jsonld} has no kind - {jsonld 'article', headline='...'/}, one of " . implode ( ', ', padJsonLdKinds () ) );
+      padError ( "the {jsonld:article} has no kind - {jsonld:article headline='...'/}, one of " . implode ( ', ', padJsonLdKinds () ) );
     return '';
   }
 
@@ -54,7 +51,7 @@
 
   if ( $padJsonLdRows !== NULL ) {
 
-    // Plain values come as a list. A {data} block of one record is made rows of one field
+    // Plain values come as a list. A {pad:data} block of one record is made rows of one field
     // too, keyed by the record's names: those stay rows, never a value each - a password of
     // the record would have been written as a name.
 

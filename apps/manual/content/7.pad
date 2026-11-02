@@ -1,52 +1,52 @@
-{table}{demo}
+{common:table}{common:demo}
 
-{content 'myContent'}
+{pad:content 'myContent'}
   true: This is the @content@ content. <br>
 @else@
   false: This is the @content@ content. <br>
-{/content}
+{/pad:content}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{true content='myContent'}
+{pad:true content='myContent'}
   true
 @else@
   false
-{/true}
+{/pad:true}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{false content='myContent'}
+{pad:false content='myContent'}
   true
 @else@
   false
-{/false}
+{/pad:false}
 
-{/demo}{/table}
+{/common:demo}{/common:table}
 
 
-{table}{demo}
+{common:table}{common:demo}
 
-{content 'myContent'}
+{pad:content 'myContent'}
   true
 @else@
   false
-{/content}
+{/pad:content}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{true content='myContent'}
+{pad:true content='myContent'}
   true: This is the @content@ content. <br>
 @else@
   false: This is the @content@ content. <br>
-{/true}
+{/pad:true}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{false content='myContent'}
+{pad:false content='myContent'}
   true: This is the @content@ content. <br>
 @else@
   false: This is the @content@ content. <br>
-{/false}
+{/pad:false}
 
-{/demo}{/table}
+{/common:demo}{/common:table}

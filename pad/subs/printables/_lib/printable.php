@@ -7,10 +7,10 @@
   //   {printable:labels data='products', sheet='a4-3x8'}
   //     <b>{$name}</b> {barcode:ean13 $ean/}
   //   {/printable:labels}
-  //   {printable 'envelope', data='customers', paper='dl', sender='PAD, Main Street 1, Utrecht'}
+  //   {printable:envelope data='customers', paper='dl', sender='PAD, Main Street 1, Utrecht'}
   //     {$name}<br>{$street}<br>{$postcode} {$city}
-  //   {/printable}
-  //   {printable:tickets data='seats', pdf}<h2>{$show}</h2><aside>{qr $code/}</aside>{/printable:tickets}
+  //   {/printable:envelope}
+  //   {printable:tickets data='seats', pdf}<h2>{$show}</h2><aside>{barcode:qr $code/}</aside>{/printable:tickets}
   //
   // The content between the tags is the template of one item - a label, a badge, a letter -
   // rendered once per row of the data and laid out by the kind on sheets of paper. A kind is
@@ -26,7 +26,7 @@
   // desk, white paper with a shadow, each at its size in millimetres, the edges of the labels
   // dashed; scale= makes the preview smaller. Printed, the page prints the sheets alone - the
   // frame, the menus and everything else of the page left out - one sheet a page, its @page of
-  // its own size and no margin, the paper's colours kept. In a {pdf}, or with pdf on the tag,
+  // its own size and no margin, the paper's colours kept. In a {pad:pdf}, or with pdf on the tag,
   // the PDF writer (tags/_lib/pdf.php) reads the same plan from the data-pdf-* attributes of
   // the markup: a sheet is a page of its size, a box sets its content where the CSS puts it -
   // the text sizes, the alignment and the font kept - and the barcodes and QR codes of the
@@ -70,7 +70,7 @@
 
   // The marker a pair puts in front of the template of its item: an HTML comment of the
   // seal of the markers (padMarkSeal), so no value carries it - with one marker for every
-  // printable, <!--pad:printable-item--> in a value written raw, {echo $v/}, made two labels
+  // printable, <!--pad:printable-item--> in a value written raw, {pad:echo $v/}, made two labels
   // of one - and digits alone, which no case pipe changes.
 
   function padPrintableItemMark () {
@@ -170,7 +170,7 @@
   }
 
   // The tag the printable is written as, for what a message says: {printable:labels} or
-  // {printable 'labels'}.
+  // {printable:labels}.
 
   function padPrintableWhat () {
 
@@ -178,7 +178,7 @@
 
     $kind = $padPrintableNow ['kind'] ?? '';
 
-    return ( ( $padType [$pad] ?? '' ) == 'printable' ) ? "{printable:$kind}" : "{printable '$kind'}";
+    return ( ( $padType [$pad] ?? '' ) == 'printable' ) ? "{printable:$kind}" : "{printable:$kind}";
 
   }
 
@@ -277,7 +277,7 @@
 
     // The bar above the desk: how many on how many sheets of what, the Print button - and with
     // pdf the links to the document, which is the sheets themselves when the page is asked
-    // for it with &padPdf, as {pdf preview} answers its own.
+    // for it with &padPdf, as {pad:pdf preview} answers its own.
 
     list ( $one, $more ) = $plan ['name'];
 
@@ -286,12 +286,12 @@
     $links = '';
     $html  = '';
 
-    // Not inside a {page} - a page shown in another, the manual's {example}: only the page
-    // the request asked for answers a document, as {pdf} has it, and its links asked the
-    // page around it, which answered its HTML. Nor inside a {pdf}, whose document the sheets
+    // Not inside a {pad:page} - a page shown in another, the manual's {common:example}: only the page
+    // the request asked for answers a document, as {pad:pdf} has it, and its links asked the
+    // page around it, which answered its HTML. Nor inside a {pad:pdf}, whose document the sheets
     // are a part of already: asked for its own, the printable's sheets came first, under its
-    // name, and the {pdf}'s content brought them again. A {cache} section round the links is
-    // not kept, as one round a {pdf} is not: on a hit the printable did not run, and the
+    // name, and the {pad:pdf}'s content brought them again. A {pad:cache} section round the links is
+    // not kept, as one round a {pad:pdf} is not: on a hit the printable did not run, and the
     // page asked with &padPdf answered its HTML.
 
     if ( padPrintableFlag ( 'pdf' ) ) {
@@ -332,7 +332,7 @@
 
   }
 
-  // Whether a {pdf} pair stands round the printable: its content - the sheets with it - is
+  // Whether a {pad:pdf} pair stands round the printable: its content - the sheets with it - is
   // that document.
 
   function padPrintableInPdf () {

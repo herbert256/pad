@@ -1,11 +1,11 @@
 <?php
 
   // Vite builds: the scripts and stylesheets a bundler made, linked from a PAD template by the
-  // name of their source - {vite 'src/main.js'} - so the page never names a hashed file.
+  // name of their source - {pad:vite 'src/main.js'} - so the page never names a hashed file.
   //
   // In production Vite writes the build into www/<app>/<$padViteBuild>/ (build.outDir) with a
   // manifest at .vite/manifest.json (build.manifest): per source file the file it became, the
-  // CSS it brought and the chunks it imports. {vite} writes, for each entry it names:
+  // CSS it brought and the chunks it imports. {pad:vite} writes, for each entry it names:
   //
   //   <link rel="stylesheet">     the CSS of the entry and of every chunk it imports
   //   <link rel="modulepreload">  every chunk it imports, so the browser fetches them at once
@@ -35,7 +35,7 @@
 
     static $page = [];
 
-    // What a page's PHP asks to show - $once FALSE - is not what the page wrote: the {vite}
+    // What a page's PHP asks to show - $once FALSE - is not what the page wrote: the {pad:vite}
     // of the template still writes it.
 
     $local = [];
@@ -52,8 +52,8 @@
 
       $dev = rtrim ( $dev, '/' ) . '/';
 
-      // The React preamble the first time a {vite} of the page asks for react, before its
-      // entry: it came only with @vite/client, and after a {vite} without react - a layout's
+      // The React preamble the first time a {pad:vite} of the page asks for react, before its
+      // entry: it came only with @vite/client, and after a {pad:vite} without react - a layout's
       // - the React modules threw "can't detect preamble" under the dev server.
 
       if ( $react and ! isset ( $written ['@react'] ) ) {
@@ -96,7 +96,7 @@
     foreach ( $entries as $entry ) {
 
       if ( ! isset ( $manifest [$entry] ) ) {
-        padError ( "{vite} has no entry '" . padMakeSafe ( $entry, 60 ) . "' in the manifest of the build - an input of build.rollupOptions, written as in vite.config.js" );
+        padError ( "{pad:vite} has no entry '" . padMakeSafe ( $entry, 60 ) . "' in the manifest of the build - an input of build.rollupOptions, written as in vite.config.js" );
         continue;
       }
 
@@ -170,7 +170,7 @@
     $data = is_file ( $file ) ? json_decode ( (string) file_get_contents ( $file ), TRUE ) : NULL;
 
     if ( ! is_array ( $data ) ) {
-      padError ( "{vite} has no manifest - www/$padApp/" . trim ( $padViteBuild, '/' ) . "/.vite/manifest.json is " . ( is_file ( $file ) ? 'no JSON' : 'not there' )
+      padError ( "{pad:vite} has no manifest - www/$padApp/" . trim ( $padViteBuild, '/' ) . "/.vite/manifest.json is " . ( is_file ( $file ) ? 'no JSON' : 'not there' )
                . ": run vite build with build.manifest on, or start the dev server" );
       $data = NULL;
     }

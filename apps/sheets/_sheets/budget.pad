@@ -1,4 +1,4 @@
-{spreadsheet 'budget', caption='A month of a household',
+{pad:spreadsheet 'budget', caption='A month of a household',
   formulas='D2:D10=C2/$C$12, C15:C19=SUMIF($A$2:$A$10,A15,$C$2:$C$10), D15:D19=C15/$C$12',
   formats='C:€ #,##0.00, D:0.0%'}
   Category,Item,Amount,Share
@@ -22,4 +22,4 @@
   Savings
 
   Largest item,=INDEX(B2:B10,MATCH(MAX(C2:C10),C2:C10,0)),=MAX(C2:C10)
-{/spreadsheet}
+{/pad:spreadsheet}

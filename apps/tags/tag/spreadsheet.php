@@ -5,10 +5,10 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{spreadsheet 'name'} Item,Price ... Tea,=B2*2 {/spreadsheet}
-{spreadsheet 'name', data='rows', formulas='total=B2*C2', totals='total'/}
-{spreadsheet 'name', formats='B:0.00, D:€ #,##0.00', headers=FALSE, caption='Caption'/}
-{spreadsheet 'name', editable='B2:C9', seed=7} ... {/spreadsheet}
+{pad:spreadsheet 'name'} Item,Price ... Tea,=B2*2 {/pad:spreadsheet}
+{pad:spreadsheet 'name', data='rows', formulas='total=B2*C2', totals='total'/}
+{pad:spreadsheet 'name', formats='B:0.00, D:€ #,##0.00', headers=FALSE, caption='Caption'/}
+{pad:spreadsheet 'name', editable='B2:C9', seed=7} ... {/pad:spreadsheet}
 PAD;
 
   $tagParms   = [
@@ -25,5 +25,7 @@ PAD;
     'seed'     => 'The seed of RAND, 0 when not given: the same numbers on every request.' ];
 
   $tagSee     = [ 'datatable', 'live', 'form' ];
+
+  $subsystemKindLinks = appSubsystemLinks ( 'formula' );
 
 ?>

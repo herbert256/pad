@@ -51,6 +51,6 @@
     $choices [] = [ 'key' => $key, 'label' => $label, 'chosen' => $key == $current ];
 
   $leave     = $draft ['id'] ? "note&id={$draft ['id']}" : 'index';
-  $notesPage = $draft ['id'] ? "Edit: {$draft ['title']}" : 'New note';
+  $title     = $draft ['id'] ? "Edit: {$draft ['title']}" : 'New note';
 
 ?>

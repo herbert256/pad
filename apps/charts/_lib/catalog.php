@@ -2,8 +2,8 @@
 
   // The showcase: the chart families, each a heading of the menu and a section of the
   // home page, and their examples. An example is a page of its own - family/name.pad holds
-  // the {chart} tag, and its data is the paired family/name.php, the _data file the tag
-  // names, or the content of a {chart}...{/chart} pair - so what the cells show is the
+  // the {chart:bar} tag, and its data is the paired family/name.php, the _data file the tag
+  // names, or the content of a {chart:bar}...{/chart:bar} pair - so what the cells show is the
   // page's own source, never a copy.
 
   function chartsCatalog () {

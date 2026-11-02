@@ -1,6 +1,6 @@
 <?php
 
-  // Tablature - the tablature notation, {tablature}e|--0--3--|{/tablature}. A tab as players of
+  // Tablature - the tablature notation, {notation:tablature}e|--0--3--|{/notation:tablature}. A tab as players of
   // fretted instruments write it in plain text - a line a string, the highest string on top, the
   // fret to press on the string's line, a column a moment in time - drawn as a tab is printed:
   // the lines of the strings with their names, the frets on them, the bars across, the

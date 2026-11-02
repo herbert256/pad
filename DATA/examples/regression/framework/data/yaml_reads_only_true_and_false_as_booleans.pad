@@ -1,4 +1,4 @@
-{data 'countries'}
+{pad:data 'countries'}
 ---
 - country: NO
   n: 5
@@ -8,6 +8,6 @@
   n: 3
   on: yes
   ok: False
-{/data}
-{countries}{$country} {$n} {$on} {echo $ok ? 'T' : 'F'/}; {/countries}
-{map 'europe', data='countries', key='country', value='n'/}
+{/pad:data}
+{data:countries}{$country} {$n} {$on} {pad:echo $ok ? 'T' : 'F'/}; {/data:countries}
+{pad:map 'europe', data='countries', key='country', value='n'/}

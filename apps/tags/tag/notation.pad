@@ -1,6 +1,6 @@
-{ignore}
-<p><code>{notation}</code> draws a text written in a notation on the server, the way
-<code>{diagram}</code> lays out a flowchart: a formula, a chemical equation, a tune, a guitar
+{pad:ignore}
+<p><code>{notation:math}</code> draws a text written in a notation on the server, the way
+<code>{diagram:auto}</code> lays out a flowchart: a formula, a chemical equation, a tune, a guitar
 chord, a word in braille, morse, semaphore or signal flags, a chess, go or draughts position, a
 guitar tab, a Karnaugh map, a bridge deal, a juggling pattern, the moves of a cube.
 Every notation is a file of <code>pad/subs/notations/types/</code> - its functions in
@@ -9,13 +9,9 @@ and the files there are the notations there are. Nothing needs a script: the for
 MathML, which every current browser draws, the rest HTML and inline SVG, the same bytes for the
 same text.</p>
 
-<p>A notation is written three ways, the same drawing each time: the tag with the kind's name,
-<code>{notation 'braille', 'Hello'/}</code>, whose second parameter is the kind's own text; the
-notation: type, <code>{notation:braille 'Hello'/}</code>; and the bare name,
-<code>{braille 'Hello'/}</code>, after every other kind of tag - a store, a field or an array
-of the name wins. Without the text as a parameter the content between the tags is the text,
-taken as written before the level walks it: <code>{math}{(x, if x &gt;= 0),(-x, if x &lt; 0):}{/math}</code>
-needs no ignore. A field gives the text as a parameter, <code>{chess $fen/}</code>.</p>
+<p>The notation is selected by its prefix and name: <code>{notation:braille 'Hello'/}</code>. Its first parameter is the text. Without the text as a parameter the content between the tags is the text,
+taken as written before the level walks it: <code>{notation:math}{(x, if x &gt;= 0),(-x, if x &lt; 0):}{/notation:math}</code>
+needs no ignore. A field gives the text as a parameter, <code>{notation:chess $fen/}</code>.</p>
 
 <ul>
   <li><b>math</b> - AsciiMath, not TeX, as TeX's braces are PAD's: <code>x^2</code>,
@@ -31,7 +27,7 @@ needs no ignore. A field gives the text as a parameter, <code>{chess $fen/}</cod
   <li><b>braille</b> - Unified English Braille, grade 1, as braille characters or drawn dots.
   <b>morse</b> - the international code and its signal. <b>semaphore</b> - the figures of flag
   semaphore. <b>signals</b> - the flags of the International Code of Signals.</li>
-  <li><b>chess</b> - a position in FEN, once a tag of its own, written as before. <b>go</b> - a
+  <li><b>chess</b> - a position in FEN, selected with <code>notation:chess</code>. <b>go</b> - a
   game record in SGF played out, captures and all. <b>draughts</b> - a position in the FEN of
   PDN, international or on 8 by 8.</li>
   <li><b>tablature</b> - a tab for a guitar, a bass or a ukulele as players write it in plain
@@ -55,4 +51,4 @@ pieces, the stones, the notes, the flags - or MathML, which a screen reader read
 that is no notation, an option a notation does not know and a text it cannot read - a FEN with
 seven ranks, an element that does not exist, a character morse has no sign for - are errors
 under the strict check.</p>
-{/ignore}
+{/pad:ignore}

@@ -1,9 +1,7 @@
 <?php
 
-  // The body of an icon, whichever way it is written: {icon 'arrow-right'/}, or the icon: type,
-  // {icon:arrow-right size=16/} - the icons are not reached bare: their names, home or user,
-  // are the names of fields and pages. The caller sets $padIconName; an icon is a file of
-  // subs/icons/types/, and the files there are all the icons there are (padIconNames, lib/icon.php).
+  // The shared body of icon:kind tags, such as {icon:arrow-right}. The caller sets
+  // $padIconName; registered kinds are files in subs/icons/types/.
   //
   // size= is the width and height in pixels (default 20), stroke= the line width (default 2).
   // Without label= the icon is decoration, hidden from a screen reader beside the text it
@@ -15,7 +13,7 @@
 
   if ( $padIconName === '' ) {
     if ( $padCheckSyntax )
-      padError ( "the icon has no name - {icon 'arrow-right'/}" );
+      padError ( "the icon has no name - {icon:arrow-right/}" );
     return '';
   }
 

@@ -9,7 +9,7 @@
 
   // Asked for as a page - a link, a crawler - it says what it is instead.
 
-  $kanbanPage = 'Events';
+  $title = 'Events';
 
   if ( str_contains ( (string) ( $_SERVER ['HTTP_ACCEPT'] ?? '' ), 'text/event-stream' ) ) {
 

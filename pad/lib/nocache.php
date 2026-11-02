@@ -1,21 +1,21 @@
 <?php
 
-  // {nocache}...{/nocache}: a part of a cached page or fragment that renders on every
+  // {pad:nocache}...{/pad:nocache}: a part of a cached page or fragment that renders on every
   // request, the hit included - tags/nocache.php.
   //
-  //   {cache 'top-products', ttl=300}            the section is kept five minutes ...
+  //   {pad:cache 'top-products', ttl=300}            the section is kept five minutes ...
   //     {topProducts}<li>{$name}</li>{/topProducts}
-  //     {nocache}In stock: {stock}{/nocache}     ... this part renders on every request
-  //   {/cache}
+  //     {pad:nocache}In stock: {stock}{/pad:nocache}     ... this part renders on every request
+  //   {/pad:cache}
   //
   // While something caches what it renders - the page cache for this request, or a
-  // fragment-cache section around it that is rendering - a {nocache} renders as always but
+  // fragment-cache section around it that is rendering - a {pad:nocache} renders as always but
   // puts a marker pair round what it rendered, with its source kept by number. When the
   // cache stores the rendering, padNocacheCut puts a placeholder where each marked part
   // stood and keeps the sources beside the text; the visitor's copy only loses the
   // markers (padNocacheStrip). A hit makes a template of the stored text again
   // (padNocacheTemplate): the stored text protected - it is text, and stays what it was -
-  // with a {nocache} pair of each source where its placeholder stands, and renders that.
+  // with a {pad:nocache} pair of each source where its placeholder stands, and renders that.
   //
   // A part inside a loop of what is cached has no loop to render in on a hit - the loop is
   // part of the stored text - so the fields of the rows round it are kept with its source,
@@ -41,7 +41,7 @@
 
   }
 
-  // Whether a {nocache} at this level renders into something a cache keeps: the page cache
+  // Whether a {pad:nocache} at this level renders into something a cache keeps: the page cache
   // of this request, or a fragment-cache section below it that is rendering.
 
   function padNocacheWanted () {
@@ -60,7 +60,7 @@
 
   }
 
-  // The marker pair round the part a {nocache} renders, its source and the fields of the
+  // The marker pair round the part a {pad:nocache} renders, its source and the fields of the
   // rows round it kept under its number.
 
   function padNocacheOpen ( $source ) {
@@ -128,7 +128,7 @@
 
   }
 
-  // A stored text made a template again: the text protected, a {nocache} pair of each
+  // A stored text made a template again: the text protected, a {pad:nocache} pair of each
   // source where its placeholder stands - named by a key of this entry, under which its row
   // waits in $padNocacheRows for tags/nocache.php.
 
@@ -146,7 +146,7 @@
         $part = $sources [ (int) $part ] ?? [];
         $name = "$key-" . count ( $padNocacheRows ?? [] );
         $padNocacheRows [$name] = is_array ( $part ['row'] ?? NULL ) ? $part ['row'] : [];
-        $out .= "{nocache '$name'}" . ( $part ['source'] ?? '' ) . '{/nocache}';
+        $out .= "{pad:nocache '$name'}" . ( $part ['source'] ?? '' ) . '{/pad:nocache}';
       } else
         $out .= padProtect ( $part );
 

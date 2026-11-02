@@ -1,7 +1,7 @@
-{data 'dt'}
+{pad:data 'dt'}
   ["x","y"]
-{/data}
-{dt}
-  {first@dt}{data@dt toData='dcopy'/}{/first@dt}
-{/dt}
+{/pad:data}
+{data:dt}
+  {property:first@dt}{property:data@dt toData='dcopy'/}{/property:first@dt}
+{/data:dt}
 [{data:dcopy}{$dt},{/data:dcopy}]

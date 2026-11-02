@@ -5,10 +5,10 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{flag '1..10', even} ... {/flag}
-{flag prime, from=10, rows=12} ... {/flag}
+{pad:flag '1..10', even} ... {/pad:flag}
+{pad:flag prime, from=10, rows=12} ... {/pad:flag}
 {flag:prime rows=10} ... {/flag:prime}
-{flag store, prime} ... {/flag}
+{pad:flag store, prime} ... {/pad:flag}
 PAD;
 
   $tagParms   = [
@@ -17,6 +17,6 @@ PAD;
 
   $tagOptions = [];
 
-  $tagSee     = [ 'keep', 'remove', 'make', 'sequence' ];
+  $tagSee     = [ 'keep:auto', 'remove:auto', 'make:auto', 'sequence:auto' ];
 
 ?>

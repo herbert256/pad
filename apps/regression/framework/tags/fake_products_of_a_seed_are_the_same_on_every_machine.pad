@@ -1,1 +1,1 @@
-{fake 'product', rows=4, seed=3}{$product};{/fake}|{fake:product seed=9/}|{fake 'name:product, sku:ean, cost:price', rows=2, seed=1}[{$name} {$sku} {$cost}]{/fake}
+{fake:product rows=4, seed=3}{$product};{/fake:product}|{fake:product seed=9/}|{fake:rows 'name:product, sku:ean, cost:price', rows=2, seed=1}[{$name} {$sku} {$cost}]{/fake:rows}

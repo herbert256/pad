@@ -1,4 +1,4 @@
-{meta title='Template emails'/}
+{pad:meta title='Template emails'/}
 
 <p>A mail is a PAD template, rendered to an HTML part and a text part and handed to a
 transport. Templates live in <code>_mail/</code>, looked up like <code>_include/</code>:
@@ -7,14 +7,14 @@ transport. Templates live in <code>_mail/</code>, looked up like <code>_include/
 <code>_inits.pad</code> and <code>_exits.pad</code> in the same <code>_mail/</code> are the
 email's layout, with <code>@page@</code> where the mail goes:</p>
 
-{example 'fragments/mail_1'/}
+{common:example 'fragments/mail_1'/}
 
-<p>From a template, {open/}mail{close/} sends the same way. With a template it is
-<code>{open/}mail to=$email, template='welcome', subject='Welcome'{close/}</code>; as a pair,
+<p>From a template, {pad:open/}pad:mail{pad:close/} sends the same way. With a template it is
+<code>{pad:open/}pad:mail to=$email, template='welcome', subject='Welcome'{pad:close/}</code>; as a pair,
 the content is the HTML part, rendered where it stands - in a loop with the fields of the
 row:</p>
 
-{example 'fragments/mail_2'/}
+{common:example 'fragments/mail_2'/}
 
 <ul>
   <li><code>from</code>, <code>cc</code>, <code>bcc</code> and <code>replyTo</code> set the other

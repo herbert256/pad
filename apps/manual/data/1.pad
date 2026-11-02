@@ -1,21 +1,21 @@
-{table}{demo}
+{common:table}{common:demo}
 
-{data 'myData'}
+{pad:data 'myData'}
   [
     { "name": "joe",   "phone": "555-3425" },
     { "name": "jim",   "phone": "555-2364" },
     { "name": "jack",  "phone": "555-3422" },
     { "name": "jerry", "phone": "555-4973" }
   ]
-{/data}
+{/pad:data}
 
 <table border="1">
-  {myData}
+  {data:myData}
     <tr>
       <td>{$name}</td> 
       <td>{$phone}</td>
     </tr>  
-  {/myData}
+  {/data:myData}
 </table>
 
-{/demo}{/table}
+{/common:demo}{/common:table}

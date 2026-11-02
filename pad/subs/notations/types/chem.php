@@ -7,8 +7,8 @@
   // element is checked against the periodic table. display='block' sets the equation apart
   // on its own line, alttext= is the text a screen reader without MathML says.
   //
-  //   {chem 'CH4 + 2O2 -> CO2 + 2H2O'/}
-  //   {chem}[Cu(NH3)4]^2+{/chem}
+  //   {notation:chem 'CH4 + 2O2 -> CO2 + 2H2O'/}
+  //   {notation:chem}[Cu(NH3)4]^2+{/notation:chem}
 
   if ( trim ( $padNotationText ) === '' )
     return '';

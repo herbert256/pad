@@ -1,4 +1,4 @@
-{meta title='The sandbox pipe', about='A value run as PAD, isolated - a snippet kept elsewhere cannot touch the page.'/}
-{set $price = 10/}
-<p>code: {echo $snippet | code/}</p>
-<p>sandbox: {echo $snippet | sandbox/}</p>
+{pad:meta title='The sandbox pipe', about='A value run as PAD, isolated - a snippet kept elsewhere cannot touch the page.'/}
+{pad:set $price = 10/}
+<p>code: {pad:echo $snippet | code/}</p>
+<p>sandbox: {pad:echo $snippet | sandbox/}</p>

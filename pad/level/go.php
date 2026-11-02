@@ -19,10 +19,10 @@
   if ( ! isset ( $padSlot [$pad] ) and padSlotType ( $padType [$pad] ) )
     $padSlot [$pad] = [ 'fills' => padSlotTake ( $padContent ), 'declared' => NULL ];
 
-  // content= on a tag that cuts its own content at its branches - an {if}, a {case}, the
+  // content= on a tag that cuts its own content at its branches - an {pad:if}, a {pad:case}, the
   // condition tags (padElseOwners) - is merged in before the tag runs. Merged after it, as
-  // for any other tag, its {else}, {elseif} and {when}s were never seen: "there is no tag
-  // named 'else'", "the {case} has no {when}", or the else branch lost in silence. An
+  // for any other tag, its {pad:else}, {pad:elseif} and {pad:when}s were never seen: "there is no tag
+  // named 'else'", "the {pad:case} has no {pad:when}", or the else branch lost in silence. An
   // @else@ half of the stored text goes to the level's own, as padContentMerge puts it.
 
   $padContentFirst = ( $padType [$pad] == 'pad' and in_array ( $padTag [$pad], padElseOwners, TRUE ) and padTagParm ( 'content' ) );
@@ -43,10 +43,10 @@
     return;
 
   // A float past the range that will be the level's whole base meets the tag's own pipe as
-  // the number it is, as {echo} hands it (tags/echo.php): joined to the content it is the
-  // text 'INF', which an arithmetic pipe takes for no number - {big | + 1} over $big = INF
-  // ended the page on "'INF' is not a number for +", {neg | + 1} over -INF the same, where
-  // {echo $big | + 1} and {$big | + 1} answer INF. Once piped it is written as that text.
+  // the number it is, as {pad:echo} hands it (tags/echo.php): joined to the content it is the
+  // text 'INF', which an arithmetic pipe takes for no number - {field:big | + 1} over $big = INF
+  // ended the page on "'INF' is not a number for +", {field:neg | + 1} over -INF the same, where
+  // {pad:echo $big | + 1} and {$big | + 1} answer INF. Once piped it is written as that text.
 
   if ( is_float ( $padTagResult ) and is_infinite ( $padTagResult ) and ( $padPipeBefore [$pad] ?? '' )
        and $padContent === '' and $padTagContent === '' and ! str_starts_with ( $padOpt [$pad] [0], '?' )
@@ -60,23 +60,23 @@
 
   }
 
-  // What a tag answers is a value - {echo $x}, a field, a PHP function's result, a fetched
+  // What a tag answers is a value - {pad:echo $x}, a field, a PHP function's result, a fetched
   // body - and under $padProtectValues it joins the level as text, since the level goes on
   // to scan it. Template text a tag produces travels as $padTagContent, which is untouched.
-  // Three kinds answer with source by design: an _include/ snippet, a stored {content}
+  // Three kinds answer with source by design: an _include/ snippet, a stored {pad:content}
   // block, and a _common include.
   //
   // When the answer will be the level's whole base - no content between the tags, nothing
   // printed, no content= - the protecting waits for level/pipes/before.php, so the tag's
-  // own pipe works on the real value: {echo '"q"' | html} has quotes to encode. The value
+  // own pipe works on the real value: {pad:echo '"q"' | html} has quotes to encode. The value
   // then becomes the content as it is, not through padContentMerge, which would obey an
   // @else@ or @content@ inside it. Otherwise it is protected here, and the pipe transforms
   // the template text around it as it always did.
 
-  // The {tag ? true : false} form chooses by the truth of the value the tag answers, as
-  // {echo $qty ? 'some' : 'none'} does - '', '0', 0 and FALSE take the false side - and the
+  // The {function:tag ? true : false} form chooses by the truth of the value the tag answers, as
+  // {pad:echo $qty ? 'some' : 'none'} does - '', '0', 0 and FALSE take the false side - and the
   // value itself is no part of the answer (level/ternary.php): every value was made TRUE and
-  // written in front of the side, {qty ? some : none} with qty 0 printed 0some. A tag that
+  // written in front of the side, {field:qty ? some : none} with qty 0 printed 0some. A tag that
   // printed something, or has a template of its own, is a hit whatever it answers, as below:
   // {greet ? yes : no} over an application tag with a template whose PHP ends in return ''
   // took the false side and dropped the template, where {greet}yes@else@no{/greet} showed both.
@@ -126,7 +126,7 @@
 
   // Tested against '' rather than for truth: a tag whose whole output is the single character
   // 0 has a falsy $padTagContent in PHP, and testing it for truth dropped that output on the
-  // floor - {echo 0} printed nothing at all, as did any count, total or difference that came
+  // floor - {pad:echo 0} printed nothing at all, as did any count, total or difference that came
   // out zero.
 
   if ( $padTagContent !== '' )

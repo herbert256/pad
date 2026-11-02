@@ -2,7 +2,7 @@
 
   // Runs a nested pass inside a real PHP function body, so that it gets a variable scope of
   // its own rather than writing straight into $GLOBALS. Always included from padStrFun() in
-  // lib/execute.php, which {code function=...} reaches through start/pad/parms.php and
+  // lib/execute.php, which {pad:code function=...} reaches through start/pad/parms.php and
   // padCode()/padSandbox() through start/function.php.
   //
   // The whole of $GLOBALS is imported into that scope so the pass still sees engine state;
@@ -22,7 +22,7 @@
 
   // The build and isolation flags are this pass's arguments, and the import below must not
   // replace them: once any earlier pass has left them behind as globals, `global` rebinds
-  // the four names to those stale values - which is how a {code sandbox} after a padCode()
+  // the four names to those stale values - which is how a {pad:code sandbox} after a padCode()
   // ran with the padCode's flags and leaked what it should have unset. The source already
   // has the same protection through the unset of padStrCod above. The build kind comes in
   // the same way - a padStrFun() parameter, or set by padCode()/padSandbox() - where the

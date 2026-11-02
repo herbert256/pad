@@ -1,5 +1,5 @@
 
-<p><code>{form 'contact'}</code> writes a <code>&lt;form method="post"&gt;</code> round its
+<p><code>{pad:form 'contact'}</code> writes a <code>&lt;form method="post"&gt;</code> round its
 content that posts back to the page it stands in. A posting form carries two hidden fields:
 the visitor's CSRF token (<code>padCsrfToken</code>, the session starts on demand) and its
 own name (<code>padForm</code>). In the page's PHP, <code>padPosted('contact')</code> is TRUE
@@ -9,14 +9,14 @@ when this form came back, so a page with two forms knows which one was sent. A f
 <p>Every item besides the name, <code>method</code>, <code>error</code> and
 <code>client</code> is an attribute of the <code>&lt;form&gt;</code> tag - <code>class=</code>,
 <code>id=</code>, <code>action=</code>, <code>enctype=</code> - written the way
-<a href="index%EF%B9%96tag%EA%A4%B7attrs.html">{attrs}</a> writes them. The token only goes to this site: a form whose
+<a href="index%EF%B9%96tag%EA%A4%B7attrs.html">{pad:attrs}</a> writes them. The token only goes to this site: a form whose
 <code>action=</code>, or the <code>formaction=</code> of a button in it, points to another
 site gets none. A posting form holding a file field gets
 <code>enctype="multipart/form-data"</code> unless it names one itself.</p>
 
 <h3>Fields that refill</h3>
 
-<p>The <a href="index%EF%B9%96tag%EA%A4%B7input.html">{input}</a> and <a href="index%EF%B9%96tag%EA%A4%B7textarea.html">{textarea}</a> fields
+<p>The <a href="index%EF%B9%96tag%EA%A4%B7input.html">{pad:input}</a> and <a href="index%EF%B9%96tag%EA%A4%B7textarea.html">{pad:textarea}</a> fields
 inside know which form they are in. When that form came back they show what was sent,
 escaped, and the message <code>padValidate</code> left for them - a field of the same name in
 another form of the page stays as it was. A GET form refills from the query string once it
@@ -32,15 +32,19 @@ against them there, so <code>padPosted('contact')</code> is TRUE only for a post
 them, and <code>padFormFailed('contact')</code> for one that broke them - that one renders the
 form again, refilled, with the messages. Only the page's own template (with its
 <code>_inits.pad</code> and <code>_exits.pad</code>) is read: rules in a snippet, a custom tag,
-a <a href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> or a layout, rules from a variable, rules in a GET form or one
+a <a href="index%EF%B9%96tag%EA%A4%B7page.html">{pad:page}</a> or a layout, rules from a variable, rules in a GET form or one
 with <code>action=</code>, and an unknown rule are errors, strict check or not - each would be
 a check that never runs. That is also why the examples with rules on this page are shown, not
-run: they are rendered here through <code>{page}</code>.</p>
+run: they are rendered here through <code>{pad:page}</code>.</p>
 
 <p><code>client</code> checks the same rules in the browser as well, with the same messages,
 before the form leaves: the form gets <code>novalidate</code>, its rules in
-<code>data-pad-rules</code>, and the checker script (see <a href="index%EF%B9%96tag%EA%A4%B7validator.html">{validator}</a>)
+<code>data-pad-rules</code>, and the checker script (see <a href="index%EF%B9%96tag%EA%A4%B7validator.html">{pad:validator}</a>)
 follows it once a page. A form with <code>client</code> needs a name and at least one field
-with rules. The pair must close - a lone <code>{form}</code> is an error under the strict
+with rules. The pair must close - a lone <code>{pad:form}</code> is an error under the strict
 check.</p>
 
+
+<h3>Validation rules</h3>
+<p>Each kind has its own description and usage example:</p>
+<p><a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7accepted.html"><code>accepted</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7after.html"><code>after</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7after_or_equal.html"><code>after_or_equal</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7alpha.html"><code>alpha</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7alphanum.html"><code>alphanum</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7before.html"><code>before</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7before_or_equal.html"><code>before_or_equal</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7between.html"><code>between</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7color.html"><code>color</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7date.html"><code>date</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7different.html"><code>different</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7digits.html"><code>digits</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7distinct.html"><code>distinct</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7email.html"><code>email</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7ends_with.html"><code>ends_with</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7gt.html"><code>gt</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7gte.html"><code>gte</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7iban.html"><code>iban</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7in.html"><code>in</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7integer.html"><code>integer</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7ip.html"><code>ip</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7json.html"><code>json</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7lowercase.html"><code>lowercase</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7lt.html"><code>lt</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7lte.html"><code>lte</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7max.html"><code>max</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7max_items.html"><code>max_items</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7max_words.html"><code>max_words</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7min.html"><code>min</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7min_items.html"><code>min_items</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7min_words.html"><code>min_words</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7multiple_of.html"><code>multiple_of</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7not_in.html"><code>not_in</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7numeric.html"><code>numeric</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7regex.html"><code>regex</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7required.html"><code>required</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7required_if.html"><code>required_if</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7required_unless.html"><code>required_unless</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7required_with.html"><code>required_with</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7required_without.html"><code>required_without</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7same.html"><code>same</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7slug.html"><code>slug</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7starts_with.html"><code>starts_with</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7time.html"><code>time</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7uppercase.html"><code>uppercase</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7url.html"><code>url</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7rule%EA%A4%B7uuid.html"><code>uuid</code></a></p>

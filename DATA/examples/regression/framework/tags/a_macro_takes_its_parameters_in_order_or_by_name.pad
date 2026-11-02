@@ -1,1 +1,1 @@
-{macro 'entry', label, type='text', value=''}[{$label}|{$type}|{$value}@content@]{/macro}{entry 'Mail', 'email'/}{entry label='Name', value=$x/}{entry 'Q'}!{/entry}{rows}{entry $v/}{/rows}
+{pad:macro 'entry', label, type='text', value=''}[{$label}|{$type}|{$value}@content@]{/pad:macro}{macro:entry 'Mail', 'email'/}{macro:entry label='Name', value=$x/}{macro:entry 'Q'}!{/macro:entry}{array:rows}{macro:entry $v/}{/array:rows}

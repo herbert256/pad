@@ -1,7 +1,7 @@
 <?php
 
   // Last extra step: keeps the rows of a store this run wrote in $padSeqData, beside the bare
-  // terms in $pqStore, so a later {pull}/{resume} of that name can chain the columns back in
+  // terms in $pqStore, so a later {pad:pull}/{pad:resume} of that name can chain the columns back in
   // (extra/chain.php). $padSeqData survives the run; the $pq* globals do not.
   //
   // A store a shift or pop took from keeps the rows of the entries left in it, in the order

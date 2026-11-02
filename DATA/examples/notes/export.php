@@ -12,6 +12,6 @@
 
   $notes     = array_values ( $notes );        // a list - db() keys the rows by their first column
   $padExpose = [ 'notes' ];
-  $notesPage = 'Export';
+  $title     = 'Export';
 
 ?>

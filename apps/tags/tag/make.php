@@ -5,11 +5,11 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{make '1..5', add=10} ... {/make}
-{make '1..5', add=10, multiply=2} ... {/make}
-{make '1..6', prime} ... {/make}
+{make:range '1..5', add=10} ... {/make:range}
+{make:range '1..5', add=10, multiply=2} ... {/make:range}
+{make:range '1..6', prime} ... {/make:range}
 {make:fibonacci rows=8} ... {/make:fibonacci}
-{make store, square} ... {/make}
+{make:auto store, square} ... {/make:auto}
 PAD;
 
   $tagParms   = [
@@ -18,6 +18,6 @@ PAD;
 
   $tagOptions = [];
 
-  $tagSee     = [ 'keep', 'remove', 'flag', 'sequence', 'resume' ];
+  $tagSee     = [ 'keep:auto', 'remove:auto', 'flag', 'sequence:auto', 'resume' ];
 
 ?>

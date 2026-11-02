@@ -13,14 +13,14 @@
   padFragmentMissing ();
 
   // An @content@ still standing when the page is done was merged into by nothing. Checked
-  // before the unescape, so a marker {ignore} protected - documentation showing it - is
+  // before the unescape, so a marker {pad:ignore} protected - documentation showing it - is
   // still wearing its &at; entities and stays out of the verdict.
 
   if ( $padCheckSyntax and str_contains ( $padResult [0], '@content@' ) )
     padErrorAt ( 'an @content@ stands where nothing merges content into it', [ 'search' => '@content@' ] );
 
   // So was an @else@ no tag took - one at the top of an _inits.pad or _exits.pad, directly
-  // in a layout's {block} override or in a {slot} fill, where no level splits the text: it
+  // in a layout's {pad:block} override or in a {pad:slot} fill, where no level splits the text: it
   // was printed, the marker and both of its halves.
 
   if ( $padCheckSyntax and str_contains ( $padResult [0], '@else@' ) )
@@ -31,9 +31,9 @@
   // arrived in the input is a character, and a page written with the switch on in one
   // place and off in another restores alike.
 
-  // The {stack} markers are filled in now that every {push} of the page has been made -
+  // The {pad:stack} markers are filled in now that every {pad:push} of the page has been made -
   // lib/stack.php - still in the engine's own encoding, as the pushes were rendered in it.
-  // After a {flush} only the part of the page that has not gone out yet is left to send
+  // After a {pad:flush} only the part of the page that has not gone out yet is left to send
   // (lib/flush.php); that part is cut from the raw result, which the flushed text is a
   // prefix of, before the stacks are filled.
 
@@ -42,14 +42,14 @@
 
   $padOutput = padUnprotect ( padUnescape ( padStackFill ( $padFlushLeft ) ) );
 
-  // A page with {nocache} parts is kept by the page cache with the parts as their source -
+  // A page with {pad:nocache} parts is kept by the page cache with the parts as their source -
   // taken here, before anything below adds to the page, since a hit renders the parts and
   // comes through here again (lib/nocache.php). The visitor's copy loses the markers.
 
   $padNocacheBody = padNocacheCut ( $padOutput, $padNocacheKept );
   $padOutput      = padNocacheStrip ( $padOutput );
 
-  // A live request - a {live} region posting an event - is answered with that region's
+  // A live request - a {pad:live} region posting an event - is answered with that region's
   // content alone, without tidy, which would make a page of it (lib/live.php). Taken before
   // the forms get their tokens below, so a posting form in the region carries the token in
   // the answer as it did in the page: the answer was the region as rendered, and once the
@@ -68,13 +68,13 @@
   // With $padCsrf on, each form of the page that posts back here carries the session's
   // token without the template having to ask (lib/csrf.php) - the forms an application
   // already had are protected by the one setting. A token that went into the page with
-  // $padCsrf off - a {form} writes one - is taken out of a form whose button sends it to
+  // $padCsrf off - a {pad:form} writes one - is taken out of a form whose button sends it to
   // another site, or by GET.
 
   if ( ( $padCsrf or isset ( $padCsrfIssued ) ) and $padOutputType == 'web' )
     $padOutput = padCsrfForms ( $padOutput, $padCsrf );
 
-  // A {toc} is filled in once every heading of the page is written, the answer of a live
+  // A {pad:toc} is filled in once every heading of the page is written, the answer of a live
   // request included - lib/toc.php.
 
   $padOutput = padTocFill ( $padOutput );
@@ -86,7 +86,7 @@
   if ( $padOutputType == 'web' )
     $padOutput = padWidgetHead ( $padOutput );
 
-  // A page with a {pdf} answers the document of what it rendered instead (tags/_lib/pdf.php).
+  // A page with a {pad:pdf} answers the document of what it rendered instead (tags/_lib/pdf.php).
 
   if ( padPdfAsked () ) {
     include_once PAD . 'tags/_lib/pdf.php';

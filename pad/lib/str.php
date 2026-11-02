@@ -56,7 +56,7 @@
     $text      = padStrText ( $text,      'padStrSlug', FALSE );
     $separator = padStrText ( $separator, 'padStrSlug', FALSE );
 
-    // One transliterator for the request: made anew for every text it took 40 µs - a {toc}
+    // One transliterator for the request: made anew for every text it took 40 µs - a {pad:toc}
     // of twenty thousand headings spent most of a second on it.
 
     static $latin = NULL;

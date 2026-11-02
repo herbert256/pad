@@ -1,12 +1,12 @@
-{data 'n'}
+{pad:data 'n'}
   [3,1,5,2,4]
-{/data}
-[{n where='$n gt 2', sort, negative}
+{/pad:data}
+[{data:n where='$n gt 2', sort, negative}
   {$n},
-{/n}][{n first=2, reverse, negative}
+{/data:n}][{data:n first=2, reverse, negative}
   {$n},
-{/n}][{n sort, last=2, negative}
+{/data:n}][{data:n sort, last=2, negative}
   {$n},
-{/n}][{n first=3, shuffle, negative}
+{/data:n}][{data:n first=3, shuffle, negative}
   x
-{/n}]
+{/data:n}]

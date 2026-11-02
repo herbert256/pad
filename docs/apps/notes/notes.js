@@ -2,7 +2,7 @@
 // quicker:
 //
 //   search   while a search is typed the list is asked for again - fetch('?index&q=...&
-//            padFragment=list') - and only the list is swapped: PAD answers {fragment 'list'}
+//            padFragment=list') - and only the list is swapped: PAD answers {pad:fragment 'list'}
 //   preview  the editor's Preview tab posts the text to ?preview, with the session's token in
 //            X-CSRF-Token, and shows the Markdown as the note page will
 //   files    a file dropped on the editor's drop zone becomes its attachment
@@ -46,7 +46,8 @@
       const found = results.querySelectorAll('article.note').length;
       const count = document.querySelector('.list-head .count');
       if (count) count.textContent = count.textContent.replace(/^\d+/, found);
-      const heading = document.querySelector('.list-head h1');
+      // The page's heading is the frame's, in the bar above the page.
+      const heading = document.querySelector('.frame-top h1');
       if (heading && !tag) heading.textContent = search.value.trim() ? `Found for “${search.value.trim()}”` : 'All notes';
       try { history.replaceState(null, '', query); } catch (e) { /* a page shown from the disk keeps its own address */ }
     } finally {

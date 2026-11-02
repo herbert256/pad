@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{restart 'name'/}
-{restart 'name', $message = 'Saved'/}
+{pad:restart 'name'/}
+{pad:restart 'name', $message = 'Saved'/}
 PAD;
 
   $tagParms   = [

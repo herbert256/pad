@@ -7,10 +7,10 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{palette 'name'/}
-{palette 'viridis', steps=7/}
-{palette 'okabe-ito', title='Our chart colours'/}
-{chart 'bar', data='sales', value='north, south', palette='viridis'/}
+{pad:palette 'name'/}
+{pad:palette 'viridis', steps=7/}
+{pad:palette 'okabe-ito', title='Our chart colours'/}
+{chart:bar data='sales', value='north, south', palette='viridis'/}
 PAD;
 
   $tagParms   = [
@@ -22,6 +22,8 @@ PAD;
     'steps' => 'How many colours, 1 to 256: a sequential or diverging palette sampled evenly from its first colour to its last, a cyclic one evenly round its circle, never its first colour twice, a categorical one its colours in order, starting again past its last. Without it a categorical palette shows its own, a cyclic one twelve, the others nine.',
     'title' => 'The name of the row for a screen reader, else the palette\'s name and the count.' ];
 
-  $tagSee     = [ 'chart', 'theme', 'progress' ];
+  $tagSee     = [ 'chart:bar', 'theme', 'progress' ];
+
+  $subsystemKindLinks = appSubsystemLinks ( 'palette' );
 
 ?>

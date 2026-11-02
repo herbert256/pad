@@ -3,12 +3,12 @@
   // The themes subsystem: the frame's colours swapped for another set.
   //
   //   $padTheme = 'paper';        _config/config.php - every page of the application
-  //   {theme 'terminal'/}         the <style> of a theme, in this page
-  //   {themes/}                   a switcher: the visitor's choice, kept in a cookie
+  //   {pad:theme 'terminal'/}         the <style> of a theme, in this page
+  //   {pad:themes/}                   a switcher: the visitor's choice, kept in a cookie
   //
   // A theme is a file of subs/themes/types/ - its name, its scheme (light or dark) and its
   // colours, by the roles of the frame's palette - and the files there are the themes there
-  // are (padKinds, lib/subsystem.php); no tag type: a theme is the parameter of {theme} and
+  // are (padKinds, lib/subsystem.php); no tag type: a theme is the parameter of {pad:theme} and
   // the value of $padTheme. Its colours become the custom properties of the frame
   // (www/_common/pad.css) - the --frame-* ones of the side, the bar and the menu, and the
   // palette the pages build on, --bg, --text, --accent ... - set on :root:root:root, a
@@ -22,13 +22,13 @@
   // a theme colours them too. The frame's files are not touched: the theme is a <style> on
   // top of them.
   //
-  // Which theme a page gets - padThemeAdd: the visitor's choice from a {themes/} switcher,
+  // Which theme a page gets - padThemeAdd: the visitor's choice from a {pad:themes/} switcher,
   // kept in the padTheme cookie of the PAD applications, on a page built on the
   // frame or in an application that chose a theme itself, else $padTheme; FALSE in $padTheme
   // turns both off. exits/output.php puts its <style> into the page's <head> on the way out
   // (padThemeAdd) - after the page cache has stored the page, as the toolbar goes in, so a
   // cached page is served in the theme of whoever asks for it, and the ETag is made again
-  // from what goes out - before </head>, else before <body>, else after the doctype. {theme
+  // from what goes out - before </head>, else before <body>, else after the doctype. {pad:theme
   // 'x'/} writes a theme where it stands, and a page that has one gets no other.
   //
   // Every theme's text and its backgrounds - the text, the soft and dim greys and the links
@@ -37,7 +37,7 @@
   // a theme that declares 'needs' => 7 - contrast, contrast-dark - 7 to 1, AAA (padThemeNeeds,
   // padThemeContrasts; the framework case themes/ holds them).
   //
-  // Included on use: by {theme}, {themes} and exits/output.php when a theme is asked for.
+  // Included on use: by {pad:theme}, {pad:themes} and exits/output.php when a theme is asked for.
 
   include_once PAD . 'subs/palettes/_lib/palette.php';
 
@@ -102,7 +102,7 @@
   // The CSS of a theme: the frame's properties and the palette's, the scheme, the body's
   // colours - a page without the frame gets them too - its font and the body's own
   // declarations, its sections' hero and its own rules. $inside: the theme on the elements
-  // of the class pad-theme-<name> alone - the box of a {theme 'x'}...{/theme} pair, which
+  // of the class pad-theme-<name> alone - the box of a {pad:theme 'x'}...{/pad:theme} pair, which
   // gets the background, the text colour and a little room - and not on the page.
 
   function padThemeCss ( $name, $inside = FALSE ) {
@@ -238,8 +238,8 @@
 
   // exits/output.php: the theme's <style> into the page on its way out - before </head>
   // (padThemeInsert) - for an HTML page of the web answered 200; never an include request, a
-  // {live} region's or a response fragment's answer, which are parts of a page that has its
-  // theme already, and never a page with a {theme 'x'/} of its own.
+  // {pad:live} region's or a response fragment's answer, which are parts of a page that has its
+  // theme already, and never a page with a {pad:theme 'x'/} of its own.
 
   function padThemeAdd () {
 
@@ -270,9 +270,9 @@
     if ( $theme === '' or ( $setting === '' and ! padThemeFramed ( $padOutput ) ) )
       $theme = $setting;
 
-    // A page that wrote a theme of its own - {theme 'x'/}, its style on :root:root:root, where
+    // A page that wrote a theme of its own - {pad:theme 'x'/}, its style on :root:root:root, where
     // the tag stands or in the head where tidy moved it - is in that theme: the hook's style,
-    // put after it, outweighed it. A box of a {theme}...{/theme} pair is no such theme.
+    // put after it, outweighed it. A box of a {pad:theme}...{/pad:theme} pair is no such theme.
 
     if ( $theme === '' or preg_match ( '/<style data-pad-theme="[a-z0-9_-]+"[^>]*>\s*:root:root:root/', $padOutput ) )
       return;
@@ -301,7 +301,7 @@
 
   }
 
-  // A post of a {themes/} switcher, taken by inits/themes.php before the application runs:
+  // A post of a {pad:themes/} switcher, taken by inits/themes.php before the application runs:
   // the theme chosen kept in the padTheme cookie - Default ('') takes it away; a name that is no theme changes nothing - for this request too. The
   // switcher writes no token of its own, so showing it starts no session, and keeping the
   // choice starts none either. A post another site sends - its Sec-Fetch-Site says

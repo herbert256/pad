@@ -1,14 +1,12 @@
 <?php
 
-  // The body of an effect, whichever way it is written: {effect 'typewriter'}Hello{/effect},
-  // the effect: type - {effect:typewriter}Hello{/effect:typewriter} - or the bare name,
-  // {typewriter}Hello{/typewriter}, when nothing else has it. The caller sets $padEffectKind,
-  // and $padParm to the effect's own first parameter - the second of {effect 'typewriter',
-  // 'Hello'/}, whose first names the effect.
+  // An effect uses {effect:typewriter}Hello{/effect:typewriter} or another registered
+  // kind. The caller sets $padEffectKind; $padParm is the effect's own first parameter,
+  // such as the text in {effect:typewriter 'Hello'/}.
   //
   // An effect is a file of subs/effects/types/, and the files there are all the effects there
   // are (padKinds ( 'effects' ), lib/subsystem.php). A pair's content is template, rendered
-  // first: like {live}, the pair asks for the end walk and the kind wraps what rendered; a
+  // first: like {pad:live}, the pair asks for the end walk and the kind wraps what rendered; a
   // single tag works on its first parameter, or on nothing - a spinner, confetti. The
   // functions are subs/effects/_lib/effect.php, the looks www/assets/effects/.
 

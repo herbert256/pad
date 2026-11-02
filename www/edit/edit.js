@@ -154,21 +154,21 @@
 
   var DIR_HINTS = {
     _lib: 'PHP functions, included on every request below',
-    _include: 'Template snippets - {name}',
-    _tags: 'Custom tags - {name}',
+    _include: 'Template snippets - {property:name}',
+    _tags: 'Custom tags - {property:name}',
     _functions: 'Pipe functions - | name',
     _callbacks: "Iteration callbacks - callback='name'",
-    _options: 'Tag options - {tag name}',
+    _options: 'Tag options - {function:tag name}',
     _events: 'Event hooks - error, sql, curl, output',
     _config: 'Configuration - config.php',
     _data: 'Data files and named .sql queries',
     _scripts: 'Shell scripts',
-    _mail: "E-mail templates - {mail template='name'/}",
+    _mail: "E-mail templates - {pad:mail template='name'/}",
     _tests: 'Application tests - pad test',
-    _lang: "Translation catalogs - {trans 'key'/}",
-    _content: "Markdown collections - {collection 'name'}",
+    _lang: "Translation catalogs - {pad:trans 'key'/}",
+    _content: "Markdown collections - {pad:collection 'name'}",
     _samples: 'Sample data for the designer preview',
-    _layouts: "Layouts - {extends '_layouts/name'/}",
+    _layouts: "Layouts - {pad:extends '_layouts/name'/}",
     _guard: 'Decides access to every page below',
     _inits: 'Runs before (php) or wraps (pad) every page below',
     _exits: 'Runs after (php) or closes (pad) every page below'
@@ -1294,22 +1294,22 @@
 
   var TEMPLATES = [
     { kind: 'page', label: 'Page', hint: 'name.php + name.pad - the data and the template of ?name', ask: 'Page name', def: 'about' },
-    { kind: 'tag', label: 'Tag (PHP)', hint: '_tags/name.php - {name} computes its content', ask: 'Tag name', def: 'badge' },
-    { kind: 'component', label: 'Tag (component)', hint: '_tags/name.pad - {name} with {parms} and slots', ask: 'Tag name', def: 'card' },
+    { kind: 'tag', label: 'Tag (PHP)', hint: '_tags/name.php - {property:name} computes its content', ask: 'Tag name', def: 'badge' },
+    { kind: 'component', label: 'Tag (component)', hint: '_tags/name.pad - {property:name} with {pad:parms} and slots', ask: 'Tag name', def: 'card' },
     { kind: 'function', label: 'Pipe function', hint: '_functions/name.php - {$x | name}', ask: 'Function name', def: 'money' },
-    { kind: 'include', label: 'Snippet', hint: '_include/name.pad - {name}', ask: 'Snippet name', def: 'footer' },
+    { kind: 'include', label: 'Snippet', hint: '_include/name.pad - {property:name}', ask: 'Snippet name', def: 'footer' },
     { kind: 'callback', label: 'Callback', hint: "_callbacks/name.php - callback='name'", ask: 'Callback name', def: 'total' },
-    { kind: 'option', label: 'Option', hint: '_options/name.php - {tag name}', ask: 'Option name', def: 'shout' },
+    { kind: 'option', label: 'Option', hint: '_options/name.php - {function:tag name}', ask: 'Option name', def: 'shout' },
     { kind: 'event', label: 'Event hook', hint: '_events/error.php, sql.php, curl.php or output.php', ask: 'Event (error, sql, curl, output)', def: 'error' },
     { kind: 'guard', label: 'Guard', hint: '_guard.php - access to every page below', none: true },
     { kind: 'wrapper', label: 'Wrapper', hint: '_inits.pad + _exits.pad - around every page below', none: true },
     { kind: 'config', label: 'Configuration', hint: '_config/config.php', none: true },
-    { kind: 'data', label: 'Data file', hint: '_data/name.json - {name}', ask: 'Data name', def: 'colors' },
-    { kind: 'query', label: 'Named query', hint: '_data/name.sql - {name}', ask: 'Query name', def: 'customers' },
+    { kind: 'data', label: 'Data file', hint: '_data/name.json - {property:name}', ask: 'Data name', def: 'colors' },
+    { kind: 'query', label: 'Named query', hint: '_data/name.sql - {property:name}', ask: 'Query name', def: 'customers' },
     { kind: 'test', label: 'Test', hint: '_tests/name.pad + name.txt - pad test', ask: 'Test name', def: 'home' },
-    { kind: 'mail', label: 'Mail template', hint: "_mail/name.pad - {mail template='name'/}", ask: 'Template name', def: 'welcome' },
-    { kind: 'lang', label: 'Translation catalog', hint: "_lang/locale.json - {trans 'key'/}", ask: 'Locale', def: 'en' },
-    { kind: 'content', label: 'Markdown entry', hint: "_content/collection/name.md - {collection 'collection'}", ask: 'collection/name', def: 'blog/first-post' }
+    { kind: 'mail', label: 'Mail template', hint: "_mail/name.pad - {pad:mail template='name'/}", ask: 'Template name', def: 'welcome' },
+    { kind: 'lang', label: 'Translation catalog', hint: "_lang/locale.json - {pad:trans 'key'/}", ask: 'Locale', def: 'en' },
+    { kind: 'content', label: 'Markdown entry', hint: "_content/collection/name.md - {pad:collection 'collection'}", ask: 'collection/name', def: 'blog/first-post' }
   ];
 
   function newFromTemplate() {

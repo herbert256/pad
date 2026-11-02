@@ -3,7 +3,7 @@
   // dominant - a placeholder: the picture's dominant colour behind the <img> while it loads, and
   // in data-color for a page's own use.
   //
-  //   {img 'photos/harbour.jpg', width=400, filter='dominant', alt='The harbour'/}
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='dominant', alt='The harbour'/}
   //
   // Every pixel of the 1x picture as shown - every image filter of the list applied, wherever
   // the placeholder stands in it: what is behind the picture is the colour of the picture in

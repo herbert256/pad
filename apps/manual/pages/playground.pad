@@ -1,17 +1,24 @@
-{meta title='The playground'/}
+{pad:meta title='Live and WASM'/}
 
-<p>The <a href="{$padHost}playground/">playground</a> is an application for trying templates:
-type a template and its data - JSON, YAML, XML or CSV, its type recognised on sight as the
-data tag recognises it, a record's keys becoming variables and a list the variable
-<code>rows</code>, or, switched with the button beside it, PHP code written as a page's
-<code>.php</code> - and the result shows beside it. The address bar always holds both, so a link shares the example.</p>
+<p>Use <a href="{$padHost}live/">Live</a> to run code on the PAD HTTP server, or
+<a href="{$padHost}wasm/">WASM</a> to run it in your browser. Both have template and
+data editors, a PHP switch, and a link that transfers the editors to the other app.
+Data may be JSON, YAML, XML or CSV: a record's keys become variables and a list becomes
+<code>rows</code>. The address bar shares the template, data, PHP and selected mode.</p>
 
-<p>It renders the way a page's PHP can render any PAD source, with <code>padCode()</code>:</p>
+<p>Live combines the former Live and Playground apps. <b>Run page</b> saves a full page:
+PHP, request values, forms that post back, sessions, scripts and the demo database work.
+<b>Render template</b> previews through <code>padCode()</code>, and <b>Show HTML</b> displays
+that preview's source. <b>open alone</b> opens a saved page in its own tab.</p>
 
-{example 'fragments/playground_1'/}
+{common:example 'fragments/playground_1'/}
 
-<p>Because it runs what it is given, the playground answers this machine only, and a template
-there may not call PHP functions, sees no request values and no database, and gets five
-seconds, 64 KB of source and 256 KB of output. The output shows in a sandboxed frame, where
-the rendered page's scripts run in an origin of their own, out of reach of the playground. Tags that read files or fetch URLs still work - on
-this machine, for its own user - and the PHP code of the data runs as written.</p>
+<p>Live answers local requests only and checks a CSRF token for posts. Its template preview
+has no PHP function calls from templates, request variables or database; it allows five
+seconds, 64 KB of input and 256 KB of output. PHP in the data pane runs as written. The
+preview frame keeps its scripts separate from the editor; full pages have their own frame.</p>
+
+<p>WASM runs PHP in browser memory. It can use PHP data and the text formats above, but it
+cannot read this server's files or demo database. The ▶ example icon opens WASM; ⚡ opens
+Live. Examples that require the server keep only the Live icon. Links wait for an explicit
+run. Existing Playground bookmarks redirect to WASM.</p>

@@ -8,7 +8,7 @@
   // RL unless given, the classic ant; ants= how many start (1, up to 8); size= the squares a
   // side (160, 40 to 400); speed= the steps a second (1000, 1 to 50000).
   //
-  //   {ant rule='LLRR', ants=2/}
+  //   {toy:ant rule='LLRR', ants=2/}
 
   $padAntRule = strtoupper ( trim ( padParmText ( padTagParm ( 'rule', 'RL' ) ) ) );
 

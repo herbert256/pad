@@ -2,13 +2,14 @@
 A single tag
 ================================================================================
 
-{echo $x}
+{pad:echo $x}
 
 --------------------------------------------------------------------------------
 
 (template
   (tag
     (tag_name
+      (prefix)
       (identifier))
     (arguments
       (variable))))
@@ -17,13 +18,14 @@ A single tag
 A pipe, with arguments, an arithmetic pipe and a printf format
 ================================================================================
 
-{echo $name | upper | left(5) | + 1} {$nbr | %.2f}
+{pad:echo $name | upper | left(5) | + 1} {$nbr | %.2f}
 
 --------------------------------------------------------------------------------
 
 (template
   (tag
     (tag_name
+      (prefix)
       (identifier))
     (arguments
       (variable)
@@ -45,13 +47,14 @@ A pipe, with arguments, an arithmetic pipe and a printf format
 Options
 ================================================================================
 
-{orders sort='id', rows=5 callback='double' trim}
+{array:orders sort='id', rows=5 callback='double' trim}
 
 --------------------------------------------------------------------------------
 
 (template
   (tag
     (tag_name
+      (prefix)
       (identifier))
     (arguments
       (option
@@ -69,7 +72,7 @@ Options
 Prefixed names
 ================================================================================
 
-{app:badge} {include:footer} {echo $x | function:money} {echo sequence:fibonacci(8)}
+{app:badge} {include:footer} {pad:echo $x | function:money} {pad:echo sequence:fibonacci(8)}
 
 --------------------------------------------------------------------------------
 
@@ -84,6 +87,7 @@ Prefixed names
       (identifier)))
   (tag
     (tag_name
+      (prefix)
       (identifier))
     (arguments
       (variable)
@@ -92,6 +96,7 @@ Prefixed names
         (function_name))))
   (tag
     (tag_name
+      (prefix)
       (identifier))
     (arguments
       (prefixed_name
@@ -103,13 +108,14 @@ Prefixed names
 Properties
 ================================================================================
 
-{echo count@items} {even@items ? even : odd}
+{pad:echo count@items} {property:even@items ? even : odd}
 
 --------------------------------------------------------------------------------
 
 (template
   (tag
     (tag_name
+      (prefix)
       (identifier))
     (arguments
       (property_reference
@@ -117,7 +123,8 @@ Properties
         (identifier))))
   (tag
     (tag_name
-      (property)
+      (prefix)
+      (identifier)
       (identifier))
     (arguments
       (operator)
@@ -128,7 +135,7 @@ Properties
 Word operators and the placeholder
 ================================================================================
 
-{if $a eq 1 and $b ne 2}{/if} {echo 50 | @ * 4}
+{pad:if $a eq 1 and $b ne 2}{/pad:if} {pad:echo 50 | @ * 4}
 
 --------------------------------------------------------------------------------
 
@@ -136,6 +143,7 @@ Word operators and the placeholder
   (block
     (open_tag
       (tag_name
+        (prefix)
         (identifier))
       (arguments
         (variable)
@@ -147,9 +155,11 @@ Word operators and the placeholder
         (number)))
     (close_tag
       (tag_name
+        (prefix)
         (identifier))))
   (tag
     (tag_name
+      (prefix)
       (identifier))
     (arguments
       (number)
@@ -162,7 +172,7 @@ Word operators and the placeholder
 A tag inside a parameter
 ================================================================================
 
-{if {clock 'L'} eq 1}x{/if}
+{pad:if {pad:clock 'L'} eq 1}x{/pad:if}
 
 --------------------------------------------------------------------------------
 
@@ -170,10 +180,12 @@ A tag inside a parameter
   (block
     (open_tag
       (tag_name
+        (prefix)
         (identifier))
       (arguments
         (tag
           (tag_name
+            (prefix)
             (identifier))
           (arguments
             (string)))
@@ -183,13 +195,14 @@ A tag inside a parameter
       (text))
     (close_tag
       (tag_name
+        (prefix)
         (identifier)))))
 
 ================================================================================
 A close tag no opener claims
 ================================================================================
 
-a {/orders} b
+a {/array:orders} b
 
 --------------------------------------------------------------------------------
 
@@ -197,5 +210,6 @@ a {/orders} b
   (text)
   (close_tag
     (tag_name
+      (prefix)
       (identifier)))
   (text))

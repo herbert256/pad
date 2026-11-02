@@ -1,6 +1,6 @@
 <?php
 
-  // {chess 'fen', flip, highlight='e2, e4', arrow='e2-e4, g8-f6', size=360, title='name'/} -
+  // {notation:chess 'fen', flip, highlight='e2, e4', arrow='e2-e4, g8-f6', size=360, title='name'/} -
   // a chess position drawn as a board, the pieces shapes of PAD's own. The text is the FEN
   // (Forsyth-Edwards Notation); only its placement is needed, the other fields - side to move,
   // castling, en passant, the two counters - are checked when written. flip turns the board so
@@ -8,8 +8,8 @@
   // threat. size= is the width and height in pixels (default 360), title= the accessible name;
   // the description lists every piece.
   //
-  // Once a built-in tag of its own, now a notation: {chess 'fen'/} reaches it bare, as before,
-  // and it is {notation:chess 'fen'/} and {notation 'chess', 'fen'/} as well.
+  // Once a built-in tag of its own, now a notation: {notation:chess 'fen'/} reaches it bare, as before,
+  // and it is {notation:chess 'fen'/} and {notation:chess 'fen'/} as well.
 
   if ( trim ( $padNotationText ) === '' )
     return '';

@@ -1,6 +1,6 @@
 <?php
 
-  // A flushed page goes without an ETag - {flush} gives the ETag up with the whole body it
+  // A flushed page goes without an ETag - {pad:flush} gives the ETag up with the whole body it
   // describes - where the headers that went out with the first part carried Etag: "", one
   // tag for every flushed page of the application.
 

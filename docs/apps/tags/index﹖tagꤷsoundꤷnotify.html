@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {sound:notify} · PAD tags
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="tags.css">
+    <link rel="stylesheet" href="/pad/assets/sounds/sound.css?v=1650b66f2e">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+    <style>
+    :where(.pad-sound){--pad-sound-text:#1f1f1d;--pad-sound-line:#cfcec8;--pad-sound-face:#ffffff;--pad-sound-accent:#2a78d6;}@supports (color:light-dark(#000,#fff)){:where(.pad-sound){--pad-sound-text:light-dark(#1f1f1d,#ecebe6);--pad-sound-line:light-dark(#cfcec8,#4a4a46);--pad-sound-face:light-dark(#ffffff,#242422);--pad-sound-accent:light-dark(#2a78d6,#5598e7);}}
+    </style>
+  </head>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>tags</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags and kinds</label> <input type="search" id="q" name="q" value="" placeholder="Search 1220 entries" autocomplete="off">
+        </form>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#kind-sound">Sounds</a><span>/</span><span aria-current="page">sound:notify</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              <span class="brace">{</span>sound:notify<span class="brace">}</span>
+            </h1>
+            <p class="tag-about">
+              A gentle ding-dong, G then C above it.
+            </p>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#kind-sound">Sounds</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sound:notify</span><span class="hl-brc">/}</span></code></pre>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              One of the 27 sounds of <a href="index%EF%B9%96tag%EA%A4%B7sound.html"><code>sound:*</code></a>, written <code>{sound:notify/}</code>.
+            </p>
+            <p>
+              A gentle ding-dong, G then C above it: something came in. Sine bells with a triangle an octave below for warmth.
+            </p>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Example
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                The notify sound
+              </h3>
+              <p class="example-about">
+                A button that plays it, and its WAV file.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file"></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sound:notify</span> download<span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span></span>
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7c291bmQ6bm90aWZ5IGRvd25sb2FkL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7c291bmQ6bm90aWZ5IGRvd25sb2FkL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <span class="pad-sound pad-sound-notify"><button type="button" class="pad-sound-button" data-pad-sound="notify"><svg class="pad-sound-icon" viewbox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                    <path d="M4 9h4l5-4v14l-5-4H4z"></path>
+                    <path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none"></path></svg>Notify</button><noscript><a class="pad-sound-link" href="index%EF%B9%96tag%EA%A4%B7sound%EA%A4%B7notify&amp;padSound=notify" type="audio/wav">Notify</a></noscript> <a class="pad-sound-download" href="index%EF%B9%96tag%EA%A4%B7sound%EA%A4%B7notify&amp;padSound=notify" type="audio/wav" download="notify.wav">notify.wav</a></span>
+                    <script src="/pad/assets/sounds/sound.js?v=1800b7e337"></script>
+                    <script>
+                    PadSound.add({"applause":{"kind":"applause","title":"Applause","level":0.8,"length":1.5,"voices":[{"wave":"noise","start":0.0,"length":0.035,"glide":0.035,"attack":0.0008,"decay":0.033,"sustain":0.0,"release":0.002,"gain":0.5,"duty":0.5,"vibrato":[0.0,0.0],"filter":["bandpass",1300.0,1300.0,1.3],"seed":2654435762,"notes":[[0.0,0.0,0.0],[0.091,0.0,0.0],[0.182,0.0,0.0],[0.273,0.0,0.0],[0.45499999999999996,0.0,0.0],[0.5459999999999999,0.0,0.0],[0.6369999999999999,0.0,0.0],[0.7279999999999999,0.0,0.0],[0.8189999999999998,0.0,0.0],[1.001,0.0,0.0],[1.0919999999999999,0.0,0.0],[1.1829999999999998,0.0,0.0],[1.2739999999999998,0.0,0.0],[1.3649999999999998,0.0,0.0],[1.4559999999999997,0.0,0.0]]},{"wave":"noise","start":0.023,"length":0.035,"glide":0.035,"attack":0.0008,"decay":0.033,"sustain":0.0,"release":0.002,"gain":0.5,"duty":0.5,"vibrato":[0.0,0.0],"filter":["bandpass",1800.0,1800.0,1.3],"seed":1013904227,"notes":[[0.0,0.0,0.0],[0.107,0.0,0.0],[0.321,0.0,0.0],[0.428,0.0,0.0],[0.535,0.0,0.0],[0.642,0.0,0.0],[0.856,0.0,0.0],[0.963,0.0,0.0],[1.07,0.0,0.0],[1.177,0.0,0.0],[1.284,0.0,0.0]]},{"wave":"noise","start":0.047,"length":0.035,"glide":0.035,"attack":0.0008,"decay":0.033,"sustain":0.0,"release":0.002,"gain":0.45,"duty":0.5,"vibrato":[0.0,0.0],"filter":["bandpass",2400.0,2400.0,1.3],"seed":3668339988,"notes":[[0.0,0.0,0.0],[0.119,0.0,0.0],[0.238,0.0,0.0],[0.357,0.0,0.0],[0.476,0.0,0.0],[0.714,0.0,0.0],[0.833,0.0,0.0],[0.952,0.0,0.0],[1.071,0.0,0.0]]},{"wave":"noise","start":0.068,"length":0.035,"glide":0.035,"attack":0.0008,"decay":0.033,"sustain":0.0,"release":0.002,"gain":0.45,"duty":0.5,"vibrato":[0.0,0.0],"filter":["bandpass",950.0,950.0,1.3],"seed":2027808453,"notes":[[0.0,0.0,0.0],[0.083,0.0,0.0],[0.166,0.0,0.0],[0.332,0.0,0.0],[0.41500000000000004,0.0,0.0],[0.49800000000000005,0.0,0.0],[0.5810000000000001,0.0,0.0],[0.664,0.0,0.0]]},{"wave":"noise","start":0.012,"length":0.035,"glide":0.035,"attack":0.0008,"decay":0.033,"sustain":0.0,"release":0.002,"gain":0.4,"duty":0.5,"vibrato":[0.0,0.0],"filter":["bandpass",3000.0,3000.0,1.3],"seed":387276918,"notes":[[0.0,0.0,0.0],[0.133,0.0,0.0],[0.266,0.0,0.0],[0.399,0.0,0.0],[0.532,0.0,0.0],[0.665,0.0,0.0]]},{"wave":"noise","start":0.0,"length":1.5,"glide":1.5,"attack":0.08,"decay":1.42,"sustain":0.0,"release":0.02,"gain":0.16,"duty":0.5,"vibrato":[0.0,0.0],"filter":["bandpass",2000.0,2000.0,0.6],"seed":3041712679,"notes":[[0.0,0.0,0.0]]}]},"beep":{"kind":"beep","title":"Beep","level":0.4,"length":0.16,"voices":[{"wave":"sine","start":0.0,"length":0.16,"glide":0.16,"attack":0.004,"decay":0.0,"sustain":1.0,"release":0.02,"gain":0.8,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2654435762,"notes":[[0.0,880,880]]},{"wave":"sine","start":0.0,"length":0.16,"glide":0.16,"attack":0.004,"decay":0.0,"sustain":1.0,"release":0.02,"gain":0.08,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":1013904227,"notes":[[0.0,1760,1760]]}]},"bell":{"kind":"bell","title":"Bell","level":0.8,"length":2.4,"voices":[{"wave":"sine","start":0.0,"length":2.4,"glide":2.4,"attack":0.003,"decay":2.4,"sustain":0.0,"release":0.02,"gain":0.25,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2654435762,"notes":[[0.0,330.0,330.0]]},{"wave":"sine","start":0.0,"length":2.2,"glide":2.2,"attack":0.002,"decay":2.2,"sustain":0.0,"release":0.02,"gain":0.45,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":1013904227,"notes":[[0.0,660.0,660.0]]},{"wave":"sine","start":0.0,"length":1.6,"glide":1.6,"attack":0.002,"decay":1.6,"sustain":0.0,"release":0.02,"gain":0.22,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":3668339988,"notes":[[0.0,781.0,781.0]]},{"wave":"sine","start":0.0,"length":1.3,"glide":1.3,"attack":0.002,"decay":1.3,"sustain":0.0,"release":0.02,"gain":0.18,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2027808453,"notes":[[0.0,994.0,994.0]]},{"wave":"sine","start":0.0,"length":1.0,"glide":1.0,"attack":0.002,"decay":1.0,"sustain":0.0,"release":0.02,"gain":0.16,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":387276918,"notes":[[0.0,1320.0,1320.0]]},{"wave":"sine","start":0.0,"length":0.6,"glide":0.6,"attack":0.001,"decay":0.6,"sustain":0.0,"release":0.02,"gain":0.1,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":3041712679,"notes":[[0.0,1822.0,1822.0]]},{"wave":"sine","start":0.0,"length":0.3,"glide":0.3,"attack":0.001,"decay":0.3,"sustain":0.0,"release":0.02,"gain":0.06,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":1401181144,"notes":[[0.0,2640.0,2640.0]]}]},"chime":{"kind":"chime","title":"Chime","level":0.8,"length":1.2200000000000002,"voices":[{"wave":"sine","start":0.0,"length":1.0,"glide":1.0,"attack":0.004,"decay":1.0,"sustain":0.0,"release":0.02,"gain":0.5,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2654435762,"notes":[[0.0,1318.5102276514797,1318.5102276514797]]},{"wave":"sine","start":0.12,"length":1.1,"glide":1.1,"attack":0.004,"decay":1.1,"sustain":0.0,"release":0.02,"gain":0.4,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":1013904227,"notes":[[0.0,1975.533205024496,1975.533205024496]]},{"wave":"sine","start":0.0,"length":0.35,"glide":0.35,"attack":0.002,"decay":0.35,"sustain":0.0,"release":0.02,"gain":0.08,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":3668339988,"notes":[[0.0,2637.02045530296,2637.02045530296]]}]},"clap":{"kind":"clap","title":"Clap","level":0.7,"length":0.203,"voices":[{"wave":"noise","start":0.0,"length":0.011,"glide":0.011,"attack":0.0005,"decay":0.01,"sustain":0.0,"release":0.0005,"gain":0.8,"duty":0.5,"vibrato":[0.0,0.0],"filter":["bandpass",1200.0,1200.0,1.4],"seed":2654435762,"notes":[[0.0,0.0,0.0],[0.011,0.0,0.0],[0.022,0.0,0.0]]},{"wave":"noise","start":0.033,"length":0.17,"glide":0.17,"attack":0.001,"decay":0.17,"sustain":0.0,"release":0.02,"gain":0.5,"duty":0.5,"vibrato":[0.0,0.0],"filter":["bandpass",1100.0,1100.0,1.0],"seed":1013904227,"notes":[[0.0,0.0,0.0]]}]},"click":{"kind":"click","title":"Click","level":0.8,"length":0.015,"voices":[{"wave":"noise","start":0.0,"length":0.012,"glide":0.012,"attack":0.0005,"decay":0.011,"sustain":0.0,"release":0.001,"gain":0.6,"duty":0.5,"vibrato":[0.0,0.0],"filter":["bandpass",3200.0,3200.0,1.5],"seed":2654435762,"notes":[[0.0,0.0,0.0]]},{"wave":"sine","start":0.0,"length":0.015,"glide":0.015,"attack":0.0005,"decay":0.014,"sustain":0.0,"release":0.001,"gain":0.35,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":1013904227,"notes":[[0.0,1500.0,1500.0]]}]},"coin":{"kind":"coin","title":"Coin","level":0.35,"length":0.495,"voices":[{"wave":"square","start":0.0,"length":0.075,"glide":0.075,"attack":0.002,"decay":0.0,"sustain":1.0,"release":0.005,"gain":0.4,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2654435762,"notes":[[0.0,987.7666025122483,987.7666025122483]]},{"wave":"square","start":0.075,"length":0.42,"glide":0.42,"attack":0.002,"decay":0.42,"sustain":0.0,"release":0.02,"gain":0.4,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":1013904227,"notes":[[0.0,1318.5102276514797,1318.5102276514797]]}]},"countdown":{"kind":"countdown","title":"Countdown","level":0.45,"length":2.1,"voices":[{"wave":"sine","start":0.0,"length":0.13,"glide":0.13,"attack":0.004,"decay":0.0,"sustain":1.0,"release":0.03,"gain":0.6,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2654435762,"notes":[[0.0,440,440],[0.5,440,440],[1.0,440,440]]},{"wave":"triangle","start":0.0,"length":0.13,"glide":0.13,"attack":0.004,"decay":0.0,"sustain":1.0,"release":0.03,"gain":0.15,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":1013904227,"notes":[[0.0,220.0,220.0],[0.5,220.0,220.0],[1.0,220.0,220.0]]},{"wave":"sine","start":1.5,"length":0.6,"glide":0.6,"attack":0.004,"decay":0.5,"sustain":0.45,"release":0.1,"gain":0.6,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":3668339988,"notes":[[0.0,880,880]]},{"wave":"triangle","start":1.5,"length":0.6,"glide":0.6,"attack":0.004,"decay":0.5,"sustain":0.45,"release":0.1,"gain":0.15,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2027808453,"notes":[[0.0,440,440]]}]},"error":{"kind":"error","title":"Error","level":0.8,"length":0.36,"voices":[{"wave":"saw","start":0.0,"length":0.2,"glide":0.2,"attack":0.005,"decay":0.15,"sustain":0.4,"release":0.05,"gain":0.5,"duty":0.5,"vibrato":[0.0,0.0],"filter":["lowpass",1400.0,1400.0,1.2],"seed":2654435762,"notes":[[0.0,246.94165062806206,246.94165062806206],[0.16,174.61411571650194,174.61411571650194]]},{"wave":"square","start":0.0,"length":0.2,"glide":0.2,"attack":0.005,"decay":0.15,"sustain":0.4,"release":0.05,"gain":0.25,"duty":0.5,"vibrato":[0.0,0.0],"filter":["lowpass",900.0,900.0,0.8],"seed":1013904227,"notes":[[0.0,123.47082531403103,123.47082531403103],[0.16,87.30705785825097,87.30705785825097]]}]},"fanfare":{"kind":"fanfare","title":"Fanfare","level":0.5,"length":1.21,"voices":[{"wave":"saw","start":0.0,"length":0.1,"glide":0.1,"attack":0.012,"decay":0.05,"sustain":0.7,"release":0.03,"gain":0.45,"duty":0.5,"vibrato":[0.0,0.0],"filter":["lowpass",1600.0,2400.0,0.9],"seed":2654435762,"notes":[[0.0,391.99543598174927,391.99543598174927],[0.12,391.99543598174927,391.99543598174927],[0.24,391.99543598174927,391.99543598174927]]},{"wave":"saw","start":0.36,"length":0.85,"glide":0.85,"attack":0.03,"decay":0.2,"sustain":0.7,"release":0.2,"gain":0.4,"duty":0.5,"vibrato":[5.5,0.12],"filter":["lowpass",700.0,2800.0,0.9],"seed":1013904227,"notes":[[0.0,523.2511306011972,523.2511306011972]]},{"wave":"saw","start":0.36,"length":0.85,"glide":0.85,"attack":0.03,"decay":0.2,"sustain":0.7,"release":0.2,"gain":0.3,"duty":0.5,"vibrato":[5.5,0.12],"filter":["lowpass",700.0,2800.0,0.9],"seed":3668339988,"notes":[[0.0,659.2551138257398,659.2551138257398]]},{"wave":"saw","start":0.36,"length":0.85,"glide":0.85,"attack":0.03,"decay":0.2,"sustain":0.7,"release":0.2,"gain":0.3,"duty":0.5,"vibrato":[5.5,0.12],"filter":["lowpass",700.0,2800.0,0.9],"seed":2027808453,"notes":[[0.0,783.9908719634985,783.9908719634985]]},{"wave":"triangle","start":0.36,"length":0.85,"glide":0.85,"attack":0.03,"decay":0.2,"sustain":0.7,"release":0.2,"gain":0.25,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":387276918,"notes":[[0.0,261.6255653005986,261.6255653005986]]}]},"gameover":{"kind":"gameover","title":"Game over","level":0.5,"length":2.02,"voices":[{"wave":"saw","start":0.0,"length":0.3,"glide":0.3,"attack":0.04,"decay":0.1,"sustain":0.8,"release":0.06,"gain":0.5,"duty":0.5,"vibrato":[0.0,0.0],"filter":["lowpass",450.0,1500.0,1.4],"seed":2654435762,"notes":[[0.0,293.6647679174076,293.6647679174076]]},{"wave":"saw","start":0.34,"length":0.3,"glide":0.3,"attack":0.04,"decay":0.1,"sustain":0.8,"release":0.06,"gain":0.5,"duty":0.5,"vibrato":[0.0,0.0],"filter":["lowpass",450.0,1500.0,1.4],"seed":1013904227,"notes":[[0.0,277.1826309768721,277.1826309768721]]},{"wave":"saw","start":0.68,"length":0.3,"glide":0.3,"attack":0.04,"decay":0.1,"sustain":0.8,"release":0.06,"gain":0.5,"duty":0.5,"vibrato":[0.0,0.0],"filter":["lowpass",450.0,1500.0,1.4],"seed":3668339988,"notes":[[0.0,261.6255653005986,261.6255653005986]]},{"wave":"saw","start":1.02,"length":1.0,"glide":1.0,"attack":0.04,"decay":0.2,"sustain":0.75,"release":0.35,"gain":0.5,"duty":0.5,"vibrato":[5.0,0.35],"filter":["lowpass",1500.0,400.0,1.4],"seed":2027808453,"notes":[[0.0,246.94165062806206,246.94165062806206]]}]},"hihat":{"kind":"hihat","title":"Hi-hat","level":0.8,"length":0.06,"voices":[{"wave":"noise","start":0.0,"length":0.06,"glide":0.06,"attack":0.0005,"decay":0.058,"sustain":0.0,"release":0.002,"gain":0.8,"duty":0.5,"vibrato":[0.0,0.0],"filter":["highpass",7000.0,7000.0,0.7],"seed":2654435762,"notes":[[0.0,0.0,0.0]]},{"wave":"square","start":0.0,"length":0.04,"glide":0.04,"attack":0.0005,"decay":0.04,"sustain":0.0,"release":0.02,"gain":0.12,"duty":0.5,"vibrato":[0.0,0.0],"filter":["highpass",6000.0,6000.0,0.7],"seed":1013904227,"notes":[[0.0,3300.0,3300.0]]}]},"jump":{"kind":"jump","title":"Jump","level":0.8,"length":0.2,"voices":[{"wave":"square","start":0.0,"length":0.2,"glide":0.16,"attack":0.002,"decay":0.18,"sustain":0.3,"release":0.02,"gain":0.5,"duty":0.25,"vibrato":[0.0,0.0],"filter":["lowpass",3500.0,3500.0,0.8],"seed":2654435762,"notes":[[0.0,230.0,720.0]]}]},"kick":{"kind":"kick","title":"Kick","level":0.8,"length":0.45,"voices":[{"wave":"sine","start":0.0,"length":0.45,"glide":0.12,"attack":0.001,"decay":0.45,"sustain":0.0,"release":0.02,"gain":1.0,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2654435762,"notes":[[0.0,150.0,45.0]]},{"wave":"noise","start":0.0,"length":0.012,"glide":0.012,"attack":0.0005,"decay":0.011,"sustain":0.0,"release":0.001,"gain":0.25,"duty":0.5,"vibrato":[0.0,0.0],"filter":["highpass",2500.0,2500.0,0.7],"seed":1013904227,"notes":[[0.0,0.0,0.0]]}]},"laser":{"kind":"laser","title":"Laser","level":0.8,"length":0.24,"voices":[{"wave":"square","start":0.0,"length":0.24,"glide":0.22,"attack":0.002,"decay":0.24,"sustain":0.2,"release":0.02,"gain":0.5,"duty":0.3,"vibrato":[0.0,0.0],"filter":["lowpass",5000.0,1500.0,0.9],"seed":2654435762,"notes":[[0.0,1800.0,180.0]]}]},"notify":{"kind":"notify","title":"Notify","level":0.8,"length":0.7100000000000001,"voices":[{"wave":"sine","start":0.0,"length":0.55,"glide":0.55,"attack":0.005,"decay":0.55,"sustain":0.0,"release":0.02,"gain":0.5,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2654435762,"notes":[[0.0,783.9908719634985,783.9908719634985],[0.16,1046.5022612023945,1046.5022612023945]]},{"wave":"triangle","start":0.0,"length":0.45,"glide":0.45,"attack":0.005,"decay":0.45,"sustain":0.0,"release":0.02,"gain":0.18,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":1013904227,"notes":[[0.0,391.99543598174927,391.99543598174927],[0.16,523.2511306011972,523.2511306011972]]}]},"pop":{"kind":"pop","title":"Pop","level":0.65,"length":0.09,"voices":[{"wave":"sine","start":0.0,"length":0.09,"glide":0.06,"attack":0.002,"decay":0.085,"sustain":0.0,"release":0.005,"gain":0.8,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2654435762,"notes":[[0.0,320.0,1100.0]]}]},"powerup":{"kind":"powerup","title":"Power-up","level":0.8,"length":0.685,"voices":[{"wave":"square","start":0.0,"length":0.07,"glide":0.07,"attack":0.002,"decay":0.0,"sustain":1.0,"release":0.01,"gain":0.45,"duty":0.25,"vibrato":[18.0,0.3],"filter":["lowpass",6000.0,6000.0,0.7],"seed":2654435762,"notes":[[0.0,523.2511306011972,587.3295358348151],[0.055,659.2551138257398,739.9888454232688],[0.11,783.9908719634985,880.0],[0.165,1046.5022612023945,1174.6590716696303],[0.22,1318.5102276514797,1479.9776908465376],[0.275,1567.981743926997,1760.0],[0.33,2093.004522404789,2349.3181433392606]]},{"wave":"triangle","start":0.385,"length":0.3,"glide":0.3,"attack":0.002,"decay":0.3,"sustain":0.0,"release":0.02,"gain":0.35,"duty":0.5,"vibrato":[9.0,0.4],"filter":null,"seed":1013904227,"notes":[[0.0,2093.004522404789,2093.004522404789]]}]},"shaker":{"kind":"shaker","title":"Shaker","level":0.55,"length":0.25,"voices":[{"wave":"noise","start":0.0,"length":0.1,"glide":0.1,"attack":0.045,"decay":0.05,"sustain":0.0,"release":0.005,"gain":0.6,"duty":0.5,"vibrato":[0.0,0.0],"filter":["bandpass",5200.0,6200.0,1.1],"seed":2654435762,"notes":[[0.0,0.0,0.0]]},{"wave":"noise","start":0.16,"length":0.09,"glide":0.09,"attack":0.04,"decay":0.045,"sustain":0.0,"release":0.005,"gain":0.42,"duty":0.5,"vibrato":[0.0,0.0],"filter":["bandpass",5800.0,4800.0,1.1],"seed":1013904227,"notes":[[0.0,0.0,0.0]]}]},"snare":{"kind":"snare","title":"Snare","level":0.8,"length":0.22,"voices":[{"wave":"noise","start":0.0,"length":0.22,"glide":0.22,"attack":0.001,"decay":0.21,"sustain":0.0,"release":0.01,"gain":0.7,"duty":0.5,"vibrato":[0.0,0.0],"filter":["highpass",1400.0,1400.0,0.7],"seed":2654435762,"notes":[[0.0,0.0,0.0]]},{"wave":"triangle","start":0.0,"length":0.12,"glide":0.08,"attack":0.001,"decay":0.12,"sustain":0.0,"release":0.02,"gain":0.6,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":1013904227,"notes":[[0.0,200.0,150.0]]}]},"sparkle":{"kind":"sparkle","title":"Sparkle","level":0.5,"length":0.5800000000000001,"voices":[{"wave":"sine","start":0.0,"length":0.3,"glide":0.3,"attack":0.002,"decay":0.3,"sustain":0.0,"release":0.02,"gain":0.4,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2654435762,"notes":[[0.0,2637.02045530296,2637.02045530296],[0.07,1975.533205024496,1975.533205024496],[0.14,3322.437580639561,3322.437580639561],[0.21000000000000002,2637.02045530296,2637.02045530296],[0.28,3951.066410048992,3951.066410048992]]},{"wave":"sine","start":0.035,"length":0.22,"glide":0.22,"attack":0.002,"decay":0.22,"sustain":0.0,"release":0.02,"gain":0.22,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":1013904227,"notes":[[0.0,2217.4610478149766,2217.4610478149766],[0.07,2959.955381693075,2959.955381693075],[0.14,4434.922095629953,4434.922095629953],[0.21000000000000002,3322.437580639561,3322.437580639561]]},{"wave":"noise","start":0.0,"length":0.45,"glide":0.45,"attack":0.06,"decay":0.39,"sustain":0.0,"release":0.02,"gain":0.05,"duty":0.5,"vibrato":[0.0,0.0],"filter":["highpass",7000.0,7000.0,0.7],"seed":3668339988,"notes":[[0.0,0.0,0.0]]}]},"success":{"kind":"success","title":"Success","level":0.8,"length":0.45999999999999996,"voices":[{"wave":"triangle","start":0.0,"length":0.22,"glide":0.22,"attack":0.004,"decay":0.2,"sustain":0.15,"release":0.04,"gain":0.45,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2654435762,"notes":[[0.0,523.2511306011972,523.2511306011972],[0.08,659.2551138257398,659.2551138257398],[0.16,783.9908719634985,783.9908719634985],[0.24,1046.5022612023945,1046.5022612023945]]},{"wave":"sine","start":0.0,"length":0.22,"glide":0.22,"attack":0.004,"decay":0.2,"sustain":0.15,"release":0.04,"gain":0.3,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":1013904227,"notes":[[0.0,261.6255653005986,261.6255653005986],[0.08,329.6275569128699,329.6275569128699],[0.16,391.99543598174927,391.99543598174927],[0.24,523.2511306011972,523.2511306011972]]}]},"tick":{"kind":"tick","title":"Tick","level":0.8,"length":0.02,"voices":[{"wave":"triangle","start":0.0,"length":0.02,"glide":0.02,"attack":0.0005,"decay":0.019,"sustain":0.0,"release":0.001,"gain":0.6,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2654435762,"notes":[[0.0,2400.0,2400.0]]},{"wave":"noise","start":0.0,"length":0.006,"glide":0.006,"attack":0.0003,"decay":0.0055,"sustain":0.0,"release":0.0002,"gain":0.3,"duty":0.5,"vibrato":[0.0,0.0],"filter":["highpass",3000.0,3000.0,0.7],"seed":1013904227,"notes":[[0.0,5000.0,5000.0]]}]},"warning":{"kind":"warning","title":"Warning","level":0.45,"length":0.59,"voices":[{"wave":"square","start":0.0,"length":0.14,"glide":0.14,"attack":0.004,"decay":0.0,"sustain":1.0,"release":0.03,"gain":0.5,"duty":0.5,"vibrato":[0.0,0.0],"filter":["lowpass",2600.0,2600.0,0.9],"seed":2654435762,"notes":[[0.0,880,880],[0.15,659.2551138257398,659.2551138257398],[0.3,880,880],[0.44999999999999996,659.2551138257398,659.2551138257398]]}]},"waterdrop":{"kind":"waterdrop","title":"Water drop","level":0.6,"length":0.18,"voices":[{"wave":"sine","start":0.0,"length":0.15,"glide":0.04,"attack":0.001,"decay":0.15,"sustain":0.0,"release":0.02,"gain":0.8,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2654435762,"notes":[[0.0,750.0,2300.0]]},{"wave":"sine","start":0.1,"length":0.08,"glide":0.03,"attack":0.002,"decay":0.08,"sustain":0.0,"release":0.02,"gain":0.22,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":1013904227,"notes":[[0.0,1100.0,2900.0]]}]},"whoosh":{"kind":"whoosh","title":"Whoosh","level":0.8,"length":0.5,"voices":[{"wave":"noise","start":0.0,"length":0.5,"glide":0.5,"attack":0.2,"decay":0.3,"sustain":0.0,"release":0.02,"gain":0.9,"duty":0.5,"vibrato":[0.0,0.0],"filter":["bandpass",300.0,4200.0,1.4],"seed":2654435762,"notes":[[0.0,0.0,0.0]]}]},"woodblock":{"kind":"woodblock","title":"Wood block","level":0.7,"length":0.11,"voices":[{"wave":"sine","start":0.0,"length":0.11,"glide":0.03,"attack":0.0005,"decay":0.11,"sustain":0.0,"release":0.02,"gain":0.7,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":2654435762,"notes":[[0.0,880.0,830.0]]},{"wave":"sine","start":0.0,"length":0.04,"glide":0.04,"attack":0.0005,"decay":0.04,"sustain":0.0,"release":0.02,"gain":0.22,"duty":0.5,"vibrato":[0.0,0.0],"filter":null,"seed":1013904227,"notes":[[0.0,2390.0,2390.0]]},{"wave":"noise","start":0.0,"length":0.006,"glide":0.006,"attack":0.0003,"decay":0.0055,"sustain":0.0,"release":0.0002,"gain":0.35,"duty":0.5,"vibrato":[0.0,0.0],"filter":["bandpass",1800.0,1800.0,1.8],"seed":3668339988,"notes":[[0.0,0.0,0.0]]}]}}, {"click":"click","pointerdown":"pointerdown","hover":"pointerover","focus":"focusin","change":"change","input":"input","submit":"submit"});
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <nav class="prevnext" aria-label="Other tags">
+            <a href="index%EF%B9%96tag%EA%A4%B7sound%EA%A4%B7laser.html">← {sound:laser}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7sound%EA%A4%B7pop.html">{sound:pop} →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            1220 tags and kinds of PAD, with syntax and usage examples. Safe, self-contained examples run here; examples requiring credentials, delivery or application files are shown as source.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

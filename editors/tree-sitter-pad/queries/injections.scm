@@ -1,4 +1,4 @@
-; The text around the tags, and the content of {ignore}, is HTML - one document, so a
+; The text around the tags, and the content of {pad:ignore}, is HTML - one document, so a
 ; <script> or <style> split by tags still reads as one.
 
 (([

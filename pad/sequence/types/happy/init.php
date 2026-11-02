@@ -1,7 +1,7 @@
 <?php
 
   // Range setup for happy, run before generation: the sequence is positive, so a run
-  // told to start lower - {happy from=0}, or a negative from - begins at the first
+  // told to start lower - {sequence:happy from=0}, or a negative from - begins at the first
   // candidate that could belong to it rather than spending the try limit outside it.
   //
   // from is the candidate itself here, this being a bool type, so the floor is the lowest

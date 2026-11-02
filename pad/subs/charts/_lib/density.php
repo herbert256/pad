@@ -2,8 +2,8 @@
 
   // How values spread, as a smooth shape - the density curve and the violin.
   //
-  //   {chart 'density', data='trials', label='group', value='ms'}
-  //   {chart 'violin', data='scores', label='class', value='score', bandwidth=4}
+  //   {chart:density data='trials', label='group', value='ms'}
+  //   {chart:violin data='scores', label='class', value='score', bandwidth=4}
   //
   // value= names the numbers - else the first numeric field; label= groups them, all
   // values in one group without it. Each group is smoothed by a Gaussian kernel density

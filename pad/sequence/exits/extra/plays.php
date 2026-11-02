@@ -1,7 +1,7 @@
 <?php
 
   // Extra columns: merges the per-term play results into the rows. $pqPlaysHit holds, for
-  // each accepted term, the value every {make}/{keep}/{remove}/{flag} play returned, keyed
+  // each accepted term, the value every {make:loop}/{keep:loop}/{remove:loop}/{pad:flag} play returned, keyed
   // by the play's sequence name (built by plays/plays.php, collected by build/one.php), each
   // row getting those of the term it is ($pqRowAt).
 

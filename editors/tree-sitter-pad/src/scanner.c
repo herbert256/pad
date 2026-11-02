@@ -40,7 +40,7 @@ static bool is_name_start ( int32_t c ) {
 }
 
 static bool is_name_char ( int32_t c ) {
-  return is_name_start ( c ) || ( c >= '0' && c <= '9' ) || c == ':' || c == '@';
+  return is_name_start ( c ) || ( c >= '0' && c <= '9' ) || c == ':' || c == '@' || c == '$';
 }
 
 static bool is_space ( int32_t c ) {
@@ -174,7 +174,7 @@ static bool find_close ( TSLexer *lexer, const char *name, unsigned length ) {
 
 // The content of {ignore}: everything up to the {/ignore} that ends it.
 static bool scan_raw ( Scanner *s, TSLexer *lexer, const bool *valid ) {
-  static const char close [] = "ignore";
+  static const char close [] = "pad:ignore";
   bool any = false;
 
   for ( ;; ) {
@@ -210,8 +210,8 @@ static bool scan_raw ( Scanner *s, TSLexer *lexer, const bool *valid ) {
         return true;
       }
       // Nothing between {ignore} and {/ignore}: what was read is the close itself.
-      if ( valid [BLOCK_END] && s->depth > 0 && s->length [s->depth - 1] == 6
-           && memcmp ( s->names [s->depth - 1], close, 6 ) == 0 ) {
+      if ( valid [BLOCK_END] && s->depth > 0 && s->length [s->depth - 1] == sizeof close - 1
+           && memcmp ( s->names [s->depth - 1], close, sizeof close - 1 ) == 0 ) {
         s->depth--;
         lexer->result_symbol = BLOCK_END;
         return true;
@@ -300,7 +300,7 @@ bool tree_sitter_pad_external_scanner_scan ( void *payload, TSLexer *lexer, cons
   // The tag's own name may be followed by anything that is not part of a name - an
   // opening pipe, {items|trim}, too: the engine searches for the {/items} all the same.
   unsigned n = read_name ( lexer, name );
-  if ( n == 0 ) return false;
+  if ( n == 0 || memchr ( name, ':', n ) == NULL ) return false;
 
   bool self_closing = false;
   if ( ! opener_end ( lexer, &self_closing ) || self_closing ) return false;

@@ -1,9 +1,9 @@
 <?php
 
-  // {highlight 'php'}...{/highlight} - the content as source code, coloured on the server
+  // {pad:highlight 'php'}...{/pad:highlight} - the content as source code, coloured on the server
   // by lib/highlight.php: pad, php, html (xml, svg), css, js (ts), json, yaml, sql or bash.
   // The content is taken as it stands, before the level walks it - the braces of PHP, CSS,
-  // JSON or of PAD itself need no {ignore} - and the indent its lines share is taken off.
+  // JSON or of PAD itself need no {pad:ignore} - and the indent its lines share is taken off.
   // A {# comment #} is gone before any tag sees it, so a PAD sample keeps none; its ~
   // whitespace control is kept, as code to show (padTildeKeep in lib/level.php).
   //

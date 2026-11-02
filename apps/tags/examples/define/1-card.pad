@@ -1,10 +1,10 @@
-{meta title='A card with content', about='The body is the tag\'s template: {#title} reads a parameter, @content@ takes the content in.'/}
-{define 'defineCard'}
+{pad:meta title='A card with content', about='The body is the tag\'s template: {#title} reads a parameter, @content@ takes the content in.'/}
+{pad:define 'defineCard'}
   <div style="border:1px solid #ccc; border-radius:8px; padding:8px 12px; margin:6px 0">
     <strong>{#title}</strong>
     <div>@content@</div>
   </div>
-{/define}
+{/pad:define}
 
-{defineCard title='Revenue'}€ 12,400 this month{/defineCard}
-{defineCard title='Orders'}86 new, 4 open{/defineCard}
+{define:defineCard title='Revenue'}€ 12,400 this month{/define:defineCard}
+{define:defineCard title='Orders'}86 new, 4 open{/define:defineCard}

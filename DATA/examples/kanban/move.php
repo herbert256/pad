@@ -19,6 +19,6 @@
   $version    = kanbanVersion ();
   $counts     = kanbanCounts ();
   $padExpose  = [ 'ok', 'version', 'counts' ];
-  $kanbanPage = 'Move';
+  $title      = 'Moves';
 
 ?>

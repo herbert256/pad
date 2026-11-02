@@ -1,11 +1,11 @@
 <div class="grid">
-{products}
+{array:products}
   <div class="card product">
     <span class="product-emoji">{$emoji}</span>
     <strong>{$name}</strong>
-    {rating name=$id, value=$mine, average=$average, votes=$votes/}
+    {app:rating name=$id, value=$mine, average=$average, votes=$votes/}
   </div>
-{/products}
+{/array:products}
 </div>
 
 <script type="module" src="{$padRoot}webcomponents/elements/rating.js"></script>

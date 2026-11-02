@@ -2,12 +2,12 @@
 
   // A menu under a button - the dropdown widget.
   //
-  //   {dropdown 'Account', align='end'}
+  //   {widget:dropdown 'Account', align='end'}
   //     <a href="?profile">Profile</a>
   //     <a href="?settings">Settings</a>
   //     <hr>
   //     <a href="?logout">Log out</a>
-  //   {/dropdown}
+  //   {/widget:dropdown}
   //
   // The menu is a popover (the HTML popover attribute) that the button opens through
   // popovertarget: the browser shows it in the top layer - no overflow of a parent cuts it

@@ -1,6 +1,6 @@
-{table}
-{demo}{echo '  ada LOVELACE ' | trim | lower | ucwords/}{/demo}
-{demo}{echo 'user@example.com' | after('@') | upper/}{/demo}
-{demo}{echo 'pad' | upper | . '!' | php:str_repeat(@, 2)/}{/demo}
-{demo}{echo 12 | * 1.21 | %.2f | . ' EUR'/}{/demo}
-{/table}
+{common:table}
+{common:demo}{pad:echo '  ada LOVELACE ' | trim | lower | ucwords/}{/common:demo}
+{common:demo}{pad:echo 'user@example.com' | after('@') | upper/}{/common:demo}
+{common:demo}{pad:echo 'pad' | upper | . '!' | php:str_repeat(@, 2)/}{/common:demo}
+{common:demo}{pad:echo 12 | * 1.21 | %.2f | . ' EUR'/}{/common:demo}
+{/common:table}

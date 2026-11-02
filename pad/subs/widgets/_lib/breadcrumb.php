@@ -3,13 +3,13 @@
   // Where the page stands - the breadcrumb widget: a <nav> named 'Breadcrumb' around an
   // ordered list of steps, each a link but the last, the page itself (aria-current="page").
   //
-  //   {breadcrumb/}                                 the page's own path
-  //   {breadcrumb}
+  //   {widget:breadcrumb/}                                 the page's own path
+  //   {widget:breadcrumb}
   //     Home | ?index
   //     Kettles | ?products/kettles
   //     Aurora
-  //   {/breadcrumb}
-  //   {breadcrumb data='trail'/}                    rows with a label and a link
+  //   {/widget:breadcrumb}
+  //   {widget:breadcrumb data='trail'/}                    rows with a label and a link
   //
   // Alone it follows the file tree, as the application does: Home, then every directory of
   // the page's path - a link to its index page where it has one - and the page last, each
@@ -63,7 +63,7 @@
       $items = padBreadcrumbPath ();
 
     if ( ! $items and $padCheckSyntax )
-      padError ( "the {breadcrumb} has no steps - its lines, Home | ?index, or rows by data=" );
+      padError ( "the {widget:breadcrumb} has no steps - its lines, Home | ?index, or rows by data=" );
 
     return $items;
 

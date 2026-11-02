@@ -6,7 +6,7 @@
   // examples of _examples/<kind>/ under it; [kind].pad shows a notation that has no page yet.
   //
   // The catalog is a list, not keyed by the notations' names: a page's array with a key math
-  // made a bare {math} in the template that array's row instead of the notation.
+  // made a bare {notation:math} in the template that array's row instead of the notation.
 
   $notations = array_values ( notationsCatalog () );
 

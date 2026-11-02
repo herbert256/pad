@@ -7,16 +7,16 @@ This document provides a complete reference for all PAD tag options.
 Options are specified on PAD tags, separated by commas:
 
 ```
-{tagName option="value", anotherOption="value"}
+{type:tagName option="value", anotherOption="value"}
 ```
 
-A space does not separate two options: `{staff sort="name" first=1}` gives `sort` the value
+A space does not separate two options: `{local:staff sort="name" first=1}` gives `sort` the value
 `"name" first=1`, and `first` is never read. Only a bare option name - one without a value -
-directly after a single parameter may leave its comma out - `{data 'x' ignore}`; with a value,
-`{pad 'x' toContent='c'}` loses the option silently. Multiple options can be combined:
+directly after a single parameter may leave its comma out - `{pad:data 'x' ignore}`; with a value,
+`{pad:pad 'x' toContent='c'}` loses the option silently. Multiple options can be combined:
 
 ```
-{staff print, toContent="list", quote="'", glue=", ", open="[", close="]"}
+{local:staff print, toContent="list", quote="'", glue=", ", open="[", close="]"}
 ```
 
 ---
@@ -33,7 +33,7 @@ Options are processed at different phases during tag execution:
 | **Start** | Before the occurrences render | application `_options/`, then `ignore`, `print` |
 | **Callback** | Around the occurrences | `callback`, `before` |
 | **End** | After the occurrences rendered | application `_options/end/`, then `toBool`, `toContent`, `toData`, `tidy` |
-| **Special** | Handled at specific points | `bool` (read by `{if}`), `optional`, `noError` (an unknown tag), `cache` |
+| **Special** | Handled at specific points | `bool` (read by `{pad:if}`), `optional`, `noError` (an unknown tag), `cache` |
 
 ---
 
@@ -46,7 +46,7 @@ Options that specify where to get data from.
 Retrieves data from a named source.
 
 ```
-{tagName data="sourceName"}
+{type:tagName data="sourceName"}
 ```
 
 **Resolution order:**
@@ -59,7 +59,7 @@ POST, a JSON body, a cookie, a clean-URL segment) that is the whole address or i
 names its host (with or without the port), and a template that does not write that scheme and
 host; so is a range of more than 10000 values whose end or whole text a request value gives.
 A request value merely holding the host's text chooses nothing, and the page's own values -
-`data=$url` with `$url` from its PHP or configuration - are fetched. The `{curl}` tag's address
+`data=$url` with `$url` from its PHP or configuration - are fetched. The `{pad:curl}` tag's address
 is judged the same way.
 
 The guard has a limit: a template that builds the host from pieces of a request value is not
@@ -70,8 +70,8 @@ the end of a range.
 
 **Example:**
 ```
-{users data="cachedUsers"}
-{pad data="queryResults"}...{/pad}
+{array:users data="cachedUsers"}
+{pad:pad data="queryResults"}...{/pad:pad}
 ```
 
 ### content
@@ -79,14 +79,14 @@ the end of a range.
 Retrieves content from the content store.
 
 ```
-{tagName content="contentName"}
+{type:tagName content="contentName"}
 ```
 
 **Returns:** Content from `$padContentStore[$contentName]`
 
 **Example:**
 ```
-{pad content="savedHeader"}
+{pad:pad content="savedHeader"}
 ```
 
 ### merge
@@ -94,7 +94,7 @@ Retrieves content from the content store.
 How the content `content=` brings joins the tag's own content.
 
 ```
-{tagName content="contentName", merge="bottom"}
+{type:tagName content="contentName", merge="bottom"}
 ```
 
 **Values:**
@@ -107,10 +107,10 @@ strict check.
 
 **Example:**
 ```
-{content 'h'}H{/content}
-{pad content='h', merge='top'}X{/pad}      →  HX
-{pad content='h', merge='bottom'}X{/pad}   →  XH
-{pad content='h', merge='replace'}X{/pad}  →  H
+{pad:content 'h'}H{/pad:content}
+{pad:pad content='h', merge='top'}X{/pad:pad}      →  HX
+{pad:pad content='h', merge='bottom'}X{/pad:pad}   →  XH
+{pad:pad content='h', merge='replace'}X{/pad:pad}  →  H
 ```
 
 ---
@@ -124,7 +124,7 @@ Options that store results for later use.
 Stores the processed data array to a named variable.
 
 ```
-{tagName toData="variableName"}
+{type:tagName toData="variableName"}
 ```
 
 **Stores to:** `$padDataStore[$variableName]`
@@ -136,8 +136,8 @@ Stores the processed data array to a named variable.
 
 **Example:**
 ```
-{users where='$active eq 1', toData="activeUsers"}
-{pad data="activeUsers"}...{/pad}
+{array:users where='$active eq 1', toData="activeUsers"}
+{pad:pad data="activeUsers"}...{/pad:pad}
 ```
 
 ### toContent
@@ -145,7 +145,7 @@ Stores the processed data array to a named variable.
 Stores the generated content/output to a named variable.
 
 ```
-{tagName toContent="variableName"}
+{type:tagName toContent="variableName"}
 ```
 
 **Stores to:** `$padContentStore[$variableName]`
@@ -156,8 +156,8 @@ Stores the generated content/output to a named variable.
 
 **Example:**
 ```
-{pad toContent="pageHeader"}<h1>...</h1>{/pad}
-{pad content="pageHeader"}
+{pad:pad toContent="pageHeader"}<h1>...</h1>{/pad:pad}
+{pad:pad content="pageHeader"}
 ```
 
 ### toBool
@@ -165,7 +165,7 @@ Stores the generated content/output to a named variable.
 Stores a boolean result based on the output state.
 
 ```
-{tagName toBool="flagName"}
+{type:tagName toBool="flagName"}
 ```
 
 **Stores to:** `$padBoolStore[$flagName]`
@@ -176,8 +176,8 @@ Stores a boolean result based on the output state.
 
 **Example:**
 ```
-{users where='$admin eq 1', toBool="hasAdmins"}{$name}{/users}
-{if bool="hasAdmins"}...{/if}
+{array:users where='$admin eq 1', toBool="hasAdmins"}{$name}{/array:users}
+{pad:if bool="hasAdmins"}...{/pad:if}
 ```
 
 ---
@@ -186,21 +186,21 @@ Stores a boolean result based on the output state.
 
 ### bool
 
-Makes the stored boolean flag the condition of an `{if}`.
+Makes the stored boolean flag the condition of an `{pad:if}`.
 
 ```
-{if bool="flagName"}
+{pad:if bool="flagName"}
 ```
 
 **Behavior:**
 - If flag exists in `$padBoolStore`, returns its value
 - If not, the flag is `FALSE`, as an unset flag reads everywhere
-- Read by `{if}` only; on any other tag it does nothing
+- Read by `{pad:if}` only; on any other tag it does nothing
 
 **Example:**
 ```
-{checkPermission toBool="canEdit"}
-{if bool="canEdit"}Edit{/if}
+{app:checkPermission toBool="canEdit"}
+{pad:if bool="canEdit"}Edit{/pad:if}
 ```
 
 ### optional
@@ -209,7 +209,7 @@ Marks a tag as optional - suppresses "not found" errors.
 
 ```
 {$maybeUndefined | optional}
-{tagName optional}
+{type:tagName optional}
 ```
 
 **Behavior:**
@@ -226,7 +226,7 @@ Marks a tag as optional - suppresses "not found" errors.
 Marks a tag as required: it must produce something.
 
 ```
-{tagName demand}
+{type:tagName demand}
 ```
 
 **Behavior:**
@@ -239,7 +239,7 @@ Marks a tag as required: it must produce something.
 ## Conditional Content Options
 
 Options that show other content based on what the tag itself answered. The value of each is
-the **name** of that content - a `{content 'name'}` block, or else an `_include/` snippet or a
+the **name** of that content - a `{pad:content 'name'}` block, or else an `_include/` snippet or a
 page of that name a request could ask for, no segment starting with `_` or `.`
 (`get/content.php`) - never a tag, a PHP function or a path (a name with `..`, a backslash or
 a leading `/` is refused), and never literal text: under the strict check a name written in
@@ -251,7 +251,7 @@ nothing shows nothing.
 Shows the named content when the tag answers NULL.
 
 ```
-{tagName null="contentName"}
+{type:tagName null="contentName"}
 ```
 
 **Triggers when:**
@@ -266,8 +266,8 @@ Shows the named content when the tag answers NULL.
 
 **Example:**
 ```
-{content 'noAvatar'}<img src="anonymous.png" alt="">{/content}
-{avatar null="noAvatar"}...{/avatar}
+{pad:content 'noAvatar'}<img src="anonymous.png" alt="">{/pad:content}
+{pad:avatar null="noAvatar"}...{/pad:avatar}
 ```
 
 ### else
@@ -275,7 +275,7 @@ Shows the named content when the tag answers NULL.
 Shows the named content when the tag answers an empty or false result.
 
 ```
-{tagName else="contentName"}
+{type:tagName else="contentName"}
 ```
 
 **Triggers when:**
@@ -289,7 +289,7 @@ Rows that the handling options take away count too: when the tag found rows and 
 
 **Example:**
 ```
-{content 'noPremium'}<p>No premium users yet.</p>{/content}
+{pad:content 'noPremium'}<p>No premium users yet.</p>{/pad:content}
 {premiumUsers else="noPremium"}...{/premiumUsers}
 ```
 
@@ -301,7 +301,7 @@ tag's handler or PHP threw an exception (a `php:` call, an application's `_tags/
 error is still reported.
 
 ```
-{tagName notOk="contentName"}
+{type:tagName notOk="contentName"}
 ```
 
 ### error
@@ -309,7 +309,7 @@ error is still reported.
 Alias for `notOk`.
 
 ```
-{tagName error="contentName"}
+{type:tagName error="contentName"}
 ```
 
 ---
@@ -325,15 +325,15 @@ With `$staff` rows named joe, jim and john:
 Wraps each printed value in the specified quote characters.
 
 ```
-{tagName print, quote="'"}
-{tagName print, quote='"'}
+{type:tagName print, quote="'"}
+{type:tagName print, quote='"'}
 ```
 
 **Result:** `'content'` or `"content"`
 
 **Example:**
 ```
-{staff print, quote="'"}  →  'joe''jim''john'
+{local:staff print, quote="'"}  →  'joe''jim''john'
 ```
 
 ### open
@@ -341,14 +341,14 @@ Wraps each printed value in the specified quote characters.
 Prepends content at the start of the first occurrence only.
 
 ```
-{tagName print, open="prefix"}
+{type:tagName print, open="prefix"}
 ```
 
-**Implementation:** Wraps in `{first}prefix{/first}`
+**Implementation:** Wraps in `{property:first}prefix{/property:first}`
 
 **Example:**
 ```
-{staff print, open="["}  →  [joejimjohn
+{local:staff print, open="["}  →  [joejimjohn
 ```
 
 ### close
@@ -356,14 +356,14 @@ Prepends content at the start of the first occurrence only.
 Appends content at the end of the last occurrence only.
 
 ```
-{tagName print, close="suffix"}
+{type:tagName print, close="suffix"}
 ```
 
-**Implementation:** Wraps in `{last}suffix{/last}`
+**Implementation:** Wraps in `{property:last}suffix{/property:last}`
 
 **Example:**
 ```
-{staff print, close="]"}  →  joejimjohn]
+{local:staff print, close="]"}  →  joejimjohn]
 ```
 
 ### glue
@@ -371,14 +371,14 @@ Appends content at the end of the last occurrence only.
 Adds a separator between items (not after the last one).
 
 ```
-{tagName print, glue=", "}
+{type:tagName print, glue=", "}
 ```
 
-**Implementation:** Wraps in `{notLast}separator{/notLast}`
+**Implementation:** Wraps in `{property:notLast}separator{/property:notLast}`
 
 **Example:**
 ```
-{staff print, glue=", "}  →  joe, jim, john
+{local:staff print, glue=", "}  →  joe, jim, john
 ```
 
 ### Combined Formatting
@@ -386,7 +386,7 @@ Adds a separator between items (not after the last one).
 Options can be combined for complex formatting:
 
 ```
-{staff print, quote="'", glue=", ", open="[", close="]"}
+{local:staff print, quote="'", glue=", ", open="[", close="]"}
 ```
 
 **Result:** `['joe', 'jim', 'john']`
@@ -400,10 +400,10 @@ Options can be combined for complex formatting:
 Wraps content in ignore tags to skip PAD processing.
 
 ```
-{tagName ignore}
+{type:tagName ignore}
 ```
 
-**Implementation:** Wraps content as `{ignore}content{/ignore}`
+**Implementation:** Wraps content as `{pad:ignore}content{/pad:ignore}`
 
 **Use case:** Output literal PAD syntax without evaluation.
 
@@ -412,14 +412,14 @@ Wraps content in ignore tags to skip PAD processing.
 Cleans up whitespace and formatting in the output.
 
 ```
-{tagName tidy}
+{type:tagName tidy}
 ```
 
 **Implementation:** Calls `padTidy($padContent, TRUE)`
 
 **Example:**
 ```
-{template tidy}  →  Cleaned output with normalized whitespace
+{include:template tidy}  →  Cleaned output with normalized whitespace
 ```
 
 ### noError
@@ -427,7 +427,7 @@ Cleans up whitespace and formatting in the output.
 The same as `optional`: a tag whose name resolves to no tag renders nothing instead of an error.
 
 ```
-{tagName noError}
+{type:tagName noError}
 ```
 
 **Behavior:** Read by `level/no.php`, the fallback for an unknown tag. A tag that exists and
@@ -442,14 +442,14 @@ fails still reports its error.
 Invokes an application callback for custom processing.
 
 ```
-{tagName callback="callbackName"}
+{type:tagName callback="callbackName"}
 ```
 
 **Calls:** `APP/_callbacks/callbackName.php`
 
 **Example:**
 ```
-{users callback="processUsers"}
+{array:users callback="processUsers"}
 ```
 
 ### before
@@ -457,7 +457,7 @@ Invokes an application callback for custom processing.
 Processes callback in "before" mode - runs before content generation.
 
 ```
-{tagName before, callback="initData"}
+{type:tagName before, callback="initData"}
 ```
 
 **Behavior:**
@@ -477,7 +477,7 @@ The handling options are processed after the tag has answered, in the order writ
 Enables deduplication of data.
 
 ```
-{tagName dedup}
+{type:tagName dedup}
 ```
 
 ### where
@@ -486,7 +486,7 @@ Keeps the rows for which a quoted PAD expression holds, evaluated per row with t
 fields first. See [HANDLING.md](HANDLING.md#where).
 
 ```
-{staff where='$salary gt 2500'}
+{local:staff where='$salary gt 2500'}
 ```
 
 ### group
@@ -496,21 +496,21 @@ Folds the rows into one occurrence per distinct value of a field, each with the 
 See [HANDLING.md](HANDLING.md#group).
 
 ```
-{orders group='customer', sum='total'}
+{array:orders group='customer', sum='total'}
   {$customer}: {$count} orders, {$total}
-  {rows}{$number}: {$total}{/rows}
-{/orders}
+  {array:rows}{$number}: {$total}{/array:rows}
+{/array:orders}
 ```
 
 ### page
 
 Keeps one page of the rows - `page` counted from 1, `rows` per page (default 10). A
-`{pager}` after the tag writes the links to the other pages. See
+`{pad:pager}` after the tag writes the links to the other pages. See
 [HANDLING.md](HANDLING.md#page).
 
 ```
-{products page=$pg ?? 1, rows=12}...{/products}
-{pager 'products'/}
+{array:products page=$pg ?? 1, rows=12}...{/array:products}
+{pad:pager 'products'/}
 ```
 
 ### sort
@@ -518,10 +518,10 @@ Keeps one page of the rows - `page` counted from 1, `rows` per page (default 10)
 Enables sorting.
 
 ```
-{tagName sort}
+{type:tagName sort}
 ```
 
-For tracing a page, see `{trace}` in [TAGS.md](TAGS.md#trace) and `$padInfo = 'trace'`.
+For tracing a page, see `{pad:trace}` in [TAGS.md](TAGS.md#trace) and `$padInfo = 'trace'`.
 
 ---
 
@@ -530,13 +530,13 @@ For tracing a page, see `{trace}` in [TAGS.md](TAGS.md#trace) and `$padInfo = 't
 ### cache
 
 Keeps the tag's rendering in the fragment cache for so many seconds; on a hit the tag's
-handler does not run and the stored rendering stands in. See `{cache}` in
+handler does not run and the stored rendering stands in. See `{pad:cache}` in
 [TAGS.md](TAGS.md#cache).
 
 ```
-{expensive_query cache=3600, vary=$country}
+{app:expensive_query cache=3600, vary=$country}
   ...
-{/expensive_query}
+{/app:expensive_query}
 ```
 
 `ttl=` may say the seconds instead; `vary=` adds what else the rendering depends on.
@@ -551,7 +551,7 @@ Writes a state dump under `DATA/dumps/<app>/<page>/` - nothing appears in the pa
 the tag has answered and again after its handling options.
 
 ```
-{tagName dump}
+{type:tagName dump}
 ```
 
 **Calls:** `padDumpToDir()`
@@ -567,7 +567,7 @@ the tag has answered and again after its handling options.
 Enables direct output printing with formatting options.
 
 ```
-{tagName print}
+{type:tagName print}
 ```
 
 **Behavior:**
@@ -576,7 +576,7 @@ Enables direct output printing with formatting options.
 
 **Example:**
 ```
-{staff print, quote="'", glue=", "}  →  'joe', 'jim', 'john'
+{local:staff print, quote="'", glue=", "}  →  'joe', 'jim', 'john'
 ```
 
 ---
@@ -596,7 +596,7 @@ Enables direct output printing with formatting options.
 ### Conditional
 | Option | Description |
 |--------|-------------|
-| `bool` | `{if bool='name'}`: the stored flag is the condition |
+| `bool` | `{pad:if bool='name'}`: the stored flag is the condition |
 | `optional` | Suppress not-found errors |
 | `demand` | An error when the tag produced nothing |
 | `null` | Named content for NULL |
@@ -647,7 +647,7 @@ APP/_options/end/optionName.php    end phase   - works on the rendered result
 `_options/optionName.php` is processed during the `app` phase, before the tag renders:
 `$padContent` is the template between the tags. `_options/end/optionName.php` is processed
 as the level closes, after every occurrence has rendered: `$padContent` is the result, with
-the fields filled in - the place for options such as `{report minify}` or `{price highlight}`.
+the fields filled in - the place for options such as `{array:report minify}` or `{app:price highlight}`.
 An option may have both files; each runs in its own phase.
 
 Both have access to:
@@ -666,7 +666,7 @@ count as readers for the strict unread-option check.
 ?>
 ```
 
-`{staff words}{$name} {/staff}` → `joe jim john jack jerry (5 words)`
+`{local:staff words}{$name} {/local:staff}` → `joe jim john jack jerry (5 words)`
 
 ---
 

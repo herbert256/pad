@@ -26,8 +26,8 @@
   //                                  where to stop - files and lines, with conditions - and
   //                                  whether at exceptions, and at a request's first line
   //   run, step_over, step_into, step_out, stop, detach
-  //   eval {expression, depth}, property {name, depth, context, page}, frame {depth},
-  //   source {file}                  questions about the paused request
+  //   eval {expression, depth}, property {name, depth, context, page}, frame {property:depth},
+  //   source {pad:file}                  questions about the paused request
   //   quit
 
   require __DIR__ . '/../_lib/dbgp.php';

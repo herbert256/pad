@@ -30,7 +30,7 @@
   if ( $padPdf417Text === '' ) {
     foreach ( [ 'scale', 'title', 'color', 'background' ] as $padPdf417Option )
       padTagParm ( $padPdf417Option );
-    return padCodeFail ( "the pdf417 code has no text - {pdf417 'M1DOE/JOHN'/}" );
+    return padCodeFail ( "the pdf417 code has no text - {barcode:pdf417 'M1DOE/JOHN'/}" );
   }
 
   $padPdf417Svg = padPdf417 ( $padPdf417Text,

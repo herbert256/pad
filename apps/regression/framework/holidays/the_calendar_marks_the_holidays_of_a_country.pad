@@ -1,4 +1,4 @@
-{calendar '2026-05', holidays='de-by'}
-  {days}{if $holiday}{$date} {$holiday} [{$class}]|{/if}{/days}
-{/calendar}
-{calendar '2026-04', holidays='nl'/}
+{pad:calendar '2026-05', holidays='de-by'}
+  {array:days}{pad:if $holiday}{$date} {$holiday} [{$class}]|{/pad:if}{/array:days}
+{/pad:calendar}
+{pad:calendar '2026-04', holidays='nl'/}

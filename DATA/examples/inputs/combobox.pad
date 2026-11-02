@@ -1,8 +1,8 @@
-{meta title='Combobox'/}
-{about/}
+{pad:meta title='Combobox'/}
+{include:about/}
 
-{form 'try', class='inputs-try', error}
-  {combobox 'city', label='City', rules='required|in:Amsterdam,Antwerp,Athens,Berlin,Bern,Brussels,Lisbon,London,Madrid,Paris,Prague,Rome,Vienna'}
+{pad:form 'try', class='inputs-try', error}
+  {input:combobox 'city', label='City', rules='required|in:Amsterdam,Antwerp,Athens,Berlin,Bern,Brussels,Lisbon,London,Madrid,Paris,Prague,Rome,Vienna'}
     Amsterdam
     Antwerp
     Athens
@@ -16,12 +16,11 @@
     Prague
     Rome
     Vienna
-  {/combobox}
+  {/input:combobox}
   {input:combobox 'fruit', label='Fruit', options='Apple, Apricot, Banana, Cherry, Grape, Lemon, Mango, Orange, Pear'/}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-<h2>The template</h2>
-{source/}
+{include:template/}

@@ -5,7 +5,7 @@
   // longer found those lines. Names that are secrets still are.
 
   $plainSamples = [
-    '"key": "frameworks"', 'passing: 88', 'key:      {cXs}{key@cXs},{/cXs}', 'bypass: 302', '<monkey>george</monkey>',
+    '"key": "frameworks"', 'passing: 88', 'key:      {data:cXs}{property:key@cXs},{/data:cXs}', 'bypass: 302', '<monkey>george</monkey>',
     '"apiKey": "s3cr3t"', 'db_pass: s3cr3t', '<password>s3cr3t</password>', '"client_secret": "s3cr3t"', 'private_key: s3cr3t', '"token": "s3cr3t"'
   ];
 

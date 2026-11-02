@@ -1,18 +1,18 @@
-{meta title='Site search'/}
+{pad:meta title='Site search'/}
 
-<p>A search box without a search server: {tag 'search'/} finds the rows of a source that
+<p>A search box without a search server: {app:tag 'search'/} finds the rows of a source that
 match a query and ranks them, the best first. This manual has a little collection of recipes,
 <code>_content/recipes/</code> - six Markdown files - and the examples search it live.</p>
 
-{example 'fragments/search_1'/}
+{common:example 'fragments/search_1'/}
 
 <ul>
-  <li>The source is a Markdown collection, as {tag 'collection'/} reads it, else a
-  {tag 'data'/} store, a page's array - a <code>db()</code> result - or a <code>_data</code>
+  <li>The source is a Markdown collection, as {app:tag 'collection'/} reads it, else a
+  {app:tag 'data'/} store, a page's array - a <code>db()</code> result - or a <code>_data</code>
   file of the name.</li>
   <li>A row found is the source's own row with two fields added: <code>score</code> and
   <code>excerpt</code> - the words around the first match, every matched word marked. The
-  excerpt is HTML, so it is printed raw, <code>{open/}!excerpt{close/}</code>.</li>
+  excerpt is HTML, so it is printed raw, <code>{pad:open/}!excerpt{pad:close/}</code>.</li>
   <li><code>baking</code> found <i>baked</i> and <i>Bake</i> as well: every word is reduced to
   its stem before it is compared.</li>
 </ul>
@@ -24,7 +24,7 @@ match a query and ranks them, the best first. This manual has a little collectio
 every word that begins so; <code>-word</code> and <code>-"a phrase"</code> leave a row out.
 Accents do not count: <code>creme</code> finds the Crème brûlée.</p>
 
-{example 'fragments/search_2'/}
+{common:example 'fragments/search_2'/}
 
 <h2>Fields, languages and PHP</h2>
 
@@ -37,7 +37,7 @@ There are eleven, a file each in <code>pad/subs/search/types/</code>: <code>en</
 <code>nn</code> are Norwegian too) and <code>ru</code>, the stemmers of the Snowball project. <code>padSearch</code> does the same for a page's PHP, here over rows of its
 own:</p>
 
-{example 'fragments/search_3'/}
+{common:example 'fragments/search_3'/}
 
 <h2>A list without a template</h2>
 
@@ -45,7 +45,7 @@ own:</p>
 title, a link when <code>link=</code> names a field with one, and the excerpt -
 <code>words=</code> sets its length.</p>
 
-{example 'fragments/search_4'/}
+{common:example 'fragments/search_4'/}
 
 <ul>
   <li>The ranking is BM25: a word found often in a short field counts more than once in a long
@@ -56,6 +56,6 @@ title, a link when <code>link=</code> names a field with one, and the excerpt -
   <li>A page with a search box sends <code>q</code> to itself:
   <code>&lt;form&gt;&lt;input name="q"&gt;&lt;/form&gt;</code>, its PHP takes
   <code>$q = padRequest ( 'q', '' );</code> and the template searches with
-  <code>{open/}search 'recipes', q=$q{close/}</code> - an empty query finds nothing, the
+  <code>{pad:open/}pad:search 'recipes', q=$q{pad:close/}</code> - an empty query finds nothing, the
   <code>@else@</code>.</li>
 </ul>

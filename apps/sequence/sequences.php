@@ -1,8 +1,8 @@
 <?php
 
-  echo "{table}";
+  echo "{common:table}";
 
-  echo str_pad ( "{demo}{sequence}", 38) . "{\$sequence} {/sequence} {/demo}";
+  echo str_pad ( "{common:demo}{sequence:loop}", 38) . "{\$sequence} {/sequence:loop} {/common:demo}";
 
   foreach ( types () as $type ) {
 
@@ -15,10 +15,10 @@
     elseif ( $type == 'random'    ) $gox = 'random, maximal=99';
     else                            $gox = "$type$parm";
 
-    echo str_pad ( "{demo}{sequence $gox}", 38) . "{\$sequence} {/sequence} {/demo}";
+    echo str_pad ( "{common:demo}{sequence:auto $gox}", 38) . "{\$sequence} {/sequence:auto} {/common:demo}";
 
   }
 
-  echo "{/table}";
+  echo "{/common:table}";
 
 ?>

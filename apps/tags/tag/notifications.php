@@ -5,8 +5,8 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{notifications/}
-{notifications for=$id, all} ... {$title} {$text} {$created} {$link} ... {/notifications}
+{pad:notifications/}
+{pad:notifications for=$id, all} ... {$title} {$text} {$created} {$link} ... {/pad:notifications}
 PAD;
 
   $tagParms   = [];
@@ -16,5 +16,7 @@ PAD;
     'all' => 'The read notifications too.' ];
 
   $tagSee     = [ 'auth', 'mail', 'flash' ];
+
+  $subsystemKindLinks = appSubsystemLinks ( 'channel' );
 
 ?>

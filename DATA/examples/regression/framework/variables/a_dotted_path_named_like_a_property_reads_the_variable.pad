@@ -1,1 +1,1 @@
-{if $data.status eq "open"}open{else}closed{/if}|{echo $count.total + 1/}|{items}{$name.first}/{$count.total}/{$key.id}/{$options.color};{/items}
+{pad:if $data.status eq "open"}open{pad:else}closed{/pad:if}|{pad:echo $count.total + 1/}|{array:items}{$name.first}/{$count.total}/{$key.id}/{$options.color};{/array:items}

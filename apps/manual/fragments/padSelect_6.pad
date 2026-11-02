@@ -1,7 +1,7 @@
-{customers fields="country, count(*) as n", group="country", having="count(*) >= 10", order="n desc"}
+{select:customers fields="country, count(*) as n", group="country", having="count(*) >= 10", order="n desc"}
   <p>{$country}: {$n} customers</p>
-{/customers}
+{/select:customers}
 
-{payments fields="year(paymentDate) as year, sum(amount) as total", group="year", rollup}
-  <p>{if $year}{$year}{else}All years{/if}: {$total}</p>
-{/payments}
+{select:payments fields="year(paymentDate) as year, sum(amount) as total", group="year", rollup}
+  <p>{pad:if $year}{$year}{pad:else}All years{/pad:if}: {$total}</p>
+{/select:payments}

@@ -11,7 +11,7 @@ so a mode that stops recording turns its line from yes to NO.
 
 The trace mode is left out: it wrote some 90 files for every request of this application,
 and every `./ci.sh` run left them under `DATA/trace/` - half a million files that nothing
-removed. The `{trace}` tag is still tested by `regression/pages` (`misc/trace`,
+removed. The `{pad:trace}` tag is still tested by `regression/pages` (`misc/trace`,
 `request/a_trace_then_an_error`).
 
 ## Files

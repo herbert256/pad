@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{switch 'odd', 'even'/}
-{switch 'red', 'green', 'blue'/}
+{pad:switch 'odd', 'even'/}
+{pad:switch 'red', 'green', 'blue'/}
 PAD;
 
   $tagParms   = [

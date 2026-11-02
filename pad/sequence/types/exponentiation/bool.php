@@ -1,8 +1,8 @@
 <?php
 
   // Membership test for the exponentiation sequence, n ** e for n from 1 up - 1, 8, 27 for
-  // exponentiation=3. build/check.php asks it for {keep exponentiation}, {remove
-  // exponentiation} and {flag exponentiation}; without it the check looked for x among the
+  // exponentiation=3. build/check.php asks it for {keep:exponentiation}, {remove:auto
+  // exponentiation} and {pad:flag exponentiation}; without it the check looked for x among the
   // first x terms, where an exponent below 1 puts the terms further out - 2 is the fourth
   // term of exponentiation=0.5 - and answered no.
   //

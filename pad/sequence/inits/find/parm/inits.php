@@ -9,7 +9,7 @@
 
   $pqFindPlace = 1;
 
-  // Whether that parameter named what the tag runs - parm/name.php, a {pull}'s store in
+  // Whether that parameter named what the tag runs - parm/name.php, a {pad:pull}'s store in
   // find/pull.php - so that a second one is the first parameter of what it named
   // (parm/second.php).
 
@@ -21,9 +21,9 @@
   $pqFindAsOption = FALSE;
 
   // Whether that parameter is the tag's own, a count or a range of the tag: written before any
-  // type, store or action the tag names. Only the first item could be: {sequence name='i', 5}
+  // type, store or action the tag names. Only the first item could be: {sequence:auto name='i', 5}
   // took the 5 for no count and reported it as "is not a sequence type". Written after a type,
-  // store or action, it is theirs - {make add=3, mySequence, 3} gives add its 3.
+  // store or action, it is theirs - {make:auto add=3, mySequence, 3} gives add its 3.
 
   $pqFindPositional = FALSE;
 

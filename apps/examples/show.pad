@@ -1,4 +1,4 @@
-{if $show eq ''}
+{pad:if $show eq ''}
 
   <p>Pick an example from the <a href="?index{?q}">search</a>.</p>
 
@@ -10,19 +10,19 @@
 
   <div class="example-view pad-play-box">{!play}
 
-    {if $hasPhp eq 1}
+    {pad:if $hasPhp eq 1}
       <div class="example-panel">
         <h4>PHP</h4>
         <div class="example-body">{!srcPhp}</div>
       </div>
-    {/if}
+    {/pad:if}
 
-    {if $hasPad eq 1}
+    {pad:if $hasPad eq 1}
       <div class="example-panel">
         <h4>PAD</h4>
         <div class="example-body">{!srcPad}</div>
       </div>
-    {/if}
+    {/pad:if}
 
     <div class="example-panel">
       <h4>Result</h4>
@@ -31,4 +31,4 @@
 
   </div>
 
-{/if}
+{/pad:if}

@@ -2,7 +2,7 @@
 
   // Applies the opening tag's pipe. $padBase [$pad] - the level's content as the tag
   // handler left it - is run through $padPipeBefore [$pad] before any occurrence is
-  // rendered, which is what makes {echo $x | upper} produce a transformed value.
+  // rendered, which is what makes {pad:echo $x | upper} produce a transformed value.
   //
   // A base that is the tag's answer alone is protected here, once the pipe has had the
   // real value - level/go.php leaves it to this point under $padProtectValues.
@@ -10,8 +10,8 @@
   if ( $padPipeBefore [$pad] ) {
 
     // The result becomes the content the level scans, so a value the pipe writes into it -
-    // {tag | @ . $v} with $v a tag or a PHP call - would run as template code, where the
-    // closing pipe's result (level/pipes/after.php) and a tag's {echo} answer are kept as
+    // {function:tag | @ . $v} with $v a tag or a PHP call - would run as template code, where the
+    // closing pipe's result (level/pipes/after.php) and a tag's {pad:echo} answer are kept as
     // text. The content's own braces travel through the pipe as markers (padPipeMask), every
     // brace left in the result is then one the pipe added and becomes its &open;/&close;
     // stand-in, which prints as itself, and the markers turn back into the author's braces:

@@ -11,7 +11,7 @@ see the <a href="?benchmark/history">history</a>.</p>
     <td align="right">usual</td>
     <td align="right">slower</td>
   </tr>
-  {slower}
+  {array:slower}
     <tr>
       <td>{$page}</td>
       <td align="right">{$ms}</td>
@@ -20,7 +20,7 @@ see the <a href="?benchmark/history">history</a>.</p>
     </tr>
   @else@
     <tr><td colspan="4">none</td></tr>
-  {/slower}
+  {/array:slower}
 </table>
 
 <h3>Every page</h3>
@@ -32,11 +32,11 @@ see the <a href="?benchmark/history">history</a>.</p>
     <td align="right">ms</td>
   </tr>
 
-  {list}
+  {sequence:list}
     <tr>
       <td>{$page}</td>
       <td align="right">{$ms}</td>
     </tr>
-  {/list}
+  {/sequence:list}
 
 </table>

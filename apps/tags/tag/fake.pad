@@ -1,5 +1,5 @@
-{ignore}
-<p><code>{fake}</code> makes values that look real enough for a prototype, a designer's
+{pad:ignore}
+<p><code>{fake:rows}</code> makes values that look real enough for a prototype, a designer's
 preview or a demo page - a person's name, an address at example.org, a price, a date, an
 IBAN that passes the check of a bank that is not there - from the seeded sequence the
 <code>padFake*</code> helpers of seeders use. A kind is a file of <code>pad/subs/fakes/types/</code>,
@@ -12,9 +12,9 @@ kind's name - or as <code>'customer:name'</code> names it. An email or a usernam
 with a name is that person's, a slug in a row with a title that title's. A FALSE of <code>boolean</code> is a miss, so the
 <code>@else@</code> shows.</p>
 
-<p>The values are the same on every request: the <code>{fake}</code> tags of a request share
+<p>The values are the same on every request: the <code>{fake:rows}</code> tags of a request share
 a sequence started from one seed, and <code>seed=</code> gives a tag values of its own - the
 rows <code>padFakeRows ( 'name, email', 5, 7 )</code> gives in PHP. The page's own sequence,
 its <code>padFakeSeed</code>, is left where it was. The kinds are never reached bare - their
 names are the names of fields - only as the fake type, <code>{fake:email/}</code>.</p>
-{/ignore}
+{/pad:ignore}

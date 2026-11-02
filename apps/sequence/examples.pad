@@ -1,4 +1,4 @@
-{data 'list'} 
+{pad:data 'list'} 
   (
     'sequences',
     'specials',
@@ -7,55 +7,55 @@
     'play/double',
     'keepRemoveFlag'
   )
-{/data}
+{/pad:data}
 
-{block}
+{common:block}
 
 <p>Examples ! Many are generated and do not always make sence, <br>the examples from 'specials' are hand crafted and gives a good view of what the Sequences subsystem of PAD can do.</p>
 
-{/block}
+{/common:block}
 
 <br>
-{lines}
-  {list}
-    {if $example eq $list}
+{common:lines}
+  {data:list}
+    {pad:if $example eq $list}
       <b>{$list}</b>
     @else@
       <a href="?examples&example={$list}{?item}">{$list}</a>
-    {/if}
-  {notLast} | {/notLast}
-  {/list}
-{/lines}
+    {/pad:if}
+  {property:notLast} | {/property:notLast}
+  {/data:list}
+{/common:lines}
 
 <br>
 
-{block}<center>
+{common:block}<center>
 
-  {exam} 
-    {if $item eq $exam}
+  {array:exam} 
+    {pad:if $item eq $exam}
       <b>{$exam}</b>
     @else@
       <a href="?examples&example={$example}&item={$exam}">{$exam}</a>
-    {/if}
+    {/pad:if}
     &nbsp;
-  {/exam}
+  {/array:exam}
 
   <br><br><hr>
 
-  {if $example eq 'sequences' }
+  {pad:if $example eq 'sequences' }
     <h3>{$item}</h3>
-      {exists APP . 'basic/{$item}.pad'}
-        <h5>{echo 'basic/{$item}.pad'/}</h5>
-        {example 'basic/{$item}', onlyResult/}
-      {/exists}
-    {list}
-      {exists APP . '{$list}/{$item}.pad'}
-        <h5>{echo '{$list}/{$item}.pad'/}</h5>
-        {example '{$list}/{$item}', onlyResult/}
-      {/exists}
-    {/list}
+      {pad:exists APP . 'basic/{$item}.pad'}
+        <h5>{pad:echo 'basic/{$item}.pad'/}</h5>
+        {common:example 'basic/{$item}', onlyResult/}
+      {/pad:exists}
+    {data:list}
+      {pad:exists APP . '{$list}/{$item}.pad'}
+        <h5>{pad:echo '{$list}/{$item}.pad'/}</h5>
+        {common:example '{$list}/{$item}', onlyResult/}
+      {/pad:exists}
+    {/data:list}
   @else@
-    {example '{$example}/{$item}', onlyResult, include/}
-  {/if}
+    {common:example '{$example}/{$item}', onlyResult, include/}
+  {/pad:if}
 
-</center>{/block}
+</center>{/common:block}

@@ -1,7 +1,7 @@
 <?php
 
   // The rules on a segmented of the template are checked before the page's PHP as those of
-  // {input}: a post with no choice breaks required and comes back with none chosen - the
+  // {pad:input}: a post with no choice breaks required and comes back with none chosen - the
   // other segmented without one too, not its value= - a choice that is no option breaks in:
   // and comes back with none shown, and a post of choices of the bars is stored - each post
   // with the padLists[] the form sends beside its bars, which tells a bar sent without a

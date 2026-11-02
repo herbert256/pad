@@ -14,11 +14,11 @@ name =&gt; value - an empty value leaves one out, <code>[]</code> sends none - a
 <code>$padCsp</code> is the policy, <code>''</code> for none. A header the page's own PHP sent
 stands over the default.</p>
 
-<h2>A strict policy and the {nonce} tag</h2>
+<h2>A strict policy and the {pad:nonce} tag</h2>
 
 <p>A strict policy refuses inline scripts - which is the point: a script someone smuggled
 into the page does not run. Your own inline script runs when it carries the request's nonce.
-Write <code>'nonce'</code>, with the quotes, in the policy, and <b>{nonce}</b> in the script
+Write <code>'nonce'</code>, with the quotes, in the policy, and <b>{pad:nonce}</b> in the script
 tag; the engine puts the same random value in both, new for every request:</p>
 
 <pre>$padCsp = "default-src 'self'; script-src 'self' 'nonce'; frame-ancestors 'self'";</pre>
@@ -30,7 +30,7 @@ tag; the engine puts the same random value in both, new for every request:</p>
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -60,11 +60,11 @@ tag; the engine puts the same random value in both, new for every request:</p>
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;script nonce="<b>{<font color="blue">nonce</font><font color="red"></font>/}</b>"&gt;<b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>  document.title = 'Hello';<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b>&lt;/script&gt;</code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="../_common/play.css"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8c2NyaXB0IG5vbmNlPVwie3BhZDpub25jZS99XCI+e3BhZDppZ25vcmV9XG4gIGRvY3VtZW50LnRpdGxlID0gJ0hlbGxvJztcbnsvcGFkOmlnbm9yZX08L3NjcmlwdD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8c2NyaXB0IG5vbmNlPVwie3BhZDpub25jZS99XCI+e3BhZDppZ25vcmV9XG4gIGRvY3VtZW50LnRpdGxlID0gJ0hlbGxvJztcbnsvcGFkOmlnbm9yZX08L3NjcmlwdD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;script nonce="<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>nonce</font><font color="red"></font>/}</b>"&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>ignore</font><font color="red"></font>}</b><br>  document.title = 'Hello';<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>ignore</font><font color="red"></font>}</b>&lt;/script&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">
-  <script nonce="1KN8ng3JY5OQmIzhMwd4IKlR">
+  <script nonce="aOttdWqZq246dTKIS3auiO08">
   document.title = 'Hello';
 </script>
 
@@ -85,9 +85,9 @@ tag; the engine puts the same random value in both, new for every request:</p>
 
 
 <ul>
-  <li>The nonce is written only where the template writes <b>{nonce}</b>. The engine does not
+  <li>The nonce is written only where the template writes <b>{pad:nonce}</b>. The engine does not
   add it to the page's script tags: a smuggled script would get it as well.</li>
-  <li><b>{nonce}</b> goes outside an <b>{ignore}</b> block - inside one it is text. The script's
-  body, with its braces, is what the <b>{ignore}</b> is for.</li>
+  <li><b>{pad:nonce}</b> goes outside an <b>{pad:ignore}</b> block - inside one it is text. The script's
+  body, with its braces, is what the <b>{pad:ignore}</b> is for.</li>
   <li>A page carrying a nonce is never stored in the page cache.</li>
 </ul>

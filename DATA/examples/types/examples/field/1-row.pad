@@ -1,5 +1,5 @@
-{meta title='A field of the row', about='field:name and {$name} read the same field of the current row.'/}
-{data 'people'}[ {"name": "Ann", "city": "Utrecht"}, {"name": "Bob", "city": "Leiden"} ]{/data}
+{pad:meta title='A field of the row', about='field:name and {$name} read the same field of the current row.'/}
+{pad:data 'people'}[ {"name": "Ann", "city": "Utrecht"}, {"name": "Bob", "city": "Leiden"} ]{/pad:data}
 <ul>
-  {people}<li>{field:name/} lives in {$city}</li>{/people}
+  {data:people}<li>{field:name/} lives in {$city}</li>{/data:people}
 </ul>

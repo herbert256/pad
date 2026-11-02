@@ -1,18 +1,18 @@
-{meta title='Markdown editor'/}
-{about/}
+{pad:meta title='Markdown editor'/}
+{include:about/}
 
-{form 'try', class='inputs-try', error}
-  {mdeditor 'post', label='Your post', rows=8, rules='required|min:20|max:5000'}
+{pad:form 'try', class='inputs-try', error}
+  {input:mdeditor 'post', label='Your post', rows=8, rules='required|min:20|max:5000'}
     # A title
 
     Some **bold** text, some *italic* and a [link](https://example.com).
 
     - a list
     - of things
-  {/mdeditor}
+  {/input:mdeditor}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-{template/}
+{include:template/}

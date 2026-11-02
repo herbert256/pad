@@ -16,7 +16,7 @@
     'replay'      => [ 'recorded traffic for develop/?replay', 1 ],
     'samples'     => [ 'captured designer sample data', 1 ],
     'serve'       => [ 'the document roots pad serve --mount makes', 0 ],
-    'poll'        => [ 'the votes of {poll}', 0 ],
+    'poll'        => [ 'the votes of {widget:poll}', 0 ],
     'logs'        => [ 'padLog - see Logs', 0 ],
     'mail'        => [ 'the outbox of the file mail transport - see Mail outbox', 0 ],
     'queue'       => [ 'queued and failed jobs - see Queues', 0 ],

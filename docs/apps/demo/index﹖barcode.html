@@ -1,17 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-theme="light">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      PAD Demo - Barcodes
+      Barcodes · PAD demo
     </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
   </head>
-  <body>
-    <div class="container">
-      <header class="bar">
-        <link rel="stylesheet" href="../_common/brand.css">
-        <script src="../_common/brand.js" defer></script>
-        <div class="pad-brand">
+  <body class="frame app-demo">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
           <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
           <details class="pad-brand-menu">
             <summary title="The PAD applications">
@@ -20,312 +27,416 @@
             </summary>
             <nav class="pad-brand-apps" aria-label="PAD applications">
               <div class="pad-brand-columns">
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    PAD
-                  </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
-                  <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
-                  <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Showcases
-                  </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                  <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                  <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                  <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Front ends
-                  </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
-                  <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
-                  <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
-                  <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Offline
-                  </div><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                  <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
-                  <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
-                  <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Examples
-                  </div><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/playground/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
-                  <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>playground</b><small>Type a template, see the result</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-                  <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Tools
-                  </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
-                  <circle cx="9" cy="7" r="2"></circle>
-                  <circle cx="15" cy="12" r="2"></circle>
-                  <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
-                  <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
-                  <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
                 </div>
               </div>
             </nav>
           </details>
         </div>
-        <nav class="menu">
-          <a href="index%EF%B9%96index.html">Home</a> <a href="index%EF%B9%96guestbook.html">Guestbook</a> <a href="index%EF%B9%96todo.html">Todo List</a> <a href="index%EF%B9%96contact.html">Contact</a> <a href="index%EF%B9%96counter.html">Counter</a> <a href="index%EF%B9%96clock.html">Clock</a> <a href="index%EF%B9%96qr.html">QR Codes</a> <a href="index%EF%B9%96barcode.html" class="active">Barcodes</a> <a href="index%EF%B9%96calendar.html">Calendar</a> <a href="index%EF%B9%96highlight.html">Highlight</a>
-        </nav>
+      </div>
+      <nav class="frame-nav" aria-label="demo">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96guestbook.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-book-open" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 7c-2-1.8-5-2.5-9-2.5v14c4 0 7 .7 9 2.5 2-1.8 5-2.5 9-2.5v-14c-4 0-7 .7-9 2.5Z"></path>
+        <path d="M12 7v14"></path></svg> Guestbook</a> <a href="index%EF%B9%96todo.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-checklist" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3.5 6.5L5 8l3-3M3.5 12.5L5 14l3-3M3.5 18.5L5 20l3-3M11 6.5h9.5M11 12.5h9.5M11 18.5h9.5"></path></svg> Todo List</a> <a href="index%EF%B9%96contact.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mail" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+        <path d="M3.5 6.5l8.5 6.5 8.5-6.5"></path></svg> Contact</a> <a href="index%EF%B9%96counter.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-hash" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.5 9h15M4.5 15h15M10 4l-2 16M16 4l-2 16"></path></svg> Counter</a> <a href="index%EF%B9%96clock.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-clock" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 7v5l3.5 2"></path></svg> Clock</a> <a href="index%EF%B9%96qr.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-qr-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3.5" y="3.5" width="6" height="6" rx="1"></rect>
+        <rect x="14.5" y="3.5" width="6" height="6" rx="1"></rect>
+        <rect x="3.5" y="14.5" width="6" height="6" rx="1"></rect>
+        <path d="M14.5 14.5h2.5V17M20.5 14.5v.01M14.5 20.5h.01M17.5 20.5h3v-3M6.5 6.5h.01M17.5 6.5h.01M6.5 17.5h.01"></path></svg> QR Codes</a> <a href="index%EF%B9%96barcode.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-barcode" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5v14M7 5v14M9.5 5v14M13 5v14M15.5 5v14M18 5v14M20.5 5v14"></path></svg> Barcodes</a> <a href="index%EF%B9%96calendar.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-calendar" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3.5" y="5" width="17" height="15" rx="2"></rect>
+        <path d="M3.5 10h17M8 3v4M16 3v4"></path></svg> Calendar</a> <a href="index%EF%B9%96highlight.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Highlight</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Barcodes
+        </h1>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padCsrfToken" value="663bbeb06ad89e75b106c7e4344c8f6de66646c226488ca9b0d65558fc9ce47e"><input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
       </header>
-      <h1>
-        Barcodes
-      </h1>
-      <p>
-        The <code>{barcode}</code> tag writes EAN-13, EAN-8, UPC-A and Code 128 barcodes as inline SVG - sharp at any size and on paper, no font, no image library. A scanner or a phone reads them straight from the screen.
-      </p>
-      <h2>
-        Products - EAN-13
-      </h2>
-      <table>
-        <tr>
-          <th>
-            Product
-          </th>
-          <th>
-            Barcode
-          </th>
-        </tr>
-        <tr>
-          <td>
-            Espresso beans, 1 kg
-          </td>
-          <td>
-            <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="234" height="64" viewbox="0 0 234 64" shape-rendering="crispEdges">
-            <title>
-              8712345678906
-            </title>
-            <rect width="100%" height="100%" fill="#fff"></rect>
-            <path fill="#000" d="M22,0h2v56h-2zM26,0h2v56h-2zM30,0h6v50h-6zM38,0h4v50h-4zM44,0h4v50h-4zM52,0h4v50h-4zM60,0h2v50h-2zM66,0h4v50h-4zM72,0h2v50h-2zM82,0h2v50h-2zM88,0h6v50h-6zM96,0h2v50h-2zM100,0h4v50h-4zM110,0h2v50h-2zM114,0h2v56h-2zM118,0h2v56h-2zM122,0h2v50h-2zM126,0h2v50h-2zM136,0h2v50h-2zM144,0h2v50h-2zM150,0h2v50h-2zM156,0h2v50h-2zM164,0h6v50h-6zM172,0h2v50h-2zM178,0h6v50h-6zM188,0h2v50h-2zM192,0h2v50h-2zM196,0h2v50h-2zM206,0h2v56h-2zM210,0h2v56h-2z"></path>
-            <text x="12" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
-              8
-            </text>
-            <text x="70" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
-              712345
-            </text>
-            <text x="164" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
-              678906
-            </text></svg>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Oat milk, 1 l
-          </td>
-          <td>
-            <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="234" height="64" viewbox="0 0 234 64" shape-rendering="crispEdges">
-            <title>
-              4006381333931
-            </title>
-            <rect width="100%" height="100%" fill="#fff"></rect>
-            <path fill="#000" d="M22,0h2v56h-2zM26,0h2v56h-2zM34,0h4v50h-4zM40,0h2v50h-2zM44,0h2v50h-2zM50,0h6v50h-6zM58,0h2v50h-2zM62,0h8v50h-8zM72,0h8v50h-8zM82,0h2v50h-2zM90,0h2v50h-2zM96,0h2v50h-2zM100,0h4v50h-4zM108,0h4v50h-4zM114,0h2v56h-2zM118,0h2v56h-2zM122,0h2v50h-2zM132,0h2v50h-2zM136,0h2v50h-2zM146,0h2v50h-2zM150,0h2v50h-2zM160,0h2v50h-2zM164,0h6v50h-6zM172,0h2v50h-2zM178,0h2v50h-2zM188,0h2v50h-2zM192,0h4v50h-4zM200,0h4v50h-4zM206,0h2v56h-2zM210,0h2v56h-2z"></path>
-            <text x="12" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
-              4
-            </text>
-            <text x="70" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
-              006381
-            </text>
-            <text x="164" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
-              333931
-            </text></svg>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Design Patterns
-          </td>
-          <td>
-            <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="234" height="64" viewbox="0 0 234 64" shape-rendering="crispEdges">
-            <title>
-              9780201633610
-            </title>
-            <rect width="100%" height="100%" fill="#fff"></rect>
-            <path fill="#000" d="M22,0h2v56h-2zM26,0h2v56h-2zM30,0h6v50h-6zM38,0h4v50h-4zM48,0h2v50h-2zM54,0h2v50h-2zM58,0h2v50h-2zM64,0h6v50h-6zM74,0h2v50h-2zM80,0h4v50h-4zM86,0h2v50h-2zM92,0h6v50h-6zM102,0h4v50h-4zM110,0h2v50h-2zM114,0h2v56h-2zM118,0h2v56h-2zM122,0h2v50h-2zM126,0h2v50h-2zM136,0h2v50h-2zM146,0h2v50h-2zM150,0h2v50h-2zM160,0h2v50h-2zM164,0h2v50h-2zM168,0h2v50h-2zM178,0h4v50h-4zM186,0h4v50h-4zM192,0h6v50h-6zM202,0h2v50h-2zM206,0h2v56h-2zM210,0h2v56h-2z"></path>
-            <text x="12" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
-              9
-            </text>
-            <text x="70" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
-              780201
-            </text>
-            <text x="164" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
-              633610
-            </text></svg>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Paper filters
-          </td>
-          <td>
-            <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="234" height="64" viewbox="0 0 234 64" shape-rendering="crispEdges">
-            <title>
-              5401234567898
-            </title>
-            <rect width="100%" height="100%" fill="#fff"></rect>
-            <path fill="#000" d="M22,0h2v56h-2zM26,0h2v56h-2zM30,0h2v50h-2zM38,0h4v50h-4zM44,0h2v50h-2zM50,0h6v50h-6zM58,0h4v50h-4zM66,0h4v50h-4zM74,0h2v50h-2zM80,0h4v50h-4zM86,0h8v50h-8zM96,0h2v50h-2zM102,0h6v50h-6zM110,0h2v50h-2zM114,0h2v56h-2zM118,0h2v56h-2zM122,0h2v50h-2zM128,0h6v50h-6zM136,0h2v50h-2zM140,0h2v50h-2zM150,0h2v50h-2zM158,0h2v50h-2zM164,0h2v50h-2zM170,0h2v50h-2zM178,0h6v50h-6zM186,0h2v50h-2zM192,0h2v50h-2zM198,0h2v50h-2zM206,0h2v56h-2zM210,0h2v56h-2z"></path>
-            <text x="12" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
-              5
-            </text>
-            <text x="70" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
-              401234
-            </text>
-            <text x="164" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
-              567898
-            </text></svg>
-          </td>
-        </tr>
-      </table>
-      <p>
-        <code>{barcode $ean, height=50/}</code> - twelve or thirteen digits are an EAN-13; given without its check digit, the tag adds it.
-      </p>
-      <h2>
-        A shipping label - Code 128
-      </h2>
-      <div class="label">
-        <strong>PAD Demo Shop</strong><br>
-        Parcel PAD-2026-000042<br>
-        <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="396" height="84" viewbox="0 0 396 84" shape-rendering="crispEdges">
-        <title>
-          PAD-2026-000042
-        </title>
-        <rect width="100%" height="100%" fill="#fff"></rect>
-        <path fill="#000" d="M20,0h4v70h-4zM26,0h2v70h-2zM32,0h2v70h-2zM42,0h6v70h-6zM50,0h6v70h-6zM58,0h4v70h-4zM64,0h2v70h-2zM68,0h2v70h-2zM76,0h4v70h-4zM86,0h2v70h-2zM90,0h4v70h-4zM100,0h2v70h-2zM108,0h2v70h-2zM114,0h4v70h-4zM120,0h6v70h-6zM130,0h4v70h-4zM138,0h6v70h-6zM148,0h2v70h-2zM152,0h2v70h-2zM158,0h6v70h-6zM166,0h4v70h-4zM174,0h4v70h-4zM182,0h6v70h-6zM192,0h2v70h-2zM196,0h4v70h-4zM204,0h6v70h-6zM212,0h2v70h-2zM218,0h2v70h-2zM224,0h4v70h-4zM230,0h6v70h-6zM240,0h2v70h-2zM244,0h6v70h-6zM252,0h8v70h-8zM262,0h4v70h-4zM268,0h4v70h-4zM276,0h4v70h-4zM284,0h4v70h-4zM290,0h4v70h-4zM298,0h4v70h-4zM306,0h2v70h-2zM310,0h4v70h-4zM316,0h6v70h-6zM328,0h2v70h-2zM336,0h6v70h-6zM344,0h4v70h-4zM350,0h4v70h-4zM360,0h6v70h-6zM368,0h2v70h-2zM372,0h4v70h-4z"></path>
-        <text x="198" y="81.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">
-          PAD-2026-000042
-        </text></svg>
+      <div class="frame-body">
+        <p>
+          The <code>{barcode:auto}</code> tag writes EAN-13, EAN-8, UPC-A and Code 128 barcodes as inline SVG - sharp at any size and on paper, no font, no image library. A scanner or a phone reads them straight from the screen.
+        </p>
+        <h2>
+          Products - EAN-13
+        </h2>
+        <table>
+          <tr>
+            <th>
+              Product
+            </th>
+            <th>
+              Barcode
+            </th>
+          </tr>
+          <tr>
+            <td>
+              Espresso beans, 1 kg
+            </td>
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="234" height="64" viewbox="0 0 234 64" shape-rendering="crispEdges">
+              <title>
+                8712345678906
+              </title>
+              <rect width="100%" height="100%" fill="#fff"></rect>
+              <path fill="#000" d="M22,0h2v56h-2zM26,0h2v56h-2zM30,0h6v50h-6zM38,0h4v50h-4zM44,0h4v50h-4zM52,0h4v50h-4zM60,0h2v50h-2zM66,0h4v50h-4zM72,0h2v50h-2zM82,0h2v50h-2zM88,0h6v50h-6zM96,0h2v50h-2zM100,0h4v50h-4zM110,0h2v50h-2zM114,0h2v56h-2zM118,0h2v56h-2zM122,0h2v50h-2zM126,0h2v50h-2zM136,0h2v50h-2zM144,0h2v50h-2zM150,0h2v50h-2zM156,0h2v50h-2zM164,0h6v50h-6zM172,0h2v50h-2zM178,0h6v50h-6zM188,0h2v50h-2zM192,0h2v50h-2zM196,0h2v50h-2zM206,0h2v56h-2zM210,0h2v56h-2z"></path>
+              <text x="12" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                8
+              </text>
+              <text x="70" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                712345
+              </text>
+              <text x="164" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                678906
+              </text></svg>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Oat milk, 1 l
+            </td>
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="234" height="64" viewbox="0 0 234 64" shape-rendering="crispEdges">
+              <title>
+                4006381333931
+              </title>
+              <rect width="100%" height="100%" fill="#fff"></rect>
+              <path fill="#000" d="M22,0h2v56h-2zM26,0h2v56h-2zM34,0h4v50h-4zM40,0h2v50h-2zM44,0h2v50h-2zM50,0h6v50h-6zM58,0h2v50h-2zM62,0h8v50h-8zM72,0h8v50h-8zM82,0h2v50h-2zM90,0h2v50h-2zM96,0h2v50h-2zM100,0h4v50h-4zM108,0h4v50h-4zM114,0h2v56h-2zM118,0h2v56h-2zM122,0h2v50h-2zM132,0h2v50h-2zM136,0h2v50h-2zM146,0h2v50h-2zM150,0h2v50h-2zM160,0h2v50h-2zM164,0h6v50h-6zM172,0h2v50h-2zM178,0h2v50h-2zM188,0h2v50h-2zM192,0h4v50h-4zM200,0h4v50h-4zM206,0h2v56h-2zM210,0h2v56h-2z"></path>
+              <text x="12" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                4
+              </text>
+              <text x="70" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                006381
+              </text>
+              <text x="164" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                333931
+              </text></svg>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Design Patterns
+            </td>
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="234" height="64" viewbox="0 0 234 64" shape-rendering="crispEdges">
+              <title>
+                9780201633610
+              </title>
+              <rect width="100%" height="100%" fill="#fff"></rect>
+              <path fill="#000" d="M22,0h2v56h-2zM26,0h2v56h-2zM30,0h6v50h-6zM38,0h4v50h-4zM48,0h2v50h-2zM54,0h2v50h-2zM58,0h2v50h-2zM64,0h6v50h-6zM74,0h2v50h-2zM80,0h4v50h-4zM86,0h2v50h-2zM92,0h6v50h-6zM102,0h4v50h-4zM110,0h2v50h-2zM114,0h2v56h-2zM118,0h2v56h-2zM122,0h2v50h-2zM126,0h2v50h-2zM136,0h2v50h-2zM146,0h2v50h-2zM150,0h2v50h-2zM160,0h2v50h-2zM164,0h2v50h-2zM168,0h2v50h-2zM178,0h4v50h-4zM186,0h4v50h-4zM192,0h6v50h-6zM202,0h2v50h-2zM206,0h2v56h-2zM210,0h2v56h-2z"></path>
+              <text x="12" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                9
+              </text>
+              <text x="70" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                780201
+              </text>
+              <text x="164" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                633610
+              </text></svg>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Paper filters
+            </td>
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="234" height="64" viewbox="0 0 234 64" shape-rendering="crispEdges">
+              <title>
+                5401234567898
+              </title>
+              <rect width="100%" height="100%" fill="#fff"></rect>
+              <path fill="#000" d="M22,0h2v56h-2zM26,0h2v56h-2zM30,0h2v50h-2zM38,0h4v50h-4zM44,0h2v50h-2zM50,0h6v50h-6zM58,0h4v50h-4zM66,0h4v50h-4zM74,0h2v50h-2zM80,0h4v50h-4zM86,0h8v50h-8zM96,0h2v50h-2zM102,0h6v50h-6zM110,0h2v50h-2zM114,0h2v56h-2zM118,0h2v56h-2zM122,0h2v50h-2zM128,0h6v50h-6zM136,0h2v50h-2zM140,0h2v50h-2zM150,0h2v50h-2zM158,0h2v50h-2zM164,0h2v50h-2zM170,0h2v50h-2zM178,0h6v50h-6zM186,0h2v50h-2zM192,0h2v50h-2zM198,0h2v50h-2zM206,0h2v56h-2zM210,0h2v56h-2z"></path>
+              <text x="12" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                5
+              </text>
+              <text x="70" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                401234
+              </text>
+              <text x="164" y="61.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="72" lengthadjust="spacing">
+                567898
+              </text></svg>
+            </td>
+          </tr>
+        </table>
+        <p>
+          <code>{barcode:auto $ean, height=50/}</code> - twelve or thirteen digits are an EAN-13; given without its check digit, the tag adds it.
+        </p>
+        <h2>
+          A shipping label - Code 128
+        </h2>
+        <div class="label">
+          <strong>PAD Demo Shop</strong><br>
+          Parcel PAD-2026-000042<br>
+          <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="396" height="84" viewbox="0 0 396 84" shape-rendering="crispEdges">
+          <title>
+            PAD-2026-000042
+          </title>
+          <rect width="100%" height="100%" fill="#fff"></rect>
+          <path fill="#000" d="M20,0h4v70h-4zM26,0h2v70h-2zM32,0h2v70h-2zM42,0h6v70h-6zM50,0h6v70h-6zM58,0h4v70h-4zM64,0h2v70h-2zM68,0h2v70h-2zM76,0h4v70h-4zM86,0h2v70h-2zM90,0h4v70h-4zM100,0h2v70h-2zM108,0h2v70h-2zM114,0h4v70h-4zM120,0h6v70h-6zM130,0h4v70h-4zM138,0h6v70h-6zM148,0h2v70h-2zM152,0h2v70h-2zM158,0h6v70h-6zM166,0h4v70h-4zM174,0h4v70h-4zM182,0h6v70h-6zM192,0h2v70h-2zM196,0h4v70h-4zM204,0h6v70h-6zM212,0h2v70h-2zM218,0h2v70h-2zM224,0h4v70h-4zM230,0h6v70h-6zM240,0h2v70h-2zM244,0h6v70h-6zM252,0h8v70h-8zM262,0h4v70h-4zM268,0h4v70h-4zM276,0h4v70h-4zM284,0h4v70h-4zM290,0h4v70h-4zM298,0h4v70h-4zM306,0h2v70h-2zM310,0h4v70h-4zM316,0h6v70h-6zM328,0h2v70h-2zM336,0h6v70h-6zM344,0h4v70h-4zM350,0h4v70h-4zM360,0h6v70h-6zM368,0h2v70h-2zM372,0h4v70h-4z"></path>
+          <text x="198" y="81.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000">
+            PAD-2026-000042
+          </text></svg>
+        </div>
+        <p>
+          <code>{barcode:auto $parcel, height=70/}</code> - letters, digits and punctuation; runs of digits are packed two to a symbol.
+        </p>
+        <h2>
+          The other types
+        </h2>
+        <table>
+          <tr>
+            <th>
+              Type
+            </th>
+            <th>
+              Barcode
+            </th>
+            <th>
+              Tag
+            </th>
+          </tr>
+          <tr>
+            <td>
+              EAN-8
+            </td>
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="162" height="74" viewbox="0 0 162 74" shape-rendering="crispEdges">
+              <title>
+                96385074
+              </title>
+              <rect width="100%" height="100%" fill="#fff"></rect>
+              <path fill="#000" d="M14,0h2v66h-2zM18,0h2v66h-2zM26,0h2v60h-2zM30,0h4v60h-4zM36,0h2v60h-2zM40,0h8v60h-8zM50,0h8v60h-8zM60,0h2v60h-2zM64,0h4v60h-4zM70,0h6v60h-6zM78,0h2v66h-2zM82,0h2v66h-2zM86,0h2v60h-2zM92,0h6v60h-6zM100,0h6v60h-6zM110,0h2v60h-2zM114,0h2v60h-2zM122,0h2v60h-2zM128,0h2v60h-2zM132,0h6v60h-6zM142,0h2v66h-2zM146,0h2v66h-2z"></path>
+              <text x="48" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="48" lengthadjust="spacing">
+                9638
+              </text>
+              <text x="114" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="48" lengthadjust="spacing">
+                5074
+              </text></svg>
+            </td>
+            <td>
+              <code>{barcode:ean8 '9638507'/}</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              UPC-A
+            </td>
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="234" height="74" viewbox="0 0 234 74" shape-rendering="crispEdges">
+              <title>
+                036000291452
+              </title>
+              <rect width="100%" height="100%" fill="#fff"></rect>
+              <path fill="#000" d="M22,0h2v66h-2zM26,0h2v66h-2zM34,0h4v60h-4zM40,0h2v60h-2zM44,0h8v60h-8zM54,0h2v60h-2zM58,0h2v60h-2zM62,0h8v60h-8zM76,0h4v60h-4zM82,0h2v60h-2zM90,0h4v60h-4zM96,0h2v60h-2zM104,0h4v60h-4zM110,0h2v60h-2zM114,0h2v66h-2zM118,0h2v66h-2zM122,0h4v60h-4zM128,0h4v60h-4zM136,0h6v60h-6zM144,0h2v60h-2zM150,0h4v60h-4zM158,0h4v60h-4zM164,0h2v60h-2zM168,0h6v60h-6zM178,0h2v60h-2zM184,0h6v60h-6zM192,0h4v60h-4zM198,0h4v60h-4zM206,0h2v66h-2zM210,0h2v66h-2z"></path>
+              <text x="12" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                0
+              </text>
+              <text x="77" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="60" lengthadjust="spacing">
+                36000
+              </text>
+              <text x="157" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="60" lengthadjust="spacing">
+                29145
+              </text>
+              <text x="222" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
+                2
+              </text></svg>
+            </td>
+            <td>
+              <code>{barcode:upca '03600029145'/}</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bars only, in colour
+            </td>
+            <td>
+              <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="264" height="30" viewbox="0 0 264 30" shape-rendering="crispEdges">
+              <title>
+                PAD
+              </title>
+              <rect width="100%" height="100%" fill="#fff"></rect>
+              <path fill="#2e7d32" d="M30,0h6v30h-6zM39,0h3v30h-3zM48,0h3v30h-3zM63,0h9v30h-9zM75,0h9v30h-9zM87,0h6v30h-6zM96,0h3v30h-3zM102,0h3v30h-3zM114,0h6v30h-6zM129,0h3v30h-3zM135,0h6v30h-6zM150,0h3v30h-3zM162,0h3v30h-3zM171,0h9v30h-9zM186,0h6v30h-6zM195,0h6v30h-6zM210,0h9v30h-9zM222,0h3v30h-3zM228,0h6v30h-6z"></path></svg>
+            </td>
+            <td>
+              <code>{barcode:auto 'PAD', height=30, scale=3, plain, color='#2e7d32'/}</code>
+            </td>
+          </tr>
+        </table>
       </div>
-      <p>
-        <code>{barcode $parcel, height=70/}</code> - letters, digits and punctuation; runs of digits are packed two to a symbol.
-      </p>
-      <h2>
-        The other types
-      </h2>
-      <table>
-        <tr>
-          <th>
-            Type
-          </th>
-          <th>
-            Barcode
-          </th>
-          <th>
-            Tag
-          </th>
-        </tr>
-        <tr>
-          <td>
-            EAN-8
-          </td>
-          <td>
-            <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="162" height="74" viewbox="0 0 162 74" shape-rendering="crispEdges">
-            <title>
-              96385074
-            </title>
-            <rect width="100%" height="100%" fill="#fff"></rect>
-            <path fill="#000" d="M14,0h2v66h-2zM18,0h2v66h-2zM26,0h2v60h-2zM30,0h4v60h-4zM36,0h2v60h-2zM40,0h8v60h-8zM50,0h8v60h-8zM60,0h2v60h-2zM64,0h4v60h-4zM70,0h6v60h-6zM78,0h2v66h-2zM82,0h2v66h-2zM86,0h2v60h-2zM92,0h6v60h-6zM100,0h6v60h-6zM110,0h2v60h-2zM114,0h2v60h-2zM122,0h2v60h-2zM128,0h2v60h-2zM132,0h6v60h-6zM142,0h2v66h-2zM146,0h2v66h-2z"></path>
-            <text x="48" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="48" lengthadjust="spacing">
-              9638
-            </text>
-            <text x="114" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="48" lengthadjust="spacing">
-              5074
-            </text></svg>
-          </td>
-          <td>
-            <code>{barcode '9638507', type='ean8'/}</code>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            UPC-A
-          </td>
-          <td>
-            <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="234" height="74" viewbox="0 0 234 74" shape-rendering="crispEdges">
-            <title>
-              036000291452
-            </title>
-            <rect width="100%" height="100%" fill="#fff"></rect>
-            <path fill="#000" d="M22,0h2v66h-2zM26,0h2v66h-2zM34,0h4v60h-4zM40,0h2v60h-2zM44,0h8v60h-8zM54,0h2v60h-2zM58,0h2v60h-2zM62,0h8v60h-8zM76,0h4v60h-4zM82,0h2v60h-2zM90,0h4v60h-4zM96,0h2v60h-2zM104,0h4v60h-4zM110,0h2v60h-2zM114,0h2v66h-2zM118,0h2v66h-2zM122,0h4v60h-4zM128,0h4v60h-4zM136,0h6v60h-6zM144,0h2v60h-2zM150,0h4v60h-4zM158,0h4v60h-4zM164,0h2v60h-2zM168,0h6v60h-6zM178,0h2v60h-2zM184,0h6v60h-6zM192,0h4v60h-4zM198,0h4v60h-4zM206,0h2v66h-2zM210,0h2v66h-2z"></path>
-            <text x="12" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
-              0
-            </text>
-            <text x="77" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="60" lengthadjust="spacing">
-              36000
-            </text>
-            <text x="157" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="60" lengthadjust="spacing">
-              29145
-            </text>
-            <text x="222" y="71.6" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#000" textlength="12" lengthadjust="spacing">
-              2
-            </text></svg>
-          </td>
-          <td>
-            <code>{barcode '03600029145', type='upca'/}</code>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Bars only, in colour
-          </td>
-          <td>
-            <svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img" width="264" height="30" viewbox="0 0 264 30" shape-rendering="crispEdges">
-            <title>
-              PAD
-            </title>
-            <rect width="100%" height="100%" fill="#fff"></rect>
-            <path fill="#2e7d32" d="M30,0h6v30h-6zM39,0h3v30h-3zM48,0h3v30h-3zM63,0h9v30h-9zM75,0h9v30h-9zM87,0h6v30h-6zM96,0h3v30h-3zM102,0h3v30h-3zM114,0h6v30h-6zM129,0h3v30h-3zM135,0h6v30h-6zM150,0h3v30h-3zM162,0h3v30h-3zM171,0h9v30h-9zM186,0h6v30h-6zM195,0h6v30h-6zM210,0h9v30h-9zM222,0h3v30h-3zM228,0h6v30h-6z"></path></svg>
-          </td>
-          <td>
-            <code>{barcode 'PAD', height=30, scale=3, plain, color='#2e7d32'/}</code>
-          </td>
-        </tr>
-      </table>
-      <div class="footer">
-        © 2025 PAD Demo Application. Powered by PAD - PHP Application Driver.
-      </div>
-    </div>
+    </main>
   </body>
 </html>

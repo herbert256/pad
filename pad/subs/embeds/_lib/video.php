@@ -1,18 +1,18 @@
 <?php
 
-  // Video embeds - the {video} tag, the video form of the embed subsystem: the addresses it
+  // Video embeds - the {pad:video} tag, the video form of the embed subsystem: the addresses it
   // knows are those the youtube and vimeo providers of subs/embeds/types/ read, and the player's
   // address, the video's own and its thumbnail are those the providers write, so a new form
   // of a YouTube address is learnt in one place; the markup is the tag's own, as it was
-  // before {embed} came. A YouTube or Vimeo video is shown as its poster with a play button,
+  // before {embed:auto} came. A YouTube or Vimeo video is shown as its poster with a play button,
   // and the player's iframe comes only when the button is pressed: the page loads nothing of
   // the video site before then - no player, no cookies, no tracking - and a page with ten
   // videos stays as light as one with ten pictures. The player that comes is
   // youtube-nocookie.com's or Vimeo's with dnt=1.
   //
-  //   {video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'}
-  //   {video 'https://vimeo.com/76979871', title='The new Vimeo player', poster='photos/still.jpg'}
-  //   {video 'clips/sunrise.webm', title='Sunrise', poster='photos/sunrise.jpg'}
+  //   {pad:video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'}
+  //   {pad:video 'https://vimeo.com/76979871', title='The new Vimeo player', poster='photos/still.jpg'}
+  //   {pad:video 'clips/sunrise.webm', title='Sunrise', poster='photos/sunrise.jpg'}
   //
   // padVideo        the HTML of a video, '' when the address is no video it knows
   // padVideoParse   a YouTube or Vimeo address as [ site, id, start, short ], NULL when not
@@ -176,7 +176,7 @@
 
   }
 
-  // poster= is a picture of www/<application>/, versioned like an {asset}; without it the
+  // poster= is a picture of www/<application>/, versioned like an {pad:asset}; without it the
   // site's thumbnail, when the site has one at a known address.
 
   function padVideoPoster ( $poster, $thumb ) {

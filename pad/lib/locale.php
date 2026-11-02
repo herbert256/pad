@@ -1,6 +1,6 @@
 <?php
 
-  // The locale: one setting - $padLocale, with $padTimezone beside it - that {trans}, the
+  // The locale: one setting - $padLocale, with $padTimezone beside it - that {pad:trans}, the
   // trans, currency and localDate functions and padTrans() all read.
   //
   // padLocaleChoose      picks the request's locale from $padLocales, the ones the
@@ -10,7 +10,7 @@
   // padLocaleCandidates  'nl_NL' as the names to look for, most specific first: nl_NL,
   //                      nl-NL, nl
   // padTrans             a key looked up in the _lang/ catalogs, plural form and
-  //                      placeholders applied - the work behind {trans} and | trans
+  //                      placeholders applied - the work behind {pad:trans} and | trans
   //
   // A catalog is _lang/<locale>.json - { "cart.items": "%d item|%d items" } - looked up the
   // way _data/ files are: from the page's directory up to the application root, then the
@@ -176,7 +176,7 @@
 
     $locale = (string) $padLocale;
 
-    // Kept per locale and per directory of the page: a {page} from a directory with a
+    // Kept per locale and per directory of the page: a {pad:page} from a directory with a
     // _lang/ of its own reads that one - kept per locale alone, it was given the catalog of
     // the first page that asked.
 
@@ -250,7 +250,7 @@
     if ( array_key_exists ( 'count', $vars ) )
       $fill ['%d'] = padStrText ( $vars ['count'], 'padTrans', FALSE );
 
-    // A NULL value - a database column without one - is nothing, as {trans} hands it over;
+    // A NULL value - a database column without one - is nothing, as {pad:trans} hands it over;
     // passed over, it left ':name' standing in the text.
 
     foreach ( $vars as $name => $value )

@@ -1,0 +1,20 @@
+
+<p><code>{pad:ai}...{/pad:ai}</code> renders its content first - fields, loops, anything - and sends what it
+rendered to a language model as the prompt; the answer is printed as text. It is a value, never
+template code: markup and PAD tags in it are shown, not run. The single form takes the prompt as its
+parameter: <code>{pad:ai 'Name three rivers of France.'/}</code>.</p>
+
+<p>The key is the provider's <code>.env</code> value - <code>ANTHROPIC_API_KEY</code>,
+<code>OPENAI_API_KEY</code>, <code>MISTRAL_API_KEY</code>, <code>GEMINI_API_KEY</code>,
+<code>COHERE_API_KEY</code>, <code>CLOUDFLARE_API_TOKEN</code>, <code>AWS_BEARER_TOKEN_BEDROCK</code>;
+Ollama and LM Studio run on this machine and need none. An answer is kept under a hash of the provider, model, system prompt and
+prompt for <code>ttl=</code> seconds, a failed one never. A missing key or an error of the API is an
+error under the strict check; without it the tag answers nothing and the error is logged. From PHP:
+<code>padAi ( $prompt, $options )</code>.</p>
+
+<p>The tag asks a service on the internet, so its examples are shown, not run.</p>
+
+
+<h3>AI providers</h3>
+<p>Each kind has its own description and usage example:</p>
+<p><a href="index%EF%B9%96kind%EA%A4%B7ai%EA%A4%B7anthropic.html"><code>anthropic</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7ai%EA%A4%B7bedrock.html"><code>bedrock</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7ai%EA%A4%B7cloudflare.html"><code>cloudflare</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7ai%EA%A4%B7cohere.html"><code>cohere</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7ai%EA%A4%B7gemini.html"><code>gemini</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7ai%EA%A4%B7lmstudio.html"><code>lmstudio</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7ai%EA%A4%B7mistral.html"><code>mistral</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7ai%EA%A4%B7ollama.html"><code>ollama</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7ai%EA%A4%B7openai.html"><code>openai</code></a></p>

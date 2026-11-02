@@ -16,7 +16,7 @@
 
   // A negative number bound after a minus keeps its distance, so "salary > 2000-$adj" is
   // 2000 - (-1000) = 3000 and not a -- comment that leaves SQLite with half a clause - and
-  // so does one spliced there as {$adj}, in a select's where= and in a {field}.
+  // so does one spliced there as {$adj}, in a select's where= and in a {pad:field}.
   //
   // distinctrow is MySQL's word for distinct, which SQLite reads as a column name: the select
   // writes distinct there.

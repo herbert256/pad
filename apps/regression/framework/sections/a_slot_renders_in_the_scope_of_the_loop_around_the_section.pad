@@ -1,6 +1,6 @@
-{data 'people'}
+{pad:data 'people'}
 [ { "name": "Ann" }, { "name": "Bob" } ]
-{/data}
-{people}
-  {section:cta button='Mail', link='?mail'}{slot 'title'}Hi {$name}{/slot}{slot 'note'}row {current@people/}{/slot}{/section:cta}
-{/people}
+{/pad:data}
+{data:people}
+  {section:cta button='Mail', link='?mail'}{pad:slot 'title'}Hi {$name}{/pad:slot}{pad:slot 'note'}row {property:current@people/}{/pad:slot}{/section:cta}
+{/data:people}

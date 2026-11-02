@@ -5,17 +5,17 @@
   //   sandbox   hide the outer state completely and restore it afterwards
   //   reset     clear the level arrays and stores, but leave the app variables
   //   clean     let the pass see the outer state, but undo whatever it changed
-  //   function  give the pass its own variable scope, named for {code function=...}
+  //   function  give the pass its own variable scope, named for {pad:code function=...}
   //
   // A function pass has to run inside a real PHP function to get that scope, so it goes
   // through padStrFun() in lib/execute.php; every other pass goes straight to
   // start/pad/pad.php. Either way the pass's output is returned to the include.
 
-  // The {sandbox} tag is a sandboxed pass by its name - and so is the sandbox pipe, which
-  // is that tag run as a function: without the option written on it, as {code sandbox}
+  // The {pad:sandbox} tag is a sandboxed pass by its name - and so is the sandbox pipe, which
+  // is that tag run as a function: without the option written on it, as {pad:code sandbox}
   // writes it, the pass saw the page's variables and stores and left its own behind.
 
-  $padStrBox = padTagParm ( 'sandbox'  ) ?: ( $padTag [$pad] == 'sandbox' );
+  $padStrBox = padTagParm ( 'sandbox'  ) ?: ( $padType [$pad] == 'pad' and $padTag [$pad] == 'sandbox' );
   $padStrRes = padTagParm ( 'reset'    );
   $padStrCln = padTagParm ( 'clean'    );
   $padStrFun = padTagParm ( 'function' );

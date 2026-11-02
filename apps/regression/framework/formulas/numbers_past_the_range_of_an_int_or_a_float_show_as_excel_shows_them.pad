@@ -1,4 +1,4 @@
-{spreadsheet 'big', headers=FALSE}
+{pad:spreadsheet 'big', headers=FALSE}
   Formula,=10^20
   Typed,12345678901234567890
   Past a float,1e400
@@ -7,4 +7,4 @@
   Exponent,=TEXT(5E-324,"0.00E+00")
   Scaled past,=TEXT(1E300,"0.0E+0%%%%%%")
   Read,=VALUE("1e400")
-{/spreadsheet | after('</style>')}{spreadsheet 'ship', data='shipments', headers=FALSE/}
+{/pad:spreadsheet | after('</style>')}{pad:spreadsheet 'ship', data='shipments', headers=FALSE/}

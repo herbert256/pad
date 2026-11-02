@@ -1,6 +1,6 @@
 <?php
 
-  // Who is under whom: {chart 'orgchart', data='staff', id='id', parent='manager', label='name', sub='role'}.
+  // Who is under whom: {chart:orgchart data='staff', id='id', parent='manager', label='name', sub='role'}.
   //
   // A row is a person - or any node of a tree - named by label=, else the first field that
   // is no number; id= names the field that identifies it ('id' when the rows have one, else

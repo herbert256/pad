@@ -28,11 +28,11 @@
             . padFileGet ( APPS . "$app/$item.html" )
             . padFileGet ( APPS . "$app/$item.php"  );
 
-    if ( str_contains ( $source, '{page'    ) ) return;
-    if ( str_contains ( $source, '{example' ) ) return;
-    if ( str_contains ( $source, '{ajax'    ) ) return;
-    if ( str_contains ( $source, '{table'   ) ) return;
-    if ( str_contains ( $source, '{demo'    ) ) return;
+    if ( str_contains ( $source, '{pad:page'    ) ) return;
+    if ( str_contains ( $source, '{common:example' ) ) return;
+    if ( str_contains ( $source, '{pad:ajax'    ) ) return;
+    if ( str_contains ( $source, '{common:table'   ) ) return;
+    if ( str_contains ( $source, '{common:demo'    ) ) return;
 
     if ( file_exists ( APPS . "$app/$item.php" ) )
       padFilePut ( "examples/$app/$item.php",  padFileGet ( APPS . "$app/$item.php" ) );

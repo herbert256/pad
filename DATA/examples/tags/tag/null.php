@@ -5,9 +5,9 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{null/}
-{null} ... {/null}
-{null null='name'} ... {/null}
+{pad:null/}
+{pad:null} ... {/pad:null}
+{pad:null null='name'} ... {/pad:null}
 PAD;
 
   $tagParms   = [];

@@ -1,6 +1,6 @@
 <?php
 
-  // A header of {mail} written as a quoted text with a field in it - subject='Welcome
+  // A header of {pad:mail} written as a quoted text with a field in it - subject='Welcome
   // {$name}', to='{$email}' - is the text the field holds: the field's escaping is for the
   // HTML of a page and its stand-ins are for the template, neither for a mail header. The
   // subject went out as "Welcome Zo&euml; O&#039;Neil", and to='{$email}' was refused as

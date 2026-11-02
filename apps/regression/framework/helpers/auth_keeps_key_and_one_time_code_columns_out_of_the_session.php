@@ -2,7 +2,7 @@
 
   // A row's key and one-time code columns are secrets too: Yii's auth_key - renewed to end
   // remembered logins - reset_code, login_code, verification_code, activation_key and the
-  // like went into the session, {auth} and the dumps. A code or a key of no login - a
+  // like went into the session, {pad:auth} and the dumps. A code or a key of no login - a
   // country's, a postal one - stays an ordinary field.
 
   padLogin ( [ 'id' => 7, 'username' => 'eve', 'auth_key' => 'kT3x9Qm2', 'verification_code' => '493817',

@@ -1,4 +1,4 @@
-<p><code>{form 'contact'}</code> writes a <code>&lt;form method="post"&gt;</code> round its
+<p><code>{pad:form 'contact'}</code> writes a <code>&lt;form method="post"&gt;</code> round its
 content that posts back to the page it stands in. A posting form carries two hidden fields:
 the visitor's CSRF token (<code>padCsrfToken</code>, the session starts on demand) and its
 own name (<code>padForm</code>). In the page's PHP, <code>padPosted('contact')</code> is TRUE
@@ -8,14 +8,14 @@ when this form came back, so a page with two forms knows which one was sent. A f
 <p>Every item besides the name, <code>method</code>, <code>error</code> and
 <code>client</code> is an attribute of the <code>&lt;form&gt;</code> tag - <code>class=</code>,
 <code>id=</code>, <code>action=</code>, <code>enctype=</code> - written the way
-<a href="?tag/attrs">{attrs}</a> writes them. The token only goes to this site: a form whose
+<a href="?tag/attrs">{pad:attrs}</a> writes them. The token only goes to this site: a form whose
 <code>action=</code>, or the <code>formaction=</code> of a button in it, points to another
 site gets none. A posting form holding a file field gets
 <code>enctype="multipart/form-data"</code> unless it names one itself.</p>
 
 <h3>Fields that refill</h3>
 
-<p>The <a href="?tag/input">{input}</a> and <a href="?tag/textarea">{textarea}</a> fields
+<p>The <a href="?tag/input">{pad:input}</a> and <a href="?tag/textarea">{pad:textarea}</a> fields
 inside know which form they are in. When that form came back they show what was sent,
 escaped, and the message <code>padValidate</code> left for them - a field of the same name in
 another form of the page stays as it was. A GET form refills from the query string once it
@@ -31,14 +31,19 @@ against them there, so <code>padPosted('contact')</code> is TRUE only for a post
 them, and <code>padFormFailed('contact')</code> for one that broke them - that one renders the
 form again, refilled, with the messages. Only the page's own template (with its
 <code>_inits.pad</code> and <code>_exits.pad</code>) is read: rules in a snippet, a custom tag,
-a <a href="?tag/page">{page}</a> or a layout, rules from a variable, rules in a GET form or one
+a <a href="?tag/page">{pad:page}</a> or a layout, rules from a variable, rules in a GET form or one
 with <code>action=</code>, and an unknown rule are errors, strict check or not - each would be
 a check that never runs. That is also why the examples with rules on this page are shown, not
-run: they are rendered here through <code>{page}</code>.</p>
+run: they are rendered here through <code>{pad:page}</code>.</p>
 
 <p><code>client</code> checks the same rules in the browser as well, with the same messages,
 before the form leaves: the form gets <code>novalidate</code>, its rules in
-<code>data-pad-rules</code>, and the checker script (see <a href="?tag/validator">{validator}</a>)
+<code>data-pad-rules</code>, and the checker script (see <a href="?tag/validator">{pad:validator}</a>)
 follows it once a page. A form with <code>client</code> needs a name and at least one field
-with rules. The pair must close - a lone <code>{form}</code> is an error under the strict
+with rules. The pair must close - a lone <code>{pad:form}</code> is an error under the strict
 check.</p>
+
+
+<h3>Validation rules</h3>
+<p>Each kind has its own description and usage example:</p>
+<p><a href="?kind/rule/accepted"><code>accepted</code></a>, <a href="?kind/rule/after"><code>after</code></a>, <a href="?kind/rule/after_or_equal"><code>after_or_equal</code></a>, <a href="?kind/rule/alpha"><code>alpha</code></a>, <a href="?kind/rule/alphanum"><code>alphanum</code></a>, <a href="?kind/rule/before"><code>before</code></a>, <a href="?kind/rule/before_or_equal"><code>before_or_equal</code></a>, <a href="?kind/rule/between"><code>between</code></a>, <a href="?kind/rule/color"><code>color</code></a>, <a href="?kind/rule/date"><code>date</code></a>, <a href="?kind/rule/different"><code>different</code></a>, <a href="?kind/rule/digits"><code>digits</code></a>, <a href="?kind/rule/distinct"><code>distinct</code></a>, <a href="?kind/rule/email"><code>email</code></a>, <a href="?kind/rule/ends_with"><code>ends_with</code></a>, <a href="?kind/rule/gt"><code>gt</code></a>, <a href="?kind/rule/gte"><code>gte</code></a>, <a href="?kind/rule/iban"><code>iban</code></a>, <a href="?kind/rule/in"><code>in</code></a>, <a href="?kind/rule/integer"><code>integer</code></a>, <a href="?kind/rule/ip"><code>ip</code></a>, <a href="?kind/rule/json"><code>json</code></a>, <a href="?kind/rule/lowercase"><code>lowercase</code></a>, <a href="?kind/rule/lt"><code>lt</code></a>, <a href="?kind/rule/lte"><code>lte</code></a>, <a href="?kind/rule/max"><code>max</code></a>, <a href="?kind/rule/max_items"><code>max_items</code></a>, <a href="?kind/rule/max_words"><code>max_words</code></a>, <a href="?kind/rule/min"><code>min</code></a>, <a href="?kind/rule/min_items"><code>min_items</code></a>, <a href="?kind/rule/min_words"><code>min_words</code></a>, <a href="?kind/rule/multiple_of"><code>multiple_of</code></a>, <a href="?kind/rule/not_in"><code>not_in</code></a>, <a href="?kind/rule/numeric"><code>numeric</code></a>, <a href="?kind/rule/regex"><code>regex</code></a>, <a href="?kind/rule/required"><code>required</code></a>, <a href="?kind/rule/required_if"><code>required_if</code></a>, <a href="?kind/rule/required_unless"><code>required_unless</code></a>, <a href="?kind/rule/required_with"><code>required_with</code></a>, <a href="?kind/rule/required_without"><code>required_without</code></a>, <a href="?kind/rule/same"><code>same</code></a>, <a href="?kind/rule/slug"><code>slug</code></a>, <a href="?kind/rule/starts_with"><code>starts_with</code></a>, <a href="?kind/rule/time"><code>time</code></a>, <a href="?kind/rule/uppercase"><code>uppercase</code></a>, <a href="?kind/rule/url"><code>url</code></a>, <a href="?kind/rule/uuid"><code>uuid</code></a></p>

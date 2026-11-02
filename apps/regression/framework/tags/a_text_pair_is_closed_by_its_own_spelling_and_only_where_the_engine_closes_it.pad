@@ -1,4 +1,4 @@
-[{if 1 eq 1}{pad:markdown ignore}write `{else}` here{/pad:markdown}{/if}]
-3[{pad:sequence '1..1' ignore}a {~z~} b{/pad:sequence}]
-{sequence '1..2'}{echo 'x' ignore/}{/sequence}[{echo 'y'}z{/echo}]
-B[{if 1 eq 2}{highlight 'pad'/}{highlight file='_data/nums.json'}{/highlight}{else}no{/if}]
+[{pad:if 1 eq 1}{pad:markdown ignore}write `{pad:else}` here{/pad:markdown}{/pad:if}]
+3[{sequence:auto '1..1' ignore}a {~data:z~} b{/sequence:auto}]
+{sequence:range '1..2'}{pad:echo 'x' ignore/}{/sequence:range}[{pad:echo 'y'}z{/pad:echo}]
+B[{pad:if 1 eq 2}{pad:highlight 'pad'/}{pad:highlight file='_data/nums.json'}{/pad:highlight}{pad:else}no{/pad:if}]

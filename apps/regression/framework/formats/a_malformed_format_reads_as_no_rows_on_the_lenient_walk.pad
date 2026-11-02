@@ -1,9 +1,9 @@
-{data 'plan', format='toml'}
+{pad:data 'plan', format='toml'}
   title =
-{/data}
-{data 'cal'}
+{/pad:data}
+{pad:data 'cal'}
   BEGIN:VCALENDAR
   BEGIN:VEVENT
   DTSTART:20261101
-{/data}
-[{plan}row@else@no rows{/plan}][{cal}row@else@no rows{/cal}][{echo $lenientIcs/}]
+{/pad:data}
+[{data:plan}row@else@no rows{/data:plan}][{data:cal}row@else@no rows{/data:cal}][{pad:echo $lenientIcs/}]

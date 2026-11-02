@@ -1,9 +1,9 @@
-{data 'xs'}
+{pad:data 'xs'}
   [7,8,9]
-{/data}
-{xs mask='Z'}
-  {first@xs}F{/first@xs}[{#mask}{&current}]
-{/xs}
-{xs}
-  ({current@/})
-{/xs}
+{/pad:data}
+{data:xs mask='Z'}
+  {property:first@xs}F{/property:first@xs}[{#mask}{&current}]
+{/data:xs}
+{data:xs}
+  ({property:current@/})
+{/data:xs}

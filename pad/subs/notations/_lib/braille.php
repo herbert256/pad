@@ -1,6 +1,6 @@
 <?php
 
-  // Braille - the braille notation, {braille 'Hello'/}. A text written in Unified English
+  // Braille - the braille notation, {notation:braille 'Hello'/}. A text written in Unified English
   // Braille, grade 1 (uncontracted: a cell per letter, no contractions), as the characters of
   // Unicode's braille block (U+2800 - U+28FF), whose eight bits are the eight dots: dot 1 is
   // bit 0, dot 6 bit 5.

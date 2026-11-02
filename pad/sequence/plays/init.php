@@ -7,7 +7,7 @@
   // stored sequence - and restores parm/increment/from/to/rows afterwards, so a type that
   // rewrites those for its own generation (even/init.php doubles from and to, loop/init.php
   // reads its parameter as a row count) cannot disturb the main sequence it is filtering:
-  // {pull ..., flag, loop=4} over 25 values gave four rows, and an explicit rows= lost.
+  // {pad:pull ..., flag, loop=4} over 25 values gave four rows, and an explicit rows= lost.
 
   if ( ! padFileExists ( PT . "$pqSeq/init.php" ) )
     return;

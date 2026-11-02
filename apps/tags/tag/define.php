@@ -5,15 +5,15 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{define 'name'} ... {#parm} ... @content@ ... {/define}
-{define 'name'} {parms title, tone='info'/} ... {slot 'footer'}@content@{/slot} {/define}
-{name parm='value'/}
-{name parm='value'} content {slot 'footer'}fill{/slot} {/name}
+{pad:define 'name'} ... {#parm} ... @content@ ... {/pad:define}
+{pad:define 'name'} {pad:parms title, tone='info'/} ... {pad:slot 'footer'}@content@{/pad:slot} {/pad:define}
+{define:name parm='value'/}
+{define:name parm='value'} content {pad:slot 'footer'}fill{/pad:slot} {/define:name}
 {define:name .../}
 PAD;
 
   $tagParms   = [
-    'name' => 'The name of the new tag. Under the strict check it may not be a built-in tag, an application tag or a <code>{macro}</code> already.' ];
+    'name' => 'The name of the new tag, called with the required <code>define:</code> prefix. The same name can exist in other namespaces.' ];
 
   $tagOptions = [];
 

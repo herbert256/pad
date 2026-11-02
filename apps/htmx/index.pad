@@ -5,7 +5,7 @@
     <h2>The server renders.<br><span class="grad">htmx swaps it in.</span></h2>
     <p class="lede">
       htmx asks the server for a part of the page and puts the answer where it belongs. PAD
-      already speaks that language: every {open/}fragment{close/} of a template can be asked for
+      already speaks that language: every {pad:open/}pad:fragment{pad:close/} of a template can be asked for
       alone - by its name, or by the element htmx swaps - so one template serves the whole page
       and every piece of it.
     </p>
@@ -16,37 +16,37 @@
   </div>
 
   <div class="hero-code">
-{highlight 'pad'}
+{pad:highlight 'pad'}
 <input name="q" hx-get="?products"
        hx-trigger="input changed delay:300ms"
        hx-target="#results">
 
 <ul id="results">
-  {fragment 'results'}
-    {products}<li>{$name}</li>{/products}
-  {/fragment}
+  {pad:fragment 'results'}
+    {local:products}<li>{$name}</li>{/local:products}
+  {/pad:fragment}
 </ul>
-{/highlight}
+{/pad:highlight}
     <p class="small muted">The request carries <code>HX-Target: results</code>; PAD answers that fragment alone.</p>
   </div>
 
 </section>
 
-{groups}
+{array:groups}
 <div class="group-head">
   <h2>{$title}</h2>
   <span class="badge">{$count} examples</span>
 </div>
 <p class="group-text">{$text}</p>
 <div class="grid">
-  {examples}
+  {array:examples}
   <a class="card" href="?{$page}">
     <span class="card-icon" aria-hidden="true">{$icon}</span>
     <span class="card-go" aria-hidden="true">→</span>
     <h3>{$title}</h3>
     <p>{$lede}</p>
-    <div class="chips">{server}<code class="chip is-server">{$server}</code>{/server}{client}<code class="chip is-client">{$client}</code>{/client}</div>
+    <div class="chips">{array:server}<code class="chip is-server">{$server}</code>{/array:server}{array:client}<code class="chip is-client">{$client}</code>{/array:client}</div>
   </a>
-  {/examples}
+  {/array:examples}
 </div>
-{/groups}
+{/array:groups}

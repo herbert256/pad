@@ -1,12 +1,12 @@
 const vscode = require('vscode');
 const COMPLETIONS = require('./completions.json');
 
-// {tag or {/tag, with optional type prefix ({data:items}), and the ~ of whitespace control
+// {function:tag or {/tag, with optional type prefix ({data:items}), and the ~ of whitespace control
 // just inside the brace ({~items~}, {~/items})
-const TAG_RE = /\{~?(\/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)/g;
+const TAG_RE = /\{~?(\/?)([A-Za-z_][A-Za-z0-9_]*:[A-Za-z_][A-Za-z0-9_]*(?:@[A-Za-z0-9_-]*)?)([^{}]*)/g;
 
-// The branch words of {if} and {case} divide a pair; they never open one of their own.
-const BRANCH_TAGS = new Set(['else', 'elseif', 'when']);
+// The branch words of {pad:if} and {pad:case} divide a pair; they never open one of their own.
+const BRANCH_TAGS = new Set(['pad:else', 'pad:elseif', 'pad:when']);
 
 // The comments the engine drops before it scans - {# ... #}, not the option sigil {#name},
 // and {-- ... --} - with any tag written inside them.
@@ -17,7 +17,7 @@ function stripComments(text) {
 }
 
 // The pairs still open before the position. A tag written without the slash opens a pair - a
-// single tag is written {tag/}, or {tag ... /| pipe} - so no list of single tags is needed.
+// single tag is written {function:tag/}, or {function:tag ... /| pipe} - so no list of single tags is needed.
 
 function openTags(document, position) {
     const text = stripComments(document.getText(new vscode.Range(new vscode.Position(0, 0), position)));
@@ -46,7 +46,7 @@ function insidePadTag(document, position) {
     if (text.indexOf('}', open) >= 0) return false;
     // past the ~ of whitespace control - {~ec - as past the brace itself
     const first = text.charAt(open + 1) === '~' ? text.charAt(open + 2) : text.charAt(open + 1);
-    return /[/A-Za-z_$%!@]/.test(first || '');
+    return !first || /[/A-Za-z_$%!@?#&^]/.test(first);
 }
 
 function activate(context) {
@@ -70,10 +70,19 @@ function activate(context) {
                     });
                 }
                 if (!insidePadTag(document, position)) return undefined;
-                return COMPLETIONS.map((c) => {
+                const head = line.slice(line.lastIndexOf('{') + 1).replace(/^~/, '');
+                const tagPosition = /^[A-Za-z_0-9:]*$/.test(head);
+                const prefix = tagPosition && head.includes(':') ? head.split(':')[0] + ':' : '';
+                const candidates = tagPosition ? COMPLETIONS.flatMap((c) => {
+                    if (c.label.includes(':')) return [c];
+                    if (c.detail === 'pipe function') return [{ ...c, label: 'function:' + c.label }];
+                    if (c.detail === 'property@tag') return [{ ...c, label: 'property:' + c.label }];
+                    return [];
+                }).filter((c) => !prefix || c.label.startsWith(prefix)) : COMPLETIONS;
+                return candidates.map((c) => {
                     const item = new vscode.CompletionItem(
                         c.label, vscode.CompletionItemKind[c.kind]);
-                    if (c.insert) item.insertText = c.insert;
+                    item.insertText = tagPosition ? c.label.slice(prefix.length) : (c.insert || c.label);
                     item.detail = c.detail;
                     return item;
                 });

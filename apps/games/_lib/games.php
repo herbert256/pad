@@ -66,7 +66,7 @@
 
     $file = APP . "_games/$game.pad";
 
-    return is_file ( $file ) ? trim ( file_get_contents ( $file ) ) : "{game '$game'/}";
+    return is_file ( $file ) ? trim ( file_get_contents ( $file ) ) : "{game:$game/}";
 
   }
 

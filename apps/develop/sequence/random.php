@@ -9,10 +9,10 @@
 
   $space = str_repeat ( ' ', strlen ( $go ) );
 
-  $one = "{table}\n\n"
-       . "{demo}{sequence $gox, rows=10, random} {\$sequence} {/sequence} {/demo}\n\n"
-       . "{demo}{sequence $gox, rows=10, randomly} {\$sequence} {/sequence} {/demo}\n\n"
-       . "{/table}";
+  $one = "{common:table}\n\n"
+       . "{common:demo}{sequence:auto $gox, rows=10, random} {\$sequence} {/sequence:auto} {/common:demo}\n\n"
+       . "{common:demo}{sequence:auto $gox, rows=10, randomly} {\$sequence} {/sequence:auto} {/common:demo}\n\n"
+       . "{/common:table}";
 
   unlink ( APP . "sequence/random/{$type}.pad");
 

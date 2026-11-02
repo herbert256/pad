@@ -8,7 +8,7 @@ A task board - cards dragged across its columns, every open window kept in step 
 
 | Page | What it does |
 |------|--------------|
-| `index` | The board: the columns are `{fragment 'columns'}`, the activity `{fragment 'activity'}`; a column over its work-in-progress limit is marked; the New card dialog posts here |
+| `index` | The board: the columns are `{pad:fragment 'columns'}`, the activity `{pad:fragment 'activity'}`; a column over its work-in-progress limit is marked; the New card dialog posts here |
 | `card` | One card changed, moved to another column or deleted - or a new one |
 | `move` | A move: JSON in from `kanban.js` - the card, its column, the card it goes before - with `X-CSRF-Token`; the board's version and the cards per column out (`$padExpose`) |
 | `events` | `padSse`: every two seconds the board's version - its newest activity - and a `board` event when it is not the one the window had (`Last-Event-ID`) |

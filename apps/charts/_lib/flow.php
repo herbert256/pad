@@ -1,6 +1,6 @@
 <?php
 
-  // The tag cell: a {chart} or {sparkline} tag the file writes over several lines - an
+  // The tag cell: a {chart:bar} or {chart:sparkline} tag the file writes over several lines - an
   // option a line - is shown with its options flowing, side by side as far as the cell is
   // wide, a wrapped line hanging under the first option (.flow in charts.css). Each option
   // is coloured on its own, in a span a line breaks inside only when the option is wider

@@ -1,19 +1,19 @@
 <?php
 
-  // {push 'scripts', once='chart'} ... {/push}: renders its content where it stands, prints
-  // nothing there, and adds the rendering to the stack of that name, for a {stack 'scripts'}
-  // anywhere in the page - lib/stack.php. Like {tidy} it runs twice: first to ask for the
+  // {pad:push 'scripts', once='chart'} ... {/pad:push}: renders its content where it stands, prints
+  // nothing there, and adds the rendering to the stack of that name, for a {pad:stack 'scripts'}
+  // anywhere in the page - lib/stack.php. Like {pad:tidy} it runs twice: first to ask for the
   // end walk, then with the rendered content.
   //
   // With a once= key a later push of the same key is skipped before its content renders;
   // once without a key drops a push whose rendered text the stack already holds.
 
   if ( ! $padPair [$pad] and $padCheckSyntax )
-    padError ( "the pair {push} never closes" );
+    padError ( "the pair {pad:push} never closes" );
 
   if ( trim ( (string) $padParm ) === '' ) {
     if ( $padCheckSyntax )
-      padError ( "the {push} needs the name of a stack - {push 'scripts'}" );
+      padError ( "the {pad:push} needs the name of a stack - {pad:push 'scripts'}" );
     return NULL;
   }
 

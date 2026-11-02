@@ -1,9 +1,9 @@
 Actions operate on a sequence list after the list is build.
 <p>In below examples last/reverse/shuffle are actions.
 
-{table}
-{demo}{sequence range='20..30', push='mySeq'/} {/demo}
-{demo}{mySeq last=3} {$sequence} {/mySeq}{/demo}
-{demo}{reverse mySeq} {$sequence} {/reverse}{/demo}
-{demo}{sequence mySeq, shuffle} {$sequence} {/sequence}{/demo}
-{/table}
+{common:table}
+{common:demo}{sequence:range '20..30', push='mySeq'/} {/common:demo}
+{common:demo}{pull:mySeq last=3} {$sequence} {/pull:mySeq}{/common:demo}
+{common:demo}{action:reverse mySeq} {$sequence} {/action:reverse}{/common:demo}
+{common:demo}{sequence:auto mySeq, shuffle} {$sequence} {/sequence:auto}{/common:demo}
+{/common:table}

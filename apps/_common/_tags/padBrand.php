@@ -9,7 +9,7 @@
   //
   // The common: prefix reaches it from an application that switched $padCommon off - most
   // of them. Its stylesheet and script are www/_common/brand.css and brand.js, linked by the
-  // tag itself, with a version from their contents as {asset} writes it; the frame
+  // tag itself, with a version from their contents as {pad:asset} writes it; the frame
   // (padFrame) links them in its <head> and writes the brand with the option frame, which
   // leaves the links out. The colours are the brand's own --pad-brand-* properties, light or
   // dark as the page's color-scheme says - the frame's light, a theme's, or what data-theme on
@@ -23,6 +23,9 @@
 
   $brandName = basename ( $padApp );
   $brandMenu = [];
+
+  // Keep these groups together when the menu wraps from four columns to two or one.
+  $brandColumns = include COMMON . '_data/padAppColumns.php';
 
   foreach ( $brandGroups as $brandHead => $brandEntries ) {
 
@@ -41,16 +44,21 @@
 
     }
 
-    $brandMenu [] = [ 'head' => $brandHead, 'brandApps' => $brandRows ];
+    $brandMenu [$brandHead] = [ 'head' => $brandHead, 'brandApps' => $brandRows ];
 
   }
+
+  foreach ( $brandColumns as &$brandColumn )
+    $brandColumn = [ 'brandGroups' => array_map ( fn ( $head ) => $brandMenu [$head], $brandColumn ) ];
+
+  unset ( $brandColumn );
 
   $brandHome    = "{$padRoot}pad/";
   $brandAppHome = "$padRoot$padApp/";
   $brandFrame   = padTagParm ( 'frame' ) ? 1 : 0;
   $brandOffline = padWasm () ? 1 : 0;
 
-  // www/_common/brand.css and brand.js, with the version {asset} gives a file of an
+  // www/_common/brand.css and brand.js, with the version {pad:asset} gives a file of an
   // application's own - or, offline, the stylesheet itself, for a <style> of the page.
 
   $brandCss = $brandJs = $brandStyle = '';

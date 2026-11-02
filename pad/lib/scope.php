@@ -18,7 +18,7 @@
   // padChkLevel / padGetLevelArray  search $padCurrent outwards for a named array, so an
   //                   inner tag can reach an outer loop's data
   // padInsideOther    TRUE when somewhere above us is an include, get, page or example
-  // padStartAndClose  TRUE for a tag written as a single self-closing {tag/}, and it
+  // padStartAndClose  TRUE for a tag written as a single self-closing {function:tag/}, and it
   //                   redirects the walk to $go so such a tag runs once
   // padTagParm        the value of a parameter on the current tag, or $default; it also
   //                   marks the parameter handled through padDone
@@ -42,7 +42,7 @@
     global $padTag, $pad;
 
     // The walk starts one level up: the question is whether an *enclosing* level renders
-    // another page, and starting on the tag's own level made {example}, {get} and {page}
+    // another page, and starting on the tag's own level made {common:example}, {pad:get} and {pad:page}
     // drop their own xref record.
 
     for ( $i = $pad - 1; $i >= 0; $i-- ) {
@@ -117,10 +117,10 @@
 
   }
 
-  // What {set}, {increment} and {decrement} write. A plain field is read from the row of the
+  // What {pad:set}, {pad:increment} and {pad:decrement} write. A plain field is read from the row of the
   // nearest level that holds it before $GLOBALS (padFieldLevel), so a write to $GLOBALS alone
   // changed nothing the template saw when the row of a loop around held the name - inside
-  // {rows} over rows holding n, {decrement $n} left {$n} as it was and {while $n gt 0} on it
+  // {rows} over rows holding n, {pad:decrement $n} left {$n} as it was and {pad:while $n gt 0} on it
   // ran to its ceiling. The row's field takes the new value as well, and so does the value
   // that row's level put aside to restore when the row ends (padSetGlobalOcc): the write
   // outlives the loop, as an assignment does - it was put back, and one the row had made
@@ -219,10 +219,10 @@
   // {php:...} in it ran - as stand-ins they print as themselves (exits/exits.php) and open
   // nothing. A built-in tag reads its own options whole. Off under $padProtectValues = FALSE.
 
-  // The expression of an {if}, a {case}, a {while} or an {until}: its first positional
+  // The expression of an {pad:if}, a {pad:case}, a {pad:while} or an {pad:until}: its first positional
   // parameter, the text as written. The first item of the list was taken whatever its kind,
-  // and an option written before the condition became the condition - {while name='w', $i lt
-  // 3} never ran, {until name='w', $i ge 3} ran to its ceiling and {if toBool='zz', $i lt 3}
+  // and an option written before the condition became the condition - {pad:while name='w', $i lt
+  // 3} never ran, {pad:until name='w', $i ge 3} ran to its ceiling and {pad:if toBool='zz', $i lt 3}
   // held, the real condition ignored. Options stand anywhere else in a tag's list.
 
   function padFirstParm () {

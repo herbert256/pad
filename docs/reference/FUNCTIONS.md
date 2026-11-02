@@ -5,20 +5,20 @@ This document provides a complete reference for all PAD pipe functions.
 ## Usage
 
 Pipe functions transform values using the `|` operator. A field tag pipes as it stands;
-a literal or an expression goes through `{echo}`:
+a literal or an expression goes through `{pad:echo}`:
 
 ```
 {$name | upper}                   # a field tag pipes
-{echo $name | upper/}              # the same value, printed raw - {echo/} skips the sanitize chain
-{echo $text | trim | lower/}       # Chained functions
-{echo $date | date('Y-m-d')/}      # With parameters
-{echo 'hello' | upper/}            # a literal needs {echo/}
+{pad:echo $name | upper/}              # the same value, printed raw - {pad:echo/} skips the sanitize chain
+{pad:echo $text | trim | lower/}       # Chained functions
+{pad:echo $date | date('Y-m-d')/}      # With parameters
+{pad:echo 'hello' | upper/}            # a literal needs {pad:echo/}
 ```
 
 Multiple functions can be chained:
 
 ```
-{echo $name | trim | upper | left(10)/}
+{pad:echo $name | trim | upper | left(10)/}
 ```
 
 Where nothing is piped in - at the head of an expression, or as an argument of another
@@ -26,10 +26,10 @@ call - a function written as a call reads its first argument as the value, as PH
 functions do; `date` keeps PHP's order, the format first and then the moment:
 
 ```
-{if left($code, 2) eq 'NL'} ... {/if}
-{echo 'Hello ' . upper($name)/}
-{echo $text | replace('x', upper($y))/}
-{echo date('Y', $created)/}
+{pad:if left($code, 2) eq 'NL'} ... {/pad:if}
+{pad:echo 'Hello ' . upper($name)/}
+{pad:echo $text | replace('x', upper($y))/}
+{pad:echo date('Y', $created)/}
 ```
 
 ---
@@ -48,10 +48,10 @@ Functions that extract parts of a string based on a delimiter.
 ### Examples
 
 ```
-{echo 'hello/world/test' | after('/')/}  → 'world/test'
-{echo 'hello/world/test' | afterLast('/')/} → 'test'
-{echo 'hello/world/test' | before('/')/} → 'hello'
-{echo 'hello/world/test' | beforeLast('/')/} → 'hello/world'
+{pad:echo 'hello/world/test' | after('/')/}  → 'world/test'
+{pad:echo 'hello/world/test' | afterLast('/')/} → 'test'
+{pad:echo 'hello/world/test' | before('/')/} → 'hello'
+{pad:echo 'hello/world/test' | beforeLast('/')/} → 'hello/world'
 ```
 
 All four skip the whole delimiter, multi-character or not, and give the value back unchanged
@@ -75,11 +75,11 @@ Functions that extract substrings by position.
 ### Examples
 
 ```
-{echo 'Hello World' | left(5)/}   → 'Hello'
-{echo 'Hello World' | right(5)/}  → 'World'
-{echo 'Hello World' | mid(7, 5)/} → 'World'
-{echo 'Hello World' | substr(6)/} → 'World'
-{echo 'Hello World' | substr(0, 5)/} → 'Hello'
+{pad:echo 'Hello World' | left(5)/}   → 'Hello'
+{pad:echo 'Hello World' | right(5)/}  → 'World'
+{pad:echo 'Hello World' | mid(7, 5)/} → 'World'
+{pad:echo 'Hello World' | substr(6)/} → 'World'
+{pad:echo 'Hello World' | substr(0, 5)/} → 'Hello'
 ```
 
 A count of zero or less names no characters: `left(0)`, `right(0)` and the negative counts
@@ -104,9 +104,9 @@ Functions that change the case of text.
 ### Examples
 
 ```
-{echo 'hello world' | upper/}  → 'HELLO WORLD'
-{echo 'HELLO WORLD' | lower/}  → 'hello world'
-{echo 'hello world' | capitalize/} → 'Hello World'
+{pad:echo 'hello world' | upper/}  → 'HELLO WORLD'
+{pad:echo 'HELLO WORLD' | lower/}  → 'hello world'
+{pad:echo 'hello world' | capitalize/} → 'Hello World'
 ```
 
 ---
@@ -125,10 +125,10 @@ Functions that modify string content.
 ### Examples
 
 ```
-{echo '  hello  ' | trim/}              → 'hello'
-{echo 'hello world' | replace('world', 'there')/} → 'hello there'
-{echo 'hello world' | cut('o')/}        → 'hell wrld'
-{echo 'hello   world' | white/}         → 'hello world'
+{pad:echo '  hello  ' | trim/}              → 'hello'
+{pad:echo 'hello world' | replace('world', 'there')/} → 'hello there'
+{pad:echo 'hello world' | cut('o')/}        → 'hell wrld'
+{pad:echo 'hello   world' | white/}         → 'hello world'
 ```
 
 ---
@@ -153,12 +153,12 @@ Functions for encoding and escaping text for various contexts.
 ### Examples
 
 ```
-{echo '<script>' | html/}    → '&lt;script&gt;'
-{echo 'hello world' | url/}  → 'hello+world'
-{echo "it's here" | slashes/} → "it\'s here"
-{json 'products' | ignore/}  → an application's own _tags/json.php (CLAUDE.md): the JSON it HTML-escaped itself, kept from the PAD parser
-{echo $json | html | ignore/} → any value: html makes it safe inside an attribute, ignore keeps PAD off it
-{echo 'Crème Brûlée & Co.' | slug/} → 'creme-brulee-co'
+{pad:echo '<script>' | html/}    → '&lt;script&gt;'
+{pad:echo 'hello world' | url/}  → 'hello+world'
+{pad:echo "it's here" | slashes/} → "it\'s here"
+{app:json 'products' | ignore/}  → an application's own _tags/json.php (CLAUDE.md): the JSON it HTML-escaped itself, kept from the PAD parser
+{pad:echo $json | html | ignore/} → any value: html makes it safe inside an attribute, ignore keeps PAD off it
+{pad:echo 'Crème Brûlée & Co.' | slug/} → 'creme-brulee-co'
 ```
 
 ### escape
@@ -195,9 +195,9 @@ Functions that add HTML formatting to text.
 ### Examples
 
 ```
-{echo 'important' | bold/} → '<b>important</b>'
-{echo 'hello world' | nbsp/} → 'hello&nbsp;world'
-{echo '**Hi** <b>' | markdown/} → '<p><strong>Hi</strong> &lt;b&gt;</p>'
+{pad:echo 'important' | bold/} → '<b>important</b>'
+{pad:echo 'hello world' | nbsp/} → 'hello&nbsp;world'
+{pad:echo '**Hi** <b>' | markdown/} → '<p><strong>Hi</strong> &lt;b&gt;</p>'
 ```
 
 ### markdown
@@ -206,7 +206,7 @@ Functions that add HTML formatting to text.
 raw HTML of the value is escaped, a link whose URL names a scheme other than http, https,
 mailto, ftp or tel keeps only its text - so a field whose **last** pipe is `markdown` skips the
 sanitize chain, which would otherwise escape the markup just made. The same subset as the
-`{markdown}` tag (TAGS.md); the tag's `html` option, which lets raw HTML through, is for the
+`{pad:markdown}` tag (TAGS.md); the tag's `html` option, which lets raw HTML through, is for the
 template's own text and has no pipe form. A value stays text: `{php:getcwd}` in a post is shown.
 
 ### highlight
@@ -214,7 +214,7 @@ template's own text and has no pipe form. A value stays text: `{php:getcwd}` in 
 `{$query | highlight('sql')}` shows a value as source code, coloured - `pad`, `php`, `html`,
 `css`, `js`, `json`, `yaml`, `sql`, `bash` or `text`. Every piece of the value is escaped, so a
 field whose **last** pipe is `highlight` skips the sanitize chain, as one ending in `markdown`
-does. The same block as the `{highlight}` tag (TAGS.md), without its `lines` and `mark`.
+does. The same block as the `{pad:highlight}` tag (TAGS.md), without its `lines` and `mark`.
 
 ---
 
@@ -231,10 +231,10 @@ Functions that limit or control string length.
 ### Examples
 
 ```
-{echo 'Hello World' | max_len(5)/} → 'Hello'
-{echo 'Hi' | max_len(5)/}      → 'Hi'
-{echo 'The quick brown fox jumps over the lazy dog' | truncate(20)/} → 'The quick brown fox…'
-{echo 3221225472 | bytes/}     → '3 GB'
+{pad:echo 'Hello World' | max_len(5)/} → 'Hello'
+{pad:echo 'Hi' | max_len(5)/}      → 'Hi'
+{pad:echo 'The quick brown fox jumps over the lazy dog' | truncate(20)/} → 'The quick brown fox…'
+{pad:echo 3221225472 | bytes/}     → '3 GB'
 ```
 
 ---
@@ -258,29 +258,29 @@ file.
 ### Examples
 
 ```
-{echo 'hello world' | contains('world')/} → TRUE
+{pad:echo 'hello world' | contains('world')/} → TRUE
 {$status | in('active', 'pending')}  → '1' or ''
-{echo 'test.txt' | like('%.txt')/}    → '1'
+{pad:echo 'test.txt' | like('%.txt')/}    → '1'
 {$age | between(17, 66)}             → TRUE if 17 < age < 66
 {$score | range(0, 100)}             → TRUE if 0 <= score <= 100
-{echo 'templates/page.php' | exists/} → '1' or '0'
+{pad:echo 'templates/page.php' | exists/} → '1' or '0'
 {$code | matches('/^[A-Z][A-Z][0-9]+$/')} → '1' or ''
 ```
 
 The tests read infix in a condition as well - the value on the left is their input:
 
 ```
-{if $status in ('active', 'pending')} ... {/if}
-{if $email matches '/@example\\.com$/'} ... {/if}
-{if $name like 'A%'} ... {/if}
-{if $age range (18, 65)} ... {/if}
+{pad:if $status in ('active', 'pending')} ... {/pad:if}
+{pad:if $email matches '/@example\\.com$/'} ... {/pad:if}
+{pad:if $name like 'A%'} ... {/pad:if}
+{pad:if $age range (18, 65)} ... {/pad:if}
 ```
 
 A `not` between the value and the test denies it, as SQL writes it:
 
 ```
-{orders where='$status not in ("cancelled", "refunded")'} ... {/orders}
-{if $name not like 'A%'} ... {/if}
+{array:orders where='$status not in ("cancelled", "refunded")'} ... {/array:orders}
+{pad:if $name not like 'A%'} ... {/pad:if}
 ```
 
 ### default
@@ -311,9 +311,9 @@ sign is written `\\%` there - `like('%\\%')` - while a pattern that comes from t
 PHP, `like($pattern)`, is written as is.
 
 ```
-{echo 'filename.txt' | like('%.txt')/} → '1'
-{echo 'test123' | like('test___')/}    → '1'
-{echo '100%' | like('%\\%')/}          → '1'
+{pad:echo 'filename.txt' | like('%.txt')/} → '1'
+{pad:echo 'test123' | like('test___')/}    → '1'
+{pad:echo '100%' | like('%\\%')/}          → '1'
 ```
 
 ---
@@ -333,8 +333,8 @@ them. `$padTimezone` sets the timezone. Formatting uses PHP's intl extension whe
 ### Examples
 
 ```
-{echo 'cart.title' | trans/}                  → 'Je winkelwagen' in nl
-{echo 'cart.items' | trans($n)/}              → '3 artikelen'
+{pad:echo 'cart.title' | trans/}                  → 'Je winkelwagen' in nl
+{pad:echo 'cart.items' | trans($n)/}              → '3 artikelen'
 {$price | currency('USD', 'en_US')}          → '$1,234.50'
 {$created | localDate('long')}               → 'October 5, 2026'
 {$created | localDate('d MMMM y', 'none', 'nl')} → '5 oktober 2026'
@@ -348,7 +348,7 @@ them. `$padTimezone` sets the timezone. Formatting uses PHP's intl extension whe
 |----------|------------|-------------|
 | `lookup` | set, key, field | The field of the row in another data set whose key equals the value - a join between lists from different sources |
 
-The set is named as a data tag names its rows: a `{data}` block, a stored sequence, an array
+The set is named as a data tag names its rows: a `{pad:data}` block, a stored sequence, an array
 of the page or of an enclosing row, or a `_data/` file. `key` defaults to `id`; without a
 `field` the answer is the row's first field other than the key. The first matching row
 counts; no match answers `''`, so `| ?? 'fallback'` supplies one. The set is indexed on the
@@ -358,9 +358,9 @@ changed. Strict mode names a lookup without a set, or with a name nothing holds.
 ### Examples
 
 ```
-{orders}
-  {$number}: {echo $customer_id | lookup('customers', 'id', 'name')/}
-{/orders}
+{array:orders}
+  {$number}: {pad:echo $customer_id | lookup('customers', 'id', 'name')/}
+{/array:orders}
 
 {$customer_id | lookup('customers')}                          → the first field after id
 {$code | lookup('countries', 'code', 'label') | ?? 'unknown'} → a miss with a fallback
@@ -387,16 +387,16 @@ Functions for working with dates and timestamps.
 - Two parameters: Format + `strtotime` modifier (e.g., '+1 day')
 
 The value is a Unix timestamp, a date in text or a date object - a `DateTime` the page's PHP
-left (`date`, `localDate` and `ago` take it, as `{timeago}` and `{countdown}` do). A date object
+left (`date`, `localDate` and `ago` take it, as `{pad:timeago}` and `{pad:countdown}` do). A date object
 no pipe turned into text is written `Y-m-d H:i:s`: `{$created}`.
 
 ### Examples
 
 ```
-{now}                              → current timestamp (e.g., 1702483200)
-{now | date}                       → formatted with default format
-{now | date('Y-m-d')}              → '2024-12-13'
-{now | date('Y-m-d', '+1 week')}   → '2024-12-20'
+{function:now}                              → current timestamp (e.g., 1702483200)
+{function:now | date}                       → formatted with default format
+{function:now | date('Y-m-d')}              → '2024-12-13'
+{function:now | date('Y-m-d', '+1 week')}   → '2024-12-20'
 {$timestamp | time('H:i:s')}       → '14:30:00'
 ```
 
@@ -423,15 +423,15 @@ no pipe turned into text is written `Y-m-d H:i:s`: `{$created}`.
 
 | Function | Description | Example |
 |----------|-------------|---------|
-| `+ n` | Add | `{echo $value \| + 1/}` |
-| `- n` | Subtract | `{echo $value \| - 5/}` |
-| `* n` | Multiply | `{echo $value \| * 2/}` |
-| `/ n` | Divide | `{echo $value \| / 4/}` |
+| `+ n` | Add | `{pad:echo $value \| + 1/}` |
+| `- n` | Subtract | `{pad:echo $value \| - 5/}` |
+| `* n` | Multiply | `{pad:echo $value \| * 2/}` |
+| `/ n` | Divide | `{pad:echo $value \| / 4/}` |
 
 ```
-{echo $value | + 1/}          # Correct - adds 1
-{echo $value | * 2/}          # Correct - multiplies by 2
-{echo $value | +1/}           # WRONG - no space!
+{pad:echo $value | + 1/}          # Correct - adds 1
+{pad:echo $value | * 2/}          # Correct - multiplies by 2
+{pad:echo $value | +1/}           # WRONG - no space!
 ```
 
 ---
@@ -441,17 +441,17 @@ no pipe turned into text is written `Y-m-d H:i:s`: `{$created}`.
 Use printf format specifiers for number formatting:
 
 ```
-{echo $nbr | %.5f/}          # 5 decimal places: 3.14159
-{echo $nbr | %'.09d/}        # Zero-padded to 9 digits: 000000123
-{echo $nbr | %d/}            # Integer: 42
-{echo $nbr | %x/}            # Hexadecimal: 2a
-{echo $nbr | %05d/}          # Zero-padded to 5 digits: 00042
-{echo $nbr | %+d/}           # With sign: +42
+{pad:echo $nbr | %.5f/}          # 5 decimal places: 3.14159
+{pad:echo $nbr | %'.09d/}        # Zero-padded to 9 digits: 000000123
+{pad:echo $nbr | %d/}            # Integer: 42
+{pad:echo $nbr | %x/}            # Hexadecimal: 2a
+{pad:echo $nbr | %05d/}          # Zero-padded to 5 digits: 00042
+{pad:echo $nbr | %+d/}           # With sign: +42
 ```
 
 A format is one pipe segment like any other, anywhere in the chain - it runs to the next
-`|`: `{echo $price | * 1.21 | %.2f | . ' EUR'/}`. A `%` that opens no conversion is the
-modulo operator: `{echo $n | % 3/}`.
+`|`: `{pad:echo $price | * 1.21 | %.2f | . ' EUR'/}`. A `%` that opens no conversion is the
+modulo operator: `{pad:echo $n | % 3/}`.
 
 ### Common Format Specifiers
 
@@ -473,9 +473,9 @@ modulo operator: `{echo $n | % 3/}`.
 The `@` symbol represents the current value in expressions:
 
 ```
-{echo 50 | @ * 4/}                # 200 (@ = 50)
-{echo $text | '"' . @ . '"'/}     # Wrap value in quotes
-{echo $num | @ + @ * 2/}          # Triple the value
+{pad:echo 50 | @ * 4/}                # 200 (@ = 50)
+{pad:echo $text | '"' . @ . '"'/}     # Wrap value in quotes
+{pad:echo $num | @ + @ * 2/}          # Triple the value
 ```
 
 ---
@@ -494,8 +494,8 @@ Functions for working with PAD template syntax.
 ### Examples
 
 ```
-{echo 'myTag' | open/} → '{myTag}'
-{echo 'myTag' | close/} → '{/myTag}'
+{pad:echo 'myTag' | open/} → '{app:myTag}'
+{pad:echo 'myTag' | close/} → '{/app:myTag}'
 {$maybeNull | optional}  → value or ''
 ```
 
@@ -518,8 +518,8 @@ negative precision is reported.
 {$visits | abbreviate}        → '2M'     ($visits = 1534200)
 {$visits | abbreviate(1)}     → '1.5M'
 {$visits | abbreviate(2)}     → '1.53M'
-{echo 950 | abbreviate/}       → '950'
-{echo -2500 | abbreviate(1)/}  → '-2.5K'
+{pad:echo 950 | abbreviate/}       → '950'
+{pad:echo -2500 | abbreviate(1)/}  → '-2.5K'
 ```
 
 ### ordinal
@@ -529,9 +529,9 @@ nd and rd after 1, 2 and 3, th after the rest and after 11, 12 and 13, in 111 to
 number with a fraction is reported; a value that is not a number goes through unchanged.
 
 ```
-{runners}{$place | ordinal}: {$name} {/runners}   → '1st: Ann 2nd: Bob 3rd: Cee '
-{echo 22 | ordinal/}           → '22nd'
-{echo 112 | ordinal/}          → '112th'
+{array:runners}{$place | ordinal}: {$name} {/array:runners}   → '1st: Ann 2nd: Bob 3rd: Cee '
+{pad:echo 22 | ordinal/}           → '22nd'
+{pad:echo 112 | ordinal/}          → '112th'
 ```
 
 
@@ -550,7 +550,7 @@ number with a fraction is reported; a value that is not a number goes through un
 {$created | ago}                 → 'just now', '5 minutes ago', 'yesterday', '3 weeks ago'
 {$deadline | ago}                → 'in 2 hours', 'tomorrow', 'in 3 days'
 {$start | ago($end)}             → counted from $end instead of now
-{echo '2026-10-04' | ago/}        → 'yesterday' on 5 October 2026
+{pad:echo '2026-10-04' | ago/}        → 'yesterday' on 5 October 2026
 ```
 
 The value is a Unix timestamp, a date in text or a date object; now is the one `padNowFreeze` fixed, when a
@@ -620,16 +620,16 @@ Pipes can be applied to a tag at two points, and they do not act on the same tex
 Transforms the *content template*, once, before any occurrence is rendered. What the
 function is handed is the source between the tags, not the tag's data:
 ```
-{items | trim}
+{array:items | trim}
   <li>x</li>
-{/items}
+{/array:items}
 ```
 It is not a way to reorder or filter what a tag iterates - a field written inside would be
 transformed with everything else and then not resolve. Sorting is an option:
 ```
-{items sort}
+{array:items sort}
   <li>{$name}</li>
-{/items}
+{/array:items}
 ```
 
 ### Closing Tag Pipe
@@ -657,7 +657,7 @@ Create custom functions in `_functions/`:
 
 Use in templates:
 ```
-{echo $price | money/}     # $1,234.56
+{pad:echo $price | money/}     # $1,234.56
 ```
 
 **_functions/initials.php:**
@@ -674,7 +674,7 @@ Use in templates:
 
 Use in templates:
 ```
-{echo $name | initials/}   # "John Doe" → "JD"
+{pad:echo $name | initials/}   # "John Doe" → "JD"
 ```
 
 ### Available Variables

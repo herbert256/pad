@@ -1,15 +1,15 @@
-{data 'y'}
+{pad:data 'y'}
   city: Paris
   country: FR
-{/data}[{y}{key@y/}={$y};{/y}]
-{data 'l'}
+{/pad:data}[{data:y}{property:key@y/}={$y};{/data:y}]
+{pad:data 'l'}
   - name: a
   - name: b
-{/data}[{l}{$name};{/l}]
-{data 'n'}
+{/pad:data}[{data:l}{$name};{/data:l}]
+{pad:data 'n'}
     rows:
       - name: c
         age: 3
       - name: d
         age: 4
-{/data}[{n}{$name}{$age};{/n}]
+{/pad:data}[{data:n}{$name}{$age};{/data:n}]

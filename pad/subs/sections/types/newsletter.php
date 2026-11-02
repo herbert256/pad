@@ -2,7 +2,7 @@
 
   // {section:newsletter title='Stay in the loop', button='Subscribe'/} - a sign-up for the
   // newsletter: a heading, a line, and a form with one e-mail field and its button, posting
-  // back to the page as {form 'newsletter'} does - the session's token, the form's name, so the
+  // back to the page as {pad:form 'newsletter'} does - the session's token, the form's name, so the
   // page's PHP asks padPosted ( 'newsletter' ) and padValidate ( [ 'email' => 'required|email' ] )
   // as for any form; the field refills and shows the message when the post came back wrong.
   // Once the form came back right its place says thanks= ('Thanks - you are on the list.').

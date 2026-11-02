@@ -14,7 +14,7 @@
   // extension let every candidate through and the sequence quietly became the plain range.
 
   // The test is bool.php's: a reversal past the integer range is no prime the engine can name,
-  // where the (int) of it ended the request on "not representable as an int" - {sequence
+  // where the (int) of it ended the request on "not representable as an int" - {sequence:auto
   // emirp, from=1000000000000000070}.
 
   include_once PT . 'emirp/bool.php';

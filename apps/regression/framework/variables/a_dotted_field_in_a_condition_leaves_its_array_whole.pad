@@ -1,4 +1,4 @@
-A{if $draft.id eq 1}[{$draft.title}]{/if}
-B{if $draft.id}[{$draft.title}|{echo $draft.id/}]{/if}
-C{case $draft.id}{when 1}[{$draft.title}]{/case}
-D{while $i lt 3}<{$draft.title}{$i}>{increment $i/}{/while}
+A{pad:if $draft.id eq 1}[{$draft.title}]{/pad:if}
+B{pad:if $draft.id}[{$draft.title}|{pad:echo $draft.id/}]{/pad:if}
+C{pad:case $draft.id}{pad:when 1}[{$draft.title}]{/pad:case}
+D{pad:while $i lt 3}<{$draft.title}{$i}>{pad:increment $i/}{/pad:while}

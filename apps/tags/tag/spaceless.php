@@ -5,7 +5,7 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{spaceless} ... {/spaceless}
+{pad:spaceless} ... {/pad:spaceless}
 PAD;
 
   $tagParms   = [];

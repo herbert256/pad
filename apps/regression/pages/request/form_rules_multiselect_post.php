@@ -1,7 +1,7 @@
 <?php
 
   // The rules on a multiselect of the template are the rules of its list, interests[], checked
-  // before the page's PHP as those of {input}: a post with nothing chosen breaks required and
+  // before the page's PHP as those of {pad:input}: a post with nothing chosen breaks required and
   // comes back with nothing chosen - not value= - a choice that is no option breaks in: and
   // comes back without it, the other list refilled, and a post of choices of the lists is
   // stored. A list was refused under the name the template wrote, interests, as no single

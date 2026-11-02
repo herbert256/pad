@@ -1,7 +1,7 @@
-{data 'scores'}
+{pad:data 'scores'}
   | player | points |
   | ------ | -----: |
   | Ann    |     21 |
   | Bob    |     17 |
-{/data}
-[{scores}{$player}={$points};{/scores}] {echo $mdJson/} {echo $mdShow/}
+{/pad:data}
+[{data:scores}{$player}={$points};{/data:scores}] {pad:echo $mdJson/} {pad:echo $mdShow/}

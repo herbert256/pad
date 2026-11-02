@@ -2,7 +2,7 @@
 
   // Membership test for partition, 1, 1, 2, 3, 5, 7, 11, ...: the terms are walked until one
   // reaches x - some 400 of them at the most before the integer range ends. build/check.php
-  // asks it for {keep partition}, {remove partition} and {flag partition}.
+  // asks it for {keep:partition}, {remove:partition} and {pad:flag partition}.
   //
   // Not the type's build: pqBuild() ranks function.php before bool.php.
 

@@ -21,6 +21,6 @@
   $expenseList = array_values ( array_filter ( ledgerCategories (), fn ( $c ) => $c ['kind'] == 'expense' ) );
   $accountList = ledgerAccounts ();
   $dayDefault  = date ( 'Y-m-d' );
-  $ledgerPage  = 'Add a transaction';
+  $title       = 'Add a transaction';
 
 ?>

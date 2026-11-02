@@ -8,7 +8,7 @@
   //                 types and the size limit, and stores it under a random name in
   //                 DATA/uploads/. Answers the record of the stored file, NULL when the
   //                 field brought no file, FALSE when the file was refused
-  // padUploadError  why the field's file was refused - {input type='file'} shows it too
+  // padUploadError  why the field's file was refused - {pad:input type='file'} shows it too
   // padUploadSend   a stored file sent back as the page's whole answer - a picture shown, an
   //                 attachment downloaded - with its type read from its content again
   // padUploadBytes  '2M', '500K', '1.5G' or a number, as bytes

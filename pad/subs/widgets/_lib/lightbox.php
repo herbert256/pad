@@ -2,12 +2,12 @@
 
   // A gallery whose pictures open large over the page - the lightbox widget.
   //
-  //   {lightbox label='The harbour'}
-  //     {tab 'At dawn'}<img src="harbour/dawn.jpg" alt="Boats in the morning mist">{/tab}
-  //     {tab 'At noon'}<img src="harbour/noon.jpg" alt="The quay in bright sun">{/tab}
-  //   {/lightbox}
+  //   {widget:lightbox label='The harbour'}
+  //     {pad:tab 'At dawn'}<img src="harbour/dawn.jpg" alt="Boats in the morning mist">{/pad:tab}
+  //     {pad:tab 'At noon'}<img src="harbour/noon.jpg" alt="The quay in bright sun">{/pad:tab}
+  //   {/widget:lightbox}
   //
-  // Every {tab} is a thumbnail in a grid: a link to the view of its picture, an element of
+  // Every {pad:tab} is a thumbnail in a grid: a link to the view of its picture, an element of
   // its own id that the CSS shows over the whole window when the address names it (:target)
   // - the picture as large as the window allows, its caption with 'n / count' under it, a
   // link to the picture before and after it and a close link back to the thumbnail. So it
@@ -22,7 +22,7 @@
   // the browser has once fetches once - with its own alt text, which names the thumbnail's
   // link where the tab has no label. A tab's label is the caption, and names the link.
   //
-  // The items are collected the way {tabs} collects its tabs - subs/widgets/_lib/tabs.php.
+  // The items are collected the way {widget:tabs} collects its tabs - subs/widgets/_lib/tabs.php.
   //
   // padLightbox        the grid and the views
   // padLightboxStyle   the CSS, www/assets/widgets/lightbox.css, once per page

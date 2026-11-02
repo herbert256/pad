@@ -1,14 +1,14 @@
-{meta title='The else branch', about='{else} renders when no {when} matched - here inside a loop, once per row.'/}
+{pad:meta title='The else branch', about='{pad:else} renders when no {pad:when} matched - here inside a loop, once per row.'/}
 <ul>
-{sequence '1..5', name='day'}
+{sequence:range '1..5', name='day'}
   <li>Day {$day}:
-  {case $day}
-    {when 1} Monday
-    {when 2} Tuesday
-    {when 3} Wednesday
-  {else}
+  {pad:case $day}
+    {pad:when 1} Monday
+    {pad:when 2} Tuesday
+    {pad:when 3} Wednesday
+  {pad:else}
     later in the week
-  {/case}
+  {/pad:case}
   </li>
-{/sequence}
+{/sequence:range}
 </ul>

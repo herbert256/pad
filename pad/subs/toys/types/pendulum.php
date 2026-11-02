@@ -9,7 +9,7 @@
   // trail= the points of the trail (400, 0 to 3000); gravity= in metres a second squared
   // (9.81, 1 to 30).
   //
-  //   {pendulum pendulums=3, angles='135, 135'/}
+  //   {toy:pendulum pendulums=3, angles='135, 135'/}
 
   return padToy ( 'pendulum', 'Double pendulum', [
     'pendulums' => padToyInt ( 'pendulums', 1, 1, 8 ),

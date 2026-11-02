@@ -8,8 +8,8 @@
   // highlight='32, 28' marks squares, size= is the width in pixels (360 unless given), title=
   // the accessible name; the description lists every piece.
   //
-  //   {draughts 'W:W31-50:B1-20'/}
-  //   {draughts 'B:W21-32:B1-12', board=8, numbers/}
+  //   {notation:draughts 'W:W31-50:B1-20'/}
+  //   {notation:draughts 'B:W21-32:B1-12', board=8, numbers/}
 
   if ( trim ( $padNotationText ) === '' )
     return '';

@@ -1,8 +1,8 @@
-{spreadsheet 'commas', headers=FALSE}
+{pad:spreadsheet 'commas', headers=FALSE}
   1,2,=SUM(A1,B1),=IF(A1>0,"a,b","c")
   "1,000","x ""y""",=A2*2,' =not a formula
-{/spreadsheet | after('</style>')}
-{spreadsheet 'tabs', headers=FALSE}
+{/pad:spreadsheet | after('</style>')}
+{pad:spreadsheet 'tabs', headers=FALSE}
 	a	b, c	=LEN(B1)
 	3	4	=A2+B2
-{/spreadsheet | after('</style>')}
+{/pad:spreadsheet | after('</style>')}

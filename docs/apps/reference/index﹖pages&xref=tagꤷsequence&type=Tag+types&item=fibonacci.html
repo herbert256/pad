@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="../_common/brand.css">
     <script src="../_common/pad.js"></script>
     <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/play.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
   </head>
   <body class="frame app-reference">
     <aside class="frame-side">
@@ -23,89 +27,113 @@
             </summary>
             <nav class="pad-brand-apps" aria-label="PAD applications">
               <div class="pad-brand-columns">
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    PAD
-                  </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
-                  <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
-                  <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Showcases
-                  </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                  <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                  <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                  <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Front ends
-                  </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
-                  <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
-                  <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
-                  <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Offline
-                  </div><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                  <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
-                  <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
-                  <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Examples
-                  </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/playground/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
-                  <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>playground</b><small>Type a template, see the result</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-                  <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Tools
-                  </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
-                  <circle cx="9" cy="7" r="2"></circle>
-                  <circle cx="15" cy="12" r="2"></circle>
-                  <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
-                  <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
-                  <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
                 </div>
               </div>
             </nav>
@@ -129,7 +157,7 @@
         </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
         <div class="frame-head">
           More
-        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#oauth-providers">OAuth providers</a> <a href="index%EF%B9%96index.html#notification-channels">Notification channels</a> <a href="index%EF%B9%96index.html#ai-providers">AI providers</a> <a href="index%EF%B9%96index.html#pattern-types">Pattern types</a> <a href="index%EF%B9%96index.html#image-filters">Image filters</a> <a href="index%EF%B9%96index.html#holiday-countries">Holiday countries</a> <a href="index%EF%B9%96index.html#search-languages">Search languages</a> <a href="index%EF%B9%96index.html#data-formats">Data formats</a> <a href="index%EF%B9%96index.html#sounds">Sounds</a> <a href="index%EF%B9%96index.html#printables">Printables</a> <a href="index%EF%B9%96index.html#notations">Notations</a> <a href="index%EF%B9%96index.html#formula-functions">Formula functions</a> <a href="index%EF%B9%96index.html#section-types">Section types</a> <a href="index%EF%B9%96index.html#effect-types">Effect types</a> <a href="index%EF%B9%96index.html#json-ld-kinds">JSON-LD kinds</a> <a href="index%EF%B9%96index.html#themes">Themes</a> <a href="index%EF%B9%96index.html#palettes">Palettes</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
       </nav>
     </aside>
     <main class="frame-main">
@@ -138,10 +166,64 @@
           Reference - Tag types - fibonacci
         </h1>
         <div class="frame-tools">
-          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
         </div>
       </header>
       <div class="frame-body">
@@ -150,8 +232,182 @@
             <td>
               <center>
                 <hr>
+                App: manual - Page: fragments/sequences_1<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/sequences_1.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57c2VxdWVuY2U6cmFuZ2UgJzEuLjgnfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6cmFuZ2V9PC9wPlxuPHA+e3NlcXVlbmNlOmZpYm9uYWNjaSByb3dzPTh9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9PC9wPlxuPHA+e3NlcXVlbmNlOnByaW1lIGZyb209MTAsIHJvd3M9Nn17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnByaW1lfTwvcD5cbjxwPntzZXF1ZW5jZTpyYW5nZSAnQS4uRid9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpyYW5nZX08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57c2VxdWVuY2U6cmFuZ2UgJzEuLjgnfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6cmFuZ2V9PC9wPlxuPHA+e3NlcXVlbmNlOmZpYm9uYWNjaSByb3dzPTh9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9PC9wPlxuPHA+e3NlcXVlbmNlOnByaW1lIGZyb209MTAsIHJvd3M9Nn17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnByaW1lfTwvcD5cbjxwPntzZXF1ZW5jZTpyYW5nZSAnQS4uRid9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpyYW5nZX08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range </font><font color="red"><font color="black">'</font>1..8<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">rows=8</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">from=10<font color="black">,</font> rows=6</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range </font><font color="red"><font color="black">'</font>A..F<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxc806ef70a1e089644af14cb92f88dfd3"></div>
+                      <script>
+                      padAjaxc806ef70a1e089644af14cb92f88dfd3 = new XMLHttpRequest();
+                      padAjaxc806ef70a1e089644af14cb92f88dfd3.onreadystatechange=function() {
+                      if (padAjaxc806ef70a1e089644af14cb92f88dfd3.readyState === 4) {
+                      if (padAjaxc806ef70a1e089644af14cb92f88dfd3.status === 200) {
+                      document.getElementById("padAjaxc806ef70a1e089644af14cb92f88dfd3").innerHTML=padAjaxc806ef70a1e089644af14cb92f88dfd3.responseText;
+                      } else {
+                      document.getElementById("padAjaxc806ef70a1e089644af14cb92f88dfd3").innerHTML=padAjaxc806ef70a1e089644af14cb92f88dfd3.statusText;
+                      }
+                      }
+                      }
+                      padAjaxc806ef70a1e089644af14cb92f88dfd3.open("GET","http://localhost/pad/manual/?fragments/sequences_1&padInclude",true);
+                      padAjaxc806ef70a1e089644af14cb92f88dfd3.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: eval/a_recurrence_names_an_increment_below_one<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">eval/a_recurrence_names_an_increment_below_one.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7c2VxdWVuY2U6Zmlib25hY2NpIGluY3JlbWVudD0wLjUsIHJvd3M9M317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmZpYm9uYWNjaX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7c2VxdWVuY2U6Zmlib25hY2NpIGluY3JlbWVudD0wLjUsIHJvd3M9M317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmZpYm9uYWNjaX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">increment=0.5<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb4d43b15a8ae9a41c4ee63ce1423e500"></div>
+                      <script>
+                      padAjaxb4d43b15a8ae9a41c4ee63ce1423e500 = new XMLHttpRequest();
+                      padAjaxb4d43b15a8ae9a41c4ee63ce1423e500.onreadystatechange=function() {
+                      if (padAjaxb4d43b15a8ae9a41c4ee63ce1423e500.readyState === 4) {
+                      if (padAjaxb4d43b15a8ae9a41c4ee63ce1423e500.status === 200) {
+                      document.getElementById("padAjaxb4d43b15a8ae9a41c4ee63ce1423e500").innerHTML=padAjaxb4d43b15a8ae9a41c4ee63ce1423e500.responseText;
+                      } else {
+                      document.getElementById("padAjaxb4d43b15a8ae9a41c4ee63ce1423e500").innerHTML=padAjaxb4d43b15a8ae9a41c4ee63ce1423e500.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb4d43b15a8ae9a41c4ee63ce1423e500.open("GET","http://localhost/pad/regression/errors/?eval/a_recurrence_names_an_increment_below_one&padInclude",true);
+                      padAjaxb4d43b15a8ae9a41c4ee63ce1423e500.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_build_strategy_must_be_one_there_is<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_build_strategy_must_be_one_there_is.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7c2VxdWVuY2U6Zmlib25hY2NpIHJvd3M9MywgYnVpbGQ9Jy4uLy4uL3R5cGVzL29laXMvcmVnZW5lcmF0ZSd9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7c2VxdWVuY2U6Zmlib25hY2NpIHJvd3M9MywgYnVpbGQ9Jy4uLy4uL3R5cGVzL29laXMvcmVnZW5lcmF0ZSd9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">rows=3<font color="black">,</font> build=<font color="black">'</font>../../types/oeis/regenerate<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxf38db1f48eed1cf46e45a053a2c8396e"></div>
+                      <script>
+                      padAjaxf38db1f48eed1cf46e45a053a2c8396e = new XMLHttpRequest();
+                      padAjaxf38db1f48eed1cf46e45a053a2c8396e.onreadystatechange=function() {
+                      if (padAjaxf38db1f48eed1cf46e45a053a2c8396e.readyState === 4) {
+                      if (padAjaxf38db1f48eed1cf46e45a053a2c8396e.status === 200) {
+                      document.getElementById("padAjaxf38db1f48eed1cf46e45a053a2c8396e").innerHTML=padAjaxf38db1f48eed1cf46e45a053a2c8396e.responseText;
+                      } else {
+                      document.getElementById("padAjaxf38db1f48eed1cf46e45a053a2c8396e").innerHTML=padAjaxf38db1f48eed1cf46e45a053a2c8396e.statusText;
+                      }
+                      }
+                      }
+                      padAjaxf38db1f48eed1cf46e45a053a2c8396e.open("GET","http://localhost/pad/regression/errors/?syntax/a_build_strategy_must_be_one_there_is&padInclude",true);
+                      padAjaxf38db1f48eed1cf46e45a053a2c8396e.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: jsonld/plain_values_of_a_store_are_rows_after_the_handling_options_too<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">jsonld/plain_values_of_a_store_are_rows_after_the_handling_options_too.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">jsonld/plain_values_of_a_store_are_rows_after_the_handling_options_too.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $trail </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'Home'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Shop'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Tea' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3N0ZXBzJ31bXCJIb21lXCIsIFwiU2hvcFwiLCBcIlRlYVwiXXsvcGFkOmRhdGF9XG57cGFkOmRhdGEgJ3RpdGxlcyd9W1wiWmVkXCIsIFwiQWxwaGFcIl17L3BhZDpkYXRhfVxuPHA+e2pzb25sZDpicmVhZGNydW1iIGRhdGE9J3N0ZXBzJy99PC9wPlxuPHA+e2pzb25sZDpicmVhZGNydW1iIGRhdGE9WydIb21lJywgJ1Nob3AnXS99PC9wPlxuPHA+e2pzb25sZDpicmVhZGNydW1iIGRhdGE9J3RyYWlsJywgZmlyc3Q9Mi99PC9wPlxuPHA+e2pzb25sZDphcnRpY2xlIGRhdGE9J3RpdGxlcycsIHNvcnQvfTwvcD5cbjxwPntzZXF1ZW5jZTpmaWJvbmFjY2kgcm93cz0zLCB0b0RhdGE9J2ZpYicvfXtqc29ubGQ6cGVyc29uIGRhdGE9J2ZpYicsIGxhc3Q9MS99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR0cmFpbCA9IFsgJ0hvbWUnLCAnU2hvcCcsICdUZWEnIF07XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3N0ZXBzJ31bXCJIb21lXCIsIFwiU2hvcFwiLCBcIlRlYVwiXXsvcGFkOmRhdGF9XG57cGFkOmRhdGEgJ3RpdGxlcyd9W1wiWmVkXCIsIFwiQWxwaGFcIl17L3BhZDpkYXRhfVxuPHA+e2pzb25sZDpicmVhZGNydW1iIGRhdGE9J3N0ZXBzJy99PC9wPlxuPHA+e2pzb25sZDpicmVhZGNydW1iIGRhdGE9WydIb21lJywgJ1Nob3AnXS99PC9wPlxuPHA+e2pzb25sZDpicmVhZGNydW1iIGRhdGE9J3RyYWlsJywgZmlyc3Q9Mi99PC9wPlxuPHA+e2pzb25sZDphcnRpY2xlIGRhdGE9J3RpdGxlcycsIHNvcnQvfTwvcD5cbjxwPntzZXF1ZW5jZTpmaWJvbmFjY2kgcm93cz0zLCB0b0RhdGE9J2ZpYicvfXtqc29ubGQ6cGVyc29uIGRhdGE9J2ZpYicsIGxhc3Q9MS99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR0cmFpbCA9IFsgJ0hvbWUnLCAnU2hvcCcsICdUZWEnIF07XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>steps<font color="black">'</font></font>}</b>["Home", "Shop", "Tea"]<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>titles<font color="black">'</font></font>}</b>["Zed", "Alpha"]<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">jsonld</font><font color="black"><b>:</b></font>breadcrumb </font><font color="red">data=<font color="black">'</font>steps<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">jsonld</font><font color="black"><b>:</b></font>breadcrumb </font><font color="red">data=[<font color="black">'</font>Home<font color="black">'</font><font color="black">,</font> <font color="black">'</font>Shop<font color="black">'</font>]</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">jsonld</font><font color="black"><b>:</b></font>breadcrumb </font><font color="red">data=<font color="black">'</font>trail<font color="black">'</font><font color="black">,</font> first=2</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">jsonld</font><font color="black"><b>:</b></font>article </font><font color="red">data=<font color="black">'</font>titles<font color="black">'</font><font color="black">,</font> sort</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">rows=3<font color="black">,</font> toData=<font color="black">'</font>fib<font color="black">'</font></font>/}</b><b>{<font color="blue"><font color="purple">jsonld</font><font color="black"><b>:</b></font>person </font><font color="red">data=<font color="black">'</font>fib<font color="black">'</font><font color="black">,</font> last=1</font>/}</b>&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax6f1cad04f505914af4c073cd8febb53c"></div>
+                      <script>
+                      padAjax6f1cad04f505914af4c073cd8febb53c = new XMLHttpRequest();
+                      padAjax6f1cad04f505914af4c073cd8febb53c.onreadystatechange=function() {
+                      if (padAjax6f1cad04f505914af4c073cd8febb53c.readyState === 4) {
+                      if (padAjax6f1cad04f505914af4c073cd8febb53c.status === 200) {
+                      document.getElementById("padAjax6f1cad04f505914af4c073cd8febb53c").innerHTML=padAjax6f1cad04f505914af4c073cd8febb53c.responseText;
+                      } else {
+                      document.getElementById("padAjax6f1cad04f505914af4c073cd8febb53c").innerHTML=padAjax6f1cad04f505914af4c073cd8febb53c.statusText;
+                      }
+                      }
+                      }
+                      padAjax6f1cad04f505914af4c073cd8febb53c.open("GET","http://localhost/pad/regression/framework/?jsonld/plain_values_of_a_store_are_rows_after_the_handling_options_too&padInclude",true);
+                      padAjax6f1cad04f505914af4c073cd8febb53c.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: regression/framework - Page: sequence/a_count_or_range_given_to_a_type_without_a_parameter_is_read_as_such<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -168,7 +424,10 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">prime </font><font color="red">5</font>}</b><b>{<font color="green"><font color="red">$</font>prime</font>}</b> <b>{/<font color="blue">prime</font><font color="red"></font>}</b>][<b>{<font color="blue">fibonacci </font><font color="red">5</font>}</b><b>{<font color="green"><font color="red">$</font>fibonacci</font>}</b> <b>{/<font color="blue">fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>prime </font><font color="red"><font color="black">'</font>1..10<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>even </font><font color="red"><font color="black">'</font>1;2;3<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>even</font><font color="red"></font>}</b>][<b>{<font color="blue">multiply </font><font color="red">3<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>multiply</font>}</b> <b>{/<font color="blue">multiply</font><font color="red"></font>}</b>][<b>{<font color="blue">repeat </font><font color="red"><font color="black">'</font>x<font color="black">'</font><font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>repeat</font>}</b><b>{/<font color="blue">repeat</font><font color="red"></font>}</b>]</code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOnByaW1lIDV9eyRwcmltZX0gey9zZXF1ZW5jZTpwcmltZX1dW3tzZXF1ZW5jZTpmaWJvbmFjY2kgNX17JGZpYm9uYWNjaX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7a2VlcDpwcmltZSAnMS4uMTAnfXskc2VxdWVuY2V9IHsva2VlcDpwcmltZX1dW3tmbGFnOmV2ZW4gJzE7MjszJ317JHNlcXVlbmNlfXsvZmxhZzpldmVufV1be3NlcXVlbmNlOm11bHRpcGx5IDMsIHJvd3M9M317JG11bHRpcGx5fSB7L3NlcXVlbmNlOm11bHRpcGx5fV1be3NlcXVlbmNlOnJlcGVhdCAneCcsIHJvd3M9Mn17JHJlcGVhdH17L3NlcXVlbmNlOnJlcGVhdH1dXG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOnByaW1lIDV9eyRwcmltZX0gey9zZXF1ZW5jZTpwcmltZX1dW3tzZXF1ZW5jZTpmaWJvbmFjY2kgNX17JGZpYm9uYWNjaX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7a2VlcDpwcmltZSAnMS4uMTAnfXskc2VxdWVuY2V9IHsva2VlcDpwcmltZX1dW3tmbGFnOmV2ZW4gJzE7MjszJ317JHNlcXVlbmNlfXsvZmxhZzpldmVufV1be3NlcXVlbmNlOm11bHRpcGx5IDMsIHJvd3M9M317JG11bHRpcGx5fSB7L3NlcXVlbmNlOm11bHRpcGx5fV1be3NlcXVlbmNlOnJlcGVhdCAneCcsIHJvd3M9Mn17JHJlcGVhdH17L3NlcXVlbmNlOnJlcGVhdH1dXG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">5</font>}</b><b>{<font color="green"><font color="red">$</font>prime</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">5</font>}</b><b>{<font color="green"><font color="red">$</font>fibonacci</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>prime </font><font color="red"><font color="black">'</font>1..10<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>even </font><font color="red"><font color="black">'</font>1;2;3<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>even</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>multiply </font><font color="red">3<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>multiply</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>multiply</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>repeat </font><font color="red"><font color="black">'</font>x<font color="black">'</font><font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>repeat</font>}</b><b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>repeat</font><font color="red"></font>}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax464cdb94d0d3093cbcc6a622fc13d950"></div>
@@ -191,7 +450,7 @@
                 </table><br>
                 <hr>
                 App: regression/framework - Page: sequence/a_list_given_to_a_type_named_by_the_tag_is_the_values_it_plays_over<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -208,7 +467,10 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">prime </font><font color="red">[3<font color="black">,</font>5<font color="black">,</font>7]</font>}</b><b>{<font color="green"><font color="red">$</font>prime</font>}</b> <b>{/<font color="blue">prime</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>prime </font><font color="red">[1<font color="black">,</font>2<font color="black">,</font>3<font color="black">,</font>4<font color="black">,</font>5]</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b>][<b>{<font color="blue">fibonacci </font><font color="red">[1<font color="black">,</font>2<font color="black">,</font>3]</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">fibonacci</font><font color="red"></font>}</b>]</code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOnByaW1lIFszLDUsN119eyRwcmltZX0gey9zZXF1ZW5jZTpwcmltZX1dW3trZWVwOnByaW1lIFsxLDIsMyw0LDVdfXskc2VxdWVuY2V9IHsva2VlcDpwcmltZX1dW3tzZXF1ZW5jZTpmaWJvbmFjY2kgWzEsMiwzXX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmZpYm9uYWNjaX1dXG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOnByaW1lIFszLDUsN119eyRwcmltZX0gey9zZXF1ZW5jZTpwcmltZX1dW3trZWVwOnByaW1lIFsxLDIsMyw0LDVdfXskc2VxdWVuY2V9IHsva2VlcDpwcmltZX1dW3tzZXF1ZW5jZTpmaWJvbmFjY2kgWzEsMiwzXX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmZpYm9uYWNjaX1dXG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">[3<font color="black">,</font>5<font color="black">,</font>7]</font>}</b><b>{<font color="green"><font color="red">$</font>prime</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>prime </font><font color="red">[1<font color="black">,</font>2<font color="black">,</font>3<font color="black">,</font>4<font color="black">,</font>5]</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">[1<font color="black">,</font>2<font color="black">,</font>3]</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax7b9efe41249e2c9d6b2f6ae1c269934a"></div>
@@ -230,8 +492,8 @@
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/framework - Page: sequence/the_type_field_follows_the_rows_through_an_action<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: sequence/a_play_keeps_the_zero_term<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -239,7 +501,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">sequence/the_type_field_follows_the_rows_through_an_action.pad</font>
+                      <font size="-2">sequence/a_play_keeps_the_zero_term.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -248,89 +510,33 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>nums<font color="black">'</font></font>/}</b><br>a[<b>{<font color="blue">fibonacci </font><font color="red">rows=6<font color="black">,</font> reverse</font>}</b><b>{<font color="green"><font color="red">$</font>fibonacci</font>}</b>/<b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">fibonacci</font><font color="red"></font>}</b>]<br>b[<b>{<font color="blue">fibonacci </font><font color="red">rows=6<font color="black">,</font> last=2</font>}</b><b>{<font color="green"><font color="red">$</font>fibonacci</font>}</b>/<b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">fibonacci</font><font color="red"></font>}</b>]<br>c[<b>{<font color="blue">fibonacci </font><font color="red">rows=6<font color="black">,</font> sum</font>}</b><b>{<font color="green"><font color="red">$</font>fibonacci</font>}</b>/<b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">fibonacci</font><font color="red"></font>}</b>]<br>d[<b>{<font color="blue">fibonacci </font><font color="red">rows=5<font color="black">,</font> make<font color="black">,</font> multiply=2<font color="black">,</font> reverse</font>}</b><b>{<font color="green"><font color="red">$</font>fibonacci</font>}</b>/<b>{<font color="green"><font color="red">$</font>multiply</font>}</b>/<b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">fibonacci</font><font color="red"></font>}</b>]<br>e[<b>{<font color="blue">fibonacci </font><font color="red">rows=6<font color="black">,</font> name=<font color="black">'</font>f<font color="black">'</font><font color="black">,</font> reverse</font>}</b><b>{<font color="green"><font color="red">$</font>fibonacci</font>}</b>/<b>{<font color="green"><font color="red">$</font>f</font>}</b> <b>{/<font color="blue">fibonacci</font><font color="red"></font>}</b>]<br>f[<b>{<font color="blue">nums </font><font color="red">reverse</font>}</b><b>{<font color="green"><font color="red">$</font>nums</font>}</b> <b>{/<font color="blue">nums</font><font color="red"></font>}</b>]<br>g[<b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>nums </font><font color="red">reverse</font>}</b><b>{<font color="green"><font color="red">$</font>nums</font>}</b>/<b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>nums</font><font color="red"></font>}</b>]<br>h[<b>{<font color="blue">nums </font><font color="red">sum</font>}</b><b>{<font color="green"><font color="red">$</font>nums</font>}</b><b>{/<font color="blue">nums</font><font color="red"></font>}</b>]</code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOmZpYm9uYWNjaSByb3dzPTUsIHNxdWFyZX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmZpYm9uYWNjaX1dXG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOmZpYm9uYWNjaSByb3dzPTUsIHNxdWFyZX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmZpYm9uYWNjaX1dXG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">rows=5<font color="black">,</font> square</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax508e8393bc6c33d6561dbe774ac8691f"></div>
+                      <div id="padAjax2759737cee825776b24db4514b1cf89c"></div>
                       <script>
-                      padAjax508e8393bc6c33d6561dbe774ac8691f = new XMLHttpRequest();
-                      padAjax508e8393bc6c33d6561dbe774ac8691f.onreadystatechange=function() {
-                      if (padAjax508e8393bc6c33d6561dbe774ac8691f.readyState === 4) {
-                      if (padAjax508e8393bc6c33d6561dbe774ac8691f.status === 200) {
-                      document.getElementById("padAjax508e8393bc6c33d6561dbe774ac8691f").innerHTML=padAjax508e8393bc6c33d6561dbe774ac8691f.responseText;
+                      padAjax2759737cee825776b24db4514b1cf89c = new XMLHttpRequest();
+                      padAjax2759737cee825776b24db4514b1cf89c.onreadystatechange=function() {
+                      if (padAjax2759737cee825776b24db4514b1cf89c.readyState === 4) {
+                      if (padAjax2759737cee825776b24db4514b1cf89c.status === 200) {
+                      document.getElementById("padAjax2759737cee825776b24db4514b1cf89c").innerHTML=padAjax2759737cee825776b24db4514b1cf89c.responseText;
                       } else {
-                      document.getElementById("padAjax508e8393bc6c33d6561dbe774ac8691f").innerHTML=padAjax508e8393bc6c33d6561dbe774ac8691f.statusText;
+                      document.getElementById("padAjax2759737cee825776b24db4514b1cf89c").innerHTML=padAjax2759737cee825776b24db4514b1cf89c.statusText;
                       }
                       }
                       }
-                      padAjax508e8393bc6c33d6561dbe774ac8691f.open("GET","http://localhost/pad/regression/framework/?sequence/the_type_field_follows_the_rows_through_an_action&padInclude",true);
-                      padAjax508e8393bc6c33d6561dbe774ac8691f.send();
+                      padAjax2759737cee825776b24db4514b1cf89c.open("GET","http://localhost/pad/regression/framework/?sequence/a_play_keeps_the_zero_term&padInclude",true);
+                      padAjax2759737cee825776b24db4514b1cf89c.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/pages - Page: request/tagnames<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">request/tagnames.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">request/tagnames.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Fixture for a_request_value_never_decides_what_a_tag_is: a constant, pipe functions, two<br>  // sequences, a _data file, an application pipe function and PHP functions written as tags<br>  // and pipes - and $ucwords, a variable the page sets itself, which stays the field it is, as<br>  // $date does, given a default that keeps the request's value when one came. Fetched bare it<br>  // answers what the template means by each name.<br><br>  </span><span style="color: #0000BB">$ucwords </span><span style="color: #007700">= </span><span style="color: #DD0000">'mine'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$who     </span><span style="color: #007700">= </span><span style="color: #0000BB">$who </span><span style="color: #007700">?? </span><span style="color: #DD0000">'nobody'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$date    </span><span style="color: #007700">= </span><span style="color: #0000BB">$date </span><span style="color: #007700">?? </span><span style="color: #DD0000">'2000-01-01'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// A name in a comment, a string or a function's parameter is none of the page's: $upper<br>  // here, '$fibonacci' and $nums below stay the template's, and so does the closure's local<br>  // $exclaim behind a binary string.<br><br>  </span><span style="color: #0000BB">$tagNamesText   </span><span style="color: #007700">= </span><span style="color: #DD0000">'the $fibonacci sequence'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$tagNamesBinary </span><span style="color: #007700">= </span><span style="color: #DD0000">b"a binary string for </span><span style="color: #0000BB">$who</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$tagNamesLocal  </span><span style="color: #007700">= function ( </span><span style="color: #0000BB">$nums </span><span style="color: #007700">) { </span><span style="color: #0000BB">$exclaim </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; return </span><span style="color: #0000BB">$nums</span><span style="color: #007700">; };<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">PHP_INT_SIZE</font><font color="red"></font>/}</b>][<b>{<font color="blue">upper</font><font color="red"></font>}</b>abc<b>{/<font color="blue">upper</font><font color="red"></font>}</b>][<b>{<font color="blue">fibonacci </font><font color="red">rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>fibonacci</font>}</b><b>{/<font color="blue">fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue">prime </font><font color="red">rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>prime</font>}</b><b>{/<font color="blue">prime</font><font color="red"></font>}</b>][<b>{<font color="blue">nums</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>nums</font>}</b><b>{/<font color="blue">nums</font><font color="red"></font>}</b>][<b>{<font color="blue">exclaim</font><font color="red"></font>}</b>hi<b>{/<font color="blue">exclaim</font><font color="red"></font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> strrev</font>/}</b>][<b>{<font color="blue">strtoupper </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>/}</b>][<b>{<font color="blue">ucwords</font><font color="red"></font>/}</b>][<b>{<font color="blue">who</font><font color="red"></font>/}</b>][<b>{<font color="blue">date</font><font color="red"></font>/}</b>]</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax57a6086463f3b44fc1c190886ffaae05"></div>
-                      <script>
-                      padAjax57a6086463f3b44fc1c190886ffaae05 = new XMLHttpRequest();
-                      padAjax57a6086463f3b44fc1c190886ffaae05.onreadystatechange=function() {
-                      if (padAjax57a6086463f3b44fc1c190886ffaae05.readyState === 4) {
-                      if (padAjax57a6086463f3b44fc1c190886ffaae05.status === 200) {
-                      document.getElementById("padAjax57a6086463f3b44fc1c190886ffaae05").innerHTML=padAjax57a6086463f3b44fc1c190886ffaae05.responseText;
-                      } else {
-                      document.getElementById("padAjax57a6086463f3b44fc1c190886ffaae05").innerHTML=padAjax57a6086463f3b44fc1c190886ffaae05.statusText;
-                      }
-                      }
-                      }
-                      padAjax57a6086463f3b44fc1c190886ffaae05.open("GET","http://localhost/pad/regression/pages/?request/tagnames&padInclude",true);
-                      padAjax57a6086463f3b44fc1c190886ffaae05.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: sequence - Page: types/fibonacci<br>
-                <div id="padAjax90a008669eda286b10262f2753eed0d2"></div>
-                <script>
-                padAjax90a008669eda286b10262f2753eed0d2 = new XMLHttpRequest();
-                padAjax90a008669eda286b10262f2753eed0d2.onreadystatechange=function() {
-                if (padAjax90a008669eda286b10262f2753eed0d2.readyState === 4) {
-                if (padAjax90a008669eda286b10262f2753eed0d2.status === 200) {
-                document.getElementById("padAjax90a008669eda286b10262f2753eed0d2").innerHTML=padAjax90a008669eda286b10262f2753eed0d2.responseText;
-                } else {
-                document.getElementById("padAjax90a008669eda286b10262f2753eed0d2").innerHTML=padAjax90a008669eda286b10262f2753eed0d2.statusText;
-                }
-                }
-                }
-                padAjax90a008669eda286b10262f2753eed0d2.open("GET","http://localhost/pad/sequence/?types/fibonacci&padInclude",true);
-                padAjax90a008669eda286b10262f2753eed0d2.send();
-                </script><br>
-                <hr>
-                App: types - Page: examples/sequence/1-fibonacci<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: sequence/a_play_named_like_its_sequence_plays<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
@@ -338,7 +544,7 @@
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">examples/sequence/1-fibonacci.pad</font>
+                      <font size="-2">sequence/a_play_named_like_its_sequence_plays.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -347,65 +553,327 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A sequence type<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The terms are the rows of the tag; sequence<font color="black">:</font>fibonacci(8) is the eighth in an expression.<font color="black">'</font></font>/}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">rows=10</font>}</b><b>{<font color="green"><font color="red">$</font>fibonacci</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;The eighth: <b>{<font color="blue">echo </font><font color="red">sequence<font color="black">:</font>fibonacci(8)</font>/}</b>&lt;/p&gt;</code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOnNxdWFyZSBtYWtlLCBzcXVhcmUsIHJvd3M9M317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnNxdWFyZX1dW3tzZXF1ZW5jZTpmaWJvbmFjY2kgcm93cz01LCBtYWtlLCBmaWJvbmFjY2l9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6c3F1YXJlIHJvd3M9M317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnNxdWFyZX1dW3tzZXF1ZW5jZTpzcXVhcmUgcm93cz0zLCBtYWtlPSdzcXVhcmUnfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6c3F1YXJlfV1be3NlcXVlbmNlOnNxdWFyZSBrZWVwLCBzcXVhcmUsIHJvd3M9M317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnNxdWFyZX1dXG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOnNxdWFyZSBtYWtlLCBzcXVhcmUsIHJvd3M9M317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnNxdWFyZX1dW3tzZXF1ZW5jZTpmaWJvbmFjY2kgcm93cz01LCBtYWtlLCBmaWJvbmFjY2l9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6c3F1YXJlIHJvd3M9M317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnNxdWFyZX1dW3tzZXF1ZW5jZTpzcXVhcmUgcm93cz0zLCBtYWtlPSdzcXVhcmUnfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6c3F1YXJlfV1be3NlcXVlbmNlOnNxdWFyZSBrZWVwLCBzcXVhcmUsIHJvd3M9M317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnNxdWFyZX1dXG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>square </font><font color="red">make<font color="black">,</font> square<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>square</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">rows=5<font color="black">,</font> make<font color="black">,</font> fibonacci</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>square </font><font color="red">rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>square</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>square </font><font color="red">rows=3<font color="black">,</font> make=<font color="black">'</font>square<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>square</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>square </font><font color="red">keep<font color="black">,</font> square<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>square</font><font color="red"></font>}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjax59cc6e1c87dc56dadd6a7d6259e79845"></div>
+                      <div id="padAjax7ea44a9d6a45a2895780582194e7307a"></div>
                       <script>
-                      padAjax59cc6e1c87dc56dadd6a7d6259e79845 = new XMLHttpRequest();
-                      padAjax59cc6e1c87dc56dadd6a7d6259e79845.onreadystatechange=function() {
-                      if (padAjax59cc6e1c87dc56dadd6a7d6259e79845.readyState === 4) {
-                      if (padAjax59cc6e1c87dc56dadd6a7d6259e79845.status === 200) {
-                      document.getElementById("padAjax59cc6e1c87dc56dadd6a7d6259e79845").innerHTML=padAjax59cc6e1c87dc56dadd6a7d6259e79845.responseText;
+                      padAjax7ea44a9d6a45a2895780582194e7307a = new XMLHttpRequest();
+                      padAjax7ea44a9d6a45a2895780582194e7307a.onreadystatechange=function() {
+                      if (padAjax7ea44a9d6a45a2895780582194e7307a.readyState === 4) {
+                      if (padAjax7ea44a9d6a45a2895780582194e7307a.status === 200) {
+                      document.getElementById("padAjax7ea44a9d6a45a2895780582194e7307a").innerHTML=padAjax7ea44a9d6a45a2895780582194e7307a.responseText;
                       } else {
-                      document.getElementById("padAjax59cc6e1c87dc56dadd6a7d6259e79845").innerHTML=padAjax59cc6e1c87dc56dadd6a7d6259e79845.statusText;
+                      document.getElementById("padAjax7ea44a9d6a45a2895780582194e7307a").innerHTML=padAjax7ea44a9d6a45a2895780582194e7307a.statusText;
                       }
                       }
                       }
-                      padAjax59cc6e1c87dc56dadd6a7d6259e79845.open("GET","http://localhost/pad/types/?examples/sequence/1-fibonacci&padInclude",true);
-                      padAjax59cc6e1c87dc56dadd6a7d6259e79845.send();
+                      padAjax7ea44a9d6a45a2895780582194e7307a.open("GET","http://localhost/pad/regression/framework/?sequence/a_play_named_like_its_sequence_plays&padInclude",true);
+                      padAjax7ea44a9d6a45a2895780582194e7307a.send();
                       </script>
                     </td>
                   </tr>
                 </table><br>
                 <hr>
-                App: tags - Page: tag/sequence/fibonacci<br>
-                <table border="1" cellpadding="10" cellspacing="0">
+                App: regression/framework - Page: sequence/a_recurrence_keeps_its_history_under_a_filter<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
-                      <font size="-2">tag/[tagType]/[tagKind].php</font>
+                      <font size="-2"></font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">tag/[tagType]/[tagKind].pad</font>
+                      <font size="-2">sequence/a_recurrence_keeps_its_history_under_a_filter.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
                     </th>
                   </tr>
                   <tr>
+                    <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page of a kind - a chart type, a game, a toy, an icon, a sequence type ... - by the<br>  // two names of its address, ?tag/chart/pie: the frame of every tag page around it<br>  // (tag/_inits.pad, tag/_exits.pad) and what tag/_exits.php reads of the kind. A name that is<br>  // no kind is a page not found.<br><br>  </span><span style="color: #007700">if ( ! </span><span style="color: #0000BB">is_string </span><span style="color: #007700">( </span><span style="color: #0000BB">$tagType </span><span style="color: #007700">) or ! </span><span style="color: #0000BB">is_string </span><span style="color: #007700">( </span><span style="color: #0000BB">$tagKind </span><span style="color: #007700">) or ! isset ( </span><span style="color: #0000BB">tagsCatalog </span><span style="color: #007700">() [</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$tagType</span><span style="color: #DD0000">:</span><span style="color: #0000BB">$tagKind</span><span style="color: #DD0000">"</span><span style="color: #007700">] ) )<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOmZpYm9uYWNjaSByb3dzPTYsIGtlZXAsIGV2ZW59eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOmZpYm9uYWNjaSByb3dzPTYsIGtlZXAsIGV2ZW59eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">rows=6<font color="black">,</font> keep<font color="black">,</font> even</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="green"><font color="red">!</font>tagKindHtml</font>}</b><br>&lt;/section&gt;<br><br>&lt;section class="block" aria-labelledby="examples"&gt;&lt;h2 id="examples"&gt;Example&lt;/h2&gt;<br>  <b>{<font color="blue">tagKindExample</font><font color="red"></font>}</b><br>  &lt;div class="example" id="example-1"&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>about</font>}</b>&lt;p class="example-about"&gt;<b>{<font color="green"><font color="red">$</font>about</font>}</b>&lt;/p&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;div class="example-grid<b>{<font color="blue">if </font><font color="red">not <font color="red">$</font>run</font>}</b> is-static<b>{/<font color="blue">if</font><font color="red"></font>}</b>"&gt;<br>      &lt;div class="cell"&gt;<br>        &lt;div class="cell-head"&gt;&lt;span&gt;Template&lt;/span&gt;&lt;span class="cell-file"&gt;<b>{<font color="green"><font color="red">$</font>file</font>}</b>&lt;/span&gt;&lt;/div&gt;<br>        &lt;pre class="code"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>padHtml</font>}</b>&lt;/code&gt;<br>        <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>php</font>}</b><br>        &lt;div class="cell-head"&gt;&lt;span&gt;PHP&lt;/span&gt;&lt;span class="cell-file"&gt;<b>{<font color="green"><font color="red">$</font>php</font>}</b>&lt;/span&gt;&lt;/div&gt;<br>        &lt;pre class="code"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>phpHtml</font>}</b>&lt;/code&gt;<br>        <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>      &lt;/div&gt;<br>      <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>run</font>}</b><br>      &lt;div class="cell"&gt;<br>        &lt;div class="cell-head"&gt;&lt;span&gt;Result&lt;/span&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>open</font>}</b>&lt;a class="cell-file" href="<b>{<font color="green"><font color="red">$</font>open</font>}</b>"&gt;open alone&lt;/a&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/div&gt;<br>        &lt;div class="result"&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>app</font>}</b><b>{<font color="blue">page </font><font color="red"><font color="red">$</font>page<font color="black">,</font> app=<font color="red">$</font>app<font color="black">,</font> ajax=0</font>/}</b><b>{<font color="blue">elseif </font><font color="red"><font color="red">$</font>page</font>}</b><b>{<font color="blue">page </font><font color="red"><font color="red">$</font>page</font>/}</b><b>{<font color="blue">else</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>source <font color="black">|</font> code</font>/}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/div&gt;<br>      &lt;/div&gt;<br>      <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;/div&gt;<br>  &lt;/div&gt;<br>  <b>{/<font color="blue">tagKindExample</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax4df6c939a3f0eef092f0527c6e2e51b5"></div>
+                      <div id="padAjax0abad3159186722e739f397311b5c2ce"></div>
                       <script>
-                      padAjax4df6c939a3f0eef092f0527c6e2e51b5 = new XMLHttpRequest();
-                      padAjax4df6c939a3f0eef092f0527c6e2e51b5.onreadystatechange=function() {
-                      if (padAjax4df6c939a3f0eef092f0527c6e2e51b5.readyState === 4) {
-                      if (padAjax4df6c939a3f0eef092f0527c6e2e51b5.status === 200) {
-                      document.getElementById("padAjax4df6c939a3f0eef092f0527c6e2e51b5").innerHTML=padAjax4df6c939a3f0eef092f0527c6e2e51b5.responseText;
+                      padAjax0abad3159186722e739f397311b5c2ce = new XMLHttpRequest();
+                      padAjax0abad3159186722e739f397311b5c2ce.onreadystatechange=function() {
+                      if (padAjax0abad3159186722e739f397311b5c2ce.readyState === 4) {
+                      if (padAjax0abad3159186722e739f397311b5c2ce.status === 200) {
+                      document.getElementById("padAjax0abad3159186722e739f397311b5c2ce").innerHTML=padAjax0abad3159186722e739f397311b5c2ce.responseText;
                       } else {
-                      document.getElementById("padAjax4df6c939a3f0eef092f0527c6e2e51b5").innerHTML=padAjax4df6c939a3f0eef092f0527c6e2e51b5.statusText;
+                      document.getElementById("padAjax0abad3159186722e739f397311b5c2ce").innerHTML=padAjax0abad3159186722e739f397311b5c2ce.statusText;
                       }
                       }
                       }
-                      padAjax4df6c939a3f0eef092f0527c6e2e51b5.open("GET","http://localhost/pad/tags/?tag/sequence/fibonacci&padInclude",true);
-                      padAjax4df6c939a3f0eef092f0527c6e2e51b5.send();
+                      padAjax0abad3159186722e739f397311b5c2ce.open("GET","http://localhost/pad/regression/framework/?sequence/a_recurrence_keeps_its_history_under_a_filter&padInclude",true);
+                      padAjax0abad3159186722e739f397311b5c2ce.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/a_recurrence_offers_the_positions_increment_names<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/a_recurrence_offers_the_positions_increment_names.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOmZpYm9uYWNjaSBpbmNyZW1lbnQ9Miwgcm93cz01fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6Zmlib25hY2NpfV1be3NlcXVlbmNlOmx1Y2FzIGluY3JlbWVudD0yLCByb3dzPTR9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpsdWNhc31dW3tzZXF1ZW5jZTp0cmlib25hY2NpIGluY3JlbWVudD0zLCBmcm9tPTIsIHJvd3M9NH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnRyaWJvbmFjY2l9XVt7c2VxdWVuY2U6Zmlib25hY2NpIGZyb209NSwgc2tpcD0xLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6Z29sb21iIGZyb209MTUwMDAsIHJvd3M9Mn17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmdvbG9tYn1dW3tzZXF1ZW5jZTpmaWJvbmFjY2kgZnJvbT01LCB0cnk9Mn17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmZpYm9uYWNjaX1dW3tzZXF1ZW5jZTpmaWJvbmFjY2kgZnJvbT0wLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6Zmlib25hY2NpIGZyb209LTMsIGluY3JlbWVudD0yLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6Zmlib25hY2NpIGluY3JlbWVudD0nMS4uLjMnLCByb3dzPTUsIGNvdW50fXskc2VxdWVuY2V9ey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOmZpYm9uYWNjaSBpbmNyZW1lbnQ9Miwgcm93cz01fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6Zmlib25hY2NpfV1be3NlcXVlbmNlOmx1Y2FzIGluY3JlbWVudD0yLCByb3dzPTR9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpsdWNhc31dW3tzZXF1ZW5jZTp0cmlib25hY2NpIGluY3JlbWVudD0zLCBmcm9tPTIsIHJvd3M9NH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnRyaWJvbmFjY2l9XVt7c2VxdWVuY2U6Zmlib25hY2NpIGZyb209NSwgc2tpcD0xLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6Z29sb21iIGZyb209MTUwMDAsIHJvd3M9Mn17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmdvbG9tYn1dW3tzZXF1ZW5jZTpmaWJvbmFjY2kgZnJvbT01LCB0cnk9Mn17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmZpYm9uYWNjaX1dW3tzZXF1ZW5jZTpmaWJvbmFjY2kgZnJvbT0wLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6Zmlib25hY2NpIGZyb209LTMsIGluY3JlbWVudD0yLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6Zmlib25hY2NpIGluY3JlbWVudD0nMS4uLjMnLCByb3dzPTUsIGNvdW50fXskc2VxdWVuY2V9ey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">increment=2<font color="black">,</font> rows=5</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>lucas </font><font color="red">increment=2<font color="black">,</font> rows=4</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>lucas</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>tribonacci </font><font color="red">increment=3<font color="black">,</font> from=2<font color="black">,</font> rows=4</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>tribonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">from=5<font color="black">,</font> skip=1<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>golomb </font><font color="red">from=15000<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>golomb</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">from=5<font color="black">,</font> try=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">from=0<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">from=-3<font color="black">,</font> increment=2<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">increment=<font color="black">'</font>1...3<font color="black">'</font><font color="black">,</font> rows=5<font color="black">,</font> count</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax93b3394ee680b65e9f899a47a3847e6f"></div>
+                      <script>
+                      padAjax93b3394ee680b65e9f899a47a3847e6f = new XMLHttpRequest();
+                      padAjax93b3394ee680b65e9f899a47a3847e6f.onreadystatechange=function() {
+                      if (padAjax93b3394ee680b65e9f899a47a3847e6f.readyState === 4) {
+                      if (padAjax93b3394ee680b65e9f899a47a3847e6f.status === 200) {
+                      document.getElementById("padAjax93b3394ee680b65e9f899a47a3847e6f").innerHTML=padAjax93b3394ee680b65e9f899a47a3847e6f.responseText;
+                      } else {
+                      document.getElementById("padAjax93b3394ee680b65e9f899a47a3847e6f").innerHTML=padAjax93b3394ee680b65e9f899a47a3847e6f.statusText;
+                      }
+                      }
+                      }
+                      padAjax93b3394ee680b65e9f899a47a3847e6f.open("GET","http://localhost/pad/regression/framework/?sequence/a_recurrence_offers_the_positions_increment_names&padInclude",true);
+                      padAjax93b3394ee680b65e9f899a47a3847e6f.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/a_recurrence_with_a_random_increment_offers_a_whole_position_or_none<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/a_recurrence_with_a_random_increment_offers_a_whole_position_or_none.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOmdvbG9tYiBmcm9tPTIuNSwgaW5jcmVtZW50PScxLi4uMycsIHJvd3M9M317JHNlcXVlbmNlfSBAZWxzZUBub25ley9zZXF1ZW5jZTpnb2xvbWJ9XVt7c2VxdWVuY2U6Zmlib25hY2NpIGZyb209LTIuNSwgaW5jcmVtZW50PScxLi4uMycsIHJvd3M9M317JHNlcXVlbmNlfSBAZWxzZUBub25ley9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6Zmlib25hY2NpIGluY3JlbWVudD0nMC4uLjAnLCByb3dzPTN9eyRzZXF1ZW5jZX0gQGVsc2VAbm9uZXsvc2VxdWVuY2U6Zmlib25hY2NpfV1be3NlcXVlbmNlOmZpYm9uYWNjaSBpbmNyZW1lbnQ9Jy0zLi4uLTEnLCByb3dzPTN9eyRzZXF1ZW5jZX0gQGVsc2VAbm9uZXsvc2VxdWVuY2U6Zmlib25hY2NpfV1be3NlcXVlbmNlOnNxdWFyZSBpbmNyZW1lbnQ9Jy0zLi4uLTEnLCByb3dzPTN9eyRzZXF1ZW5jZX0gQGVsc2VAbm9uZXsvc2VxdWVuY2U6c3F1YXJlfV1be3NlcXVlbmNlOmZpYm9uYWNjaSBpbmNyZW1lbnQ9JzEuLi4xJywgcm93cz00fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6Zmlib25hY2NpfV1be3NlcXVlbmNlOmZpYm9uYWNjaSBpbmNyZW1lbnQ9JzAuLi4yJywgcm93cz00LCBjb3VudH17JHNlcXVlbmNlfXsvc2VxdWVuY2U6Zmlib25hY2NpfV1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOmdvbG9tYiBmcm9tPTIuNSwgaW5jcmVtZW50PScxLi4uMycsIHJvd3M9M317JHNlcXVlbmNlfSBAZWxzZUBub25ley9zZXF1ZW5jZTpnb2xvbWJ9XVt7c2VxdWVuY2U6Zmlib25hY2NpIGZyb209LTIuNSwgaW5jcmVtZW50PScxLi4uMycsIHJvd3M9M317JHNlcXVlbmNlfSBAZWxzZUBub25ley9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6Zmlib25hY2NpIGluY3JlbWVudD0nMC4uLjAnLCByb3dzPTN9eyRzZXF1ZW5jZX0gQGVsc2VAbm9uZXsvc2VxdWVuY2U6Zmlib25hY2NpfV1be3NlcXVlbmNlOmZpYm9uYWNjaSBpbmNyZW1lbnQ9Jy0zLi4uLTEnLCByb3dzPTN9eyRzZXF1ZW5jZX0gQGVsc2VAbm9uZXsvc2VxdWVuY2U6Zmlib25hY2NpfV1be3NlcXVlbmNlOnNxdWFyZSBpbmNyZW1lbnQ9Jy0zLi4uLTEnLCByb3dzPTN9eyRzZXF1ZW5jZX0gQGVsc2VAbm9uZXsvc2VxdWVuY2U6c3F1YXJlfV1be3NlcXVlbmNlOmZpYm9uYWNjaSBpbmNyZW1lbnQ9JzEuLi4xJywgcm93cz00fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6Zmlib25hY2NpfV1be3NlcXVlbmNlOmZpYm9uYWNjaSBpbmNyZW1lbnQ9JzAuLi4yJywgcm93cz00LCBjb3VudH17JHNlcXVlbmNlfXsvc2VxdWVuY2U6Zmlib25hY2NpfV1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>golomb </font><font color="red">from=2.5<font color="black">,</font> increment=<font color="black">'</font>1...3<font color="black">'</font><font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>golomb</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">from=-2.5<font color="black">,</font> increment=<font color="black">'</font>1...3<font color="black">'</font><font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">increment=<font color="black">'</font>0...0<font color="black">'</font><font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">increment=<font color="black">'</font>-3...-1<font color="black">'</font><font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>square </font><font color="red">increment=<font color="black">'</font>-3...-1<font color="black">'</font><font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>square</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">increment=<font color="black">'</font>1...1<font color="black">'</font><font color="black">,</font> rows=4</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">increment=<font color="black">'</font>0...2<font color="black">'</font><font color="black">,</font> rows=4<font color="black">,</font> count</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax7e1c4b9e0a91adab876e6fe1aaf1eb7f"></div>
+                      <script>
+                      padAjax7e1c4b9e0a91adab876e6fe1aaf1eb7f = new XMLHttpRequest();
+                      padAjax7e1c4b9e0a91adab876e6fe1aaf1eb7f.onreadystatechange=function() {
+                      if (padAjax7e1c4b9e0a91adab876e6fe1aaf1eb7f.readyState === 4) {
+                      if (padAjax7e1c4b9e0a91adab876e6fe1aaf1eb7f.status === 200) {
+                      document.getElementById("padAjax7e1c4b9e0a91adab876e6fe1aaf1eb7f").innerHTML=padAjax7e1c4b9e0a91adab876e6fe1aaf1eb7f.responseText;
+                      } else {
+                      document.getElementById("padAjax7e1c4b9e0a91adab876e6fe1aaf1eb7f").innerHTML=padAjax7e1c4b9e0a91adab876e6fe1aaf1eb7f.statusText;
+                      }
+                      }
+                      }
+                      padAjax7e1c4b9e0a91adab876e6fe1aaf1eb7f.open("GET","http://localhost/pad/regression/framework/?sequence/a_recurrence_with_a_random_increment_offers_a_whole_position_or_none&padInclude",true);
+                      padAjax7e1c4b9e0a91adab876e6fe1aaf1eb7f.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/a_recurrence_works_out_its_first_position_and_keeps_its_increment_as_written<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/a_recurrence_works_out_its_first_position_and_keeps_its_increment_as_written.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOmZpYm9uYWNjaSBmcm9tPS0yMDAwMDAwMDAwLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6bHVjYXMgZnJvbT0tMWUyMCwgcm93cz0yfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6bHVjYXN9XVt7c2VxdWVuY2U6dHJpYm9uYWNjaSBmcm9tPS05MjIzMzcyMDM2ODU0Nzc1ODA4LCByb3dzPTJ9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTp0cmlib25hY2NpfV1be3NlcXVlbmNlOmZpYm9uYWNjaSBmcm9tPS01LCBpbmNyZW1lbnQ9Mywgcm93cz0zfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6Zmlib25hY2NpfV1be3NlcXVlbmNlOmZpYm9uYWNjaSBpbmNyZW1lbnQ9Mi41LCByb3dzPTR9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6Z29sb21iIGZyb209Mi41LCByb3dzPTN9eyRzZXF1ZW5jZX0gQGVsc2VAbm9uZXsvc2VxdWVuY2U6Z29sb21ifV1be3NlcXVlbmNlOmZpYm9uYWNjaSBpbmNyZW1lbnQ9MCwgcm93cz0zfXskc2VxdWVuY2V9IEBlbHNlQG5vbmV7L3NlcXVlbmNlOmZpYm9uYWNjaX1dW3tzZXF1ZW5jZTpmaWJvbmFjY2kgZnJvbT00LCBpbmNyZW1lbnQ9Miwgcm93cz00fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6Zmlib25hY2NpfV1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOmZpYm9uYWNjaSBmcm9tPS0yMDAwMDAwMDAwLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6bHVjYXMgZnJvbT0tMWUyMCwgcm93cz0yfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6bHVjYXN9XVt7c2VxdWVuY2U6dHJpYm9uYWNjaSBmcm9tPS05MjIzMzcyMDM2ODU0Nzc1ODA4LCByb3dzPTJ9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTp0cmlib25hY2NpfV1be3NlcXVlbmNlOmZpYm9uYWNjaSBmcm9tPS01LCBpbmNyZW1lbnQ9Mywgcm93cz0zfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6Zmlib25hY2NpfV1be3NlcXVlbmNlOmZpYm9uYWNjaSBpbmNyZW1lbnQ9Mi41LCByb3dzPTR9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6Z29sb21iIGZyb209Mi41LCByb3dzPTN9eyRzZXF1ZW5jZX0gQGVsc2VAbm9uZXsvc2VxdWVuY2U6Z29sb21ifV1be3NlcXVlbmNlOmZpYm9uYWNjaSBpbmNyZW1lbnQ9MCwgcm93cz0zfXskc2VxdWVuY2V9IEBlbHNlQG5vbmV7L3NlcXVlbmNlOmZpYm9uYWNjaX1dW3tzZXF1ZW5jZTpmaWJvbmFjY2kgZnJvbT00LCBpbmNyZW1lbnQ9Miwgcm93cz00fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6Zmlib25hY2NpfV1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">from=-2000000000<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>lucas </font><font color="red">from=-1e20<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>lucas</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>tribonacci </font><font color="red">from=-9223372036854775808<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>tribonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">from=-5<font color="black">,</font> increment=3<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">increment=2.5<font color="black">,</font> rows=4</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>golomb </font><font color="red">from=2.5<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>golomb</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">increment=0<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">from=4<font color="black">,</font> increment=2<font color="black">,</font> rows=4</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax03aa02f04d125691a59f7b29deb76fac"></div>
+                      <script>
+                      padAjax03aa02f04d125691a59f7b29deb76fac = new XMLHttpRequest();
+                      padAjax03aa02f04d125691a59f7b29deb76fac.onreadystatechange=function() {
+                      if (padAjax03aa02f04d125691a59f7b29deb76fac.readyState === 4) {
+                      if (padAjax03aa02f04d125691a59f7b29deb76fac.status === 200) {
+                      document.getElementById("padAjax03aa02f04d125691a59f7b29deb76fac").innerHTML=padAjax03aa02f04d125691a59f7b29deb76fac.responseText;
+                      } else {
+                      document.getElementById("padAjax03aa02f04d125691a59f7b29deb76fac").innerHTML=padAjax03aa02f04d125691a59f7b29deb76fac.statusText;
+                      }
+                      }
+                      }
+                      padAjax03aa02f04d125691a59f7b29deb76fac.open("GET","http://localhost/pad/regression/framework/?sequence/a_recurrence_works_out_its_first_position_and_keeps_its_increment_as_written&padInclude",true);
+                      padAjax03aa02f04d125691a59f7b29deb76fac.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/a_term_past_the_integer_range_ends_the_run_before_a_play_sees_it<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/a_term_past_the_integer_range_ends_the_run_before_a_play_sees_it.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOmZpYm9uYWNjaSBrZWVwLCBldmVuLCByb3dzPTUwLCBjb3VudH17JHNlcXVlbmNlfXsvc2VxdWVuY2U6Zmlib25hY2NpfV1be3NlcXVlbmNlOmZpYm9uYWNjaSBrZWVwLCBldmVuLCByb3dzPTUwLCBsYXN0fXskc2VxdWVuY2V9ey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6cG93ZXIgMiwgcm93cz03MCwgY291bnR9eyRzZXF1ZW5jZX17L3NlcXVlbmNlOnBvd2VyfV1be3NlcXVlbmNlOnBvd2VyIDIsIHJvd3M9NzAsIGxhc3R9eyRzZXF1ZW5jZX17L3NlcXVlbmNlOnBvd2VyfV1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOmZpYm9uYWNjaSBrZWVwLCBldmVuLCByb3dzPTUwLCBjb3VudH17JHNlcXVlbmNlfXsvc2VxdWVuY2U6Zmlib25hY2NpfV1be3NlcXVlbmNlOmZpYm9uYWNjaSBrZWVwLCBldmVuLCByb3dzPTUwLCBsYXN0fXskc2VxdWVuY2V9ey9zZXF1ZW5jZTpmaWJvbmFjY2l9XVt7c2VxdWVuY2U6cG93ZXIgMiwgcm93cz03MCwgY291bnR9eyRzZXF1ZW5jZX17L3NlcXVlbmNlOnBvd2VyfV1be3NlcXVlbmNlOnBvd2VyIDIsIHJvd3M9NzAsIGxhc3R9eyRzZXF1ZW5jZX17L3NlcXVlbmNlOnBvd2VyfV1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">keep<font color="black">,</font> even<font color="black">,</font> rows=50<font color="black">,</font> count</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">keep<font color="black">,</font> even<font color="black">,</font> rows=50<font color="black">,</font> last</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>power </font><font color="red">2<font color="black">,</font> rows=70<font color="black">,</font> count</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>power</font><font color="red"></font>}</b>][<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>power </font><font color="red">2<font color="black">,</font> rows=70<font color="black">,</font> last</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>power</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxc8a068e8285f9121d2af7eba052be20a"></div>
+                      <script>
+                      padAjaxc8a068e8285f9121d2af7eba052be20a = new XMLHttpRequest();
+                      padAjaxc8a068e8285f9121d2af7eba052be20a.onreadystatechange=function() {
+                      if (padAjaxc8a068e8285f9121d2af7eba052be20a.readyState === 4) {
+                      if (padAjaxc8a068e8285f9121d2af7eba052be20a.status === 200) {
+                      document.getElementById("padAjaxc8a068e8285f9121d2af7eba052be20a").innerHTML=padAjaxc8a068e8285f9121d2af7eba052be20a.responseText;
+                      } else {
+                      document.getElementById("padAjaxc8a068e8285f9121d2af7eba052be20a").innerHTML=padAjaxc8a068e8285f9121d2af7eba052be20a.statusText;
+                      }
+                      }
+                      }
+                      padAjaxc8a068e8285f9121d2af7eba052be20a.open("GET","http://localhost/pad/regression/framework/?sequence/a_term_past_the_integer_range_ends_the_run_before_a_play_sees_it&padInclude",true);
+                      padAjaxc8a068e8285f9121d2af7eba052be20a.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/a_type_without_an_end_is_cut_to_its_page_before_an_action_written_before_page<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/a_type_without_an_end_is_cut_to_its_page_before_an_action_written_before_page.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOnByaW1lIHJldmVyc2UsIHBhZ2U9MSwgcm93cz01fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6cHJpbWV9XVxuW3tzZXF1ZW5jZTpwcmltZSByZXZlcnNlLCBwYWdlPTIsIHJvd3M9NX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnByaW1lfV1cblt7c2VxdWVuY2U6cHJpbWUgcmV2ZXJzZSwgcGFnZT00LCByb3dzPTV9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpwcmltZX1dXG5be3NlcXVlbmNlOmZpYm9uYWNjaSByZXZlcnNlLCBwYWdlPTcsIHJvd3M9M317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmZpYm9uYWNjaX1dXG5be3NlcXVlbmNlOnByaW1lIHRvPTUwLCByZXZlcnNlLCBwYWdlPTIsIHJvd3M9NX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnByaW1lfV1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOnByaW1lIHJldmVyc2UsIHBhZ2U9MSwgcm93cz01fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6cHJpbWV9XVxuW3tzZXF1ZW5jZTpwcmltZSByZXZlcnNlLCBwYWdlPTIsIHJvd3M9NX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnByaW1lfV1cblt7c2VxdWVuY2U6cHJpbWUgcmV2ZXJzZSwgcGFnZT00LCByb3dzPTV9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpwcmltZX1dXG5be3NlcXVlbmNlOmZpYm9uYWNjaSByZXZlcnNlLCBwYWdlPTcsIHJvd3M9M317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmZpYm9uYWNjaX1dXG5be3NlcXVlbmNlOnByaW1lIHRvPTUwLCByZXZlcnNlLCBwYWdlPTIsIHJvd3M9NX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnByaW1lfV1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">reverse<font color="black">,</font> page=1<font color="black">,</font> rows=5</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">reverse<font color="black">,</font> page=2<font color="black">,</font> rows=5</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">reverse<font color="black">,</font> page=4<font color="black">,</font> rows=5</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">reverse<font color="black">,</font> page=7<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">to=50<font color="black">,</font> reverse<font color="black">,</font> page=2<font color="black">,</font> rows=5</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb6c041f225e05fca5eb80f3166578a35"></div>
+                      <script>
+                      padAjaxb6c041f225e05fca5eb80f3166578a35 = new XMLHttpRequest();
+                      padAjaxb6c041f225e05fca5eb80f3166578a35.onreadystatechange=function() {
+                      if (padAjaxb6c041f225e05fca5eb80f3166578a35.readyState === 4) {
+                      if (padAjaxb6c041f225e05fca5eb80f3166578a35.status === 200) {
+                      document.getElementById("padAjaxb6c041f225e05fca5eb80f3166578a35").innerHTML=padAjaxb6c041f225e05fca5eb80f3166578a35.responseText;
+                      } else {
+                      document.getElementById("padAjaxb6c041f225e05fca5eb80f3166578a35").innerHTML=padAjaxb6c041f225e05fca5eb80f3166578a35.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb6c041f225e05fca5eb80f3166578a35.open("GET","http://localhost/pad/regression/framework/?sequence/a_type_without_an_end_is_cut_to_its_page_before_an_action_written_before_page&padInclude",true);
+                      padAjaxb6c041f225e05fca5eb80f3166578a35.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: sequence/an_action_that_drops_terms_of_a_type_without_an_end_makes_terms_until_the_page_after_is_full<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">sequence/an_action_that_drops_terms_of_a_type_without_an_end_makes_terms_until_the_page_after_is_full.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOmdvbG9tYiBkZWR1cCwgcGFnZT0yLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpnb2xvbWJ9e3BhZDpwYWdlciAnc2VxdWVuY2UnfXska2luZH06eyRwYWdlfSB7L3BhZDpwYWdlcn1dXG5be3NlcXVlbmNlOmZpYm9uYWNjaSBkZWR1cCwgcGFnZT0xLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9e3BhZDpwYWdlciAnc2VxdWVuY2UnfXska2luZH06eyRwYWdlfSB7L3BhZDpwYWdlcn1dXG5be3NlcXVlbmNlOnByaW1lIGZpcnN0PTMsIG5lZ2F0aXZlLCBwYWdlPTEsIHJvd3M9M317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnByaW1lfXtwYWQ6cGFnZXIgJ3NlcXVlbmNlJ317JGtpbmR9OnskcGFnZX0gey9wYWQ6cGFnZXJ9XVxue3NlcXVlbmNlOmxpc3QgJzI7Mzs1Ozc7MTE7MTM7MTc7MTknLCBwdXNoPSdzJy99W3tzZXF1ZW5jZTpwcmltZSBvbmx5Tm93PSdzJywgcGFnZT0xLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpwcmltZX17cGFkOnBhZ2VyICdzZXF1ZW5jZSd9eyRraW5kfTp7JHBhZ2V9IHsvcGFkOnBhZ2VyfV1cblt7c2VxdWVuY2U6ZGlnaXRTdW0gZGVkdXAsIHBhZ2U9Miwgcm93cz01fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6ZGlnaXRTdW19XVxuW3tzZXF1ZW5jZTpnb2xvbWIgZnJvbT01LCBkZWR1cCwgcGFnZT0yLCByb3dzPTN9eyRzZXF1ZW5jZX06eyRkZWR1cH0gey9zZXF1ZW5jZTpnb2xvbWJ9XVxuW3tzZXF1ZW5jZTprb2xha29za2kgZGVkdXAsIHBhZ2U9MSwgcm93cz0zfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6a29sYWtvc2tpfXtwYWQ6cGFnZXIgJ3NlcXVlbmNlJ317JGtpbmR9OnskcGFnZX0gey9wYWQ6cGFnZXJ9XVxue3NlcXVlbmNlOmxpc3QgJzI7Mzs1OzcnLCBwdXNoPSd0Jy99W3tzZXF1ZW5jZTpwcmltZSBpbnRlcnNlY3Rpb249J3QnLCBwYWdlPTEsIHJvd3M9M317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnByaW1lfXtwYWQ6cGFnZXIgJ3NlcXVlbmNlJ317JGtpbmR9OnskcGFnZX0gey9wYWQ6cGFnZXJ9XVxue3NlcXVlbmNlOmxpc3QgJzEwMDsyMDAnLCBwdXNoPSd1Jy99W3tzZXF1ZW5jZTpwcmltZSBkZWR1cD0ndScsIHBhZ2U9Mywgcm93cz0zfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6cHJpbWV9XVxue3NlcXVlbmNlOnByaW1lIHJvd3M9MTAwLCBwdXNoPSd2Jy99W3tzZXF1ZW5jZTpwcmltZSBvbmx5Tm93PSd2JywgcGFnZT0xLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpwcmltZX1dXG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJbe3NlcXVlbmNlOmdvbG9tYiBkZWR1cCwgcGFnZT0yLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpnb2xvbWJ9e3BhZDpwYWdlciAnc2VxdWVuY2UnfXska2luZH06eyRwYWdlfSB7L3BhZDpwYWdlcn1dXG5be3NlcXVlbmNlOmZpYm9uYWNjaSBkZWR1cCwgcGFnZT0xLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpmaWJvbmFjY2l9e3BhZDpwYWdlciAnc2VxdWVuY2UnfXska2luZH06eyRwYWdlfSB7L3BhZDpwYWdlcn1dXG5be3NlcXVlbmNlOnByaW1lIGZpcnN0PTMsIG5lZ2F0aXZlLCBwYWdlPTEsIHJvd3M9M317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnByaW1lfXtwYWQ6cGFnZXIgJ3NlcXVlbmNlJ317JGtpbmR9OnskcGFnZX0gey9wYWQ6cGFnZXJ9XVxue3NlcXVlbmNlOmxpc3QgJzI7Mzs1Ozc7MTE7MTM7MTc7MTknLCBwdXNoPSdzJy99W3tzZXF1ZW5jZTpwcmltZSBvbmx5Tm93PSdzJywgcGFnZT0xLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpwcmltZX17cGFkOnBhZ2VyICdzZXF1ZW5jZSd9eyRraW5kfTp7JHBhZ2V9IHsvcGFkOnBhZ2VyfV1cblt7c2VxdWVuY2U6ZGlnaXRTdW0gZGVkdXAsIHBhZ2U9Miwgcm93cz01fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6ZGlnaXRTdW19XVxuW3tzZXF1ZW5jZTpnb2xvbWIgZnJvbT01LCBkZWR1cCwgcGFnZT0yLCByb3dzPTN9eyRzZXF1ZW5jZX06eyRkZWR1cH0gey9zZXF1ZW5jZTpnb2xvbWJ9XVxuW3tzZXF1ZW5jZTprb2xha29za2kgZGVkdXAsIHBhZ2U9MSwgcm93cz0zfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6a29sYWtvc2tpfXtwYWQ6cGFnZXIgJ3NlcXVlbmNlJ317JGtpbmR9OnskcGFnZX0gey9wYWQ6cGFnZXJ9XVxue3NlcXVlbmNlOmxpc3QgJzI7Mzs1OzcnLCBwdXNoPSd0Jy99W3tzZXF1ZW5jZTpwcmltZSBpbnRlcnNlY3Rpb249J3QnLCBwYWdlPTEsIHJvd3M9M317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOnByaW1lfXtwYWQ6cGFnZXIgJ3NlcXVlbmNlJ317JGtpbmR9OnskcGFnZX0gey9wYWQ6cGFnZXJ9XVxue3NlcXVlbmNlOmxpc3QgJzEwMDsyMDAnLCBwdXNoPSd1Jy99W3tzZXF1ZW5jZTpwcmltZSBkZWR1cD0ndScsIHBhZ2U9Mywgcm93cz0zfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6cHJpbWV9XVxue3NlcXVlbmNlOnByaW1lIHJvd3M9MTAwLCBwdXNoPSd2Jy99W3tzZXF1ZW5jZTpwcmltZSBvbmx5Tm93PSd2JywgcGFnZT0xLCByb3dzPTN9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpwcmltZX1dXG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>golomb </font><font color="red">dedup<font color="black">,</font> page=2<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>golomb</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>pager </font><font color="red"><font color="black">'</font>sequence<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>pager</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci </font><font color="red">dedup<font color="black">,</font> page=1<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>fibonacci</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>pager </font><font color="red"><font color="black">'</font>sequence<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>pager</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">first=3<font color="black">,</font> negative<font color="black">,</font> page=1<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>pager </font><font color="red"><font color="black">'</font>sequence<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>pager</font><font color="red"></font>}</b>]<br><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>list </font><font color="red"><font color="black">'</font>2;3;5;7;11;13;17;19<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>s<font color="black">'</font></font>/}</b>[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">onlyNow=<font color="black">'</font>s<font color="black">'</font><font color="black">,</font> page=1<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>pager </font><font color="red"><font color="black">'</font>sequence<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>pager</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>digitSum </font><font color="red">dedup<font color="black">,</font> page=2<font color="black">,</font> rows=5</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>digitSum</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>golomb </font><font color="red">from=5<font color="black">,</font> dedup<font color="black">,</font> page=2<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b>:<b>{<font color="green"><font color="red">$</font>dedup</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>golomb</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>kolakoski </font><font color="red">dedup<font color="black">,</font> page=1<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>kolakoski</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>pager </font><font color="red"><font color="black">'</font>sequence<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>pager</font><font color="red"></font>}</b>]<br><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>list </font><font color="red"><font color="black">'</font>2;3;5;7<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>t<font color="black">'</font></font>/}</b>[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">intersection=<font color="black">'</font>t<font color="black">'</font><font color="black">,</font> page=1<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>pager </font><font color="red"><font color="black">'</font>sequence<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>pager</font><font color="red"></font>}</b>]<br><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>list </font><font color="red"><font color="black">'</font>100;200<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>u<font color="black">'</font></font>/}</b>[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">dedup=<font color="black">'</font>u<font color="black">'</font><font color="black">,</font> page=3<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b>]<br><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">rows=100<font color="black">,</font> push=<font color="black">'</font>v<font color="black">'</font></font>/}</b>[<b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">onlyNow=<font color="black">'</font>v<font color="black">'</font><font color="black">,</font> page=1<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax73f9c36141c84d4a3ebde427d77c4d59"></div>
+                      <script>
+                      padAjax73f9c36141c84d4a3ebde427d77c4d59 = new XMLHttpRequest();
+                      padAjax73f9c36141c84d4a3ebde427d77c4d59.onreadystatechange=function() {
+                      if (padAjax73f9c36141c84d4a3ebde427d77c4d59.readyState === 4) {
+                      if (padAjax73f9c36141c84d4a3ebde427d77c4d59.status === 200) {
+                      document.getElementById("padAjax73f9c36141c84d4a3ebde427d77c4d59").innerHTML=padAjax73f9c36141c84d4a3ebde427d77c4d59.responseText;
+                      } else {
+                      document.getElementById("padAjax73f9c36141c84d4a3ebde427d77c4d59").innerHTML=padAjax73f9c36141c84d4a3ebde427d77c4d59.statusText;
+                      }
+                      }
+                      }
+                      padAjax73f9c36141c84d4a3ebde427d77c4d59.open("GET","http://localhost/pad/regression/framework/?sequence/an_action_that_drops_terms_of_a_type_without_an_end_makes_terms_until_the_page_after_is_full&padInclude",true);
+                      padAjax73f9c36141c84d4a3ebde427d77c4d59.send();
                       </script>
                     </td>
                   </tr>

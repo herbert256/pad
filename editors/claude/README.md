@@ -5,7 +5,7 @@ Code in one install:
 
 | Part | What Claude Code gets |
 |------|-----------------------|
-| Language server (`.lsp.json`) | After every edit or write of a `.pad` or `.html` page, PAD itself renders the page under the strict syntax check (`editors/lsp/pad-lsp.js`) and its error - `Field '$titel' not found`, `the pair {if} never closes` - comes back to Claude with the line and column, without Claude asking. The `LSP` tool gets go-to-definition along PAD's lookup order and hover from `docs/reference` |
+| Language server (`.lsp.json`) | After every edit or write of a `.pad` or `.html` page, PAD itself renders the page under the strict syntax check (`editors/lsp/pad-lsp.js`) and its error - `Field '$titel' not found`, `the pair {pad:if} never closes` - comes back to Claude with the line and column, without Claude asking. The `LSP` tool gets go-to-definition along PAD's lookup order and hover from `docs/reference` |
 | MCP server (`.mcp.json`) | The PAD tools of `editors/mcp/pad-mcp.js`: `pad_render`, `pad_check`, `pad_trace`, `pad_php`, `pad_compare`, `pad_case`, `pad_test`, `pad_reference`, `pad_builtins`, `pad_apps`, `pad_pages` - see [../mcp/README.md](../mcp/README.md) |
 | Skill `pad-bug-hunt` | How to hunt, prove and fix a bug in PAD with those tools: reproducing, the old engine against the new, which suite a regression case goes in and the answer form it reads, the gate |
 

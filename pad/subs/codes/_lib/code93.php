@@ -6,7 +6,7 @@
   // 43 characters of Code 39 have a symbol each; the rest of ASCII is a pair, one of the four
   // shift symbols and a letter, as the full ASCII table of Code 93 says.
   //
-  //   {code93 'Pad-2026'/}
+  //   {barcode:code93 'Pad-2026'/}
   //
   // padCode93   the bars, or the message why the text is no Code 93
 

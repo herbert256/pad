@@ -1,93 +1,93 @@
-{table}
+{common:table}
 
-{demo} {sequence 15, name='mySequence'/} {/demo}
+{common:demo} {sequence:loop 15, name='mySequence'/} {/common:demo}
 
-{demo} {mySequence}                    {$sequence} {/mySequence} {/demo}
-{demo} {mySequence first=5}            {$sequence} {/mySequence} {/demo}
-{demo} {mySequence first=5, negative}  {$sequence} {/mySequence} {/demo}
-{demo} {mySequence last=5}             {$sequence} {/mySequence} {/demo}
-{demo} {mySequence last=5, negative}   {$sequence} {/mySequence} {/demo}
+{common:demo} {pull:mySequence}                    {$sequence} {/pull:mySequence} {/common:demo}
+{common:demo} {pull:mySequence first=5}            {$sequence} {/pull:mySequence} {/common:demo}
+{common:demo} {pull:mySequence first=5, negative}  {$sequence} {/pull:mySequence} {/common:demo}
+{common:demo} {pull:mySequence last=5}             {$sequence} {/pull:mySequence} {/common:demo}
+{common:demo} {pull:mySequence last=5, negative}   {$sequence} {/pull:mySequence} {/common:demo}
 
-{/table}
+{/common:table}
 
 
-{table}
+{common:table}
  
-{demo}{sequence '5;10;15;20',  name='one'/}{/demo}
-{demo}{sequence '15;20;25;30', name='two'/}{/demo}
+{common:demo}{sequence:list '5;10;15;20',  name='one'/}{/common:demo}
+{common:demo}{sequence:list '15;20;25;30', name='two'/}{/common:demo}
 
-{/table}{table}
+{/common:table}{common:table}
 
-{demo}{sequence one}                               {$sequence} {/sequence}{/demo}
-{demo}{sequence two}                               {$sequence} {/sequence}{/demo}
-{demo}{sequence one, difference='two'          }   {$sequence} {/sequence}{/demo}
-{demo}{sequence one, difference='two', negative}   {$sequence} {/sequence}{/demo}
+{common:demo}{sequence:auto one}                               {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto two}                               {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, difference='two'          }   {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, difference='two', negative}   {$sequence} {/sequence:auto}{/common:demo}
 
-{/table}{table}
+{/common:table}{common:table}
 
-{demo}{sequence one}                               {$sequence} {/sequence}{/demo}
-{demo}{sequence two}                               {$sequence} {/sequence}{/demo}
-{demo}{sequence one, intersection='two'          } {$sequence} {/sequence}{/demo}
-{demo}{sequence one, intersection='two', negative} {$sequence} {/sequence}{/demo}
+{common:demo}{sequence:auto one}                               {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto two}                               {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, intersection='two'          } {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{sequence:auto one, intersection='two', negative} {$sequence} {/sequence:auto}{/common:demo}
 
-{/table}
+{/common:table}
 
-{table}
+{common:table}
 
-{demo}{sequence '1..25', name='mySeq1'/}{/demo}
+{common:demo}{sequence:range '1..25', name='mySeq1'/}{/common:demo}
 
-{/table}{table}
+{/common:table}{common:table}
 
-{demo}{sequence mySeq1}                       {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1}                       {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, slice='5' }           {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, splice='5'}           {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, slice='5', negative } {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, splice='5', negative} {$sequence} {/sequence}{/demo} 
+{common:demo}{sequence:auto mySeq1}                       {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1}                       {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, slice='5' }           {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, splice='5'}           {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, slice='5', negative } {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, splice='5', negative} {$sequence} {/sequence:auto}{/common:demo} 
 
-{/table}{table}
+{/common:table}{common:table}
 
-{demo}{sequence mySeq1}                        {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1}                        {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, slice='-5'}            {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, splice='-5'}           {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, slice='-5', negative}  {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, splice='-5', negative} {$sequence} {/sequence}{/demo} 
+{common:demo}{sequence:auto mySeq1}                        {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1}                        {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, slice='-5'}            {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, splice='-5'}           {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, slice='-5', negative}  {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, splice='-5', negative} {$sequence} {/sequence:auto}{/common:demo} 
 
-{/table}{table}
+{/common:table}{common:table}
 
-{demo}{sequence mySeq1}                         {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1}                         {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, slice='5|5' }           {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, splice='5|5'}           {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, slice='5|5', negative}  {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, splice='5|5', negative} {$sequence} {/sequence}{/demo} 
+{common:demo}{sequence:auto mySeq1}                         {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1}                         {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, slice='5|5' }           {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, splice='5|5'}           {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, slice='5|5', negative}  {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, splice='5|5', negative} {$sequence} {/sequence:auto}{/common:demo} 
 
-{/table}{table}
+{/common:table}{common:table}
 
-{demo}{sequence mySeq1}                          {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1}                          {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, slice='5|-5' }           {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, splice='5|-5'}           {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, slice='5|-5', negative}  {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, splice='5|-5', negative} {$sequence} {/sequence}{/demo} 
+{common:demo}{sequence:auto mySeq1}                          {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1}                          {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, slice='5|-5' }           {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, splice='5|-5'}           {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, slice='5|-5', negative}  {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, splice='5|-5', negative} {$sequence} {/sequence:auto}{/common:demo} 
 
-{/table}{table}
+{/common:table}{common:table}
 
-{demo}{sequence mySeq1}                           {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1}                           {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, slice='-15|5' }           {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, splice='-15|5'}           {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, slice='-15|5', negative}  {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, splice='-15|5', negative} {$sequence} {/sequence}{/demo} 
+{common:demo}{sequence:auto mySeq1}                           {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1}                           {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, slice='-15|5' }           {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, splice='-15|5'}           {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, slice='-15|5', negative}  {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, splice='-15|5', negative} {$sequence} {/sequence:auto}{/common:demo} 
 
-{/table}{table}
+{/common:table}{common:table}
 
-{demo}{sequence mySeq1}                            {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1}                            {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, slice='-15|-5'}            {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, splice='-15|-5'}           {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, slice='-15|-5', negative } {$sequence} {/sequence}{/demo} 
-{demo}{sequence mySeq1, splice='-15|-5', negative} {$sequence} {/sequence}{/demo} 
+{common:demo}{sequence:auto mySeq1}                            {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1}                            {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, slice='-15|-5'}            {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, splice='-15|-5'}           {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, slice='-15|-5', negative } {$sequence} {/sequence:auto}{/common:demo} 
+{common:demo}{sequence:auto mySeq1, splice='-15|-5', negative} {$sequence} {/sequence:auto}{/common:demo} 
 
-{/table}
+{/common:table}

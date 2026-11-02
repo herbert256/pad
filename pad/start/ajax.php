@@ -1,10 +1,10 @@
 <?php
 
-  // Body of the {ajax} tag: instead of rendering another page inline, emit a <div> plus the
+  // Body of the {pad:ajax} tag: instead of rendering another page inline, emit a <div> plus the
   // XMLHttpRequest that fills it once the browser has the response.
   //
   // $padParm names the page, the app= parameter picks a different application, fragment=
-  // asks for one of the page's response fragments alone, and every variable {set} at this
+  // asks for one of the page's response fragments alone, and every variable {pad:set} at this
   // level ($padSetLvl[$pad]) is appended to the query string along with padInclude, so the
   // fetched page renders bare, without its _inits/_exits wrappers. Returns the markup built
   // by padPageAjax as the tag's value.
@@ -31,7 +31,7 @@
 
     } elseif ( ! padPageCheck ( $padExtPag ) )
 
-      padError ( "there is no page named '$padExtPag' for {ajax}" );
+      padError ( "there is no page named '$padExtPag' for {pad:ajax}" );
 
   }
 

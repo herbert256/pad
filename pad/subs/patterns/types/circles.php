@@ -3,7 +3,7 @@
   // circles - circle packing: circles of the inks laid where the seed tries them, each as large
   // as the room there allows up to the size, never touching, the large ones first.
   //
-  //   {pattern 'circles', size=60, seed=2/}
+  //   {pattern:circles size=60, seed=2/}
   //
   // A place is tried at random, and the circle there is as large as the nearest circle leaves
   // room for - less a small gap - and at most the size, that most shrinking from the size to

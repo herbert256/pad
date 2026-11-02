@@ -1,6 +1,6 @@
 <?php
 
-  // Body of the {page} tag: renders another page of this application inside the current
+  // Body of the {pad:page} tag: renders another page of this application inside the current
   // one, by building it with build/build.php in a nested engine pass.
   //
   // With an app= parameter the page lives in a different application and cannot be built
@@ -32,7 +32,7 @@
 
   }
 
-  // A clean URL route, {page 'products/42'}, binds its segments as the request does - as
+  // A clean URL route, {pad:page 'products/42'}, binds its segments as the request does - as
   // variables the embedded page reads (lib/route.php).
 
   padRouteBind ( $padStrPagRoute ['vars'] );

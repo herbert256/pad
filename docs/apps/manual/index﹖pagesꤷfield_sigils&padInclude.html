@@ -19,7 +19,7 @@
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -49,7 +49,7 @@
           <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $name    </span><span style="color: #007700">= </span><span style="color: #DD0000">'Tom &amp; Jerry'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;b&gt;bold&lt;/b&gt;'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$product </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Chair'</span><span style="color: #007700">, </span><span style="color: #DD0000">'price' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">49.5 </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Field: <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Raw: <b>{<font color="green"><font color="red">!</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Query: &lt;a href="?page<b>{<font color="green">?name</font>}</b>"&gt;link&lt;/a&gt;&lt;/p&gt;<br>&lt;div data-props="{^product}"&gt;JSON in an attribute&lt;/div&gt;</code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="../_common/play.css"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5GaWVsZDogeyRuYW1lfTwvcD5cbjxwPlJhdzogeyFzbmlwcGV0fTwvcD5cbjxwPlF1ZXJ5OiA8YSBocmVmPVwiP3BhZ2V7P25hbWV9XCI+bGluazwvYT48L3A+XG48ZGl2IGRhdGEtcHJvcHM9XCJ7XnByb2R1Y3R9XCI+SlNPTiBpbiBhbiBhdHRyaWJ1dGU8L2Rpdj5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkbmFtZSAgICA9ICdUb20gJiBKZXJyeSc7XG4gICRzbmlwcGV0ID0gJzxiPmJvbGQ8L2I+JztcbiAgJHByb2R1Y3QgPSBbICduYW1lJyA9PiAnQ2hhaXInLCAncHJpY2UnID0+IDQ5LjUgXTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5GaWVsZDogeyRuYW1lfTwvcD5cbjxwPlJhdzogeyFzbmlwcGV0fTwvcD5cbjxwPlF1ZXJ5OiA8YSBocmVmPVwiP3BhZ2V7P25hbWV9XCI+bGluazwvYT48L3A+XG48ZGl2IGRhdGEtcHJvcHM9XCJ7XnByb2R1Y3R9XCI+SlNPTiBpbiBhbiBhdHRyaWJ1dGU8L2Rpdj5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkbmFtZSAgICA9ICdUb20gJiBKZXJyeSc7XG4gICRzbmlwcGV0ID0gJzxiPmJvbGQ8L2I+JztcbiAgJHByb2R1Y3QgPSBbICduYW1lJyA9PiAnQ2hhaXInLCAncHJpY2UnID0+IDQ5LjUgXTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;Field: <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Raw: <b>{<font color="green"><font color="red">!</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Query: &lt;a href="?page<b>{<font color="green">?name</font>}</b>"&gt;link&lt;/a&gt;&lt;/p&gt;<br>&lt;div data-props="{^product}"&gt;JSON in an attribute&lt;/div&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -74,7 +74,7 @@
 
 
 
-<p>The JSON form is made for mount points of client-side components: <code>JSON.parse(elem.getAttribute('data-props'))</code> reads it back, with no custom tag and no <b>{ignore}</b> pipe.</p>
+<p>The JSON form is made for mount points of client-side components: <code>JSON.parse(elem.getAttribute('data-props'))</code> reads it back, with no custom tag and no <b>{pad:ignore}</b> pipe.</p>
 
 <h2>See Also</h2>
 

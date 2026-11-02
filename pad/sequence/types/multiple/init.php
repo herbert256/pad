@@ -2,7 +2,7 @@
 
   // Range setup for the multiple sequence, run before generation by sequence/inits/init.php:
   // the step becomes the parameter and the start is lifted to the first multiple of it at or
-  // above from=, so {multiple 3, from=4} runs 6, 9, 12, ... The loop then lands on multiples
+  // above from=, so {sequence:multiple 3, from=4} runs 6, 9, 12, ... The loop then lands on multiples
   // by construction and loop.php has nothing left to round.
   //
   // The parameter is the step, so it has to be a number and cannot be zero - stepping by
@@ -12,7 +12,7 @@
   include PQ . 'inits/number.php';
 
   // A 0 spelled '0.0', '-0' or '00' is the zero it is: ! $pqParm let those strings through, and
-  // {sequence multiple='0.0'} ended the request on "Division by zero".
+  // {sequence:multiple '0.0'} ended the request on "Division by zero".
 
   if ( is_numeric ( $pqParm ) and $pqParm == 0 )
     return padError ( 'The multiple sequence needs a step of 1 or more' );

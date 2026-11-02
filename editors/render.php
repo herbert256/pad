@@ -30,7 +30,7 @@
   // DATA/trace/<page>/. --host (or $PAD_HOST) is the base the web
   // server serves the applications under, http://localhost/pad/: the request is made to
   // look as if it came there, so $padHost and every URL the engine builds from it - a
-  // {get} or a curl of its own pages - point at the real server, not at http://localhost/.
+  // {pad:get} or a curl of its own pages - point at the real server, not at http://localhost/.
   //
   // The error action is set to boot whatever the application chose, through the engine's
   // own $padSetConfig queue: an error always comes back as the JSON body, never as a page.

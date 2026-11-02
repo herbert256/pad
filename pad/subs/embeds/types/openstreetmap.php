@@ -1,7 +1,7 @@
 <?php
 
   // openstreetmap - A map of OpenStreetMap around a place, with a marker on it: named, the
-  // place as 'latitude,longitude' - {openstreetmap '52.3731,4.8922', zoom=15} - or lat= and
+  // place as 'latitude,longitude' - {embed:openstreetmap '52.3731,4.8922', zoom=15} - or lat= and
   // lon=; or an address of openstreetmap.org (or osm.org) that says it, #map=<zoom>/<lat>/
   // <lon> or ?mlat=&mlon=. zoom= is 1 (the world) to 19 (a street), 13 unless the address
   // says another. The poster is a drawn map: no tile is asked before the click.

@@ -1,4 +1,4 @@
-A[{rows}<ul>{if count@rows gt 1}too many{break/}{/if}@start@<li>{$a}</li>@end@</ul>{/rows}]
-B[{rows}<ul>{cease/}@start@<li>{$a}</li>@end@</ul>{/rows}]
-C[{rows}<ul>@start@<li>{$a}</li>@end@{if 1}{current@/}/{count@/}{/if}</ul>{/rows}]
-D[{set $i = 0/}{while $i lt 3}<ul>{cease/}@start@<li>{$i}</li>{increment $i/}@end@</ul>{/while}]
+A[{array:rows}<ul>{pad:if count@rows gt 1}too many{pad:break/}{/pad:if}@start@<li>{$a}</li>@end@</ul>{/array:rows}]
+B[{array:rows}<ul>{pad:cease/}@start@<li>{$a}</li>@end@</ul>{/array:rows}]
+C[{array:rows}<ul>@start@<li>{$a}</li>@end@{pad:if 1}{property:current@/}/{property:count@/}{/pad:if}</ul>{/array:rows}]
+D[{pad:set $i = 0/}{pad:while $i lt 3}<ul>{pad:cease/}@start@<li>{$i}</li>{pad:increment $i/}@end@</ul>{/pad:while}]

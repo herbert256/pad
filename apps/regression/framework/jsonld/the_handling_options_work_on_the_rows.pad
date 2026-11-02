@@ -1,6 +1,6 @@
-{data 'questions'}
+{pad:data 'questions'}
 [ { "question": "One?", "answer": "1", "votes": 3 },
   { "question": "Two?", "answer": "2", "votes": 12 },
   { "question": "Three?", "answer": "3", "votes": 7 } ]
-{/data}
+{/pad:data}
 {jsonld:faq data='questions', where='$votes gt 5', sort='question'/}

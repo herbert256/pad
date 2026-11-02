@@ -1,6 +1,6 @@
 <?php
 
-  // {marquee}<span>PHP</span> <span>Go</span> <span>Rust</span>{/marquee} or {marquee 'Breaking:
+  // {effect:marquee}<span>PHP</span> <span>Go</span> <span>Rust</span>{/effect:marquee} or {effect:marquee 'Breaking:
   // the sale ends tonight'/} - a band whose content scrolls by without end, a logo strip, a
   // ticker. The content goes round once in duration= seconds (20, 2 to 600), to the left or,
   // direction='right', to the right; gap= pixels between one round and the next (48). It
@@ -18,7 +18,7 @@
   $padFxLabel     = padEffectText ( 'label', 'Scrolling content' );
 
   if ( padEffectPlain ( $padFxSource ) === '' and ! preg_match ( '/<(img|svg|picture|video)\b/i', $padFxSource ) )
-    return padEffectNeedsText ( "{marquee}...{/marquee} or {marquee 'news'/}" );
+    return padEffectNeedsText ( "{effect:marquee}...{/effect:marquee} or {effect:marquee 'news'/}" );
 
   $padFxId   = padWidgetId ( 'effect-marquee', [ $padFxSource, $padFxDuration, $padFxDirection, $padFxGap ] );
   // The copy without the attributes that name or point at an id - read on the content with

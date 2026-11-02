@@ -11,14 +11,14 @@
   // the notes from the lowest string, 'D A D G B E'; title= is the accessible name. For a
   // screen reader every note is said bar by bar with its string, its fret and its pitch.
   //
-  //   {tablature}
+  //   {notation:tablature}
   //   e|-------0-----|
   //   B|-----1---1---|
   //   G|---2-------2-|
   //   D|-------------|
   //   A|-3-----------|
   //   E|-------------|
-  //   {/tablature}
+  //   {/notation:tablature}
 
   if ( trim ( $padNotationText ) === '' )
     return '';

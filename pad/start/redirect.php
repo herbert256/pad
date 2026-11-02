@@ -1,10 +1,10 @@
 <?php
 
-  // Body of the {redirect} tag: sends a Location header to $padParm and ends the request.
-  // Every variable {set} at this level is passed along as a query parameter. padRedirect()
+  // Body of the {pad:redirect} tag: sends a Location header to $padParm and ends the request.
+  // Every variable {pad:set} at this level is passed along as a query parameter. padRedirect()
   // does not return, so nothing after this line runs.
 
-  // The target is an address, no HTML: a field inside the quoted target - {redirect
+  // The target is an address, no HTML: a field inside the quoted target - {pad:redirect
   // '?search&q={$q}'} - arrives escaped by its sanitize step and with the stand-ins of its
   // , = | @ ' " \, and the {?q} query fragment with its = as a stand-in; both went into the
   // Location header as they were, q=Tom &amp; Jerry cut q at the &, and &q\u{E03D}Tom+%26+Jerry
@@ -31,14 +31,14 @@
        and ! str_starts_with ( $padParm, '?' )
        and ! str_starts_with ( $padParm, '/' )
        and ! padPageCheck ( strtok ( $padParm, '#' ) ) )
-    padError ( "there is no page named '" . strtok ( $padParm, '#' ) . "' for {redirect}" );
+    padError ( "there is no page named '" . strtok ( $padParm, '#' ) . "' for {pad:redirect}" );
 
   // An absolute address - http:// or https:// - is where the browser goes, as written: the
   // tag's target is a URL (TAGS.md) and the check above lets one leave the application. It
   // went through padRedirect as a page name and came out as ?https://... on this site. The
   // values set on the tag ride along; the visitor's ids do not leave the site. padRedirect
   // itself stays inside the site, so a PHP page handing it a value from the request is no
-  // open redirect - a template that writes {redirect $url} decides where that leads.
+  // open redirect - a template that writes {pad:redirect $url} decides where that leads.
 
   if ( $padRedirectAway and preg_match ( '#^https?://#i', $padParm ) ) {
 

@@ -21,7 +21,7 @@
   // function says it takes a guest: its first parameter allows NULL, ?array $user or
   // $user = NULL, as Laravel's gates do. An ability nobody defined is FALSE, and under the
   // strict check an error: a misspelled name in a template denied silently. The template
-  // asks with {can 'edit-post', $post}...{else}...{/can} and {cannot ...}.
+  // asks with {pad:can 'edit-post', $post}...{pad:else}...{/pad:can} and {pad:cannot ...}.
   //
   // The definitions live in a static of padGateList, not in a global - an error report
   // shows globals, and a Closure in one is no data. They are made per request, by _lib.
@@ -108,7 +108,7 @@
     if ( padCan ( $ability, ...$values ) )
       return TRUE;
 
-    // In the _guard.php of a page a {page} tag includes, the guard refuses and the part
+    // In the _guard.php of a page a {pad:page} tag includes, the guard refuses and the part
     // renders as nothing, where the 403 took the whole page that holds it.
 
     if ( padGuardNestedRefuse () )
@@ -122,7 +122,7 @@
   // The private helpers.
   // ------------------------------------------------------------------------------------
 
-  // In the _guard.php of a page a {page} tag includes, a refusal ends that guard: thrown as
+  // In the _guard.php of a page a {pad:page} tag includes, a refusal ends that guard: thrown as
   // padGuardRefusal, which build/guards.php catches as the guard's refusal - the part renders
   // as nothing. Returning FALSE let the guard's own code after the call run as a guest:
   // $member = padUser (); $member ['role'] ended the public page with a PHP error. FALSE
@@ -175,7 +175,7 @@
 
   }
 
-  // One value {can} hands its gate: $posts inside {posts} is the row of this occurrence - a
+  // One value {pad:can} hands its gate: $posts inside {array:posts} is the row of this occurrence - a
   // gate decides on one post, not on the list - another $name of an array is that array,
   // anything else an expression (padAttrsValue, lib/attrs.php).
 

@@ -4,8 +4,8 @@
   // plot and colours each by the number of points in it - where a scatter of thousands of
   // dots is one dark blot, the hexagons show where they crowd.
   //
-  //   {chart 'hexbin', data='trips', x='distance', y='minutes'}
-  //   {chart 'hexbin', data='stars', x='colour', y='brightness', bins=30}
+  //   {chart:hexbin data='trips', x='distance', y='minutes'}
+  //   {chart:hexbin data='stars', x='colour', y='brightness', bins=30}
   //
   // x= and y= name the numbers - else the first two numeric fields, a field the other names
   // left to it, so y= alone draws against the first other number. The axes take in every

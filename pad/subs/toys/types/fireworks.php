@@ -7,7 +7,7 @@
   // gravity= how fast the sparks fall (5, 0 to 10); shell= one kind of shell for the whole
   // show, else a mix of all.
   //
-  //   {fireworks rate=8, shell='willow'/}
+  //   {toy:fireworks rate=8, shell='willow'/}
 
   return padToy ( 'fireworks', 'Fireworks', [
     'rate'    => padToyInt ( 'rate', 4, 0, 10 ),

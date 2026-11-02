@@ -65,7 +65,7 @@
       // A page no address reaches is no page of the walk: the router takes a literal segment
       // of letters, digits, _ and - only (lib/route.php), so v1.0/old and my.page answer 404
       // to every request, and the crawls fetched them all the same - develop/?nuts ended on
-      // its {ajax} refusing them, a 500. A bracketed route stays: a path fills it in.
+      // its {pad:ajax} refusing them, a 500. A bracketed route stays: a path fills it in.
 
       if ( ! padAppsListRoutable ( $item ) )
         continue;

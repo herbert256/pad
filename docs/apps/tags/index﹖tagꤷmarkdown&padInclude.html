@@ -1,8 +1,8 @@
 
-<p>As a pair, <code>{markdown}</code> renders its content first - its fields and tags resolve
+<p>As a pair, <code>{pad:markdown}</code> renders its content first - its fields and tags resolve
 like anywhere else - and then reads the result as Markdown and writes the HTML. The text is
 dedented first, so a block indented along with the template does not turn into a code block.
-With a parameter instead, <code>{markdown $post.body}</code> writes the value of the parameter,
+With a parameter instead, <code>{pad:markdown $post.body}</code> writes the value of the parameter,
 the way the <code>markdown</code> pipe does.</p>
 
 <p>The converter is built in (<code>lib/markdown.php</code>), a CommonMark subset: ATX and

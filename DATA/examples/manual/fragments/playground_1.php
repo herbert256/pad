@@ -5,6 +5,6 @@
   $name = $data ['name'];
   $tags = $data ['tags'];
 
-  $html = padCode ( '<b>{$name}</b>: {tags}{$tags}{notLast@tags}, {/notLast@tags}{/tags}' );
+  $html = padCode ( '<b>{$name}</b>: {array:tags}{$tags}{property:notLast@tags}, {/property:notLast@tags}{/array:tags}' );
 
 ?>

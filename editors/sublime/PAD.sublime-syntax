@@ -33,17 +33,17 @@ contexts:
     - include: pad-construct
     - include: pad-tag
 
-  # {ignore} ... {/ignore} - plain HTML, no PAD parsing inside
+  # {pad:ignore} ... {/pad:ignore} - plain HTML, no PAD parsing inside
   pad-ignore:
-    - match: '(\{)(ignore)(\})'
+    - match: '(\{)(pad:ignore)(\})'
       captures:
         1: punctuation.section.embedded.begin.pad
         2: keyword.control.tag.pad
         3: punctuation.section.embedded.end.pad
       embed: 'scope:text.html.basic'
       embed_scope: meta.raw.ignore.pad
-      escape: '(?=\{/ignore\})'
-    - match: '(\{)(/ignore)(\})'
+      escape: '(?=\{/pad:ignore\})'
+    - match: '(\{)(/pad:ignore)(\})'
       captures:
         1: punctuation.section.embedded.begin.pad
         2: keyword.control.tag.pad
@@ -83,13 +83,13 @@ contexts:
       scope: punctuation.section.embedded.end.pad
       pop: true
 
-    # nested tags inside a tag: {example 'x{$var}', opt{notFirst}...}
+    # nested tags inside a tag: {common:example 'x{$var}', opt{property:notFirst}...}
     - include: pad-comment
     - include: pad-tag
 
     # tag name right after the brace, with optional type prefix
-    # {items}  {/items}  {app:mytag}  {pad:if}  {php:strlen(@)}
-    - match: '(?<=\{)(/?)(?:({{ident}})(:))?({{ident}})'
+    # {array:items}  {/array:items}  {app:mytag}  {pad:if}  {php:strlen(@)}
+    - match: '(?<=\{)(/?)(?:({{ident}})(:))({{ident}})'
       captures:
         1: punctuation.definition.tag.pad
         2: storage.type.prefix.pad

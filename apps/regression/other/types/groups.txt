@@ -1,7 +1,8 @@
-<h1>Types by group</h1>
-<p class="lead">The types by what they reach, in 5 groups.</p>
 
-<nav class="jump" aria-label="Groups"><a href="#tags">Tags</a><a href="#stores">Stores and data</a><a href="#values">Values of the page</a><a href="#sequences">Sequences</a><a href="#subsystems">Subsystems</a></nav>
+<h1>Types by group</h1>
+<p class="lead">Tag types and kind families by what they reach, in 6 groups.</p>
+
+<nav class="jump" aria-label="Groups"><a href="#tags">Tags</a><a href="#stores">Stores and data</a><a href="#values">Values of the page</a><a href="#sequences">Sequences</a><a href="#subsystems">Subsystems</a><a href="#kinds">Options and helpers</a></nav>
 
 
 <section class="section" id="tags">
@@ -12,13 +13,13 @@
     
     <li><a class="name" href="?type/common">common:</a> <span class="about">A tag or a snippet of the shared _common application.</span></li>
     
-    <li><a class="name" href="?type/define">define:</a> <span class="about">A tag defined in the template by {define} - its body the template of the tag.</span></li>
+    <li><a class="name" href="?type/define">define:</a> <span class="about">A tag defined in the template by {pad:define} - its body the template of the tag.</span></li>
     
     <li><a class="name" href="?type/function">function:</a> <span class="about">A pipe function used as a tag, over the content between its tags.</span></li>
     
     <li><a class="name" href="?type/include">include:</a> <span class="about">A snippet of the application, a file of an _include/ directory.</span></li>
     
-    <li><a class="name" href="?type/macro">macro:</a> <span class="about">A tag defined in the template by {macro} - its body rendered once with the options as its fields.</span></li>
+    <li><a class="name" href="?type/macro">macro:</a> <span class="about">A tag defined in the template by {pad:macro} - its body rendered once with the options as its fields.</span></li>
     
     <li><a class="name" href="?type/pad">pad:</a> <span class="about">A built-in tag of the engine - a file of pad/tags/.</span></li>
     
@@ -33,15 +34,15 @@
   <div class="section-head"><h2>Stores and data</h2><span>What a page keeps under a name and reads back - 6 types</span></div>
   <ul class="list">
     
-    <li><a class="name" href="?type/bool">bool:</a> <span class="about">A boolean store - a flag set by {bool}, its pair showing when it is true.</span></li>
+    <li><a class="name" href="?type/bool">bool:</a> <span class="about">A boolean store - a flag set by {pad:bool}, its pair showing when it is true.</span></li>
     
-    <li><a class="name" href="?type/content">content:</a> <span class="about">A content store - a piece of template kept by {content} to be shown elsewhere.</span></li>
+    <li><a class="name" href="?type/content">content:</a> <span class="about">A content store - a piece of template kept by {pad:content} to be shown elsewhere.</span></li>
     
-    <li><a class="name" href="?type/data">data:</a> <span class="about">A data store - rows kept by {data} or a .json, .xml, .yaml or .csv file of _data/.</span></li>
+    <li><a class="name" href="?type/data">data:</a> <span class="about">A data store - rows kept by {pad:data} or a file of _data/ read through the format registry.</span></li>
     
     <li><a class="name" href="?type/local">local:</a> <span class="about">A data file of a _data/ directory, read by its file name.</span></li>
     
-    <li><a class="name" href="?type/pull">pull:</a> <span class="about">A stored sequence - the terms a {sequence} pushed to the store under a name.</span></li>
+    <li><a class="name" href="?type/pull">pull:</a> <span class="about">A stored sequence - the terms a {sequence:*} pushed to the store under a name.</span></li>
     
     <li><a class="name" href="?type/select">select:</a> <span class="about">A table declared in $padSelect - its rows read from the database, joins and all.</span></li>
     
@@ -126,3 +127,35 @@
     
   </ul>
 </section>
+
+<section class="section" id="kinds">
+  <div class="section-head"><h2>Options and helpers</h2><span>Subsystem kinds selected by parameters, options, helper calls or spreadsheet formulas - 12 families</span></div>
+  <ul class="list">
+    
+    <li><a class="name" href="?type/ai">AI providers</a> <span class="about">The provider= option of {pad:ai} or padAi.</span></li>
+    
+    <li><a class="name" href="?type/channel">Notification channels</a> <span class="about">Delivery channels selected in the fourth argument of padNotify.</span></li>
+    
+    <li><a class="name" href="?type/filter">Image filters</a> <span class="about">The filter= option of {pad:img} selects a filter or placeholder.</span></li>
+    
+    <li><a class="name" href="?type/format">Data formats</a> <span class="about">The format= option of {pad:data}, file extensions and the format helpers.</span></li>
+    
+    <li><a class="name" href="?type/formula">Spreadsheet functions</a> <span class="about">Functions inside the formulas of {pad:spreadsheet} cells.</span></li>
+    
+    <li><a class="name" href="?type/holidays">Holiday calendars</a> <span class="about">The country parameter of {pad:holidays}, with optional regions.</span></li>
+    
+    <li><a class="name" href="?type/map">Map views</a> <span class="about">The view parameter of {pad:map} selects a country or region.</span></li>
+    
+    <li><a class="name" href="?type/oauth">OAuth providers</a> <span class="about">The provider parameter of {pad:oauth}, padOAuthStart and padOAuthUser.</span></li>
+    
+    <li><a class="name" href="?type/palette">Colour palettes</a> <span class="about">The name parameter of {pad:palette}, or palette= on a chart.</span></li>
+    
+    <li><a class="name" href="?type/rule">Validation rules</a> <span class="about">Rules passed to padValidate or a form field&#039;s rules= option.</span></li>
+    
+    <li><a class="name" href="?type/search">Search languages</a> <span class="about">The lang= option of {pad:search} selects stop words and a stemmer.</span></li>
+    
+    <li><a class="name" href="?type/theme">Themes</a> <span class="about">The name parameter of {pad:theme} selects page or box colours.</span></li>
+    
+  </ul>
+</section>
+

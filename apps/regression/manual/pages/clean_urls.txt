@@ -1,3 +1,5 @@
+
+
 <p>A page is named in the query string - <code>/shop/?products/42</code> - or by the path
 behind the application: <code>/shop/products/42</code>. The path is mapped onto the files,
 and a file or directory whose name is a bracketed variable name stands for any one segment.
@@ -12,7 +14,7 @@ The segment becomes that variable before the page's PHP runs:</p>
 </table>
 
 <p>The same names resolve wherever a page is named - here through
-<code>{page}</code>, with <code>shop/products/[id].pad</code> and
+<code>{pad:page}</code>, with <code>shop/products/[id].pad</code> and
 <code>shop/blog/[year]/[slug].pad</code> beside the fragment:</p>
 
 
@@ -52,7 +54,7 @@ The segment becomes that variable before the page's PHP runs:</p>
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiJ7cGFnZSBcImZyYWdtZW50cy9zaG9wL3Byb2R1Y3RzLzQyXCIvfVxue3BhZ2UgXCJmcmFnbWVudHMvc2hvcC9ibG9nLzIwMjYvaGVsbG8tcGFkXCIvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFnZSBcImZyYWdtZW50cy9zaG9wL3Byb2R1Y3RzLzQyXCIvfVxue3BhZ2UgXCJmcmFnbWVudHMvc2hvcC9ibG9nLzIwMjYvaGVsbG8tcGFkXCIvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue">page </font><font color="red">"fragments/shop/products/42"</font>/}</b><br><b>{<font color="blue">page </font><font color="red">"fragments/shop/blog/2026/hello-pad"</font>/}</b></code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnBhZ2UgXCJmcmFnbWVudHMvc2hvcC9wcm9kdWN0cy80MlwiL31cbntwYWQ6cGFnZSBcImZyYWdtZW50cy9zaG9wL2Jsb2cvMjAyNi9oZWxsby1wYWRcIi99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnBhZ2UgXCJmcmFnbWVudHMvc2hvcC9wcm9kdWN0cy80MlwiL31cbntwYWQ6cGFnZSBcImZyYWdtZW50cy9zaG9wL2Jsb2cvMjAyNi9oZWxsby1wYWRcIi99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>page </font><font color="red">"fragments/shop/products/42"</font>/}</b><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>page </font><font color="red">"fragments/shop/blog/2026/hello-pad"</font>/}</b></code></pre></td>
         
         
           <td style="vertical-align:top">

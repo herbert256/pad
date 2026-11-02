@@ -81,7 +81,7 @@
 
     // A where= on the tag narrows the table the declaration makes: the declared where - a
     // view's, with those of its base chain - holds beside it. The tag's took its place, so
-    // {jazzAlbums where="released > 2000"} answered the folk albums too, and a view of the
+    // {select:jazzAlbums where="released > 2000"} answered the folk albums too, and a view of the
     // published posts handed out a draft by its slug. An empty where= narrows nothing: it
     // took the declared where's place, and the view answered every row of its table.
 
@@ -109,7 +109,7 @@
 
     // The mode is the statement's command word, so it must be one of the row shapes db()
     // knows - array, record or field. It was spliced in front of the SQL as written, so
-    // {table type=$t} with $t = "array name from customers limit 1 #" put a whole query of
+    // {common:table type=$t} with $t = "array name from customers limit 1 #" put a whole query of
     // the visitor's into the statement; a bad word is refused now, as htmlAttrJson= is.
 
     $type = strtolower ( (string) $type );
@@ -175,7 +175,7 @@
 
     $_SELECT [] = $sql;
 
-    // A page cut by the limit: the statement that counts every row is kept for a {pager},
+    // A page cut by the limit: the statement that counts every row is kept for a {pad:pager},
     // which runs it only when it is asked - lib/pager.php. The rows are counted over the
     // FROM, the joins and the where alone, unless distinct, a group, a having or a union
     // makes the select list decide what a row is: a derived table may not hold two columns
@@ -186,7 +186,7 @@
     // a pager over its one row.
     //
     // The limit is the one folded into $tail: building the union members sets the global
-    // again, to theirs, so a paged select with union= booked no count and its {pager} showed
+    // again, to theirs, so a paged select with union= booked no count and its {pad:pager} showed
     // no links - or, read from a select before it on the same level, that one's pages. A
     // select that books none takes the count of the one before away for the same reason.
     // The join is this select's own the same way: the last member's was read, and a joined
@@ -410,7 +410,7 @@
   // guard read $padDone ['page'], a key the per-level book never has, so the pager ran
   // again on the rows the limit had already cut - page 2 and on came out empty.
   //
-  // $rows and $page come back as the numbers the limit was made of: the {pager} counts its
+  // $rows and $page come back as the numbers the limit was made of: the {pad:pager} counts its
   // pages by those rows (lib/pager.php), which may be the table's declared rows= - it took
   // the tag's rows= or 10, and a table declared with 'rows' => 5 had its pager count pages
   // of 10.
@@ -701,7 +701,7 @@
   //
   // On SQLite a number, and a numeral, goes in as the number, as db()'s bare placeholders
   // have it (padDbLiteral): a column declared without a type has no affinity, so the text
-  // '2' never equals the integer 2 there, and {boards $id=2} found no board and every
+  // '2' never equals the integer 2 there, and {select:boards $id=2} found no board and every
   // board's nested topics came out empty.
 
   //
@@ -783,7 +783,7 @@
 
     // fields=, db=, join= and union= go into the statement as SQL text too - a column list,
     // a table, a join, a table to add - and nothing is bound in them, so they are the
-    // template's own text the same way: {t fields=$cols} took the column list from a
+    // template's own text the same way: {field:t fields=$cols} took the column list from a
     // variable, and with $cols = "phone as name" from the request the select answered every
     // phone number under the name of a name; an array there went in key by key.
 

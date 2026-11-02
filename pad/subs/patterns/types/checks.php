@@ -3,7 +3,7 @@
   // checks - a checkerboard of squares of the size, the dark squares in the inks, the light
   // ones the background. A tile repeated by a <pattern>: the seed changes nothing.
   //
-  //   {pattern 'checks', size=10, colors='#ffffff, #222222'/}
+  //   {pattern:checks size=10, colors='#ffffff, #222222'/}
 
   return [
 

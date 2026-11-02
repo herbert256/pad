@@ -8,7 +8,7 @@
   // (apps/cli/pad) does the same from the shell, into the application's own _samples/.
   //
   // A database tag in the template still asks the database, unless it has a name the
-  // sample holds: {array "* from orders", name='orders'} reads the sample's orders. A
+  // sample holds: {pad:array "* from orders", name='orders'} reads the sample's orders. A
   // capture records such a tag's answer under its name too.
   //
   // Skipping the PHP skips the access checks it makes, so $padSample decides who may ask:

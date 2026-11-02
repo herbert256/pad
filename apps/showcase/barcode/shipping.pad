@@ -1,9 +1,9 @@
-{meta title='A shipping label', about='Code 128 for the parcel, ITF-14 between its bearer bars for the carton, Data Matrix for the sorting machine - one label, three symbologies.'/}
+{pad:meta title='A shipping label', about='Code 128 for the parcel, ITF-14 between its bearer bars for the carton, Data Matrix for the sorting machine - one label, three symbologies.'/}
 <div style="display:grid; gap:14px; max-width:460px; padding:18px; background:#fff; color:#111; border:2px solid #111; border-radius:6px; font:14px/1.4 system-ui">
   <div style="display:flex; justify-content:space-between; gap:16px">
     <div><b>PAD Parcel Service</b><br>To: Ada Lovelace<br>12 Analytical Lane, London</div>
-    {datamatrix 'PPS|JJD0099999999|GB|EC1A1BB', size=96, title='Sorting code of the parcel'/}
+    {barcode:datamatrix 'PPS|JJD0099999999|GB|EC1A1BB', size=96, title='Sorting code of the parcel'/}
   </div>
-  {code128 'JJD0099999999', height=56/}
-  {itf14 '1540014128876', height=44, scale=1.5/}
+  {barcode:code128 'JJD0099999999', height=56/}
+  {barcode:itf14 '1540014128876', height=44, scale=1.5/}
 </div>

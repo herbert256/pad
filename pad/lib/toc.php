@@ -1,10 +1,10 @@
 <?php
 
-  // padTocFill - the markers a {toc} printed filled in with the headings of the page that
+  // padTocFill - the markers a {pad:toc} printed filled in with the headings of the page that
   // holds them, once it has rendered: from exits/exits.php for the page of the request, from
-  // start/pad/pad.php for a page a {page} renders, and for the parts of a {pdf}. It runs for
+  // start/pad/pad.php for a page a {pad:page} renders, and for the parts of a {pad:pdf}. It runs for
   // every page, so what it does for one without a marker - nothing - is all that is loaded
-  // on every request: the filling is padTocFillPage of tags/_lib/toc.php, the {toc} tag's
+  // on every request: the filling is padTocFillPage of tags/_lib/toc.php, the {pad:toc} tag's
   // code, included for a page that holds a marker - one the tag printed in this request, or
   // one a cached fragment brought along.
 

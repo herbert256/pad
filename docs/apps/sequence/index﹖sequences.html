@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="../_common/brand.css">
     <script src="../_common/pad.js"></script>
     <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/play.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
   </head>
   <body class="frame app-sequence">
     <aside class="frame-side">
@@ -23,89 +27,113 @@
             </summary>
             <nav class="pad-brand-apps" aria-label="PAD applications">
               <div class="pad-brand-columns">
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    PAD
-                  </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
-                  <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
-                  <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Showcases
-                  </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                  <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                  <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                  <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Front ends
-                  </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
-                  <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
-                  <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
-                  <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Offline
-                  </div><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                  <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
-                  <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
-                  <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Examples
-                  </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/playground/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
-                  <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>playground</b><small>Type a template, see the result</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-                  <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Tools
-                  </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
-                  <circle cx="9" cy="7" r="2"></circle>
-                  <circle cx="15" cy="12" r="2"></circle>
-                  <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
-                  <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
-                  <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
                 </div>
               </div>
             </nav>
@@ -131,27 +159,83 @@
           Sequences
         </h1>
         <div class="frame-tools">
-          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
         </div>
       </header>
       <div class="frame-body">
         <p></p>
-        <table border="1" cellpadding="10" cellspacing="0">
+        <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
           <tr>
             <th bgcolor="#DDDDDD">
               HTML
             </th>
             <th bgcolor="#DDDDDD">
-              RESULT
+              RESULT<a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7c2VxdWVuY2U6bG9vcH0gICAgICAgICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpsb29wfVxuXG57c2VxdWVuY2U6YXV0byBhYnVuZGFudH0geyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBhZGQ9NH0gICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBhbWljYWJsZX0geyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBhbmQ9NH0gICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBhbnRpcHJpbWV9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBhdXRvbW9ycGhpY317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGJlbGx9ICAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGJpcXVhZHJhdGljfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gY2FybWljaGFlbH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGNhdGFsYW59ICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGNhdGVyZXJ9ICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGNlaWw9NH0gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGNlbnRlcmVkSGV4YWdvbmFsfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gY2VudGVyZWRTcXVhcmV9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBjaGFuY2U9NH0geyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBjb2xsYXR6fSAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBjb21wb3NpdGV9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBjdWJpY30gICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBjdWxsZW59ICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBkZWNhZ29uYWx9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBkZWZpY2llbnR9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBkZXJhbmdlbWVudH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGRpZ2l0U3VtfSB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGRpZ2l0YWxSb290fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZGl2aWRlPTR9IHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZGl2aXNvcnN9IHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZW1pcnB9ICAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZW5uZWFkZWNhZ29uYWx9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBldmFsPSdAICogMTAgfCBAIC0gMSd9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBldmVufSAgICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBldmlsfSAgICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBleHBvbmVudGlhdGlvbj00fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZmFjdG9yaWFsfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZmVybWF0fSAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZmlib25hY2NpfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZmxvb3I9NH0gIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZ25vbW9uaWN9IHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZ29sb21ifSAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZ291bGR9ICAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gaGFtbWluZ30gIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gaGFwcHl9ICAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gaGFyc2hhZH0gIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gaGVwdGFkZWNhZ29uYWx9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBoZXB0YWdvbmFsfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gaGV4YWdvbmFsfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gaWNvc2loZW5hZ29uYWx9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBpZGVudGl0eX0geyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBqYWNvYnN0aGFsfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8ga2FwcmVrYXJ9IHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8ga29sYWtvc2tpfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8ga3luZWF9ICAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gbGVvbmFyZG99IHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gbGlzdD0nMTs4OzU7Mjs5OzY2J317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGxvb3A9NH0gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGx1Y2FzfSAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGx1Y2t5fSAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG1lcnNlbm5lfSB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG1vZHVsbz00fSB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG1vc2VyZGVicnVpam59eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBtb3R6a2lufSAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBtdWx0aXBsZT00fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gbXVsdGlwbHk9NH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG5hbmQ9NH0gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG5hcmF5YW5hfSB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG5hcmNpc3Npc3RpY317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG5lZ2F0aW9ufSB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG5ld21hbkNvbndheX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG5vcj00fSAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG5vdH0gICAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG9jdGFnb25hbH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG9jdGFoZWRyYWx9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBvZGR9ICAgICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBvZGlvdXN9ICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBvZWlzPTg3fSAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBvcj00fSAgICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBwYWxpbmRyb21lfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gcGFydGl0aW9ufXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gcGVsbH0gICAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gcGVudGFnb25hbH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHBlbnRhdG9wZX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHBlcmZlY3R9ICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHBlcmZlY3RQb3dlcn17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHBlcnJpbn0gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHBvbGl0ZX0gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHBvd2VyPTR9ICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHBvd2VyZnVsfSB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHByaW1lfSAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHByaW1vcmlhbH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHByb25pY30gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHJhbmRvbSwgbWF4aW1hbD05OX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHJhbmdlPScxLi4xMCd9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byByZWNhbWFufSAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byByZXBlYXQ9NH0geyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byByZXB1bml0fSAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byByZXZlcnNhbH0geyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byByb3VuZD00fSAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBzYWZlUHJpbWV9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBzZW1pcHJpbWV9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBzaWdtYX0gICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBzbWl0aH0gICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBzb3BoaWVHZXJtYWlufXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gc3BoZW5pY30gIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gc3F1YXJlfSAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gc3F1YXJlZnJlZX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHN0YXJ9ICAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHN0ZXA9NH0gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHN0ZXJufSAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHN0cm9uZ30gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHN1YnRyYWN0PTR9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBzeWx2ZXN0ZXJ9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byB0ZXRyYWhlZHJhbH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHRoYWJpdH0gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHRodWVNb3JzZX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHRvdGllbnR9ICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHRyaWFuZ3VsYXJ9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byB0cmlib25hY2NpfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gdHdpblByaW1lfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gdmFuRWNrfSAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gd29vZGFsbH0gIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8geG5vcj00fSAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8geG9yPTR9ICAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8geHBhZG92YW59IHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7c2VxdWVuY2U6bG9vcH0gICAgICAgICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTpsb29wfVxuXG57c2VxdWVuY2U6YXV0byBhYnVuZGFudH0geyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBhZGQ9NH0gICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBhbWljYWJsZX0geyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBhbmQ9NH0gICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBhbnRpcHJpbWV9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBhdXRvbW9ycGhpY317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGJlbGx9ICAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGJpcXVhZHJhdGljfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gY2FybWljaGFlbH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGNhdGFsYW59ICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGNhdGVyZXJ9ICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGNlaWw9NH0gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGNlbnRlcmVkSGV4YWdvbmFsfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gY2VudGVyZWRTcXVhcmV9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBjaGFuY2U9NH0geyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBjb2xsYXR6fSAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBjb21wb3NpdGV9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBjdWJpY30gICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBjdWxsZW59ICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBkZWNhZ29uYWx9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBkZWZpY2llbnR9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBkZXJhbmdlbWVudH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGRpZ2l0U3VtfSB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGRpZ2l0YWxSb290fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZGl2aWRlPTR9IHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZGl2aXNvcnN9IHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZW1pcnB9ICAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZW5uZWFkZWNhZ29uYWx9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBldmFsPSdAICogMTAgfCBAIC0gMSd9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBldmVufSAgICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBldmlsfSAgICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBleHBvbmVudGlhdGlvbj00fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZmFjdG9yaWFsfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZmVybWF0fSAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZmlib25hY2NpfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZmxvb3I9NH0gIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZ25vbW9uaWN9IHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZ29sb21ifSAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gZ291bGR9ICAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gaGFtbWluZ30gIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gaGFwcHl9ICAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gaGFyc2hhZH0gIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gaGVwdGFkZWNhZ29uYWx9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBoZXB0YWdvbmFsfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gaGV4YWdvbmFsfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gaWNvc2loZW5hZ29uYWx9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBpZGVudGl0eX0geyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBqYWNvYnN0aGFsfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8ga2FwcmVrYXJ9IHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8ga29sYWtvc2tpfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8ga3luZWF9ICAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gbGVvbmFyZG99IHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gbGlzdD0nMTs4OzU7Mjs5OzY2J317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGxvb3A9NH0gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGx1Y2FzfSAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIGx1Y2t5fSAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG1lcnNlbm5lfSB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG1vZHVsbz00fSB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG1vc2VyZGVicnVpam59eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBtb3R6a2lufSAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBtdWx0aXBsZT00fXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gbXVsdGlwbHk9NH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG5hbmQ9NH0gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG5hcmF5YW5hfSB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG5hcmNpc3Npc3RpY317JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG5lZ2F0aW9ufSB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG5ld21hbkNvbndheX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG5vcj00fSAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG5vdH0gICAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG9jdGFnb25hbH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIG9jdGFoZWRyYWx9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBvZGR9ICAgICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBvZGlvdXN9ICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBvZWlzPTg3fSAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBvcj00fSAgICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBwYWxpbmRyb21lfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gcGFydGl0aW9ufXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gcGVsbH0gICAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gcGVudGFnb25hbH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHBlbnRhdG9wZX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHBlcmZlY3R9ICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHBlcmZlY3RQb3dlcn17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHBlcnJpbn0gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHBvbGl0ZX0gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHBvd2VyPTR9ICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHBvd2VyZnVsfSB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHByaW1lfSAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHByaW1vcmlhbH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHByb25pY30gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHJhbmRvbSwgbWF4aW1hbD05OX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHJhbmdlPScxLi4xMCd9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byByZWNhbWFufSAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byByZXBlYXQ9NH0geyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byByZXB1bml0fSAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byByZXZlcnNhbH0geyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byByb3VuZD00fSAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBzYWZlUHJpbWV9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBzZW1pcHJpbWV9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBzaWdtYX0gICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBzbWl0aH0gICAgeyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBzb3BoaWVHZXJtYWlufXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gc3BoZW5pY30gIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gc3F1YXJlfSAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gc3F1YXJlZnJlZX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHN0YXJ9ICAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHN0ZXA9NH0gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHN0ZXJufSAgICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHN0cm9uZ30gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHN1YnRyYWN0PTR9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byBzeWx2ZXN0ZXJ9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byB0ZXRyYWhlZHJhbH17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHRoYWJpdH0gICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHRodWVNb3JzZX17JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHRvdGllbnR9ICB7JHNlcXVlbmNlfSB7L3NlcXVlbmNlOmF1dG99XG5cbntzZXF1ZW5jZTphdXRvIHRyaWFuZ3VsYXJ9eyRzZXF1ZW5jZX0gey9zZXF1ZW5jZTphdXRvfVxuXG57c2VxdWVuY2U6YXV0byB0cmlib25hY2NpfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gdHdpblByaW1lfXskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gdmFuRWNrfSAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8gd29vZGFsbH0gIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8geG5vcj00fSAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8geG9yPTR9ICAgIHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cblxue3NlcXVlbmNlOmF1dG8geHBhZG92YW59IHskc2VxdWVuY2V9IHsvc2VxdWVuY2U6YXV0b31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
             </th>
           </tr>
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence</font><font color="red"></font>}</b>                      <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>loop</font><font color="red"></font>}</b>          <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>loop</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 4 5 6 7 8 9 10<!-- END DEMO RESULT --></span></code>
@@ -160,7 +244,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">abundant</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">abundant</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->12 18 20 24 30 36 40 42 48 54<!-- END DEMO RESULT --></span></code>
@@ -169,7 +253,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">add=4</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">add=4</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->5 6 7 8 9 10 11 12 13 14<!-- END DEMO RESULT --></span></code>
@@ -178,7 +262,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">amicable</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">amicable</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->220 284 1184 1210 2620 2924 5020 5564 6232 6368<!-- END DEMO RESULT --></span></code>
@@ -187,7 +271,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">and=4</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">and=4</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->0 0 0 4 4 4 4 0 0 0<!-- END DEMO RESULT --></span></code>
@@ -196,7 +280,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">antiprime</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">antiprime</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 4 6 12 24 36 48 60 120<!-- END DEMO RESULT --></span></code>
@@ -205,7 +289,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">automorphic</font>}</b>          <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">automorphic</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->0 1 5 6 25 76 376 625 9376 90625<!-- END DEMO RESULT --></span></code>
@@ -214,7 +298,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">bell</font>}</b>                 <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">bell</font>}</b>     <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 5 15 52 203 877 4140 21147 115975<!-- END DEMO RESULT --></span></code>
@@ -223,7 +307,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">biquadratic</font>}</b>          <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">biquadratic</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 16 81 256 625 1296 2401 4096 6561 10000<!-- END DEMO RESULT --></span></code>
@@ -232,7 +316,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">carmichael</font>}</b>           <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">carmichael</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->561 1105 1729 2465 2821 6601 8911<!-- END DEMO RESULT --></span></code>
@@ -241,7 +325,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">catalan</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">catalan</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 5 14 42 132 429 1430 4862 16796<!-- END DEMO RESULT --></span></code>
@@ -250,7 +334,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">caterer</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">caterer</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->2 4 7 11 16 22 29 37 46 56<!-- END DEMO RESULT --></span></code>
@@ -259,7 +343,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">ceil=4</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">ceil=4</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->4 4 4 4 8 8 8 8 12 12<!-- END DEMO RESULT --></span></code>
@@ -268,7 +352,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">centeredHexagonal</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">centeredHexagonal</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 7 19 37 61 91 127 169 217 271<!-- END DEMO RESULT --></span></code>
@@ -277,7 +361,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">centeredSquare</font>}</b>       <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">centeredSquare</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 5 13 25 41 61 85 113 145 181<!-- END DEMO RESULT --></span></code>
@@ -286,16 +370,16 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">chance=4</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">chance=4</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
-              <code><span style="color: #000000"><!-- START DEMO RESULT -->1 6 8 10 11 14 18 23 24 25<!-- END DEMO RESULT --></span></code>
+              <code><span style="color: #000000"><!-- START DEMO RESULT -->10 14 20 21 27 30 36 37 42 43<!-- END DEMO RESULT --></span></code>
             </td>
           </tr>
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">collatz</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">collatz</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->0 1 7 2 5 8 16 3 19 6<!-- END DEMO RESULT --></span></code>
@@ -304,7 +388,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">composite</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">composite</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->4 6 8 9 10 12 14 15 16 18<!-- END DEMO RESULT --></span></code>
@@ -313,7 +397,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">cubic</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">cubic</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 8 27 64 125 216 343 512 729 1000<!-- END DEMO RESULT --></span></code>
@@ -322,7 +406,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">cullen</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">cullen</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3 9 25 65 161 385 897 2049 4609 10241<!-- END DEMO RESULT --></span></code>
@@ -331,7 +415,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">decagonal</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">decagonal</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 10 27 52 85 126 175 232 297 370<!-- END DEMO RESULT --></span></code>
@@ -340,7 +424,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">deficient</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">deficient</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 4 5 7 8 9 10 11<!-- END DEMO RESULT --></span></code>
@@ -349,7 +433,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">derangement</font>}</b>          <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">derangement</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->0 1 2 9 44 265 1854 14833 133496 1334961<!-- END DEMO RESULT --></span></code>
@@ -358,7 +442,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">digitSum</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">digitSum</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 4 5 6 7 8 9 1<!-- END DEMO RESULT --></span></code>
@@ -367,7 +451,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">digitalRoot</font>}</b>          <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">digitalRoot</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 4 5 6 7 8 9 1<!-- END DEMO RESULT --></span></code>
@@ -376,7 +460,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">divide=4</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">divide=4</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->0.25 0.5 0.75 1 1.25 1.5 1.75 2 2.25 2.5<!-- END DEMO RESULT --></span></code>
@@ -385,7 +469,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">divisors</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">divisors</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 2 3 2 4 2 4 3 4<!-- END DEMO RESULT --></span></code>
@@ -394,7 +478,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">emirp</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">emirp</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->13 17 31 37 71 73 79 97 107 113<!-- END DEMO RESULT --></span></code>
@@ -403,7 +487,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">enneadecagonal</font>}</b>       <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">enneadecagonal</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 19 54 106 175 261 364 484 621 775<!-- END DEMO RESULT --></span></code>
@@ -412,7 +496,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">eval=<font color="black">'</font><font color="black">@</font> * 10 <font color="black">|</font> <font color="black">@</font> - 1<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">eval=<font color="black">'</font><font color="black">@</font> * 10 <font color="black">|</font> <font color="black">@</font> - 1<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->9 19 29 39 49 59 69 79 89 99<!-- END DEMO RESULT --></span></code>
@@ -421,7 +505,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">even</font>}</b>                 <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">even</font>}</b>     <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->2 4 6 8 10 12 14 16 18 20<!-- END DEMO RESULT --></span></code>
@@ -430,7 +514,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">evil</font>}</b>                 <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">evil</font>}</b>     <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3 5 6 9 10 12 15 17 18 20<!-- END DEMO RESULT --></span></code>
@@ -439,7 +523,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">exponentiation=4</font>}</b>     <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">exponentiation=4</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 16 81 256 625 1296 2401 4096 6561 10000<!-- END DEMO RESULT --></span></code>
@@ -448,7 +532,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">factorial</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">factorial</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 6 24 120 720 5040 40320 362880 3628800<!-- END DEMO RESULT --></span></code>
@@ -457,7 +541,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">fermat</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">fermat</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3 5 17 257 65537 4294967297<!-- END DEMO RESULT --></span></code>
@@ -466,7 +550,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">fibonacci</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">fibonacci</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->0 1 1 2 3 5 8 13 21 34<!-- END DEMO RESULT --></span></code>
@@ -475,7 +559,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">floor=4</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">floor=4</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->0 0 0 4 4 4 4 8 8 8<!-- END DEMO RESULT --></span></code>
@@ -484,7 +568,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">gnomonic</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">gnomonic</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 3 5 7 9 11 13 15 17 19<!-- END DEMO RESULT --></span></code>
@@ -493,7 +577,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">golomb</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">golomb</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 2 3 3 4 4 4 5 5<!-- END DEMO RESULT --></span></code>
@@ -502,7 +586,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">gould</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">gould</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 2 4 2 4 4 8 2 4<!-- END DEMO RESULT --></span></code>
@@ -511,7 +595,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">hamming</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">hamming</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 4 5 6 8 9 10 12<!-- END DEMO RESULT --></span></code>
@@ -520,7 +604,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">happy</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">happy</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 7 10 13 19 23 28 31 32 44<!-- END DEMO RESULT --></span></code>
@@ -529,7 +613,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">harshad</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">harshad</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 4 5 6 7 8 9 10<!-- END DEMO RESULT --></span></code>
@@ -538,7 +622,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">heptadecagonal</font>}</b>       <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">heptadecagonal</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 17 48 94 155 231 322 428 549 685<!-- END DEMO RESULT --></span></code>
@@ -547,7 +631,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">heptagonal</font>}</b>           <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">heptagonal</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 7 18 34 55 81 112 148 189 235<!-- END DEMO RESULT --></span></code>
@@ -556,7 +640,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">hexagonal</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">hexagonal</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 6 15 28 45 66 91 120 153 190<!-- END DEMO RESULT --></span></code>
@@ -565,7 +649,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">icosihenagonal</font>}</b>       <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">icosihenagonal</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 21 60 118 195 291 406 540 693 865<!-- END DEMO RESULT --></span></code>
@@ -574,7 +658,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">identity</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">identity</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 4 5 6 7 8 9 10<!-- END DEMO RESULT --></span></code>
@@ -583,7 +667,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">jacobsthal</font>}</b>           <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">jacobsthal</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 1 3 5 11 21 43 85 171 341<!-- END DEMO RESULT --></span></code>
@@ -592,7 +676,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">kaprekar</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">kaprekar</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 9 45 55 99 297 703 999 2223 2728<!-- END DEMO RESULT --></span></code>
@@ -601,7 +685,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">kolakoski</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">kolakoski</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 2 1 1 2 1 2 2 1<!-- END DEMO RESULT --></span></code>
@@ -610,7 +694,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">kynea</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">kynea</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->7 23 79 287 1087 4223 16639 66047 263167 1050623<!-- END DEMO RESULT --></span></code>
@@ -619,7 +703,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">leonardo</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">leonardo</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 1 3 5 9 15 25 41 67 109<!-- END DEMO RESULT --></span></code>
@@ -628,7 +712,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">list=<font color="black">'</font>1;8;5;2;9;66<font color="black">'</font></font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">list=<font color="black">'</font>1;8;5;2;9;66<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 8 5 2 9 66<!-- END DEMO RESULT --></span></code>
@@ -637,7 +721,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">loop=4</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">loop=4</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 4<!-- END DEMO RESULT --></span></code>
@@ -646,7 +730,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">lucas</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">lucas</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 3 4 7 11 18 29 47 76 123<!-- END DEMO RESULT --></span></code>
@@ -655,7 +739,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">lucky</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">lucky</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 3 7 9 13 15 21 25 31 33<!-- END DEMO RESULT --></span></code>
@@ -664,7 +748,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mersenne</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">mersenne</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3 7 31 127 8191 131071 524287 2147483647 2305843009213693951<!-- END DEMO RESULT --></span></code>
@@ -673,7 +757,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">modulo=4</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">modulo=4</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 0 1 2 3 0 1 2<!-- END DEMO RESULT --></span></code>
@@ -682,7 +766,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">moserdebruijn</font>}</b>        <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">moserdebruijn</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 4 5 16 17 20 21 64 65 68<!-- END DEMO RESULT --></span></code>
@@ -691,7 +775,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">motzkin</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">motzkin</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 4 9 21 51 127 323 835 2188<!-- END DEMO RESULT --></span></code>
@@ -700,7 +784,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">multiple=4</font>}</b>           <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">multiple=4</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->4 8 12 16 20 24 28 32 36 40<!-- END DEMO RESULT --></span></code>
@@ -709,7 +793,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">multiply=4</font>}</b>           <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">multiply=4</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->4 8 12 16 20 24 28 32 36 40<!-- END DEMO RESULT --></span></code>
@@ -718,7 +802,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">nand=4</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">nand=4</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->-1 -1 -1 -5 -5 -5 -5 -1 -1 -1<!-- END DEMO RESULT --></span></code>
@@ -727,7 +811,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">narayana</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">narayana</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 1 1 2 3 4 6 9 13 19<!-- END DEMO RESULT --></span></code>
@@ -736,7 +820,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">narcissistic</font>}</b>         <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">narcissistic</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 4 5 6 7 8 9 153<!-- END DEMO RESULT --></span></code>
@@ -745,7 +829,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">negation</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">negation</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->-1 -2 -3 -4 -5 -6 -7 -8 -9 -10<!-- END DEMO RESULT --></span></code>
@@ -754,7 +838,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">newmanConway</font>}</b>         <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">newmanConway</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 1 2 2 3 4 4 4 5 6<!-- END DEMO RESULT --></span></code>
@@ -763,7 +847,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">nor=4</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">nor=4</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->-6 -7 -8 -5 -6 -7 -8 -13 -14 -15<!-- END DEMO RESULT --></span></code>
@@ -772,7 +856,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">not</font>}</b>                  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">not</font>}</b>      <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->-2 -3 -4 -5 -6 -7 -8 -9 -10 -11<!-- END DEMO RESULT --></span></code>
@@ -781,7 +865,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">octagonal</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">octagonal</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 8 21 40 65 96 133 176 225 280<!-- END DEMO RESULT --></span></code>
@@ -790,7 +874,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">octahedral</font>}</b>           <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">octahedral</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 6 19 44 85 146 231 344 489 670<!-- END DEMO RESULT --></span></code>
@@ -799,7 +883,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">odd</font>}</b>                  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">odd</font>}</b>      <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 3 5 7 9 11 13 15 17 19<!-- END DEMO RESULT --></span></code>
@@ -808,7 +892,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">odious</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">odious</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 4 7 8 11 13 14 16 19<!-- END DEMO RESULT --></span></code>
@@ -817,7 +901,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">oeis=87</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">oeis=87</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->2 1 2 4 10 37 138 628 2972 14903<!-- END DEMO RESULT --></span></code>
@@ -826,7 +910,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">or=4</font>}</b>                 <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">or=4</font>}</b>     <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->5 6 7 4 5 6 7 12 13 14<!-- END DEMO RESULT --></span></code>
@@ -835,7 +919,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">palindrome</font>}</b>           <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">palindrome</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 4 5 6 7 8 9 11<!-- END DEMO RESULT --></span></code>
@@ -844,7 +928,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">partition</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">partition</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 5 7 11 15 22 30 42<!-- END DEMO RESULT --></span></code>
@@ -853,7 +937,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">pell</font>}</b>                 <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">pell</font>}</b>     <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 5 12 29 70 169 408 985 2378<!-- END DEMO RESULT --></span></code>
@@ -862,7 +946,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">pentagonal</font>}</b>           <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">pentagonal</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 5 12 22 35 51 70 92 117 145<!-- END DEMO RESULT --></span></code>
@@ -871,7 +955,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">pentatope</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">pentatope</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 5 15 35 70 126 210 330 495 715<!-- END DEMO RESULT --></span></code>
@@ -880,7 +964,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">perfect</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">perfect</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->6 28 496 8128 33550336 8589869056 137438691328 2305843008139952128<!-- END DEMO RESULT --></span></code>
@@ -889,7 +973,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">perfectPower</font>}</b>         <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">perfectPower</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 4 8 9 16 25 27 32 36 49<!-- END DEMO RESULT --></span></code>
@@ -898,7 +982,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">perrin</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">perrin</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3 0 2 3 2 5 5 7 10 12<!-- END DEMO RESULT --></span></code>
@@ -907,7 +991,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">polite</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">polite</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3 5 6 7 9 10 11 12 13 14<!-- END DEMO RESULT --></span></code>
@@ -916,7 +1000,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">power=4</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">power=4</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->4 16 64 256 1024 4096 16384 65536 262144 1048576<!-- END DEMO RESULT --></span></code>
@@ -925,7 +1009,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">powerful</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">powerful</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 4 8 9 16 25 27 32 36 49<!-- END DEMO RESULT --></span></code>
@@ -934,7 +1018,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">prime</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">prime</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->2 3 5 7 11 13 17 19 23 29<!-- END DEMO RESULT --></span></code>
@@ -943,7 +1027,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">primorial</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">primorial</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->2 6 30 210 2310 30030 510510 9699690 223092870 6469693230<!-- END DEMO RESULT --></span></code>
@@ -952,7 +1036,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">pronic</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">pronic</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->2 6 12 20 30 42 56 72 90 110<!-- END DEMO RESULT --></span></code>
@@ -961,16 +1045,16 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">random<font color="black">,</font> maximal=99</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">random<font color="black">,</font> maximal=99</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
-              <code><span style="color: #000000"><!-- START DEMO RESULT -->1 81 7 36 53 15 71 28 68 23<!-- END DEMO RESULT --></span></code>
+              <code><span style="color: #000000"><!-- START DEMO RESULT -->48 67 96 23 31 97 8 4 30 67<!-- END DEMO RESULT --></span></code>
             </td>
           </tr>
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">range=<font color="black">'</font>1..10<font color="black">'</font></font>}</b>        <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">range=<font color="black">'</font>1..10<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 4 5 6 7 8 9 10<!-- END DEMO RESULT --></span></code>
@@ -979,7 +1063,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">recaman</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">recaman</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->0 1 3 6 2 7 13 20 12 21<!-- END DEMO RESULT --></span></code>
@@ -988,7 +1072,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">repeat=4</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">repeat=4</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->4 4 4 4 4 4 4 4 4 4<!-- END DEMO RESULT --></span></code>
@@ -997,7 +1081,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">repunit</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">repunit</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 11 111 1111 11111 111111 1111111 11111111 111111111 1111111111<!-- END DEMO RESULT --></span></code>
@@ -1006,7 +1090,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">reversal</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">reversal</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 4 5 6 7 8 9 1<!-- END DEMO RESULT --></span></code>
@@ -1015,7 +1099,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">round=4</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">round=4</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->0 4 4 4 4 8 8 8 8 12<!-- END DEMO RESULT --></span></code>
@@ -1024,7 +1108,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">safePrime</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">safePrime</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->5 7 11 23 47 59 83 107 167 179<!-- END DEMO RESULT --></span></code>
@@ -1033,7 +1117,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">semiprime</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">semiprime</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->4 6 9 10 14 15 21 22 25 26<!-- END DEMO RESULT --></span></code>
@@ -1042,7 +1126,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">sigma</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">sigma</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 3 4 7 6 12 8 15 13 18<!-- END DEMO RESULT --></span></code>
@@ -1051,7 +1135,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">smith</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">smith</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->4 22 27 58 85 94 121 166 202 265<!-- END DEMO RESULT --></span></code>
@@ -1060,7 +1144,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">sophieGermain</font>}</b>        <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">sophieGermain</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->2 3 5 11 23 29 41 53 83 89<!-- END DEMO RESULT --></span></code>
@@ -1069,7 +1153,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">sphenic</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">sphenic</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->30 42 66 70 78 102 105 110 114 130<!-- END DEMO RESULT --></span></code>
@@ -1078,7 +1162,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">square</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">square</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 4 9 16 25 36 49 64 81 100<!-- END DEMO RESULT --></span></code>
@@ -1087,7 +1171,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">squarefree</font>}</b>           <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">squarefree</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 3 5 6 7 10 11 13 14<!-- END DEMO RESULT --></span></code>
@@ -1096,7 +1180,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">star</font>}</b>                 <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">star</font>}</b>     <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 13 37 73 121 181 253 337 433 541<!-- END DEMO RESULT --></span></code>
@@ -1105,7 +1189,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">step=4</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">step=4</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 5 9 13 17 21 25 29 33 37<!-- END DEMO RESULT --></span></code>
@@ -1114,7 +1198,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">stern</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">stern</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 1 2 1 3 2 3 1 4 3<!-- END DEMO RESULT --></span></code>
@@ -1123,7 +1207,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">strong</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">strong</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 2 145<!-- END DEMO RESULT --></span></code>
@@ -1132,7 +1216,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">subtract=4</font>}</b>           <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">subtract=4</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->-3 -2 -1 0 1 2 3 4 5 6<!-- END DEMO RESULT --></span></code>
@@ -1141,7 +1225,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">sylvester</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">sylvester</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->2 3 7 43 1807 3263443 10650056950807<!-- END DEMO RESULT --></span></code>
@@ -1150,7 +1234,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">tetrahedral</font>}</b>          <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">tetrahedral</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 4 10 20 35 56 84 120 165 220<!-- END DEMO RESULT --></span></code>
@@ -1159,7 +1243,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">thabit</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">thabit</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->2 5 11 23 47 95 191 383 767 1535<!-- END DEMO RESULT --></span></code>
@@ -1168,7 +1252,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">thueMorse</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">thueMorse</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 1 0 1 0 0 1 1 0 0<!-- END DEMO RESULT --></span></code>
@@ -1177,7 +1261,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">totient</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">totient</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 1 2 2 4 2 6 4 6 4<!-- END DEMO RESULT --></span></code>
@@ -1186,7 +1270,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">triangular</font>}</b>           <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">triangular</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 3 6 10 15 21 28 36 45 55<!-- END DEMO RESULT --></span></code>
@@ -1195,7 +1279,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">tribonacci</font>}</b>           <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">tribonacci</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->0 0 1 1 2 4 7 13 24 44<!-- END DEMO RESULT --></span></code>
@@ -1204,7 +1288,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">twinPrime</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">twinPrime</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3 5 7 11 13 17 19 29 31 41<!-- END DEMO RESULT --></span></code>
@@ -1213,7 +1297,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">vanEck</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">vanEck</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->0 0 1 0 2 0 2 2 1 6<!-- END DEMO RESULT --></span></code>
@@ -1222,7 +1306,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">woodall</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">woodall</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 7 23 63 159 383 895 2047 4607 10239<!-- END DEMO RESULT --></span></code>
@@ -1231,7 +1315,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">xnor=4</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">xnor=4</font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->-6 -7 -8 -1 -2 -3 -4 -13 -14 -15<!-- END DEMO RESULT --></span></code>
@@ -1240,7 +1324,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">xor=4</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">xor=4</font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->5 6 7 0 1 2 3 12 13 14<!-- END DEMO RESULT --></span></code>
@@ -1249,7 +1333,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">xpadovan</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto </font><font color="red">xpadovan</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 1 1 2 2 3 4 5 7 9<!-- END DEMO RESULT --></span></code>

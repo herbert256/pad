@@ -1,7 +1,7 @@
 <?php
 
-  // A {bool} named on its closing tag reduces its content after the walk, its fields' values
-  // in it. Content that is values alone is their text's own truth, as {bool 'name', $v}
+  // A {pad:bool} named on its closing tag reduces its content after the walk, its fields' values
+  // in it. Content that is values alone is their text's own truth, as {pad:bool 'name', $v}
   // takes it: $a ran as the expression it reads like and stored FALSE, $f called the PHP
   // function it names; 'Hello world' stays TRUE, '0' FALSE. An expression of the author's
   // own still evaluates with a number in it, a word, or a value inside its quotes.

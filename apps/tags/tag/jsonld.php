@@ -11,8 +11,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{jsonld 'kind', data='rows'/}
-{jsonld 'article', headline=$title, author=$author, published=$date/}
+{jsonld:kind data='rows'/}
+{jsonld:article headline=$title, author=$author, published=$date/}
 {jsonld:article data='post', url=$url/}
 {jsonld:faq data='questions'/}
 {jsonld:breadcrumb/}
@@ -20,12 +20,12 @@
 PAD;
 
   $tagParms   = [
-    'kind' => 'The kind, a file of <code>pad/subs/jsonld/types/</code>: '
+    'kind after colon' => 'The kind, a file of <code>pad/subs/jsonld/types/</code>: '
             . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padJsonLdKinds () ) )
-            . '. The jsonld: type names it as well - <code>{jsonld:article .../}</code>; a kind is never reached bare.' ];
+            . '. The jsonld: prefix selects it - <code>{jsonld:article .../}</code>; a kind is never reached bare.' ];
 
   $tagOptions = [
-    'data' => 'The row or rows of the fields: a {data} store, the page\'s array, a field holding a list or a _data file - one row of fields, or rows, which a kind of one object writes as a <code>@graph</code> and faq, breadcrumb and itemlist as their items. The handling options work on them.',
+    'data' => 'The row or rows of the fields: a {pad:data} store, the page\'s array, a field holding a list or a _data file - one row of fields, or rows, which a kind of one object writes as a <code>@graph</code> and faq, breadcrumb and itemlist as their items. The handling options work on them.',
     'id'   => 'The object\'s <code>@id</code>, an address made absolute - <code>id=\'#org\'</code> - or an IRI of another scheme.',
     'home' => 'breadcrumb without data=: the text of the first step of the trail (Home), as the breadcrumb widget takes it.' ];
 

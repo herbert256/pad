@@ -4,22 +4,22 @@ this page lists what each file says of itself. Their names are written in any ca
 read the sample sheet below as if they stood in its cell G1, and each shows what that cell
 shows.</p>
 
-{spreadsheet 'sample', data='sample', caption='The sample sheet', formats='C:0.00'/}
+{pad:spreadsheet 'sample', data='sample', caption='The sample sheet', formats='C:0.00'/}
 
-<nav class="sheets-groups" aria-label="Groups">{groups}<a href="#group-{$id}">{$group}</a>{/groups}</nav>
+<nav class="sheets-groups" aria-label="Groups">{array:groups}<a href="#group-{$id}">{$group}</a>{/array:groups}</nav>
 
-{groups}
+{array:groups}
 <h2 id="group-{$id}">{$group}</h2>
 <table class="sheets-functions">
   <thead><tr><th scope="col">Function</th><th scope="col">What it does</th><th scope="col">Examples</th></tr></thead>
   <tbody>
-  {functions}
+  {array:functions}
     <tr id="{$kind}">
       <th scope="row">{$name}</th>
       <td>{$about}</td>
-      <td><ul class="sheets-examples">{examples}<li><code>{$formula}</code> <samp>{$shown}</samp></li>{/examples}</ul></td>
+      <td><ul class="sheets-examples">{array:examples}<li><code>{$formula}</code> <samp>{$shown}</samp></li>{/array:examples}</ul></td>
     </tr>
-  {/functions}
+  {/array:functions}
   </tbody>
 </table>
-{/groups}
+{/array:groups}

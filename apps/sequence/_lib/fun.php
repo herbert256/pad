@@ -1,7 +1,7 @@
 <?php
 
   // Sequences you can see and hear - the Gallery, Listen and Guess pages. A workshop
-  // face for the subsystem: every type's terms drawn as a {sparkline} beside the OEIS
+  // face for the subsystem: every type's terms drawn as a {chart:sparkline} beside the OEIS
   // entry they start, a sequence played as notes, and a game that shows the start of a
   // sequence and asks for the next term.
   //

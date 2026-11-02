@@ -1,11 +1,10 @@
 <?php
 
-  // Type entry for keep: reached from types/keep.php for the prefixed forms {keep:prime} and
-  // {prime:keep}, which padTypeSeq() accepts either way round. Notes the entry point for
-  // {info} in $pqSetStart and runs the tag pipeline.
+  // Entry for keep:kind and keep:auto. The namespace chooses the operation;
+  // the shared pipeline resolves the kind, source and ordered parameters.
 
   $pqSetStart = __FILE__;
 
-  return include PQ . "sequence/type.php";
+  return include PQ . 'sequence/type.php';
 
 ?>

@@ -6,6 +6,6 @@
   if ( padRequestHas ( 'download' ) )
     padUploadSend ( 'notes/notes.sqlite', 'notes.sqlite', TRUE );
 
-  $notesPage = 'Database';
+  $title = 'The database';
 
 ?>

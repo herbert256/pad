@@ -1,0 +1,14 @@
+/* The frame and editor layout follow Live. Only the static theme control
+   and loading/disabled states need styling here; themes come from the PAD bundle. */
+.app-wasm .pad-themes { display: inline-flex; align-items: center; }
+.app-wasm .pad-themes select { font: inherit; padding: 5px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--text); }
+.app-wasm .playTools button:disabled { opacity: .55; cursor: wait; }
+.app-wasm [data-icon] { display: inline-flex; align-items: center; }
+.app-wasm .pad-brand-menu > summary > [data-icon] { margin-left: auto; }
+.app-wasm #status { overflow-wrap: anywhere; }
+@media (max-width: 1100px) {
+  .app-wasm .frame-top { flex-wrap: wrap; height: auto; min-height: var(--frame-height); padding-top: 10px; padding-bottom: 10px; gap: 8px; }
+  .app-wasm .frame-top h1 { flex-basis: 100%; white-space: normal; }
+  .app-wasm .frame-tools, .app-wasm .playTools { flex-wrap: wrap; }
+  .app-wasm .frame-tools { margin-left: 0; }
+}

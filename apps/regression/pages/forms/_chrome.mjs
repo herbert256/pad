@@ -12,7 +12,7 @@
 //    judged by padValidate.check in the page, and the cases of the rules that look at other
 //    fields again as a real <form data-pad-rules> - hidden fields, FormData,
 //    padValidate.form - each held to the server's message.
-// 2. The watcher on forms/a_client_form_names_the_fields_its_rules_look_at, a {form ...,
+// 2. The watcher on forms/a_client_form_names_the_fields_its_rules_look_at, a {pad:form ...,
 //    client} of a template: real change, input and focusout events, the messages read from
 //    the page.
 

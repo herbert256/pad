@@ -1,10 +1,8 @@
 <?php
 
-  // Type handler for a printable: {printable:labels data='products'} ... {/printable:labels}.
-  // The kind is the tag's name, set up as {printable 'labels'} sets it up, by
-  // subs/printables/printable.php - run as a built-in tag's PHP half is run, types/_go/tag.php,
-  // on both walks the printable asks for. A printable is never reached bare: labels, cards,
-  // tickets and letter are the names of fields and pages.
+  // printable:kind selects a registered kind from its subsystem. The type handler
+  // runs the subsystem with the kind in the tag name and its own parameters unchanged.
+
 
   $padPrintableKind = $padTag [$pad];
 

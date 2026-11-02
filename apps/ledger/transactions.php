@@ -1,6 +1,6 @@
 <?php
 
-  // A month's transactions as one table - sorted and paged on the server by {datatable} -
+  // A month's transactions as one table - sorted and paged on the server by {pad:datatable} -
   // narrowed to a category, an account or a word in the note. The same rows answer as CSV
   // (?transactions&padFormat=csv) and JSON: $padExpose names them.
 

@@ -1,12 +1,12 @@
-{data 'row'   } [1,2,3]     {/data}
-{data 'column'} [1,2,3,4,5] {/data}
+{pad:data 'row'   } [1,2,3]     {/pad:data}
+{pad:data 'column'} [1,2,3,4,5] {/pad:data}
 
 <table border='1'>
-  {row}
+  {data:row}
     <tr>
-      {column}
-        {cell ($row*10) + $column/} 
-      {/column}
+      {data:column}
+        {content:cell ($row*10) + $column/} 
+      {/data:column}
     </tr>
-  {/row}
+  {/data:row}
 </table>

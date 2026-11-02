@@ -1,16 +1,16 @@
-{meta title='Types by group'/}
+{pad:meta title='Types by group'/}
 <h1>Types by group</h1>
-<p class="lead">The types by what they reach, in {$groupCount} groups.</p>
+<p class="lead">Tag types and kind families by what they reach, in {$groupCount} groups.</p>
 
-<nav class="jump" aria-label="Groups">{groups}<a href="#{$key}">{$label}</a>{/groups}</nav>
+<nav class="jump" aria-label="Groups">{array:groups}<a href="#{$key}">{$label}</a>{/array:groups}</nav>
 
-{groups}
+{array:groups}
 <section class="section" id="{$key}">
-  <div class="section-head"><h2>{$label}</h2><span>{$tagline} - {$count} {echo $count eq 1 ? 'type' : 'types'/}</span></div>
+  <div class="section-head"><h2>{$label}</h2><span>{$tagline} - {$count} {pad:if $key == 'kinds'}families{pad:else}{pad:echo $count eq 1 ? 'type' : 'types'/}{/pad:if}</span></div>
   <ul class="list">
-    {types}
+    {array:types}
     <li><a class="name" href="?{$link}">{$key}</a> <span class="about">{$about}</span></li>
-    {/types}
+    {/array:types}
   </ul>
 </section>
-{/groups}
+{/array:groups}

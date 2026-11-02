@@ -5,10 +5,10 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{form 'name'} ... {/form}
-{form 'name', method='get', class='search'} ... {/form}
-{form 'name', error='Please correct the errors below.'} ... {/form}
-{form 'name', client, error} ... {/form}
+{pad:form 'name'} ... {/pad:form}
+{pad:form 'name', method='get', class='search'} ... {/pad:form}
+{pad:form 'name', error='Please correct the errors below.'} ... {/pad:form}
+{pad:form 'name', client, error} ... {/pad:form}
 PAD;
 
   $tagParms   = [
@@ -20,5 +20,7 @@ PAD;
     'client' => 'Bare option: check the <code>rules=</code> of the fields in the browser too, with the same messages - the form gets <code>novalidate</code>, <code>data-pad-rules</code> and the checker script.' ];
 
   $tagSee     = [ 'input', 'textarea', 'csrf', 'validator', 'flash', 'attrs' ];
+
+  $subsystemKindLinks = appSubsystemLinks ( 'rule' );
 
 ?>

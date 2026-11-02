@@ -1,15 +1,15 @@
 <p>
-  {if $fruit eq 'banana'}
-    {if $color eq 'pink'}
+  {pad:if $fruit eq 'banana'}
+    {pad:if $color eq 'pink'}
       <b> A pink banana </b>
     @else@
       <b> Not a pink banana </b>
-    {/if}
+    {/pad:if}
   @else@
-    {if $color eq 'green'}
+    {pad:if $color eq 'green'}
       <b> An {$fruit} is {$color}</b>
     @else@
       <b> Not a green fruit </b>
-    {/if}
-  {/if}
+    {/pad:if}
+  {/pad:if}
 </p>

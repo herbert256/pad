@@ -6,7 +6,7 @@
   // one made from this application's own form.
   //
   // padCsrfToken    the session's token, made on first use - the session starts on demand
-  // padCsrfField    the hidden form field carrying it, what {csrf} writes
+  // padCsrfField    the hidden form field carrying it, what {pad:csrf} writes
   // padCsrfValid    whether this request brought the session's token back, in the
   //                 padCsrfToken field or an X-CSRF-Token header (for a script's fetch)
   // padCsrfUnsafe   whether the request method changes state - anything but GET, HEAD and
@@ -92,13 +92,13 @@
   // A button belongs to the form its form= names, wherever it stands, and sends that form
   // where its formaction= says; a relative action is resolved against the page's <base
   // href>. A form one of whose buttons posts to another site gets no token - and loses the
-  // one a {form} wrote: exits.php runs this pass, adding nothing, also with $padCsrf off
+  // one a {pad:form} wrote: exits.php runs this pass, adding nothing, also with $padCsrf off
   // when a token went into the page. A button that sends the form by GET - formmethod=, in
   // any spelling a browser reads as GET - to this site leaves the token: it reaches this
   // site's own logs and history only, and a form with a Save and a Preview button could
   // not post at all without it.
 
-  // A part of a page sent ahead by a {flush} ($part) gives no token to a form still open at
+  // A part of a page sent ahead by a {pad:flush} ($part) gives no token to a form still open at
   // its end: the button that sends it - to another site, may be - is in the part to come,
   // and the token went out with the first part though the form's own check never saw it.
 
@@ -173,8 +173,8 @@
 
       } elseif ( $form ['token'] and isset ( $GLOBALS ['padCsrfIssued'] ) ) {
 
-        // Only the token a {form} wrote goes (lib/form.php keeps its opening text), never a
-        // {csrf} the template wrote itself: that one was put there on purpose.
+        // Only the token a {pad:form} wrote goes (lib/form.php keeps its opening text), never a
+        // {pad:csrf} the template wrote itself: that one was put there on purpose.
 
         $field = '<input type="hidden" name="' . padCsrfName . '" value="' . $GLOBALS ['padCsrfIssued'] . '">';
 
@@ -210,7 +210,7 @@
   }
 
   // The page's <base href> - the first one - kept for the request: a page sent in parts by
-  // {flush} has it in the part that went first (lib/flush.php asks here too), and the pass
+  // {pad:flush} has it in the part that went first (lib/flush.php asks here too), and the pass
   // over the rest knew no base - action="save" under a base on another site got the token.
 
   function padCsrfBaseKeep ( $html ) {
@@ -307,7 +307,7 @@
 
   }
 
-  // The opening tag of a form - {form} asks too (lib/form.php) - and whether it posts here.
+  // The opening tag of a form - {pad:form} asks too (lib/form.php) - and whether it posts here.
 
   function padCsrfFormPosts ( $open ) {
 

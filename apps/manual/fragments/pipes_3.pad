@@ -1,8 +1,8 @@
 <p>Chain multiple pipes together:</p>
 
 <p>Original: [{$rawText}]</p>
-<p>Trimmed and uppercase: [{echo $rawText | trim | upper/}]</p>
+<p>Trimmed and uppercase: [{pad:echo $rawText | trim | upper/}]</p>
 
 <p>Original: {$message}</p>
-<p>Uppercase first letter of each word: {echo $message | ucwords/}</p>
-<p>Replace and capitalize each word: {echo $message | replace('fox', 'dog') | ucwords/}</p>
+<p>Uppercase first letter of each word: {pad:echo $message | ucwords/}</p>
+<p>Replace and capitalize each word: {pad:echo $message | replace('fox', 'dog') | ucwords/}</p>

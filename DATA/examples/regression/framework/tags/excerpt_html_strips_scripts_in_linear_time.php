@@ -1,6 +1,6 @@
 <?php
 
-  // The scripts and styles of an {excerpt ..., html} text are left out in one pass: an
+  // The scripts and styles of an {pad:excerpt ..., html} text are left out in one pass: an
   // unclosed <script> before a megabyte of text emptied the excerpt (or ended the request),
   // and openers without a closer took seconds - every one scanned on to the end.
 

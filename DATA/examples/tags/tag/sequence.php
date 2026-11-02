@@ -1,20 +1,20 @@
 <?php
 
-  $tagAbout   = 'Generates a range, a list or one of 80 mathematical sequences, and iterates its values.';
+  $tagAbout   = 'Generates a range, a list or a mathematical sequence, and iterates its values.';
   $tagGroup   = 'sequences';
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{sequence '1..10'} ... {/sequence}
-{sequence range='1..100', increment=5} ... {/sequence}
-{sequence list='3;1;2'} ... {/sequence}
-{sequence prime, rows=10, name='p'} ... {/sequence}
-{sequence fibonacci, from=1, to=20, stop=100, skip=2} ... {/sequence}
-{sequence random, minimal=1, maximal=100, rows=5, unique, randomly} ... {/sequence}
-{sequence '1..20', keep, prime, sum} ... {/sequence}
-{sequence '1..20', keep='prime', action='first|3'} ... {/sequence}
-{sequence prime, rows=10, push='primes', toData='primeList'/}
-{sequence pull='primes', reverse} ... {/sequence}
+{sequence:range '1..10'} ... {/sequence:range}
+{sequence:range '1..100', increment=5} ... {/sequence:range}
+{sequence:list '3;1;2'} ... {/sequence:list}
+{sequence:prime rows=10, name='p'} ... {/sequence:prime}
+{sequence:fibonacci from=1, to=20, stop=100, skip=2} ... {/sequence:fibonacci}
+{sequence:random minimal=1, maximal=100, rows=5, unique, randomly} ... {/sequence:random}
+{sequence:range '1..20', keep, prime, sum} ... {/sequence:range}
+{sequence:range '1..20', keep='prime', action='first|3'} ... {/sequence:range}
+{sequence:prime rows=10, push='primes', toData='primeList'/}
+{sequence:auto pull='primes', reverse} ... {/sequence:auto}
 PAD;
 
   $tagParms   = [
@@ -33,14 +33,14 @@ PAD;
     'maximal'   => 'Leave out terms above this value.',
     'unique'    => 'Bare option: leave out a term that is already in the result.',
     'randomly'  => 'Bare option: take the candidates in random order instead of from low to high.',
-    'push'      => 'Store the result under this name, for <a href="?tag/pull">{pull}</a>, <a href="?tag/resume">{resume}</a> and <a href="?tag/action">{action}</a>.',
+    'push'      => 'Store the result under this name, for <a href="?tag/pull">{pad:pull}</a>, <a href="?tag/resume">{pad:resume}</a> and <a href="?tag/action">{action:*}</a>.',
     'pull'      => 'Start from a stored sequence instead of generating one.',
-    'toData'    => 'Also keep the values as a data set of this name, iterated as <code>{name}</code>.',
+    'toData'    => 'Also keep the values as a data set of this name, iterated as <code>{property:name}</code>.',
     'name'      => 'The field the current value is written to, instead of <code>$sequence</code>; the result is also stored under it, like <code>push</code>.',
     'negative'  => 'Bare option: invert the selection of an action - <code>first=3, negative</code> is all but the first three.',
     'keep'      => 'A play: <code>keep, prime</code> (bare, followed by a type) or <code>keep=\'prime\'</code> keeps only the values that belong to that type. Also <code>remove</code>, <code>flag</code> and <code>make</code>; see those tags.',
     'action'    => 'Names an action explicitly, its value after a <code>|</code>: <code>action=\'first|3\'</code>. Usually the action is written as an option of its own, applied to the result in the order written: <code>sum</code>, <code>average</code>, <code>median</code>, <code>count</code>, <code>reverse</code>, <code>sort</code>, <code>shuffle</code>, <code>dedup</code>, <code>first=n</code>, <code>last=n</code>, <code>append=\'store\'</code>, ...' ];
 
-  $tagSee     = [ 'pull', 'keep', 'remove', 'flag', 'make', 'resume', 'action', 'sparkline', 'chart' ];
+  $tagSee     = [ 'pull', 'keep:auto', 'remove:auto', 'flag', 'make:auto', 'resume', 'action:auto', 'chart:sparkline', 'chart:bar' ];
 
 ?>

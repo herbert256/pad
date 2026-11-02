@@ -1,12 +1,8 @@
 <?php
 
-  // Type handler for a notation: {notation:math}a/b{/notation:math}, {notation:chess 'fen'/},
-  // or a bare tag naming a file of subs/notations/types/ when nothing else has the name -
-  // {math}a/b{/math}, {chess 'fen'/}. The kind is the tag's name, its text the tag's first
-  // parameter or else its content, and it is drawn as {notation 'math'} draws it, by
-  // subs/notations/notation.php - run as a built-in tag's PHP half is run, types/_go/tag.php.
+  // notation:kind selects a registered kind from its subsystem. The type handler
+  // runs the subsystem with the kind in the tag name and its own parameters unchanged.
 
-  // Whether the tag has a first parameter - $padOpt holds an empty one when it has none.
 
   $padNotationKind  = $padTag [$pad];
   $padNotationGiven = (bool) array_filter ( $padParms [$pad], fn ( $one ) => $one ['padPrmKind'] == 'parm' and $one ['padPrmName'] == 1 );

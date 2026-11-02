@@ -1,5 +1,5 @@
-{meta title='A summary, kept a day', about='The content renders first and is the prompt; the answer is kept a day for the same prompt.'/}
-{articles}
+{pad:meta title='A summary, kept a day', about='The content renders first and is the prompt; the answer is kept a day for the same prompt.'/}
+{array:articles}
   <h3>{$title}</h3>
-  <p>{ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/ai}</p>
-{/articles}
+  <p>{pad:ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/pad:ai}</p>
+{/array:articles}

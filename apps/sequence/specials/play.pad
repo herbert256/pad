@@ -1,8 +1,8 @@
-{table}
-{demo} {loop from=10, rows=20/} {/demo}
-{demo} {pull              } {$sequence} {/pull} {/demo}
-{demo} {pull make='even'  } {$sequence} {/pull} {/demo}
-{demo} {pull keep='even'  } {$sequence} {/pull} {/demo}
-{demo} {pull remove='even'} {$sequence} {/pull} {/demo}
-{demo} {pull flag='even'  } {$sequence} {/pull} {/demo}
-{/table}
+{common:table}
+{common:demo} {sequence:loop from=10, rows=20/} {/common:demo}
+{common:demo} {pad:pull              } {$sequence} {/pad:pull} {/common:demo}
+{common:demo} {pad:pull make='even'  } {$sequence} {/pad:pull} {/common:demo}
+{common:demo} {pad:pull keep='even'  } {$sequence} {/pad:pull} {/common:demo}
+{common:demo} {pad:pull remove='even'} {$sequence} {/pad:pull} {/common:demo}
+{common:demo} {pad:pull flag='even'  } {$sequence} {/pad:pull} {/common:demo}
+{/common:table}

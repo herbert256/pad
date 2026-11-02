@@ -1,1 +1,1 @@
-{cache 'fwVaryType', vary=$userId, ttl=60}first{/cache}|{set $forgot = php:padFragmentForget('fwVaryType', '42')/}{cache 'fwVaryType', vary=$userId, ttl=60}second{/cache}
+{pad:cache 'fwVaryType', vary=$userId, ttl=60}first{/pad:cache}|{pad:set $forgot = php:padFragmentForget('fwVaryType', '42')/}{pad:cache 'fwVaryType', vary=$userId, ttl=60}second{/pad:cache}

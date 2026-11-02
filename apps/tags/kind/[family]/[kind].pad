@@ -1,0 +1,29 @@
+<article class="tag">
+  <nav class="crumbs" aria-label="Where you are">
+    <a href="?index">Tags and subsystem kinds</a><span>/</span><a href="?groups#{$kindGroup}">{$familyLabel}</a><span>/</span><span aria-current="page">{$kind}</span>
+  </nav>
+  <header class="tag-head">
+    <h1>{$kindLabel}</h1>
+    <p class="tag-about">{$kindAbout}</p>
+    <p>{$familyAbout}</p>
+    <p><a href="{$padRoot}types/?type/{$family}">All {$familyLabel}</a>{pad:if $kindParent} · <a href="?tag/{$kindParent}">Using this with &#123;{$kindParent}&#125;</a>{/pad:if}</p>
+  </header>
+
+  <section class="block" aria-labelledby="example">
+    <h2 id="example">Usage example</h2>
+    {pad:if $kindExample.about}<p>{$kindExample.about}</p>{/pad:if}
+    <div class="example-grid{pad:if not $kindExample.run} is-static{/pad:if}">
+      <div class="cell"><div class="cell-head">{pad:if $kindExample.language eq 'php'}PHP{pad:else}Template{/pad:if}</div><pre class="code"><code>{!kindSourceHtml}</code></pre></div>
+      {pad:if $kindExample.run}<div class="cell"><div class="cell-head">Result</div><div class="result">{pad:echo $kindExample.source | code/}</div></div>{/pad:if}
+    </div>
+  </section>
+
+  <section class="block prose" aria-labelledby="description">
+    <h2 id="description">Description</h2>
+    {array:kindParagraphs}<p style="white-space:pre-wrap">{$text}</p>{/array:kindParagraphs}
+  </section>
+  <section class="block" aria-labelledby="related">
+    <h2 id="related">{$familyLabel}</h2>
+    <div class="tagcloud">{array:kindSiblings}<a href="?{$link}">{$name}</a>{/array:kindSiblings}</div>
+  </section>
+</article>

@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {jsonld:*} · PAD tags
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="tags.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+  </head>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>tags</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags and kinds</label> <input type="search" id="q" name="q" value="" placeholder="Search 1220 entries" autocomplete="off">
+        </form>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#navigation">Navigation</a><span>/</span><span aria-current="page">jsonld:*</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              <span class="brace">{</span>jsonld:*<span class="brace">}</span>
+            </h1>
+            <p class="tag-about">
+              Writes the structured data of a page - a &lt;script type="application/ld+json"&gt; holding a Schema.org object - for 17 kinds, from an article to a product, each field mapped by name, so nothing else of a row reaches the page.
+            </p>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#navigation">Navigation</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:kind</span> <span class="hl-opt">data</span>=<span class="hl-str">'rows'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:article</span> <span class="hl-opt">headline</span>=<span class="hl-var">$title</span>, <span class="hl-opt">author</span>=<span class="hl-var">$author</span>, <span class="hl-opt">published</span>=<span class="hl-var">$date</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:article</span> <span class="hl-opt">data</span>=<span class="hl-str">'post'</span>, <span class="hl-opt">url</span>=<span class="hl-var">$url</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:faq</span> <span class="hl-opt">data</span>=<span class="hl-str">'questions'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:breadcrumb</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:website</span> <span class="hl-opt">name</span>=<span class="hl-str">'Shop'</span>, <span class="hl-opt">search</span>=<span class="hl-str">'?search&amp;q='</span><span class="hl-brc">/}</span></code></pre>
+            <h3>
+              Parameters
+            </h3>
+            <dl class="defs">
+              <dt>
+                <code>kind after colon</code>
+              </dt>
+              <dd>
+                The kind, a file of <code>pad/subs/jsonld/types/</code>: <code>article</code>, <code>breadcrumb</code>, <code>business</code>, <code>course</code>, <code>event</code>, <code>faq</code>, <code>itemlist</code>, <code>job</code>, <code>organization</code>, <code>person</code>, <code>product</code>, <code>profile</code>, <code>recipe</code>, <code>restaurant</code>, <code>software</code>, <code>video</code>, <code>website</code>. The jsonld: prefix selects it - <code>{jsonld:article .../}</code>; a kind is never reached bare.
+              </dd>
+            </dl>
+            <h3>
+              Options
+            </h3>
+            <dl class="defs">
+              <dt>
+                <code>data</code>
+              </dt>
+              <dd>
+                The row or rows of the fields: a {pad:data} store, the page's array, a field holding a list or a _data file - one row of fields, or rows, which a kind of one object writes as a <code>@graph</code> and faq, breadcrumb and itemlist as their items. The handling options work on them.
+              </dd>
+              <dt>
+                <code>id</code>
+              </dt>
+              <dd>
+                The object's <code>@id</code>, an address made absolute - <code>id='#org'</code> - or an IRI of another scheme.
+              </dd>
+              <dt>
+                <code>home</code>
+              </dt>
+              <dd>
+                breadcrumb without data=: the text of the first step of the trail (Home), as the breadcrumb widget takes it.
+              </dd>
+              <dt>
+                <code>address</code>
+              </dt>
+              <dd>
+                A field of event (<code>location.address</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>author</code>
+              </dt>
+              <dd>
+                A field of article (<code>author.name</code>), recipe (<code>author.name</code>), video (<code>author.name</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>availability</code>
+              </dt>
+              <dd>
+                A field of event (<code>offers.availability</code>), product (<code>offers.availability</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>brand</code>
+              </dt>
+              <dd>
+                A field of product (<code>brand.name</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>calories</code>
+              </dt>
+              <dd>
+                A field of recipe (<code>nutrition.calories</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>category</code>
+              </dt>
+              <dd>
+                A field of recipe (<code>recipeCategory</code>), software (<code>applicationCategory</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>city</code>
+              </dt>
+              <dd>
+                A field of business (<code>address.addressLocality</code>, required), job (<code>jobLocation.address.addressLocality</code>), restaurant (<code>address.addressLocality</code>, required) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>code</code>
+              </dt>
+              <dd>
+                A field of course (<code>courseCode</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>company</code>
+              </dt>
+              <dd>
+                A field of job (<code>hiringOrganization.name</code>, required) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>companyurl</code>
+              </dt>
+              <dd>
+                A field of job (<code>hiringOrganization.sameAs</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>contact</code>
+              </dt>
+              <dd>
+                A field of organization (<code>contactPoint.contactType</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>cook</code>
+              </dt>
+              <dd>
+                A field of recipe (<code>cookTime</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>countries</code>
+              </dt>
+              <dd>
+                A field of job (<code>applicantLocationRequirements</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>country</code>
+              </dt>
+              <dd>
+                A field of business (<code>address.addressCountry</code>), job (<code>jobLocation.address.addressCountry</code>), restaurant (<code>address.addressCountry</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>created</code>
+              </dt>
+              <dd>
+                A field of profile (<code>dateCreated</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>cuisine</code>
+              </dt>
+              <dd>
+                A field of recipe (<code>recipeCuisine</code>), restaurant (<code>servesCuisine</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>currency</code>
+              </dt>
+              <dd>
+                A field of event (<code>offers.priceCurrency</code>), job (<code>baseSalary.currency</code>), product (<code>offers.priceCurrency</code>), software (<code>offers.priceCurrency</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>description</code>
+              </dt>
+              <dd>
+                A field of article (<code>description</code>), business (<code>description</code>), course (<code>description</code>, required), event (<code>description</code>), job (<code>description</code>, required), organization (<code>description</code>), person (<code>description</code>), product (<code>description</code>), profile (<code>mainEntity.description</code>), recipe (<code>description</code>), restaurant (<code>description</code>), software (<code>description</code>), video (<code>description</code>), website (<code>description</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>download</code>
+              </dt>
+              <dd>
+                A field of software (<code>downloadUrl</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>duration</code>
+              </dt>
+              <dd>
+                A field of video (<code>duration</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>email</code>
+              </dt>
+              <dd>
+                A field of business (<code>email</code>), organization (<code>contactPoint.email</code>), restaurant (<code>email</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>employment</code>
+              </dt>
+              <dd>
+                A field of job (<code>employmentType</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>ends</code>
+              </dt>
+              <dd>
+                A field of event (<code>endDate</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>expires</code>
+              </dt>
+              <dd>
+                A field of job (<code>validThrough</code>), video (<code>expires</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>file</code>
+              </dt>
+              <dd>
+                A field of video (<code>contentUrl</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>followers</code>
+              </dt>
+              <dd>
+                A field of profile (<code>mainEntity.interactionStatistic.userInteractionCount</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>handle</code>
+              </dt>
+              <dd>
+                A field of profile (<code>mainEntity.alternateName</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>headline</code>
+              </dt>
+              <dd>
+                A field of article (<code>headline</code>, required) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>hours</code>
+              </dt>
+              <dd>
+                A field of business (<code>openingHoursSpecification</code>), restaurant (<code>openingHoursSpecification</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>identifier</code>
+              </dt>
+              <dd>
+                A field of profile (<code>mainEntity.identifier</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>image</code>
+              </dt>
+              <dd>
+                A field of article (<code>image</code>), business (<code>image</code>), course (<code>image</code>), event (<code>image</code>), person (<code>image</code>), product (<code>image</code>), profile (<code>mainEntity.image</code>), recipe (<code>image</code>, required), restaurant (<code>image</code>), software (<code>image</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>ingredients</code>
+              </dt>
+              <dd>
+                A field of recipe (<code>recipeIngredient</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>job</code>
+              </dt>
+              <dd>
+                A field of person (<code>jobTitle</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>keywords</code>
+              </dt>
+              <dd>
+                A field of recipe (<code>keywords</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>latitude</code>
+              </dt>
+              <dd>
+                A field of business (<code>geo.latitude</code>), restaurant (<code>geo.latitude</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>logo</code>
+              </dt>
+              <dd>
+                A field of article (<code>publisher.logo</code>), job (<code>hiringOrganization.logo</code>), organization (<code>logo</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>longitude</code>
+              </dt>
+              <dd>
+                A field of business (<code>geo.longitude</code>), restaurant (<code>geo.longitude</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>menu</code>
+              </dt>
+              <dd>
+                A field of restaurant (<code>menu</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>modified</code>
+              </dt>
+              <dd>
+                A field of article (<code>dateModified</code>), profile (<code>dateModified</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>name</code>
+              </dt>
+              <dd>
+                A field of business (<code>name</code>, required), course (<code>name</code>, required), event (<code>name</code>, required), itemlist (<code>name</code>), organization (<code>name</code>, required), person (<code>name</code>, required), product (<code>name</code>, required), profile (<code>mainEntity.name</code>, required), recipe (<code>name</code>, required), restaurant (<code>name</code>, required), software (<code>name</code>, required), video (<code>name</code>, required), website (<code>name</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>os</code>
+              </dt>
+              <dd>
+                A field of software (<code>operatingSystem</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>per</code>
+              </dt>
+              <dd>
+                A field of job (<code>baseSalary.value.unitText</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>phone</code>
+              </dt>
+              <dd>
+                A field of business (<code>telephone</code>), organization (<code>contactPoint.telephone</code>), restaurant (<code>telephone</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>place</code>
+              </dt>
+              <dd>
+                A field of event (<code>location.name</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>player</code>
+              </dt>
+              <dd>
+                A field of video (<code>embedUrl</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>postcode</code>
+              </dt>
+              <dd>
+                A field of business (<code>address.postalCode</code>), job (<code>jobLocation.address.postalCode</code>), restaurant (<code>address.postalCode</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>posted</code>
+              </dt>
+              <dd>
+                A field of job (<code>datePosted</code>, required) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>posts</code>
+              </dt>
+              <dd>
+                A field of profile (<code>mainEntity.agentInteractionStatistic.userInteractionCount</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>prep</code>
+              </dt>
+              <dd>
+                A field of recipe (<code>prepTime</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>price</code>
+              </dt>
+              <dd>
+                A field of event (<code>offers.price</code>), product (<code>offers.price</code>), software (<code>offers.price</code>, required) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>prices</code>
+              </dt>
+              <dd>
+                A field of business (<code>priceRange</code>), restaurant (<code>priceRange</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>profiles</code>
+              </dt>
+              <dd>
+                A field of organization (<code>sameAs</code>), person (<code>sameAs</code>), profile (<code>mainEntity.sameAs</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>provider</code>
+              </dt>
+              <dd>
+                A field of course (<code>provider.name</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>providerurl</code>
+              </dt>
+              <dd>
+                A field of course (<code>provider.sameAs</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>published</code>
+              </dt>
+              <dd>
+                A field of article (<code>datePublished</code>), recipe (<code>datePublished</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>publisher</code>
+              </dt>
+              <dd>
+                A field of article (<code>publisher.name</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>rating</code>
+              </dt>
+              <dd>
+                A field of recipe (<code>aggregateRating.ratingValue</code>), software (<code>aggregateRating.ratingValue</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>ratings</code>
+              </dt>
+              <dd>
+                A field of recipe (<code>aggregateRating.ratingCount</code>), software (<code>aggregateRating.ratingCount</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>region</code>
+              </dt>
+              <dd>
+                A field of business (<code>address.addressRegion</code>), job (<code>jobLocation.address.addressRegion</code>), restaurant (<code>address.addressRegion</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>remote</code>
+              </dt>
+              <dd>
+                A field of job (<code>jobLocationType</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>salary</code>
+              </dt>
+              <dd>
+                A field of job (<code>baseSalary.value</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>search</code>
+              </dt>
+              <dd>
+                A field of website (<code>potentialAction</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>sku</code>
+              </dt>
+              <dd>
+                A field of product (<code>sku</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>starts</code>
+              </dt>
+              <dd>
+                A field of event (<code>startDate</code>, required) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>steps</code>
+              </dt>
+              <dd>
+                A field of recipe (<code>recipeInstructions</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>street</code>
+              </dt>
+              <dd>
+                A field of business (<code>address.streetAddress</code>), job (<code>jobLocation.address.streetAddress</code>), restaurant (<code>address.streetAddress</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>thumbnail</code>
+              </dt>
+              <dd>
+                A field of video (<code>thumbnailUrl</code>, required) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>tickets</code>
+              </dt>
+              <dd>
+                A field of event (<code>offers.url</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>title</code>
+              </dt>
+              <dd>
+                A field of job (<code>title</code>, required) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>total</code>
+              </dt>
+              <dd>
+                A field of recipe (<code>totalTime</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>type</code>
+              </dt>
+              <dd>
+                A field of business (<code>@type</code>), profile (<code>mainEntity.@type</code>), restaurant (<code>@type</code>), software (<code>@type</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>uploaded</code>
+              </dt>
+              <dd>
+                A field of video (<code>uploadDate</code>, required) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>url</code>
+              </dt>
+              <dd>
+                A field of article (<code>url</code>), business (<code>url</code>), course (<code>url</code>), event (<code>url</code>), organization (<code>url</code>), person (<code>url</code>), product (<code>url</code>), restaurant (<code>url</code>), software (<code>url</code>), website (<code>url</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>version</code>
+              </dt>
+              <dd>
+                A field of software (<code>softwareVersion</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>views</code>
+              </dt>
+              <dd>
+                A field of video (<code>interactionStatistic.userInteractionCount</code>) - it wins over the field of the row.
+              </dd>
+              <dt>
+                <code>yield</code>
+              </dt>
+              <dd>
+                A field of recipe (<code>recipeYield</code>) - it wins over the field of the row.
+              </dd>
+            </dl>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              <code>{jsonld:article}</code> writes the structured data of a page: one <code>&lt;script type="application/ld+json"&gt;</code> holding a Schema.org object, which search engines read for a rich result - an article's headline and date, an event's place and tickets, a product's price, the questions of an FAQ, the trail of a breadcrumb. Every kind is a file of <code>pad/subs/jsonld/types/</code> that maps its fields onto Schema.org by name; the files there are the kinds there are.
+            </p>
+            <p>
+              The fields come from the row or rows <code>data=</code> names and from options of their names, which win over the row's. Only what a kind maps is written - never a row whole - so a password, a cost price or an e-mail address of the row cannot reach the page. An empty field is left out; a required one missing, a date that is none, a price written with a comma and an option the kind does not take are errors under the strict check.
+            </p>
+            <p>
+              Addresses are made absolute - relative to the application's address, as an <code>&lt;img&gt;</code> of its pages finds its file - and dates are ISO 8601, or written so from what PHP's <code>date_parse</code> reads in full. The JSON is safe in its element: a <code>&lt;/script&gt;</code> in a value is written <code>\u003C/script\u003E</code>, and the braces of a value stay text. The script is a data block the browser never runs, so it needs no CSP nonce. The examples show it with the <code>html</code> pipe; on a page the tag alone writes it, unseen. In a page's PHP, <code>padJsonLd ( 'article', $post )</code> answers the same object as an array.
+            </p>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Examples
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                An article from its options
+              </h3>
+              <p class="example-about">
+                The script the tag writes, made visible by the html pipe - a relative image made absolute, the date as ISO 8601.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/jsonld/1-article.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-htm">&lt;pre</span> <span class="hl-opt">style</span>=<span class="hl-str">"white-space:pre-wrap"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">jsonld:article</span> <span class="hl-opt">headline</span>=<span class="hl-str">'Pages that drive themselves'</span>, <span class="hl-opt">author</span>=<span class="hl-str">'Ann Smith'</span>, <span class="hl-opt">published</span>=<span class="hl-str">'1 November 2026'</span>, <span class="hl-opt">image</span>=<span class="hl-str">'cover.jpg'</span> | html<span class="hl-brc">/}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7jsonld%EA%A4%B71-article.html">open alone</a></span>
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cHJlIHN0eWxlPVwid2hpdGUtc3BhY2U6cHJlLXdyYXBcIj57anNvbmxkOmFydGljbGUgaGVhZGxpbmU9J1BhZ2VzIHRoYXQgZHJpdmUgdGhlbXNlbHZlcycsIGF1dGhvcj0nQW5uIFNtaXRoJywgcHVibGlzaGVkPScxIE5vdmVtYmVyIDIwMjYnLCBpbWFnZT0nY292ZXIuanBnJyB8IGh0bWwvfTwvcHJlPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8cHJlIHN0eWxlPVwid2hpdGUtc3BhY2U6cHJlLXdyYXBcIj57anNvbmxkOmFydGljbGUgaGVhZGxpbmU9J1BhZ2VzIHRoYXQgZHJpdmUgdGhlbXNlbHZlcycsIGF1dGhvcj0nQW5uIFNtaXRoJywgcHVibGlzaGVkPScxIE5vdmVtYmVyIDIwMjYnLCBpbWFnZT0nY292ZXIuanBnJyB8IGh0bWwvfTwvcHJlPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <pre style="white-space:pre-wrap">&lt;script type="application/ld+json"&gt;{"@context":"https://schema.org","@type":"Article","headline":"Pages that drive themselves","image":"http://localhost/pad/tags/cover.jpg","author":{"@type":"Person","name":"Ann Smith"},"datePublished":"2026-11-01"}&lt;/script&gt;</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-2">
+              <h3>
+                A row, and nothing else of it
+              </h3>
+              <p class="example-about">
+                Only the fields the product maps are written - the stock, the cost price and the supplier stay out; an option adds what the row lacks.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/jsonld/2-row.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-htm">&lt;pre</span> <span class="hl-opt">style</span>=<span class="hl-str">"white-space:pre-wrap"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">jsonld:product</span> <span class="hl-opt">data</span>=<span class="hl-str">'product'</span>, <span class="hl-opt">availability</span>=<span class="hl-str">'InStock'</span> | html<span class="hl-brc">/}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span></code></pre>
+                  <div class="cell-head">
+                    <span>PHP</span><span class="cell-file">examples/jsonld/2-row.php</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$product</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Aurora kettle'</span><span class="hl-pun">,</span> <span class="hl-str">'sku'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'AK-1'</span><span class="hl-pun">,</span> <span class="hl-str">'brand'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Aurora'</span><span class="hl-pun">,</span> <span class="hl-str">'price'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'39.95'</span><span class="hl-pun">,</span>
+               <span class="hl-str">'currency'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'EUR'</span><span class="hl-pun">,</span> <span class="hl-str">'stock'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">12</span><span class="hl-pun">,</span> <span class="hl-str">'cost'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'11.20'</span><span class="hl-pun">,</span> <span class="hl-str">'supplier'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Kettles Ltd'</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7jsonld%EA%A4%B72-row.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cHJlIHN0eWxlPVwid2hpdGUtc3BhY2U6cHJlLXdyYXBcIj57anNvbmxkOnByb2R1Y3QgZGF0YT0ncHJvZHVjdCcsIGF2YWlsYWJpbGl0eT0nSW5TdG9jaycgfCBodG1sL308L3ByZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkcHJvZHVjdCA9IFsgJ25hbWUnID0+ICdBdXJvcmEga2V0dGxlJywgJ3NrdScgPT4gJ0FLLTEnLCAnYnJhbmQnID0+ICdBdXJvcmEnLCAncHJpY2UnID0+ICczOS45NScsXG4gICAgICAgICAgICAgICAnY3VycmVuY3knID0+ICdFVVInLCAnc3RvY2snID0+IDEyLCAnY29zdCcgPT4gJzExLjIwJywgJ3N1cHBsaWVyJyA9PiAnS2V0dGxlcyBMdGQnIF07XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8cHJlIHN0eWxlPVwid2hpdGUtc3BhY2U6cHJlLXdyYXBcIj57anNvbmxkOnByb2R1Y3QgZGF0YT0ncHJvZHVjdCcsIGF2YWlsYWJpbGl0eT0nSW5TdG9jaycgfCBodG1sL308L3ByZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkcHJvZHVjdCA9IFsgJ25hbWUnID0+ICdBdXJvcmEga2V0dGxlJywgJ3NrdScgPT4gJ0FLLTEnLCAnYnJhbmQnID0+ICdBdXJvcmEnLCAncHJpY2UnID0+ICczOS45NScsXG4gICAgICAgICAgICAgICAnY3VycmVuY3knID0+ICdFVVInLCAnc3RvY2snID0+IDEyLCAnY29zdCcgPT4gJzExLjIwJywgJ3N1cHBsaWVyJyA9PiAnS2V0dGxlcyBMdGQnIF07XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <pre style="white-space:pre-wrap">&lt;script type="application/ld+json"&gt;{"@context":"https://schema.org","@type":"Product","name":"Aurora kettle","sku":"AK-1","brand":{"@type":"Brand","name":"Aurora"},"offers":{"@type":"Offer","price":"39.95","priceCurrency":"EUR","availability":"https://schema.org/InStock"}}&lt;/script&gt;</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-3">
+              <h3>
+                The questions of a page
+              </h3>
+              <p class="example-about">
+                Rows of question and answer, an FAQPage of them - the same rows can show the questions on the page.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/jsonld/3-faq.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:data</span> <span class="hl-str">'questions'</span><span class="hl-brc">}</span>
+[ <span class="hl-brc">{</span> <span class="hl-str">"question"</span>: <span class="hl-str">"Is it free?"</span>,              <span class="hl-str">"answer"</span>: <span class="hl-str">"Yes, under the GPL."</span> <span class="hl-brc">}</span>,
+  <span class="hl-brc">{</span> <span class="hl-str">"question"</span>: <span class="hl-str">"Does it need a database?"</span>, <span class="hl-str">"answer"</span>: <span class="hl-str">"No - SQLite, MySQL or none."</span> <span class="hl-brc">}</span> ]
+<span class="hl-brc">{</span><span class="hl-tag">/pad:data</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;dl</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">data:questions</span><span class="hl-brc">}</span><span class="hl-htm">&lt;dt</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$question</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/dt</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;dd</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$answer</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/dd</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/data:questions</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/dl</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;pre</span> <span class="hl-opt">style</span>=<span class="hl-str">"white-space:pre-wrap"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">jsonld:faq</span> <span class="hl-opt">data</span>=<span class="hl-str">'questions'</span> | html<span class="hl-brc">/}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7jsonld%EA%A4%B73-faq.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3F1ZXN0aW9ucyd9XG5bIHsgXCJxdWVzdGlvblwiOiBcIklzIGl0IGZyZWU/XCIsICAgICAgICAgICAgICBcImFuc3dlclwiOiBcIlllcywgdW5kZXIgdGhlIEdQTC5cIiB9LFxuICB7IFwicXVlc3Rpb25cIjogXCJEb2VzIGl0IG5lZWQgYSBkYXRhYmFzZT9cIiwgXCJhbnN3ZXJcIjogXCJObyAtIFNRTGl0ZSwgTXlTUUwgb3Igbm9uZS5cIiB9IF1cbnsvcGFkOmRhdGF9XG48ZGw+e2RhdGE6cXVlc3Rpb25zfTxkdD57JHF1ZXN0aW9ufTwvZHQ+PGRkPnskYW5zd2VyfTwvZGQ+ey9kYXRhOnF1ZXN0aW9uc308L2RsPlxuPHByZSBzdHlsZT1cIndoaXRlLXNwYWNlOnByZS13cmFwXCI+e2pzb25sZDpmYXEgZGF0YT0ncXVlc3Rpb25zJyB8IGh0bWwvfTwvcHJlPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3F1ZXN0aW9ucyd9XG5bIHsgXCJxdWVzdGlvblwiOiBcIklzIGl0IGZyZWU/XCIsICAgICAgICAgICAgICBcImFuc3dlclwiOiBcIlllcywgdW5kZXIgdGhlIEdQTC5cIiB9LFxuICB7IFwicXVlc3Rpb25cIjogXCJEb2VzIGl0IG5lZWQgYSBkYXRhYmFzZT9cIiwgXCJhbnN3ZXJcIjogXCJObyAtIFNRTGl0ZSwgTXlTUUwgb3Igbm9uZS5cIiB9IF1cbnsvcGFkOmRhdGF9XG48ZGw+e2RhdGE6cXVlc3Rpb25zfTxkdD57JHF1ZXN0aW9ufTwvZHQ+PGRkPnskYW5zd2VyfTwvZGQ+ey9kYXRhOnF1ZXN0aW9uc308L2RsPlxuPHByZSBzdHlsZT1cIndoaXRlLXNwYWNlOnByZS13cmFwXCI+e2pzb25sZDpmYXEgZGF0YT0ncXVlc3Rpb25zJyB8IGh0bWwvfTwvcHJlPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <dl>
+                      <dt>
+                        Is it free?
+                      </dt>
+                      <dd>
+                        Yes, under the GPL.
+                      </dd>
+                      <dt>
+                        Does it need a database?
+                      </dt>
+                      <dd>
+                        No - SQLite, MySQL or none.
+                      </dd>
+                    </dl>
+                    <pre style="white-space:pre-wrap">&lt;script type="application/ld+json"&gt;{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is it free?","acceptedAnswer":{"@type":"Answer","text":"Yes, under the GPL."}},{"@type":"Question","name":"Does it need a database?","acceptedAnswer":{"@type":"Answer","text":"No - SQLite, MySQL or none."}}]}&lt;/script&gt;</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-4">
+              <h3>
+                The site and its search
+              </h3>
+              <p class="example-about">
+                The address of the search with the term at its end - the placeholder search_term_string is written after it, its braces text.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/jsonld/4-website.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-htm">&lt;pre</span> <span class="hl-opt">style</span>=<span class="hl-str">"white-space:pre-wrap"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">jsonld:website</span> <span class="hl-opt">name</span>=<span class="hl-str">'PAD'</span>, <span class="hl-opt">search</span>=<span class="hl-str">'?search&amp;q='</span> | html<span class="hl-brc">/}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7jsonld%EA%A4%B74-website.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cHJlIHN0eWxlPVwid2hpdGUtc3BhY2U6cHJlLXdyYXBcIj57anNvbmxkOndlYnNpdGUgbmFtZT0nUEFEJywgc2VhcmNoPSc/c2VhcmNoJnE9JyB8IGh0bWwvfTwvcHJlPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8cHJlIHN0eWxlPVwid2hpdGUtc3BhY2U6cHJlLXdyYXBcIj57anNvbmxkOndlYnNpdGUgbmFtZT0nUEFEJywgc2VhcmNoPSc/c2VhcmNoJnE9JyB8IGh0bWwvfTwvcHJlPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <pre style="white-space:pre-wrap">&lt;script type="application/ld+json"&gt;{"@context":"https://schema.org","@type":"WebSite","name":"PAD","url":"http://localhost/pad/tags/","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"http://localhost/pad/tags/?search&amp;q={search_term_string}"},"query-input":"required name=search_term_string"}}&lt;/script&gt;</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="block" aria-labelledby="see">
+            <h2 id="see">
+              See also
+            </h2>
+            <ul class="list">
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7sitemap.html">{pad:sitemap}</a> <span class="about">Lists the pages of the application, read from the file tree, as rows with page, url and lastmod.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7meta.html">{pad:meta}</a> <span class="about">The page's metadata - a title, a layout, a cache time or any value - read while the page is assembled.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7breadcrumb.html">{widget:breadcrumb}</a> <span class="about">Where the page stands: a &lt;nav&gt; with an ordered list of links from the application's home to the page, the last one the page itself.</span>
+              </li>
+            </ul>
+          </section>
+          <nav class="prevnext" aria-label="Other tags">
+            <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7ylorrd.html">← palette / ylorrd</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7ajax.html">{pad:ajax} →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            1220 tags and kinds of PAD, with syntax and usage examples. Safe, self-contained examples run here; examples requiring credentials, delivery or application files are shown as source.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-<p><code>{holidays 'nl', year=2026}...{/holidays}</code> hands over the public holidays of the
+<p><code>{pad:holidays 'nl', year=2026}...{/pad:holidays}</code> hands over the public holidays of the
 Netherlands in 2026 as rows, sorted by date: <code>$date</code>, <code>$name</code> in English,
 <code>$local</code> in the country's own language, <code>$type</code> - <code>public</code> for
 a day off, <code>observance</code> for a national day that is none - <code>$region</code> for a
@@ -20,7 +20,12 @@ them is a strict error rather than a list with a holiday missing.</p>
 
 <p>A region follows its country, <code>de-by</code>, or stands in <code>region=</code>. The
 handling options work on the rows - <code>where='$type eq "public"'</code> leaves the
-observances out. <code>holidays=</code> on <code>{calendar}</code> marks them in a month, and
+observances out. <code>holidays=</code> on <code>{pad:calendar}</code> marks them in a month, and
 <code>padHolidays</code>, <code>padIsHoliday</code>, <code>padWorkdays</code> and
 <code>padAddWorkdays</code> answer a page's PHP. A country without a file, a region it has
 not, a year out of range or a <code>lang</code> it has no names in is a strict error.</p>
+
+
+<h3>Holiday calendars</h3>
+<p>Each kind has its own description and usage example:</p>
+<p><a href="?kind/holidays/at"><code>at</code></a>, <a href="?kind/holidays/be"><code>be</code></a>, <a href="?kind/holidays/br"><code>br</code></a>, <a href="?kind/holidays/ca"><code>ca</code></a>, <a href="?kind/holidays/ch"><code>ch</code></a>, <a href="?kind/holidays/cz"><code>cz</code></a>, <a href="?kind/holidays/de"><code>de</code></a>, <a href="?kind/holidays/dk"><code>dk</code></a>, <a href="?kind/holidays/es"><code>es</code></a>, <a href="?kind/holidays/fi"><code>fi</code></a>, <a href="?kind/holidays/fr"><code>fr</code></a>, <a href="?kind/holidays/gb"><code>gb</code></a>, <a href="?kind/holidays/hu"><code>hu</code></a>, <a href="?kind/holidays/ie"><code>ie</code></a>, <a href="?kind/holidays/it"><code>it</code></a>, <a href="?kind/holidays/jp"><code>jp</code></a>, <a href="?kind/holidays/lu"><code>lu</code></a>, <a href="?kind/holidays/mx"><code>mx</code></a>, <a href="?kind/holidays/nl"><code>nl</code></a>, <a href="?kind/holidays/no"><code>no</code></a>, <a href="?kind/holidays/nz"><code>nz</code></a>, <a href="?kind/holidays/pl"><code>pl</code></a>, <a href="?kind/holidays/pt"><code>pt</code></a>, <a href="?kind/holidays/ro"><code>ro</code></a>, <a href="?kind/holidays/se"><code>se</code></a>, <a href="?kind/holidays/sk"><code>sk</code></a>, <a href="?kind/holidays/us"><code>us</code></a>, <a href="?kind/holidays/za"><code>za</code></a></p>

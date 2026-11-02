@@ -1,3 +1,5 @@
+
+
 <p>An island is a place in a PAD page where a component takes over: an element naming the
 component, its props as JSON in <code>data-props</code>, and HTML of PAD's own inside that
 shows until the component runs. Which framework the component is written in does not matter to
@@ -7,7 +9,7 @@ the page:</p>
 <pre><code>&lt;div data-island="VueCounter" data-props="{^counter}"&gt;{$counter.start}&lt;/div&gt;
 &lt;div data-island="Shelf" data-load="visible" data-props="{^shelf}"&gt;&lt;/div&gt;
 
-{vite 'src/main.js'/}</code></pre>
+{pad:vite 'src/main.js'/}</code></pre>
 
 
 <p>A small runtime in the build pairs each name with a component and its framework, and mounts
@@ -29,7 +31,7 @@ the page and due:</p>
       React, Vue, Svelte, Preact and Solid each take a dozen lines.</li>
   <li>Islands of different frameworks share state through a store, and talk to PAD through the
       page's JSON (<code>$padExpose</code>) and posts with the CSRF token.</li>
-  <li><a href="/pad/manual/?pages/vite">Vite</a> builds the components; <b>{vite}</b> links the build, or the dev server while
+  <li><a href="/pad/manual/?pages/vite">Vite</a> builds the components; <b>{pad:vite}</b> links the build, or the dev server while
       it runs.</li>
 </ul>
 

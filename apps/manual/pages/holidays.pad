@@ -1,12 +1,12 @@
-{meta title='Public holidays'/}
+{pad:meta title='Public holidays'/}
 
 <p>The public holidays of twenty-eight countries, computed from rules - no service to ask, no
 table of dates to keep up to date. A country is a file of <code>pad/subs/holidays/types/</code>,
 named by its two-letter ISO code: at, be, br, ca, ch, cz, de, dk, es, fi, fr, gb, hu, ie, it, jp, lu, mx, nl, no, nz, pl, pt, ro,
-se, sk, us and za. {tag 'holidays'/} lists the holidays of a year; four helpers answer a page's PHP;
-{tag 'calendar'/} marks them in a month.</p>
+se, sk, us and za. {app:tag 'holidays'/} lists the holidays of a year; four helpers answer a page's PHP;
+{app:tag 'calendar'/} marks them in a month.</p>
 
-{example 'fragments/holidays_1'/}
+{common:example 'fragments/holidays_1'/}
 
 <ul>
   <li>Every row has <code>date</code>, <code>name</code> (English), <code>local</code> (the
@@ -29,7 +29,7 @@ Epiphany, Corpus Christi and All Saints' Day added - their <code>region</code> i
 (<code>gb-sct</code>, <code>gb-nir</code>), Alsace-Moselle and France's overseas departments
 have holidays of their own. Written as a single tag, the holidays are a table.</p>
 
-{example 'fragments/holidays_2'/}
+{common:example 'fragments/holidays_2'/}
 
 <h2>Holidays on a weekend</h2>
 
@@ -41,7 +41,7 @@ observed on the Friday before, on a Sunday on the Monday after - New Year's Day 
 <code>from</code> and <code>to</code> ask for the days between two dates instead of a
 year.</p>
 
-{example 'fragments/holidays_3'/}
+{common:example 'fragments/holidays_3'/}
 
 <h2>Other calendars, other rules</h2>
 
@@ -52,19 +52,19 @@ two holidays as the Citizens' Holiday. New Zealand observes Anzac Day on a weeke
 following Monday, a holiday already or not: in 2038 it is Easter Sunday, and Easter Monday is
 its day. South Africa makes up for a Sunday on the Monday after it.</p>
 
-{example 'fragments/holidays_6'/}
+{common:example 'fragments/holidays_6'/}
 
 <h2>Workdays in PHP</h2>
 
 <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
   <tr><th>function</th><th>what it answers</th></tr>
-  <tr><td><code>padHolidays ( $country, $year, $region = '' )</code></td><td>the rows of a year, as {tag 'holidays'/} hands them over</td></tr>
+  <tr><td><code>padHolidays ( $country, $year, $region = '' )</code></td><td>the rows of a year, as {app:tag 'holidays'/} hands them over</td></tr>
   <tr><td><code>padIsHoliday ( $date, $country )</code></td><td>whether the date is a public holiday there</td></tr>
   <tr><td><code>padWorkdays ( $from, $to, $country )</code></td><td>the weekdays from one date to the other that are no public holiday, both counted</td></tr>
   <tr><td><code>padAddWorkdays ( $date, $n, $country )</code></td><td>the date <code>$n</code> workdays later - or earlier, for a negative <code>$n</code></td></tr>
 </table>
 
-{example 'fragments/holidays_4'/}
+{common:example 'fragments/holidays_4'/}
 
 <ul>
   <li>A country takes its region the same way: <code>'de-by'</code>, <code>'gb-sct'</code>.</li>
@@ -78,9 +78,9 @@ its day. South Africa makes up for a Sunday on the Monday after it.</p>
 
 <h2>In the calendar</h2>
 
-<p><code>holidays=</code> on {tag 'calendar'/} marks the days of a country: the cell gets the
+<p><code>holidays=</code> on {app:tag 'calendar'/} marks the days of a country: the cell gets the
 class <code>holiday</code> - <code>observance</code> for a day that is no day off - and the
 name stands under the number, in the country's language when the request's locale is in
 it.</p>
 
-{example 'fragments/holidays_5'/}
+{common:example 'fragments/holidays_5'/}

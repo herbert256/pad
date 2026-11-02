@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Reference - Parms functions - filtersThumbs · PAD reference
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/play.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+  </head>
+  <body class="frame app-reference">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>reference</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="reference">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Index</a>
+        <div class="frame-head">
+          Tags
+        </div><a href="index%EF%B9%96index.html#pad-tags">PAD tags</a> <a href="index%EF%B9%96index.html#tag-types">Tag types</a> <a href="index%EF%B9%96index.html#tag-properties">Tag properties</a> <a href="index%EF%B9%96index.html#tag-options">Tag options</a> <a href="index%EF%B9%96index.html#common-tags">Common tags</a> <a href="index%EF%B9%96index.html#common-includes">Common includes</a>
+        <div class="frame-head">
+          Functions
+        </div><a href="index%EF%B9%96index.html#pad-functions">PAD functions</a> <a href="index%EF%B9%96index.html#single-functions">Single functions</a> <a href="index%EF%B9%96index.html#parms-functions">Parms functions</a>
+        <div class="frame-head">
+          Configuration
+        </div><a href="index%EF%B9%96index.html#error-actions">Error actions</a> <a href="index%EF%B9%96index.html#output-types">Output types</a> <a href="index%EF%B9%96index.html#info-modes">Info modes</a> <a href="index%EF%B9%96index.html#cache-backends">Cache backends</a>
+        <div class="frame-head">
+          At (x@y)
+        </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
+        <div class="frame-head">
+          More
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#oauth-providers">OAuth providers</a> <a href="index%EF%B9%96index.html#notification-channels">Notification channels</a> <a href="index%EF%B9%96index.html#ai-providers">AI providers</a> <a href="index%EF%B9%96index.html#pattern-types">Pattern types</a> <a href="index%EF%B9%96index.html#image-filters">Image filters</a> <a href="index%EF%B9%96index.html#holiday-countries">Holiday countries</a> <a href="index%EF%B9%96index.html#search-languages">Search languages</a> <a href="index%EF%B9%96index.html#data-formats">Data formats</a> <a href="index%EF%B9%96index.html#sounds">Sounds</a> <a href="index%EF%B9%96index.html#printables">Printables</a> <a href="index%EF%B9%96index.html#notations">Notations</a> <a href="index%EF%B9%96index.html#formula-functions">Formula functions</a> <a href="index%EF%B9%96index.html#section-types">Section types</a> <a href="index%EF%B9%96index.html#effect-types">Effect types</a> <a href="index%EF%B9%96index.html#json-ld-kinds">JSON-LD kinds</a> <a href="index%EF%B9%96index.html#themes">Themes</a> <a href="index%EF%B9%96index.html#palettes">Palettes</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Reference - Parms functions - filtersThumbs
+        </h1>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <center>
+                <hr>
+                App: regression/framework - Page: filters/a_chain_applies_its_filters_in_order<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/a_chain_applies_its_filters_in_order.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2dyYXlzY2FsZSwgcG9zdGVyaXplJywgbGV2ZWxzPTMsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc1RodW1icyhAKS99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2dyYXlzY2FsZSwgcG9zdGVyaXplJywgbGV2ZWxzPTMsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc1RodW1icyhAKS99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>grayscale<font color="black">,</font> posterize<font color="black">'</font><font color="black">,</font> levels=3<font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxc54c371c60308ce2d01967f1e1833d4c"></div>
+                      <script>
+                      padAjaxc54c371c60308ce2d01967f1e1833d4c = new XMLHttpRequest();
+                      padAjaxc54c371c60308ce2d01967f1e1833d4c.onreadystatechange=function() {
+                      if (padAjaxc54c371c60308ce2d01967f1e1833d4c.readyState === 4) {
+                      if (padAjaxc54c371c60308ce2d01967f1e1833d4c.status === 200) {
+                      document.getElementById("padAjaxc54c371c60308ce2d01967f1e1833d4c").innerHTML=padAjaxc54c371c60308ce2d01967f1e1833d4c.responseText;
+                      } else {
+                      document.getElementById("padAjaxc54c371c60308ce2d01967f1e1833d4c").innerHTML=padAjaxc54c371c60308ce2d01967f1e1833d4c.statusText;
+                      }
+                      }
+                      }
+                      padAjaxc54c371c60308ce2d01967f1e1833d4c.open("GET","http://localhost/pad/regression/framework/?filters/a_chain_applies_its_filters_in_order&padInclude",true);
+                      padAjaxc54c371c60308ce2d01967f1e1833d4c.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: filters/atkinson_dithers_in_the_colours_given<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/atkinson_dithers_in_the_colours_given.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2F0a2luc29uJywgY29sb3JzPScjMjIyLCAjZjRmMWU4JywgYWx0PSd4JyB8IHBocDpmaWx0ZXJzVGh1bWJzKEApL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2F0a2luc29uJywgY29sb3JzPScjMjIyLCAjZjRmMWU4JywgYWx0PSd4JyB8IHBocDpmaWx0ZXJzVGh1bWJzKEApL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>atkinson<font color="black">'</font><font color="black">,</font> colors=<font color="black">'</font>#222<font color="black">,</font> #f4f1e8<font color="black">'</font><font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb3ba5185d4a0d857474c05bcfb543192"></div>
+                      <script>
+                      padAjaxb3ba5185d4a0d857474c05bcfb543192 = new XMLHttpRequest();
+                      padAjaxb3ba5185d4a0d857474c05bcfb543192.onreadystatechange=function() {
+                      if (padAjaxb3ba5185d4a0d857474c05bcfb543192.readyState === 4) {
+                      if (padAjaxb3ba5185d4a0d857474c05bcfb543192.status === 200) {
+                      document.getElementById("padAjaxb3ba5185d4a0d857474c05bcfb543192").innerHTML=padAjaxb3ba5185d4a0d857474c05bcfb543192.responseText;
+                      } else {
+                      document.getElementById("padAjaxb3ba5185d4a0d857474c05bcfb543192").innerHTML=padAjaxb3ba5185d4a0d857474c05bcfb543192.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb3ba5185d4a0d857474c05bcfb543192.open("GET","http://localhost/pad/regression/framework/?filters/atkinson_dithers_in_the_colours_given&padInclude",true);
+                      padAjaxb3ba5185d4a0d857474c05bcfb543192.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: filters/autocontrast_stretches_the_tones_as_pil_does<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">filters/autocontrast_stretches_the_tones_as_pil_does.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/autocontrast_stretches_the_tones_as_pil_does.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The autocontrast filter by PIL's ImageOps.autocontrast with preserve_tone, worked out by<br>  // hand on pictures made here with GD.<br>  //<br>  // A ramp of the greys 64 to 191, one pixel each, at cutoff 0: lo 64 and hi 191, a value v<br>  // becomes ( v - 64 ) x 255 / 127 cut to a whole number - 64 0, 100 72, 128 128, 191 255. At<br>  // cutoff 10: 12 of its 128 pixels let go at each end, lo 76 and hi 179 - 76 0, 128 128, 179<br>  // 254 (254.99999 in doubles, cut, as PIL's own table has it), and what lies beyond them kept<br>  // at 0 and 255. A colour goes through the same table on every channel: #806040 among those<br>  // greys is #804000 - each channel stretched as a grey of its value is, not each to a range<br>  // of its own. A picture of one grey: as it was. A ramp of 100 to 150 with a transparent<br>  // black and a transparent white pixel beside it: the stretch is of the 100 to 150 alone,<br>  // 125 becoming 127, the two keeping their opacity. Every value here is what PIL 13's<br>  // ImageOps.autocontrast ( preserve_tone=True ) gives for the same pixels, the photo's<br>  // thumbnails too.<br><br>  </span><span style="color: #007700">include_once </span><span style="color: #0000BB">PAD </span><span style="color: #007700">. </span><span style="color: #DD0000">'subs/filters/_lib/filter.php'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$spec </span><span style="color: #007700">= include </span><span style="color: #0000BB">PAD </span><span style="color: #007700">. </span><span style="color: #DD0000">'subs/filters/types/autocontrast.php'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$ramp </span><span style="color: #007700">= function ( </span><span style="color: #0000BB">$from</span><span style="color: #007700">, </span><span style="color: #0000BB">$to</span><span style="color: #007700">, </span><span style="color: #0000BB">$extra </span><span style="color: #007700">= [] ) {<br>    </span><span style="color: #0000BB">$image </span><span style="color: #007700">= </span><span style="color: #0000BB">imagecreatetruecolor </span><span style="color: #007700">( </span><span style="color: #0000BB">$to </span><span style="color: #007700">- </span><span style="color: #0000BB">$from </span><span style="color: #007700">+ </span><span style="color: #0000BB">1 </span><span style="color: #007700">+ </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$extra </span><span style="color: #007700">), </span><span style="color: #0000BB">1 </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">imagealphablending </span><span style="color: #007700">( </span><span style="color: #0000BB">$image</span><span style="color: #007700">, </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">);<br>    for ( </span><span style="color: #0000BB">$v </span><span style="color: #007700">= </span><span style="color: #0000BB">$from</span><span style="color: #007700">; </span><span style="color: #0000BB">$v </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">$to</span><span style="color: #007700">; </span><span style="color: #0000BB">$v</span><span style="color: #007700">++ )<br>      </span><span style="color: #0000BB">imagesetpixel </span><span style="color: #007700">( </span><span style="color: #0000BB">$image</span><span style="color: #007700">, </span><span style="color: #0000BB">$v </span><span style="color: #007700">- </span><span style="color: #0000BB">$from</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">0x010101 </span><span style="color: #007700">* </span><span style="color: #0000BB">$v </span><span style="color: #007700">);<br>    foreach ( </span><span style="color: #0000BB">$extra </span><span style="color: #007700">as </span><span style="color: #0000BB">$k </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$c </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">imagesetpixel </span><span style="color: #007700">( </span><span style="color: #0000BB">$image</span><span style="color: #007700">, </span><span style="color: #0000BB">$to </span><span style="color: #007700">- </span><span style="color: #0000BB">$from </span><span style="color: #007700">+ </span><span style="color: #0000BB">1 </span><span style="color: #007700">+ </span><span style="color: #0000BB">$k</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">$c </span><span style="color: #007700">);<br>    return </span><span style="color: #0000BB">$image</span><span style="color: #007700">;<br>  };<br><br>  </span><span style="color: #0000BB">$at </span><span style="color: #007700">= function ( </span><span style="color: #0000BB">$image</span><span style="color: #007700">, </span><span style="color: #0000BB">$cutoff</span><span style="color: #007700">, </span><span style="color: #0000BB">$xs </span><span style="color: #007700">) use ( </span><span style="color: #0000BB">$spec </span><span style="color: #007700">) {<br>    </span><span style="color: #0000BB">$image </span><span style="color: #007700">= </span><span style="color: #0000BB">$spec </span><span style="color: #007700">[</span><span style="color: #DD0000">'apply'</span><span style="color: #007700">] ( </span><span style="color: #0000BB">$image</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'cutoff' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$cutoff </span><span style="color: #007700">], </span><span style="color: #0000BB">1 </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$out   </span><span style="color: #007700">= [];<br>    foreach ( </span><span style="color: #0000BB">$xs </span><span style="color: #007700">as </span><span style="color: #0000BB">$label </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$x </span><span style="color: #007700">) {<br>      </span><span style="color: #0000BB">$c     </span><span style="color: #007700">= </span><span style="color: #0000BB">imagecolorat </span><span style="color: #007700">( </span><span style="color: #0000BB">$image</span><span style="color: #007700">, </span><span style="color: #0000BB">$x</span><span style="color: #007700">, </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br>      </span><span style="color: #0000BB">$out</span><span style="color: #007700">[] = </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$label</span><span style="color: #DD0000"> " </span><span style="color: #007700">. ( ( ( </span><span style="color: #0000BB">$c </span><span style="color: #007700">&gt;&gt; </span><span style="color: #0000BB">16 </span><span style="color: #007700">) & </span><span style="color: #0000BB">255 </span><span style="color: #007700">) == ( </span><span style="color: #0000BB">$c </span><span style="color: #007700">& </span><span style="color: #0000BB">255 </span><span style="color: #007700">) &amp;& ( ( </span><span style="color: #0000BB">$c </span><span style="color: #007700">&gt;&gt; </span><span style="color: #0000BB">8 </span><span style="color: #007700">) & </span><span style="color: #0000BB">255 </span><span style="color: #007700">) == ( </span><span style="color: #0000BB">$c </span><span style="color: #007700">& </span><span style="color: #0000BB">255 </span><span style="color: #007700">) ? </span><span style="color: #0000BB">$c </span><span style="color: #007700">& </span><span style="color: #0000BB">255 </span><span style="color: #007700">: </span><span style="color: #0000BB">sprintf </span><span style="color: #007700">( </span><span style="color: #DD0000">'#%06x'</span><span style="color: #007700">, </span><span style="color: #0000BB">$c </span><span style="color: #007700">& </span><span style="color: #0000BB">0xFFFFFF </span><span style="color: #007700">) )<br>             . ( ( </span><span style="color: #0000BB">$c </span><span style="color: #007700">&gt;&gt; </span><span style="color: #0000BB">24 </span><span style="color: #007700">) & </span><span style="color: #0000BB">127 </span><span style="color: #007700">? </span><span style="color: #DD0000">' alpha ' </span><span style="color: #007700">. ( ( </span><span style="color: #0000BB">$c </span><span style="color: #007700">&gt;&gt; </span><span style="color: #0000BB">24 </span><span style="color: #007700">) & </span><span style="color: #0000BB">127 </span><span style="color: #007700">) : </span><span style="color: #DD0000">'' </span><span style="color: #007700">);<br>    }<br>    return </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">$out </span><span style="color: #007700">);<br>  };<br><br>  </span><span style="color: #0000BB">$flat </span><span style="color: #007700">= </span><span style="color: #0000BB">imagecreatetruecolor </span><span style="color: #007700">( </span><span style="color: #0000BB">4</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">imagefill </span><span style="color: #007700">( </span><span style="color: #0000BB">$flat</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">0x6a6a6a </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$checks </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'check' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'greys 64 to 191 at 0'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'got' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$at </span><span style="color: #007700">( </span><span style="color: #0000BB">$ramp </span><span style="color: #007700">( </span><span style="color: #0000BB">64</span><span style="color: #007700">, </span><span style="color: #0000BB">191 </span><span style="color: #007700">), </span><span style="color: #0000BB">0</span><span style="color: #007700">, [ </span><span style="color: #0000BB">64 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">100 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">36</span><span style="color: #007700">, </span><span style="color: #0000BB">128 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">64</span><span style="color: #007700">, </span><span style="color: #0000BB">191 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">127 </span><span style="color: #007700">] ) ],<br>    [ </span><span style="color: #DD0000">'check' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'at 10'</span><span style="color: #007700">,                   </span><span style="color: #DD0000">'got' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$at </span><span style="color: #007700">( </span><span style="color: #0000BB">$ramp </span><span style="color: #007700">( </span><span style="color: #0000BB">64</span><span style="color: #007700">, </span><span style="color: #0000BB">191 </span><span style="color: #007700">), </span><span style="color: #0000BB">10</span><span style="color: #007700">, [ </span><span style="color: #0000BB">64 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">76 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12</span><span style="color: #007700">, </span><span style="color: #0000BB">128 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">64</span><span style="color: #007700">, </span><span style="color: #0000BB">179 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">115</span><span style="color: #007700">, </span><span style="color: #0000BB">191 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">127 </span><span style="color: #007700">] ) ],<br>    [ </span><span style="color: #DD0000">'check' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a colour among them'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'got' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$at </span><span style="color: #007700">( </span><span style="color: #0000BB">$ramp </span><span style="color: #007700">( </span><span style="color: #0000BB">64</span><span style="color: #007700">, </span><span style="color: #0000BB">191</span><span style="color: #007700">, [ </span><span style="color: #0000BB">0x806040 </span><span style="color: #007700">] ), </span><span style="color: #0000BB">0</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'#806040' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">128 </span><span style="color: #007700">] ) ],<br>    [ </span><span style="color: #DD0000">'check' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'one grey'</span><span style="color: #007700">,                </span><span style="color: #DD0000">'got' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$at </span><span style="color: #007700">( </span><span style="color: #0000BB">$flat</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'#6a6a6a' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">] ) ],<br>    [ </span><span style="color: #DD0000">'check' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'beside transparent ones'</span><span style="color: #007700">, </span><span style="color: #DD0000">'got' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$at </span><span style="color: #007700">( </span><span style="color: #0000BB">$ramp </span><span style="color: #007700">( </span><span style="color: #0000BB">100</span><span style="color: #007700">, </span><span style="color: #0000BB">150</span><span style="color: #007700">, [ </span><span style="color: #0000BB">0x7f000000</span><span style="color: #007700">, </span><span style="color: #0000BB">0x7fffffff </span><span style="color: #007700">] ), </span><span style="color: #0000BB">0</span><span style="color: #007700">, [ </span><span style="color: #0000BB">100 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">125 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">25</span><span style="color: #007700">, </span><span style="color: #0000BB">150 </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">50</span><span style="color: #007700">, </span><span style="color: #DD0000">'black' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">51</span><span style="color: #007700">, </span><span style="color: #DD0000">'white' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">52 </span><span style="color: #007700">] ) ],<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7YXJyYXk6Y2hlY2tzfXskY2hlY2t9OiB7JGdvdH08YnI+ey9hcnJheTpjaGVja3N9cGhvdG8ge3BhZDppbWcgJ2Fzc2V0cy9waG90by5qcGcnLCB3aWR0aD04MCwgZmlsdGVyPSdhdXRvY29udHJhc3QnLCBjdXRvZmY9MiwgZm9ybWF0PSdwbmcnLCBhbHQ9J3gnIHwgcGhwOmZpbHRlcnNUaHVtYnMoQCkvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBhdXRvY29udHJhc3QgZmlsdGVyIGJ5IFBJTCdzIEltYWdlT3BzLmF1dG9jb250cmFzdCB3aXRoIHByZXNlcnZlX3RvbmUsIHdvcmtlZCBvdXQgYnlcbiAgLy8gaGFuZCBvbiBwaWN0dXJlcyBtYWRlIGhlcmUgd2l0aCBHRC5cbiAgLy9cbiAgLy8gQSByYW1wIG9mIHRoZSBncmV5cyA2NCB0byAxOTEsIG9uZSBwaXhlbCBlYWNoLCBhdCBjdXRvZmYgMDogbG8gNjQgYW5kIGhpIDE5MSwgYSB2YWx1ZSB2XG4gIC8vIGJlY29tZXMgKCB2IC0gNjQgKSB4IDI1NSAvIDEyNyBjdXQgdG8gYSB3aG9sZSBudW1iZXIgLSA2NCAwLCAxMDAgNzIsIDEyOCAxMjgsIDE5MSAyNTUuIEF0XG4gIC8vIGN1dG9mZiAxMDogMTIgb2YgaXRzIDEyOCBwaXhlbHMgbGV0IGdvIGF0IGVhY2ggZW5kLCBsbyA3NiBhbmQgaGkgMTc5IC0gNzYgMCwgMTI4IDEyOCwgMTc5XG4gIC8vIDI1NCAoMjU0Ljk5OTk5IGluIGRvdWJsZXMsIGN1dCwgYXMgUElMJ3Mgb3duIHRhYmxlIGhhcyBpdCksIGFuZCB3aGF0IGxpZXMgYmV5b25kIHRoZW0ga2VwdFxuICAvLyBhdCAwIGFuZCAyNTUuIEEgY29sb3VyIGdvZXMgdGhyb3VnaCB0aGUgc2FtZSB0YWJsZSBvbiBldmVyeSBjaGFubmVsOiAjODA2MDQwIGFtb25nIHRob3NlXG4gIC8vIGdyZXlzIGlzICM4MDQwMDAgLSBlYWNoIGNoYW5uZWwgc3RyZXRjaGVkIGFzIGEgZ3JleSBvZiBpdHMgdmFsdWUgaXMsIG5vdCBlYWNoIHRvIGEgcmFuZ2VcbiAgLy8gb2YgaXRzIG93bi4gQSBwaWN0dXJlIG9mIG9uZSBncmV5OiBhcyBpdCB3YXMuIEEgcmFtcCBvZiAxMDAgdG8gMTUwIHdpdGggYSB0cmFuc3BhcmVudFxuICAvLyBibGFjayBhbmQgYSB0cmFuc3BhcmVudCB3aGl0ZSBwaXhlbCBiZXNpZGUgaXQ6IHRoZSBzdHJldGNoIGlzIG9mIHRoZSAxMDAgdG8gMTUwIGFsb25lLFxuICAvLyAxMjUgYmVjb21pbmcgMTI3LCB0aGUgdHdvIGtlZXBpbmcgdGhlaXIgb3BhY2l0eS4gRXZlcnkgdmFsdWUgaGVyZSBpcyB3aGF0IFBJTCAxMydzXG4gIC8vIEltYWdlT3BzLmF1dG9jb250cmFzdCAoIHByZXNlcnZlX3RvbmU9VHJ1ZSApIGdpdmVzIGZvciB0aGUgc2FtZSBwaXhlbHMsIHRoZSBwaG90bydzXG4gIC8vIHRodW1ibmFpbHMgdG9vLlxuXG4gIGluY2x1ZGVfb25jZSBQQUQgLiAnc3Vicy9maWx0ZXJzL19saWIvZmlsdGVyLnBocCc7XG5cbiAgJHNwZWMgPSBpbmNsdWRlIFBBRCAuICdzdWJzL2ZpbHRlcnMvdHlwZXMvYXV0b2NvbnRyYXN0LnBocCc7XG5cbiAgJHJhbXAgPSBmdW5jdGlvbiAoICRmcm9tLCAkdG8sICRleHRyYSA9IFtdICkge1xuICAgICRpbWFnZSA9IGltYWdlY3JlYXRldHJ1ZWNvbG9yICggJHRvIC0gJGZyb20gKyAxICsgY291bnQgKCAkZXh0cmEgKSwgMSApO1xuICAgIGltYWdlYWxwaGFibGVuZGluZyAoICRpbWFnZSwgRkFMU0UgKTtcbiAgICBmb3IgKCAkdiA9ICRmcm9tOyAkdiA8PSAkdG87ICR2KysgKVxuICAgICAgaW1hZ2VzZXRwaXhlbCAoICRpbWFnZSwgJHYgLSAkZnJvbSwgMCwgMHgwMTAxMDEgKiAkdiApO1xuICAgIGZvcmVhY2ggKCAkZXh0cmEgYXMgJGsgPT4gJGMgKVxuICAgICAgaW1hZ2VzZXRwaXhlbCAoICRpbWFnZSwgJHRvIC0gJGZyb20gKyAxICsgJGssIDAsICRjICk7XG4gICAgcmV0dXJuICRpbWFnZTtcbiAgfTtcblxuICAkYXQgPSBmdW5jdGlvbiAoICRpbWFnZSwgJGN1dG9mZiwgJHhzICkgdXNlICggJHNwZWMgKSB7XG4gICAgJGltYWdlID0gJHNwZWMgWydhcHBseSddICggJGltYWdlLCBbICdjdXRvZmYnID0+ICRjdXRvZmYgXSwgMSApO1xuICAgICRvdXQgICA9IFtdO1xuICAgIGZvcmVhY2ggKCAkeHMgYXMgJGxhYmVsID0+ICR4ICkge1xuICAgICAgJGMgICAgID0gaW1hZ2Vjb2xvcmF0ICggJGltYWdlLCAkeCwgMCApO1xuICAgICAgJG91dFtdID0gXCIkbGFiZWwgXCIgLiAoICggKCAkYyA+PiAxNiApICYgMjU1ICkgPT0gKCAkYyAmIDI1NSApICYmICggKCAkYyA+PiA4ICkgJiAyNTUgKSA9PSAoICRjICYgMjU1ICkgPyAkYyAmIDI1NSA6IHNwcmludGYgKCAnIyUwNngnLCAkYyAmIDB4RkZGRkZGICkgKVxuICAgICAgICAgICAgIC4gKCAoICRjID4+IDI0ICkgJiAxMjcgPyAnIGFscGhhICcgLiAoICggJGMgPj4gMjQgKSAmIDEyNyApIDogJycgKTtcbiAgICB9XG4gICAgcmV0dXJuIGltcGxvZGUgKCAnLCAnLCAkb3V0ICk7XG4gIH07XG5cbiAgJGZsYXQgPSBpbWFnZWNyZWF0ZXRydWVjb2xvciAoIDQsIDIgKTtcbiAgaW1hZ2VmaWxsICggJGZsYXQsIDAsIDAsIDB4NmE2YTZhICk7XG5cbiAgJGNoZWNrcyA9IFtcbiAgICBbICdjaGVjaycgPT4gJ2dyZXlzIDY0IHRvIDE5MSBhdCAwJywgICAgJ2dvdCcgPT4gJGF0ICggJHJhbXAgKCA2NCwgMTkxICksIDAsIFsgNjQgPT4gMCwgMTAwID0+IDM2LCAxMjggPT4gNjQsIDE5MSA9PiAxMjcgXSApIF0sXG4gICAgWyAnY2hlY2snID0+ICdhdCAxMCcsICAgICAgICAgICAgICAgICAgICdnb3QnID0+ICRhdCAoICRyYW1wICggNjQsIDE5MSApLCAxMCwgWyA2NCA9PiAwLCA3NiA9PiAxMiwgMTI4ID0+IDY0LCAxNzkgPT4gMTE1LCAxOTEgPT4gMTI3IF0gKSBdLFxuICAgIFsgJ2NoZWNrJyA9PiAnYSBjb2xvdXIgYW1vbmcgdGhlbScsICAgICAnZ290JyA9PiAkYXQgKCAkcmFtcCAoIDY0LCAxOTEsIFsgMHg4MDYwNDAgXSApLCAwLCBbICcjODA2MDQwJyA9PiAxMjggXSApIF0sXG4gICAgWyAnY2hlY2snID0+ICdvbmUgZ3JleScsICAgICAgICAgICAgICAgICdnb3QnID0+ICRhdCAoICRmbGF0LCAxLCBbICcjNmE2YTZhJyA9PiAwIF0gKSBdLFxuICAgIFsgJ2NoZWNrJyA9PiAnYmVzaWRlIHRyYW5zcGFyZW50IG9uZXMnLCAnZ290JyA9PiAkYXQgKCAkcmFtcCAoIDEwMCwgMTUwLCBbIDB4N2YwMDAwMDAsIDB4N2ZmZmZmZmYgXSApLCAwLCBbIDEwMCA9PiAwLCAxMjUgPT4gMjUsIDE1MCA9PiA1MCwgJ2JsYWNrJyA9PiA1MSwgJ3doaXRlJyA9PiA1MiBdICkgXSxcbiAgXTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7YXJyYXk6Y2hlY2tzfXskY2hlY2t9OiB7JGdvdH08YnI+ey9hcnJheTpjaGVja3N9cGhvdG8ge3BhZDppbWcgJ2Fzc2V0cy9waG90by5qcGcnLCB3aWR0aD04MCwgZmlsdGVyPSdhdXRvY29udHJhc3QnLCBjdXRvZmY9MiwgZm9ybWF0PSdwbmcnLCBhbHQ9J3gnIHwgcGhwOmZpbHRlcnNUaHVtYnMoQCkvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBhdXRvY29udHJhc3QgZmlsdGVyIGJ5IFBJTCdzIEltYWdlT3BzLmF1dG9jb250cmFzdCB3aXRoIHByZXNlcnZlX3RvbmUsIHdvcmtlZCBvdXQgYnlcbiAgLy8gaGFuZCBvbiBwaWN0dXJlcyBtYWRlIGhlcmUgd2l0aCBHRC5cbiAgLy9cbiAgLy8gQSByYW1wIG9mIHRoZSBncmV5cyA2NCB0byAxOTEsIG9uZSBwaXhlbCBlYWNoLCBhdCBjdXRvZmYgMDogbG8gNjQgYW5kIGhpIDE5MSwgYSB2YWx1ZSB2XG4gIC8vIGJlY29tZXMgKCB2IC0gNjQgKSB4IDI1NSAvIDEyNyBjdXQgdG8gYSB3aG9sZSBudW1iZXIgLSA2NCAwLCAxMDAgNzIsIDEyOCAxMjgsIDE5MSAyNTUuIEF0XG4gIC8vIGN1dG9mZiAxMDogMTIgb2YgaXRzIDEyOCBwaXhlbHMgbGV0IGdvIGF0IGVhY2ggZW5kLCBsbyA3NiBhbmQgaGkgMTc5IC0gNzYgMCwgMTI4IDEyOCwgMTc5XG4gIC8vIDI1NCAoMjU0Ljk5OTk5IGluIGRvdWJsZXMsIGN1dCwgYXMgUElMJ3Mgb3duIHRhYmxlIGhhcyBpdCksIGFuZCB3aGF0IGxpZXMgYmV5b25kIHRoZW0ga2VwdFxuICAvLyBhdCAwIGFuZCAyNTUuIEEgY29sb3VyIGdvZXMgdGhyb3VnaCB0aGUgc2FtZSB0YWJsZSBvbiBldmVyeSBjaGFubmVsOiAjODA2MDQwIGFtb25nIHRob3NlXG4gIC8vIGdyZXlzIGlzICM4MDQwMDAgLSBlYWNoIGNoYW5uZWwgc3RyZXRjaGVkIGFzIGEgZ3JleSBvZiBpdHMgdmFsdWUgaXMsIG5vdCBlYWNoIHRvIGEgcmFuZ2VcbiAgLy8gb2YgaXRzIG93bi4gQSBwaWN0dXJlIG9mIG9uZSBncmV5OiBhcyBpdCB3YXMuIEEgcmFtcCBvZiAxMDAgdG8gMTUwIHdpdGggYSB0cmFuc3BhcmVudFxuICAvLyBibGFjayBhbmQgYSB0cmFuc3BhcmVudCB3aGl0ZSBwaXhlbCBiZXNpZGUgaXQ6IHRoZSBzdHJldGNoIGlzIG9mIHRoZSAxMDAgdG8gMTUwIGFsb25lLFxuICAvLyAxMjUgYmVjb21pbmcgMTI3LCB0aGUgdHdvIGtlZXBpbmcgdGhlaXIgb3BhY2l0eS4gRXZlcnkgdmFsdWUgaGVyZSBpcyB3aGF0IFBJTCAxMydzXG4gIC8vIEltYWdlT3BzLmF1dG9jb250cmFzdCAoIHByZXNlcnZlX3RvbmU9VHJ1ZSApIGdpdmVzIGZvciB0aGUgc2FtZSBwaXhlbHMsIHRoZSBwaG90bydzXG4gIC8vIHRodW1ibmFpbHMgdG9vLlxuXG4gIGluY2x1ZGVfb25jZSBQQUQgLiAnc3Vicy9maWx0ZXJzL19saWIvZmlsdGVyLnBocCc7XG5cbiAgJHNwZWMgPSBpbmNsdWRlIFBBRCAuICdzdWJzL2ZpbHRlcnMvdHlwZXMvYXV0b2NvbnRyYXN0LnBocCc7XG5cbiAgJHJhbXAgPSBmdW5jdGlvbiAoICRmcm9tLCAkdG8sICRleHRyYSA9IFtdICkge1xuICAgICRpbWFnZSA9IGltYWdlY3JlYXRldHJ1ZWNvbG9yICggJHRvIC0gJGZyb20gKyAxICsgY291bnQgKCAkZXh0cmEgKSwgMSApO1xuICAgIGltYWdlYWxwaGFibGVuZGluZyAoICRpbWFnZSwgRkFMU0UgKTtcbiAgICBmb3IgKCAkdiA9ICRmcm9tOyAkdiA8PSAkdG87ICR2KysgKVxuICAgICAgaW1hZ2VzZXRwaXhlbCAoICRpbWFnZSwgJHYgLSAkZnJvbSwgMCwgMHgwMTAxMDEgKiAkdiApO1xuICAgIGZvcmVhY2ggKCAkZXh0cmEgYXMgJGsgPT4gJGMgKVxuICAgICAgaW1hZ2VzZXRwaXhlbCAoICRpbWFnZSwgJHRvIC0gJGZyb20gKyAxICsgJGssIDAsICRjICk7XG4gICAgcmV0dXJuICRpbWFnZTtcbiAgfTtcblxuICAkYXQgPSBmdW5jdGlvbiAoICRpbWFnZSwgJGN1dG9mZiwgJHhzICkgdXNlICggJHNwZWMgKSB7XG4gICAgJGltYWdlID0gJHNwZWMgWydhcHBseSddICggJGltYWdlLCBbICdjdXRvZmYnID0+ICRjdXRvZmYgXSwgMSApO1xuICAgICRvdXQgICA9IFtdO1xuICAgIGZvcmVhY2ggKCAkeHMgYXMgJGxhYmVsID0+ICR4ICkge1xuICAgICAgJGMgICAgID0gaW1hZ2Vjb2xvcmF0ICggJGltYWdlLCAkeCwgMCApO1xuICAgICAgJG91dFtdID0gXCIkbGFiZWwgXCIgLiAoICggKCAkYyA+PiAxNiApICYgMjU1ICkgPT0gKCAkYyAmIDI1NSApICYmICggKCAkYyA+PiA4ICkgJiAyNTUgKSA9PSAoICRjICYgMjU1ICkgPyAkYyAmIDI1NSA6IHNwcmludGYgKCAnIyUwNngnLCAkYyAmIDB4RkZGRkZGICkgKVxuICAgICAgICAgICAgIC4gKCAoICRjID4+IDI0ICkgJiAxMjcgPyAnIGFscGhhICcgLiAoICggJGMgPj4gMjQgKSAmIDEyNyApIDogJycgKTtcbiAgICB9XG4gICAgcmV0dXJuIGltcGxvZGUgKCAnLCAnLCAkb3V0ICk7XG4gIH07XG5cbiAgJGZsYXQgPSBpbWFnZWNyZWF0ZXRydWVjb2xvciAoIDQsIDIgKTtcbiAgaW1hZ2VmaWxsICggJGZsYXQsIDAsIDAsIDB4NmE2YTZhICk7XG5cbiAgJGNoZWNrcyA9IFtcbiAgICBbICdjaGVjaycgPT4gJ2dyZXlzIDY0IHRvIDE5MSBhdCAwJywgICAgJ2dvdCcgPT4gJGF0ICggJHJhbXAgKCA2NCwgMTkxICksIDAsIFsgNjQgPT4gMCwgMTAwID0+IDM2LCAxMjggPT4gNjQsIDE5MSA9PiAxMjcgXSApIF0sXG4gICAgWyAnY2hlY2snID0+ICdhdCAxMCcsICAgICAgICAgICAgICAgICAgICdnb3QnID0+ICRhdCAoICRyYW1wICggNjQsIDE5MSApLCAxMCwgWyA2NCA9PiAwLCA3NiA9PiAxMiwgMTI4ID0+IDY0LCAxNzkgPT4gMTE1LCAxOTEgPT4gMTI3IF0gKSBdLFxuICAgIFsgJ2NoZWNrJyA9PiAnYSBjb2xvdXIgYW1vbmcgdGhlbScsICAgICAnZ290JyA9PiAkYXQgKCAkcmFtcCAoIDY0LCAxOTEsIFsgMHg4MDYwNDAgXSApLCAwLCBbICcjODA2MDQwJyA9PiAxMjggXSApIF0sXG4gICAgWyAnY2hlY2snID0+ICdvbmUgZ3JleScsICAgICAgICAgICAgICAgICdnb3QnID0+ICRhdCAoICRmbGF0LCAxLCBbICcjNmE2YTZhJyA9PiAwIF0gKSBdLFxuICAgIFsgJ2NoZWNrJyA9PiAnYmVzaWRlIHRyYW5zcGFyZW50IG9uZXMnLCAnZ290JyA9PiAkYXQgKCAkcmFtcCAoIDEwMCwgMTUwLCBbIDB4N2YwMDAwMDAsIDB4N2ZmZmZmZmYgXSApLCAwLCBbIDEwMCA9PiAwLCAxMjUgPT4gMjUsIDE1MCA9PiA1MCwgJ2JsYWNrJyA9PiA1MSwgJ3doaXRlJyA9PiA1MiBdICkgXSxcbiAgXTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>checks</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>check</font>}</b>: <b>{<font color="green"><font color="red">$</font>got</font>}</b>&lt;br&gt;<b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>checks</font><font color="red"></font>}</b>photo <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>autocontrast<font color="black">'</font><font color="black">,</font> cutoff=2<font color="black">,</font> format=<font color="black">'</font>png<font color="black">'</font><font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxba8bcfebeb70db2897b6426fbeb0c93c"></div>
+                      <script>
+                      padAjaxba8bcfebeb70db2897b6426fbeb0c93c = new XMLHttpRequest();
+                      padAjaxba8bcfebeb70db2897b6426fbeb0c93c.onreadystatechange=function() {
+                      if (padAjaxba8bcfebeb70db2897b6426fbeb0c93c.readyState === 4) {
+                      if (padAjaxba8bcfebeb70db2897b6426fbeb0c93c.status === 200) {
+                      document.getElementById("padAjaxba8bcfebeb70db2897b6426fbeb0c93c").innerHTML=padAjaxba8bcfebeb70db2897b6426fbeb0c93c.responseText;
+                      } else {
+                      document.getElementById("padAjaxba8bcfebeb70db2897b6426fbeb0c93c").innerHTML=padAjaxba8bcfebeb70db2897b6426fbeb0c93c.statusText;
+                      }
+                      }
+                      }
+                      padAjaxba8bcfebeb70db2897b6426fbeb0c93c.open("GET","http://localhost/pad/regression/framework/?filters/autocontrast_stretches_the_tones_as_pil_does&padInclude",true);
+                      padAjaxba8bcfebeb70db2897b6426fbeb0c93c.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: filters/bayer_dithers_to_levels_greys<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/bayer_dithers_to_levels_greys.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2JheWVyJywgbGV2ZWxzPTQsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc1RodW1icyhAKS99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2JheWVyJywgbGV2ZWxzPTQsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc1RodW1icyhAKS99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>bayer<font color="black">'</font><font color="black">,</font> levels=4<font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax2ccbd8010f26d7fc3f8a4ecd1ef4bee8"></div>
+                      <script>
+                      padAjax2ccbd8010f26d7fc3f8a4ecd1ef4bee8 = new XMLHttpRequest();
+                      padAjax2ccbd8010f26d7fc3f8a4ecd1ef4bee8.onreadystatechange=function() {
+                      if (padAjax2ccbd8010f26d7fc3f8a4ecd1ef4bee8.readyState === 4) {
+                      if (padAjax2ccbd8010f26d7fc3f8a4ecd1ef4bee8.status === 200) {
+                      document.getElementById("padAjax2ccbd8010f26d7fc3f8a4ecd1ef4bee8").innerHTML=padAjax2ccbd8010f26d7fc3f8a4ecd1ef4bee8.responseText;
+                      } else {
+                      document.getElementById("padAjax2ccbd8010f26d7fc3f8a4ecd1ef4bee8").innerHTML=padAjax2ccbd8010f26d7fc3f8a4ecd1ef4bee8.statusText;
+                      }
+                      }
+                      }
+                      padAjax2ccbd8010f26d7fc3f8a4ecd1ef4bee8.open("GET","http://localhost/pad/regression/framework/?filters/bayer_dithers_to_levels_greys&padInclude",true);
+                      padAjax2ccbd8010f26d7fc3f8a4ecd1ef4bee8.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: filters/blur_is_made_for_the_1x_and_the_2x_picture<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/blur_is_made_for_the_1x_and_the_2x_picture.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2JsdXInLCByYWRpdXM9NCwgYWx0PSd4JyB8IHBocDpmaWx0ZXJzVGh1bWJzKEApL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2JsdXInLCByYWRpdXM9NCwgYWx0PSd4JyB8IHBocDpmaWx0ZXJzVGh1bWJzKEApL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>blur<font color="black">'</font><font color="black">,</font> radius=4<font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxeb7e5f9fd38db538e713d5e44241ca58"></div>
+                      <script>
+                      padAjaxeb7e5f9fd38db538e713d5e44241ca58 = new XMLHttpRequest();
+                      padAjaxeb7e5f9fd38db538e713d5e44241ca58.onreadystatechange=function() {
+                      if (padAjaxeb7e5f9fd38db538e713d5e44241ca58.readyState === 4) {
+                      if (padAjaxeb7e5f9fd38db538e713d5e44241ca58.status === 200) {
+                      document.getElementById("padAjaxeb7e5f9fd38db538e713d5e44241ca58").innerHTML=padAjaxeb7e5f9fd38db538e713d5e44241ca58.responseText;
+                      } else {
+                      document.getElementById("padAjaxeb7e5f9fd38db538e713d5e44241ca58").innerHTML=padAjaxeb7e5f9fd38db538e713d5e44241ca58.statusText;
+                      }
+                      }
+                      }
+                      padAjaxeb7e5f9fd38db538e713d5e44241ca58.open("GET","http://localhost/pad/regression/framework/?filters/blur_is_made_for_the_1x_and_the_2x_picture&padInclude",true);
+                      padAjaxeb7e5f9fd38db538e713d5e44241ca58.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: filters/dither_leaves_ink_and_paper_alone<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/dither_leaves_ink_and_paper_alone.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2RpdGhlcicsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc1RodW1icyhAKS99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2RpdGhlcicsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc1RodW1icyhAKS99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>dither<font color="black">'</font><font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax74191ebdcc86be133a708e91b385632e"></div>
+                      <script>
+                      padAjax74191ebdcc86be133a708e91b385632e = new XMLHttpRequest();
+                      padAjax74191ebdcc86be133a708e91b385632e.onreadystatechange=function() {
+                      if (padAjax74191ebdcc86be133a708e91b385632e.readyState === 4) {
+                      if (padAjax74191ebdcc86be133a708e91b385632e.status === 200) {
+                      document.getElementById("padAjax74191ebdcc86be133a708e91b385632e").innerHTML=padAjax74191ebdcc86be133a708e91b385632e.responseText;
+                      } else {
+                      document.getElementById("padAjax74191ebdcc86be133a708e91b385632e").innerHTML=padAjax74191ebdcc86be133a708e91b385632e.statusText;
+                      }
+                      }
+                      }
+                      padAjax74191ebdcc86be133a708e91b385632e.open("GET","http://localhost/pad/regression/framework/?filters/dither_leaves_ink_and_paper_alone&padInclude",true);
+                      padAjax74191ebdcc86be133a708e91b385632e.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: filters/duotone_draws_the_picture_in_two_colours<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/duotone_draws_the_picture_in_two_colours.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2R1b3RvbmUnLCBjb2xvcnM9JyMwMDAsICNmZmYnLCBmb3JtYXQ9J3BuZycsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc1RodW1icyhAKS99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2R1b3RvbmUnLCBjb2xvcnM9JyMwMDAsICNmZmYnLCBmb3JtYXQ9J3BuZycsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc1RodW1icyhAKS99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>duotone<font color="black">'</font><font color="black">,</font> colors=<font color="black">'</font>#000<font color="black">,</font> #fff<font color="black">'</font><font color="black">,</font> format=<font color="black">'</font>png<font color="black">'</font><font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax172b661e506abd8ab9da4b5728d7fa64"></div>
+                      <script>
+                      padAjax172b661e506abd8ab9da4b5728d7fa64 = new XMLHttpRequest();
+                      padAjax172b661e506abd8ab9da4b5728d7fa64.onreadystatechange=function() {
+                      if (padAjax172b661e506abd8ab9da4b5728d7fa64.readyState === 4) {
+                      if (padAjax172b661e506abd8ab9da4b5728d7fa64.status === 200) {
+                      document.getElementById("padAjax172b661e506abd8ab9da4b5728d7fa64").innerHTML=padAjax172b661e506abd8ab9da4b5728d7fa64.responseText;
+                      } else {
+                      document.getElementById("padAjax172b661e506abd8ab9da4b5728d7fa64").innerHTML=padAjax172b661e506abd8ab9da4b5728d7fa64.statusText;
+                      }
+                      }
+                      }
+                      padAjax172b661e506abd8ab9da4b5728d7fa64.open("GET","http://localhost/pad/regression/framework/?filters/duotone_draws_the_picture_in_two_colours&padInclude",true);
+                      padAjax172b661e506abd8ab9da4b5728d7fa64.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: filters/edges_draws_the_outlines_as_a_png<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/edges_draws_the_outlines_as_a_png.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJwbGFpbiB7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2VkZ2VzJywgYWx0PSd4JyB8IHBocDpmaWx0ZXJzVGh1bWJzKEApL30gaW5rIG9uIHBhcGVyIHtwYWQ6aW1nICdhc3NldHMvcGhvdG8uanBnJywgd2lkdGg9ODAsIGZpbHRlcj0nZWRnZXMnLCBjb2xvcnM9JyNmYmZhZjcsICMxZDFkMWInLCBhbW91bnQ9MjAwLCBhbHQ9J3gnIHwgcGhwOmZpbHRlcnNUaHVtYnMoQCkvfSB0cmFuc3BhcmVudCB7cGFkOmltZyAnYXNzZXRzL2FscGhhLnBuZycsIHdpZHRoPTE1MCwgZmlsdGVyPSdlZGdlcycsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc0FscGhhKEApL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJwbGFpbiB7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2VkZ2VzJywgYWx0PSd4JyB8IHBocDpmaWx0ZXJzVGh1bWJzKEApL30gaW5rIG9uIHBhcGVyIHtwYWQ6aW1nICdhc3NldHMvcGhvdG8uanBnJywgd2lkdGg9ODAsIGZpbHRlcj0nZWRnZXMnLCBjb2xvcnM9JyNmYmZhZjcsICMxZDFkMWInLCBhbW91bnQ9MjAwLCBhbHQ9J3gnIHwgcGhwOmZpbHRlcnNUaHVtYnMoQCkvfSB0cmFuc3BhcmVudCB7cGFkOmltZyAnYXNzZXRzL2FscGhhLnBuZycsIHdpZHRoPTE1MCwgZmlsdGVyPSdlZGdlcycsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc0FscGhhKEApL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">plain <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>edges<font color="black">'</font><font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b> ink on paper <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>edges<font color="black">'</font><font color="black">,</font> colors=<font color="black">'</font>#fbfaf7<font color="black">,</font> #1d1d1b<font color="black">'</font><font color="black">,</font> amount=200<font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b> transparent <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/alpha.png<font color="black">'</font><font color="black">,</font> width=150<font color="black">,</font> filter=<font color="black">'</font>edges<font color="black">'</font><font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersAlpha(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax45110790020ec52fb8fab716a9bfbe73"></div>
+                      <script>
+                      padAjax45110790020ec52fb8fab716a9bfbe73 = new XMLHttpRequest();
+                      padAjax45110790020ec52fb8fab716a9bfbe73.onreadystatechange=function() {
+                      if (padAjax45110790020ec52fb8fab716a9bfbe73.readyState === 4) {
+                      if (padAjax45110790020ec52fb8fab716a9bfbe73.status === 200) {
+                      document.getElementById("padAjax45110790020ec52fb8fab716a9bfbe73").innerHTML=padAjax45110790020ec52fb8fab716a9bfbe73.responseText;
+                      } else {
+                      document.getElementById("padAjax45110790020ec52fb8fab716a9bfbe73").innerHTML=padAjax45110790020ec52fb8fab716a9bfbe73.statusText;
+                      }
+                      }
+                      }
+                      padAjax45110790020ec52fb8fab716a9bfbe73.open("GET","http://localhost/pad/regression/framework/?filters/edges_draws_the_outlines_as_a_png&padInclude",true);
+                      padAjax45110790020ec52fb8fab716a9bfbe73.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: filters/grayscale_leaves_every_pixel_grey<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/grayscale_leaves_every_pixel_grey.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2dyYXlzY2FsZScsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc1RodW1icyhAKS99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2dyYXlzY2FsZScsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc1RodW1icyhAKS99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>grayscale<font color="black">'</font><font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax4bb6b53a5b529dce1b96607a15e1ab0e"></div>
+                      <script>
+                      padAjax4bb6b53a5b529dce1b96607a15e1ab0e = new XMLHttpRequest();
+                      padAjax4bb6b53a5b529dce1b96607a15e1ab0e.onreadystatechange=function() {
+                      if (padAjax4bb6b53a5b529dce1b96607a15e1ab0e.readyState === 4) {
+                      if (padAjax4bb6b53a5b529dce1b96607a15e1ab0e.status === 200) {
+                      document.getElementById("padAjax4bb6b53a5b529dce1b96607a15e1ab0e").innerHTML=padAjax4bb6b53a5b529dce1b96607a15e1ab0e.responseText;
+                      } else {
+                      document.getElementById("padAjax4bb6b53a5b529dce1b96607a15e1ab0e").innerHTML=padAjax4bb6b53a5b529dce1b96607a15e1ab0e.statusText;
+                      }
+                      }
+                      }
+                      padAjax4bb6b53a5b529dce1b96607a15e1ab0e.open("GET","http://localhost/pad/regression/framework/?filters/grayscale_leaves_every_pixel_grey&padInclude",true);
+                      padAjax4bb6b53a5b529dce1b96607a15e1ab0e.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: filters/invert_draws_the_negative<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/invert_draws_the_negative.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2ludmVydCcsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc1RodW1icyhAKS99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J2ludmVydCcsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc1RodW1icyhAKS99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>invert<font color="black">'</font><font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax0069bb4e60b1b79d7553f397be29961b"></div>
+                      <script>
+                      padAjax0069bb4e60b1b79d7553f397be29961b = new XMLHttpRequest();
+                      padAjax0069bb4e60b1b79d7553f397be29961b.onreadystatechange=function() {
+                      if (padAjax0069bb4e60b1b79d7553f397be29961b.readyState === 4) {
+                      if (padAjax0069bb4e60b1b79d7553f397be29961b.status === 200) {
+                      document.getElementById("padAjax0069bb4e60b1b79d7553f397be29961b").innerHTML=padAjax0069bb4e60b1b79d7553f397be29961b.responseText;
+                      } else {
+                      document.getElementById("padAjax0069bb4e60b1b79d7553f397be29961b").innerHTML=padAjax0069bb4e60b1b79d7553f397be29961b.statusText;
+                      }
+                      }
+                      }
+                      padAjax0069bb4e60b1b79d7553f397be29961b.open("GET","http://localhost/pad/regression/framework/?filters/invert_draws_the_negative&padInclude",true);
+                      padAjax0069bb4e60b1b79d7553f397be29961b.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: filters/pixelate_draws_blocks_at_1x_with_sharp_pixels<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/pixelate_draws_blocks_at_1x_with_sharp_pixels.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J3BpeGVsYXRlJywgY2VsbD0xMCwgYWx0PSd4Jy99IHtwYWQ6aW1nICdhc3NldHMvcGhvdG8uanBnJywgd2lkdGg9ODAsIGZpbHRlcj0ncGl4ZWxhdGUnLCBjZWxsPTEwLCBhbHQ9J3gnIHwgcGhwOmZpbHRlcnNUaHVtYnMoQCkvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J3BpeGVsYXRlJywgY2VsbD0xMCwgYWx0PSd4Jy99IHtwYWQ6aW1nICdhc3NldHMvcGhvdG8uanBnJywgd2lkdGg9ODAsIGZpbHRlcj0ncGl4ZWxhdGUnLCBjZWxsPTEwLCBhbHQ9J3gnIHwgcGhwOmZpbHRlcnNUaHVtYnMoQCkvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>pixelate<font color="black">'</font><font color="black">,</font> cell=10<font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font></font>/}</b> <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>pixelate<font color="black">'</font><font color="black">,</font> cell=10<font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxf6668d450aa8cd9294d948d840344480"></div>
+                      <script>
+                      padAjaxf6668d450aa8cd9294d948d840344480 = new XMLHttpRequest();
+                      padAjaxf6668d450aa8cd9294d948d840344480.onreadystatechange=function() {
+                      if (padAjaxf6668d450aa8cd9294d948d840344480.readyState === 4) {
+                      if (padAjaxf6668d450aa8cd9294d948d840344480.status === 200) {
+                      document.getElementById("padAjaxf6668d450aa8cd9294d948d840344480").innerHTML=padAjaxf6668d450aa8cd9294d948d840344480.responseText;
+                      } else {
+                      document.getElementById("padAjaxf6668d450aa8cd9294d948d840344480").innerHTML=padAjaxf6668d450aa8cd9294d948d840344480.statusText;
+                      }
+                      }
+                      }
+                      padAjaxf6668d450aa8cd9294d948d840344480.open("GET","http://localhost/pad/regression/framework/?filters/pixelate_draws_blocks_at_1x_with_sharp_pixels&padInclude",true);
+                      padAjaxf6668d450aa8cd9294d948d840344480.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: filters/posterize_leaves_levels_steps_a_channel_as_a_png<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/posterize_leaves_levels_steps_a_channel_as_a_png.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J3Bvc3Rlcml6ZScsIGxldmVscz0yLCBhbHQ9J3gnL30ge3BhZDppbWcgJ2Fzc2V0cy9waG90by5qcGcnLCB3aWR0aD04MCwgZmlsdGVyPSdwb3N0ZXJpemUnLCBsZXZlbHM9MiwgYWx0PSd4JyB8IHBocDpmaWx0ZXJzVGh1bWJzKEApL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J3Bvc3Rlcml6ZScsIGxldmVscz0yLCBhbHQ9J3gnL30ge3BhZDppbWcgJ2Fzc2V0cy9waG90by5qcGcnLCB3aWR0aD04MCwgZmlsdGVyPSdwb3N0ZXJpemUnLCBsZXZlbHM9MiwgYWx0PSd4JyB8IHBocDpmaWx0ZXJzVGh1bWJzKEApL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>posterize<font color="black">'</font><font color="black">,</font> levels=2<font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font></font>/}</b> <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>posterize<font color="black">'</font><font color="black">,</font> levels=2<font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax09519442660e18195c58ade4531d5579"></div>
+                      <script>
+                      padAjax09519442660e18195c58ade4531d5579 = new XMLHttpRequest();
+                      padAjax09519442660e18195c58ade4531d5579.onreadystatechange=function() {
+                      if (padAjax09519442660e18195c58ade4531d5579.readyState === 4) {
+                      if (padAjax09519442660e18195c58ade4531d5579.status === 200) {
+                      document.getElementById("padAjax09519442660e18195c58ade4531d5579").innerHTML=padAjax09519442660e18195c58ade4531d5579.responseText;
+                      } else {
+                      document.getElementById("padAjax09519442660e18195c58ade4531d5579").innerHTML=padAjax09519442660e18195c58ade4531d5579.statusText;
+                      }
+                      }
+                      }
+                      padAjax09519442660e18195c58ade4531d5579.open("GET","http://localhost/pad/regression/framework/?filters/posterize_leaves_levels_steps_a_channel_as_a_png&padInclude",true);
+                      padAjax09519442660e18195c58ade4531d5579.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: filters/sepia_browns_the_picture<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/sepia_browns_the_picture.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J3NlcGlhJywgYWx0PSd4JyB8IHBocDpmaWx0ZXJzVGh1bWJzKEApL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J3NlcGlhJywgYWx0PSd4JyB8IHBocDpmaWx0ZXJzVGh1bWJzKEApL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>sepia<font color="black">'</font><font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxa3446d4cd051c099b1951340f43d15ad"></div>
+                      <script>
+                      padAjaxa3446d4cd051c099b1951340f43d15ad = new XMLHttpRequest();
+                      padAjaxa3446d4cd051c099b1951340f43d15ad.onreadystatechange=function() {
+                      if (padAjaxa3446d4cd051c099b1951340f43d15ad.readyState === 4) {
+                      if (padAjaxa3446d4cd051c099b1951340f43d15ad.status === 200) {
+                      document.getElementById("padAjaxa3446d4cd051c099b1951340f43d15ad").innerHTML=padAjaxa3446d4cd051c099b1951340f43d15ad.responseText;
+                      } else {
+                      document.getElementById("padAjaxa3446d4cd051c099b1951340f43d15ad").innerHTML=padAjaxa3446d4cd051c099b1951340f43d15ad.statusText;
+                      }
+                      }
+                      }
+                      padAjaxa3446d4cd051c099b1951340f43d15ad.open("GET","http://localhost/pad/regression/framework/?filters/sepia_browns_the_picture&padInclude",true);
+                      padAjaxa3446d4cd051c099b1951340f43d15ad.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: filters/sharpen_crisps_the_edges<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/sharpen_crisps_the_edges.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J3NoYXJwZW4nLCBhbW91bnQ9ODAsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc1RodW1icyhAKS99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmltZyAnYXNzZXRzL3Bob3RvLmpwZycsIHdpZHRoPTgwLCBmaWx0ZXI9J3NoYXJwZW4nLCBhbW91bnQ9ODAsIGFsdD0neCcgfCBwaHA6ZmlsdGVyc1RodW1icyhAKS99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>sharpen<font color="black">'</font><font color="black">,</font> amount=80<font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax511fe3455e7f11f819cdd688a8555fc7"></div>
+                      <script>
+                      padAjax511fe3455e7f11f819cdd688a8555fc7 = new XMLHttpRequest();
+                      padAjax511fe3455e7f11f819cdd688a8555fc7.onreadystatechange=function() {
+                      if (padAjax511fe3455e7f11f819cdd688a8555fc7.readyState === 4) {
+                      if (padAjax511fe3455e7f11f819cdd688a8555fc7.status === 200) {
+                      document.getElementById("padAjax511fe3455e7f11f819cdd688a8555fc7").innerHTML=padAjax511fe3455e7f11f819cdd688a8555fc7.responseText;
+                      } else {
+                      document.getElementById("padAjax511fe3455e7f11f819cdd688a8555fc7").innerHTML=padAjax511fe3455e7f11f819cdd688a8555fc7.statusText;
+                      }
+                      }
+                      }
+                      padAjax511fe3455e7f11f819cdd688a8555fc7.open("GET","http://localhost/pad/regression/framework/?filters/sharpen_crisps_the_edges&padInclude",true);
+                      padAjax511fe3455e7f11f819cdd688a8555fc7.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: filters/solarize_turns_every_channel_past_its_threshold<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">filters/solarize_turns_every_channel_past_its_threshold.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">filters/solarize_turns_every_channel_past_its_threshold.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The solarize filter channel by channel, worked out by hand: a channel at the cut,<br>  // threshold x 255 / 100, or past it becomes 255 less itself, one below it stays. At 50<br>  // (127.5) the greys 0 64 127 128 192 255 become 0 64 127 127 63 0 - 128 is the first to turn,<br>  // as with PIL's ImageOps.solarize at its default 128 and ImageMagick's -solarize 50%. Each<br>  // channel on its own: #20c080 is #203f7f. At 0 everything turns, as invert; at 100 only 255.<br>  // A pixel keeps its opacity. And the photo as {pad:img} makes it, the same bytes as PIL's<br>  // solarize gave for the same picture.<br><br>  </span><span style="color: #007700">include_once </span><span style="color: #0000BB">PAD </span><span style="color: #007700">. </span><span style="color: #DD0000">'subs/filters/_lib/filter.php'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$spec </span><span style="color: #007700">= include </span><span style="color: #0000BB">PAD </span><span style="color: #007700">. </span><span style="color: #DD0000">'subs/filters/types/solarize.php'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$pixels </span><span style="color: #007700">= function ( </span><span style="color: #0000BB">$colours</span><span style="color: #007700">, </span><span style="color: #0000BB">$threshold</span><span style="color: #007700">, </span><span style="color: #0000BB">$alpha </span><span style="color: #007700">= </span><span style="color: #0000BB">0 </span><span style="color: #007700">) use ( </span><span style="color: #0000BB">$spec </span><span style="color: #007700">) {<br>    </span><span style="color: #0000BB">$image </span><span style="color: #007700">= </span><span style="color: #0000BB">imagecreatetruecolor </span><span style="color: #007700">( </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$colours </span><span style="color: #007700">), </span><span style="color: #0000BB">1 </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">imagealphablending </span><span style="color: #007700">( </span><span style="color: #0000BB">$image</span><span style="color: #007700">, </span><span style="color: #0000BB">FALSE </span><span style="color: #007700">);<br>    foreach ( </span><span style="color: #0000BB">$colours </span><span style="color: #007700">as </span><span style="color: #0000BB">$x </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$c </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">imagesetpixel </span><span style="color: #007700">( </span><span style="color: #0000BB">$image</span><span style="color: #007700">, </span><span style="color: #0000BB">$x</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, ( </span><span style="color: #0000BB">$alpha </span><span style="color: #007700">&lt;&lt; </span><span style="color: #0000BB">24 </span><span style="color: #007700">) | </span><span style="color: #0000BB">$c </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$image </span><span style="color: #007700">= </span><span style="color: #0000BB">$spec </span><span style="color: #007700">[</span><span style="color: #DD0000">'apply'</span><span style="color: #007700">] ( </span><span style="color: #0000BB">$image</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'threshold' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$threshold </span><span style="color: #007700">], </span><span style="color: #0000BB">1 </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$out   </span><span style="color: #007700">= [];<br>    for ( </span><span style="color: #0000BB">$x </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">; </span><span style="color: #0000BB">$x </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">imagesx </span><span style="color: #007700">( </span><span style="color: #0000BB">$image </span><span style="color: #007700">); </span><span style="color: #0000BB">$x</span><span style="color: #007700">++ ) {<br>      </span><span style="color: #0000BB">$c     </span><span style="color: #007700">= </span><span style="color: #0000BB">imagecolorat </span><span style="color: #007700">( </span><span style="color: #0000BB">$image</span><span style="color: #007700">, </span><span style="color: #0000BB">$x</span><span style="color: #007700">, </span><span style="color: #0000BB">0 </span><span style="color: #007700">);<br>      </span><span style="color: #0000BB">$out</span><span style="color: #007700">[] = </span><span style="color: #0000BB">sprintf </span><span style="color: #007700">( </span><span style="color: #DD0000">'#%06x'</span><span style="color: #007700">, </span><span style="color: #0000BB">$c </span><span style="color: #007700">& </span><span style="color: #0000BB">0xFFFFFF </span><span style="color: #007700">) . ( ( </span><span style="color: #0000BB">$c </span><span style="color: #007700">&gt;&gt; </span><span style="color: #0000BB">24 </span><span style="color: #007700">) & </span><span style="color: #0000BB">127 </span><span style="color: #007700">? </span><span style="color: #DD0000">' alpha ' </span><span style="color: #007700">. ( ( </span><span style="color: #0000BB">$c </span><span style="color: #007700">&gt;&gt; </span><span style="color: #0000BB">24 </span><span style="color: #007700">) & </span><span style="color: #0000BB">127 </span><span style="color: #007700">) : </span><span style="color: #DD0000">'' </span><span style="color: #007700">);<br>    }<br>    return </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">' '</span><span style="color: #007700">, </span><span style="color: #0000BB">$out </span><span style="color: #007700">);<br>  };<br><br>  </span><span style="color: #0000BB">$greys </span><span style="color: #007700">= [ </span><span style="color: #0000BB">0x000000</span><span style="color: #007700">, </span><span style="color: #0000BB">0x404040</span><span style="color: #007700">, </span><span style="color: #0000BB">0x7f7f7f</span><span style="color: #007700">, </span><span style="color: #0000BB">0x808080</span><span style="color: #007700">, </span><span style="color: #0000BB">0xc0c0c0</span><span style="color: #007700">, </span><span style="color: #0000BB">0xffffff </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$checks </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'check' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'greys at 50'</span><span style="color: #007700">,        </span><span style="color: #DD0000">'got' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$pixels </span><span style="color: #007700">( </span><span style="color: #0000BB">$greys</span><span style="color: #007700">, </span><span style="color: #0000BB">50 </span><span style="color: #007700">) ],<br>    [ </span><span style="color: #DD0000">'check' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a colour at 50'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'got' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$pixels </span><span style="color: #007700">( [ </span><span style="color: #0000BB">0x20c080 </span><span style="color: #007700">], </span><span style="color: #0000BB">50 </span><span style="color: #007700">) ],<br>    [ </span><span style="color: #DD0000">'check' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'greys at 0'</span><span style="color: #007700">,         </span><span style="color: #DD0000">'got' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$pixels </span><span style="color: #007700">( </span><span style="color: #0000BB">$greys</span><span style="color: #007700">, </span><span style="color: #0000BB">0 </span><span style="color: #007700">) ],<br>    [ </span><span style="color: #DD0000">'check' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'greys at 100'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'got' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$pixels </span><span style="color: #007700">( </span><span style="color: #0000BB">$greys</span><span style="color: #007700">, </span><span style="color: #0000BB">100 </span><span style="color: #007700">) ],<br>    [ </span><span style="color: #DD0000">'check' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'half transparent'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'got' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$pixels </span><span style="color: #007700">( [ </span><span style="color: #0000BB">0xc0c0c0 </span><span style="color: #007700">], </span><span style="color: #0000BB">50</span><span style="color: #007700">, </span><span style="color: #0000BB">64 </span><span style="color: #007700">) ],<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7YXJyYXk6Y2hlY2tzfXskY2hlY2t9OiB7JGdvdH08YnI+ey9hcnJheTpjaGVja3N9cGhvdG8ge3BhZDppbWcgJ2Fzc2V0cy9waG90by5qcGcnLCB3aWR0aD04MCwgZmlsdGVyPSdzb2xhcml6ZScsIGZvcm1hdD0ncG5nJywgYWx0PSd4JyB8IHBocDpmaWx0ZXJzVGh1bWJzKEApL31cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBUaGUgc29sYXJpemUgZmlsdGVyIGNoYW5uZWwgYnkgY2hhbm5lbCwgd29ya2VkIG91dCBieSBoYW5kOiBhIGNoYW5uZWwgYXQgdGhlIGN1dCxcbiAgLy8gdGhyZXNob2xkIHggMjU1IC8gMTAwLCBvciBwYXN0IGl0IGJlY29tZXMgMjU1IGxlc3MgaXRzZWxmLCBvbmUgYmVsb3cgaXQgc3RheXMuIEF0IDUwXG4gIC8vICgxMjcuNSkgdGhlIGdyZXlzIDAgNjQgMTI3IDEyOCAxOTIgMjU1IGJlY29tZSAwIDY0IDEyNyAxMjcgNjMgMCAtIDEyOCBpcyB0aGUgZmlyc3QgdG8gdHVybixcbiAgLy8gYXMgd2l0aCBQSUwncyBJbWFnZU9wcy5zb2xhcml6ZSBhdCBpdHMgZGVmYXVsdCAxMjggYW5kIEltYWdlTWFnaWNrJ3MgLXNvbGFyaXplIDUwJS4gRWFjaFxuICAvLyBjaGFubmVsIG9uIGl0cyBvd246ICMyMGMwODAgaXMgIzIwM2Y3Zi4gQXQgMCBldmVyeXRoaW5nIHR1cm5zLCBhcyBpbnZlcnQ7IGF0IDEwMCBvbmx5IDI1NS5cbiAgLy8gQSBwaXhlbCBrZWVwcyBpdHMgb3BhY2l0eS4gQW5kIHRoZSBwaG90byBhcyB7cGFkOmltZ30gbWFrZXMgaXQsIHRoZSBzYW1lIGJ5dGVzIGFzIFBJTCdzXG4gIC8vIHNvbGFyaXplIGdhdmUgZm9yIHRoZSBzYW1lIHBpY3R1cmUuXG5cbiAgaW5jbHVkZV9vbmNlIFBBRCAuICdzdWJzL2ZpbHRlcnMvX2xpYi9maWx0ZXIucGhwJztcblxuICAkc3BlYyA9IGluY2x1ZGUgUEFEIC4gJ3N1YnMvZmlsdGVycy90eXBlcy9zb2xhcml6ZS5waHAnO1xuXG4gICRwaXhlbHMgPSBmdW5jdGlvbiAoICRjb2xvdXJzLCAkdGhyZXNob2xkLCAkYWxwaGEgPSAwICkgdXNlICggJHNwZWMgKSB7XG4gICAgJGltYWdlID0gaW1hZ2VjcmVhdGV0cnVlY29sb3IgKCBjb3VudCAoICRjb2xvdXJzICksIDEgKTtcbiAgICBpbWFnZWFscGhhYmxlbmRpbmcgKCAkaW1hZ2UsIEZBTFNFICk7XG4gICAgZm9yZWFjaCAoICRjb2xvdXJzIGFzICR4ID0+ICRjIClcbiAgICAgIGltYWdlc2V0cGl4ZWwgKCAkaW1hZ2UsICR4LCAwLCAoICRhbHBoYSA8PCAyNCApIHwgJGMgKTtcbiAgICAkaW1hZ2UgPSAkc3BlYyBbJ2FwcGx5J10gKCAkaW1hZ2UsIFsgJ3RocmVzaG9sZCcgPT4gJHRocmVzaG9sZCBdLCAxICk7XG4gICAgJG91dCAgID0gW107XG4gICAgZm9yICggJHggPSAwOyAkeCA8IGltYWdlc3ggKCAkaW1hZ2UgKTsgJHgrKyApIHtcbiAgICAgICRjICAgICA9IGltYWdlY29sb3JhdCAoICRpbWFnZSwgJHgsIDAgKTtcbiAgICAgICRvdXRbXSA9IHNwcmludGYgKCAnIyUwNngnLCAkYyAmIDB4RkZGRkZGICkgLiAoICggJGMgPj4gMjQgKSAmIDEyNyA/ICcgYWxwaGEgJyAuICggKCAkYyA+PiAyNCApICYgMTI3ICkgOiAnJyApO1xuICAgIH1cbiAgICByZXR1cm4gaW1wbG9kZSAoICcgJywgJG91dCApO1xuICB9O1xuXG4gICRncmV5cyA9IFsgMHgwMDAwMDAsIDB4NDA0MDQwLCAweDdmN2Y3ZiwgMHg4MDgwODAsIDB4YzBjMGMwLCAweGZmZmZmZiBdO1xuXG4gICRjaGVja3MgPSBbXG4gICAgWyAnY2hlY2snID0+ICdncmV5cyBhdCA1MCcsICAgICAgICAnZ290JyA9PiAkcGl4ZWxzICggJGdyZXlzLCA1MCApIF0sXG4gICAgWyAnY2hlY2snID0+ICdhIGNvbG91ciBhdCA1MCcsICAgICAnZ290JyA9PiAkcGl4ZWxzICggWyAweDIwYzA4MCBdLCA1MCApIF0sXG4gICAgWyAnY2hlY2snID0+ICdncmV5cyBhdCAwJywgICAgICAgICAnZ290JyA9PiAkcGl4ZWxzICggJGdyZXlzLCAwICkgXSxcbiAgICBbICdjaGVjaycgPT4gJ2dyZXlzIGF0IDEwMCcsICAgICAgICdnb3QnID0+ICRwaXhlbHMgKCAkZ3JleXMsIDEwMCApIF0sXG4gICAgWyAnY2hlY2snID0+ICdoYWxmIHRyYW5zcGFyZW50JywgICAnZ290JyA9PiAkcGl4ZWxzICggWyAweGMwYzBjMCBdLCA1MCwgNjQgKSBdLFxuICBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7YXJyYXk6Y2hlY2tzfXskY2hlY2t9OiB7JGdvdH08YnI+ey9hcnJheTpjaGVja3N9cGhvdG8ge3BhZDppbWcgJ2Fzc2V0cy9waG90by5qcGcnLCB3aWR0aD04MCwgZmlsdGVyPSdzb2xhcml6ZScsIGZvcm1hdD0ncG5nJywgYWx0PSd4JyB8IHBocDpmaWx0ZXJzVGh1bWJzKEApL31cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBUaGUgc29sYXJpemUgZmlsdGVyIGNoYW5uZWwgYnkgY2hhbm5lbCwgd29ya2VkIG91dCBieSBoYW5kOiBhIGNoYW5uZWwgYXQgdGhlIGN1dCxcbiAgLy8gdGhyZXNob2xkIHggMjU1IC8gMTAwLCBvciBwYXN0IGl0IGJlY29tZXMgMjU1IGxlc3MgaXRzZWxmLCBvbmUgYmVsb3cgaXQgc3RheXMuIEF0IDUwXG4gIC8vICgxMjcuNSkgdGhlIGdyZXlzIDAgNjQgMTI3IDEyOCAxOTIgMjU1IGJlY29tZSAwIDY0IDEyNyAxMjcgNjMgMCAtIDEyOCBpcyB0aGUgZmlyc3QgdG8gdHVybixcbiAgLy8gYXMgd2l0aCBQSUwncyBJbWFnZU9wcy5zb2xhcml6ZSBhdCBpdHMgZGVmYXVsdCAxMjggYW5kIEltYWdlTWFnaWNrJ3MgLXNvbGFyaXplIDUwJS4gRWFjaFxuICAvLyBjaGFubmVsIG9uIGl0cyBvd246ICMyMGMwODAgaXMgIzIwM2Y3Zi4gQXQgMCBldmVyeXRoaW5nIHR1cm5zLCBhcyBpbnZlcnQ7IGF0IDEwMCBvbmx5IDI1NS5cbiAgLy8gQSBwaXhlbCBrZWVwcyBpdHMgb3BhY2l0eS4gQW5kIHRoZSBwaG90byBhcyB7cGFkOmltZ30gbWFrZXMgaXQsIHRoZSBzYW1lIGJ5dGVzIGFzIFBJTCdzXG4gIC8vIHNvbGFyaXplIGdhdmUgZm9yIHRoZSBzYW1lIHBpY3R1cmUuXG5cbiAgaW5jbHVkZV9vbmNlIFBBRCAuICdzdWJzL2ZpbHRlcnMvX2xpYi9maWx0ZXIucGhwJztcblxuICAkc3BlYyA9IGluY2x1ZGUgUEFEIC4gJ3N1YnMvZmlsdGVycy90eXBlcy9zb2xhcml6ZS5waHAnO1xuXG4gICRwaXhlbHMgPSBmdW5jdGlvbiAoICRjb2xvdXJzLCAkdGhyZXNob2xkLCAkYWxwaGEgPSAwICkgdXNlICggJHNwZWMgKSB7XG4gICAgJGltYWdlID0gaW1hZ2VjcmVhdGV0cnVlY29sb3IgKCBjb3VudCAoICRjb2xvdXJzICksIDEgKTtcbiAgICBpbWFnZWFscGhhYmxlbmRpbmcgKCAkaW1hZ2UsIEZBTFNFICk7XG4gICAgZm9yZWFjaCAoICRjb2xvdXJzIGFzICR4ID0+ICRjIClcbiAgICAgIGltYWdlc2V0cGl4ZWwgKCAkaW1hZ2UsICR4LCAwLCAoICRhbHBoYSA8PCAyNCApIHwgJGMgKTtcbiAgICAkaW1hZ2UgPSAkc3BlYyBbJ2FwcGx5J10gKCAkaW1hZ2UsIFsgJ3RocmVzaG9sZCcgPT4gJHRocmVzaG9sZCBdLCAxICk7XG4gICAgJG91dCAgID0gW107XG4gICAgZm9yICggJHggPSAwOyAkeCA8IGltYWdlc3ggKCAkaW1hZ2UgKTsgJHgrKyApIHtcbiAgICAgICRjICAgICA9IGltYWdlY29sb3JhdCAoICRpbWFnZSwgJHgsIDAgKTtcbiAgICAgICRvdXRbXSA9IHNwcmludGYgKCAnIyUwNngnLCAkYyAmIDB4RkZGRkZGICkgLiAoICggJGMgPj4gMjQgKSAmIDEyNyA/ICcgYWxwaGEgJyAuICggKCAkYyA+PiAyNCApICYgMTI3ICkgOiAnJyApO1xuICAgIH1cbiAgICByZXR1cm4gaW1wbG9kZSAoICcgJywgJG91dCApO1xuICB9O1xuXG4gICRncmV5cyA9IFsgMHgwMDAwMDAsIDB4NDA0MDQwLCAweDdmN2Y3ZiwgMHg4MDgwODAsIDB4YzBjMGMwLCAweGZmZmZmZiBdO1xuXG4gICRjaGVja3MgPSBbXG4gICAgWyAnY2hlY2snID0+ICdncmV5cyBhdCA1MCcsICAgICAgICAnZ290JyA9PiAkcGl4ZWxzICggJGdyZXlzLCA1MCApIF0sXG4gICAgWyAnY2hlY2snID0+ICdhIGNvbG91ciBhdCA1MCcsICAgICAnZ290JyA9PiAkcGl4ZWxzICggWyAweDIwYzA4MCBdLCA1MCApIF0sXG4gICAgWyAnY2hlY2snID0+ICdncmV5cyBhdCAwJywgICAgICAgICAnZ290JyA9PiAkcGl4ZWxzICggJGdyZXlzLCAwICkgXSxcbiAgICBbICdjaGVjaycgPT4gJ2dyZXlzIGF0IDEwMCcsICAgICAgICdnb3QnID0+ICRwaXhlbHMgKCAkZ3JleXMsIDEwMCApIF0sXG4gICAgWyAnY2hlY2snID0+ICdoYWxmIHRyYW5zcGFyZW50JywgICAnZ290JyA9PiAkcGl4ZWxzICggWyAweGMwYzBjMCBdLCA1MCwgNjQgKSBdLFxuICBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>checks</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>check</font>}</b>: <b>{<font color="green"><font color="red">$</font>got</font>}</b>&lt;br&gt;<b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>checks</font><font color="red"></font>}</b>photo <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>img </font><font color="red"><font color="black">'</font>assets/photo.jpg<font color="black">'</font><font color="black">,</font> width=80<font color="black">,</font> filter=<font color="black">'</font>solarize<font color="black">'</font><font color="black">,</font> format=<font color="black">'</font>png<font color="black">'</font><font color="black">,</font> alt=<font color="black">'</font>x<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>filtersThumbs(<font color="black">@</font>)</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax329477a3c0a2f9fb0bec7b9b2347b2e4"></div>
+                      <script>
+                      padAjax329477a3c0a2f9fb0bec7b9b2347b2e4 = new XMLHttpRequest();
+                      padAjax329477a3c0a2f9fb0bec7b9b2347b2e4.onreadystatechange=function() {
+                      if (padAjax329477a3c0a2f9fb0bec7b9b2347b2e4.readyState === 4) {
+                      if (padAjax329477a3c0a2f9fb0bec7b9b2347b2e4.status === 200) {
+                      document.getElementById("padAjax329477a3c0a2f9fb0bec7b9b2347b2e4").innerHTML=padAjax329477a3c0a2f9fb0bec7b9b2347b2e4.responseText;
+                      } else {
+                      document.getElementById("padAjax329477a3c0a2f9fb0bec7b9b2347b2e4").innerHTML=padAjax329477a3c0a2f9fb0bec7b9b2347b2e4.statusText;
+                      }
+                      }
+                      }
+                      padAjax329477a3c0a2f9fb0bec7b9b2347b2e4.open("GET","http://localhost/pad/regression/framework/?filters/solarize_turns_every_channel_past_its_threshold&padInclude",true);
+                      padAjax329477a3c0a2f9fb0bec7b9b2347b2e4.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+              </center>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>

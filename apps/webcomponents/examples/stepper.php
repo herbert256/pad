@@ -1,7 +1,7 @@
 <?php
 
   // An order: the quantity comes from <pad-stepper>, a form-associated custom element whose
-  // value the {form} posts like any field; the size from an {input}. padValidate checks both
+  // value the {pad:form} posts like any field; the size from an {pad:input}. padValidate checks both
   // on the server - the stepper lets the visitor go to 12, the rule stops at 10.
 
   $errors  = [];

@@ -1,3 +1,5 @@
+
+
 <p>A <code>_guard.php</code> in a directory decides, for every page below it, whether the
 request may see the page - before any <code>_inits.php</code> or page PHP runs. Access
 control follows the file tree: put one in <code>admin/</code> and every page there is
@@ -15,7 +17,7 @@ protected, with no list of routes to keep in step.</p>
   <code>_lib</code> files, so a guard can call the application's functions and read the session
   and request variables - and <code>$padPage</code>, to decide per page.</li>
   <li>A guard can send the visitor elsewhere itself: <code>padRedirect ( 'login' )</code>.</li>
-  <li>A page a <b>{page}</b> tag includes is guarded too: when its guard says no, it renders as
+  <li>A page a <b>{pad:page}</b> tag includes is guarded too: when its guard says no, it renders as
   nothing, and the page that includes it carries on.</li>
   <li>A guarded page is never served from the page cache, nor stored in it.</li>
 </ul>
@@ -59,7 +61,7 @@ protected, with no list of routes to keep in step.</p>
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiI8cD5JbmNsdWRlZDogW3twYWdlICdndWFyZGVkL3NlY3JldCcvfV08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5JbmNsdWRlZDogW3twYWdlICdndWFyZGVkL3NlY3JldCcvfV08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;Included: [<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>guarded/secret<font color="black">'</font></font>/}</b>]&lt;/p&gt;</code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5JbmNsdWRlZDogW3twYWQ6cGFnZSAnZ3VhcmRlZC9zZWNyZXQnL31dPC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5JbmNsdWRlZDogW3twYWQ6cGFnZSAnZ3VhcmRlZC9zZWNyZXQnL31dPC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;Included: [<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>page </font><font color="red"><font color="black">'</font>guarded/secret<font color="black">'</font></font>/}</b>]&lt;/p&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -74,3 +76,9 @@ protected, with no list of routes to keep in step.</p>
 
   
     </table>
+  
+
+
+
+
+

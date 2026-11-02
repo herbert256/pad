@@ -2,8 +2,8 @@
 
   // palette= - a chart of any kind drawn in the colours of a palette of subs/palettes/types/:
   //
-  //   {chart 'bar', data='sales', value='online, shop, phone', palette='okabe-ito'/}
-  //   {chart 'heatmap', data='visits', x='hour', y='day', value='count', palette='viridis'/}
+  //   {chart:bar data='sales', value='online, shop, phone', palette='okabe-ito'/}
+  //   {chart:heatmap data='visits', x='hour', y='day', value='count', palette='viridis'/}
   //
   // The kinds draw as they always do - their marks carry the classes of the categorical slots,
   // pc-c1 to pc-c8 and pc-l1 to pc-l8, and of the heatmap's ramp, pc-h0 to pc-h6 - and the svg

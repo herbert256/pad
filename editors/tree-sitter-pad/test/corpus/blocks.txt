@@ -2,9 +2,9 @@
 A pair is a block
 ================================================================================
 
-{orders}
+{array:orders}
   <li>{$id}</li>
-{/orders}
+{/array:orders}
 
 --------------------------------------------------------------------------------
 
@@ -12,6 +12,7 @@ A pair is a block
   (block
     (open_tag
       (tag_name
+        (prefix)
         (identifier)))
     (body
       (text)
@@ -20,13 +21,14 @@ A pair is a block
       (text))
     (close_tag
       (tag_name
+        (prefix)
         (identifier)))))
 
 ================================================================================
 A tag without a close is single
 ================================================================================
 
-{orders}
+{array:orders}
 <li>{$id}</li>
 
 --------------------------------------------------------------------------------
@@ -34,6 +36,7 @@ A tag without a close is single
 (template
   (tag
     (tag_name
+      (prefix)
       (identifier)))
   (text)
   (field_tag
@@ -44,7 +47,7 @@ A tag without a close is single
 Same-name pairs nest
 ================================================================================
 
-{if $a eq 1}{if $b eq 2}x{/if}y{/if}
+{pad:if $a eq 1}{pad:if $b eq 2}x{/pad:if}y{/pad:if}
 
 --------------------------------------------------------------------------------
 
@@ -52,6 +55,7 @@ Same-name pairs nest
   (block
     (open_tag
       (tag_name
+        (prefix)
         (identifier))
       (arguments
         (variable)
@@ -61,6 +65,7 @@ Same-name pairs nest
       (block
         (open_tag
           (tag_name
+            (prefix)
             (identifier))
           (arguments
             (variable)
@@ -70,42 +75,47 @@ Same-name pairs nest
           (text))
         (close_tag
           (tag_name
+            (prefix)
             (identifier))))
       (text))
     (close_tag
       (tag_name
+        (prefix)
         (identifier)))))
 
 ================================================================================
 A self-closing tag opens nothing
 ================================================================================
 
-{items /}{items}x{/items}
+{array:items /}{array:items}x{/array:items}
 
 --------------------------------------------------------------------------------
 
 (template
   (tag
     (tag_name
+      (prefix)
       (identifier))
     (arguments
       (operator)))
   (block
     (open_tag
       (tag_name
+        (prefix)
         (identifier)))
     (body
       (text))
     (close_tag
       (tag_name
+        (prefix)
         (identifier)))))
 
 ================================================================================
 Else and when are single tags inside the pair
 ================================================================================
 
-{if $a eq 1}x{else}y{/if}
-{case $c}{when 'r'}red{else}other{/case}
+{pad:if $a eq 1}x{pad:else}y{/pad:if}
+{pad:case $c}{pad:when 'r'}red{pad:else}other{/pad:case}
 
 --------------------------------------------------------------------------------
 
@@ -113,6 +123,7 @@ Else and when are single tags inside the pair
   (block
     (open_tag
       (tag_name
+        (prefix)
         (identifier))
       (arguments
         (variable)
@@ -122,37 +133,43 @@ Else and when are single tags inside the pair
       (text)
       (tag
         (tag_name
+          (prefix)
           (identifier)))
       (text))
     (close_tag
       (tag_name
+        (prefix)
         (identifier))))
   (block
     (open_tag
       (tag_name
+        (prefix)
         (identifier))
       (arguments
         (variable)))
     (body
       (tag
         (tag_name
+          (prefix)
           (identifier))
         (arguments
           (string)))
       (text)
       (tag
         (tag_name
+          (prefix)
           (identifier)))
       (text))
     (close_tag
       (tag_name
+        (prefix)
         (identifier)))))
 
 ================================================================================
 A property tag pairs with its own close
 ================================================================================
 
-{first@items}<ul>{/first@items}
+{property:first@items}<ul>{/property:first@items}
 
 --------------------------------------------------------------------------------
 
@@ -160,22 +177,24 @@ A property tag pairs with its own close
   (block
     (open_tag
       (tag_name
-        (property)
+        (prefix)
+        (identifier)
         (identifier)))
     (body
       (text))
     (close_tag
       (tag_name
-        (property)
+        (prefix)
+        (identifier)
         (identifier)))))
 
 ================================================================================
 Whitespace control
 ================================================================================
 
-{~items~}
+{~array:items~}
   {$name}
-{~/items~}
+{~/array:items~}
 
 --------------------------------------------------------------------------------
 
@@ -183,19 +202,21 @@ Whitespace control
   (block
     (open_tag
       (tag_name
+        (prefix)
         (identifier)))
     (body
       (field_tag
         (variable)))
     (close_tag
       (tag_name
+        (prefix)
         (identifier)))))
 
 ================================================================================
 A close with a pipe
 ================================================================================
 
-{message}x{/message | upper}
+{content:message}x{/content:message | upper}
 
 --------------------------------------------------------------------------------
 
@@ -203,11 +224,13 @@ A close with a pipe
   (block
     (open_tag
       (tag_name
+        (prefix)
         (identifier)))
     (body
       (text))
     (close_tag
       (tag_name
+        (prefix)
         (identifier))
       (arguments
         (pipe
@@ -217,7 +240,7 @@ A close with a pipe
 Ignore keeps its content raw
 ================================================================================
 
-{ignore}<script>if (a) { b(); } {/if}</script>{/ignore}
+{pad:ignore}<script>if (a) { b(); } {/pad:if}</script>{/pad:ignore}
 
 --------------------------------------------------------------------------------
 
@@ -229,13 +252,14 @@ Ignore keeps its content raw
     (raw_text)
     (close_tag
       (tag_name
+        (prefix)
         (identifier)))))
 
 ================================================================================
 An empty ignore
 ================================================================================
 
-{ignore}{/ignore}
+{pad:ignore}{/pad:ignore}
 
 --------------------------------------------------------------------------------
 
@@ -246,13 +270,14 @@ An empty ignore
         (identifier)))
     (close_tag
       (tag_name
+        (prefix)
         (identifier)))))
 
 ================================================================================
 A close inside a comment does not end the pair
 ================================================================================
 
-{orders}{# {/orders} #}x{/orders}
+{array:orders}{# {/array:orders} #}x{/array:orders}
 
 --------------------------------------------------------------------------------
 
@@ -260,19 +285,21 @@ A close inside a comment does not end the pair
   (block
     (open_tag
       (tag_name
+        (prefix)
         (identifier)))
     (body
       (comment)
       (text))
     (close_tag
       (tag_name
+        (prefix)
         (identifier)))))
 
 ================================================================================
 An option sigil inside a pair is no comment
 ================================================================================
 
-{if #title}<h2>{#title}</h2>{/if}
+{pad:if #title}<h2>{#title}</h2>{/pad:if}
 
 --------------------------------------------------------------------------------
 
@@ -280,6 +307,7 @@ An option sigil inside a pair is no comment
   (block
     (open_tag
       (tag_name
+        (prefix)
         (identifier))
       (arguments
         (variable)))
@@ -290,4 +318,21 @@ An option sigil inside a pair is no comment
       (text))
     (close_tag
       (tag_name
+        (prefix)
         (identifier)))))
+
+================================================================================
+A subsystem kind selected from a variable keeps its pair
+================================================================================
+
+{widget:$kind}Body{/widget:$kind}
+
+--------------------------------------------------------------------------------
+
+(template
+  (block
+    (open_tag
+      (tag_name (prefix) (variable)))
+    (body (text))
+    (close_tag
+      (tag_name (prefix) (variable)))))

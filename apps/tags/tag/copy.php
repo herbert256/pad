@@ -5,9 +5,9 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{copy 'text'/}
-{copy $value, label='Copy command'/}
-{copy label='Copy'} ... {/copy}
+{widget:copy 'text'/}
+{widget:copy $value, label='Copy command'/}
+{widget:copy label='Copy'} ... {/widget:copy}
 PAD;
 
   $tagParms   = [
@@ -16,6 +16,6 @@ PAD;
   $tagOptions = [
     'label' => 'The text of the button, <code>Copy</code> when not given.' ];
 
-  $tagSee     = [ 'highlight', 'source', 'widget' ];
+  $tagSee     = [ 'highlight', 'source', 'widget:tabs' ];
 
 ?>

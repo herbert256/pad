@@ -1,29 +1,29 @@
-{table}
+{common:table}
 
-{demo}{sequence 25, name='mySeq'/}{/demo}
+{common:demo}{sequence:loop 25, name='mySeq'/}{/common:demo}
 
-{demo}{sequence mySeq}
+{common:demo}{sequence:auto mySeq}
   {$sequence}  
-{/sequence}{/demo}
+{/sequence:auto}{/common:demo}
 
-{demo}{sequence mySeq, trim, both=5}
+{common:demo}{sequence:auto mySeq, trim, both=5}
   {$sequence}  
-{/sequence}{/demo}
+{/sequence:auto}{/common:demo}
 
-{demo}{sequence mySeq, trim, left=5}
+{common:demo}{sequence:auto mySeq, trim, left=5}
   {$sequence}  
-{/sequence}{/demo}
+{/sequence:auto}{/common:demo}
 
-{demo}{sequence mySeq, trim, right=5}
+{common:demo}{sequence:auto mySeq, trim, right=5}
   {$sequence}  
-{/sequence}{/demo}
+{/sequence:auto}{/common:demo}
 
-{demo}{sequence mySeq, trim, left=10, right=5}
+{common:demo}{sequence:auto mySeq, trim, left=10, right=5}
   {$sequence}  
-{/sequence}{/demo}
+{/sequence:auto}{/common:demo}
 
-{demo}{sequence mySeq, trim, both=5, left=2, right=3}
+{common:demo}{sequence:auto mySeq, trim, both=5, left=2, right=3}
   {$sequence}  
-{/sequence}{/demo}
+{/sequence:auto}{/common:demo}
 
-{/table}
+{/common:table}

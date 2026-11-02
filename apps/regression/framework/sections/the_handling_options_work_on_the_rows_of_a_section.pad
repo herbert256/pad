@@ -1,4 +1,4 @@
-{data 'rows'}[{"title":"B one","text":"x"},{"title":"A two","text":"y"},{"title":"C three","text":"z"}]{/data}
+{pad:data 'rows'}[{"title":"B one","text":"x"},{"title":"A two","text":"y"},{"title":"C three","text":"z"}]{/pad:data}
 {section:steps data='rows', first=2 | php:preg_replace('#^.*?<ol[^>]*>|</ol>.*$|<p class="ps-item-text">[^<]*</p>|<li class="ps-step"><h3 class="ps-item-title">#s', '', @) | php:str_replace('</h3></li>', ';', @)/}
 {section:steps data='rows', sort='title', first=2 | php:preg_replace('#^.*?<ol[^>]*>|</ol>.*$|<p class="ps-item-text">[^<]*</p>|<li class="ps-step"><h3 class="ps-item-title">#s', '', @) | php:str_replace('</h3></li>', ';', @)/}
 {section:steps data='rows', where="$title ne 'A two'" | php:preg_replace('#^.*?<ol[^>]*>|</ol>.*$|<p class="ps-item-text">[^<]*</p>|<li class="ps-step"><h3 class="ps-item-title">#s', '', @) | php:str_replace('</h3></li>', ';', @)/}

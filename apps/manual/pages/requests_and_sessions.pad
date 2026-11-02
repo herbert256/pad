@@ -1,4 +1,4 @@
-{meta title='Requests and sessions'/}
+{pad:meta title='Requests and sessions'/}
 
 <p>A page's PHP reads what the request brought, keeps what has to outlive it in the
 session, and builds the address the visitor goes to next. The engine already turns request
@@ -36,7 +36,7 @@ answers the default when the request did not bring it. A posted value wins over 
 of the same name, the body of a request sent as <code>application/json</code> is input too,
 and every text is trimmed. The query key that names the page is no input.</p>
 
-{example 'fragments/requests_and_sessions_1'/}
+{common:example 'fragments/requests_and_sessions_1'/}
 
 <ul>
   <li>The names of <code>padRequestHas</code>, <code>padRequestOnly</code> and
@@ -54,7 +54,7 @@ and every text is trimmed. The query key that names the page is no input.</p>
 - a visitor without a session cookie gets the default, and no session is made to find that
 out. Dot paths work here too:</p>
 
-{example 'fragments/requests_and_sessions_2'/}
+{common:example 'fragments/requests_and_sessions_2'/}
 
 <p>A name listed in <code>$padSessionVars</code> is a variable as well as a session value: the
 helpers keep the two in step, so a value put in is the one the end of the request writes
@@ -66,7 +66,7 @@ id someone learned before it is worth nothing.</p>
 <p>The page a form posts to checks it; when something is wrong it keeps the input with
 <code>padFlashInput ()</code> and sends the browser back to the form with
 <code>padBack ()</code>. The form's page reads the input with <code>padOld</code> - on that
-one next request only, like a {manual 'flash_messages'/} message. Passwords and the CSRF token
+one next request only, like a {app:manual 'flash_messages'/} message. Passwords and the CSRF token
 are left out unless another list is given.</p>
 
 <p>Without a list, every field whose name looks like a password, a key, a token, a card's
@@ -78,9 +78,9 @@ a field, give the list yourself - it replaces the default, so it names every fie
 stays out - or flash only the fields the form needs back:
 <code>padFlashInput ( array_diff ( array_keys ( padRequestExcept ( [] ) ), [ 'name', 'email' ] ) )</code>.</p>
 
-{example 'fragments/requests_and_sessions_3'/}
+{common:example 'fragments/requests_and_sessions_3'/}
 
-{ignore}
+{pad:ignore}
 <pre><code>// signup.php - the page the form posts to
 $errors = padValidate ( [ 'email' => 'required|email' ] );
 
@@ -91,18 +91,18 @@ if ( $errors ) {
 }
 
 // signup/form.php - the form, filled again
-$email = padOld ( 'email' );        // {input 'email', value=$email/}</code></pre>
-{/ignore}
+$email = padOld ( 'email' );        // {pad:input 'email', value=$email/}</code></pre>
+{/pad:ignore}
 
 <h2>Links</h2>
 
 <p><code>padUrl</code> writes a link to a page of this application: the values as a query,
 arrays too, in the clean form <code>/myapp/products/42</code> when
-<code>$padCleanUrls</code> is on (see {manual 'clean_urls'/}). Without a page it is the page
+<code>$padCleanUrls</code> is on (see {app:manual 'clean_urls'/}). Without a page it is the page
 the visitor asked for; a third argument <code>TRUE</code> makes it absolute, on
 <code>$padHost</code>, for a mail or a feed.</p>
 
-{example 'fragments/requests_and_sessions_4'/}
+{common:example 'fragments/requests_and_sessions_4'/}
 
 <h2>Going back, and stopping</h2>
 
@@ -110,9 +110,9 @@ the visitor asked for; a third argument <code>TRUE</code> makes it absolute, on
 browser's Referer only when it is a page of this application on this host, and goes to the
 fallback page otherwise - the index when none is given. <code>padAbort</code> answers an error
 status, 400 to 599, with the message as plain text - or the status's own words - through the
-engine's exit, never PHP's (see {manual 'ending_the_request'/}):</p>
+engine's exit, never PHP's (see {app:manual 'ending_the_request'/}):</p>
 
-{ignore}
+{pad:ignore}
 <pre><code>padBack ( 'orders' );                   // back where the visitor came from, else orders
 
 if ( ! $order )
@@ -120,4 +120,4 @@ if ( ! $order )
 
 if ( padRequestIs ( 'delete' ) and ! $admin )
   padAbort ( 403, 'Only an administrator can delete an order.' );</code></pre>
-{/ignore}
+{/pad:ignore}

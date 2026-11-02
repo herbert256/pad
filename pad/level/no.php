@@ -10,10 +10,15 @@
   // a pipe or a comma - {nosuch optional | upper}, {nosuch noError , x=1} - made the word
   // another one, and the name was reported after all.
 
+  if ( $padCheckSyntax and ! $padTypeGiven and padValid ( $padWords [0] ) )
+    padError ( "the tag '" . $padWords [0] . "' needs a type prefix - write {type:tag}" );
+
   $padNoItems = array_map ( 'trim', $padPrmParse );
 
   if ( in_array ( 'optional', $padNoItems ) or in_array ( 'noError', $padNoItems ) )
-    if ( padValidTag ($padWords [0]) ) {
+    if ( padValidTag ($padWords [0])
+         or ( ( isset ( padSubsystems [$padTypePrefix] ) or in_array ( $padTypePrefix, padSequenceOperations, TRUE ) )
+              and preg_match ( '/^[a-z]+:\$[A-Za-z][A-Za-z0-9_]*$/D', $padWords [0] ) ) ) {
 
       // The silent drop is the option's whole working, and the tag never becomes a level -
       // so this is the one place the name can get on the xref record.
@@ -52,11 +57,27 @@
     if ( str_starts_with ( $padNoTag, '#' ) )
       padError ( "the comment {# ... does not close with #}" );
 
-    if ( $padNoTag == 'elseif' )
-      padError ( "an {elseif} stands inside its {if}, before any @else@" );
+    if ( $padNoTag == 'pad:elseif' )
+      padError ( "an {pad:elseif} stands inside its {pad:if}, before any @else@" );
 
-    if ( $padNoTag == 'when' )
-      padError ( "a {when} stands inside its {case}" );
+    if ( $padNoTag == 'pad:when' )
+      padError ( "a {pad:when} stands inside its {pad:case}" );
+
+    if ( $padTypePrefix == 'property' and str_contains ( $padTypeCheck, '@' ) ) {
+
+      $padNoProp   = strstr ( $padTypeCheck, '@', TRUE );
+      $padNoTarget = substr ( strstr ( $padTypeCheck, '@' ), 1 );
+
+      if ( padPropertyName ( $padNoProp ) )
+        padError ( "there is no enclosing level named '$padNoTarget' for the property '$padNoProp'" );
+
+      // The mirror: the level is there, the property is not.
+
+      for ( $padNoKey = $pad; $padNoKey >= 0; $padNoKey-- )
+        if ( ( $padName [$padNoKey] ?? '' ) == $padNoTarget )
+          padError ( "there is no property named '$padNoProp'" );
+
+    }
 
     // A type prefix does not search, it asserts - so a miss is not an unknown tag, it is
     // a named thing of a known kind that is not there. The prefix says which kind.
@@ -87,37 +108,33 @@
         if ( str_contains ( $padNoName, '(' ) )
           $padNoName = strstr ( $padNoName, '(', TRUE );
 
-        padError ( "there is no " . $padNoKinds [$padNoPrefix] . " named '" . trim ( $padNoName ) . "'" );
+        $padNoHint = '';
+        if ( isset ( padSubsystems [$padNoPrefix] ) ) {
+          // Kind selection now happens here instead of in a pad: dispatch wrapper.
+          // Keep the available kinds and spelling suggestions in the diagnostic.
+          $padNoName = $padTypeCheck;
+          $padNoHint = ' - ' . implode ( ', ', padKinds ( padSubsystems [$padNoPrefix] [0] ) );
+          if ( $padNoPrefix == 'icon' ) {
+            include_once PAD . 'subs/icons/_lib/icon.php';
+            $padNoLike = padIconSimilar ( $padNoName );
+            $padNoHint = $padNoLike ? ' - did you mean ' . implode ( ', ', $padNoLike ) . '?' : $padNoHint;
+          } elseif ( $padNoPrefix == 'pattern' ) {
+            include_once PAD . 'subs/patterns/_lib/pattern.php';
+            $padNoLike = padPatternSimilar ( $padNoName );
+            $padNoHint = ' - ' . ( $padNoLike ? 'did you mean ' . implode ( ', ', $padNoLike ) . '? ' : '' )
+                       . 'the patterns are ' . implode ( ', ', padPatternKinds () );
+          }
+        }
+
+        padError ( "there is no " . $padNoKinds [$padNoPrefix] . " named '" . padMakeSafe ( trim ( $padNoName ), 80 ) . "'" . $padNoHint );
 
       }
-
-      // The sequence forms read either way round - make:fibonacci and fibonacci:make -
-      // so a known sequence word behind the colon says the front half is the miss.
-
-      if ( in_array ( $padNoName, [ 'make', 'keep', 'flag', 'remove' ] ) )
-        padError ( "there is no sequence type named '" . $padNoPrefix . "'" );
 
       // A colon with a name-shaped word in front of it is a type prefix - just not one
       // the engine has.
 
       if ( padValidVar ( $padNoPrefix ) )
         padError ( "there is no type named '" . $padNoPrefix . "'" );
-
-    }
-
-    if ( str_contains ( $padNoTag, '@' ) ) {
-
-      $padNoProp   = strstr ( $padNoTag, '@', TRUE );
-      $padNoTarget = substr ( strstr ( $padNoTag, '@' ), 1 );
-
-      if ( padPropertyName ( $padNoProp ) )
-        padError ( "there is no enclosing level named '$padNoTarget' for the property '$padNoProp'" );
-
-      // The mirror: the level is there, the property is not.
-
-      for ( $padNoKey = $pad; $padNoKey >= 0; $padNoKey-- )
-        if ( ( $padName [$padNoKey] ?? '' ) == $padNoTarget )
-          padError ( "there is no property named '$padNoProp'" );
 
     }
 

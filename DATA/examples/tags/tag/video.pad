@@ -1,9 +1,9 @@
-{ignore}
-<p><code>{video}</code> embeds a YouTube or Vimeo video without letting the video site run
+{pad:ignore}
+<p><code>{pad:video}</code> embeds a YouTube or Vimeo video without letting the video site run
 anything before the visitor asks for it (<code>subs/embeds/_lib/video.php</code>). The page shows a poster
 with a play button; only a click on the button puts the player's iframe in the poster's place
 and moves the focus into it. The addresses it knows are those of the youtube and vimeo
-providers of the embed subsystem, whose <a href="?tag/embed">{embed}</a> knows more sites -
+providers of the embed subsystem, whose <a href="?tag/embed">{embed:auto}</a> knows more sites -
 PeerTube, SoundCloud, OpenStreetMap, CodePen ... - and asks nothing of any of them before
 the click, not even a thumbnail.</p>
 
@@ -28,4 +28,4 @@ colours are <code>--pad-video-*</code> custom properties on <code>.pad-video</co
 <p><code>title</code> is required - it is what a screen reader says for the button and the
 player. A missing title and an address that is no known video are errors under the strict
 check.</p>
-{/ignore}
+{/pad:ignore}

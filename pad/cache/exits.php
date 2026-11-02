@@ -13,13 +13,13 @@
   // out as application/json the first time and as text/html from the first hit on - the
   // same bytes, the same ETag.
 
-  // A page-cache hit that rendered the page's {nocache} parts leaves the entry as it is:
+  // A page-cache hit that rendered the page's {pad:nocache} parts leaves the entry as it is:
   // stored again, its age would start over on every hit and it would never go stale.
 
   if ( $padNocacheHit )
     return;
 
-  // A page with {nocache} parts is stored as its text with the parts as their source, under
+  // A page with {pad:nocache} parts is stored as its text with the parts as their source, under
   // an ETag no response carries (lib/nocache.php); any other page as it went out.
 
   if ( $padNocacheKept ) {

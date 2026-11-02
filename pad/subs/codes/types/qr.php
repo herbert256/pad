@@ -3,7 +3,7 @@
   // qr - a QR code (ISO/IEC 18004), the code a phone camera reads: any text - digits, the 45
   // characters of the alphanumeric mode, else the bytes of its UTF-8 - in the smallest of the
   // 40 versions that holds it, under the mask with the lowest penalty (subs/codes/_lib/qr.php).
-  // The {qr} tag is this symbology by a name of its own. Options: size= the width and height
+  // The {barcode:qr} tag is this symbology by a name of its own. Options: size= the width and height
   // in pixels, the quiet zone of four modules included (160 unless given, at least 21);
   // level= the error correction, L, M (default), Q or H; title=, color=, background=.
 
@@ -25,7 +25,7 @@
   if ( $padQrText === '' ) {
     foreach ( [ 'size', 'title', 'color', 'background' ] as $padQrOption )
       padTagParm ( $padQrOption );
-    return padCodeFail ( "the qr code has no text - {qr 'https://example.com'/}" );
+    return padCodeFail ( "the qr code has no text - {barcode:qr 'https://example.com'/}" );
   }
 
   $padQrSvg = padQr ( $padQrText, $padQrLevel,

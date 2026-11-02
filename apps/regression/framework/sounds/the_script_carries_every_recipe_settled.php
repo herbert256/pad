@@ -1,9 +1,9 @@
 <?php
 
-  // The script a {sound} writes, once a page, carries every recipe there is, settled by the
+  // The script a {sound:chime} writes, once a page, carries every recipe there is, settled by the
   // server - a note as its Hz, a run of notes as their starts and pitches - so the browser
   // renders from the very numbers padSoundWav renders from, and a data-pad-sound of any kind
-  // plays. The second {sound} writes no second script.
+  // plays. The second {sound:chime} writes no second script.
 
   $soundOut  = padUnprotect ( padUnescape ( padCode ( "{sound:tick/}{sound:pop/}" ) ) );
   $soundJson = preg_match ( '/PadSound\.add\((\{.*\}), \{/s', $soundOut, $soundM ) ? json_decode ( $soundM [1], TRUE ) : [];

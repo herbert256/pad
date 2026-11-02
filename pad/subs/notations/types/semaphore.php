@@ -6,8 +6,8 @@
   // letters sign - each figure with its letter under it. size= is the width of a figure in
   // pixels (64 unless given), title= the accessible name; the description says every sign.
   //
-  //   {semaphore 'PAD'/}
-  //   {semaphore 'Room 12', size=48/}
+  //   {notation:semaphore 'PAD'/}
+  //   {notation:semaphore 'Room 12', size=48/}
 
   list ( $padSemaphoreWords, $padSemaphoreUnknown ) = padSemaphorePairs ( $padNotationText );
 

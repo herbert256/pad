@@ -1,17 +1,17 @@
-{meta title='A checkout in steps', about='Address, delivery and payment one at a time - the steps above, Back and Next under each.'/}
+{pad:meta title='A checkout in steps', about='Address, delivery and payment one at a time - the steps above, Back and Next under each.'/}
 <div style="width:100%; max-width:560px">
-  {wizard label='Checkout'}
-    {tab 'Address'}
+  {widget:wizard label='Checkout'}
+    {pad:tab 'Address'}
       <p><label>Name <input name="name" value="Ann de Vries"></label></p>
       <p><label>Street <input name="street" value="Harbour Lane 12"></label></p>
-    {/tab}
-    {tab 'Delivery'}
+    {/pad:tab}
+    {pad:tab 'Delivery'}
       <p><label><input type="radio" name="when" checked> Tomorrow, € 4.95</label></p>
       <p><label><input type="radio" name="when"> Saturday, free</label></p>
-    {/tab}
-    {tab 'Payment'}
+    {/pad:tab}
+    {pad:tab 'Payment'}
       <p>1 × Aurora electric kettle, <strong>€ 79.00</strong></p>
       <p><button type="button">Pay € 79.00</button></p>
-    {/tab}
-  {/wizard}
+    {/pad:tab}
+  {/widget:wizard}
 </div>

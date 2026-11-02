@@ -1,6 +1,6 @@
 <?php
 
-  // A {trace} tag loads the trace mode's library, and the error report asked whether that
+  // A {pad:trace} tag loads the trace mode's library, and the error report asked whether that
   // library was there to decide whether a trace was running: after the tag had ended it
   // filed the report under the trace directory the tag had already put away - DATA/dumps/
   // <app>//ERROR, which the file layer refuses - and that refusal, a second error, replaced

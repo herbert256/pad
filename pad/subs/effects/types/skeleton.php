@@ -1,6 +1,6 @@
 <?php
 
-  // {skeleton/} or {skeleton lines=4/} or {skeleton shape='card'/} - a placeholder in the shape
+  // {effect:skeleton/} or {effect:skeleton lines=4/} or {effect:skeleton shape='card'/} - a placeholder in the shape
   // of what is still on its way, a sheen sweeping over it: grey bones where the lines, the
   // picture or the avatar will stand, while a fragment, a live region or a lazy part loads,
   // and gone when what it stands in for replaces it. shape= text (the default: lines= lines,
@@ -12,7 +12,7 @@
   // something going on, as the spinner does - and under reduced motion the bones stand
   // still. Only single: what it stands in for is not there yet.
   //
-  //   <div hx-get="?orders" hx-trigger="load">{skeleton shape='media', lines=3/}</div>
+  //   <div hx-get="?orders" hx-trigger="load">{effect:skeleton shape='media', lines=3/}</div>
 
   $padFxShape  = padEffectChoice ( 'shape', 'text', [ 'text', 'block', 'avatar', 'card', 'media' ] );
   $padFxLines  = padEffectInt ( 'lines', ( $padFxShape == 'media' ) ? 2 : 3, 1, 20 );
@@ -21,7 +21,7 @@
   $padFxLabel  = padEffectText ( 'label', 'Loading' );
 
   if ( padEffectContent () !== NULL )
-    padEffectBad ( "is written single, it stands for what is not there yet - {skeleton lines=3/}" );
+    padEffectBad ( "is written single, it stands for what is not there yet - {effect:skeleton lines=3/}" );
 
   if ( $padFxLabel === '' )
     $padFxLabel = 'Loading';

@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{emoji 'rocket'/}
-{emoji ':tada:', label='Party!'/}
+{pad:emoji 'rocket'/}
+{pad:emoji ':tada:', label='Party!'/}
 PAD;
 
   $tagParms   = [
@@ -15,6 +15,6 @@ PAD;
   $tagOptions = [
     'label' => 'The name a screen reader says, default the emoji\'s own name.' ];
 
-  $tagSee     = [ 'icon', 'country', 'avatar' ];
+  $tagSee     = [ 'icon:star', 'country', 'avatar' ];
 
 ?>

@@ -5,9 +5,9 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{countdown '2026-12-31 00:00'/}
-{countdown $moment, units=3, past='We are live!', live/}
-{countdown $moment, now='2026-10-08 12:00', format='j M Y'/}
+{pad:countdown '2026-12-31 00:00'/}
+{pad:countdown $moment, units=3, past='We are live!', live/}
+{pad:countdown $moment, now='2026-10-08 12:00', format='j M Y'/}
 PAD;
 
   $tagParms   = [

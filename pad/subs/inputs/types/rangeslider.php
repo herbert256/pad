@@ -2,7 +2,7 @@
 
   // rangeslider - a lower and an upper number chosen on one track, a price from 100 to 400:
   // two native <input type="range">, one for each end, under a legend - two fields of the
-  // form, {rangeslider 'price'} posting price_from and price_to, names= two others. Where the
+  // form, {input:rangeslider 'price'} posting price_from and price_to, names= two others. Where the
   // script runs the two lie on one track, the part between them filled: two WAI-ARIA sliders,
   // each reached with Tab and moved with the arrow keys, Page Up and Page Down, Home and End,
   // as a range is, and neither passing the other - the lower stops at the upper. min= and

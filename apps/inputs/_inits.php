@@ -6,7 +6,7 @@
   // their rules written out - the rules of a form are read from the page's own text - and
   // [kind].pad shows a kind that has no page of its own yet.
 
-  // A list, not keyed by kind: an array of the page holding a key slider is what {slider}
+  // A list, not keyed by kind: an array of the page holding a key slider is what {input:slider}
   // reads first - a bare kind comes after every other kind of tag - and the fields of the
   // pages would be its value.
 
@@ -24,14 +24,14 @@
   // every field as the page's PHP received it, and whether it kept the rules of the template -
   // checked before any of this PHP ran.
 
-  // The icon that takes a page's form to the playground (_common/_lib/playground.php): the
-  // {form} of its template, the field or fields it tries - the rest of the page is this
+  // The icon that takes a page's form to the WASM editor (_common/_lib/playground.php): the
+  // {pad:form} of its template, the field or fields it tries - the rest of the page is this
   // application's. [kind].php makes its own.
 
   include_once COMMON . '_lib/playground.php';
 
   $playText = (string) @file_get_contents ( APP . "$padPage.pad" );
-  $play     = preg_match ( '#\{form\b.*?\{/form\}#s', $playText, $playForm ) ? padPlayLink ( $playForm [0] . "\n" ) : '';
+  $play     = preg_match ( '#\{pad:form\b.*?\{/pad:form\}#s', $playText, $playForm ) ? padPlayLink ( $playForm [0] . "\n" ) : '';
 
   unset ( $playText, $playForm );
 

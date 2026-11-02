@@ -1,6 +1,6 @@
 <?php
 
-  // A sheet of cells and its computation - what {spreadsheet}, padSheet and padFormula share.
+  // A sheet of cells and its computation - what {pad:spreadsheet}, padSheet and padFormula share.
   //
   // A sheet is [ 'cells' => [ row => [ column => cell ] ], 'width', 'height' ], rows and
   // columns counted from 1, each cell [ 'source' => the text as typed, 'value' => a constant,
@@ -10,7 +10,7 @@
   //                     numbers, 12% a number shown as a percentage, 2024-01-15 a date and
   //                     13:45 a time, $4.50 an amount, TRUE and FALSE, '... a text whatever
   //                     follows the apostrophe, anything else a text
-  //   padSheetRead      the text of a {spreadsheet} pair as rows of cell texts: a line a row,
+  //   padSheetRead      the text of a {pad:spreadsheet} pair as rows of cell texts: a line a row,
   //                     a comma between cells - a tab when a line holds one, as a range copied
   //                     from a spreadsheet is - a cell in "quotes" where it holds a comma, a
   //                     formula running to the comma outside its brackets and texts, so

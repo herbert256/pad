@@ -1,6 +1,6 @@
-{customers where="country = $country and creditLimit > $minimum",
+{select:customers where="country = $country and creditLimit > $minimum",
            order="creditLimit desc", rows=3, fields="customerName, creditLimit"}
   <p>{$customerName}: {$creditLimit}</p>
-{/customers}
+{/select:customers}
 
-<p>Customer 103 is {customers $customerNumber=103}{$customerName}{/customers}.</p>
+<p>Customer 103 is {select:customers $customerNumber=103}{$customerName}{/select:customers}.</p>

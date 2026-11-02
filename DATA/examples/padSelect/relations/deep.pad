@@ -1,7 +1,7 @@
-{artists where="country in ('UK', 'France')"}
+{select:artists where="country in ('UK', 'France')"}
 <h3>{$name}</h3>
-{albums}
+{select:albums}
   <p><b>{$title}</b> ({$released})</p>
-  <ol>{tracks}<li>{$title}</li>{/tracks}</ol>
-{/albums}
-{/artists}
+  <ol>{select:tracks}<li>{$title}</li>{/select:tracks}</ol>
+{/select:albums}
+{/select:artists}

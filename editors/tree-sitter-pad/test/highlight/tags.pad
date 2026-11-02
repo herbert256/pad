@@ -1,34 +1,36 @@
 {# Highlight assertions: each caret points at the column of the line above it. #}
 
-    {if $total gt 0}{echo $total | money | upper/}{/if}
-    {# <- punctuation.special #}
-  {# ^ keyword #}
-     {# ^ variable #}
-            {# ^ keyword.operator #}
-                  {# ^ keyword #}
-                                {# ^ function.call #}
-                                        {# ^ function.builtin #}
+    {pad:if $total gt 0}{pad:echo $total | money | upper/}{/pad:if}
+ {# ^ punctuation.special #}
+  {# ^ module #}
+      {# ^ keyword #}
+         {# ^ variable #}
+                {# ^ keyword.operator #}
+                          {# ^ keyword #}
+                                        {# ^ function.call #}
+                                                {# ^ function.builtin #}
 
-    {orders sort='id' trim}{$id}{/orders}
-    {# <- punctuation.special #}
-  {# ^ tag #}
-         {# ^ attribute #}
-              {# ^ string #}
-                   {# ^ attribute #}
-                         {# ^ variable #}
+    {array:orders sort='id' trim}{$id}{/array:orders}
+  {# ^ module #}
+        {# ^ tag #}
+               {# ^ attribute #}
+                    {# ^ string #}
+                         {# ^ attribute #}
+                               {# ^ variable #}
 
-    {app:badge/} {first@items}x{/first@items} {count@items/}
-    {# <- punctuation.special #}
+    {app:badge/} {property:first@items}x{/property:first@items} {property:count@items/}
   {# ^ module #}
       {# ^ tag #}
-              {# ^ property #}
-                                           {# ^ property #}
+               {# ^ module #}
+                        {# ^ property #}
+                                                                       {# ^ property #}
 
-    text @page@ {echo 50 | @ * 4/} {$n | %.2f}
+    text @page@ {pad:echo 50 | @ * 4/} {$n | %.2f}
       {# ^ keyword.directive #}
-                   {# ^ number #}
-                        {# ^ variable.builtin #}
-                                     {# ^ string.special #}
+                       {# ^ number #}
+                            {# ^ variable.builtin #}
+                                          {# ^ string.special #}
 
     {# a comment #}
-      {# ^ comment #}
+    {# ^ comment #}
+

@@ -4,7 +4,7 @@
   // the top in the first ink, the left side in the second, the right in the third. A tile
   // repeated by a <pattern>: the seed changes nothing.
   //
-  //   {pattern 'isometric', size=18, colors='#000, #f4e9d8, #d4a373, #6b4f3a'/}
+  //   {pattern:isometric size=18, colors='#000, #f4e9d8, #d4a373, #6b4f3a'/}
   //
   // The cubes are hexagons standing on a point, their centres a row apart of 1.5 size and
   // offset by half a cube every other row; the tile, the width of a cube and two rows high,

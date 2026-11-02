@@ -1,11 +1,11 @@
 <?php
 
-  // {debug $order} and {debug}: a value shown where the page is, while rendering goes on -
+  // {pad:debug $order} and {pad:debug}: a value shown where the page is, while rendering goes on -
   // for a local request only (padLocalView: the command line, or loopback with nothing
   // forwarded, and $padDiagnostics not switched off - not pad export's render, whose copy
   // any visitor reads). A remote visitor gets nothing.
   //
-  // The tag's items are read raw, as {attrs} reads them: a $name that holds an array is the
+  // The tag's items are read raw, as {pad:attrs} reads them: a $name that holds an array is the
   // array, where an expression would read it as empty, and a missing name is shown as
   // missing instead of ending the request under the strict check. Without items it shows
   // every field visible where it stands - the rows of the enclosing levels, innermost

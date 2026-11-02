@@ -1,13 +1,12 @@
-{meta title='Stepper'/}
-{about/}
+{pad:meta title='Stepper'/}
+{include:about/}
 
-{form 'try', class='inputs-try', error}
-  {stepper 'guests', label='Guests', min=1, max=12, rules='required|integer|between:1,12'/}
+{pad:form 'try', class='inputs-try', error}
+  {input:stepper 'guests', label='Guests', min=1, max=12, rules='required|integer|between:1,12'/}
   {input:stepper 'weight', label='Weight in kg', min=0, step=0.5, value=70/}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-<h2>The template</h2>
-{source/}
+{include:template/}

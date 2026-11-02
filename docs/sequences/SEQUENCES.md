@@ -5,26 +5,26 @@ This document describes the sequence types available in PAD and how to generate 
 ## Basic Sequence Generation
 
 ```
-{fibonacci rows=10}{$fibonacci} {/fibonacci}      # Fibonacci numbers
-{prime rows=15}{$prime} {/prime}                  # Prime numbers
-{sequence '1..10', name='n'}{$n} {/sequence}      # Range 1-10
-{random minimal=1, maximal=100, rows=5}{$random} {/random}   # Random numbers
-{list '5;2;8;1;9'}{$list} {/list}                 # Custom list
+{sequence:fibonacci rows=10}{$fibonacci} {/sequence:fibonacci}      # Fibonacci numbers
+{sequence:prime rows=15}{$prime} {/sequence:prime}                  # Prime numbers
+{sequence:range '1..10', name='n'}{$n} {/sequence:range}      # Range 1-10
+{sequence:random minimal=1, maximal=100, rows=5}{$random} {/sequence:random}   # Random numbers
+{sequence:list '5;2;8;1;9'}{$list} {/sequence:list}                 # Custom list
 ```
 
 ## Character/Letter Ranges
 
 ```
-{sequence 'A..Z', name='letter'}{$letter} {/sequence}   # Full alphabet
-{sequence 'a..e', name='c'}{$c} {/sequence}             # a, b, c, d, e
-{sequence '0..9', name='digit'}{$digit} {/sequence}     # Digits as strings
+{sequence:range 'A..Z', name='letter'}{$letter} {/sequence:range}   # Full alphabet
+{sequence:range 'a..e', name='c'}{$c} {/sequence:range}             # a, b, c, d, e
+{sequence:range '0..9', name='digit'}{$digit} {/sequence:range}     # Digits as strings
 ```
 
 ## OEIS Integration (Online Encyclopedia of Integer Sequences)
 
 ```
-{sequence 10, oeis=81}{$sequence} {/sequence}           # OEIS sequence A000081
-{sequence 15, oeis=257360}{$sequence} {/sequence}       # OEIS sequence A257360
+{sequence:loop 10, oeis=81}{$sequence} {/sequence:loop}           # OEIS sequence A000081
+{sequence:loop 15, oeis=257360}{$sequence} {/sequence:loop}       # OEIS sequence A257360
 ```
 
 The A-number is written without its leading zeroes. The terms come from
@@ -38,7 +38,7 @@ its row count and checksum.
 ## Loop with from/to Parameters
 
 ```
-{sequence loop, from=11, to=30, name='i'}{$i} {/sequence}
+{sequence:loop from=11, to=30, name='i'}{$i} {/sequence:loop}
 ```
 
 What `from` and `to` count depends on how the type produces its terms - values for the ones
@@ -53,12 +53,12 @@ It used to be answered with a plain 1, 2, 3, ... counter, which looked enough li
 sequence to be mistaken for one, so a typo went unnoticed:
 
 ```
-{sequence prime, rows=5}{$sequence} {/sequence}     # the primes
-{sequence prmie, rows=5}{$sequence} {/sequence}     # error: 'prmie' is not a sequence type, a store or an action
+{sequence:prime rows=5}{$sequence} {/sequence:prime}     # the primes
+{sequence:auto prmie, rows=5}{$sequence} {/sequence:auto}     # error: 'prmie' is not a sequence type, a store or an action
 ```
 
 Names are written as they are spelled, on every machine: `{Keep '1..10', prime}`,
-`{Flag:even}` and `sequence:Prime(3)` are no tag, type or sequence, as on a file system that
+`{make:even pull='Flag',}` and `sequence:Prime(3)` are no tag, type or sequence, as on a file system that
 tells case apart.
 
 ### Positional parameters
@@ -67,34 +67,34 @@ The parameters written without a name are read in the order written, each by wha
 beside:
 
 - A number written right after an option that names a type taking a parameter or an action
-  that counts, the option written bare, is that option's value: `{sequence add, 3}` is
-  `{sequence add=3}`, `{sequence '1..9', first, 2}` is `{sequence '1..9', first=2}` and
+  that counts, the option written bare, is that option's value: `{sequence:add 3}` is
+  `{sequence:add 3}`, `{sequence:range '1..9', first, 2}` is `{sequence:range '1..9', first=2}` and
   `{pull:a shift, 2}` is `{pull:a shift=2}`.
 - The first parameter of a type or an action the tag or its prefix names is that one's own
-  when it is its kind of value - `{multiply 3}`, `{action:first 3}`, `{append 's'}` - and
-  read as below when it is not: `{reverse 'prime'}` reverses the primes; see
+  when it is its kind of value - `{sequence:multiply 3}`, `{action:first 3}`, `{action:append 's'}` - and
+  read as below when it is not: `{action:reverse 'prime'}` reverses the primes; see
   [ACTIONS.md](ACTIONS.md#type-prefixes-for-sequences) for the actions.
 - Otherwise its shape tells: a range `'1..10'`, a `';'` list `'5;2;8'` or a list `[5, 2, 8]`
-  is the values the tag runs over, and a number how many rows - `{sequence 5}`. Beside a store
+  is the values the tag runs over, and a number how many rows - `{sequence:loop 5}`. Beside a store
   the tag pulls the store is the values, and a list is the values of a play over it, as a
   `';'` list is: `{keep:a [2, 3]}` keeps the terms of a that are 2 or 3, as `{keep:a '2;3'}`
   does. An action that takes stores takes the list, though - the one the tag names, or else
-  the first one written as an option: `{a:append [7, 8]}` and `{pull:a append, [7, 8]}` are
+  the first one written as an option: `{action:append pull='a', [7, 8]}` and `{pull:a append, [7, 8]}` are
   `{pull:a append=[7, 8]}` - and so the name of another store there: `{pull:a intersection,
   'b'}` is `{pull:a intersection='b'}`.
-- A name is the store, the type or the action it names - `{sequence $type, rows=5}` - and a
+- A name is the store, the type or the action it names - `{sequence:auto $type, rows=5}` - and a
   type or an action named while the tag runs one already is the option of that name:
-  `{prime 'even'}` is `{prime even}`, `{sum 'reverse'}` is `{sum reverse}`.
+  `{sequence:prime 'even'}` is `{sequence:prime even}`, `{action:sum 'reverse'}` is `{action:sum reverse}`.
 - A parameter after one that named what to run is that one's first parameter, as it is
-  after a name the tag gives: `{keep $type, '1..10'}` with `$type` 'prime' is
-  `{keep:prime '1..10'}`, the primes of 1 to 10, and `{pull 's', 'shift', 2}` is
+  after a name the tag gives: `{keep:auto $type, '1..10'}` with `$type` 'prime' is
+  `{keep:prime '1..10'}`, the primes of 1 to 10, and `{pad:pull 's', 'shift', 2}` is
   `{pull:s shift=2}`. One written after a count, a range or a list - or one what the name
   runs does not take - that names a type or an action is read as the option of that name,
-  in the order written: `{keep '1..10', $type}` is `{keep '1..10', prime}`, `{reverse '1..5',
-  'sum'}` is `{reverse '1..5', sum}` and `{sequence 'prime', 3, 'reverse'}` is
-  `{prime 3, reverse}`.
-- A parameter nothing reads - `{sequence '1..5', 'x'}`, `{multiply 3, 4}`, `{pull:s 'abc'}`,
-  a second store `{a:sum 'b'}` beside the store a the tag pulls - is reported by the strict
+  in the order written: `{keep:range '1..10', $type}` is `{keep:range '1..10', prime}`, `{action:reverse '1..5',
+  'sum'}` is `{action:reverse '1..5', sum}` and `{sequence:prime 3, 'reverse'}` is
+  `{sequence:prime 3, reverse}`.
+- A parameter nothing reads - `{sequence:range '1..5', 'x'}`, `{sequence:multiply 3, 4}`, `{pull:s 'abc'}`,
+  a second store `{action:sum pull='a', 'b'}` beside the store a the tag pulls - is reported by the strict
   check.
 
 ## Sequence Types (122)
@@ -214,7 +214,7 @@ membership tests are exact; `evil` and `odious` count the binary digits.
 ### Number Theory
 
 The terms of `totient`, `divisors` and `sigma` are a function of the position, from n = 1,
-and their membership tests - `{keep totient}` and the rest - ask whether some n gives the
+and their membership tests - `{keep:totient}` and the rest - ask whether some n gives the
 value, which for `totient` and `sigma` is searched among the divisors of the value: the n can
 stand far past the value itself. The others are the numbers that have the property. The prime factors come from trial division and, past 10,000,
 Pollard's rho through gmp, so a number of 19 digits is factored in well under a second.
@@ -235,7 +235,7 @@ Pollard's rho through gmp, so a number of 19 digits is factored in well under a 
 ### Arithmetic Operations
 
 Each takes a number as its parameter and applies it to the loop value, so they are most
-often used as plays over another sequence - `{make multiply=3}` - rather than generated on
+often used as plays over another sequence - `{make:multiply 3}` - rather than generated on
 their own. A parameter that is not a number is reported rather than passed on, `divide` and
 `multiple` will not take a zero, and `chance` needs 1 or more.
 
@@ -268,14 +268,14 @@ complement their result run negative.
 - `xnor=N` - Bitwise XNOR (with N = 3: -3, -2, -1, -8, ...)
 
 The arithmetic and bitwise types, `eval` and `loop` make a term at every position a run gives
-them, 0 and below included - `{sequence add=3, from=0}` is 3, 4, 5 - but their membership
+them, 0 and below included - `{sequence:add 3, from=0}` is 3, 4, 5 - but their membership
 tests, which `keep`, `remove` and `flag` ask, count the positions from 1, where a run starts
 by default: a value is a member when a position of 1 or more makes it, so
-`{sequence '3;4', flag, add=3}` flags 0 1, and the 3 that position 0 made is none. `multiple`
+`{sequence:list '3;4', flag, add=3}` flags 0 1, and the 3 that position 0 made is none. `multiple`
 is the exception: it walks the values themselves, as `step` does, and its test takes every
-multiple of N, 0 and the negative ones included - `{sequence '-6..3', keep, multiple=3}` is
+multiple of N, 0 and the negative ones included - `{sequence:range '-6..3', keep, multiple=3}` is
 -6, -3, 0, 3, where `multiply=3` keeps 3 alone. A play over another sequence's terms -
-`{make add=3}` - is arithmetic on whatever value it is handed.
+`{make:add 3}` - is arithmetic on whatever value it is handed.
 
 ### Generation
 
@@ -293,20 +293,20 @@ multiple of N, 0 and the negative ones included - `{sequence '-6..3', keep, mult
 
 **IMPORTANT:** Store names cannot be the same as action names (e.g., can't use `push='first'` because `first` is an action).
 
-Nor the name of something the page made - an array of the page, a `{data}`, `{content}`, `{bool}`,
-`{define}`, `{macro}` or a select table: `push=` (or a single tag's `name=`) is refused under the
+Nor the name of something the page made - an array of the page, a `{pad:data}`, `{pad:content}`, `{pad:bool}`,
+`{pad:define}`, `{pad:macro}` or a select table: `push=` (or a single tag's `name=`) is refused under the
 strict check - "the store name 'x' is already an array of the page" - and a pair that only names
 its loop keeps no store. A value the request brought under the name (`?nums[]=1`) is no array the
 page made, and gives way to the store; so the refusal covers a name the page made itself that the
-request did not also bring - `{set $primes = ['1']/}` before `push='primes'` is refused, with
+request did not also bring - `{pad:set $primes = ['1']/}` before `push='primes'` is refused, with
 `?primes[]=1` in the request the same list is taken for the request's and the store takes the name.
 
 ```
-{sequence '1..10', push='mySeq'/}           # Store sequence
+{sequence:range '1..10', push='mySeq'/}           # Store sequence
 {pull:mySeq}{$sequence} {/pull:mySeq}      # Retrieve and iterate
 
 # Use pull: prefix to avoid naming conflicts with app tags
-{sequence 5, push='nums'/}
+{sequence:loop 5, push='nums'/}
 {pull:nums} {$sequence} {/pull:nums}
 ```
 
@@ -315,40 +315,40 @@ request did not also bring - `{set $primes = ['1']/}` before `push='primes'` is 
 The sequence tags (`resume`, `pull`, `keep`, `remove`, `flag`, `make`) operate on stored sequences:
 
 ```
-{sequence 5, push='mySeq'/}           # Create and store sequence
-{resume add=10/}                       # Transform: add 10 to each value
-{resume reverse/}                      # Transform: reverse order
+{sequence:loop 5, push='mySeq'/}           # Create and store sequence
+{pad:resume add=10/}                       # Transform: add 10 to each value
+{pad:resume reverse/}                      # Transform: reverse order
 {pull:mySeq} {$sequence} {/pull:mySeq}  # Iterate stored sequence
 ```
 
-**Note:** `{resume}` applies transformations to stored sequences. Use `{continue}` for skipping iterations (like PHP's continue).
+**Note:** `{pad:resume}` applies transformations to stored sequences. Use `{pad:continue}` for skipping iterations (like PHP's continue).
 
 ## Sequence Variable Access
 
 Use named sequences instead of level-based access:
 ```
-{sequence 5, name='n'}
+{sequence:loop 5, name='n'}
   {$n}                    # Correct - use named variable
-{/sequence}
+{/sequence:loop}
 
-{sequence 5}
+{sequence:loop 5}
   {$sequence@-1}          # Avoid - level-based access can be fragile ({$-1} is no field)
-{/sequence}
+{/sequence:loop}
 ```
 
 ## Named vs Unnamed Sequences
 
 Always prefer named sequences for clarity:
 ```
-{sequence 5, name='i'}
+{sequence:loop 5, name='i'}
   {$i}                  # Clear, explicit
-{/sequence}
+{/sequence:loop}
 
-{sequence '1..3', name='row'}
-  {sequence '1..4', name='col'}
+{sequence:range '1..3', name='row'}
+  {sequence:range '1..4', name='col'}
     ({$row},{$col})
-  {/sequence}
-{/sequence}
+  {/sequence:range}
+{/sequence:range}
 ```
 
 ## Special Syntax Rules
@@ -356,17 +356,17 @@ Always prefer named sequences for clarity:
 **In an expression, `sequence:<type>(n)` is the nth term:**
 
 ```
-{echo '' | sequence:fibonacci(8)/}     13 - the eighth Fibonacci number
-{echo '' | sequence:prime(8)/}         19
-{if sequence:square(6) eq 36}...      the term reads as a value
-{echo '' | sequence:add(3, 10)/}       13 - a second argument is the type's parameter: add=10
-{echo '' | sequence:prime(3, 'abc')/}  error - prime takes no parameter
+{pad:echo '' | sequence:fibonacci(8)/}     13 - the eighth Fibonacci number
+{pad:echo '' | sequence:prime(8)/}         19
+{pad:if sequence:square(6) eq 36}...      the term reads as a value
+{pad:echo '' | sequence:add(3, 10)/}       13 - a second argument is the type's parameter: add=10
+{pad:echo '' | sequence:prime(3, 'abc')/}  error - prime takes no parameter
 ```
 
 The action half of the same prefix - `sequence:sum([1,2,3])` - answers with a list instead,
-because a list is what an action produces; `{echo '' | sequence:sum([1,2,3]) . ''/}` prints it
+because a list is what an action produces; `{pad:echo '' | sequence:sum([1,2,3]) . ''/}` prints it
 (6), where a pipe that ends on the list itself prints nothing. A value piped in without
-arguments is the call's argument: `{echo 5 | sequence:fibonacci/}` is the fifth term, 3, and
+arguments is the call's argument: `{pad:echo 5 | sequence:fibonacci/}` is the fifth term, 3, and
 `([1,2,3] | sequence:sum) . ''` is 6. Numbers written one after another are the values too, for
 an action that takes no count and no store to act with: `sequence:sum(1, 2, 3)` is the sum of
 the three and `sequence:sort(3, 1, 2)` sorts them, where `sequence:first(5, 2)` reads the 2 as
@@ -381,7 +381,7 @@ error under the strict check.
 
 **Chance sequence needs a numeric parameter:**
 ```
-{chance 4, rows=15}{$chance}{/chance}    # 1-in-4 chance (not {chance rows=15})
+{sequence:chance 4, rows=15}{$chance}{/sequence:chance}    # 1-in-4 chance (not {sequence:chance rows=15})
 ```
 
 ## See Also

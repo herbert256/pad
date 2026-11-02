@@ -5,9 +5,9 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{redirect 'name'/}
-{redirect 'orders/list', $status = 'open'/}
-{redirect 'https://example.com/'/}
+{pad:redirect 'name'/}
+{pad:redirect 'orders/list', $status = 'open'/}
+{pad:redirect 'https://example.com/'/}
 PAD;
 
   $tagParms   = [

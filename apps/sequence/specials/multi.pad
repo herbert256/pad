@@ -1,4 +1,4 @@
-{table}
-{demo} {sequence '1..10', push='mySequence' /} {/demo}
-{demo} {mySequence:add 1000, add=100, add=10} {$mySequence} {$sequence} {/mySequence:add} {/demo}
-{/table}
+{common:table}
+{common:demo} {sequence:range '1..10', push='mySequence' /} {/common:demo}
+{common:demo} {make:add pull='mySequence', 1000, add=100, add=10} {$mySequence} {$sequence} {/make:add} {/common:demo}
+{/common:table}

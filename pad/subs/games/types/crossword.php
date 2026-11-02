@@ -9,10 +9,10 @@
   // it. A word that crosses no other is left out and named under the clues. By data= a row
   // is a word and its clue.
   //
-  //   {crossword}
+  //   {game:crossword}
   //     ECHO: Writes a value without the sanitize chain
   //     PIPE: The | that hands a value to a function
-  //   {/crossword}
+  //   {/game:crossword}
 
   $padCrosswordSource = padGameSource ();
 

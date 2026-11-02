@@ -6,7 +6,7 @@
   // more the Japanese seigaiha of waves), its edge and rings drawn in the background. The inks
   // take turns row by row. A tile repeated by a <pattern>: the seed changes nothing.
   //
-  //   {pattern 'scales', size=24, rings=4, colors='#f8f4ea, #1d4e89, #2a6fb0'/}
+  //   {pattern:scales size=24, rings=4, colors='#f8f4ea, #1d4e89, #2a6fb0'/}
   //
   // The rows are a half radius apart, two of them - one laid along by a radius - a tile two
   // radii wide, as many rows high as the inks take to come back to the first on an even row.

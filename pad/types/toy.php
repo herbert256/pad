@@ -1,9 +1,8 @@
 <?php
 
-  // Type handler for a toy: {toy:life pattern='glider'/}, or a bare tag naming a file of
-  // subs/toys/types/ when nothing else has the name, {mandelbrot/}. The toy is the tag's name, and
-  // it is set up as {toy 'life'} sets it up, by subs/toys/toy.php - run as a built-in tag's PHP
-  // half is run, types/_go/tag.php.
+  // toy:kind selects a registered kind from its subsystem. The type handler
+  // runs the subsystem with the kind in the tag name and its own parameters unchanged.
+
 
   $padToyKind = $padTag [$pad];
 

@@ -1,5 +1,5 @@
-{data 'xs'}
+{pad:data 'xs'}
   [3,1,4,2]
-{/data}
-[{xs where='$xs gt 2', sort='xs', negative}{$xs}{/xs}]
-[{xs first=2, reverse, negative}{$xs}{/xs}]
+{/pad:data}
+[{data:xs where='$xs gt 2', sort='xs', negative}{$xs}{/data:xs}]
+[{data:xs first=2, reverse, negative}{$xs}{/data:xs}]

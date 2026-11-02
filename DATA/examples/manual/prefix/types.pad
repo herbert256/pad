@@ -2,14 +2,14 @@
 
 <h3> The list with PAD tag types</h3>
 
-{getReference 'types', 'tag'}
+{php:getReference 'types', 'tag'}
 
-  {if $dir eq 1}
+  {pad:if $dir eq 1}
     <a href="{$padHost}reference/?dir&xref=tag&type=Tag+types{?item}">{$item}</a>
   @else@
     {$item}
-  {/if}
+  {/pad:if}
 
   &nbsp; 
 
-{/getReference}
+{/php:getReference}

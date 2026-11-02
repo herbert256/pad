@@ -3,7 +3,7 @@
   // A secret's value runs on past a ; - token=ab;cd is one value - but a plain value ended
   // there no more either, and swallowed the secret after it: a=1;token=abc, a PDO DSN's
   // ...;user=app;password=hunter2 and Server=db;Password=hunter2; showed the password in
-  // {debug}, the dumps, the toolbar and the JSON channel.
+  // {pad:debug}, the dumps, the toolbar and the JSON channel.
 
   $shown = [];
 

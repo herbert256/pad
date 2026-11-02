@@ -1,22 +1,26 @@
-{if $brandOffline}{!brandStyle}{elseif ! $brandFrame}<link rel="stylesheet" href="{$brandCss}"><script src="{$brandJs}" defer></script>{/if}
-<div class="pad-brand{if $brandFrame} pad-brand-frame{/if}">
-  {if $brandOffline}
+{pad:if $brandOffline}{!brandStyle}{pad:elseif ! $brandFrame}<link rel="stylesheet" href="{$brandCss}"><script src="{$brandJs}" defer></script>{/pad:if}
+<div class="pad-brand{pad:if $brandFrame} pad-brand-frame{/pad:if}">
+  {pad:if $brandOffline}
     <span class="pad-brand-logo" aria-hidden="true">&#123;&#125;</span>
     <a class="pad-brand-name pad-brand-self" href="{$brandAppHome}"><span class="pad-brand-pad">PAD </span><b>{$brandName}</b></a>
-  {else}
+  {pad:else}
     <a class="pad-brand-logo" href="{$brandHome}" title="PAD home" aria-label="PAD home">&#123;&#125;</a>
     <details class="pad-brand-menu">
-      <summary title="The PAD applications"><span class="pad-brand-name"><span class="pad-brand-pad">PAD </span><b>{$brandName}</b></span>{icon 'chevron-down', size=14/}</summary>
+      <summary title="The PAD applications"><span class="pad-brand-name"><span class="pad-brand-pad">PAD </span><b>{$brandName}</b></span>{icon:chevron-down size=14/}</summary>
       <nav class="pad-brand-apps" aria-label="PAD applications">
         <div class="pad-brand-columns">
-          {brandMenu}
-            <div class="pad-brand-group">
-              <div class="pad-brand-head">{$head}</div>
-              {brandApps}<a href="{$href}"{if $current} aria-current="page"{/if}>{icon $icon, size=16/}<span><b>{$name}</b><small>{$about}</small></span></a>{/brandApps}
+          {array:brandColumns}
+            <div class="pad-brand-column">
+              {array:brandGroups}
+                <div class="pad-brand-group">
+                  <div class="pad-brand-head">{$head}</div>
+                  {array:brandApps}<a href="{$href}"{pad:if $current} aria-current="page"{/pad:if}>{icon:$icon size=16/}<span><b>{$name}</b><small>{$about}</small></span></a>{/array:brandApps}
+                </div>
+              {/array:brandGroups}
             </div>
-          {/brandMenu}
+          {/array:brandColumns}
         </div>
       </nav>
     </details>
-  {/if}
+  {/pad:if}
 </div>

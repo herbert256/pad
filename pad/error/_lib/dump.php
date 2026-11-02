@@ -146,7 +146,7 @@
     global $padExceptionText;
 
     // The message as the rest of the report shows values (padRedactText, error/claude.php):
-    // a failed {curl} quotes its address, and a login in it stood in clear in _ERROR.html.
+    // a failed {pad:curl} quotes its address, and a login in it stood in clear in _ERROR.html.
 
     if ( ! $info and isset ( $padExceptionText ) )
       echo ( "<hr><b>" . htmlentities ( padRedactText ( $padExceptionText ) ) . "</b><hr><br>" );

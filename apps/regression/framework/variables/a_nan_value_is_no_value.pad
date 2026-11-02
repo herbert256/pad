@@ -1,1 +1,1 @@
-[{$avg}][{$avg | default('none')}][{if $avg eq ''}empty{/if}][{echo $avg/}][{$avg | upper}]
+[{$avg}][{$avg | default('none')}][{pad:if $avg eq ''}empty{/pad:if}][{pad:echo $avg/}][{$avg | upper}]

@@ -46,7 +46,7 @@
   // optional or noError on its closing tag from dropping it.
 
   // Both halves carrying options: the closing tag's replace the opening tag's, all of them -
-  // the do-while form {while name='outer'}...{/while $i lt 3} lost its name and a toData=
+  // the do-while form {pad:while name='outer'}...{/pad:while $i lt 3} lost its name and a toData=
   // there stored nothing, in silence, as the unread-option sweep looks at the closing tag's
   // set only. Strict mode names it: they belong together on one of the two.
 

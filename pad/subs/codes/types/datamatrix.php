@@ -34,7 +34,7 @@
   if ( $padDataMatrixText === '' ) {
     foreach ( [ 'size', 'title', 'color', 'background', 'gs1' ] as $padDataMatrixOption )
       padTagParm ( $padDataMatrixOption );
-    return padCodeFail ( "the data matrix code has no text - {datamatrix 'PAD-2026-0042'/}" );
+    return padCodeFail ( "the data matrix code has no text - {barcode:datamatrix 'PAD-2026-0042'/}" );
   }
 
   $padDataMatrixSvg = padDataMatrix ( $padDataMatrixText,

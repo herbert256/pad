@@ -1,7 +1,7 @@
 <?php
 
   // Every page: the menu and the counts. The type pages and the indexes draw examples through
-  // {page}, which runs this file again for each: only the first run - the page that was asked
+  // {pad:page}, which runs this file again for each: only the first run - the page that was asked
   // for - sets the frame.
 
   if ( isset ( $typesFrame ) )
@@ -9,13 +9,15 @@
 
   $typesFrame    = $padPage;
   $typesCount    = count ( typesCatalog () );
+  $typesPrefixCount = count ( array_filter ( typesCatalog (), fn ( $one ) => $one ['prefix'] ) );
+  $typesFamilyCount = $typesCount - $typesPrefixCount;
   $typesSearch   = '';
 
   $frameMenu = [];
 
   foreach ( [ 'index'      => [ 'Home',        'home'   ],
               'names'      => [ 'A-Z',         'list'   ],
-              'order'      => [ 'Order',       'repeat' ],
+              'order'      => [ 'Type prefixes', 'repeat' ],
               'groups'     => [ 'Groups',      'grid'   ],
               'cheatsheet' => [ 'Cheat sheet', 'file'   ] ] as $typesPage => [ $typesLabel, $typesIcon ] )
     $frameMenu [] = [ 'link' => "?$typesPage", 'label' => $typesLabel, 'icon' => $typesIcon, 'current' => $typesPage == $padPage ];

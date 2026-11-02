@@ -7,8 +7,8 @@
   // weights 10 to 1 summing to a multiple of 11, X for 10 - is checked first. "ISBN" in front,
   // spaces and hyphens are allowed; the price goes in an add-on of five digits (addon=).
   //
-  //   {bookland '978-0-306-40615-7'/}
-  //   {bookland 'ISBN 0-306-40615-2', addon='51995'/}       978-0-306-40615-7, US$ 19.95
+  //   {barcode:bookland '978-0-306-40615-7'/}
+  //   {barcode:bookland 'ISBN 0-306-40615-2', addon='51995'/}       978-0-306-40615-7, US$ 19.95
   //
   // padCodeIsbn   [ the thirteen digits, the ISBN to write above ], or the message why not
 

@@ -6,8 +6,8 @@
   // one's one, and a narrow space stands between symbols. A text that starts and ends with a
   // letter keeps its own; one without letters gets A at both ends.
   //
-  //   {codabar '40156'/}               A40156A
-  //   {codabar 'B31117013206375B'/}    the letters of its own
+  //   {barcode:codabar '40156'/}               A40156A
+  //   {barcode:codabar 'B31117013206375B'/}    the letters of its own
   //
   // padCodeCodabar   the bars, or the message why the text is no Codabar
 

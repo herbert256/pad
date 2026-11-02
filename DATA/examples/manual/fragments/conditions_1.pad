@@ -1,12 +1,12 @@
-{data 'nums'}[3, 7, 12]{/data}
-{nums}
+{pad:data 'nums'}[3, 7, 12]{/pad:data}
+{data:nums}
   <p>{$nums} is
-  {if $nums lt 5}
+  {pad:if $nums lt 5}
     small
-  {elseif $nums lt 10}
+  {pad:elseif $nums lt 10}
     medium
-  {else}
+  {pad:else}
     large
-  {/if}
+  {/pad:if}
   </p>
-{/nums}
+{/data:nums}

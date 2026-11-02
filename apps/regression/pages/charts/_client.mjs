@@ -36,9 +36,9 @@ const pages = [];
   }
 })(dir);
 
-const tagRe   = /\{(chart(?::[a-z]+)?|sparkline) *([^{}]*?)(\/?)\}/g;
+const tagRe   = /\{(chart:[a-z]+) *([^{}]*?)(\/?)\}/g;
 const clientOf = src => src.replace(tagRe, (m, name, params, slash) => '{' + name + (params.trim() ? ' ' + params.trimEnd() + ', client' : ' client') + slash + '}');
-const kindOf  = src => { const m = src.match(/\{chart(?::([a-z]+)|\s+'([a-z]+)')/); return m ? (m[1] || m[2]) : (src.includes('{sparkline') ? 'sparkline' : '?'); };
+const kindOf = src => src.match(/\{chart:([a-z]+)/)?.[1] || '?';
 const render  = (page, source) => {
   try {
     return execFileSync('php', [join(here, '_client.php'), 'charts', page, ...(source !== undefined ? ['-'] : [])],

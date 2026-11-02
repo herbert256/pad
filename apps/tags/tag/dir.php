@@ -5,7 +5,7 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{dir $path} {$dir} {/dir}
+{pad:dir $path} {$dir} {/pad:dir}
 PAD;
 
   $tagParms   = [

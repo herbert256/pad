@@ -3,7 +3,7 @@
   // duotone - the picture in two colours: its luminance laid on the line from the first of
   // colors= in the shadows to the second in the highlights ('#16213e, #f5c26b').
   //
-  //   {img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
 
   return [
 

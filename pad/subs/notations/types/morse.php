@@ -7,8 +7,8 @@
   // recommendation (. , : ? ' - / ( ) " = + × @) and é; plain writes the code alone. For a
   // screen reader it is the text and the code in words.
   //
-  //   {morse 'SOS'/}
-  //   {morse 'Hello world', plain/}
+  //   {notation:morse 'SOS'/}
+  //   {notation:morse 'Hello world', plain/}
 
   list ( $padMorseWords, $padMorseUnknown ) = padMorseCodes ( $padNotationText );
 

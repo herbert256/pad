@@ -1,6 +1,6 @@
 <?php
 
-  // Opens a nested reporting scope for a single tag - used by {trace} (pad/tags/trace.php),
+  // Opens a nested reporting scope for a single tag - used by {pad:trace} (pad/tags/trace.php),
   // which switches tracing on for the part of the template it encloses.
   //
   // padInfoBackup (info/_lib/_lib.php) snapshots every padInfo* global under the current

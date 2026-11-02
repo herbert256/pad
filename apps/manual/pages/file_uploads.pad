@@ -1,4 +1,4 @@
-{meta title='File uploads'/}
+{pad:meta title='File uploads'/}
 
 <p><code>padUpload</code> takes the file of one form field and stores it safely:</p>
 
@@ -10,17 +10,17 @@
   what it really is, never under the name the visitor's file had.</li>
 </ul>
 
-{example 'fragments/file_uploads_1'/}
+{common:example 'fragments/file_uploads_1'/}
 
 <p>The answer is the record of the stored file - <code>name</code> (the visitor's own file
 name, for showing only), <code>file</code> (the path under <code>DATA</code>, for
 <code>padFileGet</code>), <code>path</code>, <code>size</code>, <code>type</code> and
 <code>extension</code> - or <code>NULL</code> when the field brought no file, or
 <code>FALSE</code> when the file was refused. <code>padUploadError ( 'avatar' )</code> says
-why, and the {tag 'input'/} file field of the form shows it beside itself, in the words of its
+why, and the {app:tag 'input'/} file field of the form shows it beside itself, in the words of its
 label.</p>
 
-<p>A {tag 'form'/} holding a file field posts as <code>multipart/form-data</code> by itself;
+<p>A {app:tag 'form'/} holding a file field posts as <code>multipart/form-data</code> by itself;
 without that the browser sends only the file's name.</p>
 
 <p>What is stored under <code>DATA</code> no address reaches. A page sends it back with

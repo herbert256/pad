@@ -5,7 +5,7 @@
   // given; COUNT leaves an error out, IFERROR catches it. A name that is no function or cell
   // is #NAME? - A0 and XFE1 are none - a call with too few arguments #N/A and a formula that
   // cannot be read #ERROR!, as Google Sheets has them: Excel would not take them at all, and
-  // the strict check reports them in a {spreadsheet}. A range where one value is wanted is
+  // the strict check reports them in a {pad:spreadsheet}. A range where one value is wanted is
   // the cell of the formula's own row or column, else #VALUE!.
 
   $cases = formulasRun ( [

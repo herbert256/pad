@@ -1,6 +1,6 @@
 <?php
 
-  // What {debug}, the toolbar's variables and the reports show of a user row: a password
+  // What {pad:debug}, the toolbar's variables and the reports show of a user row: a password
   // hash under the names a users table gives it - password_hash, passwordHash, pass_hash -
   // is redacted as the password is, where only a name ending in the word counted and the
   // hash showed in clear. A name that only looks like one stays.

@@ -1,6 +1,6 @@
-{data 'crew'}["Kirk","Spock","McCoy"]{/data}
-{crew}
-  {if first@crew}<ul>{/if}
-  <li>{$crew}{if notLast@crew} and counting{/if}</li>
-  {if last@crew}</ul>{/if}
-{/crew}
+{pad:data 'crew'}["Kirk","Spock","McCoy"]{/pad:data}
+{data:crew}
+  {pad:if first@crew}<ul>{/pad:if}
+  <li>{$crew}{pad:if notLast@crew} and counting{/pad:if}</li>
+  {pad:if last@crew}</ul>{/pad:if}
+{/data:crew}

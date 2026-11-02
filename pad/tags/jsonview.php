@@ -1,15 +1,15 @@
 <?php
 
-  // {jsonview $response} - a value as a tree of JSON to fold open and shut, each object and
+  // {pad:jsonview $response} - a value as a tree of JSON to fold open and shut, each object and
   // list a <details>: tags/_lib/jsonview.php. The value is the first item - a $field, a list of
-  // the page or a row included, which is why the tag reads its items raw, as {debug} does
-  // (lib/attrs.php) - or data= names it: a {data} store, a page array or a _data file. A
+  // the page or a row included, which is why the tag reads its items raw, as {pad:debug} does
+  // (lib/attrs.php) - or data= names it: a {pad:data} store, a page array or a _data file. A
   // text that is JSON is decoded; as a pair the content is the JSON, taken as it stands,
-  // so its braces need no {ignore}.
+  // so its braces need no {pad:ignore}.
   //
-  //   {jsonview $response, open=1, title='GET /orders/42'}
-  //   {jsonview data='settings'}
-  //   {jsonview} {"id": 42, "paid": true, "lines": [ ... ]} {/jsonview}
+  //   {pad:jsonview $response, open=1, title='GET /orders/42'}
+  //   {pad:jsonview data='settings'}
+  //   {pad:jsonview} {"id": 42, "paid": true, "lines": [ ... ]} {/pad:jsonview}
   //
   // open= is the number of levels shown unfolded, 2 when not given - 0 folds everything;
   // title= labels the outermost level.
@@ -60,7 +60,7 @@
 
     if ( trim ( (string) $padJsonviewSource ) === '' ) {
       if ( $padCheckSyntax )
-        padError ( "the jsonview has nothing to show - {jsonview \$value/}, data='name' or the JSON between {jsonview} and {/jsonview}" );
+        padError ( "the jsonview has nothing to show - {pad:jsonview \$value/}, data='name' or the JSON between {pad:jsonview} and {/pad:jsonview}" );
       return '';
     }
 

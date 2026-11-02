@@ -1,5 +1,5 @@
-{ignore}
-<p><code>{gravatar}</code> shows the picture a person registered for their e-mail address at
+{pad:ignore}
+<p><code>{pad:gravatar}</code> shows the picture a person registered for their e-mail address at
 gravatar.com (<code>tags/_lib/gravatar.php</code>). The address itself never leaves the page: the
 image address is <code>https://www.gravatar.com/avatar/&lt;sha256&gt;?s=&lt;size&gt;&amp;d=&lt;default&gt;</code>,
 made from the SHA-256 hash of the trimmed, lower-cased address.</p>
@@ -12,10 +12,10 @@ made from the SHA-256 hash of the trimmed, lower-cased address.</p>
 <p>Showing the picture still tells Gravatar the visitor's IP address. For a page whose privacy
 policy allows no outside requests - or a test without network - <code>fallback</code> draws a
 picture on the server instead and writes no <code>&lt;img&gt;</code> at all:
-<code>fallback='avatar'</code> the <a href="?tag/avatar">{avatar}</a> initials of
+<code>fallback='avatar'</code> the <a href="?tag/avatar">{pad:avatar}</a> initials of
 <code>alt</code> (or of the address), <code>fallback='identicon'</code> the
-<a href="?tag/identicon">{identicon}</a> of the address.</p>
+<a href="?tag/identicon">{pad:identicon}</a> of the address.</p>
 
 <p>A missing address, an unknown <code>default</code> or <code>fallback</code> is an error
 under the strict check.</p>
-{/ignore}
+{/pad:ignore}

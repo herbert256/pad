@@ -114,7 +114,7 @@ if (!only || only === 'notes') {
 
   const live = (text(answer).match(/data-pad-csrf="([0-9a-f]+)"/) || [])[1];
   answer = await post('http://localhost/notes/?index', `padLive=notes&padEvent=pin&padValue=3&padCsrfToken=${live}`);
-  check('notes: a {live} click pins a note - the region alone comes back', /class="note color-mint pinned"/.test(text(answer)) && !/<html/.test(text(answer)), answer);
+  check('notes: a {pad:live} click pins a note - the region alone comes back', /class="note color-mint pinned"/.test(text(answer)) && !/<html/.test(text(answer)), answer);
 
   answer = await get('http://localhost/notes/?index&q=bread&padFragment=list', { 'x-requested-with': 'fetch' });
   check('notes: a search answered as the fragment alone', (text(answer).match(/<article/g) || []).length === 1 && /Weekend/.test(text(answer)) && !/<header/.test(text(answer)), answer);

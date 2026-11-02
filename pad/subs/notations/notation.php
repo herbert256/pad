@@ -1,10 +1,8 @@
 <?php
 
-  // The body of a notation, whichever way it is written: {notation 'math'}a/b{/notation}, the
-  // notation: type - {notation:math}a/b{/notation:math} - or the bare name, {math}a/b{/math},
-  // when nothing else has it. The caller sets $padNotationKind, $padParm to the kind's own
-  // first parameter - the second of {notation 'braille', 'Hello'/}, whose first names the
-  // kind - and $padNotationGiven when there is one.
+  // A notation uses {notation:math}a/b{/notation:math} or another registered kind.
+  // The caller sets $padNotationKind, $padParm to the kind's first parameter, and
+  // $padNotationGiven when one was provided, as in {notation:braille 'Hello'/}.
   //
   // A notation is a file of subs/notations/types/, and the files there are all the notations
   // there are (padNotationTypes, subs/notations/_lib/notation.php). The file reads its options,
@@ -12,10 +10,10 @@
   // included the first time it runs, its style in www/assets/notations/<kind>.css, written once
   // per page with the CSP nonce.
   //
-  // The text is the kind's first parameter - {math 'a/b'/}, {chess $fen/} - as the characters it
+  // The text is the kind's first parameter - {notation:math 'a/b'/}, {notation:chess $fen/} - as the characters it
   // holds (padParmText: a field inside it arrives as its value, not its escaped form), or else
   // the content between the tags, taken as it stands before the level walks it - so the braces
-  // of AsciiMath, {: x :} and {x | x gt 0}, need no {ignore}; the level is left no content of
+  // of AsciiMath, {: x :} and {data:x | x gt 0}, need no {pad:ignore}; the level is left no content of
   // its own to render. A notation with nothing to draw answers nothing, and its @else@ shows.
 
   include_once PAD . 'subs/notations/_lib/notation.php';
@@ -60,7 +58,7 @@
   $padNotationHtml = include PAD . "subs/notations/types/$padNotationKind.php";
 
   // A text with nothing in it draws nothing, whatever its options say: a page that draws a
-  // formula or a position of every row - {rows}{morse $t, plain}@else@-{/morse}{/rows} - shows
+  // formula or a position of every row - {rows}{notation:morse $t, plain}@else@-{/notation:morse}{/rows} - shows
   // the @else@ for a row whose text is empty. The kind answers nothing before it reads the
   // options that shape a drawing, so they are marked read here, where the strict sweep named
   // each one "an option that nothing reads" and the page ended. A kind that draws without a

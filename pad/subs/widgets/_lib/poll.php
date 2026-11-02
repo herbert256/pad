@@ -3,9 +3,9 @@
   // A poll - the poll widget: a question with its answers as a form, and after a vote the
   // results as bars with their percentages.
   //
-  //   {poll 'favorite-language', options='PHP, Python, Ruby, Go', title='Your favourite language?'}
+  //   {widget:poll 'favorite-language', options='PHP, Python, Ruby, Go', title='Your favourite language?'}
   //
-  // The form stands in a {live} region (lib/live.php): with scripting on, the vote is posted
+  // The form stands in a {pad:live} region (lib/live.php): with scripting on, the vote is posted
   // in the background and the region swaps in the results; with scripting off the form posts
   // to the page itself, the way forms always have, and the page comes back with the results.
   // Either way it is a POST of the page's own URL, so $padCsrf protects it as it protects

@@ -1,9 +1,9 @@
 <?php
 
-  // Body of the {get} tag: fetches another page of this same application over HTTP with curl
+  // Body of the {pad:get} tag: fetches another page of this same application over HTTP with curl
   // and returns its output as the tag's value - a real second request, not a nested pass.
   //
-  // $padParm names the page and every variable {set} at this level ($padSetLvl[$pad]) is
+  // $padParm names the page and every variable {pad:set} at this level ($padSetLvl[$pad]) is
   // appended to the query string, together with padInclude so the page renders bare, without
   // its _inits/_exits wrappers. The result is padEscape()d so that braces, pipes and @ signs
   // coming back from the other page are not parsed as PAD markup here.
@@ -16,7 +16,7 @@
   // resolve the URL (lib/page.php).
 
   if ( $padCheckSyntax and ! padPageCheck ( $padExtPag ) )
-    padError ( "there is no page named '$padExtPag' for {get}" );
+    padError ( "there is no page named '$padExtPag' for {pad:get}" );
 
   // Each value as the query writes it: a list as name[]=..., TRUE as 1, NULL left out -
   // http_build_query's rules. urlencode took only text, and a list ended the request on a

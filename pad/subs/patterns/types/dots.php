@@ -3,7 +3,7 @@
   // dots - polka dots in staggered rows, two to a tile of the size, the second in the second
   // ink when there is one. A tile repeated by a <pattern>: the seed changes nothing.
   //
-  //   {pattern 'dots', size=24, colors='#fdfbf7, #e0c9a6'/}
+  //   {pattern:dots size=24, colors='#fdfbf7, #e0c9a6'/}
 
   return [
 

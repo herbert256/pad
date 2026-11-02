@@ -1,6 +1,6 @@
 <?php
 
-  // Karnaugh maps - the karnaugh notation, {karnaugh 'm(6,8,9,10,11,12,13,14)'/}. A Boolean
+  // Karnaugh maps - the karnaugh notation, {notation:karnaugh 'm(6,8,9,10,11,12,13,14)'/}. A Boolean
   // function of two to four variables drawn as its Karnaugh map: the cells in Gray-code order,
   // so two cells next to each other - over the edges as well - differ in one variable, each
   // with its value, 1, 0 or a don't care; the groups of a minimal sum of products looped round

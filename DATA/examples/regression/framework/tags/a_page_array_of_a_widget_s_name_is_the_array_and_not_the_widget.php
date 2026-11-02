@@ -1,8 +1,8 @@
 <?php
 
   // A widget reached by its bare name comes after every other kind of tag: a page's array
-  // named tabs is the data of {tabs}, as it was when tabs was a built-in tag - which came
-  // before the array then - where the widget would ask for {tab}s.
+  // named tabs is the data of {array:tabs}, as it was when tabs was a built-in tag - which came
+  // before the array then - where the widget would ask for {pad:tab}s.
 
   $tabs = [ [ 'n' => 1 ], [ 'n' => 2 ] ];
 

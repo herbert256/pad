@@ -1,1 +1,1 @@
-[{if $role = 'admin'}A{else}B{/if}][{$role}][{case $role = 'admin'}{when 1}one{else}zero{/case}][{while $n = 5}x{/while}][{echo $n = 3/}][{echo $n = 4/}][{$n}]
+[{pad:if $role = 'admin'}A{pad:else}B{/pad:if}][{$role}][{pad:case $role = 'admin'}{pad:when 1}one{pad:else}zero{/pad:case}][{pad:while $n = 5}x{/pad:while}][{pad:echo $n = 3/}][{pad:echo $n = 4/}][{$n}]

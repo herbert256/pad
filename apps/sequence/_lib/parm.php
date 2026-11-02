@@ -7,8 +7,8 @@
     $build = pqBuild ( $type );
 
     if ( $build != 'order' and $build != 'fixed' ) {
-      $a = padCode ( "{sequence $type=3, rows=15}{\$sequence}{/sequence}" );
-      $b = padCode ( "{sequence $type=5, rows=15}{\$sequence}{/sequence}" );
+      $a = padCode ( "{sequence:auto $type=3, rows=15}{\$sequence}{/sequence:auto}" );
+      $b = padCode ( "{sequence:auto $type=5, rows=15}{\$sequence}{/sequence:auto}" );
     }
 
     // The type's own files, under the engine's sequence types - a bare types/ path resolved

@@ -19,7 +19,7 @@
   // ( ) or [ ] is a pipe of that group's own (lib/eval/tree.php) - and
   // padSplitOnUnquotedColon does the same for the type prefix.
   //
-  // padFindContinueBreak resolves the target of {continue}, {cease} and {break}: a level
+  // padFindContinueBreak resolves the target of {pad:continue}, {pad:cease} and {pad:break}: a level
   // name, a negative offset, an absolute level number, or by default the nearest enclosing
   // loop - past every level that is a part of the row (padLevelInRow), the conditions among
   // them.
@@ -57,22 +57,22 @@ function padSplitOnUnquotedColon ( $str ) {
 
   // Whether a level is part of the row it stands in rather than a loop of its own: it renders
   // its content once - its data is the single empty occurrence a tag answering TRUE gets
-  // (padIsDefaultData) - and it is no {while} or {until}, whose every round is such an
-  // occurrence too. An {if}, a {case}, an {ifchanged}, a {guest}, {auth}, {can} or {feature},
-  // a property pair such as {notFirst@items}, a {spaceless}, a {fragment}, a snippet, a
+  // (padIsDefaultData) - and it is no {pad:while} or {pad:until}, whose every round is such an
+  // occurrence too. An {pad:if}, a {pad:case}, an {pad:ifchanged}, a {pad:guest}, {pad:auth}, {pad:can} or {pad:feature},
+  // a property pair such as {property:notFirst@items}, a {pad:spaceless}, a {pad:fragment}, a snippet, a
   // custom tag: each is a new level on every row of the loop around it, and what asks for
-  // "the loop" - {ifchanged}'s memory, a property without a target - looks past it.
+  // "the loop" - {pad:ifchanged}'s memory, a property without a target - looks past it.
   //
   // A loop rendering its @start@ prelude or its @end@ coda stands on such an occurrence as
   // well, with its rows kept aside ($padSectionRows, level/start_end/): it is still the loop
-  // - looked past, a {break} in a prelude found no loop around it.
+  // - looked past, a {pad:break} in a prelude found no loop around it.
 
   function padLevelInRow ( $lvl ) {
 
-    global $padData, $padTag, $padSectionRows;
+    global $padData, $padTag, $padType, $padSectionRows;
 
     return padIsDefaultData ( $padData [$lvl] ?? [] )
-       and ! in_array ( $padTag [$lvl] ?? '', [ 'while', 'until' ] )
+       and ! ( ( $padType [$lvl] ?? '' ) == 'pad' and in_array ( $padTag [$lvl] ?? '', [ 'while', 'until' ] ) )
        and ! isset ( $padSectionRows [$lvl] );
 
   }
@@ -83,11 +83,11 @@ function padSplitOnUnquotedColon ( $str ) {
 
     // Every search stays inside the pass the control tag stands in: its root is the nearest
     // level below it named 'internal' - the page's, level 0, or that of a nested pass such
-    // as a {code} or {sandbox}, which runs on the same level stack. A name found below that
+    // as a {pad:code} or {pad:sandbox}, which runs on the same level stack. A name found below that
     // root unwound the pass from inside it (level/nextLevel.php), and start/function.php put
-    // the level that asked for the pass back as it was: {rows}{code}{break 'rows'}{/code}
-    // {/rows} printed the tag's own source and ended the loop, {continue 'rows'} printed its
-    // source on every row and {cease 'rows'} did nothing.
+    // the level that asked for the pass back as it was: {rows}{pad:code}{pad:break 'rows'}{/pad:code}
+    // {/rows} printed the tag's own source and ended the loop, {pad:continue 'rows'} printed its
+    // source on every row and {pad:cease 'rows'} did nothing.
 
     $floor = 0;
 
@@ -98,8 +98,8 @@ function padSplitOnUnquotedColon ( $str ) {
       }
 
     // A negative offset counts levels up from the control tag. One that reaches past the
-    // page root indexed a level that is not there - {cease -9} ended in a raw 'Undefined
-    // array key -7'. One that lands on the root itself is no loop either: {break -1} at the
+    // page root indexed a level that is not there - {pad:cease -9} ended in a raw 'Undefined
+    // array key -7'. One that lands on the root itself is no loop either: {pad:break -1} at the
     // top of a page did nothing at all, as a target of 0 reads as no jump (level/start.php).
     // Strict mode names it; the lenient walk falls to the nearest loop, as a name that
     // matches nothing does.
@@ -110,7 +110,7 @@ function padSplitOnUnquotedColon ( $str ) {
         return $pad + (int) $parm;
 
       if ( $padCheckSyntax )
-        padError ( "the offset $parm of {" . $padTag [$pad] . "} reaches past the "
+        padError ( "the offset $parm of {" . padTagDisplay () . "} reaches past the "
                    . ( $floor ? "pass it stands in" : "page" ) );
 
     }
@@ -129,15 +129,15 @@ function padSplitOnUnquotedColon ( $str ) {
     // control tag silently worked on the wrong level. Strict mode says so instead.
 
     if ( $parm and ! is_numeric ( $parm ) and $padCheckSyntax )
-      padError ( "there is no enclosing level named '$parm' for {" . $padTag [$pad] . "}"
+      padError ( "there is no enclosing level named '$parm' for {" . padTagDisplay () . "}"
                  . ( $floor ? " in the pass it stands in" : "" ) );
 
     // The nearest loop is past every level that renders its content once for the row it
-    // stands in (padLevelInRow) - only an {if} and a {case} were, and a nameless control
-    // inside an {ifchanged}, a property pair, a {guest} or a {spaceless} acted on that
-    // level: its one occurrence ended and the loop ran on, in silence - {rows}{notFirst@rows}
-    // {break}{/notFirst@rows}{$a}{/rows} printed every row. The root of a pass - the page,
-    // or a nested pass such as a {code} - ends the search, as it did.
+    // stands in (padLevelInRow) - only an {pad:if} and a {pad:case} were, and a nameless control
+    // inside an {pad:ifchanged}, a property pair, a {pad:guest} or a {pad:spaceless} acted on that
+    // level: its one occurrence ended and the loop ran on, in silence - {rows}{property:notFirst@rows}
+    // {pad:break}{/property:notFirst@rows}{$a}{/rows} printed every row. The root of a pass - the page,
+    // or a nested pass such as a {pad:code} - ends the search, as it did.
 
     for ( $key = $pad-1; $key >= $floor ; $key-- )
       if ( $padTag [$key] == 'internal' or ! padLevelInRow ( $key ) ) {
@@ -146,7 +146,7 @@ function padSplitOnUnquotedColon ( $str ) {
         // Strict mode says so; the lenient walk keeps the old answer.
 
         if ( $padCheckSyntax and $padTag [$key] == 'internal' )
-          padError ( "there is no enclosing loop for {" . $padTag [$pad] . "}" );
+          padError ( "there is no enclosing loop for {" . padTagDisplay () . "}" );
 
         return $key;
 
@@ -212,7 +212,7 @@ function padSplitOnUnquotedColon ( $str ) {
   }
 
   // A field spliced into the parameters of the tag around it, outside any quotes - the
-  // {$v} of {echo {$v}} - becomes part of that tag's expression, and a value of php:getcwd
+  // {$v} of {pad:echo {$v}} - becomes part of that tag's expression, and a value of php:getcwd
   // there was a call. Under $padProtectValues level/var.php splices it as a quoted string
   // instead, unless it is a plain number; its own quotes are protected, so it cannot close
   // the quote. A value inside quotes or in text no tag encloses is left as it is, and so is
@@ -220,7 +220,7 @@ function padSplitOnUnquotedColon ( $str ) {
   // the tag's own place - bare, {{$x}}, or completing the tag's word, {php:{$x}} - is never
   // a tag. A tag's rendered answer comes through here only for that place ($field FALSE,
   // level/end.php): written in another tag's parameters it is template text by design, the
-  // way the manual builds an option list from {notFirst},skipOpen{/notFirst}.
+  // way the manual builds an option list from {property:notFirst},skipOpen{/property:notFirst}.
   //
   // The enclosing tag is the last { before the splice: the scanner resolves the innermost
   // tag first and left to right, so every complete tag before this point is gone already.
@@ -298,9 +298,9 @@ function padSplitOnUnquotedColon ( $str ) {
 
     // A { that opens no tag - followed by whitespace or a double quote, as padWhiteCheck
     // reads it - is passed over to the one before it, as the scanner passes it over: inside
-    // a quoted parameter, {echo '{"q": ' . {$q} . '}'}, it was taken for the tag's own brace,
+    // a quoted parameter, {pad:echo '{"q": ' . {$q} . '}'}, it was taken for the tag's own brace,
     // the value judged to stand in text and left bare, and a request value's php:abs(-3) ran
-    // as part of the {echo}.
+    // as part of the {pad:echo}.
 
     while ( $open !== FALSE and $open < $window - 1 and ( ctype_space ( $before [$open + 1] ) or $before [$open + 1] == '"' ) )
       $open = $open ? strrpos ( $before, '{', $open - $window - 1 ) : FALSE;
@@ -325,7 +325,7 @@ function padSplitOnUnquotedColon ( $str ) {
 
     // A value spliced in the tag's own place re-enters the scan as a tag - {{$x}} ran the
     // value as one, PHP calls and all, {php:{$x}} let it pick the PHP function and
-    // {{echo $x}} did the same with a tag's answer - and a value glued to a sigil builds a
+    // {{pad:echo $x}} did the same with a tag's answer - and a value glued to a sigil builds a
     // field reference from it, {${$k}}. "Values are text": the value never becomes a tag
     // or part of a tag's word, and a field name built with it passes the check a name {$$k}
     // takes from a value passes (padValueName), so the two spellings read the same names -
@@ -379,7 +379,7 @@ function padSplitOnUnquotedColon ( $str ) {
     padSpliceQuoteOpen ( $inside, $quote, $quoteAt );
 
     // A value standing in SQL the template writes, outside a quoted literal of it - the SQL
-    // of {field}, {record}, {array}, {check}, the having=, fields= ... of a select table - is
+    // of {pad:field}, {pad:record}, {pad:array}, {pad:check}, the having=, fields= ... of a select table - is
     // SQL: refused (padDbSplice, lib/db.php).
 
     if ( $padSpliceWhat = padDbSplice ( $inside, $quote, $quoteAt ) ) {
@@ -391,7 +391,7 @@ function padSplitOnUnquotedColon ( $str ) {
     // expression itself once quoted: a request value with php:abs(-3) in it ran PHP. That is
     // a whole condition from a value, which where.php refuses for where=$cond as well - and
     // the same for the expression of the eval sequence (sequence/types/eval/loop.php), in each
-    // of its spellings: eval=, {eval {$q}}, sequence:eval(2, {$q}).
+    // of its spellings: eval=, {sequence:eval {$q}}, sequence:eval(2, {$q}).
 
     if ( $quote === '' and $padSpliceWhat = padSpliceExpression ( $inside ) ) {
       padError ( "$padSpliceWhat is an expression the template writes: give it as a quoted string, and put a value in it as \$name" );
@@ -402,7 +402,7 @@ function padSplitOnUnquotedColon ( $str ) {
       return "'$value'";
 
     // Inside the quoted expression of where= or of the eval sequence - where='$n eq {$f}',
-    // {eval '@ * {$q}'}, make='eval|@ * {$q}' - the text is evaluated again for every row, and
+    // {sequence:eval '@ * {$q}'}, make='eval|@ * {$q}' - the text is evaluated again for every row, and
     // a value standing in it bare became part of that expression: a request value 2 or $n eq
     // php:abs(-3) called PHP. It goes in as a string of the expression, in the other quote,
     // unless it stands in one already; its own quotes are protected, so it closes neither.
@@ -465,8 +465,8 @@ function padSplitOnUnquotedColon ( $str ) {
 
   // Whether a splice stands in an expression the engine evaluates - $head the tag's text up to
   // the splice or up to the quote it stands in, $text what that quote holds before it - and
-  // which one, for the refusal: the where= and eval= options, the item of {eval} (written
-  // sequence:eval, make:eval ... too) and of {sequence eval, ...}, the parameter of
+  // which one, for the refusal: the where= and eval= options, the item of {sequence:eval} (written
+  // sequence:eval, make:eval ... too) and of {sequence:eval ...}, the parameter of
   // sequence:eval() - or eval() - in an expression, and the text after eval| in make=, keep=,
   // remove= and flag=. The eval sequence itself refuses what no spelling here catches. In any case, as a file system that
   // ignores case finds the option or tag for WHERE= and Eval= as well: those passed the guard
@@ -476,7 +476,7 @@ function padSplitOnUnquotedColon ( $str ) {
   // variable - a name of two letters or more and anything beside it, a space included - so an
   // evaluator of a tag's text can refuse an expression that holds it outside its own strings
   // (padSpliceInCode), whatever spelling it stood in: a guard that recognised each spelling let
-  // eval(2, '@ * {$q}') and {sequence eval, '@ * {$q}'} run the value's php:abs(-3). A bare
+  // eval(2, '@ * {$q}') and {sequence:eval '@ * {$q}'} run the value's php:abs(-3). A bare
   // name calls a function as well - strlen 5 - so a ( or a : is not needed for that. A single
   // word, a number or operators alone are not kept: a - printed in a tag's parameters made
   // eval='@ - 1' a refusal.
@@ -489,7 +489,7 @@ function padSplitOnUnquotedColon ( $str ) {
   }
 
   // Whether an expression about to be evaluated - the eval sequence's, a where=, a format= of
-  // {datatable} - holds a value kept by padSpliceRecord outside the expression's own strings,
+  // {pad:datatable} - holds a value kept by padSpliceRecord outside the expression's own strings,
   // where it is part of the code.
 
   function padSpliceInCode ( $expression ) {
@@ -539,13 +539,13 @@ function padSplitOnUnquotedColon ( $str ) {
       return strtolower ( $match [2] ) . '=';
 
     if ( preg_match ( '/^((pad|sequence|make|keep|remove|flag):)?eval\s(.*,)?\s*$/is', $head ) )
-      return '{eval}';
+      return '{sequence:eval}';
 
     if ( preg_match ( '/^\s*eval\s*\|/i', $text ) )
       return 'eval|';
 
-    if ( preg_match ( '/^((pad|sequence):)?sequence\s(.*[\s,])?eval\s*,(.*,)?\s*$/is', $head ) )
-      return '{sequence eval}';
+    if ( preg_match ( '/^(sequence|action|make|keep|remove):auto\s(.*[\s,])?eval\s*,(.*,)?\s*$/is', $head ) )
+      return '{sequence:eval}';
 
     if ( preg_match_all ( '/(?<![\w$:])(?:sequence:)?eval\s*\(/i', $head, $match, PREG_OFFSET_CAPTURE ) ) {
       $rest = substr ( $head, end ( $match [0] ) [1] + strlen ( end ( $match [0] ) [0] ) );
@@ -610,7 +610,7 @@ function padSplitOnUnquotedColon ( $str ) {
 
   // Takes the {# ... #} comments out of a template before it is scanned. The scanner
   // handles the first } and the { before it, so a tag inside a comment ran before the
-  // comment was ever seen: {# {set $x = 99} #}{$x} printed 99. A comment opens with {#
+  // comment was ever seen: {# {pad:set $x = 99} #}{$x} printed 99. A comment opens with {#
   // and closes at the first #} after it. Not a comment: the option sigil {#name} or
   // {#name | pipe}, and a {# whose span reaches another {# before any #} - the strict
   // check names an unclosed one, and the lenient walk reads {# x } as it always did.
@@ -674,11 +674,11 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
-  // The content of a text pair - a {highlight} sample, what {ignore} wraps, a pair carrying
-  // the ignore option such as {markdown ignore} - is shown as it stands: a sample of the ~
-  // syntax lost every ~ and the line breaks beside them, {ignore}{~items~}{/ignore} printed
+  // The content of a text pair - a {pad:highlight} sample, what {pad:ignore} wraps, a pair carrying
+  // the ignore option such as {pad:markdown ignore} - is shown as it stands: a sample of the ~
+  // syntax lost every ~ and the line breaks beside them, {pad:ignore}{~items~}{/pad:ignore} printed
   // {items}. It is set aside while the rest is stripped; the pair's own tags keep their ~.
-  // The pairs are read as the {else} scans read them (padTextSpans, lib/template.php).
+  // The pairs are read as the {pad:else} scans read them (padTextSpans, lib/template.php).
   //
   // A text that still holds its comments - the page's template the assembly reads before
   // it renders (padLayoutTilde) - has its pairs read with them written over, as the render
@@ -699,7 +699,7 @@ function padSplitOnUnquotedColon ( $str ) {
 
   // The second comment form, {-- ... --}, the one the reference and every editor kit
   // write. The {-- must be followed by whitespace, so a CSS custom property inside an
-  // {ignore} block - :root{--gap:4px} - is never read as a comment; the comment closes at
+  // {pad:ignore} block - :root{--gap:4px} - is never read as a comment; the comment closes at
   // the first --} after it, and one that never closes stays as it is.
 
   function padCommentStripDash ( $text, $blank = FALSE ) {

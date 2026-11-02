@@ -1,6 +1,6 @@
 <?php
 
-  // Flows: {chart 'sankey', data='energy', source='from', target='to', value='amount'}.
+  // Flows: {chart:sankey data='energy', source='from', target='to', value='amount'}.
   //
   // A row is a flow from one node to another; source= and target= name the fields - else
   // the first two that are no number - and value= the amount, else the first numeric

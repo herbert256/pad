@@ -1,7 +1,7 @@
 <?php
 
   // Fallback when nothing named a sequence type or a store: plain 'loop', which just counts
-  // from $pqFrom, so a bare {sequence rows=5} still produces something.
+  // from $pqFrom, so a bare {sequence:auto rows=5} still produces something.
   //
   // That is the right answer only when nothing was named at all. A name that was given and
   // matched no store, no type and no action is a mistake - a typo, or a store that was never
@@ -10,11 +10,11 @@
   //
   // Three places can carry such a name: the first parameter, if nothing claimed it; the tag
   // itself, when it is not one of the entry points in start/tags/; and a bare option, which
-  // is how {sequence prime} arrives and so how {sequence prmie} arrives too. An option only
+  // is how {sequence:prime} arrives and so how {sequence:auto prmie} arrives too. An option only
   // counts as a name when nothing else has a use for it - the check is the one
   // exits/store/check.php makes of a store name, run the other way round.
   //
-  // A run that found an action but no sequence is not a mistake: {sum from=31, to=40} means
+  // A run that found an action but no sequence is not a mistake: {action:sum from=31, to=40} means
   // the action over the counting sequence this file falls back to, so nothing is reported.
   //
   // Only reached when the run resolved to nothing at all, so a tag that named a real

@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Reference - Notations - bridge · PAD reference
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/play.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+  </head>
+  <body class="frame app-reference">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>reference</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="reference">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Index</a>
+        <div class="frame-head">
+          Tags
+        </div><a href="index%EF%B9%96index.html#pad-tags">PAD tags</a> <a href="index%EF%B9%96index.html#tag-types">Tag types</a> <a href="index%EF%B9%96index.html#tag-properties">Tag properties</a> <a href="index%EF%B9%96index.html#tag-options">Tag options</a> <a href="index%EF%B9%96index.html#common-tags">Common tags</a> <a href="index%EF%B9%96index.html#common-includes">Common includes</a>
+        <div class="frame-head">
+          Functions
+        </div><a href="index%EF%B9%96index.html#pad-functions">PAD functions</a> <a href="index%EF%B9%96index.html#single-functions">Single functions</a> <a href="index%EF%B9%96index.html#parms-functions">Parms functions</a>
+        <div class="frame-head">
+          Configuration
+        </div><a href="index%EF%B9%96index.html#error-actions">Error actions</a> <a href="index%EF%B9%96index.html#output-types">Output types</a> <a href="index%EF%B9%96index.html#info-modes">Info modes</a> <a href="index%EF%B9%96index.html#cache-backends">Cache backends</a>
+        <div class="frame-head">
+          At (x@y)
+        </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
+        <div class="frame-head">
+          More
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#oauth-providers">OAuth providers</a> <a href="index%EF%B9%96index.html#notification-channels">Notification channels</a> <a href="index%EF%B9%96index.html#ai-providers">AI providers</a> <a href="index%EF%B9%96index.html#pattern-types">Pattern types</a> <a href="index%EF%B9%96index.html#image-filters">Image filters</a> <a href="index%EF%B9%96index.html#holiday-countries">Holiday countries</a> <a href="index%EF%B9%96index.html#search-languages">Search languages</a> <a href="index%EF%B9%96index.html#data-formats">Data formats</a> <a href="index%EF%B9%96index.html#sounds">Sounds</a> <a href="index%EF%B9%96index.html#printables">Printables</a> <a href="index%EF%B9%96index.html#notations">Notations</a> <a href="index%EF%B9%96index.html#formula-functions">Formula functions</a> <a href="index%EF%B9%96index.html#section-types">Section types</a> <a href="index%EF%B9%96index.html#effect-types">Effect types</a> <a href="index%EF%B9%96index.html#json-ld-kinds">JSON-LD kinds</a> <a href="index%EF%B9%96index.html#themes">Themes</a> <a href="index%EF%B9%96index.html#palettes">Palettes</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Reference - Notations - bridge
+        </h1>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <center>
+                <hr>
+                App: notations - Page: bridge<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">bridge.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J0JyaWRnZSBkZWFscycvfVxuPHAgY2xhc3M9XCJudC1sZWFkXCI+QSBkZWFsIG9mIGNvbnRyYWN0IGJyaWRnZSB3cml0dGVuIGFzIHRoZSBEZWFsIHRhZyBvZlxuPGEgaHJlZj1cImh0dHBzOi8vd3d3LnRpc3Rpcy5ubC9wYm4vXCI+UEJOPC9hPiwgdGhlIFBvcnRhYmxlIEJyaWRnZSBOb3RhdGlvbiBldmVyeSBicmlkZ2UgcHJvZ3JhbVxucmVhZHMgYW5kIHdyaXRlcyAtIHRoZSBzZWF0IG9mIHRoZSBmaXJzdCBoYW5kIGFuZCBhIGNvbG9uLCB0aGVuIHRoZSBmb3VyIGhhbmRzIGNsb2Nrd2lzZSwgZWFjaCBpdHNcbnNwYWRlcywgaGVhcnRzLCBkaWFtb25kcyBhbmQgY2x1YnMgYXBhcnQgYnkgZG90cywgYSBkYXNoIGZvciBhIGhhbmQgbm90IHNob3duIC0gZHJhd24gYXMgdGhlXG5kaWFncmFtIG9mIGEgYnJpZGdlIGNvbHVtbjogTm9ydGggYXQgdGhlIHRvcCwgU291dGggYXQgdGhlIGJvdHRvbSwgV2VzdCBhbmQgRWFzdCBlaXRoZXIgc2lkZSxcbmV2ZXJ5IHN1aXQgZnJvbSB0aGUgYWNlIGRvd24sIHRoZSBjb21wYXNzIGluIHRoZSBtaWRkbGUgd2l0aCB0aGUgZGVhbGVyIHJpbmdlZCBhbmQgdGhlIHZ1bG5lcmFibGVcbnNpZGVzIHJlZC4gQSBzY3JlZW4gcmVhZGVyIGhlYXJzIGV2ZXJ5IGhhbmQgY2FyZCBieSBjYXJkLiBBIGNhcmQgZGVhbHQgdHdpY2UsIGEgcmFuayB0aGF0IGlzXG5ub25lIGFuZCBoYW5kcyBvZiBkaWZmZXJlbnQgc2l6ZXMgYXJlIG5hbWVkLjwvcD5cblxuPHAgY2xhc3M9XCJudC10YWdcIj5Xcml0dGVuIDxjb2RlPntwYWQ6b3Blbi99bm90YXRpb246YnJpZGdlICdOOi42My5BS1E5ODcuQTk3MzIgQTg2NTQuS1E1LlQuUUpUNiAuLi4nL3twYWQ6Y2xvc2UvfTwvY29kZT4uXG48Y29kZT5kZWFsZXI9J04nPC9jb2RlPiByaW5ncyB0aGUgZGVhbGVyLCA8Y29kZT52dWxuZXJhYmxlPTwvY29kZT4gaXMgPGNvZGU+bm9uZTwvY29kZT4sXG48Y29kZT5uczwvY29kZT4sIDxjb2RlPmV3PC9jb2RlPiBvciA8Y29kZT5hbGw8L2NvZGU+LCA8Y29kZT5wb2ludHM8L2NvZGU+IHdyaXRlcyB0aGUgaGlnaC1jYXJkIHBvaW50c1xub2YgZXZlcnkgaGFuZC48L3A+XG5cbntpbmNsdWRlOmV4YW1wbGVzL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J0JyaWRnZSBkZWFscycvfVxuPHAgY2xhc3M9XCJudC1sZWFkXCI+QSBkZWFsIG9mIGNvbnRyYWN0IGJyaWRnZSB3cml0dGVuIGFzIHRoZSBEZWFsIHRhZyBvZlxuPGEgaHJlZj1cImh0dHBzOi8vd3d3LnRpc3Rpcy5ubC9wYm4vXCI+UEJOPC9hPiwgdGhlIFBvcnRhYmxlIEJyaWRnZSBOb3RhdGlvbiBldmVyeSBicmlkZ2UgcHJvZ3JhbVxucmVhZHMgYW5kIHdyaXRlcyAtIHRoZSBzZWF0IG9mIHRoZSBmaXJzdCBoYW5kIGFuZCBhIGNvbG9uLCB0aGVuIHRoZSBmb3VyIGhhbmRzIGNsb2Nrd2lzZSwgZWFjaCBpdHNcbnNwYWRlcywgaGVhcnRzLCBkaWFtb25kcyBhbmQgY2x1YnMgYXBhcnQgYnkgZG90cywgYSBkYXNoIGZvciBhIGhhbmQgbm90IHNob3duIC0gZHJhd24gYXMgdGhlXG5kaWFncmFtIG9mIGEgYnJpZGdlIGNvbHVtbjogTm9ydGggYXQgdGhlIHRvcCwgU291dGggYXQgdGhlIGJvdHRvbSwgV2VzdCBhbmQgRWFzdCBlaXRoZXIgc2lkZSxcbmV2ZXJ5IHN1aXQgZnJvbSB0aGUgYWNlIGRvd24sIHRoZSBjb21wYXNzIGluIHRoZSBtaWRkbGUgd2l0aCB0aGUgZGVhbGVyIHJpbmdlZCBhbmQgdGhlIHZ1bG5lcmFibGVcbnNpZGVzIHJlZC4gQSBzY3JlZW4gcmVhZGVyIGhlYXJzIGV2ZXJ5IGhhbmQgY2FyZCBieSBjYXJkLiBBIGNhcmQgZGVhbHQgdHdpY2UsIGEgcmFuayB0aGF0IGlzXG5ub25lIGFuZCBoYW5kcyBvZiBkaWZmZXJlbnQgc2l6ZXMgYXJlIG5hbWVkLjwvcD5cblxuPHAgY2xhc3M9XCJudC10YWdcIj5Xcml0dGVuIDxjb2RlPntwYWQ6b3Blbi99bm90YXRpb246YnJpZGdlICdOOi42My5BS1E5ODcuQTk3MzIgQTg2NTQuS1E1LlQuUUpUNiAuLi4nL3twYWQ6Y2xvc2UvfTwvY29kZT4uXG48Y29kZT5kZWFsZXI9J04nPC9jb2RlPiByaW5ncyB0aGUgZGVhbGVyLCA8Y29kZT52dWxuZXJhYmxlPTwvY29kZT4gaXMgPGNvZGU+bm9uZTwvY29kZT4sXG48Y29kZT5uczwvY29kZT4sIDxjb2RlPmV3PC9jb2RlPiBvciA8Y29kZT5hbGw8L2NvZGU+LCA8Y29kZT5wb2ludHM8L2NvZGU+IHdyaXRlcyB0aGUgaGlnaC1jYXJkIHBvaW50c1xub2YgZXZlcnkgaGFuZC48L3A+XG5cbntpbmNsdWRlOmV4YW1wbGVzL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>meta </font><font color="red">title=<font color="black">'</font>Bridge deals<font color="black">'</font></font>/}</b><br>&lt;p class="nt-lead"&gt;A deal of contract bridge written as the Deal tag of<br>&lt;a href="https://www.tistis.nl/pbn/"&gt;PBN&lt;/a&gt;, the Portable Bridge Notation every bridge program<br>reads and writes - the seat of the first hand and a colon, then the four hands clockwise, each its<br>spades, hearts, diamonds and clubs apart by dots, a dash for a hand not shown - drawn as the<br>diagram of a bridge column: North at the top, South at the bottom, West and East either side,<br>every suit from the ace down, the compass in the middle with the dealer ringed and the vulnerable<br>sides red. A screen reader hears every hand card by card. A card dealt twice, a rank that is<br>none and hands of different sizes are named.&lt;/p&gt;<br><br>&lt;p class="nt-tag"&gt;Written &lt;code&gt;<b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>N<font color="black">:</font>.63.AKQ987.A9732 A8654.KQ5.T.QJT6 ...<font color="black">'</font></font>/}</b>&lt;/code&gt;.<br>&lt;code&gt;dealer='N'&lt;/code&gt; rings the dealer, &lt;code&gt;vulnerable=&lt;/code&gt; is &lt;code&gt;none&lt;/code&gt;,<br>&lt;code&gt;ns&lt;/code&gt;, &lt;code&gt;ew&lt;/code&gt; or &lt;code&gt;all&lt;/code&gt;, &lt;code&gt;points&lt;/code&gt; writes the high-card points<br>of every hand.&lt;/p&gt;<br><br><b>{<font color="blue"><font color="purple">include</font><font color="black"><b>:</b></font>examples</font><font color="red"></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxd7400692cb19767787491d889f1ac988"></div>
+                      <script>
+                      padAjaxd7400692cb19767787491d889f1ac988 = new XMLHttpRequest();
+                      padAjaxd7400692cb19767787491d889f1ac988.onreadystatechange=function() {
+                      if (padAjaxd7400692cb19767787491d889f1ac988.readyState === 4) {
+                      if (padAjaxd7400692cb19767787491d889f1ac988.status === 200) {
+                      document.getElementById("padAjaxd7400692cb19767787491d889f1ac988").innerHTML=padAjaxd7400692cb19767787491d889f1ac988.responseText;
+                      } else {
+                      document.getElementById("padAjaxd7400692cb19767787491d889f1ac988").innerHTML=padAjaxd7400692cb19767787491d889f1ac988.statusText;
+                      }
+                      }
+                      }
+                      padAjaxd7400692cb19767787491d889f1ac988.open("GET","http://localhost/pad/notations/?bridge&padInclude",true);
+                      padAjaxd7400692cb19767787491d889f1ac988.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_bridge_card_dealt_twice_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_bridge_card_dealt_twice_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOkFLLlEuSi5UIEFLLlEuSi45IC0gLScvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOkFLLlEuSi5UIEFLLlEuSi45IC0gLScvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>N<font color="black">:</font>AK.Q.J.T AK.Q.J.9 - -<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxa742931c8b8a188d1771e3253cec78bc"></div>
+                      <script>
+                      padAjaxa742931c8b8a188d1771e3253cec78bc = new XMLHttpRequest();
+                      padAjaxa742931c8b8a188d1771e3253cec78bc.onreadystatechange=function() {
+                      if (padAjaxa742931c8b8a188d1771e3253cec78bc.readyState === 4) {
+                      if (padAjaxa742931c8b8a188d1771e3253cec78bc.status === 200) {
+                      document.getElementById("padAjaxa742931c8b8a188d1771e3253cec78bc").innerHTML=padAjaxa742931c8b8a188d1771e3253cec78bc.responseText;
+                      } else {
+                      document.getElementById("padAjaxa742931c8b8a188d1771e3253cec78bc").innerHTML=padAjaxa742931c8b8a188d1771e3253cec78bc.statusText;
+                      }
+                      }
+                      }
+                      padAjaxa742931c8b8a188d1771e3253cec78bc.open("GET","http://localhost/pad/regression/errors/?syntax/a_bridge_card_dealt_twice_is_reported&padInclude",true);
+                      padAjaxa742931c8b8a188d1771e3253cec78bc.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_bridge_card_of_no_rank_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_bridge_card_of_no_rank_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOkFaLlEuSi5UIC0gLSAtJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOkFaLlEuSi5UIC0gLSAtJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>N<font color="black">:</font>AZ.Q.J.T - - -<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax86d1b03314bdf127278ad1d385d857f0"></div>
+                      <script>
+                      padAjax86d1b03314bdf127278ad1d385d857f0 = new XMLHttpRequest();
+                      padAjax86d1b03314bdf127278ad1d385d857f0.onreadystatechange=function() {
+                      if (padAjax86d1b03314bdf127278ad1d385d857f0.readyState === 4) {
+                      if (padAjax86d1b03314bdf127278ad1d385d857f0.status === 200) {
+                      document.getElementById("padAjax86d1b03314bdf127278ad1d385d857f0").innerHTML=padAjax86d1b03314bdf127278ad1d385d857f0.responseText;
+                      } else {
+                      document.getElementById("padAjax86d1b03314bdf127278ad1d385d857f0").innerHTML=padAjax86d1b03314bdf127278ad1d385d857f0.statusText;
+                      }
+                      }
+                      }
+                      padAjax86d1b03314bdf127278ad1d385d857f0.open("GET","http://localhost/pad/regression/errors/?syntax/a_bridge_card_of_no_rank_is_reported&padInclude",true);
+                      padAjax86d1b03314bdf127278ad1d385d857f0.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_bridge_deal_of_hands_of_other_sizes_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_bridge_deal_of_hands_of_other_sizes_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOkFLLlEuSi5UIFEuMi5BLiAtIC0nL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOkFLLlEuSi5UIFEuMi5BLiAtIC0nL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>N<font color="black">:</font>AK.Q.J.T Q.2.A. - -<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax44e5ac36963d6cd6bd86a2da09d22dc8"></div>
+                      <script>
+                      padAjax44e5ac36963d6cd6bd86a2da09d22dc8 = new XMLHttpRequest();
+                      padAjax44e5ac36963d6cd6bd86a2da09d22dc8.onreadystatechange=function() {
+                      if (padAjax44e5ac36963d6cd6bd86a2da09d22dc8.readyState === 4) {
+                      if (padAjax44e5ac36963d6cd6bd86a2da09d22dc8.status === 200) {
+                      document.getElementById("padAjax44e5ac36963d6cd6bd86a2da09d22dc8").innerHTML=padAjax44e5ac36963d6cd6bd86a2da09d22dc8.responseText;
+                      } else {
+                      document.getElementById("padAjax44e5ac36963d6cd6bd86a2da09d22dc8").innerHTML=padAjax44e5ac36963d6cd6bd86a2da09d22dc8.statusText;
+                      }
+                      }
+                      }
+                      padAjax44e5ac36963d6cd6bd86a2da09d22dc8.open("GET","http://localhost/pad/regression/errors/?syntax/a_bridge_deal_of_hands_of_other_sizes_is_reported&padInclude",true);
+                      padAjax44e5ac36963d6cd6bd86a2da09d22dc8.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_bridge_deal_of_three_hands_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_bridge_deal_of_three_hands_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOkFLLlEuSi5UIC0gLScvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOkFLLlEuSi5UIC0gLScvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>N<font color="black">:</font>AK.Q.J.T - -<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax7cc90f346e15017ca0f43359af568f78"></div>
+                      <script>
+                      padAjax7cc90f346e15017ca0f43359af568f78 = new XMLHttpRequest();
+                      padAjax7cc90f346e15017ca0f43359af568f78.onreadystatechange=function() {
+                      if (padAjax7cc90f346e15017ca0f43359af568f78.readyState === 4) {
+                      if (padAjax7cc90f346e15017ca0f43359af568f78.status === 200) {
+                      document.getElementById("padAjax7cc90f346e15017ca0f43359af568f78").innerHTML=padAjax7cc90f346e15017ca0f43359af568f78.responseText;
+                      } else {
+                      document.getElementById("padAjax7cc90f346e15017ca0f43359af568f78").innerHTML=padAjax7cc90f346e15017ca0f43359af568f78.statusText;
+                      }
+                      }
+                      }
+                      padAjax7cc90f346e15017ca0f43359af568f78.open("GET","http://localhost/pad/regression/errors/?syntax/a_bridge_deal_of_three_hands_is_reported&padInclude",true);
+                      padAjax7cc90f346e15017ca0f43359af568f78.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_bridge_first_seat_that_is_no_seat_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_bridge_first_seat_that_is_no_seat_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdYOkFLLlEuSi5UIC0gLSAtJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdYOkFLLlEuSi5UIC0gLSAtJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>X<font color="black">:</font>AK.Q.J.T - - -<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax03ac494800c9680b282059be93bb9b18"></div>
+                      <script>
+                      padAjax03ac494800c9680b282059be93bb9b18 = new XMLHttpRequest();
+                      padAjax03ac494800c9680b282059be93bb9b18.onreadystatechange=function() {
+                      if (padAjax03ac494800c9680b282059be93bb9b18.readyState === 4) {
+                      if (padAjax03ac494800c9680b282059be93bb9b18.status === 200) {
+                      document.getElementById("padAjax03ac494800c9680b282059be93bb9b18").innerHTML=padAjax03ac494800c9680b282059be93bb9b18.responseText;
+                      } else {
+                      document.getElementById("padAjax03ac494800c9680b282059be93bb9b18").innerHTML=padAjax03ac494800c9680b282059be93bb9b18.statusText;
+                      }
+                      }
+                      }
+                      padAjax03ac494800c9680b282059be93bb9b18.open("GET","http://localhost/pad/regression/errors/?syntax/a_bridge_first_seat_that_is_no_seat_is_reported&padInclude",true);
+                      padAjax03ac494800c9680b282059be93bb9b18.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_bridge_hand_of_more_than_thirteen_cards_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_bridge_hand_of_more_than_thirteen_cards_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOkFLUUpUOTg3NjU0MzIuQS4uIC0gLSAtJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOkFLUUpUOTg3NjU0MzIuQS4uIC0gLSAtJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>N<font color="black">:</font>AKQJT98765432.A.. - - -<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax0d71525c0808d88e04b3c891b1980b02"></div>
+                      <script>
+                      padAjax0d71525c0808d88e04b3c891b1980b02 = new XMLHttpRequest();
+                      padAjax0d71525c0808d88e04b3c891b1980b02.onreadystatechange=function() {
+                      if (padAjax0d71525c0808d88e04b3c891b1980b02.readyState === 4) {
+                      if (padAjax0d71525c0808d88e04b3c891b1980b02.status === 200) {
+                      document.getElementById("padAjax0d71525c0808d88e04b3c891b1980b02").innerHTML=padAjax0d71525c0808d88e04b3c891b1980b02.responseText;
+                      } else {
+                      document.getElementById("padAjax0d71525c0808d88e04b3c891b1980b02").innerHTML=padAjax0d71525c0808d88e04b3c891b1980b02.statusText;
+                      }
+                      }
+                      }
+                      padAjax0d71525c0808d88e04b3c891b1980b02.open("GET","http://localhost/pad/regression/errors/?syntax/a_bridge_hand_of_more_than_thirteen_cards_is_reported&padInclude",true);
+                      padAjax0d71525c0808d88e04b3c891b1980b02.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_bridge_hand_without_its_four_suits_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_bridge_hand_without_its_four_suits_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOkFLUS5KIC0gLSAtJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOkFLUS5KIC0gLSAtJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>N<font color="black">:</font>AKQ.J - - -<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb053ef8947080177879b782cd0f80239"></div>
+                      <script>
+                      padAjaxb053ef8947080177879b782cd0f80239 = new XMLHttpRequest();
+                      padAjaxb053ef8947080177879b782cd0f80239.onreadystatechange=function() {
+                      if (padAjaxb053ef8947080177879b782cd0f80239.readyState === 4) {
+                      if (padAjaxb053ef8947080177879b782cd0f80239.status === 200) {
+                      document.getElementById("padAjaxb053ef8947080177879b782cd0f80239").innerHTML=padAjaxb053ef8947080177879b782cd0f80239.responseText;
+                      } else {
+                      document.getElementById("padAjaxb053ef8947080177879b782cd0f80239").innerHTML=padAjaxb053ef8947080177879b782cd0f80239.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb053ef8947080177879b782cd0f80239.open("GET","http://localhost/pad/regression/errors/?syntax/a_bridge_hand_without_its_four_suits_is_reported&padInclude",true);
+                      padAjaxb053ef8947080177879b782cd0f80239.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_bridge_vulnerability_that_is_none_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_bridge_vulnerability_that_is_none_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOkEuSy5RLkogLSAtIC0nLCB2dWxuZXJhYmxlPSdyZWQnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOkEuSy5RLkogLSAtIC0nLCB2dWxuZXJhYmxlPSdyZWQnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>N<font color="black">:</font>A.K.Q.J - - -<font color="black">'</font><font color="black">,</font> vulnerable=<font color="black">'</font>red<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax2cf0dbb3d927efcaa135522c291d6053"></div>
+                      <script>
+                      padAjax2cf0dbb3d927efcaa135522c291d6053 = new XMLHttpRequest();
+                      padAjax2cf0dbb3d927efcaa135522c291d6053.onreadystatechange=function() {
+                      if (padAjax2cf0dbb3d927efcaa135522c291d6053.readyState === 4) {
+                      if (padAjax2cf0dbb3d927efcaa135522c291d6053.status === 200) {
+                      document.getElementById("padAjax2cf0dbb3d927efcaa135522c291d6053").innerHTML=padAjax2cf0dbb3d927efcaa135522c291d6053.responseText;
+                      } else {
+                      document.getElementById("padAjax2cf0dbb3d927efcaa135522c291d6053").innerHTML=padAjax2cf0dbb3d927efcaa135522c291d6053.statusText;
+                      }
+                      }
+                      }
+                      padAjax2cf0dbb3d927efcaa135522c291d6053.open("GET","http://localhost/pad/regression/errors/?syntax/a_bridge_vulnerability_that_is_none_is_reported&padInclude",true);
+                      padAjax2cf0dbb3d927efcaa135522c291d6053.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: notations/bridge_draws_nothing_for_a_deal_it_cannot_read_in_the_lenient_walk<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">notations/bridge_draws_nothing_for_a_deal_it_cannot_read_in_the_lenient_walk.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">notations/bridge_draws_nothing_for_a_deal_it_cannot_read_in_the_lenient_walk.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk: a card dealt twice, a first seat that is none, three hands and a rank<br>  // that is none draw nothing; a dealer and a vulnerability that are none are left out.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJbe25vdGF0aW9uOmJyaWRnZSAnTjpBSy5RLkouVCBBSy5RLkouOSAtIC0nL31dW3tub3RhdGlvbjpicmlkZ2UgJ1g6QUsuUS5KLlQgLSAtIC0nL31dW3tub3RhdGlvbjpicmlkZ2UgJ046QUsuUS5KLlQgLSAtJy99XVt7bm90YXRpb246YnJpZGdlICdOOkFaLlEuSi5UIC0gLSAtJy99XVt7bm90YXRpb246YnJpZGdlICdOOkEuSy5RLkogLSAtIC0nLCBkZWFsZXI9J25vcnRoJywgdnVsbmVyYWJsZT0ncmVkJy99XVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBsZW5pZW50IHdhbGs6IGEgY2FyZCBkZWFsdCB0d2ljZSwgYSBmaXJzdCBzZWF0IHRoYXQgaXMgbm9uZSwgdGhyZWUgaGFuZHMgYW5kIGEgcmFua1xuICAvLyB0aGF0IGlzIG5vbmUgZHJhdyBub3RoaW5nOyBhIGRlYWxlciBhbmQgYSB2dWxuZXJhYmlsaXR5IHRoYXQgYXJlIG5vbmUgYXJlIGxlZnQgb3V0LlxuXG4gICRwYWRDaGVja1N5bnRheCA9IEZBTFNFO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJbe25vdGF0aW9uOmJyaWRnZSAnTjpBSy5RLkouVCBBSy5RLkouOSAtIC0nL31dW3tub3RhdGlvbjpicmlkZ2UgJ1g6QUsuUS5KLlQgLSAtIC0nL31dW3tub3RhdGlvbjpicmlkZ2UgJ046QUsuUS5KLlQgLSAtJy99XVt7bm90YXRpb246YnJpZGdlICdOOkFaLlEuSi5UIC0gLSAtJy99XVt7bm90YXRpb246YnJpZGdlICdOOkEuSy5RLkogLSAtIC0nLCBkZWFsZXI9J25vcnRoJywgdnVsbmVyYWJsZT0ncmVkJy99XVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBsZW5pZW50IHdhbGs6IGEgY2FyZCBkZWFsdCB0d2ljZSwgYSBmaXJzdCBzZWF0IHRoYXQgaXMgbm9uZSwgdGhyZWUgaGFuZHMgYW5kIGEgcmFua1xuICAvLyB0aGF0IGlzIG5vbmUgZHJhdyBub3RoaW5nOyBhIGRlYWxlciBhbmQgYSB2dWxuZXJhYmlsaXR5IHRoYXQgYXJlIG5vbmUgYXJlIGxlZnQgb3V0LlxuXG4gICRwYWRDaGVja1N5bnRheCA9IEZBTFNFO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">[<b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>N<font color="black">:</font>AK.Q.J.T AK.Q.J.9 - -<font color="black">'</font></font>/}</b>][<b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>X<font color="black">:</font>AK.Q.J.T - - -<font color="black">'</font></font>/}</b>][<b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>N<font color="black">:</font>AK.Q.J.T - -<font color="black">'</font></font>/}</b>][<b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>N<font color="black">:</font>AZ.Q.J.T - - -<font color="black">'</font></font>/}</b>][<b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>N<font color="black">:</font>A.K.Q.J - - -<font color="black">'</font><font color="black">,</font> dealer=<font color="black">'</font>north<font color="black">'</font><font color="black">,</font> vulnerable=<font color="black">'</font>red<font color="black">'</font></font>/}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax41745bd3a6b162944f481a6d00334c8e"></div>
+                      <script>
+                      padAjax41745bd3a6b162944f481a6d00334c8e = new XMLHttpRequest();
+                      padAjax41745bd3a6b162944f481a6d00334c8e.onreadystatechange=function() {
+                      if (padAjax41745bd3a6b162944f481a6d00334c8e.readyState === 4) {
+                      if (padAjax41745bd3a6b162944f481a6d00334c8e.status === 200) {
+                      document.getElementById("padAjax41745bd3a6b162944f481a6d00334c8e").innerHTML=padAjax41745bd3a6b162944f481a6d00334c8e.responseText;
+                      } else {
+                      document.getElementById("padAjax41745bd3a6b162944f481a6d00334c8e").innerHTML=padAjax41745bd3a6b162944f481a6d00334c8e.statusText;
+                      }
+                      }
+                      }
+                      padAjax41745bd3a6b162944f481a6d00334c8e.open("GET","http://localhost/pad/regression/framework/?notations/bridge_draws_nothing_for_a_deal_it_cannot_read_in_the_lenient_walk&padInclude",true);
+                      padAjax41745bd3a6b162944f481a6d00334c8e.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: notations/bridge_draws_the_deal_of_the_pbn_standard_with_its_points<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">notations/bridge_draws_the_deal_of_the_pbn_standard_with_its_points.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOi42My5BS1E5ODcuQTk3MzIgQTg2NTQuS1E1LlQuUUpUNiBKOTczLko5ODc0Mi4zLks0IEtRVDIuQVQuSjY1NDIuODUnLCBkZWFsZXI9J04nLCB2dWxuZXJhYmxlPSducycsIHBvaW50cy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdOOi42My5BS1E5ODcuQTk3MzIgQTg2NTQuS1E1LlQuUUpUNiBKOTczLko5ODc0Mi4zLks0IEtRVDIuQVQuSjY1NDIuODUnLCBkZWFsZXI9J04nLCB2dWxuZXJhYmxlPSducycsIHBvaW50cy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>N<font color="black">:</font>.63.AKQ987.A9732 A8654.KQ5.T.QJT6 J973.J98742.3.K4 KQT2.AT.J6542.85<font color="black">'</font><font color="black">,</font> dealer=<font color="black">'</font>N<font color="black">'</font><font color="black">,</font> vulnerable=<font color="black">'</font>ns<font color="black">'</font><font color="black">,</font> points</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax8ce0da3c4f2a66225146a185bfb46e89"></div>
+                      <script>
+                      padAjax8ce0da3c4f2a66225146a185bfb46e89 = new XMLHttpRequest();
+                      padAjax8ce0da3c4f2a66225146a185bfb46e89.onreadystatechange=function() {
+                      if (padAjax8ce0da3c4f2a66225146a185bfb46e89.readyState === 4) {
+                      if (padAjax8ce0da3c4f2a66225146a185bfb46e89.status === 200) {
+                      document.getElementById("padAjax8ce0da3c4f2a66225146a185bfb46e89").innerHTML=padAjax8ce0da3c4f2a66225146a185bfb46e89.responseText;
+                      } else {
+                      document.getElementById("padAjax8ce0da3c4f2a66225146a185bfb46e89").innerHTML=padAjax8ce0da3c4f2a66225146a185bfb46e89.statusText;
+                      }
+                      }
+                      }
+                      padAjax8ce0da3c4f2a66225146a185bfb46e89.open("GET","http://localhost/pad/regression/framework/?notations/bridge_draws_the_deal_of_the_pbn_standard_with_its_points&padInclude",true);
+                      padAjax8ce0da3c4f2a66225146a185bfb46e89.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: notations/bridge_reads_a_deal_from_any_seat_with_hands_not_shown<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">notations/bridge_reads_a_deal_from_any_seat_with_hands_not_shown.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdXOktRVDIuQVQuSjY1NDIuODUgLSBBODY1NC5LUTUuVC5RSlQ2IC0nLCBkZWFsZXI9J3cnLCB2dWxuZXJhYmxlPSdCb3RoJy99XG57bm90YXRpb246YnJpZGdlICdlOjIzNDU2Nzg5VEpRS0EuLi4gLSAtIC0nLCB0aXRsZT0nPGI+VGhpcnRlZW4gc3BhZGVzPC9iPicvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246YnJpZGdlICdXOktRVDIuQVQuSjY1NDIuODUgLSBBODY1NC5LUTUuVC5RSlQ2IC0nLCBkZWFsZXI9J3cnLCB2dWxuZXJhYmxlPSdCb3RoJy99XG57bm90YXRpb246YnJpZGdlICdlOjIzNDU2Nzg5VEpRS0EuLi4gLSAtIC0nLCB0aXRsZT0nPGI+VGhpcnRlZW4gc3BhZGVzPC9iPicvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>W<font color="black">:</font>KQT2.AT.J6542.85 - A8654.KQ5.T.QJT6 -<font color="black">'</font><font color="black">,</font> dealer=<font color="black">'</font>w<font color="black">'</font><font color="black">,</font> vulnerable=<font color="black">'</font>Both<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>e<font color="black">:</font>23456789TJQKA... - - -<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>&lt;b&gt;Thirteen spades&lt;/b&gt;<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax71ad7cd25327ad3586350fcdd3bbdd4a"></div>
+                      <script>
+                      padAjax71ad7cd25327ad3586350fcdd3bbdd4a = new XMLHttpRequest();
+                      padAjax71ad7cd25327ad3586350fcdd3bbdd4a.onreadystatechange=function() {
+                      if (padAjax71ad7cd25327ad3586350fcdd3bbdd4a.readyState === 4) {
+                      if (padAjax71ad7cd25327ad3586350fcdd3bbdd4a.status === 200) {
+                      document.getElementById("padAjax71ad7cd25327ad3586350fcdd3bbdd4a").innerHTML=padAjax71ad7cd25327ad3586350fcdd3bbdd4a.responseText;
+                      } else {
+                      document.getElementById("padAjax71ad7cd25327ad3586350fcdd3bbdd4a").innerHTML=padAjax71ad7cd25327ad3586350fcdd3bbdd4a.statusText;
+                      }
+                      }
+                      }
+                      padAjax71ad7cd25327ad3586350fcdd3bbdd4a.open("GET","http://localhost/pad/regression/framework/?notations/bridge_reads_a_deal_from_any_seat_with_hands_not_shown&padInclude",true);
+                      padAjax71ad7cd25327ad3586350fcdd3bbdd4a.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: tags - Page: examples/notation/bridge-1-deal<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">examples/notation/bridge-1-deal.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J0EgYnJpZGdlIGRlYWwnLCBhYm91dD0nVGhlIGV4YW1wbGUgZGVhbCBvZiB0aGUgUG9ydGFibGUgQnJpZGdlIE5vdGF0aW9uOiB0aGUgZm91ciBoYW5kcyByb3VuZCB0aGUgY29tcGFzcywgdGhlIGRlYWxlciByaW5nZWQsIHRoZSB2dWxuZXJhYmxlIHNpZGUgcmVkIGFuZCB0aGUgaGlnaC1jYXJkIHBvaW50cyBvZiBldmVyeSBoYW5kLicvfVxue25vdGF0aW9uOmJyaWRnZSAnTjouNjMuQUtROTg3LkE5NzMyIEE4NjU0LktRNS5ULlFKVDYgSjk3My5KOTg3NDIuMy5LNCBLUVQyLkFULko2NTQyLjg1JywgZGVhbGVyPSdOJywgdnVsbmVyYWJsZT0nbnMnLCBwb2ludHMvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J0EgYnJpZGdlIGRlYWwnLCBhYm91dD0nVGhlIGV4YW1wbGUgZGVhbCBvZiB0aGUgUG9ydGFibGUgQnJpZGdlIE5vdGF0aW9uOiB0aGUgZm91ciBoYW5kcyByb3VuZCB0aGUgY29tcGFzcywgdGhlIGRlYWxlciByaW5nZWQsIHRoZSB2dWxuZXJhYmxlIHNpZGUgcmVkIGFuZCB0aGUgaGlnaC1jYXJkIHBvaW50cyBvZiBldmVyeSBoYW5kLicvfVxue25vdGF0aW9uOmJyaWRnZSAnTjouNjMuQUtROTg3LkE5NzMyIEE4NjU0LktRNS5ULlFKVDYgSjk3My5KOTg3NDIuMy5LNCBLUVQyLkFULko2NTQyLjg1JywgZGVhbGVyPSdOJywgdnVsbmVyYWJsZT0nbnMnLCBwb2ludHMvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>meta </font><font color="red">title=<font color="black">'</font>A bridge deal<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>The example deal of the Portable Bridge Notation<font color="black">:</font> the four hands round the compass<font color="black">,</font> the dealer ringed<font color="black">,</font> the vulnerable side red and the high-card points of every hand.<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">notation</font><font color="black"><b>:</b></font>bridge </font><font color="red"><font color="black">'</font>N<font color="black">:</font>.63.AKQ987.A9732 A8654.KQ5.T.QJT6 J973.J98742.3.K4 KQT2.AT.J6542.85<font color="black">'</font><font color="black">,</font> dealer=<font color="black">'</font>N<font color="black">'</font><font color="black">,</font> vulnerable=<font color="black">'</font>ns<font color="black">'</font><font color="black">,</font> points</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb9b50d25ad3ba38a1863ae367f5c4159"></div>
+                      <script>
+                      padAjaxb9b50d25ad3ba38a1863ae367f5c4159 = new XMLHttpRequest();
+                      padAjaxb9b50d25ad3ba38a1863ae367f5c4159.onreadystatechange=function() {
+                      if (padAjaxb9b50d25ad3ba38a1863ae367f5c4159.readyState === 4) {
+                      if (padAjaxb9b50d25ad3ba38a1863ae367f5c4159.status === 200) {
+                      document.getElementById("padAjaxb9b50d25ad3ba38a1863ae367f5c4159").innerHTML=padAjaxb9b50d25ad3ba38a1863ae367f5c4159.responseText;
+                      } else {
+                      document.getElementById("padAjaxb9b50d25ad3ba38a1863ae367f5c4159").innerHTML=padAjaxb9b50d25ad3ba38a1863ae367f5c4159.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb9b50d25ad3ba38a1863ae367f5c4159.open("GET","http://localhost/pad/tags/?examples/notation/bridge-1-deal&padInclude",true);
+                      padAjaxb9b50d25ad3ba38a1863ae367f5c4159.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+              </center>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>

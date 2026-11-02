@@ -1,5 +1,5 @@
 <ul>
-  {customers rows=4, page=$pg ?? 1}<li>{$customerName}</li>{/customers}
+  {select:customers rows=4, page=$pg ?? 1}<li>{$customerName}</li>{/select:customers}
 </ul>
 
-{pager 'customers', window=1/}
+{pad:pager 'customers', window=1/}

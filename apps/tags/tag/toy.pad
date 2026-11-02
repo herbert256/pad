@@ -1,13 +1,11 @@
-{ignore}
-<p><code>{toy}</code> puts a small live simulation or visual toy on the page, run in the browser: the
+{pad:ignore}
+<p><code>{toy:life}</code> puts a small live simulation or visual toy on the page, run in the browser: the
 server checks the options it is given and writes its frame, and the toy's script - written once per
 page, with the CSP nonce - animates it. Every toy is a file of <code>pad/subs/toys/types/</code>, its
 script and its style in <code>www/assets/toys/</code>; the files of <code>types/</code> are the toys
 there are.</p>
 
-<p>A toy is written three ways, the same toy each time: the tag with the toy's name,
-<code>{toy 'life'/}</code>; the toy: type, <code>{toy:life/}</code>; and the bare name,
-<code>{life/}</code>, when no tag, store, field or sequence has that name. The pattern of a Game of
+<p>The toy is selected by its prefix and name: <code>{toy:life/}</code>. The pattern of a Game of
 Life and the rules of an L-system stand between the tags, one a line - taken as written, before the
 level walks them, so a field or a tag there is not filled in.</p>
 
@@ -21,4 +19,4 @@ button when the visitor asks for reduced motion or the tag says <code>paused</co
 <code>--pad-toy-ink</code>, <code>-canvas</code>, <code>-accent</code>, <code>-night</code> and their
 like on <code>.pad-toy</code>, light and dark; the script resolves them for the canvas and again when
 the scheme changes.</p>
-{/ignore}
+{/pad:ignore}

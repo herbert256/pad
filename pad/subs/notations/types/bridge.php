@@ -9,8 +9,8 @@
   // high-card points of every hand, title= is the accessible name. A screen reader hears every
   // hand card by card.
   //
-  //   {bridge 'N:.63.AKQ987.A9732 A8654.KQ5.T.QJT6 J973.J98742.3.K4 KQT2.AT.J6542.85'/}
-  //   {bridge 'W:KQT2.AT.J6542.85 - A8654.KQ5.T.QJT6 -', dealer='W', vulnerable='ew'/}
+  //   {notation:bridge 'N:.63.AKQ987.A9732 A8654.KQ5.T.QJT6 J973.J98742.3.K4 KQT2.AT.J6542.85'/}
+  //   {notation:bridge 'W:KQT2.AT.J6542.85 - A8654.KQ5.T.QJT6 -', dealer='W', vulnerable='ew'/}
 
   if ( trim ( $padNotationText ) === '' )
     return '';

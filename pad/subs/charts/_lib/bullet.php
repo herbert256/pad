@@ -2,8 +2,8 @@
 
   // Measures against their targets - a bullet graph per row, Stephen Few's compact gauge.
   //
-  //   {chart 'bullet', data='kpis', label='kpi', value='actual', target='goal', bands='50, 75'}
-  //   {chart 'bullet', data='kpis', value='actual', target='goal', bands='poor, fair', to='max'}
+  //   {chart:bullet data='kpis', label='kpi', value='actual', target='goal', bands='50, 75'}
+  //   {chart:bullet data='kpis', value='actual', target='goal', bands='poor, fair', to='max'}
   //
   // A row is a horizontal track with a thin bar of value= - else the first numeric field -
   // in the series colour, and target= - a field of the row, or one number for every row -

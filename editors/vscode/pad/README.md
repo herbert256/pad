@@ -8,7 +8,7 @@ Install: copy (or symlink) this directory to
 | Piece | Provides |
 |-------|----------|
 | `syntaxes/pad.tmLanguage.json` | Base grammar: the file is standard HTML |
-| `syntaxes/pad-injection.tmLanguage.json` | Injection grammar: PAD tags, comments, constructs recognized everywhere (incl. attribute values); `{ignore}` blocks stay PAD-free |
+| `syntaxes/pad-injection.tmLanguage.json` | Injection grammar: PAD tags, comments, constructs recognized everywhere (incl. attribute values); `{pad:ignore}` blocks stay PAD-free |
 | `package.json` configurationDefaults | Token colors: purple bold tags, teal braces (like HTML's `< >`), red `$`/`%` sigils, lemon variable names |
 | `extension.js` | Completions for all built-in tags / pipe functions / properties / options / prefixes / sequence types (from `completions.json`, generated from `pad/`); type `{/` to complete the open tag; `alt+cmd+.` closes the innermost open tag |
 | `language-configuration.json` | Auto-closing `{}` and quotes, `{-- --}` comment toggling, auto-indent for block tags |

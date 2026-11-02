@@ -5,7 +5,7 @@
   // engine's includers that is this page, and the message names the snippet's file and
   // line; text not saved yet has no includers the engine can point into, and the marker
   // goes on line 1. The text search found the snippet's {$lost} where the page held the same
-  // text: on line 2, in the {if} branch that never runs. The render is the engine's own,
+  // text: on line 2, in the {pad:if} branch that never runs. The render is the engine's own,
   // of the language server's fixture page.
 
   $at = function ( $marker ) {

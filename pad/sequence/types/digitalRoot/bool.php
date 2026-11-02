@@ -1,7 +1,7 @@
 <?php
 
   // Membership test for digitalRoot: its terms are the digits 0 to 9, so that is the whole
-  // test. build/check.php asks it for {keep digitalRoot}, {remove digitalRoot} and {flag
+  // test. build/check.php asks it for {keep:digitalRoot}, {remove:digitalRoot} and {pad:flag
   // digitalRoot}.
   //
   // Not the type's build: pqBuild() ranks function.php before bool.php.

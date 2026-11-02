@@ -1,23 +1,23 @@
 {common:padFrame}
 
-  {slot 'head'}
-    {asset 'tags.css', tag/}
-  {/slot}
+  {pad:slot 'head'}
+    {pad:asset 'tags.css', tag/}
+  {/pad:slot}
 
-  {slot 'title'}
+  {pad:slot 'title'}
     <form class="search" action="" method="get" role="search">
       <input type="hidden" name="search" value="">
-      <label class="sr-only" for="q">Search the tags</label>
-      <input type="search" id="q" name="q" value="{$tagsSearch}" placeholder="Search {$tagsCount} tags" autocomplete="off">
+      <label class="sr-only" for="q">Search the tags and kinds</label>
+      <input type="search" id="q" name="q" value="{$tagsSearch}" placeholder="Search {$tagsCount} entries" autocomplete="off">
     </form>
-  {/slot}
+  {/pad:slot}
 
 {/common:padFrame}
 
 @page@
 
 <footer class="foot">
-  <p>{$tagsCount} tags of PAD - the built-in tags, the kinds of the subsystems and the sequence types - each with its syntax and live examples, every result on this site rendered by the tag it documents.</p>
+  <p>{$tagsCount} tags and kinds of PAD, with syntax and usage examples. Safe, self-contained examples run here; examples requiring credentials, delivery or application files are shown as source.</p>
 </footer>
 
 {common:padFrameEnd/}

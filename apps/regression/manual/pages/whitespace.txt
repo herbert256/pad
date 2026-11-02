@@ -1,3 +1,5 @@
+
+
 <p>A template is laid out for people, with line breaks and indentation, and PAD keeps that
 layout in what it writes. Usually that does not matter - HTML folds whitespace - but in
 plain-text mail, CSV, JSON, console output and inline layouts it does.</p>
@@ -8,9 +10,9 @@ plain-text mail, CSV, JSON, console output and inline layouts it does.</p>
 included:</p>
 
 <ul>
-  <li><code>{~tag}</code> - the whitespace before the tag</li>
-  <li><code>{tag~}</code> - the whitespace after it, which for an opening tag is the start of its content</li>
-  <li><code>{~/tag~}</code> - both sides of the closing tag</li>
+  <li><code>{~app:tag}</code> - the whitespace before the tag</li>
+  <li><code>{app:tag~}</code> - the whitespace after it, which for an opening tag is the start of its content</li>
+  <li><code>{~/app:tag~}</code> - both sides of the closing tag</li>
 </ul>
 
 <p>Only a brace that opens a tag counts: a <code>~</code> in text, in CSS or in a quoted
@@ -53,7 +55,7 @@ parameter stays as it is.</p>
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiJ7ZGF0YSAneHMnfVtcImFcIixcImJcIixcImNcIl17L2RhdGF9XG48cD5cbiAge354c359XG4gICAgeyR4c31cbiAge34veHN+fVxuPC9wPlxuPHA+e3NwYWNlbGVzc31cbiAgPGI+b25lPC9iPlxuICA8aT50d288L2k+XG57L3NwYWNlbGVzc308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGF0YSAneHMnfVtcImFcIixcImJcIixcImNcIl17L2RhdGF9XG48cD5cbiAge354c359XG4gICAgeyR4c31cbiAge34veHN+fVxuPC9wPlxuPHA+e3NwYWNlbGVzc31cbiAgPGI+b25lPC9iPlxuICA8aT50d288L2k+XG57L3NwYWNlbGVzc308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>xs<font color="black">'</font></font>}</b>["a","b","c"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br>&lt;p&gt;<br>  {~xs~}<br>    <b>{<font color="green"><font color="red">$</font>xs</font>}</b><br>  {~/xs~}<br>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">spaceless</font><font color="red"></font>}</b><br>  &lt;b&gt;one&lt;/b&gt;<br>  &lt;i&gt;two&lt;/i&gt;<br><b>{/<font color="blue">spaceless</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3hzJ31bXCJhXCIsXCJiXCIsXCJjXCJdey9wYWQ6ZGF0YX1cbjxwPlxuICB7fmRhdGE6eHN+fVxuICAgIHskeHN9XG4gIHt+L2RhdGE6eHN+fVxuPC9wPlxuPHA+e3BhZDpzcGFjZWxlc3N9XG4gIDxiPm9uZTwvYj5cbiAgPGk+dHdvPC9pPlxuey9wYWQ6c3BhY2VsZXNzfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3hzJ31bXCJhXCIsXCJiXCIsXCJjXCJdey9wYWQ6ZGF0YX1cbjxwPlxuICB7fmRhdGE6eHN+fVxuICAgIHskeHN9XG4gIHt+L2RhdGE6eHN+fVxuPC9wPlxuPHA+e3BhZDpzcGFjZWxlc3N9XG4gIDxiPm9uZTwvYj5cbiAgPGk+dHdvPC9pPlxuey9wYWQ6c3BhY2VsZXNzfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>xs<font color="black">'</font></font>}</b>["a","b","c"]<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br>&lt;p&gt;<br>  {~data:xs~}<br>    <b>{<font color="green"><font color="red">$</font>xs</font>}</b><br>  {~/data:xs~}<br>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spaceless</font><font color="red"></font>}</b><br>  &lt;b&gt;one&lt;/b&gt;<br>  &lt;i&gt;two&lt;/i&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>spaceless</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -79,5 +81,5 @@ parameter stays as it is.</p>
 
 <h2>spaceless</h2>
 
-<p><b>{spaceless}</b> takes the whitespace between HTML tags out of everything it wraps, and
-at both ends; text inside a tag keeps its spaces. For the whole page there is <b>{tidy}</b>.</p>
+<p><b>{pad:spaceless}</b> takes the whitespace between HTML tags out of everything it wraps, and
+at both ends; text inside a tag keeps its spaces. For the whole page there is <b>{pad:tidy}</b>.</p>

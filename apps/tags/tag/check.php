@@ -5,8 +5,8 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{check "table where ..."} ... {/check}
-{check "users where email='x@y.z'"} ... @else@ ... {/check}
+{pad:check "table where ..."} ... {/pad:check}
+{pad:check "users where email='x@y.z'"} ... @else@ ... {/pad:check}
 PAD;
 
   $tagParms   = [

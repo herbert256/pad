@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{parms name/}
-{parms title, subtitle='', tone='info'/}
+{pad:parms name/}
+{pad:parms title, subtitle='', tone='info'/}
 PAD;
 
   $tagParms   = [

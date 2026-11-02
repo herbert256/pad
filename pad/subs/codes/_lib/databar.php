@@ -9,8 +9,8 @@
   // 3^n modulo 79 (table 5). A space and a bar of one module stand at both ends; the symbol
   // needs no quiet zone, two modules are drawn.
   //
-  //   {databar '09501101530003'/}          the GTIN-14, (01) in front or not
-  //   {databar '4006381333931'/}           a GTIN-13, 12 or 8 is made 14 digits with zeros
+  //   {barcode:databar '09501101530003'/}          the GTIN-14, (01) in front or not
+  //   {barcode:databar '4006381333931'/}           a GTIN-13, 12 or 8 is made 14 digits with zeros
   //
   // padCodeDatabar   the bars, or the message why the text is no GTIN
 

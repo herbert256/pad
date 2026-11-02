@@ -95,7 +95,7 @@
   // lstat per entry, where the iterator objects took more for every directory of every pass.
   //
   // The entries of each directory come from padDirRaw, which keeps them between requests
-  // (lib/dirs.php): every {page} and example builds its page again and walked the _lib of
+  // (lib/dirs.php): every {pad:page} and example builds its page again and walked the _lib of
   // each directory for it - a page of 45 examples read the same directories 92 times.
 
   function padDirFiles ( $dir ) {
@@ -138,7 +138,7 @@
     // applications' .php sources under examples/, and that writer alone - apps/examples/
     // _lib/build.php, told by the call itself, as padReplayAppWrite tells an application's
     // write - may: by the name alone, padFilePut ( 'examples/' . $name ) from any page wrote
-    // a .php there. The engine's own markers (.purged, .swept) are no configuration; {file}
+    // a .php there. The engine's own markers (.purged, .swept) are no configuration; {pad:file}
     // refuses every name that starts with a dot besides.
     //
     // Windows - home/home.php runs PAD there - stores a name without the blanks and dots that
@@ -236,9 +236,9 @@
   } 
 
 
-  // A directory a template may list - {dir} and {files} - lies inside the applications,
+  // A directory a template may list - {pad:dir} and {pad:files} - lies inside the applications,
   // the engine or DATA once every symlink and .. is resolved. They used the path as given,
-  // and {dir '/etc'} listed whatever the PHP user could read.
+  // and {pad:dir '/etc'} listed whatever the PHP user could read.
 
   function padDirContained ( $dir ) {
 

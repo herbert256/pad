@@ -1,4 +1,4 @@
-{meta title='PAD Select - tables as tags'/}
+{pad:meta title='PAD Select - tables as tags'/}
 
 <p>The Select subsystem makes the tables of the application database tags. A table is
 declared once in PHP - in <code>$padSelect</code>, with its key and the order of its rows - and
@@ -12,9 +12,9 @@ catalogue, each with the SQL PAD sent for it.</p>
 <p>An application declares its tables in <code>_lib/select.php</code>, so every page has them;
 the examples here declare them in their own PHP half.</p>
 
-{example 'fragments/padSelect_1'/}
+{common:example 'fragments/padSelect_1'/}
 
-<p><code>{open/}select:offices{close/}</code> names the type, for a table whose name is something
+<p><code>{pad:open/}select:offices{pad:close/}</code> names the type, for a table whose name is something
 else as well - a tag of the application, a content block.</p>
 
 <h2>Options on the tag</h2>
@@ -26,18 +26,18 @@ variable, never as SQL; in <code>order=</code> and <code>group=</code> it must h
 names. <code>rows=</code> and <code>page=</code> are the SQL limit, and
 <code>$field=value</code> picks rows by a field of the declared key.</p>
 
-{example 'fragments/padSelect_2'/}
+{common:example 'fragments/padSelect_2'/}
 
 <h2>Relations</h2>
 
 <p>A relation is declared from the table that holds the reference -
 <code>$padRelations ['employees'] ['offices']</code> - and is followed both ways: nested in an
-office, <code>{open/}employees{close/}</code> is the people of that office, and nested in an
-employee, <code>{open/}offices{close/}</code> would be the office they work in. Every enclosing
+office, <code>{pad:open/}select:employees{pad:close/}</code> is the people of that office, and nested in an
+employee, <code>{pad:open/}select:offices{pad:close/}</code> would be the office they work in. Every enclosing
 table counts, not only the nearest. A nested table with <code>fields="count(*) as n"</code>
 counts the related rows in the SQL.</p>
 
-{example 'fragments/padSelect_3'/}
+{common:example 'fragments/padSelect_3'/}
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
   <tr><th>the relation written</th><th>means</th></tr>
@@ -53,7 +53,7 @@ key, the order - from its base, a <code>where</code> of its own adds to the base
 follows the relations of its base. Two names for one table relate it to itself: an employee
 and the manager they report to.</p>
 
-{example 'fragments/padSelect_4'/}
+{common:example 'fragments/padSelect_4'/}
 
 <h2>Joins</h2>
 
@@ -62,7 +62,7 @@ right, natural, cross - names the table, <code>key</code> holds the fields its d
 met by, and the columns it adds are its declared <code>fields</code>, column => alias. A list
 of joins joins them all.</p>
 
-{example 'fragments/padSelect_5'/}
+{common:example 'fragments/padSelect_5'/}
 
 <h2>Groups and totals</h2>
 
@@ -71,15 +71,15 @@ total row with <code>rollup</code>. The order a table declares sorts the table's
 select that groups, is <code>distinct</code> or totals in its fields is sorted only by the
 <code>order=</code> written with it.</p>
 
-{example 'fragments/padSelect_6'/}
+{common:example 'fragments/padSelect_6'/}
 
 <h2>Pages</h2>
 
 <p>The page is cut by the SQL limit, so only its rows are read; a
-<a href="?pages/pager">{open/}pager{close/}</a> after the table counts the rest with one more
+<a href="?pages/pager">{pad:open/}pad:pager{pad:close/}</a> after the table counts the rest with one more
 query, and only when it is there.</p>
 
-{example 'fragments/padSelect_7'/}
+{common:example 'fragments/padSelect_7'/}
 
 <h2>Unions</h2>
 
@@ -87,7 +87,7 @@ query, and only when it is there.</p>
 from its declaration alone, with as many columns. The tag's <code>order=</code> sorts the
 whole union.</p>
 
-{example 'fragments/padSelect_8'/}
+{common:example 'fragments/padSelect_8'/}
 
 <h2>The options</h2>
 

@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{avatar 'name'/}
-{avatar $name, size=48, shape='square', label='text'/}
+{pad:avatar 'name'/}
+{pad:avatar $name, size=48, shape='square', label='text'/}
 PAD;
 
   $tagParms   = [
@@ -17,6 +17,6 @@ PAD;
     'shape' => '<code>circle</code> (default) or <code>square</code> - with rounded corners.',
     'label' => 'The accessible name (<code>aria-label</code> and <code>&lt;title&gt;</code>), by default the name.' ];
 
-  $tagSee     = [ 'identicon', 'gravatar', 'icon' ];
+  $tagSee     = [ 'identicon', 'gravatar', 'icon:star' ];
 
 ?>

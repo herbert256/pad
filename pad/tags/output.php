@@ -1,6 +1,6 @@
 <?php
 
-   // The {output} tag: switches the response mode of the running request to web, console,
+   // The {pad:output} tag: switches the response mode of the running request to web, console,
    // file, download, json or csv by loading config/output/<type>.php over the current
    // settings. json and csv answer the variables the page names in $padExpose instead of
    // what the template renders (lib/expose.php).

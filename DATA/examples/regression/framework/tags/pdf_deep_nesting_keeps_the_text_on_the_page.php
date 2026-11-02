@@ -1,6 +1,6 @@
 <?php
 
-  // Thirty quotes in each other in a {pdf}: the indent grows no further than half the
+  // Thirty quotes in each other in a {pad:pdf}: the indent grows no further than half the
   // text width, so the text stays on the page, where it was set off its right edge - a
   // character a line, over four pages.
 

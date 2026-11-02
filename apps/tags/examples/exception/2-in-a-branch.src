@@ -1,5 +1,5 @@
-{meta title='Test an error page', about='Throw only when asked, to see the application\'s _errors/5xx.pad as a visitor would.'/}
-{if $simulate eq 'failure'}
-  {exception 'simulated failure'/}
-{/if}
+{pad:meta title='Test an error page', about='Throw only when asked, to see the application\'s _errors/5xx.pad as a visitor would.'/}
+{pad:if $simulate eq 'failure'}
+  {pad:exception 'simulated failure'/}
+{/pad:if}
 <p>Everything works.</p>

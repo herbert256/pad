@@ -10,8 +10,8 @@
   // pad-islands.js sends it in the X-CSRF-Token header, read from <meta name="csrf-token">.
   $padCsrf = TRUE;
 
-  // The build of _frontend/ - www/islands/build/, the default - is what {vite} links; while
-  // npm run dev runs, its address in build/hot makes {vite} ask the dev server instead.
+  // The build of _frontend/ - www/islands/build/, the default - is what {pad:vite} links; while
+  // npm run dev runs, its address in build/hot makes {pad:vite} ask the dev server instead.
   $padViteBuild = 'build';
 
 ?>

@@ -1,7 +1,7 @@
 <?php
 
-  // {commandpalette 'Go to'}<a href="?orders">Orders</a>...{/commandpalette} or
-  // {commandpalette 'Go to', data='commands'/} - a search over the commands of an
+  // {widget:commandpalette 'Go to'}<a href="?orders">Orders</a>...{/widget:commandpalette} or
+  // {widget:commandpalette 'Go to', data='commands'/} - a search over the commands of an
   // application: a button, and Ctrl+K or ⌘K, open a modal dialog with a search box over the
   // links and buttons between the tags, or the rows of data= - their label, link, group and
   // keywords; typing narrows the list, the arrow keys choose, Enter runs the chosen one. The
@@ -12,7 +12,7 @@
   // the whole list (:target). A small script (CSP nonce) makes the search.
   // subs/widgets/_lib/commandpalette.php.
   //
-  // The pair's content is template, rendered first: like {live}, the pair asks for the end
+  // The pair's content is template, rendered first: like {pad:live}, the pair asks for the end
   // walk and puts what rendered in the list. The rows of data= are read before it renders,
   // and kept for the end walk: reading them gives the level its one default occurrence back,
   // which read at the end came after the content had rendered once for every row.
@@ -40,8 +40,8 @@
 
     if ( $padCheckSyntax )
       padError ( $padCmdRows === NULL
-        ? "the {commandpalette} has no commands - links or buttons between its tags, or rows by data="
-        : "the {commandpalette} has no commands - no row of its data= has a label and a link" );
+        ? "the {widget:commandpalette} has no commands - links or buttons between its tags, or rows by data="
+        : "the {widget:commandpalette} has no commands - no row of its data= has a label and a link" );
 
     $padContent = '';
 

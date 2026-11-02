@@ -1,9 +1,9 @@
-{ignore}
-<p><code>{data 'name'}</code> ... <code>{/data}</code> reads its content as data and keeps it
-under that name; it prints nothing. A later <code>{name}</code> ... <code>{/name}</code>
+{pad:ignore}
+<p><code>{pad:data 'name'}</code> ... <code>{/pad:data}</code> reads its content as data and keeps it
+under that name; it prints nothing. A later <code>{data:name}</code> ... <code>{/data:name}</code>
 iterates it like any page array - fields, properties, the handling options
 (<code>sort</code>, <code>where</code>, <code>first</code> ...) - and so do
-<code>data='name'</code> on another tag, <code>{data:name}</code>, <a href="?tag/tree">{tree}</a>
+<code>data='name'</code> on another tag, <code>{data:name}</code>, <a href="?tag/tree">{pad:tree}</a>
 and the <code>lookup</code> pipe.</p>
 
 <h3>Formats</h3>
@@ -21,18 +21,38 @@ and the <code>lookup</code> pipe.</p>
   <li><strong>CSV</strong> - anything else of several lines: the first line names the fields,
   each further line is a row.</li>
 </ul>
-<p>When the start does not tell, <code>type='csv'</code> (or another format) says it. A one-line
+<p>When the start does not tell, <code>format='toml'</code> or <code>type='csv'</code> names the reader explicitly. A one-line
 name of a file in the application's <code>_data/</code> directory reads that file.</p>
 
 <h3>Other forms</h3>
-<p>Without content, a second parameter is the source: <code>{data 'steps', '1..5'}</code>. A
+<p>Without content, a second parameter is the source: <code>{pad:data 'steps', '1..5'}</code>. A
 value from a field there is data, never template: a field holding a parenthesised list is
 refused, since its elements would run as expressions. With the name on the closing tag -
-<code>{data}</code> ... <code>{/data 'name'}</code> - the content is rendered first and the
+<code>{pad:data}</code> ... <code>{/pad:data 'name'}</code> - the content is rendered first and the
 result read as data, so fields and tags inside it are resolved.</p>
 
 <p>Content with braces - JSON objects - is read as written: a JSON object in the content is
-not taken for a tag. Under the strict syntax check a <code>{data}</code> without a name is an
+not taken for a tag. Under the strict syntax check a <code>{pad:data}</code> without a name is an
 error, and so is a name that is already a built-in or application tag, since
-<code>{name}</code> would never reach the store.</p>
-{/ignore}
+<code>{data:name}</code> would never reach the store.</p>
+{/pad:ignore}
+
+<h3>All data formats</h3>
+<p>The format registry supplies this list. Choose a format for its record shape and helper examples.</p>
+<div class="table-scroll" role="region" aria-label="Supported data formats" tabindex="0">
+<table class="options-table">
+  <thead><tr><th scope="col">Format</th><th scope="col">File extensions</th><th scope="col">Read</th><th scope="col">Write</th><th scope="col">Description</th></tr></thead>
+  <tbody>{array:dataFormatRows}<tr><td><a href="?{$link}">{$name}</a></td><td>{$extensions}</td><td>{$reads}</td><td>{$writes}</td><td>{$about}</td></tr>{/array:dataFormatRows}</tbody>
+</table>
+</div>
+{pad:ignore}
+<p>A file of <code>_data/</code> selects its reader by extension, for example
+<code>{local:delivery.toml}</code> or <code>{local:sales.xlsx sheet='Notes'}</code>.
+XLSX is binary: keep it in a file or pass the original bytes to <code>padFormatRead</code>;
+do not paste it into a template. JSON text sequences use the <code>jsonseq</code> format
+name explicitly because they have no registered file extension.</p>
+<p>From PHP, <code>padFormatRead ( 'toml', $contents )</code> reads a document and
+<code>padFormatWrite ( 'toml', $data )</code> writes one. A page can return its exposed data
+with <code>padFormat=toml</code>. These helpers parse or serialize data; the separate
+list and range readers are template expressions, not interchange formats.</p>
+{/pad:ignore}

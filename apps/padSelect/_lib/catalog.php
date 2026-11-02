@@ -44,9 +44,9 @@
 
       'Relations' => [
         'relations/down'        => [ 'Parent to children',
-                                     'Nested in {artists}, {albums} reads only the albums of the artist of the row: the relation albums - artists says which field they share.' ],
+                                     'Nested in {select:artists}, {select:albums} reads only the albums of the artist of the row: the relation albums - artists says which field they share.' ],
         'relations/up'          => [ 'Child to parent',
-                                     'The same relation the other way round: nested in an album, {artists} is the one artist the album belongs to.' ],
+                                     'The same relation the other way round: nested in an album, {select:artists} is the one artist the album belongs to.' ],
         'relations/deep'        => [ 'Three levels deep',
                                      'Artists, their albums, the tracks of each album - every level follows the relation to the level around it.' ],
         'relations/key_form'    => [ 'A relation by the other key',
@@ -67,7 +67,7 @@
         'views/view_of_view' => [ 'A view of a view',
                                   'A view can stand on another view: the chain is followed to the table at its end, and the where of every view holds.' ],
         'views/nested'       => [ 'A view follows its base relations',
-                                  'Nested in {artists}, the view of recent albums is related by the relation of albums, the table it stands on.' ],
+                                  'Nested in {select:artists}, the view of recent albums is related by the relation of albums, the table it stands on.' ],
         'views/narrowed'     => [ 'where= on a view narrows it',
                                   "A where= on the tag of a view holds beside the view's own: the recent albums that are under 14, never an album the view leaves out." ]
       ],
@@ -102,7 +102,7 @@
         'paging/rows_page' => [ 'rows= and page=',
                                 'rows= and page= are the SQL limit: page 2 of five is the sixth to the tenth track, read from the database and nothing more.' ],
         'paging/pager'     => [ 'The pager',
-                                '{pager} after the paged table counts its rows with one more statement - only when it is there - and links the pages.' ],
+                                '{pad:pager} after the paged table counts its rows with one more statement - only when it is there - and links the pages.' ],
         'paging/distinct'  => [ 'Pages of distinct rows',
                                 'Distinct rows of a join are rows of their own - thirteen albums are twelve pairs of an artist and a genre - and the pager counts those, in SQL: a count over the distinct select.' ]
       ],

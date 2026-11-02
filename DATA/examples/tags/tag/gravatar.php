@@ -5,9 +5,9 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{gravatar $email/}
-{gravatar $email, size=64, default='identicon', alt='text'/}
-{gravatar $email, fallback='avatar', alt='text'/}
+{pad:gravatar $email/}
+{pad:gravatar $email, size=64, default='identicon', alt='text'/}
+{pad:gravatar $email, fallback='avatar', alt='text'/}
 PAD;
 
   $tagParms   = [
@@ -17,7 +17,7 @@ PAD;
     'size'     => 'Width and height in pixels, default 64; the <code>srcset</code> asks twice that for a sharp screen.',
     'default'  => 'What Gravatar shows for an address it does not know: <code>mp</code> (default), <code>identicon</code>, <code>monsterid</code>, <code>wavatar</code>, <code>retro</code>, <code>robohash</code>, <code>blank</code>, <code>404</code>, or an <code>https://</code> image address.',
     'alt'      => 'The image text - the person\'s name - default <code>Avatar</code>.',
-    'fallback' => '<code>avatar</code> draws the <code>{avatar}</code> initials of <code>alt</code> (or of the address) instead, <code>identicon</code> the <code>{identicon}</code> of the address - no <code>&lt;img&gt;</code>, no outside request.' ];
+    'fallback' => '<code>avatar</code> draws the <code>{pad:avatar}</code> initials of <code>alt</code> (or of the address) instead, <code>identicon</code> the <code>{pad:identicon}</code> of the address - no <code>&lt;img&gt;</code>, no outside request.' ];
 
   $tagSee     = [ 'avatar', 'identicon', 'img' ];
 

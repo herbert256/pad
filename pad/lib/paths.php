@@ -7,7 +7,7 @@
   //                  Every _tags/, _include/, _data/ ... lookup walks this list
   // padDir           the directory part of $padPage; padPath is APP plus $padDir
   // padCorrectPath   normalises Windows backslashes
-  // padFileName      assembles an output file name from the {file} tag globals - name,
+  // padFileName      assembles an output file name from the {pad:file} tag globals - name,
   //                  optional directory, optional date, timestamp and random suffix,
   //                  then the extension
   // padDataFileName  finds a _data/ file by bare name, trying the known extensions in
@@ -219,9 +219,9 @@
   // [ 'x' => 1 ] ) sent ?index#top&x=1, the value - and padAddIds' ids - part of the
   // fragment, which never reaches the server.
   //
-  // A list goes in as the query writes one - ids[0]=1&ids[1]=2, as padUrl and {get} write it
+  // A list goes in as the query writes one - ids[0]=1&ids[1]=2, as padUrl and {pad:get} write it
   // (http_build_query) - and a NULL or an empty list not at all: urlencode took text only,
-  // and padRedirect ( 'other', [ 'ids' => [ 1, 2 ] ] ), {redirect 'other', $ids = ['a', 'b']}
+  // and padRedirect ( 'other', [ 'ids' => [ 1, 2 ] ] ), {pad:redirect 'other', $ids = ['a', 'b']}
   // or a visitor's ?v[]=x carried on ended the request in a TypeError. The name is encoded
   // too, so a & or = in it no longer splits the pair.
 
@@ -243,10 +243,10 @@
 
   }
 
-  // Where the engine's own fetches of this site connect - {get}, {curl 'SELF://...'},
-  // {page app=} over HTTP, padPrefetch: $padHost is made of the visitor's Host header, and a
+  // Where the engine's own fetches of this site connect - {pad:get}, {pad:curl 'SELF://...'},
+  // {pad:page app=} over HTTP, padPrefetch: $padHost is made of the visitor's Host header, and a
   // request naming Host: attacker.example, or 127.0.0.1:22, had the server fetch from that
-  // host and port and splice what came back into the page (and into a {cache} section every
+  // host and port and splice what came back into the page (and into a {pad:cache} section every
   // later visitor got). The fetch keeps its address - the Host header still picks the site,
   // TLS still checks that name - but connects to the socket this request arrived on,
   // SERVER_ADDR and SERVER_PORT (php -S says its address as SERVER_NAME), as curl's

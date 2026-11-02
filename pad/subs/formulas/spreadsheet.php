@@ -1,22 +1,22 @@
 <?php
 
-  // The body of {spreadsheet} - pad/tags/spreadsheet.php names it, $padSheetName the name
+  // The body of {pad:spreadsheet} - pad/tags/spreadsheet.php names it, $padSheetName the name
   // the caller found. A grid of cells, its formulas computed on the server, as a table:
   //
-  //   {spreadsheet 'budget', formats='B:€ #,##0.00, D:€ #,##0.00', totals='D'}
+  //   {pad:spreadsheet 'budget', formats='B:€ #,##0.00, D:€ #,##0.00', totals='D'}
   //     Item,Price,Qty,Total
   //     Apples,1.20,3,=B2*C2
   //     Pears,0.80,5,=B3*C3
-  //   {/spreadsheet}
+  //   {/pad:spreadsheet}
   //
-  //   {spreadsheet data='orders', formulas='total=B2*C2'/}
+  //   {pad:spreadsheet data='orders', formulas='total=B2*C2'/}
   //
   // The cells are the pair's content - a line a row, a comma between cells (a tab when a
-  // line holds one), see padSheetRead - or the rows of data=: a {data} store, a page array or
+  // line holds one), see padSheetRead - or the rows of data=: a {pad:data} store, a page array or
   // a _data file. Records come under a first row of their field names and their values are
   // never formulas; a list of rows of values, or cells by their names ([ 'A1' => 10, 'B1' =>
   // '=A1*2' ]), may hold formulas as the content does. The content is read as written, as
-  // {datatable}'s is: tags in it do not run, a cell holding {$x} holds that text.
+  // {pad:datatable}'s is: tags in it do not run, a cell holding {$x} holds that text.
   //
   //   formulas=  formulas put in cells: total=B2*C2 fills a column - named in the first row,
   //              a new one when none is - down every row below the first, the formula being
@@ -32,7 +32,7 @@
   //   editable   cells to edit: alone, every cell holding a number, a date or TRUE/FALSE;
   //              editable='B2:C9, F1' the cells named, formulas too, which show their value
   //              under their text. An edit posts back and the sheet is computed again on the
-  //              server - in a {form} with it, in a {live} region on every change (the sheet
+  //              server - in a {pad:form} with it, in a {pad:live} region on every change (the sheet
   //              is a form there, which a change submits), elsewhere as a form of its own
   //              with a Recalculate button. What is posted is typed
   //              into the cell as into a spreadsheet: a formula too, never more than the
@@ -42,7 +42,7 @@
   // The first parameter names the sheet: its edits post as padSheet[<name>][B2]. Unnamed, a
   // sheet is sheet1, sheet2 ... in the order of the page.
   //
-  // The tag is {spreadsheet}, not {sheet}: a built-in tag comes before a page's fields, and
+  // The tag is {pad:spreadsheet}, not {array:sheet}: a built-in tag comes before a page's fields, and
   // the cheat sheets of the tags and types applications iterate an array named $sheet.
   //
   // Under $padCheckSyntax a formula of the template that cannot be read - or calls a function
@@ -62,7 +62,7 @@
     $padSheetName = padSheetNextName ();
   elseif ( ! preg_match ( '/^[A-Za-z][A-Za-z0-9_-]{0,57}$/D', $padSheetName ) ) {
     if ( $padCheckSyntax )
-      padError ( "a spreadsheet's name is a letter and then letters, digits, _ and - (58 at most), like {spreadsheet 'budget'}, not '" . padMakeSafe ( $padSheetName, 40 ) . "'" );
+      padError ( "a spreadsheet's name is a letter and then letters, digits, _ and - (58 at most), like {pad:spreadsheet 'budget'}, not '" . padMakeSafe ( $padSheetName, 40 ) . "'" );
     $padSheetName = padSheetNextName ();
   }
 
@@ -86,7 +86,7 @@
   else {
 
     if ( $padCheckSyntax )
-      padError ( "$padSheetWhat has no cells - data='rows', or the rows between {spreadsheet} and {/spreadsheet}" );
+      padError ( "$padSheetWhat has no cells - data='rows', or the rows between {pad:spreadsheet} and {/pad:spreadsheet}" );
 
     $padSheetGrid = padSheetNew ();
 
@@ -141,7 +141,7 @@
           padError ( "the formula " . padMakeSafe ( $padSheetCell ['formula'], 60 ) . " in " . padFormulaCellName ( $padSheetColumn, $padSheetRow )
                    . " of $padSheetWhat cannot be read at position {$padSheetCell ['problem'] [1]}: {$padSheetCell ['problem'] [0]}" );
 
-  // The functions the sheet calls go on the reference record, as the views of {map} do.
+  // The functions the sheet calls go on the reference record, as the views of {pad:map} do.
 
   if ( $padInfoXref ?? FALSE ) {
     $padSheetCalls = [];

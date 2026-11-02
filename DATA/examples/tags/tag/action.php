@@ -5,10 +5,10 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{action store, reverse} ... {/action}
-{action reverse, store} ... {/action}
-{action store, first=2} ... {/action}
-{action sum, '31..40'} ... {/action}
+{action:auto store, reverse} ... {/action:auto}
+{action:reverse store} ... {/action:reverse}
+{action:auto store, first=2} ... {/action:auto}
+{action:sum '31..40'} ... {/action:sum}
 {action:reverse store} ... {/action:reverse}
 {action:shift store, 2} ... {/action:shift}
 PAD;
@@ -19,6 +19,6 @@ PAD;
 
   $tagOptions = [];
 
-  $tagSee     = [ 'pull', 'resume', 'sequence' ];
+  $tagSee     = [ 'pull', 'resume', 'sequence:auto' ];
 
 ?>

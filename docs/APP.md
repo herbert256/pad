@@ -44,7 +44,7 @@ before the page's PHP runs; `[name+]` takes the rest of the path:
   starts with a bare page name (`/shop/products/42?about`, the relative `href="?about"`)
   names that page instead. `?sort=price` is a value of the page the path names.
 - A bracketed file is reached through its route only; `?products/[id]` by its own name is
-  not found. `{page 'products/42'/}`, `{redirect 'products/42'/}` and `padRedirect()` resolve
+  not found. `{pad:page 'products/42'/}`, `{pad:redirect 'products/42'/}` and `padRedirect()` resolve
   the same way.
 - `$padCleanUrls = TRUE` makes `$padGo` and `$padGoExt` write `/shop/products/42` instead
   of `/shop/?products/42`; a link written `{$padGo}page&x=1` keeps working in both forms.
@@ -89,8 +89,8 @@ apps/myapp/
 ├── _config/               # Application configuration
 │   └── config.php
 ├── _data/                 # Static data files (XML, JSON)
-├── _content/              # Markdown collections ({collection 'blog'})
-├── _layouts/              # Layouts a page picks with {extends '_layouts/name'/} (a convention)
+├── _content/              # Markdown collections ({pad:collection 'blog'})
+├── _layouts/              # Layouts a page picks with {pad:extends '_layouts/name'/} (a convention)
 ├── _tests/                # The application's own tests, for pad test
 │
 └── subdir/                # Subdirectories can have own wrappers
@@ -103,16 +103,16 @@ apps/myapp/
 | Directory | Purpose | Usage |
 |-----------|---------|-------|
 | `_lib/` | PHP functions | All `.php` files auto-included |
-| `_include/` | Template snippets | `{name}` → `name.pad` |
-| `_tags/` | Custom tags | `{mytag}` → `mytag.php` |
-| `_functions/` | Pipe functions | `{echo $x \| myfunc/}` → `myfunc.php` |
+| `_include/` | Template snippets | `{data:name}` → `name.pad` |
+| `_tags/` | Custom tags | `{app:mytag}` → `mytag.php` |
+| `_functions/` | Pipe functions | `{pad:echo $x \| myfunc/}` → `myfunc.php` |
 | `_callbacks/` | Iteration hooks | `callback='name'` → `name.php` |
-| `_options/` | Tag options | `{tag name}` → `name.php` on the template; `end/name.php` on the rendered result |
+| `_options/` | Tag options | `{function:tag name}` → `name.php` on the template; `end/name.php` on the rendered result |
 | `_events/` | Event hooks | `error.php`, `sql.php`, `curl.php`, `output.php` - run on every request |
 | `_config/` | App config | `config.php` overrides |
 | `_data/` | Static data | XML, JSON files |
-| `_content/` | Markdown collections | `_content/blog/*.md` are the rows of `{collection 'blog'}` |
-| `_mail/` | Email templates | `{mail template='order'}` → `order.pad` + `order.txt` |
+| `_content/` | Markdown collections | `_content/blog/*.md` are the rows of `{pad:collection 'blog'}` |
+| `_mail/` | Email templates | `{pad:mail template='order'}` → `order.pad` + `order.txt` |
 | `_tests/` | Application tests | `pad test <app>` - `name.pad` (+ `name.php`) and its answer `name.txt` |
 
 ### _lib/ - PHP Functions
@@ -173,25 +173,25 @@ in `$padContent` prints rather than runs.
 
 Use in templates:
 ```
-{button label="Submit", href="?submit"}
+{app:button label="Submit", href="?submit"}
 ```
 
 A tag can be a template instead - `_tags/card.pad` - with named slots for the caller to fill
 and declared parameters:
 
 ```html
-{parms title, tone='info'/}
+{pad:parms title, tone='info'/}
 <div class="card {#tone}">
   <h2>{#title}</h2>
   @content@
-  {slot 'footer'}<footer>@content@</footer>{/slot}
+  {pad:slot 'footer'}<footer>@content@</footer>{/pad:slot}
 </div>
 ```
 
 ```
 {card title="Revenue"}
   <strong>{$revenue}</strong>
-  {slot 'footer'}<a href="?reports">Report</a>{/slot}
+  {pad:slot 'footer'}<a href="?reports">Report</a>{/pad:slot}
 {/card}
 ```
 
@@ -208,31 +208,31 @@ Create custom pipe functions.
 
 Use in templates:
 ```
-{echo $price | money/}
+{pad:echo $price | money/}
 ```
 
-### Layouts - {extends} and {block}
+### Layouts - {pad:extends} and {pad:block}
 
 A page can pick its frame instead of taking its directories' `_inits.pad`/`_exits.pad`:
 
 **_layouts/report.pad**:
 ```html
-<h1>{block 'title'}Report{/block}</h1>
+<h1>{pad:block 'title'}Report{/pad:block}</h1>
 @page@
 ```
 
 **sales.pad**:
 ```
-{extends '_layouts/report'/}
-{block 'title'}Sales{/block}
+{pad:extends '_layouts/report'/}
+{pad:block 'title'}Sales{/pad:block}
 <p>Revenue ...</p>
 ```
 
-`{parent}` inside a block is the content it overrides. Without `{extends}`, a page's
-`{block 'title'}...{/block}` overrides the region of that name in the directory wrappers.
+`{pad:parent}` inside a block is the content it overrides. Without `{pad:extends}`, a page's
+`{pad:block 'title'}...{/pad:block}` overrides the region of that name in the directory wrappers.
 
 A page without PHP sets its wrapper's `$title` - and its layout and cache time - with
-`{meta title='Sales', layout='_layouts/report', cache=600/}`.
+`{pad:meta title='Sales', layout='_layouts/report', cache=600/}`.
 
 ### _callbacks/ - Iteration Callbacks
 
@@ -257,9 +257,9 @@ Process data during iteration.
 
 Use in templates:
 ```
-{items callback="totals"}
+{data:items callback="totals"}
   {$name}: {$amount}
-{/items}
+{/data:items}
 Total: {$total}
 ```
 
@@ -277,7 +277,7 @@ works on the result - the fields filled in, every occurrence joined. Both change
 ?>
 ```
 
-`{staff words}{$name} {/staff}` → `joe jim john jack jerry (5 words)`. The end options run
+`{local:staff words}{$name} {/local:staff}` → `joe jim john jack jerry (5 words)`. The end options run
 before the built-in `toContent`, `toData` and `tidy`, and before the closing tag's pipe.
 
 ### _events/ - Event Hooks
@@ -319,7 +319,7 @@ error hook is logged and set aside, so the error it was told about is still the 
 A test is a page in `_tests/` next to its answer, in the forms the framework's own suites
 use: the exact output, a `/regex/` over it, or `HTTP 500` with an optional `/regex/` on the
 next line. No URL reaches `_tests/`; `pad test` renders each test page bare, on the command
-line, with every `{assert}` checked.
+line, with every `{pad:assert}` checked.
 
 **_tests/cart.php** and **_tests/cart.pad**:
 ```php
@@ -328,7 +328,7 @@ line, with every `{assert}` checked.
 ?>
 ```
 ```
-{assert $total eq 42, 'the cart total'/}
+{pad:assert $total eq 42, 'the cart total'/}
 <p>Total {$total}</p>
 ```
 
@@ -337,7 +337,7 @@ line, with every `{assert}` checked.
 <p>Total 42</p>
 ```
 
-`{assert}` is silent outside a test run - nothing evaluated, nothing shown - so it can stay
+`{pad:assert}` is silent outside a test run - nothing evaluated, nothing shown - so it can stay
 in the application's own pages too. `./ci.sh` runs the tests of every application.
 
 ## Running PAD
@@ -421,161 +421,161 @@ Visit `http://yourserver/myapp/` in your browser.
 ```
 
 ### Pipe Functions
-A field tag pipes as it stands; a literal or an expression goes through `{echo}`.
+A field tag pipes as it stands; a literal or an expression goes through `{pad:echo}`.
 ```
 {$name | upper}                     # a field tag pipes
-{echo $name | upper/}                # the same value, printed raw - {echo/} skips the sanitize chain
-{echo $text | trim | lower/}         # chain multiple
-{echo $date | date('Y-m-d')/}        # with parameters
-{echo 'hello' | upper/}              # a literal needs {echo/}
+{pad:echo $name | upper/}                # the same value, printed raw - {pad:echo/} skips the sanitize chain
+{pad:echo $text | trim | lower/}         # chain multiple
+{pad:echo $date | date('Y-m-d')/}        # with parameters
+{pad:echo 'hello' | upper/}              # a literal needs {pad:echo/}
 ```
 
 **Common String Functions:**
 ```
-{echo $text | upper/}                # Uppercase
-{echo $text | lower/}                # Lowercase
-{echo $text | trim/}                 # Remove whitespace
-{echo $text | capitalize/}           # Capitalize each word
-{echo $text | bold/}                 # Wrap in <b> tags
-{echo $text | html/}                 # HTML-encode
-{echo $text | left(5)/}              # First 5 characters
-{echo $text | truncate(100)/}        # At most 100 chars, ending on a word, with …
-{echo $text | after('@')/}           # Everything after first @
-{echo $text | before('.')/}          # Everything before first .
-{echo $text | after('(') | before(')')/}  # Extract between delimiters
-{echo $text | contains('word')/}     # Check if contains substring
+{pad:echo $text | upper/}                # Uppercase
+{pad:echo $text | lower/}                # Lowercase
+{pad:echo $text | trim/}                 # Remove whitespace
+{pad:echo $text | capitalize/}           # Capitalize each word
+{pad:echo $text | bold/}                 # Wrap in <b> tags
+{pad:echo $text | html/}                 # HTML-encode
+{pad:echo $text | left(5)/}              # First 5 characters
+{pad:echo $text | truncate(100)/}        # At most 100 chars, ending on a word, with …
+{pad:echo $text | after('@')/}           # Everything after first @
+{pad:echo $text | before('.')/}          # Everything before first .
+{pad:echo $text | after('(') | before(')')/}  # Extract between delimiters
+{pad:echo $text | contains('word')/}     # Check if contains substring
 ```
 
 **String Concatenation (with @ marker):**
 ```
-{echo $text | . ' suffix'/}              # Append string
-{echo $text | 'prefix ' . /}             # Prepend string
-{echo $text | 'prefix ' . @ . ' suffix'/}  # @ marks where value goes
+{pad:echo $text | . ' suffix'/}              # Append string
+{pad:echo $text | 'prefix ' . /}             # Prepend string
+{pad:echo $text | 'prefix ' . @ . ' suffix'/}  # @ marks where value goes
 ```
 
 **The @ placeholder in expressions:**
 ```
-{echo 50 | @ * 4/}                       # @ represents the current value
-{echo 50 | @ * 4 | @ * 2/}               # Chain with @ at each step
-{echo 50 | '"' . @ . '"'/}               # Wrap value in quotes
+{pad:echo 50 | @ * 4/}                       # @ represents the current value
+{pad:echo 50 | @ * 4 | @ * 2/}               # Chain with @ at each step
+{pad:echo 50 | '"' . @ . '"'/}               # Wrap value in quotes
 ```
 
 **Chaining Multiple Functions:**
 ```
-{echo $email | after('@') | before('.')/}   # Extract domain name
-{echo 'Hello: World' | after(': ') | upper/}  # "WORLD"
+{pad:echo $email | after('@') | before('.')/}   # Extract domain name
+{pad:echo 'Hello: World' | after(': ') | upper/}  # "WORLD"
 ```
 
 **Number Formatting:**
 ```
-{echo $price | %.2f/}                # Format to 2 decimal places
-{echo $value | number_format(@, 2)/} # 1,234.50
+{pad:echo $price | %.2f/}                # Format to 2 decimal places
+{pad:echo $value | number_format(@, 2)/} # 1,234.50
 ```
 
 **Printf-style format specifiers:**
 ```
-{echo $nbr | %.5f/}          # 5 decimal places
-{echo $nbr | %'.09d/}        # Zero-padded to 9 digits
-{echo $nbr | %d/}            # Integer
-{echo $nbr | %e/}            # Scientific notation
-{echo $nbr | %g/}            # General format
-{echo $nbr | %o/}            # Octal
-{echo $nbr | %x/}            # Hexadecimal
+{pad:echo $nbr | %.5f/}          # 5 decimal places
+{pad:echo $nbr | %'.09d/}        # Zero-padded to 9 digits
+{pad:echo $nbr | %d/}            # Integer
+{pad:echo $nbr | %e/}            # Scientific notation
+{pad:echo $nbr | %g/}            # General format
+{pad:echo $nbr | %o/}            # Octal
+{pad:echo $nbr | %x/}            # Hexadecimal
 ```
 
 ### Pipe Arithmetic
 Arithmetic pipes require a space between the operator and operand:
 ```
-{echo $value | + 1/}          # Correct - adds 1
-{echo $value | +1/}           # Wrong - no space
-{echo $value | * 2/}          # Correct - multiplies by 2
+{pad:echo $value | + 1/}          # Correct - adds 1
+{pad:echo $value | +1/}           # Wrong - no space
+{pad:echo $value | * 2/}          # Correct - multiplies by 2
 {$value | + 1}               # Correct - a field tag pipes too
 ```
 
 ### Loops
 ```
-{users}
+{data:users}
   <li>{$name} - {$email}</li>
-{/users}
+{/data:users}
 ```
 
 ### While and Until Loops
 ```
-{set $i = 1/}
-{while $i le 10}
+{pad:set $i = 1/}
+{pad:while $i le 10}
   Item {$i}
-  {increment $i/}
-{/while}
+  {pad:increment $i/}
+{/pad:while}
 
-{set $count = 5/}
-{until $count eq 0}
+{pad:set $count = 5/}
+{pad:until $count eq 0}
   Countdown: {$count}
-  {decrement $count/}
-{/until}
+  {pad:decrement $count/}
+{/pad:until}
 ```
 
 ### Loop Control
 ```
-{items}
-  {if $skip eq 1}{break/}{/if}      # Break current loop
+{data:items}
+  {pad:if $skip eq 1}{pad:break/}{/pad:if}      # Break current loop
   {$name}
-{/items}
+{/data:items}
 
-{outer}
-  {inner}
-    {break 'outer'/}                 # Break named outer loop
-    {break -2/}                      # Break by level
-  {/inner}
-{/outer}
+{array:outer}
+  {array:inner}
+    {pad:break 'outer'/}                 # Break named outer loop
+    {pad:break -2/}                      # Break by level
+  {/array:inner}
+{/array:outer}
 ```
 
 **Three types of loop control:**
 ```
-{staff}
-  {if $name eq 'jack'}{continue 'staff'/}{/if}  # Skip this iteration
-  {if $name eq 'bob'}{cease 'staff'/}{/if}      # Soft stop (graceful end)
-  {if $name eq 'sue'}{break 'staff'/}{/if}      # Hard stop (immediate exit)
+{local:staff}
+  {pad:if $name eq 'jack'}{pad:continue 'staff'/}{/pad:if}  # Skip this iteration
+  {pad:if $name eq 'bob'}{pad:cease 'staff'/}{/pad:if}      # Soft stop (graceful end)
+  {pad:if $name eq 'sue'}{pad:break 'staff'/}{/pad:if}      # Hard stop (immediate exit)
   {$name}
-{/staff}
+{/local:staff}
 ```
 
-- `{continue 'tag'/}` - Skip to next iteration (like PHP's continue)
-- `{cease 'tag'/}` - Stop iteration gracefully, process remaining output
-- `{break 'tag'/}` - Exit immediately, discard remaining
+- `{pad:continue 'tag'/}` - Skip to next iteration (like PHP's continue)
+- `{pad:cease 'tag'/}` - Stop iteration gracefully, process remaining output
+- `{pad:break 'tag'/}` - Exit immediately, discard remaining
 
 ### Conditionals
 ```
-{if $count > 0}
+{pad:if $count > 0}
   Has items
-{elseif $count == 0}
+{pad:elseif $count == 0}
   Empty
-{else}
+{pad:else}
   Invalid
-{/if}
+{/pad:if}
 ```
 
 **If/Else Syntax:**
 A condition compares with the operators (`eq`, `ne`, `gt`, `lt`, `ge`, `le`, `==`, `!=`, etc.),
 or tests a bare value for its truth, as PHP tests it - `''`, `'0'`, `0` and FALSE fail:
 ```
-{if $count eq 0}Empty{/if}              # A comparison
-{if {clock 'L'/} eq 1}Leap year{/if}     # A nested tag as value
-{if $flag}True{/if}                      # The value's truth
+{pad:if $count eq 0}Empty{/pad:if}              # A comparison
+{pad:if {app:clock 'L'/} eq 1}Leap year{/pad:if}     # A nested tag as value
+{pad:if $flag}True{/pad:if}                      # The value's truth
 ```
 
 ### Iteration Properties
 Properties use the `property@tag` syntax to access iteration state. A boolean property is
 written as a tag pair - its content renders only when the property is true - in a ternary,
-or in a condition: `{if first@items}` reads the property as a value, alone or with any
+or in a condition: `{pad:if first@items}` reads the property as a value, alone or with any
 operator:
 ```
-{items}
-  {first@items}First item{/first@items}
-  {last@items}Last item{/last@items}
-  {even@items ? 'Even row' : 'Odd row'}
-  Count: {count@items/}
-  Index: {current@items/}
-{/items}
+{data:items}
+  {property:first@items}First item{/property:first@items}
+  {property:last@items}Last item{/property:last@items}
+  {property:even@items ? 'Even row' : 'Odd row'}
+  Count: {property:count@items/}
+  Index: {property:current@items/}
+{/data:items}
 ```
 
 **Available properties:**
@@ -590,110 +590,110 @@ operator:
 
 ### Tags with Options
 ```
-{tagname option="value"}
-{items $var=5}                     # a level variable for the tag's content
-{items sort="name", rows=10}       # options are separated by commas
+{type:tagname option="value"}
+{data:items $var=5}                     # a level variable for the tag's content
+{data:items sort="name", rows=10}       # options are separated by commas
 ```
 
-### Variable Assignment with {set}
+### Variable Assignment with {pad:set}
 ```
-{set $name = 'Alice'/}              # Assign string
-{set $count = 0/}                   # Assign number
-{set $total = $price * $qty/}       # Assign expression
-{set $upper = {echo $upper | upper/}/}   # Assign through a pipe
+{pad:set $name = 'Alice'/}              # Assign string
+{pad:set $count = 0/}                   # Assign number
+{pad:set $total = $price * $qty/}       # Assign expression
+{pad:set $upper = {pad:echo $upper | upper/}/}   # Assign through a pipe
 ```
 
 ### Level vs Occurrence Variables
 Variables prefixed with `$` are level variables (same for all iterations). Variables prefixed with `%` are occurrence variables (change each iteration):
 ```
-{set $range = 10/}
+{pad:set $range = 10/}
 
-{sequence '1..5', $abc=$range, %xyz=$range}
+{sequence:range '1..5', $abc=$range, %xyz=$range}
   Level: {$abc}      # Always 10
   Occurrence: {$xyz} # 1, 2, 3, 4, 5
-{/sequence}
+{/sequence:range}
 ```
 
 **Per-iteration calculations:**
 ```
-{staff %total = $salary + $bonus}
+{local:staff %total = $salary + $bonus}
   {$name}: {$total}
-{/staff}
+{/local:staff}
 ```
 
-### Inline Data Definition with {data}
+### Inline Data Definition with {pad:data}
 ```
-{data 'colors'}
+{pad:data 'colors'}
   ["red", "green", "blue"]
-{/data}
+{/pad:data}
 
-{colors}
+{data:colors}
   <li>{$colors}</li>
-{/colors}
+{/data:colors}
 ```
 
 Supports JSON arrays, objects, and tuples:
 ```
-{data 'users'}
+{pad:data 'users'}
   [{"name": "Alice", "role": "admin"}, {"name": "Bob", "role": "user"}]
-{/data}
+{/pad:data}
 
-{data 'items'}
+{pad:data 'items'}
   ('one', 'two', 'three')
-{/data}
+{/pad:data}
 ```
 
 **Multiple data formats supported (JSON, XML, YAML, CSV):**
 ```
-{data 'myXML'}
+{pad:data 'myXML'}
   <data><row name="bob" phone="123" /></data>
-{/data}
+{/pad:data}
 
-{data 'myYAML'}
+{pad:data 'myYAML'}
   ---
   - name: bob
     phone: 123
-{/data}
+{/pad:data}
 
-{data 'myCSV'}
+{pad:data 'myCSV'}
   name,phone
   bob,123
   alice,456
-{/data}
+{/pad:data}
 ```
 
 ### Switch Tag (Alternating Values)
 ```
-{items}
-  <tr style="background: {switch '#fff', '#eee'/}">
+{data:items}
+  <tr style="background: {pad:switch '#fff', '#eee'/}">
     <td>{$name}</td>
   </tr>
-{/items}
+{/data:items}
 ```
 Alternates between values on each iteration - useful for zebra striping.
 
 ### Range Expressions
 ```
-{if $value range (20, 40)}
+{pad:if $value range (20, 40)}
   Value is between 20 and 40
-{/if}
+{/pad:if}
 
-{if 30 range (1, 100)}ok{/if}
+{pad:if 30 range (1, 100)}ok{/pad:if}
 ```
 
 ### Expression Evaluation
-To evaluate arithmetic expressions, use `{echo expression/}`:
+To evaluate arithmetic expressions, use `{pad:echo expression/}`:
 ```
-{echo 365 - {clock 'z'/}/}                # Evaluates: 365 - 347 = 18
-{echo $total * 1.1/}                      # Evaluates multiplication
-{365 - {clock 'z'/}}                      # Wrong - an error: {365 ...} is read as a tag named 365
+{pad:echo 365 - {app:clock 'z'/}/}                # Evaluates: 365 - 347 = 18
+{pad:echo $total * 1.1/}                      # Evaluates multiplication
+{365 - {app:clock 'z'/}}                      # Wrong - an error: {365 ...} is read as a tag named 365
 ```
 
 ### Calling PHP Functions
 PHP functions can be called directly as tags without custom wrappers:
 ```
-{date_default_timezone_get}             # Calls PHP function directly
-{php:time/}                               # Unix timestamp - a bare {time} is the pipe function
+{php:date_default_timezone_get}             # Calls PHP function directly
+{php:time/}                               # Unix timestamp - a bare {function:time} is the pipe function
 {rand 1, 100}                            # Random number between 1-100
 ```
 
@@ -714,13 +714,13 @@ A text value from a field or an expression reaches the tag's PHP with `{`, `}` a
 stand-ins, as `padTagParm()` hands it - and so does `$padGetName`, the value of an option the
 application implements in `_options/`: what the tag echoes or puts in `$padContent` is template
 source, and a visitor's `{php:...}` in a value prints rather than runs. The stand-ins are
-restored when the page is written out. What the template wrote out in quotes - `{props
+restored when the page is written out. What the template wrote out in quotes - `{app:props
 '{"a":1}'}` - arrives as written, and a `.pad` half reads `{#title}` as the text it was given.
 
 **Example** (`_tags/clock.php`):
 ```php
 <?php
-  // Usage: {clock 'H:i:s'} or {clock format='Y-m-d'}
+  // Usage: {app:clock 'H:i:s'} or {app:clock format='Y-m-d'}
   $format = padTagParm ( 'format', $padOpt [$pad] [1] ?: 'Y-m-d H:i:s' );
   return date($format);
 ?>
@@ -739,9 +739,9 @@ JSON/XML files in `_data/` become iterable tags:
 
 **Template**:
 ```
-{menu}
+{local:menu}
   <a href="?{$page}">{$text}</a>
-{/menu}
+{/local:menu}
 ```
 
 ### Markdown Collections
@@ -760,16 +760,16 @@ First post ...
 
 **Templates** - the list, and the page of one post (`?blog/post&slug=hello`):
 ```
-{collection 'blog', sort='date DESC', first=10}
+{pad:collection 'blog', sort='date DESC', first=10}
   <h2><a href="?blog/post&slug={$slug}">{$title}</a></h2>
-{/collection}
+{/pad:collection}
 
-{collection 'blog', slug=$slug}
+{pad:collection 'blog', slug=$slug}
   <h1>{$title}</h1>
   {!body}
 @else@
   No such post.
-{/collection}
+{/pad:collection}
 ```
 
 The folder is looked up like a `_data` file: the page's directory first, then each parent,
@@ -797,7 +797,7 @@ directory) instead of running any PHP - not `orders.php`, nor the `_inits.php` a
   `DATA/samples/<app>/orders.json` (read by the preview as well), and
   `apps/cli/pad sample <app> orders` writes them into the application's `_samples/`.
 - **Database tags** in the template still ask the database, unless they have a name the
-  sample holds: `{array "* from orders", name='orders'}` reads the sample's `orders`, and a
+  sample holds: `{pad:array "* from orders", name='orders'}` reads the sample's `orders`, and a
   capture records the database's answer under that name.
 - **Who may ask** is `$padSample`: `'local'` (the default) a request this machine makes to
   itself, `TRUE` everyone - only on a design server without real data, since the preview
@@ -820,7 +820,7 @@ as `$padRequestVars` allows (TRUE, the default: all of them; a list: those names
 
 **Important:**
 - A GET value fills the variable as a POST value does - check the method when it matters:
-  `padRequestIs ( 'post' )`, or `padPosted ( 'contact' )` for a `{form}`
+  `padRequestIs ( 'post' )`, or `padPosted ( 'contact' )` for a `{pad:form}`
 - Watch for naming conflicts with other variables (e.g., form field `message` vs success `$message`)
 
 **Example** (`contact.php`):
@@ -838,15 +838,15 @@ as `$padRequestVars` allows (TRUE, the default: all of them; a list: those names
 ```
 
 ### Form Fields and Validation
-`{form}`, `{input}` and `{textarea}` write fields that refill from the post and show the
+`{pad:form}`, `{pad:input}` and `{pad:textarea}` write fields that refill from the post and show the
 message `padValidate` found for them:
 
 ```html
-{form 'contact'}
-  {input 'email', type='email', label='E-mail', required/}
-  {textarea 'message', label='Message', rows=6/}
+{pad:form 'contact'}
+  {pad:input 'email', type='email', label='E-mail', required/}
+  {pad:textarea 'message', label='Message', rows=6/}
   <button>Send</button>
-{/form}
+{/pad:form}
 ```
 
 ```php
@@ -879,11 +879,11 @@ label, with `aria-invalid` and `aria-describedby`.
 The rules can stand on the fields in the template instead, and the PHP then only acts:
 
 ```html
-{form 'contact', error='Please correct the errors below.'}
-  {input 'email', type='email', label='E-mail', rules='required|email'/}
-  {textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
+{pad:form 'contact', error='Please correct the errors below.'}
+  {pad:input 'email', type='email', label='E-mail', rules='required|email'/}
+  {pad:textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
   <button>Send</button>
-{/form}
+{/pad:form}
 ```
 
 ```php
@@ -899,7 +899,7 @@ The rules are read from the page's template before any PHP runs and a post of th
 checked against them there, so `padPosted('contact')` is TRUE only for a post that kept them;
 one that broke them renders the form again, refilled, with the messages and the `error=`
 banner, and `padFormFailed('contact')` is TRUE. Only literal rules in the page's own template
-count - rules in a snippet, a custom tag, a `{page}` or a layout are an error, as nothing would
+count - rules in a snippet, a custom tag, a `{pad:page}` or a layout are an error, as nothing would
 check them; a field that is there only sometimes keeps its check in the PHP, where
 `padValidate` adds its messages to the template's.
 
@@ -917,8 +917,8 @@ elseif ( $avatar === FALSE )         // refused - NULL means no file was sent
   $problem = padUploadError ( 'avatar' );
 ```
 
-The refusal also shows beside `{input 'avatar', type='file', label='Picture'/}`, and a
-`{form}` holding a file field posts as `multipart/form-data` by itself.
+The refusal also shows beside `{pad:input 'avatar', type='file', label='Picture'/}`, and a
+`{pad:form}` holding a file field posts as `multipart/form-data` by itself.
 
 What is stored under `DATA/` no address reaches; a page sends it back with `padUploadSend`,
 which answers the file as the page's whole answer and ends the request:
@@ -942,7 +942,7 @@ padRedirect ( 'contact' );
 ```
 
 ```html
-{flash}<p class="notice {$type}">{$message}</p>{/flash}
+{pad:flash}<p class="notice {$type}">{$message}</p>{/pad:flash}
 ```
 
 A message lives exactly one request after the one that flashed it - the redirect's
@@ -952,8 +952,8 @@ destination - and each is shown once.
 With `$padCsrf = TRUE` in `_config/config.php`, every `<form method="post">` that posts back
 to the site gets a hidden `padCsrfToken` field holding the token of the visitor's session,
 and every POST (PUT, PATCH, DELETE) that does not bring it back - in that field or an
-`X-CSRF-Token` header - is answered `403` before the application runs. `{csrf}` writes the
-field by hand, `{csrf token/}` the bare token; `padCsrfValid()` checks a post in PHP. The
+`X-CSRF-Token` header - is answered `403` before the application runs. `{pad:csrf}` writes the
+field by hand, `{pad:csrf token/}` the bare token; `padCsrfValid()` checks a post in PHP. The
 session starts on demand the first time a token is needed.
 
 ---
@@ -1015,12 +1015,12 @@ $exists = db("CHECK * FROM users WHERE email='{0}'", [$email]);
 ### Database Template Tags
 Query databases directly from templates:
 ```
-{field "count(*) from users"/}                    # Single value
-{field "name from users where id = 1"/}           # Single field
+{pad:field "count(*) from users"/}                    # Single value
+{pad:field "name from users where id = 1"/}           # Single field
 
-{array "* from users order by name"}
+{pad:array "* from users order by name"}
   <tr><td>{$name}</td><td>{$email}</td></tr>
-{/array}
+{/pad:array}
 ```
 
 ---
@@ -1081,11 +1081,11 @@ PAD pipe functions come from two sources:
 1. Custom functions in `pad/functions/` (trim, upper, date, html, etc.)
 2. Standard PHP functions called directly (strlen, count, etc.)
 
-Both pipe from a field tag or through `{echo}`:
+Both pipe from a field tag or through `{pad:echo}`:
 ```
-{echo $text | trim/}              # PAD function
-{echo $text | strlen/}            # PHP function
-{echo $name | ucfirst/}           # PHP function
+{pad:echo $text | trim/}              # PAD function
+{pad:echo $text | strlen/}            # PHP function
+{pad:echo $name | ucfirst/}           # PHP function
 {$text | trim}                   # a field tag pipes as it stands
 ```
 
@@ -1096,11 +1096,11 @@ Both pipe from a field tag or through `{echo}`:
 ### Parameter Evaluation
 Parameters are evaluated before being passed to tags. Use quotes to pass literal strings:
 ```
-{count items}              # Wrong - items is read as an option, an error
-{count 'items'}            # Correct - passes the string "items"
+{pad:count items}              # Wrong - items is read as an option, an error
+{pad:count 'items'}            # Correct - passes the string "items"
 
-{get $message/}             # Wrong - evaluates $message first
-{get 'fragments/hello'/}    # Correct - passes literal page path
+{pad:get $message/}             # Wrong - evaluates $message first
+{pad:get 'fragments/hello'/}    # Correct - passes literal page path
 ```
 
 ### Tag Type Prefixes
@@ -1131,7 +1131,7 @@ Tags can have multiple sources (app tags, data, sequences, etc.). Use type prefi
 | `constant:` | Access PHP constant |
 | `bool:` | Access bool definition |
 | `pull:` | Retrieved stored sequence |
-| `field:` | A field (variable) value - the database value is the `{field "..."/}` tag |
+| `field:` | A field (variable) value - the database value is the `{pad:field "..."/}` tag |
 | `select:` | Declared select table |
 | `sequence:` | Sequence type |
 | `action:` | Sequence action |
@@ -1147,142 +1147,142 @@ Tags can have multiple sources (app tags, data, sequences, etc.). Use type prefi
 ### The `get` Tag
 The `get` tag includes PAD pages, NOT variables:
 ```
-{get 'fragments/hello'/}     # Includes the page fragments/hello (.php + .pad)
-{get 'admin/users'/}         # Includes admin/users page
+{pad:get 'fragments/hello'/}     # Includes the page fragments/hello (.php + .pad)
+{pad:get 'admin/users'/}         # Includes admin/users page
 ```
 
 ### The `case` Tag
-Uses `{when value}` syntax for branches:
+Uses `{pad:when value}` syntax for branches:
 ```
-{case $color}
-  {when 'red'} Stop
-  {when 'yellow'} Caution
-  {when 'green'} Go
-  {else} Unknown
-{/case}
+{pad:case $color}
+  {pad:when 'red'} Stop
+  {pad:when 'yellow'} Caution
+  {pad:when 'green'} Go
+  {pad:else} Unknown
+{/pad:case}
 ```
 
 ### The `bool` Tag
-Creates a named boolean condition usable as a tag - `{else}` belongs to `{if}` and `{case}`
+Creates a named boolean condition usable as a tag - `{pad:else}` belongs to `{pad:if}` and `{pad:case}`
 only, every other tag splits on `@else@`:
 ```
-{bool 'isActive'}1{/bool}      # Define the boolean
+{pad:bool 'isActive'}1{/pad:bool}      # Define the boolean
 
-{isActive}                      # Use as a tag (NOT {$isActive})
+{bool:isActive}                      # Use as a tag (NOT {$isActive})
   <p>Active!</p>
 @else@
   <p>Inactive</p>
-{/isActive}
+{/bool:isActive}
 ```
 
 ### The `exists` Tag
-Block tag for file existence checks (not nested in `{if}`):
+Block tag for file existence checks (not nested in `{pad:if}`):
 ```
-{exists APP . 'path/to/file.pad'}
+{pad:exists APP . 'path/to/file.pad'}
   File exists
 @else@
   File not found
-{/exists}
+{/pad:exists}
 ```
 
 ### The `count` Tag
 Checks if an array has elements. Quote the array name:
 ```
-{count 'items'}
+{pad:count 'items'}
   Array has elements
 @else@
   Array is empty
-{/count}
+{/pad:count}
 ```
 
 ### The `output` Tag
 Sets output type, does NOT capture content:
 ```
-{output 'web'/}        # Normal web output (default)
-{output 'console'/}    # Console output
-{output 'download'/}   # File download
-{output 'json'/}       # The variables the page names in $padExpose, as JSON
-{output 'csv'/}        # The first list the page names in $padExpose, as CSV
+{pad:output 'web'/}        # Normal web output (default)
+{pad:output 'console'/}    # Console output
+{pad:output 'download'/}   # File download
+{pad:output 'json'/}       # The variables the page names in $padExpose, as JSON
+{pad:output 'csv'/}        # The first list the page names in $padExpose, as CSV
 ```
 
 ### The `true` and `false` Tags
 Literal boolean conditions for always/never showing content:
 ```
-{true}This is always shown{/true}
-{false}This is never shown{/false}
+{pad:true}This is always shown{/pad:true}
+{pad:false}This is never shown{/pad:false}
 ```
 
 ### The `code` Tag
 Render its content as PAD in a pass of its own - it runs no PHP: PHP written inside is
 printed as text. PHP belongs in the page's `.php` or in `_lib/`.
 ```
-{code}
-  {set $total = $price * $qty/}{$total}
-{/code}
+{pad:code}
+  {pad:set $total = $price * $qty/}{$total}
+{/pad:code}
 
-{code sandbox}
+{pad:code sandbox}
   {-- an isolated pass: the page's variables and stores are not seen or changed --}
-{/code}
+{/pad:code}
 
-{echo $snippet | code/}      {-- a stored value run as PAD --}
+{pad:echo $snippet | code/}      {-- a stored value run as PAD --}
 ```
 
 ### The `pad` Tag with Content Blocks
 Process template content with data using `@start@` and `@end@` markers:
 ```
-{pad data='myData'}
+{pad:pad data='myData'}
   @start@
     <li>{$name}</li>
   @end@
-{/pad}
+{/pad:pad}
 ```
 
 ### The `content` Tag
 Define named content templates for reuse:
 ```
-{content 'rowTemplate'}
+{pad:content 'rowTemplate'}
   @start@
     <tr><td>{$name}</td><td>{$value}</td></tr>
   @end@
-{/content}
+{/pad:content}
 
-{pad data='items', content='rowTemplate'}
+{pad:pad data='items', content='rowTemplate'}
 ```
 
 **Content with sorting and pagination:**
 ```
-{myContent data='myData', sort='name'}
-{myContent data='myData', sort='name DESC'}
-{myContent data='myData', sort='volume;edition'}           # Multiple fields
-{myContent data='myData', sort='volume DESC; edition ASC'} # Mixed directions
-{myContent data='myData', sort='file NATURAL'}             # Natural ordering
-{myContent data='myData', rows=10, page=2}                 # Pagination
+{content:myContent data='myData', sort='name'}
+{content:myContent data='myData', sort='name DESC'}
+{content:myContent data='myData', sort='volume;edition'}           # Multiple fields
+{content:myContent data='myData', sort='volume DESC; edition ASC'} # Mixed directions
+{content:myContent data='myData', sort='file NATURAL'}             # Natural ordering
+{content:myContent data='myData', rows=10, page=2}                 # Pagination
 ```
 
 ### The `file` Tag
 Write content to files:
 ```
-{file dir='output', name='report', ext='txt'}
+{pad:file dir='output', name='report', ext='txt'}
   Report content here
-{/file}
+{/pad:file}
 
-{file dir='logs', name='entry', ext='log', date, stamp}
+{pad:file dir='logs', name='entry', ext='log', date, stamp}
   Log entry with date and timestamp in filename
-{/file}
+{/pad:file}
 ```
 
 ### The `open` and `close` Tags
 Output literal braces (for documentation/examples):
 ```
-{open/}echo $var{close/}    # Outputs: {echo $var/}
+{pad:open/}echo $var{pad:close/}    # Outputs: {pad:echo $var/}
 ```
 
 ### Files Tag
 Use `base='app'` for application-relative paths:
 ```
-{files 'fragments/claude', base='app', mask='*.pad'}
+{pad:files 'fragments/claude', base='app', mask='*.pad'}
   {$file}
-{/files}
+{/pad:files}
 ```
 
 ---
@@ -1356,7 +1356,7 @@ is declared twice, and anything it does it does twice. Functions belong in `_lib
   // $padInfo = 'trace';
 
   // Values are text: a field holding {php:getcwd} prints that text. FALSE re-reads
-  // every value as template source; {echo $snippet | code} runs one value on purpose.
+  // every value as template source; {pad:echo $snippet | code} runs one value on purpose.
   $padProtectValues = TRUE;
 
   // The PHP functions a template may call: TRUE all, a list only those, [] none
@@ -1373,7 +1373,7 @@ is declared twice, and anything it does it does twice. Functions belong in `_lib
   $padAppKey = 'base64:...';
 
   // Security headers (these two are the default) and the Content-Security-Policy;
-  // 'nonce' is this request's nonce, which {nonce} writes: <script nonce="{nonce}">
+  // 'nonce' is this request's nonce, which {pad:nonce} writes: <script nonce="{pad:nonce}">
   $padSecurityHeaders = [ 'X-Content-Type-Options' => 'nosniff',
                           'Referrer-Policy'        => 'strict-origin-when-cross-origin' ];
   $padCsp = "default-src 'self'; script-src 'self' 'nonce'; frame-ancestors 'self'";
@@ -1401,11 +1401,11 @@ HTML when there is none), `_mail/order.php` (runs first), and `_inits.pad`/`_exi
 `.txt`) in the same directory as the email's layout around `@page@`.
 
 ```html
-{mail to=$email, template='order', subject='Order confirmation'/}
+{pad:mail to=$email, template='order', subject='Order confirmation'/}
 
-{orders}
-  {mail to=$email, subject='Your order ' . $number}<p>Thank you, {$customer}</p>{/mail}
-{/orders}
+{array:orders}
+  {pad:mail to=$email, subject='Your order ' . $number}<p>Thank you, {$customer}</p>{/pad:mail}
+{/array:orders}
 ```
 
 ```php
@@ -1427,10 +1427,10 @@ gets the message array (`to`, `cc`, `bcc`, `from`, `replyTo`, `subject`, `html`,
 Every page is a file, so the sitemap is generated: with `$padSitemap = TRUE` the application
 answers `?sitemap.xml` (`/myapp/sitemap.xml` with clean URLs) with every page and the newest
 time of its files as `lastmod`, and `?robots.txt` with a `Sitemap:` line pointing to it - unless
-the application has a page of that name itself. `{sitemap}...{/sitemap}` gives the same rows
+the application has a page of that name itself. `{pad:sitemap}...{/pad:sitemap}` gives the same rows
 (`page`, `url`, `lastmod`) to a template, for an HTML sitemap. Left out are `_` entries,
 directories holding a `_guard.php`, bracketed routes, action pages (no template, PHP that only
-redirects, restarts or writes), pages whose template says `{meta sitemap=false/}`, and what
+redirects, restarts or writes), pages whose template says `{pad:meta sitemap=false/}`, and what
 `$padSitemapSkip` names.
 
 ---
@@ -1491,7 +1491,7 @@ see it, before any `_inits.php` or page PHP runs:
   `403 Forbidden`; `TRUE` or no return at all lets the request through.
 - The guards run root first, one per directory level, after the `_lib` files and in the
   request's own scope: the session and request variables and `$padPage` are there.
-- A page included with `{page}` is guarded too; a refusal renders it as nothing.
+- A page included with `{pad:page}` is guarded too; a refusal renders it as nothing.
 - A guarded page is never answered from the page cache, nor stored in it.
 
 ---
@@ -1510,71 +1510,71 @@ see it, before any `_inits.php` or page PHP runs:
 
 ### Dynamic Menu from JSON
 ```
-{menu}
-  <a href="?{$page}"{if $padPage == $page} class="active"{/if}>{$text}</a>
-{/menu}
+{local:menu}
+  <a href="?{$page}"{pad:if $padPage == $page} class="active"{/pad:if}>{$text}</a>
+{/local:menu}
 ```
 
 ### Conditional Display with Nested Tags
 ```
-{if {clock 'L'/} eq 1}
+{pad:if {app:clock 'L'/} eq 1}
   366 days (leap year)
-{else}
+{pad:else}
   365 days
-{/if}
+{/pad:if}
 ```
 
 ### Calculated Values
 ```
-Day {clock 'z' | + 1/} of {if {clock 'L'/} eq 1}366{else}365{/if}
-Days remaining: {if {clock 'L'/} eq 1}{echo 365 - {clock 'z'/}/}{else}{echo 364 - {clock 'z'/}/}{/if}
+Day {app:clock 'z' | + 1/} of {pad:if {app:clock 'L'/} eq 1}366{pad:else}365{/pad:if}
+Days remaining: {pad:if {app:clock 'L'/} eq 1}{pad:echo 365 - {app:clock 'z'/}/}{pad:else}{pad:echo 364 - {app:clock 'z'/}/}{/pad:if}
 ```
 
 ### Alternating Row Colors
 ```
-{items}
-  <div style="background: {even@items ? '#e0e0e0' : '#f0f0f0'}">
+{data:items}
+  <div style="background: {property:even@items ? '#e0e0e0' : '#f0f0f0'}">
     {$name}
   </div>
-{/items}
+{/data:items}
 ```
 
-Or using the `{switch}` tag:
+Or using the `{pad:switch}` tag:
 ```
-{items}
-  <tr class="{switch 'odd', 'even'/}"><td>{$name}</td></tr>
-{/items}
+{data:items}
+  <tr class="{pad:switch 'odd', 'even'/}"><td>{$name}</td></tr>
+{/data:items}
 ```
 
 ### Conditional Table Wrapper
 ```
-{items}
-  {first@items}<table border="1">{/first@items}
+{data:items}
+  {property:first@items}<table border="1">{/property:first@items}
   <tr><td>{$name}</td></tr>
-  {last@items}</table>{/last@items}
-{/items}
+  {property:last@items}</table>{/property:last@items}
+{/data:items}
 ```
 
 ### Comma-Separated List
 ```
-{items}{notFirst@items}, {/notFirst@items}{$name}{/items}
+{data:items}{property:notFirst@items}, {/property:notFirst@items}{$name}{/data:items}
 ```
 Output: `Alice, Bob, Charlie`
 
 ### Nested Loop with Arithmetic
 ```
-{sequence '1..3', name='row'}
+{sequence:range '1..3', name='row'}
   <tr>
-    {sequence '1..4', name='col'}
-      <td>{echo $row * 10 + $col/}</td>
-    {/sequence}
+    {sequence:range '1..4', name='col'}
+      <td>{pad:echo $row * 10 + $col/}</td>
+    {/sequence:range}
   </tr>
-{/sequence}
+{/sequence:range}
 ```
 
 ### Extract Domain from Email
 ```
-{echo $email | after('@') | before('.')/}
+{pad:echo $email | after('@') | before('.')/}
 ```
 
 ---
@@ -1588,20 +1588,20 @@ Output: `Alice, Bob, Charlie`
 | `{$var}` | Output variable, HTML-escaped (the sanitize chain) | `{$name}` |
 | `{!var}` | Raw output - trusted HTML only | `{!body}` |
 | `{$obj.prop}` | Property access | `{$user.email}` |
-| `{echo expr/}` | Evaluate expression | `{echo $a + $b/}` |
-| `{echo $x \| func/}` | Pipe function | `{echo $text \| upper/}` |
-| `{set $x = val/}` | Assign variable | `{set $count = 0/}` |
-| `{if cond}...{/if}` | Conditional | `{if $x eq 1}yes{/if}` |
-| `{tag}...{/tag}` | Iterate array | `{users}{$name}{/users}` |
-| `{while}...{/while}` | While loop | `{while $i lt 10}...{/while}` |
-| `{case}...{/case}` | Switch/case | `{case $x}{when 'a'}...{/case}` |
-| `{get 'page'/}` | Include page | `{get 'fragments/nav'/}` |
-| `{data 'name'}...{/data}` | Define data | `{data 'items'}[1,2,3]{/data}` |
-| `{property@tag}` | Iteration property | `{first@items}`, `{count@users}` |
-| `{sequence}` | Generate sequence | `{sequence '1..10', name='n'}` (see [sequences/](sequences/README.md)) |
-| `{break}` | Hard stop loop | `{break}` or `{break 'outer'/}` |
-| `{continue}` | Skip iteration | `{continue 'loopname'/}` |
-| `{cease}` | Soft stop loop | `{cease 'loopname'/}` |
+| `{pad:echo expr/}` | Evaluate expression | `{pad:echo $a + $b/}` |
+| `{pad:echo $x \| func/}` | Pipe function | `{pad:echo $text \| upper/}` |
+| `{pad:set $x = val/}` | Assign variable | `{pad:set $count = 0/}` |
+| `{pad:if cond}...{/pad:if}` | Conditional | `{pad:if $x eq 1}yes{/pad:if}` |
+| `{function:tag}...{/function:tag}` | Iterate array | `{data:users}{$name}{/data:users}` |
+| `{pad:while}...{/pad:while}` | While loop | `{pad:while $i lt 10}...{/pad:while}` |
+| `{pad:case}...{/pad:case}` | Switch/case | `{pad:case $x}{pad:when 'a'}...{/pad:case}` |
+| `{pad:get 'page'/}` | Include page | `{pad:get 'fragments/nav'/}` |
+| `{pad:data 'name'}...{/pad:data}` | Define data | `{pad:data 'items'}[1,2,3]{/pad:data}` |
+| `{property:property@tag}` | Iteration property | `{property:first@items}`, `{property:count@users}` |
+| `{sequence:loop}` | Generate sequence | `{sequence:range '1..10', name='n'}` (see [sequences/](sequences/README.md)) |
+| `{pad:break}` | Hard stop loop | `{pad:break}` or `{pad:break 'outer'/}` |
+| `{pad:continue}` | Skip iteration | `{pad:continue 'loopname'/}` |
+| `{pad:cease}` | Soft stop loop | `{pad:cease 'loopname'/}` |
 
 ### Comparison Operators
 
@@ -1635,12 +1635,12 @@ Output: `Alice, Bob, Charlie`
 ### Key Distinctions from PHP
 
 1. **Templates drive execution** - not code including templates
-2. **A literal pipes through `{echo}`** - `{echo 'x' | upper/}`; a field tag pipes as it stands, `{$var | upper}`, and only the field tag escapes
-3. **Arithmetic needs space** - `{echo $x | + 1/}` not `| +1`
-4. **A bare condition tests truth** - `{if $flag}` fails for `''`, `'0'`, `0` and FALSE; compare when a value is meant
-5. **Quote literal strings** - `{count 'items'}` not `{count items}`
-6. **`{continue}` skips iterations** - like PHP; use `{resume}` to transform stored sequences
+2. **A literal pipes through `{pad:echo}`** - `{pad:echo 'x' | upper/}`; a field tag pipes as it stands, `{$var | upper}`, and only the field tag escapes
+3. **Arithmetic needs space** - `{pad:echo $x | + 1/}` not `| +1`
+4. **A bare condition tests truth** - `{pad:if $flag}` fails for `''`, `'0'`, `0` and FALSE; compare when a value is meant
+5. **Quote literal strings** - `{pad:count 'items'}` not `{pad:count items}`
+6. **`{pad:continue}` skips iterations** - like PHP; use `{pad:resume}` to transform stored sequences
 7. **Use type prefixes** - `{pull:seq}`, `{data:items}`, `{php:func}` to disambiguate
 8. **`$` vs `%` variables** - `$var` is level (constant), `%var` is occurrence (per-iteration)
-9. **`@` placeholder** - represents current value in pipes: `{echo 5 | @ * 2/}`
-10. **Multiple data formats** - JSON, XML, YAML, CSV all supported in `{data}` blocks
+9. **`@` placeholder** - represents current value in pipes: `{pad:echo 5 | @ * 2/}`
+10. **Multiple data formats** - JSON, XML, YAML, CSV all supported in `{pad:data}` blocks

@@ -24,7 +24,7 @@
   $name = end ( $names );
 
   // A named parameter of the level is no answer for a name that is a property: first= and
-  // last= are handling options named like one, and {xs first=3}{first@xs}<ul>{/first@xs}
+  // last= are handling options named like one, and {xs first=3}{property:first@xs}<ul>{/property:first@xs}
   // printed the 3 and opened the list on every row - the documented idiom broke as soon as
   // the list was limited. A row field still comes first, as PROPERTIES.md says of the tag
   // form; the parameter stays reachable as {#first} and option.first@xs.

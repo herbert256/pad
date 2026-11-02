@@ -1,15 +1,17 @@
 <?php
 
+  include_once COMMON . '_lib/subsystemCatalog.php';
+
   // The types application: a page per type of tag - the prefix before the colon of {pad:if},
   // {chart:pie}, {field:name} - and the indexes over them, as the tags application has a page
   // per tag. Nothing lists the types: they are the handlers of pad/types/, and what a page says
   // comes from the engine and its documentation - the line, group and syntax of _lib/types.php,
   // the type's section of docs/reference/TYPES.md, the comment at the top of its handler, the
-  // place of the type in the order a bare name is tried in, and the tags it reaches, with a
+  // required type prefix, and the tags it reaches, with a
   // link to their pages in the tags application - and from its examples, examples/<type>/:
   //
   //   examples/<type>/<x>.pad   an example, rendered live; its first line
-  //                             {meta title='...', about='...'/} names it
+  //                             {pad:meta title='...', about='...'/} names it
   //   examples/<type>/<x>.php   the data of an example that builds it in PHP
   //   examples/<type>/<x>.src   an example that is shown but never run - a database, a script
 
@@ -45,9 +47,18 @@
         'group'   => isset ( typesGroups () [$group] ) ? $group : 'tags',
         'syntax'  => $syntax,
         'comment' => $comment,
+        'prefix'  => TRUE,
+        'language' => 'pad',
         'order'   => isset ( $order [$name] ) ? $order [$name] + 1 : 0,
         'bare'    => isset ( $order [$name] ) ];
 
+    }
+
+    foreach ( appSubsystemFamilies () as $name => $family ) {
+      $sample = appSubsystemExample ( $name, $family ['example'] ?: ( padKinds ( $family ['directory'] ) [0] ?? '' ) );
+      $found [$name] = [ 'name' => $name, 'key' => $family ['label'], 'link' => "type/$name",
+                        'about' => $family ['about'], 'group' => 'kinds', 'syntax' => $sample ['source'],
+                        'comment' => '', 'prefix' => FALSE, 'language' => $sample ['language'], 'order' => 0, 'bare' => FALSE ];
     }
 
     $groups = array_flip ( array_keys ( typesGroups () ) );
@@ -132,12 +143,17 @@
     if ( isset ( padSubsystems [$type] ) )
       return array_map ( fn ( $kind ) => [ "$type:$kind", "$tags$type/$kind" ], padKinds ( padSubsystems [$type] [0] ) );
 
+    if ( isset ( padSubsystemKinds [$type] ) )
+      return array_map ( fn ( $kind ) => [ $kind, "{$padRoot}tags/?kind/$type/$kind" ], padKinds ( padSubsystemKinds [$type] ) );
+
+    $selectors = in_array ( $type, padSequenceOperations, TRUE ) ? [ [ "$type:auto", "$tags$type/auto" ] ] : [];
+
     if ( in_array ( $type, [ 'sequence', 'flag', 'make', 'keep', 'remove' ] ) )
-      return array_map ( fn ( $kind ) => [ "$type:$kind", "{$tags}sequence/$kind" ],
-                         array_values ( array_filter ( padDirList ( PAD . 'sequence/types' ) ?: [], fn ( $one ) => $one [0] != '.' and is_dir ( PAD . "sequence/types/$one" ) ) ) );
+      return array_merge ( $selectors, array_map ( fn ( $kind ) => [ "$type:$kind", "{$tags}sequence/$kind" ],
+                         array_values ( array_filter ( padDirList ( PAD . 'sequence/types' ) ?: [], fn ( $one ) => $one [0] != '.' and is_dir ( PAD . "sequence/types/$one" ) ) ) ) );
 
     if ( $type == 'action' )
-      return array_map ( fn ( $name ) => [ "action:$name", '' ], $names ( PAD . 'sequence/actions/types' ) );
+      return array_merge ( $selectors, array_map ( fn ( $name ) => [ "action:$name", '' ], $names ( PAD . 'sequence/actions/types' ) ) );
 
     if ( $type == 'function' )
       return array_map ( fn ( $name ) => [ "function:$name", '' ], $names ( PAD . 'functions' ) );
@@ -154,6 +170,13 @@
   // The examples of a type: [ page or file, title, about, run ].
 
   function typesExamples ( $name ) {
+
+    if ( isset ( appSubsystemFamilies () [$name] ) ) {
+      $family = appSubsystemFamilies () [$name];
+      $sample = appSubsystemExample ( $name, $family ['example'] ?: ( padKinds ( $family ['directory'] ) [0] ?? '' ) );
+      return [ $sample + [ 'page' => '', 'title' => $family ['label'], 'file' => '', 'php' => '', 'phpHtml' => '',
+                          'padHtml' => padHighlightTokens ( $sample ['source'], $sample ['language'] ) ] ];
+    }
 
     $examples = [];
     $files    = [];
@@ -177,6 +200,8 @@
                        'title'   => $title,
                        'about'   => $about,
                        'run'     => $run,
+                       'source'  => '',
+                       'language' => 'pad',
                        'file'    => $file,
                        'padHtml' => typesSource ( $file, 'pad' ),
                        'php'     => $php,
@@ -193,7 +218,7 @@
     $source = (string) padFileGet ( APP . $file );
 
     if ( $lang == 'pad' )
-      $source = preg_replace ( '/\A\{meta [^\n]*\}\R?/', '', $source );
+      $source = preg_replace ( '/\A\{pad:meta [^\n]*\}\R?/', '', $source );
 
     return padHighlightTokens ( trim ( $source ), $lang );
 
@@ -254,7 +279,9 @@
     $bare = $prefixed = [];
 
     foreach ( typesCatalog () as $type )
-      if ( $type ['bare'] )
+      if ( ! $type ['prefix'] )
+        continue;
+      elseif ( $type ['bare'] )
         $bare [ $type ['order'] ] = typesRow ( $type );
       else
         $prefixed [] = typesRow ( $type );
@@ -274,7 +301,7 @@
       $types = [];
 
       foreach ( $group ['types'] as $type )
-        $types [] = $type + [ 'syntaxHtml' => padHighlightTokens ( typesCatalog () [ $type ['name'] ] ['syntax'], 'pad' ) ];
+        $types [] = $type + [ 'syntaxHtml' => padHighlightTokens ( typesCatalog () [ $type ['name'] ] ['syntax'], typesCatalog () [ $type ['name'] ] ['language'] ) ];
 
       $rows [] = [ 'key' => $group ['key'], 'label' => $group ['label'], 'types' => $types ];
 

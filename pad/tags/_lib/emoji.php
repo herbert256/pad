@@ -1,9 +1,9 @@
 <?php
 
-  // Emoji by shortcode - the {emoji} tag and the emoji pipe.
+  // Emoji by shortcode - the {pad:emoji} tag and the emoji pipe.
   //
-  //   {emoji 'rocket'}               <span class="pad-emoji" role="img" aria-label="rocket">🚀</span>
-  //   {emoji ':tada:', label='Party!'}
+  //   {pad:emoji 'rocket'}               <span class="pad-emoji" role="img" aria-label="rocket">🚀</span>
+  //   {pad:emoji ':tada:', label='Party!'}
   //   {$comment | emoji}             every :shortcode: of the text as its emoji
   //
   // The shortcodes are GitHub's and Slack's - :+1:, :heart:, :rocket:, :white_check_mark: -

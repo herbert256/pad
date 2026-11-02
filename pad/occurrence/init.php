@@ -2,7 +2,7 @@
 
   // Opens a new occurrence: bumps the row counter, gives the level a fresh working copy
   // of its template ($padOut = $padBase, its comments taken out, its ~ whitespace control
-  // applied and an {else } written {else} - lib/template.php padElseSpace) and points
+  // applied and an {pad:else } written {pad:else} - lib/template.php padElseSpace) and points
   // $padKey/$padCurrent at the row the data pointer currently sits on.
   //
   // Rows reached after the first walk pass are also collected in $padWalkData, which is
@@ -18,7 +18,7 @@
   $padScan    [$pad] = 0;
 
   // A level no tag opened - the page itself when its PHP answered no list (build/page.php
-  // wraps a list in a {padBuild} tag), or a {code} pass - never went through
+  // wraps a list in a {array:padBuild} tag), or a {pad:code} pass - never went through
   // level/start.php, so its own @start@ and @end@ reached the page as written: z99 printed
   // "@start@ bb @end@". It renders once, so its prelude, body and coda render once each:
   // padSectionsOnce takes its own markers out. Only for the passes start/pad/pad.php names

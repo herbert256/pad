@@ -1,22 +1,22 @@
 {common:padFrame}
 
-  {slot 'head'}
+  {pad:slot 'head'}
     <meta name="theme-color" content="#4f46e5">
-    <meta name="csrf-token" content="{csrf token/}">
-    <link rel="icon" href="{asset 'icon.svg'/}" type="image/svg+xml">
-    {asset 'kanban.css', tag/}
-    <script src="{asset 'kanban.js'/}" defer></script>
-  {/slot}
+    <meta name="csrf-token" content="{pad:csrf token/}">
+    <link rel="icon" href="{pad:asset 'icon.svg'/}" type="image/svg+xml">
+    {pad:asset 'kanban.css', tag/}
+    <script src="{pad:asset 'kanban.js'/}" defer></script>
+  {/pad:slot}
 
-  {slot 'tools'}
-    {if $padPage eq 'index'}<span class="board-count">{$cardTotal} cards</span>{/if}
+  {pad:slot 'tools'}
+    {pad:if $padPage eq 'index'}<span class="board-count">{$cardTotal} cards</span>{/pad:if}
     <span class="live" id="live" hidden><i></i> <span>Live</span></span>
     <a class="button primary" href="{$padGo}card" data-new-card>+ New card</a>
-  {/slot}
+  {/pad:slot}
 
 {/common:padFrame}
 
-{flash}<p class="flash {$type}" role="status">{$message}</p>{/flash}
+{pad:flash}<p class="flash {$type}" role="status">{$message}</p>{/pad:flash}
 
 @page@
 

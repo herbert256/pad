@@ -5,16 +5,16 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{macro 'name', required, optional='default'} ... {$required} {$optional} ... {/macro}
-{name 'value'/}
-{name 'value', 'other'/}
-{name required='value', optional=$x/}
-{name 'value'} content for @content@ {/name}
+{pad:macro 'name', required, optional='default'} ... {$required} {$optional} ... {/pad:macro}
+{macro:name 'value'/}
+{macro:name 'value', 'other'/}
+{macro:name required='value', optional=$x/}
+{macro:name 'value'} content for @content@ {/macro:name}
 {macro:name .../}
 PAD;
 
   $tagParms   = [
-    'name'       => 'The name of the macro, used as a tag from here on. Under the strict check it may not be a built-in tag, an application tag or a <code>{define}</code> already.',
+    'name'       => 'The name of the macro, called with the required <code>macro:</code> prefix. The same name can exist in other namespaces.',
     'parameters' => 'The items after the name declare the macro\'s parameters: a name alone is required, <code>name=default</code> is optional - the default is evaluated where the macro is used. A parameter may not be named like an option every tag takes (<code>sort</code>, <code>first</code>, <code>content</code> ...).' ];
 
   $tagOptions = [];

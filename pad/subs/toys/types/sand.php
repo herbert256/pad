@@ -8,7 +8,7 @@
   // material= the one to paint with first, sand unless given; brush= its size (3, 1 to 12);
   // scene= what the box starts with - hourglass, garden or empty.
   //
-  //   {sand scene='garden', material='fire'/}
+  //   {toy:sand scene='garden', material='fire'/}
 
   return padToy ( 'sand', 'Falling sand', [
     'width'    => padToyInt ( 'width', 160, 60, 300 ),

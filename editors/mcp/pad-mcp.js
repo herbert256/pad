@@ -436,7 +436,7 @@ function describe(result, source) {
     const t = json.template;
     // The engine's own placing first: the file, line and tag of the report's template. The
     // search below finds only the first spot the tag's text stands, which named line 1 for
-    // an unclosed {if 1 eq 1} on line 3 when a closed one stood earlier; it stays for a
+    // an unclosed {pad:if 1 eq 1} on line 3 when a closed one stood earlier; it stays for a
     // template given as text, which the engine cannot place in a file.
     if (t && typeof t.file === 'string' && t.line > 0)
         lines.push('tag: ' + (t.tag || '{' + tag + '}') + ', line ' + t.line + ' of ' + t.file);
@@ -619,7 +619,7 @@ const app = { type: 'string', description: "The application, as in its URL: 'dem
 const page = { type: 'string', description: "A page of the application, as in ?orders or ?admin/users - default 'index'" };
 const template = { type: 'string', description: 'PAD template text to use instead of the page\'s own .pad - it need not exist as a file. With a page, that page\'s .php runs first and its variables are there; without one it renders alone, with the application\'s _tags, _functions and _include.' };
 const query = { type: 'string', description: "Request values, as a query string: 'id=7&name=Ann'" };
-const data = { type: 'object', description: 'Variables for the template instead of running PHP - {"name": "Ann", "rows": [{"n": 1}, {"n": 2}]}: each key a variable, a list of objects iterable as {rows}...{/rows}. No _inits.php and no page .php run (the designer preview\'s mechanism, ?padSample). Without a template, the page\'s own template gets them.' };
+const data = { type: 'object', description: 'Variables for the template instead of running PHP - {"name": "Ann", "rows": [{"n": 1}, {"n": 2}]}: each key a variable, a list of objects iterable as {array:rows}...{/array:rows}. No _inits.php and no page .php run (the designer preview\'s mechanism, ?padSample). Without a template, the page\'s own template gets them.' };
 const bare = { type: 'boolean', description: 'Leave out the _inits/_exits frame (&padInclude) - the default for a template given as text; a page renders framed unless this is true.' };
 
 // The parts of a render's output a comparison or a check reads: the status, the body or the

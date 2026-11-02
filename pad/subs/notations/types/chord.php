@@ -7,7 +7,7 @@
   // a shape found for it when there is none; or the frets themselves, 'x32010', '8 10 10 9 8 8'
   // past the ninth fret, the chord then named by its notes. frets= draws a name in a shape of
   // your own, instrument= is guitar (the default) or ukulele, size= the width in pixels (120
-  // unless given), title= the accessible name. Bare, {chord} is the chord diagram of the
+  // unless given), title= the accessible name. Bare, {chart:chord} is the chord diagram of the
   // charts, which comes first: this is {notation:chord}.
   //
   //   {notation:chord 'Am'/}

@@ -1,27 +1,27 @@
 <?php
 
-  // Reads the tag's positional parameters past the first, which nothing read: {keep $t,
-  // '1..10'} with $t 'prime' kept from the default run, {keep '1..10', $t} kept 1 to 10, and
-  // {sequence '1..5', 'x'}, {sequence 5, 7} answered as if the second were not there, all
+  // Reads the tag's positional parameters past the first, which nothing read: {keep:auto $t,
+  // '1..10'} with $t 'prime' kept from the default run, {keep:range '1..10', $t} kept 1 to 10, and
+  // {sequence:range '1..5', 'x'}, {sequence:loop 5, 7} answered as if the second were not there, all
   // without a word.
   //
-  // After one that named what to run - parm/name.php, a {pull}'s store - the next is the
+  // After one that named what to run - parm/name.php, a {pad:pull}'s store - the next is the
   // first parameter of what it named, read as the first is read after a name the tag or its
-  // prefix gives: {keep $t, '1..10'} is {keep:prime '1..10'}, {sequence 's', 'reverse'} is
+  // prefix gives: {keep:auto $t, '1..10'} is {keep:prime '1..10'}, {sequence:auto 's', 'reverse'} is
   // {pull:s 'reverse'}. After a count, a range, a list or a type's parameter, one that names a
-  // store, a type or an action is read as the option of that name would be: {keep '1..10',
-  // $t} is {keep '1..10', prime}, a range played on by prime, and {reverse '1..5', 'sum'} is
-  // {reverse '1..5', sum}. What is left is named by the strict check.
+  // store, a type or an action is read as the option of that name would be: {keep:range '1..10',
+  // $t} is {keep:range '1..10', prime}, a range played on by prime, and {action:reverse '1..5', 'sum'} is
+  // {action:reverse '1..5', sum}. What is left is named by the strict check.
   //
   // So for the third as for the second, each read by what the one before it was: only the
-  // second was read, and a third was named whatever it was - {pull 's', 'shift', 2} ended on
-  // "a parameter '2' that nothing reads" where {pull:s 'shift', 2} gives 1 2, and {sequence
-  // 'prime', 3, 'reverse'} on 'reverse' where {prime 3, 'reverse'} gives 5 3 2.
+  // second was read, and a third was named whatever it was - {pad:pull 's', 'shift', 2} ended on
+  // "a parameter '2' that nothing reads" where {pull:s 'shift', 2} gives 1 2, and {sequence:auto
+  // 'prime', 3, 'reverse'} on 'reverse' where {sequence:prime 3, 'reverse'} gives 5 3 2.
 
   // A first one nothing placed is put back afterwards for find/default.php, which names it
   // when the run found nothing else to run - and then the others are left to it: read in its
-  // place, {sequence 'xyz', 'prime'} ran the primes. Beside a store pulled only a number can
-  // be left, dropped as before - {make add=3, mySequence, 3}, parm/parm.php - and the others
+  // place, {sequence:auto 'xyz', 'prime'} ran the primes. Beside a store pulled only a number can
+  // be left, dropped as before - {make:auto add=3, mySequence, 3}, parm/parm.php - and the others
   // are only named.
 
   $pqFindFirst = $pqFindParm;
@@ -34,7 +34,7 @@
   // action's kind of parameter (parm/kind.php), the type's parameter or count (parm/count.php)
   // - and the second after a first that named what to run then as the first parameter of a
   // tag that names it, the whole of parm/: nothing else is settled by a parameter yet. A
-  // later one goes no further: a type made of the first, the range of {sequence '1..3', 's',
+  // later one goes no further: a type made of the first, the range of {sequence:range '1..3', 's',
   // 'reverse'}, is no type the name gave. What is left, and every one after a count, a range,
   // a list or a parameter, is read as a name of an option.
 
@@ -51,8 +51,8 @@
     $pqFindAsOption = FALSE;
 
     // An action's kind of parameter is read after the shape of the value for the second, as
-    // parm/quick.php reads it before parm/primary.php: a list there is the values, {sequence
-    // 'reverse', [1, 2, 3]} as {reverse [1, 2, 3]}.
+    // parm/quick.php reads it before parm/primary.php: a list there is the values, {sequence:auto
+    // 'reverse', [1, 2, 3]} as {action:reverse [1, 2, 3]}.
 
     if ( $pqFindAfter == 'action' and ! $pqFindSecond ) {
 
@@ -100,7 +100,7 @@
     $pqFindSecond = FALSE;
 
     if ( ( is_array ( $pqFindParm ) or (string) $pqFindParm !== '' ) and ( $GLOBALS ['padCheckSyntax'] ?? FALSE ) )
-      padError ( "the tag {" . $padTag [$pad] . "} was given "
+      padError ( "the tag {" . padTagDisplay () . "} was given "
                . ( is_array ( $pqFindParm ) ? "a list as a parameter" : "a parameter '$pqFindParm'" ) . " that nothing reads" );
 
   }

@@ -1,9 +1,9 @@
-[{chart 'dumbbell', data='[]', label='p', from='a', to='b', names='2025, 2026', ranked, title='Scores'}@else@no scores{/chart}]
-[{chart 'errorbar', data='[]', label='p', value='v', low='lo', high='hi', interval='95% CI', title='Trial'}@else@no results{/chart}]
-[{chart 'candlestick', data='[]', title='Prices'}@else@no prices{/chart}]
-[{chart 'gantt', data='[]', title='Plan'}@else@no tasks{/chart}]
-[{chart 'boxplot', data='[]', title='Spread'}@else@no values{/chart}]
-[{chart 'waterfall', data='[]', title='Steps'}@else@no steps{/chart}]
-[{chart 'bullet', data='[]', title='Target'}@else@no target{/chart}]
-{data 'scores'}[{"p": "X", "a": 1, "b": 2}]{/data}
-[{chart 'dumbbell', data='scores', label='p', from='a', to='b', title='Risers', where='$b gt 5'}@else@nobody{/chart}]
+[{chart:dumbbell data='[]', label='p', from='a', to='b', names='2025, 2026', ranked, title='Scores'}@else@no scores{/chart:dumbbell}]
+[{chart:errorbar data='[]', label='p', value='v', low='lo', high='hi', interval='95% CI', title='Trial'}@else@no results{/chart:errorbar}]
+[{chart:candlestick data='[]', title='Prices'}@else@no prices{/chart:candlestick}]
+[{chart:gantt data='[]', title='Plan'}@else@no tasks{/chart:gantt}]
+[{chart:boxplot data='[]', title='Spread'}@else@no values{/chart:boxplot}]
+[{chart:waterfall data='[]', title='Steps'}@else@no steps{/chart:waterfall}]
+[{chart:bullet data='[]', title='Target'}@else@no target{/chart:bullet}]
+{pad:data 'scores'}[{"p": "X", "a": 1, "b": 2}]{/pad:data}
+[{chart:dumbbell data='scores', label='p', from='a', to='b', title='Risers', where='$b gt 5'}@else@nobody{/chart:dumbbell}]

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {search:*} · PAD tags
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="tags.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+    <style>
+    :where(.pad-excerpt){--pad-excerpt-mark:#fde68a;--pad-excerpt-marked:#1a1a19}@supports (color:light-dark(#000,#fff)){:where(.pad-excerpt){--pad-excerpt-mark:light-dark(#fde68a,#6b5310);--pad-excerpt-marked:light-dark(#1a1a19,#fdf6dc)}}:where(.pad-excerpt mark){background:var(--pad-excerpt-mark);color:var(--pad-excerpt-marked);border-radius:3px;padding:0 2px}
+    </style>
+    <style>
+    :where(.pad-search){padding-left:1.4em}:where(.pad-search li){margin:0 0 10px}:where(.pad-search li div){font-size:.92em;opacity:.85}
+    </style>
+    <style>
+    :where(.pad-excerpt){--pad-excerpt-mark:#fde68a;--pad-excerpt-marked:#1a1a19}@supports (color:light-dark(#000,#fff)){:where(.pad-excerpt){--pad-excerpt-mark:light-dark(#fde68a,#6b5310);--pad-excerpt-marked:light-dark(#1a1a19,#fdf6dc)}}:where(.pad-excerpt mark){background:var(--pad-excerpt-mark);color:var(--pad-excerpt-marked);border-radius:3px;padding:0 2px}
+    </style>
+  </head>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>tags</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags and kinds</label> <input type="search" id="q" name="q" value="" placeholder="Search 1220 entries" autocomplete="off">
+        </form>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#database">Database</a><span>/</span><span aria-current="page">search:*</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              <span class="brace">{</span>search:*<span class="brace">}</span>
+            </h1>
+            <p class="tag-about">
+              Site search without a search server: the rows of a collection, a data store or a page's array a query finds, ranked by BM25, each with a marked excerpt.
+            </p>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#database">Database</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'blog'</span>, <span class="hl-opt">q</span>=<span class="hl-var">$q</span>, <span class="hl-opt">fields</span>=<span class="hl-str">'title^2, body'</span>, <span class="hl-opt">lang</span>=<span class="hl-str">'en'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$score</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">!excerpt</span><span class="hl-brc">}</span><span class="hl-var">@else@</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'products'</span>, <span class="hl-opt">q</span>=<span class="hl-var">$q</span>, <span class="hl-opt">words</span>=<span class="hl-num">20</span>, <span class="hl-opt">excerpt</span>=<span class="hl-str">'about'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'blog'</span>, <span class="hl-opt">q</span>=<span class="hl-var">$q</span>, <span class="hl-opt">link</span>=<span class="hl-str">'url'</span><span class="hl-brc">/}</span></code></pre>
+            <h3>
+              Parameters
+            </h3>
+            <dl class="defs">
+              <dt>
+                <code>source</code>
+              </dt>
+              <dd>
+                A Markdown collection, <code>_content/&lt;name&gt;/</code> - else a <code>{pad:data}</code> store, a page's array (a <code>db()</code> result) or a <code>_data</code> file of the name.
+              </dd>
+            </dl>
+            <h3>
+              Options
+            </h3>
+            <dl class="defs">
+              <dt>
+                <code>q</code>
+              </dt>
+              <dd>
+                The query: words (any of them), <code>"a phrase"</code> (required, in order), <code>prefix*</code>, <code>-word</code> and <code>-"a phrase"</code> (left out).
+              </dd>
+              <dt>
+                <code>fields</code>
+              </dt>
+              <dd>
+                The fields searched with their boosts, <code>'title^2, body'</code> - a collection's default; other rows every field that holds text in any row.
+              </dd>
+              <dt>
+                <code>lang</code>
+              </dt>
+              <dd>
+                The language of the stop words and the stemmer: <code>en</code>, <code>nl</code>, <code>de</code>, <code>fr</code>, <code>es</code>, <code>it</code>, <code>pt</code>, <code>sv</code>, <code>da</code>, <code>no</code> (<code>nb</code> and <code>nn</code> are <code>no</code>), <code>ru</code> - the locale's, else English.
+              </dd>
+              <dt>
+                <code>words</code>
+              </dt>
+              <dd>
+                The length of the excerpt in words, default 30.
+              </dd>
+              <dt>
+                <code>excerpt</code>
+              </dt>
+              <dd>
+                The field the excerpt is cut from, default the last of <code>fields</code>.
+              </dd>
+              <dt>
+                <code>link</code>
+              </dt>
+              <dd>
+                The single tag's list: a field with the link of a hit - http(s), a page or an anchor.
+              </dd>
+            </dl>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              <code>{pad:search 'blog', q=$q}...{/pad:search}</code> hands over the rows of the source that the query finds, the best first: each the source's own row with <code>$score</code> and <code>$excerpt</code> added - the words around the first match, every matched word in a <code>&lt;mark&gt;</code>, escaped as <code>{pad:excerpt}</code> escapes it. It is HTML: print it with <code>{!excerpt}</code>. Nothing found is the <code>@else@</code>; the handling options work on the rows, <code>first=10</code> for the ten best.
+            </p>
+            <p>
+              No search server: the first search makes an inverted index of the source and keeps it in <code>DATA/cache/search/&lt;app&gt;/</code>, made again when a file of the collection or the rows changed. Words are reduced to their stems by the language's Snowball stemmer - the files of <code>pad/subs/search/types/</code>: <code>en</code>, <code>nl</code>, <code>de</code>, <code>fr</code>, <code>es</code>, <code>it</code>, <code>pt</code>, <code>sv</code>, <code>da</code>, <code>no</code>, <code>ru</code> - and compared without their accents; stop words are skipped. The ranking is BM25, a field weighed by its boost in <code>fields</code>.
+            </p>
+            <p>
+              A query finds a row with any of its words; a <code>"phrase"</code> must be there in that order, <code>prefix*</code> stands for every word that begins so, <code>-word</code> leaves a row out. Written as a single tag the hits are a numbered list. <code>padSearch</code> gives the same rows to a page's PHP. A source that is not there, a language without a file, a <code>fields</code> that is no list of fields or a <code>words</code> that is no number is a strict error.
+            </p>
+            <h3>
+              Search languages
+            </h3>
+            <p>
+              Each kind has its own description and usage example:
+            </p>
+            <p>
+              <a href="index%EF%B9%96kind%EA%A4%B7search%EA%A4%B7da.html"><code>da</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7search%EA%A4%B7de.html"><code>de</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7search%EA%A4%B7en.html"><code>en</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7search%EA%A4%B7es.html"><code>es</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7search%EA%A4%B7fr.html"><code>fr</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7search%EA%A4%B7it.html"><code>it</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7search%EA%A4%B7nl.html"><code>nl</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7search%EA%A4%B7no.html"><code>no</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7search%EA%A4%B7pt.html"><code>pt</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7search%EA%A4%B7ru.html"><code>ru</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7search%EA%A4%B7sv.html"><code>sv</code></a>
+            </p>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Examples
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                A collection searched
+              </h3>
+              <p class="example-about">
+                The books of _content/collectionBooks/ that a query finds, ranked, the matched words marked in the excerpt.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/search/1-collection.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'collectionBooks'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'planets'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;b</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/b</span><span class="hl-htm">&gt;</span> (<span class="hl-brc">{</span><span class="hl-var">$year</span><span class="hl-brc">}</span>) - score <span class="hl-brc">{</span><span class="hl-var">$score</span><span class="hl-brc">}</span><span class="hl-htm">&lt;br</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">!excerpt</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-var">@else@</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Nothing found.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7search%EA%A4%B71-collection.html">open alone</a></span>
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNlYXJjaCAnY29sbGVjdGlvbkJvb2tzJywgcT0ncGxhbmV0cyd9XG4gIDxwPjxiPnskdGl0bGV9PC9iPiAoeyR5ZWFyfSkgLSBzY29yZSB7JHNjb3JlfTxicj57IWV4Y2VycHR9PC9wPlxuQGVsc2VAXG4gIDxwPk5vdGhpbmcgZm91bmQuPC9wPlxuey9wYWQ6c2VhcmNofVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNlYXJjaCAnY29sbGVjdGlvbkJvb2tzJywgcT0ncGxhbmV0cyd9XG4gIDxwPjxiPnskdGl0bGV9PC9iPiAoeyR5ZWFyfSkgLSBzY29yZSB7JHNjb3JlfTxicj57IWV4Y2VycHR9PC9wPlxuQGVsc2VAXG4gIDxwPk5vdGhpbmcgZm91bmQuPC9wPlxuey9wYWQ6c2VhcmNofVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <p>
+                      <b>Solaris</b> (1961) - score 0.461<br>
+                      <span class="pad-excerpt">A station orbits an ocean that may be thinking. a <mark>planet</mark> a mystery</span>
+                    </p>
+                    <p>
+                      <b>Dune</b> (1965) - score 0.434<br>
+                      <span class="pad-excerpt">A desert <mark>planet</mark>, a spice everyone wants and a family caught in the middle.</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-2">
+              <h3>
+                Phrases, prefixes, words left out
+              </h3>
+              <p class="example-about">
+                A phrase must be there, a prefix stands for every word that begins so, a minus leaves a row out.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/search/2-query.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-str">"a dragon"</span>: <span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'collectionBooks'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'"a dragon"'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>adv*: <span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'collectionBooks'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'adv*'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>planet -spice: <span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'collectionBooks'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'planet -spice'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7search%EA%A4%B72-query.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIDxsaT5cImEgZHJhZ29uXCI6IHtwYWQ6c2VhcmNoICdjb2xsZWN0aW9uQm9va3MnLCBxPSdcImEgZHJhZ29uXCInfXskdGl0bGV9IHsvcGFkOnNlYXJjaH08L2xpPlxuICA8bGk+YWR2Kjoge3BhZDpzZWFyY2ggJ2NvbGxlY3Rpb25Cb29rcycsIHE9J2FkdionfXskdGl0bGV9IHsvcGFkOnNlYXJjaH08L2xpPlxuICA8bGk+cGxhbmV0IC1zcGljZToge3BhZDpzZWFyY2ggJ2NvbGxlY3Rpb25Cb29rcycsIHE9J3BsYW5ldCAtc3BpY2UnfXskdGl0bGV9IHsvcGFkOnNlYXJjaH08L2xpPlxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIDxsaT5cImEgZHJhZ29uXCI6IHtwYWQ6c2VhcmNoICdjb2xsZWN0aW9uQm9va3MnLCBxPSdcImEgZHJhZ29uXCInfXskdGl0bGV9IHsvcGFkOnNlYXJjaH08L2xpPlxuICA8bGk+YWR2Kjoge3BhZDpzZWFyY2ggJ2NvbGxlY3Rpb25Cb29rcycsIHE9J2FkdionfXskdGl0bGV9IHsvcGFkOnNlYXJjaH08L2xpPlxuICA8bGk+cGxhbmV0IC1zcGljZToge3BhZDpzZWFyY2ggJ2NvbGxlY3Rpb25Cb29rcycsIHE9J3BsYW5ldCAtc3BpY2UnfXskdGl0bGV9IHsvcGFkOnNlYXJjaH08L2xpPlxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <ul>
+                      <li>"a dragon": The Hobbit
+                      </li>
+                      <li>adv*: The Hobbit
+                      </li>
+                      <li>planet -spice: Solaris
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-3">
+              <h3>
+                A page array as a list
+              </h3>
+              <p class="example-about">
+                The rows of the page - a db() result has this shape - searched in their fields, the single tag a list with links.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/search/3-rows.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'products'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'walk'</span>, <span class="hl-opt">fields</span>=<span class="hl-str">'name^2, about'</span>, <span class="hl-opt">link</span>=<span class="hl-str">'url'</span>, <span class="hl-opt">words</span>=<span class="hl-num">8</span><span class="hl-brc">/}</span></code></pre>
+                  <div class="cell-head">
+                    <span>PHP</span><span class="cell-file">examples/search/3-rows.php</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-tag">&lt;?php</span>
+
+  <span class="hl-var">$products</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Rain jacket'</span><span class="hl-pun">,</span>   <span class="hl-str">'about'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Waterproof and breathable, for walking in the rain.'</span><span class="hl-pun">,</span> <span class="hl-str">'url'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'?tag/search'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Walking boots'</span><span class="hl-pun">,</span> <span class="hl-str">'about'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Leather boots for long walks on rough paths.'</span><span class="hl-pun">,</span>       <span class="hl-str">'url'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'?tag/search'</span> <span class="hl-pun">]</span><span class="hl-pun">,</span>
+    <span class="hl-pun">[</span> <span class="hl-str">'name'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'Sun hat'</span><span class="hl-pun">,</span>       <span class="hl-str">'about'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'A wide brim against the summer sun.'</span><span class="hl-pun">,</span>                <span class="hl-str">'url'</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">'?tag/search'</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span><span class="hl-pun">;</span>
+
+<span class="hl-tag">?&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7search%EA%A4%B73-rows.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNlYXJjaCAncHJvZHVjdHMnLCBxPSd3YWxrJywgZmllbGRzPSduYW1lXjIsIGFib3V0JywgbGluaz0ndXJsJywgd29yZHM9OC99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHByb2R1Y3RzID0gW1xuICAgIFsgJ25hbWUnID0+ICdSYWluIGphY2tldCcsICAgJ2Fib3V0JyA9PiAnV2F0ZXJwcm9vZiBhbmQgYnJlYXRoYWJsZSwgZm9yIHdhbGtpbmcgaW4gdGhlIHJhaW4uJywgJ3VybCcgPT4gJz90YWcvc2VhcmNoJyBdLFxuICAgIFsgJ25hbWUnID0+ICdXYWxraW5nIGJvb3RzJywgJ2Fib3V0JyA9PiAnTGVhdGhlciBib290cyBmb3IgbG9uZyB3YWxrcyBvbiByb3VnaCBwYXRocy4nLCAgICAgICAndXJsJyA9PiAnP3RhZy9zZWFyY2gnIF0sXG4gICAgWyAnbmFtZScgPT4gJ1N1biBoYXQnLCAgICAgICAnYWJvdXQnID0+ICdBIHdpZGUgYnJpbSBhZ2FpbnN0IHRoZSBzdW1tZXIgc3VuLicsICAgICAgICAgICAgICAgICd1cmwnID0+ICc/dGFnL3NlYXJjaCcgXSBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNlYXJjaCAncHJvZHVjdHMnLCBxPSd3YWxrJywgZmllbGRzPSduYW1lXjIsIGFib3V0JywgbGluaz0ndXJsJywgd29yZHM9OC99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHByb2R1Y3RzID0gW1xuICAgIFsgJ25hbWUnID0+ICdSYWluIGphY2tldCcsICAgJ2Fib3V0JyA9PiAnV2F0ZXJwcm9vZiBhbmQgYnJlYXRoYWJsZSwgZm9yIHdhbGtpbmcgaW4gdGhlIHJhaW4uJywgJ3VybCcgPT4gJz90YWcvc2VhcmNoJyBdLFxuICAgIFsgJ25hbWUnID0+ICdXYWxraW5nIGJvb3RzJywgJ2Fib3V0JyA9PiAnTGVhdGhlciBib290cyBmb3IgbG9uZyB3YWxrcyBvbiByb3VnaCBwYXRocy4nLCAgICAgICAndXJsJyA9PiAnP3RhZy9zZWFyY2gnIF0sXG4gICAgWyAnbmFtZScgPT4gJ1N1biBoYXQnLCAgICAgICAnYWJvdXQnID0+ICdBIHdpZGUgYnJpbSBhZ2FpbnN0IHRoZSBzdW1tZXIgc3VuLicsICAgICAgICAgICAgICAgICd1cmwnID0+ICc/dGFnL3NlYXJjaCcgXSBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <ol class="pad-search">
+                      <li>
+                        <a href="index%EF%B9%96tag%EA%A4%B7search.html">Walking boots</a>
+                        <div>
+                          <span class="pad-excerpt">Leather boots for long <mark>walks</mark> on rough paths.</span>
+                        </div>
+                      </li>
+                      <li>
+                        <a href="index%EF%B9%96tag%EA%A4%B7search.html">Rain jacket</a>
+                        <div>
+                          <span class="pad-excerpt">Waterproof and breathable, for <mark>walking</mark> in the rain.</span>
+                        </div>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-4">
+              <h3>
+                In Italian
+              </h3>
+              <p class="example-about">
+                lang='it' - Snowball's Italian stop words and stemmer: an elided article is no part of the word, a word is found in another form and without its accents.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/search/4-italian.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:data</span> <span class="hl-str">'pagine'</span><span class="hl-brc">}</span>
+[ <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Le università italiane"</span> <span class="hl-brc">}</span>, <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Studiare all'università di Bologna"</span> <span class="hl-brc">}</span>,
+  <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Un viaggio in treno"</span> <span class="hl-brc">}</span>, <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Viaggiare con gli amici"</span> <span class="hl-brc">}</span> ]
+<span class="hl-brc">{</span><span class="hl-tag">/pad:data</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>universita: <span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'pagine'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'universita'</span>, <span class="hl-opt">lang</span>=<span class="hl-str">'it'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$t</span><span class="hl-brc">}</span>; <span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>viaggi: <span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'pagine'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'viaggi'</span>, <span class="hl-opt">lang</span>=<span class="hl-str">'it'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$t</span><span class="hl-brc">}</span>; <span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7search%EA%A4%B74-italian.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3BhZ2luZSd9XG5bIHsgXCJ0XCI6IFwiTGUgdW5pdmVyc2l0w6AgaXRhbGlhbmVcIiB9LCB7IFwidFwiOiBcIlN0dWRpYXJlIGFsbCd1bml2ZXJzaXTDoCBkaSBCb2xvZ25hXCIgfSxcbiAgeyBcInRcIjogXCJVbiB2aWFnZ2lvIGluIHRyZW5vXCIgfSwgeyBcInRcIjogXCJWaWFnZ2lhcmUgY29uIGdsaSBhbWljaVwiIH0gXVxuey9wYWQ6ZGF0YX1cbjx1bD5cbiAgPGxpPnVuaXZlcnNpdGE6IHtwYWQ6c2VhcmNoICdwYWdpbmUnLCBxPSd1bml2ZXJzaXRhJywgbGFuZz0naXQnfXskdH07IHsvcGFkOnNlYXJjaH08L2xpPlxuICA8bGk+dmlhZ2dpOiB7cGFkOnNlYXJjaCAncGFnaW5lJywgcT0ndmlhZ2dpJywgbGFuZz0naXQnfXskdH07IHsvcGFkOnNlYXJjaH08L2xpPlxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3BhZ2luZSd9XG5bIHsgXCJ0XCI6IFwiTGUgdW5pdmVyc2l0w6AgaXRhbGlhbmVcIiB9LCB7IFwidFwiOiBcIlN0dWRpYXJlIGFsbCd1bml2ZXJzaXTDoCBkaSBCb2xvZ25hXCIgfSxcbiAgeyBcInRcIjogXCJVbiB2aWFnZ2lvIGluIHRyZW5vXCIgfSwgeyBcInRcIjogXCJWaWFnZ2lhcmUgY29uIGdsaSBhbWljaVwiIH0gXVxuey9wYWQ6ZGF0YX1cbjx1bD5cbiAgPGxpPnVuaXZlcnNpdGE6IHtwYWQ6c2VhcmNoICdwYWdpbmUnLCBxPSd1bml2ZXJzaXRhJywgbGFuZz0naXQnfXskdH07IHsvcGFkOnNlYXJjaH08L2xpPlxuICA8bGk+dmlhZ2dpOiB7cGFkOnNlYXJjaCAncGFnaW5lJywgcT0ndmlhZ2dpJywgbGFuZz0naXQnfXskdH07IHsvcGFkOnNlYXJjaH08L2xpPlxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <ul>
+                      <li>universita: Le università italiane; Studiare all'università di Bologna;
+                      </li>
+                      <li>viaggi: Un viaggio in treno; Viaggiare con gli amici;
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-5">
+              <h3>
+                In Portuguese
+              </h3>
+              <p class="example-about">
+                lang='pt' - Snowball's Portuguese stop words and stemmer, one for Portugal and Brazil: a word is found in another form, the singular by the plural.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/search/5-portuguese.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:data</span> <span class="hl-str">'paginas'</span><span class="hl-brc">}</span>
+[ <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"As cidades brasileiras"</span> <span class="hl-brc">}</span>, <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Uma cidade portuguesa"</span> <span class="hl-brc">}</span>,
+  <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Informações e comunicação"</span> <span class="hl-brc">}</span>, <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Viajar com os amigos"</span> <span class="hl-brc">}</span> ]
+<span class="hl-brc">{</span><span class="hl-tag">/pad:data</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>cidade: <span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'paginas'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'cidade'</span>, <span class="hl-opt">lang</span>=<span class="hl-str">'pt'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$t</span><span class="hl-brc">}</span>; <span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>informação: <span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'paginas'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'informação'</span>, <span class="hl-opt">lang</span>=<span class="hl-str">'pt'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$t</span><span class="hl-brc">}</span>; <span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7search%EA%A4%B75-portuguese.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3BhZ2luYXMnfVxuWyB7IFwidFwiOiBcIkFzIGNpZGFkZXMgYnJhc2lsZWlyYXNcIiB9LCB7IFwidFwiOiBcIlVtYSBjaWRhZGUgcG9ydHVndWVzYVwiIH0sXG4gIHsgXCJ0XCI6IFwiSW5mb3JtYcOnw7VlcyBlIGNvbXVuaWNhw6fDo29cIiB9LCB7IFwidFwiOiBcIlZpYWphciBjb20gb3MgYW1pZ29zXCIgfSBdXG57L3BhZDpkYXRhfVxuPHVsPlxuICA8bGk+Y2lkYWRlOiB7cGFkOnNlYXJjaCAncGFnaW5hcycsIHE9J2NpZGFkZScsIGxhbmc9J3B0J317JHR9OyB7L3BhZDpzZWFyY2h9PC9saT5cbiAgPGxpPmluZm9ybWHDp8Ojbzoge3BhZDpzZWFyY2ggJ3BhZ2luYXMnLCBxPSdpbmZvcm1hw6fDo28nLCBsYW5nPSdwdCd9eyR0fTsgey9wYWQ6c2VhcmNofTwvbGk+XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3BhZ2luYXMnfVxuWyB7IFwidFwiOiBcIkFzIGNpZGFkZXMgYnJhc2lsZWlyYXNcIiB9LCB7IFwidFwiOiBcIlVtYSBjaWRhZGUgcG9ydHVndWVzYVwiIH0sXG4gIHsgXCJ0XCI6IFwiSW5mb3JtYcOnw7VlcyBlIGNvbXVuaWNhw6fDo29cIiB9LCB7IFwidFwiOiBcIlZpYWphciBjb20gb3MgYW1pZ29zXCIgfSBdXG57L3BhZDpkYXRhfVxuPHVsPlxuICA8bGk+Y2lkYWRlOiB7cGFkOnNlYXJjaCAncGFnaW5hcycsIHE9J2NpZGFkZScsIGxhbmc9J3B0J317JHR9OyB7L3BhZDpzZWFyY2h9PC9saT5cbiAgPGxpPmluZm9ybWHDp8Ojbzoge3BhZDpzZWFyY2ggJ3BhZ2luYXMnLCBxPSdpbmZvcm1hw6fDo28nLCBsYW5nPSdwdCd9eyR0fTsgey9wYWQ6c2VhcmNofTwvbGk+XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <ul>
+                      <li>cidade: As cidades brasileiras; Uma cidade portuguesa;
+                      </li>
+                      <li>informação: Informações e comunicação;
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-6">
+              <h3>
+                In Swedish, Danish and Norwegian
+              </h3>
+              <p class="example-about">
+                lang='sv', 'da' and 'no' - Snowball's stop words and stemmers: the definite and plural endings are no part of the word; nb and nn, Bokmål and Nynorsk, are Norwegian too.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/search/6-nordic.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:data</span> <span class="hl-str">'sidor'</span><span class="hl-brc">}</span>
+[ <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Flickorna i skolan"</span> <span class="hl-brc">}</span>, <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"En flicka på landet"</span> <span class="hl-brc">}</span>, <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Tidningar och böcker"</span> <span class="hl-brc">}</span> ]
+<span class="hl-brc">{</span><span class="hl-tag">/pad:data</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:data</span> <span class="hl-str">'sider'</span><span class="hl-brc">}</span>
+[ <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Husene ved havet"</span> <span class="hl-brc">}</span>, <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Et hus på landet"</span> <span class="hl-brc">}</span>, <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Barna leker"</span> <span class="hl-brc">}</span> ]
+<span class="hl-brc">{</span><span class="hl-tag">/pad:data</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>sv, flicka: <span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'sidor'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'flicka'</span>, <span class="hl-opt">lang</span>=<span class="hl-str">'sv'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$t</span><span class="hl-brc">}</span>; <span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>da, huset: <span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'sider'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'huset'</span>, <span class="hl-opt">lang</span>=<span class="hl-str">'da'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$t</span><span class="hl-brc">}</span>; <span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>nb, barn: <span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'sider'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'barn'</span>, <span class="hl-opt">lang</span>=<span class="hl-str">'nb'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$t</span><span class="hl-brc">}</span>; <span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7search%EA%A4%B76-nordic.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3NpZG9yJ31cblsgeyBcInRcIjogXCJGbGlja29ybmEgaSBza29sYW5cIiB9LCB7IFwidFwiOiBcIkVuIGZsaWNrYSBww6UgbGFuZGV0XCIgfSwgeyBcInRcIjogXCJUaWRuaW5nYXIgb2NoIGLDtmNrZXJcIiB9IF1cbnsvcGFkOmRhdGF9XG57cGFkOmRhdGEgJ3NpZGVyJ31cblsgeyBcInRcIjogXCJIdXNlbmUgdmVkIGhhdmV0XCIgfSwgeyBcInRcIjogXCJFdCBodXMgcMOlIGxhbmRldFwiIH0sIHsgXCJ0XCI6IFwiQmFybmEgbGVrZXJcIiB9IF1cbnsvcGFkOmRhdGF9XG48dWw+XG4gIDxsaT5zdiwgZmxpY2thOiB7cGFkOnNlYXJjaCAnc2lkb3InLCBxPSdmbGlja2EnLCBsYW5nPSdzdid9eyR0fTsgey9wYWQ6c2VhcmNofTwvbGk+XG4gIDxsaT5kYSwgaHVzZXQ6IHtwYWQ6c2VhcmNoICdzaWRlcicsIHE9J2h1c2V0JywgbGFuZz0nZGEnfXskdH07IHsvcGFkOnNlYXJjaH08L2xpPlxuICA8bGk+bmIsIGJhcm46IHtwYWQ6c2VhcmNoICdzaWRlcicsIHE9J2Jhcm4nLCBsYW5nPSduYid9eyR0fTsgey9wYWQ6c2VhcmNofTwvbGk+XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3NpZG9yJ31cblsgeyBcInRcIjogXCJGbGlja29ybmEgaSBza29sYW5cIiB9LCB7IFwidFwiOiBcIkVuIGZsaWNrYSBww6UgbGFuZGV0XCIgfSwgeyBcInRcIjogXCJUaWRuaW5nYXIgb2NoIGLDtmNrZXJcIiB9IF1cbnsvcGFkOmRhdGF9XG57cGFkOmRhdGEgJ3NpZGVyJ31cblsgeyBcInRcIjogXCJIdXNlbmUgdmVkIGhhdmV0XCIgfSwgeyBcInRcIjogXCJFdCBodXMgcMOlIGxhbmRldFwiIH0sIHsgXCJ0XCI6IFwiQmFybmEgbGVrZXJcIiB9IF1cbnsvcGFkOmRhdGF9XG48dWw+XG4gIDxsaT5zdiwgZmxpY2thOiB7cGFkOnNlYXJjaCAnc2lkb3InLCBxPSdmbGlja2EnLCBsYW5nPSdzdid9eyR0fTsgey9wYWQ6c2VhcmNofTwvbGk+XG4gIDxsaT5kYSwgaHVzZXQ6IHtwYWQ6c2VhcmNoICdzaWRlcicsIHE9J2h1c2V0JywgbGFuZz0nZGEnfXskdH07IHsvcGFkOnNlYXJjaH08L2xpPlxuICA8bGk+bmIsIGJhcm46IHtwYWQ6c2VhcmNoICdzaWRlcicsIHE9J2Jhcm4nLCBsYW5nPSduYid9eyR0fTsgey9wYWQ6c2VhcmNofTwvbGk+XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <ul>
+                      <li>sv, flicka: Flickorna i skolan; En flicka på landet;
+                      </li>
+                      <li>da, huset: Et hus på landet; Husene ved havet;
+                      </li>
+                      <li>nb, barn: Barna leker;
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-7">
+              <h3>
+                In Russian
+              </h3>
+              <p class="example-about">
+                lang='ru' - Snowball's Russian stop words and stemmer: a word is found in another form, and ё is read as е, so ёлка finds елка.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/search/7-russian.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:data</span> <span class="hl-str">'stranitsy'</span><span class="hl-brc">}</span>
+[ <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Новые книги"</span> <span class="hl-brc">}</span>, <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Книга о море"</span> <span class="hl-brc">}</span>,
+  <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Ёлки в лесу"</span> <span class="hl-brc">}</span>, <span class="hl-brc">{</span> <span class="hl-str">"t"</span>: <span class="hl-str">"Новогодняя елка"</span> <span class="hl-brc">}</span> ]
+<span class="hl-brc">{</span><span class="hl-tag">/pad:data</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>книга: <span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'stranitsy'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'книга'</span>, <span class="hl-opt">lang</span>=<span class="hl-str">'ru'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$t</span><span class="hl-brc">}</span>; <span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>ёлка: <span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">'stranitsy'</span>, <span class="hl-opt">q</span>=<span class="hl-str">'ёлка'</span>, <span class="hl-opt">lang</span>=<span class="hl-str">'ru'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$t</span><span class="hl-brc">}</span>; <span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7search%EA%A4%B77-russian.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3N0cmFuaXRzeSd9XG5bIHsgXCJ0XCI6IFwi0J3QvtCy0YvQtSDQutC90LjQs9C4XCIgfSwgeyBcInRcIjogXCLQmtC90LjQs9CwINC+INC80L7RgNC1XCIgfSxcbiAgeyBcInRcIjogXCLQgdC70LrQuCDQsiDQu9C10YHRg1wiIH0sIHsgXCJ0XCI6IFwi0J3QvtCy0L7Qs9C+0LTQvdGP0Y8g0LXQu9C60LBcIiB9IF1cbnsvcGFkOmRhdGF9XG48dWw+XG4gIDxsaT7QutC90LjQs9CwOiB7cGFkOnNlYXJjaCAnc3RyYW5pdHN5JywgcT0n0LrQvdC40LPQsCcsIGxhbmc9J3J1J317JHR9OyB7L3BhZDpzZWFyY2h9PC9saT5cbiAgPGxpPtGR0LvQutCwOiB7cGFkOnNlYXJjaCAnc3RyYW5pdHN5JywgcT0n0ZHQu9C60LAnLCBsYW5nPSdydSd9eyR0fTsgey9wYWQ6c2VhcmNofTwvbGk+XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3N0cmFuaXRzeSd9XG5bIHsgXCJ0XCI6IFwi0J3QvtCy0YvQtSDQutC90LjQs9C4XCIgfSwgeyBcInRcIjogXCLQmtC90LjQs9CwINC+INC80L7RgNC1XCIgfSxcbiAgeyBcInRcIjogXCLQgdC70LrQuCDQsiDQu9C10YHRg1wiIH0sIHsgXCJ0XCI6IFwi0J3QvtCy0L7Qs9C+0LTQvdGP0Y8g0LXQu9C60LBcIiB9IF1cbnsvcGFkOmRhdGF9XG48dWw+XG4gIDxsaT7QutC90LjQs9CwOiB7cGFkOnNlYXJjaCAnc3RyYW5pdHN5JywgcT0n0LrQvdC40LPQsCcsIGxhbmc9J3J1J317JHR9OyB7L3BhZDpzZWFyY2h9PC9saT5cbiAgPGxpPtGR0LvQutCwOiB7cGFkOnNlYXJjaCAnc3RyYW5pdHN5JywgcT0n0ZHQu9C60LAnLCBsYW5nPSdydSd9eyR0fTsgey9wYWQ6c2VhcmNofTwvbGk+XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <ul>
+                      <li>книга: Новые книги; Книга о море;
+                      </li>
+                      <li>ёлка: Ёлки в лесу; Новогодняя елка;
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="block" aria-labelledby="see">
+            <h2 id="see">
+              See also
+            </h2>
+            <ul class="list">
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7collection.html">{pad:collection}</a> <span class="about">Reads a folder of Markdown files from _content/ and repeats its content once per file, the front matter as fields.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7excerpt.html">{pad:excerpt}</a> <span class="about">Cuts a long text to whole words with an ellipsis, centred on the first match of search words, every match marked.</span>
+              </li>
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7data.html">{pad:data}</a> <span class="about">Reads a supported data format, a list or a range into a named data set for a later tag to iterate.</span>
+              </li>
+            </ul>
+          </section>
+          <nav class="prevnext" aria-label="Other tags">
+            <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7ylorrd.html">← palette / ylorrd</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7ajax.html">{pad:ajax} →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            1220 tags and kinds of PAD, with syntax and usage examples. Safe, self-contained examples run here; examples requiring credentials, delivery or application files are shown as source.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

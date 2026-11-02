@@ -1,10 +1,10 @@
-{meta title='elseif and else', about='The branches are tried in order - the first that holds wins.'/}
-{temperatures}
-  {if $degrees lt 0}
+{pad:meta title='elseif and else', about='The branches are tried in order - the first that holds wins.'/}
+{array:temperatures}
+  {pad:if $degrees lt 0}
     <p>{$city}: freezing</p>
-  {elseif $degrees lt 20}
+  {pad:elseif $degrees lt 20}
     <p>{$city}: mild</p>
-  {else}
+  {pad:else}
     <p>{$city}: warm</p>
-  {/if}
-{/temperatures}
+  {/pad:if}
+{/array:temperatures}

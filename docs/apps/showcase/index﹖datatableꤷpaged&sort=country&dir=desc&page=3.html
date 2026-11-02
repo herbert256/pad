@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      Paged and sortable · PAD Showcase
+      Paged and sortable · PAD showcase
     </title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
     <link rel="stylesheet" href="showcase.css">
-    <script src="showcase.js"></script>
+    <script src="showcase.js" defer></script>
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
     <style>
     :where(.pad-datatable){--pad-datatable-text:#1f1f1d;--pad-datatable-muted:#6b6a66;--pad-datatable-line:#e4e3df;--pad-datatable-head:#f4f3ef;--pad-datatable-stripe:#f9f9f7;--pad-datatable-accent:#2a78d6;}@supports (color:light-dark(#000,#fff)){:where(.pad-datatable){--pad-datatable-text:light-dark(#1f1f1d,#ecebe6);--pad-datatable-muted:light-dark(#6b6a66,#9d9c93);--pad-datatable-line:light-dark(#e4e3df,#3a3a37);--pad-datatable-head:light-dark(#f4f3ef,#242422);--pad-datatable-stripe:light-dark(#f9f9f7,#1e1e1c);--pad-datatable-accent:light-dark(#2a78d6,#5598e7);}}.pad-datatable{max-width:100%;overflow-x:auto;color:var(--pad-datatable-text)}.pad-datatable table{border-collapse:collapse;font-variant-numeric:tabular-nums;line-height:1.4}.pad-datatable caption{caption-side:top;text-align:left;font-weight:600;padding:0 0 8px}.pad-datatable th,.pad-datatable td{padding:7px 12px;text-align:left;border-bottom:1px solid var(--pad-datatable-line)}.pad-datatable thead th{background:var(--pad-datatable-head);font-weight:600;white-space:nowrap;border-bottom-width:2px}.pad-datatable .num{text-align:right}.pad-datatable-striped tbody tr:nth-child(even){background:var(--pad-datatable-stripe)}.pad-datatable tfoot th,.pad-datatable tfoot td{font-weight:600;border-top:2px solid var(--pad-datatable-line);border-bottom:0}.pad-datatable thead a{color:inherit;text-decoration:none}.pad-datatable thead a:hover,.pad-datatable thead a:focus-visible{color:var(--pad-datatable-accent)}.pad-datatable-arrow{margin-left:4px;font-size:.75em;color:var(--pad-datatable-muted)}.pad-datatable [aria-sort] .pad-datatable-arrow{color:var(--pad-datatable-accent)}.pad-datatable-pager{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}.pad-datatable-pager a,.pad-datatable-pager span{min-width:2em;padding:3px 8px;border:1px solid var(--pad-datatable-line);border-radius:6px;text-align:center;text-decoration:none;color:inherit}.pad-datatable-pager a:hover{border-color:var(--pad-datatable-accent)}.pad-datatable-pager [aria-current]{background:var(--pad-datatable-accent);border-color:var(--pad-datatable-accent);color:#fff}.pad-datatable-pager [aria-disabled],.pad-datatable-pager .gap{opacity:.45;border-color:transparent}
     </style>
   </head>
-  <body class="is-example">
-    <div class="aurora" aria-hidden="true">
-      <span></span><span></span><span></span>
-    </div>
-    <header class="topbar">
-      <div class="topbar-inner">
-        <link rel="stylesheet" href="../_common/brand.css">
-        <script src="../_common/brand.js" defer></script>
-        <div class="pad-brand">
+  <body class="frame app-showcase">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
           <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
           <details class="pad-brand-menu">
             <summary title="The PAD applications">
@@ -32,164 +31,219 @@
             </summary>
             <nav class="pad-brand-apps" aria-label="PAD applications">
               <div class="pad-brand-columns">
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    PAD
-                  </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
-                  <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
-                  <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Showcases
-                  </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                  <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                  <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                  <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Front ends
-                  </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
-                  <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
-                  <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
-                  <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Offline
-                  </div><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                  <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
-                  <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
-                  <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Examples
-                  </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/playground/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
-                  <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>playground</b><small>Type a template, see the result</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-                  <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Tools
-                  </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
-                  <circle cx="9" cy="7" r="2"></circle>
-                  <circle cx="15" cy="12" r="2"></circle>
-                  <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
-                  <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
-                  <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
                 </div>
               </div>
             </nav>
           </details>
         </div>
-        <nav class="menu" aria-label="Tag groups">
-          <ul>
-            <li class="menu-item">
-              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Visuals">Visuals <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
-              <path d="M3 4.5l3 3 3-3"></path></svg></button>
-              <div class="drop">
-                <div class="drop-head">
-                  <span class="drop-kicker">Pictures drawn as SVG</span><span class="drop-count">32 examples</span>
-                </div><a class="drop-link" href="index%EF%B9%96avatar%EA%A4%B7shapes.html"><span class="drop-title">Sizes and shapes</span> <span class="drop-text">Circles and rounded squares from 24 to 72 pixels; an e-mail address counts by the words before its @.</span></a> <a class="drop-link" href="index%EF%B9%96avatar%EA%A4%B7team.html"><span class="drop-title">A team list</span> <span class="drop-text">Every member gets a circle with their initials - the colour comes from a hash of the name, the text colour from its contrast.</span></a> <a class="drop-link" href="index%EF%B9%96barcode%EA%A4%B7products.html"><span class="drop-title">On the products</span> <span class="drop-text">EAN-13 and UPC-A for the shop shelf, EAN-8 and UPC-E for a small pack - the check digit added, the guard bars drawn long.</span></a> <a class="drop-link" href="index%EF%B9%96barcode%EA%A4%B7shipping.html"><span class="drop-title">A shipping label</span> <span class="drop-text">Code 128 for the parcel, ITF-14 between its bearer bars for the carton, Data Matrix for the sorting machine - one label, three symbologies.</span></a> <a class="drop-link" href="index%EF%B9%96barcode%EA%A4%B7squares.html"><span class="drop-title">Squares that grow with the text</span> <span class="drop-text">Data Matrix takes the smallest of its square sizes that holds the text, from 10 by 10 modules up; QR does the same with its versions.</span></a> <a class="drop-link" href="index%EF%B9%96diagram%EA%A4%B7classes.html"><span class="drop-title">A shop in classes</span> <span class="drop-text">A class diagram - fields and methods, an interface, inheritance and realization, composition, aggregation and multiplicities, the parents and the wholes above.</span></a> <a class="drop-link" href="index%EF%B9%96diagram%EA%A4%B7commits.html"><span class="drop-title">A release in commits</span> <span class="drop-text">A commit graph - main, develop and a feature branch as lanes, merges with a ring, a highlighted and a reverted commit, tags and a cherry-pick.</span></a> <a class="drop-link" href="index%EF%B9%96diagram%EA%A4%B7company.html"><span class="drop-title">The company</span> <span class="drop-text">A tree from indented lines, top down - every box centred over its children, the root filled, the leaves light. The tree tag keeps the bare name, so this is diagram:tree.</span></a> <a class="drop-link" href="index%EF%B9%96diagram%EA%A4%B7journey.html"><span class="drop-title">A day at the office</span> <span class="drop-text">A user journey - steps in their sections, a face at the height of every score from 1 to 5, a dot for every person who takes the step.</span></a> <a class="drop-link" href="index%EF%B9%96diagram%EA%A4%B7login.html"><span class="drop-title">Signing in with a provider</span> <span class="drop-text">A sequence diagram - lifelines, numbered messages, replies dashed, an alt frame with its else and a note.</span></a> <a class="drop-link" href="index%EF%B9%96diagram%EA%A4%B7mindmap.html"><span class="drop-title">PAD on one page</span> <span class="drop-text">A mind map from indented lines - the branches of the root shared over both sides, each a colour its twigs keep, the shapes given by brackets.</span></a> <a class="drop-link" href="index%EF%B9%96diagram%EA%A4%B7order.html"><span class="drop-title">An order, start to finish</span> <span class="drop-text">A flowchart in Mermaid-style lines - a stadium, decisions, a database and dashed loops back, ranked and routed on the server.</span></a> <a class="drop-link" href="index%EF%B9%96diagram%EA%A4%B7pipeline.html"><span class="drop-title">A deploy pipeline, left to right</span> <span class="drop-text">direction=LR and curved edges: a build fans out to three checks with &amp;, and all of them have to pass before the release.</span></a> <a class="drop-link" href="index%EF%B9%96diagram%EA%A4%B7tables.html"><span class="drop-title">The tables of a shop</span> <span class="drop-text">An entity-relationship diagram - every entity a table of its attributes with their keys, the relations drawn with the feet of a crow.</span></a> <a class="drop-link" href="index%EF%B9%96diagram%EA%A4%B7ticket.html"><span class="drop-title">The life of a ticket</span> <span class="drop-text">A state diagram - the start and the end, a choice, a fork into two jobs at once and a description under a state.</span></a> <a class="drop-link" href="index%EF%B9%96icon%EA%A4%B7buttons.html"><span class="drop-title">Icons in buttons and links</span> <span class="drop-text">An icon beside text is decoration; one alone gets label= and is read out. size= and stroke= change its scale and weight.</span></a> <a class="drop-link" href="index%EF%B9%96icon%EA%A4%B7gallery.html"><span class="drop-title">Every icon</span> <span class="drop-text">The whole set, listed by padIconNames () - lines on a 24 by 24 grid in the colour of the text.</span></a> <a class="drop-link" href="index%EF%B9%96identicon%EA%A4%B7accounts.html"><span class="drop-title">Accounts at a glance</span> <span class="drop-text">An identicon per e-mail address: trimmed and lower-cased first, so every spelling of one address is one picture.</span></a> <a class="drop-link" href="index%EF%B9%96identicon%EA%A4%B7grid.html"><span class="drop-title">A wall of identicons</span> <span class="drop-text">Twenty user ids, twenty patterns - each mirrored left to right, each in a colour of its own.</span></a> <a class="drop-link" href="index%EF%B9%96map%EA%A4%B7forest.html"><span class="drop-title">Forest in South America</span> <span class="drop-text">A regional view keyed by ISO alpha-3 codes, the rows as JSON in a data store.</span></a> <a class="drop-link" href="index%EF%B9%96map%EA%A4%B7nordic.html"><span class="drop-title">The Nordic countries</span> <span class="drop-text">A view that is a list of countries: the five in colour, the land around them quieter and without values, every view a file of pad/subs/maps/types/.</span></a> <a class="drop-link" href="index%EF%B9%96map%EA%A4%B7population.html"><span class="drop-title">People per country</span> <span class="drop-text">The world in seven steps by rank - scale=quantile - from an array in the page's PHP; hover a country for its number.</span></a> <a class="drop-link" href="index%EF%B9%96map%EA%A4%B7renewables.html"><span class="drop-title">Renewable energy in Europe</span> <span class="drop-text">The europe view of the same outlines, the rows written as CSV between the tags - countries by their English names.</span></a> <a class="drop-link" href="index%EF%B9%96placeholder%EA%A4%B7sizes.html"><span class="drop-title">Banner sizes</span> <span class="drop-text">The size as width x height, written in the middle unless a text is given.</span></a> <a class="drop-link" href="index%EF%B9%96placeholder%EA%A4%B7wireframe.html"><span class="drop-title">A page in wireframe</span> <span class="drop-text">A hero at 21:9 and three cards at 4:3, all as wide as their column - the layout stands before the photos do.</span></a> <a class="drop-link" href="index%EF%B9%96progress%EA%A4%B7steps.html"><span class="drop-title">Steps and sizes</span> <span class="drop-text">With steps a dot per step, the ones done filled and the current one ringed; size= makes a bar thin or thick.</span></a> <a class="drop-link" href="index%EF%B9%96progress%EA%A4%B7uploads.html"><span class="drop-title">Uploads in progress</span> <span class="drop-text">A native progress element per file, styled, with its label and percentage - the colour slot says how it goes.</span></a> <a class="drop-link" href="index%EF%B9%96rating%EA%A4%B7hearts.html"><span class="drop-title">Hearts and parts</span> <span class="drop-text">icon=heart, a max of ten and scores between whole ones - each said as a number out of the max.</span></a> <a class="drop-link" href="index%EF%B9%96rating%EA%A4%B7reviews.html"><span class="drop-title">Product reviews</span> <span class="drop-text">The average score of each product as stars - a part of a star filled as far as the score goes.</span></a> <a class="drop-link" href="index%EF%B9%96timeline%EA%A4%B7php.html"><span class="drop-title">Twenty years of PHP</span> <span class="drop-text">The vertical form for a long list - dates on the left, cards on the right - the rows as JSON between the tags.</span></a> <a class="drop-link" href="index%EF%B9%96timeline%EA%A4%B7project.html"><span class="drop-title">A project plan</span> <span class="drop-text">Spans from= and to= drawn as bars under a month axis, milestones as cards, coloured by kind with a legend - the rows from the page's PHP.</span></a> <a class="drop-link" href="index%EF%B9%96timeline%EA%A4%B7space.html"><span class="drop-title">The space age</span> <span class="drop-text">Ten moments on a time axis with round year ticks - the cards alternate above and below and step outward where they would collide.</span></a>
-              </div>
-            </li>
-            <li class="menu-item is-active">
-              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Text &amp; data">Text & data <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
-              <path d="M3 4.5l3 3 3-3"></path></svg></button>
-              <div class="drop">
-                <div class="drop-head">
-                  <span class="drop-kicker">Rows, words and numbers</span><span class="drop-count">21 examples</span>
-                </div><a class="drop-link" href="index%EF%B9%96countdown%EA%A4%B7events.html"><span class="drop-title">Upcoming events</span> <span class="drop-text">The two largest units by default, a past= text for an event that has started, and the full moment in the title on hover.</span></a> <a class="drop-link" href="index%EF%B9%96countdown%EA%A4%B7launch.html"><span class="drop-title">A launch countdown</span> <span class="drop-text">Three units of the time left, counting down every second in the browser with the live option - the server writes the same words first.</span></a> <a class="drop-link" href="index%EF%B9%96country%EA%A4%B7flags.html"><span class="drop-title">Flags from alpha-3 codes</span> <span class="drop-text">Three-letter codes - as passports and the Olympics use them - give the same flags; alone, each flag is an image named by its country.</span></a> <a class="drop-link" href="index%EF%B9%96country%EA%A4%B7visitors.html"><span class="drop-title">Visitors by country</span> <span class="drop-text">The flag and the name from a two-letter code, with name - the flag is then decoration and the name is what a screen reader says.</span></a> <a class="drop-link" href="index%EF%B9%96datatable%EA%A4%B7expenses.html"><span class="drop-title">A table from inline CSV</span> <span class="drop-text">As a pair the content is the data - CSV, JSON, YAML or XML - here a budget with a pipe formatting the amounts and a totals row.</span></a> <a class="drop-link" href="index%EF%B9%96datatable%EA%A4%B7orders.html"><span class="drop-title">Orders with totals</span> <span class="drop-text">Columns picked and labelled, numbers right-aligned with the same decimals, a totals row, and header links that sort on the server.</span></a> <a class="drop-link is-active" href="index%EF%B9%96datatable%EA%A4%B7paged.html"><span class="drop-title">Paged and sortable</span> <span class="drop-text">The largest cities, eight rows a page with page links below - sorting and paging are plain links, so they work without JavaScript.</span></a> <a class="drop-link" href="index%EF%B9%96diff%EA%A4%B7lines.html"><span class="drop-title">Line by line</span> <span class="drop-text">A shopping list in one column - the old and the new line number, a sign, the line.</span></a> <a class="drop-link" href="index%EF%B9%96diff%EA%A4%B7paragraph.html"><span class="drop-title">Two versions of a paragraph</span> <span class="drop-text">An edited paragraph word by word - struck what went, marked what came.</span></a> <a class="drop-link" href="index%EF%B9%96diff%EA%A4%B7side.html"><span class="drop-title">Side by side</span> <span class="drop-text">Two versions of a function next to each other, line numbers on both sides and the changed words marked.</span></a> <a class="drop-link" href="index%EF%B9%96emoji%EA%A4%B7chat.html"><span class="drop-title">Shortcodes in text</span> <span class="drop-text">The emoji pipe turns every shortcode in a text into its emoji - one it does not know, or a time like 10:30:00, stays as written.</span></a> <a class="drop-link" href="index%EF%B9%96emoji%EA%A4%B7reactions.html"><span class="drop-title">A reaction bar</span> <span class="drop-text">Reactions under a post, each emoji from its shortcode in a span with role img and its name as the label a screen reader says.</span></a> <a class="drop-link" href="index%EF%B9%96excerpt%EA%A4%B7search.html"><span class="drop-title">Search results</span> <span class="drop-text">Each result cut to 24 words around the first match of the query, every match marked.</span></a> <a class="drop-link" href="index%EF%B9%96excerpt%EA%A4%B7teaser.html"><span class="drop-title">Teasers from HTML</span> <span class="drop-text">The first 25 words of each post body - its tags dropped with html, an ellipsis where it goes on.</span></a> <a class="drop-link" href="index%EF%B9%96jsonview%EA%A4%B7api.html"><span class="drop-title">An API response</span> <span class="drop-text">The JSON between the tags, its braces needing no ignore - two levels open, the deeper ones folded with the number of keys or items they hold.</span></a> <a class="drop-link" href="index%EF%B9%96jsonview%EA%A4%B7config.html"><span class="drop-title">A PHP array</span> <span class="drop-text">A page array shown as the JSON it would be - one level open, so the sections show folded with their sizes until clicked.</span></a> <a class="drop-link" href="index%EF%B9%96lorem%EA%A4%B7article.html"><span class="drop-title">A page before its copy</span> <span class="drop-text">A heading, a lead of two sentences and three paragraphs - the layout filled before the text is written.</span></a> <a class="drop-link" href="index%EF%B9%96lorem%EA%A4%B7cards.html"><span class="drop-title">A seed per card</span> <span class="drop-text">The same tags with another seed in every card - varied text, and the same again on every request.</span></a> <a class="drop-link" href="index%EF%B9%96timeago%EA%A4%B7comments.html"><span class="drop-title">A comment thread</span> <span class="drop-text">Each comment says how long ago it was posted; hover a time for the full date, and the datetime attribute carries the exact moment.</span></a> <a class="drop-link" href="index%EF%B9%96toc%EA%A4%B7article.html"><span class="drop-title">A long article</span> <span class="drop-text">The contents stand above the headings it lists: it is filled in once the page has rendered, and every heading gets an id to link to.</span></a> <a class="drop-link" href="index%EF%B9%96toc%EA%A4%B7sidebar.html"><span class="drop-title">Contents in a sidebar</span> <span class="drop-text">Three heading levels as a bulleted list beside the text - levels= picks the levels, list= the kind of list, and a heading with its own id keeps it.</span></a>
-              </div>
-            </li>
-            <li class="menu-item">
-              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Media">Media <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
-              <path d="M3 4.5l3 3 3-3"></path></svg></button>
-              <div class="drop">
-                <div class="drop-head">
-                  <span class="drop-kicker">Images, video and documents</span><span class="drop-count">11 examples</span>
-                </div><a class="drop-link" href="index%EF%B9%96embed%EA%A4%B7map.html"><span class="drop-title">A map of a place</span> <span class="drop-text">OpenStreetMap around a latitude and longitude, a drawn map until the button is pressed - no tile is asked before.</span></a> <a class="drop-link" href="index%EF%B9%96embed%EA%A4%B7pen.html"><span class="drop-title">A pen of CodePen</span> <span class="drop-text">Its HTML beside the result once loaded - tab= names the panes; a drawn pen until then.</span></a> <a class="drop-link" href="index%EF%B9%96embed%EA%A4%B7sound.html"><span class="drop-title">A track of SoundCloud</span> <span class="drop-text">The provider read from the address; the visual player comes from w.soundcloud.com only after the click.</span></a> <a class="drop-link" href="index%EF%B9%96gravatar%EA%A4%B7comments.html"><span class="drop-title">Comments with Gravatars</span> <span class="drop-text">The picture each address registered at gravatar.com - only its SHA-256 hash leaves the page, lazily, without a referrer.</span></a> <a class="drop-link" href="index%EF%B9%96gravatar%EA%A4%B7private.html"><span class="drop-title">No request to a third party</span> <span class="drop-text">fallback= draws the picture on the server instead - the initials of the name, or the identicon of the address - so no visitor is sent to Gravatar.</span></a> <a class="drop-link" href="index%EF%B9%96img%EA%A4%B7contain.html"><span class="drop-title">The whole picture, as WebP</span> <span class="drop-text">fit=contain keeps every pixel inside the box; format= and quality= choose the file that is made.</span></a> <a class="drop-link" href="index%EF%B9%96img%EA%A4%B7gallery.html"><span class="drop-title">Three pictures, one size</span> <span class="drop-text">Landscape and portrait photos cut to the same 4:3 box around their centre, each with a 2x copy for a sharp screen.</span></a> <a class="drop-link" href="index%EF%B9%96pdf%EA%A4%B7invoice.html"><span class="drop-title">An invoice as PDF</span> <span class="drop-text">An order rendered on a sheet, the same template one click away as an A4 PDF made in plain PHP.</span></a> <a class="drop-link" href="index%EF%B9%96video%EA%A4%B7clip.html"><span class="drop-title">A clip of your own</span> <span class="drop-text">A WebM file beside the page as a video element - its poster shown, nothing loaded before play.</span></a> <a class="drop-link" href="index%EF%B9%96video%EA%A4%B7vimeo.html"><span class="drop-title">Vimeo with a poster of your own</span> <span class="drop-text">A Vimeo address, a start time from the link and a local picture as the poster.</span></a> <a class="drop-link" href="index%EF%B9%96video%EA%A4%B7youtube.html"><span class="drop-title">YouTube without tracking</span> <span class="drop-text">The thumbnail and a play button - the player comes from youtube-nocookie.com only after the click.</span></a>
-              </div>
-            </li>
-            <li class="menu-item">
-              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Interactive">Interactive <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
-              <path d="M3 4.5l3 3 3-3"></path></svg></button>
-              <div class="drop">
-                <div class="drop-head">
-                  <span class="drop-kicker">Widgets without JavaScript of your own</span><span class="drop-count">15 examples</span>
-                </div><a class="drop-link" href="index%EF%B9%96accordion%EA%A4%B7faq.html"><span class="drop-title">Frequently asked questions</span> <span class="drop-text">A FAQ where opening a question closes the one that was open - the first one open at the start.</span></a> <a class="drop-link" href="index%EF%B9%96breadcrumb%EA%A4%B7shop_trail.html"><span class="drop-title">A trail through a shop</span> <span class="drop-text">The page's own path, a trail of lines - a label and its link - and one of rows of data.</span></a> <a class="drop-link" href="index%EF%B9%96carousel%EA%A4%B7landscapes.html"><span class="drop-title">Four landscapes</span> <span class="drop-text">Slides that snap sideways - swipe, scroll, or use the arrows and the dots, which are plain links.</span></a> <a class="drop-link" href="index%EF%B9%96copy%EA%A4%B7config_snippet.html"><span class="drop-title">A snippet as content</span> <span class="drop-text">The pair form - the content is rendered first, so a value of the page goes into the text that is copied.</span></a> <a class="drop-link" href="index%EF%B9%96copy%EA%A4%B7install_command.html"><span class="drop-title">Install command</span> <span class="drop-text">A command with a copy button - the text a value, escaped, and selected whole with one click.</span></a> <a class="drop-link" href="index%EF%B9%96drawer%EA%A4%B7shop_filters.html"><span class="drop-title">Filters of a shop</span> <span class="drop-text">The filters in a panel from the left and the cart from the right - Escape, the cross or a click beside it closes them.</span></a> <a class="drop-link" href="index%EF%B9%96dropdown%EA%A4%B7account_menu.html"><span class="drop-title">An account menu</span> <span class="drop-text">A menu under its button - Escape or a click outside closes it, the arrow keys move between the items.</span></a> <a class="drop-link" href="index%EF%B9%96lightbox%EA%A4%B7skies.html"><span class="drop-title">Skies of a day</span> <span class="drop-text">A gallery of four pictures - each opens large, with the one before and after it; Escape closes it.</span></a> <a class="drop-link" href="index%EF%B9%96modal%EA%A4%B7terms.html"><span class="drop-title">Terms at checkout</span> <span class="drop-text">The terms of sale in a dialog over the checkout - closed again with Escape, the cross or a click beside it.</span></a> <a class="drop-link" href="index%EF%B9%96poll%EA%A4%B7favorite_language.html"><span class="drop-title">Favourite language</span> <span class="drop-text">A vote among four answers, once per visitor - the results as bars after the vote.</span></a> <a class="drop-link" href="index%EF%B9%96tabs%EA%A4%B7plans_from_data.html"><span class="drop-title">A tab per row</span> <span class="drop-text">The tabs made in a loop - one per plan of the data, its features inside.</span></a> <a class="drop-link" href="index%EF%B9%96tabs%EA%A4%B7product_page.html"><span class="drop-title">Product page</span> <span class="drop-text">Overview, specifications and reviews of a kettle behind three tabs - the specifications shown first.</span></a> <a class="drop-link" href="index%EF%B9%96toast%EA%A4%B7order_saved.html"><span class="drop-title">An order saved</span> <span class="drop-text">The notices of a checkout - one of each tone, closed by its cross without a script.</span></a> <a class="drop-link" href="index%EF%B9%96tooltip%EA%A4%B7plan_terms.html"><span class="drop-title">Plan terms</span> <span class="drop-text">Tips on the words of a price list, and the single tag as an information button.</span></a> <a class="drop-link" href="index%EF%B9%96wizard%EA%A4%B7checkout.html"><span class="drop-title">A checkout in steps</span> <span class="drop-text">Address, delivery and payment one at a time - the steps above, Back and Next under each.</span></a>
-              </div>
-            </li>
-            <li class="menu-item">
-              <button type="button" class="menu-button" aria-haspopup="true" aria-expanded="false" title="Games">Games <svg class="chev" viewbox="0 0 12 12" aria-hidden="true">
-              <path d="M3 4.5l3 3 3-3"></path></svg></button>
-              <div class="drop">
-                <div class="drop-head">
-                  <span class="drop-kicker">Boards and puzzles</span><span class="drop-count">8 examples</span>
-                </div><a class="drop-link" href="index%EF%B9%96chess%EA%A4%B7opening.html"><span class="drop-title">After 1.e4, seen by Black</span> <span class="drop-text">The full FEN of the position after the king's pawn opening, the board flipped for the side to move.</span></a> <a class="drop-link" href="index%EF%B9%96chess%EA%A4%B7opera.html"><span class="drop-title">The Opera game</span> <span class="drop-text">Morphy mates in Paris, 1858 - the last move marked, the bishop that guards the rook as an arrow.</span></a> <a class="drop-link" href="index%EF%B9%96crossword%EA%A4%B7php.html"><span class="drop-title">A PHP crossword</span> <span class="drop-text">Ten words about PHP laid out on the server and played in the page - type into the squares, click a clue.</span></a> <a class="drop-link" href="index%EF%B9%96crossword%EA%A4%B7solution.html"><span class="drop-title">With the solution</span> <span class="drop-text">The same words with solution - the letters in the grid and the answers behind the clues.</span></a> <a class="drop-link" href="index%EF%B9%96sudoku%EA%A4%B7hardest.html"><span class="drop-title">The hardest one</span> <span class="drop-text">Arto Inkala's "world's hardest sudoku", written in nine lines and solved in a blink.</span></a> <a class="drop-link" href="index%EF%B9%96sudoku%EA%A4%B7print.html"><span class="drop-title">To print</span> <span class="drop-text">The same puzzle with paper - the givens bold and the open squares empty, no script.</span></a> <a class="drop-link" href="index%EF%B9%96sudoku%EA%A4%B7puzzle.html"><span class="drop-title">The puzzle</span> <span class="drop-text">The classic example puzzle, played in the page - select a square and type, notes, a hint, a check.</span></a> <a class="drop-link" href="index%EF%B9%96sudoku%EA%A4%B7solved.html"><span class="drop-title">Solved on the server</span> <span class="drop-text">The same puzzle with solve - the backtracking solver fills in every open cell, in another colour.</span></a>
-              </div>
-            </li>
-          </ul>
-        </nav><button type="button" class="theme" id="theme" aria-label="Switch between light and dark"><svg class="sun" viewbox="0 0 24 24" aria-hidden="true">
-        <circle cx="12" cy="12" r="4.5"></circle>
-        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg> <svg class="moon" viewbox="0 0 24 24" aria-hidden="true">
-        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
       </div>
-    </header>
-    <main class="page example">
-      <div class="intro">
-        <a class="crumb" href="index%EF%B9%96index.html">All tags</a><span class="crumb-sep">/</span><span class="crumb-here">Data table</span>
+      <nav class="frame-nav" aria-label="showcase">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> All tags</a>
+        <div class="frame-head">
+          Visuals
+        </div><a href="index%EF%B9%96avatar%EA%A4%B7shapes.html">Sizes and shapes</a> <a href="index%EF%B9%96avatar%EA%A4%B7team.html">A team list</a> <a href="index%EF%B9%96barcode%EA%A4%B7books.html">Books and magazines</a> <a href="index%EF%B9%96barcode%EA%A4%B7pallet.html">A pallet label</a> <a href="index%EF%B9%96barcode%EA%A4%B7products.html">On the products</a> <a href="index%EF%B9%96barcode%EA%A4%B7shipping.html">A shipping label</a> <a href="index%EF%B9%96barcode%EA%A4%B7squares.html">Squares that grow with the text</a> <a href="index%EF%B9%96barcode%EA%A4%B7tickets.html">Tickets</a> <a href="index%EF%B9%96diagram%EA%A4%B7causes.html">Why the deploy failed</a> <a href="index%EF%B9%96diagram%EA%A4%B7classes.html">A shop in classes</a> <a href="index%EF%B9%96diagram%EA%A4%B7commits.html">A release in commits</a> <a href="index%EF%B9%96diagram%EA%A4%B7company.html">The company</a> <a href="index%EF%B9%96diagram%EA%A4%B7grammar.html">The grammar of JSON</a> <a href="index%EF%B9%96diagram%EA%A4%B7header.html">The header of a TCP segment</a> <a href="index%EF%B9%96diagram%EA%A4%B7journey.html">A day at the office</a> <a href="index%EF%B9%96diagram%EA%A4%B7login.html">Signing in with a provider</a> <a href="index%EF%B9%96diagram%EA%A4%B7mindmap.html">PAD on one page</a> <a href="index%EF%B9%96diagram%EA%A4%B7order.html">An order, start to finish</a> <a href="index%EF%B9%96diagram%EA%A4%B7pipeline.html">A deploy pipeline, left to right</a> <a href="index%EF%B9%96diagram%EA%A4%B7tables.html">The tables of a shop</a> <a href="index%EF%B9%96diagram%EA%A4%B7ticket.html">The life of a ticket</a> <a href="index%EF%B9%96icon%EA%A4%B7buttons.html">Icons in buttons and links</a> <a href="index%EF%B9%96icon%EA%A4%B7gallery.html">Every icon</a> <a href="index%EF%B9%96identicon%EA%A4%B7accounts.html">Accounts at a glance</a> <a href="index%EF%B9%96identicon%EA%A4%B7grid.html">A wall of identicons</a> <a href="index%EF%B9%96map%EA%A4%B7australia.html">People per state of Australia</a> <a href="index%EF%B9%96map%EA%A4%B7forest.html">Forest in South America</a> <a href="index%EF%B9%96map%EA%A4%B7holidays.html">Public holidays per German state</a> <a href="index%EF%B9%96map%EA%A4%B7nordic.html">The Nordic countries</a> <a href="index%EF%B9%96map%EA%A4%B7population.html">People per country</a> <a href="index%EF%B9%96map%EA%A4%B7provinces.html">The provinces of the Netherlands</a> <a href="index%EF%B9%96map%EA%A4%B7renewables.html">Renewable energy in Europe</a> <a href="index%EF%B9%96map%EA%A4%B7states.html">People per state</a> <a href="index%EF%B9%96placeholder%EA%A4%B7sizes.html">Banner sizes</a> <a href="index%EF%B9%96placeholder%EA%A4%B7wireframe.html">A page in wireframe</a> <a href="index%EF%B9%96progress%EA%A4%B7steps.html">Steps and sizes</a> <a href="index%EF%B9%96progress%EA%A4%B7uploads.html">Uploads in progress</a> <a href="index%EF%B9%96rating%EA%A4%B7hearts.html">Hearts and parts</a> <a href="index%EF%B9%96rating%EA%A4%B7reviews.html">Product reviews</a> <a href="index%EF%B9%96timeline%EA%A4%B7php.html">Twenty years of PHP</a> <a href="index%EF%B9%96timeline%EA%A4%B7project.html">A project plan</a> <a href="index%EF%B9%96timeline%EA%A4%B7space.html">The space age</a>
+        <div class="frame-head">
+          Text & data
+        </div><a href="index%EF%B9%96countdown%EA%A4%B7events.html">Upcoming events</a> <a href="index%EF%B9%96countdown%EA%A4%B7launch.html">A launch countdown</a> <a href="index%EF%B9%96country%EA%A4%B7flags.html">Flags from alpha-3 codes</a> <a href="index%EF%B9%96country%EA%A4%B7visitors.html">Visitors by country</a> <a href="index%EF%B9%96datatable%EA%A4%B7expenses.html">A table from inline CSV</a> <a href="index%EF%B9%96datatable%EA%A4%B7orders.html">Orders with totals</a> <a href="index%EF%B9%96datatable%EA%A4%B7paged.html" aria-current="page">Paged and sortable</a> <a href="index%EF%B9%96diff%EA%A4%B7lines.html">Line by line</a> <a href="index%EF%B9%96diff%EA%A4%B7paragraph.html">Two versions of a paragraph</a> <a href="index%EF%B9%96diff%EA%A4%B7side.html">Side by side</a> <a href="index%EF%B9%96emoji%EA%A4%B7chat.html">Shortcodes in text</a> <a href="index%EF%B9%96emoji%EA%A4%B7reactions.html">A reaction bar</a> <a href="index%EF%B9%96excerpt%EA%A4%B7search.html">Search results</a> <a href="index%EF%B9%96excerpt%EA%A4%B7teaser.html">Teasers from HTML</a> <a href="index%EF%B9%96jsonview%EA%A4%B7api.html">An API response</a> <a href="index%EF%B9%96jsonview%EA%A4%B7config.html">A PHP array</a> <a href="index%EF%B9%96lorem%EA%A4%B7article.html">A page before its copy</a> <a href="index%EF%B9%96lorem%EA%A4%B7cards.html">A seed per card</a> <a href="index%EF%B9%96timeago%EA%A4%B7comments.html">A comment thread</a> <a href="index%EF%B9%96toc%EA%A4%B7article.html">A long article</a> <a href="index%EF%B9%96toc%EA%A4%B7sidebar.html">Contents in a sidebar</a>
+        <div class="frame-head">
+          Media
+        </div><a href="index%EF%B9%96embed%EA%A4%B7album.html">An album of Apple Music</a> <a href="index%EF%B9%96embed%EA%A4%B7design.html">A design of Figma</a> <a href="index%EF%B9%96embed%EA%A4%B7map.html">A map of a place</a> <a href="index%EF%B9%96embed%EA%A4%B7pen.html">A pen of CodePen</a> <a href="index%EF%B9%96embed%EA%A4%B7podcast.html">A podcast of Apple Podcasts</a> <a href="index%EF%B9%96embed%EA%A4%B7project.html">A project of StackBlitz</a> <a href="index%EF%B9%96embed%EA%A4%B7recording.html">A recording of Loom</a> <a href="index%EF%B9%96embed%EA%A4%B7short.html">A video of TikTok</a> <a href="index%EF%B9%96embed%EA%A4%B7sound.html">A track of SoundCloud</a> <a href="index%EF%B9%96embed%EA%A4%B7stream.html">A channel of Twitch</a> <a href="index%EF%B9%96gravatar%EA%A4%B7comments.html">Comments with Gravatars</a> <a href="index%EF%B9%96gravatar%EA%A4%B7private.html">No request to a third party</a> <a href="index%EF%B9%96img%EA%A4%B7contain.html">The whole picture, as WebP</a> <a href="index%EF%B9%96img%EA%A4%B7gallery.html">Three pictures, one size</a> <a href="index%EF%B9%96pdf%EA%A4%B7invoice.html">An invoice as PDF</a> <a href="index%EF%B9%96video%EA%A4%B7clip.html">A clip of your own</a> <a href="index%EF%B9%96video%EA%A4%B7vimeo.html">Vimeo with a poster of your own</a> <a href="index%EF%B9%96video%EA%A4%B7youtube.html">YouTube without tracking</a>
+        <div class="frame-head">
+          Interactive
+        </div><a href="index%EF%B9%96accordion%EA%A4%B7faq.html">Frequently asked questions</a> <a href="index%EF%B9%96breadcrumb%EA%A4%B7shop_trail.html">A trail through a shop</a> <a href="index%EF%B9%96carousel%EA%A4%B7landscapes.html">Four landscapes</a> <a href="index%EF%B9%96commandpalette%EA%A4%B7shop_admin.html">Go anywhere in a shop</a> <a href="index%EF%B9%96contextmenu%EA%A4%B7files.html">Files and orders</a> <a href="index%EF%B9%96copy%EA%A4%B7config_snippet.html">A snippet as content</a> <a href="index%EF%B9%96copy%EA%A4%B7install_command.html">Install command</a> <a href="index%EF%B9%96drawer%EA%A4%B7shop_filters.html">Filters of a shop</a> <a href="index%EF%B9%96dropdown%EA%A4%B7account_menu.html">An account menu</a> <a href="index%EF%B9%96lightbox%EA%A4%B7skies.html">Skies of a day</a> <a href="index%EF%B9%96modal%EA%A4%B7terms.html">Terms at checkout</a> <a href="index%EF%B9%96poll%EA%A4%B7favorite_language.html">Favourite language</a> <a href="index%EF%B9%96sortable%EA%A4%B7tasks.html">Tasks in order</a> <a href="index%EF%B9%96splitpane%EA%A4%B7mail_reader.html">A mail reader</a> <a href="index%EF%B9%96tabs%EA%A4%B7plans_from_data.html">A tab per row</a> <a href="index%EF%B9%96tabs%EA%A4%B7product_page.html">Product page</a> <a href="index%EF%B9%96toast%EA%A4%B7order_saved.html">An order saved</a> <a href="index%EF%B9%96tooltip%EA%A4%B7plan_terms.html">Plan terms</a> <a href="index%EF%B9%96wizard%EA%A4%B7checkout.html">A checkout in steps</a>
+        <div class="frame-head">
+          Games
+        </div><a href="index%EF%B9%96chess%EA%A4%B7opening.html">After 1.e4, seen by Black</a> <a href="index%EF%B9%96chess%EA%A4%B7opera.html">The Opera game</a> <a href="index%EF%B9%96crossword%EA%A4%B7php.html">A PHP crossword</a> <a href="index%EF%B9%96crossword%EA%A4%B7solution.html">With the solution</a> <a href="index%EF%B9%96sudoku%EA%A4%B7hardest.html">The hardest one</a> <a href="index%EF%B9%96sudoku%EA%A4%B7print.html">To print</a> <a href="index%EF%B9%96sudoku%EA%A4%B7puzzle.html">The puzzle</a> <a href="index%EF%B9%96sudoku%EA%A4%B7solved.html">Solved on the server</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
         <h1>
           Paged and sortable
         </h1>
-        <p class="lead">
-          The largest cities, eight rows a page with page links below - sorting and paging are plain links, so they work without JavaScript.
-        </p>
-      </div>
-      <div class="stage">
-        <section class="cell cell-data" aria-label="The data">
-          <header class="cell-head">
-            <span class="cell-num">1</span> <span class="cell-name">The data</span> <span class="cell-file">datatable/paged.php</span> <span class="badge badge-php">php</span> <button type="button" class="copy" data-copy="data-src" aria-label="Copy the data">Copy</button>
-          </header>
-          <pre class="code" id="data-src"><code><span class="hl-tag">&lt;?php</span>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <div class="page example">
+          <p class="lead">
+            <span class="family-name">Data table</span> The largest cities, eight rows a page with page links below - sorting and paging are plain links, so they work without JavaScript.
+          </p>
+          <div class="stage">
+            <section class="cell cell-data" aria-label="The data">
+              <header class="cell-head">
+                <span class="cell-num">1</span> <span class="cell-name">The data</span> <span class="cell-file">datatable/paged.php</span> <span class="badge badge-php">php</span> <button type="button" class="copy" data-copy="data-src" aria-label="Copy the data">Copy</button>
+              </header>
+              <pre class="code" id="data-src"><code><span class="hl-tag">&lt;?php</span>
 
   <span class="hl-com">// The cities proper by population, the largest first, with their area.</span>
 
@@ -215,80 +269,85 @@
   <span class="hl-pun">]</span><span class="hl-pun">;</span>
 
 <span class="hl-tag">?&gt;</span></code></pre>
-        </section>
-        <section class="cell cell-tag" aria-label="The tag">
-          <header class="cell-head">
-            <span class="cell-num">2</span> <span class="cell-name">The tag</span> <span class="cell-file">datatable/paged.pad</span> <span class="badge badge-pad">pad</span> <button type="button" class="copy" data-copy="tag-src" aria-label="Copy the tag">Copy</button>
-          </header>
-          <pre class="code" id="tag-src"><code><span class="hl-brc">{</span><span class="hl-tag">datatable</span> <span class="hl-opt">data</span>=<span class="hl-str">'cities'</span>, <span class="hl-opt">labels</span>=<span class="hl-str">'City, Country, Population, Area (km²)'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">8</span>, sortable, <span class="hl-opt">caption</span>=<span class="hl-str">'Largest cities by population'</span><span class="hl-brc">/}</span></code></pre>
-        </section>
-        <section class="cell cell-chart" aria-label="The result">
-          <header class="cell-head">
-            <span class="cell-num">3</span> <span class="cell-name">The result</span> <span class="cell-file">rendered on the server</span>
-          </header>
-          <div class="canvas">
-            <div class="pad-datatable">
-              <table class="pad-datatable-table">
-                <caption>
-                  Largest cities by population
-                </caption>
-                <thead>
-                  <tr>
-                    <th scope="col">
-                      <a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=city&amp;dir=asc.html">City<span class="pad-datatable-arrow" aria-hidden="true">↕</span></a>
-                    </th>
-                    <th scope="col" aria-sort="descending">
-                      <a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=country&amp;dir=asc.html">Country<span class="pad-datatable-arrow" aria-hidden="true">▼</span></a>
-                    </th>
-                    <th scope="col" class="num">
-                      <a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=population&amp;dir=asc.html">Population<span class="pad-datatable-arrow" aria-hidden="true">↕</span></a>
-                    </th>
-                    <th scope="col" class="num">
-                      <a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=area&amp;dir=asc.html">Area (km²)<span class="pad-datatable-arrow" aria-hidden="true">↕</span></a>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      São Paulo
-                    </td>
-                    <td>
-                      Brazil
-                    </td>
-                    <td class="num">
-                      11,451,245
-                    </td>
-                    <td class="num">
-                      1,521
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Dhaka
-                    </td>
-                    <td>
-                      Bangladesh
-                    </td>
-                    <td class="num">
-                      10,278,882
-                    </td>
-                    <td class="num">
-                      306
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <nav class="pad-datatable-pager" aria-label="Pagination">
-                <a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=country&amp;dir=desc&amp;page=2.html" rel="prev" aria-label="Previous page">‹</a><a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=country&amp;dir=desc&amp;page=1.html">1</a><a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=country&amp;dir=desc&amp;page=2.html">2</a><a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=country&amp;dir=desc&amp;page=3.html" aria-current="page">3</a><span aria-disabled="true" aria-label="Next page">›</span>
-              </nav>
-            </div>
+            </section>
+            <section class="cell cell-tag" aria-label="The tag">
+              <header class="cell-head">
+                <span class="cell-num">2</span> <span class="cell-name">The tag</span> <span class="cell-file">datatable/paged.pad</span> <span class="badge badge-pad">pad</span> <button type="button" class="copy" data-copy="tag-src" aria-label="Copy the tag">Copy</button>
+              </header>
+              <pre class="code" id="tag-src"><code><span class="hl-brc">{</span><span class="hl-tag">pad:datatable</span> <span class="hl-opt">data</span>=<span class="hl-str">'cities'</span>, <span class="hl-opt">labels</span>=<span class="hl-str">'City, Country, Population, Area (km²)'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">8</span>, sortable, <span class="hl-opt">caption</span>=<span class="hl-str">'Largest cities by population'</span><span class="hl-brc">/}</span></code></pre>
+            </section>
+            <section class="cell cell-chart" aria-label="The result">
+              <header class="cell-head">
+                <span class="cell-num">3</span> <span class="cell-name">The result</span> <span class="cell-file">rendered on the server</span>
+                <link rel="stylesheet" href="../_common/play.css"><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGF0YWJsZSBkYXRhPSdjaXRpZXMnLCBsYWJlbHM9J0NpdHksIENvdW50cnksIFBvcHVsYXRpb24sIEFyZWEgKGttwrIpJywgcm93cz04LCBzb3J0YWJsZSwgY2FwdGlvbj0nTGFyZ2VzdCBjaXRpZXMgYnkgcG9wdWxhdGlvbicvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBjaXRpZXMgcHJvcGVyIGJ5IHBvcHVsYXRpb24sIHRoZSBsYXJnZXN0IGZpcnN0LCB3aXRoIHRoZWlyIGFyZWEuXG5cbiAgJGNpdGllcyA9IFtcbiAgICBbICdjaXR5JyA9PiAnU2hhbmdoYWknLCAgICAnY291bnRyeScgPT4gJ0NoaW5hJywgICAgICAgICAgJ3BvcHVsYXRpb24nID0+IDI0ODcwODk1LCAnYXJlYScgPT4gNjM0MSAgXSxcbiAgICBbICdjaXR5JyA9PiAnQmVpamluZycsICAgICAnY291bnRyeScgPT4gJ0NoaW5hJywgICAgICAgICAgJ3BvcHVsYXRpb24nID0+IDIxODkzMDk1LCAnYXJlYScgPT4gMTY0MTEgXSxcbiAgICBbICdjaXR5JyA9PiAnS2luc2hhc2EnLCAgICAnY291bnRyeScgPT4gJ0RSIENvbmdvJywgICAgICAgJ3BvcHVsYXRpb24nID0+IDE2MzE1NTM0LCAnYXJlYScgPT4gOTk2NSAgXSxcbiAgICBbICdjaXR5JyA9PiAnSXN0YW5idWwnLCAgICAnY291bnRyeScgPT4gJ1TDvHJraXllJywgICAgICAgICdwb3B1bGF0aW9uJyA9PiAxNTY1NTkyNCwgJ2FyZWEnID0+IDU0NjEgIF0sXG4gICAgWyAnY2l0eScgPT4gJ1Rva3lvJywgICAgICAgJ2NvdW50cnknID0+ICdKYXBhbicsICAgICAgICAgICdwb3B1bGF0aW9uJyA9PiAxNDA5NDAzNCwgJ2FyZWEnID0+IDIxOTQgIF0sXG4gICAgWyAnY2l0eScgPT4gJ01vc2NvdycsICAgICAgJ2NvdW50cnknID0+ICdSdXNzaWEnLCAgICAgICAgICdwb3B1bGF0aW9uJyA9PiAxMzAxMDExMiwgJ2FyZWEnID0+IDI1MTEgIF0sXG4gICAgWyAnY2l0eScgPT4gJ011bWJhaScsICAgICAgJ2NvdW50cnknID0+ICdJbmRpYScsICAgICAgICAgICdwb3B1bGF0aW9uJyA9PiAxMjQ0MjM3MywgJ2FyZWEnID0+IDYwMyAgIF0sXG4gICAgWyAnY2l0eScgPT4gJ1PDo28gUGF1bG8nLCAgICdjb3VudHJ5JyA9PiAnQnJhemlsJywgICAgICAgICAncG9wdWxhdGlvbicgPT4gMTE0NTEyNDUsICdhcmVhJyA9PiAxNTIxICBdLFxuICAgIFsgJ2NpdHknID0+ICdEZWxoaScsICAgICAgICdjb3VudHJ5JyA9PiAnSW5kaWEnLCAgICAgICAgICAncG9wdWxhdGlvbicgPT4gMTEwMzQ1NTUsICdhcmVhJyA9PiAxNDg0ICBdLFxuICAgIFsgJ2NpdHknID0+ICdKYWthcnRhJywgICAgICdjb3VudHJ5JyA9PiAnSW5kb25lc2lhJywgICAgICAncG9wdWxhdGlvbicgPT4gMTA1NjIwODgsICdhcmVhJyA9PiA2NjIgICBdLFxuICAgIFsgJ2NpdHknID0+ICdEaGFrYScsICAgICAgICdjb3VudHJ5JyA9PiAnQmFuZ2xhZGVzaCcsICAgICAncG9wdWxhdGlvbicgPT4gMTAyNzg4ODIsICdhcmVhJyA9PiAzMDYgICBdLFxuICAgIFsgJ2NpdHknID0+ICdDYWlybycsICAgICAgICdjb3VudHJ5JyA9PiAnRWd5cHQnLCAgICAgICAgICAncG9wdWxhdGlvbicgPT4gMTAwNDQ4OTQsICdhcmVhJyA9PiAzMDg1ICBdLFxuICAgIFsgJ2NpdHknID0+ICdMaW1hJywgICAgICAgICdjb3VudHJ5JyA9PiAnUGVydScsICAgICAgICAgICAncG9wdWxhdGlvbicgPT4gOTk0MzgwMCwgICdhcmVhJyA9PiAyNjcyICBdLFxuICAgIFsgJ2NpdHknID0+ICdTZW91bCcsICAgICAgICdjb3VudHJ5JyA9PiAnU291dGggS29yZWEnLCAgICAncG9wdWxhdGlvbicgPT4gOTU4NjE5NSwgICdhcmVhJyA9PiA2MDUgICBdLFxuICAgIFsgJ2NpdHknID0+ICdNZXhpY28gQ2l0eScsICdjb3VudHJ5JyA9PiAnTWV4aWNvJywgICAgICAgICAncG9wdWxhdGlvbicgPT4gOTIwOTk0NCwgICdhcmVhJyA9PiAxNDg1ICBdLFxuICAgIFsgJ2NpdHknID0+ICdMb25kb24nLCAgICAgICdjb3VudHJ5JyA9PiAnVW5pdGVkIEtpbmdkb20nLCAncG9wdWxhdGlvbicgPT4gODc5OTgwMCwgICdhcmVhJyA9PiAxNTcyICBdLFxuICAgIFsgJ2NpdHknID0+ICdMYWdvcycsICAgICAgICdjb3VudHJ5JyA9PiAnTmlnZXJpYScsICAgICAgICAncG9wdWxhdGlvbicgPT4gODA0ODQzMCwgICdhcmVhJyA9PiAxMTcxICBdLFxuICAgIFsgJ2NpdHknID0+ICdCYW5na29rJywgICAgICdjb3VudHJ5JyA9PiAnVGhhaWxhbmQnLCAgICAgICAncG9wdWxhdGlvbicgPT4gNTQ5NDkzMiwgICdhcmVhJyA9PiAxNTY5ICBdLFxuICBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGF0YWJsZSBkYXRhPSdjaXRpZXMnLCBsYWJlbHM9J0NpdHksIENvdW50cnksIFBvcHVsYXRpb24sIEFyZWEgKGttwrIpJywgcm93cz04LCBzb3J0YWJsZSwgY2FwdGlvbj0nTGFyZ2VzdCBjaXRpZXMgYnkgcG9wdWxhdGlvbicvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBjaXRpZXMgcHJvcGVyIGJ5IHBvcHVsYXRpb24sIHRoZSBsYXJnZXN0IGZpcnN0LCB3aXRoIHRoZWlyIGFyZWEuXG5cbiAgJGNpdGllcyA9IFtcbiAgICBbICdjaXR5JyA9PiAnU2hhbmdoYWknLCAgICAnY291bnRyeScgPT4gJ0NoaW5hJywgICAgICAgICAgJ3BvcHVsYXRpb24nID0+IDI0ODcwODk1LCAnYXJlYScgPT4gNjM0MSAgXSxcbiAgICBbICdjaXR5JyA9PiAnQmVpamluZycsICAgICAnY291bnRyeScgPT4gJ0NoaW5hJywgICAgICAgICAgJ3BvcHVsYXRpb24nID0+IDIxODkzMDk1LCAnYXJlYScgPT4gMTY0MTEgXSxcbiAgICBbICdjaXR5JyA9PiAnS2luc2hhc2EnLCAgICAnY291bnRyeScgPT4gJ0RSIENvbmdvJywgICAgICAgJ3BvcHVsYXRpb24nID0+IDE2MzE1NTM0LCAnYXJlYScgPT4gOTk2NSAgXSxcbiAgICBbICdjaXR5JyA9PiAnSXN0YW5idWwnLCAgICAnY291bnRyeScgPT4gJ1TDvHJraXllJywgICAgICAgICdwb3B1bGF0aW9uJyA9PiAxNTY1NTkyNCwgJ2FyZWEnID0+IDU0NjEgIF0sXG4gICAgWyAnY2l0eScgPT4gJ1Rva3lvJywgICAgICAgJ2NvdW50cnknID0+ICdKYXBhbicsICAgICAgICAgICdwb3B1bGF0aW9uJyA9PiAxNDA5NDAzNCwgJ2FyZWEnID0+IDIxOTQgIF0sXG4gICAgWyAnY2l0eScgPT4gJ01vc2NvdycsICAgICAgJ2NvdW50cnknID0+ICdSdXNzaWEnLCAgICAgICAgICdwb3B1bGF0aW9uJyA9PiAxMzAxMDExMiwgJ2FyZWEnID0+IDI1MTEgIF0sXG4gICAgWyAnY2l0eScgPT4gJ011bWJhaScsICAgICAgJ2NvdW50cnknID0+ICdJbmRpYScsICAgICAgICAgICdwb3B1bGF0aW9uJyA9PiAxMjQ0MjM3MywgJ2FyZWEnID0+IDYwMyAgIF0sXG4gICAgWyAnY2l0eScgPT4gJ1PDo28gUGF1bG8nLCAgICdjb3VudHJ5JyA9PiAnQnJhemlsJywgICAgICAgICAncG9wdWxhdGlvbicgPT4gMTE0NTEyNDUsICdhcmVhJyA9PiAxNTIxICBdLFxuICAgIFsgJ2NpdHknID0+ICdEZWxoaScsICAgICAgICdjb3VudHJ5JyA9PiAnSW5kaWEnLCAgICAgICAgICAncG9wdWxhdGlvbicgPT4gMTEwMzQ1NTUsICdhcmVhJyA9PiAxNDg0ICBdLFxuICAgIFsgJ2NpdHknID0+ICdKYWthcnRhJywgICAgICdjb3VudHJ5JyA9PiAnSW5kb25lc2lhJywgICAgICAncG9wdWxhdGlvbicgPT4gMTA1NjIwODgsICdhcmVhJyA9PiA2NjIgICBdLFxuICAgIFsgJ2NpdHknID0+ICdEaGFrYScsICAgICAgICdjb3VudHJ5JyA9PiAnQmFuZ2xhZGVzaCcsICAgICAncG9wdWxhdGlvbicgPT4gMTAyNzg4ODIsICdhcmVhJyA9PiAzMDYgICBdLFxuICAgIFsgJ2NpdHknID0+ICdDYWlybycsICAgICAgICdjb3VudHJ5JyA9PiAnRWd5cHQnLCAgICAgICAgICAncG9wdWxhdGlvbicgPT4gMTAwNDQ4OTQsICdhcmVhJyA9PiAzMDg1ICBdLFxuICAgIFsgJ2NpdHknID0+ICdMaW1hJywgICAgICAgICdjb3VudHJ5JyA9PiAnUGVydScsICAgICAgICAgICAncG9wdWxhdGlvbicgPT4gOTk0MzgwMCwgICdhcmVhJyA9PiAyNjcyICBdLFxuICAgIFsgJ2NpdHknID0+ICdTZW91bCcsICAgICAgICdjb3VudHJ5JyA9PiAnU291dGggS29yZWEnLCAgICAncG9wdWxhdGlvbicgPT4gOTU4NjE5NSwgICdhcmVhJyA9PiA2MDUgICBdLFxuICAgIFsgJ2NpdHknID0+ICdNZXhpY28gQ2l0eScsICdjb3VudHJ5JyA9PiAnTWV4aWNvJywgICAgICAgICAncG9wdWxhdGlvbicgPT4gOTIwOTk0NCwgICdhcmVhJyA9PiAxNDg1ICBdLFxuICAgIFsgJ2NpdHknID0+ICdMb25kb24nLCAgICAgICdjb3VudHJ5JyA9PiAnVW5pdGVkIEtpbmdkb20nLCAncG9wdWxhdGlvbicgPT4gODc5OTgwMCwgICdhcmVhJyA9PiAxNTcyICBdLFxuICAgIFsgJ2NpdHknID0+ICdMYWdvcycsICAgICAgICdjb3VudHJ5JyA9PiAnTmlnZXJpYScsICAgICAgICAncG9wdWxhdGlvbicgPT4gODA0ODQzMCwgICdhcmVhJyA9PiAxMTcxICBdLFxuICAgIFsgJ2NpdHknID0+ICdCYW5na29rJywgICAgICdjb3VudHJ5JyA9PiAnVGhhaWxhbmQnLCAgICAgICAncG9wdWxhdGlvbicgPT4gNTQ5NDkzMiwgICdhcmVhJyA9PiAxNTY5ICBdLFxuICBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              </header>
+              <div class="canvas">
+                <div class="pad-datatable">
+                  <table class="pad-datatable-table">
+                    <caption>
+                      Largest cities by population
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">
+                          <a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=city&amp;dir=asc.html">City<span class="pad-datatable-arrow" aria-hidden="true">↕</span></a>
+                        </th>
+                        <th scope="col" aria-sort="descending">
+                          <a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=country&amp;dir=asc.html">Country<span class="pad-datatable-arrow" aria-hidden="true">▼</span></a>
+                        </th>
+                        <th scope="col" class="num">
+                          <a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=population&amp;dir=asc.html">Population<span class="pad-datatable-arrow" aria-hidden="true">↕</span></a>
+                        </th>
+                        <th scope="col" class="num">
+                          <a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=area&amp;dir=asc.html">Area (km²)<span class="pad-datatable-arrow" aria-hidden="true">↕</span></a>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          São Paulo
+                        </td>
+                        <td>
+                          Brazil
+                        </td>
+                        <td class="num">
+                          11,451,245
+                        </td>
+                        <td class="num">
+                          1,521
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Dhaka
+                        </td>
+                        <td>
+                          Bangladesh
+                        </td>
+                        <td class="num">
+                          10,278,882
+                        </td>
+                        <td class="num">
+                          306
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <nav class="pad-datatable-pager" aria-label="Pagination">
+                    <a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=country&amp;dir=desc&amp;page=2.html" rel="prev" aria-label="Previous page">‹</a><a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=country&amp;dir=desc&amp;page=1.html">1</a><a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=country&amp;dir=desc&amp;page=2.html">2</a><a href="index%EF%B9%96datatable%EA%A4%B7paged&amp;sort=country&amp;dir=desc&amp;page=3.html" aria-current="page">3</a><span aria-disabled="true" aria-label="Next page">›</span>
+                  </nav>
+                </div>
+              </div>
+            </section>
           </div>
-        </section>
+          <nav class="pager" aria-label="More examples">
+            <a class="pager-link prev" href="index%EF%B9%96datatable%EA%A4%B7orders.html"><span class="pager-dir">← Previous</span><span class="pager-title">Orders with totals</span></a> <a class="pager-link next" href="index%EF%B9%96diff%EA%A4%B7lines.html"><span class="pager-dir">Next →</span><span class="pager-title">Line by line</span></a>
+          </nav>
+        </div>
       </div>
-      <nav class="pager" aria-label="More examples">
-        <a class="pager-link prev" href="index%EF%B9%96datatable%EA%A4%B7orders.html"><span class="pager-dir">← Previous</span><span class="pager-title">Orders with totals</span></a> <a class="pager-link next" href="index%EF%B9%96diff%EA%A4%B7lines.html"><span class="pager-dir">Next →</span><span class="pager-title">Line by line</span></a>
-      </nav>
     </main>
   </body>
 </html>

@@ -5,10 +5,10 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{lorem/}
-{lorem words=4/}
-{lorem sentences=2, seed=7/}
-{lorem paragraphs=3, sentences=4, varied/}
+{pad:lorem/}
+{pad:lorem words=4/}
+{pad:lorem sentences=2, seed=7/}
+{pad:lorem paragraphs=3, sentences=4, varied/}
 PAD;
 
   $tagParms   = [];
@@ -20,6 +20,6 @@ PAD;
     'seed'       => 'Another text, the same again for the same seed - default 0.',
     'varied'     => 'Bare option: leave the classic opening "Lorem ipsum dolor sit amet" out - for the second text on a page.' ];
 
-  $tagSee     = [ 'placeholder', 'excerpt', 'sequence' ];
+  $tagSee     = [ 'placeholder', 'excerpt', 'sequence:auto' ];
 
 ?>

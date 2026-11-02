@@ -1,10 +1,7 @@
 <?php
 
-  // The body of a section, whichever way it is written: {section 'hero', title='...'} ...
-  // {/section}, or the section: type - {section:hero title='...'} ... {/section:hero}. The
-  // sections are never reached bare: hero, team, stats and footer are the names of fields and
-  // pages. The caller sets $padSectionKind; a section is a file of subs/sections/types/, and
-  // the files there are all the sections there are (padSectionTypes, _lib/section.php).
+  // The shared body of section:kind tags, such as {section:hero}. The caller sets
+  // $padSectionKind; registered kinds are files in subs/sections/types/.
   //
   // A pair runs twice: the start walk takes the section's slots out of its content and puts
   // them back between markers, reads the rows of data= and opens the collection its

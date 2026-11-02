@@ -1,18 +1,18 @@
 <?php
 
-  // Placeholder text - the {lorem} tag. Lorem ipsum as words, sentences or paragraphs, the
+  // Placeholder text - the {pad:lorem} tag. Lorem ipsum as words, sentences or paragraphs, the
   // classic "Lorem ipsum dolor sit amet" first, the rest picked from a Latin word list by
   // the sequence of lib/fake.php - the same text for the same seed, on every machine.
   //
-  //   {lorem}                         50 words
-  //   {lorem words=12}  {lorem sentences=3}  {lorem paragraphs=4, seed=7}
+  //   {pad:lorem}                         50 words
+  //   {pad:lorem words=12}  {pad:lorem sentences=3}  {pad:lorem paragraphs=4, seed=7}
   //
   // padLorem            the text: words and sentences plain, paragraphs as <p> elements
   // padLoremSentence    one sentence of so many words, a comma now and then, a full stop
   //
   // The seed starts the fake sequence for this text alone: the state it was in is put back
   // afterwards, so a page that seeds padFake* for its own data gets the same values with or
-  // without a {lorem} in between.
+  // without a {pad:lorem} in between.
 
   const PAD_LOREM_START = [ 'lorem', 'ipsum', 'dolor', 'sit', 'amet,', 'consectetur', 'adipiscing', 'elit' ];
 

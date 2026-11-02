@@ -9,7 +9,7 @@
   //
   // A store shorter than the sequence has no term for the results past its end, and a term
   // cannot be made without its parameter: NULL comes back and build/one.php ends the run
-  // there - {sequence add='s', rows=6} over a store of three gives three terms. It read past
+  // there - {sequence:add 's', rows=6} over a store of three gives three terms. It read past
   // the end of the store and ended the request on the undefined key.
 
   $pqStoreIdx = count ( $pqResult );

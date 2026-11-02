@@ -6,9 +6,9 @@
   // padSingleValue / padSpecialValue  is this a plain scalar that can simply be printed,
   //                    or one of FALSE, TRUE, NULL, NAN, which the engine reads as
   //                    meaning rather than as content - INF is a value, as -INF is: a tag
-  //                    answering it, {echo $big} or {big} over $big = INF, printed nothing
-  //                    where {$big} and {echo $neg} over -INF print the value
-  // padMakeFlag        the truth test behind {if} and a tag's hit/miss: empty is false, an
+  //                    answering it, {pad:echo $big} or {field:big} over $big = INF, printed nothing
+  //                    where {$big} and {pad:echo $neg} over -INF print the value
+  // padMakeFlag        the truth test behind {pad:if} and a tag's hit/miss: empty is false, an
   //                    array is true when it holds more than the default occurrence, and a
   //                    string is handed to padEval
   // padMakeContent     the output form; NULL and FALSE print as nothing, TRUE as 1
@@ -17,7 +17,7 @@
   // padConstant        a defined constant's value, else the name unchanged
   // padFieldName       drops a leading $ from a field name
   // padDataForcePad    rewrites a name => value map into occurrences with name and value
-  //                    fields, the shape {fields@record} iterates
+  //                    fields, the shape {property:fields@record} iterates
   // padDefaultData / padIsDefaultData  the single empty occurrence a tag stands in with
   //                    when it has no data of its own, and the test for it
 

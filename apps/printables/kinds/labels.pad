@@ -1,4 +1,4 @@
-{fake 'product:word, code:number', rows=24, seed=8, from=100000000000, to=999999999999, toData='products'/}
+{fake:rows 'product:word, code:number', rows=24, seed=8, from=100000000000, to=999999999999, toData='products'/}
 {printable:labels data='products', sheet='a4-3x8', scale=0.45, pdf}
   <b>{$product | capitalize}</b>
   {barcode:ean13 $code, height=40/}

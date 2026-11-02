@@ -1,5 +1,5 @@
-{data 'notes'}
+{pad:data 'notes'}
   [ { "who": "Ann", "note": "=1+1", "score": "7" },
     { "who": "Bob", "note": "'quoted", "score": "TRUE" } ]
-{/data}
-{spreadsheet 'notes', data='notes', formulas='twice=C2*2'}{/spreadsheet | after('</style>')}
+{/pad:data}
+{pad:spreadsheet 'notes', data='notes', formulas='twice=C2*2'}{/pad:spreadsheet | after('</style>')}

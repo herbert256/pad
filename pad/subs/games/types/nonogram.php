@@ -6,13 +6,13 @@
   // between the tags, a line per row, # for a filled square and . for an empty one - else
   // one of a few built in, the same for the same seed=.
   //
-  //   {nonogram}
+  //   {game:nonogram}
   //     .##.##.
   //     #######
   //     .#####.
   //     ..###..
   //     ...#...
-  //   {/nonogram}
+  //   {/game:nonogram}
 
   $padNonoRows = padGameList ();
 

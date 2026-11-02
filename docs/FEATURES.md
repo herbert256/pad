@@ -88,7 +88,7 @@ applications show them working.
 
 ### Template emails
 
-`{mail to=$email, template='order', subject='Order confirmation'}` renders `_mail/order.pad`
+`{pad:mail to=$email, template='order', subject='Order confirmation'}` renders `_mail/order.pad`
 (HTML) and `_mail/order.txt` (text - made from the HTML when absent), after `_mail/order.php`,
 inside the `_inits.pad`/`_exits.pad` layout of that `_mail/`; as a pair without `template` the
 content is the HTML part. `from`, `cc`, `bcc`, `replyTo` too. From PHP:
@@ -98,11 +98,11 @@ or the name of an app function that gets the message (SMTP through a library).
 
 ### Early flush
 
-`{flush}` - after the wrapper's `</head>` - sends the page rendered so far at once, so the
+`{pad:flush}` - after the wrapper's `</head>` - sends the page rendered so far at once, so the
 browser loads the stylesheets while a slow part below renders. It switches off tidy, whole-body
 gzip, the ETag/304, `Content-Length` and the page cache for the request; it stands at the top
 level of the page or wrapper (strict mode says so elsewhere) and does nothing in a page
-rendered by `{page}`, for a non-web output type, in an application with an `_events/output.php`
+rendered by `{pad:page}`, for a non-web output type, in an application with an `_events/output.php`
 hook (which sees the page whole), or in a request answered with one fragment or live region.
 
 ### Server-sent events
@@ -124,7 +124,7 @@ visitor's other requests do not wait - and nothing is cached, compressed or buff
 
 ### Vite builds
 
-`{vite 'src/main.js'/}` links the scripts and stylesheets of a Vite build by the name of their
+`{pad:vite 'src/main.js'/}` links the scripts and stylesheets of a Vite build by the name of their
 source: from the manifest of `www/<app>/build/.vite/manifest.json` (`$padViteBuild`) - the
 entry's CSS, its chunks as `modulepreload`, its `<script type="module">` - or, while the dev
 server runs (`$padViteDev`, or the address in `build/hot`), from the dev server with hot module
@@ -133,18 +133,18 @@ the islands PAD writes as before - no Babel in the browser.
 
 ### Sitemap from the file tree
 
-`{sitemap}...{/sitemap}` lists every page of the application - `{$page}`, `{$url}`,
-`{$lastmod}` - walked from the files; `{sitemap 'docs'}` one directory. With
+`{pad:sitemap}...{/pad:sitemap}` lists every page of the application - `{$page}`, `{$url}`,
+`{$lastmod}` - walked from the files; `{pad:sitemap 'docs'}` one directory. With
 `$padSitemap = TRUE`, `?sitemap.xml` answers the sitemap XML and `?robots.txt` points to it.
 Left out: `_` entries, directories with a `_guard.php`, bracketed routes, action pages (no
-template, PHP that only redirects), `{meta sitemap=false/}` and `$padSitemapSkip` names.
+template, PHP that only redirects), `{pad:meta sitemap=false/}` and `$padSitemapSkip` names.
 
 ### Structured data (JSON-LD)
 ```
 {jsonld:article headline=$title, author=$author, published=$date, image='cover.jpg'/}
-{jsonld 'article', data='post', url=$url/}                # a row, an option winning over its field
+{jsonld:article data='post', url=$url/}                # a row, an option winning over its field
 {jsonld:faq data='questions'/}                            # rows of question and answer
-{jsonld:breadcrumb/}                                      # the trail {breadcrumb/} shows for the page
+{jsonld:breadcrumb/}                                      # the trail {widget:breadcrumb/} shows for the page
 {jsonld:product data='product', availability='InStock'/}  # an Offer of price, currency, availability
 {jsonld:website name='Shop', search='?search&q='/}        # a SearchAction ending in {search_term_string}
 {jsonld:recipe data='recipe'/}                            # times, ingredients and steps of a dish
@@ -164,7 +164,7 @@ One `<script type="application/ld+json">` holding a Schema.org object - what sea
 for a rich result - from ordinary PAD data, explicitly mapped. Seventeen kinds, each a file of
 `pad/subs/jsonld/types/` whose header lists its fields, a PAD name and the Schema.org property it
 fills: `article` (headline required, description, image, url, author, published, modified,
-publisher, logo), `breadcrumb` (rows of name and url - the rows `{breadcrumb data=}` takes,
+publisher, logo), `breadcrumb` (rows of name and url - the rows `{widget:breadcrumb data=}` takes,
 label and link too - or without `data=` the page's trail as the breadcrumb widget shows it,
 `home=` its first step, a directory that is no page left out, as a step needs its address),
 `event` (name and starts required, ends, place and address as its Place, description, image,
@@ -216,8 +216,8 @@ page) and name (or label, title), each a ListItem numbered by its position, a li
 a list of addresses, and `name=` the list's own name; with a recipe, a course, a restaurant or a
 movie on each page it lists, Google shows the list as a carousel (two items or more, of one kind).
 
-The fields come from the row or rows `data=` names - a `{data}` store, the page's array, a
-field holding a list or a `_data` file (a store holds rows, so a single row in a `{data}` block
+The fields come from the row or rows `data=` names - a `{pad:data}` store, the page's array, a
+field holding a list or a `_data` file (a store holds rows, so a single row in a `{pad:data}` block
 is a list of one) - and from options of their names, which win over the row's. A row is never
 written whole: only what the kind maps, so a password, a cost price or an e-mail address of the
 row never reaches the page. Several rows of a kind of one object make a `@graph`; the handling
@@ -293,7 +293,7 @@ $padExpose = [ 'orders', 'total' ];    // never an engine name (pad*, pq*, _*)
   exist, or CSV - any table format - without a list answers 406; asked only through
   `Accept`, the page renders as HTML. An exposing page sends `Vary: Accept`.
 - `$padOutputType = 'json'` (or `'csv'`) in `_config/config.php` makes every page of an
-  application answer data; `{output 'json'/}` does it from a template.
+  application answer data; `{pad:output 'json'/}` does it from a template.
 
 ### Data formats
 
@@ -318,13 +318,13 @@ with a reader, a writer or both - added by adding its file, its code in `_lib/`,
 | `rss`, `atom`, `jsonfeed` | - | yes | feeds of rows with title, link, date, summary, body, id - a Markdown collection's rows as they are |
 
 ```
-{data 'plan', format='toml'}            # the content in a format - type= says the same
+{pad:data 'plan', format='toml'}            # the content in a format - type= says the same
   title = "Weekend"
   [[stops]]
   name = "Gravensteen"
-{/data}
-{data 'agenda'}BEGIN:VCALENDAR ...{/data}   # known on sight: iCalendar, vCard, NDJSON, a pipe table, TSV, WebVTT, SRT, an RS
-{sales}...{/sales}                      # _data/sales.xlsx - a _data file by its extension
+{/pad:data}
+{pad:data 'agenda'}BEGIN:VCALENDAR ...{/pad:data}   # known on sight: iCalendar, vCard, NDJSON, a pipe table, TSV, WebVTT, SRT, an RS
+{data:sales}...{/data:sales}                      # _data/sales.xlsx - a _data file by its extension
 {local:plan.toml}...{/local:plan.toml}  # {local:sales.xlsx sheet='Notes'}
 ```
 
@@ -356,7 +356,7 @@ $padFormatOptions = [ 'title' => 'Talks', 'name' => 'Talks' ];  // the writer's 
   there and the other cues are read, and so is a broken record of a JSON text sequence.
   The formats known on sight are known only where the text would have read as CSV, or
   as a JSON document that is none: TOML, INI, GeoJSON, GPX and KML are named, or read by extension.
-  A fetched body - `{curl}`, `data='https://...'` - is read in the format its media type names:
+  A fetched body - `{pad:curl}`, `data='https://...'` - is read in the format its media type names:
   `application/x-ndjson`, `text/calendar`, `application/toml`, `application/geo+json` ...
 - A data file runs as PAD before it is read, as a JSON file does - a `{` in a TOML comment is a
   tag; an `xlsx` is bytes, read as the file holds them - a part of at most 32 MB unpacked,
@@ -412,14 +412,14 @@ the login. Remember-me is a signed cookie, no table: `$padAuthRemember` names th
 that finds a row by id. `padPasswordToken ( $email, $hash )` / `padPasswordTokenCheck` - a
 reset token that dies once the password changes, or after an hour.
 ```
-{auth}Hello {$name}{else}<a href="?login">Log in</a>{/auth}     # the user's row is the data
-{guest}...{/guest}
-{can 'edit-post', $post}<a href="?edit">Edit</a>{else}read only{/can}
-{feature 'search2'}...{else}...{/feature}
+{pad:auth}Hello {$name}{pad:else}<a href="?login">Log in</a>{/pad:auth}     # the user's row is the data
+{pad:guest}...{/pad:guest}
+{pad:can 'edit-post', $post}<a href="?edit">Edit</a>{pad:else}read only{/pad:can}
+{pad:feature 'search2'}...{pad:else}...{/pad:feature}
 ```
 In `_lib`: `padGate ( 'edit-post', fn ( $user, $post ) => $user ['id'] == $post ['user_id'] )`,
 `padGateBefore ( fn ( $user, $ability ) => $user ['role'] == 'admin' ? TRUE : NULL )`; then
-`padCan`, `padCannot`, `padAuthorize` (403), `{can}` / `{cannot}` - inside `{posts}`, `$posts` is
+`padCan`, `padCannot`, `padAuthorize` (403), `{pad:can}` / `{pad:cannot}` - inside `{data:posts}`, `$posts` is
 the row. A guest reaches only a gate whose user is `?array`.
 `$padFeatures = [ 'search2' => 0.25, 'beta' => 'isBeta', 'dark' => TRUE ]` - a share is
 decided stably per user (or `padFeatureId` cookie); `padFeature ( 'search2' )`,
@@ -428,8 +428,8 @@ the strict check, an error.
 
 ### Asset versioning
 
-`{asset 'charts.css'/}` / `padAsset ( 'charts.css' )` is `/<app>/charts.css?v=<hash of the
-contents>` of `www/<app>/charts.css` - safe behind a far-future cache header; `{asset
+`{pad:asset 'charts.css'/}` / `padAsset ( 'charts.css' )` is `/<app>/charts.css?v=<hash of the
+contents>` of `www/<app>/charts.css` - safe behind a far-future cache header; `{pad:asset
 'app.js', tag/}` writes `<script src defer>` (`<link rel="stylesheet">` for .css, module for
 .mjs), with the nonce when `$padCsp` asks for one. A missing file is the plain address and a
 strict error; a name never leaves `www/<app>/`.
@@ -446,7 +446,7 @@ page that links a file makes one stat of it, the file read and hashed again only
 changed. The colours
 a tag makes from its roles stay a small `<style>`. The style sheets of a whole page are moved
 into its `<head>` before tidy reads it (a bare template's go at its start); a fragment, a live
-region's answer and a `{shadow}` root keep theirs where they stand, and a `{live}` answer runs
+region's answer and a `{pad:shadow}` root keep theirs where they stand, and a `{pad:live}` answer runs
 its scripts in order, one of `www/assets/` loaded before the next. With `$padCsp` naming a
 nonce the links and scripts carry it. The text is written into the page instead - a `<style>`
 and a `<script>`, as before the files were linked - in a mail, a notification, an offline
@@ -489,18 +489,18 @@ database, never one kept only as a link), title (a
 heading of words= words), url, username, uuid, word - each named by
 `padFake ( 'email' )` and in a template:
 ```
-{fake 'email'/}  {fake:city/}  {fake 'number', from=1, to=6/}  {fake 'date', from='2026-01-01', format='j M Y'/}
-{fake 'name, email', rows=5, toData='people'/}               # rows of fields named after their kinds
-{fake 'customer:name, total:price', rows=3}<li>{$customer} {$total}</li>{/fake}
-{fake 'name', seed=7/}                                        # a value of its own seed
-{fake 'lat:latitude, lon:longitude', south=50.75, north=53.55, west=3.36, east=7.23, rows=5/}  # points of a box
+{fake:email/}  {fake:city/}  {fake:number from=1, to=6/}  {fake:date from='2026-01-01', format='j M Y'/}
+{fake:rows 'name, email', rows=5, toData='people'/}               # rows of fields named after their kinds
+{fake:rows 'customer:name, total:price', rows=3}<li>{$customer} {$total}</li>{/fake:rows}
+{fake:name seed=7/}                                        # a value of its own seed
+{fake:rows 'lat:latitude, lon:longitude', south=50.75, north=53.55, west=3.36, east=7.23, rows=5/}  # points of a box
 ```
-`padFakeRows ( 'name, email', 5, 7 )` gives the rows `{fake 'name, email', rows=5, seed=7/}`
+`padFakeRows ( 'name, email', 5, 7 )` gives the rows `{fake:rows 'name, email', rows=5, seed=7/}`
 gives - a fact of the seed, the sequence put back after them - for a seeder, a prototype's
-table or a designer preview's sample. Without `seed=` the `{fake}` tags of a request share a
+table or a designer preview's sample. Without `seed=` the `{fake:rows}` tags of a request share a
 sequence of their own from one seed, so a page looks the same on every request; either way the
 page's own `padFakeSeed` sequence is left where it was. An email or username beside a name is
-that person's, a slug beside a title that title's - `{fake 'title, slug, paragraph', rows=3/}`
+that person's, a slug beside a title that title's - `{fake:rows 'title, slug, paragraph', rows=3/}`
 are the posts of a blog. Locale-neutral English, as the helpers; a fake kind is never reached bare - its
 names are those of fields. A kind is added by adding its file, which reads its options with
 `padFakeOpt`.
@@ -542,7 +542,7 @@ MySQL, no network from PHP. `wasm/README.md`; `notes`, `ledger`, `kanban` are th
 ### HTTP fakes for tests
 
 `padCurlFake ( [ 'https://api.example.com/*' => [ 'status' => 200, 'data' => '{"a":1}' ], '*' => 404 ] )`
-answers every fetch of the request - `{curl}`, `data='https://...'`, padCurl, padPrefetch, a ttl
+answers every fetch of the request - `{pad:curl}`, `data='https://...'`, padCurl, padPrefetch, a ttl
 fetch (which skips its cache) - from the fakes, a closure answering per request; a URL no fake
 matches is an error without `'*'`. `padCurlRecorded ()` lists the calls, `padCurlFakeStop ()` ends it.
 
@@ -561,7 +561,7 @@ if ( $user = padOAuthUser ( $provider ) ) {    // back: the state checked, the c
 $problem = padOAuthError ();                    // a no at the provider, a stale state ...
 ```
 ```
-{oauth 'github'/}  {oauth 'google'/}  {oauth 'oidc', href='?login/company', label='Company account'/}
+{pad:oauth 'github'/}  {pad:oauth 'google'/}  {pad:oauth 'oidc', href='?login/company', label='Company account'/}
 ```
 The providers are the files of `pad/subs/oauth/types/` - apple, bitbucket (Bitbucket Cloud: its
 consumer's permissions set at Bitbucket, the key and secret sent as HTTP Basic), discord, forgejo (Codeberg, or
@@ -595,7 +595,7 @@ straight from the token endpoint over TLS, which OpenID Connect Core 3.1.3.7 let
 so an issuer, a `base=` and every endpoint a discovery document names must be https (http on
 localhost alone).
 `padOAuthUrl` gives the address without going there; `padOAuthToken ()` the token answer, for
-calls to the provider's API. `{oauth 'github'/}` is the button - its link `oauth/<provider>`
+calls to the provider's API. `{pad:oauth 'github'/}` is the button - its link `oauth/<provider>`
 unless `href=`, the provider's icon when `pad/subs/icons/` has one. Apple posts its answer back
 from its own site, which brings no `SameSite=Lax` session cookie, so its state also goes in a
 sealed cookie, `__Host-padOAuth` (https, no other subdomain can set it), spent once used like
@@ -617,7 +617,7 @@ Order {$order} shipped                  # the subject, the push title
 :package: Order *{$order}* shipped
 ```
 The channels are the files of `pad/subs/channels/types/`: mail (`padMail`), database (kept under
-`DATA/notifications/<app>/` - `{notifications/}` lists the unread ones of the user logged in, each
+`DATA/notifications/<app>/` - `{pad:notifications/}` lists the unread ones of the user logged in, each
 with a signed link that marks it read; `padNotifications`, `padNotificationRead`), webpush (RFC
 8291 encryption and VAPID with openssl - `padWebPushKeys ()` makes the key pair), slack, discord,
 teams, telegram, ntfy, matrix, sms (a generic HTTP gateway) and those below. The recipient is a row - `email`,
@@ -662,8 +662,8 @@ gone. A channel is added by adding its file: its settings and a `send` function.
 
 ### A language model answering in the page
 ```
-{ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/ai}
-{ai 'Name three rivers of France.', model='claude-haiku-5-5', system='Answer briefly.'/}
+{pad:ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/pad:ai}
+{pad:ai 'Name three rivers of France.', model='claude-haiku-5-5', system='Answer briefly.'/}
 ```
 ```php
 $summary = padAi ( "Summarise: $body", [ 'provider' => 'openai', 'tokens' => 300 ] );
@@ -710,30 +710,30 @@ of its output, a reasoning item passed over, and is asked with `store` off.
 
 ### Lookups Between Data Sets
 ```
-{orders}
-  {$number}: {echo $customer_id | lookup('customers', 'id', 'name') | ?? 'unknown'/}
-{/orders}
+{data:orders}
+  {$number}: {pad:echo $customer_id | lookup('customers', 'id', 'name') | ?? 'unknown'/}
+{/data:orders}
 ```
-`lookup(set, key, field)` finds the row of another set - a `{data}` block, a page array, a
+`lookup(set, key, field)` finds the row of another set - a `{pad:data}` block, a page array, a
 `_data/` file - whose key equals the value; the set is indexed once per request. A miss is
 `''`; without a field the answer is the row's first field other than the key.
 
 ### Grouping with subtotals (group option)
 ```
-{orders group='customer', sum='total'}
+{data:orders group='customer', sum='total'}
   <h2>{$customer}: {$count} orders, {$total}</h2>
-  {rows}<p>{$number}: {$total}</p>{/rows}
-{/orders}
+  {data:rows}<p>{$number}: {$total}</p>{/data:rows}
+{/data:orders}
 ```
 Each group is an occurrence with the grouping field, `$count` and its own rows as `rows`
-(inside `{rows}` a field is the row's own value). `sum`, `avg`, `min`, `max` name fields to
+(inside `{data:rows}` a field is the row's own value). `sum`, `avg`, `min`, `max` name fields to
 aggregate: under the field's own name and as `$sum_total`, `$avg_total`, ... Groups keep the
 order of first appearance - a `sort` written after the group sorts the groups.
 
 ### Page links (pager tag)
 ```
-{products page=$pg ?? 1, rows=12}<article>{$name}</article>{/products}
-{pager 'products', window=2/}        # ‹ 1 … 4 5 [6] 7 8 … 20 ›
+{data:products page=$pg ?? 1, rows=12}<article>{$name}</article>{/data:products}
+{pad:pager 'products', window=2/}        # ‹ 1 … 4 5 [6] 7 8 … 20 ›
 ```
 The pager follows the paged tag (it reads the total the page handling booked), links through
 `$padGo` keeping the other query values, sets the variable `page=` was written with (`pg`),
@@ -743,31 +743,31 @@ and marks the current page `aria-current="page"`. As a pair it iterates the link
 ### Recursive Trees
 ```
 <ul>
-{tree 'menu', children='items'}
-  <li>{$title}{branch}<ul>{recurse/}</ul>{/branch}</li>
-{/tree}
+{pad:tree 'menu', children='items'}
+  <li>{$title}{pad:branch}<ul>{pad:recurse/}</ul>{/pad:branch}</li>
+{/pad:tree}
 </ul>
 ```
-`{recurse}` renders the tree's body again for the current row's children, `{branch}` only
+`{pad:recurse}` renders the tree's body again for the current row's children, `{pad:branch}` only
 when there are any, and `depth@tree` is 1 for the top rows, one more per level. The rows come
 from the first parameter or `data=`; `children` defaults to `children`.
 
 ### Form rules on the fields and in the browser
 
-A `{form}` with `{input}` fields and `padValidate` in the page's PHP is described in CLAUDE.md's Forms section.
+A `{pad:form}` with `{pad:input}` fields and `padValidate` in the page's PHP is described in CLAUDE.md's Forms section.
 
 The rules can stand on the fields instead - checked before any PHP runs:
 ```
-{form 'contact', error='Please correct the errors below.'}     # the message above the fields
-  {input 'email', type='email', label='E-mail', rules='required|email'/}
-  {textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
-{/form}
+{pad:form 'contact', error='Please correct the errors below.'}     # the message above the fields
+  {pad:input 'email', type='email', label='E-mail', rules='required|email'/}
+  {pad:textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
+{/pad:form}
 ```
 A post of the form is validated against them from the page's text (lib/form.php), so
 `padPosted ( 'contact' )` is TRUE only for a post that kept them - the PHP stores and
 redirects, a failed post renders refilled with its messages (`padFormFailed`). Only the
 page's own template (and its `_inits.pad`/`_exits.pad`) is read, literal rules only: rules in
-a snippet, custom tag, `{page}` or layout, from a variable, in an `action=`/GET form or on a
+a snippet, custom tag, `{pad:page}` or layout, from a variable, in an `action=`/GET form or on a
 file field are errors.
 
 The rules are the files of `pad/subs/rules/types/` - `<rule>.php` answers its check, its message and
@@ -779,7 +779,7 @@ browser - and the files there are the rules there are: besides `required`, `emai
 (HH:MM), `color` (#rgb, #rrggbb), `uuid`, `ip` (`ip:v4`, `ip:v6`), `slug`, `json` and `iban`
 (its check digits), `not_in:a,b` (the mirror of `in:`, as written). A rule is added by adding its files; an argument a rule cannot use -
 `digits:four`, `between:9,1` - is an error, as a pattern PCRE cannot read is. So is a rule that
-judges one text - `min:2`, `email` - on a field that posts a list (`tags[]`, a `{multiselect}`):
+judges one text - `min:2`, `email` - on a field that posts a list (`tags[]`, a `{input:multiselect}`):
 a list is judged by `required`, the `required_*` rules, `in:` and `not_in:` alone, and any other
 refuses every post of it.
 
@@ -808,15 +808,15 @@ none: "Toppings must hold at least 2 values". Their argument is a whole number f
 
 Some rules look at another field of the post:
 ```
-{input 'delivery'/}
-{input 'address', rules='required_if:delivery,ship,courier'/}   # required when delivery is one of them
-{input 'note', rules='required_unless:delivery,collect'/}       # required unless it is
-{input 'code', rules='required_with:phone,fax'/}                # required when one of them is filled
-{input 'phone', rules='required_without:email'/}                # required when one of them is empty
-{input 'end', type='date', rules='after:start'/}                # or before:end, after:2026-01-01
-{input 'leave', type='date', rules='after_or_equal:arrive'/}    # the same day too - or before_or_equal:
-{input 'password', rules='different:current_password'/}         # not the other's text - the mirror of same:
-{input 'max_price', rules='numeric|gt:min_price'/}              # above the other - gte:, lt:, lte:; or gt:0
+{pad:input 'delivery'/}
+{pad:input 'address', rules='required_if:delivery,ship,courier'/}   # required when delivery is one of them
+{pad:input 'note', rules='required_unless:delivery,collect'/}       # required unless it is
+{pad:input 'code', rules='required_with:phone,fax'/}                # required when one of them is filled
+{pad:input 'phone', rules='required_without:email'/}                # required when one of them is empty
+{pad:input 'end', type='date', rules='after:start'/}                # or before:end, after:2026-01-01
+{pad:input 'leave', type='date', rules='after_or_equal:arrive'/}    # the same day too - or before_or_equal:
+{pad:input 'password', rules='different:current_password'/}         # not the other's text - the mirror of same:
+{pad:input 'max_price', rules='numeric|gt:min_price'/}              # above the other - gte:, lt:, lte:; or gt:0
 ```
 The other field is found where PHP files the post, by the browser's checker too (`user[kind]`,
 `kinds[]` - which `kinds` finds too - the items `kinds[0]` and `kinds[1]`, `first.name` as
@@ -864,32 +864,32 @@ follows the other field too, or it speaks about the value the field still holds 
 page's PHP added, one of a regex only PCRE reads - and stays, unless the checker has a message
 of its own for the field. For a form a component draws,
 keep the rules in PHP - `padValidate ( $rules )` checks the post, `padValidateClient ( $rules )`
-exports them for `padValidate.check ( rules, values )` in the browser, `{validator}` brings the
+exports them for `padValidate.check ( rules, values )` in the browser, `{pad:validator}` brings the
 checker:
 ```
-{form 'signup', client, error}{input 'email', label='E-mail', rules='required|email'/}{/form}
-<div x-data="{ rules: {^rules}, form: {}, errors: {} }">...</div>{validator/}
+{pad:form 'signup', client, error}{pad:input 'email', label='E-mail', rules='required|email'/}{/pad:form}
+<div x-data="{ rules: {^rules}, form: {}, errors: {} }">...</div>{pad:validator/}
 ```
 
 ### Rich form fields
 ```
-{form 'trip', error}
-  {slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}   # or {input:slider ...}
-  {stars 'score', label='Your rating', rules='required'/}                    # max=5
-  {datepicker 'day', label='Day', min='2026-01-01'/}       # a month to choose from; weekstart=
-  {timepicker 'at', label='Time', every=15/}               # the times of a list
-  {taginput 'topics', label='Topics', suggestions='pad, php'/}   # posts 'pad, php'
-  {combobox 'city', label='City'}Rome
-    Oslo{/combobox}                                        # options=, data=, or a line each
-  {multiselect 'tags', label='Tags', options='pad, php, maps', rules='required|in:pad,php,maps'/}   # posts the list tags[]
-  {segmented 'size', label='Size', options='S, M, L'/}    # a radio group drawn as one bar
-  {durationpicker 'length', label='Length', parts='hm'/} # posts seconds: 5400 for 1 h 30 min
-  {rangeslider 'price', label='Price', max=500, unit=' EUR'/}   # posts price_from and price_to
-  {daterange 'stay', label='Stay', nights/}               # posts stay_from and stay_to, one month to pick both
-  {treepicker 'topic', options='Forms > Fields, Pages'/}   # one item of a tree; data= rows, or indented lines
-  {signature 'signed', label='Signature'/}                 # posts a PNG data URL
-  {dropzone 'cv', label='Your CV', accept='.pdf', limit='2M'/}   # padUpload takes it
-{/form}
+{pad:form 'trip', error}
+  {input:slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}   # or {input:slider ...}
+  {input:stars 'score', label='Your rating', rules='required'/}                    # max=5
+  {input:datepicker 'day', label='Day', min='2026-01-01'/}       # a month to choose from; weekstart=
+  {input:timepicker 'at', label='Time', every=15/}               # the times of a list
+  {input:taginput 'topics', label='Topics', suggestions='pad, php'/}   # posts 'pad, php'
+  {input:combobox 'city', label='City'}Rome
+    Oslo{/input:combobox}                                        # options=, data=, or a line each
+  {input:multiselect 'tags', label='Tags', options='pad, php, maps', rules='required|in:pad,php,maps'/}   # posts the list tags[]
+  {input:segmented 'size', label='Size', options='S, M, L'/}    # a radio group drawn as one bar
+  {input:durationpicker 'length', label='Length', parts='hm'/} # posts seconds: 5400 for 1 h 30 min
+  {input:rangeslider 'price', label='Price', max=500, unit=' EUR'/}   # posts price_from and price_to
+  {input:daterange 'stay', label='Stay', nights/}               # posts stay_from and stay_to, one month to pick both
+  {input:treepicker 'topic', options='Forms > Fields, Pages'/}   # one item of a tree; data= rows, or indented lines
+  {input:signature 'signed', label='Signature'/}                 # posts a PNG data URL
+  {input:dropzone 'cv', label='Your CV', accept='.pdf', limit='2M'/}   # padUpload takes it
+{/pad:form}
 ```
 The kinds are the files of `pad/subs/inputs/types/` - colorpicker, combobox, datepicker, daterange
 (a first and a last day picked from one month, the days or `nights` counted), dropzone,
@@ -900,16 +900,15 @@ login), otp (a box per character), rangeslider (two thumbs on one track), segmen
 group drawn as one bar, without script), signature, slider, stars, stepper, taginput, timepicker,
 treepicker (one item of a hierarchy, nested radios made a tree view) and
 toggle (a switch posting `on=`/`off=`) - their script and style in `www/assets/inputs/`. Each
-is a field of its `{form}` as `{input}` is: named by its first parameter, labelled by `label=`,
+is a field of its `{pad:form}` as `{pad:input}` is: named by its first parameter, labelled by `label=`,
 refilled from a post of its own form, the message of `padValidate` or of its `rules=` (read
 from the template before the PHP runs, `client` too) after its frame in the words of its label,
 every item it does not take an attribute of its field. Every kind writes a native field a form
 posts without any script - a range, a date, a radio group, a text field holding a comma list -
 and its script, once a page with the CSP nonce, makes more of it; a field a fragment brings later
-is enhanced too. The bare name comes after every other kind of tag: on a page with an array
-holding a key `slider`, write `input:slider`.
+is enhanced too. The `input:` prefix is required, including when the page has a field named `slider`.
 
-A multiselect holds a list: `{multiselect 'tags'}` posts `tags[]` - the page's PHP gets
+A multiselect holds a list: `{input:multiselect 'tags'}` posts `tags[]` - the page's PHP gets
 `$_POST ['tags']` as an array - and that is the name its rules, `padValidate` and the
 browser's checker know it by (`required` asks for a choice, `in:` holds every one to the list;
 its messages say Tags). Its choices are `options=`, `data=` with `field=`, or a line each between
@@ -919,7 +918,7 @@ error under the strict check; `value=` - a list or a comma text - the choices ma
 After a post of its form it shows the list posted: nothing chosen when the post left the field
 out, as the browser posts a select with no choice - never `value=` again - and a posted value
 that is no choice is not shown, nor added as an option. A hidden `padLists[]` beside the select,
-naming the list, tells that post from any other request - a click in a `{live}` region, a post
+naming the list, tells that post from any other request - a click in a `{pad:live}` region, a post
 of another form of the page, a link with a value to the page of a GET form - which shows
 `value=`, as every other field does; a disabled multiselect, which the browser leaves out of
 the post, keeps `value=` after a post of its form too. A segmented and a treepicker, radio
@@ -927,7 +926,7 @@ groups the browser leaves out of a post without a choice, write the same `padLis
 their radios: their form sent without a choice shows none, a pager link of a GET form
 (`?shop&page=2`) shows `value=`, and so does a disabled one after a post.
 
-A range is two fields: `{rangeslider 'price'}` posts `price_from` and `price_to`, `{daterange 'stay'}`
+A range is two fields: `{input:rangeslider 'price'}` posts `price_from` and `price_to`, `{input:daterange 'stay'}`
 `stay_from` and `stay_to` - `names=` two
 others, `labels=` what each end says (From, To), `value=` the two before a post - each refilled
 from its own form's post and given its own message, under one legend. Its `rules=` are refused,
@@ -949,36 +948,36 @@ of the choice opens the WAI-ARIA tree view.
 
 ### Layouts (extends / block / parent)
 ```
-{extends '_layouts/report'/}                  # replaces the _inits/_exits frame
-{block 'title'}Sales{/block}                 # overrides the layout's {block 'title'}...{/block}
-{block 'sidebar'}{parent/} <a>Export</a>{/block}
+{pad:extends '_layouts/report'/}                  # replaces the _inits/_exits frame
+{pad:block 'title'}Sales{/pad:block}                 # overrides the layout's {pad:block 'title'}...{/pad:block}
+{pad:block 'sidebar'}{pad:parent/} <a>Export</a>{/pad:block}
 <p>the rest goes to the layout's @page@</p>
 ```
-Resolved in the text while the page is assembled. Without `{extends}` a page's blocks
-override the regions of its directories' `_inits.pad` - `{block 'title'}` sets the wrapper's
-title without PHP. The block name is always quoted (`{block}` alone is the `_common` snippet).
+Resolved in the text while the page is assembled. Without `{pad:extends}` a page's blocks
+override the regions of its directories' `_inits.pad` - `{pad:block 'title'}` sets the wrapper's
+title without PHP. The block name is always quoted (`{pad:block}` alone is the `_common` snippet).
 
 ### Components (slots / parms)
 ```
-{card title='Revenue'}                       # _tags/card.pad:
-  <strong>{$revenue}</strong>                #   {parms title, tone='info'/}
-  {slot 'footer'}<a>Report</a>{/slot}        #   <h2>{#title}</h2> @content@
-{/card}                                      #   {slot 'footer'}<footer>@content@</footer>{/slot}
+{define:card title='Revenue'}                       # _tags/card.pad:
+  <strong>{$revenue}</strong>                #   {pad:parms title, tone='info'/}
+  {pad:slot 'footer'}<a>Report</a>{/pad:slot}        #   <h2>{#title}</h2> @content@
+{/define:card}                                      #   {pad:slot 'footer'}<footer>@content@</footer>{/pad:slot}
 ```
-A `{slot}` pair directly in a custom tag's content is a fill for that use of the tag; any
-other `{slot}` is where a fill goes, its content the default (`@content@` in it frames the
-fill). `{parms}`: a bare name is required, `name=default` fills in; an undeclared parameter
+A `{pad:slot}` pair directly in a custom tag's content is a fill for that use of the tag; any
+other `{pad:slot}` is where a fill goes, its content the default (`@content@` in it frames the
+fill). `{pad:parms}`: a bare name is required, `name=default` fills in; an undeclared parameter
 is an error under the strict check.
 
 ### Tags defined in the template (define / macro)
 ```
-{define 'card'}{parms title/}<div><h2>{#title}</h2>@content@</div>{/define}   # an _tags/card.pad without the file
-{card title='Revenue'}{$revenue}{/card}
+{pad:define 'card'}{pad:parms title/}<div><h2>{#title}</h2>@content@</div>{/pad:define}   # an _tags/card.pad without the file
+{define:card title='Revenue'}{$revenue}{/define:card}
 
-{macro 'entry', label, type='text'}<label>{$label} <input type="{$type}"></label>{/macro}
-{entry 'E-mail', 'email'}  {entry label='Name'}                 # in order or by name; fields {$label}
+{pad:macro 'entry', label, type='text'}<label>{$label} <input type="{$type}"></label>{/pad:macro}
+{macro:entry 'E-mail', 'email'}  {macro:entry label='Name'}                 # in order or by name; fields {$label}
 ```
-A `{define}` is a custom tag: `{#name}`, `{parms}`, `@content@`, slots. A `{macro}` declares its
+A `{pad:define}` is a custom tag: `{#name}`, `{pad:parms}`, `@content@`, slots. A `{pad:macro}` declares its
 parameters - a name alone required, `name=default` filling in - and they are the fields of its one
 row. Both render at each use, in its place; both exist from where they are walked on (a use before
 is an unknown tag), and may use themselves. `define:`/`macro:` assert the kind.
@@ -986,39 +985,39 @@ is an unknown tag), and may use themselves. `define:`/`macro:` assert the kind.
 ### Web components (declarative shadow DOM)
 ```
 <pad-card>                                   # in a custom tag, _tags/card.pad
-  {shadow css='www:card.css'}<header><slot name="title"></slot></header><slot></slot>{/shadow}
+  {pad:shadow css='www:card.css'}<header><slot name="title"></slot></header><slot></slot>{/pad:shadow}
   <span slot="title">{#title}</span>@content@
 </pad-card>
 ```
-`{shadow}` writes `<template shadowrootmode="open">` with the stylesheets inlined (`mode='closed'`,
+`{pad:shadow}` writes `<template shadowrootmode="open">` with the stylesheets inlined (`mode='closed'`,
 `focus`): the element shows styled and slotted before any script ran, and a module that defines
 it finds `this.shadowRoot` ready.
 
 ### Stacks (push / stack)
 ```
-<head>{stack 'scripts'/}</head>                # filled in after the whole page rendered
+<head>{pad:stack 'scripts'/}</head>                # filled in after the whole page rendered
 
-{push 'scripts', once='chart'}                # where a component needs it; once per key
+{pad:push 'scripts', once='chart'}                # where a component needs it; once per key
   <script src="chart.js"></script>
-{/push}
+{/pad:push}
 ```
 `once` without a key drops a push whose text the stack holds; `padStackPush('scripts', $html)`
-from PHP. A push inside a `{cache}` section is made again on every hit.
+from PHP. A push inside a `{pad:cache}` section is made again on every hit.
 
 ### Page Metadata
 ```
-{meta title='Monthly report', layout='_layouts/print', cache=600/}
+{pad:meta title='Monthly report', layout='_layouts/print', cache=600/}
 ```
 Read while the page is assembled, after the PHP: `title=` (any non-engine name) becomes
-`$title` for the wrapper, `layout=` is `{extends}`, `cache=` the page's own cache time (0 keeps
+`$title` for the wrapper, `layout=` is `{pad:extends}`, `cache=` the page's own cache time (0 keeps
 it out) when the app caches; `access=`/`sitemap=` are kept for `padMeta('access')`.
 
 ### Response Fragments
 ```
-{fragment 'order-list'}<ul>{orders}<li>{$number}</li>{/orders}</ul>{/fragment}
+{pad:fragment 'order-list'}<ul>{data:orders}<li>{$number}</li>{/data:orders}</ul>{/pad:fragment}
 ```
 `?orders&padFragment=order-list` (or `$padFragmentOnly` set in PHP) answers with that
-fragment alone - for HTMX swaps and `{ajax 'orders', fragment='order-list'/}`; a normal
+fragment alone - for HTMX swaps and `{pad:ajax 'orders', fragment='order-list'/}`; a normal
 request renders the whole page. An htmx request needs no parameter when its target is named
 like the fragment: `hx-target="#order-list"` sends `HX-Target: order-list`, and a page with
 that fragment answers it alone (one without renders whole). The page cache answers a script's request for a part -
@@ -1027,38 +1026,38 @@ fragment the PHP chose, since its key is the address.
 
 ### HTML attribute helpers
 ```
-<button {attrs disabled=$busy, title=$help, aria-expanded=$open/}>Save</button>
-<div class="{classes 'panel', active=$isActive, invalid=$hasErrors/}">
+<button {pad:attrs disabled=$busy, title=$help, aria-expanded=$open/}>Save</button>
+<div class="{pad:classes 'panel', active=$isActive, invalid=$hasErrors/}">
 ```
 A false boolean attribute is left out, a true one written bare; values are escaped. Items
 are attribute names (dashes allowed), never engine options.
 
 ### Fragment Cache
 ```
-{cache 'top-products', ttl=300}            # a named section, kept five minutes
-  {topProducts}<li>{$name}</li>{/topProducts}
-{/cache}
+{pad:cache 'top-products', ttl=300}            # a named section, kept five minutes
+  {app:topProducts}<li>{$name}</li>{/app:topProducts}
+{/pad:cache}
 
-{expensive cache=3600, vary=$country}...{/expensive}   # any tag; its handler skips on a hit
+{app:expensive cache=3600, vary=$country}...{/app:expensive}   # any tag; its handler skips on a hit
 ```
 `$padFragmentCache` = `'file'` (default), `'apcu'` or `FALSE`; `padFragmentForget('name')`
 drops a section when what it shows has changed.
 
 ```
-{cache 'top-products', ttl=300}{topProducts}<li>{$name} {nocache}{stock $id}{/nocache}</li>{/topProducts}{/cache}
+{pad:cache 'top-products', ttl=300}{app:topProducts}<li>{$name} {pad:nocache}{app:stock $id}{/pad:nocache}</li>{/app:topProducts}{/pad:cache}
 ```
-A `{nocache}` part of a cached section - or of a page the page cache keeps - renders on every
+A `{pad:nocache}` part of a cached section - or of a page the page cache keeps - renders on every
 request, the hit included; inside a loop it gets its row's fields back. A page-cache hit runs no
 PHP, so there a part sees the request, the session, `_lib` and the application's tags only.
 
-A cached section keeps its text, not its effects: what it sets, stores or defines - `{set}`,
-`{increment}`, `{data}`, `{content}`, `{define}`, `{macro}`, a `callback=`'s totals - happens on
-the miss only. Put it before the section, or in a `{nocache}` part, which renders every time.
+A cached section keeps its text, not its effects: what it sets, stores or defines - `{pad:set}`,
+`{pad:increment}`, `{pad:data}`, `{pad:content}`, `{pad:define}`, `{pad:macro}`, a `callback=`'s totals - happens on
+the miss only. Put it before the section, or in a `{pad:nocache}` part, which renders every time.
 
 ### Remote data with a cache
 ```
-{curl 'https://api.example.com/rates.json', ttl=600/}
-{pad data='https://api.example.com/rates.json', ttl=600} {$rate} {/pad}
+{pad:curl 'https://api.example.com/rates.json', ttl=600/}
+{pad:pad data='https://api.example.com/rates.json', ttl=600} {$rate} {/pad:pad}
 _data/rates.curl:  <curl><url>https://...</url><ttl>600</ttl></curl>
 ```
 The answer is kept `ttl` seconds; a source that fails afterwards gets the last good copy
@@ -1070,37 +1069,37 @@ slowest answer, not the sum - and read as named data:
 ```php
 padPrefetch ( [ 'rates' => 'https://example.com/rates.json', 'weather' => 'SELF://api/?weather' ], 600 );
 ```
-`{rates}{$code}: {$rate}{/rates}` - the ttl is optional and works as above.
+`{data:rates}{$code}: {$rate}{/data:rates}` - the ttl is optional and works as above.
 
 ### Translations and locale formatting
 ```
-{trans 'cart.title'/}                          # _lang/<locale>.json: "cart.title": "Your cart"
-{trans 'cart.items', count=$n/}                # "%d item|%d items" - count picks the form
-{trans 'greeting', name=$user/}                # "Hello :name"
-{echo 'cart.title' | trans/}                   # the pipe form
+{pad:trans 'cart.title'/}                          # _lang/<locale>.json: "cart.title": "Your cart"
+{pad:trans 'cart.items', count=$n/}                # "%d item|%d items" - count picks the form
+{pad:trans 'greeting', name=$user/}                # "Hello :name"
+{pad:echo 'cart.title' | trans/}                   # the pipe form
 {$price | currency('EUR')}                    # € 1.234,50 in nl, €1,234.50 in en
 {$created | localDate('long', 'short')}       # date and time styles, or an ICU pattern
 ```
 
 ### Markdown
 ```
-{markdown}                                    # the content renders, then reads as Markdown
+{pad:markdown}                                    # the content renders, then reads as Markdown
   ## Notes for {$version}
   - **Faster** first render
-{/markdown}
+{/pad:markdown}
 {$post.body | markdown}                       # a value - raw HTML escaped, no sanitize on top
-{markdown html}...{/markdown}                 # the author's own raw HTML let through
-{markdown ignore}...{/markdown}               # braces in code samples
+{pad:markdown html}...{/pad:markdown}                 # the author's own raw HTML let through
+{pad:markdown ignore}...{/pad:markdown}               # braces in code samples
 ```
 A built-in CommonMark subset (lib/markdown.php): headings, emphasis, code, lists, links,
 images, quotes, rules. `javascript:` links lose their URL; the HTML of a value stays a value.
 
 ### Markdown collections
 ```
-{collection 'blog', sort='date DESC', first=10}   # _content/blog/*.md, one row per file
+{pad:collection 'blog', sort='date DESC', first=10}   # _content/blog/*.md, one row per file
   <h2><a href="?blog/post&slug={$slug}">{$title}</a></h2>
-{/collection}
-{collection 'blog', slug=$slug}<h1>{$title}</h1>{!body}{/collection}   # one post
+{/pad:collection}
+{pad:collection 'blog', slug=$slug}<h1>{$title}</h1>{!body}{/pad:collection}   # one post
 ```
 A row is the file's front matter (YAML between `---` lines) plus `slug` (file name), `body`
 (the Markdown as HTML - print it raw with `{!body}`) and `source`. `html` lets raw HTML
@@ -1108,19 +1107,19 @@ through; `padCollection('blog')` gives the rows to PHP.
 
 ### Site search
 ```
-{search 'blog', q=$q, fields='title^2, body', lang='en', first=10}   # _content/blog/, ranked by BM25
+{pad:search 'blog', q=$q, fields='title^2, body', lang='en', first=10}   # _content/blog/, ranked by BM25
   <a href="?blog/post&slug={$slug}">{$title}</a> {$score} {!excerpt}
 @else@
   Nothing found for {$q}.
-{/search}
-{search 'products', q=$q, fields='name^3, about', link='url'/}   # a page's array or db() result; a list
+{/pad:search}
+{pad:search 'products', q=$q, fields='name^3, about', link='url'/}   # a page's array or db() result; a list
 ```
 ```php
 $found = padSearch ( 'blog', $q, [ 'fields' => 'title^2, body' ] );
 $found = padSearch ( db ( "ARRAY id, name, about FROM products" ), $q, [ 'name' => 'products', 'lang' => 'nl' ] );
 ```
 Site search without a search server. The source is a Markdown collection (`_content/<name>/`,
-read by `padCollection`), else a `{data}` store, a page's array - a `db()` result - or a
+read by `padCollection`), else a `{pad:data}` store, a page's array - a `db()` result - or a
 `_data` file of the name; `padSearch` takes the rows themselves too. The first search makes an
 inverted index of it, kept in `DATA/cache/search/<app>/` in parts - a search reads those of
 its words, so a large source costs a request little memory - and made again when what it is
@@ -1136,7 +1135,7 @@ Snowball stemmer and written without accents - a word with accents stemmed witho
 well - so `baking` finds `baked`, `cafe` finds `Café` and `securite` finds `sécurité`; the
 ranking is BM25F - `fields='title^2, body'` weighs a field, k1 1.2, b 0.75. A row found is
 the source's row with `score` (three decimals) and `excerpt` added: the words around the first
-match, every matched word in a `<mark>` (`padExcerpt`, the function of `{excerpt}`;
+match, every matched word in a `<mark>` (`padExcerpt`, the function of `{pad:excerpt}`;
 `words=` its length, `excerpt=` its field) - HTML, so print it `{!excerpt}`. A collection is
 searched in `title^2, body` by default, other rows in their text fields; a field that is HTML -
 an end tag, a comment, a `<br>` or `<img>`, a quoted attribute - is read as its text, a `<` in
@@ -1147,47 +1146,47 @@ after the Snowball 3 source and matching Snowball's own test vocabularies word f
 `lang=` picks one, the locale's language else English; a language is added by adding its file.
 A name that is a collection is the collection: name a page's array otherwise. No exec, no
 shell: it runs in pad pack's WebAssembly PHP as well. Code: the search subsystem in
-`pad/subs/search/` - `search.php` the body of `{search}`, `_lib/search.php` the index, the
+`pad/subs/search/` - `search.php` the body of `{pad:search}`, `_lib/search.php` the index, the
 query and the ranking, `_lib/snowball.php` the stemmers' runtime, `types/` the languages;
 `pad/lib/search.php` the helper.
 
 ### Charts
 ```
-{chart 'bar', data='sales', label='month', value='amount'/}   # inline SVG, no JavaScript
-{chart 'line', data='visits', title='Visits this week'/}      # data: store, page array, _data file
-{chart 'bar', data='sales', value='online, shop', stacked/}   # several series; 'hbar' lies down
-{chart 'pie', data='budget'/}                                 # also donut
-{chart 'scatter', data='cars', x='weight', y='mpg', color='origin', trend/}   # bubble: size=
-{chart 'heatmap', data='visits', x='hour', y='day', value='count'/}
-{chart 'sankey', data='energy', source='from', target='to', value='amount'/}
-{chart 'network', data='friends', source='a', target='b', layout='radial', arrows/}
-{chart 'treemap', data='spend', levels='dept', label='post', value='amount'/}  # also sunburst
-{sparkline sequence='fibonacci', rows=12/}                    # word-sized; sequence terms as data
-{chart 'gauge', value=72, unit='%', bands='60, 85', target=80/}   # one number - no data needed
-{chart 'radar', data='phones', label='model', value='battery, camera, screen'/}
-{chart 'waterfall', data='result', label='step', value='amount', total='Profit'/}
-{chart 'histogram', data='people', value='height', bins=12/}  # also boxplot (label= groups)
-{chart 'calendar', data='commits', date='day', value='count', year=2026/}
-{chart 'gantt', data='plan', label='task', from='begin', to='until', progress='done', mark='2026-10-07'/}
-{chart 'area', data='energy', label='year', value='coal, gas, wind', stacked/}   # percent; also stream, multiples (by=)
-{chart 'candlestick', data='share', label='day', volume='volume'/}   # open/high/low/close; dual: value= bars, line= right axis
-{chart 'funnel', data='shop', label='step', value='visitors'/}       # pyramid: one field a triangle, two back to back
-{chart 'waffle', data='energy', cells=100/}                          # also marimekko, parliament, venn (sets=), rose, radialbar
-{chart 'bullet', data='kpis', value='actual', target='goal', bands='50, 75'/}   # also rings, proportional
-{chart 'dumbbell', data='scores', label='team', from='before', to='after', ranked/}  # two dots a row joined; names='2025, 2026'
-{chart 'errorbar', data='trial', label='dose', value='mean', low='lo', high='hi', interval='95% CI'/}  # computed intervals, drawn as given
-{chart 'ecdf', data='trials', label='group', value='ms'/}            # the share at or below each value, a step line a group
-{chart 'ridgeline', data='days', label='month', value='celsius', overlap=2/}  # a density a group stacked, one bandwidth=
-{chart 'likert', data='survey', label='question', value='No, Maybe, Yes', ranked/}  # ordered answers centred on neutral
-{chart 'hexbin', data='rides', x='km', y='euro', bins=24/}           # many points counted in hexagons
-{chart 'violin', data='scores', label='class', value='score'/}       # also density, parallel (value= the axes), spiral (period=)
-{chart 'chord', data='migration', source='from', target='to', value='people'/}  # also arc
-{chart 'orgchart', data='staff', id='id', parent='boss', label='name', sub='role'/}  # pack: the treemap's options
-{chart 'bar', label='month', value='amount'}                 # a pair: the content is the data -
+{chart:bar data='sales', label='month', value='amount'/}   # inline SVG, no JavaScript
+{chart:line data='visits', title='Visits this week'/}      # data: store, page array, _data file
+{chart:bar data='sales', value='online, shop', stacked/}   # several series; 'hbar' lies down
+{chart:pie data='budget'/}                                 # also donut
+{chart:scatter data='cars', x='weight', y='mpg', color='origin', trend/}   # bubble: size=
+{chart:heatmap data='visits', x='hour', y='day', value='count'/}
+{chart:sankey data='energy', source='from', target='to', value='amount'/}
+{chart:network data='friends', source='a', target='b', layout='radial', arrows/}
+{chart:treemap data='spend', levels='dept', label='post', value='amount'/}  # also sunburst
+{chart:sparkline sequence='fibonacci', rows=12/}                    # word-sized; sequence terms as data
+{chart:gauge value=72, unit='%', bands='60, 85', target=80/}   # one number - no data needed
+{chart:radar data='phones', label='model', value='battery, camera, screen'/}
+{chart:waterfall data='result', label='step', value='amount', total='Profit'/}
+{chart:histogram data='people', value='height', bins=12/}  # also boxplot (label= groups)
+{chart:calendar data='commits', date='day', value='count', year=2026/}
+{chart:gantt data='plan', label='task', from='begin', to='until', progress='done', mark='2026-10-07'/}
+{chart:area data='energy', label='year', value='coal, gas, wind', stacked/}   # percent; also stream, multiples (by=)
+{chart:candlestick data='share', label='day', volume='volume'/}   # open/high/low/close; dual: value= bars, line= right axis
+{chart:funnel data='shop', label='step', value='visitors'/}       # pyramid: one field a triangle, two back to back
+{chart:waffle data='energy', cells=100/}                          # also marimekko, parliament, venn (sets=), rose, radialbar
+{chart:bullet data='kpis', value='actual', target='goal', bands='50, 75'/}   # also rings, proportional
+{chart:dumbbell data='scores', label='team', from='before', to='after', ranked/}  # two dots a row joined; names='2025, 2026'
+{chart:errorbar data='trial', label='dose', value='mean', low='lo', high='hi', interval='95% CI'/}  # computed intervals, drawn as given
+{chart:ecdf data='trials', label='group', value='ms'/}            # the share at or below each value, a step line a group
+{chart:ridgeline data='days', label='month', value='celsius', overlap=2/}  # a density a group stacked, one bandwidth=
+{chart:likert data='survey', label='question', value='No, Maybe, Yes', ranked/}  # ordered answers centred on neutral
+{chart:hexbin data='rides', x='km', y='euro', bins=24/}           # many points counted in hexagons
+{chart:violin data='scores', label='class', value='score'/}       # also density, parallel (value= the axes), spiral (period=)
+{chart:chord data='migration', source='from', target='to', value='people'/}  # also arc
+{chart:orgchart data='staff', id='id', parent='boss', label='name', sub='role'/}  # pack: the treemap's options
+{chart:bar label='month', value='amount'}                 # a pair: the content is the data -
   month,amount                                               #   JSON, YAML, XML or CSV, told
   Jan,12400                                                  #   apart on sight (type= names it)
-{/chart}
-{chart 'bar', data='sales', label='month', value='amount', client/}   # drawn in the browser
+{/chart:bar}
+{chart:bar data='sales', label='month', value='amount', client/}   # drawn in the browser
 ```
 With `client` the browser draws the chart: the server gathers the rows - the handling options
 applied - and the tag's options, writes them into the page as JSON in a span, and a script
@@ -1205,12 +1204,10 @@ every phrase `strtotime` reads.
 `.pad-chart`, following the page's `color-scheme`. A field option left out takes the first
 field that fits; the chart's options keep clear of the handling options (`row`, `group`).
 The kinds are the files of `pad/subs/charts/types/` - one file a kind, its default size and the
-function that draws it; a kind is added by adding its file. Each is written three ways, the
-same chart: `{chart 'pie', data='budget'/}`, the chart type `{chart:pie data='budget'/}`, and
-bare, `{pie data='budget'/}`, when no tag, store, field or sequence has the name (the bare
-name comes last, after every other kind of tag). `{sparkline .../}` is the sparkline kind.
+function that draws it; a kind is added by adding its file. Each has two explicit forms:
+`{chart:pie data='budget'/}` and `{chart:pie data='budget'/}`. `{chart:sparkline .../}` is the sparkline kind.
 `calendar` is the month calendar tag and `pack` PHP's function, so those two kinds are
-`{chart:calendar .../}` and `{chart:pack .../}` (or `{chart 'pack', .../}`).
+`{chart:calendar .../}` and `{chart:pack .../}` (or `{chart:pack .../}`).
 Code: the chart subsystem in `pad/subs/charts/` - `chart.php` the body every form runs,
 `_lib/` the drawing (`chart.php` bar, line and sparkline, the files beside it the other
 kinds, `client.php` the hand-over to the browser), `types/` the kinds, `www/assets/charts/`
@@ -1218,22 +1215,22 @@ the drawing in the browser; `pad/types/chart.php` the chart type.
 
 ### Games
 ```
-{game 'memory', pairs=6/}                      # 22 little games, played in the browser
-{game:tictactoe opens='computer'/}             # the game: type - or bare, {tictactoe/}
-{sudoku givens=26, seed=7/}                    # a new puzzle with one solution; seed= the same one
-{sudoku '53..7....6..195....98...', paper/}    # print: drawn to print, solve: solved, no script
-{hangman data='words'/}                        # the words of a store, else between the tags
-{dotsandboxes height=5, width=5, two/}         # dots and boxes, two players - or the computer
-{mancala level='hard', opens='computer'/}      # oware; the computer looks ahead as far as level=
-{klondike draw=3, seed=7/}                     # the patience: the stock turned three at a time
-{morris two/}                                  # nine men's morris, two players at one screen
-{crossword}                                    # a line per word, WORD: clue - laid out on the
+{game:memory pairs=6/}                      # 22 little games, played in the browser
+{game:tictactoe opens='computer'/}             # the game: type
+{game:sudoku givens=26, seed=7/}                    # a new puzzle with one solution; seed= the same one
+{game:sudoku '53..7....6..195....98...', paper/}    # print: drawn to print, solve: solved, no script
+{game:hangman data='words'/}                        # the words of a store, else between the tags
+{game:dotsandboxes height=5, width=5, two/}         # dots and boxes, two players - or the computer
+{game:mancala level='hard', opens='computer'/}      # oware; the computer looks ahead as far as level=
+{game:klondike draw=3, seed=7/}                     # the patience: the stock turned three at a time
+{game:morris two/}                                  # nine men's morris, two players at one screen
+{game:crossword}                                    # a line per word, WORD: clue - laid out on the
   ECHO: Writes a value without the sanitize    #   server, typed into in the page
   PIPE: The | that hands a value to a function
-{/crossword}
-{quiz}
+{/game:crossword}
+{game:quiz}
   Which tag repeats its content? | while | if | set     # the right answer first
-{/quiz}
+{/game:quiz}
 ```
 The games are the files of `pad/subs/games/types/` - `<game>.php` checks the options and writes the
 board; `www/assets/games/<game>.js` plays it, `<game>.css` there draws it - and the files there
@@ -1247,30 +1244,29 @@ reference lists them with the pages that play them.
 
 ### Diagrams
 ```
-{diagram direction='LR'}                       # a flowchart, the default kind: a line a chain
+{diagram:auto direction='LR'}                       # a flowchart, the default kind: a line a chain
   A([Order]) --> B{Paid?}                      #   of nodes - [box] (round) {decision} ((circle))
   B -->|yes| C[(Orders)]                       #   [(database)] {{hexagon}} - and edges
   B -.->|no| D[Remind] --> B                   #   --> --- -.-> ==> with -->|labels|
-{/diagram}
+{/diagram:auto}
 {diagram:sequence}Shop ->> Bank: Charge{/diagram:sequence}   # lifelines, notes, loop/alt frames
 {diagram:state}[*] --> Idle{/diagram:state}    # state machine: [*] start/end, <<choice>>, <<fork>>
 {diagram:class}Animal <|-- Duck{/diagram:class}   # UML: class A { +field; +m()* }, *-- o-- ..> "1" "*"
 {diagram:er}CUSTOMER ||--o{ ORDER : places{/diagram:er}   # crow's feet, entities as attribute tables
-{mindmap}...{/mindmap}                         # from the indentation, branches on both sides
+{diagram:mindmap}...{/diagram:mindmap}                         # from the indentation, branches on both sides
 {diagram:tree}...{/diagram:tree}               # a hierarchy top down (direction='LR' sideways)
-{journey}...{/journey}                         # section, Make tea: 5: Me - a face per score
-{gitgraph}...{/gitgraph}                       # commit, branch, checkout, merge, cherry-pick
-{fishbone}...{/fishbone}                       # the effect, then categories and causes indented under it
-{railroad}...{/railroad}                       # syntax diagrams of W3C EBNF: rule ::= 'a' ( b | c )* d?
-{packet}...{/packet}                           # header fields by their bits: 0-15: "Source Port", +16: "x"
+{diagram:journey}...{/diagram:journey}                         # section, Make tea: 5: Me - a face per score
+{diagram:gitgraph}...{/diagram:gitgraph}                       # commit, branch, checkout, merge, cherry-pick
+{diagram:fishbone}...{/diagram:fishbone}                       # the effect, then categories and causes indented under it
+{diagram:railroad}...{/diagram:railroad}                       # syntax diagrams of W3C EBNF: rule ::= 'a' ( b | c )* d?
+{diagram:packet}...{/diagram:packet}                           # header fields by their bits: 0-15: "Source Port", +16: "x"
 ```
 The kinds are the files of `pad/subs/diagrams/types/` - one file a kind, reading the options it
-draws with - and a kind is added by adding its file. Each is written three ways, the same
-picture: `{diagram type='state'}`, the diagram type `{diagram:state}` and bare, `{state}`, when
-no tag, store, field or sequence has the name (the bare name comes last); `sequence` and `tree`
+draws with - and a kind is added by adding its file. Each has two explicit forms:
+`{diagram:state}` and `{diagram:state}`; `sequence` and `tree`
 are tags too, so those two are `{diagram:sequence}` and `{diagram:tree}`. A first line written
 the Mermaid way - `sequenceDiagram`, `stateDiagram-v2`, `classDiagram`, `erDiagram`, `gitGraph`,
-or `mindmap`, `journey`, `packet-beta` and `ishikawa-beta` (the fishbone) in a `{diagram}` without `type=` - names the kind, so Mermaid text
+or `mindmap`, `journey`, `packet-beta` and `ishikawa-beta` (the fishbone) in a `{diagram:auto}` without `type=` - names the kind, so Mermaid text
 pastes in as it is. The content is read as it stands, braces and all; the layout is
 deterministic (the same lines, the same picture); `role="img"` with a `<title>` and a `<desc>`
 that says every edge, relation or step in words; the colours are `--pad-diagram-*` custom
@@ -1281,10 +1277,10 @@ share (`padDiagramGraph`), the files beside it the other kinds, `types/` the kin
 `pad/types/diagram.php` the diagram type. The `showcase` application has an example of each.
 ### Maps
 ```
-{map 'world', data='sales', key='country', value='amount'/}   # choropleth as inline SVG, no script, no tiles
-{map 'eu', data='visitors', scale='quantile'/}                 # the 27 member states, the rest of Europe around them
-{map 'benelux'}{"NL": 1200, "BE": 800, "LU": 90}{/map}         # a pair: the content is the rows
-{map 'us-states', data='people', key='state'/}                 # the states of a country: US-CA, CA or California
+{pad:map 'world', data='sales', key='country', value='amount'/}   # choropleth as inline SVG, no script, no tiles
+{pad:map 'eu', data='visitors', scale='quantile'/}                 # the 27 member states, the rest of Europe around them
+{pad:map 'benelux'}{"NL": 1200, "BE": 800, "LU": 90}{/pad:map}         # a pair: the content is the rows
+{pad:map 'us-states', data='people', key='state'/}                 # the states of a country: US-CA, CA or California
 ```
 The views are the files of `pad/subs/maps/types/` - each answers its box of longitude and latitude
 and, for a region that is a list of countries, those countries and the name its title takes:
@@ -1316,13 +1312,13 @@ quieter, without values.
 
 ### Spreadsheets
 ```
-{spreadsheet 'shop', formats='B:€ #,##0.00, D:€ #,##0.00', totals='D'}
+{pad:spreadsheet 'shop', formats='B:€ #,##0.00, D:€ #,##0.00', totals='D'}
   Item,Price,Qty,Total
   Apples,1.20,3,=B2*C2
   Pears,0.80,5,=B3*C3
-{/spreadsheet}
-{spreadsheet data='orders', formulas='total=B2*C2', formats='total:0.00'/}   # a column filled down the rows
-{live 'calc'}{spreadsheet 'calc', editable='B1:B3'}...{/spreadsheet}{/live}  # edited, computed again on the server
+{/pad:spreadsheet}
+{pad:spreadsheet data='orders', formulas='total=B2*C2', formats='total:0.00'/}   # a column filled down the rows
+{pad:live 'calc'}{pad:spreadsheet 'calc', editable='B1:B3'}...{/pad:spreadsheet}{/pad:live}  # edited, computed again on the server
 ```
 A grid of cells as an accessible `<table>` - the column letters and row numbers around it
 (`headers=FALSE` leaves them out), numbers right-aligned, errors marked and explained in their
@@ -1375,7 +1371,7 @@ never the number of one cell; SUMIFS and COUNTIFS add up and count with criteria
 
 `editable` makes cells `<input>`s - alone every number, date and logical value, or the cells and
 ranges named - and an edit posts back and is computed on the server, no script of the page's
-own: in a `{form}` the cells post with it, in a `{live}` region the sheet is a form a change
+own: in a `{pad:form}` the cells post with it, in a `{pad:live}` region the sheet is a form a change
 submits - every cell's text once - and the region comes back computed, anywhere else the sheet
 is a form of its own with a Recalculate button. A post types only into the cells named.
 Under the strict check a template formula that cannot be read - or calls a function that is not
@@ -1386,17 +1382,17 @@ budget, a loan, grades, dates, an editable sheet and a page of every function.
 
 ### Embeds
 ```
-{embed 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'/}   # the provider from the address
+{embed:auto 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'/}   # the provider from the address
 {embed:vimeo '76979871', title='The new Vimeo player', at='1:30'/}          # the embed: type, a bare id
-{openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}              # bare, when nothing else has the name
-{embed 'https://soundcloud.com/forss/flickermood', title='Flickermood'/}     # also spotify, peertube, dailymotion, internetarchive, codepen
-{embed 'https://music.apple.com/us/album/abbey-road-2019-mix/1474815798', title='Abbey Road'/}   # applemusic, applepodcasts: in Apple's sandbox
-{figma 'https://www.figma.com/design/<key>/Shop', title='The checkout', theme='system'/}   # a design, prototype, FigJam board or slides
-{embed 'https://www.loom.com/share/fa3c0bc94e904ab6b0746f844ca7a385', title='A demo', at='0:05'/}   # loom
-{embed 'https://www.tiktok.com/@scout2015/video/6718335390845095173', title='A short'/}   # tiktok: upright, a phone's width
-{embed 'https://stackblitz.com/edit/<project>', title='A project', file='src/main.js', view='preview'/}   # stackblitz
-{twitch 'twitchgaming', title='Live', domains='partner.example.com'/}                # told the page's host names, parent=
-{audio 'sounds/bell.mp3', title='The bell'/}                                # a file: <audio preload="none">; videofile, pdffile
+{embed:openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}              # the embed: type
+{embed:auto 'https://soundcloud.com/forss/flickermood', title='Flickermood'/}     # also spotify, peertube, dailymotion, internetarchive, codepen
+{embed:auto 'https://music.apple.com/us/album/abbey-road-2019-mix/1474815798', title='Abbey Road'/}   # applemusic, applepodcasts: in Apple's sandbox
+{embed:figma 'https://www.figma.com/design/<key>/Shop', title='The checkout', theme='system'/}   # a design, prototype, FigJam board or slides
+{embed:auto 'https://www.loom.com/share/fa3c0bc94e904ab6b0746f844ca7a385', title='A demo', at='0:05'/}   # loom
+{embed:auto 'https://www.tiktok.com/@scout2015/video/6718335390845095173', title='A short'/}   # tiktok: upright, a phone's width
+{embed:auto 'https://stackblitz.com/edit/<project>', title='A project', file='src/main.js', view='preview'/}   # stackblitz
+{embed:twitch 'twitchgaming', title='Live', domains='partner.example.com'/}                # told the page's host names, parent=
+{embed:audio 'sounds/bell.mp3', title='The bell'/}                                # a file: <audio preload="none">; videofile, pdffile
 ```
 A frame of another site is a click-to-load facade: a poster drawn for its kind (or `poster=`,
 or the provider's own picture with `thumbnail`), the title, "Plays from YouTube", a button -
@@ -1406,7 +1402,7 @@ own site. The providers are the files of `pad/subs/embeds/types/` - each says th
 knows (`match`), its frame (`embed`), its origin for `frame-src` and its own options - and a
 provider is added by adding its file. `padEmbedSources ()` lists the origins a Content
 Security Policy needs: `$padCsp = "...; frame-src " . implode ( ' ', padEmbedSources () )`.
-`{video}` is the video-only form of the same providers, its markup as before.
+`{pad:video}` is the video-only form of the same providers, its markup as before.
 Twitch plays only on the host names its player is told: those of `$padHosts`, else the page's
 own, and `domains=` adds names; offline and in a static copy without `$padHosts` the poster
 links to Twitch instead.
@@ -1414,26 +1410,26 @@ A frame is given what the provider's own embed code gives it - its `allow` and, 
 and Apple Podcasts, the `sandbox` of Apple's code: the frame may do only what those tokens allow.
 ### Toys
 ```
-{toy 'life', pattern='gun', wrap/}             # small live simulations and visual toys, in the browser
-{toy:mandelbrot center='-0.745, 0.11', zoom=40/}   # the toy: type - or bare, {mandelbrot/}
-{sorting algorithm='heap', bars=100/}          # race: every algorithm side by side on the same bars
-{boids birds=300, cohesion=8, seed=7/}         # seed= the same start on every load
-{pendulum pendulums=3, paused/}                # paused: waits for Play, as under reduced motion
-{reactiondiffusion pattern='mitosis'/}         # Gray-Scott: a pattern's feed and kill rates, or feed= kill=
-{epicycles shape='square', circles=15/}        # a Fourier series: circles on circles, how far off they are
-{percolation mode='experiment', size=100/}     # trials estimate the threshold of a finite grid
-{ising temperature=2.0, algorithm='clusters'/}  # a magnet of spins beside Onsager's exact values
-{life}                                         # a pattern of your own, a row a line: O alive, . dead
+{toy:life pattern='gun', wrap/}             # small live simulations and visual toys, in the browser
+{toy:mandelbrot center='-0.745, 0.11', zoom=40/}   # the toy: type
+{toy:sorting algorithm='heap', bars=100/}          # race: every algorithm side by side on the same bars
+{toy:boids birds=300, cohesion=8, seed=7/}         # seed= the same start on every load
+{toy:pendulum pendulums=3, paused/}                # paused: waits for Play, as under reduced motion
+{toy:reactiondiffusion pattern='mitosis'/}         # Gray-Scott: a pattern's feed and kill rates, or feed= kill=
+{toy:epicycles shape='square', circles=15/}        # a Fourier series: circles on circles, how far off they are
+{toy:percolation mode='experiment', size=100/}     # trials estimate the threshold of a finite grid
+{toy:ising temperature=2.0, algorithm='clusters'/}  # a magnet of spins beside Onsager's exact values
+{toy:life}                                         # a pattern of your own, a row a line: O alive, . dead
   .O.
   ..O
   OOO
-{/life}
-{lsystem}                                      # an L-system of your own: the word, the turn, a rule a line
+{/toy:life}
+{toy:lsystem}                                      # an L-system of your own: the word, the turn, a rule a line
   axiom: X
   X: F[+X]F[-X]+X
   F: FF
   angle: 20
-{/lsystem}
+{/toy:lsystem}
 ```
 The toys are the files of `pad/subs/toys/types/` - `<toy>.php` checks the options and hands them on;
 `www/assets/toys/<toy>.js` runs it, `<toy>.css` there styles it when it needs to - and the files
@@ -1458,12 +1454,12 @@ show them.
 ### Sounds
 ```
 {sound:chime/}                                  # a button that plays the chime - named Chime, its recipe's title
-{sound 'pop', button='Pop!', volume=60/}        # the tag; button= the label, volume= 0 to 100
+{sound:pop button='Pop!', volume=60/}        # the tag; button= the label, volume= 0 to 100
 {sound:success on='click', target='#save'/}     # no button: played when an element the selector finds is clicked
 {sound:tick on='hover', target='nav a'/}        # on= click, pointerdown, hover, focus - change, input, submit with target=
 <button data-pad-sound="coin">Coin</button>     # any element, once a sound has put the script on the page
 {sound:bell download/}                          # with a link to the sound as a WAV file
-{toast 'Saved', tone='success', sound='success'/}   # a toast that sounds as it shows
+{widget:toast 'Saved', tone='success', sound='success'/}   # a toast that sounds as it shows
 ```
 A sound is a recipe, a file of `pad/subs/sounds/types/` that returns a PHP array - no audio file
 anywhere: voices played together, each an oscillator (sine, square, saw, triangle) or noise, with
@@ -1495,12 +1491,12 @@ and its WAV.
 {printable:labels data='people', sheet='a4-2x7', skip=3, copies=2, outline}...{/printable:labels}
 {printable:labels across=2, down=5, width=90, height=50, margin='20 15', pitch='95 52'}...{/printable:labels}
 {printable:badges data='guests', title='PAD Conference', color='#c0392b'}<h2>{$name}</h2>{$company}{/printable:badges}
-{printable:tickets data='seats', number=1}<h2>{$show}</h2><aside>{qr $code/}</aside>{/printable:tickets}
+{printable:tickets data='seats', number=1}<h2>{$show}</h2><aside>{barcode:qr $code/}</aside>{/printable:tickets}
 {printable:letter data='customers', sender='PAD, Main Street 1, 3511 AB Utrecht'}
   <header>...</header><address>{$name}<br>{$street}</address><aside>1 November 2026</aside>
   <p>Dear {$name},</p> ... <footer>...</footer>
 {/printable:letter}
-{printable 'envelope', paper='c5', sender='PAD, Utrecht', scale=0.5, pdf}...{/printable}
+{printable:envelope paper='c5', sender='PAD, Utrecht', scale=0.5, pdf}...{/printable:envelope}
 {printable:graphpaper grid='dots', major=2, copies=10}Name ________{/printable:graphpaper}   # squares, dots or lines, drawn exactly
 {printable:calendar year=2027, holidays='nl', weeks, data='photos'}<h2>{$caption}</h2>{/printable:calendar}   # a month a sheet
 {printable:foldcard data='guests'}<header>...</header><aside>...</aside>Dear {$name}<footer>...</footer>{/printable:foldcard}
@@ -1522,8 +1518,8 @@ takes the parts of an item from the elements that say what they are - `<aside>`,
 millimetres. One plan, three renderings: on the screen the sheets lie on a grey desk at their size
 (`scale=` makes the preview smaller); printed, a page with printables prints the sheets alone,
 each on a page of its own size and no margin (`@page` named per printable, mm-based CSS, the
-paper's colours kept); and in a `{pdf}` - or with `pdf` on the tag, whose links ask the page with
-`&padPdf`, left out inside a `{page}` as `{pdf}` leaves them and inside a `{pdf}`, whose document
+paper's colours kept); and in a `{pad:pdf}` - or with `pdf` on the tag, whose links ask the page with
+`&padPdf`, left out inside a `{pad:page}` as `{pad:pdf}` leaves them and inside a `{pad:pdf}`, whose document
 holds the sheets - the PDF writer sets the same sheets as pages of their size, each box where the
 CSS puts it, the barcodes and QR codes of the codes subsystem drawn. What the PDF does not do: CSS
 of a page's own, pictures other than JPEG, an SVG with curves, a table's own look (its grid is the
@@ -1547,10 +1543,10 @@ write in for every day - `year=` its twelve months, `month='2026-09'` from that 
 `months=` how many (1 with `month=`), `sunday` the weeks from Sunday, `weeks` the ISO 8601 week
 numbers before them, `holidays=` a country of the holidays subsystem (`'nl'`, `'de-by'`) its public
 holidays red with their names and its observances grey (a month `year=` or `month=` fixes in a
-year the country's file does not know an error under the strict check, as for `{calendar}`; this
+year the country's file does not know an error under the strict check, as for `{pad:calendar}`; this
 year, unfixed, with only the days inside those years marked), `color=`, `paper=` and `landscape` - the
 month, the weekdays and the names of the holidays in the language of the page's locale, as
-`{calendar}` writes them; the content between the tags stands over every month, a row of the data
+`{pad:calendar}` writes them; the content between the tags stands over every month, a row of the data
 a month, the rows taken in turn.
 
 A folded card (`foldcard`) - a greeting card, an invitation - is printed on one side of a sheet and
@@ -1571,56 +1567,54 @@ as graph paper's are; the content between the tags is a line over the staves.
 
 ### Widgets
 ```
-{tabs active='Specs'}{tab 'Overview'}...{/tab}{tab 'Specs'}...{/tab}{/tabs}   # CSS-only tabs: radios, arrow keys
-{accordion single, open=1}{tab 'Question'}Answer{/tab}...{/accordion}   # <details> items, one open
-{modal 'terms', title='Terms', button='Read the terms'}...{/modal}   # <dialog>, works with and without JS
-{carousel label='Photos'}{tab 'Caption'}<img ...>{/tab}...{/carousel}   # scroll-snap slides, link arrows and dots
-{copy 'npm install pad', label='Copy'/}             # the text in <pre>, a copy-to-clipboard button
-{poll 'lang', options='PHP, Go', title='Favourite?'/}   # one vote per session, results as bars; DATA/poll/
-{toast 'Saved', tone='success'}Kept.{/toast}   # a notice: an open <dialog>, its button closes it without JS
-{dropdown 'Account'}<a href="?profile">Profile</a>...{/dropdown}   # a popover menu under its button
-{tooltip 'Billed every month'}Starter{/tooltip}  VAT {tooltip 'Value added tax'/}   # a tip on hover and focus
-{wizard}{tab 'Address'}...{/tab}{tab 'Payment'}...{/tab}{/wizard}   # steps one at a time, Back and Next
-{lightbox label='Harbour'}{tab 'Dawn'}<img ...>{/tab}...{/lightbox}   # thumbnails, a picture large on :target
-{drawer 'filters', title='Filters', side='left'}...{/drawer}   # a side panel - a <dialog>, with and without JS
-{breadcrumb/}  {breadcrumb}Home | ?index{/breadcrumb}   # the trail to the page: its path, its lines or data=
-{splitpane size=30, collapse}{tab 'Files'}...{/tab}{tab 'Editor'}...{/tab}{/splitpane}   # two panes, a bar dragged or moved by the keys
-{contextmenu 'Actions for a.pdf', area='tr'}<a href="?open">Open</a>...{/contextmenu}   # right click, Shift+F10 or its dots button
-{commandpalette 'Go to', data='commands'/}   # Ctrl+K: a search box over the commands, Enter runs one
-{form 'f'}{sortable 'order'}{tab 'a1'}...{/tab}...{/sortable}{/form}   # put in order by hand, posted as order[a1]=1
-{widget 'modal', 'terms', title='Terms'}...{/widget}   # the widget tag: its first parameter names the widget
-{widget:modal 'terms', title='Terms'}...{/widget:modal} # the widget: type - or bare, as above
+{widget:tabs active='Specs'}{pad:tab 'Overview'}...{/pad:tab}{pad:tab 'Specs'}...{/pad:tab}{/widget:tabs}   # CSS-only tabs: radios, arrow keys
+{widget:accordion single, open=1}{pad:tab 'Question'}Answer{/pad:tab}...{/widget:accordion}   # <details> items, one open
+{widget:modal 'terms', title='Terms', button='Read the terms'}...{/widget:modal}   # <dialog>, works with and without JS
+{widget:carousel label='Photos'}{pad:tab 'Caption'}<img ...>{/pad:tab}...{/widget:carousel}   # scroll-snap slides, link arrows and dots
+{widget:copy 'npm install pad', label='Copy'/}             # the text in <pre>, a copy-to-clipboard button
+{widget:poll 'lang', options='PHP, Go', title='Favourite?'/}   # one vote per session, results as bars; DATA/poll/
+{widget:toast 'Saved', tone='success'}Kept.{/widget:toast}   # a notice: an open <dialog>, its button closes it without JS
+{widget:dropdown 'Account'}<a href="?profile">Profile</a>...{/widget:dropdown}   # a popover menu under its button
+{widget:tooltip 'Billed every month'}Starter{/widget:tooltip}  VAT {widget:tooltip 'Value added tax'/}   # a tip on hover and focus
+{widget:wizard}{pad:tab 'Address'}...{/pad:tab}{pad:tab 'Payment'}...{/pad:tab}{/widget:wizard}   # steps one at a time, Back and Next
+{widget:lightbox label='Harbour'}{pad:tab 'Dawn'}<img ...>{/pad:tab}...{/widget:lightbox}   # thumbnails, a picture large on :target
+{widget:drawer 'filters', title='Filters', side='left'}...{/widget:drawer}   # a side panel - a <dialog>, with and without JS
+{widget:breadcrumb/}  {widget:breadcrumb}Home | ?index{/widget:breadcrumb}   # the trail to the page: its path, its lines or data=
+{widget:splitpane size=30, collapse}{pad:tab 'Files'}...{/pad:tab}{pad:tab 'Editor'}...{/pad:tab}{/widget:splitpane}   # two panes, a bar dragged or moved by the keys
+{widget:contextmenu 'Actions for a.pdf', area='tr'}<a href="?open">Open</a>...{/widget:contextmenu}   # right click, Shift+F10 or its dots button
+{widget:commandpalette 'Go to', data='commands'/}   # Ctrl+K: a search box over the commands, Enter runs one
+{pad:form 'f'}{widget:sortable 'order'}{pad:tab 'a1'}...{/pad:tab}...{/widget:sortable}{/pad:form}   # put in order by hand, posted as order[a1]=1
+{widget:modal 'terms', title='Terms'}...{/widget:modal}   # the widget tag: its first parameter names the widget
+{widget:modal 'terms', title='Terms'}...{/widget:modal} # the widget: type
 ```
 The widgets are the files of `pad/subs/widgets/types/` - each the tag code of one widget, its
 functions in `pad/subs/widgets/_lib/<widget>.php`, its style and script in
 `www/assets/widgets/<widget>.css` and `.js` - and the files there are the widgets there are.
-Each is written three ways, the same widget: `{widget 'modal', 'terms'}` (the tag's second
-parameter is the widget's first), the widget type `{widget:modal 'terms'}`, and bare,
-`{modal 'terms'}`. The bare name comes after every other kind of tag, so a store, a field or
-an array of the name wins - a page's `$tabs` array is the data of `{tabs}`. `{copy}` is a
-built-in tag as well, which runs the copy widget, since PHP's `copy()` would take the bare
-name first; `{tab}` - the item of `{tabs}`, `{accordion}`, `{carousel}`, `{wizard}`,
-`{lightbox}`, `{splitpane}` and `{sortable}` - is a built-in tag. A widget works without JavaScript; its script, where it has one, is written once per page
+Each has two explicit forms: `{widget:modal 'terms'}` (the tag's second
+parameter is the widget's first) and `{widget:modal 'terms'}`. The `widget:` prefix
+selects the widget independently of fields or stores. `{widget:copy}` is a built-in alias
+for the copy widget; `{pad:tab}` - the item of `{widget:tabs}`, `{widget:accordion}`, `{widget:carousel}`, `{widget:wizard}`,
+`{widget:lightbox}`, `{widget:splitpane}` and `{widget:sortable}` - is a built-in tag. A widget works without JavaScript; its script, where it has one, is written once per page
 with the CSP nonce, and its colours are `--pad-<widget>-*` custom properties with light and
 dark defaults. The `showcase` application has examples of each, the tags application's widget
 page lists every widget with its options, the manual has a widgets page.
 
 ### Month calendar
 ```
-{calendar data='agenda', title='what'/}         # this month (or ?month=2026-11), events, links ‹ ›
-{calendar holidays='de-by'/}                   # the public holidays of a country marked and named - see Public holidays
-{calendar '2026-10', data='agenda'}            # as a pair: weeks as rows, days inside, events per day
-  <tr>{days}<td class="{$class}">{$day}{events}<b>{$what}</b>{/events}</td>{/days}</tr>
-{/calendar}
+{pad:calendar data='agenda', title='what'/}         # this month (or ?month=2026-11), events, links ‹ ›
+{pad:calendar holidays='de-by'/}                   # the public holidays of a country marked and named - see Public holidays
+{pad:calendar '2026-10', data='agenda'}            # as a pair: weeks as rows, days inside, events per day
+  <tr>{data:days}<td class="{$class}">{$day}{array:events}<b>{$what}</b>{/array:events}</td>{/data:days}</tr>
+{/pad:calendar}
 ```
 
 ### Public holidays
 ```
-{holidays 'nl', year=2026}{$date} {$name} ({$local}){/holidays}   # the rows: date, name, local, type, region, substitute
-{holidays 'de-by', year=2026/}                                    # a table; a region by its ISO 3166-2 code - Bavaria
-{holidays 'gb', from='today', to='+3 months'}...{/holidays}       # the days between two dates instead of a year
-{holidays 'be', year=2026, lang='fr', where='$type eq "public"'}...{/holidays}   # names in French; observances out
-{calendar '2026-04', holidays='nl'/}                              # the month with its holidays marked and named
+{pad:holidays 'nl', year=2026}{$date} {$name} ({$local}){/pad:holidays}   # the rows: date, name, local, type, region, substitute
+{pad:holidays 'de-by', year=2026/}                                    # a table; a region by its ISO 3166-2 code - Bavaria
+{pad:holidays 'gb', from='today', to='+3 months'}...{/pad:holidays}       # the days between two dates instead of a year
+{pad:holidays 'be', year=2026, lang='fr', where='$type eq "public"'}...{/pad:holidays}   # names in French; observances out
+{pad:calendar '2026-04', holidays='nl'/}                              # the month with its holidays marked and named
 ```
 ```php
 padHolidays ( 'nl', 2026 );                         // the rows of a year, region as a third argument or 'de-by'
@@ -1644,11 +1638,11 @@ states (`de-by`), the United Kingdom's nations (`gb-sct`, `gb-nir`; England and 
 France's Alsace-Moselle and overseas departments (`fr-57`, `fr-974`); the header of every file
 says what it leaves out. A workday is a Monday to Friday that is no public holiday. The
 arithmetic is integer days, from 1583 to 9999 - no clock, no zone, no service. Code: the
-holidays subsystem in `pad/subs/holidays/` - `holidays.php` the body of `{holidays}`,
+holidays subsystem in `pad/subs/holidays/` - `holidays.php` the body of `{pad:holidays}`,
 `_lib/holidays.php` the rules, `types/` the countries; `pad/lib/holidays.php` the helpers.
 
 A file may name the years its rules are known for, `years`: a year outside them is an error of
-`{holidays}` and of the calendar's `holidays=` under the strict check, and of the helpers -
+`{pad:holidays}` and of the calendar's `holidays=` under the strict check, and of the helpers -
 New Zealand's are 2010 to 2052, the years of its published dates and of the Matariki schedule.
 The calendar marks no day outside them: a month the visitor asked for - the request value its
 links set - is no error there and shows only the days inside those years.
@@ -1690,36 +1684,35 @@ days its yearly decree moves around them; it knows the years since 2013.
 
 ### Syntax highlighting
 ```
-{highlight 'php', lines, mark='3'}<?php echo $x; ?>{/highlight}   # pad php html css js json yaml sql bash
-{highlight file='_data/products.json'/}                           # a file of the app, language from its extension
+{pad:highlight 'php', lines, mark='3'}<?php echo $x; ?>{/pad:highlight}   # pad php html css js json yaml sql bash
+{pad:highlight file='_data/products.json'/}                           # a file of the app, language from its extension
 {$query | highlight('sql')}                                       # a value - escaped, so no sanitize on top
-{source}                                     # the page's own template and PHP as tabs, coloured
-{source 'orders', files='_lib/orders.php, www:orders.js'}           # another page, more files (www: = www/<app>/)
+{pad:source}                                     # the page's own template and PHP as tabs, coloured
+{pad:source 'orders', files='_lib/orders.php, www:orders.js'}           # another page, more files (www: = www/<app>/)
 ```
 
 ### QR codes and barcodes
 ```
-{qr 'https://example.com/order/42'/}            # inline SVG, encoded on the server (subs/codes/_lib/qr.php)
-{qr $url, size=200, level='H', title='Scan'/}   # level L, M (default), Q, H; color=, background=
-{barcode '871234567890'/}                       # EAN-13 (check digit added); anything else Code 128
-{barcode $parcel, type='code128', height=70/}   # scale= module width, plain = no digits under the bars
+{barcode:qr 'https://example.com/order/42'/}            # inline SVG, encoded on the server (subs/codes/_lib/qr.php)
+{barcode:qr $url, size=200, level='H', title='Scan'/}   # level L, M (default), Q, H; color=, background=
+{barcode:auto '871234567890'/}                       # EAN-13 (check digit added); anything else Code 128
+{barcode:code128 $parcel, height=70/}   # scale= module width, plain = no digits under the bars
 {barcode:upce '04210000526'/}                   # the barcode type: a UPC-A in its short form, 04252614
-{itf14 '1540014128876'/}                        # bare, when nothing else has the name - between bearer bars
-{code39 'PAD-2026', check/}                     # check: code39's modulo 43, itf's digit; msi check='mod1010'|'none'
-{datamatrix 'PAD-2026-0042', size=120/}         # Data Matrix ECC 200, the smallest of its 24 square sizes
-{gs1128 '(01)09501101530003(17)261231(10)AB-123'/}   # GS1-128: GS1 element strings, FNC1 where GS1 wants it
-{aztec $ticket, size=150, ecc=33/}              # Aztec Code, compact or full; ecc= percent of error correction (23)
-{pdf417 $boardingPass, columns=6, level=5/}     # PDF417, stacked rows; scale= module width, level= 0-8
-{bookland 'ISBN 0-306-40615-2', addon='51995'/} # a book's ISBN as an EAN-13, the price as an add-on
-{ean13 '977031784700', addon='07'/}             # addon= 2 or 5 digits on ean13, upca, upce and bookland
-{databar '09501101530003'/}                     # GS1 DataBar Omnidirectional, a GTIN in 96 modules
+{barcode:itf14 '1540014128876'/}                        # between bearer bars
+{barcode:code39 'PAD-2026', check/}                     # check: code39's modulo 43, itf's digit; msi check='mod1010'|'none'
+{barcode:datamatrix 'PAD-2026-0042', size=120/}         # Data Matrix ECC 200, the smallest of its 24 square sizes
+{barcode:gs1128 '(01)09501101530003(17)261231(10)AB-123'/}   # GS1-128: GS1 element strings, FNC1 where GS1 wants it
+{barcode:aztec $ticket, size=150, ecc=33/}              # Aztec Code, compact or full; ecc= percent of error correction (23)
+{barcode:pdf417 $boardingPass, columns=6, level=5/}     # PDF417, stacked rows; scale= module width, level= 0-8
+{barcode:bookland 'ISBN 0-306-40615-2', addon='51995'/} # a book's ISBN as an EAN-13, the price as an add-on
+{barcode:ean13 '977031784700', addon='07'/}             # addon= 2 or 5 digits on ean13, upca, upce and bookland
+{barcode:databar '09501101530003'/}                     # GS1 DataBar Omnidirectional, a GTIN in 96 modules
 ```
 The symbologies are the files of `pad/subs/codes/types/` - `ean13`, `ean8`, `upca`, `upce`,
 `code128`, `code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `bookland`, `databar`, `qr`, `datamatrix`, `aztec` and `pdf417` - one
 file a symbology, which encodes the text and draws it; a symbology is added by adding its file.
-Each is written three ways, the same code: `{barcode '...', type='upce'/}`, the barcode type
-`{barcode:upce '...'/}`, and bare, `{upce '...'/}`, when no tag, store, field or sequence has
-the name; `{qr}` is the qr symbology by a tag of its own. The bars take `height`, `scale`,
+Each has two explicit forms: `{barcode:upce '...'/}` and
+`{barcode:upce '...'/}`; `{barcode:qr}` is the qr symbology by a tag of its own. The bars take `height`, `scale`,
 `title`, `plain`, `color` and `background`, the two-dimensional codes `size`, `title`, `color`
 and `background`; black on white unless told otherwise, as a scanner needs the contrast, and
 `role="img"` named by the text or `title`. A text the symbology cannot hold is an error under
@@ -1735,7 +1728,7 @@ AIs in parentheses under the bars. The values are checked as the GS1 General Spe
 define them (`pad/subs/codes/_lib/gs1.php`): the digits, the length, GS1's characters, the check
 digit of a GTIN, SSCC or GLN and the dates; an AI GS1 has not defined, a value that breaks its
 format and more than 48 characters are errors under the strict check. `gs1` on `datamatrix` makes
-it GS1 DataMatrix, the code of medicine packs - `{datamatrix '(01)09501101530003(17)261231(10)AB-123(21)PAD0042', gs1/}` -
+it GS1 DataMatrix, the code of medicine packs - `{barcode:datamatrix '(01)09501101530003(17)261231(10)AB-123(21)PAD0042', gs1/}` -
 the same element strings checked the same way, FNC1 first and as the separator.
 
 `aztec` is Aztec Code (ISO/IEC 24778), the square code of train tickets and boarding passes
@@ -1772,14 +1765,14 @@ that carry the checksum, 96 modules read from any direction, `(01)` and the digi
 
 ### Icons
 ```
-{icon 'arrow-right'/}                           # an icon in the colour of the text, decoration (aria-hidden)
-<button>{icon 'trash', size=16/} Delete</button>
-{icon 'settings', size=20, label='Settings'/}   # label= makes it an image of that name, for an icon alone
+{icon:arrow-right/}                           # an icon in the colour of the text, decoration (aria-hidden)
+<button>{icon:trash size=16/} Delete</button>
+{icon:settings size=20, label='Settings'/}   # label= makes it an image of that name, for an icon alone
 {icon:cloud-upload stroke=1.5/}                 # the icon type; the names are never reached bare
 ```
 An icon is a file of `pad/subs/icons/types/`, `<name>.svg`: a whole SVG on the 24 by 24 grid -
 lines, circles and rectangles, `stroke="currentColor"`, round caps and joins - which a browser
-shows as it is and whose drawing `{icon}` writes inside an svg element of its own; the files
+shows as it is and whose drawing `{icon:star}` writes inside an svg element of its own; the files
 there are the icons there are, so an icon is added by adding its file, and `padIconNames ()`
 lists them for a page's PHP. A name that is no icon is an error naming the icons close to it.
 The buttons of a text editor are there too - `bold`, `italic`, `underline`, `strikethrough`,
@@ -1795,10 +1788,10 @@ the drawing, `types/` the icons; `pad/types/icon.php` the icon type.
 
 ### Patterns
 ```
-{pattern 'topography', seed=7, width=960, height=320/}   # contour lines of a landscape the seed makes up
-{pattern 'dots', size=24, colors='#fdfbf7, #e0c9a6'/}     # the background first, then the inks
+{pattern:topography seed=7, width=960, height=320/}   # contour lines of a landscape the seed makes up
+{pattern:dots size=24, colors='#fdfbf7, #e0c9a6'/}     # the background first, then the inks
 {pattern:voronoi seed=3, title='Shards of colour'/}       # the pattern: type; title= makes it an image
-<div style="background-image:{pattern 'waves', as='url'/}">...</div>   # url(data:image/svg+xml,...), either quotes
+<div style="background-image:{pattern:waves as='url'/}">...</div>   # url(data:image/svg+xml,...), either quotes
 ```
 ```php
 $hero = padPattern ( 'circles', [ 'seed' => 4, 'width' => 1200, 'height' => 400 ] );   // the same bytes in PHP
@@ -1839,18 +1832,18 @@ application shows every pattern with a seed to change by link.
 
 ### Image filters
 ```
-{img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
-{img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='The harbour'/}   # in the order written
-{img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour'/}    # SVG dots for the <img>
-{img 'photos/harbour.jpg', width=400, filter='ascii', columns=80, alt='The harbour'/}   # text in a <pre role="img">
-{img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}            # a placeholder behind it
-{img 'logos/shop.png', width=200, filter='thumbhash', alt='The shop'/}                  # ThumbHash: its shape, transparency kept
-{img 'photos/harbour.jpg', width=400, filter='edges', colors='#fbfaf7, #1d1d1b', alt='The harbour'/}   # Sobel: ink on paper
-{img 'scans/letter.png', width=600, filter='threshold', threshold=60, alt='The letter'/}  # ink or paper, a hard cut
-{img 'photos/harbour.jpg', width=400, filter='solarize', threshold=40, alt='The harbour'/} # the highlights turned negative
-{img 'photos/misty.jpg', width=400, filter='autocontrast', cutoff=2, alt='The valley'/}   # its tones from black to white
+{pad:img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
+{pad:img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='The harbour'/}   # in the order written
+{pad:img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour'/}    # SVG dots for the <img>
+{pad:img 'photos/harbour.jpg', width=400, filter='ascii', columns=80, alt='The harbour'/}   # text in a <pre role="img">
+{pad:img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}            # a placeholder behind it
+{pad:img 'logos/shop.png', width=200, filter='thumbhash', alt='The shop'/}                  # ThumbHash: its shape, transparency kept
+{pad:img 'photos/harbour.jpg', width=400, filter='edges', colors='#fbfaf7, #1d1d1b', alt='The harbour'/}   # Sobel: ink on paper
+{pad:img 'scans/letter.png', width=600, filter='threshold', threshold=60, alt='The letter'/}  # ink or paper, a hard cut
+{pad:img 'photos/harbour.jpg', width=400, filter='solarize', threshold=40, alt='The harbour'/} # the highlights turned negative
+{pad:img 'photos/misty.jpg', width=400, filter='autocontrast', cutoff=2, alt='The valley'/}   # its tones from black to white
 ```
-`filter=` on `{img}` runs the picture through the filter subsystem, `pad/subs/filters/`: a filter
+`filter=` on `{pad:img}` runs the picture through the filter subsystem, `pad/subs/filters/`: a filter
 is a file of its `types/` - no tag of its own, a word of `filter=` as a validation rule is a word of
 `padValidate` - and the files there are the filters there are. grayscale, sepia (`amount=`),
 duotone (`colors=`, dark first), posterize (`levels=`), pixelate (`cell=`), blur (`radius=` CSS
@@ -1897,37 +1890,35 @@ pixel counts for nothing and keeps its opacity.
 
 ### Notations
 ```
-{math}x = (-b +- sqrt(b^2 - 4ac))/(2a){/math}        # AsciiMath as MathML - every browser draws it, no script
-{math 'sum_(i=1)^n i = (n(n+1))/2', display='block'/}  # alttext= what a reader without MathML says
-{chem 'CH4 + 2O2 -> CO2 + 2H2O'/}                     # counts, charges, states, <=>, ->[Delta], every element checked
-{abc}...{/abc}                                        # a tune in ABC - T: M: L: K: lines, then the music - as a staff
+{notation:math}x = (-b +- sqrt(b^2 - 4ac))/(2a){/notation:math}        # AsciiMath as MathML - every browser draws it, no script
+{notation:math 'sum_(i=1)^n i = (n(n+1))/2', display='block'/}  # alttext= what a reader without MathML says
+{notation:chem 'CH4 + 2O2 -> CO2 + 2H2O'/}                     # counts, charges, states, <=>, ->[Delta], every element checked
+{notation:abc}...{/notation:abc}                                        # a tune in ABC - T: M: L: K: lines, then the music - as a staff
 {notation:chord 'Am', instrument='ukulele'/}          # a chord box from a name or frets='x32010'
-{piano 'C4 E4 G4'/}  {piano 'Dm7'/}                   # keys marked on a keyboard; from=, to=
-{braille 'Hello'/}  {braille 'Lift', cells/}          # Unified English Braille grade 1, or its raised dots
-{morse 'SOS'/}  {semaphore 'PAD'/}  {signals 'PAD 26'/}   # ITU morse and its signal; flag semaphore; ICS flags
-{chess $fen, flip, highlight='e2, e4', arrow='e2-e4'/}    # FEN - the chess notation, the built-in tag {chess} too
-{go '(;SZ[9]AB[cc];B[ee];W[ec])', numbers/}           # SGF played out, captures taken off; move=, plain
-{draughts 'W:W31-50:B1-20'/}  {draughts 'B:W21-32:B1-12', board=8/}   # the FEN of PDN, 10 by 10 or 8 by 8
-{tablature}e|--5h7--7b9--|{/tablature}           # a guitar tab as players write it - h p b r / \ ~ t x <12> (8); tuning=
-{karnaugh 'm(6,8,9,10,11,12,13,14) + d(15)'/}  {karnaugh}F = A'B + AC{/karnaugh}   # the map, its groups, the minimal expression; form='pos'
-{bridge 'N:.63.AKQ987.A9732 A8654.KQ5.T.QJT6 J973.J98742.3.K4 KQT2.AT.J6542.85', dealer='N', points/}   # PBN
-{siteswap '531'/}  {siteswap '(4,2x)(2x,4)'/}  {siteswap '[33]33'/}   # a juggling pattern as a ladder diagram, checked
-{cube "R U R' U'"/}  {cube "(R U R' U')6", view='cube'/}  {cube "...", case/}   # WCA cube moves on a solved cube, as a net
-{notation 'braille', 'Hello'/}                        # the tag: its second parameter the kind's text
+{notation:piano 'C4 E4 G4'/}  {notation:piano 'Dm7'/}                   # keys marked on a keyboard; from=, to=
+{notation:braille 'Hello'/}  {notation:braille 'Lift', cells/}          # Unified English Braille grade 1, or its raised dots
+{notation:morse 'SOS'/}  {notation:semaphore 'PAD'/}  {notation:signals 'PAD 26'/}   # ITU morse and its signal; flag semaphore; ICS flags
+{notation:chess $fen, flip, highlight='e2, e4', arrow='e2-e4'/}    # FEN - the chess notation, the built-in tag {notation:chess} too
+{notation:go '(;SZ[9]AB[cc];B[ee];W[ec])', numbers/}           # SGF played out, captures taken off; move=, plain
+{notation:draughts 'W:W31-50:B1-20'/}  {notation:draughts 'B:W21-32:B1-12', board=8/}   # the FEN of PDN, 10 by 10 or 8 by 8
+{notation:tablature}e|--5h7--7b9--|{/notation:tablature}           # a guitar tab as players write it - h p b r / \ ~ t x <12> (8); tuning=
+{notation:karnaugh 'm(6,8,9,10,11,12,13,14) + d(15)'/}  {notation:karnaugh}F = A'B + AC{/notation:karnaugh}   # the map, its groups, the minimal expression; form='pos'
+{notation:bridge 'N:.63.AKQ987.A9732 A8654.KQ5.T.QJT6 J973.J98742.3.K4 KQT2.AT.J6542.85', dealer='N', points/}   # PBN
+{notation:siteswap '531'/}  {notation:siteswap '(4,2x)(2x,4)'/}  {notation:siteswap '[33]33'/}   # a juggling pattern as a ladder diagram, checked
+{notation:cube "R U R' U'"/}  {notation:cube "(R U R' U')6", view='cube'/}  {notation:cube "...", case/}   # WCA cube moves on a solved cube, as a net
+{notation:braille 'Hello'/}                        # the tag: its second parameter the kind's text
 ```
-A text written in a notation, drawn on the server the way `{diagram}` lays out a flowchart:
+A text written in a notation, drawn on the server the way `{diagram:auto}` lays out a flowchart:
 MathML for the formulas, HTML and inline SVG for the rest - no script, the same bytes for the
 same text, every drawing a named image with a description in words (the pieces, the stones,
 the notes, the flags), its colours `--pad-<kind>-*` with `light-dark()` defaults. The text is
 the kind's first parameter, or the content between the tags taken as written before the level
-walks it, so the braces of AsciiMath and the brackets of SGF need no `{ignore}`. The notations
+walks it, so the braces of AsciiMath and the brackets of SGF need no `{pad:ignore}`. The notations
 are the files of `pad/subs/notations/types/` - math (AsciiMath, not TeX, as TeX's braces are
 PAD's), chem, abc, chord, piano, braille, morse, semaphore, signals, chess, go, draughts, tablature, karnaugh, bridge, siteswap and cube - and
-a notation is added by adding its file. Each is written three ways: `{notation 'math', 'a/b'/}`,
-the notation type `{notation:math 'a/b'/}` and bare, `{math 'a/b'/}`, after every other kind of
-tag; `chord` bare is the charts' chord diagram, so a guitar chord is `{notation:chord}`. `{chess}`
-stays a built-in tag that draws the chess notation (`pad/tags/chess.php`), so it comes before a
-field, a store or a file named chess, as before. A text a notation cannot read - a FEN with
+a notation is added by adding its file. Each has two explicit forms: `{notation:math 'a/b'/}`
+and `{notation:math 'a/b'/}`. A chord chart is `{chart:chord}` and a guitar chord
+is `{notation:chord}`. `{notation:chess}` remains a built-in alias for the chess notation. A text a notation cannot read - a FEN with
 seven ranks, an element the periodic table lacks, a character morse has no sign for, a move on
 a taken point - is an error under the strict check, and so is what would cost time or memory
 past reason: a formula longer than 10 000 bytes, slurs nested more than 8 deep. A byte that is
@@ -1939,50 +1930,50 @@ The `notations` application shows every kind with its examples.
 
 ### Showcase tags
 ```
-{avatar 'Herbert Jebbink', size=48, shape='square'/}   # initials in a circle/square, colour from a hash of the name
-{identicon $email, size=64/}                   # a symmetric 5x5 pattern from a sha256 hash, own colour
-{placeholder '600x300', text='Hero image'/}    # grey SVG box with crossing lines; ratio='16:9', fluid
-{progress 72, max=100, label='Upload'/}       # styled <progress> with label and %; steps for dots, color=, size=
-{rating 4.5, max=5/}                           # stars as SVG, half stars clipped, aria '4.5 out of 5'; icon='heart'
-{icon 'arrow-right', size=20, label='Next'/}   # line icon in currentColor, a file of subs/icons/types/; see Icons
-{gravatar $email, size=64, default='identicon'/} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
-{chess $fen, flip, highlight='e2,e4', arrow='e2-e4'/}   # a FEN as an SVG board, pieces described for a screen reader
-{sudoku '53..7....6..195...'/}                   # a game - played in the page; see Games
-{diff $old, $new/}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
-{excerpt $body, words=24, highlight=$q/}         # whole words around the first match, <mark>ed, escaped; html
-{lorem paragraphs=3, seed=7/}                    # placeholder text, classic start, reproducible; words=, sentences=, varied
-{tabs}...{/tabs}  {modal 'x'}...{/modal}         # the widgets - see Widgets
-{img 'photos/harbour.jpg', width=400, height=300, alt='The harbour'/}   # GD thumbnail in www/<app>/_thumbs/, 2x srcset, lazy
-{video 'https://youtu.be/ID', title='Launch'/}  # poster + play button, nocookie iframe only after a click; {embed} for more sites
-{pdf file='invoice', download}...{/pdf}   # the content as a PDF (plain PHP writer) instead of the page; preview: a sheet + link
+{pad:avatar 'Herbert Jebbink', size=48, shape='square'/}   # initials in a circle/square, colour from a hash of the name
+{pad:identicon $email, size=64/}                   # a symmetric 5x5 pattern from a sha256 hash, own colour
+{pad:placeholder '600x300', text='Hero image'/}    # grey SVG box with crossing lines; ratio='16:9', fluid
+{pad:progress 72, max=100, label='Upload'/}       # styled <progress> with label and %; steps for dots, color=, size=
+{pad:rating 4.5, max=5/}                           # stars as SVG, half stars clipped, aria '4.5 out of 5'; icon='heart'
+{icon:arrow-right size=20, label='Next'/}   # line icon in currentColor, a file of subs/icons/types/; see Icons
+{pad:gravatar $email, size=64, default='identicon'/} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
+{notation:chess $fen, flip, highlight='e2,e4', arrow='e2-e4'/}   # a FEN as an SVG board, pieces described for a screen reader
+{game:sudoku '53..7....6..195...'/}                   # a game - played in the page; see Games
+{pad:diff $old, $new/}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
+{pad:excerpt $body, words=24, highlight=$q/}         # whole words around the first match, <mark>ed, escaped; html
+{pad:lorem paragraphs=3, seed=7/}                    # placeholder text, classic start, reproducible; words=, sentences=, varied
+{widget:tabs}...{/widget:tabs}  {widget:modal 'x'}...{/widget:modal}         # the widgets - see Widgets
+{pad:img 'photos/harbour.jpg', width=400, height=300, alt='The harbour'/}   # GD thumbnail in www/<app>/_thumbs/, 2x srcset, lazy
+{pad:video 'https://youtu.be/ID', title='Launch'/}  # poster + play button, nocookie iframe only after a click; {embed:auto} for more sites
+{pad:pdf file='invoice', download}...{/pad:pdf}   # the content as a PDF (plain PHP writer) instead of the page; preview: a sheet + link
 {printable:labels data='rows', sheet='a4-3x8', pdf}...{/printable:labels}   # sheets for paper, printed alone, the same in the PDF; see Printables
-{diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # a flowchart laid out as SVG on the server; the other kinds - see Diagrams
-{map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
-{diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # flowchart (or type='sequence') laid out as SVG on the server
-{map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/subs/maps/types/ - world, continents, benelux, eu, middle-east ..., the states of a country: us-states, nl-provinces, de-states, au-states
-{timeline data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans, vertical for long lists
-{datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
-{toc levels='2,3', title='Contents'/}         # the page's own h2/h3, nested and linked - filled in after the page rendered
-{countdown '2026-12-31 00:00', units=3, live/}   # 84 days, 3 hours, 12 minutes in a <time>; live ticks; past='...'
-{timeago $created/}                           # <time datetime title>5 minutes ago</time> - the ago pipe's words
-{emoji 'rocket'/}  {$text | emoji}             # role="img" aria-label="rocket" 🚀; the pipe replaces :shortcodes: in text
-{country 'NL'/}  {country 'NLD', name/}         # the flag (role="img", named Netherlands); name writes the name beside it
-{jsonview $response, open=2/}                 # foldable <details> tree, typed colours, counts on folded nodes; pair: JSON content
+{diagram:auto direction='LR'}A[Order] --> B{Paid?}{/diagram:auto}   # a flowchart laid out as SVG on the server; the other kinds - see Diagrams
+{pad:map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
+{diagram:auto direction='LR'}A[Order] --> B{Paid?}{/diagram:auto}   # flowchart (or type='sequence') laid out as SVG on the server
+{pad:map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/subs/maps/types/ - world, continents, benelux, eu, middle-east ..., the states of a country: us-states, nl-provinces, de-states, au-states
+{pad:timeline data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans, vertical for long lists
+{pad:datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
+{pad:toc levels='2,3', title='Contents'/}         # the page's own h2/h3, nested and linked - filled in after the page rendered
+{pad:countdown '2026-12-31 00:00', units=3, live/}   # 84 days, 3 hours, 12 minutes in a <time>; live ticks; past='...'
+{pad:timeago $created/}                           # <time datetime title>5 minutes ago</time> - the ago pipe's words
+{pad:emoji 'rocket'/}  {$text | emoji}             # role="img" aria-label="rocket" 🚀; the pipe replaces :shortcodes: in text
+{pad:country 'NL'/}  {pad:country 'NLD', name/}         # the flag (role="img", named Netherlands); name writes the name beside it
+{pad:jsonview $response, open=2/}                 # foldable <details> tree, typed colours, counts on folded nodes; pair: JSON content
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 
 ### Live Regions (interactivity without app JavaScript)
 ```
-{live 'cart'}
-  {cart}<li>{$item}</li>{/cart}
+{pad:live 'cart'}
+  {array:cart}<li>{$item}</li>{/array:cart}
   <button pad-click="add" pad-value="42">Add</button>
-{/live}
+{/pad:live}
 ```
-`pad-click` / `pad-submit` (form) / `pad-change` (field) inside a `{live}` region post the event
+`pad-click` / `pad-submit` (form) / `pad-change` (field) inside a `{pad:live}` region post the event
 to the page's own URL; the page's PHP reads `padLiveEvent()` / `padLiveValue()` and keeps state
 in the session (`$padSessionVars`) or the event's value; only that region's content comes back
 and is swapped in. The first region brings a small inline script. A `pad-change` on a select of
-many - `{multiselect 'tags', pad-change='pick'/}` - posts every choice, `tags[]`, as its form
+many - `{input:multiselect 'tags', pad-change='pick'/}` - posts every choice, `tags[]`, as its form
 would, and `padLiveValue()` is the choices joined by `, ` (`a, c`, what `value=` takes); the
 list itself is `$_POST ['tags']`.
 
@@ -1990,9 +1981,9 @@ list itself is `$_POST ['tags']`.
 ```
 {section:hero title='Pages that drive themselves', button='Start', link='?start', image='hero.jpg', alt='...'}
   The text under the heading.                          # the content is the text
-  {slot 'eyebrow'}New in PAD{/slot}                    # a part filled with markup - wins over eyebrow=
+  {pad:slot 'eyebrow'}New in PAD{/pad:slot}                    # a part filled with markup - wins over eyebrow=
 {/section:hero}
-{section 'cta', 'Ready?', button='Go', link='?go'/}    # the tag; the second value the heading
+{section:cta 'Ready?', button='Go', link='?go'/}    # the tag; the second value the heading
 {section:features title='Why'}                         # a list section: its items are pairs ...
   {section:item 'Fast', icon='zap'}Renders in milliseconds.{/section:item}
 {/section:features}
@@ -2016,7 +2007,7 @@ forms post back without a script: hero, features, pricing (a featured plan with 
 testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery, footer, comparison
 (a table of plans), changelog, downloads, agenda, blog and highlights, and
 `item`, the item of the sections that list things. A part of a section comes three ways, the
-first that has one winning: a `{slot 'name'}` pair directly in its content - template, rendered
+first that has one winning: a `{pad:slot 'name'}` pair directly in its content - template, rendered
 where the section stands, in the scope of the loop around it - an option of the part's name,
 and for the text under the heading the rest of the content. A list section takes its items from
 the rows `data=` names (a store, the page's array, a `_data` file) and from `{section:item}`
@@ -2026,10 +2017,10 @@ each. The handling options - `sort=`, `first=`, `where=` - work on the rows of `
 section whose `data=` finds none, with no items of its own, is a miss - its `@else@` shows; an
 option the section has no field for, a slot of a part it has not, an item outside a list
 section and a list section given neither `data=` nor items are reported under the strict check. The newsletter and the contact form post back
-as `{form 'newsletter'}` does - the session's token and the form's name - so the page's PHP asks
+as `{pad:form 'newsletter'}` does - the session's token and the form's name - so the page's PHP asks
 `padPosted ( 'newsletter' )` and checks the post with `padValidate`; the fields refill and show
 the messages, and once the post came back right the section says `thanks=` in the form's place -
-the one that was sent, of two of a name on a page, as of two `{form}`s; a field's id is the
+the one that was sent, of two of a name on a page, as of two `{pad:form}`s; a field's id is the
 section's and its name.
 A comparison is a table, a row per feature and a column per plan - `plans=`, or the fields of the
 rows of `data=` - each cell a value as written, a check for yes, a dash for no and a question mark
@@ -2057,7 +2048,7 @@ window; the colours are `--pad-section-bg`, `-panel`, `-text`, `-soft`, `-dim`, 
 without it, so a theme colours the sections without a word; `--pad-section-hero`, `-radius`,
 `-max`, `-font` and `-heading-font` are the rest. `tone=` (plain, soft, accent) and `align=`
 (center, left) on every section, `level=` its heading's level (2), `id=` an anchor. A section is
-written `{section:hero}` or `{section 'hero'}` - never bare: hero, team, stats and footer are the
+written `{section:hero}` or `{section:hero}` - never bare: hero, team, stats and footer are the
 names of fields and pages. The kinds are the files of `pad/subs/sections/types/`, the style
 `www/assets/sections/` - `section.css` shared and a sheet per kind, each written once per
 page with the CSP nonce; `pad/subs/sections/section.php` the body every form runs,
@@ -2066,25 +2057,25 @@ page with the CSP nonce; `pad/subs/sections/section.php` the body every form run
 
 ### Effects
 ```
-{typewriter}Pages that write themselves.{/typewriter}           # typed out behind a caret, once
+{effect:typewriter}Pages that write themselves.{/effect:typewriter}           # typed out behind a caret, once
 {effect:highlighter}the terms{/effect:highlighter}             # a marker stroke behind the words - a <mark>
-{underline hover}<a href="?terms">the terms</a>{/underline}    # a line drawn under the words - on hover: it grows
-{strike}€49{/strike} €29                                       # a line drawn through the words - an <s>
-{encircle style='box'}42{/encircle}                            # a ring drawn by hand round a word - an svg
-{effect 'countup', to=1250, suffix='+'/}                       # counted by the CSS (@property), read as 1250+
-{glitch}SIGNAL LOST{/glitch}  {shimmer}New{/shimmer}  {wave}Hi!{/wave}
-<h1>Built for {rotator}teams, makers, you{/rotator}</h1>       # the phrases take turns in one place - a list unmoved
-<h2>{decipher}ACCESS GRANTED{/decipher}</h2>                   # settles out of changing signs - a script, aria-hidden
-{gradient colors='#f97316, #db2777', animate}Launch week{/gradient}
-{marquee duration=25, label='Built with'}...{/marquee}         # a band that scrolls, a Pause button without script
-{reveal motion='left'}<div>...</div>{/reveal}                  # comes into view as it is scrolled to - view()
-{scrollprogress/}                                              # a bar along the window the page's scrolling fills
-{tilt glare}<div class="card">...</div>{/tilt}                 # leans in 3D on hover and focus
-{nudge style='shake'}<a href="?signup">Try it</a>{/nudge}      # bounce, shake, pulse, wiggle, heartbeat - twice
-{spotlight at='top left'}...{/spotlight}                       # a soft light that sweeps across and rests
-{spinner style='dots', label='Saving'/}                        # ring, dots, bars, pulse, orbit - a status
-{skeleton shape='media', lines=3/}                             # grey bones while a part loads - a status
-{confetti}<button type="button">Celebrate</button>{/confetti}  # the one with a script; single: bursts in view
+{effect:underline hover}<a href="?terms">the terms</a>{/effect:underline}    # a line drawn under the words - on hover: it grows
+{effect:strike}€49{/effect:strike} €29                                       # a line drawn through the words - an <s>
+{effect:encircle style='box'}42{/effect:encircle}                            # a ring drawn by hand round a word - an svg
+{effect:countup to=1250, suffix='+'/}                       # counted by the CSS (@property), read as 1250+
+{effect:glitch}SIGNAL LOST{/effect:glitch}  {effect:shimmer}New{/effect:shimmer}  {effect:wave}Hi!{/effect:wave}
+<h1>Built for {effect:rotator}teams, makers, you{/effect:rotator}</h1>       # the phrases take turns in one place - a list unmoved
+<h2>{effect:decipher}ACCESS GRANTED{/effect:decipher}</h2>                   # settles out of changing signs - a script, aria-hidden
+{effect:gradient colors='#f97316, #db2777', animate}Launch week{/effect:gradient}
+{effect:marquee duration=25, label='Built with'}...{/effect:marquee}         # a band that scrolls, a Pause button without script
+{effect:reveal motion='left'}<div>...</div>{/effect:reveal}                  # comes into view as it is scrolled to - view()
+{effect:scrollprogress/}                                              # a bar along the window the page's scrolling fills
+{effect:tilt glare}<div class="card">...</div>{/effect:tilt}                 # leans in 3D on hover and focus
+{effect:nudge style='shake'}<a href="?signup">Try it</a>{/effect:nudge}      # bounce, shake, pulse, wiggle, heartbeat - twice
+{effect:spotlight at='top left'}...{/effect:spotlight}                       # a soft light that sweeps across and rests
+{effect:spinner style='dots', label='Saving'/}                        # ring, dots, bars, pulse, orbit - a status
+{effect:skeleton shape='media', lines=3/}                             # grey bones while a part loads - a status
+{effect:confetti}<button type="button">Celebrate</button>{/effect:confetti}  # the one with a script; single: bursts in view
 ```
 Motion and decoration on a text or a block, CSS first: confetti and decipher are the only effects
 with a script, `www/assets/effects/confetti.js` and `decipher.js`; the rest is CSS, a stylesheet per kind written once per page
@@ -2106,11 +2097,10 @@ colours are `--pad-effect-accent`, `-accent2`, `-accent3`, `-text`, `-mark` and 
 theme colours them. The kinds are the files of `pad/subs/effects/types/` - typewriter, glitch,
 shimmer, gradient, wave, highlighter, underline, strike, encircle, rotator, decipher, countup, marquee, reveal,
 scrollprogress, tilt, nudge, spotlight, spinner, skeleton, confetti -
-and an effect is added by adding its file. Each is written three ways, the same effect:
-`{effect 'typewriter'}...{/effect}`, the effect type `{effect:typewriter}...{/effect:typewriter}`
-and bare, `{typewriter}...{/typewriter}`, when no tag, store, field or sequence has the name. A pair
-works on its content, rendered first; a single tag on its first parameter, `{typewriter 'Hi'/}`.
-`highlighter` is so named because `{highlight}` colours code. The reveal, the highlighter's and the
+and an effect is added by adding its file. Each has two explicit forms:
+`{effect:typewriter}...{/effect:typewriter}` and `{effect:typewriter}...{/effect:typewriter}`. A pair
+works on its content, rendered first; a single tag on its first parameter, `{effect:typewriter 'Hi'/}`.
+`highlighter` is so named because `{pad:highlight}` colours code. The reveal, the highlighter's and the
 count-up's `scroll` are scroll-driven animations (`animation-timeline: view()`): where a browser
 has none, the block stands there and the stroke or the count runs in time, as without scroll.
 The underline's, the strike's and the encircle's `scroll` too, and the scrollprogress bar, which
@@ -2124,10 +2114,10 @@ effect type, `pad/tags/effect.php` the tag.
 ### Themes
 ```
 $padTheme = 'paper';               # _config/config.php: every page of the application in paper
-{theme 'terminal'/}                # this page in terminal - its <style>, where the tag stands
-{theme 'ocean'}...{/theme}         # a pair: its content alone, in a box of the theme
-{themes/}                          # a switcher - the visitor's choice, kept in a cookie
-{themes label='Colours', button='Use'/}
+{pad:theme 'terminal'/}                # this page in terminal - its <style>, where the tag stands
+{pad:theme 'ocean'}...{/pad:theme}         # a pair: its content alone, in a box of the theme
+{pad:themes/}                          # a switcher - the visitor's choice, kept in a cookie
+{pad:themes label='Colours', button='Use'/}
 ```
 A theme swaps the colours of the frame the PAD applications share (`www/_common/pad.css`) for a
 set of its own: the `--frame-*` properties of the side, the bar and the menu and the palette the
@@ -2151,7 +2141,7 @@ newspaper 5.97, mono 6.00, terminal 6.01, ocean 6.22, contrast 7.41, contrast-da
 application lists every pair of every theme. The light and dark themes are the frame's own
 colours, with the four that fall short of AA in its set - the dim grey on the page (4.47), the
 side's headings (3.07 light, 4.09 dark), a link on the accent's tint (4.48) - darkened or
-lightened to it. Which theme a page gets: the visitor's choice from `{themes/}` - in the bar of
+lightened to it. Which theme a page gets: the visitor's choice from `{pad:themes/}` - in the bar of
 the frame every PAD application shares - posted back to the page and taken before the
 application runs (`pad/inits/themes.php`, a 303 back to the page), kept in a cookie of its own,
 `padTheme` (SameSite=Lax, a year), on the directory the PAD applications are served under
@@ -2163,21 +2153,21 @@ coloured by a visitor's choice, and `$padTheme = FALSE` turns both off. That the
 `<style>` goes into the page's `<head>` on the way out (`exits/output.php`) - before `</head>`,
 in a page without one before its `<body>` or after its doctype - after the page cache, so a
 cached page is served in the theme of whoever asks, and the ETag is made from what goes out;
-never into an include request, a `{live}` region's or a fragment's answer, a page that is no
-HTML, or a page with a `{theme 'x'/}` of its own, which is in that theme. The switcher is a
+never into an include request, a `{pad:live}` region's or a fragment's answer, a page that is no
+HTML, or a page with a `{pad:theme 'x'/}` of its own, which is in that theme. The switcher is a
 `<select>` alone - its label there for a screen reader - that applies a theme the moment it is
 chosen, a small script posting the form; without JavaScript a button does it - and it
 writes no token of its own, so showing it or choosing starts no session; with `$padCsrf` on it carries the
 session's token as every form then does. Code: `pad/subs/themes/` - `_lib/theme.php`
 (`padThemeCss`, `padThemeChosen`, `padThemeAdd`, `padThemeContrasts`), `theme.php` and
-`themes.php` the bodies of `{theme}` and `{themes}`.
+`themes.php` the bodies of `{pad:theme}` and `{pad:themes}`.
 
 ### Palettes
 ```
-{palette 'viridis', steps=7/}                    # swatches, each with its hex value
-{palette 'okabe-ito'/}                           # a categorical palette: its own colours
-{chart 'bar', data='sales', value='north, south, west', palette='viridis'/}   # any kind of chart
-{chart 'heatmap', data='temps', x='month', y='day', value='change', palette='rdbu'/}
+{pad:palette 'viridis', steps=7/}                    # swatches, each with its hex value
+{pad:palette 'okabe-ito'/}                           # a categorical palette: its own colours
+{chart:bar data='sales', value='north, south, west', palette='viridis'/}   # any kind of chart
+{chart:heatmap data='temps', x='month', y='day', value='change', palette='rdbu'/}
 $colors = padPalette ( 'viridis', 7 );           # [ '#440154', '#443a83', ... ] for the page's PHP
 ```
 Colour scales for charts and anything else. The palettes are the files of
@@ -2203,11 +2193,11 @@ of the first again, so no colour comes twice - four steps are its quarters, one 
 categorical palette gives its colours in order and starts again past its last.
 Without `steps` a categorical palette gives its own colours, a cyclic one twelve, the others
 nine; 1 to 256.
-`padPalette ( $name, $steps )` answers the same list to a page's PHP. `{palette}` writes a row of
+`padPalette ( $name, $steps )` answers the same list to a page's PHP. `{pad:palette}` writes a row of
 swatches - a list for a screen reader, each hex value in black or white, whichever contrasts
 more - its style once per page with the nonce, a swatch's colours a class of its value
 (`pp-c-440154`) with its rule; `title=` names the row.
-`palette=` on `{chart}` colours a chart of any kind: the kinds draw as ever - their marks carry
+`palette=` on `{chart:bar}` colours a chart of any kind: the kinds draw as ever - their marks carry
 the classes of the categorical slots (`pc-c1`...`pc-c8`) and of the heatmap's ramp
 (`pc-h0`...`pc-h6`) - and the svg gets a class of the palette and its slots, `pc-pal-viridis-3`,
 whose rule in the chart's own `<style>` gives it the palette's colours for those as custom
@@ -2222,7 +2212,7 @@ number of slots and `www/assets/charts/palette.js` puts on the ones its
 drawing needs - the same SVG, character for character, which the `charts` line of `./ci.sh` holds
 by drawing every example of the charts application once more in a palette, the palettes in turn.
 Without `palette=` a chart is drawn as before, byte for byte. Code: `pad/subs/palettes/`
-(`_lib/palette.php`, `palette.php` the body of `{palette}`), `pad/lib/palette.php` (`padPalette`),
+(`_lib/palette.php`, `palette.php` the body of `{pad:palette}`), `pad/lib/palette.php` (`padPalette`),
 `pad/subs/charts/_lib/palette.php` and `client/palette.js` for the charts.
 
 ## Development
@@ -2273,8 +2263,8 @@ $padMailKeep      = 100;     // messages the file transport keeps
 // Cache enabled
 $padCache = false;
 
-// {assert} conditions are checked - and a false one is an error - only when this is on;
-// pad test turns it on for its run. Off, every {assert} is silent.
+// {pad:assert} conditions are checked - and a false one is an error - only when this is on;
+// pad test turns it on for its run. Off, every {pad:assert} is silent.
 $padAssert = false;
 
 // The debug toolbar: a collapsible bar at the foot of a local web page - time, memory,
@@ -2298,12 +2288,12 @@ $padCheckSyntax = true;
 // re-read as template source.
 $padProtectValues = true;
 
-// Vite: {vite 'src/main.js'} reads www/<app>/<$padViteBuild>/.vite/manifest.json; while the dev
+// Vite: {pad:vite 'src/main.js'} reads www/<app>/<$padViteBuild>/.vite/manifest.json; while the dev
 // server runs ($padViteDev, or its address in that directory's hot file) it is asked instead.
 $padViteBuild = 'build';
 $padViteDev   = '';
 
-// The locale and timezone - {trans}, currency, localDate. With $padLocales listing several,
+// The locale and timezone - {pad:trans}, currency, localDate. With $padLocales listing several,
 // ?lang=, the padLang cookie or Accept-Language picks among them.
 $padLocale   = 'en';
 $padLocales  = [];          // e.g. [ 'en', 'nl', 'de' ]
@@ -2321,7 +2311,7 @@ $padRequestVars = true;
 // CSRF protection, off by default. On: every <form method="post"> posting back to the
 // site gets a hidden padCsrfToken field, and a POST (PUT, PATCH, DELETE) without the
 // session's token - field or X-CSRF-Token header - is answered 403 before the app runs.
-// {csrf} writes the field by hand, {csrf token} the bare token, padCsrfValid() checks.
+// {pad:csrf} writes the field by hand, {pad:csrf token} the bare token, padCsrfValid() checks.
 $padCsrf = false;
 
 // The output check in development: every local HTML response is read back and duplicate
@@ -2331,7 +2321,7 @@ $padCsrf = false;
 $padCheckOutput = false;
 
 // Template coverage of local requests: which templates were read, which tags ran, which
-// {if}/{case} branch was taken - one JSON line per request in DATA/coverage/<run>.jsonl.
+// {pad:if}/{pad:case} branch was taken - one JSON line per request in DATA/coverage/<run>.jsonl.
 // TRUE is the run 'default', a string names the run; ?page&padCoverage=name for one
 // request; develop/?coverage starts/stops recording every app and shows the report.
 $padCoverage = false;
@@ -2344,7 +2334,7 @@ $padRecord = false;
 
 // Security headers on every web response; '' drops one, [] sends none, a header the page
 // sent itself stands. $padCsp is the Content-Security-Policy ('' none); 'nonce' in it is
-// this request's nonce, which {nonce} writes: <script nonce="{nonce}">.
+// this request's nonce, which {pad:nonce} writes: <script nonce="{pad:nonce}">.
 $padSecurityHeaders = ['X-Content-Type-Options' => 'nosniff',
                        'Referrer-Policy' => 'strict-origin-when-cross-origin'];
 $padCsp = "frame-ancestors 'self'";
@@ -2376,22 +2366,22 @@ $padAuthRemember = '';
 ?orders&padSample             # orders.pad with _samples/orders.json - no _inits.php, no orders.php
 ?orders&padSample=capture     # runs the page for real, writes DATA/samples/<app>/orders.json
 apps/cli/pad sample shop orders   # the same capture, into apps/shop/_samples/orders.json
-{array "* from orders", name='orders'}   # a named database tag answers from the sample too
+{pad:array "* from orders", name='orders'}   # a named database tag answers from the sample too
 ```
 
 ### Expression errors
 
 Under `$padCheckSyntax` (the default), the expression evaluator reports a malformed
 expression in the source's own terms, naming the exact fault and its position:
-- unbalanced quotes, `( )` or `[ ]` — `{echo (1 + 2/}` → *the ( opened at position 1 is never closed*
-- a misspelled pipe function — `{echo $x | uppr/}` → *there is no pipe function named 'uppr'*
+- unbalanced quotes, `( )` or `[ ]` — `{pad:echo (1 + 2/}` → *the ( opened at position 1 is never closed*
+- a misspelled pipe function — `{pad:echo $x | uppr/}` → *there is no pipe function named 'uppr'*
 - a comparison operator missing an operand where no pipe value can stand in for it —
-  `{if $x eq}` → *the operator 'eq' has nothing on its right*
-- an undefined field — `{if $typo eq 1}` → *there is no field named '$typo'*
-- what an expression cannot mean — `{if $x === 1}` → *'===' is no operator - eq (==) compares
+  `{pad:if $x eq}` → *the operator 'eq' has nothing on its right*
+- an undefined field — `{pad:if $typo eq 1}` → *there is no field named '$typo'*
+- what an expression cannot mean — `{pad:if $x === 1}` → *'===' is no operator - eq (==) compares
   two values*; `$n + * 3` → *the operators '+' and '*' stand side by side*; `3 & 1` → *'&' is
   no operator or value*
-- a PHP function refusing its arguments — `{echo 'ab' | php:str_pad(8, '*')/}` → *the PHP
+- a PHP function refusing its arguments — `{pad:echo 'ab' | php:str_pad(8, '*')/}` → *the PHP
   function 'str_pad' refused its arguments: ... @ puts it in its place*
 
 With the check off nothing is reported: a value that is no number counts as 0 (`'a' + 1` is 1),
@@ -2414,7 +2404,7 @@ wrapped by apps/shop/_inits.pad
 ```
 
 The JSON body carries it as `template`: `file`, `line`, `column`, `tag`, `excerpt`, `suggest`,
-`included` (the snippet's or `{page}`'s includer), `wrapped` and a `vscode://file/...` `link`.
+`included` (the snippet's or `{pad:page}`'s includer), `wrapped` and a `vscode://file/...` `link`.
 The build keeps a source map of the joined `_lib`/`_inits`/page/`_exits` text
 (`pad/lib/source.php`); a position it cannot place surely is left out rather than guessed.
 
@@ -2423,7 +2413,7 @@ The build keeps a source map of the joined `_lib`/`_inits`/page/`_exits` text
 An application keeps its own tests in `_tests/`: `cart.pad` (with `cart.php` when it needs
 data) is the test page, `cart.txt` its answer - an exact body, a `/regex/`, or `HTTP 500`
 with an optional `/regex/` on the next line, as in the framework's suites. A test page renders
-bare, no URL reaches it, and it can bring in a real page with `{page 'cart'/}`. `{assert
+bare, no URL reaches it, and it can bring in a real page with `{pad:page 'cart'/}`. `{pad:assert
 $total eq 42, 'the total'/}` fails a test run when false and is silent in production
 (`$padAssert`, off by default, on under `pad test`). `pad test shop --record` writes the
 missing answers; `./ci.sh` runs `pad test --all` and fails on a failing test.
@@ -2442,22 +2432,22 @@ an application with a bar of its own would put the tag in it, which links
 application's home and the stylesheet is written into the page.
 
 Every example an application shows - a template beside its result - has two little icons at
-its top right: ▶ takes it to the [playground](../apps/playground/README.md), which renders
-a template inside its own request, and ⚡ to the [live](../apps/live/README.md) application,
+its top right: ▶ takes it to the [WASM editor](../wasm/README.md), which renders
+a template with its data or PHP in browser memory, and ⚡ to the [live](../apps/live/README.md) application,
 which runs it as a page of this server - its PHP, request values, sessions, `_common` and its
 demo database, forms that post back. Both links carry the template for the template box, and
-its PHP for the PHP box or its data for the data box. The `{example}` and `{table}`/`{demo}`
+its PHP for the PHP box or its data for the data box. The `{common:example}` and `{common:table}`/`{common:demo}`
 tags of `_common` write them, and so do the applications with examples of their own -
 showcase, charts, tags, types, games, toys, inputs, examples - through
 `_common/_lib/playground.php`: `padPlayLink ( $template, $data, $php, $inline, $only )` the
-icons, `padPlayPage ( $root, $page )` those for a page of an application (its `{meta}` line
+icons, `padPlayPage ( $root, $page )` those for a page of an application (its `{pad:meta}` line
 left out, its paired PHP or else the `_data` file its template names with `data='...'`, under
 that name), `padPlayData ( $name, $file )` such a `_data` file as data, with
-`www/_common/play.css`. A `{table}` of demos is one example, every row of it; the icons stand
+`www/_common/play.css`. A `{common:table}` of demos is one example, every row of it; the icons stand
 at the top right of the nearest `position: relative` box (the class `pad-play-box`).
 
 Some examples only a page of its own can run, and they have the live icon alone: the ones the
-tags and types applications show without running them - a `{redirect}`, an `{exit}` - and
+tags and types applications show without running them - a `{pad:redirect}`, an `{pad:exit}` - and
 those of an application that sets `$playExamples = 'live'`, with `$playLivePhp` as PHP the
 live link puts before each example's own: classicModels, whose examples need its tables of
 the demo database and the declarations of its `_inits.php`. `$playExamples = FALSE` leaves
@@ -2470,7 +2460,7 @@ Every PAD application - the ones that use `_common`, and the ones that have it o
 with the `common:` prefix - shares one frame from `_common`, which has no wrapper of its own
 (no `_common/_inits.pad`): a side with the brand on top - `{common:padBrand frame/}`, its links
 in the frame's `<head>` - the application's menu under it, and a bar above the page with the
-title and the theme switcher (`{themes/}`, left out with `$padTheme = FALSE`); side and page are
+title and the theme switcher (`{pad:themes/}`, left out with `$padTheme = FALSE`); side and page are
 light - `<html data-theme="light">`, whatever the system prefers - or in the theme the visitor
 chose, Dark among them, kept in the `padTheme` cookie. The bar has no light/dark switch: Default
 is light, and a page with a setting of its own - the editor's - sets `data-theme` through
@@ -2481,7 +2471,7 @@ PHP), test (a scratch application) and the regression applications. Their `_init
 
 ```
 {common:padFrame}                                  # _common/_tags/padFrame.pad + .php
-  {slot 'head'}{asset 'admin.css', tag/}{/slot}     # also 'title', 'tools', 'side', 'foot'
+  {pad:slot 'head'}{pad:asset 'admin.css', tag/}{/pad:slot}     # also 'title', 'tools', 'side', 'foot'
 {/common:padFrame}
 @page@
 {common:padFrameEnd/}                               # _common/_include/padFrameEnd.pad
@@ -2499,61 +2489,61 @@ dark too.
 
 #### Zebra Striping
 ```
-{items}
-  <tr class="{even@items ? even : odd}">{$name}</tr>
-{/items}
+{array:items}
+  <tr class="{property:even@items ? even : odd}">{$name}</tr>
+{/array:items}
 ```
 
-Or using the `{switch}` tag:
+Or using the `{pad:switch}` tag:
 ```
-{items}
-  <tr class="{switch 'odd', 'even'/}"><td>{$name}</td></tr>
-{/items}
+{array:items}
+  <tr class="{pad:switch 'odd', 'even'/}"><td>{$name}</td></tr>
+{/array:items}
 ```
 
 #### Comma-Separated List
 ```
-{items}{notFirst@items}, {/notFirst@items}{$name}{/items}
+{array:items}{property:notFirst@items}, {/property:notFirst@items}{$name}{/array:items}
 ```
 Output: `Alice, Bob, Charlie`
 
 #### First/Last Wrapper
 ```
-{items}
-  {first@items}<ul>{/first@items}
+{array:items}
+  {property:first@items}<ul>{/property:first@items}
   <li>{$name}</li>
-  {last@items}</ul>{/last@items}
-{/items}
+  {property:last@items}</ul>{/property:last@items}
+{/array:items}
 ```
 
 #### Counter Display
 ```
-{items}
-  {current@items/} of {count@items/}: {$name}
-{/items}
+{array:items}
+  {property:current@items/} of {property:count@items/}: {$name}
+{/array:items}
 ```
 
 #### Dynamic Fields
 ```
-{record "* from users where id=5"}
-  {fields@record}
+{pad:record "* from users where id=5"}
+  {property:fields@record}
     {$name}: {$value}
-  {/fields@record}
-{/record}
+  {/property:fields@record}
+{/pad:record}
 ```
 
 #### Nested Loop with Arithmetic
 ```
-{sequence '1..3', name='row'}
+{sequence:range '1..3', name='row'}
   <tr>
-    {sequence '1..4', name='col'}
-      <td>{echo $row * 10 + $col/}</td>
-    {/sequence}
+    {sequence:range '1..4', name='col'}
+      <td>{pad:echo $row * 10 + $col/}</td>
+    {/sequence:range}
   </tr>
-{/sequence}
+{/sequence:range}
 ```
 
 #### Extract Domain from Email
 ```
-{echo $email | after('@') | before('.')/}
+{pad:echo $email | after('@') | before('.')/}
 ```

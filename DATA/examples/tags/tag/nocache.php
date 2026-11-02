@@ -1,12 +1,12 @@
 <?php
 
-  $tagAbout   = 'Marks a part of a cached page or {cache} section that renders again on every request, the hit included.';
+  $tagAbout   = 'Marks a part of a cached page or {pad:cache} section that renders again on every request, the hit included.';
   $tagGroup   = 'output';
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{nocache} ... {/nocache}
-{cache 'name', ttl=300} ... {nocache} ... {/nocache} ... {/cache}
+{pad:nocache} ... {/pad:nocache}
+{pad:cache 'name', ttl=300} ... {pad:nocache} ... {/pad:nocache} ... {/pad:cache}
 PAD;
 
   $tagParms   = [];

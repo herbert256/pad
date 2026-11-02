@@ -3,7 +3,7 @@
   // grain - film grain: fractal noise of the browser's feTurbulence, the size its grain in
   // pixels, in the ink over the background - laid over a colour or a picture with opacity=.
   //
-  //   {pattern 'grain', size=1.2, opacity=0.4, colors='none, #000'/}
+  //   {pattern:grain size=1.2, opacity=0.4, colors='none, #000'/}
   //
   // The noise is drawn by the browser from the filter's numbers, the seed among them, so the
   // page carries a few hundred bytes for any size of picture: its red channel, made steeper,

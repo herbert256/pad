@@ -2,7 +2,7 @@
 
   // The contacts are the session's copy of _data/contacts.json. htmx asks for one row at a
   // time - &id= with &padFragment=row - and this file narrows the loop to that row, so the
-  // first {fragment 'row'} to render is the answer: the row to read, the row as a form
+  // first {pad:fragment 'row'} to render is the answer: the row to read, the row as a form
   // (mode=edit), or after a post the row as stored - or the form again with padValidate's
   // messages in it. The token of the post comes in the X-CSRF-Token header (_inits.pad).
 
@@ -54,7 +54,7 @@
   }
 
   // An id the session does not hold - a stale or made-up request - has no row to answer: a
-  // 404, which htmx swaps nothing for, where the empty loop rendered no {fragment 'row'} and
+  // 404, which htmx swaps nothing for, where the empty loop rendered no {pad:fragment 'row'} and
   // the answer was a 500, "there is no fragment named 'row' on this page".
 
   if ( $id and ! $rows )

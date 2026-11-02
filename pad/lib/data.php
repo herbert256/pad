@@ -84,7 +84,7 @@
 
       // A type word with no parser behind it used to end the request on a raw missing
       // include. Strict mode names it; the lenient walk falls back to sniffing the type
-      // from the data, the way an untyped {data} is read. A type is a word - type= is often a
+      // from the data, the way an untyped {pad:data} is read. A type is a word - type= is often a
       // value, and as part of the include path ../../x with a value's name included and ran
       // any .php file on the disk.
 
@@ -139,7 +139,7 @@
 
     // A row that is an object - what json_decode answers by default, PDO's FETCH_OBJ, a
     // model - is the row its properties make (padDataObject). Taken as a value, it was
-    // wrapped under the tag's name: {decoded}{$a}{/decoded} was "not found", where= and sort=
+    // wrapped under the tag's name: {array:decoded}{$a}{/array:decoded} was "not found", where= and sort=
     // saw no field, and {people}({$name}){/people} printed the tag's name for every row. A
     // date object, or one that writes itself as text, is a value and stays one.
 
@@ -185,7 +185,7 @@
   // writes it: read by its public properties, a model that leaves its password hash out of
   // its JSON had it written by {^user}, the JSON x-data="{^user}" hands the browser. One
   // whose jsonSerialize answers itself - return $this - is its public properties, as
-  // json_encode writes it: met again on its way down, it stayed an object, and {me}..{/me}
+  // json_encode writes it: met again on its way down, it stayed an object, and {array:me}..{/array:me}
   // was no tag at all.
 
   function padDataObject ( $value, $above = [] ) {
@@ -244,7 +244,7 @@
 
   // An object as a path or a prefix steps into it - {$user.name}, {$user:name}, a condition
   // on its rows: a JsonSerializable is the data it answers, the one view of it {^user} and
-  // {user}..{/user} have - read by its properties, {$user.password_hash} printed the hash its
+  // {array:user}..{/array:user} have - read by its properties, {$user.password_hash} printed the hash its
   // JSON leaves out and {$user.name} differed from the name {^user} wrote - and any other
   // object, or one that stays an object there (a date, a Stringable), cast as it was.
 
@@ -268,11 +268,11 @@
   // download saved as UTF-8: it is no whitespace, so trim leaves it, and it made the first
   // CSV column "\xEF\xBB\xBFname" and pushed an XML document's <?xml off the start, while a
   // JSON or XML string behind it was not recognised on sight and read as CSV. The guards that
-  // refuse a value reading as a PAD list - {data 'd', $v}, data=$v, a fetched body - judge
+  // refuse a value reading as a PAD list - {pad:data 'd', $v}, data=$v, a fetched body - judge
   // this same text, so white space before the BOM cannot hide the list from them.
   //
   // The indent all its lines share is taken off first, so a block written indented in its
-  // template - as a {data} pair is written - reads as it would unindented. Trimmed alone, the
+  // template - as a {pad:data} pair is written - reads as it would unindented. Trimmed alone, the
   // first line lost its indent where the others kept theirs: YAML without its --- start,
   //   city: Paris / country: FR, read the second key as inside the first and ended on "YAML
   // parse error: mapping values are not allowed", an indented - name: a list the same.
@@ -411,7 +411,7 @@
   }
 
   // Whether a data source reads as a numeric range of more members than a value may ask for,
-  // $padSeqDefaultTries - the rounds a {while} gets. A range is built whole, a row per member,
+  // $padSeqDefaultTries - the rounds a {pad:while} gets. A range is built whole, a row per member,
   // up to the ceiling of a range the author writes ($padSeqMaxTries, padGetRange): a request
   // value 1..1000000 handed to data= built a million rows, two minutes and 766 MB for one
   // request. Who chose it is decided as for an address (padDataValueAddress).

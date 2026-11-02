@@ -5,10 +5,10 @@ import sublime_plugin
 
 # {tag or {/tag, with optional type prefix ({data:items}), and the ~ of whitespace control
 # just inside the brace ({~items~}, {~/items})
-TAG_RE = re.compile(r'\{~?(/?)([A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)?)([^{}]*)')
+TAG_RE = re.compile(r'\{~?(/?)([A-Za-z_][A-Za-z0-9_]*:[A-Za-z_][A-Za-z0-9_]*)([^{}]*)')
 
 # the branch words of {if} and {case} divide a pair; they never open one of their own
-BRANCH_TAGS = {'else', 'elseif', 'when'}
+BRANCH_TAGS = {'pad:else', 'pad:elseif', 'pad:when'}
 
 # the comments the engine drops before it scans - {# ... #}, not the option sigil {#name},
 # and {-- ... --} - with any tag written inside them

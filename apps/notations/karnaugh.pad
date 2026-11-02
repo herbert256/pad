@@ -1,4 +1,4 @@
-{meta title='Karnaugh maps'/}
+{pad:meta title='Karnaugh maps'/}
 <p class="nt-lead">A Boolean function of two to four variables drawn as its Karnaugh map: the
 cells of its truth table laid out in Gray-code order, so two cells side by side - over the edges
 too - differ in one variable, each holding 1, 0 or a don't care. The groups of a minimal sum of
@@ -8,12 +8,12 @@ group the map has, and the groups chosen are the fewest that cover the 1s, then 
 the fewest variables; the expression is checked against every cell before it is drawn. A screen
 reader hears the rows of the map, the groups and the expression in words.</p>
 
-<p class="nt-tag">Written <code>{open/}karnaugh 'm(1, 3, 5) + d(0)'/{close/}</code> - minterms and don't
+<p class="nt-tag">Written <code>{pad:open/}notation:karnaugh 'm(1, 3, 5) + d(0)'/{pad:close/}</code> - minterms and don't
 cares, maxterms <code>M(0, 2)</code>, the output column of a truth table <code>0110 1001</code>, or
-an expression between the tags: <code>{open/}karnaugh{close/}F = A'B + AC{open/}/karnaugh{close/}</code>,
+an expression between the tags: <code>{pad:open/}notation:karnaugh{pad:close/}F = A'B + AC{pad:open/}/notation:karnaugh{pad:close/}</code>,
 with <code>'</code>, <code>~</code> or <code>not</code>, <code>+</code> or <code>or</code>,
 <code>^</code> or <code>xor</code>, and two terms side by side for and. <code>vars=</code> names the
 variables, <code>form='pos'</code> loops the 0s for a product of sums, <code>numbers</code> writes
 the number of every cell.</p>
 
-{examples/}
+{include:examples/}

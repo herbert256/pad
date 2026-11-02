@@ -1,6 +1,6 @@
 <?php
 
-  // A _data/*.sql file is a named query: {staffByPhone} runs it, and each {$field} in it is
+  // A _data/*.sql file is a named query: {local:staffByPhone} runs it, and each {$field} in it is
   // bound as a placeholder - this hostile pattern compares as a value, it never joins the
   // statement.
 

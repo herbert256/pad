@@ -1,24 +1,24 @@
 <li> Line in page.pad / abc 
 <li> Variable in page.php / {$page}
 
-{myXML}
+{local:myXML}
   <li> {$value}
-{/myXML}
+{/local:myXML}
 
-{myTag/}
+{app:myTag/}
 
 <li> {$function | myFunction}
 
-{pad myOption}
+{pad:pad myOption}
   <li> Line for _option/myOption.php in 
-{/pad}
+{/pad:pad}
 
-<li> Line for _scripts/myScript.sh {myScript/}
+<li> Line for _scripts/myScript.sh {script:myScript/}
 
-{pad callback='myCallback.php'}
+{pad:pad callback='myCallback.php'}
   <li> Line for _callbacks/myCallback in {$callBack}
-{/pad}
+{/pad:pad}
 
-{myInclude/}
+{include:myInclude/}
 
-{myContent/}
+{content:myContent/}

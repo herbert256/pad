@@ -1,43 +1,43 @@
 <h3>Random vs shuffle</h3>
 
-{table}
+{common:table}
 
-{demo}{sequence 'A..Z'}
+{common:demo}{sequence:range 'A..Z'}
   {$sequence}
-{/sequence }{/demo}
+{/sequence:range }{/common:demo}
 
-{demo}{sequence 'A..Z', shuffle}
+{common:demo}{sequence:range 'A..Z', shuffle}
   {$sequence}
-{/sequence }{/demo}
+{/sequence:range }{/common:demo}
 
-{demo}{sequence 'A..Z', shuffle, sort}
+{common:demo}{sequence:range 'A..Z', shuffle, sort}
   {$sequence}
-{/sequence }{/demo}
+{/sequence:range }{/common:demo}
 
-{demo}{sequence 'A..Z', random}
+{common:demo}{sequence:range 'A..Z', random}
   {$sequence}
-{/sequence }{/demo}
+{/sequence:range }{/common:demo}
 
-{demo}{sequence 'A..Z', random, sort}
+{common:demo}{sequence:range 'A..Z', random, sort}
   {$sequence}
-{/sequence }{/demo}
+{/sequence:range }{/common:demo}
 
-{/table} {table}
+{/common:table} {common:table}
 
-{demo}{sequence 'A..Z', random, unique, sort}
+{common:demo}{sequence:range 'A..Z', random, unique, sort}
   {$sequence}
-{/sequence }{/demo}
+{/sequence:range }{/common:demo}
 
-{demo}{sequence 'A..Z', random, dedup, sort}
+{common:demo}{sequence:range 'A..Z', random, dedup, sort}
   {$sequence}
-{/sequence }{/demo}
+{/sequence:range }{/common:demo}
 
-{demo}{sequence 'A..Z', reverse}
+{common:demo}{sequence:range 'A..Z', reverse}
   {$sequence}
-{/sequence}{/demo}
+{/sequence:range}{/common:demo}
 
-{demo}{sequence 'A..Z', reverse, sort}
+{common:demo}{sequence:range 'A..Z', reverse, sort}
   {$sequence}
-{/sequence}{/demo}
+{/sequence:range}{/common:demo}
 
-{/table}
+{/common:table}

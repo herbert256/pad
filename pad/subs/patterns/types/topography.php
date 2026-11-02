@@ -4,7 +4,7 @@
   // octaves, its hills the size across, traced at levels= heights (12) by marching squares,
   // every fifth line the bolder index contour in the second ink.
   //
-  //   {pattern 'topography', seed=7, levels=16/}
+  //   {pattern:topography seed=7, levels=16/}
   //
   // The noise: a lattice of random heights a size apart, eased between its points (3t² - 2t³),
   // and two finer lattices of half and a quarter of that, at half and a quarter the weight,

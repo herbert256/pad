@@ -1,6 +1,6 @@
 <?php
 
-  // A computed sheet as the HTML of {spreadsheet}: a <table> with the column letters as its
+  // A computed sheet as the HTML of {pad:spreadsheet}: a <table> with the column letters as its
   // head and the row numbers as the head of each row - th scope="col" and scope="row", so a
   // screen reader names a cell as a spreadsheet does - unless headers=FALSE. A cell shows its
   // value, a number through its column's format; numbers stand right, TRUE and FALSE and
@@ -10,7 +10,7 @@
   //
   // The cells to edit are <input>s named padSheet[<sheet>][<cell>], labelled by the cell and
   // the name of its column. Where they post depends on what the sheet stands in ($view
-  // ['mode']): in a {form} they go with the form; in a {live} region the sheet is a form the
+  // ['mode']): in a {pad:form} they go with the form; in a {pad:live} region the sheet is a form the
   // live script posts (pad-submit), which a change of a cell submits - every cell's text
   // once, so the region comes back computed without a script of the page's own; anywhere
   // else the sheet is a form of its own, posting back with a Recalculate button. Each cell

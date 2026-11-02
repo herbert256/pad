@@ -14,7 +14,7 @@
   // Access-Control-Allow-Origin: the origin itself, with Vary: Origin, or * for '*' without
   // credentials (a browser refuses * with them, so the origin is named then), and
   // Access-Control-Allow-Credentials and -Expose-Headers when set. '*' with credentials
-  // lets every site read what a logged-in visitor sees - a {csrf token} too, which voids
+  // lets every site read what a logged-in visitor sees - a {pad:csrf token} too, which voids
   // the CSRF check: name the origins when cookies go along. A preflight - OPTIONS
   // with an Access-Control-Request-Method - is answered 204 at once with -Allow-Methods,
   // -Allow-Headers and -Max-Age: no page renders, no CSRF token is asked, none of the

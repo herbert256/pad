@@ -5,7 +5,7 @@
   // and a stop pattern, a row indicator at each end of a row that says how many rows, columns
   // and error correction the symbol has, so a scanner can read it row by row in any order.
   //
-  //   {pdf417 'M1DOE/JOHN            EABC123 AMSLHRKL 0641 307Y012A0042 100'/}
+  //   {barcode:pdf417 'M1DOE/JOHN            EABC123 AMSLHRKL 0641 307Y012A0042 100'/}
   //   {barcode:pdf417 $document, columns=6, level=5/}
   //
   // padPdf417          the SVG, or '' when the text does not fit in a symbol of 928 codewords

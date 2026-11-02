@@ -3,7 +3,7 @@
   // sepia - the brown of an old photograph: every pixel through the classic sepia matrix, amount=
   // percent of the way from the picture to it (100).
   //
-  //   {img 'photos/harbour.jpg', width=400, filter='sepia', amount=80, alt='The harbour'/}
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='sepia', amount=80, alt='The harbour'/}
   //
   // The matrix: red 0.393 0.769 0.189, green 0.349 0.686 0.168, blue 0.272 0.534 0.131 of the
   // red, green and blue, each at most 255.

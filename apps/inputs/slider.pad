@@ -1,12 +1,12 @@
-{meta title='Slider'/}
-{about/}
+{pad:meta title='Slider'/}
+{include:about/}
 
-{form 'try', class='inputs-try', error}
-  {slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}
+{pad:form 'try', class='inputs-try', error}
+  {input:slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}
   {input:slider 'tempo', label='Tempo', min=40, max=200, step=4, value=120, unit=' bpm', marks='60, 90, 120, 150, 180'/}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-{template/}
+{include:template/}

@@ -1,7 +1,7 @@
 <?php
 
   // Shared helpers for the sequence subsystem (pad/sequence/, prefix pq*), used by the
-  // {sequence} tag, its actions and the individual sequence types.
+  // {sequence:loop} tag, its actions and the individual sequence types.
   //
   // Which sequence, which variant:
   //   pqSeq / pqAction  does a type directory PT/<name> or an action PA/<name>.php exist
@@ -147,7 +147,7 @@
   // values they are. The parameter is a value of the type, whatever text is in it, and the
   // options are the run's named limits - [ 'rows' => 3, 'to' => 50 ] or the same written
   // 'rows=3, to=50', each value as written - made by pqTerms, nothing rendered. It wrote a
-  // {sequence} tag pair of the three and rendered it through padCode, so the parameter was
+  // {sequence:loop} tag pair of the three and rendered it through padCode, so the parameter was
   // template source - pqArray ( 'repeat', "1, make, eval='php:abs(-123)'", 'rows=1' ) ran the
   // PHP call and answered [ '123' ] - and a term came back as the page writes it, 'a&b' as
   // 'a&amp;b' and 'a,b' with the comma one of the template's stand-ins. A name that is no type
@@ -239,7 +239,7 @@
     // A type that steps its walk itself - even, odd, step, multiple: pqStepType () - over a
     // number or none makes whole terms a fixed step apart, so the term at a position is worked
     // out from its first three: walked by count, a position past the ceiling of candidates was
-    // past the walk, and {sequence even, build='function', from=1000000, rows=3} gave 2000000
+    // past the walk, and {sequence:even build='function', from=1000000, rows=3} gave 2000000
     // alone after a second, from=3000000 nothing. A step past the integer range answers the
     // float an overflow does.
 
@@ -267,7 +267,7 @@
   // accepts, so its walk goes on from the candidate after the last term for the terms missing
   // only, with what is left of the candidates, as sequence/sequence.php does for a lookup; any
   // other walk is made again for twice as many. Made again from 1 for every doubling, each walk
-  // with the five seconds of its own, {sequence '1..100', make, amicable, build='order'} took
+  // with the five seconds of its own, {sequence:range '1..100', make, amicable, build='order'} took
   // seven seconds, past the run's five, and its count was where the clock stopped the last.
 
   function pqTermsCount ( $seq, $parm, $n, $made ) {
@@ -328,6 +328,7 @@
 
     if     ( is_numeric ( $name )                               ) return 'a number';
     elseif ( pqSeq ( $name )                                    ) return 'a Sequence name';
+    elseif ( in_array ( $name, padSequenceOperations, TRUE ) or $name === 'auto' ) return 'a Sequence tag';
     elseif ( padFileExists ( PQ . "start/tags/$name.php" )      ) return 'a Sequence tag';
     elseif ( padFileExists ( PQ . "options/types/$name.php" )   ) return 'a Sequence option name';
     elseif ( pqAction ( $name )                                 ) return 'an Action name';
@@ -339,11 +340,11 @@
 
   // What the page made under a name already, which a sequence store of that name would take the
   // place of: lib/type.php padTypeTag reaches $pqStore before every other store and before a
-  // page variable, so {name} iterated the sequence from then on. The sequence pair that only
-  // names its loop - {sequence 3, name='orders'} - made a later {orders}{$id}{/orders} loop
-  // over 1 2 3 instead of the page's orders, and push='x' after a {data 'x'}, {content 'x'},
-  // {bool 'x'} or {define 'x'} left that store reachable as {data:x} only, in silence, where a
-  // {data 'x'} after the sequence store is refused (tags/_go/store.php). '' when it made none.
+  // page variable, so {property:name} iterated the sequence from then on. The sequence pair that only
+  // names its loop - {sequence:loop 3, name='orders'} - made a later {orders}{$id}{/orders} loop
+  // over 1 2 3 instead of the page's orders, and push='x' after a {pad:data 'x'}, {pad:content 'x'},
+  // {pad:bool 'x'} or {pad:define 'x'} left that store reachable as {data:x} only, in silence, where a
+  // {pad:data 'x'} after the sequence store is refused (tags/_go/store.php). '' when it made none.
 
   function pqStoreHeld ( $name ) {
 
@@ -355,8 +356,8 @@
     if     ( isset ( $padDataStore    [$name] ) ) return 'a data store';
     elseif ( isset ( $padContentStore [$name] ) ) return 'a content block';
     elseif ( isset ( $padBoolStore    [$name] ) ) return 'a bool store';
-    elseif ( isset ( $padDefineStore  [$name] ) ) return 'a {define} tag';
-    elseif ( isset ( $padMacroStore   [$name] ) ) return 'a {macro}';
+    elseif ( isset ( $padDefineStore  [$name] ) ) return 'a {pad:define} tag';
+    elseif ( isset ( $padMacroStore   [$name] ) ) return 'a {pad:macro}';
     elseif ( isset ( $padSelect       [$name] ) ) return 'a select table';
     elseif ( is_array ( pqStorePageValue ( $name ) ) and padValidStore ( $name ) ) return 'an array of the page';
 
@@ -435,7 +436,7 @@
 
   // The names in a directory of the subsystem - the types in PT, the actions in PA - as they
   // are written on disk, read once a request. A type or an action is named exactly: asked of
-  // the file system, a case-insensitive one - macOS, Windows - took {sequence Prime} for the
+  // the file system, a case-insensitive one - macOS, Windows - took {sequence:auto Prime} for the
   // prime type, included types/Prime/bool.php after types/prime/bool.php and ended the request
   // on "Cannot redeclare function pqBoolPrime()", and sequence:Fibonacci(8) answered 13 where
   // a Linux server says there is no such type.
@@ -499,7 +500,7 @@
   //
   // The terms are asked by count, with the ceiling of candidates, as pqPosition () asks them:
   // asked to= the position, a type that tests or steps through values - a play with
-  // build='order' - made the terms up to the value n, and {sequence '1..6', make, multiple=3,
+  // build='order' - made the terms up to the value n, and {sequence:range '1..6', make, multiple=3,
   // build='order'} answered nothing, step=3 only 1. A walk that came up short is all there
   // is, and is not made again for a later position.
 
@@ -584,9 +585,9 @@
 
   // Whether a tag option is one the subsystem reads: a name with a file in options/types/.
   // The files of store, single and operation only keep the names from a store (exits/store/
-  // check.php): bare, they are words of the spelling a store's tag is written in - {mySequence
+  // check.php): bare, they are words of the spelling a store's tag is written in - {pull:mySequence
   // store} in apps/sequence/check/store.pad - but nothing reads a value given to one, and
-  // excused as an option {sequence '1..5', store='nums'} kept no store while the strict check
+  // excused as an option {sequence:range '1..5', store='nums'} kept no store while the strict check
   // let it pass, where stor='nums' is named.
 
   function pqOption ( $option, $value = TRUE ) {
@@ -639,7 +640,7 @@
       return [];
 
     // Without duplicates a member is drawn once at most, so a count past the members draws
-    // them all: it went over to the draw with repeats, and {sequence '1..5', randomize=6}
+    // them all: it went over to the draw with repeats, and {sequence:range '1..5', randomize=6}
     // answered 3 3 4 4 2 1 - two members twice and 5 not at all.
 
     if ( ! $dups and ! $once and $count > count ( $array ) )
@@ -1043,7 +1044,7 @@
   // without the rest of the million being made. The walk is kept in $made, the terms made
   // as far as the reach, and goes on from where it stopped for the next value not found yet;
   // at the ceiling $made becomes what the terms there make of it, pqTermsIndexOf () with the
-  // index the walk made - pqIndex () of them - as the one run to the ceiling made it. Made in one run every time, {sequence '150;500;1000;4000', keep,
+  // index the walk made - pqIndex () of them - as the one run to the ceiling made it. Made in one run every time, {sequence:list '150;500;1000;4000', keep,
   // eval='@ + 1'} made a million terms for 150, made at position 149, and took two seconds.
   //
   // A stretch that comes back short - a position that made no term, or one past the integer
@@ -1123,7 +1124,7 @@
 
   // A float -0 made 0, any other number as it is - what x + 0 did for the arithmetic of a
   // sequence type, until PHP's optimizer, sure of a float, took x + 0 for x and dropped it:
-  // under OPcache without Xdebug {sequence modulo=3, from=-3} printed -0 again.
+  // under OPcache without Xdebug {sequence:modulo 3, from=-3} printed -0 again.
 
   function pqZero ( $x ) {
 
@@ -1188,10 +1189,10 @@
 
   // $x rounded up to a multiple of $p, as ceil ( $x / $p ) * $p rounds it, but in whole numbers
   // when both are whole and $p is above 0: through a float the quotient lost its last digits
-  // past 2^53, and {sequence multiple=3, from=-9223372036854775808} began on the imprecise
+  // past 2^53, and {sequence:multiple 3, from=-9223372036854775808} began on the imprecise
   // -9.2233720368548E+18 rather than on -9223372036854775806. A bare multiple holds TRUE, the
   // step of 1 it is read as: refused as no whole number, it went through the float too, and
-  // {sequence multiple, from=9223372036854775800, rows=3} answered nothing.
+  // {sequence:multiple from=9223372036854775800, rows=3} answered nothing.
 
   function pqCeilMultiple ( $x, $p ) {
 
@@ -1220,7 +1221,7 @@
   // The floor takes the remainder off, and a whole $p more when the remainder is below 0, so
   // no sum passes the integer range on the way: ( $x % $p ) + $p did once the remainder and
   // the parameter together passed PHP_INT_MAX, and the % of that float ended the request -
-  // {sequence floor=9223372036854775807} on "The float 9.223372036854776E+18 is not
+  // {sequence:floor 9223372036854775807} on "The float 9.223372036854776E+18 is not
   // representable as an int". Only a floor below PHP_INT_MIN leaves the range now, as the
   // float that ends the run.
 
@@ -1264,7 +1265,7 @@
   // with the exact pqProduct the type generates with. Generated up to the candidate
   // instead, the membership check stopped at the million-candidate ceiling and answered no
   // past it - 10^16 was no square. 0 is the term at position 0, which the types make: it was
-  // turned down, and {sequence pentagonal, from=0} made a 0 its own test denied.
+  // turned down, and {sequence:pentagonal from=0} made a 0 its own test denied.
 
   function pqBoolFigurate ( $x, $a, $b, $d ) {
 
@@ -1290,7 +1291,7 @@
   // a loop, a recurrence, a formula of the position, a list - before a bool.php predicate, so
   // a type that is generated some other way can also have a membership test, as golomb and
   // kolakoski do, without its terms being made by walking the values instead: were bool.php
-  // placed before the recurrence, golomb's would make {sequence golomb} the run of the numbers
+  // placed before the recurrence, golomb's would make {sequence:golomb} the run of the numbers
   // that belong to it, 1 2 3 4 for 1 2 2 3.
 
   function pqBuild ( $check, $for='' ) {

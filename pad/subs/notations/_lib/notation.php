@@ -4,9 +4,9 @@
   // AsciiMath as MathML, a chemical equation, a tune in ABC as a staff, a guitar chord as its
   // box, a word in braille, morse, semaphore or signal flags, a chess, go or draughts position.
   //
-  //   {notation 'math'}x = (-b +- sqrt(b^2-4ac))/(2a){/notation}
+  //   {notation:math}x = (-b +- sqrt(b^2-4ac))/(2a){/notation:math}
   //   {notation:chem 'CH4 + 2O2 -> CO2 + 2H2O'/}
-  //   {chess 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'/}
+  //   {notation:chess 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'/}
   //
   // A notation is a file of subs/notations/types/ - <kind>.php reads the options of the kind,
   // draws the text ($padNotationText) and answers the markup - and the files there are the
@@ -41,24 +41,14 @@
 
   }
 
-  // The tag the notation is written as, for what a message says: {notation 'x'}, {notation:x},
-  // {x}, or the built-in tag that draws a notation of its name, {chess}. Read from the level,
-  // not from the body's variables: a notation drawn by a template that a pipe runs - {echo $t
+  // The tag the notation is written as, for what a message says: {notation:x}, {notation:x},
+  // {data:x}, or the built-in tag that draws a notation of its name, {notation:chess}. Read from the level,
+  // not from the body's variables: a notation drawn by a template that a pipe runs - {pad:echo $t
   // | code/} - has those in the scope of that run.
 
   function padNotationWhat () {
 
-    global $pad, $padType, $padPrefix, $padTag, $padOpt;
-
-    if ( ( $padType [$pad] ?? '' ) == 'notation' )
-      return '{' . ( ( $padPrefix [$pad] ?? '' ) !== '' ? 'notation:' : '' ) . ( $padTag [$pad] ?? '' ) . '}';
-
-    if ( ( $padTag [$pad] ?? '' ) !== 'notation' )
-      return '{' . ( $padTag [$pad] ?? '' ) . '}';
-
-    $kind = $padOpt [$pad] [1] ?? '';
-
-    return "{notation '" . ( is_string ( $kind ) ? strtolower ( trim ( $kind ) ) : '' ) . "'}";
+    return '{' . padTagDisplay () . '}';
 
   }
 

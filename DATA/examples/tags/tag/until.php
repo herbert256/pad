@@ -5,8 +5,8 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{until condition} ... {/until}
-{until} ... {/until condition}
+{pad:until condition} ... {/pad:until}
+{pad:until} ... {/pad:until condition}
 PAD;
 
   $tagParms   = [

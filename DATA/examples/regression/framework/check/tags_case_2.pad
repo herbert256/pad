@@ -1,12 +1,12 @@
 <p>
-  {case $happiness * $hours}
-    {when ($beer*2) + ($sausage*1)}
+  {pad:case $happiness * $hours}
+    {pad:when ($beer*2) + ($sausage*1)}
       Bonjour le Monde
-    {when ($beer*4) + ($sausage*2)}
+    {pad:when ($beer*4) + ($sausage*2)}
       Hallo Wereld
-    {when ($beer*8) + ($sausage*4)}
+    {pad:when ($beer*8) + ($sausage*4)}
       Hallo Welt
     @else@
       Hello World
-  {/case}
+  {/pad:case}
 </p>

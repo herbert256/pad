@@ -1,9 +1,8 @@
 <?php
 
-  // Type handler for a sound: {sound:chime/}, {sound:pop on='click', target='#save'/}. The
-  // sound is the tag's name, set up as {sound 'chime'} sets it up, by subs/sounds/sound.php -
-  // run as a built-in tag's PHP half is run, types/_go/tag.php. A sound is never reached
-  // bare: click, error and pop are the words of fields and pages.
+  // sound:kind selects a registered kind from its subsystem. The type handler
+  // runs the subsystem with the kind in the tag name and its own parameters unchanged.
+
 
   $padSoundKind = $padTag [$pad];
 

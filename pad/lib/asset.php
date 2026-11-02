@@ -22,7 +22,7 @@
   // gives every file a new time, and a time kept by rsync -t could hide a change - made
   // with xxh128 (fast enough for a large bundle on every request) and kept per request,
   // so a file written twice on a page is read once. The first ten hex digits are enough to
-  // tell versions of one file apart. {asset 'charts.css'} and {asset 'app.js', tag} are
+  // tell versions of one file apart. {pad:asset 'charts.css'} and {pad:asset 'app.js', tag} are
   // the template's forms.
 
   function padAsset ( $file ) {
@@ -82,7 +82,7 @@
     }
 
     // The name as the characters it holds (padParmText): a field written inside the quoted
-    // name - {img 'photos/{$file}'} - came with the stand-in of its @ and HTML-escaped, and
+    // name - {pad:img 'photos/{$file}'} - came with the stand-in of its @ and HTML-escaped, and
     // logo@2x.png or Zürich.jpg was refused as no file name.
 
     $name = trim ( padParmText ( $file ) );

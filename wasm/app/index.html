@@ -14,7 +14,7 @@
     Opened from the disk (file://) - this page starts PHP in the tab and shows the
     application's pages in a frame filling the window, as on a server. A link or a form in
     them is a request to PHP here, and so is what the pages' own JavaScript asks - fetch,
-    XMLHttpRequest, EventSource, a {live} region - through a small script put first in every
+    XMLHttpRequest, EventSource, a {pad:live} region - through a small script put first in every
     page. The page is kept after the # of this file's address, so back, forward and reload
     work, and the window's title is the page's.
 
@@ -578,7 +578,7 @@
 
     // The script first in every page shown in the frame. It runs in the page's window and
     // routes what the page's own JavaScript asks of the application to PHP in the page
-    // around it: fetch, XMLHttpRequest ({ajax}, htmx), EventSource (padSse), sendBeacon,
+    // around it: fetch, XMLHttpRequest ({pad:ajax}, htmx), EventSource (padSse), sendBeacon,
     // form.submit(); links and forms come here too, and Ctrl+Shift+K opens the panel.
 
     function frameScript() {
@@ -778,7 +778,7 @@
       HTMLFormElement.prototype.submit = function () { host.submit(this, null, null); };
 
       // Links and forms - on the window, so after every handler of the page's own (a
-      // {live} region's, htmx's), which may have taken them.
+      // {pad:live} region's, htmx's), which may have taken them.
 
       window.addEventListener('click', event => host.click(event, page));
       window.addEventListener('submit', event => { if (!event.defaultPrevented) host.submit(event.target, event.submitter, event); });

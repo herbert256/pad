@@ -3,9 +3,9 @@
   // Steps that narrow: the funnel, and the pyramid - a triangle in layers, or the
   // population pyramid of two fields back to back.
   //
-  //   {chart 'funnel',  data='shop', label='step', value='visitors'}
-  //   {chart 'pyramid', data='food', label='group', value='share'}
-  //   {chart 'pyramid', data='people', label='age', value='men, women'}
+  //   {chart:funnel data='shop', label='step', value='visitors'}
+  //   {chart:pyramid data='food', label='group', value='share'}
+  //   {chart:pyramid data='people', label='age', value='men, women'}
   //
   // funnel - the rows top to bottom as bars centred on one axis, as wide as their value
   // against the largest, joined by a light band. Each bar shows its value, and on the right

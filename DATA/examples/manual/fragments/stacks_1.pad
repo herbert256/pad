@@ -1,9 +1,9 @@
 <p>Stylesheets this page needs:</p>
-<ul>{stack 'styles'/}</ul>
+<ul>{pad:stack 'styles'/}</ul>
 
-{sequence '1..3', name='n'}
-  {push 'styles', once='badge'}<li>badge.css</li>{/push}
+{sequence:range '1..3', name='n'}
+  {pad:push 'styles', once='badge'}<li>badge.css</li>{/pad:push}
   <span class="badge">badge {$n}</span>
-{/sequence}
+{/sequence:range}
 
-{push 'styles'}<li>footer.css</li>{/push}
+{pad:push 'styles'}<li>footer.css</li>{/pad:push}

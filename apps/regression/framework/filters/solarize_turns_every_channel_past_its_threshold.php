@@ -5,7 +5,7 @@
   // (127.5) the greys 0 64 127 128 192 255 become 0 64 127 127 63 0 - 128 is the first to turn,
   // as with PIL's ImageOps.solarize at its default 128 and ImageMagick's -solarize 50%. Each
   // channel on its own: #20c080 is #203f7f. At 0 everything turns, as invert; at 100 only 255.
-  // A pixel keeps its opacity. And the photo as {img} makes it, the same bytes as PIL's
+  // A pixel keeps its opacity. And the photo as {pad:img} makes it, the same bytes as PIL's
   // solarize gave for the same picture.
 
   include_once PAD . 'subs/filters/_lib/filter.php';

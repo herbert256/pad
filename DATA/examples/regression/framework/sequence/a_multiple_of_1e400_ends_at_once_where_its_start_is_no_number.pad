@@ -1,1 +1,1 @@
-{set $t0 = php:microtime(TRUE)/}[{sequence multiple=$q, to=50, rows=3}{$sequence} {/sequence}]{if php:microtime(TRUE) - $t0 lt 1}quick{else}slow{/if}
+{pad:set $t0 = php:microtime(TRUE)/}[{sequence:multiple $q, to=50, rows=3}{$sequence} {/sequence:multiple}]{pad:if php:microtime(TRUE) - $t0 lt 1}quick{pad:else}slow{/pad:if}

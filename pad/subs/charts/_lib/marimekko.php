@@ -2,7 +2,7 @@
 
   // Two ways of parting one whole at once: the marimekko, or mosaic chart.
   //
-  //   {chart 'marimekko', data='market', label='region', value='alpha, beta, gamma, other'}
+  //   {chart:marimekko data='market', label='region', value='alpha, beta, gamma, other'}
   //
   // A column per row, named by label= - else the first field that is no number - and as
   // WIDE as its total of the value= fields, two or more - else every numeric field of the

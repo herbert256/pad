@@ -3,7 +3,7 @@
   // internetarchive - An item of the Internet Archive - a film, a recording, a book - in the
   // archive's own player: archive.org/details/<identifier>, with a file of the item after
   // it when it has several, and archive.org/embed/<identifier>; named, a bare identifier as
-  // well, {internetarchive 'night_of_the_living_dead'}.
+  // well, {embed:internetarchive 'night_of_the_living_dead'}.
 
   return [
 

@@ -225,7 +225,7 @@
   }
 
   // Writing starts the session when there is none yet. An array of names and values puts
-  // them all. FALSE when no session can start - the headers have gone out, after {flush}.
+  // them all. FALSE when no session can start - the headers have gone out, after {pad:flush}.
 
   function padSessionPut ( $key, $value = NULL ) {
 

@@ -20,10 +20,10 @@
   // padPageGet    fetches another page server side over curl and returns its body
   //
   // padPageCheck and padPage take the application directory as an optional second
-  // argument, so {ajax app=} can ask the same question of another application. The router
-  // answers with these, and {page}, {get}, {redirect} and {ajax} ask them too: they used
+  // argument, so {pad:ajax app=} can ask the same question of another application. The router
+  // answers with these, and {pad:page}, {pad:get}, {pad:redirect} and {pad:ajax} ask them too: they used
   // padAppPageCheck, the _include/-style search from the page's own directory up, which
-  // knew neither .html pages nor directory indexes - {page 'sub'} was refused where ?sub
+  // knew neither .html pages nor directory indexes - {pad:page 'sub'} was refused where ?sub
   // served sub/index - and found a page beside the current one that the nested build then
   // looked for at the root.
 
@@ -112,7 +112,7 @@
     $ajax = 'padAjax' . md5 ( $page . $qry . $app ) ;
     //$ajax = 'padAjax' . padRandomString(8);
 
-    // The same page asked twice on one page - a widget shown twice, an {ajax} in a loop - had
+    // The same page asked twice on one page - a widget shown twice, an {pad:ajax} in a loop - had
     // one id and one global request: the second script took the request over while the first
     // was in flight, both answers went into the first div and the second stayed empty. Every
     // use after the first gets a number of its own; the first keeps its id, so the page stays
@@ -131,13 +131,13 @@
       $ajax .= '_' . $ajaxUsed [$ajax];
 
     // Under a Content-Security-Policy naming 'nonce' the script carries this request's nonce,
-    // as {live} and {asset} write theirs - without it the policy blocked it, and no {ajax}
+    // as {pad:live} and {pad:asset} write theirs - without it the policy blocked it, and no {pad:ajax}
     // loaded.
 
     $nonce = ( is_string ( $GLOBALS ['padCsp'] ?? NULL ) and str_contains ( $GLOBALS ['padCsp'], "'nonce'" ) )
            ? ' nonce="' . htmlspecialchars ( padNonce (), ENT_QUOTES ) . '"' : '';
 
-    // Each segment of the page is encoded, as {get} asks for its page: a segment a route
+    // Each segment of the page is encoded, as {pad:get} asks for its page: a segment a route
     // binds may hold what a query string reads as its own, and products/a&b loaded
     // products/a with a value b into the browser.
 

@@ -1,6 +1,6 @@
 <?php
 
-  // {file dir=.. name=.. ext=..}...{/file} writes its content to a file instead of to the
+  // {pad:file dir=.. name=.. ext=..}...{/pad:file} writes its content to a file instead of to the
   // page. The first visit only asks for a second one at level end ($padWalk = 'end'),
   // because the content has to be rendered first; the dir, name, ext, date, stamp and id
   // parameters are put in the globals padFileName() builds the path from, padFilePut()
@@ -38,7 +38,7 @@
   // ext='php::$DATA' wrote shell.php there - and IIS reads a web.config in any directory.
 
   if ( preg_match ( '/(^|\/)\.|\.(php\d*|phtml|pht|phar|phps)([.\s:\/]|$)|(^|\/)web\.config[.\s]*(::\$data)?$/i', $padFileNamed ) ) {
-    padError ( "the {file} writes no '" . padMakeSafe ( $padFileNamed, 80 ) . "' - a name the web server would run or read as its own configuration" );
+    padError ( "the {pad:file} writes no '" . padMakeSafe ( $padFileNamed, 80 ) . "' - a name the web server would run or read as its own configuration" );
     $padContent = '';
     return FALSE;
   }

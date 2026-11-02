@@ -10,9 +10,9 @@
   //   serve   a page fetched from the server it starts, on a free port
   //   export  the regression/site fixture as static files: page links turned into relative
   //           .html files, from a subdirectory too, the assets copied, the outside link kept;
-  //           and a scratch application with its {img} thumbnails, srcset and {video} poster,
+  //           and a scratch application with its {pad:img} thumbnails, srcset and {pad:video} poster,
   //           and a srcset whose addresses hold a comma kept whole
-  //   test    the _tests of the scratch application - a pass, a failing {assert}, a test
+  //   test    the _tests of the scratch application - a pass, a failing {pad:assert}, a test
   //           without an answer and --record writing it, a pattern over a page of 1.6 MB, a
   //           pattern that cannot be run, a long line cut, bodies that read as a pattern or
   //           a status recorded as the pattern of that body - and of regression/site, whose
@@ -112,7 +112,7 @@
     // standard output and with --out to a file
 
     file_put_contents ( "$home/apps/shop/orders.php", '<?php $orders = [ [ "id" => 1, "total" => 9.5 ], [ "id" => 2, "total" => 12, "gift" => true ] ]; $padExpose = [ "orders" ]; ?>' );
-    file_put_contents ( "$home/apps/shop/orders.pad", '{orders}{$id} {/orders}' );
+    file_put_contents ( "$home/apps/shop/orders.pad", '{array:orders}{$id} {/array:orders}' );
 
     list ( $codeY1, $outY1 ) = cliCheckRun ( [ 'types', 'shop', 'orders' ], $env );
     list ( $codeY2 )         = cliCheckRun ( [ 'types', 'shop', "--out=$home/types/pad.d.ts" ], $env );
@@ -147,10 +147,10 @@
 
     mkdir ( $tests, 0755, TRUE );
 
-    file_put_contents ( "$tests/good.pad",  '<p>{echo 1 + 1/}</p>' );
+    file_put_contents ( "$tests/good.pad",  '<p>{pad:echo 1 + 1/}</p>' );
     file_put_contents ( "$tests/good.txt",  '<p>2</p>' );
     file_put_contents ( "$tests/bad.php",   '<?php $total = 41; ?>' );
-    file_put_contents ( "$tests/bad.pad",   '{assert $total eq 42/}' );
+    file_put_contents ( "$tests/bad.pad",   '{pad:assert $total eq 42/}' );
     file_put_contents ( "$tests/bad.txt",   '' );
     file_put_contents ( "$tests/fresh.pad", 'fresh' );
 
@@ -158,7 +158,7 @@
     // pattern that cannot be run says so; a failing one-line body of 5000 characters is cut
 
     file_put_contents ( "$tests/big.php",   '<?php $big = str_repeat ( "x<p>", 400000 ); ?>' );
-    file_put_contents ( "$tests/big.pad",   '{echo $big/}END' );
+    file_put_contents ( "$tests/big.pad",   '{pad:echo $big/}END' );
     file_put_contents ( "$tests/big.txt",   '/^[\s\S]*?x[\s\S]*?END$/' );
     file_put_contents ( "$tests/odd.pad",   'odd' );
     file_put_contents ( "$tests/odd.txt",   '/(/' );
@@ -281,7 +281,7 @@
     // work, queue and schedule - job handlers, a page that queues, a schedule
 
     mkdir ( "$home/apps/shop/_jobs", 0755, TRUE );
-    file_put_contents ( "$home/apps/shop/_jobs/note.php", "<?php padLog ( 'note {n}', 'info', [ 'n' => \$n ] ); ?>" );
+    file_put_contents ( "$home/apps/shop/_jobs/note.php", "<?php padLog ( 'note {field:n}', 'info', [ 'n' => \$n ] ); ?>" );
     file_put_contents ( "$home/apps/shop/_jobs/fail.php", "<?php return FALSE; ?>" );
     file_put_contents ( "$home/apps/shop/enqueue.php", "<?php padQueue ( 'note', [ 'n' => 1 ] ); padQueue ( 'fail', [], tries: 1 ); ?>" );
     file_put_contents ( "$home/apps/shop/enqueue.pad", "queued" );
@@ -301,7 +301,7 @@
     $schedule = ( $codeQ5 === 0 and str_contains ( $outQ5, '0 3 * * *' ) and str_contains ( $outQ5, '2026-10-13 03:00' )
                   and $codeQ6 === 0 and preg_match ( '/done\s+note/', $outQ6 ) ) ? 'yes' : 'NO';
 
-    // export of a scratch application with an {img} and a {video} poster: the thumbnails
+    // export of a scratch application with an {pad:img} and a {pad:video} poster: the thumbnails
     // of www/<app>/_thumbs/ go along with the copy, src and srcset both pointing into it, and
     // the poster is the relative path to the picture's copy - the srcset kept the server's
     // /gallery/_thumbs/ addresses, of a directory the copy did not have
@@ -312,7 +312,7 @@
     imagepng ( imagecreatetruecolor ( 400, 200 ), "$home/www/gallery/photos/p.png" );
     file_put_contents ( "$home/www/gallery/clip.mp4", '' );
     file_put_contents ( "$home/apps/gallery/pic.pad",
-      "<p>{img 'photos/p.png', width=100, height=50, alt='p'/}</p>\n{video 'clip.mp4', title='Clip', poster='photos/p.png'/}" );
+      "<p>{pad:img 'photos/p.png', width=100, height=50, alt='p'/}</p>\n{pad:video 'clip.mp4', title='Clip', poster='photos/p.png'/}" );
 
     // a srcset whose addresses hold a comma - a Cloudinary path, a data: URI - on a page one
     // directory down: each address is the run up to whitespace, so the outside ones stay as

@@ -3,7 +3,7 @@
   // youtube - A YouTube video, played from youtube-nocookie.com: no cookie is set before it
   // plays. The addresses: youtube.com/watch?v=, youtu.be/, /shorts/ (upright, 9:16),
   // /embed/, /live/ and /v/, and youtube-nocookie.com/embed/ - an id of eleven; named, a bare
-  // id as well, {youtube 'aqz-KE-bpKQ'}. A t= or start= in the address, or a #t=, is the
+  // id as well, {embed:youtube 'aqz-KE-bpKQ'}. A t= or start= in the address, or a #t=, is the
   // moment to start at; at= says it too. With thumbnail the poster is the video's own picture
   // on i.ytimg.com - an image of Google's server, asked before the click.
 

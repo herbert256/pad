@@ -1,7 +1,7 @@
-{define 'pill'}
-  {parms label, tone='info'/}
+{pad:define 'pill'}
+  {pad:parms label, tone='info'/}
   <span class="pill {#tone}">{#label}@content@</span>
-{/define}
+{/pad:define}
 
-{pill label='New'/}
-{pill label='Sold out', tone='warn'}: 0 left{/pill}
+{define:pill label='New'/}
+{define:pill label='Sold out', tone='warn'}: 0 left{/define:pill}

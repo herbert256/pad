@@ -11,8 +11,8 @@
   // screen reader hears the number of balls, the period, whether it starts from the ground state
   // and what every throw does.
   //
-  //   {siteswap '531'/}
-  //   {siteswap '(4,2x)(2x,4)'/}
+  //   {notation:siteswap '531'/}
+  //   {notation:siteswap '(4,2x)(2x,4)'/}
 
   if ( trim ( $padNotationText ) === '' )
     return '';

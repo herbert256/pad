@@ -18,10 +18,10 @@
   // value of the segment: ($n | + 1) * 2. Values left side by side in ( ) stand side by side
   // where the brackets stood; after a function they are its arguments.
   //
-  // What an operator lacks the piped value stands in for: {echo 10 | - 3} is 7, {echo 5 |
+  // What an operator lacks the piped value stands in for: {pad:echo 10 | - 3} is 7, {pad:echo 5 |
   // *} is 25. One operator closing a range takes what is before it as its left side and the
   // piped value as its right one, and of two operators side by side the first takes the
-  // piped value on both sides: {echo 50 | '"' . . '"'} is "5050".
+  // piped value on both sides: {pad:echo 50 | '"' . . '"'} is "5050".
   //
   // A bare word is what it names where the expression stands - a function, a lookup such as
   // a field or a data store, or else a constant - so a tree depends on that too, and is kept
@@ -181,7 +181,7 @@
 
   // The lookups whose value goes straight into a fallback may be missing - that is what the
   // fallback is for: the left side of ??, the value piped into default or optional, with a
-  // prefix or without - and with $fallback the answer of the whole expression, which {echo}
+  // prefix or without - and with $fallback the answer of the whole expression, which {pad:echo}
   // hands to the fallback of its tag's pipe. Brackets around one do not matter: ($x) ??
   // 'none' as $x ?? 'none', where the ) after the field hid the ?? from the token after it. A
   // lookup that is part of more - $x + 1 ?? 0, 'a' . $x ?? 'b' - is no fallback's, and is
@@ -323,7 +323,7 @@
 
   }
 
-  // Whether the text of a pipe begins with a fallback, by the same rule - what {echo} and
+  // Whether the text of a pipe begins with a fallback, by the same rule - what {pad:echo} and
   // {$x} read of the pipe a tag carries, before any of it is evaluated: | default('-'),
   // | pad:default('-'), | ?? '-', | optional.
 
@@ -644,8 +644,8 @@
 
   // The values of a range of items. Of two operators side by side - the second one with a
   // value on both sides - the first takes the piped value on both sides and stands as a
-  // value: {echo 50 | '"' . . '"'} is "5050". A binary operator closing the range takes
-  // everything before it as its left side and the piped value as its right one - {echo 5 |
+  // value: {pad:echo 50 | '"' . . '"'} is "5050". A binary operator closing the range takes
+  // everything before it as its left side and the piped value as its right one - {pad:echo 5 |
   // 2 + 3 *} is 25 - and a prefix one closing it works on the piped value alone, what
   // stands before it read and left out; after a lone binary operator, + !, it is named.
 
@@ -718,7 +718,7 @@
     elseif ( $item [0] == 'o' and isset ( padEval_bp [ $item [1] ] ) )
 
       // A binary operator where a value should be: its left side is the piped value -
-      // {echo 10 | - 3} is 7.
+      // {pad:echo 10 | - 3} is 7.
 
       $left = [ 'bin', $item [1], [ 'me' ], padEvalTreeExpr ( $items, $pos, padEval_bp [ $item [1] ] - ( $item [1] == '**' ), $end, $ctx ), $item [2] ];
 

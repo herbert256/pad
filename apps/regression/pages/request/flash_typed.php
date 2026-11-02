@@ -1,6 +1,6 @@
 <?php
 
-  // A page that flashes and shows one kind only - {flash 'error'} - leaves the other kind in
+  // A page that flashes and shows one kind only - {pad:flash 'error'} - leaves the other kind in
   // the session for the next request: the success message it did not show is what the
   // following page shows. It used to be taken out with the shown one and was never seen.
 

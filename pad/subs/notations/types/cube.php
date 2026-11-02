@@ -9,8 +9,8 @@
   // case is shown; layers= is 2 to 7 (3 unless given), size= the width in pixels (240), title=
   // the accessible name. A screen reader hears every face row by row, or that the cube is solved.
   //
-  //   {cube "R U R' U' R' F R2 U' R' U' R U R' F'"/}
-  //   {cube 'M2 E2 S2', view='cube'/}
+  //   {notation:cube "R U R' U' R' F R2 U' R' U' R U R' F'"/}
+  //   {notation:cube 'M2 E2 S2', view='cube'/}
 
   if ( trim ( $padNotationText ) === '' )
     return '';

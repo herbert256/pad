@@ -19,8 +19,8 @@
   // the accent, or clusters, each one a colour, the spanning one the accent - in the flow;
   // speed= how fast (5, 1 to 10).
   //
-  //   {percolation probability=0.6, size=100/}
-  //   {percolation mode='experiment', neighbours=8, seed=3/}
+  //   {toy:percolation probability=0.6, size=100/}
+  //   {toy:percolation mode='experiment', neighbours=8, seed=3/}
 
   // The neighbourhood: the four sites beside, or the eight round about.
 

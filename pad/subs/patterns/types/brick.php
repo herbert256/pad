@@ -6,7 +6,7 @@
   // the mortar of the joints, joint= pixels wide (2). One ink lays every brick in it; with more
   // the seed picks each brick's ink, so the wall is mottled. A tile repeated by a <pattern>.
   //
-  //   {pattern 'brick', size=14, ratio=2, offset=0.25, colors='#d9d4cc, #a4472f, #b5563b, #8f3d2a'/}
+  //   {pattern:brick size=14, ratio=2, offset=0.25, colors='#d9d4cc, #a4472f, #b5563b, #8f3d2a'/}
   //
   // The offset is taken in twelfths of a brick - a half, thirds, quarters, sixths - so the
   // courses come back to the first after twelve at most: the tile is as many courses as that

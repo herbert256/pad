@@ -2,8 +2,8 @@
 
   // A short tip on hover and on focus - the tooltip widget.
   //
-  //   {tooltip 'Billed every month, cancel any time'}Starter plan{/tooltip}
-  //   VAT {tooltip 'Value added tax, 21% on most goods'/}
+  //   {widget:tooltip 'Billed every month, cancel any time'}Starter plan{/widget:tooltip}
+  //   VAT {widget:tooltip 'Value added tax, 21% on most goods'/}
   //
   // The trigger and the tip stand in one inline box, and the CSS shows the tip while the box
   // is hovered or holds the focus - no script. The trigger is focusable - a tabindex on a
@@ -19,7 +19,7 @@
   //
   // A tooltip stands in a line of text, so its style and script follow it rather than lead
   // it: PHP's tidy ($padTidy) takes a <style> out of the body into the head, and the space
-  // in front of one went with it - 'The {tooltip ...}plan' read 'Theplan'. A <p> it stands
+  // in front of one went with it - 'The {widget:tooltip ...}plan' read 'Theplan'. A <p> it stands
   // in tidy still ends at that <style>; a tip in a <div>, a list or a cell keeps its line.
   //
   // padTooltip        the trigger and its tip

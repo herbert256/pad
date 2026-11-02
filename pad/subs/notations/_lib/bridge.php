@@ -1,6 +1,6 @@
 <?php
 
-  // Bridge deals - the bridge notation, {bridge 'N:.63.AKQ987.A9732 A8654.KQ5.T.QJT6 ...'/}. A
+  // Bridge deals - the bridge notation, {notation:bridge 'N:.63.AKQ987.A9732 A8654.KQ5.T.QJT6 ...'/}. A
   // deal of contract bridge written as the Deal tag of PBN, the Portable Bridge Notation (version
   // 2.1, section 3.4.11), drawn as the diagram a bridge column prints: North at the top, South
   // at the bottom, West and East either side, each hand by suit - spades, hearts, diamonds,

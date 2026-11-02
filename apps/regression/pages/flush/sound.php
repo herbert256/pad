@@ -1,6 +1,6 @@
 <?php
 
-  // The WAV link of a {sound} on a page that flushes early answers the WAV: asked with
+  // The WAV link of a {sound:chime} on a page that flushes early answers the WAV: asked with
   // &padSound the page flushes nothing, as it flushes nothing asked with &padPdf - the head
   // of the page went out in front, text/html, and the sound's answer was an error in it.
 

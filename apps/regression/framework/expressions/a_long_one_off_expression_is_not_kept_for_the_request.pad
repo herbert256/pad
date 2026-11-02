@@ -1,1 +1,1 @@
-{rows}{echo {$body} | php:strlen | ''/}{/rows}[{echo php:memory_get_usage() - $before lt 16000000 ? 'bounded' : 'kept'/}]
+{array:rows}{pad:echo {$body} | php:strlen | ''/}{/array:rows}[{pad:echo php:memory_get_usage() - $before lt 16000000 ? 'bounded' : 'kept'/}]

@@ -12,11 +12,11 @@ name \=&gt; value \- an empty value leaves one out, \<code\>\[\]\<\/code\> sends
 \<code\>\$padCsp\<\/code\> is the policy, \<code\>''\<\/code\> for none\. A header the page's own PHP sent
 stands over the default\.\<\/p\>
 
-\<h2\>A strict policy and the \{nonce\} tag\<\/h2\>
+\<h2\>A strict policy and the \{pad:nonce\} tag\<\/h2\>
 
 \<p\>A strict policy refuses inline scripts \- which is the point\: a script someone smuggled
 into the page does not run\. Your own inline script runs when it carries the request's nonce\.
-Write \<code\>'nonce'\<\/code\>, with the quotes, in the policy, and \<b\>\{nonce\}\<\/b\> in the script
+Write \<code\>'nonce'\<\/code\>, with the quotes, in the policy, and \<b\>\{pad:nonce\}\<\/b\> in the script
 tag; the engine puts the same random value in both, new for every request\:\<\/p\>
 
 \<pre\>\$padCsp \= "default\-src 'self'; script\-src 'self' 'nonce'; frame\-ancestors 'self'";\<\/pre\>
@@ -58,7 +58,7 @@ tag; the engine puts the same random value in both, new for every request\:\<\/p
           \<td style\="vertical\-align\:top"\>(?:(?:\<link [^>]*\>)?\<a class\="pad\-play[^"]*"[^>]*\>[\s\S]*?\<\/a\>)? \<\/td\>
         
         
-          \<td style\="vertical\-align\:top"\>(?:(?:\<link [^>]*\>)?\<a class\="pad\-play[^"]*"[^>]*\>[\s\S]*?\<\/a\>)?\<pre\>\<code style\="color\: \#000000"\>&lt;script nonce\="\<b\>\{\<font color\="blue"\>nonce\<\/font\>\<font color\="red"\>\<\/font\>\/\}\<\/b\>"&gt;\<b\>\{\<font color\="blue"\>ignore\<\/font\>\<font color\="red"\>\<\/font\>\}\<\/b\>\<br\>  document\.title \= 'Hello';\<br\>\<b\>\{\/\<font color\="blue"\>ignore\<\/font\>\<font color\="red"\>\<\/font\>\}\<\/b\>&lt;\/script&gt;\<\/code\>\<\/pre\>\<\/td\>
+          \<td style\="vertical\-align\:top"\>(?:(?:\<link [^>]*\>)?\<a class\="pad\-play[^"]*"[^>]*\>[\s\S]*?\<\/a\>)?\<pre\>\<code style\="color\: \#000000"\>&lt;script nonce\="\<b\>\{\<font color\="blue"\>\<font color\="purple"\>pad\<\/font\>\<font color\="black"\>\<b\>\:\<\/b\>\<\/font\>nonce\<\/font\>\<font color\="red"\>\<\/font\>\/\}\<\/b\>"&gt;\<b\>\{\<font color\="blue"\>\<font color\="purple"\>pad\<\/font\>\<font color\="black"\>\<b\>\:\<\/b\>\<\/font\>ignore\<\/font\>\<font color\="red"\>\<\/font\>\}\<\/b\>\<br\>  document\.title \= 'Hello';\<br\>\<b\>\{\/\<font color\="blue"\>\<font color\="purple"\>pad\<\/font\>\<font color\="black"\>\<b\>\:\<\/b\>\<\/font\>ignore\<\/font\>\<font color\="red"\>\<\/font\>\}\<\/b\>&lt;\/script&gt;\<\/code\>\<\/pre\>\<\/td\>
         
         
           \<td style\="vertical\-align\:top"\>(?:(?:\<link [^>]*\>)?\<a class\="pad\-play[^"]*"[^>]*\>[\s\S]*?\<\/a\>)?
@@ -83,9 +83,9 @@ tag; the engine puts the same random value in both, new for every request\:\<\/p
 
 
 \<ul\>
-  \<li\>The nonce is written only where the template writes \<b\>\{nonce\}\<\/b\>\. The engine does not
+  \<li\>The nonce is written only where the template writes \<b\>\{pad:nonce\}\<\/b\>\. The engine does not
   add it to the page's script tags\: a smuggled script would get it as well\.\<\/li\>
-  \<li\>\<b\>\{nonce\}\<\/b\> goes outside an \<b\>\{ignore\}\<\/b\> block \- inside one it is text\. The script's
-  body, with its braces, is what the \<b\>\{ignore\}\<\/b\> is for\.\<\/li\>
+  \<li\>\<b\>\{pad:nonce\}\<\/b\> goes outside an \<b\>\{pad:ignore\}\<\/b\> block \- inside one it is text\. The script's
+  body, with its braces, is what the \<b\>\{pad:ignore\}\<\/b\> is for\.\<\/li\>
   \<li\>A page carrying a nonce is never stored in the page cache\.\<\/li\>
 \<\/ul\>$/

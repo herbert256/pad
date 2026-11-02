@@ -4,7 +4,7 @@
   // pushed by a previous tag. Lifts $pqStore[$pqPull] into $pqFixed and hands it to the
   // fixed iterator, so from/to/plays/actions apply to the stored terms as usual.
   //
-  // A store that was never pushed has no terms. {resume} before any push, pull='nope' and
+  // A store that was never pushed has no terms. {pad:resume} before any push, pull='nope' and
   // sequence:sum('nope') read an undefined key - and sequence:sum() a null one - and ended
   // the request on the PHP warning. The strict check names the miss, as {pull:nope} and
   // pull:nope in an expression do; the run then has nothing to pull and answers nothing.

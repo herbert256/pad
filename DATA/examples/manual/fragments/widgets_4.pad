@@ -1,8 +1,8 @@
-{data 'steps'}
+{pad:data 'steps'}
   ["Order", "Pack", "Deliver"]
-{/data}
-{wizard}
-  {steps}
-    {tab $steps}<p>{$steps}.</p>{/tab}
-  {/steps}
-{/wizard}
+{/pad:data}
+{widget:wizard}
+  {data:steps}
+    {pad:tab $steps}<p>{$steps}.</p>{/pad:tab}
+  {/data:steps}
+{/widget:wizard}

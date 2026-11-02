@@ -76,7 +76,7 @@
   }
 
   // The part's template inside the layout of its _mail/ directory - _inits/_exits with the
-  // part's extension, @page@ where the part goes - rendered like {code} and written out as
+  // part's extension, @page@ where the part goes - rendered like {pad:code} and written out as
   // the page would be: the stand-ins of PAD's syntax characters become the characters.
 
   function padMailRender ( $dir, $file, $ext ) {
@@ -105,7 +105,7 @@
     $scopeWas                   = $GLOBALS ['padOnceScope'] ?? NULL;
     $GLOBALS ['padOnceScope']   = 'mail' . ( ++$mails );
 
-    // A nested pass, as a {page} is: a {pdf} in the mail is its sheet, where it was asked
+    // A nested pass, as a {pad:page} is: a {pad:pdf} in the mail is its sheet, where it was asked
     // for as the answer of the request - the visitor got the mail's invoice, not the page.
 
     $nestedWas                  = $GLOBALS ['padGuardNested'] ?? FALSE;

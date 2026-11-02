@@ -51,7 +51,7 @@ sentence: `a_copy_pair_takes_off_the_indent_its_lines_share`.
 | What the bug is in | Where the case goes | Its answer, `<name>.txt` beside it |
 |---|---|---|
 | A tag, function, option, property, expression - output of a template | `apps/regression/framework/<group>/<name>.pad`, a `.php` beside it for variables. Groups: `tags`, `functions`, `options`, `properties`, `expressions`, `data`, `helpers`, `escaping`, ... | The output with every line break and the whitespace after it removed - one line - or a `/regex/` for a page that draws |
-| A request as a whole - `.php` and `.pad` halves, `$GLOBALS`, `{page}` chains, redirects, forms, flush, sessions | `apps/regression/pages/<group>/<name>.pad`/`.php` (`_common` off) or `apps/regression/common/...` (on) | The exact body, trimmed; `HTTP <code>` with a `/pattern/` on its second line; or a lone `/pattern/` |
+| A request as a whole - `.php` and `.pad` halves, `$GLOBALS`, `{pad:page}` chains, redirects, forms, flush, sessions | `apps/regression/pages/<group>/<name>.pad`/`.php` (`_common` off) or `apps/regression/common/...` (on) | The exact body, trimmed; `HTTP <code>` with a `/pattern/` on its second line; or a lone `/pattern/` |
 | An error the engine must report | `apps/regression/errors/<dir>/<name>.pad` - `syntax/`, `eval/`, `error/`, `helpers/`, `handlers/`, `source/` | `HTTP 500` and a `/pattern/` over the message |
 | A page of an application - `manual`, `showcase`, `demo`, ... | Nothing to add: a covering suite holds its answer in `apps/regression/<suite>/` (`other/<app>/<page>.txt`) | A changed page fails there; check every difference, then re-record it from the suite's overview (`regression/main/?<suite>/index`, the row's record link) |
 

@@ -1,5 +1,5 @@
 
-<p><code>{embed}</code> puts a video, a sound, a map, a pen or a document of another site in
+<p><code>{embed:auto}</code> puts a video, a sound, a map, a pen or a document of another site in
 the page without the page asking that site for anything before the visitor does. What is
 written first is a facade: a poster drawn for the kind of thing it is - or a picture of the
 application's own with <code>poster=</code> - the title, the name of the site it comes from and
@@ -9,10 +9,9 @@ button is hidden and a link to the address on its own site stands in its place.<
 
 <p>A provider is a file of <code>pad/subs/embeds/types/</code> - the files there are the providers
 there are, and a provider is added by adding its file. It says the addresses it knows, the
-site its frame comes from and what the frame is given. <code>{embed 'address'}</code> asks each
+site its frame comes from and what the frame is given. <code>{embed:auto 'address'}</code> asks each
 of them, the ones that know their host first; the embed type names one -
-<code>{embed:vimeo '76979871'}</code>, or bare, <code>{vimeo '76979871'}</code>, when no tag,
-store or field has the name - and then reads a bare id of that provider as well. A file of
+<code>{embed:vimeo '76979871'}</code> - and then reads a bare id of that provider as well. The type prefix is required. A file of
 the application - a video, a sound, a PDF - is an element of its own that loads nothing
 before it is played, or a frame of the application loaded lazily; nothing about it is
 another site's.</p>
@@ -23,5 +22,15 @@ another site's.</p>
 instance is added by hand. <code>thumbnail</code> shows YouTube's own picture as the poster,
 which asks Google's image server for it before the click, and needs <code>img-src
 https://i.ytimg.com</code>. For the video sites alone, with the poster of the site,
-<a href="index%EF%B9%96tag%EA%A4%B7video.html">{video}</a> is the older form.</p>
+<a href="index%EF%B9%96tag%EA%A4%B7video.html">{pad:video}</a> is the older form.</p>
+
+<p>A frame is given what the provider's own embed code gives it: the permissions of its
+<code>allow</code> and, where that code has one, its <code>sandbox</code> - Apple Music and
+Apple Podcasts are framed with the six tokens of Apple's, so their frame may do only what
+Apple's player needs.</p>
+
+<p>Twitch plays only on the host names its player is told: those of <code>$padHosts</code>, else
+the page's own, and <code>domains=</code> adds more. Offline and in a static copy, where the page
+could be anywhere and <code>$padHosts</code> does not say, the poster links to Twitch instead of
+holding a player that would refuse to play.</p>
 

@@ -1,6 +1,6 @@
 <?php
 
-  // Everything the engine shows or files when a request dies: the {dump} tag, the 'dump'
+  // Everything the engine shows or files when a request dies: the {pad:dump} tag, the 'dump'
   // error action, and the snapshots under DATA/dumps/<app>/.
   //
   // padDump is the entry point (padDumpTry inside an error handler, ending in padExit 500).

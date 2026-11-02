@@ -1,4 +1,4 @@
-{meta title='The Content Construct'/}
+{pad:meta title='The Content Construct'/}
 
 <p>A content store is a named block of template, defined once and usable anywhere after it.
 <a href="?pages/the_content_tag">The content tag</a> page covers defining one and the ways
@@ -11,21 +11,21 @@ many tags, each deciding how to wear it.</p>
 without <code>merge=</code> the store comes first, and <code>merge='bottom'</code> or
 <code>merge='replace'</code> say otherwise:</p>
 
-{example 'fragments/content_1'/}
+{common:example 'fragments/content_1'/}
 
-<h2>The {construct 'content'/} placeholder</h2>
+<h2>The {app:construct 'content'/} placeholder</h2>
 
-<p>Instead of joining end to end, either side may carry {construct 'content'/}: whichever
+<p>Instead of joining end to end, either side may carry {app:construct 'content'/}: whichever
 side has it, the other is dropped into that spot. A store shaped like a frame turns every
 usage into its filling:</p>
 
-{example 'fragments/content_2'/}
+{common:example 'fragments/content_2'/}
 
 <h2>content= on any tag, and a store with two halves</h2>
 
 <p>Every tag takes a <code>content=</code> option naming a store, with the same
-<code>merge=</code> choices. And a store may carry an {construct 'else'/} of its own: which
+<code>merge=</code> choices. And a store may carry an {app:construct 'else'/} of its own: which
 half is used is decided by the tag wearing it - the same store gives its first half to a tag
 that produced something and its second half to one that came up empty:</p>
 
-{example 'fragments/content_3'/}
+{common:example 'fragments/content_3'/}

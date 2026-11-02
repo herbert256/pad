@@ -1,11 +1,11 @@
 <?php
 
-  // Choropleth maps - the map subsystem behind the {map} tag. Every country of the world as
+  // Choropleth maps - the map subsystem behind the {pad:map} tag. Every country of the world as
   // inline SVG, coloured by a value of its row: no JavaScript, no tiles, no remote service,
   // so a map works in print and in an e-mail and caches like any other output.
   //
-  //   {map 'world', data='sales', key='country', value='amount'}
-  //   {map 'europe', data='visitors', title='Visitors per country'}
+  //   {pad:map 'world', data='sales', key='country', value='amount'}
+  //   {pad:map 'europe', data='visitors', title='Visitors per country'}
   //
   // The outlines are subs/maps/_lib/world.json: Natural Earth's 1:50m admin-0 countries (public
   // domain, naturalearthdata.com) as world-atlas@2.0.2 publishes them (ISC licence), turned
@@ -38,7 +38,7 @@
   // --pad-map-empty, the borders --pad-map-border - custom properties with light-dark()
   // defaults on .pad-chart-map.
 
-  // The rows, the numbers and the SVG opening are {chart}'s, subs/charts/_lib/chart.php.
+  // The rows, the numbers and the SVG opening are {chart:bar}'s, subs/charts/_lib/chart.php.
 
   include_once PAD . 'subs/charts/_lib/chart.php';
 

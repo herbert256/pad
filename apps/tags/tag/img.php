@@ -5,11 +5,11 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{img 'photos/harbour.jpg', width=400, height=300, alt='text'/}
-{img 'photos/dunes.jpg', width=300, height=300, fit='contain', format='webp', quality=70, alt=''/}
-{img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='text'/}
-{img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='text'/}
-{img 'photos/harbour.jpg', width=400, filter='blurhash', alt='text'/}
+{pad:img 'photos/harbour.jpg', width=400, height=300, alt='text'/}
+{pad:img 'photos/dunes.jpg', width=300, height=300, fit='contain', format='webp', quality=70, alt=''/}
+{pad:img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='text'/}
+{pad:img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='text'/}
+{pad:img 'photos/harbour.jpg', width=400, filter='blurhash', alt='text'/}
 PAD;
 
   $tagParms   = [
@@ -37,5 +37,7 @@ PAD;
     'cutoff'     => 'autocontrast: the pixels let go at each end of the tones before they are stretched, in percent (1).' ];
 
   $tagSee     = [ 'placeholder', 'asset', 'video' ];
+
+  $subsystemKindLinks = appSubsystemLinks ( 'filter' );
 
 ?>

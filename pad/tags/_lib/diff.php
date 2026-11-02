@@ -1,12 +1,12 @@
 <?php
 
-  // Differences between two texts - the {diff} tag. What was taken out is a <del>, what came
+  // Differences between two texts - the {pad:diff} tag. What was taken out is a <del>, what came
   // in an <ins>, both escaped; word by word, or line by line with numbers, in one column or
   // side by side.
   //
-  //   {diff $old, $new}                      the words, in the flow of the text
-  //   {diff $old, $new, lines}               the lines, one column with both line numbers
-  //   {diff $old, $new, side, from='v1', to='v2'}   the lines side by side
+  //   {pad:diff $old, $new}                      the words, in the flow of the text
+  //   {pad:diff $old, $new, lines}               the lines, one column with both line numbers
+  //   {pad:diff $old, $new, side, from='v1', to='v2'}   the lines side by side
   //
   // padDiffOps     the edit script of two lists: [ '=', '-' or '+', item ] in order - Myers'
   //                O(ND) algorithm, the shortest script, as git diff finds it

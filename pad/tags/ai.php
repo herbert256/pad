@@ -1,10 +1,10 @@
 <?php
 
-  // {ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/ai} - the answer of a
+  // {pad:ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/pad:ai} - the answer of a
   // language model, printed as text (lib/ai.php, subs/ai/): the content between the tags is
-  // rendered first - like {live} and {toast}, the pair asks for the end walk - and what it
+  // rendered first - like {pad:live} and {widget:toast}, the pair asks for the end walk - and what it
   // rendered is the prompt, its fields read as the text they hold. The single form takes the
-  // prompt as its parameter: {ai 'Name three rivers of France.'/}.
+  // prompt as its parameter: {pad:ai 'Name three rivers of France.'/}.
   //
   // The answer is a value, never template code: escaped for HTML and its braces inert, so an
   // answer of {php:getcwd} prints those characters. provider= is a file of subs/ai/types/ -
@@ -36,7 +36,7 @@
   if ( ( $padInfoXref ?? FALSE ) and padKind ( 'ai', $padAiKind ) )
     padInfoXref ( 'ai', $padAiKind );
 
-  $padAiAnswer = padProtect ( htmlspecialchars ( padAiAsk ( $padAiPrompt, $padAiOptions, '{ai}' ), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ) );
+  $padAiAnswer = padProtect ( htmlspecialchars ( padAiAsk ( $padAiPrompt, $padAiOptions, '{pad:ai}' ), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ) );
 
   if ( ! $padPair [$pad] )
     return $padAiAnswer;

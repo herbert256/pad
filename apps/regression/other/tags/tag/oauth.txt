@@ -1,4 +1,4 @@
-<p><code>{oauth 'github'/}</code> is the link that starts a login at GitHub, styled as a button with
+<p><code>{pad:oauth 'github'/}</code> is the link that starts a login at GitHub, styled as a button with
 the provider's name - and its icon, when the icon set has one of its name. It goes to the page
 <code>oauth/github</code> of the application unless <code>href=</code> names another: one page,
 <code>oauth/[provider].php</code>, serves every provider - <code>padOAuthStart ( $provider )</code>
@@ -9,3 +9,8 @@ code, checks the id_token and answers the user for <code>padLogin</code>.</p>
 <p>The button reads no setting and makes no request; the page it links to needs the client id and
 secret - <code>GITHUB_CLIENT_ID</code> and <code>GITHUB_CLIENT_SECRET</code> in <code>.env</code>. An
 unknown provider is an error under the strict check.</p>
+
+
+<h3>OAuth providers</h3>
+<p>Each kind has its own description and usage example:</p>
+<p><a href="?kind/oauth/apple"><code>apple</code></a>, <a href="?kind/oauth/bitbucket"><code>bitbucket</code></a>, <a href="?kind/oauth/discord"><code>discord</code></a>, <a href="?kind/oauth/forgejo"><code>forgejo</code></a>, <a href="?kind/oauth/github"><code>github</code></a>, <a href="?kind/oauth/gitlab"><code>gitlab</code></a>, <a href="?kind/oauth/google"><code>google</code></a>, <a href="?kind/oauth/linkedin"><code>linkedin</code></a>, <a href="?kind/oauth/microsoft"><code>microsoft</code></a>, <a href="?kind/oauth/oidc"><code>oidc</code></a>, <a href="?kind/oauth/slack"><code>slack</code></a>, <a href="?kind/oauth/x"><code>x</code></a></p>

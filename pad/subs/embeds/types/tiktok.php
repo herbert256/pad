@@ -3,7 +3,7 @@
   // tiktok - A video or a photo post of TikTok in TikTok's embed player, upright (9:16) and
   // kept to the width of a phone: tiktok.com/@<user>/video/<id>, /@<user>/photo/<id>, the
   // player's own /player/v1/<id> and the older /embed/v2/<id>; named, a bare id as well,
-  // {tiktok '6718335390845095173'} - the post's number, nothing else. The player is the one
+  // {embed:tiktok '6718335390845095173'} - the post's number, nothing else. The player is the one
   // developers.tiktok.com/doc/embed-player documents, with autoplay=1 - it is the click that
   // plays - and rel=0, the author's own videos at the end rather than recommendations. A
   // short vm.tiktok.com link is no address of a post: it has to be followed to find one.

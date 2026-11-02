@@ -8,9 +8,9 @@
   <code>&amp;padInclude</code> so it renders bare, and compared with the outcome written beside
   it, exactly as in the <a href="index%EF%B9%96pages%EA%A4%B7index.html">Pages</a> suite. The difference is what the page
   is allowed to reach: these tests live in <code>apps/regression/common/</code>, where
-  <code>_common</code> is on, because they use it - <code>{example}</code>,
-  <code>{demo}</code>, <code>{table}</code>, the
-  <code>{block}</code> snippet, the colouring functions in
+  <code>_common</code> is on, because they use it - <code>{common:example}</code>,
+  <code>{common:demo}</code>, <code>{common:table}</code>, the
+  <code>{pad:block}</code> snippet, the colouring functions in
   <code>_common/_lib/</code>.
 </p>
 
@@ -124,7 +124,7 @@
   
     <tr>
       <td><a href="http://localhost/pad/regression/common/?tableFun/fun_0&amp;padInclude">tableFun/fun_0</a></td>
-      <td>The {content} definition the other nine print their cells through - it renders nothing itself</td>
+      <td>The {pad:content} definition the other nine print their cells through - it renders nothing itself</td>
       <td>ok</td>
     </tr>
     
@@ -201,14 +201,14 @@
   
     <tr>
       <td><a href="http://localhost/pad/regression/common/?tags/redirect&amp;padInclude">tags/redirect</a></td>
-      <td>The {redirect} tag, and the variable it hands the page it lands on</td>
+      <td>The {pad:redirect} tag, and the variable it hands the page it lands on</td>
       <td>ok</td>
     </tr>
     
   
     <tr>
       <td><a href="http://localhost/pad/regression/common/?tags/restart&amp;padInclude">tags/restart</a></td>
-      <td>The {restart} tag, which re-runs the request on another page carrying a variable</td>
+      <td>The {pad:restart} tag, which re-runs the request on another page carrying a variable</td>
       <td>ok</td>
     </tr>
     

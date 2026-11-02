@@ -1,11 +1,11 @@
-{meta title='Web components'/}
+{pad:meta title='Web components'/}
 
 <p>Custom elements and shadow DOM are the browser's own components. A shadow root can be
 written in the HTML - <code>&lt;template shadowrootmode="open"&gt;</code> - and the browser builds it
 while it parses the page: the element shows, its styles encapsulated and its light DOM slotted,
-before any script ran. {tag 'shadow'/} writes that template on the server:</p>
+before any script ran. {app:tag 'shadow'/} writes that template on the server:</p>
 
-{example 'fragments/web_components_1'/}
+{common:example 'fragments/web_components_1'/}
 
 <ul>
   <li><code>css=</code> inlines stylesheets - a file of the application, or <code>www:</code> one in its
@@ -22,10 +22,10 @@ before any script ran. {tag 'shadow'/} writes that template on the server:</p>
 
 <h2>As PAD components</h2>
 
-<p>A custom tag of the application ({manual 'components'/}) is the natural home of an element: its
+<p>A custom tag of the application ({app:manual 'components'/}) is the natural home of an element: its
 <code>.pad</code> file writes the element and its root, its parameters become attributes, and
-<code>&#64;content&#64;</code> is the light DOM the browser slots in. Inside {tag 'shadow'/}, <code>{open/}#name{close/}</code>
-is {tag 'shadow'/}'s own parameter: <code>{open/}set $value = {open/}#value{close/}{close/}</code> before the pair carries the
+<code>&#64;content&#64;</code> is the light DOM the browser slots in. Inside {app:tag 'shadow'/}, <code>{pad:open/}#name{pad:close/}</code>
+is {app:tag 'shadow'/}'s own parameter: <code>{pad:open/}set $value = {pad:open/}#value{pad:close/}{pad:close/}</code> before the pair carries the
 tag's into it.</p>
 
 <p>The webcomponents application has cards, tabs, a rating that posts, a form-associated stepper

@@ -1,0 +1,29 @@
+
+<p><code>{effect:typewriter}</code> puts motion or decoration on a text or a block - a line typed out, a
+glitch, a sweep of light, gradient letters, a wave, a marker stroke, a line drawn under,
+through or round the words, phrases that take turns, a heading that settles out of changing
+signs, a number counted up, a scrolling band, a block that comes into view, a bar the scrolling
+fills, a card that leans, a nudge that draws the eye, a spotlight, a loader, a placeholder while
+a part loads, a burst of confetti. CSS first: every effect but confetti and decipher is CSS
+alone, written once per page with the CSP nonce, and their scripts are written the same way.
+Every effect is a file of
+<code>pad/subs/effects/types/</code>, its look in <code>www/assets/effects/</code>; the files of
+<code>types/</code> are the effects there are.</p>
+
+<p>An effect has two explicit forms: <code>{effect:typewriter}Hello{/effect:typewriter}</code>
+and <code>{effect:typewriter}Hello{/effect:typewriter}</code>. A pair works on its content,
+rendered first; a single tag on its first parameter, <code>{effect:typewriter 'Hello'/}</code>,
+or on nothing at all, <code>{effect:spinner/}</code> and <code>{effect:confetti/}</code>.</p>
+
+<p>Every effect keeps to the same rules. Its animation stands inside
+<code>@media (prefers-reduced-motion: no-preference)</code>: a visitor who asks for less motion
+gets the content still and whole - typed out, counted, revealed, marked - never hidden. A screen
+reader reads the text once, as it ends: the letters of a wave and the layers of a glitch are a
+copy hidden from it, the typewriter's text is whole in the page while the CSS uncovers it, a
+count-up announces its last number. What repeats runs <code>repeat=</code> times, three unless
+given; the marquee, which moves for as long as it is shown, stops while the pointer or the focus
+is on it and has a Pause button that needs no script. The colours are
+<code>--pad-effect-accent</code>, <code>-accent2</code>, <code>-accent3</code>, <code>-text</code>,
+<code>-mark</code> and <code>-track</code> on <code>.pad-effect</code>, light and dark, falling back to
+the frame's own colours, so a theme colours them.</p>
+

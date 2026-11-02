@@ -1,0 +1,32 @@
+
+<p><code>{pad:palette}</code> shows the colours of a palette as a row of swatches, each with its hex
+value written on it in black or white, whichever reads better. A palette is a file of
+<code>pad/subs/palettes/types/</code> - its name, its type and its colours - and the files there
+are the palettes there are; the subsystem is <code>pad/subs/palettes/</code>.</p>
+
+<p>Four types. The sequential ones run from low to high: viridis, magma, plasma, inferno and
+cividis from matplotlib's published 256-colour tables, perceptually uniform, readable in grey and
+by colour-blind eyes, Fabio Crameri's batlow, made the same way, ColorBrewer's blues, greens,
+oranges and greys and its multi-hue ylgnbu and ylorrd, and Google's turbo, a smooth rainbow for reading a value off its hue - neither
+in grey nor for colour-blind eyes. The diverging ones meet in a light middle - ColorBrewer's rdbu, brbg, piyg, rdylbu and
+puor and Crameri's vik. The cyclic one goes round, for an angle, a
+direction, the hour or the month: Crameri's romaO, whose last colour is next to its first, so
+twelve steps of it are twelve colours, none twice. The categorical ones tell things apart:
+okabe-ito and Paul Tol's bright, muted and vibrant, made for every kind of colour vision,
+ColorBrewer's pastel, dark2 and paired - six pairs of a light and a dark of one hue, for
+categories that come in twos - PAD's own earth and, for many categories, glasbey's 32 colours, each as far
+from those before it as it can be.</p>
+
+<p>The same palettes colour a chart: <code>palette='viridis'</code> on any kind of
+<code>{chart:bar}</code> puts the palette's colours on its series - a scale spread over the series the
+chart has, so three series are its two ends and its middle - and on the heatmap's ramp, as custom
+properties on the svg. A chart drawn in the browser (<code>client</code>) gets the same colours.
+<code>padPalette ( 'viridis', 7 )</code> answers them to a page's PHP.</p>
+
+<p>The row is a list - <code>role="list"</code>, a swatch an item - so a screen reader counts
+the colours and reads their values.</p>
+
+
+<h3>Colour palettes</h3>
+<p>Each kind has its own description and usage example:</p>
+<p><a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7batlow.html"><code>batlow</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7blues.html"><code>blues</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7brbg.html"><code>brbg</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7cividis.html"><code>cividis</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7dark2.html"><code>dark2</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7earth.html"><code>earth</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7glasbey.html"><code>glasbey</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7greens.html"><code>greens</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7greys.html"><code>greys</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7inferno.html"><code>inferno</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7magma.html"><code>magma</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7okabe-ito.html"><code>okabe-ito</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7oranges.html"><code>oranges</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7paired.html"><code>paired</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7pastel.html"><code>pastel</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7piyg.html"><code>piyg</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7plasma.html"><code>plasma</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7puor.html"><code>puor</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7rdbu.html"><code>rdbu</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7rdylbu.html"><code>rdylbu</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7romao.html"><code>romao</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7tol-bright.html"><code>tol-bright</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7tol-muted.html"><code>tol-muted</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7tol-vibrant.html"><code>tol-vibrant</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7turbo.html"><code>turbo</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7vik.html"><code>vik</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7viridis.html"><code>viridis</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7ylgnbu.html"><code>ylgnbu</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7ylorrd.html"><code>ylorrd</code></a></p>

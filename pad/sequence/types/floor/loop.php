@@ -1,7 +1,7 @@
 <?php
 
   // Build strategy 'loop' for the floor sequence: each term is the loop value rounded down
-  // to a multiple of the parameter, which defaults to 1. {floor 5} over 1..10 gives 0, 0,
+  // to a multiple of the parameter, which defaults to 1. {sequence:floor 5} over 1..10 gives 0, 0,
   // 0, 0, 5, 5, 5, 5, 5, 10. The counterpart of ceil, and likewise mostly used as a play.
 
   // A value that is no number has no term here - a word in the list a make play is handed
@@ -11,7 +11,7 @@
     return FALSE;
 
   // A parameter that is 0 - spelled 0, '0.0', '-0' or '00' - is read as 1. ! $pqParm let the
-  // strings '0.0', '-0' and '00' through, which are true, and {sequence floor='-0'} ended the
+  // strings '0.0', '-0' and '00' through, which are true, and {sequence:floor '-0'} ended the
   // request on "Division by zero" where floor=0 gives 1 2 3.
 
   if ( is_numeric ( $pqParm ) ? $pqParm == 0 : ! $pqParm )

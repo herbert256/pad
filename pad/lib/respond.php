@@ -2,9 +2,9 @@
 
   // Response fragments: a named part of a page that a request can ask for alone.
   //
-  //   {fragment 'order-list'}             ?orders&padFragment=order-list
+  //   {pad:fragment 'order-list'}             ?orders&padFragment=order-list
   //     {orders}<li>{$number}</li>{/orders}
-  //   {/fragment}
+  //   {/pad:fragment}
   //
   // A normal request renders the whole page, the fragment in its place. A request that
   // names a fragment - the padFragment parameter, the HX-Target header of an htmx request
@@ -12,7 +12,7 @@
   // else: the page renders up to the end of the fragment, which then ends the request
   // through exits/exits.php as the whole response, unwrapped and untidied, the way a
   // padInclude request is. One template serves the full page and the region an HTMX swap
-  // or an {ajax 'orders', fragment='order-list'} refreshes.
+  // or an {pad:ajax 'orders', fragment='order-list'} refreshes.
   //
   // The first fragment of that name to finish rendering is the response. A request for a
   // fragment the page never rendered is an error under the strict check, and an empty 404

@@ -1,6 +1,6 @@
 <?php
 
-  // {page ... app='other'}: the page lives in another application, which has its own
+  // {pad:page ... app='other'}: the page lives in another application, which has its own
   // config, _lib and database, so it cannot be built in this process and is reached over
   // HTTP instead. Called from start/page.php when the tag carries an app= parameter.
   //
@@ -17,11 +17,11 @@
   $padPageInclude = ( $padPageInclude ) ? '&padInclude' : '';
 
   // The application and the page are checked as that application's router will resolve
-  // them (lib/page.php), as {ajax app=} checks them under the strict check. Neither was,
+  // them (lib/page.php), as {pad:ajax app=} checks them under the strict check. Neither was,
   // and both went as they came into the script the browser runs and into the address this
-  // server fetches for itself: {page $p, app='shop'} with p=x");alert(1);// ran a script. A
+  // server fetches for itself: {pad:page $p, app='shop'} with p=x");alert(1);// ran a script. A
   // page that is not there is an error under the strict check and nothing without it, as
-  // for a {page} of this application.
+  // for a {pad:page} of this application.
 
   if ( ! preg_match ( '/^[a-zA-Z0-9][a-zA-Z0-9_\/-]*$/D', (string) $padPageApp ) or str_contains ( $padPageApp, '//' )
        or ! padPageCheck ( (string) $padPagePage, APPS . "$padPageApp/" ) ) {

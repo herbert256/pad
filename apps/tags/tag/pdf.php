@@ -5,9 +5,9 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{pdf file='name', size='A4', landscape, font='helvetica', title='text'} ... {/pdf}
-{pdf preview, file='name'} ... {/pdf}
-{pdf download/}
+{pad:pdf file='name', size='A4', landscape, font='helvetica', title='text'} ... {/pad:pdf}
+{pad:pdf preview, file='name'} ... {/pad:pdf}
+{pad:pdf download/}
 PAD;
 
   $tagParms   = [];

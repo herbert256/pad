@@ -90,7 +90,7 @@
     $padCacheAge  = $padCacheUrlRow ['age']  ?? $padCacheUrlRow [0] ?? 0;
     $padCacheEtag = $padCacheUrlRow ['etag'] ?? $padCacheUrlRow [1] ?? '';
 
-    // A page with {nocache} parts is no answer as it is stored: the request goes on, and
+    // A page with {pad:nocache} parts is no answer as it is stored: the request goes on, and
     // build/build.php renders the stored text with the parts in it instead of building the
     // page - no _inits.php, no page PHP (lib/nocache.php). Its ETag is one no response
     // carries, so there is no 304 to answer from the entry either.

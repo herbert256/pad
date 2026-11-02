@@ -7,8 +7,8 @@
   // them; the sets of two digits follow their value modulo 4, those of five the check of
   // weights 3 and 9, which is not written. Its digits stand above its bars.
   //
-  //   {ean13 '9780306406157', addon='51995'/}
-  //   {upce '0425261', addon='07'/}
+  //   {barcode:ean13 '9780306406157', addon='51995'/}
+  //   {barcode:upce '0425261', addon='07'/}
   //
   // padCodeAddon   the coded main symbol with the add-on behind it, or the message why not
 

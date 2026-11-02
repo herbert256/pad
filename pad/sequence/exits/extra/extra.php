@@ -12,7 +12,7 @@
   // the rows are the terms in order; an action reorders, cuts or collapses them, and a term
   // it kept still has the 'x' key actions/assoc.php gave it and the value the build gave it,
   // where a total, a store's value or a repeat has neither. Read by position, the columns
-  // gave the rows the terms in the order they were made: {fibonacci rows=6, reverse}
+  // gave the rows the terms in the order they were made: {sequence:fibonacci rows=6, reverse}
   // printed {$fibonacci} 0 1 1 2 3 5 beside a {$sequence} of 5 3 2 1 1 0, and with sum the
   // first term, 0, for the total 12.
 

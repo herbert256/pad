@@ -1,11 +1,11 @@
 <?php
 
-  // Sudoku - the {sudoku} tag. A puzzle of 81 cells, row by row, drawn as a table: the
+  // Sudoku - the {game:sudoku} tag. A puzzle of 81 cells, row by row, drawn as a table: the
   // givens bold, the empty cells open, and with solve the solution filled in by a
   // backtracking solver in another colour.
   //
-  //   {sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'}
-  //   {sudoku $puzzle, solve, title='Saturday puzzle'}
+  //   {game:sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'}
+  //   {game:sudoku $puzzle, solve, title='Saturday puzzle'}
   //
   // padSudokuCells   the 81 cells of a text - 0 for an empty one - or the reason it is no
   //                  puzzle as a string

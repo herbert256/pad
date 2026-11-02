@@ -1,6 +1,6 @@
 <?php
 
-  // The ai subsystem: one prompt to one provider, for padAi (lib/ai.php) and the {ai} tag. A
+  // The ai subsystem: one prompt to one provider, for padAi (lib/ai.php) and the {pad:ai} tag. A
   // provider is a file of subs/ai/types/, answering an array:
   //
   //   name     its name in a message          key      the padEnv name of its API key, ''

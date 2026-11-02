@@ -6,7 +6,7 @@
   //
   // INF is a value, as -INF is (lib/values.php): it was made NULL here too, from the time the
   // field lookups and the at/ subsystem answered INF for "not there" - padMiss now - and a tag
-  // whose PHP answered it - an application tag, {at 's.m'} over a value INF, a pipe function -
+  // whose PHP answered it - an application tag, {pad:at 's.m'} over a value INF, a pipe function -
   // printed nothing where one answering -INF printed -INF, and {$s.m} printed INF.
 
   $padCallOB = ob_get_clean();

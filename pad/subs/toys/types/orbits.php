@@ -7,7 +7,7 @@
   // system= what it starts with - solar (unless given), binary, eight or swarm; trail= the
   // points of each path (300, 0 to 2000); speed= how fast time runs (5, 1 to 10).
   //
-  //   {orbits system='eight', trail=1000/}
+  //   {toy:orbits system='eight', trail=1000/}
 
   return padToy ( 'orbits', 'Orbits', [
     'system' => padToyChoice ( 'system', 'solar', [ 'solar', 'binary', 'eight', 'swarm' ] ),

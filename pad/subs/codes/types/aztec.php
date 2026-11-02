@@ -22,7 +22,7 @@
   if ( $padAztecText === '' ) {
     foreach ( [ 'size', 'title', 'color', 'background' ] as $padAztecOption )
       padTagParm ( $padAztecOption );
-    return padCodeFail ( "the aztec code has no text - {aztec 'Code 2D!'/}" );
+    return padCodeFail ( "the aztec code has no text - {barcode:aztec 'Code 2D!'/}" );
   }
 
   $padAztecSvg = padAztec ( $padAztecText,

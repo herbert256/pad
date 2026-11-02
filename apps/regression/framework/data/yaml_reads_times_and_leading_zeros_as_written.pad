@@ -1,4 +1,4 @@
-{data 'agenda'}
+{pad:data 'agenda'}
 ---
 - what: Standup
   time: 9:30
@@ -12,5 +12,5 @@
   count: 0x1F
   n: -7
   price: .5
-{/data}
-{agenda}{$what} {$time} {$zip} {$count} {echo $n + 1/} {echo $price * 2/}; {/agenda}
+{/pad:data}
+{data:agenda}{$what} {$time} {$zip} {$count} {pad:echo $n + 1/} {pad:echo $price * 2/}; {/data:agenda}

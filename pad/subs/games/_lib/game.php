@@ -2,17 +2,17 @@
 
   // The games subsystem: little games played in the browser.
   //
-  //   {game 'memory', pairs=6/}
+  //   {game:memory pairs=6/}
   //   {game:tictactoe first='computer'/}
-  //   {sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'/}
-  //   {hangman}
+  //   {game:sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'/}
+  //   {game:hangman}
   //     lighthouse
   //     harbour
-  //   {/hangman}
+  //   {/game:hangman}
   //
   // A game is a file of subs/games/types/ - <game>.php checks what the game is given and writes
   // its board - and the files there are the games there are (padGameTypes, lib/game.php);
-  // www/assets/games/ holds its script, <game>.js, which plays it, and its style, <game>.css. subs/games/game.php is the body the {game} tag and the
+  // www/assets/games/ holds its script, <game>.js, which plays it, and its style, <game>.css. subs/games/game.php is the body the {game:memory} tag and the
   // game: type both run; a game's file runs in padGameTag and answers padGame ( ... ), the
   // frame every game shares: its name, a status line its script writes to, the board, a bar
   // for its buttons, and its configuration as JSON for the script.
@@ -58,7 +58,7 @@
 
   }
 
-  // The tag the game is written as, for what a message says: {game 'x'}, {game:x} or {x}.
+  // The tag the game is written as, for what a message says: {game:x}, {game:x} or {data:x}.
 
   function padGameWhat () {
 
@@ -73,8 +73,7 @@
 
   }
 
-  // The first value the game is given - the parameter of {sudoku '...'} and {game:sudoku
-  // '...'}, the second of {game 'sudoku', '...'}, whose first names the game - as text.
+  // The game's first parameter as text, such as the grid in {game:sudoku '...'}.
 
   function padGameValue ( $default = '' ) {
 
@@ -86,8 +85,8 @@
 
   }
 
-  // The rows a data= option names - a {data} store, a sequence store, the page's array, a
-  // field holding a list or a _data file, as {chart} reads them - or NULL without data=.
+  // The rows a data= option names - a {pad:data} store, a sequence store, the page's array, a
+  // field holding a list or a _data file, as {chart:bar} reads them - or NULL without data=.
 
   function padGameRows () {
 
@@ -221,7 +220,7 @@
 
   }
 
-  // A bare option given or not - {tictactoe two/}.
+  // A bare option given or not - {game:tictactoe two/}.
 
   function padGameFlag ( $option ) {
 

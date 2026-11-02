@@ -1,7 +1,7 @@
-{data 'colours'}
+{pad:data 'colours'}
 [ "Red", "Green", "Blue" ]
-{/data}
+{/pad:data}
 {section:steps title='Items from a loop', align='left'}
-  {colours}{section:item $colours}Step {current@colours/} of {count@colours/}.{/section:item}{/colours}
+  {data:colours}{section:item $colours}Step {property:current@colours/} of {property:count@colours/}.{/section:item}{/data:colours}
   {section:item 'And one more'/}
 {/section:steps}

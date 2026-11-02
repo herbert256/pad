@@ -3,7 +3,7 @@
   // Calls a plain PHP function - the handler behind the php: prefix.
   //
   // With no arguments written in the template the piped-in $value becomes the single argument,
-  // so {echo $s | php:strtoupper} works; otherwise $parm is passed through as the argument
+  // so {pad:echo $s | php:strtoupper} works; otherwise $parm is passed through as the argument
   // list and $value is ignored unless the template placed it there with @.
 
   if ( ! padPhpAllowed ( $name ) )
@@ -11,7 +11,7 @@
 
   // An empty piped value is still the argument of a function that needs one: {$title |
   // ucfirst} with an empty $title called ucfirst() with nothing and ended the request. A
-  // function that takes none - {echo php:time()} - is still called bare.
+  // function that takes none - {pad:echo php:time()} - is still called bare.
 
   // A field inside a quoted literal of the call - php:str_contains('{$c}', ',') - or a value
   // piped in from one comes as a string holding its syntax characters as the stand-ins of
@@ -43,7 +43,7 @@
 
   // An empty piped value is still the argument of a function that needs one: {$title |
   // ucfirst} with an empty $title called ucfirst() with nothing and ended the request. A
-  // function that takes none - {echo php:time()} - is still called bare.
+  // function that takes none - {pad:echo php:time()} - is still called bare.
 
   if ( ! count ($parm) and ( $value !== '' or ( new ReflectionFunction ( $name ) ) -> getNumberOfRequiredParameters () ) )
     $parm [0] = $value;

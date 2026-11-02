@@ -2,31 +2,31 @@
 
   <div class="login-box">
 
-    {if $loginSetup eq 1}
+    {pad:if $loginSetup eq 1}
       <p class="login-intro">Nobody can log in yet. Make the first user - more can be added in the editor later.</p>
-    {else}
+    {pad:else}
       <p class="login-intro">The editor for the PAD applications on this server.</p>
-    {/if}
+    {/pad:if}
 
-    {if $loginHint eq 1}
+    {pad:if $loginHint eq 1}
       <p class="login-error" role="alert">The first user can only be made from this machine.</p>
-    {/if}
+    {/pad:if}
 
-    {if $loginError ne ''}
+    {pad:if $loginError ne ''}
       <p class="login-error" role="alert">{$loginError}</p>
-    {/if}
+    {/pad:if}
 
-    {form 'login'}
-      <p>{input 'name', label='Name', autocomplete='username', required, autofocus/}</p>
-      {if $loginSetup eq 1}
-        <p>{input 'password', type='password', label='Password', autocomplete='new-password', required, minlength=8/}</p>
-        <p>{input 'again', type='password', label='Password again', autocomplete='new-password', required, minlength=8/}</p>
+    {pad:form 'login'}
+      <p>{pad:input 'name', label='Name', autocomplete='username', required, autofocus/}</p>
+      {pad:if $loginSetup eq 1}
+        <p>{pad:input 'password', type='password', label='Password', autocomplete='new-password', required, minlength=8/}</p>
+        <p>{pad:input 'again', type='password', label='Password again', autocomplete='new-password', required, minlength=8/}</p>
         <p><button type="submit">Make the user and log in</button></p>
-      {else}
-        <p>{input 'password', type='password', label='Password', autocomplete='current-password', required/}</p>
+      {pad:else}
+        <p>{pad:input 'password', type='password', label='Password', autocomplete='current-password', required/}</p>
         <p><button type="submit">Log in</button></p>
-      {/if}
-    {/form}
+      {/pad:if}
+    {/pad:form}
 
   </div>
 

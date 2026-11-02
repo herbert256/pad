@@ -23,7 +23,7 @@
   var SNIPPETS = [
     { label: 'padExpose', insert: '\\$padExpose = [ \'${1:orders}\' ];', doc: 'The page variables a page answers as JSON or CSV' },
     { label: 'padRedirect', insert: 'padRedirect ( \'${1:index}\' );', doc: 'Send the visitor to a page of this application' },
-    { label: 'padPosted', insert: 'if ( padPosted ( \'${1:form}\' ) ) {\n\n  \\$errors = padValidate ( [ \'${2:email}\' => \'${3:required|email}\' ] );\n\n  if ( ! \\$errors ) {\n    $0\n  }\n\n}', doc: 'Handle a {form} that came back' },
+    { label: 'padPosted', insert: 'if ( padPosted ( \'${1:form}\' ) ) {\n\n  \\$errors = padValidate ( [ \'${2:email}\' => \'${3:required|email}\' ] );\n\n  if ( ! \\$errors ) {\n    $0\n  }\n\n}', doc: 'Handle a {pad:form} that came back' },
     { label: 'db ARRAY', insert: '\\$${1:rows} = db ( "ARRAY * FROM ${2:table}${3: WHERE id={0}}", [ ${4:\\$id} ] );', doc: 'Rows of a query' },
     { label: 'db RECORD', insert: '\\$${1:row} = db ( "RECORD * FROM ${2:table} WHERE id={0}", [ ${3:\\$id} ] );', doc: 'One row' },
     { label: 'foreach', insert: 'foreach ( \\$${1:rows} as \\$${2:row} ) {\n  $0\n}', doc: 'foreach loop' },

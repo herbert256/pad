@@ -29,20 +29,20 @@ and its `.php` are marked as a pair (Alt+O switches between them); git's view of
 
 **PAD in .pad files.**
 - Colouring of tags (the built-in ones apart from the application's), fields, pipe functions,
-  options, properties, type prefixes, strings, operators, comments, `{ignore}` blocks and
+  options, properties, type prefixes, strings, operators, comments, `{pad:ignore}` blocks and
   constructs - inside HTML, attribute values included.
 - Completion of what PAD would accept where the cursor stands: after `{` every tag, the
-  application's own tags and snippets, and pair snippets (`{if}`, `{case}`, `{form}` ...);
+  application's own tags and snippets, and pair snippets (`{pad:if}`, `{pad:case}`, `{pad:form}` ...);
   after `{/` the tags still open, innermost first; after `$` the fields the page's PHP
   assigns; after `|` the pipe functions; after a tag name its options; after `first@` the
-  open tags; inside `{page '...'/}`, `{include '...'}`, `callback='...'`, `{trans '...'/}` and
-  `{collection '...'}` the pages, snippets, callbacks, translation keys and collections.
+  open tags; inside `{pad:page '...'/}`, `{include '...'}`, `callback='...'`, `{pad:trans '...'/}` and
+  `{pad:collection '...'}` the pages, snippets, callbacks, translation keys and collections.
 - Hover shows the reference documentation (`docs/reference/`), or the comment of an
   application's own tag or function, or the line that assigns a field.
 - Go to definition (F12, Ctrl/⌘+click) follows PAD's own lookup: a tag to the nearest
   `_tags/`, a pipe to `_functions/`, a snippet to `_include/`, a field to the PHP that sets it.
 - Tag pairs fold, make the outline (Ctrl/⌘+Shift+O), and rename together: editing `{items}`
-  edits its `{/items}`. Typing the `}` of `{if ...}`, `{data ...}`, `{form ...}` puts in the
+  edits its `{/items}`. Typing the `}` of `{pad:if ...}`, `{pad:data ...}`, `{pad:form ...}` puts in the
   closing tag when the template has none.
 - Checks by PAD itself: a page is rendered under the strict syntax check
   (`editors/render.php`, as the language server does) when it is opened and saved (F7 checks

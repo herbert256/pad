@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      Pages suite - 445 pages, 573 tests, 0 failed · PAD regression
+      Pages suite - 483 pages, 611 tests, 0 failed · PAD regression
     </title>
     <link rel="stylesheet" href="../../_common/pad.css">
     <link rel="stylesheet" href="../../_common/brand.css">
     <script src="../../_common/pad.js"></script>
     <script src="../../_common/brand.js" defer></script>
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
   </head>
   <body class="frame app-regression-main">
     <aside class="frame-side">
@@ -23,89 +26,113 @@
             </summary>
             <nav class="pad-brand-apps" aria-label="PAD applications">
               <div class="pad-brand-columns">
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    PAD
-                  </div><a href="../../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
-                  <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
-                  <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Showcases
-                  </div><a href="../../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                  <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                  <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                  <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Front ends
-                  </div><a href="../../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
-                  <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
-                  <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
-                  <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Offline
-                  </div><a href="../../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                  <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
-                  <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
-                  <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Examples
-                  </div><a href="../../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/playground/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
-                  <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>playground</b><small>Type a template, see the result</small></span></a><a href="../../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-                  <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Tools
-                  </div><a href="../../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
-                  <circle cx="9" cy="7" r="2"></circle>
-                  <circle cx="15" cy="12" r="2"></circle>
-                  <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
-                  <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
-                  <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
                 </div>
               </div>
             </nav>
@@ -144,18 +171,72 @@
     <main class="frame-main">
       <header class="frame-top">
         <h1>
-          Pages suite - 445 pages, 573 tests, 0 failed
+          Pages suite - 483 pages, 611 tests, 0 failed
         </h1>
         <div class="frame-tools">
-          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
         </div>
       </header>
       <div class="frame-body">
         <p>
-          <b>445 pages, 573 tests, 0 failed</b> - all ok
+          <b>483 pages, 611 tests, 0 failed</b> - all ok
         </p>
         <p>
           Every test here is an ordinary page, fetched over HTTP with <code>&amp;padInclude</code> so it renders bare, and compared with the outcome written beside it. That makes it a real request, with a page's own <code>.php</code> half in scope for its <code>.pad</code> half. These tests live in <code>apps/regression/pages/</code>, which has <code>_common</code> switched off, so each one also proves it needs nothing but its own application; the pages that use <code>_common</code> are the <a href="index%EF%B9%96common%EA%A4%B7index.html">Common</a> suite.
@@ -290,7 +371,7 @@
               <a href="http://localhost/pad/regression/pages/?catalog/volatile&amp;padInclude">catalog/volatile</a>
             </td>
             <td>
-              The two draws - {ajax} ids and now - pinned by shape in one regex
+              The two draws - {pad:ajax} ids and now - pinned by shape in one regex
             </td>
             <td>
               ok
@@ -473,7 +554,7 @@
               <a href="http://localhost/pad/regression/pages/?db/array2&amp;padInclude">db/array2</a>
             </td>
             <td>
-              The same through the {array} tag, which hands its parameter to db() as the command word
+              The same through the {pad:array} tag, which hands its parameter to db() as the command word
             </td>
             <td>
               ok
@@ -495,7 +576,7 @@
               <a href="http://localhost/pad/regression/pages/?db/check2&amp;padInclude">db/check2</a>
             </td>
             <td>
-              The same through the {check} tag
+              The same through the {pad:check} tag
             </td>
             <td>
               ok
@@ -517,7 +598,7 @@
               <a href="http://localhost/pad/regression/pages/?db/field2&amp;padInclude">db/field2</a>
             </td>
             <td>
-              The same through the {field} tag
+              The same through the {pad:field} tag
             </td>
             <td>
               ok
@@ -652,7 +733,7 @@
               <a href="http://localhost/pad/regression/pages/?db/record2&amp;padInclude">db/record2</a>
             </td>
             <td>
-              The same through the {record} tag
+              The same through the {pad:record} tag
             </td>
             <td>
               ok
@@ -746,7 +827,7 @@
               <a href="http://localhost/pad/regression/pages/?file/file&amp;padInclude">file/file</a>
             </td>
             <td>
-              The {file} tag writing four files, with date, stamp and id naming them
+              The {pad:file} tag writing four files, with date, stamp and id naming them
             </td>
             <td>
               ok
@@ -768,7 +849,7 @@
               <a href="http://localhost/pad/regression/pages/?flush/a_tidy_marker_above_a_flush_is_taken_out&amp;padInclude">flush/a_tidy_marker_above_a_flush_is_taken_out</a>
             </td>
             <td>
-              An in the part a {flush} sends early is taken out, as from the rest of the page
+              An in the part a {pad:flush} sends early is taken out, as from the rest of the page
             </td>
             <td>
               ok
@@ -779,7 +860,7 @@
               <a href="http://localhost/pad/regression/pages/?flush/a_tidy_marker_below_a_flush_leaves_the_rest_as_rendered&amp;padInclude">flush/a_tidy_marker_below_a_flush_leaves_the_rest_as_rendered</a>
             </td>
             <td>
-              An below a {flush} is taken out and tidy does not run over the rest - one document, as rendered
+              An below a {pad:flush} is taken out and tidy does not run over the rest - one document, as rendered
             </td>
             <td>
               ok
@@ -790,7 +871,7 @@
               <a href="http://localhost/pad/regression/pages/?flush/a_toc_above_a_flush_lists_the_headings_below_it&amp;padInclude">flush/a_toc_above_a_flush_lists_the_headings_below_it</a>
             </td>
             <td>
-              A {toc} in the part a {flush} would send holds every flush back: the toc lists the headings below it, no marker goes out
+              A {pad:toc} in the part a {pad:flush} would send holds every flush back: the toc lists the headings below it, no marker goes out
             </td>
             <td>
               ok
@@ -801,7 +882,7 @@
               <a href="http://localhost/pad/regression/pages/?flush/auth&amp;padInclude">flush/auth</a>
             </td>
             <td>
-              A logged-in visitor below a {flush}: still logged in, the session opened before the headers went
+              A logged-in visitor below a {pad:flush}: still logged in, the session opened before the headers went
             </td>
             <td>
               ok
@@ -906,7 +987,7 @@
               <a href="http://localhost/pad/regression/pages/?flush/login&amp;padInclude">flush/login</a>
             </td>
             <td>
-              A login below a {flush} on an open session: refused, the id cannot be renewed
+              A login below a {pad:flush} on an open session: refused, the id cannot be renewed
             </td>
             <td>
               ok
@@ -928,7 +1009,7 @@
               <a href="http://localhost/pad/regression/pages/?flush/logout&amp;padInclude">flush/logout</a>
             </td>
             <td>
-              A logout below a {flush} while a remember-me cookie stands: refused, the cookie cannot be dropped
+              A logout below a {pad:flush} while a remember-me cookie stands: refused, the cookie cannot be dropped
             </td>
             <td>
               ok
@@ -983,6 +1064,28 @@
           </tr>
           <tr>
             <td>
+              <a href="http://localhost/pad/regression/pages/?flush/sound&amp;padInclude">flush/sound</a>
+            </td>
+            <td>
+              The WAV link of a {sound:chime} on a page that flushes early answers the WAV - asked with padSound the page flushes nothing
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?flush/sound_inner&amp;padInclude">flush/sound_inner</a>
+            </td>
+            <td>
+              The flushed page flush/sound asks for its WAV - on its own the page, with its download link
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="http://localhost/pad/regression/pages/?flush/tidybelow&amp;padInclude">flush/tidybelow</a>
             </td>
             <td>
@@ -1014,6 +1117,17 @@
           </tr>
           <tr>
             <td>
+              <a href="http://localhost/pad/regression/pages/?format/a_failing_page_asked_for_any_format_answers_the_plain_line&amp;padInclude">format/a_failing_page_asked_for_any_format_answers_the_plain_line</a>
+            </td>
+            <td>
+              A page exposing its data that fails in its PHP, asked for it in ics, tsv or by Accept: text/calendar, answers the plain line as text/plain as JSON does - never the closing tags of a broken HTML page
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="http://localhost/pad/regression/pages/?format/a_float_past_the_range_inside_an_object_is_null_in_a_json_answer&amp;padInclude">format/a_float_past_the_range_inside_an_object_is_null_in_a_json_answer</a>
             </td>
             <td>
@@ -1036,10 +1150,33 @@
           </tr>
           <tr>
             <td>
+              <a href="http://localhost/pad/regression/pages/?format/a_page_answers_its_chapters_as_the_track_of_a_video&amp;padInclude">format/a_page_answers_its_chapters_as_the_track_of_a_video</a>
+            </td>
+            <td>
+              A page exposing its chapters answers them as WebVTT - text/vtt, the src of a
+              <track>- and as SRT, each chapter ending where the next starts
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="http://localhost/pad/regression/pages/?format/a_text_that_is_no_utf8_is_kept_in_a_json_answer&amp;padInclude">format/a_text_that_is_no_utf8_is_kept_in_a_json_answer</a>
             </td>
             <td>
               A value with a byte that is no UTF-8 is kept in a JSON answer, the byte as U+FFFD - never null
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?format/accept&amp;padInclude">format/accept</a>
+            </td>
+            <td>
+              The Accept headers of browsers, feed readers, agents and scripts: one that accepts text/html - by name, or through a wildcard as high as the format - gets the page; a format the page cannot give, a table without a list, renders the page too, 406 only for padFormat=
             </td>
             <td>
               ok
@@ -1068,6 +1205,39 @@
               <a href="http://localhost/pad/regression/pages/?format/cells_csv&amp;padInclude">format/cells_csv</a>
             </td>
             <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?format/chapters&amp;padInclude">format/chapters</a>
+            </td>
+            <td>
+              The fixture of format/a_page_answers_its_chapters_as_the_track_of_a_video, fetched bare: its page
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?format/events&amp;padInclude">format/events</a>
+            </td>
+            <td>
+              The fixture of format/formats, fetched bare: its page, the events it exposes with $padFormatOptions
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?format/formats&amp;padInclude">format/formats</a>
+            </td>
+            <td>
+              A page answers in every format of pad/subs/formats that writes - toml, yaml, ini, ndjson, jsonseq, md, tsv, ics, vcf, vtt, srt, rss, atom, jsonfeed, geojson, gpx, kml, xlsx - with the format's content type and file name; text/calendar, application/rss+xml and application/toml in the Accept header ask for theirs, a browser's and text/plain for the page, a read-only format is 406
+            </td>
             <td>
               ok
             </td>
@@ -1146,6 +1316,15 @@
           <tr>
             <td>
               <a href="http://localhost/pad/regression/pages/?format/scalar&amp;padInclude">format/scalar</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?forms/a_client_form_names_the_fields_its_rules_look_at&amp;padInclude">forms/a_client_form_names_the_fields_its_rules_look_at</a>
             </td>
             <td></td>
             <td>
@@ -1559,7 +1738,7 @@
               <a href="http://localhost/pad/regression/pages/?live/a_posting_form_in_a_live_answer_keeps_its_csrf_token&amp;padInclude">live/a_posting_form_in_a_live_answer_keeps_its_csrf_token</a>
             </td>
             <td>
-              A posting form in a {live} region under $padCsrf carries the token in the answer to an event as in the page
+              A posting form in a {pad:live} region under $padCsrf carries the token in the answer to an event as in the page
             </td>
             <td>
               ok
@@ -1802,7 +1981,7 @@
               <a href="http://localhost/pad/regression/pages/?misc/pdf_preview_alone&amp;padInclude">misc/pdf_preview_alone</a>
             </td>
             <td>
-              A {pdf preview} written as a single tag: the page with its links to open and download the document
+              A {pad:pdf preview} written as a single tag: the page with its links to open and download the document
             </td>
             <td>
               ok
@@ -1824,7 +2003,7 @@
               <a href="http://localhost/pad/regression/pages/?misc/react&amp;padInclude">misc/react</a>
             </td>
             <td>
-              The {reactData} tag over a static provider, and the @providers reference reading the parked result back
+              The {pad:reactData} tag over a static provider, and the @providers reference reading the parked result back
             </td>
             <td>
               ok
@@ -1844,7 +2023,7 @@
               <a href="http://localhost/pad/regression/pages/?misc/react_keeps_its_data_with_a_byte_that_is_no_utf8&amp;padInclude">misc/react_keeps_its_data_with_a_byte_that_is_no_utf8</a>
             </td>
             <td>
-              A {reactData} provider whose text holds a byte that is no UTF-8 - a Latin-1 Caf\xE9 - keeps its data, the byte as U+FFFD: the JSON came back FALSE, and the attribute empty
+              A {pad:reactData} provider whose text holds a byte that is no UTF-8 - a Latin-1 Caf\xE9 - keeps its data, the byte as U+FFFD: the JSON came back FALSE, and the attribute empty
             </td>
             <td>
               ok
@@ -1891,7 +2070,7 @@
               <a href="http://localhost/pad/regression/pages/?misc/trace&amp;padInclude">misc/trace</a>
             </td>
             <td>
-              The {trace} tag wrapping a scope in the execution trace
+              The {pad:trace} tag wrapping a scope in the execution trace
             </td>
             <td>
               ok
@@ -1988,6 +2167,28 @@
           </tr>
           <tr>
             <td>
+              <a href="http://localhost/pad/regression/pages/?printables/embedded&amp;padInclude">printables/embedded</a>
+            </td>
+            <td>
+              A printable with pdf in a page shown by {pad:page}: its sheets without the links to the document, which asked the page around it
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?printables/embedded_inner&amp;padInclude">printables/embedded_inner</a>
+            </td>
+            <td>
+              The page printables/embedded shows - on its own a printable with pdf and its links to the document
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="http://localhost/pad/regression/pages/?request/a_clean_url_with_a_comma_or_semicolon_in_a_directory_answers_a_returning_visitor&amp;padInclude">request/a_clean_url_with_a_comma_or_semicolon_in_a_directory_answers_a_returning_visitor</a>
             </td>
             <td>
@@ -2069,7 +2270,7 @@
               <a href="http://localhost/pad/regression/pages/?request/a_guard_reading_the_user_after_padauthrequire_ends_at_the_refusal&amp;padInclude">request/a_guard_reading_the_user_after_padauthrequire_ends_at_the_refusal</a>
             </td>
             <td>
-              In the guard of a {page}-included page padAuthRequire ends the guard for a guest, so a line reading the user after it never runs and the part renders as nothing
+              In the guard of a {pad:page}-included page padAuthRequire ends the guard for a guest, so a line reading the user after it never runs and the part renders as nothing
             </td>
             <td>
               ok
@@ -2080,7 +2281,7 @@
               <a href="http://localhost/pad/regression/pages/?request/a_guard_that_swallows_the_refusal_of_a_part_still_refuses_it&amp;padInclude">request/a_guard_that_swallows_the_refusal_of_a_part_still_refuses_it</a>
             </td>
             <td>
-              A guard of a {page}-included page that catches the refusal of padAuthRequire or padAuthorize - padRescue, a try/catch - and returns TRUE is refused all the same: the part renders as nothing
+              A guard of a {pad:page}-included page that catches the refusal of padAuthRequire or padAuthorize - padRescue, a try/catch - and returns TRUE is refused all the same: the part renders as nothing
             </td>
             <td>
               ok
@@ -2091,7 +2292,7 @@
               <a href="http://localhost/pad/regression/pages/?request/a_guarded_page_named_as_content_renders_nothing_when_refused&amp;padInclude">request/a_guarded_page_named_as_content_renders_nothing_when_refused</a>
             </td>
             <td>
-              A page below a _guard.php named by content= or else= is asked of its guard as a {page} is - refused, it renders as nothing
+              A page below a _guard.php named by content= or else= is asked of its guard as a {pad:page} is - refused, it renders as nothing
             </td>
             <td>
               ok
@@ -2113,7 +2314,7 @@
               <a href="http://localhost/pad/regression/pages/?request/a_part_whose_guard_asks_for_a_login_renders_nothing_for_a_guest&amp;padInclude">request/a_part_whose_guard_asks_for_a_login_renders_nothing_for_a_guest</a>
             </td>
             <td>
-              A page included by {page} whose _guard.php calls padAuthRequire or padAuthorize renders as nothing when refused, where the whole public page was sent to the login or answered 403
+              A page included by {pad:page} whose _guard.php calls padAuthRequire or padAuthorize renders as nothing when refused, where the whole public page was sent to the login or answered 403
             </td>
             <td>
               ok
@@ -2155,7 +2356,7 @@
               <a href="http://localhost/pad/regression/pages/?request/a_redirect_carries_a_list_as_the_query_writes_it&amp;padInclude">request/a_redirect_carries_a_list_as_the_query_writes_it</a>
             </td>
             <td>
-              The values padRedirect and {redirect} carry go into the query as padUrl writes them - a list as ids[0]=1&amp;ids[1]=2, a NULL left out, a name with & encoded
+              The values padRedirect and {pad:redirect} carry go into the query as padUrl writes them - a list as ids[0]=1&amp;ids[1]=2, a NULL left out, a name with & encoded
             </td>
             <td>
               ok
@@ -2235,7 +2436,7 @@
               <a href="http://localhost/pad/regression/pages/?request/an_exported_page_carries_nothing_only_this_machine_sees&amp;padInclude">request/an_exported_page_carries_nothing_only_this_machine_sees</a>
             </td>
             <td>
-              pad export renders on the command line, local to padLocal, for a copy any visitor reads: a page whose own PHP switches the toolbar, live reload and the output check on, with a {debug} box, carries all four to this machine and none into the export
+              pad export renders on the command line, local to padLocal, for a copy any visitor reads: a page whose own PHP switches the toolbar, live reload and the output check on, with a {pad:debug} box, carries all four to this machine and none into the export
             </td>
             <td>
               ok
@@ -2257,7 +2458,7 @@
               <a href="http://localhost/pad/regression/pages/?request/an_exported_page_fetches_this_site_without_the_developers_view&amp;padInclude">request/an_exported_page_fetches_this_site_without_the_developers_view</a>
             </td>
             <td>
-              A page pad export renders fetches a page of its own site whose PHP switches the toolbar, live reload and the output check on, with a {debug} box: none of the four comes back into the copy
+              A page pad export renders fetches a page of its own site whose PHP switches the toolbar, live reload and the output check on, with a {pad:debug} box: none of the four comes back into the copy
             </td>
             <td>
               ok
@@ -2468,7 +2669,7 @@
               <a href="http://localhost/pad/regression/pages/?request/exported&amp;padInclude">request/exported</a>
             </td>
             <td>
-              The fixture for request/an_exported_page_carries_nothing_only_this_machine_sees: the helpers switched on by the page itself, a {debug} box and an image the output check names
+              The fixture for request/an_exported_page_carries_nothing_only_this_machine_sees: the helpers switched on by the page itself, a {pad:debug} box and an image the output check names
             </td>
             <td>
               ok
@@ -2579,11 +2780,83 @@
           </tr>
           <tr>
             <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_daterange&amp;padInclude">request/form_daterange</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_daterange_post&amp;padInclude">request/form_daterange_post</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_rangeslider&amp;padInclude">request/form_rangeslider</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_rangeslider_post&amp;padInclude">request/form_rangeslider_post</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="http://localhost/pad/regression/pages/?request/form_rules&amp;padInclude">request/form_rules</a>
             </td>
             <td>
               The form rules fixture bare: an empty form, not processed
             </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_rules_durationpicker&amp;padInclude">request/form_rules_durationpicker</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_rules_durationpicker_post&amp;padInclude">request/form_rules_durationpicker_post</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_rules_multiselect&amp;padInclude">request/form_rules_multiselect</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_rules_multiselect_post&amp;padInclude">request/form_rules_multiselect_post</a>
+            </td>
+            <td></td>
             <td>
               ok
             </td>
@@ -2647,6 +2920,82 @@
           <tr>
             <td>
               <a href="http://localhost/pad/regression/pages/?request/form_rules_rich_fields_post&amp;padInclude">request/form_rules_rich_fields_post</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_rules_segmented&amp;padInclude">request/form_rules_segmented</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_rules_segmented_post&amp;padInclude">request/form_rules_segmented_post</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_rules_that_compare_and_count&amp;padInclude">request/form_rules_that_compare_and_count</a>
+            </td>
+            <td>
+              The fixture of the rules that compare and count bare: an empty form, not processed
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_rules_that_compare_and_count_post&amp;padInclude">request/form_rules_that_compare_and_count_post</a>
+            </td>
+            <td>
+              different, multiple_of, gt, after_or_equal, min_items and max_items on a checkbox list, max_words, posted for real: broken and refilled with each message, kept and stored, a list too long and too many words
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_rules_that_look_at_other_fields&amp;padInclude">request/form_rules_that_look_at_other_fields</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_rules_that_look_at_other_fields_post&amp;padInclude">request/form_rules_that_look_at_other_fields_post</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_rules_treepicker&amp;padInclude">request/form_rules_treepicker</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?request/form_rules_treepicker_post&amp;padInclude">request/form_rules_treepicker_post</a>
             </td>
             <td></td>
             <td>
@@ -3954,7 +4303,7 @@
               <a href="http://localhost/pad/regression/pages/?shown/frames&amp;padInclude">shown/frames</a>
             </td>
             <td>
-              An @page@ inside an {ignore} of a wrapper is text it shows - one beside the real marker, and one in a wrapper that has no other
+              An @page@ inside an {pad:ignore} of a wrapper is text it shows - one beside the real marker, and one in a wrapper that has no other
             </td>
             <td>
               ok
@@ -3983,7 +4332,7 @@
               <a href="http://localhost/pad/regression/pages/?sitemap/a_page_beside_a_directory_of_its_name_leaves_the_index_its_full_address&amp;padInclude">sitemap/a_page_beside_a_directory_of_its_name_leaves_the_index_its_full_address</a>
             </td>
             <td>
-              A page docs beside a directory docs/ with an index: {sitemap} lists the page at ?docs and the index at ?docs/index, where the router sends it - not both at ?docs
+              A page docs beside a directory docs/ with an index: {pad:sitemap} lists the page at ?docs and the index at ?docs/index, where the router sends it - not both at ?docs
             </td>
             <td>
               ok
@@ -4066,6 +4415,61 @@
               <a href="http://localhost/pad/regression/pages/?sitemap/site/sub/b&amp;padInclude">sitemap/site/sub/b</a>
             </td>
             <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?spreadsheet/a_live_change_carrying_more_than_1000_values_comes_back_computed&amp;padInclude">spreadsheet/a_live_change_carrying_more_than_1000_values_comes_back_computed</a>
+            </td>
+            <td>
+              A live change of an editable {pad:spreadsheet} carrying more than 1000 values - in padValue or as fields - comes back computed, no 500 from parse_str
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?spreadsheet/a_live_change_comes_back_computed_with_the_other_cells&amp;padInclude">spreadsheet/a_live_change_comes_back_computed_with_the_other_cells</a>
+            </td>
+            <td>
+              An editable {pad:spreadsheet} of a {pad:live} region is a form a change submits, the region its first field and every cell once; the region comes back computed
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?spreadsheet/a_posted_cell_is_computed_again&amp;padInclude">spreadsheet/a_posted_cell_is_computed_again</a>
+            </td>
+            <td>
+              An editable {pad:spreadsheet} in a {pad:form} posts its cells back and is computed again - a typed formula too; a cell not to edit and an overlong text are left, a broken formula shows #ERROR!
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?spreadsheet/form&amp;padInclude">spreadsheet/form</a>
+            </td>
+            <td>
+              The fixture of spreadsheet/a_posted_cell_is_computed_again, fetched bare: an editable {pad:spreadsheet} in a {pad:form}
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?spreadsheet/live&amp;padInclude">spreadsheet/live</a>
+            </td>
+            <td>
+              The fixture of spreadsheet/a_live_change_comes_back_computed_with_the_other_cells, fetched bare: an editable {pad:spreadsheet} in a {pad:live} region
+            </td>
             <td>
               ok
             </td>
@@ -4179,7 +4583,7 @@
               <a href="http://localhost/pad/regression/pages/?start/code/increment/base&amp;padInclude">start/code/increment/base</a>
             </td>
             <td>
-              Nine nested {code} passes, each one incrementting the variable
+              Nine nested {pad:code} passes, each one incrementting the variable
             </td>
             <td>
               ok
@@ -4190,7 +4594,7 @@
               <a href="http://localhost/pad/regression/pages/?start/code/increment/clean&amp;padInclude">start/code/increment/clean</a>
             </td>
             <td>
-              Nine nested {code} passes, each one incrementting the variable, with clean
+              Nine nested {pad:code} passes, each one incrementting the variable, with clean
             </td>
             <td>
               ok
@@ -4201,7 +4605,7 @@
               <a href="http://localhost/pad/regression/pages/?start/code/increment/reset&amp;padInclude">start/code/increment/reset</a>
             </td>
             <td>
-              Nine nested {code} passes, each one incrementting the variable, with reset
+              Nine nested {pad:code} passes, each one incrementting the variable, with reset
             </td>
             <td>
               ok
@@ -4212,7 +4616,7 @@
               <a href="http://localhost/pad/regression/pages/?start/code/increment/sandbox&amp;padInclude">start/code/increment/sandbox</a>
             </td>
             <td>
-              Nine nested {code} passes, each one incrementting the variable, with sandbox
+              Nine nested {pad:code} passes, each one incrementting the variable, with sandbox
             </td>
             <td>
               ok
@@ -4223,7 +4627,7 @@
               <a href="http://localhost/pad/regression/pages/?start/code/index&amp;padInclude">start/code/index</a>
             </td>
             <td>
-              The eight {code} variants side by side
+              The eight {pad:code} variants side by side
             </td>
             <td>
               ok
@@ -4234,7 +4638,7 @@
               <a href="http://localhost/pad/regression/pages/?start/code/set/base&amp;padInclude">start/code/set/base</a>
             </td>
             <td>
-              Nine nested {code} passes, each one setting the variable
+              Nine nested {pad:code} passes, each one setting the variable
             </td>
             <td>
               ok
@@ -4245,7 +4649,7 @@
               <a href="http://localhost/pad/regression/pages/?start/code/set/clean&amp;padInclude">start/code/set/clean</a>
             </td>
             <td>
-              Nine nested {code} passes, each one setting the variable, with clean
+              Nine nested {pad:code} passes, each one setting the variable, with clean
             </td>
             <td>
               ok
@@ -4256,7 +4660,7 @@
               <a href="http://localhost/pad/regression/pages/?start/code/set/reset&amp;padInclude">start/code/set/reset</a>
             </td>
             <td>
-              Nine nested {code} passes, each one setting the variable, with reset
+              Nine nested {pad:code} passes, each one setting the variable, with reset
             </td>
             <td>
               ok
@@ -4267,7 +4671,7 @@
               <a href="http://localhost/pad/regression/pages/?start/code/set/sandbox&amp;padInclude">start/code/set/sandbox</a>
             </td>
             <td>
-              Nine nested {code} passes, each one setting the variable, with sandbox
+              Nine nested {pad:code} passes, each one setting the variable, with sandbox
             </td>
             <td>
               ok
@@ -4289,7 +4693,7 @@
               <a href="http://localhost/pad/regression/pages/?start/combi1/index&amp;padInclude">start/combi1/index</a>
             </td>
             <td>
-              A {page} chain mixing the options rather than using one throughout
+              A {pad:page} chain mixing the options rather than using one throughout
             </td>
             <td>
               ok
@@ -4333,7 +4737,7 @@
               <a href="http://localhost/pad/regression/pages/?start/page/1/index&amp;padInclude">start/page/1/index</a>
             </td>
             <td>
-              Nine nested {page} calls setting a variable - with no option it leaks outward
+              Nine nested {pad:page} calls setting a variable - with no option it leaks outward
             </td>
             <td>
               ok
@@ -4421,7 +4825,7 @@
               <a href="http://localhost/pad/regression/pages/?start/page/index&amp;padInclude">start/page/index</a>
             </td>
             <td>
-              The eight {page} chains side by side, which is what makes their differences readable
+              The eight {pad:page} chains side by side, which is what makes their differences readable
             </td>
             <td>
               ok
@@ -4485,6 +4889,68 @@
           </tr>
           <tr>
             <td>
+              <a href="http://localhost/pad/regression/pages/?themes/a_theme_choice_is_a_cookie_of_the_pad_applications_and_starts_no_session&amp;padInclude">themes/a_theme_choice_is_a_cookie_of_the_pad_applications_and_starts_no_session</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?themes/chosen&amp;padInclude">themes/chosen</a>
+            </td>
+            <td>
+              The fixture for the theme choice: a page without the frame in an application that chose a theme ($padTheme), which a visitor's choice colours
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?themes/framed&amp;padInclude">themes/framed</a>
+            </td>
+            <td>
+              The fixture for the theme choice: a page that links the frame's stylesheet, with the switcher
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?themes/inline&amp;padInclude">themes/inline</a>
+            </td>
+            <td></td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?themes/own&amp;padInclude">themes/own</a>
+            </td>
+            <td>
+              The fixture for the theme choice: a framed page with a {pad:theme 'sepia'/} of its own, which a visitor's choice does not outweigh
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="http://localhost/pad/regression/pages/?themes/plain&amp;padInclude">themes/plain</a>
+            </td>
+            <td>
+              The fixture for the theme choice: a page with a design of its own, which a visitor's choice leaves alone
+            </td>
+            <td>
+              ok
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="http://localhost/pad/regression/pages/?vars/at/1&amp;padInclude">vars/at/1</a>
             </td>
             <td>
@@ -4532,7 +4998,7 @@
               <a href="http://localhost/pad/regression/pages/?vars/at/9&amp;padInclude">vars/at/9</a>
             </td>
             <td>
-              The @ reference as a tag pair and through the {at} tag, over the same data
+              The @ reference as a tag pair and through the {pad:at} tag, over the same data
             </td>
             <td>
               ok

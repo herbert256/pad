@@ -4,7 +4,7 @@
   // can post-process the whole thing.
   //
   // Reached from level/end.php when the tag set $padWalk [$pad] to 'end' on its first
-  // pass, as {file}, {tidy} and {trace} do. The handler is called with $padContent set to
+  // pass, as {pad:file}, {pad:tidy} and {pad:trace} do. The handler is called with $padContent set to
   // $padResult [$pad], and whatever it leaves there becomes the level's result.
   //
   // What the handler answers is what level/flags.php reads: the answer was dropped, and the

@@ -4,7 +4,7 @@
   // k of 1 or more - the terms loop.php makes, $y ** $k. Membership only: generation goes
   // through loop.php, which pqBuild() prefers.
   //
-  // $y is the sequence parameter, so {keep power=2} keeps 2, 4, 8, 16, ... - x = 1 is left
+  // $y is the sequence parameter, so {keep:power 2} keeps 2, 4, 8, 16, ... - x = 1 is left
   // out to match loop.php, which starts at the first power rather than at y^0. The k that
   // could give x is the logarithm of x to the base y, so the whole numbers next to it are
   // tried with the same ** loop.php uses. Dividing y out of x until 1 was left knew only

@@ -11,7 +11,7 @@
     return FALSE;
 
   // A parameter that is 0 - spelled 0, '0.0', '-0' or '00' - is read as 1. ! $pqParm let the
-  // strings '0.0', '-0' and '00' through, which are true, and {sequence round='00'} ended the
+  // strings '0.0', '-0' and '00' through, which are true, and {sequence:round '00'} ended the
   // request on "Division by zero" where round=0 gives 1 2 3.
 
   if ( is_numeric ( $pqParm ) ? $pqParm == 0 : ! $pqParm )

@@ -3,7 +3,7 @@
   // Membership test for pentatope, 0, 1, 5, 15, 35, 70, ...: the n of a term x is about the
   // fourth root of 24x less 1.5, so the root is taken once in floating point and the
   // pentatope numbers of the positions around it are compared exactly. build/check.php asks
-  // it for {keep pentatope}, {remove pentatope} and {flag pentatope}.
+  // it for {keep:pentatope}, {remove:pentatope} and {pad:flag pentatope}.
   //
   // Not the type's build: pqBuild() ranks function.php before bool.php.
 

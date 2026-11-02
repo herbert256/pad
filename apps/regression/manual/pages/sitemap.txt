@@ -1,5 +1,7 @@
+
+
 <p>Every page is a file, so the list of pages needs no route table: the application
-directory is the list. {sitemap} walks it and gives one row per page -
+directory is the list. {pad:sitemap} walks it and gives one row per page -
 <code>page</code>, <code>url</code> and <code>lastmod</code>, the newest time among the
 page's files. A directory names a part of the application; here the shop the
 <em>Clean URLs</em> page routes through:</p>
@@ -41,7 +43,7 @@ page's files. A directory names a part of the application; here the shop the
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtzaXRlbWFwICdmcmFnbWVudHMvc2hvcCd9PGxpPnskcGFnZX08L2xpPnsvc2l0ZW1hcH1cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtzaXRlbWFwICdmcmFnbWVudHMvc2hvcCd9PGxpPnskcGFnZX08L2xpPnsvc2l0ZW1hcH1cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">sitemap </font><font color="red"><font color="black">'</font>fragments/shop<font color="black">'</font></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>page</font>}</b>&lt;/li&gt;<b>{/<font color="blue">sitemap</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtwYWQ6c2l0ZW1hcCAnZnJhZ21lbnRzL3Nob3AnfTxsaT57JHBhZ2V9PC9saT57L3BhZDpzaXRlbWFwfVxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtwYWQ6c2l0ZW1hcCAnZnJhZ21lbnRzL3Nob3AnfTxsaT57JHBhZ2V9PC9saT57L3BhZDpzaXRlbWFwfVxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>sitemap </font><font color="red"><font color="black">'</font>fragments/shop<font color="black">'</font></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>page</font>}</b>&lt;/li&gt;<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>sitemap</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -68,7 +70,7 @@ page's files. A directory names a part of the application; here the shop the
 <p>The routes <code>products/[id]</code> and <code>blog/[year]/[slug]</code> are not in the
 list: a bracketed page has no one address. Also left out are <code>_</code> entries,
 directories that hold a <code>_guard.php</code>, pages with no template whose PHP only
-redirects or writes, pages whose template says <code>{meta sitemap=false/}</code>,
+redirects or writes, pages whose template says <code>{pad:meta sitemap=false/}</code>,
 and every page or directory listed in <code>$padSitemapSkip</code>.</p>
 
 <p>With <code>$padSitemap = TRUE</code> in <code>_config/config.php</code> the application

@@ -2,14 +2,15 @@
 
   // Resolves the tag name to a type, that is, which types/<type>.php will run it.
   //
-  // A bare name is looked up in priority order by padTypeTag() - app tag, _common tag,
-  // built-in tag, one of the stores, custom function. A prefixed name such as app:x or
-  // data:x is checked against that one type by padTypeTagCheck() and, failing that, tried
-  // as a sequence type/action combination by padTypeSeq(). Leaves $padTypeCheck (the bare
-  // name), $padTypePrefix, $padTypeGiven, $padTypeSeq and $padTypeResult; a FALSE
-  // $padTypeResult means the tag is unknown and level/no.php deals with it.
+  // Every named tag selects its namespace explicitly. Variable/expression sigils are
+  // handled before this step. padTypeTagCheck() checks the selected type; padTypeSeq()
+  // handles the sequence operation prefixes. A missing or unknown prefix leaves FALSE
+  // for level/no.php: strict mode reports it, lenient mode preserves the literal text.
 
   $padTypeExplode = padExplode ( $padTagCheck, ':' ) ;
+  if ( str_ends_with ( $padTagCheck, ':' ) )
+    $padTypeExplode [] = '';
+
   $padTypeSeq     = '';
 
   if ( count ($padTypeExplode) == 1 ) {
@@ -17,7 +18,9 @@
     $padTypeGiven  = FALSE;
     $padTypePrefix = '';
     $padTypeCheck  = $padTagCheck;
-    $padTypeResult = padTypeTag ( $padTypeCheck );
+    // Named tags always declare their namespace. Expression and variable sigils
+    // have already been handled by level/level.php and do not pass through here.
+    $padTypeResult = FALSE;
 
   } else {
 
@@ -25,6 +28,18 @@
 
     $padTypePrefix = $padTypeExplode [0];
     $padTypeCheck  = $padTypeExplode [1];
+
+    // A subsystem may select its kind from a field, without turning field output into
+    // template source: {icon:$icon/}, {chart:$kind}...{/chart:$kind}. The namespace is
+    // literal, the field supplies only a registered kind, and pair matching keeps the
+    // spelling in the source. PHP and application tags cannot be selected this way.
+    if ( ( isset ( padSubsystems [$padTypePrefix] ) or in_array ( $padTypePrefix, padSequenceOperations, TRUE ) )
+         and preg_match ( '/^\$([A-Za-z][A-Za-z0-9_]*)$/D', $padTypeCheck, $padKindField ) ) {
+      $padKindValue = padFieldValue ( $padKindField [1], 0 );
+      $padTypeCheck = is_string ( $padKindValue ) ? trim ( $padKindValue ) : '';
+      if ( isset ( padSubsystems [$padTypePrefix] ) )
+        $padTypeCheck = strtolower ( $padTypeCheck );
+    }
 
     $padTypeResult = padTypeTagCheck ( $padTypePrefix, $padTypeCheck );
 

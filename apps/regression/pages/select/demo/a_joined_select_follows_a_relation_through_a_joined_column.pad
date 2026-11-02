@@ -1,3 +1,3 @@
-reps: [{repSel where="employeeNumber in (1165, 1166)"}{$lastName}: {orderCustomers rows=2}{$orderNumber} {/orderCustomers}| {/repSel}]
-bound: [{repOrders $salesRepEmployeeNumber=1188, rows=2}{$orderNumber} {/repOrders}]
-both: [{customerOrders $customerNumber=103}{$orderNumber} {/customerOrders}]
+reps: [{select:repSel where="employeeNumber in (1165, 1166)"}{$lastName}: {select:orderCustomers rows=2}{$orderNumber} {/select:orderCustomers}| {/select:repSel}]
+bound: [{select:repOrders $salesRepEmployeeNumber=1188, rows=2}{$orderNumber} {/select:repOrders}]
+both: [{select:customerOrders $customerNumber=103}{$orderNumber} {/select:customerOrders}]

@@ -5,8 +5,8 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{array "* from table where ..."} ... {/array}
-{array "* from orders", name='orders'} ... {/array}
+{pad:array "* from table where ..."} ... {/pad:array}
+{pad:array "* from orders", name='orders'} ... {/pad:array}
 PAD;
 
   $tagParms   = [

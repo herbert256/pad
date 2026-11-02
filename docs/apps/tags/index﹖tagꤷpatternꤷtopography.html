@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {pattern:topography} · PAD tags
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="tags.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+  </head>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>tags</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags and kinds</label> <input type="search" id="q" name="q" value="" placeholder="Search 1220 entries" autocomplete="off">
+        </form>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#kind-pattern">Patterns</a><span>/</span><span aria-current="page">pattern:topography</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              <span class="brace">{</span>pattern:topography<span class="brace">}</span>
+            </h1>
+            <p class="tag-about">
+              The contour lines of a landscape the seed makes up.
+            </p>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#kind-pattern">Patterns</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pattern:topography</span> <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span></code></pre>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              One of the 26 patterns of <a href="index%EF%B9%96tag%EA%A4%B7pattern.html"><code>pattern:*</code></a>, written <code>{pattern:topography seed=7/}</code>.
+            </p>
+            <p>
+              The contour lines of a landscape the seed makes up: value noise of three octaves, its hills the size across, traced at levels= heights (12) by marching squares, every fifth line the bolder index contour in the second ink.
+            </p>
+            <p>
+              The noise: a lattice of random heights a size apart, eased between its points (3t² - 2t³), and two finer lattices of half and a quarter of that, at half and a quarter the weight, spread over 0 to 1 by the lowest and the highest point sampled. The heights are sampled on a grid of a twelfth of the size (3 to 12 pixels); each contour is the line of marching squares through that grid, a saddle decided by the average of its four corners. A line's points are the crossings on the edges of the grid, so two cells that share an edge share its point exactly, and the pieces are joined into one path a line - closed where the line closes, ending on the border where it leaves.
+            </p>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Example
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                A topography pattern
+              </h3>
+              <p class="example-about">
+                The example its file gives.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file"></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pattern:topography</span> <span class="hl-opt">seed</span>=<span class="hl-num">7</span>, <span class="hl-opt">levels</span>=<span class="hl-num">16</span><span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span></span>
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGF0dGVybjp0b3BvZ3JhcGh5IHNlZWQ9NywgbGV2ZWxzPTE2L31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGF0dGVybjp0b3BvZ3JhcGh5IHNlZWQ9NywgbGV2ZWxzPTE2L31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <svg class="pad-pattern pad-pattern-topography" xmlns="http://www.w3.org/2000/svg" width="480" height="240" viewbox="0 0 480 240" preserveaspectratio="xMidYMid slice" aria-hidden="true" focusable="false">
+                    <rect width="480" height="240" fill="#f6f1e7"></rect>
+                    <g fill="none" stroke-linejoin="round" stroke-linecap="round">
+                      <path d="M170.1,0 171.2,7.5 172.5,9.5 179.1,15 180,15.3 180.9,15 187.5,11.4 194.3,7.5 195,6.9 200.1,0M44.7,90 45,88.8 45.4,90 45,90.3ZM159.8,0 161.2,7.5 165,13 166.4,15 172.5,19.3 180,21.8 187.5,19.2 194.2,15 195,14.4 202.5,9.4 204.8,7.5 208.1,0M42.4,75 45,71.8 49.6,75 52.5,78 54.2,82.5 55.3,90 52.5,96.8 51,97.5 45,98.4 42.8,97.5 37.5,91.4 37,90 37.5,85.4 38.1,82.5ZM69.8,0 67.8,7.5 67.5,8.3 66.5,15 67.3,22.5 67.5,22.8 75,23.5 77.8,22.5 82.5,19.7 90,17.2 94.1,15 97.5,10.9 100.7,7.5 105,2.7 107.9,0M132.4,0 135,1.2 142.5,2.5 148.4,7.5 150,8.2 156.5,15 157.5,15.6 165,20.7 167.6,22.5 172.5,24.8 180,26.1 187.5,24.4 191,22.5 195,19.9 202.5,15.5 203.4,15 210,10 212.3,7.5 214.4,0M480,178.3 472.5,173.1 468.5,180 472.5,185.7 480,181.8M40.3,67.5 45,63.9 52.5,66.4 53.3,67.5 56.9,75 59.8,82.5 60,83.9 61.2,90 61.5,97.5 60,101.9 52.5,103.2 45,102.7 37.5,100 34.8,97.5 32.4,90 33.2,82.5 35.5,75 37.5,71ZM404.7,165 405,164.7 412.2,165 412.5,165 420,169.8 425,172.5 427.5,174.8 431,180 433.2,187.5 435,194.7 435,195 435,195.1 432.1,202.5 427.5,206.3 420,204.3 418.1,202.5 412.5,196.1 410.8,195 405,191 397.5,187.7 397.1,187.5 390,181.6 388.9,180 390,178.1 395.5,172.5 397.5,170.9ZM62.6,0 62,7.5 61,15 61.1,22.5 65,30 67.5,32 75,31.5 79.7,30 82.5,29 90,27.4 97.5,23.6 98.6,22.5 105,16.4 107.5,15 112.5,11.9 120,11 127.5,12.2 135,13.5 140.9,15 142.5,15.4 150,19.1 156.3,22.5 157.5,23 165,26.4 172.5,29.2 178.5,30 180,30.2 180.8,30 187.5,28.5 195,24.7 199.4,22.5 202.5,20.7 210,17.1 213.5,15 217.5,10.5 219.9,7.5 221.6,0M480,164.9 472.5,159.5 465,157.6 463.6,157.5 457.5,157.3 450,157.4 449.5,157.5 442.5,163.2 438.9,165 435,166.3 430.2,165 427.5,164.5 420,158.7 418.6,157.5 412.5,151.1 405,152 398.8,157.5 397.5,158.7 392.3,165 390,167 384,172.5 382.5,174.9 380.7,180 382.5,184.7 384.5,187.5 390,191.7 394.8,195 397.5,197.5 405,201.6 406.4,202.5 412.5,207 415.8,210 420,212.9 427.5,214 434.9,210 435,209.9 439.7,202.5 442.3,195 442.5,191.2 443,187.5 442.5,181.7 442.4,180 442.5,179.2 445.5,172.5 450,170.2 452.3,172.5 456,180 457.3,187.5 457.5,187.7 461.2,195 465,198.2 472.5,199.5 480,195.9M41.8,60 45,58.3 52.5,58.6 54.2,60 59,67.5 60,69.7 63.2,75 66.8,82.5 67.5,85.9 70.7,90 75,96.7 75.6,97.5 77.5,105 76.4,112.5 75,115.4 67.5,117.6 60,113.9 58.2,112.5 52.5,108.9 45,107.1 37.5,105.3 36.9,105 30,98.9 29,97.5 27.4,90 28.2,82.5 30,77.2 30.7,75 34.3,67.5 37.5,63.2ZM100.5,75 105,73.5 112.5,74.9 112.6,75 118.5,82.5 119.8,90 115.8,97.5 112.5,100.7 105,100.5 99.7,97.5 97.5,95 90.3,90 91.4,82.5 97.5,77.1ZM89.5,127.5 90,127.3 91.9,127.5 90,128.7ZM267.7,172.5 270,171.7 273.2,172.5 277.5,175.2 280.1,180 278.5,187.5 277.5,189 270,192.2 263.7,187.5 262.5,185 261.6,180 262.5,177.4ZM52.1,0 52.5,7.3 52.5,7.5 53,15 52.9,22.5 52.5,28.2 52.3,30 50.5,37.5 46.7,45 45,46.1 37.5,50.5 34.4,52.5 30,56.3 27.5,60 23.2,67.5 22.5,68.7 15.7,75 15,76.2 7.5,80.5 0,81M243.4,0 240.4,7.5 240,7.9 234.1,15 232.5,16.5 225.3,22.5 225,22.8 217.5,27.1 210,28.7 204,30 202.5,30.3 195,33.5 187.5,37 185.1,37.5 180,39.4 172.5,39.4 165,39.3 157.5,39 150,40.4 144.7,45 144.2,52.5 150,57.1 155.2,60 157.5,62.1 159.2,67.5 157.5,72.1 155.6,75 150,80.8 148.5,82.5 145.3,90 142.5,95.7 141.2,97.5 135,102.5 132.6,105 129.9,112.5 135,117.2 138.5,120 142.5,123.2 144.5,127.5 143.6,135 142.5,136.2 135,138.2 127.5,138.6 120,141.2 114.4,142.5 112.5,142.9 105,143.9 97.5,145.5 90,146.2 82.5,143.2 81.7,142.5 75,135.6 74.4,135 67.5,129.5 62.3,127.5 60,126.6 52.5,123.3 46.2,120 45,119.4 37.5,118.8 30,117.3 24,112.5 22.5,111.5 15.6,105 15,104.1 7.5,98.5 0,97.7M480,149.7 472.5,146.6 465,145.5 457.5,145.4 450,145.5 442.5,144.4 439.3,142.5 435.6,135 435,133.6 430.5,127.5 427.5,125.8 420,122.3 416.3,120 412.5,115.4 405,119.7 404.9,120 404.9,127.5 402.7,135 397.5,140.6 396,142.5 390,148.7 388.6,150 382.7,157.5 382.5,157.8 376,165 375,166.4 371.6,172.5 370.7,180 371.3,187.5 374,195 375,198.3 377.3,202.5 375,203.4 371.3,202.5 367.5,201.3 360,200.4 354,202.5 352.5,203.1 345,208.9 343.4,210 337.5,213.9 331,217.5 330,220.3 325.9,225 330,225.9 337.5,229 344.1,232.5 345,232.8 352.5,236.1 360,240 367.5,237.3 375,235.4 382.5,234.4 390,233.6 396.4,232.5 397.5,232.2 405,229.5 412.5,228.9 420,229 427.5,228.1 435,226.6 442.5,225.6 450,225.2 450.4,225 457.5,219.9 460.1,217.5 465,214.6 472.5,212.7 480,211M0,220 7.5,224.9 7.6,225 7.5,231.2 7.5,232.5 0,235.2M73,240 75,239.3 82.5,236.3 90,234.9 97.5,237.2 104.3,240M111.8,30 112.5,29.5 120,29.9 120.2,30 125,37.5 126.8,45 124.3,52.5 120,54.3 112.5,54.6 106.9,52.5 105,50.3 102.6,45 105,37.8 105.1,37.5ZM223.3,142.5 225,137.8 226.5,142.5 227.1,150 225,151.9 223.9,150ZM252.3,165 255,162 262.5,159.9 270,159.7 277.5,160.2 285,162.8 287.9,165 292.5,170.7 293.7,172.5 295.3,180 295.7,187.5 296.5,195 296.9,202.5 298.3,210 300,214.3 302.1,217.5 300,223.9 299.4,225 292.5,227.3 285,227.7 277.5,226.6 270,225.9 268.7,225 262.5,217.9 262.3,217.5 257.1,210 255,207.3 251.5,202.5 250.3,195 249.8,187.5 249.7,180 250.1,172.5ZM46.7,0 47.4,7.5 48.4,15 48.3,22.5 46.5,30 45,33.3 40.2,37.5 37.5,40.1 30,44.8 29.8,45 23.2,52.5 22.5,53.8 19.5,60 15,64.5 7.5,67.2 1,67.5 0,67.6M252.9,0 249.8,7.5 247.5,9.6 242.4,15 240,17.1 234.4,22.5 232.5,25.1 227.6,30 225,35 217.5,37.3 210,34.7 202.5,35 196.2,37.5 195,38.2 187.5,43.9 184.4,45 180,48 172.5,50.5 170.4,52.5 168.3,60 167.6,67.5 165.5,75 165,76.1 161.1,82.5 158.3,90 157.5,91.6 154.4,97.5 150,103 148.4,105 146.6,112.5 150,120 150,120.1 152,127.5 151.1,135 150,137.2 145.5,142.5 142.5,143.9 135,144.1 127.5,144.4 120,147.1 112.5,149.4 107.3,150 105,150.2 97.5,151.4 90,151.9 84.6,150 82.5,149.2 75,142.6 74.8,142.5 67.5,135.8 65.3,135 60,133.4 52.5,132.7 45,133 37.7,135 37.5,135 30,136.7 22.5,137 19,135 15,127.5 15,127.3 13.8,120 7.5,113.5 3.9,112.5 0,111.6M289.3,0 292.5,2.7 294.1,0M347.1,0 346.3,7.5 346.6,15 352.5,21.2 355.3,22.5 360,23.9 364.9,22.5 367.5,21.3 373.1,15 372,7.5 370.8,0M395.3,0 397.5,4.4 405,6.2 410.8,0M480,89.5 478.5,90 480,90.6M480,143.6 476.5,142.5 472.5,140.7 465,138.6 457.5,138.5 450,138.9 443.3,135 444.4,127.5 450,125.1 457.5,123.3 460.7,120 462.2,112.5 457.5,106.9 450.2,105 450,105 449.9,105 442.5,108.1 439,112.5 435,117.8 427.5,117.5 421.8,112.5 420,107.6 418.7,105 420,97.5 420,97.5 424.2,90 420,87.5 412.5,88.9 412.2,90 410.8,97.5 405,103.3 404.4,105 400.8,112.5 398.4,120 397.5,127.5 397.5,127.5 395.1,135 390,141.5 389,142.5 382.5,148.6 379.9,150 375,154.3 367.5,156.9 360,157.3 359,157.5 352.5,163.4 350.3,165 352.5,166.8 360,166.3 362.8,172.5 363.9,180 361.4,187.5 360,188.7 352.5,187.8 351.3,187.5 348,180 348.8,172.5 345,168.3 337.5,171.5 336.3,172.5 333.5,180 336.7,187.5 337.5,188.9 341.6,195 337.6,202.5 337.5,202.6 330,207.6 326.3,210 322.5,211.7 315,213.5 307.5,211 306.7,210 303.5,202.5 303,195 302.9,187.5 302.9,180 302,172.5 300,169.2 297.6,165 292.5,160.3 288.8,157.5 285,154.4 277.5,151.8 270,151.3 262.5,151.3 255,151.4 247.5,151.8 244,150 240,147.9 236.7,142.5 233.5,135 232.5,133.3 226.6,127.5 225,126.7 217.5,125.6 215.2,127.5 213.9,135 214.2,142.5 215.4,150 217.5,156.8 217.9,157.5 225,162.5 232.5,162.9 238.6,165 240,165.9 242.7,172.5 243.6,180 243.3,187.5 242.6,195 241.9,202.5 245.8,210 247.5,210.9 255,217.3 255.2,217.5 259.6,225 262.5,229.2 267.4,232.5 270,233.5 277.5,234.2 285,235.4 292.5,236 300,235.5 307.5,235.3 315,237.2 322.5,236.9 330,235.3 337.5,236.3 345,239.9 345.2,240M0,210.7 7.5,212.4 11.8,217.5 15,223.5 15.8,225 19.4,232.5 16.9,240M480,216.2 472.5,217.4 472.2,217.5 465,221 460.7,225 457.5,228.4 450,231.8 442.5,232.1 438.7,232.5 435,232.9 427.5,234.4 420,236.9 414.6,240M47.5,240 52.5,237.9 60,235.1 67.5,233.5 71.1,232.5 75,231.7 82.5,229.3 90,228.1 97.5,231.1 99.4,232.5 105,235.7 112.5,238.5 120,239.5 127.5,239.6 129.9,240M200.8,82.5 202.5,81.5 204.9,82.5 210,86.7 211.4,90 210.6,97.5 210,102.8 209.3,105 210,110.3 210.1,112.5 210,114.3 202.5,117.7 195,113 193,112.5 194.2,105 195,101.3 195.6,97.5 196,90ZM41.4,0 41.7,7.5 42.2,15 40.2,22.5 37.5,25.4 30,24 26.2,30 23.2,37.5 22.5,38.3 20.1,45 15.9,52.5 15,53.9 7.5,59.9 6.8,60 0,61.2M304.3,0 305,7.5 307.5,14.9 307.7,15 307.5,15.1 300,15.6 292.5,16.6 285,15.8 283.7,15 277.5,10.7 270.7,7.5 270,6.8 268.8,7.5 262.5,9.3 255,14.1 254,15 247.5,19.3 243.6,22.5 240,28.2 238.8,30 239.2,37.5 232.5,43.7 231.6,45 225,48.8 217.5,49.8 213,45 210,42.4 202.5,41 196.1,45 195,48 193.2,52.5 190.1,60 187.5,61.3 180,61.7 175.8,67.5 172.6,75 172.5,75.4 170.6,82.5 169.2,90 170.5,97.5 172.5,99.2 180,99.4 183.6,97.5 187.5,92.2 188.1,90 189.1,82.5 192.8,75 195,70.7 202.5,69.2 210,74.4 210.4,75 216.9,82.5 217.5,84.1 219.2,90 218,97.5 217.5,99.8 216.5,105 217,112.5 217.5,113.6 223.1,120 225,120.9 232.5,123.9 236.7,127.5 239.9,135 240,135.3 246.5,142.5 247.5,143.2 255,143.6 259,142.5 262.5,141.3 270,139.1 277.5,140 282.6,142.5 285,143.7 291.1,150 292.5,151.2 299.6,157.5 300,157.8 307.5,162.3 315,164 322.5,162.8 330,160.6 335.1,157.5 337.5,156.4 345,151 346.7,150 352.5,147.7 360,146.8 367.5,146.8 375,145.7 380.9,142.5 382.5,141.6 388.7,135 390,132.3 391.9,127.5 393.4,120 395.6,112.5 397.5,107.8 399,105 401.8,97.5 402.9,90 403.1,82.5 403.8,75 405,68.9 407.1,67.5 412.5,65.2 414.5,67.5 420,72.2 424.5,75 427.5,76.5 435,79.6 439.2,82.5 442.5,89.6 442.8,90 450,94.5 457.5,90.1 457.6,90 460.5,82.5 465,78.2 469.7,75 472.5,73.4 480,69.8M333.4,0 331.5,7.5 330,12.8 328.5,15 330,15.8 337.5,21.9 338.1,22.5 345,26 351,30 352.5,31.2 360,34.9 367.5,32 370.8,30 375,27.7 382.5,25.4 389.2,22.5 390,21.8 397.5,16.1 400.6,15 405,13.9 412.5,12.8 419.7,7.5 420,5.1 420.6,0M480,118.1 478.7,120 476.6,127.5 480,134.1M0,125.2 3.5,127.5 7.5,130.8 9.7,135 15,141.3 17.9,142.5 22.5,143.7 30,143.8 37.5,143.7 45,142.8 46.8,142.5 52.5,141.6 60,141.4 63.7,142.5 67.5,143.7 75,149.6 75.5,150 82.5,155.3 89.5,157.5 90,157.7 92.4,157.5 97.5,157.2 105,156 112.5,155 120,152.4 125.5,150 127.5,149.2 135,148.6 142.5,149.7 150,149.9 155.9,142.5 157.5,137 157.9,135 159.4,127.5 158.1,120 157.5,118.6 156.2,112.5 157.5,108.7 162.6,105 165,103.3 166.4,105 167.9,112.5 172.5,117.8 178.4,120 180,120.2 187.5,120.8 195,122.8 202.5,126.7 203.6,127.5 207.3,135 208.3,142.5 210,148.8 210.3,150 212.4,157.5 216,165 217.5,166.5 225,168.9 232.5,171.1 234.1,172.5 237,180 236.4,187.5 234.7,195 232.5,202.4 232.5,202.5 225,210 225,210 219.7,217.5 222.1,225 223.4,232.5 221,240M0,196.9 7.5,196.1 15,196.4 20.4,202.5 22.5,207.9 22.9,210 22.7,217.5 28,225 30,226.5 37.5,230.1 45,230.4 52.5,228.6 60,227 67.5,226.3 75,225.2 75.5,225 82.5,223 90,222 96.9,225 97.5,225.3 105,231 107.6,232.5 112.5,234.6 120,235.7 127.5,235.9 135,237 140.1,240M480,222.1 472.5,223 468.9,225 465,228.4 461.1,232.5 457.5,235.7 450,238.2 442.5,238.2 435,238.6 429.1,240M230.5,240 228,232.5 232,225 232.5,224.5 240,218.2 247.5,219.1 253,225 255,227.5 258.2,232.5 262.5,236.3 270,239 277.5,239.8 278.5,240M178.7,172.5 180,166.4 187.5,170.9 195,172.4 195.4,172.5 202.5,176 205.3,180 206.4,187.5 209.1,195 210,197.5 211.7,202.5 210,204 202.5,204 200.6,202.5 195.2,195 195,194.7 189,187.5 187.5,185.5 180,181.1 179.2,180ZM314,187.5 315,184.6 316.5,187.5 322.3,195 320.7,202.5 315,204.7 311.9,202.5 311.3,195ZM36.4,0 35.4,7.5 30,13.4 26.6,15 22.5,17.2 16.9,22.5 16.7,30 16.7,37.5 15,42.7 14.4,45 9.3,52.5 7.5,54.1 0,56.2M313.6,0 315,2.3 319.8,0M457.1,0 453.7,7.5 450,9.7 442.5,10.2 436.6,15 435,17.4 432.5,22.5 430.9,30 433.7,37.5 435,39.2 438.6,45 440.3,52.5 435.5,60 436.1,67.5 442.5,69.9 450,71.7 457.5,68.9 459.4,67.5 463.6,60 462.6,52.5 465,47.9 466.2,45 472.5,37.9 473.4,37.5 479.8,30 480,29.4M0,142 0.4,142.5 0,143.1M480,230.5 472.5,231.9 471.8,232.5 465,238.3 462.9,240M145.5,240 142.5,237 135,233.2 129.6,232.5 127.5,232.1 120,231.7 112.5,230.2 105,225.9 103.8,225 97.5,218.4 94.8,217.5 90,216 82.5,216.6 78.1,217.5 75,218.1 67.5,218.6 60,218.6 52.5,219.7 45,220.7 37.5,218.3 36.7,217.5 34.2,210 32.2,202.5 30,196.7 29.3,195 27.7,187.5 27.3,180 24.9,172.5 22.5,170 15,166.2 13.3,165 9.3,157.5 13.7,150 15,149.8 22.5,149.3 29.4,150 30,150.1 37.5,153.5 45,154.5 52.5,151.9 60,150.9 67.5,152.2 75,156.7 76.1,157.5 82.5,161.5 90,163.7 97.5,162.8 105,161.2 112.5,159.9 119.6,157.5 120,157.4 127.5,153.7 135,153 142.5,155 148.2,157.5 150,158.6 157.5,162.5 160.8,165 165,169.7 166.7,172.5 168.4,180 170.2,187.5 172.5,190.7 180,193.9 182.3,195 187.5,197.5 191.5,202.5 195,206.2 199.8,210 202.5,211.5 210,215.9 211.3,217.5 214.5,225 215.2,232.5 214.3,240M238.8,240 240,234.9 242.4,232.5 247.5,230.1 249.3,232.5 255,236.9 258.7,240M404.9,22.5 405,22.5 405.2,22.5 412.5,27.7 413.9,30 412.9,37.5 412.5,38.9 411.1,45 407.5,52.5 405,54.6 401.4,60 399,67.5 398.3,75 397.9,82.5 397.8,90 397.5,92.1 396.9,97.5 394.6,105 391.3,112.5 390,116.2 388.4,120 385.9,127.5 382.5,133.7 381.1,135 375,138.4 367.5,139.4 360,139.4 352.5,140.1 345.4,142.5 345,142.6 337.5,147.5 333.4,150 330,152 322.5,154 315,154.6 307.5,153.8 300.4,150 300,149.7 294,142.5 292.5,140.1 287.4,135 285,133.5 277.5,131.8 270,131.6 262.5,132.5 255,135 247.5,132.4 246,127.5 244.7,120 240,115.7 232.5,115.6 225,113.4 224.2,112.5 223.4,105 225,98.3 225.2,97.5 226.1,90 225,83 224.9,82.5 220.7,75 217.5,68.8 216.6,67.5 217.5,64.2 218.7,60 225,56.4 232.5,53.1 238.7,52.5 240,52.3 244.8,52.5 247.5,52.6 247.7,52.5 255,47.8 256.9,45 260.4,37.5 262.5,32.1 267.1,30 270,28.7 272.7,30 277.5,31.3 285,34.1 292.5,30.3 292.9,30 300,26.9 307.5,27.1 315,26.8 322.5,26.2 330,26.7 337.5,29 339.3,30 345,33 350.3,37.5 352.5,40.4 358.4,45 360,45.9 362.6,45 367.5,42.6 373.4,37.5 375,36.5 382.5,34 390,32.7 394.7,30 397.5,27.8ZM170.4,127.5 172.5,126.4 180,125.8 187.5,126.7 190,127.5 195,130.5 199.4,135 201.3,142.5 202.5,145.4 203.6,150 205.4,157.5 202.5,164.9 195,160.6 192.1,157.5 187.5,153.4 180,151.5 172.9,150 172.5,149.9 165.3,142.5 165.4,135ZM217.2,180 217.5,179.4 225,177.2 228,180 226.2,187.5 225,189.7 221.6,187.5 217.5,181.6ZM7.7,0 15,6.9 22.5,4.2 25.3,0M477.7,0 480,1.5M0,34.7 2.8,37.5 0.8,45 0,45.5M156.8,240 150,232.5 150,232.5 144,225 142.5,222.5 135,218 131.7,217.5 127.5,216.8 121.7,210 120,206.2 118.4,202.5 112.5,197.2 105,195.2 103.2,195 97.5,190.4 96.5,187.5 97.1,180 97.5,179.7 102.7,172.5 105,171.4 112.5,169 120,167.1 125.2,165 127.5,164.1 135,164.1 136.7,165 142.5,170.5 147.2,172.5 150,174.1 154.2,180 155,187.5 156.8,195 157.5,196.8 160.4,202.5 165,206.6 172.3,210 172.5,210.1 180,212 187.5,215.5 191.3,217.5 195,219.4 202.5,224.3 203,225 203.9,232.5 203.1,240M318.6,37.5 322.5,37.3 324.8,37.5 330,38.2 337.5,41 342,45 345,48.2 348.3,52.5 352.5,56.2 360,59.1 367.5,57.7 375,55.1 382.5,55.2 386.7,60 389.2,67.5 390,74.1 390.1,75 390.5,82.5 390.6,90 390,94.2 389.5,97.5 386.6,105 382.5,111.9 382,112.5 376.6,120 375,122 367.5,126.2 360,127 352.5,127.1 349.2,127.5 345,128.3 337.5,132.3 334.5,135 330,138.8 324.1,142.5 322.5,143.2 315,144.5 308.3,142.5 307.5,142.1 301.6,135 300,132.2 296.7,127.5 292.5,123.1 285,121.3 277.5,122.6 270,123.3 262.5,121.9 259.8,120 255,114 254.1,112.5 247.5,105.9 246,105 240,100.7 237.3,97.5 235.8,90 236.9,82.5 240,77.6 243.2,75 247.5,72.1 255,68.3 258,67.5 262.5,65.2 270,63.5 277.5,61.7 281.1,60 285,57.9 292.5,53.8 293.9,52.5 300,46.2 301.3,45 307.5,40.2 315,37.8ZM42.9,172.5 45,171.2 52.5,170 60,169.4 67.5,168.7 75,170.9 77.4,172.5 82.4,180 82.5,182 83.3,187.5 82.5,191.6 77.1,195 75,195.1 74.4,195 67.5,193.9 60,192.8 52.5,192.8 45,191.5 41.3,187.5 38.8,180ZM171.9,240 165,233.5 163.6,232.5 157.5,226 157,225 157.5,223.5 165,223 168,225 172.5,230.3 180,232.3 182.4,232.5 187.5,235.6 188.1,240M314.1,45 315,44.7 322.5,44.2 328,45 330,45.4 337.5,49 340.7,52.5 345,55.8 349.9,60 352.5,62 360,64.7 367.5,63.6 375,62.2 382.5,65.3 383.6,67.5 385.6,75 386.5,82.5 386.8,90 385.6,97.5 382.5,104.7 382.3,105 376.8,112.5 375,114.8 368.8,120 367.5,120.9 360,122.4 352.5,122.3 345,122.6 337.5,125.2 334.1,127.5 330,131 325.7,135 322.5,137.2 315,139.1 307.5,135.3 307.2,135 303.3,127.5 300,122.4 297.7,120 292.5,115.8 285,115.6 277.5,118.4 270,119.7 262.5,117.1 258.5,112.5 255,108.1 251.9,105 247.5,101.5 242.5,97.5 240,91.1 239.7,90 240,88.7 242.1,82.5 247.5,77.7 253,75 255,73.8 262.5,71.7 270,71.1 277.5,69.9 283.5,67.5 285,66.6 292.5,62.5 295.4,60 300,55.6 303.2,52.5 307.5,48.3ZM106.9,180 112.5,174.9 120,172.8 127.5,176.1 129,180 133,187.5 135,188.8 142.5,193.8 143.7,195 145.1,202.5 142.5,205.3 135,208.1 127.5,204.5 126.3,202.5 122.2,195 120,192.4 112.5,188.4 111,187.5ZM304.1,60 307.5,56.7 315,53.1 322.5,52.8 330,54.2 337.5,57 341.5,60 345,62.3 352.1,67.5 352.5,67.8 360,69.8 367.5,69.4 375,69.7 380.1,75 382.5,82 382.6,82.5 383,90 382.5,93.1 381.6,97.5 377.5,105 375,108.3 371.1,112.5 367.5,115.6 360,117.9 352.5,117.4 345,116.9 337.5,118.5 333.8,120 330,122 322.5,127.2 321.9,127.5 315,130.3 312.4,127.5 307.6,120 307.5,119.9 300.3,112.5 300,112.3 292.5,108.3 285,109.1 280.4,112.5 277.5,113.8 270,115.6 263.2,112.5 262.5,111.9 257.4,105 255,102.7 247.9,97.5 247.5,97 244,90 247.5,82.5 247.5,82.5 255,78.7 262.5,77.2 270,76.8 277.5,75.8 279.9,75 285,73.4 292.5,70.4 296.4,67.5 300,64.4ZM305.3,67.5 307.5,65.2 315,60.6 322.5,60.5 330,62.1 337.5,64.4 342.7,67.5 345,68.7 352.5,72.9 360,74.6 367.5,74.8 368,75 375,78.4 377.3,82.5 378.5,90 376.9,97.5 375,100.9 372.3,105 367.5,110.1 362,112.5 360,113.2 353.2,112.5 352.5,112.4 345,111.1 337.5,111.6 330.6,112.5 330,112.6 329.5,112.5 322.5,111.3 315,110 307.5,108 301.7,105 300,104.1 292.5,100.5 285,100.7 279.6,105 277.5,106.4 270,110.1 263.5,105 262.5,103.8 255.8,97.5 255,96.9 249.5,90 255,84.4 262.5,82.8 270,83.4 275.5,82.5 277.5,82.4 285,80.8 292.5,78.6 297.3,75 300,73.2ZM312.1,82.5 315,80.4 322.5,80 330,80.5 337.5,81.1 345,82.3 346,82.5 352.5,84.5 360,85.3 367.2,90 362.6,97.5 360,99.2 352.5,98.6 345,97.8 337.5,97.5 330,97.5 329.1,97.5 322.5,96.8 315,95.8 307.5,90.1 307.4,90 307.5,89.8Z" stroke="#c4b294" stroke-width="1"></path>
+                      <path d="M57.2,0 57,7.5 56.8,15 56.8,22.5 57.5,30 59.9,37.5 60,38.1 67.5,42.4 75,41 82.5,41 90,41.5 92.7,37.5 97.5,34 100.1,30 105,25.1 108.4,22.5 112.5,20 120,19.5 127.5,20.6 135,21.6 138.6,22.5 142.5,24 150,27.6 157.5,29.6 158.6,30 165,32.1 172.5,33.8 180,34.4 187.5,32.7 193.1,30 195,29.1 202.5,25.6 210,23.1 211.4,22.5 217.5,19.5 224.5,15 225,14.4 230.3,7.5 232.5,0.9 232.8,0M480,156.5 472.5,152.3 465,151 457.5,150.7 450,150.8 442.5,151.6 435,153.6 428.1,150 428,142.5 427.5,140.3 423.8,135 420,133.8 417.4,135 412.5,137.5 405,142.5 405,142.5 397.5,148.8 396.4,150 390.2,157.5 390,157.8 384.1,165 382.5,166.5 377.6,172.5 375.6,180 377.6,187.5 382.5,193.1 385,195 390,200.5 392.1,202.5 394.7,210 397.5,214.5 405,215.2 410,217.5 412.5,218.2 420,221 427.5,221.1 435,219 438.6,217.5 442.5,213.1 445,210 450,202.5 457.5,206.1 465,207.8 472.5,207.2 480,204.6M49.4,52.5 52.5,51 60,51.3 60.7,52.5 63.2,60 66.1,67.5 67.5,70 75,70.9 78.9,67.5 82.5,62.9 86.9,60 90,56.8 97.5,59.1 100.9,60 105,60.7 112.5,62.4 120,64 127.5,65.6 132.5,67.5 134.3,75 130.6,82.5 129.1,90 127.5,93.1 126,97.5 120.9,105 120,107.4 117.2,112.5 120,118.3 120.7,120 124.5,127.5 120,132.5 115.5,135 112.5,135.6 105,137.1 97.5,139.4 90,140.4 82.5,136.8 80.7,135 75,127.6 74.9,127.5 67.5,123.8 60,120.6 59.1,120 52.5,115.1 47.6,112.5 45,111.6 37.5,110.6 30,107.7 26.6,105 22.7,97.5 22.5,95.4 21.4,90 22.5,84.6 22.7,82.5 25,75 29.2,67.5 30,66.2 34.2,60 37.5,56.9 45,53.4ZM85.2,112.5 90,105.7 97.5,110 100.1,112.5 97.5,114.8 90,117.5ZM257.2,172.5 262.5,167.3 270,165.8 277.5,166.9 285,171.9 285.5,172.5 287.9,180 287.9,187.5 287.6,195 285,202.5 285,202.6 277.5,206.2 270,206 265.1,202.5 262.5,201.2 258.7,195 256.2,187.5 255.5,180ZM370.8,217.5 375,216.5 382.5,216 390,216.5 392,217.5 390,219.1 387.3,225 382.5,226.7 375,226.6 370.9,225ZM31.5,0 30,4.6 28.3,7.5 22.5,11.1 15,14.2 12.8,15 7.5,21 5.9,22.5 7.5,24.4 9,30 11,37.5 9.3,45 7.5,47.5 0,51.3M464.4,0 465,5.4 465.5,7.5 472.5,13.6 480,12.8M150.3,240 150,239.6 142.8,232.5 142.5,232.1 135,227.4 127.5,226.6 120,226.5 112.5,225.2 112.1,225 106.7,217.5 105,211 103.5,210 97.5,209 90,209 82.5,208.8 75,208 67.5,206.1 60,204.8 52.5,204.8 45,203.2 44.5,202.5 37.5,195.6 37.2,195 34.1,187.5 33.2,180 33.7,172.5 37.5,166.6 42.9,165 45,164.5 52.5,162.4 60,160.8 67.5,160.6 75,163.5 77.6,165 82.5,168.2 90,170.9 97.5,169 105,166.1 109.5,165 112.5,164.4 120,162 127.5,158.3 133.6,157.5 135,157.4 135.5,157.5 142.5,161.1 149.1,165 150,165.6 157.5,170.6 159.3,172.5 162,180 162.7,187.5 165,193.5 165.9,195 172.5,200.2 180,201.7 181.4,202.5 187.5,206.3 191,210 195,212.9 202.5,216.7 203.6,217.5 209.2,225 210,231.9 210.1,232.5 210,233.1 209.2,240M448.4,22.5 450,21.7 454.8,22.5 457.5,24.3 459.8,30 457.5,34.7 455,37.5 450,39.8 447,37.5 443.4,30ZM298.8,37.5 300,36.5 307.5,33.6 315,32.5 322.5,32 330,32.7 337.5,34.6 342.3,37.5 345,39.9 349,45 352.5,49.4 357.7,52.5 360,53.5 364.2,52.5 367.5,51.4 375,46.6 379.9,45 382.5,44 387.1,45 390,46.3 393.8,52.5 394,60 394,67.5 394.1,75 394.1,82.5 394.2,90 393.2,97.5 390.7,105 390,106.5 386.8,112.5 383,120 382.5,121.3 378.2,127.5 375,130.4 367.5,132.4 360,132.7 352.5,133.1 345,135 344.9,135 337.5,139.9 334.4,142.5 330,145.4 322.5,148.3 315,149.1 307.5,147.7 300.9,142.5 300,141.3 295.7,135 292.5,130.7 287.1,127.5 285,126.7 277.5,126.5 270,126.8 262.5,126.5 255,123.1 253.2,120 249.1,112.5 247.5,110.9 240,107.2 235.2,105 232.5,100 231.9,97.5 231.6,90 231.5,82.5 230.9,75 228,67.5 232.5,63.4 240,66 247.5,63.9 253.5,60 255,59.1 260.4,52.5 262.5,48.9 265.7,45 270,41.7 277.5,43.9 280.2,45 285,46.9 290.1,45 292.5,44ZM176,135 180,133.3 186.8,135 180,141.8ZM307.1,75 307.5,74.6 315,69.7 322.5,69.4 330,70.5 337.5,72 344.9,75 345,75 352.5,78.2 360,79.2 367.5,80.4 370.5,82.5 373.5,90 371.5,97.5 367.5,103.5 365.2,105 360,107.3 352.5,106.4 345,105 343.7,105 337.5,104.9 330.2,105 330,105 330,105 322.5,103.8 315,102.8 307.5,100.7 302.1,97.5 300,94.3 296.2,90 300,84 300.6,82.5Z" stroke="#8c7356" stroke-width="1.8"></path>
+                    </g></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <nav class="prevnext" aria-label="Other tags">
+            <a href="index%EF%B9%96tag%EA%A4%B7pattern%EA%A4%B7terrazzo.html">← {pattern:terrazzo}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7pattern%EA%A4%B7triangles.html">{pattern:triangles} →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            1220 tags and kinds of PAD, with syntax and usage examples. Safe, self-contained examples run here; examples requiring credentials, delivery or application files are shown as source.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

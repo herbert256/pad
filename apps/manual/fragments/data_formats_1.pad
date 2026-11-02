@@ -1,4 +1,4 @@
-{data 'trip', format='toml'}
+{pad:data 'trip', format='toml'}
   title = "Weekend in Ghent"
   start = 2026-11-06
 
@@ -9,11 +9,11 @@
   [[stops]]
   name = "Graslei"
   hours = 1.5
-{/data}
+{/pad:data}
 
-{trip}
+{data:trip}
   <h3>{$title} - {$start}</h3>
   <ul>
-    {stops}<li>{$name}: {$hours} h</li>{/stops}
+    {array:stops}<li>{$name}: {$hours} h</li>{/array:stops}
   </ul>
-{/trip}
+{/data:trip}

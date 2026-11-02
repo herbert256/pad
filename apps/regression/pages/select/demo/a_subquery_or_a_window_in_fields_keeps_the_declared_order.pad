@@ -1,4 +1,4 @@
-subquery: [{staffSel fields="name, (select max(s.salary) from staff as s where s.salary < staff.salary) as below", rows=2}{$name}:{$below} {/staffSel}]
-window: [{staffSel fields="name, sum(bonus) over (order by salary desc) as running", rows=3}{$name}:{$running} {/staffSel}]
-total: [{staffSel fields="count(*) as n, (select max(salary) from staff) as top"}{$n}:{$top}{/staffSel}]
-alias: [{staffSel fields="count(*) overall"}{$overall}{/staffSel}]
+subquery: [{select:staffSel fields="name, (select max(s.salary) from staff as s where s.salary < staff.salary) as below", rows=2}{$name}:{$below} {/select:staffSel}]
+window: [{select:staffSel fields="name, sum(bonus) over (order by salary desc) as running", rows=3}{$name}:{$running} {/select:staffSel}]
+total: [{select:staffSel fields="count(*) as n, (select max(salary) from staff) as top"}{$n}:{$top}{/select:staffSel}]
+alias: [{select:staffSel fields="count(*) overall"}{$overall}{/select:staffSel}]

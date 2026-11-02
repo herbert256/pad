@@ -13,27 +13,27 @@
   $pageName = adminGet ( 'page', adminField ( 'page' ) );
   $enabled  = $adminCommands ? 1 : 0;
 
-  // key => [ label, arguments ({app} and {page} filled in), whether it changes something,
+  // key => [ label, arguments ({field:app} and {pad:page} filled in), whether it changes something,
   //          whether it needs an application ]
 
   $commands = [
-    'lint'            => [ 'Lint - every page under the strict check',      [ 'lint', '{app}' ],                 0, 1 ],
-    'test'            => [ 'Test - the application\'s own _tests/',          [ 'test', '{app}' ],                 0, 1 ],
-    'render'          => [ 'Render one page',                                [ 'render', '{app}', '{page}' ],     0, 1 ],
-    'migrate-status'  => [ 'Migrations - status',                            [ 'migrate', '{app}', '--status' ],  0, 1 ],
-    'migrate-pretend' => [ 'Migrations - show the pending SQL',              [ 'migrate', '{app}', '--pretend' ], 0, 1 ],
-    'migrate'         => [ 'Migrations - run the pending ones',              [ 'migrate', '{app}' ],              1, 1 ],
-    'rollback'        => [ 'Migrations - roll back the last batch',          [ 'migrate', '{app}', '--rollback' ],1, 1 ],
-    'seed'            => [ 'Seed - run the seeders',                         [ 'seed', '{app}' ],                 1, 1 ],
-    'queue'           => [ 'Queue - sizes',                                  [ 'queue', '{app}' ],                0, 1 ],
-    'queue-failed'    => [ 'Queue - failed jobs',                            [ 'queue', '{app}', '--failed' ],    0, 1 ],
-    'queue-retry'     => [ 'Queue - retry every failed job',                 [ 'queue', '{app}', '--retry=all' ], 1, 1 ],
-    'queue-flush'     => [ 'Queue - remove the failed jobs',                 [ 'queue', '{app}', '--flush' ],     1, 1 ],
-    'work'            => [ 'Queue - work the due jobs once',                 [ 'work', '{app}', '--once' ],       1, 1 ],
-    'schedule-list'   => [ 'Schedule - list the entries',                    [ 'schedule', '{app}', '--list' ],   0, 1 ],
-    'schedule'        => [ 'Schedule - run what is due now',                 [ 'schedule', '{app}' ],             1, 1 ],
-    'types'           => [ 'TypeScript types of the pages',                  [ 'types', '{app}' ],                0, 1 ],
-    'pack'            => [ 'Pack - for the browser, offline (DATA/wasm/)',   [ 'pack', '{app}' ],                 1, 1 ],
+    'lint'            => [ 'Lint - every page under the strict check',      [ 'lint', '{field:app}' ],                 0, 1 ],
+    'test'            => [ 'Test - the application\'s own _tests/',          [ 'test', '{field:app}' ],                 0, 1 ],
+    'render'          => [ 'Render one page',                                [ 'render', '{field:app}', '{pad:page}' ],     0, 1 ],
+    'migrate-status'  => [ 'Migrations - status',                            [ 'migrate', '{field:app}', '--status' ],  0, 1 ],
+    'migrate-pretend' => [ 'Migrations - show the pending SQL',              [ 'migrate', '{field:app}', '--pretend' ], 0, 1 ],
+    'migrate'         => [ 'Migrations - run the pending ones',              [ 'migrate', '{field:app}' ],              1, 1 ],
+    'rollback'        => [ 'Migrations - roll back the last batch',          [ 'migrate', '{field:app}', '--rollback' ],1, 1 ],
+    'seed'            => [ 'Seed - run the seeders',                         [ 'seed', '{field:app}' ],                 1, 1 ],
+    'queue'           => [ 'Queue - sizes',                                  [ 'queue', '{field:app}' ],                0, 1 ],
+    'queue-failed'    => [ 'Queue - failed jobs',                            [ 'queue', '{field:app}', '--failed' ],    0, 1 ],
+    'queue-retry'     => [ 'Queue - retry every failed job',                 [ 'queue', '{field:app}', '--retry=all' ], 1, 1 ],
+    'queue-flush'     => [ 'Queue - remove the failed jobs',                 [ 'queue', '{field:app}', '--flush' ],     1, 1 ],
+    'work'            => [ 'Queue - work the due jobs once',                 [ 'work', '{field:app}', '--once' ],       1, 1 ],
+    'schedule-list'   => [ 'Schedule - list the entries',                    [ 'schedule', '{field:app}', '--list' ],   0, 1 ],
+    'schedule'        => [ 'Schedule - run what is due now',                 [ 'schedule', '{field:app}' ],             1, 1 ],
+    'types'           => [ 'TypeScript types of the pages',                  [ 'types', '{field:app}' ],                0, 1 ],
+    'pack'            => [ 'Pack - for the browser, offline (DATA/wasm/)',   [ 'pack', '{field:app}' ],                 1, 1 ],
     'down'            => [ 'Maintenance - the applications that are down',   [ 'down' ],                          0, 0 ],
     'help'            => [ 'Help - every pad command',                       [ 'help' ],                          0, 0 ]
   ];
@@ -69,7 +69,7 @@
       $runError = 'Name the page to render, like index or orders/list.';
     else {
 
-      $args = array_map ( fn ( $one ) => str_replace ( [ '{app}', '{page}' ], [ $app, $pageName ], $one ), $args );
+      $args = array_map ( fn ( $one ) => str_replace ( [ '{field:app}', '{pad:page}' ], [ $app, $pageName ], $one ), $args );
       $line = 'pad ' . implode ( ' ', $args );
 
       [ $exitCode, $output, $ms ] = adminRun ( $args );

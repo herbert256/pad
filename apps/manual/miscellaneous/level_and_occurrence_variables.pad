@@ -1,6 +1,6 @@
-{table}{demo}
+{common:table}{common:demo}
 
-{set $range = 10/}
+{pad:set $range = 10/}
 
 <table border=1>
 
@@ -9,16 +9,16 @@
     <th>Occurence</th>
   </tr>
 
-  {sequence range='1..5', $abc=$range, %xyz=$range} 
+  {sequence:auto range='1..5', $abc=$range, %xyz=$range} 
         <tr>
           <td>{$abc}</td>
           <td>{$xyz}</td>
         </tr>
-  {/sequence}
+  {/sequence:auto}
 
 </table>
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 <table border=1>
 
   <tr>
@@ -28,7 +28,7 @@
     <th>Total</th>
   </tr>
   
-  {staff %total = $salary + $bonus}
+  {local:staff %total = $salary + $bonus}
 
     <tr align="right">
       <td align="left">{$name}</td>
@@ -37,8 +37,8 @@
       <td>{$total  | %.2f}</td>
     </tr>
 
-  {/staff}
+  {/local:staff}
  
 </table>
 
-{/demo}{/table}
+{/common:demo}{/common:table}

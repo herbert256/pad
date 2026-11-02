@@ -1,7 +1,7 @@
-{table}
-{demo}{echo 4 | @ * @/}{/demo}
-{demo}{echo 4 | @ + @ * 2/}{/demo}
-{demo}{echo 'pad' | '"' . @ . '"'/}{/demo}
-{demo}{echo 'pad' | @ . ' ' . upper(@)/}{/demo}
-{demo}{echo 5 | @ gt 3 ? 'big' : 'small'/}{/demo}
-{/table}
+{common:table}
+{common:demo}{pad:echo 4 | @ * @/}{/common:demo}
+{common:demo}{pad:echo 4 | @ + @ * 2/}{/common:demo}
+{common:demo}{pad:echo 'pad' | '"' . @ . '"'/}{/common:demo}
+{common:demo}{pad:echo 'pad' | @ . ' ' . upper(@)/}{/common:demo}
+{common:demo}{pad:echo 5 | @ gt 3 ? 'big' : 'small'/}{/common:demo}
+{/common:table}

@@ -10,7 +10,7 @@
   // $padRoot may be preset by the entry point (www/pad.php); it defaults to /.
 
   // The host is the client's Host header, and the engine writes its links and redirects
-  // with it and addresses its own fetches - {get}, {page app=}, SELF:// - with it; those
+  // with it and addresses its own fetches - {pad:get}, {pad:page app=}, SELF:// - with it; those
   // connect to this server's own socket whatever the name says (padSelfConnect, lib/paths.php),
   // so a Host naming another machine is not where the server fetches from. It must be a host
   // name (or an IP literal) with an optional port, nothing else; when $padHosts lists the

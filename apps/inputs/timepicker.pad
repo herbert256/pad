@@ -1,12 +1,12 @@
-{meta title='Time picker'/}
-{about/}
+{pad:meta title='Time picker'/}
+{include:about/}
 
-{form 'try', class='inputs-try', error}
-  {timepicker 'pickup', label='Pick-up time', min='08:00', max='18:00', every=15, rules='required|time'/}
-  {timepicker 'alarm', label='Alarm'/}
+{pad:form 'try', class='inputs-try', error}
+  {input:timepicker 'pickup', label='Pick-up time', min='08:00', max='18:00', every=15, rules='required|time'/}
+  {input:timepicker 'alarm', label='Alarm'/}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-{template/}
+{include:template/}

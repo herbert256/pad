@@ -4,8 +4,8 @@
   // looks every game through to its end and so never loses: a game played well is a draw.
   // opens='computer' lets it open; two is a game of two players at one screen.
   //
-  //   {tictactoe/}
-  //   {game 'tictactoe', opens='computer'/}
+  //   {game:tictactoe/}
+  //   {game:tictactoe opens='computer'/}
 
   return padGame ( 'tictactoe', 'Tic-tac-toe', [
     'opens' => padGameChoice ( 'opens', 'you', [ 'you', 'computer' ] ),

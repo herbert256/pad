@@ -1,7 +1,7 @@
 <?php
 
   // Membership test for the modulo sequence, fmod(n, p) for n from 1 up - 1, 2, 0, 1, 2, 0
-  // for modulo=3. build/check.php asks it for {keep modulo}, {remove modulo} and {flag
+  // for modulo=3. build/check.php asks it for {keep:modulo}, {remove:modulo} and {pad:flag
   // modulo}; without it the check looked for x among the first x terms, where 0 never is -
   // it first comes at position p - so 0 was no term of modulo=3, nor 0.5 of modulo=2.5.
   //

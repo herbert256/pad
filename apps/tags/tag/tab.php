@@ -5,14 +5,14 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{tab 'label'} ... {/tab}
+{pad:tab 'label'} ... {/pad:tab}
 PAD;
 
   $tagParms   = [
-    'label' => 'The tab\'s label, the summary of an accordion item or the caption of a carousel slide. Required in <code>{tabs}</code>, <code>{accordion}</code> and <code>{splitpane}</code>, optional in <code>{carousel}</code>; in <code>{sortable}</code> the key the item is posted under.' ];
+    'label' => 'The tab\'s label, the summary of an accordion item or the caption of a carousel slide. Required in <code>{widget:tabs}</code>, <code>{widget:accordion}</code> and <code>{widget:splitpane}</code>, optional in <code>{widget:carousel}</code>; in <code>{widget:sortable}</code> the key the item is posted under.' ];
 
   $tagOptions = [];
 
-  $tagSee     = [ 'widget' ];
+  $tagSee     = [ 'widget:tabs' ];
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-  // {confetti/} or {confetti}<button type="button">Celebrate</button>{/confetti} - a burst of
+  // {effect:confetti/} or {effect:confetti}<button type="button">Celebrate</button>{/effect:confetti} - a burst of
   // confetti from where it stands: the single tag bursts once, when it comes into view; the
   // pair every time something in it is clicked, its button - the content is shown and works as
   // it is. The one effect with a script, written once per page with the CSP nonce
@@ -11,7 +11,7 @@
   // the same pieces, on every burst and every load (7 when not given). Under reduced motion,
   // and without script, there is no burst.
   //
-  //   {confetti pieces=200, colors='#f59e0b, #ef4444, #3b82f6'}<button>Order placed</button>{/confetti}
+  //   {effect:confetti pieces=200, colors='#f59e0b, #ef4444, #3b82f6'}<button>Order placed</button>{/effect:confetti}
 
   $padFxContent = padEffectContent ();
   $padFxPieces  = padEffectInt ( 'pieces', 120, 10, 500 );

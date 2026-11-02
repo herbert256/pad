@@ -5,7 +5,7 @@
 Regression test for `$padOutputType = 'file'`. The payload page renders a marker through a
 pipe, and the index fetches it and asserts how this output type is supposed to deliver a
 page: the body lands on disk, and the visitor is handed the `done` page in its place. A
-`{file}` tag in the payload writes a file of its own beside it, which the page must not be
+`{pad:file}` tag in the payload writes a file of its own beside it, which the page must not be
 written over. The crawl compares the index, so a writer that stops behaving turns the page from yes to NO.
 
 ## Files
@@ -13,6 +13,6 @@ written over. The crawl compares the index, so a writer that stops behaving turn
 | File | Description |
 |------|-------------|
 | `index.php/pad` | Fetches the payload, checks the disk, and states the verdict |
-| `payload.php/pad` | A page with a recognisable body, and a `{file}` tag writing side.txt |
+| `payload.php/pad` | A page with a recognisable body, and a `{pad:file}` tag writing side.txt |
 | `done.pad` | Where the file writer sends the visitor after the write |
 | `_config/config.php` | Chooses the 'file' output type for the payload, `_common` off |

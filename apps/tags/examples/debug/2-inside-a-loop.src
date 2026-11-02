@@ -1,5 +1,5 @@
-{meta title='Inside a loop', about='Without items the tag shows the fields of the current row and the application variables.'/}
-{orders}
+{pad:meta title='Inside a loop', about='Without items the tag shows the fields of the current row and the application variables.'/}
+{array:orders}
   <p>{$number}</p>
-  {if $total gt 1000}{debug/}{/if}
-{/orders}
+  {pad:if $total gt 1000}{pad:debug/}{/pad:if}
+{/array:orders}

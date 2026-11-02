@@ -1,5 +1,5 @@
-{set $scores = [7, 9, 4, 10]/}
-<p>Sum {echo array:scores + 0/}, count {echo php:count(array:scores)/}</p>
-<p>Average {echo (array:scores + 0) / php:count(array:scores)/}</p>
-<p>Best {echo php:max(array:scores)/}, worst {echo php:min(array:scores)/}</p>
-<p>{echo php:implode(', ', array:scores)/}</p>
+{pad:set $scores = [7, 9, 4, 10]/}
+<p>Sum {pad:echo array:scores + 0/}, count {pad:echo php:count(array:scores)/}</p>
+<p>Average {pad:echo (array:scores + 0) / php:count(array:scores)/}</p>
+<p>Best {pad:echo php:max(array:scores)/}, worst {pad:echo php:min(array:scores)/}</p>
+<p>{pad:echo php:implode(', ', array:scores)/}</p>

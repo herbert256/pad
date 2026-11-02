@@ -1,7 +1,7 @@
 <?php
 
-  // The {while} and {until} tags: run the level's content again and again for as long as the
-  // condition holds ({while}) or does not hold ({until}). tags/until.php is only an include
+  // The {pad:while} and {pad:until} tags: run the level's content again and again for as long as the
+  // condition holds ({pad:while}) or does not hold ({pad:until}). tags/until.php is only an include
   // of this file, and $padTag [$pad] is what decides which way round the test goes.
   //
   // The condition is taken raw from the first parameter (padFirstParm) and re-evaluated on
@@ -9,7 +9,7 @@
   // $padWalk [$pad] = 'next' asks level/end.php to call this handler once more afterwards;
   // returning NULL with an empty $padWalk ends the loop. When the condition sits on the
   // closing tag instead, padStartAndClose lets the first pass through untested, which turns
-  // {while}...{/while $i lt 10} into a do-while.
+  // {pad:while}...{/pad:while $i lt 10} into a do-while.
 
   // A loop without its closing tag used to fall through as a single tag. Strict mode says
   // what is missing.
@@ -18,16 +18,16 @@
     padError ( "the pair {" . $padOrg [$pad] . "} never closes" );
 
   // A handling option - first=, rows=, last=, where=, sort and the rest of handling/types/ -
-  // works on rows, and a {while} or {until} has none: it was taken on the first round's one
+  // works on rows, and a {pad:while} or {pad:until} has none: it was taken on the first round's one
   // stand-in row and did nothing, and the unread-option sweep was silent, as handling had read
-  // it - {while $i lt 5, first=2} ran its five rounds. Strict mode names it.
+  // it - {pad:while $i lt 5, first=2} ran its five rounds. Strict mode names it.
 
   if ( $padCheckSyntax and $padWalk [$pad] != 'next' )
     foreach ( $padParms [$pad] as $padWhileOpt )
       if ( ( $padWhileOpt ['padPrmKind'] ?? '' ) == 'option'
            and padFileExists ( PAD . 'handling/types/' . $padWhileOpt ['padPrmName'] . '.php' ) )
         padError ( "the option " . $padWhileOpt ['padPrmName'] . " does nothing on "
-                   . ( $padTag [$pad] == 'until' ? 'an' : 'a' ) . " {" . $padTag [$pad] . "} - it has no rows to handle" );
+                   . ( $padTag [$pad] == 'until' ? 'an' : 'a' ) . " {" . padTagDisplay () . "} - it has no rows to handle" );
 
   // A condition that never turns ran forever, and the request died on PHP's clock with
   // nothing said. The loop stops at the ceiling the sequences already use; strict mode
@@ -41,7 +41,7 @@
   if ( $padWhileRound [$pad] > $padSeqDefaultTries ) {
 
     if ( $padCheckSyntax )
-      padError ( "the {" . $padTag [$pad] . "} passed $padSeqDefaultTries rounds and was stopped" );
+      padError ( "the {" . padTagDisplay () . "} passed $padSeqDefaultTries rounds and was stopped" );
 
     $padWalk [$pad] = '';
     return NULL;
@@ -59,7 +59,7 @@
   if ( trim ( $padWhileOrg ) == '' ) {
 
     if ( $padCheckSyntax )
-      padError ( "the {" . $padTag [$pad] . "} has no condition" );
+      padError ( "the {" . padTagDisplay () . "} has no condition" );
 
     $padWalk [$pad] = '';
     return NULL;

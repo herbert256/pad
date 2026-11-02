@@ -1,6 +1,6 @@
 <?php
 
-  // Markdown to HTML - the renderer behind the {markdown} tag and the markdown pipe.
+  // Markdown to HTML - the renderer behind the {pad:markdown} tag and the markdown pipe.
   //
   // There is no Composer in PAD, so this is a small built-in CommonMark subset rather than a
   // library: ATX and setext headings, paragraphs, emphasis and strong emphasis, code spans,
@@ -16,12 +16,12 @@
   // so a field the tag form rendered first - already encoded - and the &open; stand-ins of
   // the ignore option arrive in the page as they were meant.
   //
-  // $dedent: the text of a {markdown} pair is dedented first - indented along with the
+  // $dedent: the text of a {pad:markdown} pair is dedented first - indented along with the
   // template around it, it would otherwise turn into one big code block. A value - the
-  // markdown pipe, {markdown $text}, a collection's body - is read as it is written: one
+  // markdown pipe, {pad:markdown $text}, a collection's body - is read as it is written: one
   // that is all indented code lost its code block.
   //
-  // padMarkdown is the entry - the tag, the pipe, {collection} and a page's PHP call it; the
+  // padMarkdown is the entry - the tag, the pipe, {pad:collection} and a page's PHP call it; the
   // renderer's parts are tags/_lib/markdown.php, read the first time it runs.
 
   function padMarkdown ( $text, $html = FALSE, $dedent = FALSE ) {

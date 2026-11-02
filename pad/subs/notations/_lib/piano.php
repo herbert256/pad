@@ -1,6 +1,6 @@
 <?php
 
-  // Piano keyboards - the piano notation, {piano 'C4 E4 G4'/}. Notes - or a chord, voiced from
+  // Piano keyboards - the piano notation, {notation:piano 'C4 E4 G4'/}. Notes - or a chord, voiced from
   // its root - shown on a keyboard, the keys pressed marked and named.
   //
   // padPianoNotes   the notes of a text as MIDI numbers (C4 is 60) with their names: the notes

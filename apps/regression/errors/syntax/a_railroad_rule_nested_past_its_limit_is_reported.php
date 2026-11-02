@@ -5,6 +5,6 @@
   // ended the request with its maximum call stack size. The page is made here and run as PAD,
   // as a diagram reads its text as it stands.
 
-  $page = "{railroad}\na ::= " . str_repeat ( "('x' ", 7000 ) . str_repeat ( ')?', 7000 ) . "\n{/railroad}";
+  $page = "{diagram:railroad}\na ::= " . str_repeat ( "('x' ", 7000 ) . str_repeat ( ')?', 7000 ) . "\n{/diagram:railroad}";
 
 ?>

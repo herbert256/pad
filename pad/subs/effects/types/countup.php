@@ -1,6 +1,6 @@
 <?php
 
-  // {countup to=1250/} or {countup 1250/} or {countup}1250{/countup} - a number counted up to
+  // {effect:countup to=1250/} or {effect:countup 1250/} or {effect:countup}1250{/effect:countup} - a number counted up to
   // its value by the CSS alone. It starts at from= (0) and gets there in duration= seconds (2),
   // after delay= seconds: an integer custom property (@property, <integer>) animated by the CSS
   // and shown by a counter - no script. prefix= and suffix= stand before and after it - '€',
@@ -10,7 +10,7 @@
   // screen reader reads the last number only - the counting copy is hidden from it; under
   // reduced motion the number stands at its value.
   //
-  //   {countup to=98, suffix='%', scroll/}
+  //   {effect:countup to=98, suffix='%', scroll/}
 
   $padFxContent = padEffectContent ();
   $padFxValue   = ( $padFxContent !== NULL ) ? padEffectPlain ( $padFxContent ) : padEffectValue ();
@@ -28,7 +28,7 @@
     $padFxTo = (int) $padFxValue;
   else {
     padEffectBad ( ( $padFxValue === '' ? 'needs the number it counts to' : "counts to a whole number, not '" . padEffectShow ( $padFxValue ) . "'" )
-                   . " - {countup to=1250/}, {countup 1250/} or {countup}1250{/countup}" );
+                   . " - {effect:countup to=1250/}, {effect:countup 1250/} or {effect:countup}1250{/effect:countup}" );
     return '';
   }
 

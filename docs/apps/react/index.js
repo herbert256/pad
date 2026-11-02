@@ -25,7 +25,7 @@ function HelloServer({ message, php, time, patterns }) {
     <div className="card hello">
       <div className="panel-title">From PAD, at render time</div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
-        <span className="avatar" style={{ background: 'linear-gradient(135deg, var(--pad), var(--react))' }}>⚛</span>
+        <span className="avatar" style={{ background: 'var(--accent)', color: 'var(--accent-text)' }}>⚛</span>
         <div>
           <div style={{ fontSize: 20, fontWeight: 800 }}>{hello.message}</div>
           <div className="muted small">PHP {hello.php} &middot; {hello.patterns} patterns to explore</div>
@@ -44,7 +44,7 @@ function HelloServer({ message, php, time, patterns }) {
         {asks.length === 0 && <span className="muted small">Each ask is a round trip to PAD - its time shows up here.</span>}
         {asks.slice().reverse().map((ms, index) => (
           <span key={index} title={ms + ' ms'} style={{ flex: 1, height: `${Math.max(8, ms / slowest * 100)}%`, borderRadius: 4,
-                 background: 'linear-gradient(180deg, var(--react), var(--pad))', opacity: .35 + index / 18 }} />
+                 background: 'var(--accent)', opacity: .35 + index / 18 }} />
         ))}
       </div>
       {asks.length > 0 && <div className="muted small" style={{ marginTop: 6 }}>last round trip {asks[0]} ms - <code>GET ?index&amp;padFormat=json</code></div>}

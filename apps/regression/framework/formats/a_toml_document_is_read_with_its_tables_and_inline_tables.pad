@@ -1,4 +1,4 @@
-{data 'doc', format='toml'}
+{pad:data 'doc', format='toml'}
   # This is a TOML document
 
   title = "TOML Example"
@@ -22,11 +22,11 @@
   [servers.beta]
   ip = "10.0.0.2"
   role = "backend"
-{/data}
-{doc}
+{/pad:data}
+{data:doc}
   [{$title}]
   [{$owner.name} {$owner.dob}]
-  [{if $database.enabled}enabled{/if} {$database.ports.0} {$database.ports.2} {$database.data.0.1} {$database.data.1.0}]
+  [{pad:if $database.enabled}enabled{/pad:if} {$database.ports.0} {$database.ports.2} {$database.data.0.1} {$database.data.1.0}]
   [{$database.temp_targets.cpu} {$database.temp_targets.case}]
   [{$servers.alpha.ip} {$servers.alpha.role} {$servers.beta.ip} {$servers.beta.role}]
-{/doc}
+{/data:doc}

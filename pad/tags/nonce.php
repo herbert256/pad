@@ -1,8 +1,8 @@
 <?php
 
-  // {nonce}: this request's nonce, for <script nonce="{nonce}"> under a Content-Security-
+  // {pad:nonce}: this request's nonce, for <script nonce="{pad:nonce}"> under a Content-Security-
   // Policy whose script-src holds 'nonce' - the engine puts the same value in the header.
-  // padNonce in lib/security.php. Outside an {ignore}: inside one it is text.
+  // padNonce in lib/security.php. Outside an {pad:ignore}: inside one it is text.
 
   return padNonce ();
 

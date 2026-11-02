@@ -5,9 +5,9 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{if condition} ... {/if}
-{if condition} ... {else} ... {/if}
-{if condition} ... {elseif condition} ... {else} ... {/if}
+{pad:if condition} ... {/pad:if}
+{pad:if condition} ... {pad:else} ... {/pad:if}
+{pad:if condition} ... {pad:elseif condition} ... {pad:else} ... {/pad:if}
 PAD;
 
   $tagParms   = [

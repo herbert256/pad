@@ -1,12 +1,9 @@
 <?php
 
-  // The body of an embed, whichever way it is written: {embed 'https://youtu.be/aqz-KE-bpKQ',
-  // title='Big Buck Bunny'/} - the provider the one that knows the address - the embed: type,
-  // {embed:youtube 'aqz-KE-bpKQ', title='...'/}, or a bare {youtube 'aqz-KE-bpKQ', title=
-  // '...'/} when nothing else has the name - the provider the one named, which reads its own
-  // bare ids as well. The caller sets $padEmbedName, '' to find it by the address. A provider
-  // is a file of subs/embeds/types/, and the files there are all the providers there are
-  // (padEmbedProviders, subs/embeds/_lib/embed.php).
+  // {embed:auto 'https://youtu.be/aqz-KE-bpKQ', title='Big Buck Bunny'/} detects the
+  // provider from the address. {embed:youtube 'aqz-KE-bpKQ', title='Video'/} selects
+  // a provider explicitly and also accepts its bare ids. The caller sets $padEmbedName;
+  // auto resolves to an empty name for provider discovery (padEmbedProviders).
   //
   // title= is required: the button's text, the frame's title, what a screen reader says.
   // poster= is a picture of www/<application>/, thumbnail the provider's own picture where
@@ -15,6 +12,9 @@
   // the strict check and answers nothing, so the @else@ shows.
 
   include_once PAD . 'subs/embeds/_lib/embed.php';
+
+  if ( $padEmbedName == 'auto' )
+    $padEmbedName = '';
 
   $padEmbedSource = trim ( padParmText ( $padParm ) );
   $padEmbedTitle  = trim ( padParmText ( padTagParm ( 'title' ) ) );

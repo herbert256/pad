@@ -7,7 +7,7 @@ This document provides a complete reference for all PAD tag properties.
 Tag properties provide contextual information during template execution. They are accessed using the `property@tag` syntax:
 
 ```
-{property@tagname}
+{property:property@tagname}
 ```
 
 Where `tagname` is the name of the iteration/loop context and `property` is the information you want to access.
@@ -19,9 +19,9 @@ Where `tagname` is the name of the iteration/loop context and `property` is the 
 ### Basic Property Access
 
 ```
-{first@users}
-{count@items/}
-{current@rows/}
+{property:first@users}
+{property:count@items/}
+{property:current@rows/}
 ```
 
 ### As a Tag Pair
@@ -29,24 +29,24 @@ Where `tagname` is the name of the iteration/loop context and `property` is the 
 A boolean property written as a tag pair renders its content only when the property is true:
 
 ```
-{first@users}<ul>{/first@users}
-{last@users}</ul>{/last@users}
+{property:first@users}<ul>{/property:first@users}
+{property:last@users}</ul>{/property:last@users}
 ```
 
 A property that is a data set - `fields`, `keys`, `parameters`, `options`, `variables` - is
-iterated as a pair, which is closed by its full name: `{fields@user}...{/fields@user}`.
-Without a target, `{fields}...{/fields}` reads the enclosing level.
+iterated as a pair, which is closed by its full name: `{property:fields@user}...{/property:fields@user}`.
+Without a target, `{property:fields}...{/property:fields}` reads the enclosing level.
 
-### Inside {if} and {case}
+### Inside {pad:if} and {pad:case}
 
-An `{if}` or a `{case}` is no loop of its own: a property written inside one - `{&current}`,
-`{current@}`, `{property:first}`, `{first@}...{/first@}` - belongs to the loop around it, as
+An `{pad:if}` or a `{pad:case}` is no loop of its own: a property written inside one - `{&current}`,
+`{property:current@}`, `{property:first}`, `{property:first@}...{/property:first@}` - belongs to the loop around it, as
 an option `{#name}` inside one belongs to the tag around it:
 
 ```
-{items}
-  {if $price gt 100}<b>{&current}</b>{/if}      the row number of items, not of the if
-{/items}
+{array:items}
+  {pad:if $price gt 100}<b>{&current}</b>{/pad:if}      the row number of items, not of the if
+{/array:items}
 ```
 
 ### In Conditionals
@@ -55,18 +55,18 @@ A property reads as a value inside an expression, so it stands in a condition - 
 boolean ones, with an operator for the counting ones, and combined freely:
 
 ```
-{if first@users}<ul>{/if}
-{if notFirst@items}, {/if}
-{if current@rows eq 2}the second row{/if}
-{if first@items or last@items}an end{/if}
-{if option.sort@items eq 'name'}sorted by name{/if}
+{pad:if first@users}<ul>{/pad:if}
+{pad:if notFirst@items}, {/pad:if}
+{pad:if current@rows eq 2}the second row{/pad:if}
+{pad:if first@items or last@items}an end{/pad:if}
+{pad:if option.sort@items eq 'name'}sorted by name{/pad:if}
 ```
 
 The property name is what makes this read as one reference: only the names on this page do
 (the files in `pad/properties/`), and the target names an iterating tag. Without a target -
-`{if current@ eq 2}`, `{echo current@ * 10/}` - it is the loop the expression stands in, past
-an `{if}`, a `{case}` and any other level that renders once for the row - an `{ifchanged}`, a
-`{guest}`, a `{spaceless}`, a snippet. Elsewhere in an expression `@` is still the current-value
+`{pad:if current@ eq 2}`, `{pad:echo current@ * 10/}` - it is the loop the expression stands in, past
+an `{pad:if}`, a `{pad:case}` and any other level that renders once for the row - an `{pad:ifchanged}`, a
+`{pad:guest}`, a `{pad:spaceless}`, a snippet. Elsewhere in an expression `@` is still the current-value
 placeholder, and so is an `@` after a space: `count @`.
 
 **The sigil decides what a colliding name means.** When a row carries a field named like a
@@ -74,21 +74,21 @@ property - a `first` column, say - the bare spelling is still the property and t
 `$`-spelling is the field:
 
 ```
-{if first@orders}                  the iteration state - is this the first row
+{pad:if first@orders}                  the iteration state - is this the first row
 {$first@orders}                    the row's 'first' field
-{if $first@orders eq 'Dave'}       comparing that field
+{pad:if $first@orders eq 'Dave'}       comparing that field
 ```
 
 The tag form resolves fields first, as it always has - the pair
-`{first@orders}...{/first@orders}` over such rows prints the field and renders its content on
-every row, and a single `{name@users}` over rows with a `name` field prints that field. From inside the level
+`{property:first@orders}...{/property:first@orders}` over such rows prints the field and renders its content on
+every row, and a single `{property:name@users}` over rows with a `name` field prints that field. From inside the level
 the `property:` prefix reaches the property whatever the row carries:
-`{if property:first}`.
+`{pad:if property:first}`.
 
 ### Ternary Conditionals
 
 ```
-{even@rows ? 'class="even"' : 'class="odd"'}
+{property:even@rows ? 'class="even"' : 'class="odd"'}
 ```
 
 A side that is more than one bare word is quoted: unquoted, `class="even"` is read as an
@@ -105,17 +105,17 @@ Properties that indicate position within a loop iteration.
 Returns `TRUE` if this is the first iteration.
 
 ```
-{first@tagname}
+{property:first@tagname}
 ```
 
 **Logic:** `$padOccur[$padIdx] == 1`
 
 **Example:**
 ```html
-{users}
-  {first@users}<table><tr><th>Name</th></tr>{/first@users}
+{array:users}
+  {property:first@users}<table><tr><th>Name</th></tr>{/property:first@users}
   <tr><td>{$name}</td></tr>
-{/users}
+{/array:users}
 ```
 
 ---
@@ -125,17 +125,17 @@ Returns `TRUE` if this is the first iteration.
 Returns `TRUE` if this is the last iteration.
 
 ```
-{last@tagname}
+{property:last@tagname}
 ```
 
 **Logic:** `$padKey[$padIdx] === array_key_last($padData[$padIdx])`
 
 **Example:**
 ```html
-{users}
+{array:users}
   <tr><td>{$name}</td></tr>
-  {last@users}</table>{/last@users}
-{/users}
+  {property:last@users}</table>{/property:last@users}
+{/array:users}
 ```
 
 ---
@@ -145,16 +145,16 @@ Returns `TRUE` if this is the last iteration.
 Returns `TRUE` if this is NOT the first iteration.
 
 ```
-{notFirst@tagname}
+{property:notFirst@tagname}
 ```
 
 **Logic:** `! first@tagname`
 
 **Example:**
 ```html
-{items}
-  {notFirst@items}, {/notFirst@items}{$name}
-{/items}
+{array:items}
+  {property:notFirst@items}, {/property:notFirst@items}{$name}
+{/array:items}
 ```
 
 **Output:** `item1, item2, item3`
@@ -166,16 +166,16 @@ Returns `TRUE` if this is NOT the first iteration.
 Returns `TRUE` if this is NOT the last iteration.
 
 ```
-{notLast@tagname}
+{property:notLast@tagname}
 ```
 
 **Logic:** `! last@tagname`
 
 **Example:**
 ```html
-{items}
-  {$name}{notLast@items}|{/notLast@items}
-{/items}
+{array:items}
+  {$name}{property:notLast@items}|{/property:notLast@items}
+{/array:items}
 ```
 
 **Output:** `item1|item2|item3`
@@ -187,16 +187,16 @@ Returns `TRUE` if this is NOT the last iteration.
 Returns `TRUE` if this is either the first OR last iteration.
 
 ```
-{border@tagname}
+{property:border@tagname}
 ```
 
 **Logic:** `first@tagname OR last@tagname`
 
 **Example:**
 ```html
-{items}
-  <div {border@items}class="highlight"{/border@items}>{$name}</div>
-{/items}
+{array:items}
+  <div {property:border@items}class="highlight"{/property:border@items}>{$name}</div>
+{/array:items}
 ```
 
 ---
@@ -206,16 +206,16 @@ Returns `TRUE` if this is either the first OR last iteration.
 Returns `TRUE` if this is neither first nor last (middle items only).
 
 ```
-{middle@tagname}
+{property:middle@tagname}
 ```
 
 **Logic:** `NOT border@tagname` (neither first nor last)
 
 **Example:**
 ```html
-{items}
-  {middle@items}<div class="middle">{$name}</div>{/middle@items}
-{/items}
+{array:items}
+  {property:middle@items}<div class="middle">{$name}</div>{/property:middle@items}
+{/array:items}
 ```
 
 ---
@@ -225,16 +225,16 @@ Returns `TRUE` if this is neither first nor last (middle items only).
 Returns `TRUE` if the current occurrence number is even.
 
 ```
-{even@tagname}
+{property:even@tagname}
 ```
 
 **Logic:** `$padOccur[$padIdx] % 2 == 0`
 
 **Example:**
 ```html
-{rows}
-  <tr class="{even@rows ? even : odd}">{$data}</tr>
-{/rows}
+{array:rows}
+  <tr class="{property:even@rows ? even : odd}">{$data}</tr>
+{/array:rows}
 ```
 
 ---
@@ -244,16 +244,16 @@ Returns `TRUE` if the current occurrence number is even.
 Returns `TRUE` if the current occurrence number is odd.
 
 ```
-{odd@tagname}
+{property:odd@tagname}
 ```
 
 **Logic:** `NOT even@tagname`
 
 **Example:**
 ```html
-{rows}
-  <tr class="{odd@rows ? odd : even}">{$data}</tr>
-{/rows}
+{array:rows}
+  <tr class="{property:odd@rows ? odd : even}">{$data}</tr>
+{/array:rows}
 ```
 
 ---
@@ -267,16 +267,16 @@ Properties that provide numeric information about the iteration.
 Returns the current occurrence number (1-based index).
 
 ```
-{current@tagname/}
+{property:current@tagname/}
 ```
 
 **Returns:** `$padOccur[$padIdx]`
 
 **Example:**
 ```html
-{users}
-  {current@users/}. {$name}
-{/users}
+{array:users}
+  {property:current@users/}. {$name}
+{/array:users}
 ```
 
 **Output:**
@@ -293,16 +293,16 @@ Returns the current occurrence number (1-based index).
 Returns the total number of items.
 
 ```
-{count@tagname/}
+{property:count@tagname/}
 ```
 
 **Returns:** `max(count($padData[$padIdx]), $padOccur[$padIdx])`
 
 **Example:**
 ```html
-{users}
-  User {current@users/} of {count@users/}
-{/users}
+{array:users}
+  User {property:current@users/} of {property:count@users/}
+{/array:users}
 ```
 
 ---
@@ -312,16 +312,16 @@ Returns the total number of items.
 Returns the number of iterations remaining.
 
 ```
-{remaining@tagname/}
+{property:remaining@tagname/}
 ```
 
 **Returns:** `count($padData[$padIdx]) - $padOccur[$padIdx]` (minimum 0)
 
 **Example:**
 ```html
-{users}
-  {$name} ({remaining@users/} more to go)
-{/users}
+{array:users}
+  {$name} ({property:remaining@users/} more to go)
+{/array:users}
 ```
 
 ---
@@ -331,16 +331,16 @@ Returns the number of iterations remaining.
 Returns the number of completed iterations (current - 1).
 
 ```
-{done@tagname}
+{property:done@tagname}
 ```
 
 **Returns:** `$padOccur[$padIdx] - 1`
 
 **Example:**
 ```html
-{users}
-  Processed: {done@users}, Current: {$name}
-{/users}
+{array:users}
+  Processed: {property:done@users}, Current: {$name}
+{/array:users}
 ```
 
 ---
@@ -354,16 +354,16 @@ Properties that provide access to the current data context.
 Returns the complete data array for the current level.
 
 ```
-{data@tagname/}
+{property:data@tagname/}
 ```
 
 **Returns:** `$padData[$padIdx]`
 
 **Example:**
 ```html
-{users}
-  {data@users toData="allUsers"/}
-{/users}
+{array:users}
+  {property:data@users toData="allUsers"/}
+{/array:users}
 ```
 
 ---
@@ -373,7 +373,7 @@ Returns the complete data array for the current level.
 Returns the current array key.
 
 ```
-{key@tagname/}
+{property:key@tagname/}
 ```
 
 **Returns:** `$padKey[$padIdx]`
@@ -381,7 +381,7 @@ Returns the current array key.
 **Example:**
 ```html
 {config}
-  {key@config/}: {$value}
+  {property:key@config/}: {$value}
 {/config}
 ```
 
@@ -399,18 +399,18 @@ user: admin
 Returns an array of all keys with their values as iterable data.
 
 ```
-{keys@tagname/}
+{property:keys@tagname/}
 ```
 
 **Returns:** Array where each item has `name` (the key) and `value`
 
 **Example:**
 ```html
-{myArray}
-  {first@myArray}
-    {keys@myArray}Key: {$name} {/keys@myArray}
-  {/first@myArray}
-{/myArray}
+{array:myArray}
+  {property:first@myArray}
+    {property:keys@myArray}Key: {$name} {/property:keys@myArray}
+  {/property:first@myArray}
+{/array:myArray}
 ```
 
 ---
@@ -420,20 +420,20 @@ Returns an array of all keys with their values as iterable data.
 Returns an array of field name/value pairs from the current record.
 
 ```
-{fields@tagname/}
+{property:fields@tagname/}
 ```
 
 **Returns:** Array where each item has `name` and `value`
 
 **Example:**
 ```html
-{user}
+{array:user}
   <table>
-  {fields@user}
+  {property:fields@user}
     <tr><td>{$name}</td><td>{$value}</td></tr>
-  {/fields@user}
+  {/property:fields@user}
   </table>
-{/user}
+{/array:user}
 ```
 
 **Output:**
@@ -452,16 +452,16 @@ Returns an array of field name/value pairs from the current record.
 Returns the name of the first field in the current record.
 
 ```
-{firstFieldName@tagname/}
+{property:firstFieldName@tagname/}
 ```
 
 **Returns:** First key from `$padCurrent[$padIdx]`
 
 **Example:**
 ```html
-{user}
-  Primary field: {firstFieldName@user/}
-{/user}
+{array:user}
+  Primary field: {property:firstFieldName@user/}
+{/array:user}
 ```
 
 ---
@@ -471,16 +471,16 @@ Returns the name of the first field in the current record.
 Returns the value of the first field in the current record.
 
 ```
-{firstFieldValue@tagname/}
+{property:firstFieldValue@tagname/}
 ```
 
 **Returns:** First value from `$padCurrent[$padIdx]`
 
 **Example:**
 ```html
-{user}
-  Primary value: {firstFieldValue@user/}
-{/user}
+{array:user}
+  Primary value: {property:firstFieldValue@user/}
+{/array:user}
 ```
 
 ---
@@ -494,40 +494,40 @@ Properties that provide information about the current tag.
 Returns the name of the current tag/level.
 
 ```
-{name@tagname/}
+{property:name@tagname/}
 ```
 
 **Returns:** `$padName[$padIdx]`
 
 **Example:**
 ```html
-{users}
-  Processing tag: {echo name@users/}
-{/users}
+{array:users}
+  Processing tag: {pad:echo name@users/}
+{/array:users}
 ```
 
-**Output:** `Processing tag: users` - written as a tag, `{name@users}`, a `name` field of the rows
+**Output:** `Processing tag: users` - written as a tag, `{property:name@users}`, a `name` field of the rows
 would win
 
 ---
 
 ### depth
 
-How deep the level stands in a recursion: for a `{tree}`, 1 for its own rows and one more
-per `{recurse}` - for indenting a tree. Any other level counts the levels of its own name
+How deep the level stands in a recursion: for a `{pad:tree}`, 1 for its own rows and one more
+per `{pad:recurse}` - for indenting a tree. Any other level counts the levels of its own name
 from the top down to itself, so a tag that calls itself has a depth too, and a level that
 does not is at depth 1.
 
 ```
-{depth@tree/}
+{property:depth@tree/}
 ```
 
 **Example:**
 ```html
-{tree 'menu', children='items'}
-  <p style="margin-left: {echo depth@tree | * 20/}px">{$title}</p>
-  {branch}{recurse/}{/branch}
-{/tree}
+{pad:tree 'menu', children='items'}
+  <p style="margin-left: {pad:echo depth@tree | * 20/}px">{$title}</p>
+  {pad:branch}{pad:recurse/}{/pad:branch}
+{/pad:tree}
 ```
 
 ---
@@ -541,17 +541,17 @@ Properties for accessing tag parameters and options.
 Returns one positional parameter - the values after the tag name - numbered from 1.
 
 ```
-{parameter.1@tagname}
+{property:parameter.1@tagname}
 ```
 
 **Returns:** `$padOpt[$padIdx][$parm]` or `NULL`
 
 **Example:**
 ```html
-{myTag 'first', 'second'}
-  First: {parameter.1@myTag}
-  Second: {parameter.2@myTag}
-{/myTag}
+{app:myTag 'first', 'second'}
+  First: {property:parameter.1@myTag}
+  Second: {property:parameter.2@myTag}
+{/app:myTag}
 ```
 
 ---
@@ -561,18 +561,18 @@ Returns one positional parameter - the values after the tag name - numbered from
 Returns all positional parameters as an iterable array.
 
 ```
-{parameters@tagname/}
+{property:parameters@tagname/}
 ```
 
 **Returns:** All parameters from `$padOpt[$padIdx]` (excluding index 0, the raw tag text)
 
 **Example:**
 ```html
-{myTag 'first', 'second'}
-  {parameters@myTag}
+{app:myTag 'first', 'second'}
+  {property:parameters@myTag}
     Parameter: {$value}
-  {/parameters@myTag}
-{/myTag}
+  {/property:parameters@myTag}
+{/app:myTag}
 ```
 
 ---
@@ -582,17 +582,17 @@ Returns all positional parameters as an iterable array.
 Returns one named option.
 
 ```
-{option.sort@tagname}
+{property:option.sort@tagname}
 ```
 
 **Returns:** `$padPrm[$padIdx][$parm]` or `NULL`
 
 **Example:**
 ```html
-{myTag sort='name', limit=10}
-  Sort by: {option.sort@myTag}
-  Limit: {option.limit@myTag}
-{/myTag}
+{app:myTag sort='name', limit=10}
+  Sort by: {property:option.sort@myTag}
+  Limit: {property:option.limit@myTag}
+{/app:myTag}
 ```
 
 ---
@@ -602,18 +602,18 @@ Returns one named option.
 Returns all named options as an iterable array.
 
 ```
-{options@tagname/}
+{property:options@tagname/}
 ```
 
 **Returns:** All options from `$padPrm[$padIdx]`
 
 **Example:**
 ```html
-{myTag foo=1, bar=2}
-  {options@myTag}
+{app:myTag foo=1, bar=2}
+  {property:options@myTag}
     {$name} = {$value}
-  {/options@myTag}
-{/myTag}
+  {/property:options@myTag}
+{/app:myTag}
 ```
 
 ---
@@ -627,16 +627,16 @@ Properties for accessing level-scoped variables.
 Returns one level variable - a `$name = value` written on the tag.
 
 ```
-{variable.varName@tagname}
+{property:variable.varName@tagname}
 ```
 
 **Returns:** `$padSetLvl[$padIdx][$parm]` or `NULL`
 
 **Example:**
 ```html
-{users $myVar = 'test'}
-  Variable: {variable.myVar@users}
-{/users}
+{array:users $myVar = 'test'}
+  Variable: {property:variable.myVar@users}
+{/array:users}
 ```
 
 ---
@@ -646,18 +646,18 @@ Returns one level variable - a `$name = value` written on the tag.
 Returns all level variables as an iterable array.
 
 ```
-{variables@tagname/}
+{property:variables@tagname/}
 ```
 
 **Returns:** All variables from `$padSetLvl[$padIdx]`
 
 **Example:**
 ```html
-{users $a = 1, $b = 2}
-  {variables@users}
+{array:users $a = 1, $b = 2}
+  {property:variables@users}
     {$name}: {$value}
-  {/variables@users}
-{/users}
+  {/property:variables@users}
+{/array:users}
 ```
 
 ---
@@ -685,7 +685,7 @@ Returns all level variables as an iterable array.
 | `firstFieldName@tag` | String | First field's name |
 | `firstFieldValue@tag` | Mixed | First field's value |
 | `name@tag` | String | Tag name |
-| `depth@tag` | Number | Depth in a recursion - a `{tree}`'s rows at 1 |
+| `depth@tag` | Number | Depth in a recursion - a `{pad:tree}`'s rows at 1 |
 | `parameter.n@tag` | Mixed | Positional parameter n, numbered from 1 |
 | `parameters@tag` | Array | All parameters |
 | `option.name@tag` | Mixed | The named option's value |
@@ -700,58 +700,58 @@ Returns all level variables as an iterable array.
 ### Zebra Striping
 
 ```html
-{rows}
-  <tr class="{even@rows ? row-even : row-odd}">{$data}</tr>
-{/rows}
+{array:rows}
+  <tr class="{property:even@rows ? row-even : row-odd}">{$data}</tr>
+{/array:rows}
 ```
 
 ### First/Last Handling
 
 ```html
-{items}
-  {first@items}<ul>{/first@items}
+{array:items}
+  {property:first@items}<ul>{/property:first@items}
   <li>{$name}</li>
-  {last@items}</ul>{/last@items}
-{/items}
+  {property:last@items}</ul>{/property:last@items}
+{/array:items}
 ```
 
 ### Item Separators
 
 ```html
 {tags}
-  {$name}{notLast@tags}, {/notLast@tags}
+  {$name}{property:notLast@tags}, {/property:notLast@tags}
 {/tags}
 ```
 
 ### Counter Display
 
 ```html
-{users}
+{array:users}
   <div>
-    {current@users/} of {count@users/}: {$name}
-    {notLast@users}({remaining@users/} remaining){/notLast@users}
+    {property:current@users/} of {property:count@users/}: {$name}
+    {property:notLast@users}({property:remaining@users/} remaining){/property:notLast@users}
   </div>
-{/users}
+{/array:users}
 ```
 
 ### Dynamic Field Display
 
 ```html
-{record "* from users where id=5"}
+{pad:record "* from users where id=5"}
   <dl>
-  {fields@record}
+  {property:fields@record}
     <dt>{$name}</dt>
     <dd>{$value}</dd>
-  {/fields@record}
+  {/property:fields@record}
   </dl>
-{/record}
+{/pad:record}
 ```
 
 ### Accessing Parameters
 
 ```html
-{customTag 'fast', mode='advanced'}
-  Speed: {parameter.1@customTag}
-  Mode: {option.mode@customTag}
-{/customTag}
+{app:customTag 'fast', mode='advanced'}
+  Speed: {property:parameter.1@customTag}
+  Mode: {property:option.mode@customTag}
+{/app:customTag}
 ```

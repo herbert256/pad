@@ -1,1 +1,1 @@
-[{echo $user.middle | default("-")/}][{echo $user.middle | ?? "-"/}][{echo $user.middle | optional/}][{echo $user.name | default("-")/}] {xs where='$m | ?? 0 | @ gt 1'}{$n}{/xs}
+[{pad:echo $user.middle | default("-")/}][{pad:echo $user.middle | ?? "-"/}][{pad:echo $user.middle | optional/}][{pad:echo $user.name | default("-")/}] {array:xs where='$m | ?? 0 | @ gt 1'}{$n}{/array:xs}

@@ -1,13 +1,13 @@
-{meta title='Computed values', about='The case value and the when values are expressions, compared loosely.'/}
-{set $score = 7/}
+{pad:meta title='Computed values', about='The case value and the when values are expressions, compared loosely.'/}
+{pad:set $score = 7/}
 <p>{$score} is
-{case $score % 2}
-  {when 0} even
-  {when 1} odd
-{/case}
+{pad:case $score % 2}
+  {pad:when 0} even
+  {pad:when 1} odd
+{/pad:case}
 and
-{case $score gt 5}
-  {when TRUE} high.
-{else}
+{pad:case $score gt 5}
+  {pad:when TRUE} high.
+{pad:else}
   low.
-{/case}</p>
+{/pad:case}</p>

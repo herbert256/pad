@@ -74,7 +74,7 @@
 .pad-brand .pad-brand-apps {
   position: absolute; z-index: 1000; top: calc(100% + var(--pad-brand-drop)); left: 0; right: auto;
   display: block; flex: none; order: 0;
-  width: min(780px, calc(100vw - 24px)); max-height: calc(100vh - 96px); overflow: hidden auto;
+  width: min(1040px, calc(100vw - 24px)); max-height: calc(100vh - 96px); overflow: hidden auto;
   margin: 0; padding: 8px; border-radius: 12px;
   background: var(--pad-brand-menu); border: 1px solid var(--pad-brand-line);
   box-shadow: var(--pad-brand-shadow);
@@ -82,8 +82,23 @@
   white-space: normal; text-align: left;
 }
 
-.pad-brand .pad-brand-columns { columns: 3; column-gap: 8px; }
-.pad-brand .pad-brand-group { break-inside: avoid; padding-bottom: 6px; }
+/* With brand.js the list opens as a popover: in the top layer, in front of everything the page
+   has whatever its parts stack - the frame's sticky side made a stacking context of its own,
+   and the bar and the page's positioned parts painted over the list - placed by the script
+   under the name; the page behind it is dimmed by a popover of its own over the whole window,
+   pad-brand-dim, which takes a click on the page and shuts the list. */
+
+.pad-brand .pad-brand-apps:popover-open { position: fixed; inset: auto; margin: 0; }
+
+.pad-brand-dim:popover-open {
+  position: fixed; inset: 0; width: auto; height: auto; max-width: none; max-height: none;
+  margin: 0; padding: 0; border: 0; overflow: hidden;
+  background: rgba(8, 12, 20, .5);
+}
+
+.pad-brand .pad-brand-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.pad-brand .pad-brand-column { min-width: 0; }
+.pad-brand .pad-brand-group { padding-bottom: 6px; }
 
 .pad-brand .pad-brand-head {
   margin: 6px 10px 4px;
@@ -107,8 +122,8 @@
 
 /* narrower: two columns, then one - and in the bar the name alone, PAD left out */
 
-@media (max-width: 820px) {
-  .pad-brand .pad-brand-columns { columns: 2; }
+@media (max-width: 1080px) {
+  .pad-brand .pad-brand-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 640px) {
@@ -117,6 +132,7 @@
 }
 
 @media (max-width: 540px) {
-  .pad-brand .pad-brand-columns { columns: auto; }
+  .pad-brand .pad-brand-columns { grid-template-columns: minmax(0, 1fr); }
   .pad-brand .pad-brand-apps { position: fixed; top: 64px; left: 12px; right: 12px; width: auto; max-height: calc(100vh - 80px); }
+  .pad-brand .pad-brand-apps:popover-open { right: 12px; }
 }

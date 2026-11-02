@@ -1,14 +1,14 @@
-<p>The <code>{ignore}{qr}{/ignore}</code> tag encodes a text as a QR code and writes it as inline SVG -
+<p>The <code>{pad:ignore}{barcode:qr}{/pad:ignore}</code> tag encodes a text as a QR code and writes it as inline SVG -
 no image library, no remote service, no JavaScript. Type a text and scan the result with your phone.</p>
 
-{form 'qr', error='Please correct the errors below.'}
-  <p>{input 'text', label='Text or address:', value=$text, rules='required|max:1000'/}</p>
+{pad:form 'qr', error='Please correct the errors below.'}
+  <p>{pad:input 'text', label='Text or address:', value=$text, rules='required|max:1000'/}</p>
   <p><input type="submit" value="Make the QR code"></p>
-{/form}
+{/pad:form}
 
-<div class="qr-big">{qr $text, size=220/}</div>
+<div class="qr-big">{barcode:qr $text, size=220/}</div>
 
-<p><code>{ignore}{qr $text, size=220/}{/ignore}</code></p>
+<p><code>{pad:ignore}{barcode:qr $text, size=220/}{/pad:ignore}</code></p>
 
 <h2>Error correction</h2>
 
@@ -17,10 +17,10 @@ middle - and the more modules it takes.</p>
 
 <table>
   <tr>
-    {levels}<th>level='{$level}' - restores {$restores}</th>{/levels}
+    {array:levels}<th>level='{$level}' - restores {$restores}</th>{/array:levels}
   </tr>
   <tr>
-    {levels}<td>{qr $text, level=$level, size=150/}</td>{/levels}
+    {array:levels}<td>{barcode:qr $text, level=$level, size=150/}</td>{/array:levels}
   </tr>
 </table>
 
@@ -28,6 +28,6 @@ middle - and the more modules it takes.</p>
 
 <p>A phone joins a Wi-Fi network from this one:</p>
 
-<p>{qr $wifi, size=150, title='Join the PAD Demo network', color='#2e7d32'/}</p>
+<p>{barcode:qr $wifi, size=150, title='Join the PAD Demo network', color='#2e7d32'/}</p>
 
-<p><code>{ignore}{qr 'WIFI:T:WPA;S:PAD Demo;P:inversion-of-control;;', color='#2e7d32'/}{/ignore}</code></p>
+<p><code>{pad:ignore}{barcode:qr 'WIFI:T:WPA;S:PAD Demo;P:inversion-of-control;;', color='#2e7d32'/}{/pad:ignore}</code></p>

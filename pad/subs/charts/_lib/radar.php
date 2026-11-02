@@ -2,7 +2,7 @@
 
   // Many measures at once: a spoke per measure, a polygon per row.
   //
-  //   {chart 'radar', data='phones', label='model', value='battery, camera, screen, speed, price'}
+  //   {chart:radar data='phones', label='model', value='battery, camera, screen, speed, price'}
   //
   // value= lists the measures, three or more - else every numeric field of the first row;
   // label= names the rows, each a polygon in its own colour, eight at most. The scale runs

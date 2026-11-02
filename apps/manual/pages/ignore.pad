@@ -1,42 +1,42 @@
-{meta title='Ignore - Preventing PAD from Parsing Curly Braces'/}
+{pad:meta title='Ignore - Preventing PAD from Parsing Curly Braces'/}
 
-<p>The {tag 'ignore'/} feature tells PAD not to parse curly braces <code>{open/}{close/}</code> as PAD tags within specific content. This is essential when working with JavaScript, JSON data, CSS, or any content that uses curly braces for its own syntax.</p>
+<p>The {app:tag 'ignore'/} feature tells PAD not to parse curly braces <code>{pad:open/}{pad:close/}</code> as PAD tags within specific content. This is essential when working with JavaScript, JSON data, CSS, or any content that uses curly braces for its own syntax.</p>
 
 <h2>Why Use Ignore?</h2>
 
-<p>PAD normally parses all <code>{open/}{close/}</code> pairs as potential PAD tags. When your content contains curly braces that should be treated as literal text (like JavaScript code or JSON data), you need to tell PAD to ignore them.</p>
+<p>PAD normally parses all <code>{pad:open/}{pad:close/}</code> pairs as potential PAD tags. When your content contains curly braces that should be treated as literal text (like JavaScript code or JSON data), you need to tell PAD to ignore them.</p>
 
 <h2>Three Ways to Use Ignore</h2>
 
-<h3>1. As a Tag Pair: <code>{open/}ignore{close/}...{open/}/ignore{close/}</code></h3>
+<h3>1. As a Tag Pair: <code>{pad:open/}pad:ignore{pad:close/}...{pad:open/}/pad:ignore{pad:close/}</code></h3>
 
 <p>Wrap content in ignore tags to prevent PAD from parsing any curly braces within that block. This is commonly used for inline JavaScript or CSS.</p>
 
 <h4>Example 1: JavaScript with Object Literals</h4>
 
 <p>A brace followed by a space or a line end is left alone, but compact code -
-<code>function f(){open/}return 1;{close/}</code>, <code>a{open/}color:red{close/}</code> - is read as
-tags. Wrapped in {tag 'ignore'/}, the code is safe whichever way it is written:</p>
+<code>function f(){pad:open/}return 1;{pad:close/}</code>, <code>a{pad:open/}color:red{pad:close/}</code> - is read as
+tags. Wrapped in {app:tag 'ignore'/}, the code is safe whichever way it is written:</p>
 
-{example 'fragments/ignore_1'/}
+{common:example 'fragments/ignore_1'/}
 
 <h4>Example 2: Inline CSS with Selector Blocks</h4>
 
-<p>CSS uses curly braces for selector blocks. Wrap in {tag 'ignore'/} to prevent PAD from parsing them:</p>
+<p>CSS uses curly braces for selector blocks. Wrap in {app:tag 'ignore'/} to prevent PAD from parsing them:</p>
 
-{example 'fragments/ignore_2'/}
+{common:example 'fragments/ignore_2'/}
 
 <h3>2. As a Pipe Function: <code>| ignore</code></h3>
 
-<p>Apply ignore to the output of an expression to prevent PAD from parsing curly braces in that output. A variable's value needs it no more: values are text, their braces are never parsed (with <code>$padProtectValues</code> on, the default). It matters for what a tag answers as template source - an application tag that builds its <code>$padContent</code>, such as a <code>{open/}json 'products' | ignore/{close/}</code> - and with <code>$padProtectValues</code> off.</p>
+<p>Apply ignore to the output of an expression to prevent PAD from parsing curly braces in that output. A variable's value needs it no more: values are text, their braces are never parsed (with <code>$padProtectValues</code> on, the default). It matters for what a tag answers as template source - an application tag that builds its <code>$padContent</code>, such as a <code>{pad:open/}json 'products' | ignore/{pad:close/}</code> - and with <code>$padProtectValues</code> off.</p>
 
 <h4>Example 3: JSON Data in Attributes</h4>
 
 <p>JSON from a variable, passed to JavaScript through a data attribute - the pipe changes nothing here while values are protected, and keeps the braces safe when they are not:</p>
 
-{example 'fragments/ignore_4'/}
+{common:example 'fragments/ignore_4'/}
 
-<p>The JSON data was passed from PAD/PHP through a data attribute using <code>{open/}echo $usersJson | ignore/{close/}</code>.</p>
+<p>The JSON data was passed from PAD/PHP through a data attribute using <code>{pad:open/}pad:echo $usersJson | ignore/{pad:close/}</code>.</p>
 
 <h3>3. As an Option: <code>ignore</code></h3>
 
@@ -44,18 +44,18 @@ tags. Wrapped in {tag 'ignore'/}, the code is safe whichever way it is written:<
 
 <h4>Example 4: A Tag with JSON in it</h4>
 
-<p>Use the {tag 'ignore'/} option on a tag to prevent PAD from parsing curly braces in its content:</p>
+<p>Use the {app:tag 'ignore'/} option on a tag to prevent PAD from parsing curly braces in its content:</p>
 
-{example 'fragments/ignore_5'/}
+{common:example 'fragments/ignore_5'/}
 
-<p>Without the ignore option, PAD would read <code>{open/}color:red{close/}</code> as a tag - "there is no type named 'color'".</p>
+<p>Without the ignore option, PAD would read <code>{pad:open/}color:red{pad:close/}</code> as a tag - "there is no type named 'color'".</p>
 
 <h2>Best Practices</h2>
 
 <ul>
-  <li><strong>Always use {tag 'ignore'/} for JavaScript blocks</strong> - Any <code>&lt;script&gt;</code> tag with JavaScript should be wrapped</li>
+  <li><strong>Always use {app:tag 'ignore'/} for JavaScript blocks</strong> - Any <code>&lt;script&gt;</code> tag with JavaScript should be wrapped</li>
   <li><strong>Use <code>| ignore</code> on a tag's JSON</strong> - When a tag answers JSON as template source, pipe it through ignore</li>
-  <li><strong>Keep CSS in external files</strong> - But if inline CSS is needed, wrap in {tag 'ignore'/}</li>
+  <li><strong>Keep CSS in external files</strong> - But if inline CSS is needed, wrap in {app:tag 'ignore'/}</li>
   <li><strong>Minimal scope</strong> - Only wrap what needs to be ignored, not entire templates</li>
   <li><strong>Not needed for HTML</strong> - Regular HTML doesn't use curly braces, no ignore needed</li>
 </ul>
@@ -65,10 +65,10 @@ tags. Wrapped in {tag 'ignore'/}, the code is safe whichever way it is written:<
 <p>When ignore is active, PAD will NOT parse:</p>
 
 <ul>
-  <li><code>{open/}variableName{close/}</code> - Not treated as a variable reference</li>
-  <li><code>{open/}tagName{close/}</code> - Not treated as a PAD tag</li>
-  <li><code>{open/}if condition{close/}...{open/}/if{close/}</code> - Not treated as conditional</li>
-  <li><code>{open/}echo $expr/{close/}</code> - Not treated as expression</li>
+  <li><code>{pad:open/}variableName{pad:close/}</code> - Not treated as a variable reference</li>
+  <li><code>{pad:open/}tagName{pad:close/}</code> - Not treated as a PAD tag</li>
+  <li><code>{pad:open/}pad:if condition{pad:close/}...{pad:open/}/pad:if{pad:close/}</code> - Not treated as conditional</li>
+  <li><code>{pad:open/}pad:echo $expr/{pad:close/}</code> - Not treated as expression</li>
 </ul>
 
 <p>Everything within ignored content is treated as <strong>literal text</strong>.</p>
@@ -84,34 +84,34 @@ tags. Wrapped in {tag 'ignore'/}, the code is safe whichever way it is written:<
   <tr>
     <td>Inline JavaScript</td>
     <td>Tag Pair</td>
-    <td><code>{open/}ignore{close/}&lt;script&gt;...{open/}/ignore{close/}</code></td>
+    <td><code>{pad:open/}pad:ignore{pad:close/}&lt;script&gt;...{pad:open/}/pad:ignore{pad:close/}</code></td>
   </tr>
   <tr>
     <td>Inline CSS</td>
     <td>Tag Pair</td>
-    <td><code>{open/}ignore{close/}&lt;style&gt;...{open/}/ignore{close/}</code></td>
+    <td><code>{pad:open/}pad:ignore{pad:close/}&lt;style&gt;...{pad:open/}/pad:ignore{pad:close/}</code></td>
   </tr>
   <tr>
     <td>React/JSX Code</td>
     <td>Tag Pair</td>
-    <td><code>{open/}ignore{close/}&lt;script type="text/babel"&gt;...{open/}/ignore{close/}</code></td>
+    <td><code>{pad:open/}pad:ignore{pad:close/}&lt;script type="text/babel"&gt;...{pad:open/}/pad:ignore{pad:close/}</code></td>
   </tr>
   <tr>
     <td>JSON in Attributes</td>
     <td>Pipe Function</td>
-    <td><code>data-json="{open/}$jsonVar | ignore{close/}"</code></td>
+    <td><code>data-json="{pad:open/}$jsonVar | ignore{pad:close/}"</code></td>
   </tr>
   <tr>
     <td>JSON in a tag's content</td>
     <td>Option</td>
-    <td><code>{open/}pad ignore{close/}</code></td>
+    <td><code>{pad:open/}pad:pad ignore{pad:close/}</code></td>
   </tr>
 </table>
 
 <h2>Important Notes</h2>
 
 <ul>
-  <li><strong>Pairs nest</strong> - an inner <code>{open/}ignore{close/}...{open/}/ignore{close/}</code> inside an ignore block is kept as literal text, and the block ends at its own closing tag</li>
+  <li><strong>Pairs nest</strong> - an inner <code>{pad:open/}pad:ignore{pad:close/}...{pad:open/}/pad:ignore{pad:close/}</code> inside an ignore block is kept as literal text, and the block ends at its own closing tag</li>
   <li><strong>Use sparingly</strong> - Only use where necessary to avoid confusion</li>
   <li><strong>External files preferred</strong> - For large JavaScript or CSS, use external files instead of inline code</li>
 </ul>
@@ -126,17 +126,17 @@ tags. Wrapped in {tag 'ignore'/}, the code is safe whichever way it is written:<
   </tr>
   <tr>
     <td><strong>Tag Pair</strong></td>
-    <td><code>{open/}ignore{close/}...{open/}/ignore{close/}</code></td>
+    <td><code>{pad:open/}pad:ignore{pad:close/}...{pad:open/}/pad:ignore{pad:close/}</code></td>
     <td>Inline JavaScript, CSS, large blocks of code</td>
   </tr>
   <tr>
     <td><strong>Pipe Function</strong></td>
-    <td><code>{open/}expression | ignore{close/}</code></td>
+    <td><code>{pad:open/}expression | ignore{pad:close/}</code></td>
     <td>Expression output contains JSON or curly braces</td>
   </tr>
   <tr>
     <td><strong>Option</strong></td>
-    <td><code>{open/}tag ignore/{close/}</code></td>
+    <td><code>{pad:open/}app:tag ignore/{pad:close/}</code></td>
     <td>Tag content should not be parsed</td>
   </tr>
 </table>
@@ -144,8 +144,8 @@ tags. Wrapped in {tag 'ignore'/}, the code is safe whichever way it is written:<
 <h2>See Also</h2>
 
 <ul>
-  <li>{tag 'open'/} - Output opening brace <code>{open/}</code></li>
-  <li>{tag 'close'/} - Output closing brace <code>{close/}</code></li>
-  <li>{tag 'echo'/} - Evaluate expressions</li>
-  <li>{tag 'data'/} - Define inline data</li>
+  <li>{app:tag 'open'/} - Output opening brace <code>{pad:open/}</code></li>
+  <li>{app:tag 'close'/} - Output closing brace <code>{pad:close/}</code></li>
+  <li>{app:tag 'echo'/} - Evaluate expressions</li>
+  <li>{app:tag 'data'/} - Define inline data</li>
 </ul>

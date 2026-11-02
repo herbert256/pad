@@ -3,7 +3,7 @@
   // Many measures of many rows - parallel coordinates: an upright axis per measure, a line
   // per row through its value on each.
   //
-  //   {chart 'parallel', data='cars', value='mpg, cylinders, horsepower, weight', color='origin'}
+  //   {chart:parallel data='cars', value='mpg, cylinders, horsepower, weight', color='origin'}
   //
   // value= lists the measures, two or more - else every numeric field of the first row -
   // each an axis of its own scaled from round numbers below its lowest value to past its

@@ -1,6 +1,6 @@
-{data 'visits'}
+{pad:data 'visits'}
   {"page": "index", "hits": 12}
 
   {"page": "about", "hits": 3}
-{/data}
-[{visits}{$page}={$hits};{/visits}] {echo $ndShow/} {echo $ndBack/}
+{/pad:data}
+[{data:visits}{$page}={$hits};{/data:visits}] {pad:echo $ndShow/} {pad:echo $ndBack/}

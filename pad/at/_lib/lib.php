@@ -38,8 +38,8 @@
     // resolution may run before that tag's level exists (type detection, $cor 0, $pad still
     // the enclosing level) or after it opened ($cor 1, $pad the tag's own level); one step
     // separates the two, so 1-$cor lands both on the same target. The old $pad+$level+$cor
-    // was one level short on both routes: {first@-2} answered about the level it stood in,
-    // where {first -2} over the same nesting answered about the loop.
+    // was one level short on both routes: {property:first@-2} answered about the level it stood in,
+    // where {property:first -2} over the same nesting answered about the loop.
 
     if ( strlen($level) > 1 and substr($level,0,1) == '-' and is_numeric(substr($level,1)) ) {
 
@@ -85,7 +85,7 @@
 
   // Whether a name is a property: one of the files in pad/properties/, named exactly. A
   // file_exists() of the name answers without regard to case on macOS and Windows, where
-  // {CURRENT@xs}, {if Current@xs eq 2} and {&First} were the current and first properties -
+  // {property:CURRENT@xs}, {pad:if Current@xs eq 2} and {&First} were the current and first properties -
   // and on a Linux server, or in the packed WebAssembly runtime, no property at all. The
   // listing is the kept one (padDirList), its names read once per request.
 
@@ -106,7 +106,7 @@
 
   // Marks the current level as answered-by-at, which the field walkers in lib/field/lib.php
   // read as "skip this one". Skipped while an expression is being evaluated: a property
-  // resolving inside another tag's parameters - {echo $option.opt@true} - used to stamp
+  // resolving inside another tag's parameters - {pad:echo $option.opt@true} - used to stamp
   // that tag itself, before its own type had run, and the level then went looking for
   // types/tag.php, which does not exist. A reference standing as a tag still marks its
   // level the way it always has.
@@ -119,14 +119,14 @@
       return;
 
     // A mark of its own, which the field lookups read: written into $padType it replaced
-    // the level's real type, and a level that walks again - {while}, {until}, {trace} -
+    // the level's real type, and a level that walks again - {pad:while}, {pad:until}, {pad:trace} -
     // then dispatched to a types/tag.php that does not exist, a 500 for any property tag
     // written directly inside one.
     //
     // Only the property tag's own level is marked. The same resolution runs while the tag's
     // type is still being found, and for a {$first@xs} that opens no level at all; $pad is
     // then the loop the reference stands in, and marked, that loop was passed over as if it
-    // were a property tag for the rest of its rows: after a {first@xs}...{/first@xs} a
+    // were a property tag for the rest of its rows: after a {property:first@xs}...{/property:first@xs} a
     // {#mask} of the loop was not found and {&current} answered 1 on every row.
 
     if ( ( $GLOBALS ['padType'] [$pad] ?? '' ) != 'property' )

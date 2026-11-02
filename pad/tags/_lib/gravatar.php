@@ -1,11 +1,11 @@
 <?php
 
-  // Gravatars - the {gravatar} tag. The picture a person registered for an e-mail address at
+  // Gravatars - the {pad:gravatar} tag. The picture a person registered for an e-mail address at
   // gravatar.com, as an <img>: the address is never written into the page, only its SHA-256
   // hash, the way Gravatar asks for it - trimmed and lower-cased first.
   //
-  //   {gravatar $email, size=64}
-  //   {gravatar $email, fallback='avatar', alt=$name}
+  //   {pad:gravatar $email, size=64}
+  //   {pad:gravatar $email, fallback='avatar', alt=$name}
   //
   // padGravatarUrl  the address of the picture: https://www.gravatar.com/avatar/<hash>?s=&d=
   // padGravatar     the <img>, with a twice as large one in srcset for a sharp screen,
@@ -13,7 +13,7 @@
   //                 page the visitor is on is not told to Gravatar either
   //
   // Showing the picture asks a third party for it, and with it the visitor's IP address.
-  // fallback='avatar' (or 'identicon') does not: it answers the {avatar} (or {identicon})
+  // fallback='avatar' (or 'identicon') does not: it answers the {pad:avatar} (or {pad:identicon})
   // SVG of tags/_lib/avatar.php instead, drawn on the server - for a page under a privacy policy
   // that allows no outside requests, or a test without network.
 

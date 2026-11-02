@@ -230,7 +230,7 @@
         "type": "ALIAS",
         "content": {
           "type": "STRING",
-          "value": "ignore"
+          "value": "pad:ignore"
         },
         "named": true,
         "value": "identifier"
@@ -402,43 +402,35 @@
       ]
     },
     "tag_name": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
+        {
+          "type": "FIELD",
+          "name": "prefix",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            "named": true,
+            "value": "prefix"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": ":"
+          }
+        },
         {
           "type": "FIELD",
           "name": "name",
           "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "prefix",
-              "content": {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                },
-                "named": true,
-                "value": "prefix"
-              }
-            },
-            {
-              "type": "IMMEDIATE_TOKEN",
-              "content": {
-                "type": "STRING",
-                "value": ":"
-              }
-            },
-            {
-              "type": "FIELD",
-              "name": "name",
-              "content": {
+            "type": "CHOICE",
+            "members": [
+              {
                 "type": "ALIAS",
                 "content": {
                   "type": "IMMEDIATE_TOKEN",
@@ -449,56 +441,63 @@
                 },
                 "named": true,
                 "value": "identifier"
-              }
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "property",
-              "content": {
+              },
+              {
                 "type": "ALIAS",
                 "content": {
-                  "type": "SYMBOL",
-                  "name": "identifier"
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "\\$[A-Za-z][A-Za-z0-9_]*"
+                  }
                 },
                 "named": true,
-                "value": "property"
+                "value": "variable"
               }
-            },
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
             {
-              "type": "IMMEDIATE_TOKEN",
-              "content": {
-                "type": "STRING",
-                "value": "@"
-              }
-            },
-            {
-              "type": "CHOICE",
+              "type": "SEQ",
               "members": [
                 {
-                  "type": "FIELD",
-                  "name": "target",
+                  "type": "IMMEDIATE_TOKEN",
                   "content": {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "IMMEDIATE_TOKEN",
-                      "content": {
-                        "type": "PATTERN",
-                        "value": "[A-Za-z_][A-Za-z0-9_]*|-?[0-9]+"
-                      }
-                    },
-                    "named": true,
-                    "value": "identifier"
+                    "type": "STRING",
+                    "value": "@"
                   }
                 },
                 {
-                  "type": "BLANK"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "FIELD",
+                      "name": "target",
+                      "content": {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "IMMEDIATE_TOKEN",
+                          "content": {
+                            "type": "PATTERN",
+                            "value": "[A-Za-z_][A-Za-z0-9_]*|-?[0-9]+"
+                          }
+                        },
+                        "named": true,
+                        "value": "identifier"
+                      }
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
                 }
               ]
+            },
+            {
+              "type": "BLANK"
             }
           ]
         }

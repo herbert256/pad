@@ -2,7 +2,7 @@
 
   // The values a redirect carries go into the query as padUrl writes them - a list as
   // ids[0]=1&ids[1]=2, a NULL left out, a name with & in it encoded - from padRedirect and
-  // from {redirect}: padAddGet urlencoded the value as text, and a list or a NULL ended the
+  // from {pad:redirect}: padAddGet urlencoded the value as text, and a list or a NULL ended the
   // request in a 500 TypeError.
 
   if ( isset ( $_GET ['go'] ) ) {

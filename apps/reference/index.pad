@@ -1,39 +1,39 @@
 <blockquote>
 
-{block}
+{common:block}
 
-  {pad data='reference'}
+  {pad:pad data='reference'}
 
-    {sequence '1..{$lvl}'}
+    {sequence:range '1..{$lvl}'}
       <blockquote>
-    {/sequence}
+    {/sequence:range}
 
     <h3 id="{$type | slug}">{$type}</h3>
 
     <blockquote>
 
-      {getReference '{$dir}', '{$xref}'}
+      {php:getReference '{$dir}', '{$xref}'}
 
-        {if $dir}
+        {pad:if $dir}
           <a href="?dir{?xref}{?type}{?item}">{$item}</a>
-        {elseif $pages}
+        {pad:elseif $pages}
           <a href="?pages{?xref}{?type}{?item}">{$item}</a>
         @else@
           {$item}
-        {/if}
+        {/pad:if}
 
         &nbsp; 
         
-      {/getReference}
+      {/php:getReference}
             
     </blockquote>
 
-    {sequence '1..{$lvl}'}
+    {sequence:range '1..{$lvl}'}
       </blockquote>
-    {/sequence}
+    {/sequence:range}
 
-  {/pad}
+  {/pad:pad}
 
-{/block}
+{/common:block}
 
 </blockquote>

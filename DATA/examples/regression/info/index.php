@@ -20,7 +20,7 @@
   // this fetch. It is taken out first, has to come back, and the store is then put back
   // byte for byte, since git tracks it.
 
-  $xrefFile = DATA . 'reference/tag/pad/sequence.txt';
+  $xrefFile = DATA . 'reference/tag/sequence/range.txt';
   $xrefKeep = file_get_contents ( $xrefFile );
 
   file_put_contents ( $xrefFile, str_replace ( "regression/info;probe\n", '', $xrefKeep ) );

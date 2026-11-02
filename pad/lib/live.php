@@ -3,12 +3,12 @@
   // Live regions: a part of a page that answers clicks and forms by re-rendering on the
   // server and swapping itself in, without JavaScript of the application's own.
   //
-  //   {live 'cart'}
+  //   {pad:live 'cart'}
   //     {cart}<li>{$item} x {$qty}</li>{/cart}
   //     <button pad-click="add" pad-value="42">Add</button>
-  //   {/live}
+  //   {/pad:live}
   //
-  // {live} wraps what it renders in <div data-pad-live="cart">, and the first region of a
+  // {pad:live} wraps what it renders in <div data-pad-live="cart">, and the first region of a
   // page brings a small script along. The script listens on the whole document, so content a
   // region swaps in works the same: a click on a pad-click element, a submit of a pad-submit
   // form or a change of a pad-change field inside a region posts to the page's own URL -
@@ -39,7 +39,7 @@
   // instead of the page; a page with no such region is an error.
   //
   // What a region rendered is kept in a static of padLiveStore, because a region inside a
-  // nested pass - a {page}, a sandbox - would otherwise be undone with that pass's globals.
+  // nested pass - a {pad:page}, a sandbox - would otherwise be undone with that pass's globals.
   //
   // padLive        the region this request re-renders, '' for an ordinary request
   // padLiveEvent   the event a live request carries
@@ -65,7 +65,7 @@
   // padLive[]=box - is no value, and was read as a text, the Array to string conversion
   // ending the request of any page a post reached, since every request asks padLive. The
   // value of a change of a select of many is a text too, its choices joined by ', ' - the
-  // list itself is the field's, $_POST ['tags'] for {multiselect 'tags'}.
+  // list itself is the field's, $_POST ['tags'] for {input:multiselect 'tags'}.
 
   function padLiveValue () {
 
@@ -94,12 +94,12 @@
 
   }
 
-  // The name a {live} is given: letters, digits, _ and -, as the event a post may carry.
+  // The name a {pad:live} is given: letters, digits, _ and -, as the event a post may carry.
 
   function padLiveName ( $name ) {
 
     if ( ! preg_match ( '/^[A-Za-z0-9_-]{1,64}$/D', (string) $name ) )
-      padError ( "a {live} region needs a name of letters, digits, _ and -, like {live 'cart'}" );
+      padError ( "a {pad:live} region needs a name of letters, digits, _ and -, like {pad:live 'cart'}" );
 
     return (string) $name;
 
@@ -119,7 +119,7 @@
     $script = '';
 
     // Under a Content-Security-Policy naming 'nonce' the script carries this request's
-    // nonce, as {asset} writes it (lib/asset.php) - without it the policy blocked it.
+    // nonce, as {pad:asset} writes it (lib/asset.php) - without it the policy blocked it.
 
     if ( ! $store ['script'] ) {
       $store ['script'] = TRUE;
@@ -150,7 +150,7 @@
 
     $padTidy = $padMyTidy = FALSE;
 
-    // The {stack} markers in the region are filled as exits/exits.php fills the page's -
+    // The {pad:stack} markers in the region are filled as exits/exits.php fills the page's -
     // the answer carried the bare marker instead of what was pushed.
 
     return padNocacheStrip ( padUnprotect ( padUnescape ( padStackFill ( $store ['regions'] [$name] ) ) ) );

@@ -1,25 +1,25 @@
 {common:padFrame}
 
-  {slot 'head'}
+  {pad:slot 'head'}
     <meta name="robots" content="noindex">
-    {asset 'admin.css', tag/}
-    {asset 'admin.js', tag/}
-  {/slot}
+    {pad:asset 'admin.css', tag/}
+    {pad:asset 'admin.js', tag/}
+  {/pad:slot}
 
-  {slot 'foot'}
-    {if $adminIn}
+  {pad:slot 'foot'}
+    {pad:if $adminIn}
       <div class="frame-foot">
-        {icon 'user', size=16/} {$adminWho} <span class="dim">on {$adminHost}</span>
-        <form method="post" action="?logout"><button>{icon 'log-out', size=16/} Log out</button></form>
+        {icon:user size=16/} {$adminWho} <span class="dim">on {$adminHost}</span>
+        <form method="post" action="?logout"><button>{icon:log-out size=16/} Log out</button></form>
       </div>
-    {/if}
-  {/slot}
+    {/pad:if}
+  {/pad:slot}
 
 {/common:padFrame}
 
-{if $adminIn}
-  {flash}<p class="flash {$type}" role="status">{$message}</p>{/flash}
-{/if}
+{pad:if $adminIn}
+  {pad:flash}<p class="flash {$type}" role="status">{$message}</p>{/pad:flash}
+{/pad:if}
 
 @page@
 

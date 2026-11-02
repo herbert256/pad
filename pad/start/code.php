@@ -1,6 +1,6 @@
 <?php
 
-  // Body of the {code} and {sandbox} tags: takes the tag's own content as PAD source and
+  // Body of the {pad:code} and {pad:sandbox} tags: takes the tag's own content as PAD source and
   // runs it through a nested engine pass, returning whatever that pass produced.
   //
   // $padStrBld = 'code' tells start/pad/pad.php to dispatch the nested run to

@@ -1,4 +1,4 @@
-{diagram type='gitgraph'}
+{diagram:gitgraph}
 commit
 branch b1
 commit
@@ -3998,4 +3998,4 @@ branch b1998
 commit
 branch b1999
 commit
-{/diagram | php:substr_count(@, ': commit</title>') . ' ' . php:substr_count(@, '<title>b1999: commit</title>')}
+{/diagram:gitgraph | php:substr_count(@, ': commit</title>') . ' ' . php:substr_count(@, '<title>b1999: commit</title>')}

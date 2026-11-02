@@ -41,8 +41,8 @@
     // PATH_INFO says, where there is one: the & that starts the tail is a raw one there,
     // and an encoded %26 inside a segment is part of the segment.
     // PATH_INFO arrives decoded, and the path was decoded before the tail was split off, so
-    // products/a%26b reached products/[id] as a with a value b - and the encoding {get},
-    // {ajax} and padRedirect () give a routed segment was undone under clean URLs.
+    // products/a%26b reached products/[id] as a with a value b - and the encoding {pad:get},
+    // {pad:ajax} and padRedirect () give a routed segment was undone under clean URLs.
 
     $info = trim ( (string) ( $_SERVER ['PATH_INFO'] ?? '' ), '/' );
     $raw  = padRequestPathRaw ();

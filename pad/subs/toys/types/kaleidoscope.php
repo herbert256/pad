@@ -6,7 +6,7 @@
   // picture as an image. mirrors= how many wedges (8 unless given, 3 to 24); brush= the width
   // of the line (3, 1 to 20); colour= rainbow, ink or palette - the page's own colours.
   //
-  //   {kaleidoscope mirrors=12, colour='palette'/}
+  //   {toy:kaleidoscope mirrors=12, colour='palette'/}
 
   return padToy ( 'kaleidoscope', 'Kaleidoscope', [
     'mirrors' => padToyInt ( 'mirrors', 8, 3, 24 ),

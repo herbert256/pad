@@ -10,13 +10,13 @@
     ],
     "repository": {
         "pad-ignore": {
-            "begin": "(\\{)(ignore)(\\})",
+            "begin": "(\\{)(pad:ignore)(\\})",
             "beginCaptures": {
                 "1": { "name": "punctuation.section.embedded.begin.pad" },
                 "2": { "name": "keyword.control.tag.pad" },
                 "3": { "name": "punctuation.section.embedded.end.pad" }
             },
-            "end": "(\\{)(/ignore)(\\})",
+            "end": "(\\{)(/pad:ignore)(\\})",
             "endCaptures": {
                 "1": { "name": "punctuation.section.embedded.begin.pad" },
                 "2": { "name": "keyword.control.tag.pad" },
@@ -56,7 +56,7 @@
                 { "include": "#pad-comment" },
                 { "include": "#pad-tag" },
                 {
-                    "match": "(?<=\\{)(/?)(?:([A-Za-z_][A-Za-z0-9_]*)(:))?([A-Za-z_][A-Za-z0-9_]*)",
+                    "match": "(?<=\\{)(/?)(?:([A-Za-z_][A-Za-z0-9_]*)(:))([A-Za-z_][A-Za-z0-9_]*)",
                     "captures": {
                         "1": { "name": "punctuation.definition.tag.pad" },
                         "2": { "name": "storage.type.prefix.pad" },

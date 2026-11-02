@@ -1,4 +1,4 @@
-{data 'days'}["Saturday","Monday","Sunday"]{/data}
-{days}
-  <p>{$days}: {case $days}{when 'Saturday', 'Sunday'}weekend{else}a working day{/case}</p>
-{/days}
+{pad:data 'days'}["Saturday","Monday","Sunday"]{/pad:data}
+{data:days}
+  <p>{$days}: {pad:case $days}{pad:when 'Saturday', 'Sunday'}weekend{pad:else}a working day{/pad:case}</p>
+{/data:days}

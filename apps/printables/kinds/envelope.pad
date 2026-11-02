@@ -1,4 +1,4 @@
-{fake 'name, street, postcode, city', rows=2, seed=6, toData='customers'/}
+{fake:rows 'name, street, postcode, city', rows=2, seed=6, toData='customers'/}
 {printable:envelope data='customers', sender='PAD, Main Street 1, 3511 AB Utrecht', scale=0.45, pdf}
   {$name}<br>{$street}<br>{$postcode} {$city}
 {/printable:envelope}

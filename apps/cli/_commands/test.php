@@ -10,7 +10,7 @@
   //   /a pattern/ on the next line   the output when one is given
   //
   // Each test page is rendered bare - without the application's wrappers - in a child
-  // process of its own (pad render with PAD_TEST), with every {assert} in it, and in the
+  // process of its own (pad render with PAD_TEST), with every {pad:assert} in it, and in the
   // pages it brings in, checked: a false one fails the test. A test without an answer
   // counts against the run; --record writes the missing answers from what the pages
   // render now - a body that would read as a pattern or a status line as the pattern of

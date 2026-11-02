@@ -9,7 +9,7 @@
   //                that is the whole answer may be missing. The pipeline itself lives in
   //                eval/eval.php, entered through try/try.php so that $padErrorTry can
   //                turn a thrown error into a PAD error rather than a fatal
-  //   padEvalBool  the same, reduced to TRUE/FALSE - used by {if}, {while} and friends.
+  //   padEvalBool  the same, reduced to TRUE/FALSE - used by {pad:if}, {pad:while} and friends.
   //                An array counts as TRUE when it is non-empty
   //   padEvalTrace records the tokens and the tree of an evaluation in $_eval, for
   //                debugging the evaluator

@@ -1,12 +1,12 @@
 
-<p><code>{redirect 'name'/}</code> answers the request with a <code>302 Found</code> and a
+<p><code>{pad:redirect 'name'/}</code> answers the request with a <code>302 Found</code> and a
 <code>Location</code> header, and ends it there: nothing after the tag runs and nothing of the
 page is sent. The browser then asks for the new address itself, so its address bar shows it -
 the pattern after a form post, where a reload must not post again.</p>
 
-<p>Variables assigned on the tag - <code>{redirect 'list', $status = 'open'/}</code> - are added
+<p>Variables assigned on the tag - <code>{pad:redirect 'list', $status = 'open'/}</code> - are added
 to the new address's query string. A page name stays on this site and is resolved as
-<a href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> resolves one; under the strict check a plain page name that does
+<a href="index%EF%B9%96tag%EA%A4%B7page.html">{pad:page}</a> resolves one; under the strict check a plain page name that does
 not exist is an error, instead of a clean 302 into a 404.</p>
 
 <p>An absolute <code>http://</code> or <code>https://</code> address is sent as written, with
@@ -16,5 +16,5 @@ PHP takes page names only and never leaves the site; called without a page it go
 page that was asked for.</p>
 
 <p>To show another page without a round trip, keeping the address, use
-<a href="index%EF%B9%96tag%EA%A4%B7restart.html">{restart}</a>.</p>
+<a href="index%EF%B9%96tag%EA%A4%B7restart.html">{pad:restart}</a>.</p>
 

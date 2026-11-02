@@ -6,10 +6,10 @@
   // the boxes after it went to a third page: the card's tail and the whole second card.
 
   $html = padUnprotect ( padUnescape ( padCode ( <<<'PAD'
-{data 'cards'}
+{pad:data 'cards'}
 [ { "n": "one", "inner": 1 }, { "n": "two", "inner": 0 } ]
-{/data}
-{printable:cards data='cards'}card {$n}{if $inner}{printable:envelope sender='PAD'}Ann{/printable:envelope}tail{/if}{/printable:cards}
+{/pad:data}
+{printable:cards data='cards'}card {$n}{pad:if $inner}{printable:envelope sender='PAD'}Ann{/printable:envelope}tail{/pad:if}{/printable:cards}
 PAD ) ) );
 
   $pdf = padPdf ( $html, [ 'compress' => FALSE ] );

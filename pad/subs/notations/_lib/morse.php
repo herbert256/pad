@@ -1,6 +1,6 @@
 <?php
 
-  // Morse - the morse notation, {morse 'SOS'/}. A text in the international Morse code of
+  // Morse - the morse notation, {notation:morse 'SOS'/}. A text in the international Morse code of
   // ITU-R M.1677-1: its letters, its digits and its punctuation, and the accented e it has -
   // nothing else, so a character it has no sign for (! & ;) is named, not guessed.
   //

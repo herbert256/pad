@@ -1,12 +1,12 @@
-{table}
+{common:table}
 
-{demo}{sequence multiple=2,  rows=50, name='mySeq1'/}{/demo}
-{demo}{sequence multiple=3,  rows=34, name='mySeq2'/}{/demo}
-{demo}{sequence multiple=5,  rows=20, name='mySeq3'/}{/demo}
-{demo}{sequence multiple=10, rows=10, name='mySeq4'/}{/demo}
+{common:demo}{sequence:multiple 2,  rows=50, name='mySeq1'/}{/common:demo}
+{common:demo}{sequence:multiple 3,  rows=34, name='mySeq2'/}{/common:demo}
+{common:demo}{sequence:multiple 5,  rows=20, name='mySeq3'/}{/common:demo}
+{common:demo}{sequence:multiple 10, rows=10, name='mySeq4'/}{/common:demo}
 
-{demo}{sequence '1..100', intersection='mySeq1|mySeq2|mySeq3|mySeq4'}
+{common:demo}{sequence:range '1..100', intersection='mySeq1|mySeq2|mySeq3|mySeq4'}
   {$sequence}
-{/sequence}{/demo}
+{/sequence:range}{/common:demo}
 
-{/table}
+{/common:table}

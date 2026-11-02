@@ -1,1 +1,1 @@
-{data 'orders'}[{"c":"ann","n":1},{"c":"ann","n":2},{"c":"bob","n":3},{"c":"ann","n":4}]{/data}[{orders}{if $n gt 0}{ifchanged $c}<h>{$c}</h>{/ifchanged}{/if}{$n} {/orders}]
+{pad:data 'orders'}[{"c":"ann","n":1},{"c":"ann","n":2},{"c":"bob","n":3},{"c":"ann","n":4}]{/pad:data}[{data:orders}{pad:if $n gt 0}{pad:ifchanged $c}<h>{$c}</h>{/pad:ifchanged}{/pad:if}{$n} {/data:orders}]

@@ -29,7 +29,7 @@
   $srcPhp = ( $hasPhp ) ? padColorsFile ( $exDir . "$show.php" ) : '';
   $srcPad = ( $hasPad ) ? padColorsFile ( $exDir . "$show.pad" ) : '';
 
-  // The icon at the top right of the example that takes it to the playground
+  // The icon at the top right of the example that takes it to the WASM editor
   // (_common/_lib/playground.php): its template, with its PHP.
 
   include_once COMMON . '_lib/playground.php';

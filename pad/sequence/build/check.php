@@ -36,7 +36,7 @@
   // before, which is what keeps a sequence whose values never grow - n MOD 3 - from
   // generating for ever.
   //
-  // pqBuild() picks this strategy for {keep}, {remove} and {flag}, where the question is
+  // pqBuild() picks this strategy for {keep:loop}, {remove:loop} and {pad:flag}, where the question is
   // always membership rather than generation.
 
   $pqCheckKind = pqCheckKind ( $pqSeq );
@@ -79,7 +79,7 @@
       return FALSE;
 
     // A value that is no number is no term of a table's numbers either: generating on to a
-    // stop it named never reached it, and {sequence 'a;9;b', flag, square} spent the whole
+    // stop it named never reached it, and {sequence:list 'a;9;b', flag, square} spent the whole
     // time limit on its first candidate.
 
     if ( ! is_numeric ( $pqLoop ) or $pqLoop <= $padSeqCheckTable [$pqSeq] ['max'] )
@@ -113,12 +113,12 @@
   // Terms that can come out otherwise another time - a type that draws at random or evaluates
   // an expression, a parameter naming a store or drawn from a range (pqTermsKey) - are kept for
   // this run only, under a pq* name inits/clear.php drops when the next tag starts: kept for
-  // the request, {sequence '1..12', keep, eval='@*$n'} in a loop over $n kept the first $n's
+  // the request, {sequence:range '1..12', keep, eval='@*$n'} in a loop over $n kept the first $n's
   // multiples every time, and keep, chance=2 repeated one random pick.
   //
   // An expression of the value, numbers, strings and operators alone gives the same terms
   // every time, and they are kept for the request under its text, pqEvalKey (): kept for the
-  // run only, {sequence '1..20', name='i'}{sequence '1..5', keep, eval='@*2'} made the 10,000
+  // run only, {sequence:range '1..20', name='i'}{sequence:range '1..5', keep, eval='@*2'} made the 10,000
   // terms of '@*2' twenty times. A run still asks the expression for its first term, which is
   // where eval/loop.php checks where its text came from, and makes the terms again when that
   // one differs. The key is made once a run.
@@ -155,7 +155,7 @@
   // took before. Any other type as far as the value and at least that reach, extended by
   // doubling; and past the reach toward a value beyond every term made only while the terms,
   // growing as they grow at the end of what was made, can get to it within the ceiling of
-  // candidates (pqCheckReach): {sequence '9223372036854775807;4', flag, eval='@ * 2'} made a
+  // candidates (pqCheckReach): {sequence:list '9223372036854775807;4', flag, eval='@ * 2'} made a
   // million terms for its first value, which '@ * 2' reaches at position 4.6 * 10^18, and
   // spent the five seconds a run has under load, answering one flag of two; eval='abc' the same
   // for terms that are no numbers at all.
@@ -164,7 +164,7 @@
   // a value within it is looked for as far as itself, as before, a walk its size bounds. Asked
   // for every value, the estimate turned members down - a line a * n + b with b above 0 is
   // projected past where it gets there, stairs wider than the reach stand still over what was
-  // made, and an expression may turn after its first terms - so {sequence '15000;50000;100000',
+  // made, and an expression may turn after its first terms - so {sequence:list '15000;50000;100000',
   // keep, eval='@ + 1'} kept 15000 alone, ceil=20000 kept none of 40000 and 60000, and
   // eval='@ le 10000 ? @ * 3 : @ + 1' turned 20002 down.
 
@@ -178,7 +178,7 @@
   // reach and at the ceiling, made one at a time and kept with the terms (pqCheckSamples): one
   // of them that is the value makes it a term, every one of them short of it on the side the
   // terms made are on - or, for terms that were no numbers, no number either - leaves it none,
-  // and otherwise every term to the ceiling is made to look in. Estimated, {sequence
+  // and otherwise every term to the ceiling is made to look in. Estimated, {sequence:auto
   // '2000000;3', flag, eval='@ le 10000 ? @ : 2000000'} answered 0 for the 2000000 the
   // expression makes at position 10,001 - its first 10,000 terms climb one at a time, which
   // gets there past the ceiling - and a value within the ceiling was looked for only as far as

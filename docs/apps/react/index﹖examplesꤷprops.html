@@ -1,30 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="csrf-token" content="0a5f5f505a9f7849dcc1d0fe442314e47841d7963c113da1994256432426af93">
-  <meta name="pad-react-version" content="1793508132">
-  <title>Islands with props - PAD + React</title>
-
+  <title>Islands with props · PAD react</title>
+  
+  <link rel="stylesheet" href="../_common/pad.css">
+  <link rel="stylesheet" href="../_common/brand.css">
+  <script src="../_common/pad.js"></script>
+  <script src="../_common/brand.js" defer></script>
+  
+  
+  <meta name="csrf-token" content="263e2f93b454e938546d770bf4018b102130d1e487a1e5cce5e9b46c50eee766">
+  <meta name="pad-react-version" content="1793579464">
   <link rel="stylesheet" href="react.css">
-
   <!-- React 18 from a CDN, then the runtime of this application - islands, requests back
-       to PAD, the theme - and Babel, which turns the JSX of the components into JavaScript
-       in the browser: no build step -->
+       to PAD - and Babel, which turns the JSX of the components into JavaScript in the
+       browser: no build step -->
   <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
   <script src="pad-react.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
   <script type="text/babel" src="ui.js"></script>
+  
 </head>
-<body>
+<body class="frame app-react">
 
-<header class="topbar">
-  <div class="wrap topbar-inner">
+  <aside class="frame-side">
 
-    <link rel="stylesheet" href="../_common/brand.css"><script src="../_common/brand.js" defer></script>
-<div class="pad-brand">
+    <div class="frame-brand">
+<div class="pad-brand pad-brand-frame">
   
     <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">&#123;&#125;</a>
     <details class="pad-brand-menu">
@@ -32,34 +37,50 @@
       <nav class="pad-brand-apps" aria-label="PAD applications">
         <div class="pad-brand-columns">
           
-            <div class="pad-brand-group">
-              <div class="pad-brand-head">PAD</div>
-              <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"/></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"/></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"/><path d="M8 8v.01"/></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l9 4.5-9 4.5L3 8Z"/><path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"/></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"/></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"/></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+            <div class="pad-brand-column">
+              
+                <div class="pad-brand-group">
+                  <div class="pad-brand-head">PAD</div>
+                  <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"/></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"/></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"/><path d="M8 8v.01"/></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l9 4.5-9 4.5L3 8Z"/><path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"/></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"/></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"/></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                </div>
+              
+                <div class="pad-brand-group">
+                  <div class="pad-brand-head">Offline</div>
+                  <a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"/></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"/><path d="M16.5 14.5h.01"/></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"/></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                </div>
+              
             </div>
           
-            <div class="pad-brand-group">
-              <div class="pad-brand-head">Showcases</div>
-              <a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"/><path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"/></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"/></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"/><path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"/></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"/></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6.5" width="19" height="11" rx="5.5"/><circle cx="16" cy="12" r="2.5"/></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a>
+            <div class="pad-brand-column">
+              
+                <div class="pad-brand-group">
+                  <div class="pad-brand-head">Showcases</div>
+                  <a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"/><path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"/></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"/></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"/><path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"/></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"/></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6.5" width="19" height="11" rx="5.5"/><circle cx="16" cy="12" r="2.5"/></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5.5l11-2V16"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"/></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"/><rect x="7" y="14" width="10" height="6.5"/></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                </div>
+              
             </div>
           
-            <div class="pad-brand-group">
-              <div class="pad-brand-head">Front ends</div>
-              <a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"/></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"/></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="19" height="13" rx="1.5"/><path d="M8 20.5h8M12 16.5v4"/></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"/><path d="M9 4v13.5M15 6.5V20"/></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"/><path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"/></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+            <div class="pad-brand-column">
+              
+                <div class="pad-brand-group">
+                  <div class="pad-brand-head">Examples</div>
+                  <a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"/></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="2.5"/><path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"/></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                </div>
+              
             </div>
           
-            <div class="pad-brand-group">
-              <div class="pad-brand-head">Offline</div>
-              <a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"/><path d="M16.5 14.5h.01"/></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"/></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
-            </div>
-          
-            <div class="pad-brand-group">
-              <div class="pad-brand-head">Examples</div>
-              <a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/playground/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"/></svg><span><b>playground</b><small>Type a template, see the result</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"/></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="2.5"/><path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"/></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
-            </div>
-          
-            <div class="pad-brand-group">
-              <div class="pad-brand-head">Tools</div>
-              <a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"/><circle cx="9" cy="7" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="7" cy="17" r="2"/></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"/><path d="M14 6.5l3.5 3.5"/></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"/></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.7 2.7L16 9.7"/></svg><span><b>regression</b><small>The regression suites</small></span></a>
+            <div class="pad-brand-column">
+              
+                <div class="pad-brand-group">
+                  <div class="pad-brand-head">Front ends</div>
+                  <a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"/></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"/></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="19" height="13" rx="1.5"/><path d="M8 20.5h8M12 16.5v4"/></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"/><path d="M9 4v13.5M15 6.5V20"/></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"/><path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"/></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                </div>
+              
+                <div class="pad-brand-group">
+                  <div class="pad-brand-head">Tools</div>
+                  <a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"/><circle cx="9" cy="7" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="7" cy="17" r="2"/></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"/><path d="M14 6.5l3.5 3.5"/></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"/></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.7 2.7L16 9.7"/></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                </div>
+              
             </div>
           
         </div>
@@ -67,34 +88,122 @@
     </details>
   
 </div>
+</div>
 
+    
+      <nav class="frame-nav" aria-label="react">
+        
+          
+            <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"/></svg> Home</a>
+          
+        
+          
+            <a href="index%EF%B9%96patterns.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></svg> Patterns</a>
+          
+        
+          
+            <a href="index%EF%B9%96guide.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-book-open" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7c-2-1.8-5-2.5-9-2.5v14c4 0 7 .7 9 2.5 2-1.8 5-2.5 9-2.5v-14c-4 0-7 .7-9 2.5Z"/><path d="M12 7v14"/></svg> Guide</a>
+          
+        
+          
+            <div class="frame-head">Server to React</div>
+          
+        
+          
+            <a href="index%EF%B9%96examples%EA%A4%B7props.html" aria-current="page">Islands with props</a>
+          
+        
+          
+            <a href="index%EF%B9%96examples%EA%A4%B7enhance.html">Progressive enhancement</a>
+          
+        
+          
+            <a href="index%EF%B9%96examples%EA%A4%B7products.html">Data files with a tag</a>
+          
+        
+          
+            <a href="index%EF%B9%96examples%EA%A4%B7topic.html">Providers with {pad:reactData}</a>
+          
+        
+          
+            <div class="frame-head">React back to PAD</div>
+          
+        
+          
+            <a href="index%EF%B9%96examples%EA%A4%B7search.html">One page, two answers</a>
+          
+        
+          
+            <a href="index%EF%B9%96examples%EA%A4%B7feedback.html">Forms checked by PAD</a>
+          
+        
+          
+            <a href="index%EF%B9%96examples%EA%A4%B7cart.html">Islands sharing server state</a>
+          
+        
+          
+            <a href="index%EF%B9%96examples%EA%A4%B7chart.html">PAD draws, React steers</a>
+          
+        
+          
+            <a href="index%EF%B9%96examples%EA%A4%B7live.html">Live polling</a>
+          
+        
+          
+            <div class="frame-head">React basics</div>
+          
+        
+          
+            <a href="index%EF%B9%96examples%EA%A4%B7counter.html">Counter with history</a>
+          
+        
+          
+            <a href="index%EF%B9%96examples%EA%A4%B7components.html">Composition</a>
+          
+        
+          
+            <a href="index%EF%B9%96examples%EA%A4%B7form.html">Controlled form</a>
+          
+        
+          
+            <a href="index%EF%B9%96examples%EA%A4%B7toggle.html">Toggles</a>
+          
+        
+          
+            <a href="index%EF%B9%96examples%EA%A4%B7click.html">Click handler</a>
+          
+        
+      </nav>
+    
 
-    <nav class="menu" aria-label="Sections">
-      
-        <a href="index%EF%B9%96index.html">Home</a>
-      
-        <a href="index%EF%B9%96patterns.html" class="is-active" aria-current="page">Patterns</a>
-      
-        <a href="index%EF%B9%96guide.html">Guide</a>
-      
-    </nav>
+    
 
-    <button type="button" class="theme" data-theme-toggle aria-label="Switch between light and dark">
-      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
-    </button>
+    
 
-  </div>
-</header>
+  </aside>
 
-<main class="wrap main">
+  <main class="frame-main">
+
+    <header class="frame-top">
+      <h1>Islands with props</h1>
+      <div class="frame-tools">
+        
+        <style>.pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}</style><form method="post" class="pad-themes"><input type="hidden" name="padCsrfToken" value="263e2f93b454e938546d770bf4018b102130d1e487a1e5cce5e9b46c50eee766"><input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme"><option value="" selected>Default</option><option value="blueprint">Blueprint</option><option value="contrast">Contrast</option><option value="contrast-dark">Contrast Dark</option><option value="dark">Dark</option><option value="forest">Forest</option><option value="light">Light</option><option value="mono">Mono</option><option value="newspaper">Newspaper</option><option value="night">Night</option><option value="ocean">Ocean</option><option value="paper">Paper</option><option value="readable">Readable</option><option value="sepia">Sepia</option><option value="solarized-dark">Solarized Dark</option><option value="solarized-light">Solarized Light</option><option value="terminal">Terminal</option></select><noscript><button type="submit">Apply</button></noscript></form><script>document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})</script>
+      </div>
+    </header>
+
+    <div class="frame-body">
+
+  
+
 <header class="example-head">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="index%EF%B9%96patterns.html">Patterns</a><span aria-hidden="true">/</span>Server to React</nav>
-  <h1><span class="example-icon" aria-hidden="true">🏝️</span>Islands with props</h1>
-  <p class="lede">PHP prepares the data, the ^ sigil writes a field as JSON into a data attribute, and one small runtime mounts a component on every island of the page - each with its own state.</p>
-  <div class="chips">
-    <code class="chip is-server">{^field}</code><code class="chip is-server">a {loop} of islands</code>
-    <code class="chip is-client">PadReact.island</code><code class="chip is-client">props</code>
+  <span class="example-icon" aria-hidden="true">🏝️</span>
+  <div>
+    <p class="lede">PHP prepares the data, the ^ sigil writes a field as JSON into a data attribute, and one small runtime mounts a component on every island of the page - each with its own state.</p>
+    <div class="chips">
+      <code class="chip is-server">{^field}</code><code class="chip is-server">a {sequence:loop} of islands</code>
+      <code class="chip is-client">PadReact.island</code><code class="chip is-client">props</code>
+    </div>
   </div>
 </header>
 
@@ -151,11 +260,11 @@
 <span class="hl-line" data-line="3"><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
 <span class="hl-line" data-line="4"></span>
 <span class="hl-line" data-line="5"><span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;grid&quot;</span> <span class="hl-opt">style</span>=<span class="hl-str">&quot;margin-top: 22px&quot;</span><span class="hl-htm">&gt;</span></span>
-<span class="hl-line" data-line="6">  <span class="hl-brc">{</span><span class="hl-tag">members</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="6">  <span class="hl-brc">{</span><span class="hl-tag">array:members</span><span class="hl-brc">}</span></span>
 <span class="hl-line" data-line="7">  <span class="hl-htm">&lt;div</span> <span class="hl-opt">data-island</span>=<span class="hl-str">&quot;MemberCard&quot;</span> <span class="hl-opt">data-props</span>=<span class="hl-str">&quot;{^card}&quot;</span><span class="hl-htm">&gt;</span></span>
 <span class="hl-line" data-line="8">    <span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;card&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;br</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;muted&quot;</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$role</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
 <span class="hl-line" data-line="9">  <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
-<span class="hl-line" data-line="10">  <span class="hl-brc">{</span><span class="hl-tag">/members</span><span class="hl-brc">}</span></span>
+<span class="hl-line" data-line="10">  <span class="hl-brc">{</span><span class="hl-tag">/array:members</span><span class="hl-brc">}</span></span>
 <span class="hl-line" data-line="11"><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></span>
 <span class="hl-line" data-line="12"></span>
 <span class="hl-line" data-line="13"><span class="hl-htm">&lt;script</span> <span class="hl-opt">type</span>=<span class="hl-str">&quot;text/babel&quot;</span> <span class="hl-opt">src</span>=<span class="hl-str">&quot;{$padRoot}react/examples/props.js&quot;</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/script</span><span class="hl-htm">&gt;</span></span></code></pre></div><div class="pad-source-panel"><style>:where(.pad-highlight){margin:1em 0;padding:12px 16px;overflow:auto;border-radius:6px;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:2;color:#24292e;background:#f6f8fa}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight){color:light-dark(#24292e,#d7dae6);background:light-dark(#f6f8fa,#161b22)}}:where(.pad-highlight .hl-com){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-com){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-str){color:#0a7d32}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-str){color:light-dark(#0a7d32,#a5d6a7)}}:where(.pad-highlight .hl-num){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-num){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-lit){color:#b35900}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-lit){color:light-dark(#b35900,#ffb86b)}}:where(.pad-highlight .hl-kwd){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-kwd){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-key){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-key){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-var){color:#8a5a00}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-var){color:light-dark(#8a5a00,#e6c07b)}}:where(.pad-highlight .hl-tag){color:#c2185b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-tag){color:light-dark(#c2185b,#ff7ab2)}}:where(.pad-highlight .hl-att){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-att){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-opt){color:#1565c0}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-opt){color:light-dark(#1565c0,#7db8ff)}}:where(.pad-highlight .hl-brc){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-brc){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-htm){color:#00796b}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-htm){color:light-dark(#00796b,#5fd4c4)}}:where(.pad-highlight .hl-fn){color:#6f42c1}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-fn){color:light-dark(#6f42c1,#c3a6ff)}}:where(.pad-highlight .hl-pun){color:#6a737d}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-pun){color:light-dark(#6a737d,#8b949e)}}:where(.pad-highlight .hl-def){color:#24292e}@supports (color:light-dark(#000,#fff)){:where(.pad-highlight .hl-def){color:light-dark(#24292e,#d7dae6)}}:where(.pad-highlight .hl-com){font-style:italic}:where(.pad-highlight .hl-line){display:inline-block;min-width:100%}:where(.pad-highlight .hl-mark){background:rgba(255,200,0,.18)}:where(.pad-highlight.hl-numbered .hl-line)::before{content:attr(data-line);display:inline-block;width:2.5em;margin-right:1em;text-align:right;opacity:.45;user-select:none}</style><pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
@@ -255,211 +364,185 @@
 <span class="hl-line" data-line="12"><span class="hl-com">//   PadReact.useData, PadReact.useDebounced  hooks around the same</span></span>
 <span class="hl-line" data-line="13"><span class="hl-com">//</span></span>
 <span class="hl-line" data-line="14"><span class="hl-com">// Every request is told to the page as a &#039;pad:request&#039; event - the request log of the</span></span>
-<span class="hl-line" data-line="15"><span class="hl-com">// examples listens for it. The theme switch of the top bar lives here too, and the version</span></span>
-<span class="hl-line" data-line="16"><span class="hl-com">// on the components&#039; addresses. Loaded before Babel, after React.</span></span>
-<span class="hl-line" data-line="17"></span>
-<span class="hl-line" data-line="18"><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="19"></span>
-<span class="hl-line" data-line="20">  <span class="hl-str">&#039;use strict&#039;</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="21"></span>
-<span class="hl-line" data-line="22">  <span class="hl-com">// ------------------------------------------------------------------ the theme</span></span>
-<span class="hl-line" data-line="23"></span>
-<span class="hl-line" data-line="24">  <span class="hl-kwd">var</span> themeKey = <span class="hl-str">&#039;pad-react-theme&#039;</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="25"></span>
-<span class="hl-line" data-line="26">  <span class="hl-kwd">function</span> <span class="hl-fn">storedTheme</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="27">    <span class="hl-kwd">try</span> <span class="hl-pun">{</span> <span class="hl-kwd">return</span> localStorage<span class="hl-pun">.</span><span class="hl-fn">getItem</span><span class="hl-pun">(</span>themeKey<span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span> <span class="hl-kwd">catch</span> <span class="hl-pun">(</span>e<span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-kwd">return</span> <span class="hl-lit">null</span><span class="hl-pun">;</span> <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="28">  <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="29"></span>
-<span class="hl-line" data-line="30">  <span class="hl-kwd">function</span> <span class="hl-fn">applyTheme</span> <span class="hl-pun">(</span>theme<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="31">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span>theme === <span class="hl-str">&#039;light&#039;</span> || theme === <span class="hl-str">&#039;dark&#039;</span><span class="hl-pun">)</span></span>
-<span class="hl-line" data-line="32">      document<span class="hl-pun">.</span>documentElement<span class="hl-pun">.</span><span class="hl-fn">setAttribute</span><span class="hl-pun">(</span><span class="hl-str">&#039;data-theme&#039;</span><span class="hl-pun">,</span> theme<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="33">    <span class="hl-kwd">else</span></span>
-<span class="hl-line" data-line="34">      document<span class="hl-pun">.</span>documentElement<span class="hl-pun">.</span><span class="hl-fn">removeAttribute</span><span class="hl-pun">(</span><span class="hl-str">&#039;data-theme&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="35">  <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="36"></span>
-<span class="hl-line" data-line="37">  <span class="hl-fn">applyTheme</span><span class="hl-pun">(</span><span class="hl-fn">storedTheme</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="38"></span>
-<span class="hl-line" data-line="39">  document<span class="hl-pun">.</span><span class="hl-fn">addEventListener</span><span class="hl-pun">(</span><span class="hl-str">&#039;click&#039;</span><span class="hl-pun">,</span> <span class="hl-kwd">function</span> <span class="hl-pun">(</span>event<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="40">    <span class="hl-kwd">var</span> button = event<span class="hl-pun">.</span>target<span class="hl-pun">.</span>closest &amp;&amp; event<span class="hl-pun">.</span>target<span class="hl-pun">.</span><span class="hl-fn">closest</span><span class="hl-pun">(</span><span class="hl-str">&#039;[data-theme-toggle]&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="41">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span>!button<span class="hl-pun">)</span> <span class="hl-kwd">return</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="42">    <span class="hl-kwd">var</span> dark = document<span class="hl-pun">.</span>documentElement<span class="hl-pun">.</span><span class="hl-fn">getAttribute</span><span class="hl-pun">(</span><span class="hl-str">&#039;data-theme&#039;</span><span class="hl-pun">)</span> === <span class="hl-str">&#039;dark&#039;</span> ||</span>
-<span class="hl-line" data-line="43">               <span class="hl-pun">(</span>!document<span class="hl-pun">.</span>documentElement<span class="hl-pun">.</span><span class="hl-fn">getAttribute</span><span class="hl-pun">(</span><span class="hl-str">&#039;data-theme&#039;</span><span class="hl-pun">)</span> &amp;&amp; <span class="hl-fn">matchMedia</span><span class="hl-pun">(</span><span class="hl-str">&#039;(prefers-color-scheme: dark)&#039;</span><span class="hl-pun">)</span><span class="hl-pun">.</span>matches<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="44">    <span class="hl-kwd">var</span> next = dark ? <span class="hl-str">&#039;light&#039;</span> : <span class="hl-str">&#039;dark&#039;</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="45">    <span class="hl-fn">applyTheme</span><span class="hl-pun">(</span>next<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="46">    <span class="hl-kwd">try</span> <span class="hl-pun">{</span> localStorage<span class="hl-pun">.</span><span class="hl-fn">setItem</span><span class="hl-pun">(</span>themeKey<span class="hl-pun">,</span> next<span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span> <span class="hl-kwd">catch</span> <span class="hl-pun">(</span>e<span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-com">/* private window */</span> <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="47">  <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="48"></span>
-<span class="hl-line" data-line="49">  <span class="hl-com">// ------------------------------------------------------------------ fresh components</span></span>
-<span class="hl-line" data-line="50"></span>
-<span class="hl-line" data-line="51">  <span class="hl-com">// A browser keeps a script it fetched a while without asking the server again, and Babel</span></span>
-<span class="hl-line" data-line="52">  <span class="hl-com">// fetches every text/babel file through that cache - a component that changed could run</span></span>
-<span class="hl-line" data-line="53">  <span class="hl-com">// as its old copy. The wrapper writes the version of www/react/ into a meta tag, and every</span></span>
-<span class="hl-line" data-line="54">  <span class="hl-com">// component&#039;s address gets it before Babel reads them: this file is loaded before Babel,</span></span>
-<span class="hl-line" data-line="55">  <span class="hl-com">// so its listener runs first.</span></span>
-<span class="hl-line" data-line="56"></span>
-<span class="hl-line" data-line="57">  document<span class="hl-pun">.</span><span class="hl-fn">addEventListener</span><span class="hl-pun">(</span><span class="hl-str">&#039;DOMContentLoaded&#039;</span><span class="hl-pun">,</span> <span class="hl-kwd">function</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="58">    <span class="hl-kwd">var</span> meta = document<span class="hl-pun">.</span><span class="hl-fn">querySelector</span><span class="hl-pun">(</span><span class="hl-str">&#039;meta[name=&quot;pad-react-version&quot;]&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="59">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span>!meta || !meta<span class="hl-pun">.</span>content<span class="hl-pun">)</span> <span class="hl-kwd">return</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="60">    document<span class="hl-pun">.</span><span class="hl-fn">querySelectorAll</span><span class="hl-pun">(</span><span class="hl-str">&#039;script[type=&quot;text/babel&quot;][src]&#039;</span><span class="hl-pun">)</span><span class="hl-pun">.</span><span class="hl-fn">forEach</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>script<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="61">      <span class="hl-kwd">var</span> src = script<span class="hl-pun">.</span><span class="hl-fn">getAttribute</span><span class="hl-pun">(</span><span class="hl-str">&#039;src&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="62">      script<span class="hl-pun">.</span><span class="hl-fn">setAttribute</span><span class="hl-pun">(</span><span class="hl-str">&#039;src&#039;</span><span class="hl-pun">,</span> src + <span class="hl-pun">(</span>src<span class="hl-pun">.</span><span class="hl-fn">indexOf</span><span class="hl-pun">(</span><span class="hl-str">&#039;?&#039;</span><span class="hl-pun">)</span> &lt; <span class="hl-num">0</span> ? <span class="hl-str">&#039;?&#039;</span> : <span class="hl-str">&#039;&amp;&#039;</span><span class="hl-pun">)</span> + <span class="hl-str">&#039;v=&#039;</span> + <span class="hl-fn">encodeURIComponent</span><span class="hl-pun">(</span>meta<span class="hl-pun">.</span>content<span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="63">    <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="64">  <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="65"></span>
-<span class="hl-line" data-line="66">  <span class="hl-com">// ------------------------------------------------------------------ islands</span></span>
-<span class="hl-line" data-line="67"></span>
-<span class="hl-line" data-line="68">  <span class="hl-com">// The props of an island: the JSON PAD wrote into data-props ({^field} in the template). A</span></span>
-<span class="hl-line" data-line="69">  <span class="hl-com">// value that is no object - a list - arrives as props.data. serverHtml is what PAD</span></span>
-<span class="hl-line" data-line="70">  <span class="hl-com">// rendered inside the island, there before React took the element over.</span></span>
-<span class="hl-line" data-line="71"></span>
-<span class="hl-line" data-line="72">  <span class="hl-kwd">function</span> <span class="hl-fn">islandProps</span> <span class="hl-pun">(</span>element<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="73">    <span class="hl-kwd">var</span> raw = element<span class="hl-pun">.</span><span class="hl-fn">getAttribute</span><span class="hl-pun">(</span><span class="hl-str">&#039;data-props&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="74">    <span class="hl-kwd">var</span> props = <span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="75">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span>raw<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="76">      <span class="hl-kwd">try</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="77">        <span class="hl-kwd">var</span> parsed = JSON<span class="hl-pun">.</span><span class="hl-fn">parse</span><span class="hl-pun">(</span>raw<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="78">        props = <span class="hl-pun">(</span>parsed &amp;&amp; <span class="hl-kwd">typeof</span> parsed === <span class="hl-str">&#039;object&#039;</span> &amp;&amp; !Array<span class="hl-pun">.</span><span class="hl-fn">isArray</span><span class="hl-pun">(</span>parsed<span class="hl-pun">)</span><span class="hl-pun">)</span> ? parsed : <span class="hl-pun">{</span> data: parsed <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="79">      <span class="hl-pun">}</span> <span class="hl-kwd">catch</span> <span class="hl-pun">(</span>e<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="80">        console<span class="hl-pun">.</span><span class="hl-fn">error</span><span class="hl-pun">(</span><span class="hl-str">&#039;PadReact: the data-props of this island is no JSON&#039;</span><span class="hl-pun">,</span> element<span class="hl-pun">,</span> e<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="81">      <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="82">    <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="83">    props<span class="hl-pun">.</span>serverHtml = element<span class="hl-pun">.</span>innerHTML<span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="84">    <span class="hl-kwd">return</span> props<span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="85">  <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="86"></span>
-<span class="hl-line" data-line="87">  <span class="hl-kwd">function</span> <span class="hl-fn">island</span> <span class="hl-pun">(</span>name<span class="hl-pun">,</span> Component<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="88">    <span class="hl-kwd">var</span> found = document<span class="hl-pun">.</span><span class="hl-fn">querySelectorAll</span><span class="hl-pun">(</span><span class="hl-str">&#039;[data-island=&quot;&#039;</span> + name + <span class="hl-str">&#039;&quot;]&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="89">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span>!found<span class="hl-pun">.</span>length<span class="hl-pun">)</span> console<span class="hl-pun">.</span><span class="hl-fn">warn</span><span class="hl-pun">(</span><span class="hl-str">&#039;PadReact: no element with data-island=&quot;&#039;</span> + name + <span class="hl-str">&#039;&quot; on this page&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="90">    found<span class="hl-pun">.</span><span class="hl-fn">forEach</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>element<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="91">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span>element<span class="hl-pun">.</span>padRoot<span class="hl-pun">)</span> <span class="hl-kwd">return</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="92">      <span class="hl-kwd">var</span> props = <span class="hl-fn">islandProps</span><span class="hl-pun">(</span>element<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="93">      element<span class="hl-pun">.</span>padRoot = ReactDOM<span class="hl-pun">.</span><span class="hl-fn">createRoot</span><span class="hl-pun">(</span>element<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="94">      element<span class="hl-pun">.</span>padRoot<span class="hl-pun">.</span><span class="hl-fn">render</span><span class="hl-pun">(</span>React<span class="hl-pun">.</span><span class="hl-fn">createElement</span><span class="hl-pun">(</span>Component<span class="hl-pun">,</span> props<span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="95">      element<span class="hl-pun">.</span>classList<span class="hl-pun">.</span><span class="hl-fn">add</span><span class="hl-pun">(</span><span class="hl-str">&#039;is-mounted&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="96">    <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="97">  <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="98"></span>
-<span class="hl-line" data-line="99">  <span class="hl-com">// ------------------------------------------------------------------ requests back to PAD</span></span>
+<span class="hl-line" data-line="15"><span class="hl-com">// examples listens for it. The version on the components&#039; addresses is put on here too.</span></span>
+<span class="hl-line" data-line="16"><span class="hl-com">// Light, dark and the themes are the frame&#039;s (www/_common/pad.js and the switcher in its</span></span>
+<span class="hl-line" data-line="17"><span class="hl-com">// bar). Loaded before Babel, after React.</span></span>
+<span class="hl-line" data-line="18"></span>
+<span class="hl-line" data-line="19"><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="20"></span>
+<span class="hl-line" data-line="21">  <span class="hl-str">&#039;use strict&#039;</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="22"></span>
+<span class="hl-line" data-line="23">  <span class="hl-com">// ------------------------------------------------------------------ fresh components</span></span>
+<span class="hl-line" data-line="24"></span>
+<span class="hl-line" data-line="25">  <span class="hl-com">// A browser keeps a script it fetched a while without asking the server again, and Babel</span></span>
+<span class="hl-line" data-line="26">  <span class="hl-com">// fetches every text/babel file through that cache - a component that changed could run</span></span>
+<span class="hl-line" data-line="27">  <span class="hl-com">// as its old copy. The wrapper writes the version of www/react/ into a meta tag, and every</span></span>
+<span class="hl-line" data-line="28">  <span class="hl-com">// component&#039;s address gets it before Babel reads them: this file is loaded before Babel,</span></span>
+<span class="hl-line" data-line="29">  <span class="hl-com">// so its listener runs first.</span></span>
+<span class="hl-line" data-line="30"></span>
+<span class="hl-line" data-line="31">  document<span class="hl-pun">.</span><span class="hl-fn">addEventListener</span><span class="hl-pun">(</span><span class="hl-str">&#039;DOMContentLoaded&#039;</span><span class="hl-pun">,</span> <span class="hl-kwd">function</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="32">    <span class="hl-kwd">var</span> meta = document<span class="hl-pun">.</span><span class="hl-fn">querySelector</span><span class="hl-pun">(</span><span class="hl-str">&#039;meta[name=&quot;pad-react-version&quot;]&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="33">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span>!meta || !meta<span class="hl-pun">.</span>content<span class="hl-pun">)</span> <span class="hl-kwd">return</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="34">    document<span class="hl-pun">.</span><span class="hl-fn">querySelectorAll</span><span class="hl-pun">(</span><span class="hl-str">&#039;script[type=&quot;text/babel&quot;][src]&#039;</span><span class="hl-pun">)</span><span class="hl-pun">.</span><span class="hl-fn">forEach</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>script<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="35">      <span class="hl-kwd">var</span> src = script<span class="hl-pun">.</span><span class="hl-fn">getAttribute</span><span class="hl-pun">(</span><span class="hl-str">&#039;src&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="36">      script<span class="hl-pun">.</span><span class="hl-fn">setAttribute</span><span class="hl-pun">(</span><span class="hl-str">&#039;src&#039;</span><span class="hl-pun">,</span> src + <span class="hl-pun">(</span>src<span class="hl-pun">.</span><span class="hl-fn">indexOf</span><span class="hl-pun">(</span><span class="hl-str">&#039;?&#039;</span><span class="hl-pun">)</span> &lt; <span class="hl-num">0</span> ? <span class="hl-str">&#039;?&#039;</span> : <span class="hl-str">&#039;&amp;&#039;</span><span class="hl-pun">)</span> + <span class="hl-str">&#039;v=&#039;</span> + <span class="hl-fn">encodeURIComponent</span><span class="hl-pun">(</span>meta<span class="hl-pun">.</span>content<span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="37">    <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="38">  <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="39"></span>
+<span class="hl-line" data-line="40">  <span class="hl-com">// ------------------------------------------------------------------ islands</span></span>
+<span class="hl-line" data-line="41"></span>
+<span class="hl-line" data-line="42">  <span class="hl-com">// The props of an island: the JSON PAD wrote into data-props ({^field} in the template). A</span></span>
+<span class="hl-line" data-line="43">  <span class="hl-com">// value that is no object - a list - arrives as props.data. serverHtml is what PAD</span></span>
+<span class="hl-line" data-line="44">  <span class="hl-com">// rendered inside the island, there before React took the element over.</span></span>
+<span class="hl-line" data-line="45"></span>
+<span class="hl-line" data-line="46">  <span class="hl-kwd">function</span> <span class="hl-fn">islandProps</span> <span class="hl-pun">(</span>element<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="47">    <span class="hl-kwd">var</span> raw = element<span class="hl-pun">.</span><span class="hl-fn">getAttribute</span><span class="hl-pun">(</span><span class="hl-str">&#039;data-props&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="48">    <span class="hl-kwd">var</span> props = <span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="49">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span>raw<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="50">      <span class="hl-kwd">try</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="51">        <span class="hl-kwd">var</span> parsed = JSON<span class="hl-pun">.</span><span class="hl-fn">parse</span><span class="hl-pun">(</span>raw<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="52">        props = <span class="hl-pun">(</span>parsed &amp;&amp; <span class="hl-kwd">typeof</span> parsed === <span class="hl-str">&#039;object&#039;</span> &amp;&amp; !Array<span class="hl-pun">.</span><span class="hl-fn">isArray</span><span class="hl-pun">(</span>parsed<span class="hl-pun">)</span><span class="hl-pun">)</span> ? parsed : <span class="hl-pun">{</span> data: parsed <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="53">      <span class="hl-pun">}</span> <span class="hl-kwd">catch</span> <span class="hl-pun">(</span>e<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="54">        console<span class="hl-pun">.</span><span class="hl-fn">error</span><span class="hl-pun">(</span><span class="hl-str">&#039;PadReact: the data-props of this island is no JSON&#039;</span><span class="hl-pun">,</span> element<span class="hl-pun">,</span> e<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="55">      <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="56">    <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="57">    props<span class="hl-pun">.</span>serverHtml = element<span class="hl-pun">.</span>innerHTML<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="58">    <span class="hl-kwd">return</span> props<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="59">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="60"></span>
+<span class="hl-line" data-line="61">  <span class="hl-kwd">function</span> <span class="hl-fn">island</span> <span class="hl-pun">(</span>name<span class="hl-pun">,</span> Component<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="62">    <span class="hl-kwd">var</span> found = document<span class="hl-pun">.</span><span class="hl-fn">querySelectorAll</span><span class="hl-pun">(</span><span class="hl-str">&#039;[data-island=&quot;&#039;</span> + name + <span class="hl-str">&#039;&quot;]&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="63">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span>!found<span class="hl-pun">.</span>length<span class="hl-pun">)</span> console<span class="hl-pun">.</span><span class="hl-fn">warn</span><span class="hl-pun">(</span><span class="hl-str">&#039;PadReact: no element with data-island=&quot;&#039;</span> + name + <span class="hl-str">&#039;&quot; on this page&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="64">    found<span class="hl-pun">.</span><span class="hl-fn">forEach</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>element<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="65">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span>element<span class="hl-pun">.</span>padRoot<span class="hl-pun">)</span> <span class="hl-kwd">return</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="66">      <span class="hl-kwd">var</span> props = <span class="hl-fn">islandProps</span><span class="hl-pun">(</span>element<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="67">      element<span class="hl-pun">.</span>padRoot = ReactDOM<span class="hl-pun">.</span><span class="hl-fn">createRoot</span><span class="hl-pun">(</span>element<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="68">      element<span class="hl-pun">.</span>padRoot<span class="hl-pun">.</span><span class="hl-fn">render</span><span class="hl-pun">(</span>React<span class="hl-pun">.</span><span class="hl-fn">createElement</span><span class="hl-pun">(</span>Component<span class="hl-pun">,</span> props<span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="69">      element<span class="hl-pun">.</span>classList<span class="hl-pun">.</span><span class="hl-fn">add</span><span class="hl-pun">(</span><span class="hl-str">&#039;is-mounted&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="70">    <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="71">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="72"></span>
+<span class="hl-line" data-line="73">  <span class="hl-com">// ------------------------------------------------------------------ requests back to PAD</span></span>
+<span class="hl-line" data-line="74"></span>
+<span class="hl-line" data-line="75">  <span class="hl-com">// The address of a page of this application, relative to the entry point the browser is on:</span></span>
+<span class="hl-line" data-line="76">  <span class="hl-com">// url(&#039;examples/search&#039;, { q: &#039;lamp&#039; }) is ?examples/search&amp;q=lamp.</span></span>
+<span class="hl-line" data-line="77"></span>
+<span class="hl-line" data-line="78">  <span class="hl-kwd">function</span> <span class="hl-fn">url</span> <span class="hl-pun">(</span>page<span class="hl-pun">,</span> params<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="79">    <span class="hl-kwd">var</span> address = location<span class="hl-pun">.</span>pathname + <span class="hl-str">&#039;?&#039;</span> + page<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="80">    Object<span class="hl-pun">.</span><span class="hl-fn">keys</span><span class="hl-pun">(</span>params || <span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">.</span><span class="hl-fn">forEach</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>key<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="81">      <span class="hl-kwd">var</span> value = params<span class="hl-pun">[</span>key<span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="82">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span>value === <span class="hl-lit">undefined</span> || value === <span class="hl-lit">null</span> || value === <span class="hl-str">&#039;&#039;</span><span class="hl-pun">)</span> <span class="hl-kwd">return</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="83">      address += <span class="hl-str">&#039;&amp;&#039;</span> + <span class="hl-fn">encodeURIComponent</span><span class="hl-pun">(</span>key<span class="hl-pun">)</span> + <span class="hl-str">&#039;=&#039;</span> + <span class="hl-fn">encodeURIComponent</span><span class="hl-pun">(</span>Array<span class="hl-pun">.</span><span class="hl-fn">isArray</span><span class="hl-pun">(</span>value<span class="hl-pun">)</span> ? value<span class="hl-pun">.</span><span class="hl-fn">join</span><span class="hl-pun">(</span><span class="hl-str">&#039;,&#039;</span><span class="hl-pun">)</span> : value<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="84">    <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="85">    <span class="hl-kwd">return</span> address<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="86">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="87"></span>
+<span class="hl-line" data-line="88">  <span class="hl-kwd">function</span> <span class="hl-fn">csrfToken</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="89">    <span class="hl-kwd">var</span> meta = document<span class="hl-pun">.</span><span class="hl-fn">querySelector</span><span class="hl-pun">(</span><span class="hl-str">&#039;meta[name=&quot;csrf-token&quot;]&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="90">    <span class="hl-kwd">return</span> meta ? meta<span class="hl-pun">.</span>content : <span class="hl-str">&#039;&#039;</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="91">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="92"></span>
+<span class="hl-line" data-line="93">  <span class="hl-kwd">var</span> requests = <span class="hl-pun">[</span><span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="94"></span>
+<span class="hl-line" data-line="95">  <span class="hl-kwd">function</span> <span class="hl-fn">told</span> <span class="hl-pun">(</span>entry<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="96">    requests<span class="hl-pun">.</span><span class="hl-fn">unshift</span><span class="hl-pun">(</span>entry<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="97">    requests<span class="hl-pun">.</span>length = Math<span class="hl-pun">.</span><span class="hl-fn">min</span><span class="hl-pun">(</span>requests<span class="hl-pun">.</span>length<span class="hl-pun">,</span> <span class="hl-num">40</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="98">    window<span class="hl-pun">.</span><span class="hl-fn">dispatchEvent</span><span class="hl-pun">(</span><span class="hl-kwd">new</span> <span class="hl-fn">CustomEvent</span><span class="hl-pun">(</span><span class="hl-str">&#039;pad:request&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">{</span> detail: entry <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="99">  <span class="hl-pun">}</span></span>
 <span class="hl-line" data-line="100"></span>
-<span class="hl-line" data-line="101">  <span class="hl-com">// The address of a page of this application, relative to the entry point the browser is on:</span></span>
-<span class="hl-line" data-line="102">  <span class="hl-com">// url(&#039;examples/search&#039;, { q: &#039;lamp&#039; }) is ?examples/search&amp;q=lamp.</span></span>
-<span class="hl-line" data-line="103"></span>
-<span class="hl-line" data-line="104">  <span class="hl-kwd">function</span> <span class="hl-fn">url</span> <span class="hl-pun">(</span>page<span class="hl-pun">,</span> params<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="105">    <span class="hl-kwd">var</span> address = location<span class="hl-pun">.</span>pathname + <span class="hl-str">&#039;?&#039;</span> + page<span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="106">    Object<span class="hl-pun">.</span><span class="hl-fn">keys</span><span class="hl-pun">(</span>params || <span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">.</span><span class="hl-fn">forEach</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>key<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="107">      <span class="hl-kwd">var</span> value = params<span class="hl-pun">[</span>key<span class="hl-pun">]</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="108">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span>value === <span class="hl-lit">undefined</span> || value === <span class="hl-lit">null</span> || value === <span class="hl-str">&#039;&#039;</span><span class="hl-pun">)</span> <span class="hl-kwd">return</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="109">      address += <span class="hl-str">&#039;&amp;&#039;</span> + <span class="hl-fn">encodeURIComponent</span><span class="hl-pun">(</span>key<span class="hl-pun">)</span> + <span class="hl-str">&#039;=&#039;</span> + <span class="hl-fn">encodeURIComponent</span><span class="hl-pun">(</span>Array<span class="hl-pun">.</span><span class="hl-fn">isArray</span><span class="hl-pun">(</span>value<span class="hl-pun">)</span> ? value<span class="hl-pun">.</span><span class="hl-fn">join</span><span class="hl-pun">(</span><span class="hl-str">&#039;,&#039;</span><span class="hl-pun">)</span> : value<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="110">    <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="111">    <span class="hl-kwd">return</span> address<span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="112">  <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="113"></span>
-<span class="hl-line" data-line="114">  <span class="hl-kwd">function</span> <span class="hl-fn">csrfToken</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="115">    <span class="hl-kwd">var</span> meta = document<span class="hl-pun">.</span><span class="hl-fn">querySelector</span><span class="hl-pun">(</span><span class="hl-str">&#039;meta[name=&quot;csrf-token&quot;]&#039;</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="116">    <span class="hl-kwd">return</span> meta ? meta<span class="hl-pun">.</span>content : <span class="hl-str">&#039;&#039;</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="117">  <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="118"></span>
-<span class="hl-line" data-line="119">  <span class="hl-kwd">var</span> requests = <span class="hl-pun">[</span><span class="hl-pun">]</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="120"></span>
-<span class="hl-line" data-line="121">  <span class="hl-kwd">function</span> <span class="hl-fn">told</span> <span class="hl-pun">(</span>entry<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="122">    requests<span class="hl-pun">.</span><span class="hl-fn">unshift</span><span class="hl-pun">(</span>entry<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="123">    requests<span class="hl-pun">.</span>length = Math<span class="hl-pun">.</span><span class="hl-fn">min</span><span class="hl-pun">(</span>requests<span class="hl-pun">.</span>length<span class="hl-pun">,</span> <span class="hl-num">40</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="124">    window<span class="hl-pun">.</span><span class="hl-fn">dispatchEvent</span><span class="hl-pun">(</span><span class="hl-kwd">new</span> <span class="hl-fn">CustomEvent</span><span class="hl-pun">(</span><span class="hl-str">&#039;pad:request&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">{</span> detail: entry <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="125">  <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="126"></span>
-<span class="hl-line" data-line="127">  <span class="hl-com">// One request: the answer&#039;s text, its status, and the time it took - told to the log</span></span>
-<span class="hl-line" data-line="128">  <span class="hl-com">// whatever came back. A status that is no success is thrown, with the parsed body when</span></span>
-<span class="hl-line" data-line="129">  <span class="hl-com">// there is one.</span></span>
-<span class="hl-line" data-line="130"></span>
-<span class="hl-line" data-line="131">  <span class="hl-kwd">function</span> <span class="hl-fn">send</span> <span class="hl-pun">(</span>method<span class="hl-pun">,</span> address<span class="hl-pun">,</span> options<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="132">    options = options || <span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="133">    <span class="hl-kwd">var</span> headers = <span class="hl-pun">{</span> <span class="hl-str">&#039;Accept&#039;</span>: options<span class="hl-pun">.</span>accept || <span class="hl-str">&#039;application/json&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="134">    <span class="hl-kwd">var</span> init = <span class="hl-pun">{</span> method: method<span class="hl-pun">,</span> headers: headers<span class="hl-pun">,</span> credentials: <span class="hl-str">&#039;same-origin&#039;</span><span class="hl-pun">,</span> signal: options<span class="hl-pun">.</span>signal <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="135"></span>
-<span class="hl-line" data-line="136">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span>method === <span class="hl-str">&#039;POST&#039;</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="137">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span>options<span class="hl-pun">.</span>token !== <span class="hl-lit">false</span><span class="hl-pun">)</span> headers<span class="hl-pun">[</span><span class="hl-str">&#039;X-CSRF-Token&#039;</span><span class="hl-pun">]</span> = <span class="hl-fn">csrfToken</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="138">      init<span class="hl-pun">.</span>body = <span class="hl-kwd">new</span> <span class="hl-fn">URLSearchParams</span><span class="hl-pun">(</span>options<span class="hl-pun">.</span>body || <span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="139">    <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="101">  <span class="hl-com">// One request: the answer&#039;s text, its status, and the time it took - told to the log</span></span>
+<span class="hl-line" data-line="102">  <span class="hl-com">// whatever came back. A status that is no success is thrown, with the parsed body when</span></span>
+<span class="hl-line" data-line="103">  <span class="hl-com">// there is one.</span></span>
+<span class="hl-line" data-line="104"></span>
+<span class="hl-line" data-line="105">  <span class="hl-kwd">function</span> <span class="hl-fn">send</span> <span class="hl-pun">(</span>method<span class="hl-pun">,</span> address<span class="hl-pun">,</span> options<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="106">    options = options || <span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="107">    <span class="hl-kwd">var</span> headers = <span class="hl-pun">{</span> <span class="hl-str">&#039;Accept&#039;</span>: options<span class="hl-pun">.</span>accept || <span class="hl-str">&#039;application/json&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="108">    <span class="hl-kwd">var</span> init = <span class="hl-pun">{</span> method: method<span class="hl-pun">,</span> headers: headers<span class="hl-pun">,</span> credentials: <span class="hl-str">&#039;same-origin&#039;</span><span class="hl-pun">,</span> signal: options<span class="hl-pun">.</span>signal <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="109"></span>
+<span class="hl-line" data-line="110">    <span class="hl-kwd">if</span> <span class="hl-pun">(</span>method === <span class="hl-str">&#039;POST&#039;</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="111">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span>options<span class="hl-pun">.</span>token !== <span class="hl-lit">false</span><span class="hl-pun">)</span> headers<span class="hl-pun">[</span><span class="hl-str">&#039;X-CSRF-Token&#039;</span><span class="hl-pun">]</span> = <span class="hl-fn">csrfToken</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="112">      init<span class="hl-pun">.</span>body = <span class="hl-kwd">new</span> <span class="hl-fn">URLSearchParams</span><span class="hl-pun">(</span>options<span class="hl-pun">.</span>body || <span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="113">    <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="114"></span>
+<span class="hl-line" data-line="115">    <span class="hl-kwd">var</span> started = performance<span class="hl-pun">.</span><span class="hl-fn">now</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="116"></span>
+<span class="hl-line" data-line="117">    <span class="hl-kwd">return</span> <span class="hl-fn">fetch</span><span class="hl-pun">(</span>address<span class="hl-pun">,</span> init<span class="hl-pun">)</span><span class="hl-pun">.</span><span class="hl-fn">then</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>response<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="118">      <span class="hl-kwd">return</span> response<span class="hl-pun">.</span><span class="hl-fn">text</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">.</span><span class="hl-fn">then</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>text<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="119">        <span class="hl-kwd">var</span> entry = <span class="hl-pun">{</span> method: method<span class="hl-pun">,</span> url: address<span class="hl-pun">,</span> status: response<span class="hl-pun">.</span>status<span class="hl-pun">,</span> ms: Math<span class="hl-pun">.</span><span class="hl-fn">round</span><span class="hl-pun">(</span>performance<span class="hl-pun">.</span><span class="hl-fn">now</span><span class="hl-pun">(</span><span class="hl-pun">)</span> - started<span class="hl-pun">)</span><span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="120">                      bytes: <span class="hl-kwd">new</span> <span class="hl-fn">Blob</span><span class="hl-pun">(</span><span class="hl-pun">[</span>text<span class="hl-pun">]</span><span class="hl-pun">)</span><span class="hl-pun">.</span>size<span class="hl-pun">,</span> at: <span class="hl-kwd">new</span> <span class="hl-fn">Date</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="121">        <span class="hl-fn">told</span><span class="hl-pun">(</span>entry<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="122">        <span class="hl-kwd">if</span> <span class="hl-pun">(</span>!response<span class="hl-pun">.</span>ok<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="123">          <span class="hl-kwd">var</span> error = <span class="hl-kwd">new</span> <span class="hl-fn">Error</span><span class="hl-pun">(</span><span class="hl-str">&#039;The server answered &#039;</span> + response<span class="hl-pun">.</span>status + <span class="hl-str">&#039; &#039;</span> + response<span class="hl-pun">.</span>statusText<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="124">          error<span class="hl-pun">.</span>status = response<span class="hl-pun">.</span>status<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="125">          <span class="hl-kwd">try</span> <span class="hl-pun">{</span> error<span class="hl-pun">.</span>body = JSON<span class="hl-pun">.</span><span class="hl-fn">parse</span><span class="hl-pun">(</span>text<span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span> <span class="hl-kwd">catch</span> <span class="hl-pun">(</span>e<span class="hl-pun">)</span> <span class="hl-pun">{</span> error<span class="hl-pun">.</span>body = text<span class="hl-pun">;</span> <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="126">          <span class="hl-kwd">throw</span> error<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="127">        <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="128">        <span class="hl-kwd">return</span> text<span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="129">      <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="130">    <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="131">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="132"></span>
+<span class="hl-line" data-line="133">  <span class="hl-kwd">function</span> <span class="hl-fn">json</span> <span class="hl-pun">(</span>text<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="134">    <span class="hl-kwd">return</span> JSON<span class="hl-pun">.</span><span class="hl-fn">parse</span><span class="hl-pun">(</span>text<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="135">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="136"></span>
+<span class="hl-line" data-line="137">  <span class="hl-kwd">function</span> <span class="hl-fn">get</span> <span class="hl-pun">(</span>page<span class="hl-pun">,</span> params<span class="hl-pun">,</span> options<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="138">    <span class="hl-kwd">return</span> <span class="hl-fn">send</span><span class="hl-pun">(</span><span class="hl-str">&#039;GET&#039;</span><span class="hl-pun">,</span> <span class="hl-fn">url</span><span class="hl-pun">(</span>page<span class="hl-pun">,</span> Object<span class="hl-pun">.</span><span class="hl-fn">assign</span><span class="hl-pun">(</span><span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">,</span> params<span class="hl-pun">,</span> <span class="hl-pun">{</span> padFormat: <span class="hl-str">&#039;json&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">,</span> options<span class="hl-pun">)</span><span class="hl-pun">.</span><span class="hl-fn">then</span><span class="hl-pun">(</span>json<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="139">  <span class="hl-pun">}</span></span>
 <span class="hl-line" data-line="140"></span>
-<span class="hl-line" data-line="141">    <span class="hl-kwd">var</span> started = performance<span class="hl-pun">.</span><span class="hl-fn">now</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="142"></span>
-<span class="hl-line" data-line="143">    <span class="hl-kwd">return</span> <span class="hl-fn">fetch</span><span class="hl-pun">(</span>address<span class="hl-pun">,</span> init<span class="hl-pun">)</span><span class="hl-pun">.</span><span class="hl-fn">then</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>response<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="144">      <span class="hl-kwd">return</span> response<span class="hl-pun">.</span><span class="hl-fn">text</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">.</span><span class="hl-fn">then</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>text<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="145">        <span class="hl-kwd">var</span> entry = <span class="hl-pun">{</span> method: method<span class="hl-pun">,</span> url: address<span class="hl-pun">,</span> status: response<span class="hl-pun">.</span>status<span class="hl-pun">,</span> ms: Math<span class="hl-pun">.</span><span class="hl-fn">round</span><span class="hl-pun">(</span>performance<span class="hl-pun">.</span><span class="hl-fn">now</span><span class="hl-pun">(</span><span class="hl-pun">)</span> - started<span class="hl-pun">)</span><span class="hl-pun">,</span></span>
-<span class="hl-line" data-line="146">                      bytes: <span class="hl-kwd">new</span> <span class="hl-fn">Blob</span><span class="hl-pun">(</span><span class="hl-pun">[</span>text<span class="hl-pun">]</span><span class="hl-pun">)</span><span class="hl-pun">.</span>size<span class="hl-pun">,</span> at: <span class="hl-kwd">new</span> <span class="hl-fn">Date</span><span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="147">        <span class="hl-fn">told</span><span class="hl-pun">(</span>entry<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="148">        <span class="hl-kwd">if</span> <span class="hl-pun">(</span>!response<span class="hl-pun">.</span>ok<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="149">          <span class="hl-kwd">var</span> error = <span class="hl-kwd">new</span> <span class="hl-fn">Error</span><span class="hl-pun">(</span><span class="hl-str">&#039;The server answered &#039;</span> + response<span class="hl-pun">.</span>status + <span class="hl-str">&#039; &#039;</span> + response<span class="hl-pun">.</span>statusText<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="150">          error<span class="hl-pun">.</span>status = response<span class="hl-pun">.</span>status<span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="151">          <span class="hl-kwd">try</span> <span class="hl-pun">{</span> error<span class="hl-pun">.</span>body = JSON<span class="hl-pun">.</span><span class="hl-fn">parse</span><span class="hl-pun">(</span>text<span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span> <span class="hl-kwd">catch</span> <span class="hl-pun">(</span>e<span class="hl-pun">)</span> <span class="hl-pun">{</span> error<span class="hl-pun">.</span>body = text<span class="hl-pun">;</span> <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="152">          <span class="hl-kwd">throw</span> error<span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="153">        <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="154">        <span class="hl-kwd">return</span> text<span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="155">      <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="156">    <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="157">  <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="158"></span>
-<span class="hl-line" data-line="159">  <span class="hl-kwd">function</span> <span class="hl-fn">json</span> <span class="hl-pun">(</span>text<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="160">    <span class="hl-kwd">return</span> JSON<span class="hl-pun">.</span><span class="hl-fn">parse</span><span class="hl-pun">(</span>text<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="161">  <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="162"></span>
-<span class="hl-line" data-line="163">  <span class="hl-kwd">function</span> <span class="hl-fn">get</span> <span class="hl-pun">(</span>page<span class="hl-pun">,</span> params<span class="hl-pun">,</span> options<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="164">    <span class="hl-kwd">return</span> <span class="hl-fn">send</span><span class="hl-pun">(</span><span class="hl-str">&#039;GET&#039;</span><span class="hl-pun">,</span> <span class="hl-fn">url</span><span class="hl-pun">(</span>page<span class="hl-pun">,</span> Object<span class="hl-pun">.</span><span class="hl-fn">assign</span><span class="hl-pun">(</span><span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">,</span> params<span class="hl-pun">,</span> <span class="hl-pun">{</span> padFormat: <span class="hl-str">&#039;json&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">,</span> options<span class="hl-pun">)</span><span class="hl-pun">.</span><span class="hl-fn">then</span><span class="hl-pun">(</span>json<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="165">  <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="166"></span>
-<span class="hl-line" data-line="167">  <span class="hl-kwd">function</span> <span class="hl-fn">post</span> <span class="hl-pun">(</span>page<span class="hl-pun">,</span> body<span class="hl-pun">,</span> options<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="168">    <span class="hl-kwd">return</span> <span class="hl-fn">send</span><span class="hl-pun">(</span><span class="hl-str">&#039;POST&#039;</span><span class="hl-pun">,</span> <span class="hl-fn">url</span><span class="hl-pun">(</span>page<span class="hl-pun">,</span> <span class="hl-pun">{</span> padFormat: <span class="hl-str">&#039;json&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">,</span> Object<span class="hl-pun">.</span><span class="hl-fn">assign</span><span class="hl-pun">(</span><span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">,</span> options<span class="hl-pun">,</span> <span class="hl-pun">{</span> body: body <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">.</span><span class="hl-fn">then</span><span class="hl-pun">(</span>json<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="169">  <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="170"></span>
-<span class="hl-line" data-line="171">  <span class="hl-kwd">function</span> <span class="hl-fn">fragment</span> <span class="hl-pun">(</span>page<span class="hl-pun">,</span> name<span class="hl-pun">,</span> params<span class="hl-pun">,</span> options<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="172">    <span class="hl-kwd">return</span> <span class="hl-fn">send</span><span class="hl-pun">(</span><span class="hl-str">&#039;GET&#039;</span><span class="hl-pun">,</span> <span class="hl-fn">url</span><span class="hl-pun">(</span>page<span class="hl-pun">,</span> Object<span class="hl-pun">.</span><span class="hl-fn">assign</span><span class="hl-pun">(</span><span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">,</span> params<span class="hl-pun">,</span> <span class="hl-pun">{</span> padFragment: name <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">,</span> Object<span class="hl-pun">.</span><span class="hl-fn">assign</span><span class="hl-pun">(</span><span class="hl-pun">{</span> accept: <span class="hl-str">&#039;text/html&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">,</span> options<span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="173">  <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="174"></span>
-<span class="hl-line" data-line="175">  <span class="hl-com">// ------------------------------------------------------------------ hooks</span></span>
+<span class="hl-line" data-line="141">  <span class="hl-kwd">function</span> <span class="hl-fn">post</span> <span class="hl-pun">(</span>page<span class="hl-pun">,</span> body<span class="hl-pun">,</span> options<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="142">    <span class="hl-kwd">return</span> <span class="hl-fn">send</span><span class="hl-pun">(</span><span class="hl-str">&#039;POST&#039;</span><span class="hl-pun">,</span> <span class="hl-fn">url</span><span class="hl-pun">(</span>page<span class="hl-pun">,</span> <span class="hl-pun">{</span> padFormat: <span class="hl-str">&#039;json&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">,</span> Object<span class="hl-pun">.</span><span class="hl-fn">assign</span><span class="hl-pun">(</span><span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">,</span> options<span class="hl-pun">,</span> <span class="hl-pun">{</span> body: body <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">.</span><span class="hl-fn">then</span><span class="hl-pun">(</span>json<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="143">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="144"></span>
+<span class="hl-line" data-line="145">  <span class="hl-kwd">function</span> <span class="hl-fn">fragment</span> <span class="hl-pun">(</span>page<span class="hl-pun">,</span> name<span class="hl-pun">,</span> params<span class="hl-pun">,</span> options<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="146">    <span class="hl-kwd">return</span> <span class="hl-fn">send</span><span class="hl-pun">(</span><span class="hl-str">&#039;GET&#039;</span><span class="hl-pun">,</span> <span class="hl-fn">url</span><span class="hl-pun">(</span>page<span class="hl-pun">,</span> Object<span class="hl-pun">.</span><span class="hl-fn">assign</span><span class="hl-pun">(</span><span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">,</span> params<span class="hl-pun">,</span> <span class="hl-pun">{</span> padFragment: name <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">,</span> Object<span class="hl-pun">.</span><span class="hl-fn">assign</span><span class="hl-pun">(</span><span class="hl-pun">{</span> accept: <span class="hl-str">&#039;text/html&#039;</span> <span class="hl-pun">}</span><span class="hl-pun">,</span> options<span class="hl-pun">)</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="147">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="148"></span>
+<span class="hl-line" data-line="149">  <span class="hl-com">// ------------------------------------------------------------------ hooks</span></span>
+<span class="hl-line" data-line="150"></span>
+<span class="hl-line" data-line="151">  <span class="hl-com">// useData(&#039;examples/search&#039;, { q }, first): the page&#039;s data for these params, asked again</span></span>
+<span class="hl-line" data-line="152">  <span class="hl-com">// whenever they change - the previous request aborted. With a first answer - the one PAD</span></span>
+<span class="hl-line" data-line="153">  <span class="hl-com">// put in the props - nothing is asked until the params change.</span></span>
+<span class="hl-line" data-line="154"></span>
+<span class="hl-line" data-line="155">  <span class="hl-kwd">function</span> <span class="hl-fn">useData</span> <span class="hl-pun">(</span>page<span class="hl-pun">,</span> params<span class="hl-pun">,</span> first<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="156">    <span class="hl-kwd">var</span> key = JSON<span class="hl-pun">.</span><span class="hl-fn">stringify</span><span class="hl-pun">(</span>params || <span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="157">    <span class="hl-kwd">var</span> initial = first !== <span class="hl-lit">undefined</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="158">    <span class="hl-kwd">var</span> state = React<span class="hl-pun">.</span><span class="hl-fn">useState</span><span class="hl-pun">(</span><span class="hl-pun">{</span> data: first<span class="hl-pun">,</span> loading: !initial<span class="hl-pun">,</span> error: <span class="hl-lit">null</span> <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="159">    <span class="hl-kwd">var</span> skip = React<span class="hl-pun">.</span><span class="hl-fn">useRef</span><span class="hl-pun">(</span>initial<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="160">    <span class="hl-kwd">var</span> setState = state<span class="hl-pun">[</span><span class="hl-num">1</span><span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="161"></span>
+<span class="hl-line" data-line="162">    React<span class="hl-pun">.</span><span class="hl-fn">useEffect</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="163">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span>skip<span class="hl-pun">.</span>current<span class="hl-pun">)</span> <span class="hl-pun">{</span> skip<span class="hl-pun">.</span>current = <span class="hl-lit">false</span><span class="hl-pun">;</span> <span class="hl-kwd">return</span><span class="hl-pun">;</span> <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="164">      <span class="hl-kwd">var</span> controller = <span class="hl-kwd">new</span> <span class="hl-fn">AbortController</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="165">      <span class="hl-fn">setState</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>now<span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-kwd">return</span> <span class="hl-pun">{</span> data: now<span class="hl-pun">.</span>data<span class="hl-pun">,</span> loading: <span class="hl-lit">true</span><span class="hl-pun">,</span> error: <span class="hl-lit">null</span> <span class="hl-pun">}</span><span class="hl-pun">;</span> <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="166">      <span class="hl-fn">get</span><span class="hl-pun">(</span>page<span class="hl-pun">,</span> params<span class="hl-pun">,</span> <span class="hl-pun">{</span> signal: controller<span class="hl-pun">.</span>signal <span class="hl-pun">}</span><span class="hl-pun">)</span></span>
+<span class="hl-line" data-line="167">        <span class="hl-pun">.</span><span class="hl-fn">then</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>data<span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-fn">setState</span><span class="hl-pun">(</span><span class="hl-pun">{</span> data: data<span class="hl-pun">,</span> loading: <span class="hl-lit">false</span><span class="hl-pun">,</span> error: <span class="hl-lit">null</span> <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span><span class="hl-pun">)</span></span>
+<span class="hl-line" data-line="168">        <span class="hl-pun">.</span><span class="hl-kwd">catch</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>error<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="169">          <span class="hl-kwd">if</span> <span class="hl-pun">(</span>error<span class="hl-pun">.</span>name !== <span class="hl-str">&#039;AbortError&#039;</span><span class="hl-pun">)</span> <span class="hl-fn">setState</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>now<span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-kwd">return</span> <span class="hl-pun">{</span> data: now<span class="hl-pun">.</span>data<span class="hl-pun">,</span> loading: <span class="hl-lit">false</span><span class="hl-pun">,</span> error: error <span class="hl-pun">}</span><span class="hl-pun">;</span> <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="170">        <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="171">      <span class="hl-kwd">return</span> <span class="hl-kwd">function</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span> controller<span class="hl-pun">.</span><span class="hl-fn">abort</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="172">    <span class="hl-pun">}</span><span class="hl-pun">,</span> <span class="hl-pun">[</span>page<span class="hl-pun">,</span> key<span class="hl-pun">]</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="173"></span>
+<span class="hl-line" data-line="174">    <span class="hl-kwd">return</span> state<span class="hl-pun">[</span><span class="hl-num">0</span><span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="175">  <span class="hl-pun">}</span></span>
 <span class="hl-line" data-line="176"></span>
-<span class="hl-line" data-line="177">  <span class="hl-com">// useData(&#039;examples/search&#039;, { q }, first): the page&#039;s data for these params, asked again</span></span>
-<span class="hl-line" data-line="178">  <span class="hl-com">// whenever they change - the previous request aborted. With a first answer - the one PAD</span></span>
-<span class="hl-line" data-line="179">  <span class="hl-com">// put in the props - nothing is asked until the params change.</span></span>
-<span class="hl-line" data-line="180"></span>
-<span class="hl-line" data-line="181">  <span class="hl-kwd">function</span> <span class="hl-fn">useData</span> <span class="hl-pun">(</span>page<span class="hl-pun">,</span> params<span class="hl-pun">,</span> first<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="182">    <span class="hl-kwd">var</span> key = JSON<span class="hl-pun">.</span><span class="hl-fn">stringify</span><span class="hl-pun">(</span>params || <span class="hl-pun">{</span><span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="183">    <span class="hl-kwd">var</span> initial = first !== <span class="hl-lit">undefined</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="184">    <span class="hl-kwd">var</span> state = React<span class="hl-pun">.</span><span class="hl-fn">useState</span><span class="hl-pun">(</span><span class="hl-pun">{</span> data: first<span class="hl-pun">,</span> loading: !initial<span class="hl-pun">,</span> error: <span class="hl-lit">null</span> <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="185">    <span class="hl-kwd">var</span> skip = React<span class="hl-pun">.</span><span class="hl-fn">useRef</span><span class="hl-pun">(</span>initial<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="186">    <span class="hl-kwd">var</span> setState = state<span class="hl-pun">[</span><span class="hl-num">1</span><span class="hl-pun">]</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="187"></span>
-<span class="hl-line" data-line="188">    React<span class="hl-pun">.</span><span class="hl-fn">useEffect</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="189">      <span class="hl-kwd">if</span> <span class="hl-pun">(</span>skip<span class="hl-pun">.</span>current<span class="hl-pun">)</span> <span class="hl-pun">{</span> skip<span class="hl-pun">.</span>current = <span class="hl-lit">false</span><span class="hl-pun">;</span> <span class="hl-kwd">return</span><span class="hl-pun">;</span> <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="190">      <span class="hl-kwd">var</span> controller = <span class="hl-kwd">new</span> <span class="hl-fn">AbortController</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="191">      <span class="hl-fn">setState</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>now<span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-kwd">return</span> <span class="hl-pun">{</span> data: now<span class="hl-pun">.</span>data<span class="hl-pun">,</span> loading: <span class="hl-lit">true</span><span class="hl-pun">,</span> error: <span class="hl-lit">null</span> <span class="hl-pun">}</span><span class="hl-pun">;</span> <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="192">      <span class="hl-fn">get</span><span class="hl-pun">(</span>page<span class="hl-pun">,</span> params<span class="hl-pun">,</span> <span class="hl-pun">{</span> signal: controller<span class="hl-pun">.</span>signal <span class="hl-pun">}</span><span class="hl-pun">)</span></span>
-<span class="hl-line" data-line="193">        <span class="hl-pun">.</span><span class="hl-fn">then</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>data<span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-fn">setState</span><span class="hl-pun">(</span><span class="hl-pun">{</span> data: data<span class="hl-pun">,</span> loading: <span class="hl-lit">false</span><span class="hl-pun">,</span> error: <span class="hl-lit">null</span> <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span><span class="hl-pun">)</span></span>
-<span class="hl-line" data-line="194">        <span class="hl-pun">.</span><span class="hl-kwd">catch</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>error<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="195">          <span class="hl-kwd">if</span> <span class="hl-pun">(</span>error<span class="hl-pun">.</span>name !== <span class="hl-str">&#039;AbortError&#039;</span><span class="hl-pun">)</span> <span class="hl-fn">setState</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span>now<span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-kwd">return</span> <span class="hl-pun">{</span> data: now<span class="hl-pun">.</span>data<span class="hl-pun">,</span> loading: <span class="hl-lit">false</span><span class="hl-pun">,</span> error: error <span class="hl-pun">}</span><span class="hl-pun">;</span> <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="196">        <span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="197">      <span class="hl-kwd">return</span> <span class="hl-kwd">function</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span> controller<span class="hl-pun">.</span><span class="hl-fn">abort</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="198">    <span class="hl-pun">}</span><span class="hl-pun">,</span> <span class="hl-pun">[</span>page<span class="hl-pun">,</span> key<span class="hl-pun">]</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="199"></span>
-<span class="hl-line" data-line="200">    <span class="hl-kwd">return</span> state<span class="hl-pun">[</span><span class="hl-num">0</span><span class="hl-pun">]</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="201">  <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="202"></span>
-<span class="hl-line" data-line="203">  <span class="hl-kwd">function</span> <span class="hl-fn">useDebounced</span> <span class="hl-pun">(</span>value<span class="hl-pun">,</span> ms<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="204">    <span class="hl-kwd">var</span> state = React<span class="hl-pun">.</span><span class="hl-fn">useState</span><span class="hl-pun">(</span>value<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="205">    React<span class="hl-pun">.</span><span class="hl-fn">useEffect</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="206">      <span class="hl-kwd">var</span> timer = <span class="hl-fn">setTimeout</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span> state<span class="hl-pun">[</span><span class="hl-num">1</span><span class="hl-pun">]</span><span class="hl-pun">(</span>value<span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span><span class="hl-pun">,</span> ms<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="207">      <span class="hl-kwd">return</span> <span class="hl-kwd">function</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-fn">clearTimeout</span><span class="hl-pun">(</span>timer<span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="208">    <span class="hl-pun">}</span><span class="hl-pun">,</span> <span class="hl-pun">[</span>value<span class="hl-pun">,</span> ms<span class="hl-pun">]</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="209">    <span class="hl-kwd">return</span> state<span class="hl-pun">[</span><span class="hl-num">0</span><span class="hl-pun">]</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="210">  <span class="hl-pun">}</span></span>
-<span class="hl-line" data-line="211"></span>
-<span class="hl-line" data-line="212">  window<span class="hl-pun">.</span>PadReact = <span class="hl-pun">{</span></span>
-<span class="hl-line" data-line="213">    island: island<span class="hl-pun">,</span> url: url<span class="hl-pun">,</span> csrfToken: csrfToken<span class="hl-pun">,</span></span>
-<span class="hl-line" data-line="214">    get: get<span class="hl-pun">,</span> post: post<span class="hl-pun">,</span> fragment: fragment<span class="hl-pun">,</span></span>
-<span class="hl-line" data-line="215">    useData: useData<span class="hl-pun">,</span> useDebounced: useDebounced<span class="hl-pun">,</span></span>
-<span class="hl-line" data-line="216">    requests: requests</span>
-<span class="hl-line" data-line="217">  <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
-<span class="hl-line" data-line="218"></span>
-<span class="hl-line" data-line="219"><span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span></code></pre></div></div>
+<span class="hl-line" data-line="177">  <span class="hl-kwd">function</span> <span class="hl-fn">useDebounced</span> <span class="hl-pun">(</span>value<span class="hl-pun">,</span> ms<span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="178">    <span class="hl-kwd">var</span> state = React<span class="hl-pun">.</span><span class="hl-fn">useState</span><span class="hl-pun">(</span>value<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="179">    React<span class="hl-pun">.</span><span class="hl-fn">useEffect</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="180">      <span class="hl-kwd">var</span> timer = <span class="hl-fn">setTimeout</span><span class="hl-pun">(</span><span class="hl-kwd">function</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span> state<span class="hl-pun">[</span><span class="hl-num">1</span><span class="hl-pun">]</span><span class="hl-pun">(</span>value<span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span><span class="hl-pun">,</span> ms<span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="181">      <span class="hl-kwd">return</span> <span class="hl-kwd">function</span> <span class="hl-pun">(</span><span class="hl-pun">)</span> <span class="hl-pun">{</span> <span class="hl-fn">clearTimeout</span><span class="hl-pun">(</span>timer<span class="hl-pun">)</span><span class="hl-pun">;</span> <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="182">    <span class="hl-pun">}</span><span class="hl-pun">,</span> <span class="hl-pun">[</span>value<span class="hl-pun">,</span> ms<span class="hl-pun">]</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="183">    <span class="hl-kwd">return</span> state<span class="hl-pun">[</span><span class="hl-num">0</span><span class="hl-pun">]</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="184">  <span class="hl-pun">}</span></span>
+<span class="hl-line" data-line="185"></span>
+<span class="hl-line" data-line="186">  window<span class="hl-pun">.</span>PadReact = <span class="hl-pun">{</span></span>
+<span class="hl-line" data-line="187">    island: island<span class="hl-pun">,</span> url: url<span class="hl-pun">,</span> csrfToken: csrfToken<span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="188">    get: get<span class="hl-pun">,</span> post: post<span class="hl-pun">,</span> fragment: fragment<span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="189">    useData: useData<span class="hl-pun">,</span> useDebounced: useDebounced<span class="hl-pun">,</span></span>
+<span class="hl-line" data-line="190">    requests: requests</span>
+<span class="hl-line" data-line="191">  <span class="hl-pun">}</span><span class="hl-pun">;</span></span>
+<span class="hl-line" data-line="192"></span>
+<span class="hl-line" data-line="193"><span class="hl-pun">}</span><span class="hl-pun">)</span><span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></span></code></pre></div></div>
 </section>
 
 <nav class="prev-next" aria-label="More examples">
@@ -467,14 +550,10 @@
   <a class="next" href="index%EF%B9%96examples%EA%A4%B7enhance.html"><small>Next</small>Progressive enhancement</a>
 </nav>
 
-</main>
+</div>
 
-<footer class="footer">
-  <div class="wrap">
-    <p><strong>PAD</strong> renders the page and owns the data &middot; <strong>React</strong> makes the islands in it interactive</p>
-    <p class="footer-small">React 18 and Babel come from unpkg.com &middot; the components live in <code>www/react/</code>, the pages in <code>apps/react/</code></p>
-  </div>
-</footer>
+  </main>
 
 </body>
 </html>
+

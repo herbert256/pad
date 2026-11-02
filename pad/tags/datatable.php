@@ -1,11 +1,11 @@
 <?php
 
-  // {datatable data='orders'} - the rows as a complete HTML table, tags/_lib/datatable.php. The
-  // rows come from data= - a {data} store, a page array or a _data file, as for {chart} -
+  // {pad:datatable data='orders'} - the rows as a complete HTML table, tags/_lib/datatable.php. The
+  // rows come from data= - a {pad:data} store, a page array or a _data file, as for {chart:bar} -
   // or, as a pair, from the content: JSON, YAML, XML or CSV, told apart on sight.
   //
-  //   {datatable data='orders', columns='number, customer, total', totals='total'}
-  //   {datatable data='orders', format='total:currency(\'EUR\')', sortable, rows=10}
+  //   {pad:datatable data='orders', columns='number, customer, total', totals='total'}
+  //   {pad:datatable data='orders', format='total:currency(\'EUR\')', sortable, rows=10}
   //
   // columns= names the columns and their order, else every field of the first row;
   // labels= the header of each, else the field name as a headline (order_date is Order
@@ -26,7 +26,7 @@
 
   if ( ! isset ( $padPrm [$pad] ['data'] ) and trim ( (string) $padContent ) === '' and ! isset ( $padPrm [$pad] ['sequence'] ) ) {
     if ( $padCheckSyntax )
-      padError ( "the datatable has no data - data='name' or the rows between {datatable} and {/datatable}" );
+      padError ( "the datatable has no data - data='name' or the rows between {pad:datatable} and {/pad:datatable}" );
     return '';
   }
 
@@ -142,7 +142,7 @@
 
   }
 
-  // One page of the rows, and the links to the others - the {pager}'s items.
+  // One page of the rows, and the links to the others - the {pad:pager}'s items.
 
   $padDatatablePager = [];
 

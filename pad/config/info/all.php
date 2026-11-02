@@ -88,7 +88,7 @@
   $padInfoTraceMore        = TRUE;
 
   // The start and end lines. StartEnd: 'trace start' and 'trace end' where the trace begins
-  // and ends - the request, or a {trace} tag - the end with the result. StartEndLvl: 'level
+  // and ends - the request, or a {pad:trace} tag - the end with the result. StartEndLvl: 'level
   // start' with the tag as written and 'level end' with what the level produced.
   // StartEndOcc: 'occur start' and 'occur end' with the output of that pass.
 
@@ -172,7 +172,7 @@
 
   // Lines for what the page does along the way:
   //
-  //   Store     a {data}, {content} or {bool} block stored - its name and value
+  //   Store     a {pad:data}, {pad:content} or {pad:bool} block stored - its name and value
   //   Sequence  a sequence run - its type and the terms it gave
   //   Var       every variable tag - {$x}, {!x}, {#x} ... - its name and pipe as written
   //             ('var start') and the value it writes ('var end')

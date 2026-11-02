@@ -1,12 +1,12 @@
 <?php
 
-  $tagAbout   = 'Inside a {tree}: renders its content only when the current row has children, its @else@ part for a leaf.';
+  $tagAbout   = 'Inside a {pad:tree}: renders its content only when the current row has children, its @else@ part for a leaf.';
   $tagGroup   = 'loops';
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{branch} ... {recurse/} ... {/branch}
-{branch} ... @else@ ... {/branch}
+{pad:branch} ... {pad:recurse/} ... {/pad:branch}
+{pad:branch} ... @else@ ... {/pad:branch}
 PAD;
 
   $tagParms   = [];

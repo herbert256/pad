@@ -30,7 +30,7 @@
   }
 
   // The request's own page is the one build that may answer with its data instead
-  // (build/expose.php); a {page} built in a nested pass later in the request may not.
+  // (build/expose.php); a {pad:page} built in a nested pass later in the request may not.
 
   $padExposeCheck = TRUE;
 

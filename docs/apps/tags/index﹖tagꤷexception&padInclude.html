@@ -1,6 +1,6 @@
 
-<p><code>{exception 'message'/}</code> executes <code>throw new Exception ('message')</code>
-inside the tag's handler. Where <a href="index%EF%B9%96tag%EA%A4%B7error.html">{error}</a> reports an error the polite
+<p><code>{pad:exception 'message'/}</code> executes <code>throw new Exception ('message')</code>
+inside the tag's handler. Where <a href="index%EF%B9%96tag%EA%A4%B7error.html">{pad:error}</a> reports an error the polite
 way, through <code>padError()</code>, this one behaves like PHP code that fails - a database
 library that throws, a division by zero - so it is the tag to try out how an application and
 its configuration deal with such a failure.</p>
@@ -15,5 +15,5 @@ as a failure, whatever the action.</p>
 
 <p>It is mainly there for testing: the regression suites use it to prove that every error
 action and every guard behaves as documented. In application code, prefer
-<a href="index%EF%B9%96tag%EA%A4%B7error.html">{error}</a>.</p>
+<a href="index%EF%B9%96tag%EA%A4%B7error.html">{pad:error}</a>.</p>
 

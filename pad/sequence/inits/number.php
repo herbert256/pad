@@ -1,7 +1,7 @@
 <?php
 
   // Shared parameter check for the types that do arithmetic with theirs: reports a parameter
-  // that is not a number, so {sequence multiply='abc'} says so instead of ending the request
+  // that is not a number, so {sequence:multiply 'abc'} says so instead of ending the request
   // on "Unsupported operand types" from inside the type.
   //
   // Included from a type's own init.php, which is run once per build - by inits/init.php for

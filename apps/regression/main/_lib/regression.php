@@ -256,7 +256,7 @@
   // itself the assertion: regression/pages - the Pages suite, driven from pages/ - has _common
   // switched off, so its pages prove they need nothing but their own application, and
   // regression/common - the Common suite, driven from common/ - holds the pages that use _common:
-  // {example}, {demo}, {table}, the {block} snippet, the colouring functions in _common/_lib/.
+  // {common:example}, {common:demo}, {common:table}, the {pad:block} snippet, the colouring functions in _common/_lib/.
   //
   // A test can also be a whole directory - see getSuitePages() for when an index stands for the
   // files beside it and when it does not.
@@ -279,8 +279,8 @@
   // from the walk, the way it does everywhere else in PAD.
   //
   // The rule for a directory holding an index: if that index renders its siblings - if its source
-  // has a {page of them - then it is the only test in the directory, because running it has
-  // already run them. A {page} chain of nine is one answer, not nine, and eight of those files
+  // has a {pad:page of them - then it is the only test in the directory, because running it has
+  // already run them. A {pad:page} chain of nine is one answer, not nine, and eight of those files
   // assert a fragment nobody asks for on its own.
   //
   // An index that only links to its siblings collapses nothing. error/index is a menu of ten
@@ -305,7 +305,7 @@
 
       $source = padFileGet ( "{$dir}index.$half" );
 
-      if ( str_contains ( $source, '{page' ) )
+      if ( str_contains ( $source, '{pad:page' ) )
         return TRUE;
 
     }

@@ -8,8 +8,8 @@
   // the middle of the view, 'x, y'; zoom= how far in (1, up to a trillion); julia= the point
   // c of a Julia set to start with instead, 'x, y'.
   //
-  //   {mandelbrot center='-0.7436, 0.1318', zoom=200/}
-  //   {mandelbrot julia='-0.8, 0.156', palette='fire'/}
+  //   {toy:mandelbrot center='-0.7436, 0.1318', zoom=200/}
+  //   {toy:mandelbrot julia='-0.8, 0.156', palette='fire'/}
 
   $padMandelJulia = padToyNumbers ( 'julia', NULL, -2, 2, 2, 2 );
 

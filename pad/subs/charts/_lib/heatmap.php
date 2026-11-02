@@ -2,7 +2,7 @@
 
   // Patterns in dense data: a grid of two categories, each cell coloured by its value.
   //
-  //   {chart 'heatmap', data='visits', x='hour', y='day', value='count'}
+  //   {chart:heatmap data='visits', x='hour', y='day', value='count'}
   //
   // y= names the category of the rows and x= that of the columns - else the first two
   // fields that are no number - and value= the number, else the first numeric field (row=

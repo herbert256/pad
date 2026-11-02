@@ -2,11 +2,11 @@
 
 ## Introduction
 
-Spreadsheets in a page, made with the `{spreadsheet}` tag of the formulas subsystem: the cells
+Spreadsheets in a page, made with the `{pad:spreadsheet}` tag of the formulas subsystem: the cells
 are lines of text with a comma between them, or the rows of `data=`, and their formulas -
 spreadsheet syntax, read by a parser of the engine's own - are computed on the server with the
 functions of `pad/subs/formulas/types/`, which answer what Excel answers. Each example page runs
-its template and shows it, with the playground and live icons; the functions page lists every
+its template and shows it, with the WASM editor and live icons; the functions page lists every
 function as its file describes it, each example computed on a sample sheet - a function added to
 the engine is there without a change to this application.
 
@@ -15,7 +15,7 @@ the engine is there without a change to this application.
 | File | Description |
 |------|-------------|
 | `index.pad` / `index.php` | The home page: a card per sheet |
-| `budget`, `loan`, `grades`, `dates`, `editable` | A page per example sheet, each `{runSheet/}` - its lead, the sheet run, its template and its PHP |
+| `budget`, `loan`, `grades`, `dates`, `editable` | A page per example sheet, each `{include:runSheet/}` - its lead, the sheet run, its template and its PHP |
 | `functions.pad` / `functions.php` | Every function: what its file says, its examples and what they show on the sample sheet |
 | `_sheets/<name>.pad` | The template of an example; `_sheets/loan.php` builds the loan's cells in PHP |
 | `_data/sample.csv` | The sample sheet the examples of the functions read (the framework cases of `regression/framework/formulas` read it too) |

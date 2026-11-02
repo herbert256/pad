@@ -9,8 +9,8 @@
   // given), title= the accessible name - else GN[], the game's name. The markup of a diagram -
   // LB[dd:A] labels, TR CR SQ MA marks - is drawn as well.
   //
-  //   {go '(;SZ[9]AB[cc][gc]AW[cg][gg];B[ee];W[ec])'/}
-  //   {go numbers}(;SZ[13];B[dj];W[jd];B[jj];W[dd]){/go}
+  //   {notation:go '(;SZ[9]AB[cc][gc]AW[cg][gg];B[ee];W[ec])'/}
+  //   {notation:go numbers}(;SZ[13];B[dj];W[jd];B[jj];W[dd]){/notation:go}
 
   $padGoText = trim ( $padNotationText );
 

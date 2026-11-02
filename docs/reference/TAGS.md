@@ -3,14 +3,14 @@
 This document provides a complete reference for all PAD tags, grouped by functionality.
 
 A tag is written one of two ways. Single, it closes itself with a slash before its brace -
-`{echo $x/}`, `{page 'header'/}`, `{flush/}`, or `{echo $x /| upper}` with an opening pipe.
+`{pad:echo $x/}`, `{pad:page 'header'/}`, `{pad:flush/}`, or `{pad:echo $x /| upper}` with an opening pipe.
 Written without the slash it opens a pair, and its closing tag must follow:
-`{items}...{/items}`. Many tags take both forms - `{sequence '1..5'}{$sequence}{/sequence}`
-loops, `{sequence '1..5', push='n'/}` only stores - and the slash says which one is meant. A
+`{array:items}...{/array:items}`. Many tags take both forms - `{sequence:range '1..5'}{$sequence}{/sequence:range}`
+loops, `{sequence:range '1..5', push='n'/}` only stores - and the slash says which one is meant. A
 tag without the slash and without its closer is an error under the strict check, "the pair
-{echo} never closes - a single tag is written {echo .../}"; the lenient walk reads it single.
+{pad:echo} never closes - a single tag is written {pad:echo .../}"; the lenient walk reads it single.
 The variable forms `{$x}`, `{!x}`, `{#x}`, `{&x}`, `{?x}`, `{^x}` are never pairs and take no
-slash, nor do the branch markers `{else}`, `{elseif}` and `{when}`.
+slash, nor do the branch markers `{pad:else}`, `{pad:elseif}` and `{pad:when}`.
 
 ---
 
@@ -20,19 +20,19 @@ slash, nor do the branch markers `{else}`, `{elseif}` and `{when}`.
 Conditional execution based on expression evaluation.
 
 ```html
-{if $condition}
+{pad:if $condition}
   Content shown if condition is true
-{elseif $other_condition}
+{pad:elseif $other_condition}
   Content shown if other condition is true
-{else}
+{pad:else}
   Content shown if all conditions are false
-{/if}
+{/pad:if}
 ```
 
 **Parameters:**
 - First parameter: Expression to evaluate
 
-**Supports:** `{elseif}` and `{else}` clauses
+**Supports:** `{pad:elseif}` and `{pad:else}` clauses
 
 ---
 
@@ -40,19 +40,19 @@ Conditional execution based on expression evaluation.
 Switch-case style conditional based on value matching.
 
 ```html
-{case $value}
-  {when 'option1'}Content for option1
-  {when 'option2', 'option3'}Content for option2 or option3
-  {else}Default content
-{/case}
+{pad:case $value}
+  {pad:when 'option1'}Content for option1
+  {pad:when 'option2', 'option3'}Content for option2 or option3
+  {pad:else}Default content
+{/pad:case}
 ```
 
 **Parameters:**
 - First parameter: Value to match against
 
-**Supports:** Multiple `{when}` clauses, each listing one value or several separated by
+**Supports:** Multiple `{pad:when}` clauses, each listing one value or several separated by
 commas; the first one that matches answers. The default
-branch is `{else}` - `{when 'default'}` is an ordinary branch that matches the text
+branch is `{pad:else}` - `{pad:when 'default'}` is an ordinary branch that matches the text
 `default`.
 
 ---
@@ -62,10 +62,10 @@ Render a block when a value differs from the previous row of the enclosing loop 
 heading per group in a sorted list.
 
 ```html
-{orders sort='customer'}
-  {ifchanged $customer}<h2>{$customer}</h2>{/ifchanged}
+{data:orders sort='customer'}
+  {pad:ifchanged $customer}<h2>{$customer}</h2>{/pad:ifchanged}
   <p>{$number}: {$total}</p>
-{/orders}
+{/data:orders}
 ```
 
 **Parameters:** one or more values; the block renders when any of them changed. The first
@@ -79,25 +79,25 @@ place in it: the n-th `ifchanged` of a row is compared with the n-th of the row 
 ---
 
 ### tree
-Renders a tree: its body for every row, and inside the body `{recurse}` renders the same
+Renders a tree: its body for every row, and inside the body `{pad:recurse}` renders the same
 body again for the current row's children - menus, category trees, threaded comments.
 
 ```html
 <ul>
-{tree 'menu', children='items'}
+{pad:tree 'menu', children='items'}
   <li><a href="?{$page}">{$title}</a>
-    {branch}<ul>{recurse/}</ul>{/branch}
+    {pad:branch}<ul>{pad:recurse/}</ul>{/pad:branch}
   </li>
-{/tree}
+{/pad:tree}
 </ul>
 ```
 
 **Parameters:**
-- First parameter, or `data=`: the rows - a `{data}` block, a stored sequence, an array of
+- First parameter, or `data=`: the rows - a `{pad:data}` block, a stored sequence, an array of
   the page or of an enclosing row, or a `_data/` file
 - `children` - the field holding a row's children (default `children`)
 
-**Behavior:** `depth@tree` is 1 for the tree's own rows and one more per `{recurse}`;
+**Behavior:** `depth@tree` is 1 for the tree's own rows and one more per `{pad:recurse}`;
 `first@tree`, `count@tree` and the other properties speak of the list being rendered. The
 handling options `sort`, `where` and `reverse` written on the tree apply to every list, the
 children included. The `@else@` part shows when there are no rows at all. Strict mode names a
@@ -106,22 +106,22 @@ tree without rows, or with a name nothing holds.
 ---
 
 ### branch
-Inside a `{tree}`: renders its content only when the current row has children - the `<ul>`
-around a `{recurse}` - and its `@else@` part for a leaf.
+Inside a `{pad:tree}`: renders its content only when the current row has children - the `<ul>`
+around a `{pad:recurse}` - and its `@else@` part for a leaf.
 
 ```html
-{branch}<ul>{recurse/}</ul>@else@<span class="leaf"></span>{/branch}
+{pad:branch}<ul>{pad:recurse/}</ul>@else@<span class="leaf"></span>{/pad:branch}
 ```
 
 ---
 
 ### recurse
-Inside a `{tree}`: renders the tree's body once more for the children of the current row,
+Inside a `{pad:tree}`: renders the tree's body once more for the children of the current row,
 each child a row of its own. A row without children renders nothing. The new level is
 named as the tree is, so `depth@tree` and `count@tree` follow it.
 
 ```html
-{recurse/}
+{pad:recurse/}
 ```
 
 ---
@@ -130,7 +130,7 @@ named as the tree is, so `depth@tree` and `count@tree` follow it.
 Rotating switch that cycles through options on each call.
 
 ```html
-{switch 'odd', 'even'/}
+{pad:switch 'odd', 'even'/}
 ```
 
 **Parameters:**
@@ -139,7 +139,7 @@ Rotating switch that cycles through options on each call.
 **Returns:** Next value in rotation sequence
 
 The rotation lives for the request, but not across a nested pass: engine state is restored
-when a `{code}` pass of any kind returns, so a pass continues each rotation from where the page
+when a `{pad:code}` pass of any kind returns, so a pass continues each rotation from where the page
 had it, and the steps it took are rolled back when it returns.
 
 ---
@@ -148,9 +148,9 @@ had it, and the steps it took are rolled back when it returns.
 Loop while condition is true.
 
 ```html
-{while $condition}
+{pad:while $condition}
   Loop content
-{/while}
+{/pad:while}
 ```
 
 **Parameters:**
@@ -164,9 +164,9 @@ Loop while condition is true.
 Loop until condition becomes true.
 
 ```html
-{until $condition}
+{pad:until $condition}
   Loop content
-{/until}
+{/pad:until}
 ```
 
 **Parameters:**
@@ -179,13 +179,13 @@ Loop until condition becomes true.
 ## Variable and Data Tags
 
 ### set
-Set one or more variables as globals. The assignment sticks: a `{set}` inside a loop or any
-other level outlives it - `{set $x = 1/}{sequence 3}{set $x = 8/}{/sequence}{$x}` gives 8.
-(A `$name = value` written on another tag, `{users $n = 5}`, is that level's own and is
+Set one or more variables as globals. The assignment sticks: a `{pad:set}` inside a loop or any
+other level outlives it - `{pad:set $x = 1/}{sequence:loop 3}{pad:set $x = 8/}{/sequence:loop}{$x}` gives 8.
+(A `$name = value` written on another tag, `{array:users $n = 5}`, is that level's own and is
 unwound when the level closes.)
 
 ```html
-{set $name = 'value', $count = 5, $active = TRUE/}
+{pad:set $name = 'value', $count = 5, $active = TRUE/}
 ```
 
 **Parameters:**
@@ -197,12 +197,12 @@ unwound when the level closes.)
 
 ### get
 Fetch another page of this application over HTTP and insert its output. It is a real second
-request, rendered bare (without the `_inits`/`_exits` wrappers); every variable `{set}` at this
+request, rendered bare (without the `_inits`/`_exits` wrappers); every variable `{pad:set}` at this
 level is passed along on the query string, and the output comes back with its braces escaped
 so it is not parsed again. A stored content block is read with `{content:name}` instead.
 
 ```html
-{get 'page_name'/}
+{pad:get 'page_name'/}
 ```
 
 **Parameters:**
@@ -216,9 +216,9 @@ so it is not parsed again. A stored content block is read with `{content:name}` 
 Store data to the data store for iteration.
 
 ```html
-{data 'store_name'}
+{pad:data 'store_name'}
   Content to iterate
-{/data}
+{/pad:data}
 ```
 
 **Parameters:**
@@ -228,7 +228,7 @@ Store data to the data store for iteration.
   gpx, kml, vtt, srt; left out, the format is recognised on sight (an iCalendar, a vCard, NDJSON, a
   Markdown pipe table, TSV, WebVTT, SRT and a JSON text sequence among them) - see [Data formats](../FEATURES.md#data-formats)
 
-**Behavior:** Stores the data under the name and prints nothing; `{store_name}...{/store_name}`
+**Behavior:** Stores the data under the name and prints nothing; `{bool:store_name}...{/bool:store_name}`
 iterates it
 
 ---
@@ -237,9 +237,9 @@ iterates it
 Store content to the content store.
 
 ```html
-{content 'store_name'}
+{pad:content 'store_name'}
   Content to store
-{/content}
+{/pad:content}
 ```
 
 **Parameters:**
@@ -251,8 +251,8 @@ Store content to the content store.
 Store boolean value to store - the content (or the second parameter) reduced to TRUE or FALSE.
 
 ```html
-{bool 'store_name'}content{/bool}
-{bool 'store_name', $value/}
+{pad:bool 'store_name'}content{/pad:bool}
+{pad:bool 'store_name', $value/}
 ```
 
 **Parameters:**
@@ -265,10 +265,10 @@ Store boolean value to store - the content (or the second parameter) reduced to 
 Database access tags. The tag name becomes the `db()` command word, so do NOT write `SELECT` in the parameter:
 
 ```html
-{field "count(*) from users"/}                     <!-- single value -->
-{record "* from users where id=5"}...{/record}    <!-- single row -->
-{array "* from users order by name"}...{/array}   <!-- iterate rows -->
-{check "users where email='x@y.z'"}...{/check}    <!-- existence test -->
+{pad:field "count(*) from users"/}                     <!-- single value -->
+{pad:record "* from users where id=5"}...{/pad:record}    <!-- single row -->
+{pad:array "* from users order by name"}...{/pad:array}   <!-- iterate rows -->
+{pad:check "users where email='x@y.z'"}...{/pad:check}    <!-- existence test -->
 ```
 
 **Parameters:**
@@ -277,7 +277,7 @@ Database access tags. The tag name becomes the `db()` command word, so do NOT wr
 **Returns:** Query results (`check` returns TRUE/FALSE)
 
 **Designer preview:** with `?page&padSample`, a tag with a `name=` the page's sample holds
-answers from the sample instead of the database - `{array "* from orders", name='orders'}` -
+answers from the sample instead of the database - `{pad:array "* from orders", name='orders'}` -
 and `&padSample=capture` records the database's answer under that name (see APP.md).
 
 ---
@@ -286,17 +286,17 @@ and `&padSample=capture` records the database's answer under that name (see APP.
 Iterate a folder of Markdown files - a small flat-file CMS.
 
 ```html
-{collection 'blog', sort='date DESC', first=10}
+{pad:collection 'blog', sort='date DESC', first=10}
   <h2><a href="?blog/post&slug={$slug}">{$title}</a></h2>
-{/collection}
+{/pad:collection}
 
-{collection 'blog', slug=$slug}<h1>{$title}</h1>{!body}@else@No such post.{/collection}
+{pad:collection 'blog', slug=$slug}<h1>{$title}</h1>{!body}@else@No such post.{/pad:collection}
 ```
 
 **Behavior:** Reads `_content/<name>/*.md`, looked up like a `_data` file (the page's
 directory, its parents, then `_common`). Each file is a row: its front matter (YAML between
 `---` lines) as fields, plus `slug` (the file name without `.md`), `body` (the Markdown
-written as HTML by the `{markdown}` renderer - print it raw, `{!body}`) and `source` (the
+written as HTML by the `{pad:markdown}` renderer - print it raw, `{!body}`) and `source` (the
 Markdown text). Rows come in file name order; `sort`, `first`, `where` and the other handling
 options work as on any data.
 
@@ -315,17 +315,17 @@ Site search without a search server: the rows of a source a query finds, ranked 
 (`pad/subs/search/`).
 
 ```html
-{search 'blog', q=$q, fields='title^2, body', lang='en'}
+{pad:search 'blog', q=$q, fields='title^2, body', lang='en'}
   <a href="?blog/post&slug={$slug}">{$title}</a> {$score} {!excerpt}
 @else@
   Nothing found.
-{/search}
-{search 'products', q=$q, link='url'/}                    <!-- a list -->
+{/pad:search}
+{pad:search 'products', q=$q, link='url'/}                    <!-- a list -->
 ```
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The source: a Markdown collection `_content/<name>/`, else a `{data}` store, a page's array (a `db()` result) or a `_data` file of the name |
+| first parameter | The source: a Markdown collection `_content/<name>/`, else a `{pad:data}` store, a page's array (a `db()` result) or a `_data` file of the name |
 | `q` | The query: words (any), `"a phrase"` (required, in order), `prefix*`, `-word` and `-"a phrase"` (left out) |
 | `fields` | The fields searched, each with its boost: `'title^2, body'` - a collection's default; other rows every field that holds text in any row (none is an error under the strict check) |
 | `lang` | The language of the stop words and the stemmer - `en`, `nl`, `de`, `fr`, `es`, `it`, `pt`, `sv`, `da`, `no` (`nb` and `nn` are `no`), `ru`, the files of `pad/subs/search/types/`; default the locale's language, else `en` |
@@ -335,7 +335,7 @@ Site search without a search server: the rows of a source a query finds, ranked 
 
 **Behavior:** as a pair it hands over the rows found, the best first: the source's own fields
 with `$score` (BM25F, three decimals) and `$excerpt` added - HTML, the words around the first
-match with every matched word in a `<mark>`, escaped as `{excerpt}` escapes it; print it
+match with every matched word in a `<mark>`, escaped as `{pad:excerpt}` escapes it; print it
 `{!excerpt}` - the style of the marks stands before the first row when the template prints the
 excerpt. The handling options work on them, `first=10` for the ten best - when they keep
 the first rows only (`first`, `page`, `rows`) the excerpts are made for those rows alone;
@@ -353,7 +353,7 @@ the same rows to a page's PHP.
 Evaluate an `@` expression (for example against a sequence or data set).
 
 ```html
-{at "country.id='f0_325'@mondial"/}
+{pad:at "country.id='f0_325'@mondial"/}
 ```
 
 **Parameters:**
@@ -369,15 +369,15 @@ Evaluate an `@` expression (for example against a sequence or data set).
 Check if array/data has elements.
 
 ```html
-{count 'arrayName'}
+{pad:count 'arrayName'}
   Has elements
 @else@
   Empty
-{/count}
+{/pad:count}
 ```
 
 **Parameters:**
-- First parameter: the quoted name of a data store or page array - `{count $arrayName}`
+- First parameter: the quoted name of a data store or page array - `{pad:count $arrayName}`
   evaluates the array itself and is an error. It prints no number; the number of rows is
   `count@tag`
 
@@ -389,7 +389,7 @@ Check if array/data has elements.
 Increment a variable by 1.
 
 ```html
-{increment $counter/}
+{pad:increment $counter/}
 ```
 
 **Parameters:**
@@ -403,7 +403,7 @@ Increment a variable by 1.
 Decrement a variable by 1.
 
 ```html
-{decrement $counter/}
+{pad:decrement $counter/}
 ```
 
 **Parameters:**
@@ -419,14 +419,14 @@ Decrement a variable by 1.
 Include and execute a PAD page.
 
 ```html
-{page 'pagename'/}
+{pad:page 'pagename'/}
 ```
 
 **Parameters:**
 - First parameter: Page path to include
 
 **Behavior:** Executes the page's PHP and PAD files. A name that is no page of its own resolves
-through the clean URL routes: `{page 'products/42'/}` renders `products/[id].pad` with `$id` set
+through the clean URL routes: `{pad:page 'products/42'/}` renders `products/[id].pad` with `$id` set
 to 42 (see Clean URLs in docs/APP.md).
 
 ---
@@ -436,8 +436,8 @@ Runs its content as PAD source in a separate engine pass and outputs what that p
 produced.
 
 ```html
-{code}{echo 2 * 3/}{/code}        → 6
-{echo $snippet | code/}           → $snippet run as PAD
+{pad:code}{pad:echo 2 * 3/}{/pad:code}        → 6
+{pad:echo $snippet | code/}           → $snippet run as PAD
 ```
 
 **Piped into:** a value is text under `$padProtectValues` - a field holding a tag prints
@@ -452,8 +452,8 @@ variables, and the data, content, bool and sequence stores are emptied going in 
 restored coming out.
 
 ```html
-{sandbox}{echo 3 * 3/}{/sandbox}  → 9
-{echo $snippet | sandbox/}        → $snippet run as PAD, isolated
+{pad:sandbox}{pad:echo 3 * 3/}{/pad:sandbox}  → 9
+{pad:echo $snippet | sandbox/}        → $snippet run as PAD, isolated
 ```
 
 ---
@@ -462,7 +462,7 @@ restored coming out.
 Execute a sequence action, over a stored sequence.
 
 ```html
-{action myStore, reverse}
+{action:auto myStore, reverse}
 {action:reverse myStore/}
 ```
 
@@ -477,8 +477,8 @@ tag writes a `<div>` and a script that requests the page with `&padInclude` and 
 answer in the div.
 
 ```html
-{ajax 'orders'/}
-{ajax 'orders', fragment='order-list'/}
+{pad:ajax 'orders'/}
+{pad:ajax 'orders', fragment='order-list'/}
 ```
 
 **Parameters:**
@@ -494,10 +494,10 @@ A region of the page that answers clicks, forms and changes by re-rendering on t
 and swapping itself in - without JavaScript of the application's own.
 
 ```html
-{live 'cart'}
-  {cart}<li>{$item} x {$qty}</li>{/cart}
+{pad:live 'cart'}
+  {array:cart}<li>{$item} x {$qty}</li>{/array:cart}
   <button pad-click="add" pad-value="42">Add</button>
-{/live}
+{/pad:live}
 ```
 
 ```php
@@ -524,7 +524,7 @@ toast or a carousel the answer brings works (under a nonce policy only a script 
 answer's nonce runs, given the page's). State lives where a page keeps it: the session (`$padSessionVars`), a
 database, or the value the event carries. With `$padCsrf` on, the region carries the
 session's token (`data-pad-csrf`) and the script sends it with every event. A post for a
-region the page does not render is an error. Under the strict check a `{live}` without a name, or without its `{/live}`, is an
+region the page does not render is an error. Under the strict check a `{pad:live}` without a name, or without its `{/pad:live}`, is an
 error too.
 
 ---
@@ -534,9 +534,9 @@ A level with no behaviour of its own - a carrier for `data=`, `content=`, `name=
 properties. It includes nothing.
 
 ```html
-{pad data='source'}
+{pad:pad data='source'}
   Template content
-{/pad}
+{/pad:pad}
 ```
 
 **Behavior:** Renders its content once, or per row with `data=`
@@ -549,12 +549,12 @@ properties. It includes nothing.
 Redirect to another page of the application.
 
 ```html
-{redirect 'page'/}
+{pad:redirect 'page'/}
 ```
 
 **Parameters:**
 - First parameter: URL to redirect to - a page of the application, also in its `?page` form
-  (routes resolved, as `{page}` resolves them), or an absolute `http://` / `https://` address
+  (routes resolved, as `{pad:page}` resolves them), or an absolute `http://` / `https://` address
 - Variables set on the tag (`$color='red'`): added to the address's query string
 
 **Behavior:** Performs HTTP redirect (302) and ends the request. A page name stays on the
@@ -568,7 +568,7 @@ site.
 Restart PAD processing with new page.
 
 ```html
-{restart 'pagename', $param1 = 'value1'/}
+{pad:restart 'pagename', $param1 = 'value1'/}
 ```
 
 **Parameters:**
@@ -583,11 +583,11 @@ Page links for a tag written with the `page` handling option: the first and the 
 window around the current one, gaps, previous and next.
 
 ```html
-{products page=$pg ?? 1, rows=12}
+{data:products page=$pg ?? 1, rows=12}
   <article>{$name}</article>
-{/products}
+{/data:products}
 
-{pager 'products', window=2/}
+{pad:pager 'products', window=2/}
 {-- → ‹ 1 … 4 5 [6] 7 8 … 20 › --}
 ```
 
@@ -615,11 +615,11 @@ As a pair it hands the links over as rows for markup of your own - `kind` (`prev
 previous/next); a single page has no rows, so the pair shows its `@else@`:
 
 ```html
-{pager 'products'}
-  {if $href eq ''}<span>{$label}</span>{else}<a href="{$href}">{$label}</a>{/if}
+{pad:pager 'products'}
+  {pad:if $href eq ''}<span>{$label}</span>{pad:else}<a href="{$href}">{$label}</a>{/pad:if}
 @else@
   All on one page
-{/pager}
+{/pad:pager}
 ```
 
 A Select table is paged by its SQL limit, so its rows do not hold the total; the pager then
@@ -628,22 +628,21 @@ runs a count of the same query, only when it is there.
 ---
 
 ### jsonld
+Subsystem syntax: `{jsonld:kind ...}`.
 The structured data of a page for search engines: one `<script type="application/ld+json">`
 holding a Schema.org object, built from the fields a kind maps by name - every kind is a file of
 `pad/subs/jsonld/types/`, and the files there are the kinds there are (`padJsonLdKinds()`); the
 subsystem is `pad/subs/jsonld/`.
 
 ```html
-{jsonld 'article', headline=$title, author=$author, published=$date/}
+{jsonld:article headline=$title, author=$author, published=$date/}
 {jsonld:article data='post', url=$url/}
 {jsonld:faq data='questions'/}
 {jsonld:breadcrumb/}
 {jsonld:website name='Shop', search='?search&q='/}
 ```
 
-A block is written two ways, the same block each time: the tag, `{jsonld 'article', .../}`, and the
-jsonld: type, `{jsonld:article .../}` - never bare, as its names (article, event, person) are those
-of fields and pages. `padJsonLd ( 'article', $post )` answers the same object as a PHP array.
+Select a JSON-LD kind by its qualified name, such as `{jsonld:article .../}`. `padJsonLd ( 'article', $post )` answers the same object as a PHP array.
 
 | Kind | Schema.org | Its fields (required in bold) |
 |------|------------|-------------------------------|
@@ -699,11 +698,11 @@ The hidden form field holding the CSRF token of the visitor's session.
 
 ```html
 <form method="post">
-  {csrf/}
+  {pad:csrf/}
   ...
 </form>
 
-<meta name="csrf-token" content="{csrf token/}">
+<meta name="csrf-token" content="{pad:csrf token/}">
 ```
 
 **Options:** `token` - the bare token instead of the field, for a script that sends it in an
@@ -711,7 +710,7 @@ The hidden form field holding the CSRF token of the visitor's session.
 
 **Behavior:** The token is 64 hex characters, one per session, made on first use - the
 session starts on demand. With `$padCsrf = TRUE` every `<form method="post">` of the page
-that posts back to the site gets the field without `{csrf}`, and every POST, PUT, PATCH or
+that posts back to the site gets the field without `{pad:csrf}`, and every POST, PUT, PATCH or
 DELETE without the token is answered 403 before the application runs; `padCsrfValid()`
 checks a post by hand. A page carrying a token is not stored in the page cache.
 
@@ -721,50 +720,50 @@ checks a post by hand. A page carrying a token is not stored in the page cache.
 A form that posts back to the page, carrying the session's CSRF token and its own name.
 
 ```html
-{form 'contact', class='wide'}
-  {input 'email', type='email', label='E-mail', required/}
-  {textarea 'message', label='Message', rows=6/}
+{pad:form 'contact', class='wide'}
+  {pad:input 'email', type='email', label='E-mail', required/}
+  {pad:textarea 'message', label='Message', rows=6/}
   <button>Send</button>
-{/form}
+{/pad:form}
 ```
 
 **Items:** the form's name first; `method='get'` for a form that does not post; `error=`
 the message above the fields when the form came back with errors (`error` alone: "Please
 correct the errors below."); every other item is an attribute of the `<form>` tag
-(`action=`, `class=`, `enctype=`), written as `{attrs}` writes them.
+(`action=`, `class=`, `enctype=`), written as `{pad:attrs}` writes them.
 
 **Behavior:** A posting form gets the hidden `padCsrfToken` field - not when its `action=`
 (resolved against a `<base href>`), or the `formaction=` of a button in it or naming it with
 `form=`, is on another site, which the token would be handed to; a button that sends the form
-by GET (`formmethod`) to this site leaves it, and a `{csrf}` the template wrote is never taken
+by GET (`formmethod`) to this site leaves it, and a `{pad:csrf}` the template wrote is never taken
 out - and a hidden `padForm` field
 holding its name - `padPosted('contact')` is TRUE when this form came back. The fields
-inside refill only when their own form came back; a `{form method='get'}` refills from the
+inside refill only when their own form came back; a `{pad:form method='get'}` refills from the
 query string. A posting form holding a file field gets `enctype="multipart/form-data"`
 unless it names an enctype itself. With `error=`, a form that came back while `padValidate`
 or the rules of its fields left an error starts with `<div class="error" role="alert">`
 holding the message.
 
 **Rules in the template:** the fields of a named form can carry their own rules -
-`rules='required|email'` on `{input}` and `{textarea}`, the rules of `padValidate`. They are
+`rules='required|email'` on `{pad:input}` and `{pad:textarea}`, the rules of `padValidate`. They are
 read from the page's template before any PHP runs (`_inits.php` included), and a post of
 the form is checked against them there: `padPosted('contact')` is TRUE only for a post that
 kept them - the PHP that stores and redirects runs for a good post alone - and
 `padFormFailed('contact')` for one that broke them, which renders the form again, refilled,
 the messages beside the fields. Every field of the form with rules is checked, also one in
-an `{if}` branch that did not render; a field that is there only sometimes keeps its check in
+an `{pad:if}` branch that did not render; a field that is there only sometimes keeps its check in
 the PHP, where `padValidate` adds its messages to those of the template.
 
 ```html
-{form 'contact', error='Please correct the errors below.'}
-  {input 'email', type='email', label='E-mail', rules='required|email'/}
-  {textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
-{/form}
+{pad:form 'contact', error='Please correct the errors below.'}
+  {pad:input 'email', type='email', label='E-mail', rules='required|email'/}
+  {pad:textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
+{/pad:form}
 ```
 
 Only the page's own template is read - with its `_inits.pad` and `_exits.pad` - and only what
 is written out: quoted rules on a field with a quoted name, in a form with a quoted name. A
-field with rules in an `_include` snippet, a custom tag, a `{page}` or an `{extends}` layout,
+field with rules in an `_include` snippet, a custom tag, a `{pad:page}` or an `{pad:extends}` layout,
 rules from a variable, rules outside a named form, in a form with `action=` or
 `method='get'`, in one htmx sends elsewhere (`hx-post=` to another page, `hx-get=`, `hx-put=` ...)
 or holding a button whose `formaction=` names another page, on a file field, a rule that does not exist and one field given two sets of
@@ -787,9 +786,9 @@ shows a message or was left before: the message follows the other field. The ser
 without a field with rules, is an error.
 
 ```html
-{form 'signup', client, error}
-  {input 'email', type='email', label='E-mail', rules='required|email'/}
-{/form}
+{pad:form 'signup', client, error}
+  {pad:input 'email', type='email', label='E-mail', rules='required|email'/}
+{/pad:form}
 ```
 
 ---
@@ -801,11 +800,11 @@ The browser's checker of `padValidate`'s rules, for a form a component draws.
 <div x-data="{ rules: {^rules}, form: {}, errors: {} }">
   <input x-model="form.email" @blur="errors = padValidate.check(rules, form)">
 </div>
-{validator/}
+{pad:validator/}
 ```
 
 **Behavior:** Writes the checker - `www/assets/rules/validate.js` with the script of every rule of `pad/subs/rules/types/` - as one inline script - once a page, also when a
-`{form ..., client}` brought it already - carrying the request's nonce when `$padCsp` asks
+`{pad:form ..., client}` brought it already - carrying the request's nonce when `$padCsp` asks
 for one. The script defines `padValidate.check(rules, values)` (the message of every field
 that broke a rule), `padValidate.field(spec, value, values)` and `padValidate.form(form)`;
 `rules` is what `padValidateClient($rules)` exports in the page's PHP - the list
@@ -817,14 +816,14 @@ that broke a rule), `padValidate.field(spec, value, values)` and `padValidate.fo
 A form field that refills from what was posted and shows the error `padValidate` found for it.
 
 ```html
-{input 'email', type='email', label='E-mail', required, placeholder='you@example.org'/}
-{input 'terms', type='checkbox', label='I agree', value='yes'/}
+{pad:input 'email', type='email', label='E-mail', required, placeholder='you@example.org'/}
+{pad:input 'terms', type='checkbox', label='I agree', value='yes'/}
 ```
 
 **Items:** the field name first; `type=` (default `text`), `label=` (a `<label for>` before
 the field, after a checkbox or radio), `value=` (the value before anything was posted),
 `id=` (default: the name), `checked` (a checkbox's state before a post), `rules=` (its rules,
-checked before the page's PHP - see `{form}`); every other item is an attribute of the field.
+checked before the page's PHP - see `{pad:form}`); every other item is an attribute of the field.
 
 **Behavior:** After a post of its form the field shows the posted value, escaped - found
 where PHP files the name, so `user[email]` is `$_POST['user']['email']` and `first.name`
@@ -838,11 +837,11 @@ refused its file the same way.
 ---
 
 ### textarea
-`{input}`'s refill, label and error for a text area.
+`{pad:input}`'s refill, label and error for a text area.
 
 ```html
-{textarea 'message', label='Message', rows=6, required/}
-{textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
+{pad:textarea 'message', label='Message', rows=6, required/}
+{pad:textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
 ```
 
 ---
@@ -851,11 +850,11 @@ refused its file the same way.
 The flash messages for this request, one occurrence each.
 
 ```html
-{flash}
+{pad:flash}
   <p class="notice {$type}">{$message}</p>
-{/flash}
+{/pad:flash}
 
-{flash 'error'}<p class="error">{$message}</p>{/flash}
+{pad:flash 'error'}<p class="error">{$message}</p>{/pad:flash}
 ```
 
 **Parameters:** optional type - only the messages of that type.
@@ -874,13 +873,13 @@ that never flash do not open the session.
 The logged-in user of this application - `padLogin()` - its row as the tag's data.
 
 ```html
-{auth}Hello {$name}{else}<a href="?login">Log in</a>{/auth}
+{pad:auth}Hello {$name}{pad:else}<a href="?login">Log in</a>{/pad:auth}
 ```
 
 **Behavior:** the content renders once for a logged-in user, with the user's row as its
 data (`{$name}`, `{$email}` - the password and token fields were never kept); for a guest
-the `{else}` / `@else@` half renders. `{guest}...{/guest}` is the reverse and hands over no
-data. Both own their `{else}`: an `{if}` around them keeps its own.
+the `{pad:else}` / `@else@` half renders. `{pad:guest}...{/pad:guest}` is the reverse and hands over no
+data. Both own their `{pad:else}`: an `{pad:if}` around them keeps its own.
 
 ---
 
@@ -888,12 +887,12 @@ data. Both own their `{else}`: an `{if}` around them keeps its own.
 Content for a user a gate allows - `padGate()`, `padCan()` (lib/gate.php).
 
 ```html
-{can 'edit-post', $post}<a href="?edit&id={$id}">Edit</a>{else}Read only{/can}
-{posts}{cannot 'delete-post', $posts}locked{/cannot}{/posts}
+{pad:can 'edit-post', $post}<a href="?edit&id={$id}">Edit</a>{pad:else}Read only{/pad:can}
+{array:posts}{pad:cannot 'delete-post', $posts}locked{/pad:cannot}{/array:posts}
 ```
 
 **Parameters:** the ability, then the values the gate gets - an array passes whole; inside
-a loop the loop's name is its current row. `{cannot}` is the reverse.
+a loop the loop's name is its current row. `{pad:cannot}` is the reverse.
 
 **Behavior:** `padGateBefore` hooks decide first, then the gate. A guest reaches only a gate
 whose user parameter takes NULL. An ability nobody defined is FALSE and, under the strict
@@ -905,7 +904,7 @@ check, an error.
 Content while a feature flag of `$padFeatures` is on for this visitor.
 
 ```html
-{feature 'search2'}<form action="?search2">...</form>{else}<form action="?search">...</form>{/feature}
+{pad:feature 'search2'}<form action="?search2">...</form>{pad:else}<form action="?search">...</form>{/pad:feature}
 ```
 
 **Behavior:** `padFeature($name)` decides: `TRUE`, `FALSE`, a share between 0 and 1 of the
@@ -919,8 +918,8 @@ is FALSE and, under the strict check, an error.
 A "Log in with ..." link styled as a button, for the OAuth subsystem (`pad/subs/oauth/`).
 
 ```html
-{oauth 'github'/}
-{oauth 'oidc', href='?login/company', label='Log in with your company account'/}
+{pad:oauth 'github'/}
+{pad:oauth 'oidc', href='?login/company', label='Log in with your company account'/}
 ```
 
 **Parameters:** the provider, a file of `pad/subs/oauth/types/` - apple, bitbucket, discord, forgejo,
@@ -942,8 +941,8 @@ The notifications the database channel of `padNotify` kept for the user logged i
 newest first, each with a link that marks it read.
 
 ```html
-{notifications/}
-{notifications all}<li>{$title} - {$created}{if $read} (read){/if}</li>{/notifications}
+{pad:notifications/}
+{pad:notifications all}<li>{$title} - {$created}{pad:if $read} (read){/pad:if}</li>{/pad:notifications}
 ```
 
 **Options:** `for` - the recipient, an id or an email, instead of the user logged in; `all` - the
@@ -961,8 +960,8 @@ HMAC of the application, the recipient and the id: it marks only that one of tha
 The address of a file of `www/<app>/` with a version of its contents, for a far-future cache.
 
 ```html
-<link rel="stylesheet" href="{asset 'charts.css'/}">     <!-- /charts/charts.css?v=1f3a9c0b2e -->
-{asset 'app.js', tag/}                                     <!-- <script src="..." defer></script> -->
+<link rel="stylesheet" href="{pad:asset 'charts.css'/}">     <!-- /charts/charts.css?v=1f3a9c0b2e -->
+{pad:asset 'app.js', tag/}                                     <!-- <script src="..." defer></script> -->
 ```
 
 **Parameters:** the file, relative to `www/<app>/` - it never leaves it. `tag` writes the
@@ -979,15 +978,15 @@ the strict check, an error. `padAsset()` / `padAssetTag()` from PHP.
 This request's Content-Security-Policy nonce.
 
 ```html
-<script nonce="{nonce/}">{ignore}
+<script nonce="{pad:nonce/}">{pad:ignore}
   document.title = 'Hello';
-{/ignore}</script>
+{/pad:ignore}</script>
 ```
 
 **Behavior:** 18 random bytes, base64 - one value for the whole request, made on first use.
 `'nonce'` (quotes included) in `$padCsp` becomes `'nonce-<the value>'` in the header, so
 `$padCsp = "default-src 'self'; script-src 'self' 'nonce'"` lets exactly the scripts that
-carry it run. The engine never adds it to script tags itself. Outside `{ignore}` - inside
+carry it run. The engine never adds it to script tags itself. Outside `{pad:ignore}` - inside
 one it is text. A page carrying a nonce is not stored in the page cache.
 
 ---
@@ -998,9 +997,9 @@ one it is text. A page carrying a nonce is not stored in the page cache.
 List files in a directory with filtering options.
 
 ```html
-{files 'directory', mask='*.txt', recursive=TRUE}
+{pad:files 'directory', mask='*.txt', recursive=TRUE}
   {$path} - {$file}
-{/files}
+{/pad:files}
 ```
 
 **Parameters:**
@@ -1026,10 +1025,10 @@ pages, then its subdirectories.
 
 ```html
 <ul>
-  {sitemap}<li><a href="{$url}">{$page}</a> {$lastmod}</li>{/sitemap}
+  {pad:sitemap}<li><a href="{$url}">{$page}</a> {$lastmod}</li>{/pad:sitemap}
 </ul>
 
-{sitemap 'docs'} ... {/sitemap}      {# the pages below one directory #}
+{pad:sitemap 'docs'} ... {/pad:sitemap}      {# the pages below one directory #}
 ```
 
 **Parameters:**
@@ -1041,7 +1040,7 @@ of the page's files).
 
 Left out: `_` and dot entries, a directory holding a `_guard.php`, a bracketed route
 (`products/[id]`), a page with no template whose PHP only redirects, restarts or writes, a page
-whose template says `{meta sitemap=false/}`, and every page or directory `$padSitemapSkip`
+whose template says `{pad:meta sitemap=false/}`, and every page or directory `$padSitemapSkip`
 names. With `$padSitemap = TRUE` the same list answers `?sitemap.xml` (or `/app/sitemap.xml`)
 as the sitemap protocol's XML, and `?robots.txt` points to it - when the application has no
 page of that name.
@@ -1052,7 +1051,7 @@ page of that name.
 Simple directory listing.
 
 ```html
-{dir '/path/to/directory'}
+{pad:dir '/path/to/directory'}
 ```
 
 **Parameters:**
@@ -1066,9 +1065,9 @@ Simple directory listing.
 Write content to file.
 
 ```html
-{file dir='path', name='filename', ext='txt'}
+{pad:file dir='path', name='filename', ext='txt'}
   File content
-{/file}
+{/pad:file}
 ```
 
 **Parameters:**
@@ -1089,7 +1088,7 @@ Write content to file.
 Check if file exists.
 
 ```html
-{exists '/path/to/file'}
+{pad:exists '/path/to/file'}
 ```
 
 **Parameters:**
@@ -1105,7 +1104,7 @@ applications, the engine, DATA and the public files of `www/`, and for an addres
 Return opening brace character.
 
 ```html
-{open/}
+{pad:open/}
 ```
 
 **Returns:** `&open;` (entity for `{`)
@@ -1116,7 +1115,7 @@ Return opening brace character.
 Return closing brace character.
 
 ```html
-{close/}
+{pad:close/}
 ```
 
 **Returns:** `&close;` (entity for `}`)
@@ -1129,7 +1128,7 @@ Return closing brace character.
 Make HTTP request.
 
 ```html
-{curl 'http://example.com', post='name=x&id=1'/}
+{pad:curl 'http://example.com', post='name=x&id=1'/}
 ```
 
 **Parameters:**
@@ -1142,7 +1141,7 @@ Make HTTP request.
 - `ttl=600`: keep the answer that many seconds (see below)
 
 **Behavior:** Makes HTTP request; a result other than 200 is a PAD error. An address a
-visitor chose - `{curl $v}` with a request value, the rule of `data=` (OPTIONS.md) - is refused:
+visitor chose - `{pad:curl $v}` with a request value, the rule of `data=` (OPTIONS.md) - is refused:
 write the address in the template, or fetch it in the page's PHP with `padCurl`
 
 **Returns:** Response data
@@ -1154,9 +1153,9 @@ and the failure goes to the error log (and to the application's `_events/curl.ph
 good answer is kept; without a copy the failure is an error as before.
 
 ```html
-{curl 'https://api.example.com/rates.json', ttl=600/}
+{pad:curl 'https://api.example.com/rates.json', ttl=600/}
 
-{pad data='https://api.example.com/rates.json', ttl=600} {$code}: {$rate} {/pad}
+{pad:pad data='https://api.example.com/rates.json', ttl=600} {$code}: {$rate} {/pad:pad}
 ```
 
 Remote data takes the same ttl - from the tag, as above, or from a `_data/*.curl` file, which
@@ -1177,7 +1176,7 @@ many seconds beyond its ttl a copy is kept for a failing source. From PHP:
 or `stale` - and `padCurlForget ( $input )` drops one copy.
 
 **Parallel fetching:** several sources of one page are fetched one after another by `data=`
-and `{curl}`. `padPrefetch` in the page's PHP puts them on the wire together (curl_multi),
+and `{pad:curl}`. `padPrefetch` in the page's PHP puts them on the wire together (curl_multi),
 so the wait is the slowest answer rather than the sum, and keeps each answer as named data:
 
 ```php
@@ -1188,7 +1187,7 @@ padPrefetch ( [
 ```
 
 ```html
-{rates}{$code}: {$rate}{/rates}
+{data:rates}{$code}: {$rate}{/data:rates}
 ```
 
 A source is a URL (`SELF://` for this host) or an input array as `padCurl()` takes it; the
@@ -1201,11 +1200,11 @@ failing `data=` is. The parsed sets are also returned, under the same names.
 Render a PAD template to an email - an HTML part and a text part - and send it.
 
 ```html
-{mail to=$email, template='order', subject='Order confirmation'/}
+{pad:mail to=$email, template='order', subject='Order confirmation'/}
 
-{mail to=$email, subject='Welcome'}
+{pad:mail to=$email, subject='Welcome'}
   <p>Hello {$name}</p>
-{/mail}
+{/pad:mail}
 ```
 
 **Parameters:**
@@ -1233,8 +1232,8 @@ template are errors. From PHP: `padMail ( $to, $template, $subject, $vars, $opti
 The answer of a language model, printed as text (`pad/subs/ai/`).
 
 ```html
-{ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/ai}
-{ai 'Name three rivers of France.', system='Answer briefly.'/}
+{pad:ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/pad:ai}
+{pad:ai 'Name three rivers of France.', system='Answer briefly.'/}
 ```
 
 **Parameters:** single, the prompt.
@@ -1264,8 +1263,8 @@ without it the tag answers nothing and the error is logged. From PHP:
 Evaluate and output expression.
 
 ```html
-{echo $variable/}
-{echo 5 + 3/}          → 8 - a quoted '5 + 3' is the text itself
+{pad:echo $variable/}
+{pad:echo 5 + 3/}          → 8 - a quoted '5 + 3' is the text itself
 ```
 
 **Parameters:**
@@ -1279,7 +1278,7 @@ Evaluate and output expression.
 Set output type.
 
 ```html
-{output 'download'/}
+{pad:output 'download'/}
 ```
 
 **Parameters:**
@@ -1295,13 +1294,13 @@ and for an `Accept: application/json` (or `text/csv`) header - and then no templ
 ### flush
 Send the page rendered so far to the browser now, instead of with the rest when the whole
 page is done - so the browser fetches the stylesheets and fonts the `<head>` names while a slow
-part of the page (a big `{table}`, a `{curl}`) is still rendering.
+part of the page (a big `{common:table}`, a `{pad:curl}`) is still rendering.
 
 ```html
 <!-- _inits.pad -->
 <html>
   <head><link rel="stylesheet" href="/css/site.css"></head>
-  {flush/}
+  {pad:flush/}
   <body>@page@</body>
 </html>
 ```
@@ -1310,13 +1309,13 @@ part of the page (a big `{table}`, a `{curl}`) is still rendering.
 body: tidy, gzip of the whole body, the ETag and its 304, `Content-Length` and the page cache;
 the headers go out with the first part, so a header or cookie set after it is lost. It stands at
 the top level of the page or its wrapper - inside another tag, or in a page whose PHP returns
-data, strict mode reports it. In a page rendered inside another (`{page}`), for an output
+data, strict mode reports it. In a page rendered inside another (`{pad:page}`), for an output
 type other than web, and in a request answered with a part of the page - a response fragment
-(`padFragment`), the post of a `{live}` region - and in an application with an
+(`padFragment`), the post of a `{pad:live}` region - and in an application with an
 `_events/output.php` hook, which sees the page whole, it does nothing. The page's PHP runs before any of the template, so what
-a flush wins is the rendering below it. A `{stack}` in the part that goes out early gets the
+a flush wins is the rendering below it. A `{pad:stack}` in the part that goes out early gets the
 pushes made before the flush only - a push below it cannot reach text the browser already has.
-A `{toc}` lists the headings of the whole page, so a flush with one in the part it would send
+A `{pad:toc}` lists the headings of the whole page, so a flush with one in the part it would send
 sends nothing, nor does any flush after it: the toc goes with the rest of the page.
 
 ---
@@ -1325,9 +1324,9 @@ sends nothing, nor does any flush after it: the toc goes with the rest of the pa
 Format/beautify HTML content.
 
 ```html
-{tidy}
+{pad:tidy}
   <html>content</html>
-{/tidy}
+{/pad:tidy}
 ```
 
 **Behavior:** Applies HTML tidying to content
@@ -1338,17 +1337,17 @@ Format/beautify HTML content.
 Take out the whitespace between HTML tags, and at both ends.
 
 ```html
-{spaceless}
+{pad:spaceless}
   <ul>
     <li>a b</li>
   </ul>
-{/spaceless}
+{/pad:spaceless}
 ```
 
 **Result:** `<ul><li>a b</li></ul>` - text inside a tag keeps its spaces.
 
 **Related:** a `~` just inside any tag's brace trims the whitespace on that side of it:
-`{~tag}` what stands before, `{tag~}` and `{/tag~}` what follows - newlines included.
+`{~function:tag}` what stands before, `{function:tag~}` and `{/function:tag~}` what follows - newlines included.
 
 ---
 
@@ -1356,15 +1355,15 @@ Take out the whitespace between HTML tags, and at both ends.
 Write Markdown as HTML.
 
 ```html
-{markdown}
+{pad:markdown}
   ## Release notes for {$version}
   - **Faster** first render
   - see [the manual](?manual)
-{/markdown}
+{/pad:markdown}
 
-{markdown $post.body/}
-{markdown html} ... {/markdown}
-{markdown ignore} ... code with braces ... {/markdown}
+{pad:markdown $post.body/}
+{pad:markdown html} ... {/pad:markdown}
+{pad:markdown ignore} ... code with braces ... {/pad:markdown}
 ```
 
 **Behavior:** The content renders first - its fields and tags resolve - and the result is read
@@ -1393,66 +1392,66 @@ shown, not run. See also the `markdown` pipe in FUNCTIONS.md.
 ---
 
 ### chart
+Subsystem syntax: `{chart:kind ...}`.
 Draw a chart as inline SVG - no JavaScript, so it works in print and caches like any output;
 with `client` the browser draws the same SVG from the rows the server hands it.
 
 ```html
-{chart 'bar', data='sales', label='month', value='amount'/}
-{chart 'line', data='visits', value='count', title='Visits this week'/}
-{chart 'bar', sequence='fibonacci', rows=12/}
-{chart 'bar', data='sales', label='month', value='online, shop', stacked/}
-{chart 'pie', data='budget', label='post', value='amount'/}
-{chart 'scatter', data='cars', x='weight', y='mpg', color='origin', trend/}
-{chart 'heatmap', data='visits', x='hour', y='day', value='count'/}
-{chart 'sankey', data='energy', source='from', target='to', value='amount'/}
-{chart 'network', data='friends', source='from', target='to', layout='radial'/}
-{chart 'treemap', data='spend', levels='dept', label='post', value='amount'/}
-{chart 'gauge', value=72, label='Disk in use', unit='%', bands='60, 85', target=80/}
-{chart 'radar', data='phones', label='model', value='battery, camera, screen, speed'/}
-{chart 'waterfall', data='result', label='step', value='amount', total='Profit'/}
-{chart 'histogram', data='people', value='height', bins=12/}
-{chart 'boxplot', data='salaries', label='team', value='salary'/}
-{chart 'calendar', data='commits', date='day', value='count', year=2026/}
-{chart 'gantt', data='plan', label='task', from='begin', to='until', progress='done'/}
-{chart 'area', data='energy', label='year', value='coal, gas, wind, solar', stacked/}
-{chart 'stream', data='listening', label='month', value='pop, rock, jazz'/}
-{chart 'multiples', data='climate', by='city', label='month', value='temperature'/}
-{chart 'candlestick', data='share', label='day', volume='volume'/}
-{chart 'dual', data='results', label='month', value='revenue', line='margin'/}
-{chart 'dumbbell', data='scores', label='team', from='before', to='after', names='2025, 2026', ranked/}
-{chart 'errorbar', data='trial', label='dose', value='mean', low='lower', high='upper', interval='95% CI'/}
-{chart 'ecdf', data='trials', label='group', value='ms'/}
-{chart 'ridgeline', data='days', label='month', value='celsius', overlap=2/}
-{chart 'likert', data='survey', label='question', value='No, Maybe, Yes', ranked/}
-{chart 'hexbin', data='rides', x='km', y='euro', bins=24/}
-{chart 'spiral', data='sales', label='month', value='amount', turn='year'/}
-{chart 'rose', data='deaths', label='month', value='disease, wounds, other'/}
-{chart 'radialbar', data='funds', label='class', value='raised', to=5000/}
-{chart 'funnel', data='shop', label='step', value='visitors'/}
-{chart 'pyramid', data='people', label='age', value='men, women'/}
-{chart 'waffle', data='energy', label='use', value='kwh', cells=100/}
-{chart 'marimekko', data='market', label='region', value='alpha, beta, gamma, other'/}
-{chart 'parliament', data='election', label='party', value='seats'/}
-{chart 'venn', data='speakers', sets='speaks', value='students'/}
-{chart 'density', data='trials', label='group', value='ms'/}
-{chart 'violin', data='scores', label='class', value='score'/}
-{chart 'bullet', data='kpis', label='kpi', value='actual', target='goal', bands='50, 75'/}
-{chart 'rings', data='today', label='goal', value='done', to='target'/}
-{chart 'parallel', data='cars', value='mpg, cylinders, horsepower, weight', color='origin'/}
-{chart 'proportional', data='emissions', label='country', value='mt'/}
-{chart 'chord', data='migration', source='from', target='to', value='people'/}
-{chart 'arc', data='coauthors', source='author', target='with', value='papers'/}
-{chart 'pack', data='files', levels='folder', label='file', value='kb'/}
-{chart 'orgchart', data='staff', id='id', parent='boss', label='name', sub='role'/}
+{chart:bar data='sales', label='month', value='amount'/}
+{chart:line data='visits', value='count', title='Visits this week'/}
+{chart:bar sequence='fibonacci', rows=12/}
+{chart:bar data='sales', label='month', value='online, shop', stacked/}
+{chart:pie data='budget', label='post', value='amount'/}
+{chart:scatter data='cars', x='weight', y='mpg', color='origin', trend/}
+{chart:heatmap data='visits', x='hour', y='day', value='count'/}
+{chart:sankey data='energy', source='from', target='to', value='amount'/}
+{chart:network data='friends', source='from', target='to', layout='radial'/}
+{chart:treemap data='spend', levels='dept', label='post', value='amount'/}
+{chart:gauge value=72, label='Disk in use', unit='%', bands='60, 85', target=80/}
+{chart:radar data='phones', label='model', value='battery, camera, screen, speed'/}
+{chart:waterfall data='result', label='step', value='amount', total='Profit'/}
+{chart:histogram data='people', value='height', bins=12/}
+{chart:boxplot data='salaries', label='team', value='salary'/}
+{chart:calendar data='commits', date='day', value='count', year=2026/}
+{chart:gantt data='plan', label='task', from='begin', to='until', progress='done'/}
+{chart:area data='energy', label='year', value='coal, gas, wind, solar', stacked/}
+{chart:stream data='listening', label='month', value='pop, rock, jazz'/}
+{chart:multiples data='climate', by='city', label='month', value='temperature'/}
+{chart:candlestick data='share', label='day', volume='volume'/}
+{chart:dual data='results', label='month', value='revenue', line='margin'/}
+{chart:dumbbell data='scores', label='team', from='before', to='after', names='2025, 2026', ranked/}
+{chart:errorbar data='trial', label='dose', value='mean', low='lower', high='upper', interval='95% CI'/}
+{chart:ecdf data='trials', label='group', value='ms'/}
+{chart:ridgeline data='days', label='month', value='celsius', overlap=2/}
+{chart:likert data='survey', label='question', value='No, Maybe, Yes', ranked/}
+{chart:hexbin data='rides', x='km', y='euro', bins=24/}
+{chart:spiral data='sales', label='month', value='amount', turn='year'/}
+{chart:rose data='deaths', label='month', value='disease, wounds, other'/}
+{chart:radialbar data='funds', label='class', value='raised', to=5000/}
+{chart:funnel data='shop', label='step', value='visitors'/}
+{chart:pyramid data='people', label='age', value='men, women'/}
+{chart:waffle data='energy', label='use', value='kwh', cells=100/}
+{chart:marimekko data='market', label='region', value='alpha, beta, gamma, other'/}
+{chart:parliament data='election', label='party', value='seats'/}
+{chart:venn data='speakers', sets='speaks', value='students'/}
+{chart:density data='trials', label='group', value='ms'/}
+{chart:violin data='scores', label='class', value='score'/}
+{chart:bullet data='kpis', label='kpi', value='actual', target='goal', bands='50, 75'/}
+{chart:rings data='today', label='goal', value='done', to='target'/}
+{chart:parallel data='cars', value='mpg, cylinders, horsepower, weight', color='origin'/}
+{chart:proportional data='emissions', label='country', value='mt'/}
+{chart:chord data='migration', source='from', target='to', value='people'/}
+{chart:arc data='coauthors', source='author', target='with', value='papers'/}
+{chart:pack data='files', levels='folder', label='file', value='kb'/}
+{chart:orgchart data='staff', id='id', parent='boss', label='name', sub='role'/}
 ```
 
 **Kinds:**
 
 A kind is a file of `pad/subs/charts/types/` - its default size and the function that draws it -
 and the files there are the kinds there are; a kind is added by adding its file. The parameter
-names it, or the chart type does: `{chart:pie data='budget'/}` is `{chart 'pie', data='budget'/}`,
-and so is the bare `{pie data='budget'/}` when no tag, store, field or sequence has the name.
-`{sparkline/}` is the sparkline kind. The reference application lists the kinds, each with the
+names it, or the chart type does: `{chart:pie data='budget'/}` is `{chart:pie data='budget'/}`.
+`{chart:sparkline/}` is the sparkline kind. The reference application lists the kinds, each with the
 pages that draw it.
 
 | Kind | Draws | Its options |
@@ -1508,20 +1507,20 @@ pages that draw it.
 | `sparkline` | See below | `label`, `value` |
 
 **As a pair** the content between the tags is the data, when neither `data` nor `sequence`
-names it - JSON, YAML, XML or CSV, recognised on sight as `{data}` recognises it (`type=`
+names it - JSON, YAML, XML or CSV, recognised on sight as `{pad:data}` recognises it (`type=`
 names it outright). The content is read before the level walks it, so the braces of JSON need
-no `{ignore}`, and the indent it shares under the tag is taken off:
+no `{pad:ignore}`, and the indent it shares under the tag is taken off:
 
 ```html
-{chart 'bar', label='month', value='amount'}
+{chart:bar label='month', value='amount'}
   month,amount
   Jan,12400
   Feb,9500
-{/chart}
+{/chart:bar}
 
-{sparkline}
+{chart:sparkline}
   [ 3, 1, 4, 1, 5, 9 ]
-{/sparkline}
+{/chart:sparkline}
 ```
 
 A field option left out takes the first field of the first row that fits - a numeric one for
@@ -1531,7 +1530,7 @@ is one that nothing reads under the strict check. The handling options (`row`, `
 
 | Option | Description |
 |--------|-------------|
-| `data` | The rows: a `{data}` store, a sequence store, the page's array or a `_data` file of that name, or a literal (`data='[3,1,4]'`); without it, the content of a pair |
+| `data` | The rows: a `{pad:data}` store, a sequence store, the page's array or a `_data` file of that name, or a literal (`data='[3,1,4]'`); without it, the content of a pair |
 | `type` | For a pair: the format of its content - `json`, `yaml`, `xml`, `csv` - when it is not to be recognised on sight |
 | `sequence` | Plot the first `rows` terms (default 10) of a sequence type instead |
 | `value` | The field that holds the number - by default the first numeric field; a comma list draws a series each (eight at most) |
@@ -1559,11 +1558,11 @@ gets the dark steps in dark mode.
 A word-sized line chart: no axes, the last point marked.
 
 ```html
-Visits {sparkline data='visits', value='count'/}
-{sparkline sequence='fibonacci', rows=12/}
+Visits {chart:sparkline data='visits', value='count'/}
+{chart:sparkline sequence='fibonacci', rows=12/}
 ```
 
-**Behavior:** `{chart 'sparkline', ...}` by another name, with the same options; 120 x 32 by
+**Behavior:** `{chart:sparkline ...}` by another name, with the same options; 120 x 32 by
 default, scaled to its own minimum and maximum.
 
 ---
@@ -1571,12 +1570,12 @@ default, scaled to its own minimum and maximum.
 ### qr
 A QR code as inline SVG - encoded on the server (`subs/codes/_lib/qr.php`), no image library, no remote
 service, no JavaScript. The `qr` symbology of the codes subsystem by a tag of its own: the same
-code as `{barcode:qr 'text'/}` and `{barcode 'text', type='qr'/}`.
+code as `{barcode:qr 'text'/}` and `{barcode:qr 'text'/}`.
 
 ```html
-{qr 'https://example.com/order/42'/}
-{qr $url, size=200, level='H', title='Open the order on your phone'/}
-{qr 'WIFI:T:WPA;S:Office;P:secret;;', color='#2e7d32'/}
+{barcode:qr 'https://example.com/order/42'/}
+{barcode:qr $url, size=200, level='H', title='Open the order on your phone'/}
+{barcode:qr 'WIFI:T:WPA;S:Office;P:secret;;', color='#2e7d32'/}
 ```
 
 | Option | Description |
@@ -1596,31 +1595,32 @@ check, and writes nothing.
 ---
 
 ### barcode
+Subsystem syntax: `{barcode:kind ...}`.
 A barcode as inline SVG, encoded on the server by the codes subsystem (`pad/subs/codes/`): a
 symbology is a file of `pad/subs/codes/types/` - `ean13`, `ean8`, `upca`, `upce`, `code128`,
-`code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `bookland`, `databar`, `qr`, `datamatrix`, `aztec` and `pdf417` - and `type=` names
-it. The barcode type writes a symbology by its name, `{barcode:upce '0425261'/}`, and so does
-the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequence has it.
+`code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `bookland`, `databar`, `qr`, `datamatrix`, `aztec` and `pdf417`.
+The name after the colon selects the symbology: `{barcode:upce '0425261'/}`.
+`{barcode:auto $code/}` chooses EAN-13 for twelve or thirteen digits and Code 128 otherwise.
 
 ```html
-{barcode '871234567890'/}                          <!-- EAN-13, the check digit added -->
-{barcode $parcel, type='code128', height=70/}
-{barcode '03600029145', type='upca'/}
-{barcode 'PAD', scale=3, plain, color='#2e7d32'/}
+{barcode:auto '871234567890'/}                          <!-- EAN-13, the check digit added -->
+{barcode:code128 $parcel, height=70/}
+{barcode:upca '03600029145'/}
+{barcode:auto 'PAD', scale=3, plain, color='#2e7d32'/}
 {barcode:upce '04210000526'/}                      <!-- a UPC-A in its short form: 04252614 -->
-{code39 'PAD-2026', check/}
-{datamatrix 'PAD-2026-0042', size=120/}
-{gs1128 '(01)09501101530003(17)261231(10)AB-123'/}   <!-- GS1-128, FNC1 where GS1 wants it -->
-{aztec $ticket, size=150/}                         <!-- Aztec Code, a bullseye in the middle -->
-{pdf417 $boardingPass, columns=6/}                 <!-- PDF417, rows of codewords -->
-{bookland '978-0-306-40615-7', addon='51995'/}    <!-- a book's ISBN, its price in an add-on -->
-{databar '09501101530003'/}                        <!-- GS1 DataBar Omnidirectional -->
+{barcode:code39 'PAD-2026', check/}
+{barcode:datamatrix 'PAD-2026-0042', size=120/}
+{barcode:gs1128 '(01)09501101530003(17)261231(10)AB-123'/}   <!-- GS1-128, FNC1 where GS1 wants it -->
+{barcode:aztec $ticket, size=150/}                         <!-- Aztec Code, a bullseye in the middle -->
+{barcode:pdf417 $boardingPass, columns=6/}                 <!-- PDF417, rows of codewords -->
+{barcode:bookland '978-0-306-40615-7', addon='51995'/}    <!-- a book's ISBN, its price in an add-on -->
+{barcode:databar '09501101530003'/}                        <!-- GS1 DataBar Omnidirectional -->
 ```
 
 | Option | Description |
 |--------|-------------|
 | first parameter | The number or text |
-| `type` | The symbology, a file of `pad/subs/codes/types/`; left out, twelve or thirteen digits are an EAN-13 and anything else Code 128 |
+| `barcode:kind` | The symbology selected by the qualified name. `barcode:auto` chooses EAN-13 for twelve or thirteen digits and Code 128 otherwise. |
 | `height` | The height of the bars in pixels, default 60 |
 | `scale` | The width of one module (the thinnest bar) in pixels, default 2 |
 | `title` | The accessible name, by default the code |
@@ -1629,7 +1629,7 @@ the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequenc
 | `check` | Bare, `code39`: the check symbol of modulo 43; `itf`: the check digit of weights 3 and 1. `msi`: `mod10` (default), `mod1010` or `none` |
 | `size` | `qr`, `datamatrix` and `aztec`: the width and height in pixels, default 160 - in place of `height`, `scale` and `plain` |
 | `ecc` | `aztec`: the error correction in percent of the codewords, 3 more always added - 23 unless given, 5 to 90 |
-| `level` | `qr`: the error correction, as `{qr}` takes it; `pdf417`: 0 to 8, by default the standard's recommendation for the size of the data - past its 863 codewords the largest level that holds them |
+| `level` | `qr`: the error correction, as `{barcode:qr}` takes it; `pdf417`: 0 to 8, by default the standard's recommendation for the size of the data - past its 863 codewords the largest level that holds them |
 | `columns` | `pdf417`: the data columns, 1 to 30 - by default about three times as wide as high |
 | `addon` | `ean13`, `upca`, `upce` and `bookland`: the 2 or 5 digits of an add-on, a small symbol right of the bars |
 | `gs1` | Bare, `datamatrix`: GS1 DataMatrix - the text GS1 element strings as `gs1128` takes them, FNC1 first and as the separator |
@@ -1646,7 +1646,7 @@ digits), `itf14` the GS1 carton number between bearer bars, `codabar` digits and
 between start and stop letters A to D (A at both ends when the text has none), `msi` digits
 with a Luhn check digit. `datamatrix` is Data Matrix ECC 200 in the smallest of its 24 square
 sizes, 10 by 10 to 144 by 144 modules, a text beyond ASCII marked as UTF-8 by its ECI
-designator; `qr` the QR code of `{qr}`. A wrong check digit, a wrong
+designator; `qr` the QR code of `{barcode:qr}`. A wrong check digit, a wrong
 length, a character the symbology cannot hold, a text too long for it or an unknown type is an
 error under the strict check, and writes nothing.
 `gs1128` takes GS1 element strings, each AI in parentheses (or square brackets) before its
@@ -1671,27 +1671,27 @@ its check digit, `(01)` in front or not, as the GTIN-14 in 96 modules, its check
 A month as a calendar, with its events (`tags/_lib/calendar.php`).
 
 ```html
-{calendar}                                                   <!-- this month -->
-{calendar '2026-10', data='agenda', date='when', title='what', link='url'/}
-{calendar data='agenda'}
-  <tr>{days}<td class="{$class}">{$day}{events}<b>{$what}</b>{/events}</td>{/days}</tr>
-{/calendar}
+{pad:calendar}                                                   <!-- this month -->
+{pad:calendar '2026-10', data='agenda', date='when', title='what', link='url'/}
+{pad:calendar data='agenda'}
+  <tr>{data:days}<td class="{$class}">{$day}{array:events}<b>{$what}</b>{/array:events}</td>{/data:days}</tr>
+{/pad:calendar}
 ```
 
 | Option | Description |
 |--------|-------------|
 | first parameter | The month, `2026-10`; else the request value named by `query`, else this month (`padNow`, so `padNowFreeze` holds it) |
-| `data` | The events: a `{data}` store, a page array or a `_data` file, as for `{chart}` |
+| `data` | The events: a `{pad:data}` store, a page array or a `_data` file, as for `{chart:bar}` |
 | `date` | The field with an event's date - by default the first field that reads as one |
 | `title` | The field with an event's text - by default the first other text field |
 | `link` | A field with a link for the event - http(s), a page or an anchor; never `javascript:` or `data:` |
 | `query` | The request value the links to the months around set, default `month` |
 | `sunday` | Weeks start on Sunday instead of Monday |
-| `holidays` | A country's public holidays marked - `'nl'`, or with its region `'de-by'` (see `{holidays}`): the day's class gets `holiday` (`observance` for a day that is no day off) and its name stands under the number - the local name when the request's locale speaks the country's language; the pair form's days get `$holiday`, the name or `''` - only with `holidays`, so without it a page's own `$holiday` is read there |
+| `holidays` | A country's public holidays marked - `'nl'`, or with its region `'de-by'` (see `{pad:holidays}`): the day's class gets `holiday` (`observance` for a day that is no day off) and its name stands under the number - the local name when the request's locale speaks the country's language; the pair form's days get `$holiday`, the name or `''` - only with `holidays`, so without it a page's own `$holiday` is read there |
 
 **Behavior:** as a single tag it answers a table - the month in its caption between links to
-the month before and after (keeping the other request values, as `{pager}` does; none when the
-first parameter fixes the month, unless it holds the month the request asked for - `{calendar $month}`), a column
+the month before and after (keeping the other request values, as `{pad:pager}` does; none when the
+first parameter fixes the month, unless it holds the month the request asked for - `{pad:calendar $month}`), a column
 per weekday, a cell per day with its `<time>` and its events as a list; today has
 `aria-current="date"`. A small default look rides along under `:where()`, so the page's CSS
 wins. As a pair it hands over the weeks as rows - `$week` (ISO number) and `days` - and
@@ -1706,15 +1706,15 @@ field of that name - `{level:events}` reaches it then.
 The public holidays of a country, from the rules of its file in `pad/subs/holidays/types/`.
 
 ```html
-{holidays 'nl', year=2026}{$date} {$name} ({$local}){/holidays}
-{holidays 'de-by', year=2026/}                             <!-- a table -->
-{holidays 'gb-sct', from='today', to='+6 months', where='$type eq "public"'}...{/holidays}
+{pad:holidays 'nl', year=2026}{$date} {$name} ({$local}){/pad:holidays}
+{pad:holidays 'de-by', year=2026/}                             <!-- a table -->
+{pad:holidays 'gb-sct', from='today', to='+6 months', where='$type eq "public"'}...{/pad:holidays}
 ```
 
 | Option | Description |
 |--------|-------------|
 | first parameter | The country, its ISO 3166-1 alpha-2 code in any case - at, be, br, ca, ch, cz, de, dk, es, fi, fr, gb, hu, ie, it, jp, lu, mx, nl, no, nz, pl, pt, ro, se, sk, us, za - with a region after it as ISO 3166-2 writes it, `'de-by'` |
-| `region` | The region apart: `{holidays 'de', region='by'}` - Germany's states, the United Kingdom's nations (`sct`, `nir`; `eng` and `wls` are the default), France's `57`, `67`, `68`, `971`-`976`, Finland's Åland (`01`), Portugal's Azores (`20`) and Madeira (`30`), New Zealand's provinces by their region's code (`auk`, `can`, `cit`, `hkb`, `mbh`, `nsn`, `ota`, `stl`, `tki`, `wgn`, `wtc`) |
+| `region` | The region apart: `{pad:holidays 'de', region='by'}` - Germany's states, the United Kingdom's nations (`sct`, `nir`; `eng` and `wls` are the default), France's `57`, `67`, `68`, `971`-`976`, Finland's Åland (`01`), Portugal's Azores (`20`) and Madeira (`30`), New Zealand's provinces by their region's code (`auk`, `can`, `cit`, `hkb`, `mbh`, `nsn`, `ota`, `stl`, `tki`, `wgn`, `wtc`) |
 | `year` | The year, 1583 to 9999 - default this year (`padNow`); a country whose file names the years it knows (New Zealand 2010 to 2052) only those |
 | `from`, `to` | The days between two dates instead of a year - any date `padDateParse` reads, `today`, `+3 months`; one alone is a year from it (or from today); `to` before `from` is an error under the strict check |
 | `lang` | The language of `local` for a country of more than one - be `nl fr de`, lu `lb fr de`, ch `de fr it`, ca `en fr`, fi `fi sv`; the first by default |
@@ -1736,11 +1736,11 @@ error under the strict check, and so is a year its file does not know. The helpe
 Source code coloured on the server (`lib/highlight.php`) - no JavaScript library.
 
 ```html
-{highlight 'php', lines, mark='3, 5-7'}
+{pad:highlight 'php', lines, mark='3, 5-7'}
   <?php echo padArrSum ( $orders, 'total' ); ?>
-{/highlight}
-{highlight file='_data/products.json'/}
-{echo $query | highlight('sql')/}
+{/pad:highlight}
+{pad:highlight file='_data/products.json'/}
+{pad:echo $query | highlight('sql')/}
 ```
 
 | Option | Description |
@@ -1751,7 +1751,7 @@ Source code coloured on the server (`lib/highlight.php`) - no JavaScript library
 | `mark` | Lines to set apart: `'4'`, `'3, 5-7'` |
 
 **Behavior:** the content is taken as it stands, before the level walks it - the braces of
-PHP, CSS, JSON or PAD itself need no `{ignore}` - with the indent its lines share taken off.
+PHP, CSS, JSON or PAD itself need no `{pad:ignore}` - with the indent its lines share taken off.
 A `{# comment #}` is gone before any tag sees it, so a PAD sample keeps none. Every piece is
 HTML-escaped and wrapped in `<span class="hl-...">` - `com`, `str`, `num`, `lit`, `kwd`,
 `key`, `var`, `tag`, `att`, `opt`, `brc`, `htm`, `fn`, `pun`, `def` - inside
@@ -1767,8 +1767,8 @@ the coloured text alone.
 The scripts and stylesheets of a Vite build, linked by the name of their source.
 
 ```html
-{vite 'src/main.js'/}                       <!-- the entry's CSS, its chunks preloaded, the script -->
-{vite 'src/main.jsx', 'src/admin.js', react/}
+{pad:vite 'src/main.js'/}                       <!-- the entry's CSS, its chunks preloaded, the script -->
+{pad:vite 'src/main.jsx', 'src/admin.js', react/}
 ```
 
 | Option | Description |
@@ -1785,7 +1785,7 @@ import is left to load when asked for. The addresses are `$padRoot`, the applica
 names it, or the file `hot` in the build directory holds its address (a `configureServer` hook
 writes it at start and removes it at stop) - the tags point at the dev server instead:
 `@vite/client`, then the sources as they are, for hot module replacement. A file goes out once a
-page, however many `{vite}` tags name it; a script carries the request's nonce when `$padCsp`
+page, however many `{pad:vite}` tags name it; a script carries the request's nonce when `$padCsp`
 asks for one. An entry the manifest does not have, and a build without a manifest while no dev
 server runs, are errors.
 
@@ -1796,10 +1796,10 @@ The shadow root of a custom element, rendered on the server - declarative shadow
 
 ```html
 <pad-card>
-  {shadow css='www:card.css'}
+  {pad:shadow css='www:card.css'}
     <header><slot name="title"></slot></header>
     <slot></slot>
-  {/shadow}
+  {/pad:shadow}
   <h2 slot="title">{$title}</h2>
 </pad-card>
 ```
@@ -1816,20 +1816,20 @@ styles, slotted light DOM - before any script ran, and a module that defines the
 finds the root in `this.shadowRoot`. A shadow root takes no styles from the page, and a
 `<style>` written in a template would have its braces read as PAD tags: `css=` inlines the files
 instead, each read once a request, a `</style` in one written so it cannot end the element. The
-file rule of `{source}` applies; a file that is not there or is no `.css` file, and a mode that
-is neither open nor closed, are errors. Inside the pair `{#name}` is `{shadow}`'s own parameter -
-in a custom tag, `{set $value = {#value}/}` before the pair carries the tag's into it.
+file rule of `{pad:source}` applies; a file that is not there or is no `.css` file, and a mode that
+is neither open nor closed, are errors. Inside the pair `{#name}` is `{pad:shadow}`'s own parameter -
+in a custom tag, `{pad:set $value = {#value}/}` before the pair carries the tag's into it.
 
 ---
 
 ### source
-The files behind a page as tabs, each coloured as `{highlight}` colours it - the code shown
+The files behind a page as tabs, each coloured as `{pad:highlight}` colours it - the code shown
 is read from the files that run, so it never drifts from them.
 
 ```html
-{source}                                          the page asked for: its template and PHP
-{source 'examples/props', files='www:props.js'}   another page, then a file in www/<app>/
-{source only='_tags/card.pad, www:card.js'}       those files alone
+{pad:source}                                          the page asked for: its template and PHP
+{pad:source 'examples/props', files='www:props.js'}   another page, then a file in www/<app>/
+{pad:source only='_tags/card.pad, www:card.js'}       those files alone
 ```
 
 | Option | Description |
@@ -1841,7 +1841,7 @@ is read from the files that run, so it never drifts from them.
 **Behavior:** a radio button and a label per file, then a panel per file: the tabs work by
 CSS alone, no script. A label carries `data-side="server"` for a file of the application and
 `"client"` for one under `www/` - what runs on the server, what the browser gets. The rule of
-`{highlight file=}`: never a file outside the application or its `www/` directory, under
+`{pad:highlight file=}`: never a file outside the application or its `www/` directory, under
 `_config/` or a dotfile - such a file, one that is not there and a page that has neither a
 template nor PHP are errors. The default look - tabs, panels - is written once a page under
 `:where()`, so the page's CSS wins; style `.pad-source`, `.pad-source > label` and
@@ -1853,9 +1853,9 @@ template nor PHP are errors. The default look - tabs, panels - is written once a
 Escape PAD syntax in content.
 
 ```html
-{ignore}
+{pad:ignore}
   {this is not processed}
-{/ignore}
+{/pad:ignore}
 ```
 
 **Behavior:** Escapes content so PAD tags are not processed
@@ -1866,7 +1866,7 @@ Escape PAD syntax in content.
 Write HTML attributes - quoted, escaped, the false ones left out.
 
 ```html
-<button {attrs disabled=$busy, title=$help, aria-expanded=$open/}>Save</button>
+<button {pad:attrs disabled=$busy, title=$help, aria-expanded=$open/}>Save</button>
 ```
 
 **Items:** `name=expression`, a bare `name` (written as a bare attribute), or an expression
@@ -1890,7 +1890,7 @@ value - the text `false` stays `aria-expanded="false"`; an empty value is an emp
 Build a class list from fixed and conditional names.
 
 ```html
-<div class="{classes 'panel', active=$isActive, invalid=$hasErrors/}">
+<div class="{pad:classes 'panel', active=$isActive, invalid=$hasErrors/}">
 ```
 
 **Items:** an expression - a string of one or more names, or an array of them - is always
@@ -1903,9 +1903,9 @@ and escaped.
 A key of the `_lang/` catalogs, in the request's locale.
 
 ```html
-{trans 'cart.title'/}
-{trans 'cart.items', count=$n/}
-{trans 'greeting', name=$user, place='Utrecht'/}
+{pad:trans 'cart.title'/}
+{pad:trans 'cart.items', count=$n/}
+{pad:trans 'greeting', name=$user, place='Utrecht'/}
 ```
 
 **Parameters:** the key; `count=` picks the plural form and replaces `%d`; every other
@@ -1926,9 +1926,9 @@ and a key no catalog knows, is data and is written as `{$x}` writes a field - sa
 Keep a section of the page rendered - the fragment cache.
 
 ```html
-{cache 'top-products', ttl=300}
-  {topProducts}<li>{$name}</li>{/topProducts}
-{/cache}
+{pad:cache 'top-products', ttl=300}
+  {app:topProducts}<li>{$name}</li>{/app:topProducts}
+{/pad:cache}
 ```
 
 **Parameters:**
@@ -1943,16 +1943,16 @@ its evaluated parameters, and skips the tag's own handler on a hit. `$padFragmen
 selects the store (`'file'`, `'apcu'`, or `FALSE` to render every time);
 `padFragmentForget('top-products')` drops a section, `padFragmentForget()` all of them.
 PHP that runs before the template - the page's `.php` - runs on a hit too. What the section
-leaves for the rest of the page is kept with it and made again on a hit: its `{push}`es, and
-the page booking of a paged tag in it, for a `{pager}` further down. Otherwise a section keeps
-its text, not its effects: what it sets, stores or defines - a `{set}`, `{increment}` or
-`{decrement}`, a `{data}`, `{content}` or `{bool}` store, a `{define}` or `{macro}`, the totals
+leaves for the rest of the page is kept with it and made again on a hit: its `{pad:push}`es, and
+the page booking of a paged tag in it, for a `{pad:pager}` further down. Otherwise a section keeps
+its text, not its effects: what it sets, stores or defines - a `{pad:set}`, `{pad:increment}` or
+`{pad:decrement}`, a `{pad:data}`, `{pad:content}` or `{pad:bool}` store, a `{pad:define}` or `{pad:macro}`, the totals
 of a `callback=` - happens on the miss only, and on a hit the page goes on with the variables
-and stores this request has. Put such a tag before the section, or in a `{nocache}` part, which
+and stores this request has. Put such a tag before the section, or in a `{pad:nocache}` part, which
 renders every time. A request for one
 response fragment, or the post of a live region, renders the section and stores nothing. A
-rendering that holds the visitor's CSRF token (a `{form}`, `{csrf}`, a live region) or the
-request's `{nonce}` is not stored either: it renders every time. A `{nocache}` part of the
+rendering that holds the visitor's CSRF token (a `{pad:form}`, `{pad:csrf}`, a live region) or the
+request's `{pad:nonce}` is not stored either: it renders every time. A `{pad:nocache}` part of the
 section renders on every hit.
 
 ---
@@ -1961,14 +1961,14 @@ section renders on every hit.
 A part of a cached page or section that renders on every request, the hit included.
 
 ```html
-{cache 'top-products', ttl=300}
-  {topProducts}<li>{$name} {nocache}- {stock $id} left{/nocache}</li>{/topProducts}
-{/cache}
+{pad:cache 'top-products', ttl=300}
+  {app:topProducts}<li>{$name} {pad:nocache}- {app:stock $id} left{/pad:nocache}</li>{/app:topProducts}
+{/pad:cache}
 
-<p>Served at {nocache}{php:date 'H:i:s'/}{/nocache}</p>    the page cache keeps the page round it
+<p>Served at {pad:nocache}{php:date 'H:i:s'/}{/pad:nocache}</p>    the page cache keeps the page round it
 ```
 
-**Behavior:** where nothing caches, the content renders as any content does. Inside a `{cache}`
+**Behavior:** where nothing caches, the content renders as any content does. Inside a `{pad:cache}`
 section (or a tag's `cache=` option) that is rendering, and on a page the page cache may keep,
 the part is stored as its source: on a hit the stored rendering comes back with the part
 rendered again, and a part inside a loop gets the fields of its rows back as they were when it
@@ -1977,9 +1977,9 @@ a variable or store the cached text made before it is not there on a hit - the s
 its text, not its effects - so what a part reads is made before the section or in the part.
 A page-cache hit runs no PHP - not the page's, nor an `_inits.php` - so there a part sees what a
 request has without it: request and session values, the configuration, the `_lib` functions and
-the application's tags. The CSRF token of a `{form}` or the `{nonce}` in a part no longer keeps
+the application's tags. The CSRF token of a `{pad:form}` or the `{pad:nonce}` in a part no longer keeps
 a section out of the fragment cache - the part renders for each visitor. A page-cache entry with parts is never answered with a 304 from the entry alone, nor
-does a hit renew it. `{nocache}` takes no parameter.
+does a hit renew it. `{pad:nocache}` takes no parameter.
 
 ---
 
@@ -2000,7 +2000,7 @@ form closes at the first `#}` or `--}` after it.
 Render a mount point `<div>` for a React component, filled with data from a provider.
 
 ```html
-{reactData id='products', provider='products'/}
+{pad:reactData id='products', provider='products'/}
 ```
 
 **Parameters:**
@@ -2024,9 +2024,9 @@ An initials avatar as inline SVG - drawn on the server (`tags/_lib/avatar.php`),
 remote service: the same name is the same picture on every page and in every e-mail.
 
 ```html
-{avatar 'Herbert Jebbink'/}
-{avatar $name, size=32, shape='square'/}
-{users}{avatar $email, size=40/} {$name}{/users}
+{pad:avatar 'Herbert Jebbink'/}
+{pad:avatar $name, size=32, shape='square'/}
+{array:users}{pad:avatar $email, size=40/} {$name}{/array:users}
 ```
 
 **Parameters:**
@@ -2053,8 +2053,8 @@ A GitHub-style identicon as inline SVG - a symmetric 5 by 5 pattern and a colour
 hash of the value (`tags/_lib/identicon.php`): every account its own picture, nothing sent anywhere.
 
 ```html
-{identicon $email/}
-{identicon $user.id, size=32, title='Your identicon'/}
+{pad:identicon $email/}
+{pad:identicon $user.id, size=32, title='Your identicon'/}
 ```
 
 **Parameters:**
@@ -2079,9 +2079,9 @@ A grey image placeholder as inline SVG - crossing lines and the size or a text i
 service.
 
 ```html
-{placeholder '600x300', text='Hero image'/}
-{placeholder ratio='16:9', fluid/}
-{placeholder ratio='4:3', width=320/}
+{pad:placeholder '600x300', text='Hero image'/}
+{pad:placeholder ratio='16:9', fluid/}
+{pad:placeholder ratio='4:3', width=320/}
 ```
 
 **Parameters:**
@@ -2108,9 +2108,9 @@ line with its label and percentage (`tags/_lib/progress.php`); with `steps` a ro
 script, it prints.
 
 ```html
-{progress 72, max=100, label='Upload'/}
-{progress $done, label=$file, color='success', size='small'/}
-{progress 3, max=5, steps, label='Checkout'/}
+{pad:progress 72, max=100, label='Upload'/}
+{pad:progress $done, label=$file, color='success', size='small'/}
+{pad:progress 3, max=5, steps, label='Checkout'/}
 ```
 
 **Parameters:**
@@ -2138,9 +2138,9 @@ A score as stars (or hearts) in inline SVG - whole ones filled, a part of one cl
 score, the score said in words (`tags/_lib/rating.php`).
 
 ```html
-{rating 4.5, max=5/}
-{products}{$product} {rating $score, size=16/}{/products}
-{rating 3.75, icon='heart'/}
+{pad:rating 4.5, max=5/}
+{data:products}{$product} {pad:rating $score, size=16/}{/data:products}
+{pad:rating 3.75, icon='heart'/}
 ```
 
 **Parameters:**
@@ -2163,6 +2163,7 @@ unusable max or an unknown icon is an error under the strict check.
 ---
 
 ### icon
+Subsystem syntax: `{icon:kind ...}`.
 An interface icon from PAD's own set, drawn on a 24 by 24 grid as lines, circles and
 rectangles and written as inline SVG in the colour of the text around it - no icon font, no
 sprite, no request. The icon subsystem (`pad/subs/icons/`): an icon is a file of `pad/subs/icons/types/`,
@@ -2171,9 +2172,9 @@ files there are the icons there are; the icon type writes one by its name, `{ico
 names are never reached bare: they are the names of fields and pages too.
 
 ```html
-{icon 'arrow-right'/}
-<button>{icon 'trash', size=16/} Delete</button>
-<a href="?next">{icon 'chevron-right', label='Next page'/}</a>
+{icon:arrow-right/}
+<button>{icon:trash size=16/} Delete</button>
+<a href="?next">{icon:chevron-right label='Next page'/}</a>
 {icon:cloud-upload size=24/}
 ```
 
@@ -2181,7 +2182,7 @@ names are never reached bare: they are the names of fields and pages too.
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The name, a file of `pad/subs/icons/types/`: arrows and movement (`arrow-right`, `arrow-up-left`, `chevron-down`, `chevrons-right`, `chevrons-up`, `undo`, `redo`, `refresh`, `move`, `trending-up` ...), marks and shapes (`check`, `x`, `plus`, `info`, `alert`, `alert-circle`, `ban`, `star`, `heart`, `thumb-up`, `smile`, `shield`, `accessibility`, `rocket` ...), layout and text (`home`, `menu`, `grid`, `table`, `sidebar`, `split-pane`, `grip`, `search`, `zoom-in`, `settings`, `cog`, `palette`, `align-left`, `toggle-on` ...), text formatting (`bold`, `italic`, `underline`, `strikethrough`, `list-ordered`, `quote`), people and talk (`user`, `user-plus`, `user-minus`, `mail`, `chat`, `bell`, `wifi`, `wifi-off`, `rss`, `megaphone` ...), files and office (`file`, `file-text`, `file-plus`, `folder`, `folder-plus`, `pin`, `link-off`, `save`, `clipboard`, `paperclip`, `book`, `qr-code`, `barcode` ...), media (`play`, `pause`, `mic`, `volume`, `mute`, `music`, `video` ...), devices and code (`monitor`, `laptop`, `cpu`, `server`, `hard-drive`, `scan`, `bug`, `git-branch`, `git-commit`, `git-merge`, `git-compare`, `code`, `terminal`, `database` ...), money and trade (`cart`, `store`, `receipt`, `credit-card`, `wallet`, `package`, `truck`, `chart-line`, `chart-pie` ...), time, places and nature (`calendar`, `calendar-range`, `clock`, `history`, `map`, `compass`, `sun`, `cloud-rain`, `leaf`, `flame` ...) - `padIconNames ()` lists them all |
+| `icon:name` | The name, a file of `pad/subs/icons/types/`: arrows and movement (`arrow-right`, `arrow-up-left`, `chevron-down`, `chevrons-right`, `chevrons-up`, `undo`, `redo`, `refresh`, `move`, `trending-up` ...), marks and shapes (`check`, `x`, `plus`, `info`, `alert`, `alert-circle`, `ban`, `star`, `heart`, `thumb-up`, `smile`, `shield`, `accessibility`, `rocket` ...), layout and text (`home`, `menu`, `grid`, `table`, `sidebar`, `split-pane`, `grip`, `search`, `zoom-in`, `settings`, `cog`, `palette`, `align-left`, `toggle-on` ...), text formatting (`bold`, `italic`, `underline`, `strikethrough`, `list-ordered`, `quote`), people and talk (`user`, `user-plus`, `user-minus`, `mail`, `chat`, `bell`, `wifi`, `wifi-off`, `rss`, `megaphone` ...), files and office (`file`, `file-text`, `file-plus`, `folder`, `folder-plus`, `pin`, `link-off`, `save`, `clipboard`, `paperclip`, `book`, `qr-code`, `barcode` ...), media (`play`, `pause`, `mic`, `volume`, `mute`, `music`, `video` ...), devices and code (`monitor`, `laptop`, `cpu`, `server`, `hard-drive`, `scan`, `bug`, `git-branch`, `git-commit`, `git-merge`, `git-compare`, `code`, `terminal`, `database` ...), money and trade (`cart`, `store`, `receipt`, `credit-card`, `wallet`, `package`, `truck`, `chart-line`, `chart-pie` ...), time, places and nature (`calendar`, `calendar-range`, `clock`, `history`, `map`, `compass`, `sun`, `cloud-rain`, `leaf`, `flame` ...) - `padIconNames ()` lists them all |
 | `size` | Width and height in pixels, default 20 |
 | `label` | The accessible name: the icon becomes `role="img"` with `aria-label` and `<title>` |
 | `stroke` | The line width on the 24-unit grid, default 2 |
@@ -2200,8 +2201,8 @@ SHA-256 hash of the address leaves the page - or, with `fallback`, a local SVG d
 server and no request to a third party at all.
 
 ```html
-{gravatar $email, size=64, default='identicon', alt=$name/}
-{gravatar $email, fallback='avatar', alt=$name/}
+{pad:gravatar $email, size=64, default='identicon', alt=$name/}
+{pad:gravatar $email, fallback='avatar', alt=$name/}
 ```
 
 **Parameters:**
@@ -2212,7 +2213,7 @@ server and no request to a third party at all.
 | `size` | Width and height in pixels, default 64; `srcset` asks twice that for a sharp screen |
 | `default` | What Gravatar shows for an unknown address: `mp` (default), `identicon`, `monsterid`, `wavatar`, `retro`, `robohash`, `blank`, `404`, or an `https://` image address |
 | `alt` | The image text - the person's name - default `Avatar` |
-| `fallback` | `avatar` draws the `{avatar}` initials of `alt` (or of the address) instead, `identicon` the `{identicon}` of the address - no `<img>`, no outside request |
+| `fallback` | `avatar` draws the `{pad:avatar}` initials of `alt` (or of the address) instead, `identicon` the `{pad:identicon}` of the address - no `<img>`, no outside request |
 
 **Behavior:** the image is `https://www.gravatar.com/avatar/<sha256>?s=<size>&d=<default>` with
 `width`/`height`, `loading="lazy"`, `decoding="async"` and `referrerpolicy="no-referrer"`, class
@@ -2223,6 +2224,7 @@ A missing address, an unknown default or fallback is an error under the strict c
 ---
 
 ### notation
+Subsystem syntax: `{notation:kind ...}`.
 A text written in a notation, drawn on the server: a formula in AsciiMath, a chemical equation,
 a tune in ABC, a guitar chord, notes on a piano, braille, morse, semaphore, signal flags, a chess,
 go or draughts position, a guitar tab, a Karnaugh map, a bridge deal, a juggling pattern, the moves of a cube. Every notation is a file of `pad/subs/notations/types/`, its functions
@@ -2232,30 +2234,28 @@ with the CSP nonce - and the files of `types/` are the notations there are; the 
 same text.
 
 ```html
-{notation 'braille', 'Hello'/}                     # the tag: the kind, then its text
+{notation:braille 'Hello'/}                     # the tag: the kind, then its text
 {notation:math}x = (-b +- sqrt(b^2-4ac))/(2a){/notation:math}   # the notation: type, text between the tags
-{math 'sum_(i=1)^n i = (n(n+1))/2', display='block'/}           # bare
-{chem 'CH4 + 2O2 -> CO2 + 2H2O'/}
-{abc}X:1 ... K:G ... {/abc}
-{notation:chord 'Am', instrument='ukulele'/}       # bare {chord} is the charts' chord diagram
-{piano 'C4 E4 G4'/}  {piano 'Dm7'/}
-{morse 'SOS'/}  {semaphore 'PAD'/}  {signals 'PAD'/}
-{chess 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'/}
-{go '(;SZ[9]AB[cc][gc]AW[cg];B[ee];W[ec])', numbers/}
-{draughts 'W:W31-50:B1-20'/}
-{tablature}e|--0--3--|{/tablature}             # a tab as players write it, a line a string
-{karnaugh 'm(6, 8, 9, 10, 11, 12, 13, 14) + d(15)'/}    # minterms, maxterms, a truth table or an expression
-{bridge 'N:.63.AKQ987.A9732 A8654.KQ5.T.QJT6 J973.J98742.3.K4 KQT2.AT.J6542.85', dealer='N', points/}
-{siteswap '531'/}  {siteswap '(4,2x)(2x,4)'/}             # juggling patterns as a ladder diagram
-{cube "R U R' U' R' F R2 U' R' U' R U R' F'", case, view='cube'/}   # WCA cube notation
+{notation:math 'sum_(i=1)^n i = (n(n+1))/2', display='block'/}           # explicit kind
+{notation:chem 'CH4 + 2O2 -> CO2 + 2H2O'/}
+{notation:abc}X:1 ... K:G ... {/notation:abc}
+{notation:chord 'Am', instrument='ukulele'/}       # {chart:chord} is the charts' chord diagram
+{notation:piano 'C4 E4 G4'/}  {notation:piano 'Dm7'/}
+{notation:morse 'SOS'/}  {notation:semaphore 'PAD'/}  {notation:signals 'PAD'/}
+{notation:chess 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'/}
+{notation:go '(;SZ[9]AB[cc][gc]AW[cg];B[ee];W[ec])', numbers/}
+{notation:draughts 'W:W31-50:B1-20'/}
+{notation:tablature}e|--0--3--|{/notation:tablature}             # a tab as players write it, a line a string
+{notation:karnaugh 'm(6, 8, 9, 10, 11, 12, 13, 14) + d(15)'/}    # minterms, maxterms, a truth table or an expression
+{notation:bridge 'N:.63.AKQ987.A9732 A8654.KQ5.T.QJT6 J973.J98742.3.K4 KQT2.AT.J6542.85', dealer='N', points/}
+{notation:siteswap '531'/}  {notation:siteswap '(4,2x)(2x,4)'/}             # juggling patterns as a ladder diagram
+{notation:cube "R U R' U' R' F R2 U' R' U' R U R' F'", case, view='cube'/}   # WCA cube notation
 ```
 
-A notation is written three ways, the same drawing each time: the tag, `{notation 'math', 'a/b'/}`,
-whose second parameter is the kind's own text; the notation: type, `{notation:math 'a/b'/}`; and
-bare, `{math 'a/b'/}`, after every other kind of tag. Without the text as a parameter the content
+Select a notation with its qualified name, such as `{notation:math 'a/b'/}`. Its first parameter is the text. Without the text as a parameter the content
 between the tags is the text, taken as written before the level walks it, so the braces of
-AsciiMath - `{(x, if x >= 0),(-x, if x < 0):}` - and the brackets of SGF need no `{ignore}`. A
-field gives the text as a parameter, `{chess $fen/}`; a notation with nothing to draw answers
+AsciiMath - `{(x, if x >= 0),(-x, if x < 0):}` - and the brackets of SGF need no `{pad:ignore}`. A
+field gives the text as a parameter, `{notation:chess $fen/}`; a notation with nothing to draw answers
 nothing and its `@else@` shows.
 
 | Notation | Draws | Its options |
@@ -2269,7 +2269,7 @@ nothing and its `@else@` shows.
 | `morse` | The international Morse code of ITU-R M.1677-1 and its signal drawn to its timing | `plain` |
 | `semaphore` | Flag semaphore, a figure per letter | `size`, `title` |
 | `signals` | The flags and numeral pennants of the International Code of Signals | `size`, `title` |
-| `chess` | A position in FEN - the built-in tag `{chess}` as well, which comes before a field or store of its name | `flip`, `highlight`, `arrow`, `size`, `title` |
+| `chess` | A position in FEN, selected with `{notation:chess}` | `flip`, `highlight`, `arrow`, `size`, `title` |
 | `go` | A game record in SGF played out on 9, 13 or 19 lines, captures taken off | `numbers`, `move`, `plain`, `size`, `title` |
 | `draughts` | A position in the FEN of PDN, international 10 by 10 or 8 by 8 | `board` (`10`, `8`), `numbers`, `flip`, `highlight`, `size`, `title` |
 | `bridge` | A deal of contract bridge in the Deal tag of PBN 2.1 - the first seat and a colon, the four hands clockwise, suits apart by dots, `-` a hand not shown - as a bridge column's diagram: North on top, each suit from the ace down, the compass with the dealer ringed and the vulnerable sides red; every hand said card by card; a card twice, a rank that is none, hands of other sizes checked | `dealer` (`n`, `e`, `s`, `w`), `vulnerable` (`none`, `ns`, `ew`, `all` - PBN's `love`, `-`, `both` too), `points`, `title` |
@@ -2302,42 +2302,38 @@ UTF-8 is a character no notation has a sign for.
 ---
 
 ### chess
-A chess position from FEN as inline SVG - the chess notation of `{notation}` above, kept a
-built-in tag (`tags/chess.php`): `{chess}` comes before a field, a data store, a snippet or a
-`_data` file named chess, where the bare name of a notation comes after them all, and
-`{pad:chess}` names it. The FEN is the first parameter or the content between the tags; the
+A chess position from FEN as inline SVG, selected with `{notation:chess}`. The FEN is the first parameter or the content between the tags; the
 options and the drawing are those of the chess notation.
 
 ```html
-{chess $fen, flip, highlight='d1, d8', arrow='g5-d8'/}
-{chess '8/8/8/4k3/8/8/4K3/8', size=240, title='Opposition'/}
+{notation:chess $fen, flip, highlight='d1, d8', arrow='g5-d8'/}
+{notation:chess '8/8/8/4k3/8/8/4K3/8', size=240, title='Opposition'/}
 ```
 
 ---
 
 ### game
+Subsystem syntax: `{game:kind ...}`.
 A little game played in the browser: the server checks what the game is given and writes its
 board, the game's script - once per page, with the CSP nonce - plays it. Every game is a file of
 `pad/subs/games/types/`, its `.js` and `.css` in `www/assets/games/`, and the files of `types/` are
 the games there are (`padGameTypes()`); the subsystem is `pad/subs/games/`.
 
 ```html
-{game 'memory', pairs=6/}
+{game:memory pairs=6/}
 {game:tictactoe opens='computer'/}
-{sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'/}
-{sudoku givens=26, seed=7/}
-{crossword}
+{game:sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'/}
+{game:sudoku givens=26, seed=7/}
+{game:crossword}
   ECHO: Writes a value without the sanitize chain
   PIPE: The | that hands a value to a function
-{/crossword}
-{quiz}
+{/game:crossword}
+{game:quiz}
   Which tag repeats its content? | while | if | set
-{/quiz}
+{/game:quiz}
 ```
 
-A game is written three ways, the same game each time: the tag, `{game 'memory'/}`; the game:
-type, `{game:memory/}`; and bare, `{memory/}`, when no tag, store, field or sequence has the
-name. The words, clues, questions, symbols or picture a game takes stand between its tags, a
+Select a game by its qualified name, `game:kind`. The words, clues, questions, symbols or picture a game takes stand between its tags, a
 line each - taken as they are written, so they may hold braces - or come from a store named by
 `data=`, or as a comma list in its first value.
 
@@ -2384,6 +2380,7 @@ down, on the smallest grid; a word that fits nowhere is left out and named under
 ---
 
 ### toy
+Subsystem syntax: `{toy:kind ...}`.
 A small live simulation or visual toy played in the browser: the server checks the options it is
 given and writes its frame, the toy's script - once per page, with the CSP nonce - runs it. Every
 toy is a file of `pad/subs/toys/types/`, its `.js` (and a `.css` when it needs one) in
@@ -2391,25 +2388,24 @@ toy is a file of `pad/subs/toys/types/`, its `.js` (and a `.css` when it needs o
 subsystem is `pad/subs/toys/`.
 
 ```html
-{toy 'life', pattern='gun', wrap/}
+{toy:life pattern='gun', wrap/}
 {toy:mandelbrot center='-0.745, 0.11', zoom=40, palette='fire'/}
-{sorting race, bars=40/}
-{boids birds=300, seed=7/}
-{life}
+{toy:sorting race, bars=40/}
+{toy:boids birds=300, seed=7/}
+{toy:life}
   .O.
   ..O
   OOO
-{/life}
-{lsystem}
+{/toy:life}
+{toy:lsystem}
   axiom: X
   X: F[+X]F[-X]+X
   F: FF
   angle: 20
-{/lsystem}
+{/toy:lsystem}
 ```
 
-A toy is written three ways, the same toy each time: the tag, `{toy 'life'/}`; the toy: type,
-`{toy:life/}`; and bare, `{life/}`, when no tag, store, field or sequence has the name. The pattern
+Select a toy by its qualified name, `toy:kind`. The pattern
 of a Game of Life, the rules of an L-system and the x,y points of an epicycles drawing stand between
 its tags, a line each - taken as they
 are written, so they may hold braces; an L-system's first value names one of its systems.
@@ -2453,22 +2449,22 @@ is none are errors under the strict check.
 ---
 
 ### sound
+Subsystem syntax: `{sound:kind ...}`.
 A short sound made from a recipe and played by the browser - a chime, a pop, a coin, a drum.
 Every sound is a file of `pad/subs/sounds/types/` that returns its recipe, a PHP array, and the
 files there are the sounds there are (`padSoundKinds()`); the subsystem is `pad/subs/sounds/`.
 
 ```html
 {sound:chime/}
-{sound 'pop', button='Pop!', volume=60/}
+{sound:pop button='Pop!', volume=60/}
 {sound:success on='click', target='#save'/}
 {sound:tick on='hover', target='nav a'/}
 <button data-pad-sound="coin">Coin</button>
 {sound:bell download/}
-{toast 'Saved', sound='success'/}
+{widget:toast 'Saved', sound='success'/}
 ```
 
-A sound is written two ways, the same sound each time: the tag, `{sound 'chime'/}`, and the sound:
-type, `{sound:chime/}`; never bare. Without `target=` it writes a button that plays the sound,
+Select a sound by its qualified name, `sound:kind`. Without `target=` it writes a button that plays the sound,
 named after the recipe's title or by `button=`; with `target=` - a CSS selector - it writes no
 button but plays the sound when an element the selector finds has the event `on=` names: `click`
 (the default), `pointerdown`, `hover`, `focus`, `change`, `input` or `submit` - the last three
@@ -2526,6 +2522,7 @@ are errors under the strict check.
 ---
 
 ### printable
+Subsystem syntax: `{printable:kind ...}`.
 Pages made for paper: the content between the tags is one item - a label, a badge, a ticket, a
 letter - rendered once per row of the data and laid out by its kind on sheets of paper. Every kind
 is a file of `pad/subs/printables/types/`, and the files there are the kinds there are
@@ -2533,16 +2530,15 @@ is a file of `pad/subs/printables/types/`, and the files there are the kinds the
 
 ```html
 {printable:labels data='products', sheet='a4-3x8'}<b>{$name}</b> {barcode:ean13 $ean/}{/printable:labels}
-{printable 'badges', data='guests', title='PAD Conference'}<h2>{$name}</h2>{$company}{/printable}
-{printable:tickets data='seats'}<h2>{$show}</h2>Row {$row}<aside>{qr $code/}</aside>{/printable:tickets}
+{printable:badges data='guests', title='PAD Conference'}<h2>{$name}</h2>{$company}{/printable:badges}
+{printable:tickets data='seats'}<h2>{$show}</h2>Row {$row}<aside>{barcode:qr $code/}</aside>{/printable:tickets}
 {printable:letter data='customers', sender='PAD, Main Street 1, 3511 AB Utrecht', pdf}
   <address>{$name}<br>{$street}<br>{$city}</address><aside>1 November 2026</aside>
   <p>Dear {$name},</p>
 {/printable:letter}
 ```
 
-A printable is written two ways, the same each time: the tag, `{printable 'labels'}...{/printable}`,
-and the printable: type, `{printable:labels}...{/printable:labels}`; never bare. The data comes as
+Select a printable by its qualified name, `printable:kind`. The data comes as
 for any tag - `data=`, `sort=`, `where=`, `first=` - and a level without rows renders its `@else@`
 half. Written as a single tag the printable has one item without content.
 
@@ -2570,15 +2566,15 @@ down) and `skip` (the first cells of a used sheet left empty); they and indexcar
 `padding`, `size` (points) and `align` for the text of their items, where the certificate, the
 envelope, the letter and the invoice take the `size` of their table above. **Every kind** takes
 `copies` (every item that many times, 5000 items at most), `scale` (the preview on the screen
-smaller, 0.1 to 3), `pdf` (the links of `{pdf preview}` in its bar: the page asked with `&padPdf`
-answers the sheets as a PDF, named by `file=` - no links inside a `{page}`, nor inside a `{pdf}`,
+smaller, 0.1 to 3), `pdf` (the links of `{pad:pdf preview}` in its bar: the page asked with `&padPdf`
+answers the sheets as a PDF, named by `file=` - no links inside a `{pad:page}`, nor inside a `{pad:pdf}`,
 whose document holds the sheets).
 
 **Behavior:** on the screen the sheets lie on a grey desk at their size in millimetres, the edges
 of the labels dashed, a bar above them with what they are, a Print button and the PDF links.
 Printed, a page with printables prints the sheets alone - the frame and the rest of the page out of
 the way - each on a named `@page` of its own size without a margin, the paper's colours kept. In a
-`{pdf}` the PDF writer reads the same plan from the `data-pdf-*` attributes: a sheet is a page of
+`{pad:pdf}` the PDF writer reads the same plan from the `data-pdf-*` attributes: a sheet is a page of
 its size, a box sets its content where the CSS puts it - clipped to it, moved to its middle,
 turned for a place card - with its text size, alignment and font; rectangles and lines are drawn,
 and so are the barcodes and QR codes of the codes subsystem; the sheets carry no page number. The
@@ -2595,9 +2591,9 @@ What changed between two texts - word by word in the flow of the text, or line b
 one column or side by side - with `<del>` and `<ins>` marked and styled (`tags/_lib/diff.php`).
 
 ```html
-{diff $draft, $final/}
-{diff $old, $new, lines, from='Monday', to='Friday'/}
-{diff $before, $after, side, from='before', to='after'/}
+{pad:diff $draft, $final/}
+{pad:diff $old, $new, lines, from='Monday', to='Friday'/}
+{pad:diff $before, $after, side, from='before', to='after'/}
 ```
 
 **Parameters:**
@@ -2625,9 +2621,9 @@ A long text cut to whole words with an ellipsis, centred on the first match of t
 words when given, every match in a `<mark>` (`tags/_lib/excerpt.php`).
 
 ```html
-{excerpt $post, words=40/}
-{results}<p>{excerpt $body, words=24, highlight=$q/}</p>{/results}
-{excerpt $page.html, words=30, html/}
+{pad:excerpt $post, words=40/}
+{data:results}<p>{pad:excerpt $body, words=24, highlight=$q/}</p>{/data:results}
+{pad:excerpt $page.html, words=30, html/}
 ```
 
 **Parameters:**
@@ -2655,9 +2651,9 @@ Placeholder text: "Lorem ipsum dolor sit amet, ..." and then Latin words, the sa
 every request for the same seed (`tags/_lib/lorem.php`).
 
 ```html
-<h2>{lorem words=4/}</h2>
-<p>{lorem sentences=2/}</p>
-{lorem paragraphs=3, seed=7, varied/}
+<h2>{pad:lorem words=4/}</h2>
+<p>{pad:lorem sentences=2/}</p>
+{pad:lorem paragraphs=3, seed=7, varied/}
 ```
 
 **Parameters:**
@@ -2673,31 +2669,32 @@ every request for the same seed (`tags/_lib/lorem.php`).
 **Behavior:** the words are picked from a Latin word list by the seeded sequence of
 `lib/fake.php` (`padFakeSeed`), the same on every machine; the sequence's state is put back
 afterwards, so a page that seeds `padFake*` for its own data gets the same values with or
-without a `{lorem}`. A comma now and then, never in the opening. A length that is no number
+without a `{pad:lorem}`. A comma now and then, never in the opening. A length that is no number
 from 1 to 10000, or `words` beside `sentences` or `paragraphs`, is an error under the strict
 check.
 
 ---
 
 ### fake
+Subsystem syntax: `{fake:kind ...}`.
 A fake value of a kind - a name, an email, a price, an IBAN - or rows of several kinds, for a
 prototype, a designer's preview or a demo page: the fake subsystem in `pad/subs/fakes/`, the values
 of `lib/fake.php`'s sequence.
 
 ```html
-{fake 'email'/}
+{fake:email/}
 {fake:city/}
-{fake 'number', from=1, to=6/}
-{fake 'name, email', rows=5, toData='people'/}
-{fake 'customer:name, total:price', rows=3, seed=7}<li>{$customer} {$total}</li>{/fake}
-{fake 'boolean', chance=30}On offer@else@Full price{/fake}
+{fake:number from=1, to=6/}
+{fake:rows 'name, email', rows=5, toData='people'/}
+{fake:rows 'customer:name, total:price', rows=3, seed=7}<li>{$customer} {$total}</li>{/fake:rows}
+{fake:boolean chance=30}On offer@else@Full price{/fake:boolean}
 ```
 
 **Parameters:**
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The kind, a file of `pad/subs/fakes/types/` - address, boolean, city, colour, company, country, currency, date, decimal, ean, email, firstname, iban, ip, ipv6, isbn, job, lastname, latitude, longitude, mac, name, number, paragraph, phone, postcode, price, product, sentence, slug, street, time, timezone, title, url, username, uuid, word - or several, `'name, email'`, a field each under its kind's name or as `'field:kind'` says. The fake type names one: `{fake:email/}` |
+| `fake:rows` first parameter | The field kinds, files of `pad/subs/fakes/types/` - address, boolean, city, colour, company, country, currency, date, decimal, ean, email, firstname, iban, ip, ipv6, isbn, job, lastname, latitude, longitude, mac, name, number, paragraph, phone, postcode, price, product, sentence, slug, street, time, timezone, title, url, username, uuid, word - or several, `'name, email'`, a field each under its kind's name or as `'field:kind'` says. The fake type names one: `{fake:email/}` |
 | `rows` | So many rows of the kinds, the level's data - iterated by the pair's content, kept by `toData=` |
 | `seed` | Values of their own seed: the rows `padFakeRows ( kinds, rows, seed )` gives |
 | `from`, `to` | number (0, 100), decimal (0, 1), price (1, 100): the range; date: two moments padDateParse reads (`-1 year`, `now`); time: two clock times (`08:00`, `18:00`) |
@@ -2711,10 +2708,10 @@ of `lib/fake.php`'s sequence.
 **Behavior:** one kind without `rows=` is the tag's value; several kinds, a pair or `rows=` are
 rows - a pair of one kind one row, `{$name}` inside - and a FALSE of boolean, like `rows=0`, is a
 miss, so its `@else@` shows. An email or a username in a row with a name is that person's, a slug in a row with a title that title's.
-Without `seed=` the `{fake}` tags of a request share a sequence of their own from one seed:
+Without `seed=` the `{fake:rows}` tags of a request share a sequence of their own from one seed:
 the page shows the same values on every request (a date relative to now moves with the day).
 The page's own sequence - its `padFakeSeed` and what it made - is put back afterwards, as
-`{lorem}` puts it back. The kinds are the files of `pad/subs/fakes/types/`, each a few lines that
+`{pad:lorem}` puts it back. The kinds are the files of `pad/subs/fakes/types/`, each a few lines that
 answer the value and read their options with `padFakeOpt`; a kind is added by adding its file.
 A kind there is none of, a field that is no plain name, `rows` that are no number from 0 to
 10000 and an option no kind of the tag reads are errors; `{fake:zebra/}` is "there is no fake
@@ -2725,6 +2722,7 @@ with `decimals=0`) and `decimals` that are no whole number from 0 to 10 are erro
 strict check; the lenient walk leaves the value out.
 
 ### widget
+Subsystem syntax: `{widget:kind ...}`.
 An interactive part of the page that works without JavaScript and gets better with it - tabs,
 an accordion, a carousel, a wizard, a lightbox, a modal, a drawer, a dropdown, a tooltip, a
 toast, a copy box, a poll, a breadcrumb, a split pane, a context menu, a command palette, a
@@ -2734,23 +2732,17 @@ script in `www/assets/widgets/`, and the files of `types/` are the widgets there
 (`padWidgetTypes()`); the subsystem is `pad/subs/widgets/`.
 
 ```html
-{widget 'tabs', active=2}{tab 'Overview'}...{/tab}{tab 'Specs'}...{/tab}{/widget}
-{widget 'modal', 'terms', title='Terms of sale'}...{/widget}
+{widget:tabs active=2}{pad:tab 'Overview'}...{/pad:tab}{pad:tab 'Specs'}...{/pad:tab}{/widget:tabs}
 {widget:modal 'terms', title='Terms of sale'}...{/widget:modal}
-{modal 'terms', title='Terms of sale'}...{/modal}
+{widget:modal 'terms', title='Terms of sale'}...{/widget:modal}
+{widget:modal 'terms', title='Terms of sale'}...{/widget:modal}
 ```
 
-A widget is written three ways, the same widget each time: the tag, whose first parameter
-names the widget and whose second is the widget's own first - `{widget 'modal', 'terms'}`; the
-widget: type, `{widget:modal 'terms'}`; and bare, `{modal 'terms'}`. A bare name comes after
-every other kind of tag - a store, a field, an array, a sequence, a chart kind or a game of the
-name wins: a page's `$tabs` array is the data of `{tabs}`, and `{pad:tabs}` is no tag. `{copy}`
-stays a built-in tag that runs the copy widget, as PHP's `copy()` would take the bare name;
-`{tab}`, the item of the widgets that take a list of labelled parts, is a built-in tag.
+Select a widget with its qualified name, such as `{widget:modal 'terms'}`. Its first parameter is the widget's value. `{widget:copy}` selects the copy widget; `{pad:tab}`, the item of the widgets that take a list of labelled parts, is a built-in tag.
 
 | Widget | What it is | Its options |
 |--------|------------|-------------|
-| `accordion` | Every `{tab}` a `<details>`, opened and closed by the browser | `single`, `open` |
+| `accordion` | Every `{pad:tab}` a `<details>`, opened and closed by the browser | `single`, `open` |
 | `breadcrumb` | Where the page stands - links from home to the page, from its path, its lines or data | `home`, `label`, `data` |
 | `carousel` | Slides that scroll and snap sideways, previous/next and dot links | `label` |
 | `commandpalette` | A search over the commands of an application - a button and Ctrl+K open a dialog, typing narrows the list, Enter runs one | the button's text, `data`, `key`, `placeholder`, `empty` |
@@ -2758,15 +2750,15 @@ stays a built-in tag that runs the copy widget, as PHP's `copy()` would take the
 | `copy` | A text with a copy-to-clipboard button | the text, `label` |
 | `drawer` | A panel that slides in from a side of the window, with the button that opens it | the name, `title`, `button`, `side` |
 | `dropdown` | A button and the menu it opens - the popover attribute, anchored under it | the button's text, `align` |
-| `lightbox` | Every `{tab}` a thumbnail that opens its picture large over the page, `:target` | `label` |
+| `lightbox` | Every `{pad:tab}` a thumbnail that opens its picture large over the page, `:target` | `label` |
 | `modal` | A `<dialog>` and the button that opens it | the name, `title`, `button` |
 | `poll` | A vote once per visitor, the results as bars | the name, `options`, `title`, `button`, `results` |
-| `sortable` | A short list put in order by hand - every `{tab}` an item, dragged, moved by buttons or the keyboard, its place posted with the form | the name, `label` |
-| `splitpane` | Two `{tab}` panes and the bar between them, dragged or moved by the arrow keys; the browser's resize grip without scripting | `size`, `min`, `max`, `stacked`, `collapse`, `height` |
+| `sortable` | A short list put in order by hand - every `{pad:tab}` an item, dragged, moved by buttons or the keyboard, its place posted with the form | the name, `label` |
+| `splitpane` | Two `{pad:tab}` panes and the bar between them, dragged or moved by the arrow keys; the browser's resize grip without scripting | `size`, `min`, `max`, `stacked`, `collapse`, `height` |
 | `tabs` | Panels behind a row of tabs - radio buttons and CSS | `active` |
 | `toast` | A notice the visitor dismisses, in the flow or in a corner of the window | the title, `tone`, `place`, `timeout` |
 | `tooltip` | A short tip while the pointer or the focus is on its trigger - CSS alone | the tip, `place` |
-| `wizard` | Every `{tab}` a step, one shown at a time, the steps numbered above, Back and Next under each | `active`, `next`, `back`, `label` |
+| `wizard` | Every `{pad:tab}` a step, one shown at a time, the steps numbered above, Back and Next under each | `active`, `next`, `back`, `label` |
 
 **Every widget:** its markup is built on the server; a script, where it has one, is written once
 per page with the CSP nonce and only makes it smoother. The colours are custom properties on
@@ -2777,17 +2769,17 @@ written once per page. A name that is no widget is an error, "there is no widget
 
 ### tabs
 Panels behind a row of tabs, without JavaScript - a radio button and a label per tab, the CSS
-showing the panel of the checked one (`subs/widgets/_lib/tabs.php`). The items are `{tab}` pairs,
-which `{accordion}`, `{carousel}`, `{wizard}`, `{lightbox}`, `{splitpane}` and `{sortable}` take
-as well - `{tab}` is a built-in tag.
+showing the panel of the checked one (`subs/widgets/_lib/tabs.php`). The items are `{pad:tab}` pairs,
+which `{widget:accordion}`, `{widget:carousel}`, `{widget:wizard}`, `{widget:lightbox}`, `{widget:splitpane}` and `{widget:sortable}` take
+as well - `{pad:tab}` is a built-in tag.
 
 ```html
-{tabs active='Specs'}
-  {tab 'Overview'}<p>A 1.7 litre kettle ...</p>{/tab}
-  {tab 'Specs'}<table>...</table>{/tab}
-{/tabs}
+{widget:tabs active='Specs'}
+  {pad:tab 'Overview'}<p>A 1.7 litre kettle ...</p>{/pad:tab}
+  {pad:tab 'Specs'}<table>...</table>{/pad:tab}
+{/widget:tabs}
 
-{tabs}{plans}{tab $name}<p>{$price}</p>{/tab}{/plans}{/tabs}
+{widget:tabs}{data:plans}{pad:tab $name}<p>{$price}</p>{/pad:tab}{/data:plans}{/widget:tabs}
 ```
 
 **Parameters:**
@@ -2795,30 +2787,30 @@ as well - `{tab}` is a built-in tag.
 | Option | Description |
 |--------|-------------|
 | `active` | The tab shown first - its number from 1, or its label; the first one when not given |
-| `{tab 'label'}` | One tab: the first parameter is its label, the content its panel |
+| `{pad:tab 'label'}` | One tab: the first parameter is its label, the content its panel |
 
-**Behavior:** a `{tab}` renders its content and hands it to the nearest `{tabs}`,
-`{accordion}`, `{carousel}`, `{wizard}`, `{lightbox}`, `{splitpane}` or `{sortable}` below it instead of printing it - it
-may stand in an `{if}` or in a loop that makes a tab per row. The set is a radio group: one stop in the tab order, the
+**Behavior:** a `{pad:tab}` renders its content and hands it to the nearest `{widget:tabs}`,
+`{widget:accordion}`, `{widget:carousel}`, `{widget:wizard}`, `{widget:lightbox}`, `{widget:splitpane}` or `{widget:sortable}` below it instead of printing it - it
+may stand in an `{pad:if}` or in a loop that makes a tab per row. The set is a radio group: one stop in the tab order, the
 arrow keys move between the tabs, a screen reader hears the label and 'checked'; each panel is
 a `region` named by its tab. No fragment goes into the address, so two sets on a page keep
 their choices; printed, every panel shows. The ids are made from the labels, the same on every
 request. The colours are `--pad-tabs-accent`, `-text`, `-muted` and `-line` on `.pad-tabs`,
-`light-dark()` defaults, written once per page. A `{tab}` outside an owner, a tab without a
+`light-dark()` defaults, written once per page. A `{pad:tab}` outside an owner, a tab without a
 label, text between the tabs, a set without a tab and an `active=` naming no tab are errors
 under the strict check.
 
 ---
 
 ### accordion
-Items that open and close on a click, without JavaScript - every `{tab}` a `<details>` with its
+Items that open and close on a click, without JavaScript - every `{pad:tab}` a `<details>` with its
 label as the `<summary>` (`subs/widgets/_lib/accordion.php`).
 
 ```html
-{accordion single, open=1}
-  {tab 'Can I return it?'}<p>Within 30 days ...</p>{/tab}
-  {tab 'Is there a warranty?'}<p>Two years ...</p>{/tab}
-{/accordion}
+{widget:accordion single, open=1}
+  {pad:tab 'Can I return it?'}<p>Within 30 days ...</p>{/pad:tab}
+  {pad:tab 'Is there a warranty?'}<p>Two years ...</p>{/pad:tab}
+{/widget:accordion}
 ```
 
 **Parameters:**
@@ -2828,7 +2820,7 @@ label as the `<summary>` (`subs/widgets/_lib/accordion.php`).
 | `single` | One item open at a time: the items share a `name` - the exclusive accordion of HTML |
 | `open` | The item open at first - its number from 1 or its label; `open` alone opens every item |
 
-**Behavior:** the `{tab}` items are collected as `{tabs}` collects them, so they may come from
+**Behavior:** the `{pad:tab}` items are collected as `{widget:tabs}` collects them, so they may come from
 a loop. The browser opens and closes an item, from the keyboard too, a screen reader hears
 'collapsed' or 'expanded', and a find in the page opens the item it finds in. The colours are
 `--pad-accordion-accent`, `-text`, `-muted`, `-line` and `-hover` on `.pad-accordion`,
@@ -2842,9 +2834,9 @@ A dialog over the page - an HTML `<dialog>` with the content, and the button tha
 (`subs/widgets/_lib/modal.php`).
 
 ```html
-{modal 'terms', title='Terms of sale', button='Read the terms'}
+{widget:modal 'terms', title='Terms of sale', button='Read the terms'}
   <p>These terms apply to every order ...</p>
-{/modal}
+{/widget:modal}
 ```
 
 **Parameters:**
@@ -2875,10 +2867,10 @@ on each slide and a dot per slide below - links to the slides' ids, so no JavaSc
 (`subs/widgets/_lib/carousel.php`).
 
 ```html
-{carousel label='Landscapes'}
-  {tab 'Sunrise over the hills'}<svg viewBox="0 0 800 400" role="img" aria-label="...">...</svg>{/tab}
-  {tab 'The open sea'}<img src="sea.jpg" alt="Waves under a pale sky">{/tab}
-{/carousel}
+{widget:carousel label='Landscapes'}
+  {pad:tab 'Sunrise over the hills'}<svg viewBox="0 0 800 400" role="img" aria-label="...">...</svg>{/pad:tab}
+  {pad:tab 'The open sea'}<img src="sea.jpg" alt="Waves under a pale sky">{/pad:tab}
+{/widget:carousel}
 ```
 
 **Parameters:**
@@ -2886,7 +2878,7 @@ on each slide and a dot per slide below - links to the slides' ids, so no JavaSc
 | Option | Description |
 |--------|-------------|
 | `label` | The carousel's name for a screen reader, default `Carousel` |
-| `{tab 'caption'}` | One slide; its label, optional, is the caption under it |
+| `{pad:tab 'caption'}` | One slide; its label, optional, is the caption under it |
 
 **Behavior:** the markup follows the WAI-ARIA carousel pattern - a region with
 `aria-roledescription="carousel"`, every slide a group saying 'slide 2 of 4' with its caption -
@@ -2906,11 +2898,11 @@ A text with a copy-to-clipboard button - the text in a `<pre><code>` that select
 with one click, so it is copied by hand where the button cannot run (`subs/widgets/_lib/copy.php`).
 
 ```html
-{copy 'composer require pad/pad'/}
-{copy $command, label='Copy command'/}
-{copy label='Copy settings'}
+{widget:copy 'composer require pad/pad'/}
+{widget:copy $command, label='Copy command'/}
+{widget:copy label='Copy settings'}
   padSqlDatabase={$app}/{$app}.sqlite
-{/copy}
+{/widget:copy}
 ```
 
 **Parameters:**
@@ -2926,17 +2918,17 @@ the CSP nonce, puts the text on the clipboard - `navigator.clipboard`, or the se
 `execCommand` on a page over plain http - and says 'Copied' on the button and, through a status
 region beside it, to a screen reader. The colours are `--pad-copy-accent`, `-text`, `-muted`,
 `-line`, `-surface` and `-done` on `.pad-copy`, `light-dark()` defaults, written once per page.
-A `{copy}` without a text is an error under the strict check.
+A `{widget:copy}` without a text is an error under the strict check.
 
 ---
 
 ### poll
 A vote among a few answers, once per visitor, and then the results as bars with their
-percentages - built on a `{live}` region, and a plain form without scripting (`subs/widgets/_lib/poll.php`).
+percentages - built on a `{pad:live}` region, and a plain form without scripting (`subs/widgets/_lib/poll.php`).
 
 ```html
-{poll 'favorite-language', options='PHP, Python, Ruby, Go', title='Which language do you reach for first?'/}
-{poll 'favorite-language', options='PHP, Python, Ruby, Go', results/}
+{widget:poll 'favorite-language', options='PHP, Python, Ruby, Go', title='Which language do you reach for first?'/}
+{widget:poll 'favorite-language', options='PHP, Python, Ruby, Go', results/}
 ```
 
 **Parameters:**
@@ -2967,12 +2959,12 @@ answers is one under the strict check.
 A notice the visitor dismisses - a `<dialog>` shown from the start, not modal, with its title,
 its text and a close button whose invoker command (`commandfor`, `command="close"`) has the
 browser close it, the toast's script where the browser has none - no form of its own, so a
-toast stands inside a `{form}` as well, its fields staying in the form (`subs/widgets/_lib/toast.php`).
+toast stands inside a `{pad:form}` as well, its fields staying in the form (`subs/widgets/_lib/toast.php`).
 
 ```html
-{toast 'Saved', tone='success'}Your changes are kept.{/toast}
-{toast 'Payment failed', tone='error', place='top'/}
-{toast 'Copied', place='bottom', timeout=4/}
+{widget:toast 'Saved', tone='success'}Your changes are kept.{/widget:toast}
+{widget:toast 'Payment failed', tone='error', place='top'/}
+{widget:toast 'Copied', place='bottom', timeout=4/}
 ```
 
 **Parameters:**
@@ -2983,7 +2975,7 @@ toast stands inside a `{form}` as well, its fields staying in the form (`subs/wi
 | `tone` | `info` (the default), `success`, `warning` or `error` - the colour of its edge |
 | `place` | `inline` (the default, in the flow of the page), `top` or `bottom` - fixed in that corner of the window |
 | `timeout` | Seconds, 1 to 600: the toast closes by itself after them |
-| `sound` | A sound of `pad/subs/sounds/types/` - `sound='success'` - played as the toast shows, once the browser lets the page play (after a gesture on it); see `{sound}` |
+| `sound` | A sound of `pad/subs/sounds/types/` - `sound='success'` - played as the toast shows, once the browser lets the page play (after a gesture on it); see `{sound:chime}` |
 
 **Behavior:** the text is a status region, an alert for a warning or an error, so a toast a
 fragment or a live region brings is read out; a toast without a title is named by its tone.
@@ -3004,13 +2996,13 @@ opens through `popovertarget`, so the browser opens, closes and places it withou
 (`subs/widgets/_lib/dropdown.php`).
 
 ```html
-{dropdown 'Account', align='end'}
+{widget:dropdown 'Account', align='end'}
   <p>Signed in as {$user}</p>
   <a href="?profile">Profile</a>
   <a href="?settings">Settings</a>
   <hr>
   <a href="?logout">Log out</a>
-{/dropdown}
+{/widget:dropdown}
 ```
 
 **Parameters:**
@@ -3041,9 +3033,9 @@ CSS alone, the trigger naming it for a screen reader with `aria-describedby`
 (`subs/widgets/_lib/tooltip.php`).
 
 ```html
-The {tooltip 'Billed every month, cancel any time'}Starter plan{/tooltip} costs € 9.
-VAT {tooltip 'Value added tax: 21% on most goods'/} included.
-Read the {tooltip 'Opens the terms', place='bottom'}<a href="?terms">terms</a>{/tooltip}.
+The {widget:tooltip 'Billed every month, cancel any time'}Starter plan{/widget:tooltip} costs € 9.
+VAT {widget:tooltip 'Value added tax: 21% on most goods'/} included.
+Read the {widget:tooltip 'Opens the terms', place='bottom'}<a href="?terms">terms</a>{/widget:tooltip}.
 ```
 
 **Parameters:**
@@ -3069,18 +3061,18 @@ the strict check.
 ---
 
 ### wizard
-A form or a story in steps, one shown at a time - every `{tab}` a step, the steps numbered in a
+A form or a story in steps, one shown at a time - every `{pad:tab}` a step, the steps numbered in a
 row above, the ones done and the current one marked, and a Back and a Next under each; radio
-buttons and CSS, as `{tabs}` is, so no script is needed (`subs/widgets/_lib/wizard.php`).
+buttons and CSS, as `{widget:tabs}` is, so no script is needed (`subs/widgets/_lib/wizard.php`).
 
 ```html
-{form 'order'}
-  {wizard label='Your order'}
-    {tab 'Address'}{input 'street', label='Street'/}{/tab}
-    {tab 'Delivery'}{input 'day', type='date', label='Day'/}{/tab}
-    {tab 'Payment'}<p>Pay by card or by bank.</p><button>Order</button>{/tab}
-  {/wizard}
-{/form}
+{pad:form 'order'}
+  {widget:wizard label='Your order'}
+    {pad:tab 'Address'}{pad:input 'street', label='Street'/}{/pad:tab}
+    {pad:tab 'Delivery'}{pad:input 'day', type='date', label='Day'/}{/pad:tab}
+    {pad:tab 'Payment'}<p>Pay by card or by bank.</p><button>Order</button>{/pad:tab}
+  {/widget:wizard}
+{/pad:form}
 ```
 
 **Parameters:**
@@ -3090,12 +3082,12 @@ buttons and CSS, as `{tabs}` is, so no script is needed (`subs/widgets/_lib/wiza
 | `active` | The step shown first - its number from 1, or its label; the first one when not given |
 | `next`, `back` | The texts of the two buttons, `Next` and `Back` |
 | `label` | The wizard's name for a screen reader, default `Steps` |
-| `{tab 'label'}` | One step: its name in the row, the content its panel |
+| `{pad:tab 'label'}` | One step: its name in the row, the content its panel |
 
 **Behavior:** the steps are one radio group - one stop in the tab order, the arrow keys move
 between them, a screen reader hears 'Payment, step 3 of 3' - and each panel is a region named
 by its step. Back and Next are labels of the radio before and after without scripting, and real
-buttons with it (`@media (scripting)`, as for `{modal}`), which a small script, once per page
+buttons with it (`@media (scripting)`, as for `{widget:modal}`), which a small script, once per page
 with the CSP nonce, makes check the step and move the focus to it. The first step has no Back,
 the last no Next - its own content ends it. Every step of a form is in the form, shown or not,
 so every field is posted; a required field on a step not shown stops the post where the visitor
@@ -3107,15 +3099,15 @@ steps, a wizard without a step and an `active=` naming none are errors under the
 ---
 
 ### lightbox
-A gallery whose pictures open large over the page - every `{tab}` a thumbnail in a grid, a link
+A gallery whose pictures open large over the page - every `{pad:tab}` a thumbnail in a grid, a link
 to a view of the picture that the CSS shows over the whole window when the address names it
 (`:target`), so no script is needed (`subs/widgets/_lib/lightbox.php`).
 
 ```html
-{lightbox label='The harbour'}
-  {tab 'At dawn'}<img src="harbour/dawn.jpg" alt="Boats in the morning mist">{/tab}
-  {tab 'At noon'}<img src="harbour/noon.jpg" alt="The quay in bright sun">{/tab}
-{/lightbox}
+{widget:lightbox label='The harbour'}
+  {pad:tab 'At dawn'}<img src="harbour/dawn.jpg" alt="Boats in the morning mist">{/pad:tab}
+  {pad:tab 'At noon'}<img src="harbour/noon.jpg" alt="The quay in bright sun">{/pad:tab}
+{/widget:lightbox}
 ```
 
 **Parameters:**
@@ -3123,7 +3115,7 @@ to a view of the picture that the CSS shows over the whole window when the addre
 | Option | Description |
 |--------|-------------|
 | `label` | The gallery's name for a screen reader, default `Gallery` |
-| `{tab 'caption'}` | One picture - an `<img>` or an `<svg>`, shown small and large; its label, optional, is the caption |
+| `{pad:tab 'caption'}` | One picture - an `<img>` or an `<svg>`, shown small and large; its label, optional, is the caption |
 
 **Behavior:** a view holds the picture as large as the window allows, its caption with
 'n / count', a link to the picture before and after it (the first's before is the last) and a
@@ -3141,12 +3133,12 @@ them is an error under the strict check.
 
 ### drawer
 A panel that slides in from a side of the window - a modal `<dialog>` along an edge and the
-button that opens it, opened the way `{modal}` opens its dialog (`subs/widgets/_lib/drawer.php`).
+button that opens it, opened the way `{widget:modal}` opens its dialog (`subs/widgets/_lib/drawer.php`).
 
 ```html
-{drawer 'filters', title='Filters', button='Show filters', side='left'}
-  {form 'filter'}...{/form}
-{/drawer}
+{widget:drawer 'filters', title='Filters', button='Show filters', side='left'}
+  {pad:form 'filter'}...{/pad:form}
+{/widget:drawer}
 ```
 
 **Parameters:**
@@ -3177,13 +3169,13 @@ to the page, the last step the page itself (`aria-current="page"`), the separato
 CSS and never read out (`subs/widgets/_lib/breadcrumb.php`).
 
 ```html
-{breadcrumb/}
-{breadcrumb}
+{widget:breadcrumb/}
+{widget:breadcrumb}
   Home | ?index
   Kettles | ?products/kettles
   Aurora
-{/breadcrumb}
-{breadcrumb data='trail'/}
+{/widget:breadcrumb}
+{widget:breadcrumb data='trail'/}
 ```
 
 **Parameters:**
@@ -3212,26 +3204,26 @@ window splitter pattern: an editor beside its preview, a list beside the item it
 (`subs/widgets/_lib/splitpane.php`).
 
 ```html
-{splitpane size=30, min=20, max=60, collapse}
-  {tab 'Folders'}<ul>...</ul>{/tab}
-  {tab 'Message'}<p>...</p>{/tab}
-{/splitpane}
+{widget:splitpane size=30, min=20, max=60, collapse}
+  {pad:tab 'Folders'}<ul>...</ul>{/pad:tab}
+  {pad:tab 'Message'}<p>...</p>{/pad:tab}
+{/widget:splitpane}
 
-{splitpane stacked, height='60vh'}{tab 'Source'}...{/tab}{tab 'Preview'}...{/tab}{/splitpane}
+{widget:splitpane stacked, height='60vh'}{pad:tab 'Source'}...{/pad:tab}{pad:tab 'Preview'}...{/pad:tab}{/widget:splitpane}
 ```
 
 **Parameters:**
 
 | Option | Description |
 |--------|-------------|
-| `{tab 'label'}` | A pane - exactly two; the first is the one the bar sizes, the label names each pane and the bar |
+| `{pad:tab 'label'}` | A pane - exactly two; the first is the one the bar sizes, the label names each pane and the bar |
 | `size` | The first pane's share in percent, a whole number - `50` when not given |
 | `min`, `max` | The smallest and the largest share of the first pane, in percent - `10` and `90` |
 | `stacked` | Bare option: the panes one above the other, the bar between them across |
 | `collapse` | Bare option: Enter on the bar or a double click folds the first pane away and back |
 | `height` | The height of the panes, a CSS length - `300px`, `24rem`, `60vh`; `20rem` stacked, the content's height side by side when not given |
 
-**Behavior:** the `{tab}` items are collected as `{tabs}` collects them. Each pane is a region
+**Behavior:** the `{pad:tab}` items are collected as `{widget:tabs}` collects them. Each pane is a region
 named by its label; the bar is a `separator` that controls the first pane, named by its label,
 its value the first pane's share - a screen reader says 'Folders, separator, 30'. The bar takes
 the focus: the arrow keys move it by 5 (Shift by 10) - left and right side by side, turned round
@@ -3247,7 +3239,7 @@ written in a `<style>` of the one splitpane with the nonce, no style attribute. 
 panes stand one above the other. The colours are `--pad-splitpane-accent`, `-text`, `-muted`,
 `-line` and `-surface` on `.pad-splitpane`, taken from the page's palette (`--accent`,
 `--text` ...) where it has one, so every theme colours it, with `light-dark()` defaults. A
-splitpane without two `{tab}`s, a share that is no whole percentage, a `size` outside `min`
+splitpane without two `{pad:tab}`s, a share that is no whole percentage, a `size` outside `min`
 and `max` and a `height` that is no length are errors under the strict check; the lenient walk
 puts what came after the second tab into the second pane.
 
@@ -3261,15 +3253,15 @@ beside it opens the same menu for whoever looks for one: the WAI-ARIA menu patte
 
 ```html
 <li>report.pdf
-  {contextmenu 'Actions for report.pdf'}
+  {widget:contextmenu 'Actions for report.pdf'}
     <a href="?open&file=report.pdf">Open</a>
     <a href="?rename&file=report.pdf">Rename</a>
     <hr>
     <button type="submit" form="delete-report">Delete</button>
-  {/contextmenu}
+  {/widget:contextmenu}
 </li>
 
-<tr><td>1041</td><td>{contextmenu 'Actions for order 1041', area='tr'}...{/contextmenu}</td></tr>
+<tr><td>1041</td><td>{widget:contextmenu 'Actions for order 1041', area='tr'}...{/widget:contextmenu}</td></tr>
 ```
 
 **Parameters:**
@@ -3281,7 +3273,7 @@ beside it opens the same menu for whoever looks for one: the WAI-ARIA menu patte
 
 **Behavior:** the content is rendered first and becomes the menu: links, buttons - also in a
 form of their own - a rule (`<hr>`) and a line of text (`<p>`). The button and the menu stand as
-`{dropdown}`'s do: the menu is a popover the button opens through `popovertarget`, so without
+`{widget:dropdown}`'s do: the menu is a popover the button opens through `popovertarget`, so without
 a script the button opens it, a click outside it and Escape close it, and CSS anchor
 positioning puts it under the button - the actions are never reached by a right click alone,
 which no keyboard and no touch screen makes. A small script, once per page with the CSP nonce,
@@ -3309,15 +3301,15 @@ choose, Enter runs the chosen one: the WAI-ARIA combobox pattern with a list box
 (`subs/widgets/_lib/commandpalette.php`).
 
 ```html
-{commandpalette 'Go to'}
+{widget:commandpalette 'Go to'}
   <p>Pages</p>
   <a href="?orders">Orders</a>
   <a href="?customers" data-pad-keywords="clients buyers">Customers</a>
   <p>Actions</p>
   <a href="?orders/new">New order</a>
-{/commandpalette}
+{/widget:commandpalette}
 
-{commandpalette 'Go to', data='commands', placeholder='Search pages and actions'/}
+{widget:commandpalette 'Go to', data='commands', placeholder='Search pages and actions'/}
 ```
 
 **Parameters:**
@@ -3333,7 +3325,7 @@ choose, Enter runs the chosen one: the WAI-ARIA combobox pattern with a list box
 **Behavior:** the commands are what renders between the tags - links, buttons, a line of text
 (`<p>`) heading a group, a rule (`<hr>`) ending one - after the rows of `data=`; a link of a row of another
 scheme than http, https and mailto, and a row without a label or a link, are left out, and a
-label is text. The dialog is a modal `<dialog>` opened as `{modal}` opens its own: by the
+label is text. The dialog is a modal `<dialog>` opened as `{widget:modal}` opens its own: by the
 button's invoker commands, a small script where the browser has none, and with scripting off a
 link to the dialog's id that the CSS shows as an overlay (`:target`) - the whole list then, to
 follow, with the title and a close link, and no search box, which only a script makes work.
@@ -3356,17 +3348,17 @@ commands and a `key` outside the letters above are errors under the strict check
 
 ### sortable
 A short list put in order by hand - a to-do list ranked, the tracks of a playlist, the steps of
-a recipe - its order posted with the form it stands in: every `{tab}` an item, its parameter the
+a recipe - its order posted with the form it stands in: every `{pad:tab}` an item, its parameter the
 key the item is posted under, its content what the item shows
 (`subs/widgets/_lib/sortable.php`).
 
 ```html
-{form 'ranking'}
-  {sortable 'priority', label='The tasks, most urgent first'}
-    {tasks}{tab $id}{$title}{/tab}{/tasks}
-  {/sortable}
+{pad:form 'ranking'}
+  {widget:sortable 'priority', label='The tasks, most urgent first'}
+    {array:tasks}{pad:tab $id}{$title}{/pad:tab}{/array:tasks}
+  {/widget:sortable}
   <button>Save the order</button>
-{/form}
+{/pad:form}
 ```
 
 ```php
@@ -3383,7 +3375,7 @@ if ( padPosted ( 'ranking' ) ) {
 |--------|-------------|
 | first parameter | The name the items are posted under - letters, digits, `_` and `-`: `priority[a1]=1`, `priority[b7]=2` |
 | `label` | The name of the list for a screen reader - the name made readable when not given (`Priority`) |
-| `{tab 'key'}` | An item: its key - letters, digits, `_`, `-`, `.` and `:`, never twice - and its content |
+| `{pad:tab 'key'}` | An item: its key - letters, digits, `_`, `-`, `.` and `:`, never twice - and its content |
 
 **Behavior:** every item is posted with its place under its key, from 1, the same with a script
 and without one. Without scripting each item shows a number field, its place, which the visitor
@@ -3409,7 +3401,7 @@ number field whose place changed sends `change`. Printed, the controls go. The c
 taken from the page's palette where it has one, with `light-dark()` defaults. A sortable with no
 item - the loop that makes them found no row - is no list and no error: it shows what its
 content rendered, nothing or the loop's `@else@` -
-`{tasks}{tab $id}{$title}{/tab}@else@<p>Nothing to sort</p>{/tasks}`. A sortable without
+`{array:tasks}{pad:tab $id}{$title}{/pad:tab}@else@<p>Nothing to sort</p>{/array:tasks}`. A sortable without
 a valid name, an item without a key or with one that is no key, and two items of one key are
 errors under the strict check; the lenient walk shows the items as they are, without the list.
 
@@ -3421,8 +3413,8 @@ once with GD (`tags/_lib/img.php`) and kept in `www/<application>/_thumbs/`, whe
 sends it like any asset.
 
 ```html
-{img 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'/}
-{img 'photos/dunes.jpg', width=300, height=300, fit='contain', format='webp', quality=70, alt=''/}
+{pad:img 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'/}
+{pad:img 'photos/dunes.jpg', width=300, height=300, fit='contain', format='webp', quality=70, alt=''/}
 ```
 
 **Parameters:**
@@ -3442,10 +3434,10 @@ sends it like any asset.
 files of its `types/` the filters there are, written in the order they apply:
 
 ```html
-{img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
-{img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='The harbour'/}
-{img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour in dots'/}
-{img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}
+{pad:img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
+{pad:img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='The harbour'/}
+{pad:img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour in dots'/}
+{pad:img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}
 ```
 
 | Filter | Does | Its options |
@@ -3527,20 +3519,19 @@ written instead. The colour behind a picture still loading is `--pad-img-placeho
 ---
 
 ### pattern
+Subsystem syntax: `{pattern:kind ...}`.
 A seeded SVG background or piece of generative art, drawn on the server: every pattern is a
 file of `pad/subs/patterns/types/`, and the files there are the patterns there are
 (`padPatternKinds()`); the subsystem is `pad/subs/patterns/`.
 
 ```html
-{pattern 'topography', seed=7, width=960, height=320/}
-{pattern 'dots', size=24, colors='#fdfbf7, #e0c9a6'/}
+{pattern:topography seed=7, width=960, height=320/}
+{pattern:dots size=24, colors='#fdfbf7, #e0c9a6'/}
 {pattern:voronoi seed=3, title='Shards of colour'/}
-<div style="background-image:{pattern 'waves', as='url'/}">...</div>
+<div style="background-image:{pattern:waves as='url'/}">...</div>
 ```
 
-A pattern is written two ways, the same pattern each time: the tag, `{pattern 'dots'/}`, and the
-pattern: type, `{pattern:dots/}` - never bare, as its names (dots, grid, waves) are those of fields
-and pages. `padPattern ( 'dots', [ 'size' => 24 ] )` draws the same in a page's PHP.
+Select a pattern by its qualified name, `pattern:kind`.
 
 | Pattern | Draws | Its own options |
 |---------|-------|-----------------|
@@ -3600,13 +3591,13 @@ between its tags and a pattern past its budget are errors under the strict check
 A YouTube or Vimeo video as its poster with a play button; the player's iframe is loaded
 only when the button is pressed (`subs/embeds/_lib/video.php`) - nothing of the video site runs before the
 visitor asks for it. A file of `www/<application>/` is a `<video>` element. The addresses are
-those the youtube and vimeo providers of the embed subsystem read; [`{embed}`](#embed) is the
+those the youtube and vimeo providers of the embed subsystem read; [`{embed:auto}`](#embed) is the
 general form, of more sites and without the site's thumbnail.
 
 ```html
-{video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'/}
-{video 'https://vimeo.com/76979871#t=12s', title='The new Vimeo player', poster='photos/still.jpg'/}
-{video 'clips/sunrise.webm', title='Sunrise', poster='photos/sunrise.jpg'/}
+{pad:video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'/}
+{pad:video 'https://vimeo.com/76979871#t=12s', title='The new Vimeo player', poster='photos/still.jpg'/}
+{pad:video 'clips/sunrise.webm', title='Sunrise', poster='photos/sunrise.jpg'/}
 ```
 
 **Parameters:**
@@ -3615,7 +3606,7 @@ general form, of more sites and without the site's thumbnail.
 |--------|-------------|
 | first parameter | A YouTube address (`watch?v=`, `youtu.be/`, `/shorts/`, `/embed/`, `/live/`, youtube-nocookie.com), a Vimeo address (`vimeo.com/<id>`, `/channels/x/<id>`, `player.vimeo.com/video/<id>`) or a `.mp4`, `.webm`, `.ogv` or `.mov` file of `www/<application>/` |
 | `title` | Required - the button's text, the iframe's title, the video element's name |
-| `poster` | A picture of `www/<application>/` (versioned as `{asset}`) in place of the site's thumbnail |
+| `poster` | A picture of `www/<application>/` (versioned as `{pad:asset}`) in place of the site's thumbnail |
 | `at` | The moment to start at - `90`, `1m30s`, `1:30`; a `t=`, `start=` or `#t=` in the address says it too |
 | `ratio` | The proportion, default `16:9`; a short is `9:16` and kept to a phone's width |
 
@@ -3634,31 +3625,32 @@ with `light-dark()` steps on `.pad-video`. An address that is no known video and
 ---
 
 ### embed
+Subsystem syntax: `{embed:kind ...}`.
 A video, a sound, a map, a pen or a document of another site behind a click-to-load facade -
 the embed subsystem in `pad/subs/embeds/` - nothing of the provider is asked for before the visitor
 presses the button; a file of the application is an element that loads nothing before play.
 
 ```html
-{embed 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'/}
+{embed:auto 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'/}
 {embed:vimeo '76979871', title='The new Vimeo player', at='1:30'/}
-{openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}
-{embed 'https://codepen.io/team/codepen/pen/PNaGbb', title='A pen', tab='html,result'/}
-{embed 'https://music.apple.com/us/album/abbey-road-2019-mix/1474815798', title='Abbey Road'/}
-{figma 'https://www.figma.com/design/nrPSsILSYjesyc5UHjYYa4/Embed-Kit-2.0-examples', title='Embed Kit 2.0 examples', theme='system'/}
-{loom 'fa3c0bc94e904ab6b0746f844ca7a385', title='A demo', at='0:05'/}
-{embed 'https://stackblitz.com/github/vitejs/vite/tree/main/packages/create-vite/template-vanilla', title='Vite', view='preview'/}
-{twitch 'twitchgaming', title='Twitch Gaming', domains='partner.example.com'/}
-{audio 'sounds/bell.mp3', title='The bell'/}
-{embed 'docs/leaflet.pdf', title='The leaflet'/}
+{embed:openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}
+{embed:auto 'https://codepen.io/team/codepen/pen/PNaGbb', title='A pen', tab='html,result'/}
+{embed:auto 'https://music.apple.com/us/album/abbey-road-2019-mix/1474815798', title='Abbey Road'/}
+{embed:figma 'https://www.figma.com/design/nrPSsILSYjesyc5UHjYYa4/Embed-Kit-2.0-examples', title='Embed Kit 2.0 examples', theme='system'/}
+{embed:loom 'fa3c0bc94e904ab6b0746f844ca7a385', title='A demo', at='0:05'/}
+{embed:auto 'https://stackblitz.com/github/vitejs/vite/tree/main/packages/create-vite/template-vanilla', title='Vite', view='preview'/}
+{embed:twitch 'twitchgaming', title='Twitch Gaming', domains='partner.example.com'/}
+{embed:audio 'sounds/bell.mp3', title='The bell'/}
+{embed:auto 'docs/leaflet.pdf', title='The leaflet'/}
 ```
 
 **Parameters:**
 
 | Option | Description |
 |--------|-------------|
-| first parameter | An address a provider knows - a file of `pad/subs/embeds/types/`: `youtube`, `vimeo`, `peertube` (any instance: `/w/<id>`, `/videos/watch/<uuid>`), `dailymotion`, `internetarchive` (archive.org/details/), `soundcloud`, `spotify` (open.spotify.com, `spotify:track:<id>`), `codepen`, `openstreetmap` (`#map=z/lat/lon`, `?mlat=&mlon=`), `applemusic` (music.apple.com/`<country>`/album, playlist, song, artist, music-video or station, `?i=` a song of an album) and `applepodcasts` (podcasts.apple.com/`<country>`/podcast/.../id`<id>`, `?i=` an episode), `figma` (figma.com/design, /proto, /board, /slides, /deck and the old /file, with its `node-id`), `loom` (loom.com/share/ with the title before the id or not, /embed/), `tiktok` (tiktok.com/@`<user>`/video/`<id>`, /photo/, /player/v1/, /embed/v2/), `stackblitz` (stackblitz.com/edit/`<project>`, /github/`<owner>`/`<repository>`), `twitch` (twitch.tv/`<channel>`, /videos/`<id>`, /collections/`<id>`, a clip, player.twitch.tv; named, a channel), and by extension `videofile`, `audio` and `pdffile`, of `www/<application>/` or of the web. Named - `{embed:youtube 'id'/}` or bare `{youtube 'id'/}` - a bare id of that provider as well, and for openstreetmap `'latitude,longitude'` |
+| first parameter | An address a provider knows - a file of `pad/subs/embeds/types/`: `youtube`, `vimeo`, `peertube` (any instance: `/w/<id>`, `/videos/watch/<uuid>`), `dailymotion`, `internetarchive` (archive.org/details/), `soundcloud`, `spotify` (open.spotify.com, `spotify:track:<id>`), `codepen`, `openstreetmap` (`#map=z/lat/lon`, `?mlat=&mlon=`), `applemusic` (music.apple.com/`<country>`/album, playlist, song, artist, music-video or station, `?i=` a song of an album) and `applepodcasts` (podcasts.apple.com/`<country>`/podcast/.../id`<id>`, `?i=` an episode), `figma` (figma.com/design, /proto, /board, /slides, /deck and the old /file, with its `node-id`), `loom` (loom.com/share/ with the title before the id or not, /embed/), `tiktok` (tiktok.com/@`<user>`/video/`<id>`, /photo/, /player/v1/, /embed/v2/), `stackblitz` (stackblitz.com/edit/`<project>`, /github/`<owner>`/`<repository>`), `twitch` (twitch.tv/`<channel>`, /videos/`<id>`, /collections/`<id>`, a clip, player.twitch.tv; named, a channel), and by extension `videofile`, `audio` and `pdffile`, of `www/<application>/` or of the web. Named - `{embed:youtube 'id'/}` - a bare id of that provider as well, and for openstreetmap `'latitude,longitude'` |
 | `title` | Required - the button's text, the frame's title, the element's name |
-| `poster` | A picture of `www/<application>/` (versioned as `{asset}`) in place of the drawn poster |
+| `poster` | A picture of `www/<application>/` (versioned as `{pad:asset}`) in place of the drawn poster |
 | `thumbnail` | Bare: the provider's own picture as the poster where it has one at a known address (YouTube) - asked of the provider before the click |
 | `ratio` | The proportion - `16:9`, SoundCloud and Spotify `2:1`, a PDF `4:5`, a YouTube short and a TikTok `9:16` (kept to a phone's width), Apple Music and Apple Podcasts `4:3` - a song or an episode `5:2` |
 | `at` | youtube, vimeo, peertube, dailymotion, loom, twitch (a video): the moment to start at - `90`, `1m30s`, `1:30` |
@@ -3691,8 +3683,7 @@ allow-storage-access-by-user-activation allow-top-navigation-by-user-activation`
 tried after those that know their host), its own `options`, `match` - the address read into
 its parts, or NULL - and `embed` - the frame's address, the link, the ratio, the `allow`, the `sandbox`. The
 files there are the providers there are (`padEmbedProviders`), and a provider is added by
-adding its file. A bare provider name comes after every other kind of tag, so a tag, a store
-or a field of the name wins.
+adding its file. A provider tag requires the `embed:` prefix; other namespaces do not shadow it.
 
 **Content Security Policy:** the frames need the providers' origins in `frame-src` -
 `padEmbedSources ()` (`lib/embed.php`) lists the ones the files name:
@@ -3713,12 +3704,12 @@ What the content renders, sent as a PDF instead of the page - a writer in plain 
 (`tags/_lib/pdf.php`): PDF 1.4, the standard fonts every reader has, no library, no browser.
 
 ```html
-{pdf file='invoice-2026-114', size='A4'}
+{pad:pdf file='invoice-2026-114', size='A4'}
   <h1>Invoice {$number}</h1>
-  <table>{lines}<tr><td>{$item}</td><td align="right">{$amount}</td></tr>{/lines}</table>
-{/pdf}
-{pdf preview, file='invoice'}...{/pdf}      # the content on a sheet, links to ?page&padPdf
-{pdf download/}                              # single: the whole page as an attachment
+  <table>{array:lines}<tr><td>{$item}</td><td align="right">{$amount}</td></tr>{/array:lines}</table>
+{/pad:pdf}
+{pad:pdf preview, file='invoice'}...{/pad:pdf}      # the content on a sheet, links to ?page&padPdf
+{pad:pdf download/}                              # single: the whole page as an attachment
 ```
 
 **Parameters:**
@@ -3735,7 +3726,7 @@ What the content renders, sent as a PDF instead of the page - a writer in plain 
 
 **Behavior:** a pair renders its content as ever, and the page's response becomes the PDF of
 it (`application/pdf`, `Content-Disposition` with the name) - exits/exits.php makes it in
-place of the page, tidy and the page cache left out; several `{pdf}` pairs are one document,
+place of the page, tidy and the page cache left out; several `{pad:pdf}` pairs are one document,
 the first one's options counting. The HTML read: `h1`-`h6`, `p`, `b`/`strong`, `i`/`em`,
 `u`, `code`, `a` (blue, and a link of the document for an http, https or mailto address),
 `br`, `ul`/`ol`/`li` (nested), `blockquote`, `pre`, `hr`, `table`/`tr`/`th`/`td` (a grid with
@@ -3745,10 +3736,10 @@ embedded as it is; another picture is its alt text, any other element its text, 
 style, svg and form fields are left out. The text is WinAnsi (a `?` for what it lacks) and
 measured with the AFM widths of Helvetica and Times, so lines wrap where a reader draws
 them; pages get margins and, past one, "2 / 5" at the foot. Only the page a request asked
-for answers a document: inside a `{page}` the content is shown on its sheet (the
+for answers a document: inside a `{pad:page}` the content is shown on its sheet (the
 `--pad-pdf-*` colours, `light-dark()`), and a data (json, csv) or live answer goes first.
 The document carries no date, so the same page is the same bytes. An unknown `size` or
-`font` is an error under the strict check. A printable's sheets (`{printable}`) are pages of their
+`font` is an error under the strict check. A printable's sheets (`{printable:labels}`) are pages of their
 own size in the document, laid out by place: their boxes, rectangles and lines where the screen has
 them, and in their boxes the SVG of a barcode or a QR code drawn. From PHP: `padPdf ( $html, [ 'size' => 'Letter' ] )`
 answers the bytes.
@@ -3756,22 +3747,23 @@ answers the bytes.
 ---
 
 ### diagram
+Subsystem syntax: `{diagram:kind ...}`.
 A diagram from a few lines of text in the content, written the Mermaid way and laid out on
 the server as inline SVG by the diagram subsystem (`pad/subs/diagrams/`) - no JavaScript. A kind
 is a file of `pad/subs/diagrams/types/`: `flowchart` (the default), `sequence`, `state`, `class`,
 `er`, `mindmap`, `tree`, `journey`, `gitgraph`, `fishbone`, `railroad` and `packet`.
 
 ```html
-{diagram}
+{diagram:auto}
   A([Order placed]) --> B{In stock?}
   B -->|yes| C[Take payment] --> D((Shipped))
   B -.->|no| E[(Supplier)]
-{/diagram}
+{/diagram:auto}
 
-{diagram type='sequence'}
+{diagram:sequence}
   Shop ->> Bank: Charge
   Bank -->> Shop: Approved
-{/diagram}
+{/diagram:sequence}
 
 {diagram:state}
   [*] --> Idle
@@ -3794,11 +3786,11 @@ is a file of `pad/subs/diagrams/types/`: `flowchart` (the default), `sequence`, 
   }
 {/diagram:er}
 
-{mindmap}
+{diagram:mindmap}
   PAD
     Templates
     Data
-{/mindmap}
+{/diagram:mindmap}
 
 {diagram:tree}
   Board
@@ -3806,43 +3798,43 @@ is a file of `pad/subs/diagrams/types/`: `flowchart` (the default), `sequence`, 
     Engineering
 {/diagram:tree}
 
-{journey}
+{diagram:journey}
   section Morning
     Make tea: 5: Me
-{/journey}
+{/diagram:journey}
 
-{gitgraph}
+{diagram:gitgraph}
   commit
   branch develop
   commit id: "Parser"
   checkout main
   merge develop tag: "v1.0"
-{/gitgraph}
+{/diagram:gitgraph}
 
-{fishbone}
+{diagram:fishbone}
   Late trains
     Weather
       Snow on the points
     Staff
-{/fishbone}
+{/diagram:fishbone}
 
-{railroad}
+{diagram:railroad}
   list ::= '[' ( item ( ',' item )* )? ']'
   item ::= number | 'null'
-{/railroad}
+{/diagram:railroad}
 
-{packet}
+{diagram:packet}
   title UDP header
   0-15: "Source Port"
   +16: "Destination Port"
-{/packet}
+{/diagram:packet}
 ```
 
 **Parameters:**
 
 | Option | Description |
 |--------|-------------|
-| `type` | The kind, a file of `pad/subs/diagrams/types/` - `flowchart` (default; `flow` and `graph` say so too). A first line written the Mermaid way names it as well: `sequenceDiagram`, `stateDiagram` / `stateDiagram-v2`, `classDiagram`, `erDiagram`, `gitGraph` whatever the tag says, and a kind's name alone (`mindmap`, `journey`, `fishbone`, `railroad`, `packet`, Mermaid's `ishikawa-beta` and `packet-beta`) where the tag names none |
+| `diagram:kind` | The kind, a file of `pad/subs/diagrams/types/` - `flowchart` (default; `flow` and `graph` say so too). A first line written the Mermaid way names it as well: `sequenceDiagram`, `stateDiagram` / `stateDiagram-v2`, `classDiagram`, `erDiagram`, `gitGraph` whatever the tag says, and a kind's name alone (`mindmap`, `journey`, `fishbone`, `railroad`, `packet`, Mermaid's `ishikawa-beta` and `packet-beta`) where the tag names none |
 | `direction` | flowchart, state, class, er and tree: `TB` (default), `BT`, `LR` or `RL` - else the lines say it: a first line `graph LR` / `flowchart LR` in a flowchart, a line `direction LR` in a state, class or entity-relationship diagram |
 | `bits` | packet: the bits in a row, `32` unless given, 4 to 64 |
 | `edges` | flowchart, state, class and er: `orthogonal` (default, rounded turns in channels of their own), `straight` or `curved` |
@@ -3851,11 +3843,7 @@ is a file of `pad/subs/diagrams/types/`: `flowchart` (the default), `sequence`, 
 A kind reads only the options it draws with: `direction` on a sequence diagram is an option
 nothing reads, which the strict check reports.
 
-**The kind as the tag:** `{diagram:state}...{/diagram:state}` is `{diagram type='state'}...{/diagram}`,
-and so is the bare `{state}...{/state}` when no tag, store, field or sequence has the name -
-the kinds come after every other kind of tag. `sequence` and `tree` are built-in tags too, so
-bare they are those tags: the sequence diagram and the tree are `{diagram:sequence}` and
-`{diagram:tree}` (or `type=`). `{diagram:zigzag}` is "there is no diagram type named 'zigzag'".
+**The kind as the tag:** `{diagram:state}...{/diagram:state}` is `{diagram:state}...{/diagram:state}`. The sequence diagram and tree are `{diagram:sequence}` and `{diagram:tree}`; numeric sequences use `sequence:` selectors, while the core tree tag remains `{pad:tree}`. `{diagram:zigzag}` is "there is no diagram type named 'zigzag'".
 
 **Behavior:**
 
@@ -3941,7 +3929,7 @@ bare they are those tags: the sequence diagram and the tree are `{diagram:sequen
   before it starts, or a line of no field are errors; `bits` outside 4 to 64 is too.
 
 The content is read as it stands - the braces of `B{Paid?}` and `class A {` need no
-`{ignore}`. role="img" with a `<title>` and a `<desc>` that says every edge, message,
+`{pad:ignore}`. role="img" with a `<title>` and a `<desc>` that says every edge, message,
 relation, branch, step or commit in words; the colours are `--pad-diagram-node`, `-border`,
 `-decision`, `-decision-border`, `-round`, `-round-border`, `-edge`, `-note` and the journey's
 `-score-1` to `-score-5` and `-face` on `.pad-chart-diagram`, `light-dark()` defaults; the mind
@@ -3959,13 +3947,13 @@ server by the map subsystem in `pad/subs/maps/` from Natural Earth's outlines (`
 `subs/maps/_lib/world.json`) - no JavaScript, no tiles, no remote service.
 
 ```html
-{map 'world', data='sales', key='country', value='amount'/}
-{map 'europe', data='visitors', scale='quantile', title='Visitors per country'/}
-{map 'benelux', data='shops', key='country', value='count'/}
-{map 'south-america', key='code', value='forest', width=320}
+{pad:map 'world', data='sales', key='country', value='amount'/}
+{pad:map 'europe', data='visitors', scale='quantile', title='Visitors per country'/}
+{pad:map 'benelux', data='shops', key='country', value='count'/}
+{pad:map 'south-america', key='code', value='forest', width=320}
   code,forest
   BRA,59.1
-{/map}
+{/pad:map}
 ```
 
 **Parameters:**
@@ -3973,7 +3961,7 @@ server by the map subsystem in `pad/subs/maps/` from Natural Earth's outlines (`
 | Option | Description |
 |--------|-------------|
 | first parameter | The view, a file of `pad/subs/maps/types/`: `world` (default), the continents `europe`, `africa`, `asia`, `north-america`, `south-america`, `oceania`, and the regions `middle-east`, `mediterranean`, `eu`, `nordic`, `benelux`, `baltic`, `british-isles`, `iberia`, `dach`, `balkans`, `central-america`, `caribbean`, `east-asia`, `southeast-asia`, `south-asia`, `central-asia`; and the regions of a country: `us-states`, `nl-provinces`, `de-states`, `au-states` |
-| `data` | The rows - a `{data}` store, a page array or a `_data` file, as for `{chart}`; as a pair the content is the rows (JSON, YAML, XML or CSV). A row that is a value alone takes its key as the country: `[ 'NL' => 1200, 'BE' => 800 ]` |
+| `data` | The rows - a `{pad:data}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV). A row that is a value alone takes its key as the country: `[ 'NL' => 1200, 'BE' => 800 ]` |
 | `key` | The field with the country: its ISO 3166 alpha-2 or alpha-3 code or its English name, in any case - on a view of a country's regions the region: its ISO 3166-2 code with or without the country (`US-CA`, `CA`) or its name - else the first field that is no number |
 | `value` | The number - else the first numeric field |
 | `scale` | `linear` (default: seven steps from the lowest value to the highest) or `quantile` (seven steps by rank) - of the values the view draws |
@@ -4032,19 +4020,19 @@ Events on a time axis as inline SVG (`tags/_lib/timeline.php`) - cards above and
 spans as bars, or one under the other for a long list.
 
 ```html
-{timeline data='releases', date='when', label='what', text='detail'/}
-{timeline data='plan', from='start', to='end', date='day', label='name', color='kind'/}
-{timeline date='year', label='what', vertical}
+{pad:timeline data='releases', date='when', label='what', text='detail'/}
+{pad:timeline data='plan', from='start', to='end', date='day', label='name', color='kind'/}
+{pad:timeline date='year', label='what', vertical}
   year,what
   1969,Moon landing
-{/timeline}
+{/pad:timeline}
 ```
 
 **Parameters:**
 
 | Option | Description |
 |--------|-------------|
-| `data` | The rows - a `{data}` store, a page array or a `_data` file, as for `{chart}`; as a pair the content is the rows (JSON, YAML, XML or CSV) |
+| `data` | The rows - a `{pad:data}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV) |
 | `date` | The field of a moment: a year (`1969`), a month (`2026-10`) or anything `strtotime` reads - else the first field that reads as one |
 | `from`, `to` | The fields of a span, drawn as a bar |
 | `label`, `text` | The title of an event and the line under it - else the first other text fields |
@@ -4072,26 +4060,26 @@ numbers right-aligned and formatted alike down their column, a totals row, heade
 sort and page links that page, all on the server.
 
 ```html
-{datatable data='orders', columns='number, customer, total', totals='total'/}
-{datatable data='orders', format="total:currency('EUR'), date:date('j M')", sortable, striped/}
-{datatable data='cities', rows=10, sortable, caption='Largest cities'/}
-{datatable totals='amount'}
+{pad:datatable data='orders', columns='number, customer, total', totals='total'/}
+{pad:datatable data='orders', format="total:currency('EUR'), date:date('j M')", sortable, striped/}
+{pad:datatable data='cities', rows=10, sortable, caption='Largest cities'/}
+{pad:datatable totals='amount'}
   month,amount
   Jan,12400
-{/datatable}
+{/pad:datatable}
 ```
 
 **Parameters:**
 
 | Option | Description |
 |--------|-------------|
-| `data` | The rows - a `{data}` store, a page array or a `_data` file, as for `{chart}`; as a pair the content is the rows (JSON, YAML, XML or CSV, told apart on sight, `type=` names it) |
+| `data` | The rows - a `{pad:data}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV, told apart on sight, `type=` names it) |
 | `columns` | The fields shown and their order, default every field of the first row |
 | `labels` | The header of each column, in the order of `columns` - default the field name as a headline (`order_date` is Order Date) |
-| `format` | A pipe per column, `column:pipe` - `total:money, date:date('j M Y')` - run as `{echo $value \| pipe/}` |
+| `format` | A pipe per column, `column:pipe` - `total:money, date:date('j M Y')` - run as `{pad:echo $value \| pipe/}` |
 | `totals` | Columns summed - over every row, not only the page shown - in a totals row with Total in its first cell |
 | `sortable` | Each header a link that sorts on the server: `?sort=total&dir=desc` on the same page |
-| `rows` | Rows per page, with page links below (`?page=2`) made from the `{pager}`'s items |
+| `rows` | Rows per page, with page links below (`?page=2`) made from the `{pad:pager}`'s items |
 | `query` | A prefix for the three request names - `query='o_'` reads `o_sort`, `o_dir`, `o_page` - for two tables on one page |
 | `striped` | Every other row shaded |
 | `caption` | The table's `<caption>` |
@@ -4117,13 +4105,13 @@ its own, its functions the files of `pad/subs/formulas/types/` (SUM, IF, VLOOKUP
 them), answering what Excel answers. See [Spreadsheets](../FEATURES.md#spreadsheets).
 
 ```html
-{spreadsheet 'shop', formats='B:0.00, D:€ #,##0.00', totals='D'}
+{pad:spreadsheet 'shop', formats='B:0.00, D:€ #,##0.00', totals='D'}
   Item,Price,Qty,Total
   Apples,1.20,3,=B2*C2
   Pears,0.80,5,=B3*C3
-{/spreadsheet}
-{spreadsheet data='orders', formulas='total=B2*C2, F1=SUM(D:D)'/}
-{live 'calc'}{spreadsheet 'calc', editable='B1:B3'}...{/spreadsheet}{/live}
+{/pad:spreadsheet}
+{pad:spreadsheet data='orders', formulas='total=B2*C2, F1=SUM(D:D)'/}
+{pad:live 'calc'}{pad:spreadsheet 'calc', editable='B1:B3'}...{/pad:spreadsheet}{/pad:live}
 ```
 
 **Parameters:**
@@ -4148,7 +4136,7 @@ formula as its first cell (DATE, EOMONTH a date), else General. Numbers stand ri
 marked (`class="err"`) and explained in their title; a formula's cell carries it in `title` and
 `data-formula`, its number in `data-value`. A circle of references answers `#REF!` in every cell
 of it, the title naming the circle (`A1 → B1 → A1`). `editable` cells are `<input>`s labelled by
-the cell and the texts heading its row and column: in a `{form}` they post with it, in a `{live}`
+the cell and the texts heading its row and column: in a `{pad:form}` they post with it, in a `{pad:live}`
 region the sheet is a form (`pad-submit`) a change submits - every cell's text once - and the
 region comes back computed, elsewhere the sheet is a form of its own with a Recalculate button; a post
 types into the cells named only, a formula too, 1000 characters at most. Colours are
@@ -4163,11 +4151,11 @@ Without the check, and for a posted formula, the cell shows `#ERROR!`, `#NAME?`,
 
 ### toc
 A table of contents of the page from its own rendered headings (`tags/_lib/toc.php`), nested and linked,
-written where `{toc}` stands once the whole page has rendered - the headings below it included.
+written where `{pad:toc}` stands once the whole page has rendered - the headings below it included.
 
 ```html
-{toc/}
-{toc levels='2-4', title='On this page', list='ul'/}
+{pad:toc/}
+{pad:toc levels='2-4', title='On this page', list='ul'/}
 ```
 
 **Parameters:**
@@ -4178,9 +4166,9 @@ written where `{toc}` stands once the whole page has rendered - the headings bel
 | `title` | The label above the list, `Contents` by default; `''` for none |
 | `list` | `ol` (numbered, the default) or `ul` |
 
-**Behavior:** the tag prints a marker, as `{stack}` does, and the marker is replaced once the page
-has rendered - from `exits/exits.php` for the request's page, and when a `{page}` pass ends for a
-page it renders, so a `{toc}` lists the headings of the page that holds it. A heading without an
+**Behavior:** the tag prints a marker, as `{pad:stack}` does, and the marker is replaced once the page
+has rendered - from `exits/exits.php` for the request's page, and when a `{pad:page}` pass ends for a
+page it renders, so a `{pad:toc}` lists the headings of the page that holds it. A heading without an
 id gets one - the slug of its text, `-2`, `-3` behind a repeat, never an id the page has - and a
 heading with an id keeps it. One level deeper nests one list deeper, never more than one step in.
 The nav is labelled by its title, a paragraph rather than a heading, so it lists itself nowhere.
@@ -4194,8 +4182,8 @@ The time left until a moment, in words, inside a `<time datetime>` (`tags/_lib/c
 optionally ticking every second in the browser.
 
 ```html
-{countdown '2026-12-31 00:00'/}                         <!-- 84 days, 3 hours -->
-{countdown $launch, units=3, live, past='We are live!'/}
+{pad:countdown '2026-12-31 00:00'/}                         <!-- 84 days, 3 hours -->
+{pad:countdown $launch, units=3, live, past='We are live!'/}
 ```
 
 **Parameters:**
@@ -4222,8 +4210,8 @@ How long ago a moment was, in words, inside a `<time>` with the moment as its `d
 full, as its `title` (`tags/_lib/timeago.php`) - the `ago` pipe's words with the semantic element.
 
 ```html
-{timeago $created/}        <!-- <time datetime="2026-10-08T09:10:00+02:00" title="Thursday 8 October 2026, 09:10">5 minutes ago</time> -->
-{timeago $posted, format='j M Y'/}
+{pad:timeago $created/}        <!-- <time datetime="2026-10-08T09:10:00+02:00" title="Thursday 8 October 2026, 09:10">5 minutes ago</time> -->
+{pad:timeago $posted, format='j M Y'/}
 ```
 
 **Parameters:**
@@ -4245,8 +4233,8 @@ An emoji by its GitHub or Slack shortcode, as a labelled image (`tags/_lib/emoji
 replaces the shortcodes in a text.
 
 ```html
-{emoji 'rocket'/}                   <!-- <span class="pad-emoji" role="img" aria-label="rocket">🚀</span> -->
-{emoji ':tada:', label='Party!'/}
+{pad:emoji 'rocket'/}                   <!-- <span class="pad-emoji" role="img" aria-label="rocket">🚀</span> -->
+{pad:emoji ':tada:', label='Party!'/}
 {$comment | emoji}                 <!-- 'Shipped :rocket:' becomes 'Shipped 🚀' -->
 ```
 
@@ -4269,9 +4257,9 @@ strict error that names the nearest one (`did you mean ':rocket:'?`).
 A country's flag from its ISO 3166-1 code, optionally with its English name (`tags/_lib/country.php`).
 
 ```html
-{country 'NL'/}             <!-- <span class="pad-country" role="img" aria-label="Netherlands">🇳🇱</span> -->
-{country 'NLD', name/}      <!-- the flag and Netherlands beside it -->
-{country $code, name/}
+{pad:country 'NL'/}             <!-- <span class="pad-country" role="img" aria-label="Netherlands">🇳🇱</span> -->
+{pad:country 'NLD', name/}      <!-- the flag and Netherlands beside it -->
+{pad:country $code, name/}
 ```
 
 **Parameters:**
@@ -4294,11 +4282,11 @@ A JSON value or a PHP array as a tree to fold open and shut (`tags/_lib/jsonview
 list a `<details>`, no script.
 
 ```html
-{jsonview $response, open=1, title='GET /orders/42'/}
-{jsonview data='settings'/}
-{jsonview}
+{pad:jsonview $response, open=1, title='GET /orders/42'/}
+{pad:jsonview data='settings'/}
+{pad:jsonview}
   {"id": 42, "paid": true, "lines": [ ... ]}
-{/jsonview}
+{/pad:jsonview}
 ```
 
 **Parameters:**
@@ -4306,12 +4294,12 @@ list a `<details>`, no script.
 | Option | Description |
 |--------|-------------|
 | first parameter | The value - a `$field` holding a list (a page array, a row) or a text; a text that is a JSON object or list is decoded |
-| `data` | A `{data}` store, a page array or a `_data` file by name - a `.json` file read as it is written |
+| `data` | A `{pad:data}` store, a page array or a `_data` file by name - a `.json` file read as it is written |
 | `open` | The levels shown unfolded, default 2; 0 folds everything |
 | `title` | A label for the outermost level |
 
 **Behavior:** as a pair the content is the JSON, taken as it stands, so its braces need no
-`{ignore}`. The tag reads its items raw, as `{debug}` does, so a `$field` that holds an array is
+`{pad:ignore}`. The tag reads its items raw, as `{pad:debug}` does, so a `$field` that holds an array is
 that array. Keys, strings, numbers, booleans and null each have a colour - `--pad-jsonview-*`
 custom properties with `light-dark()` defaults, the style written once per page; a folded node
 says how many keys or items it holds. Content that is no JSON, an unknown option, a second value,
@@ -4320,6 +4308,7 @@ a `data` name that names nothing and no value at all are strict errors.
 ---
 
 ### section
+Subsystem syntax: `{section:kind ...}`.
 A block of a landing page - a hero, the features, the prices, what customers say, the questions, a
 call to action, the numbers, the steps, the team, the logos, a newsletter form, the contact details,
 a gallery, the footer, a comparison table, a changelog, the downloads, an agenda, the latest
@@ -4329,11 +4318,11 @@ per kind, each written once per page with the CSP nonce); the files of `types/` 
 there are, and the subsystem is `pad/subs/sections/`.
 
 ```html
-{section 'hero', 'Pages that drive themselves', button='Start', link='?start', second='Read more', secondLink='?docs'}
+{section:hero 'Pages that drive themselves', button='Start', link='?start', second='Read more', secondLink='?docs'}
   Write the page, and the page renders itself.
-  {slot 'eyebrow'}New in PAD{/slot}
-  {slot 'image'}{placeholder ratio='4:3', fluid/}{/slot}
-{/section}
+  {pad:slot 'eyebrow'}New in PAD{/pad:slot}
+  {pad:slot 'image'}{pad:placeholder ratio='4:3', fluid/}{/pad:slot}
+{/section:hero}
 {section:features title='Why PAD', columns=3}
   {section:item 'Fast', icon='zap'}Pages render in milliseconds.{/section:item}
   {section:item 'Safe', icon='shield-check'}Every value is text.{/section:item}
@@ -4351,12 +4340,10 @@ there are, and the subsystem is `pad/subs/sections/`.
 {/section:footer}
 ```
 
-A section is written two ways, the same section each time: the tag, `{section 'hero', ...}`, whose
-second value is the section's first, and the section: type, `{section:hero ...}`. It is never
-reached bare - hero, team, stats and footer are the names of fields and pages. The section's first
+Select a section with its qualified name, such as `{section:hero ...}`. The section's first
 value is its heading (as `title=`), an item's first value its name.
 
-**Parts.** A part comes three ways, the first that has one winning: a `{slot 'name'}` pair standing
+**Parts.** A part comes three ways, the first that has one winning: a `{pad:slot 'name'}` pair standing
 directly in the section's content - template, rendered where the section stands, in the scope of
 the loop around it - an option of the part's name, escaped, and for `text` the rest of the content.
 A slot of a part the section has not is an error under the strict check.
@@ -4371,14 +4358,14 @@ its `@else@` shows, and a single tag writes nothing. An option the section has n
 reported, and so is an item outside a list section, a list section given neither `data=` nor
 items, and items in a section that lists nothing.
 
-**Forms.** The newsletter and the contact form post back to the page as `{form 'newsletter'}`
+**Forms.** The newsletter and the contact form post back to the page as `{pad:form 'newsletter'}`
 does: the session's CSRF token when they post here, the hidden `padForm` field with their name.
 The page's PHP asks `padPosted ( 'newsletter' )` and checks the post with
 `padValidate ( [ 'email' => 'required|email' ] )`; the fields refill and show the message, tied to
 the field for a screen reader, and once the post came back right - posted, and no message for any
 of its fields - the section shows `thanks=` in the form's place (`role="status"`). A field's id
 is the section's and its name, so two sections of a kind have fields of their own; two forms of
-one name on a page are told apart as two `{form 'newsletter'}` are - the second carries its
+one name on a page are told apart as two `{pad:form 'newsletter'}` are - the second carries its
 place - so only the one that was sent says thanks, refills and shows the messages.
 
 **Comparison.** A table with a column per plan - `plans=`, or the fields of the first row of `data=`
@@ -4449,7 +4436,7 @@ theme sets them on `.pad-section`.
 | Section | Shows | Parts | An item's fields - its first value first, its content last |
 |---------|-------|-------|-----------------------------------------------------------|
 | `hero` | The heading of the page, its text, buttons, a picture beside them | eyebrow, title, text, actions, image, note | - |
-| `features` | A card per feature, an icon of `{icon}` each | eyebrow, title, text | title, icon, link, text |
+| `features` | A card per feature, an icon of `{icon:star}` each | eyebrow, title, text | title, icon, link, text |
 | `pricing` | A card per plan, a featured one with its badge | eyebrow, title, text, note | name, price, period, text, button, link, featured, badge, features (a line each) |
 | `testimonials` | A card per quote over who said it, initials without a picture | eyebrow, title, text | name, role, image, link, text (the quote) |
 | `faq` | A `<details>` per question | eyebrow, title, text | question, answer |
@@ -4473,6 +4460,7 @@ theme sets them on `.pad-section`.
 ---
 
 ### effect
+Subsystem syntax: `{effect:kind ...}`.
 Motion and decoration on a text or a block, CSS first: every effect is a file of
 `pad/subs/effects/types/`, its look `www/assets/effects/<kind>.css`, written once per page with
 the CSP nonce after the base every effect shares (`effect.css`); confetti and decipher alone have a
@@ -4480,28 +4468,25 @@ script, `confetti.js` and `decipher.js` beside them, written the same way. The f
 subsystem is `pad/subs/effects/`.
 
 ```html
-{effect 'typewriter'}Hello, world{/effect}
+{effect:typewriter}Hello, world{/effect:typewriter}
 {effect:highlighter}the one thing to remember{/effect:highlighter}
-{underline hover}<a href="?terms">the terms</a>{/underline}
-{strike}€49{/strike} <b>€29</b>
-{encircle style='box', color='#16a34a'}42{/encircle}
-{typewriter speed=20, mono}npm install pad{/typewriter}
-{countup to=1250, prefix='€', suffix='+'/}
-<h1>Built for {rotator hold=2}teams, makers, you{/rotator}</h1>
-<h2>{decipher glyphs='binary', mono}SIGNAL FOUND{/decipher}</h2>
-{gradient colors='#f97316, #db2777', angle=120, animate}Launch week{/gradient}
-{marquee duration=25, label='Built with'}<b>PHP</b> <b>SQLite</b> <b>htmx</b>{/marquee}
-{reveal motion='left'}<div class="card">...</div>{/reveal}
-{nudge style='shake', delay=1}<a href="?signup">Try it free</a>{/nudge}
-{spinner style='dots', label='Saving'/}
-{skeleton shape='card', lines=2/}
-{confetti}<button type="button">Celebrate</button>{/confetti}
+{effect:underline hover}<a href="?terms">the terms</a>{/effect:underline}
+{effect:strike}€49{/effect:strike} <b>€29</b>
+{effect:encircle style='box', color='#16a34a'}42{/effect:encircle}
+{effect:typewriter speed=20, mono}npm install pad{/effect:typewriter}
+{effect:countup to=1250, prefix='€', suffix='+'/}
+<h1>Built for {effect:rotator hold=2}teams, makers, you{/effect:rotator}</h1>
+<h2>{effect:decipher glyphs='binary', mono}SIGNAL FOUND{/effect:decipher}</h2>
+{effect:gradient colors='#f97316, #db2777', angle=120, animate}Launch week{/effect:gradient}
+{effect:marquee duration=25, label='Built with'}<b>PHP</b> <b>SQLite</b> <b>htmx</b>{/effect:marquee}
+{effect:reveal motion='left'}<div class="card">...</div>{/effect:reveal}
+{effect:nudge style='shake', delay=1}<a href="?signup">Try it free</a>{/effect:nudge}
+{effect:spinner style='dots', label='Saving'/}
+{effect:skeleton shape='card', lines=2/}
+{effect:confetti}<button type="button">Celebrate</button>{/effect:confetti}
 ```
 
-An effect is written three ways, the same effect each time: the tag, `{effect 'typewriter'}...
-{/effect}`, whose second parameter is the effect's own first; the effect: type,
-`{effect:typewriter}...{/effect:typewriter}`; and bare, `{typewriter}...{/typewriter}`, when no tag,
-store, field or sequence has the name. A pair works on its content, rendered first - the effect
+Select an effect with its qualified name, such as `{effect:typewriter}...{/effect:typewriter}`. A pair works on its content, rendered first - the effect
 wraps what rendered; a single tag works on its first parameter, escaped, or on nothing.
 
 Every animation stands inside `@media (prefers-reduced-motion: no-preference)`: under reduced
@@ -4551,10 +4536,10 @@ the effects follow. Every theme is a file of `pad/subs/themes/types/`; the files
 themes there are, and the subsystem is `pad/subs/themes/`.
 
 ```html
-{theme 'paper'/}
-{theme 'terminal'}
+{pad:theme 'paper'/}
+{pad:theme 'terminal'}
   <p>$ pad serve</p>
-{/theme}
+{/pad:theme}
 ```
 
 **Parameters:**
@@ -4568,7 +4553,7 @@ nonce, on `:root:root:root` - outweighing the frame's light and dark rules - and
 has one gets no theme from `$padTheme` or a visitor's choice on its way out. As a pair the theme colours its content alone, a box with
 the theme's background and text, its style once per page - the theme's rules for the page's
 body, blueprint's capital headings, readable's paragraphs of 70 letters, reach what the box holds. `$padTheme = 'paper'` puts every page
-of an application in a theme, `{themes/}` lets the visitor choose (kept in a cookie of the
+of an application in a theme, `{pad:themes/}` lets the visitor choose (kept in a cookie of the
 application, winning over the setting), `$padTheme = FALSE` turns both off. Every theme's text reaches WCAG AA on its
 backgrounds, contrast's and contrast-dark's AAA. A name that is no theme, no name and content on the single form are
 strict errors.
@@ -4581,8 +4566,8 @@ chosen - the choice posted back to the page and kept in a cookie, the pages buil
 in that theme from then on.
 
 ```html
-{themes/}
-{themes label='Colours', button='Use'/}
+{pad:themes/}
+{pad:themes label='Colours', button='Use'/}
 ```
 
 **Parameters:**
@@ -4613,9 +4598,9 @@ whichever reads better. Every palette is a file of `pad/subs/palettes/types/`; t
 the palettes there are, and the subsystem is `pad/subs/palettes/`.
 
 ```html
-{palette 'viridis', steps=7/}
-{palette 'okabe-ito', title='The chart colours'/}
-{chart 'bar', data='sales', value='north, south, west', palette='viridis'/}
+{pad:palette 'viridis', steps=7/}
+{pad:palette 'okabe-ito', title='The chart colours'/}
+{chart:bar data='sales', value='north, south, west', palette='viridis'/}
 ```
 
 **Parameters:**
@@ -4629,7 +4614,7 @@ the palettes there are, and the subsystem is `pad/subs/palettes/`.
 **Behavior:** the row is a list for a screen reader, `role="list"`, a swatch an item; its style
 is written once per page with the nonce, a swatch's colour a class of its value with its rule
 (`pp-c-440154`) - no style attribute, which a CSP nonce drops. `padPalette ( 'viridis', 7 )` answers the same colours
-to a page's PHP. `palette='name'` on `{chart}` colours a chart of any kind - a categorical
+to a page's PHP. `palette='name'` on `{chart:bar}` colours a chart of any kind - a categorical
 palette its series in order, a scale spread over the series the chart has and over the
 heatmap's ramp - as custom properties of a class of the palette on the svg (`pc-pal-viridis-3`),
 its rule in the chart's own `<style>`, server and `client` alike. A
@@ -4643,25 +4628,25 @@ name that is no palette, steps out of bounds and content are strict errors.
 Frame the page with a layout instead of its directories' wrappers.
 
 ```html
-{extends '_layouts/report'/}
+{pad:extends '_layouts/report'/}
 
-{block 'title'}Sales report{/block}
+{pad:block 'title'}Sales report{/pad:block}
 
-{block 'sidebar'}
-  {parent/}
+{pad:block 'sidebar'}
+  {pad:parent/}
   <a href="?export">Export</a>
-{/block}
+{/pad:block}
 
 <p>The rest of the page goes where the layout writes @page@.</p>
 ```
 
 **Behavior:** Resolved while the page is assembled, before anything renders. The layout is
-named from the application root, like `{page}` (`.pad`, else `.html`); an underscore
+named from the application root, like `{pad:page}` (`.pad`, else `.html`); an underscore
 directory keeps it from being a page of its own. It replaces the `_inits.pad`/`_exits.pad`
 frame and the `_common` wrapper; a layout may extend a layout. The page's text outside its
 blocks goes where the layout writes `@page@`, or in front of it when it has none. The tag
 must stand directly in the page's own template; the name may be an expression the page's PHP
-set (`{extends $layout/}`).
+set (`{pad:extends $layout/}`).
 
 ---
 
@@ -4669,27 +4654,27 @@ set (`{extends $layout/}`).
 A named region of a layout or wrapper, and a page's override of it.
 
 ```html
-<title>{block 'title'}My site{/block}</title>      {# in the layout or _inits.pad #}
-{block 'title'}Sales{/block}                       {# in the page #}
+<title>{pad:block 'title'}My site{/pad:block}</title>      {# in the layout or _inits.pad #}
+{pad:block 'title'}Sales{/pad:block}                       {# in the page #}
 ```
 
-**Rules:** A `{block 'name'}` pair standing directly in the page overrides the block of that
+**Rules:** A `{pad:block 'name'}` pair standing directly in the page overrides the block of that
 name in its frame - the layout it extends, or its directories' wrappers, so a page without
 PHP sets the wrapper's title. Any other named block is a region: its content renders unless
-something overrides it. The name is always quoted - a `{block}` without one (the `_common`
+something overrides it. The name is always quoted - a `{pad:block}` without one (the `_common`
 snippet) is not a layout block. Under the strict check a block of an extending page that
-overrides nothing is reported. Text between `{ignore}` tags is left alone.
+overrides nothing is reported. Text between `{pad:ignore}` tags is left alone.
 
 ---
 
 ### parent
-Inside an overriding `{block}`: the content it overrides.
+Inside an overriding `{pad:block}`: the content it overrides.
 
 ```html
-{block 'sidebar'}{parent/}<a href="?export">Export</a>{/block}
+{pad:block 'sidebar'}{pad:parent/}<a href="?export">Export</a>{/pad:block}
 ```
 
-Through a chain of layouts each `{parent}` is the next block down. Outside an overriding block
+Through a chain of layouts each `{pad:parent}` is the next block down. Outside an overriding block
 it is reported under the strict check.
 
 ---
@@ -4698,24 +4683,24 @@ it is reported under the strict check.
 A named place for content in a custom tag's template, and the fill a caller gives it.
 
 ```html
-{card title='Revenue'}                         _tags/card.pad:
+{define:card title='Revenue'}                         _tags/card.pad:
   <strong>{$revenue}</strong>                  <div class="card">
-  {slot 'footer'}                                <h2>{#title}</h2>
+  {pad:slot 'footer'}                                <h2>{#title}</h2>
     <a href="?reports">Report</a>                @content@
-  {/slot}                                        {slot 'footer'}<footer>@content@</footer>{/slot}
-{/card}                                        </div>
+  {/pad:slot}                                        {pad:slot 'footer'}<footer>@content@</footer>{/pad:slot}
+{/define:card}                                        </div>
 ```
 
 **Rules:**
-- A `{slot}` pair standing directly in the content of a custom tag - an `_tags` or `_common`
+- A `{pad:slot}` pair standing directly in the content of a custom tag - an `_tags` or `_common`
   tag, or an `_include` snippet used as a pair - is a fill: it is taken out of the content
   when the tag opens and kept for that use of the tag, so nested tags keep their own. The
-  rest of the content goes to `@content@`. `{slot 'name'/}` there is an empty fill.
-- Every other `{slot}` is a place in the template: the fill renders there, or the slot's own
+  rest of the content goes to `@content@`. `{pad:slot 'name'/}` there is an empty fill.
+- Every other `{pad:slot}` is a place in the template: the fill renders there, or the slot's own
   content as the default. A default holding `@content@` is a frame round the fill, rendered
   only when there is one - otherwise its `@else@` part, or nothing.
 - A fill is the caller's text: it renders with the caller's variables, and a `{#name}` or a
-  `{slot}` inside it belongs to the caller's tag, which is how a template passes a slot of
+  `{pad:slot}` inside it belongs to the caller's tag, which is how a template passes a slot of
   its own on to a tag it uses. From a tag's PHP: `padSlotFill ( 'footer' )`.
 
 ---
@@ -4724,14 +4709,14 @@ A named place for content in a custom tag's template, and the fill a caller give
 Declares the parameters of a custom tag, at the top of its template.
 
 ```html
-{parms title, subtitle='', tone='info'/}
+{pad:parms title, subtitle='', tone='info'/}
 <h2 class="{#tone}">{#title}</h2>
 ```
 
 **Behavior:** A name alone is required - leaving it out is an error. `name=default` fills
 in what the caller left out, readable as `{#name}` like a given one. Under the strict check
-a parameter the tag does not declare is reported: `the tag {card} has no parameter 'titel'`.
-The items are read raw, as `{attrs}` reads them.
+a parameter the tag does not declare is reported: `the tag {define:card} has no parameter 'titel'`.
+The items are read raw, as `{pad:attrs}` reads them.
 
 ---
 
@@ -4739,26 +4724,26 @@ The items are read raw, as `{attrs}` reads them.
 A custom tag written in the template itself - what an `_tags/name.pad` file is, without the file.
 
 ```html
-{define 'card'}
-  {parms title, tone='info'/}
+{pad:define 'card'}
+  {pad:parms title, tone='info'/}
   <div class="card {#tone}">
     <h2>{#title}</h2>
     @content@
-    {slot 'footer'}<footer>@content@</footer>{/slot}
+    {pad:slot 'footer'}<footer>@content@</footer>{/pad:slot}
   </div>
-{/define}
+{/pad:define}
 
-{card title='Revenue'}<strong>{$revenue}</strong>{/card}
-{card title='Orders', tone='warn'}{$count}{slot 'footer'}<a href="?orders">All</a>{/slot}{/card}
+{define:card title='Revenue'}<strong>{$revenue}</strong>{/define:card}
+{define:card title='Orders', tone='warn'}{$count}{pad:slot 'footer'}<a href="?orders">All</a>{/pad:slot}{/define:card}
 ```
 
 **Behavior:** the body is kept as written and renders at every use, where the use stands and
-with its fields - a `{define}` can use itself, for rows below the current one. Everything of a
-custom tag works: `{#name}` reads a parameter, `{parms}` declares them, `@content@` takes the
-caller's content in, `{slot}`s take fills. A define exists from the point it is walked, as a
-`{content}` or `{data}` store does - a use before it is an unknown tag. `define:card` asserts the
+with its fields - a `{pad:define}` can use itself, for rows below the current one. Everything of a
+custom tag works: `{#name}` reads a parameter, `{pad:parms}` declares them, `@content@` takes the
+caller's content in, `{pad:slot}`s take fills. A define exists from the point it is walked, as a
+`{pad:content}` or `{pad:data}` store does - a use before it is an unknown tag. `define:card` asserts the
 kind. Under the strict check a name that is a built-in or application tag, or already a
-`{macro}`, is an error, and so is a define without a name or without its body.
+`{pad:macro}`, is an error, and so is a define without a name or without its body.
 
 ---
 
@@ -4766,22 +4751,22 @@ kind. Under the strict check a name that is a built-in or application tag, or al
 A template function: declared parameters, given in their order or by name, read as fields.
 
 ```html
-{macro 'entry', label, type='text', value=''}
+{pad:macro 'entry', label, type='text', value=''}
   <label>{$label} <input type="{$type}" name="{$label}" value="{$value}">@content@</label>
-{/macro}
+{/pad:macro}
 
-{entry 'E-mail', 'email'}
-{entry label='Name', value=$name}
-{orders}{entry $number}{/orders}
+{macro:entry 'E-mail', 'email'}
+{macro:entry label='Name', value=$name}
+{data:orders}{macro:entry $number}{/data:orders}
 ```
 
 **Behavior:** the items after the name declare the parameters: a name alone is required,
 `name=default` fills in - the default is evaluated where the macro is used. A use gives values
 in their order, by name, or both; inside the body each is a field (`{$label}`) of the macro's
 one row, and the fields around the use stay visible behind them. `@content@` takes a pair's
-content in, `{slot}`s work as in a `{define}`, and a macro can call itself. The content - and a
+content in, `{pad:slot}`s work as in a `{pad:define}`, and a macro can call itself. The content - and a
 slot fill - renders in the body, on that one row: a parameter stands in front of a field of the
-same name around the use there too, so in `{rows}{entry 'x'}{$label}{/entry}{/rows}` the
+same name around the use there too, so in `{array:rows}{macro:entry 'x'}{$label}{/macro:entry}{/array:rows}` the
 `{$label}` is the parameter; `{$label@rows}` names the row's own. A value given to a
 macro is text, never template - as every value is. Under the strict check a required parameter
 left out, more values than parameters, a named parameter the macro does not declare, and a
@@ -4794,11 +4779,11 @@ parameter named like an option every tag takes (`sort`, `first`, `content` ...) 
 The page's metadata, for a page without PHP as much as one with.
 
 ```html
-{meta title='Monthly report', layout='_layouts/print', cache=600, access='admin', sitemap=false/}
+{pad:meta title='Monthly report', layout='_layouts/print', cache=600, access='admin', sitemap=false/}
 ```
 
 **Items:**
-- `layout` - frame the page with that layout, as `{extends}` does
+- `layout` - frame the page with that layout, as `{pad:extends}` does
 - `cache` - the page's own server-cache time in seconds, in an application with the page
   cache on; `0` or `false` keeps the page out of the cache
 - `access`, `sitemap` - kept for access rules and a sitemap to read: `padMeta('access')` for
@@ -4816,9 +4801,9 @@ before the cache is consulted, so only a plain value counts there.
 A named part of the page that a request can ask for alone.
 
 ```html
-{fragment 'order-list'}
-  <ul>{orders}<li>{$number}</li>{/orders}</ul>
-{/fragment}
+{pad:fragment 'order-list'}
+  <ul>{data:orders}<li>{$number}</li>{/data:orders}</ul>
+{/pad:fragment}
 ```
 
 **Behavior:** A normal request renders it in place. A request with `&padFragment=order-list`,
@@ -4827,7 +4812,7 @@ and nothing else: the page renders up to the end of the fragment, which is then 
 response, bare and untidied like a `padInclude` request; the rest of the page does not render.
 The first fragment of the name to finish is sent. A fragment that never rendered is an error
 under the strict check, an empty 404 otherwise - keep conditions inside the fragment. For
-HTMX (`hx-get="?orders&padFragment=order-list"`) and `{ajax 'orders', fragment='order-list'/}`.
+HTMX (`hx-get="?orders&padFragment=order-list"`) and `{pad:ajax 'orders', fragment='order-list'/}`.
 
 **htmx's target:** a request htmx makes (`HX-Request: true`) that names no fragment itself
 asks for the one called like the element it swaps - the `HX-Target` header, its id: with
@@ -4838,12 +4823,12 @@ target, name the fragment in the address.
 ---
 
 ### push
-Add rendered text to a named stack, for a `{stack}` elsewhere in the page to print.
+Add rendered text to a named stack, for a `{pad:stack}` elsewhere in the page to print.
 
 ```html
-{push 'scripts', once='chart'}
+{pad:push 'scripts', once='chart'}
   <script src="chart.js"></script>
-{/push}
+{/pad:push}
 ```
 
 **Parameters:**
@@ -4853,8 +4838,8 @@ Add rendered text to a named stack, for a `{stack}` elsewhere in the page to pri
   stack already holds
 
 **Behavior:** The content renders where the tag stands, with the variables of that spot, and
-prints nothing there. A push inside a `{cache}` section is stored with the section and made
-again on every hit. A plain `{page}` or `{code}` pass adds to the page's stacks; a sandbox, clean
+prints nothing there. A push inside a `{pad:cache}` section is stored with the section and made
+again on every hit. A plain `{pad:page}` or `{pad:code}` pass adds to the page's stacks; a sandbox, clean
 or reset pass keeps its pushes to itself. From PHP: `padStackPush ( 'scripts', $html, $once )`.
 
 ---
@@ -4864,12 +4849,12 @@ Everything pushed to a stack, in push order.
 
 ```html
 <head>
-  {stack 'styles'/}
+  {pad:stack 'styles'/}
 </head>
 ```
 
 **Behavior:** The tag prints a marker that is filled in when the whole page has rendered, so
-a `{stack}` in the layout's `<head>` gets the pushes of the components below it. A stack
+a `{pad:stack}` in the layout's `<head>` gets the pushes of the components below it. A stack
 nothing pushed to prints nothing.
 
 ---
@@ -4880,7 +4865,7 @@ nothing pushed to prints nothing.
 Dump debug information.
 
 ```html
-{dump/}
+{pad:dump/}
 ```
 
 **Behavior:** Calls `padDump()` with message
@@ -4891,17 +4876,17 @@ Dump debug information.
 Show a value in the page while it renders - for a local request only.
 
 ```html
-{debug $order/}
-{debug/}
+{pad:debug $order/}
+{pad:debug/}
 ```
 
-**Behavior:** Writes a collapsible `<details>` tree of the value. `{debug}` alone shows every
+**Behavior:** Writes a collapsible `<details>` tree of the value. `{pad:debug}` alone shows every
 field visible where it stands - the rows of the enclosing levels, innermost first - and the
 application's variables. A missing `$name` is shown as missing rather than failing. Only a
 local request - the command line, or loopback with nothing forwarded - gets it; any other gets
 nothing, and `$padDiagnostics = FALSE` switches it off for every web request - the command
-line still gets it. Unlike `{dump}` the
-request goes on. A page or a `{cache}` section that holds a debug box is never stored in the
+line still gets it. Unlike `{pad:dump}` the
+request goes on. A page or a `{pad:cache}` section that holds a debug box is never stored in the
 page or fragment cache, so no later visitor is served what a local request was shown.
 
 ---
@@ -4910,9 +4895,9 @@ page or fragment cache, so no later visitor is served what a local request was s
 Enable detailed tracing.
 
 ```html
-{trace}
+{pad:trace}
   Code to trace
-{/trace}
+{/pad:trace}
 ```
 
 **Behavior:** Enables trace mode for enclosed content
@@ -4925,17 +4910,17 @@ Enable detailed tracing.
 A condition a test run holds the page to; silent everywhere else.
 
 ```html
-{assert $total eq 42/}
-{assert $lines gt 0, 'the cart has lines'/}
+{pad:assert $total eq 42/}
+{pad:assert $lines gt 0, 'the cart has lines'/}
 ```
 
 **Parameters:**
-- First parameter: the condition, an expression like `{if}`'s
+- First parameter: the condition, an expression like `{pad:if}`'s
 - Second parameter (optional): a message for the report
 
 **Behavior:** With `$padAssert` on - `pad test` turns it on for its run - a false condition
 is an error, `assert failed: <condition> - <message>`, and the test fails. With it off, the
-default, the tag renders nothing and the condition is not even evaluated, so an `{assert}`
+default, the tag renders nothing and the condition is not even evaluated, so an `{pad:assert}`
 can stay in a page that goes to production. See `pad test` in `apps/cli/README.md`.
 
 ---
@@ -4944,7 +4929,7 @@ can stay in a page that goes to production. See `pad test` in `apps/cli/README.m
 Trigger a PAD error.
 
 ```html
-{error 'Error message'/}
+{pad:error 'Error message'/}
 ```
 
 **Parameters:**
@@ -4958,7 +4943,7 @@ Trigger a PAD error.
 Throw PHP exception.
 
 ```html
-{exception 'Exception message'/}
+{pad:exception 'Exception message'/}
 ```
 
 **Parameters:**
@@ -4972,7 +4957,7 @@ Throw PHP exception.
 Exit PAD processing.
 
 ```html
-{exit/}
+{pad:exit/}
 ```
 
 **Behavior:** Calls `padExit()` to terminate processing
@@ -4985,7 +4970,7 @@ Exit PAD processing.
 Return TRUE value.
 
 ```html
-{true}
+{pad:true}
 ```
 
 **Returns:** TRUE
@@ -4996,7 +4981,7 @@ Return TRUE value.
 Return FALSE value.
 
 ```html
-{false}
+{pad:false}
 ```
 
 **Returns:** FALSE
@@ -5007,7 +4992,7 @@ Return FALSE value.
 Return NULL value.
 
 ```html
-{null}
+{pad:null}
 ```
 
 **Returns:** NULL
@@ -5020,9 +5005,9 @@ Return NULL value.
 Generate mathematical sequences.
 
 ```html
-{sequence prime, rows=10}
-{sequence fibonacci, from=1, to=100}
-{sequence '1..10'}
+{sequence:prime rows=10}
+{sequence:fibonacci from=1, to=100}
+{sequence:range '1..10'}
 ```
 
 **Parameters:** See sequence subsystem documentation for full parameter list.
@@ -5035,7 +5020,7 @@ Generate mathematical sequences.
 Skip to next iteration of a loop.
 
 ```html
-{continue 'tagname'/}
+{pad:continue 'tagname'/}
 ```
 
 **Parameters:**
@@ -5049,7 +5034,7 @@ Skip to next iteration of a loop.
 Soft stop - graceful end of loop.
 
 ```html
-{cease 'tagname'/}
+{pad:cease 'tagname'/}
 ```
 
 **Parameters:**
@@ -5063,7 +5048,7 @@ Soft stop - graceful end of loop.
 Hard stop - immediate exit from loop.
 
 ```html
-{break 'tagname'/}
+{pad:break 'tagname'/}
 ```
 
 **Parameters:**
@@ -5077,7 +5062,7 @@ Hard stop - immediate exit from loop.
 Pull stored sequence data.
 
 ```html
-{pull 'stored_name'}
+{pad:pull 'stored_name'}
 ```
 
 **Parameters:**
@@ -5089,7 +5074,7 @@ Pull stored sequence data.
 Each value of a sequence as 1 or 0: whether it belongs to the named sequence type.
 
 ```html
-{flag '1..10', even}{$sequence} {/flag}       → 0 1 0 1 0 1 0 1 0 1
+{pad:flag '1..10', even}{$sequence} {/pad:flag}       → 0 1 0 1 0 1 0 1 0 1
 ```
 
 **Behavior:** Membership flags in place of the values
@@ -5100,7 +5085,7 @@ Each value of a sequence as 1 or 0: whether it belongs to the named sequence typ
 Keep sequence values matching criteria.
 
 ```html
-{keep '1..10', prime}{$sequence} {/keep}      → 2 3 5 7
+{keep:range '1..10', prime}{$sequence} {/keep:range}      → 2 3 5 7
 ```
 
 **Behavior:** Filter to keep matching values
@@ -5111,7 +5096,7 @@ Keep sequence values matching criteria.
 Remove sequence values matching criteria.
 
 ```html
-{remove '1..10', prime}{$sequence} {/remove}  → 1 4 6 8 9 10
+{remove:range '1..10', prime}{$sequence} {/remove:range}  → 1 4 6 8 9 10
 ```
 
 **Behavior:** Filter to remove matching values
@@ -5122,7 +5107,7 @@ Remove sequence values matching criteria.
 Transform sequence values.
 
 ```html
-{make '1..5', add=10}{$sequence} {/make}      → 11 12 13 14 15
+{make:range '1..5', add=10}{$sequence} {/make:range}      → 11 12 13 14 15
 ```
 
 **Behavior:** Transform values during sequence generation
@@ -5133,14 +5118,14 @@ Transform sequence values.
 Transform the last pushed sequence in place, through an action.
 
 ```html
-{sequence '1..5', push='s'}{/sequence}
-{resume reverse/}
-{pull 's'}{$sequence} {/pull}                  → 5 4 3 2 1
+{sequence:range '1..5', push='s'}{/sequence:range}
+{pad:resume reverse/}
+{pad:pull 's'}{$sequence} {/pad:pull}                  → 5 4 3 2 1
 ```
 
 **Behavior:** Delegates to the sequence subsystem (`sequence/start/tags/resume.php`); applies
 the action to the sequence pushed last and writes the result back over its store. It prints
-nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
+nothing, and has nothing to do with `{pad:cease}`. See [sequences](../sequences/).
 
 ---
 
@@ -5197,11 +5182,11 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `input` | Web | Form field with refill, label and validation error |
 | `textarea` | Web | Text area with refill, label and validation error |
 | `flash` | Web | Flash messages that survive one redirect |
-| `auth` | Web | Content for a logged-in user, the user's row as data; `{else}` for a guest |
-| `guest` | Web | Content for a guest; `{else}` when logged in |
-| `can` | Web | Content when a gate allows the ability; `{else}` |
-| `cannot` | Web | Content when a gate refuses the ability; `{else}` |
-| `feature` | Web | Content while a feature flag is on; `{else}` |
+| `auth` | Web | Content for a logged-in user, the user's row as data; `{pad:else}` for a guest |
+| `guest` | Web | Content for a guest; `{pad:else}` when logged in |
+| `can` | Web | Content when a gate allows the ability; `{pad:else}` |
+| `cannot` | Web | Content when a gate refuses the ability; `{pad:else}` |
+| `feature` | Web | Content while a feature flag is on; `{pad:else}` |
 | `asset` | Web | The versioned address of a file of `www/<app>/`; `tag` writes the element |
 | `avatar` | Output | Initials avatar as inline SVG, coloured by a hash of the name |
 | `identicon` | Output | Symmetric 5x5 identicon as inline SVG from a SHA-256 hash |
@@ -5211,7 +5196,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `icon` | Output | One of 79 built-in line icons as inline SVG in `currentColor` |
 | `gravatar` | Output | Gravatar `<img>` from the SHA-256 of an address, or a local avatar fallback |
 | `notation` | Output | A text in a notation drawn on the server - the files of `pad/subs/notations/types/`: AsciiMath, chemistry, ABC music, chords, piano, braille, morse, semaphore, signal flags, chess, go, draughts, tablature, Karnaugh maps, bridge deals, siteswaps, cube moves |
-| `chess` | Output | A chess position from FEN as inline SVG - the chess notation, as a built-in tag |
+| `chess` | Output | A chess position from FEN as inline SVG - the chess notation |
 | `game` | Output | A little game played in the browser - 22 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
 | `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
 | `pattern` | Output | A seeded SVG background or generative art, the files of `pad/subs/patterns/types/`: stripes, dots, contour lines, Voronoi, circle packing ...; `as='url'` for a style attribute |
@@ -5221,9 +5206,9 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `excerpt` | Output | A text cut to whole words around the first search match, the matches marked |
 | `lorem` | Output | Lorem ipsum placeholder text - words, sentences or paragraphs, the same for the same seed |
 | `fake` | Output | A fake value of a kind - a file of `pad/subs/fakes/types/` - or rows of several kinds, the same for the same seed |
-| `widget` | Widget | An interactive part of the page - the files of `pad/subs/widgets/types/`: tabs, accordion, carousel, modal, copy, poll ...; also the `widget:` type and the bare names |
-| `tabs` | Widget | Panels behind a row of tabs - radio buttons and CSS, no JavaScript; `{tab}` is one item |
-| `accordion` | Widget | Items that open on a click - every `{tab}` a `<details>`, one open at a time with `single` |
+| `widget` | Widget | An interactive part of the page - the files of `pad/subs/widgets/types/`: tabs, accordion, carousel, modal, copy, poll ...; also the `widget:` type with explicit names |
+| `tabs` | Widget | Panels behind a row of tabs - radio buttons and CSS, no JavaScript; `{pad:tab}` is one item |
+| `accordion` | Widget | Items that open on a click - every `{pad:tab}` a `<details>`, one open at a time with `single` |
 | `modal` | Widget | A `<dialog>` and its opening button - invoker commands, a small script, or a link without scripting |
 | `carousel` | Widget | Slides that scroll and snap sideways, previous/next and dot links - no autoplay |
 | `copy` | Widget | A text with a copy-to-clipboard button, selectable by hand without scripting |
@@ -5231,9 +5216,9 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `toast` | Widget | A notice the visitor dismisses - an open `<dialog>` its button closes by an invoker command |
 | `dropdown` | Widget | A button and its menu on the popover attribute - opened, closed and placed by the browser |
 | `tooltip` | Widget | A short tip on hover and on focus, shown by CSS, named by aria-describedby; Escape hides it |
-| `wizard` | Widget | Steps one at a time - every `{tab}` a step, radio buttons and CSS, Back and Next; no JavaScript needed |
+| `wizard` | Widget | Steps one at a time - every `{pad:tab}` a step, radio buttons and CSS, Back and Next; no JavaScript needed |
 | `lightbox` | Widget | A gallery of thumbnails whose pictures open large over the page by `:target` - no JavaScript |
-| `drawer` | Widget | A panel sliding in from a side - a modal `<dialog>` opened as `{modal}`'s, a `:target` overlay without scripting |
+| `drawer` | Widget | A panel sliding in from a side - a modal `<dialog>` opened as `{widget:modal}`'s, a `:target` overlay without scripting |
 | `breadcrumb` | Widget | The trail from home to the page - from the page's path, the lines of a pair or `data=` rows; no JavaScript |
 | `splitpane` | Widget | Two panes and a bar between them, dragged or moved by the arrow keys - the window splitter pattern; the resize grip without scripting |
 | `contextmenu` | Widget | The actions on a part of the page - a right click, Shift+F10 or the context menu key; its button of three dots opens the same popover without scripting |
@@ -5320,13 +5305,13 @@ Resolve naming conflicts with explicit prefixes:
 | `app:` | App tag from `_tags/` | `{app:mytag}` |
 | `common:` | Tag from the `_common` app | `{common:padFrame}` |
 | `pad:` | Built-in PAD tag | `{pad:if}` |
-| `php:` | Call PHP function | `{php:strlen 'abc'}` as a tag, `{echo $x \| php:strlen(@)/}` in an expression |
+| `php:` | Call PHP function | `{php:strlen 'abc'}` as a tag, `{pad:echo $x \| php:strlen(@)/}` in an expression |
 | `function:` | Custom PAD function | `{$x \| function:myfunc}` |
 | `data:` | Defined data block | `{data:items}` |
 | `content:` | Content block | `{content:header}` |
 | `include:` | Snippet from `_include/` | `{include:header}` |
 | `pull:` | Stored sequence | `{pull:mySeq}` |
-| `field:` | Field (variable) value | `{field:name}` - the database single value is the `{field "col from table..."/}` tag |
+| `field:` | Field (variable) value | `{field:name}` - the database single value is the `{pad:field "col from table..."/}` tag |
 | `select:` | Declared select table | `{select:users}` |
 | `local:` | Files from `_data/` | `{local:menu.json}` |
 | `constant:` | PHP constant | `{constant:PHP_VERSION}` |
@@ -5339,18 +5324,18 @@ Resolve naming conflicts with explicit prefixes:
 | `sequence:` | Sequence type | `{sequence:fibonacci}` |
 | `action:` | Sequence action | `{action:reverse}` |
 | `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
-| `section:` | Section kind | `{section:hero title='...'}...{/section:hero}`, as `{section 'hero', ...}` - a kind is a file of `pad/subs/sections/types/`; never bare |
-| `effect:` | Effect kind | `{effect:typewriter}Hi{/effect:typewriter}`, as `{effect 'typewriter'}` or bare `{typewriter}` - a kind is a file of `pad/subs/effects/types/` |
-| `jsonld:` | JSON-LD kind | `{jsonld:article headline=$title/}`, as `{jsonld 'article', data='post'/}` - a kind is a file of `pad/subs/jsonld/types/`; never bare |
+| `section:` | Section kind | `{section:hero title='...'}...{/section:hero}`, as `{section:hero ...}` - a kind is a file of `pad/subs/sections/types/`; never bare |
+| `effect:` | Effect kind | `{effect:typewriter}Hi{/effect:typewriter}`, as `{effect:typewriter}` or `{effect:typewriter}` - a kind is a file of `pad/subs/effects/types/` |
+| `jsonld:` | JSON-LD kind | `{jsonld:article headline=$title/}`, as `{jsonld:article data='post'/}` - a kind is a file of `pad/subs/jsonld/types/`; never bare |
 
 ---
 
 ## Options Reference
 
-Options modify tag behavior. Add them to any tag, separated by commas: `{data 'x', ignore}`.
+Options modify tag behavior. Add them to any tag, separated by commas: `{pad:data 'x', ignore}`.
 An option name without a value directly after a single parameter may leave the comma out -
-`{data 'x' ignore}` is the same tag; one with a value, `{pad 'x' toContent='c'}`, is lost. That holds for the options below and an application's own `_options/`; any
-other word after a value is a pipe, `{echo 'abc' upper/}` gives `ABC`.
+`{pad:data 'x' ignore}` is the same tag; one with a value, `{pad:pad 'x' toContent='c'}`, is lost. That holds for the options below and an application's own `_options/`; any
+other word after a value is a pipe, `{pad:echo 'abc' upper/}` gives `ABC`.
 
 ### Data Flow Options
 
@@ -5366,10 +5351,10 @@ other word after a value is a pipe, `{echo 'abc' upper/}` gives `ABC`.
 
 | Option | Description |
 |--------|-------------|
-| `bool` | `{if bool='name'}`: the stored flag is the condition |
+| `bool` | `{pad:if bool='name'}`: the stored flag is the condition |
 | `optional` | Suppress not-found errors |
 | `demand` | An error when the tag produced nothing |
-| `null` | Content (a `{content}` name, snippet or page) shown for NULL |
+| `null` | Content (a `{pad:content}` name, snippet or page) shown for NULL |
 | `else` | Content shown for an empty or false answer |
 | `notOk` / `error` | Content shown for any miss - handling that left no row too - or when the tag's handler or PHP throws |
 
@@ -5403,7 +5388,7 @@ other word after a value is a pipe, `{echo 'abc' upper/}` gives `ABC`.
 ### Combined Formatting Example
 
 ```
-{items print, quote="'", glue=", ", open="[", close="]"}
+{array:items print, quote="'", glue=", ", open="[", close="]"}
 ```
 Result: `['item1', 'item2', 'item3']` - quote, open, close and glue work on what `print` prints, and
 without it do nothing.
@@ -5434,7 +5419,7 @@ Access iteration state and metadata using `property@tag` syntax.
 | `current@tag` | Current occurrence (1-based) |
 | `count@tag` | Total items |
 | `remaining@tag` | Items remaining |
-| `depth@tag` | Depth in a recursion - a `{tree}`'s rows at 1 |
+| `depth@tag` | Depth in a recursion - a `{pad:tree}`'s rows at 1 |
 | `done@tag` | Items completed |
 
 ### Data Access Properties
@@ -5463,19 +5448,19 @@ Access iteration state and metadata using `property@tag` syntax.
 ### Properties Example
 
 ```
-{items}
-  {first@items}<ul>{/first@items}
-  <li class="{even@items ? even : odd}">{$name}</li>
-  {last@items}</ul>{/last@items}
-  Index: {current@items/} of {count@items/}
-{/items}
+{array:items}
+  {property:first@items}<ul>{/property:first@items}
+  <li class="{property:even@items ? even : odd}">{$name}</li>
+  {property:last@items}</ul>{/property:last@items}
+  Index: {property:current@items/} of {property:count@items/}
+{/array:items}
 ```
 
-A property also reads as a value inside an expression - `{if first@items}`, `{if current@items
+A property also reads as a value inside an expression - `{pad:if first@items}`, `{pad:if current@items
 eq 2}` - because a property name followed by `@` and a target is one reference there. Any other
 word before `@` keeps the placeholder reading: elsewhere in an expression `@` is the current
 value being piped in. Inside an expression the bare spelling is the property and nothing else;
 a row field of the same name is what the `$`-spelling reads - `{$first@orders}` - so the sigil
-resolves the collision there. Written as a tag - `{first@orders}...{/first@orders}`,
-`{name@users}` - a row field of that name wins; use `{if first@orders}` when the rows can carry
+resolves the collision there. Written as a tag - `{property:first@orders}...{/property:first@orders}`,
+`{property:name@users}` - a row field of that name wins; use `{pad:if first@orders}` when the rows can carry
 such a field.

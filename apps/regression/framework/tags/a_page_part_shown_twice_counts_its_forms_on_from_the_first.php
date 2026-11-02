@@ -1,6 +1,6 @@
 <?php
 
-  // The forms of a part a page shows twice - one {page} per comment of a list - are told
+  // The forms of a part a page shows twice - one {pad:page} per comment of a list - are told
   // apart as the forms of a loop are: the second part's form is place 2, and a post from it
   // refills that form alone.
 

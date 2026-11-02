@@ -1,5 +1,5 @@
-{ignore}
-<p><code>{holidays 'nl', year=2026}...{/holidays}</code> hands over the public holidays of the
+{pad:ignore}
+<p><code>{pad:holidays 'nl', year=2026}...{/pad:holidays}</code> hands over the public holidays of the
 Netherlands in 2026 as rows, sorted by date: <code>$date</code>, <code>$name</code> in English,
 <code>$local</code> in the country's own language, <code>$type</code> - <code>public</code> for
 a day off, <code>observance</code> for a national day that is none - <code>$region</code> for a
@@ -21,8 +21,12 @@ them is a strict error rather than a list with a holiday missing.</p>
 
 <p>A region follows its country, <code>de-by</code>, or stands in <code>region=</code>. The
 handling options work on the rows - <code>where='$type eq "public"'</code> leaves the
-observances out. <code>holidays=</code> on <code>{calendar}</code> marks them in a month, and
+observances out. <code>holidays=</code> on <code>{pad:calendar}</code> marks them in a month, and
 <code>padHolidays</code>, <code>padIsHoliday</code>, <code>padWorkdays</code> and
 <code>padAddWorkdays</code> answer a page's PHP. A country without a file, a region it has
 not, a year out of range or a <code>lang</code> it has no names in is a strict error.</p>
-{/ignore}
+{/pad:ignore}
+
+<h3>Holiday calendars</h3>
+<p>Each kind has its own description and usage example:</p>
+<p>{!subsystemKindLinks}</p>

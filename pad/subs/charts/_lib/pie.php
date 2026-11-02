@@ -1,6 +1,6 @@
 <?php
 
-  // Parts of a whole: {chart 'pie', data='budget', label='post', value='amount'} - and
+  // Parts of a whole: {chart:pie data='budget', label='post', value='amount'} - and
   // 'donut', the same as a ring with the total in its middle.
   //
   // Only positive values are parts of a whole, so a zero or a negative one is left out.

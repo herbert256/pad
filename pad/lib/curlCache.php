@@ -1,11 +1,11 @@
 <?php
 
   // Remote data with a cache: a fetch kept for ttl seconds, so a page built on an external
-  // API asks it once per ttl instead of once per request - where {curl} and remote data
+  // API asks it once per ttl instead of once per request - where {pad:curl} and remote data
   // fetched again every time.
   //
-  //   {curl 'https://api.example.com/rates.json', ttl=600}
-  //   {pad data='https://api.example.com/rates.json', ttl=600} ... {/pad}
+  //   {pad:curl 'https://api.example.com/rates.json', ttl=600}
+  //   {pad:pad data='https://api.example.com/rates.json', ttl=600} ... {/pad:pad}
   //   _data/rates.curl    <curl><url>https://...</url><ttl>600</ttl></curl>
   //
   // padCurlCached answers in padCurl's own shape, plus ['cache']: 'hit' for a copy younger
@@ -96,7 +96,7 @@
 
     global $padCurlStale;
 
-    // An answer that carries a {debug} box was rendered for a local request alone - a
+    // An answer that carries a {pad:debug} box was rendered for a local request alone - a
     // self-fetch made for one - and is not kept: kept for the ttl, every visitor after it
     // was served the box, as the page cache and the fragment cache refuse to (padCacheLocalOnly).
 
@@ -118,7 +118,7 @@
   }
 
   // An input array holding nothing but the url asks what the url alone asks (padCurlBuild),
-  // and is kept under the same key: {curl $u, ttl=} hands over [ 'url' => $u ], data= and
+  // and is kept under the same key: {pad:curl $u, ttl=} hands over [ 'url' => $u ], data= and
   // padPrefetch the address, so padCurlForget ( $u ) missed the tag's copy - the page showed
   // the old answer for the rest of the ttl - and one address fetched by both was kept twice.
 

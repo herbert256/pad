@@ -1,6 +1,6 @@
 <table>
   <tr><th>Artist</th><th>Country</th><th>Label</th></tr>
-  {artistsLabels}
-  <tr><td>{$name}</td><td>{$country}</td><td>{if $label}{$label}{else}<span class="dim">no label</span>{/if}</td></tr>
-  {/artistsLabels}
+  {select:artistsLabels}
+  <tr><td>{$name}</td><td>{$country}</td><td>{pad:if $label}{$label}{pad:else}<span class="dim">no label</span>{/pad:if}</td></tr>
+  {/select:artistsLabels}
 </table>

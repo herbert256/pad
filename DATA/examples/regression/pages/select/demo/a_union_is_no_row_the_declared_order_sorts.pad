@@ -1,4 +1,4 @@
-tag: [{staffSel fields="phone", union="cityPhones", sort="phone"}{$phone} {/staffSel}]
-key: [{phones sort="phone"}{$phone} {/phones}]
-view: [{allPhones sort="phone"}{$phone} {/allPhones}]
-order: [{allPhones order="phone desc", rows=3}{$phone} {/allPhones}]
+tag: [{select:staffSel fields="phone", union="cityPhones", sort="phone"}{$phone} {/select:staffSel}]
+key: [{select:phones sort="phone"}{$phone} {/select:phones}]
+view: [{select:allPhones sort="phone"}{$phone} {/select:allPhones}]
+order: [{select:allPhones order="phone desc", rows=3}{$phone} {/select:allPhones}]

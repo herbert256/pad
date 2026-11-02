@@ -7,7 +7,7 @@
   //
   // i is the whole part of the square root of x, give or take one, so the root is taken once
   // and the i next to it are tried exactly. Trying every i from 0 up to the root cost a
-  // billion multiplications for a number of 19 digits: {sequence fibonacci, keep, pronic}
+  // billion multiplications for a number of 19 digits: {sequence:fibonacci keep, pronic}
   // spent the whole time limit on one term.
 
   function pqBoolPronic($x, $p=0) {

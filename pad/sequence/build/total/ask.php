@@ -4,7 +4,7 @@
   // when the tag's one action totals the terms - count, sum, product, average, median,
   // distinct - and every term of the range reaches that action as range () makes it.
   //
-  // Made as a list, {sequence '1..1000000', count} held the million values four times over -
+  // Made as a list, {sequence:range '1..1000000', count} held the million values four times over -
   // the range, the terms the walk kept, the values before the plays and the place of each in
   // the list - some 65 MB, to answer one number. The total of a range of whole numbers follows
   // from its first value, its step and its number of values (build/total/make.php).

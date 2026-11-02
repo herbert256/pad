@@ -1,7 +1,7 @@
 <?php
 
   // Small helpers shared by all $padInfo report modes, loaded once by info/start/config.php
-  // and info/start/tag.php - read only when a request or a {trace} reports.
+  // and info/start/tag.php - read only when a request or a {pad:trace} reports.
   //
   // padInfoSet       defaults every switch to FALSE so later code can test them unguarded
   // padInfoBackup    snapshots all padInfo* globals into $padInfoBackup[$padInfoCnt]

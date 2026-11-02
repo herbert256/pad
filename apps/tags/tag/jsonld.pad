@@ -1,5 +1,5 @@
-{ignore}
-<p><code>{jsonld}</code> writes the structured data of a page: one
+{pad:ignore}
+<p><code>{jsonld:article}</code> writes the structured data of a page: one
 <code>&lt;script type="application/ld+json"&gt;</code> holding a Schema.org object, which search
 engines read for a rich result - an article's headline and date, an event's place and tickets, a
 product's price, the questions of an FAQ, the trail of a breadcrumb. Every kind is a file of
@@ -19,4 +19,4 @@ what PHP's <code>date_parse</code> reads in full. The JSON is safe in its elemen
 of a value stay text. The script is a data block the browser never runs, so it needs no CSP nonce.
 The examples show it with the <code>html</code> pipe; on a page the tag alone writes it, unseen. In
 a page's PHP, <code>padJsonLd ( 'article', $post )</code> answers the same object as an array.</p>
-{/ignore}
+{/pad:ignore}

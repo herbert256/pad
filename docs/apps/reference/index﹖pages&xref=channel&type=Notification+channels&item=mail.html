@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Reference - Notification channels - mail · PAD reference
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/play.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+  </head>
+  <body class="frame app-reference">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>reference</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="reference">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Index</a>
+        <div class="frame-head">
+          Tags
+        </div><a href="index%EF%B9%96index.html#pad-tags">PAD tags</a> <a href="index%EF%B9%96index.html#tag-types">Tag types</a> <a href="index%EF%B9%96index.html#tag-properties">Tag properties</a> <a href="index%EF%B9%96index.html#tag-options">Tag options</a> <a href="index%EF%B9%96index.html#common-tags">Common tags</a> <a href="index%EF%B9%96index.html#common-includes">Common includes</a>
+        <div class="frame-head">
+          Functions
+        </div><a href="index%EF%B9%96index.html#pad-functions">PAD functions</a> <a href="index%EF%B9%96index.html#single-functions">Single functions</a> <a href="index%EF%B9%96index.html#parms-functions">Parms functions</a>
+        <div class="frame-head">
+          Configuration
+        </div><a href="index%EF%B9%96index.html#error-actions">Error actions</a> <a href="index%EF%B9%96index.html#output-types">Output types</a> <a href="index%EF%B9%96index.html#info-modes">Info modes</a> <a href="index%EF%B9%96index.html#cache-backends">Cache backends</a>
+        <div class="frame-head">
+          At (x@y)
+        </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
+        <div class="frame-head">
+          More
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#oauth-providers">OAuth providers</a> <a href="index%EF%B9%96index.html#notification-channels">Notification channels</a> <a href="index%EF%B9%96index.html#ai-providers">AI providers</a> <a href="index%EF%B9%96index.html#pattern-types">Pattern types</a> <a href="index%EF%B9%96index.html#image-filters">Image filters</a> <a href="index%EF%B9%96index.html#holiday-countries">Holiday countries</a> <a href="index%EF%B9%96index.html#search-languages">Search languages</a> <a href="index%EF%B9%96index.html#data-formats">Data formats</a> <a href="index%EF%B9%96index.html#sounds">Sounds</a> <a href="index%EF%B9%96index.html#printables">Printables</a> <a href="index%EF%B9%96index.html#notations">Notations</a> <a href="index%EF%B9%96index.html#formula-functions">Formula functions</a> <a href="index%EF%B9%96index.html#section-types">Section types</a> <a href="index%EF%B9%96index.html#effect-types">Effect types</a> <a href="index%EF%B9%96index.html#json-ld-kinds">JSON-LD kinds</a> <a href="index%EF%B9%96index.html#themes">Themes</a> <a href="index%EF%B9%96index.html#palettes">Palettes</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Reference - Notification channels - mail
+        </h1>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <center>
+                <hr>
+                App: manual - Page: fragments/notify_1<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/notify_1.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/notify_1.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Slack and ntfy are not asked here: a fake answers every request, as a test answers them,<br>  // and keeps what was sent. The mail goes to DATA/mail/ - the file transport. In an<br>  // application the addresses stand in .env: SLACK_WEBHOOK_URL, NTFY_TOPIC.<br><br>  </span><span style="color: #0000BB">padCurlFake </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'*' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ok' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$ann </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'manual-ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ann@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'ntfy' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ann-orders' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">padNotify </span><span style="color: #007700">( </span><span style="color: #0000BB">$ann</span><span style="color: #007700">, </span><span style="color: #DD0000">'order-shipped'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">42</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://shop.example/orders/42' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'mail'</span><span style="color: #007700">, </span><span style="color: #DD0000">'slack'</span><span style="color: #007700">, </span><span style="color: #DD0000">'ntfy' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'slack' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://hooks.slack.com/services/T0/B0/example' </span><span style="color: #007700">] ] );<br><br>  </span><span style="color: #0000BB">$results </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">padNotifyResults </span><span style="color: #007700">() as </span><span style="color: #0000BB">$channel </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$result </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$results </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'channel' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$channel</span><span style="color: #007700">, </span><span style="color: #DD0000">'ok' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$result </span><span style="color: #007700">[</span><span style="color: #DD0000">'ok'</span><span style="color: #007700">] ? </span><span style="color: #DD0000">'sent' </span><span style="color: #007700">: </span><span style="color: #0000BB">$result </span><span style="color: #007700">[</span><span style="color: #DD0000">'error'</span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$subject </span><span style="color: #007700">= </span><span style="color: #0000BB">$padMailLast </span><span style="color: #007700">[</span><span style="color: #DD0000">'subject'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$slack   </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">padCurlRecorded </span><span style="color: #007700">() [</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'post'</span><span style="color: #007700">], </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) [</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$ntfy    </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurlRecorded </span><span style="color: #007700">() [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'post'</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">padCurlFakeStop </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHthcnJheTpyZXN1bHRzfTxsaT57JGNoYW5uZWx9OiB7JG9rfTwvbGk+ey9hcnJheTpyZXN1bHRzfVxuPC91bD5cbjxwPlRoZSBtYWlsJ3Mgc3ViamVjdDogeyRzdWJqZWN0fTwvcD5cbjxwPlNsYWNrIGdvdDogPGNvZGU+eyRzbGFja308L2NvZGU+PC9wPlxuPHA+bnRmeSBnb3Q6IDxjb2RlPnskbnRmeX08L2NvZGU+PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFNsYWNrIGFuZCBudGZ5IGFyZSBub3QgYXNrZWQgaGVyZTogYSBmYWtlIGFuc3dlcnMgZXZlcnkgcmVxdWVzdCwgYXMgYSB0ZXN0IGFuc3dlcnMgdGhlbSxcbiAgLy8gYW5kIGtlZXBzIHdoYXQgd2FzIHNlbnQuIFRoZSBtYWlsIGdvZXMgdG8gREFUQS9tYWlsLyAtIHRoZSBmaWxlIHRyYW5zcG9ydC4gSW4gYW5cbiAgLy8gYXBwbGljYXRpb24gdGhlIGFkZHJlc3NlcyBzdGFuZCBpbiAuZW52OiBTTEFDS19XRUJIT09LX1VSTCwgTlRGWV9UT1BJQy5cblxuICBwYWRDdXJsRmFrZSAoIFsgJyonID0+ICdvaycgXSApO1xuXG4gICRhbm4gPSBbICdpZCcgPT4gJ21hbnVhbC1hbm4nLCAnZW1haWwnID0+ICdhbm5AZXhhbXBsZS5jb20nLCAnbnRmeScgPT4gJ2Fubi1vcmRlcnMnIF07XG5cbiAgcGFkTm90aWZ5ICggJGFubiwgJ29yZGVyLXNoaXBwZWQnLCBbICdvcmRlcicgPT4gNDIsICduYW1lJyA9PiAnQW5uJywgJ3VybCcgPT4gJ2h0dHBzOi8vc2hvcC5leGFtcGxlL29yZGVycy80MicgXSxcbiAgICAgICAgICAgICAgWyAnbWFpbCcsICdzbGFjaycsICdudGZ5JyBdLCBbICdzbGFjaycgPT4gWyAndXJsJyA9PiAnaHR0cHM6Ly9ob29rcy5zbGFjay5jb20vc2VydmljZXMvVDAvQjAvZXhhbXBsZScgXSBdICk7XG5cbiAgJHJlc3VsdHMgPSBbXTtcblxuICBmb3JlYWNoICggcGFkTm90aWZ5UmVzdWx0cyAoKSBhcyAkY2hhbm5lbCA9PiAkcmVzdWx0IClcbiAgICAkcmVzdWx0cyBbXSA9IFsgJ2NoYW5uZWwnID0+ICRjaGFubmVsLCAnb2snID0+ICRyZXN1bHQgWydvayddID8gJ3NlbnQnIDogJHJlc3VsdCBbJ2Vycm9yJ10gXTtcblxuICAkc3ViamVjdCA9ICRwYWRNYWlsTGFzdCBbJ3N1YmplY3QnXTtcbiAgJHNsYWNrICAgPSBqc29uX2RlY29kZSAoIHBhZEN1cmxSZWNvcmRlZCAoKSBbMF0gWydwb3N0J10sIFRSVUUgKSBbJ3RleHQnXTtcbiAgJG50ZnkgICAgPSBwYWRDdXJsUmVjb3JkZWQgKCkgWzFdIFsncG9zdCddO1xuXG4gIHBhZEN1cmxGYWtlU3RvcCAoKTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHthcnJheTpyZXN1bHRzfTxsaT57JGNoYW5uZWx9OiB7JG9rfTwvbGk+ey9hcnJheTpyZXN1bHRzfVxuPC91bD5cbjxwPlRoZSBtYWlsJ3Mgc3ViamVjdDogeyRzdWJqZWN0fTwvcD5cbjxwPlNsYWNrIGdvdDogPGNvZGU+eyRzbGFja308L2NvZGU+PC9wPlxuPHA+bnRmeSBnb3Q6IDxjb2RlPnskbnRmeX08L2NvZGU+PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFNsYWNrIGFuZCBudGZ5IGFyZSBub3QgYXNrZWQgaGVyZTogYSBmYWtlIGFuc3dlcnMgZXZlcnkgcmVxdWVzdCwgYXMgYSB0ZXN0IGFuc3dlcnMgdGhlbSxcbiAgLy8gYW5kIGtlZXBzIHdoYXQgd2FzIHNlbnQuIFRoZSBtYWlsIGdvZXMgdG8gREFUQS9tYWlsLyAtIHRoZSBmaWxlIHRyYW5zcG9ydC4gSW4gYW5cbiAgLy8gYXBwbGljYXRpb24gdGhlIGFkZHJlc3NlcyBzdGFuZCBpbiAuZW52OiBTTEFDS19XRUJIT09LX1VSTCwgTlRGWV9UT1BJQy5cblxuICBwYWRDdXJsRmFrZSAoIFsgJyonID0+ICdvaycgXSApO1xuXG4gICRhbm4gPSBbICdpZCcgPT4gJ21hbnVhbC1hbm4nLCAnZW1haWwnID0+ICdhbm5AZXhhbXBsZS5jb20nLCAnbnRmeScgPT4gJ2Fubi1vcmRlcnMnIF07XG5cbiAgcGFkTm90aWZ5ICggJGFubiwgJ29yZGVyLXNoaXBwZWQnLCBbICdvcmRlcicgPT4gNDIsICduYW1lJyA9PiAnQW5uJywgJ3VybCcgPT4gJ2h0dHBzOi8vc2hvcC5leGFtcGxlL29yZGVycy80MicgXSxcbiAgICAgICAgICAgICAgWyAnbWFpbCcsICdzbGFjaycsICdudGZ5JyBdLCBbICdzbGFjaycgPT4gWyAndXJsJyA9PiAnaHR0cHM6Ly9ob29rcy5zbGFjay5jb20vc2VydmljZXMvVDAvQjAvZXhhbXBsZScgXSBdICk7XG5cbiAgJHJlc3VsdHMgPSBbXTtcblxuICBmb3JlYWNoICggcGFkTm90aWZ5UmVzdWx0cyAoKSBhcyAkY2hhbm5lbCA9PiAkcmVzdWx0IClcbiAgICAkcmVzdWx0cyBbXSA9IFsgJ2NoYW5uZWwnID0+ICRjaGFubmVsLCAnb2snID0+ICRyZXN1bHQgWydvayddID8gJ3NlbnQnIDogJHJlc3VsdCBbJ2Vycm9yJ10gXTtcblxuICAkc3ViamVjdCA9ICRwYWRNYWlsTGFzdCBbJ3N1YmplY3QnXTtcbiAgJHNsYWNrICAgPSBqc29uX2RlY29kZSAoIHBhZEN1cmxSZWNvcmRlZCAoKSBbMF0gWydwb3N0J10sIFRSVUUgKSBbJ3RleHQnXTtcbiAgJG50ZnkgICAgPSBwYWRDdXJsUmVjb3JkZWQgKCkgWzFdIFsncG9zdCddO1xuXG4gIHBhZEN1cmxGYWtlU3RvcCAoKTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>results</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>channel</font>}</b>: <b>{<font color="green"><font color="red">$</font>ok</font>}</b>&lt;/li&gt;<b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>results</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;The mail's subject: <b>{<font color="green"><font color="red">$</font>subject</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Slack got: &lt;code&gt;<b>{<font color="green"><font color="red">$</font>slack</font>}</b>&lt;/code&gt;&lt;/p&gt;<br>&lt;p&gt;ntfy got: &lt;code&gt;<b>{<font color="green"><font color="red">$</font>ntfy</font>}</b>&lt;/code&gt;&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax513c84bce40655f50473aaadd1e59cfd"></div>
+                      <script>
+                      padAjax513c84bce40655f50473aaadd1e59cfd = new XMLHttpRequest();
+                      padAjax513c84bce40655f50473aaadd1e59cfd.onreadystatechange=function() {
+                      if (padAjax513c84bce40655f50473aaadd1e59cfd.readyState === 4) {
+                      if (padAjax513c84bce40655f50473aaadd1e59cfd.status === 200) {
+                      document.getElementById("padAjax513c84bce40655f50473aaadd1e59cfd").innerHTML=padAjax513c84bce40655f50473aaadd1e59cfd.responseText;
+                      } else {
+                      document.getElementById("padAjax513c84bce40655f50473aaadd1e59cfd").innerHTML=padAjax513c84bce40655f50473aaadd1e59cfd.statusText;
+                      }
+                      }
+                      }
+                      padAjax513c84bce40655f50473aaadd1e59cfd.open("GET","http://localhost/pad/manual/?fragments/notify_1&padInclude",true);
+                      padAjax513c84bce40655f50473aaadd1e59cfd.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: helpers/notify_a_channel_that_is_no_file_of_the_channels_types<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">helpers/notify_a_channel_that_is_no_file_of_the_channels_types.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padNotify </span><span style="color: #007700">( </span><span style="color: #DD0000">'ann@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'hello'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'mail'</span><span style="color: #007700">, </span><span style="color: #DD0000">'pigeon' </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax05a0ff0419e9b1b383f3363d5ab71c7b"></div>
+                      <script>
+                      padAjax05a0ff0419e9b1b383f3363d5ab71c7b = new XMLHttpRequest();
+                      padAjax05a0ff0419e9b1b383f3363d5ab71c7b.onreadystatechange=function() {
+                      if (padAjax05a0ff0419e9b1b383f3363d5ab71c7b.readyState === 4) {
+                      if (padAjax05a0ff0419e9b1b383f3363d5ab71c7b.status === 200) {
+                      document.getElementById("padAjax05a0ff0419e9b1b383f3363d5ab71c7b").innerHTML=padAjax05a0ff0419e9b1b383f3363d5ab71c7b.responseText;
+                      } else {
+                      document.getElementById("padAjax05a0ff0419e9b1b383f3363d5ab71c7b").innerHTML=padAjax05a0ff0419e9b1b383f3363d5ab71c7b.statusText;
+                      }
+                      }
+                      }
+                      padAjax05a0ff0419e9b1b383f3363d5ab71c7b.open("GET","http://localhost/pad/regression/errors/?helpers/notify_a_channel_that_is_no_file_of_the_channels_types&padInclude",true);
+                      padAjax05a0ff0419e9b1b383f3363d5ab71c7b.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: channels/a_queued_notification_keeps_no_secret_of_its_recipient<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">channels/a_queued_notification_keeps_no_secret_of_its_recipient.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">channels/a_queued_notification_keeps_no_secret_of_its_recipient.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A queued notification is a job file under DATA/queue/ - kept with the failed jobs after<br>  // its tries, listed by the admin console - and its recipient goes along for the worker. Of<br>  // a user row it keeps what padLogin keeps: the password hash, the remember token, the<br>  // second factor's secret are left out; the fields the channels and the template read - the<br>  // id, the email, a push subscription with its keys - stay.<br><br>  </span><span style="color: #0000BB">padQueueFlush </span><span style="color: #007700">( </span><span style="color: #DD0000">'notifysecret' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padNotify </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'r26f'</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ann@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'password_hash' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'$2y$12$abcdefghijklmnopqrstuv'</span><span style="color: #007700">,<br>                </span><span style="color: #DD0000">'remember_token' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'rt_9f8e7d'</span><span style="color: #007700">, </span><span style="color: #DD0000">'totp_secret' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'JBSWY3DPEHPK3PXP'</span><span style="color: #007700">, </span><span style="color: #DD0000">'api_key'</span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'*REDACTED*'</span><span style="color: #007700">,<br>                </span><span style="color: #DD0000">'webpush' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'endpoint' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://fcm.googleapis.com/fcm/send/x'</span><span style="color: #007700">, </span><span style="color: #DD0000">'keys' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'p256dh' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'BP'</span><span style="color: #007700">, </span><span style="color: #DD0000">'auth'</span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'*REDACTED*' </span><span style="color: #007700">] ] ],<br>              </span><span style="color: #DD0000">'shipped'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">42</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'mail' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'queue' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'notifysecret' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$kept </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">glob </span><span style="color: #007700">( </span><span style="color: #0000BB">DATA </span><span style="color: #007700">. </span><span style="color: #DD0000">'queue/regression/framework/notifysecret/*.job' </span><span style="color: #007700">) as </span><span style="color: #0000BB">$file </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$kept </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">file_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$file </span><span style="color: #007700">), </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) [</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'to'</span><span style="color: #007700">] ?? [];<br><br>  </span><span style="color: #0000BB">padQueueFlush </span><span style="color: #007700">( </span><span style="color: #DD0000">'notifysecret' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$json </span><span style="color: #007700">= </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( </span><span style="color: #0000BB">$kept</span><span style="color: #007700">, </span><span style="color: #0000BB">JSON_PRETTY_PRINT </span><span style="color: #007700">| </span><span style="color: #0000BB">JSON_UNESCAPED_SLASHES </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cHJlPnskanNvbn08L3ByZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBBIHF1ZXVlZCBub3RpZmljYXRpb24gaXMgYSBqb2IgZmlsZSB1bmRlciBEQVRBL3F1ZXVlLyAtIGtlcHQgd2l0aCB0aGUgZmFpbGVkIGpvYnMgYWZ0ZXJcbiAgLy8gaXRzIHRyaWVzLCBsaXN0ZWQgYnkgdGhlIGFkbWluIGNvbnNvbGUgLSBhbmQgaXRzIHJlY2lwaWVudCBnb2VzIGFsb25nIGZvciB0aGUgd29ya2VyLiBPZlxuICAvLyBhIHVzZXIgcm93IGl0IGtlZXBzIHdoYXQgcGFkTG9naW4ga2VlcHM6IHRoZSBwYXNzd29yZCBoYXNoLCB0aGUgcmVtZW1iZXIgdG9rZW4sIHRoZVxuICAvLyBzZWNvbmQgZmFjdG9yJ3Mgc2VjcmV0IGFyZSBsZWZ0IG91dDsgdGhlIGZpZWxkcyB0aGUgY2hhbm5lbHMgYW5kIHRoZSB0ZW1wbGF0ZSByZWFkIC0gdGhlXG4gIC8vIGlkLCB0aGUgZW1haWwsIGEgcHVzaCBzdWJzY3JpcHRpb24gd2l0aCBpdHMga2V5cyAtIHN0YXkuXG5cbiAgcGFkUXVldWVGbHVzaCAoICdub3RpZnlzZWNyZXQnICk7XG5cbiAgcGFkTm90aWZ5ICggWyAnaWQnID0+ICdyMjZmJywgJ25hbWUnID0+ICdBbm4nLCAnZW1haWwnID0+ICdhbm5AZXhhbXBsZS5jb20nLCAncGFzc3dvcmRfaGFzaCcgPT4gJyQyeSQxMiRhYmNkZWZnaGlqa2xtbm9wcXJzdHV2JyxcbiAgICAgICAgICAgICAgICAncmVtZW1iZXJfdG9rZW4nID0+ICdydF85ZjhlN2QnLCAndG90cF9zZWNyZXQnID0+ICdKQlNXWTNEUEVIUEszUFhQJywgJ2FwaV9rZXknID0+ICdha18xMjMnLFxuICAgICAgICAgICAgICAgICd3ZWJwdXNoJyA9PiBbICdlbmRwb2ludCcgPT4gJ2h0dHBzOi8vZmNtLmdvb2dsZWFwaXMuY29tL2ZjbS9zZW5kL3gnLCAna2V5cycgPT4gWyAncDI1NmRoJyA9PiAnQlAnLCAnYXV0aCcgPT4gJ2F1JyBdIF0gXSxcbiAgICAgICAgICAgICAgJ3NoaXBwZWQnLCBbICdvcmRlcicgPT4gNDIsICdpdGVtcycgPT4gMSwgJ25hbWUnID0+ICdBbm4nLCAndXJsJyA9PiAnJyBdLCBbICdtYWlsJyBdLCBbICdxdWV1ZScgPT4gJ25vdGlmeXNlY3JldCcgXSApO1xuXG4gICRrZXB0ID0gW107XG5cbiAgZm9yZWFjaCAoIGdsb2IgKCBEQVRBIC4gJ3F1ZXVlL3JlZ3Jlc3Npb24vZnJhbWV3b3JrL25vdGlmeXNlY3JldC8qLmpvYicgKSBhcyAkZmlsZSApXG4gICAgJGtlcHQgPSBqc29uX2RlY29kZSAoIGZpbGVfZ2V0X2NvbnRlbnRzICggJGZpbGUgKSwgVFJVRSApIFsnZGF0YSddIFsndG8nXSA/PyBbXTtcblxuICBwYWRRdWV1ZUZsdXNoICggJ25vdGlmeXNlY3JldCcgKTtcblxuICAkanNvbiA9IGpzb25fZW5jb2RlICggJGtlcHQsIEpTT05fUFJFVFRZX1BSSU5UIHwgSlNPTl9VTkVTQ0FQRURfU0xBU0hFUyApO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cHJlPnskanNvbn08L3ByZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBBIHF1ZXVlZCBub3RpZmljYXRpb24gaXMgYSBqb2IgZmlsZSB1bmRlciBEQVRBL3F1ZXVlLyAtIGtlcHQgd2l0aCB0aGUgZmFpbGVkIGpvYnMgYWZ0ZXJcbiAgLy8gaXRzIHRyaWVzLCBsaXN0ZWQgYnkgdGhlIGFkbWluIGNvbnNvbGUgLSBhbmQgaXRzIHJlY2lwaWVudCBnb2VzIGFsb25nIGZvciB0aGUgd29ya2VyLiBPZlxuICAvLyBhIHVzZXIgcm93IGl0IGtlZXBzIHdoYXQgcGFkTG9naW4ga2VlcHM6IHRoZSBwYXNzd29yZCBoYXNoLCB0aGUgcmVtZW1iZXIgdG9rZW4sIHRoZVxuICAvLyBzZWNvbmQgZmFjdG9yJ3Mgc2VjcmV0IGFyZSBsZWZ0IG91dDsgdGhlIGZpZWxkcyB0aGUgY2hhbm5lbHMgYW5kIHRoZSB0ZW1wbGF0ZSByZWFkIC0gdGhlXG4gIC8vIGlkLCB0aGUgZW1haWwsIGEgcHVzaCBzdWJzY3JpcHRpb24gd2l0aCBpdHMga2V5cyAtIHN0YXkuXG5cbiAgcGFkUXVldWVGbHVzaCAoICdub3RpZnlzZWNyZXQnICk7XG5cbiAgcGFkTm90aWZ5ICggWyAnaWQnID0+ICdyMjZmJywgJ25hbWUnID0+ICdBbm4nLCAnZW1haWwnID0+ICdhbm5AZXhhbXBsZS5jb20nLCAncGFzc3dvcmRfaGFzaCcgPT4gJyQyeSQxMiRhYmNkZWZnaGlqa2xtbm9wcXJzdHV2JyxcbiAgICAgICAgICAgICAgICAncmVtZW1iZXJfdG9rZW4nID0+ICdydF85ZjhlN2QnLCAndG90cF9zZWNyZXQnID0+ICdKQlNXWTNEUEVIUEszUFhQJywgJ2FwaV9rZXknID0+ICdha18xMjMnLFxuICAgICAgICAgICAgICAgICd3ZWJwdXNoJyA9PiBbICdlbmRwb2ludCcgPT4gJ2h0dHBzOi8vZmNtLmdvb2dsZWFwaXMuY29tL2ZjbS9zZW5kL3gnLCAna2V5cycgPT4gWyAncDI1NmRoJyA9PiAnQlAnLCAnYXV0aCcgPT4gJ2F1JyBdIF0gXSxcbiAgICAgICAgICAgICAgJ3NoaXBwZWQnLCBbICdvcmRlcicgPT4gNDIsICdpdGVtcycgPT4gMSwgJ25hbWUnID0+ICdBbm4nLCAndXJsJyA9PiAnJyBdLCBbICdtYWlsJyBdLCBbICdxdWV1ZScgPT4gJ25vdGlmeXNlY3JldCcgXSApO1xuXG4gICRrZXB0ID0gW107XG5cbiAgZm9yZWFjaCAoIGdsb2IgKCBEQVRBIC4gJ3F1ZXVlL3JlZ3Jlc3Npb24vZnJhbWV3b3JrL25vdGlmeXNlY3JldC8qLmpvYicgKSBhcyAkZmlsZSApXG4gICAgJGtlcHQgPSBqc29uX2RlY29kZSAoIGZpbGVfZ2V0X2NvbnRlbnRzICggJGZpbGUgKSwgVFJVRSApIFsnZGF0YSddIFsndG8nXSA/PyBbXTtcblxuICBwYWRRdWV1ZUZsdXNoICggJ25vdGlmeXNlY3JldCcgKTtcblxuICAkanNvbiA9IGpzb25fZW5jb2RlICggJGtlcHQsIEpTT05fUFJFVFRZX1BSSU5UIHwgSlNPTl9VTkVTQ0FQRURfU0xBU0hFUyApO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>json</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxf6368aa41d2e1133ef60f02d8abd792d"></div>
+                      <script>
+                      padAjaxf6368aa41d2e1133ef60f02d8abd792d = new XMLHttpRequest();
+                      padAjaxf6368aa41d2e1133ef60f02d8abd792d.onreadystatechange=function() {
+                      if (padAjaxf6368aa41d2e1133ef60f02d8abd792d.readyState === 4) {
+                      if (padAjaxf6368aa41d2e1133ef60f02d8abd792d.status === 200) {
+                      document.getElementById("padAjaxf6368aa41d2e1133ef60f02d8abd792d").innerHTML=padAjaxf6368aa41d2e1133ef60f02d8abd792d.responseText;
+                      } else {
+                      document.getElementById("padAjaxf6368aa41d2e1133ef60f02d8abd792d").innerHTML=padAjaxf6368aa41d2e1133ef60f02d8abd792d.statusText;
+                      }
+                      }
+                      }
+                      padAjaxf6368aa41d2e1133ef60f02d8abd792d.open("GET","http://localhost/pad/regression/framework/?channels/a_queued_notification_keeps_no_secret_of_its_recipient&padInclude",true);
+                      padAjaxf6368aa41d2e1133ef60f02d8abd792d.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: channels/mail_sends_the_mail_section_as_html_with_the_title_as_subject<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">channels/mail_sends_the_mail_section_as_html_with_the_title_as_subject.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">channels/mail_sends_the_mail_section_as_html_with_the_title_as_subject.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The mail channel hands the @mail@ section to padMail as the HTML part, the text part made<br>  // from it, the @title@ section as the subject - the file transport keeps it under<br>  // DATA/mail/, nothing is sent. A recipient without an email gets no mail: FALSE, and the<br>  // results say why; that is the data's, not the author's, so it is no error.<br><br>  </span><span style="color: #0000BB">padNotify </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ann@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann' </span><span style="color: #007700">], </span><span style="color: #DD0000">'shipped'</span><span style="color: #007700">,<br>              [ </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">42</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann & Bob'</span><span style="color: #007700">, </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://shop.example/orders/42' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'mail' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$mail </span><span style="color: #007700">= </span><span style="color: #0000BB">$padMailLast</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$none   </span><span style="color: #007700">= </span><span style="color: #0000BB">padNotify </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4 </span><span style="color: #007700">], </span><span style="color: #DD0000">'shipped'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">43</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cy'</span><span style="color: #007700">, </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'mail' </span><span style="color: #007700">] ) ? </span><span style="color: #DD0000">'sent' </span><span style="color: #007700">: </span><span style="color: #DD0000">'not sent'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$reason </span><span style="color: #007700">= </span><span style="color: #0000BB">padNotifyResults </span><span style="color: #007700">() [</span><span style="color: #DD0000">'mail'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'error'</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ0bzogeyRtYWlsLnRvfVxuc3ViamVjdDogeyRtYWlsLnN1YmplY3R9XG5odG1sOiB7JG1haWwuaHRtbH1cbnRleHQ6IHskbWFpbC50ZXh0fVxud2l0aG91dCBhbiBlbWFpbDogeyRub25lfSAtIHskcmVhc29ufVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBtYWlsIGNoYW5uZWwgaGFuZHMgdGhlIEBtYWlsQCBzZWN0aW9uIHRvIHBhZE1haWwgYXMgdGhlIEhUTUwgcGFydCwgdGhlIHRleHQgcGFydCBtYWRlXG4gIC8vIGZyb20gaXQsIHRoZSBAdGl0bGVAIHNlY3Rpb24gYXMgdGhlIHN1YmplY3QgLSB0aGUgZmlsZSB0cmFuc3BvcnQga2VlcHMgaXQgdW5kZXJcbiAgLy8gREFUQS9tYWlsLywgbm90aGluZyBpcyBzZW50LiBBIHJlY2lwaWVudCB3aXRob3V0IGFuIGVtYWlsIGdldHMgbm8gbWFpbDogRkFMU0UsIGFuZCB0aGVcbiAgLy8gcmVzdWx0cyBzYXkgd2h5OyB0aGF0IGlzIHRoZSBkYXRhJ3MsIG5vdCB0aGUgYXV0aG9yJ3MsIHNvIGl0IGlzIG5vIGVycm9yLlxuXG4gIHBhZE5vdGlmeSAoIFsgJ2lkJyA9PiAzLCAnZW1haWwnID0+ICdhbm5AZXhhbXBsZS5jb20nLCAnbmFtZScgPT4gJ0FubicgXSwgJ3NoaXBwZWQnLFxuICAgICAgICAgICAgICBbICdvcmRlcicgPT4gNDIsICdpdGVtcycgPT4gMywgJ25hbWUnID0+ICdBbm4gJiBCb2InLCAndXJsJyA9PiAnaHR0cHM6Ly9zaG9wLmV4YW1wbGUvb3JkZXJzLzQyJyBdLCBbICdtYWlsJyBdICk7XG5cbiAgJG1haWwgPSAkcGFkTWFpbExhc3Q7XG5cbiAgJG5vbmUgICA9IHBhZE5vdGlmeSAoIFsgJ2lkJyA9PiA0IF0sICdzaGlwcGVkJywgWyAnb3JkZXInID0+IDQzLCAnaXRlbXMnID0+IDEsICduYW1lJyA9PiAnQ3knLCAndXJsJyA9PiAnJyBdLCBbICdtYWlsJyBdICkgPyAnc2VudCcgOiAnbm90IHNlbnQnO1xuICAkcmVhc29uID0gcGFkTm90aWZ5UmVzdWx0cyAoKSBbJ21haWwnXSBbJ2Vycm9yJ107XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ0bzogeyRtYWlsLnRvfVxuc3ViamVjdDogeyRtYWlsLnN1YmplY3R9XG5odG1sOiB7JG1haWwuaHRtbH1cbnRleHQ6IHskbWFpbC50ZXh0fVxud2l0aG91dCBhbiBlbWFpbDogeyRub25lfSAtIHskcmVhc29ufVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBtYWlsIGNoYW5uZWwgaGFuZHMgdGhlIEBtYWlsQCBzZWN0aW9uIHRvIHBhZE1haWwgYXMgdGhlIEhUTUwgcGFydCwgdGhlIHRleHQgcGFydCBtYWRlXG4gIC8vIGZyb20gaXQsIHRoZSBAdGl0bGVAIHNlY3Rpb24gYXMgdGhlIHN1YmplY3QgLSB0aGUgZmlsZSB0cmFuc3BvcnQga2VlcHMgaXQgdW5kZXJcbiAgLy8gREFUQS9tYWlsLywgbm90aGluZyBpcyBzZW50LiBBIHJlY2lwaWVudCB3aXRob3V0IGFuIGVtYWlsIGdldHMgbm8gbWFpbDogRkFMU0UsIGFuZCB0aGVcbiAgLy8gcmVzdWx0cyBzYXkgd2h5OyB0aGF0IGlzIHRoZSBkYXRhJ3MsIG5vdCB0aGUgYXV0aG9yJ3MsIHNvIGl0IGlzIG5vIGVycm9yLlxuXG4gIHBhZE5vdGlmeSAoIFsgJ2lkJyA9PiAzLCAnZW1haWwnID0+ICdhbm5AZXhhbXBsZS5jb20nLCAnbmFtZScgPT4gJ0FubicgXSwgJ3NoaXBwZWQnLFxuICAgICAgICAgICAgICBbICdvcmRlcicgPT4gNDIsICdpdGVtcycgPT4gMywgJ25hbWUnID0+ICdBbm4gJiBCb2InLCAndXJsJyA9PiAnaHR0cHM6Ly9zaG9wLmV4YW1wbGUvb3JkZXJzLzQyJyBdLCBbICdtYWlsJyBdICk7XG5cbiAgJG1haWwgPSAkcGFkTWFpbExhc3Q7XG5cbiAgJG5vbmUgICA9IHBhZE5vdGlmeSAoIFsgJ2lkJyA9PiA0IF0sICdzaGlwcGVkJywgWyAnb3JkZXInID0+IDQzLCAnaXRlbXMnID0+IDEsICduYW1lJyA9PiAnQ3knLCAndXJsJyA9PiAnJyBdLCBbICdtYWlsJyBdICkgPyAnc2VudCcgOiAnbm90IHNlbnQnO1xuICAkcmVhc29uID0gcGFkTm90aWZ5UmVzdWx0cyAoKSBbJ21haWwnXSBbJ2Vycm9yJ107XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000">to: <b>{<font color="green"><font color="red">$</font>mail.to</font>}</b><br>subject: <b>{<font color="green"><font color="red">$</font>mail.subject</font>}</b><br>html: <b>{<font color="green"><font color="red">$</font>mail.html</font>}</b><br>text: <b>{<font color="green"><font color="red">$</font>mail.text</font>}</b><br>without an email: <b>{<font color="green"><font color="red">$</font>none</font>}</b> - <b>{<font color="green"><font color="red">$</font>reason</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb4176cfb2df45530aa3fd49264854580"></div>
+                      <script>
+                      padAjaxb4176cfb2df45530aa3fd49264854580 = new XMLHttpRequest();
+                      padAjaxb4176cfb2df45530aa3fd49264854580.onreadystatechange=function() {
+                      if (padAjaxb4176cfb2df45530aa3fd49264854580.readyState === 4) {
+                      if (padAjaxb4176cfb2df45530aa3fd49264854580.status === 200) {
+                      document.getElementById("padAjaxb4176cfb2df45530aa3fd49264854580").innerHTML=padAjaxb4176cfb2df45530aa3fd49264854580.responseText;
+                      } else {
+                      document.getElementById("padAjaxb4176cfb2df45530aa3fd49264854580").innerHTML=padAjaxb4176cfb2df45530aa3fd49264854580.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb4176cfb2df45530aa3fd49264854580.open("GET","http://localhost/pad/regression/framework/?channels/mail_sends_the_mail_section_as_html_with_the_title_as_subject&padInclude",true);
+                      padAjaxb4176cfb2df45530aa3fd49264854580.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: channels/queued_every_channel_is_a_job_of_its_own_and_a_failing_one_is_retried_alone<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">channels/queued_every_channel_is_a_job_of_its_own_and_a_failing_one_is_retried_alone.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">channels/queued_every_channel_is_a_job_of_its_own_and_a_failing_one_is_retried_alone.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Queued, a notification is a job per channel ('@notify'): the request answers at once, the<br>  // worker renders and sends - here padQueueWork in the same request, the fakes still on. Slack<br>  // answers 500 the first time: its job comes back for a retry, the mail that went is not<br>  // sent again; the retry delivers it.<br><br>  </span><span style="color: #0000BB">padQueueFlush </span><span style="color: #007700">( </span><span style="color: #DD0000">'notifytest' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$slack </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padCurlFake </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'https://hooks.slack.com/*' </span><span style="color: #007700">=&gt; function () use ( &</span><span style="color: #0000BB">$slack </span><span style="color: #007700">) {<br>    return ++</span><span style="color: #0000BB">$slack </span><span style="color: #007700">== </span><span style="color: #0000BB">1 </span><span style="color: #007700">? [ </span><span style="color: #DD0000">'status' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">500</span><span style="color: #007700">, </span><span style="color: #DD0000">'data' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'rollup_error' </span><span style="color: #007700">] : </span><span style="color: #DD0000">'ok'</span><span style="color: #007700">;<br>  } ] );<br><br>  </span><span style="color: #0000BB">$queued </span><span style="color: #007700">= </span><span style="color: #0000BB">padNotify </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9</span><span style="color: #007700">, </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'cy@example.com' </span><span style="color: #007700">], </span><span style="color: #DD0000">'shipped'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">77</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Cy'</span><span style="color: #007700">, </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'' </span><span style="color: #007700">],<br>                        [ </span><span style="color: #DD0000">'mail'</span><span style="color: #007700">, </span><span style="color: #DD0000">'slack' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'queue' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'notifytest'</span><span style="color: #007700">, </span><span style="color: #DD0000">'slack' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://hooks.slack.com/services/T/B/q' </span><span style="color: #007700">] ] );<br><br>  </span><span style="color: #0000BB">$jobs   </span><span style="color: #007700">= </span><span style="color: #0000BB">array_map </span><span style="color: #007700">( fn ( </span><span style="color: #0000BB">$one </span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">is_string </span><span style="color: #007700">( </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'job'</span><span style="color: #007700">] ) ? </span><span style="color: #DD0000">'a job' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no job'</span><span style="color: #007700">, </span><span style="color: #0000BB">padNotifyResults </span><span style="color: #007700">() );<br>  </span><span style="color: #0000BB">$size   </span><span style="color: #007700">= </span><span style="color: #0000BB">padQueueSize </span><span style="color: #007700">( </span><span style="color: #DD0000">'notifytest' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$first  </span><span style="color: #007700">= </span><span style="color: #0000BB">padQueueWork </span><span style="color: #007700">( </span><span style="color: #DD0000">'notifytest'</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">60</span><span style="color: #007700">, </span><span style="color: #0000BB">3 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$mailed </span><span style="color: #007700">= </span><span style="color: #0000BB">$padMailLast </span><span style="color: #007700">[</span><span style="color: #DD0000">'subject'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$padMailLast </span><span style="color: #007700">= </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// The retry is due after the backoff: the job file is made due now.<br><br>  </span><span style="color: #007700">foreach ( </span><span style="color: #0000BB">glob </span><span style="color: #007700">( </span><span style="color: #0000BB">DATA </span><span style="color: #007700">. </span><span style="color: #DD0000">'queue/regression/framework/notifytest/*.job' </span><span style="color: #007700">) as </span><span style="color: #0000BB">$file </span><span style="color: #007700">) {<br>    </span><span style="color: #0000BB">$record </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">file_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$file </span><span style="color: #007700">), </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$record </span><span style="color: #007700">[</span><span style="color: #DD0000">'available'</span><span style="color: #007700">] = </span><span style="color: #0000BB">time </span><span style="color: #007700">() - </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>    </span><span style="color: #0000BB">file_put_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( </span><span style="color: #0000BB">$record </span><span style="color: #007700">) );<br>    </span><span style="color: #0000BB">rename </span><span style="color: #007700">( </span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #0000BB">dirname </span><span style="color: #007700">( </span><span style="color: #0000BB">$file </span><span style="color: #007700">) . </span><span style="color: #DD0000">'/' </span><span style="color: #007700">. </span><span style="color: #0000BB">sprintf </span><span style="color: #007700">( </span><span style="color: #DD0000">'%010d'</span><span style="color: #007700">, </span><span style="color: #0000BB">time </span><span style="color: #007700">() - </span><span style="color: #0000BB">1 </span><span style="color: #007700">) . </span><span style="color: #DD0000">'-' </span><span style="color: #007700">. </span><span style="color: #0000BB">$record </span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">] . </span><span style="color: #DD0000">'.job' </span><span style="color: #007700">);<br>  }<br><br>  </span><span style="color: #0000BB">$second </span><span style="color: #007700">= </span><span style="color: #0000BB">padQueueWork </span><span style="color: #007700">( </span><span style="color: #DD0000">'notifytest'</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">60</span><span style="color: #007700">, </span><span style="color: #0000BB">3 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$report </span><span style="color: #007700">= </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'queued' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$queued</span><span style="color: #007700">, </span><span style="color: #DD0000">'jobs' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$jobs</span><span style="color: #007700">, </span><span style="color: #DD0000">'waiting' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$size</span><span style="color: #007700">,<br>                            </span><span style="color: #DD0000">'first'  </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">$first </span><span style="color: #007700">[</span><span style="color: #DD0000">'done'</span><span style="color: #007700">], </span><span style="color: #0000BB">$first </span><span style="color: #007700">[</span><span style="color: #DD0000">'retried'</span><span style="color: #007700">], </span><span style="color: #0000BB">$first </span><span style="color: #007700">[</span><span style="color: #DD0000">'failed'</span><span style="color: #007700">] ], </span><span style="color: #DD0000">'mailed' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$mailed</span><span style="color: #007700">,<br>                            </span><span style="color: #DD0000">'second' </span><span style="color: #007700">=&gt; [ </span><span style="color: #0000BB">$second </span><span style="color: #007700">[</span><span style="color: #DD0000">'done'</span><span style="color: #007700">], </span><span style="color: #0000BB">$second </span><span style="color: #007700">[</span><span style="color: #DD0000">'retried'</span><span style="color: #007700">], </span><span style="color: #0000BB">$second </span><span style="color: #007700">[</span><span style="color: #DD0000">'failed'</span><span style="color: #007700">] ], </span><span style="color: #DD0000">'mailed again' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$padMailLast </span><span style="color: #007700">!== </span><span style="color: #0000BB">NULL</span><span style="color: #007700">,<br>                            </span><span style="color: #DD0000">'slack asked' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$slack </span><span style="color: #007700">], </span><span style="color: #0000BB">JSON_UNESCAPED_SLASHES </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7JHJlcG9ydH1cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBRdWV1ZWQsIGEgbm90aWZpY2F0aW9uIGlzIGEgam9iIHBlciBjaGFubmVsICgnQG5vdGlmeScpOiB0aGUgcmVxdWVzdCBhbnN3ZXJzIGF0IG9uY2UsIHRoZVxuICAvLyB3b3JrZXIgcmVuZGVycyBhbmQgc2VuZHMgLSBoZXJlIHBhZFF1ZXVlV29yayBpbiB0aGUgc2FtZSByZXF1ZXN0LCB0aGUgZmFrZXMgc3RpbGwgb24uIFNsYWNrXG4gIC8vIGFuc3dlcnMgNTAwIHRoZSBmaXJzdCB0aW1lOiBpdHMgam9iIGNvbWVzIGJhY2sgZm9yIGEgcmV0cnksIHRoZSBtYWlsIHRoYXQgd2VudCBpcyBub3RcbiAgLy8gc2VudCBhZ2FpbjsgdGhlIHJldHJ5IGRlbGl2ZXJzIGl0LlxuXG4gIHBhZFF1ZXVlRmx1c2ggKCAnbm90aWZ5dGVzdCcgKTtcblxuICAkc2xhY2sgPSAwO1xuXG4gIHBhZEN1cmxGYWtlICggWyAnaHR0cHM6Ly9ob29rcy5zbGFjay5jb20vKicgPT4gZnVuY3Rpb24gKCkgdXNlICggJiRzbGFjayApIHtcbiAgICByZXR1cm4gKyskc2xhY2sgPT0gMSA/IFsgJ3N0YXR1cycgPT4gNTAwLCAnZGF0YScgPT4gJ3JvbGx1cF9lcnJvcicgXSA6ICdvayc7XG4gIH0gXSApO1xuXG4gICRxdWV1ZWQgPSBwYWROb3RpZnkgKCBbICdpZCcgPT4gOSwgJ2VtYWlsJyA9PiAnY3lAZXhhbXBsZS5jb20nIF0sICdzaGlwcGVkJywgWyAnb3JkZXInID0+IDc3LCAnaXRlbXMnID0+IDEsICduYW1lJyA9PiAnQ3knLCAndXJsJyA9PiAnJyBdLFxuICAgICAgICAgICAgICAgICAgICAgICAgWyAnbWFpbCcsICdzbGFjaycgXSwgWyAncXVldWUnID0+ICdub3RpZnl0ZXN0JywgJ3NsYWNrJyA9PiBbICd1cmwnID0+ICdodHRwczovL2hvb2tzLnNsYWNrLmNvbS9zZXJ2aWNlcy9UL0IvcScgXSBdICk7XG5cbiAgJGpvYnMgICA9IGFycmF5X21hcCAoIGZuICggJG9uZSApID0+IGlzX3N0cmluZyAoICRvbmUgWydqb2InXSApID8gJ2Egam9iJyA6ICdubyBqb2InLCBwYWROb3RpZnlSZXN1bHRzICgpICk7XG4gICRzaXplICAgPSBwYWRRdWV1ZVNpemUgKCAnbm90aWZ5dGVzdCcgKTtcbiAgJGZpcnN0ICA9IHBhZFF1ZXVlV29yayAoICdub3RpZnl0ZXN0JywgMCwgNjAsIDMgKTtcbiAgJG1haWxlZCA9ICRwYWRNYWlsTGFzdCBbJ3N1YmplY3QnXSA/PyAnJztcblxuICAkcGFkTWFpbExhc3QgPSBOVUxMO1xuXG4gIC8vIFRoZSByZXRyeSBpcyBkdWUgYWZ0ZXIgdGhlIGJhY2tvZmY6IHRoZSBqb2IgZmlsZSBpcyBtYWRlIGR1ZSBub3cuXG5cbiAgZm9yZWFjaCAoIGdsb2IgKCBEQVRBIC4gJ3F1ZXVlL3JlZ3Jlc3Npb24vZnJhbWV3b3JrL25vdGlmeXRlc3QvKi5qb2InICkgYXMgJGZpbGUgKSB7XG4gICAgJHJlY29yZCA9IGpzb25fZGVjb2RlICggZmlsZV9nZXRfY29udGVudHMgKCAkZmlsZSApLCBUUlVFICk7XG4gICAgJHJlY29yZCBbJ2F2YWlsYWJsZSddID0gdGltZSAoKSAtIDE7XG4gICAgZmlsZV9wdXRfY29udGVudHMgKCAkZmlsZSwganNvbl9lbmNvZGUgKCAkcmVjb3JkICkgKTtcbiAgICByZW5hbWUgKCAkZmlsZSwgZGlybmFtZSAoICRmaWxlICkgLiAnLycgLiBzcHJpbnRmICggJyUwMTBkJywgdGltZSAoKSAtIDEgKSAuICctJyAuICRyZWNvcmQgWydpZCddIC4gJy5qb2InICk7XG4gIH1cblxuICAkc2Vjb25kID0gcGFkUXVldWVXb3JrICggJ25vdGlmeXRlc3QnLCAwLCA2MCwgMyApO1xuXG4gICRyZXBvcnQgPSBqc29uX2VuY29kZSAoIFsgJ3F1ZXVlZCcgPT4gJHF1ZXVlZCwgJ2pvYnMnID0+ICRqb2JzLCAnd2FpdGluZycgPT4gJHNpemUsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgJ2ZpcnN0JyAgPT4gWyAkZmlyc3QgWydkb25lJ10sICRmaXJzdCBbJ3JldHJpZWQnXSwgJGZpcnN0IFsnZmFpbGVkJ10gXSwgJ21haWxlZCcgPT4gJG1haWxlZCxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAnc2Vjb25kJyA9PiBbICRzZWNvbmQgWydkb25lJ10sICRzZWNvbmQgWydyZXRyaWVkJ10sICRzZWNvbmQgWydmYWlsZWQnXSBdLCAnbWFpbGVkIGFnYWluJyA9PiAkcGFkTWFpbExhc3QgIT09IE5VTEwsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgJ3NsYWNrIGFza2VkJyA9PiAkc2xhY2sgXSwgSlNPTl9VTkVTQ0FQRURfU0xBU0hFUyApO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7JHJlcG9ydH1cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBRdWV1ZWQsIGEgbm90aWZpY2F0aW9uIGlzIGEgam9iIHBlciBjaGFubmVsICgnQG5vdGlmeScpOiB0aGUgcmVxdWVzdCBhbnN3ZXJzIGF0IG9uY2UsIHRoZVxuICAvLyB3b3JrZXIgcmVuZGVycyBhbmQgc2VuZHMgLSBoZXJlIHBhZFF1ZXVlV29yayBpbiB0aGUgc2FtZSByZXF1ZXN0LCB0aGUgZmFrZXMgc3RpbGwgb24uIFNsYWNrXG4gIC8vIGFuc3dlcnMgNTAwIHRoZSBmaXJzdCB0aW1lOiBpdHMgam9iIGNvbWVzIGJhY2sgZm9yIGEgcmV0cnksIHRoZSBtYWlsIHRoYXQgd2VudCBpcyBub3RcbiAgLy8gc2VudCBhZ2FpbjsgdGhlIHJldHJ5IGRlbGl2ZXJzIGl0LlxuXG4gIHBhZFF1ZXVlRmx1c2ggKCAnbm90aWZ5dGVzdCcgKTtcblxuICAkc2xhY2sgPSAwO1xuXG4gIHBhZEN1cmxGYWtlICggWyAnaHR0cHM6Ly9ob29rcy5zbGFjay5jb20vKicgPT4gZnVuY3Rpb24gKCkgdXNlICggJiRzbGFjayApIHtcbiAgICByZXR1cm4gKyskc2xhY2sgPT0gMSA/IFsgJ3N0YXR1cycgPT4gNTAwLCAnZGF0YScgPT4gJ3JvbGx1cF9lcnJvcicgXSA6ICdvayc7XG4gIH0gXSApO1xuXG4gICRxdWV1ZWQgPSBwYWROb3RpZnkgKCBbICdpZCcgPT4gOSwgJ2VtYWlsJyA9PiAnY3lAZXhhbXBsZS5jb20nIF0sICdzaGlwcGVkJywgWyAnb3JkZXInID0+IDc3LCAnaXRlbXMnID0+IDEsICduYW1lJyA9PiAnQ3knLCAndXJsJyA9PiAnJyBdLFxuICAgICAgICAgICAgICAgICAgICAgICAgWyAnbWFpbCcsICdzbGFjaycgXSwgWyAncXVldWUnID0+ICdub3RpZnl0ZXN0JywgJ3NsYWNrJyA9PiBbICd1cmwnID0+ICdodHRwczovL2hvb2tzLnNsYWNrLmNvbS9zZXJ2aWNlcy9UL0IvcScgXSBdICk7XG5cbiAgJGpvYnMgICA9IGFycmF5X21hcCAoIGZuICggJG9uZSApID0+IGlzX3N0cmluZyAoICRvbmUgWydqb2InXSApID8gJ2Egam9iJyA6ICdubyBqb2InLCBwYWROb3RpZnlSZXN1bHRzICgpICk7XG4gICRzaXplICAgPSBwYWRRdWV1ZVNpemUgKCAnbm90aWZ5dGVzdCcgKTtcbiAgJGZpcnN0ICA9IHBhZFF1ZXVlV29yayAoICdub3RpZnl0ZXN0JywgMCwgNjAsIDMgKTtcbiAgJG1haWxlZCA9ICRwYWRNYWlsTGFzdCBbJ3N1YmplY3QnXSA/PyAnJztcblxuICAkcGFkTWFpbExhc3QgPSBOVUxMO1xuXG4gIC8vIFRoZSByZXRyeSBpcyBkdWUgYWZ0ZXIgdGhlIGJhY2tvZmY6IHRoZSBqb2IgZmlsZSBpcyBtYWRlIGR1ZSBub3cuXG5cbiAgZm9yZWFjaCAoIGdsb2IgKCBEQVRBIC4gJ3F1ZXVlL3JlZ3Jlc3Npb24vZnJhbWV3b3JrL25vdGlmeXRlc3QvKi5qb2InICkgYXMgJGZpbGUgKSB7XG4gICAgJHJlY29yZCA9IGpzb25fZGVjb2RlICggZmlsZV9nZXRfY29udGVudHMgKCAkZmlsZSApLCBUUlVFICk7XG4gICAgJHJlY29yZCBbJ2F2YWlsYWJsZSddID0gdGltZSAoKSAtIDE7XG4gICAgZmlsZV9wdXRfY29udGVudHMgKCAkZmlsZSwganNvbl9lbmNvZGUgKCAkcmVjb3JkICkgKTtcbiAgICByZW5hbWUgKCAkZmlsZSwgZGlybmFtZSAoICRmaWxlICkgLiAnLycgLiBzcHJpbnRmICggJyUwMTBkJywgdGltZSAoKSAtIDEgKSAuICctJyAuICRyZWNvcmQgWydpZCddIC4gJy5qb2InICk7XG4gIH1cblxuICAkc2Vjb25kID0gcGFkUXVldWVXb3JrICggJ25vdGlmeXRlc3QnLCAwLCA2MCwgMyApO1xuXG4gICRyZXBvcnQgPSBqc29uX2VuY29kZSAoIFsgJ3F1ZXVlZCcgPT4gJHF1ZXVlZCwgJ2pvYnMnID0+ICRqb2JzLCAnd2FpdGluZycgPT4gJHNpemUsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgJ2ZpcnN0JyAgPT4gWyAkZmlyc3QgWydkb25lJ10sICRmaXJzdCBbJ3JldHJpZWQnXSwgJGZpcnN0IFsnZmFpbGVkJ10gXSwgJ21haWxlZCcgPT4gJG1haWxlZCxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAnc2Vjb25kJyA9PiBbICRzZWNvbmQgWydkb25lJ10sICRzZWNvbmQgWydyZXRyaWVkJ10sICRzZWNvbmQgWydmYWlsZWQnXSBdLCAnbWFpbGVkIGFnYWluJyA9PiAkcGFkTWFpbExhc3QgIT09IE5VTEwsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgJ3NsYWNrIGFza2VkJyA9PiAkc2xhY2sgXSwgSlNPTl9VTkVTQ0FQRURfU0xBU0hFUyApO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>report</font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxef36c2acb2c46ddf029b3f6e7d2226ad"></div>
+                      <script>
+                      padAjaxef36c2acb2c46ddf029b3f6e7d2226ad = new XMLHttpRequest();
+                      padAjaxef36c2acb2c46ddf029b3f6e7d2226ad.onreadystatechange=function() {
+                      if (padAjaxef36c2acb2c46ddf029b3f6e7d2226ad.readyState === 4) {
+                      if (padAjaxef36c2acb2c46ddf029b3f6e7d2226ad.status === 200) {
+                      document.getElementById("padAjaxef36c2acb2c46ddf029b3f6e7d2226ad").innerHTML=padAjaxef36c2acb2c46ddf029b3f6e7d2226ad.responseText;
+                      } else {
+                      document.getElementById("padAjaxef36c2acb2c46ddf029b3f6e7d2226ad").innerHTML=padAjaxef36c2acb2c46ddf029b3f6e7d2226ad.statusText;
+                      }
+                      }
+                      }
+                      padAjaxef36c2acb2c46ddf029b3f6e7d2226ad.open("GET","http://localhost/pad/regression/framework/?channels/queued_every_channel_is_a_job_of_its_own_and_a_failing_one_is_retried_alone&padInclude",true);
+                      padAjaxef36c2acb2c46ddf029b3f6e7d2226ad.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+              </center>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>

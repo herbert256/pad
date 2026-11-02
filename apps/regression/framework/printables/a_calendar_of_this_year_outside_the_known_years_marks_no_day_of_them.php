@@ -2,7 +2,7 @@
 
   // A wall calendar no year= or month= fixes shows this year - a year the template does not
   // choose, so outside the years its country's file knows it is no error, as a month the
-  // visitor asks {calendar} for is none: only the days inside those years are marked. New
+  // visitor asks {pad:calendar} for is none: only the days inside those years are marked. New
   // Zealand's holidays are known for 2010 to 2052 (Matariki's schedule): with the clock at
   // 2053 no day of the year is marked - the rules' rows marked King's Birthday and Labour Day
   // and left Matariki out - and at 2052 they are all there. A year= or month= outside them is

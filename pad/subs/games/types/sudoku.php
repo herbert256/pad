@@ -9,16 +9,16 @@
   // the wrong ones. paper draws the puzzle as a table to print instead, solve with its
   // solution filled in; title= names it.
   //
-  //   {sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'/}
-  //   {sudoku givens=26, seed=7/}
-  //   {sudoku $puzzle, solve/}
+  //   {game:sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'/}
+  //   {game:sudoku givens=26, seed=7/}
+  //   {game:sudoku $puzzle, solve/}
 
   $padSudokuGiven = padGameValue ();
 
   if ( $padSudokuGiven === '' ) {
 
     if ( padGameFlag ( 'solve' ) and $GLOBALS ['padCheckSyntax'] )
-      padError ( "the sudoku to solve has no puzzle - {sudoku '53..7....', solve/}" );
+      padError ( "the sudoku to solve has no puzzle - {game:sudoku '53..7....', solve/}" );
 
     return padGame ( 'sudoku', 'Sudoku', [ 'givens' => padGameInt ( 'givens', 30, 24, 45 ) ] );
 

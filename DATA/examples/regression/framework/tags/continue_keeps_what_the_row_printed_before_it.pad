@@ -1,6 +1,6 @@
-{data 'xs'}
+{pad:data 'xs'}
   [1,2,3]
-{/data}
-{xs}
-  {$xs}{if $xs eq 2}{continue 'xs'/}{/if}!
-{/xs}
+{/pad:data}
+{data:xs}
+  {$xs}{pad:if $xs eq 2}{pad:continue 'xs'/}{/pad:if}!
+{/data:xs}

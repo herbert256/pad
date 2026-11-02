@@ -1,5 +1,5 @@
-{ignore}
-<p><code>{form 'contact'}</code> writes a <code>&lt;form method="post"&gt;</code> round its
+{pad:ignore}
+<p><code>{pad:form 'contact'}</code> writes a <code>&lt;form method="post"&gt;</code> round its
 content that posts back to the page it stands in. A posting form carries two hidden fields:
 the visitor's CSRF token (<code>padCsrfToken</code>, the session starts on demand) and its
 own name (<code>padForm</code>). In the page's PHP, <code>padPosted('contact')</code> is TRUE
@@ -9,14 +9,14 @@ when this form came back, so a page with two forms knows which one was sent. A f
 <p>Every item besides the name, <code>method</code>, <code>error</code> and
 <code>client</code> is an attribute of the <code>&lt;form&gt;</code> tag - <code>class=</code>,
 <code>id=</code>, <code>action=</code>, <code>enctype=</code> - written the way
-<a href="?tag/attrs">{attrs}</a> writes them. The token only goes to this site: a form whose
+<a href="?tag/attrs">{pad:attrs}</a> writes them. The token only goes to this site: a form whose
 <code>action=</code>, or the <code>formaction=</code> of a button in it, points to another
 site gets none. A posting form holding a file field gets
 <code>enctype="multipart/form-data"</code> unless it names one itself.</p>
 
 <h3>Fields that refill</h3>
 
-<p>The <a href="?tag/input">{input}</a> and <a href="?tag/textarea">{textarea}</a> fields
+<p>The <a href="?tag/input">{pad:input}</a> and <a href="?tag/textarea">{pad:textarea}</a> fields
 inside know which form they are in. When that form came back they show what was sent,
 escaped, and the message <code>padValidate</code> left for them - a field of the same name in
 another form of the page stays as it was. A GET form refills from the query string once it
@@ -32,15 +32,19 @@ against them there, so <code>padPosted('contact')</code> is TRUE only for a post
 them, and <code>padFormFailed('contact')</code> for one that broke them - that one renders the
 form again, refilled, with the messages. Only the page's own template (with its
 <code>_inits.pad</code> and <code>_exits.pad</code>) is read: rules in a snippet, a custom tag,
-a <a href="?tag/page">{page}</a> or a layout, rules from a variable, rules in a GET form or one
+a <a href="?tag/page">{pad:page}</a> or a layout, rules from a variable, rules in a GET form or one
 with <code>action=</code>, and an unknown rule are errors, strict check or not - each would be
 a check that never runs. That is also why the examples with rules on this page are shown, not
-run: they are rendered here through <code>{page}</code>.</p>
+run: they are rendered here through <code>{pad:page}</code>.</p>
 
 <p><code>client</code> checks the same rules in the browser as well, with the same messages,
 before the form leaves: the form gets <code>novalidate</code>, its rules in
-<code>data-pad-rules</code>, and the checker script (see <a href="?tag/validator">{validator}</a>)
+<code>data-pad-rules</code>, and the checker script (see <a href="?tag/validator">{pad:validator}</a>)
 follows it once a page. A form with <code>client</code> needs a name and at least one field
-with rules. The pair must close - a lone <code>{form}</code> is an error under the strict
+with rules. The pair must close - a lone <code>{pad:form}</code> is an error under the strict
 check.</p>
-{/ignore}
+{/pad:ignore}
+
+<h3>Validation rules</h3>
+<p>Each kind has its own description and usage example:</p>
+<p>{!subsystemKindLinks}</p>

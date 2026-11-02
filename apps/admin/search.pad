@@ -4,30 +4,30 @@
   <label>In
     <select name="app">
       <option value="">every application</option>
-      {appRows}<option value="{$name}" {if $selected}selected{/if}>{$name}</option>{/appRows}
+      {array:appRows}<option value="{$name}" {pad:if $selected}selected{/pad:if}>{$name}</option>{/array:appRows}
     </select>
   </label>
-  <label class="nowrap"><span><input type="checkbox" name="case" value="1" {if $searchCase}checked{/if}> match case</span></label>
-  <button class="primary">{icon 'search', size=16/} Search</button>
+  <label class="nowrap"><span><input type="checkbox" name="case" value="1" {pad:if $searchCase}checked{/pad:if}> match case</span></label>
+  <button class="primary">{icon:search size=16/} Search</button>
 </form>
 
-{if $asked}
+{pad:if $asked}
   <section class="card scroll">
-    <h2>{$hitCount} lines in {$searched} files searched{if $truncated} - the first {$searchMax} only{/if}</h2>
-    {if $hitCount}
+    <h2>{$hitCount} lines in {$searched} files searched{pad:if $truncated} - the first {$searchMax} only{/pad:if}</h2>
+    {pad:if $hitCount}
       <table class="list">
         <thead><tr><th>Application</th><th>File</th><th class="right">Line</th><th>Text</th></tr></thead>
         <tbody>
-          {hits}
+          {array:hits}
             <tr>
               <td class="nowrap"><a href="?application&amp;app={$app}">{$app}</a></td>
               <td class="nowrap"><a href="?files&amp;app={$app}&amp;file={$file | url}">{$file}</a></td>
               <td class="right">{$line}</td>
               <td><code>{$text}</code></td>
             </tr>
-          {/hits}
+          {/array:hits}
         </tbody>
       </table>
-    {/if}
+    {/pad:if}
   </section>
-{/if}
+{/pad:if}

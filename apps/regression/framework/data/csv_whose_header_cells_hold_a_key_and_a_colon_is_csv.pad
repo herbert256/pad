@@ -1,9 +1,9 @@
-{data 'w'}
+{pad:data 'w'}
 Weight: kg,Height: cm,Name
 70,180,Ann
 82,175,Bob
-{/data}[{w}{$Name};{/w}]
-{data 'q'}
+{/pad:data}[{data:w}{$Name};{/data:w}]
+{pad:data 'q'}
 start: 9,end: 17
 10,11
-{/data}[{q}{fields@q}{$value},{/fields@q};{/q}]
+{/pad:data}[{data:q}{property:fields@q}{$value},{/property:fields@q};{/data:q}]

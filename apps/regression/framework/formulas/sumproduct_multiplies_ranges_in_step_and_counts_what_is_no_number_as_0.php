@@ -6,7 +6,7 @@
   // the text "2" too, answers the first error of a cell, and takes a value typed into the
   // call as a range of one. An operator or a function on every cell of a range - Excel's
   // array evaluation - is #VALUE!, never the number of the one cell an IFERROR or ABS takes
-  // of the range; the strict check of {spreadsheet} reports it (the errors suite).
+  // of the range; the strict check of {pad:spreadsheet} reports it (the errors suite).
 
   $sumproductCells = [ 'A1' => 2, 'A2' => 3, 'B1' => 10, 'B2' => 20, 'B3' => 30 ];
   $sumproductText  = [ 'A1' => "'2", 'A2' => 3, 'B1' => 10, 'B2' => 20 ];

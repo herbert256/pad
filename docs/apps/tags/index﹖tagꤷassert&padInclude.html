@@ -1,5 +1,5 @@
 
-<p><code>{assert $total eq 42, 'the cart total'/}</code> states something that must be true at
+<p><code>{pad:assert $total eq 42, 'the cart total'/}</code> states something that must be true at
 that point of the page. It always renders nothing. What it does depends on
 <code>$padAssert</code>: off - the default, and so in production - the tag is skipped
 entirely, the condition is not even evaluated, so an assert on a field that is not there
@@ -15,6 +15,6 @@ tests exercise them.</p>
 
 <p>The parameters are read as written, not evaluated in advance - the condition is an
 expression with its own operators, evaluated only after the switch has been asked. With
-asserts on, an <code>{assert}</code> without a condition is an error of its own. To raise
-an error unconditionally, use <a href="index%EF%B9%96tag%EA%A4%B7error.html">{error}</a>.</p>
+asserts on, an <code>{pad:assert}</code> without a condition is an error of its own. To raise
+an error unconditionally, use <a href="index%EF%B9%96tag%EA%A4%B7error.html">{pad:error}</a>.</p>
 

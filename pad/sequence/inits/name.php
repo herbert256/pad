@@ -4,7 +4,7 @@
   // preference: an explicit name=, the push or pull store name, the sequence type itself,
   // and finally 'sequence'.
   //
-  // That third case is what makes {prime}{$prime}{/prime} work. The answer is handed to the
+  // That third case is what makes {sequence:prime}{$prime}{/sequence:prime} work. The answer is handed to the
   // level as $padName [$pad], which occurrence/ uses when it binds each value.
 
       if ( $pqName                              ) return;

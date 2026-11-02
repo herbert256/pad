@@ -1,6 +1,6 @@
-{fake 'name, code:uuid', rows=4, seed=9, toData='guests'/}
+{fake:rows 'name, code:uuid', rows=4, seed=9, toData='guests'/}
 {printable:tickets data='guests', scale=0.45, pdf}
   <h2>The Magic Flute</h2>
   Saturday 14 November 2026, 20:00 - Grand Hall<br>{$name}
-  <aside>{qr $code, size=90/}</aside>
+  <aside>{barcode:qr $code, size=90/}</aside>
 {/printable:tickets}

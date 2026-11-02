@@ -1,15 +1,15 @@
-{table}
+{common:table}
 
-{demo}{sequence random, minimal=11, maximal=13, rows=25, name='mySeq'/}{/demo}
+{common:demo}{sequence:random minimal=11, maximal=13, rows=25, name='mySeq'/}{/common:demo}
 
-{demo}{sequence mySeq}
+{common:demo}{sequence:auto mySeq}
   {$sequence}  
-{/sequence}{/demo}   
+{/sequence:auto}{/common:demo}   
 
-{demo}{sequence mySeq, dedup/}{/demo}
+{common:demo}{sequence:auto mySeq, dedup/}{/common:demo}
 
-{demo}{sequence mySeq}
+{common:demo}{sequence:auto mySeq}
   {$sequence}  
-{/sequence}{/demo}   
+{/sequence:auto}{/common:demo}   
 
-{/table}
+{/common:table}

@@ -1,6 +1,6 @@
 <?php
 
-  // The body of {holidays}: the public holidays of a country, a file of subs/holidays/types/
+  // The body of {pad:holidays}: the public holidays of a country, a file of subs/holidays/types/
   // (_lib/holidays.php reads it). The first parameter is the country, its ISO 3166-1 alpha-2
   // code, with a region after it as ISO 3166-2 writes it - 'nl', 'de-by', 'gb-sct' - or the
   // region as region='by'. year= is the year (this year by default); from= and to= ask for
@@ -9,8 +9,8 @@
   // de). As a pair it hands over the rows - date, name, local, type, region, substitute -
   // and the handling options work on them; as a single tag it answers them as a table.
   //
-  //   {holidays 'nl', year=2026}{$date} {$name}{/holidays}
-  //   {holidays 'de-by', year=2026, where='$type eq "public"'/}
+  //   {pad:holidays 'nl', year=2026}{$date} {$name}{/pad:holidays}
+  //   {pad:holidays 'de-by', year=2026, where='$type eq "public"'/}
 
   include_once PAD . 'subs/holidays/_lib/holidays.php';
 
@@ -18,7 +18,7 @@
 
   if ( is_string ( $padHolidaysPlace ) ) {
     if ( $padCheckSyntax )
-      padError ( "{holidays}: $padHolidaysPlace" );
+      padError ( "{pad:holidays}: $padHolidaysPlace" );
     return [];
   }
 
@@ -38,14 +38,14 @@
 
   if ( ! in_array ( $padHolidaysLang, $padHolidaysRules ['langs'], TRUE ) ) {
     if ( $padCheckSyntax )
-      padError ( "{holidays}: the names of $padHolidaysCountry are in " . implode ( ', ', $padHolidaysRules ['langs'] ) . " - not lang='" . padMakeSafe ( $padHolidaysLang, 20 ) . "'" );
+      padError ( "{pad:holidays}: the names of $padHolidaysCountry are in " . implode ( ', ', $padHolidaysRules ['langs'] ) . " - not lang='" . padMakeSafe ( $padHolidaysLang, 20 ) . "'" );
     $padHolidaysLang = $padHolidaysRules ['langs'] [0];
   }
 
   if ( $padHolidaysFrom !== NULL or $padHolidaysTo !== NULL ) {
 
     if ( $padHolidaysYear !== NULL and $padCheckSyntax )
-      padError ( "{holidays}: year= or from= and to=, not both" );
+      padError ( "{pad:holidays}: year= or from= and to=, not both" );
 
     $padHolidaysA = ( $padHolidaysFrom === NULL ) ? padHolidaysValue ( padNow ( 'Y-m-d' ) ) : padHolidaysValue ( padUnprotect ( $padHolidaysFrom ) );
     $padHolidaysB = ( $padHolidaysTo   === NULL ) ? NULL : padHolidaysValue ( padUnprotect ( $padHolidaysTo ) );
@@ -57,13 +57,13 @@
 
     if ( $padHolidaysA === NULL or $padHolidaysB === NULL ) {
       if ( $padCheckSyntax )
-        padError ( "{holidays}: from= and to= are dates - 2026-01-01, today, +3 months" );
+        padError ( "{pad:holidays}: from= and to= are dates - 2026-01-01, today, +3 months" );
       return [];
     }
 
     if ( $padHolidaysB - $padHolidaysA > 366 * 100 or $padHolidaysA < padHolidaysDay ( padHolidaysFirst, 1, 1 ) or $padHolidaysB > padHolidaysDay ( padHolidaysLast, 12, 31 ) ) {
       if ( $padCheckSyntax )
-        padError ( "{holidays}: from= and to= span a hundred years at most, from 1583 to 9999" );
+        padError ( "{pad:holidays}: from= and to= span a hundred years at most, from 1583 to 9999" );
       return [];
     }
 
@@ -72,7 +72,7 @@
 
     if ( $padHolidaysB < $padHolidaysA ) {
       if ( $padCheckSyntax )
-        padError ( '{holidays}: to= ' . padHolidaysDate ( $padHolidaysB ) . ' comes before from= ' . padHolidaysDate ( $padHolidaysA )
+        padError ( '{pad:holidays}: to= ' . padHolidaysDate ( $padHolidaysB ) . ' comes before from= ' . padHolidaysDate ( $padHolidaysA )
                    . ( $padHolidaysFrom === NULL ? ' - today, when from= is not given' : '' ) );
       return [];
     }
@@ -85,7 +85,7 @@
 
     if ( ! ctype_digit ( trim ( (string) $padHolidaysYear ) ) or $padHolidaysYear < padHolidaysFirst or $padHolidaysYear > padHolidaysLast ) {
       if ( $padCheckSyntax )
-        padError ( "{holidays}: year='" . padMakeSafe ( $padHolidaysYear, 20 ) . "' - a year from 1583 to 9999" );
+        padError ( "{pad:holidays}: year='" . padMakeSafe ( $padHolidaysYear, 20 ) . "' - a year from 1583 to 9999" );
       $padHolidaysYear = padNow ( 'Y' );
     }
 
@@ -101,7 +101,7 @@
   $padHolidaysKnown = padHolidaysKnown ( $padHolidaysCountry, $padHolidaysA, $padHolidaysB );
 
   if ( $padHolidaysKnown !== '' and $padCheckSyntax )
-    padError ( "{holidays}: $padHolidaysKnown" );
+    padError ( "{pad:holidays}: $padHolidaysKnown" );
 
   if ( $padHolidaysRegion !== '' )
     $padHolidaysCaption = $padHolidaysRules ['name'] . ', ' . $padHolidaysRules ['regions'] [$padHolidaysRegion] . substr ( $padHolidaysCaption, strlen ( $padHolidaysRules ['name'] ) );

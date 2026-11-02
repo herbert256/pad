@@ -1,13 +1,12 @@
-{meta title='Stars'/}
-{about/}
+{pad:meta title='Stars'/}
+{include:about/}
 
-{form 'try', class='inputs-try', error}
-  {stars 'score', label='How was your stay?', rules='required|integer|between:1,5'/}
-  {stars 'food', label='The food', max=10/}
+{pad:form 'try', class='inputs-try', error}
+  {input:stars 'score', label='How was your stay?', rules='required|integer|between:1,5'/}
+  {input:stars 'food', label='The food', max=10/}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-<h2>The template</h2>
-{source/}
+{include:template/}

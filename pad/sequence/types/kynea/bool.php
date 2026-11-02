@@ -3,7 +3,7 @@
   // Membership test for the kynea sequence, 2, 7, 23, 79, ...: (2^n + 1)^2 - 2 for a whole
   // n from 0 up. The terms about quadruple at every step, so the n that could make x are
   // walked until a term passes it - 31 of them at the most, the last term inside the integer
-  // range. build/check.php asks it for {keep kynea}, {remove kynea} and {flag kynea}.
+  // range. build/check.php asks it for {keep:kynea}, {remove:kynea} and {pad:flag kynea}.
   //
   // Not the type's build: pqBuild() ranks loop.php before bool.php.
 

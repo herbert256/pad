@@ -7,22 +7,21 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{chart 'bar', data='name', label='field', value='field, field', stacked, title='text', width=600, height=300/}
-{chart 'line', sequence='fibonacci', rows=12/}
-{chart 'pie', data='name', label='field', value='field'/}
+{chart:bar data='name', label='field', value='field, field', stacked, title='text', width=600, height=300/}
+{chart:line sequence='fibonacci', rows=12/}
 {chart:pie data='name', label='field', value='field'/}
-{chart 'scatter', data='name', x='field', y='field', size='field', color='field', trend/}
-{chart 'gauge', value=72, from=0, to=100, bands='60, 85', target=80, unit='%'/}
-{chart 'bar', label='field', value='field', type='csv'} ... {/chart}
+{chart:scatter data='name', x='field', y='field', size='field', color='field', trend/}
+{chart:gauge value=72, from=0, to=100, bands='60, 85', target=80, unit='%'/}
+{chart:bar label='field', value='field', type='csv'} ... {/chart:bar}
 PAD;
 
   $tagParms   = [
-    'kind' => 'The kind of chart, a file of <code>pad/subs/charts/types/</code>: '
+    'kind after colon' => 'The kind of chart, a file of <code>pad/subs/charts/types/</code>: '
                 . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padChartTypes () ) )
-                . '. The chart type names it as well - <code>{chart:pie data=\'budget\'/}</code>, or bare, <code>{pie data=\'budget\'/}</code>, when nothing else has the name.' ];
+                . '. The chart: prefix selects it - <code>{chart:pie data=\'budget\'/}</code>.' ];
 
   $tagOptions = [
-    'data'     => 'The rows: a <code>{data}</code> store, a sequence store, the page\'s array or a <code>_data</code> file of that name, or a literal (<code>data=\'[3,1,4]\'</code>). Left out on a pair, the content is the data.',
+    'data'     => 'The rows: a <code>{pad:data}</code> store, a sequence store, the page\'s array or a <code>_data</code> file of that name, or a literal (<code>data=\'[3,1,4]\'</code>). Left out on a pair, the content is the data.',
     'type'     => 'For a pair: the format of the content - <code>json</code>, <code>yaml</code>, <code>xml</code> or <code>csv</code> - when it is not to be recognised on sight.',
     'sequence' => 'Plot the first <code>rows</code> terms (default 10) of a sequence type instead of rows.',
     'value'    => 'The field with the number - else the first numeric field. A comma list draws a series each (eight at most) for bar, hbar, line, area, stream, radar, rose, marimekko, pyramid and parallel. For a gauge it can be the number itself. Likert: the fields of the answers in their order, two to eight, the most negative first.',
@@ -73,6 +72,6 @@ PAD;
     'parent'   => 'Orgchart: the field with the id of the row above.',
     'sub'      => 'Orgchart: a field for the second line of a box.' ];
 
-  $tagSee     = [ 'sparkline', 'map', 'timeline', 'diagram', 'data', 'sequence' ];
+  $tagSee     = [ 'chart:sparkline', 'map', 'timeline', 'diagram:auto', 'data', 'sequence:auto' ];
 
 ?>

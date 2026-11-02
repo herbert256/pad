@@ -4,7 +4,7 @@
   // twitch.tv/<channel>, twitch.tv/videos/<id>, twitch.tv/collections/<id>,
   // twitch.tv/<channel>/clip/<slug>, clips.twitch.tv/<slug> and the player's own addresses,
   // player.twitch.tv/?channel=, ?video= and ?collection=, clips.twitch.tv/embed?clip=; named,
-  // a channel's name as well, {twitch 'twitchgaming'}. at= - or a ?t= in the address - is the
+  // a channel's name as well, {embed:twitch 'twitchgaming'}. at= - or a ?t= in the address - is the
   // moment a video starts at. Twitch plays only on the host names it is told (parent=, as
   // dev.twitch.tv/docs/embed/video-and-clips says): those of $padHosts, else the page's own
   // (padEmbedHosts), and domains= adds names - a page shown in a frame of another site.

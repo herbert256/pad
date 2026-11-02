@@ -1,10 +1,8 @@
 <?php
 
-  // The body of a widget, whichever way it is written: {widget 'tabs'} ... {/widget}, the
-  // widget: type - {widget:tabs} ... {/widget:tabs} - or the bare name, {tabs} ... {/tabs},
-  // when nothing else has it. The caller sets $padWidgetKind, and $padParm to the widget's
-  // own first parameter - the second of {widget 'modal', 'terms'}, whose first names the
-  // widget.
+  // A widget uses {widget:tabs}...{/widget:tabs} or another registered kind.
+  // The caller sets $padWidgetKind; $padParm is the widget's own first parameter,
+  // such as the name in {widget:modal 'terms'}.
   //
   // A widget is a file of subs/widgets/types/, and the files there are all the widgets there are
   // (padWidgetTypes, lib/widget.php). The file is the widget's tag code, run on every walk

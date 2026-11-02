@@ -3,7 +3,7 @@
   // The seats of a parliament: a dot per seat in rows of half circles, the parties in their
   // order from left to right.
   //
-  //   {chart 'parliament', data='election', label='party', value='seats'}
+  //   {chart:parliament data='election', label='party', value='seats'}
   //
   // label= names the parties - else the first field that is no number - and value= their
   // seats, else the first numeric field: a whole number above zero, and 5000 seats at most

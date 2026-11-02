@@ -5,9 +5,9 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{collection 'name'} ... {/collection}
-{collection 'name', slug=$slug} ... @else@ ... {/collection}
-{collection 'name', html} ... {/collection}
+{pad:collection 'name'} ... {/pad:collection}
+{pad:collection 'name', slug=$slug} ... @else@ ... {/pad:collection}
+{pad:collection 'name', html} ... {/pad:collection}
 PAD;
 
   $tagParms   = [

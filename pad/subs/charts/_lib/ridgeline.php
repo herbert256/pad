@@ -4,8 +4,8 @@
   // baseline of its own, the groups stacked from the top down so their shapes are compared
   // along one value axis, a ridge rising over the one behind it.
   //
-  //   {chart 'ridgeline', data='temperatures', label='month', value='celsius'}
-  //   {chart 'ridgeline', data='trials', label='group', value='ms', bandwidth=10, overlap=2}
+  //   {chart:ridgeline data='temperatures', label='month', value='celsius'}
+  //   {chart:ridgeline data='trials', label='group', value='ms', bandwidth=10, overlap=2}
   //
   // value= names the numbers - else the first numeric field; label= the groups, in the order
   // they first appear, the first at the top - one ridge without it. Every group is smoothed

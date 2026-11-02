@@ -1,12 +1,12 @@
 <?php
 
-  // Tabs without JavaScript - the tabs widget, and the {tab} items that {accordion},
-  // {carousel}, {wizard} and {lightbox} take as well.
+  // Tabs without JavaScript - the tabs widget, and the {pad:tab} items that {widget:accordion},
+  // {widget:carousel}, {widget:wizard} and {widget:lightbox} take as well.
   //
-  //   {tabs active='Specs'}
-  //     {tab 'Overview'}<p>A kettle that ...</p>{/tab}
-  //     {tab 'Specs'}<table>...</table>{/tab}
-  //   {/tabs}
+  //   {widget:tabs active='Specs'}
+  //     {pad:tab 'Overview'}<p>A kettle that ...</p>{/pad:tab}
+  //     {pad:tab 'Specs'}<table>...</table>{/pad:tab}
+  //   {/widget:tabs}
   //
   // A tab is a radio button and its label, the panels behind them: the CSS shows the panel
   // whose radio is checked. The browser gives the group what a tab list needs - one stop in
@@ -15,14 +15,14 @@
   // tab sets keeps both choices, and the back button keeps its meaning. Printed, every panel
   // shows.
   //
-  // The items are collected while the content renders: {tabs} (and the other owners) asks
-  // for the end walk, opens a collection under its level, and every {tab} below it -
-  // also one made in a loop, {specs}{tab $name}...{/tab}{/specs} - renders its content and
+  // The items are collected while the content renders: {widget:tabs} (and the other owners) asks
+  // for the end walk, opens a collection under its level, and every {pad:tab} below it -
+  // also one made in a loop, {specs}{pad:tab $name}...{/pad:tab}{/specs} - renders its content and
   // hands it over instead of printing it. At the end walk the owner builds its markup from
   // what was handed over.
   //
   // padTabsOpen    opens the collection of an owner's level
-  // padTabsOwner   the level of the nearest owner below a {tab}, FALSE outside one
+  // padTabsOwner   the level of the nearest owner below a {pad:tab}, FALSE outside one
   // padTabsAdd     an item handed to its owner
   // padTabsTake    the owner's items, the collection closed
   // padTabsItems   the items checked: a label where the owner needs one, nothing else in
@@ -96,7 +96,7 @@
   }
 
   // What the owner rendered itself is only the room between its items: text there never
-  // shows, and the strict check says so. An owner that may have no item - a {sortable},
+  // shows, and the strict check says so. An owner that may have no item - a {widget:sortable},
   // whose items a loop over the application's rows makes - asks with $none: without an
   // item it gets none and shows what its content rendered, nothing or the loop's @else@.
 
@@ -110,10 +110,10 @@
       return [];
 
     if ( $padCheckSyntax and trim ( $rest ) !== '' )
-      padError ( "what stands between the {tab}s of a {" . $kind . "} never renders - put it inside a {tab}" );
+      padError ( "what stands between the {pad:tab}s of a {" . "widget:$kind" . "} never renders - put it inside a {pad:tab}" );
 
     if ( ! $items and $padCheckSyntax )
-      padError ( "the {" . $kind . "} has no {tab} - {" . $kind . "}{tab 'One'}...{/tab}{/" . $kind . "}" );
+      padError ( "the {" . "widget:$kind" . "} has no {pad:tab} - {" . "widget:$kind" . "}{pad:tab 'One'}...{/pad:tab}{/" . "widget:$kind" . "}" );
 
     return $items;
 
@@ -128,7 +128,7 @@
     if ( $pick === '' or $pick === NULL )
       return 0;
 
-    // A label is read as the characters it holds, as the {tab} reads its own: a field
+    // A label is read as the characters it holds, as the {pad:tab} reads its own: a field
     // inside the quoted active= or open= meets the tab named by the same field.
 
     if ( is_string ( $pick ) )
@@ -142,7 +142,7 @@
         return $index + 1;
 
     if ( $padCheckSyntax )
-      padError ( "the {" . $kind . "} has no tab '" . padMakeSafe ( (string) $pick, 40 ) . "' for $option= - a number from 1 to "
+      padError ( "the {" . "widget:$kind" . "} has no tab '" . padMakeSafe ( (string) $pick, 40 ) . "' for $option= - a number from 1 to "
                  . count ( $items ) . ' or the label of one' );
 
     return 0;

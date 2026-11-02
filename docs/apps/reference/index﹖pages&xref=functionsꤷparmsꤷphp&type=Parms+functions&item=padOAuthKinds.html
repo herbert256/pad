@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Reference - Parms functions - padOAuthKinds · PAD reference
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/play.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+  </head>
+  <body class="frame app-reference">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>reference</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="reference">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Index</a>
+        <div class="frame-head">
+          Tags
+        </div><a href="index%EF%B9%96index.html#pad-tags">PAD tags</a> <a href="index%EF%B9%96index.html#tag-types">Tag types</a> <a href="index%EF%B9%96index.html#tag-properties">Tag properties</a> <a href="index%EF%B9%96index.html#tag-options">Tag options</a> <a href="index%EF%B9%96index.html#common-tags">Common tags</a> <a href="index%EF%B9%96index.html#common-includes">Common includes</a>
+        <div class="frame-head">
+          Functions
+        </div><a href="index%EF%B9%96index.html#pad-functions">PAD functions</a> <a href="index%EF%B9%96index.html#single-functions">Single functions</a> <a href="index%EF%B9%96index.html#parms-functions">Parms functions</a>
+        <div class="frame-head">
+          Configuration
+        </div><a href="index%EF%B9%96index.html#error-actions">Error actions</a> <a href="index%EF%B9%96index.html#output-types">Output types</a> <a href="index%EF%B9%96index.html#info-modes">Info modes</a> <a href="index%EF%B9%96index.html#cache-backends">Cache backends</a>
+        <div class="frame-head">
+          At (x@y)
+        </div><a href="index%EF%B9%96index.html#at-tag-groups">At - tag groups</a> <a href="index%EF%B9%96index.html#at-tag-properties">At - tag properties</a> <a href="index%EF%B9%96index.html#at-types">At - types</a>
+        <div class="frame-head">
+          More
+        </div><a href="index%EF%B9%96index.html#chart-types">Chart types</a> <a href="index%EF%B9%96index.html#game-types">Game types</a> <a href="index%EF%B9%96index.html#toy-types">Toy types</a> <a href="index%EF%B9%96index.html#diagram-types">Diagram types</a> <a href="index%EF%B9%96index.html#widget-types">Widget types</a> <a href="index%EF%B9%96index.html#input-types">Input types</a> <a href="index%EF%B9%96index.html#validation-rules">Validation rules</a> <a href="index%EF%B9%96index.html#map-views">Map views</a> <a href="index%EF%B9%96index.html#barcode-types">Barcode types</a> <a href="index%EF%B9%96index.html#icons">Icons</a> <a href="index%EF%B9%96index.html#embed-providers">Embed providers</a> <a href="index%EF%B9%96index.html#fake-kinds">Fake kinds</a> <a href="index%EF%B9%96index.html#oauth-providers">OAuth providers</a> <a href="index%EF%B9%96index.html#notification-channels">Notification channels</a> <a href="index%EF%B9%96index.html#ai-providers">AI providers</a> <a href="index%EF%B9%96index.html#pattern-types">Pattern types</a> <a href="index%EF%B9%96index.html#image-filters">Image filters</a> <a href="index%EF%B9%96index.html#holiday-countries">Holiday countries</a> <a href="index%EF%B9%96index.html#search-languages">Search languages</a> <a href="index%EF%B9%96index.html#data-formats">Data formats</a> <a href="index%EF%B9%96index.html#sounds">Sounds</a> <a href="index%EF%B9%96index.html#printables">Printables</a> <a href="index%EF%B9%96index.html#notations">Notations</a> <a href="index%EF%B9%96index.html#formula-functions">Formula functions</a> <a href="index%EF%B9%96index.html#section-types">Section types</a> <a href="index%EF%B9%96index.html#effect-types">Effect types</a> <a href="index%EF%B9%96index.html#json-ld-kinds">JSON-LD kinds</a> <a href="index%EF%B9%96index.html#themes">Themes</a> <a href="index%EF%B9%96index.html#palettes">Palettes</a> <a href="index%EF%B9%96index.html#data-handling">Data handling</a> <a href="index%EF%B9%96index.html#select-options">Select options</a> <a href="index%EF%B9%96index.html#data-types">Data types</a> <a href="index%EF%B9%96index.html#xxx-constructs">@xxx@ constructs</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Reference - Parms functions - padOAuthKinds
+        </h1>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <center>
+                <hr>
+                App: manual - Page: pages/social_login<br>
+                <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">pages/social_login.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J1NvY2lhbCBsb2dpbicvfVxuXG48cD5cIkxvZyBpbiB3aXRoIEdpdEh1YlwiIGlzIHR3byBjYWxscyBvbiBvbmUgcGFnZS4gPGNvZGU+cGFkT0F1dGhTdGFydCAoICdnaXRodWInICk8L2NvZGU+IHNlbmRzIHRoZVxudmlzaXRvciB0byBHaXRIdWIgLSBhZnRlciBrZWVwaW5nIGEgcmFuZG9tIHN0YXRlLCBhIFBLQ0UgdmVyaWZpZXIgYW5kLCBmb3IgYW4gT3BlbklEIENvbm5lY3RcbnByb3ZpZGVyLCBhIG5vbmNlIGluIHRoZSBzZXNzaW9uLiBHaXRIdWIgc2VuZHMgdGhlIHZpc2l0b3IgYmFjayB3aXRoIGEgY29kZTtcbjxjb2RlPnBhZE9BdXRoVXNlciAoICdnaXRodWInICk8L2NvZGU+IGNoZWNrcyB0aGUgc3RhdGUsIHRyYWRlcyB0aGUgY29kZSBmb3IgYSB0b2tlbiwgZmV0Y2hlcyB0aGVcbnVzZXIgYW5kIGFuc3dlcnMgYSByb3cgZm9yIDxjb2RlPnBhZExvZ2luPC9jb2RlPjo8L3A+XG5cbjxwcmU+Ly8gb2F1dGgvW3Byb3ZpZGVyXS5waHAgLSB0aGUgc3RhcnQgYW5kIHRoZSB3YXkgYmFjayBvZiBldmVyeSBwcm92aWRlclxuaWYgKCAhIHBhZFJlcXVlc3RIYXMgKCAnY29kZScgKSBhbmQgISBwYWRSZXF1ZXN0SGFzICggJ2Vycm9yJyApIClcbiAgcGFkT0F1dGhTdGFydCAoICRwcm92aWRlciApO1xuaWYgKCAkdXNlciA9IHBhZE9BdXRoVXNlciAoICRwcm92aWRlciApICkge3BhZDpvcGVuL31cbiAgcGFkTG9naW4gKCAkdXNlciApO1xuICBwYWRSZWRpcmVjdEludGVuZGVkICgpO1xue3BhZDpjbG9zZS99XG4kcHJvYmxlbSA9IHBhZE9BdXRoRXJyb3IgKCk7PC9wcmU+XG5cbjxwPlRoZSBleGFtcGxlIGRvZXMgYm90aCBoYWx2ZXMgaW4gb25lIHJlcXVlc3QsIEdpdEh1YiBhbnN3ZXJlZCBieSBmYWtlczo8L3A+XG5cbntjb21tb246ZXhhbXBsZSAnZnJhZ21lbnRzL29hdXRoXzInL31cblxuPGgyPlRoZSBidXR0b25zPC9oMj5cblxuPHA+e3BhZDpvcGVuL31wYWQ6b2F1dGggJ2dpdGh1Yicve3BhZDpjbG9zZS99IGlzIHRoZSBsaW5rIHRoYXQgc3RhcnRzIGl0LCBzdHlsZWQgYXMgYSBidXR0b24gLSB0b1xuPGNvZGU+b2F1dGgvZ2l0aHViPC9jb2RlPiBvZiB0aGUgYXBwbGljYXRpb24sIHRoZSBwYWdlIGFib3ZlLCB1bmxlc3MgPGNvZGU+aHJlZj08L2NvZGU+IG5hbWVzIGFub3RoZXI7XG48Y29kZT5sYWJlbD08L2NvZGU+IGNoYW5nZXMgaXRzIHRleHQuIFRoZSBwcm92aWRlcidzIGljb24gc2hvd3Mgd2hlbiB0aGUgaWNvbiBzZXQgaGFzIG9uZSBvZiBpdHNcbm5hbWUuPC9wPlxuXG57Y29tbW9uOmV4YW1wbGUgJ2ZyYWdtZW50cy9vYXV0aF8xJy99XG5cbjxoMj5UaGUgcHJvdmlkZXJzPC9oMj5cblxuPHA+RXZlcnkgcHJvdmlkZXIgaXMgYSBmaWxlIG9mIDxjb2RlPnBhZC9zdWJzL29hdXRoL3R5cGVzLzwvY29kZT4gLSB7cGFkOmVjaG8gcGhwOmltcGxvZGUoJywgJywgcGFkT0F1dGhLaW5kcygpKS99IC1cbmFuIGFycmF5IHdpdGggaXRzIGVuZHBvaW50cywgaXRzIHNjb3Blcywgd2hldGhlciBpdCB0YWtlcyBQS0NFLCB0aGUgc2V0dGluZ3MgaXQgbmVlZHMgYW5kIGhvdyBpdHNcbmFuc3dlciBiZWNvbWVzIHRoZSB1c2VyOiA8Y29kZT5wcm92aWRlcjwvY29kZT4sIDxjb2RlPmlkPC9jb2RlPiAoPGNvZGU+Z2l0aHViOjU4MzIzMTwvY29kZT4sIG5ldmVyIHRoZVxuc2FtZSBmb3IgdHdvIHByb3ZpZGVycyAtIG5vciBmb3IgdHdvIGluc3RhbmNlcyBvZiBvbmU6IGEgR2l0TGFiIG9mIG9uZSdzIG93biBoYXMgaXRzIGFkZHJlc3MgaW5cbml0LCA8Y29kZT5naXRsYWJAZ2l0LmV4YW1wbGUub3JnOjQyPC9jb2RlPiwgYW5kIHNvIGhhcyBldmVyeSBPcGVuSUQgaXNzdWVyKSwgPGNvZGU+c3ViPC9jb2RlPiwgPGNvZGU+bmFtZTwvY29kZT4sIDxjb2RlPmVtYWlsPC9jb2RlPiwgPGNvZGU+ZW1haWxfdmVyaWZpZWQ8L2NvZGU+LCA8Y29kZT5hdmF0YXI8L2NvZGU+XG5hbmQgPGNvZGU+dXNlcm5hbWU8L2NvZGU+LiBBIHByb3ZpZGVyIGlzIGFkZGVkIGJ5IGFkZGluZyBpdHMgZmlsZS48L3A+XG5cbjx1bD5cbiAgPGxpPlRoZSBzZXR0aW5ncyBhcmUgPGNvZGU+LmVudjwvY29kZT4gdmFsdWVzOiA8Y29kZT5HSVRIVUJfQ0xJRU5UX0lEPC9jb2RlPiBhbmRcbiAgICAgIDxjb2RlPkdJVEhVQl9DTElFTlRfU0VDUkVUPC9jb2RlPiwgYW5kIHNvIG9uIHBlciBwcm92aWRlcjsgPGNvZGU+R0lUTEFCX1VSTDwvY29kZT4gYW5kXG4gICAgICA8Y29kZT5GT1JHRUpPX1VSTDwvY29kZT4gZm9yIGEgZm9yZ2Ugb2Ygb25lJ3Mgb3duLCA8Y29kZT5NSUNST1NPRlRfVEVOQU5UPC9jb2RlPiwgPGNvZGU+U0xBQ0tfVEVBTTwvY29kZT4sXG4gICAgICA8Y29kZT5PSURDX0lTU1VFUjwvY29kZT4uIEEgbWlzc2luZyBvbmUgaXMgYW4gZXJyb3IgdW5kZXIgdGhlIHN0cmljdCBjaGVjayB0aGF0IG5hbWVzIGl0LjwvbGk+XG4gIDxsaT5HaXRIdWIga2VlcHMgYW4gYWRkcmVzcyBwcml2YXRlIGJ5IGFuc3dlcmluZyBudWxsOyBpdCBpcyB0aGVuIHRha2VuIGZyb21cbiAgICAgIDxjb2RlPi91c2VyL2VtYWlsczwvY29kZT4gLSB0aGUgcHJpbWFyeSBvbmUsIHZlcmlmaWVkLjwvbGk+XG4gIDxsaT5CaXRidWNrZXQncyBjb25zdW1lciBoYXMgaXRzIHBlcm1pc3Npb25zIC0gQWNjb3VudCBhbmQgRW1haWwgLSBzZXQgYXQgQml0YnVja2V0LCBub3QgYXNrZWRcbiAgICAgIGZvciBpbiB0aGUgYWRkcmVzcywgYW5kIGl0cyBrZXkgYW5kIHNlY3JldCBnbyB0byB0aGUgdG9rZW4gZW5kcG9pbnQgYXMgSFRUUCBCYXNpYy4gSXRzXG4gICAgICA8Y29kZT4vMi4wL3VzZXI8L2NvZGU+IGhvbGRzIG5vIGFkZHJlc3M6IGl0IGNvbWVzIGZyb20gPGNvZGU+LzIuMC91c2VyL2VtYWlsczwvY29kZT4sIHRoZVxuICAgICAgcHJpbWFyeSBvbmUgd2hlbiBpdCBpcyBjb25maXJtZWQsIGVsc2UgYW5vdGhlciBjb25maXJtZWQgb25lLjwvbGk+XG4gIDxsaT5UaGUgPGNvZGU+ZW1haWw8L2NvZGU+IGlzIGEgd2F5IHRvIHJlYWNoIHRoZSBwZXJzb24sIG5vdCB3aG8gdGhleSBhcmU6IGEgcHJvdmlkZXIgbWF5IGhvbGRcbiAgICAgIGFuIGFkZHJlc3MgaXRzIHVzZXIgdHlwZWQgYW5kIG5ldmVyIHByb3ZlZC4gPGNvZGU+ZW1haWxfdmVyaWZpZWQ8L2NvZGU+IGlzIFRSVUUgb25seSB3aGVuXG4gICAgICB0aGUgcHJvdmlkZXIgdm91Y2hlcyBmb3IgaXQgLSBHb29nbGUncywgQXBwbGUncywgTGlua2VkSW4ncywgU2xhY2sncyBhbmQgYW4gT3BlbklEIHByb3ZpZGVyJ3NcbiAgICAgIDxjb2RlPmVtYWlsX3ZlcmlmaWVkPC9jb2RlPiwgRGlzY29yZCdzIDxjb2RlPnZlcmlmaWVkPC9jb2RlPiwgR2l0TGFiJ3NcbiAgICAgIDxjb2RlPmNvbmZpcm1lZF9hdDwvY29kZT4sIEdpdEh1YidzIGFuZCBGb3JnZWpvJ3MgdmVyaWZpZWQgYWRkcmVzc2VzLCBCaXRidWNrZXQncyBjb25maXJtZWRcbiAgICAgIG9uZXMsIFgncyA8Y29kZT5jb25maXJtZWRfZW1haWw8L2NvZGU+LCBNaWNyb3NvZnQncyBvcHRpb25hbFxuICAgICAgY2xhaW0gPGNvZGU+eG1zX2Vkb3Y8L2NvZGU+LiBMaW5rIGEgbG9naW4gdG8gYW4gYWNjb3VudCB0aGF0IGV4aXN0cyBhbHJlYWR5IGJ5IGl0cyBhZGRyZXNzXG4gICAgICBvbmx5IHdoZW4gaXQgaXMgVFJVRTsgZWxzZSB0aGUgYWRkcmVzcyBpcyBhbnlvbmUncyB0byBjbGFpbS48L2xpPlxuICA8bGk+QXBwbGUgd2FudHMgYSBjbGllbnQgc2VjcmV0IG1hZGUgZm9yIGV2ZXJ5IGV4Y2hhbmdlOiBhbiBFUzI1NiBKV1Qgc2lnbmVkIHdpdGggdGhlIGtleSBvZlxuICAgICAgdGhlIGRldmVsb3BlciBhY2NvdW50ICg8Y29kZT5BUFBMRV9URUFNX0lEPC9jb2RlPiwgPGNvZGU+QVBQTEVfS0VZX0lEPC9jb2RlPixcbiAgICAgIDxjb2RlPkFQUExFX1BSSVZBVEVfS0VZPC9jb2RlPikuIEl0IHNlbmRzIHRoZSBuYW1lIG9uY2UsIHdpdGggdGhlIGZpcnN0IGxvZ2luLjwvbGk+XG4gIDxsaT5MaW5rZWRJbiBzcGVha3MgT3BlbklEIENvbm5lY3Qgd2l0aG91dCBhIG5vbmNlIGFuZCwgZm9yIGEgd2ViIGFwcGxpY2F0aW9uLCB3aXRob3V0IFBLQ0UgLVxuICAgICAgbmVpdGhlciBpcyBhIHBhcmFtZXRlciBvZiBpdHMgYXV0aG9yaXphdGlvbiAtIGFuZCBpdHMgaWRfdG9rZW4gbmFtZXNcbiAgICAgIDxjb2RlPmh0dHBzOi8vd3d3LmxpbmtlZGluLmNvbTwvY29kZT4gYXMgaXRzIGlzc3VlciB3aGVyZSBpdHMgZGlzY292ZXJ5IGRvY3VtZW50IHNheXNcbiAgICAgIDxjb2RlPmh0dHBzOi8vd3d3LmxpbmtlZGluLmNvbS9vYXV0aDwvY29kZT46IDxjb2RlPmxpbmtlZGluPC9jb2RlPiB0YWtlcyBlaXRoZXIsIHdoaWNoIHRoZVxuICAgICAgZ2VuZXJpYyA8Y29kZT5vaWRjPC9jb2RlPiBjYW5ub3QuPC9saT5cbiAgPGxpPjxjb2RlPm9pZGM8L2NvZGU+IGlzIGFueSBPcGVuSUQgQ29ubmVjdCBwcm92aWRlciAtIEtleWNsb2FrLCBBdXRoZW50aWssIEF1dGgwIC0gaXRzIGVuZHBvaW50c1xuICAgICAgcmVhZCBmcm9tIHRoZSBpc3N1ZXIncyA8Y29kZT4vLndlbGwta25vd24vb3BlbmlkLWNvbmZpZ3VyYXRpb248L2NvZGU+LjwvbGk+XG4gIDxsaT5BIFNsYWNrIHVzZXIncyBpZCBpcyB1bmlxdWUgd2l0aGluIGl0cyB3b3Jrc3BhY2UgYWxvbmUsIHNvIFNsYWNrJ3MgPGNvZGU+c3ViPC9jb2RlPiBpcyBib3RoLFxuICAgICAgPGNvZGU+VDBSN0dSL1UwUjdKTTwvY29kZT4uIDxjb2RlPnRlYW09PC9jb2RlPiAob3IgPGNvZGU+U0xBQ0tfVEVBTTwvY29kZT4pIGtlZXBzIHRoZSBsb2dpbiB0b1xuICAgICAgb25lIHdvcmtzcGFjZTogU2xhY2sgaXMgYXNrZWQgZm9yIGl0LCBhbmQgYSB0b2tlbiBvZiBhbnkgb3RoZXIgaXMgcmVmdXNlZC48L2xpPlxuICA8bGk+WCByZXF1aXJlcyBQS0NFIGFuZCB0YWtlcyBpdHMgY2xpZW50J3MgaWQgYW5kIHNlY3JldCBhcyBIVFRQIEJhc2ljLiBJdCBnaXZlcyBhbiBhZGRyZXNzXG4gICAgICBvbmx5IHRvIGFuIGFwcCBhbGxvd2VkIHRoZSBzY29wZSA8Y29kZT51c2Vycy5lbWFpbDwvY29kZT4gLSBhc2sgZm9yIGl0IHdpdGhcbiAgICAgIDxjb2RlPnNjb3Blcz0ndHdlZXQucmVhZCB1c2Vycy5yZWFkIHVzZXJzLmVtYWlsJzwvY29kZT4gYW5kIHRoZSB1c2VyJ3NcbiAgICAgIDxjb2RlPmNvbmZpcm1lZF9lbWFpbDwvY29kZT4gaXMgZmV0Y2hlZCB0b28uPC9saT5cbiAgPGxpPlRoZSBpZF90b2tlbiBvZiBPcGVuSUQgQ29ubmVjdCBpcyBjaGVja2VkIGZvciBpdHMgaXNzdWVyLCBhdWRpZW5jZSwgZXhwaXJ5IGFuZCB0aGUgbm9uY2UuXG4gICAgICBJdHMgc2lnbmF0dXJlIGlzIG5vdDogaXQgY29tZXMgc3RyYWlnaHQgZnJvbSB0aGUgdG9rZW4gZW5kcG9pbnQgb3ZlciBUTFMsIHdoaWNoIE9wZW5JRFxuICAgICAgQ29ubmVjdCBDb3JlIDMuMS4zLjcgbGV0cyBzdGFuZCBmb3IgdGhlIHNpZ25hdHVyZSAtIHNvIGV2ZXJ5IGFkZHJlc3Mgb2YgYSBwcm92aWRlciwgaXRzXG4gICAgICBpc3N1ZXIsIDxjb2RlPmJhc2U9PC9jb2RlPiBhbmQgdGhlIGVuZHBvaW50cyBpdHMgZG9jdW1lbnQgbmFtZXMsIG11c3QgYmUgaHR0cHMgKGh0dHAgb25cbiAgICAgIGxvY2FsaG9zdCBhbG9uZSkuPC9saT5cbiAgPGxpPkEgc3RhdGUgd29ya3Mgb25jZSBhbmQgZm9yIHRlbiBtaW51dGVzLiBBIG5vIGF0IHRoZSBwcm92aWRlciwgYSBzdGFsZSBzdGF0ZSBvciBhIHJlZnVzZWRcbiAgICAgIGNvZGUgYW5zd2VycyBGQUxTRSAtIDxjb2RlPnBhZE9BdXRoRXJyb3IgKCk8L2NvZGU+IHNheXMgd2hpY2ggLSBuZXZlciBhbiBlcnJvciBvZiB0aGUgcGFnZS48L2xpPlxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOm1ldGEgdGl0bGU9J1NvY2lhbCBsb2dpbicvfVxuXG48cD5cIkxvZyBpbiB3aXRoIEdpdEh1YlwiIGlzIHR3byBjYWxscyBvbiBvbmUgcGFnZS4gPGNvZGU+cGFkT0F1dGhTdGFydCAoICdnaXRodWInICk8L2NvZGU+IHNlbmRzIHRoZVxudmlzaXRvciB0byBHaXRIdWIgLSBhZnRlciBrZWVwaW5nIGEgcmFuZG9tIHN0YXRlLCBhIFBLQ0UgdmVyaWZpZXIgYW5kLCBmb3IgYW4gT3BlbklEIENvbm5lY3RcbnByb3ZpZGVyLCBhIG5vbmNlIGluIHRoZSBzZXNzaW9uLiBHaXRIdWIgc2VuZHMgdGhlIHZpc2l0b3IgYmFjayB3aXRoIGEgY29kZTtcbjxjb2RlPnBhZE9BdXRoVXNlciAoICdnaXRodWInICk8L2NvZGU+IGNoZWNrcyB0aGUgc3RhdGUsIHRyYWRlcyB0aGUgY29kZSBmb3IgYSB0b2tlbiwgZmV0Y2hlcyB0aGVcbnVzZXIgYW5kIGFuc3dlcnMgYSByb3cgZm9yIDxjb2RlPnBhZExvZ2luPC9jb2RlPjo8L3A+XG5cbjxwcmU+Ly8gb2F1dGgvW3Byb3ZpZGVyXS5waHAgLSB0aGUgc3RhcnQgYW5kIHRoZSB3YXkgYmFjayBvZiBldmVyeSBwcm92aWRlclxuaWYgKCAhIHBhZFJlcXVlc3RIYXMgKCAnY29kZScgKSBhbmQgISBwYWRSZXF1ZXN0SGFzICggJ2Vycm9yJyApIClcbiAgcGFkT0F1dGhTdGFydCAoICRwcm92aWRlciApO1xuaWYgKCAkdXNlciA9IHBhZE9BdXRoVXNlciAoICRwcm92aWRlciApICkge3BhZDpvcGVuL31cbiAgcGFkTG9naW4gKCAkdXNlciApO1xuICBwYWRSZWRpcmVjdEludGVuZGVkICgpO1xue3BhZDpjbG9zZS99XG4kcHJvYmxlbSA9IHBhZE9BdXRoRXJyb3IgKCk7PC9wcmU+XG5cbjxwPlRoZSBleGFtcGxlIGRvZXMgYm90aCBoYWx2ZXMgaW4gb25lIHJlcXVlc3QsIEdpdEh1YiBhbnN3ZXJlZCBieSBmYWtlczo8L3A+XG5cbntjb21tb246ZXhhbXBsZSAnZnJhZ21lbnRzL29hdXRoXzInL31cblxuPGgyPlRoZSBidXR0b25zPC9oMj5cblxuPHA+e3BhZDpvcGVuL31wYWQ6b2F1dGggJ2dpdGh1Yicve3BhZDpjbG9zZS99IGlzIHRoZSBsaW5rIHRoYXQgc3RhcnRzIGl0LCBzdHlsZWQgYXMgYSBidXR0b24gLSB0b1xuPGNvZGU+b2F1dGgvZ2l0aHViPC9jb2RlPiBvZiB0aGUgYXBwbGljYXRpb24sIHRoZSBwYWdlIGFib3ZlLCB1bmxlc3MgPGNvZGU+aHJlZj08L2NvZGU+IG5hbWVzIGFub3RoZXI7XG48Y29kZT5sYWJlbD08L2NvZGU+IGNoYW5nZXMgaXRzIHRleHQuIFRoZSBwcm92aWRlcidzIGljb24gc2hvd3Mgd2hlbiB0aGUgaWNvbiBzZXQgaGFzIG9uZSBvZiBpdHNcbm5hbWUuPC9wPlxuXG57Y29tbW9uOmV4YW1wbGUgJ2ZyYWdtZW50cy9vYXV0aF8xJy99XG5cbjxoMj5UaGUgcHJvdmlkZXJzPC9oMj5cblxuPHA+RXZlcnkgcHJvdmlkZXIgaXMgYSBmaWxlIG9mIDxjb2RlPnBhZC9zdWJzL29hdXRoL3R5cGVzLzwvY29kZT4gLSB7cGFkOmVjaG8gcGhwOmltcGxvZGUoJywgJywgcGFkT0F1dGhLaW5kcygpKS99IC1cbmFuIGFycmF5IHdpdGggaXRzIGVuZHBvaW50cywgaXRzIHNjb3Blcywgd2hldGhlciBpdCB0YWtlcyBQS0NFLCB0aGUgc2V0dGluZ3MgaXQgbmVlZHMgYW5kIGhvdyBpdHNcbmFuc3dlciBiZWNvbWVzIHRoZSB1c2VyOiA8Y29kZT5wcm92aWRlcjwvY29kZT4sIDxjb2RlPmlkPC9jb2RlPiAoPGNvZGU+Z2l0aHViOjU4MzIzMTwvY29kZT4sIG5ldmVyIHRoZVxuc2FtZSBmb3IgdHdvIHByb3ZpZGVycyAtIG5vciBmb3IgdHdvIGluc3RhbmNlcyBvZiBvbmU6IGEgR2l0TGFiIG9mIG9uZSdzIG93biBoYXMgaXRzIGFkZHJlc3MgaW5cbml0LCA8Y29kZT5naXRsYWJAZ2l0LmV4YW1wbGUub3JnOjQyPC9jb2RlPiwgYW5kIHNvIGhhcyBldmVyeSBPcGVuSUQgaXNzdWVyKSwgPGNvZGU+c3ViPC9jb2RlPiwgPGNvZGU+bmFtZTwvY29kZT4sIDxjb2RlPmVtYWlsPC9jb2RlPiwgPGNvZGU+ZW1haWxfdmVyaWZpZWQ8L2NvZGU+LCA8Y29kZT5hdmF0YXI8L2NvZGU+XG5hbmQgPGNvZGU+dXNlcm5hbWU8L2NvZGU+LiBBIHByb3ZpZGVyIGlzIGFkZGVkIGJ5IGFkZGluZyBpdHMgZmlsZS48L3A+XG5cbjx1bD5cbiAgPGxpPlRoZSBzZXR0aW5ncyBhcmUgPGNvZGU+LmVudjwvY29kZT4gdmFsdWVzOiA8Y29kZT5HSVRIVUJfQ0xJRU5UX0lEPC9jb2RlPiBhbmRcbiAgICAgIDxjb2RlPkdJVEhVQl9DTElFTlRfU0VDUkVUPC9jb2RlPiwgYW5kIHNvIG9uIHBlciBwcm92aWRlcjsgPGNvZGU+R0lUTEFCX1VSTDwvY29kZT4gYW5kXG4gICAgICA8Y29kZT5GT1JHRUpPX1VSTDwvY29kZT4gZm9yIGEgZm9yZ2Ugb2Ygb25lJ3Mgb3duLCA8Y29kZT5NSUNST1NPRlRfVEVOQU5UPC9jb2RlPiwgPGNvZGU+U0xBQ0tfVEVBTTwvY29kZT4sXG4gICAgICA8Y29kZT5PSURDX0lTU1VFUjwvY29kZT4uIEEgbWlzc2luZyBvbmUgaXMgYW4gZXJyb3IgdW5kZXIgdGhlIHN0cmljdCBjaGVjayB0aGF0IG5hbWVzIGl0LjwvbGk+XG4gIDxsaT5HaXRIdWIga2VlcHMgYW4gYWRkcmVzcyBwcml2YXRlIGJ5IGFuc3dlcmluZyBudWxsOyBpdCBpcyB0aGVuIHRha2VuIGZyb21cbiAgICAgIDxjb2RlPi91c2VyL2VtYWlsczwvY29kZT4gLSB0aGUgcHJpbWFyeSBvbmUsIHZlcmlmaWVkLjwvbGk+XG4gIDxsaT5CaXRidWNrZXQncyBjb25zdW1lciBoYXMgaXRzIHBlcm1pc3Npb25zIC0gQWNjb3VudCBhbmQgRW1haWwgLSBzZXQgYXQgQml0YnVja2V0LCBub3QgYXNrZWRcbiAgICAgIGZvciBpbiB0aGUgYWRkcmVzcywgYW5kIGl0cyBrZXkgYW5kIHNlY3JldCBnbyB0byB0aGUgdG9rZW4gZW5kcG9pbnQgYXMgSFRUUCBCYXNpYy4gSXRzXG4gICAgICA8Y29kZT4vMi4wL3VzZXI8L2NvZGU+IGhvbGRzIG5vIGFkZHJlc3M6IGl0IGNvbWVzIGZyb20gPGNvZGU+LzIuMC91c2VyL2VtYWlsczwvY29kZT4sIHRoZVxuICAgICAgcHJpbWFyeSBvbmUgd2hlbiBpdCBpcyBjb25maXJtZWQsIGVsc2UgYW5vdGhlciBjb25maXJtZWQgb25lLjwvbGk+XG4gIDxsaT5UaGUgPGNvZGU+ZW1haWw8L2NvZGU+IGlzIGEgd2F5IHRvIHJlYWNoIHRoZSBwZXJzb24sIG5vdCB3aG8gdGhleSBhcmU6IGEgcHJvdmlkZXIgbWF5IGhvbGRcbiAgICAgIGFuIGFkZHJlc3MgaXRzIHVzZXIgdHlwZWQgYW5kIG5ldmVyIHByb3ZlZC4gPGNvZGU+ZW1haWxfdmVyaWZpZWQ8L2NvZGU+IGlzIFRSVUUgb25seSB3aGVuXG4gICAgICB0aGUgcHJvdmlkZXIgdm91Y2hlcyBmb3IgaXQgLSBHb29nbGUncywgQXBwbGUncywgTGlua2VkSW4ncywgU2xhY2sncyBhbmQgYW4gT3BlbklEIHByb3ZpZGVyJ3NcbiAgICAgIDxjb2RlPmVtYWlsX3ZlcmlmaWVkPC9jb2RlPiwgRGlzY29yZCdzIDxjb2RlPnZlcmlmaWVkPC9jb2RlPiwgR2l0TGFiJ3NcbiAgICAgIDxjb2RlPmNvbmZpcm1lZF9hdDwvY29kZT4sIEdpdEh1YidzIGFuZCBGb3JnZWpvJ3MgdmVyaWZpZWQgYWRkcmVzc2VzLCBCaXRidWNrZXQncyBjb25maXJtZWRcbiAgICAgIG9uZXMsIFgncyA8Y29kZT5jb25maXJtZWRfZW1haWw8L2NvZGU+LCBNaWNyb3NvZnQncyBvcHRpb25hbFxuICAgICAgY2xhaW0gPGNvZGU+eG1zX2Vkb3Y8L2NvZGU+LiBMaW5rIGEgbG9naW4gdG8gYW4gYWNjb3VudCB0aGF0IGV4aXN0cyBhbHJlYWR5IGJ5IGl0cyBhZGRyZXNzXG4gICAgICBvbmx5IHdoZW4gaXQgaXMgVFJVRTsgZWxzZSB0aGUgYWRkcmVzcyBpcyBhbnlvbmUncyB0byBjbGFpbS48L2xpPlxuICA8bGk+QXBwbGUgd2FudHMgYSBjbGllbnQgc2VjcmV0IG1hZGUgZm9yIGV2ZXJ5IGV4Y2hhbmdlOiBhbiBFUzI1NiBKV1Qgc2lnbmVkIHdpdGggdGhlIGtleSBvZlxuICAgICAgdGhlIGRldmVsb3BlciBhY2NvdW50ICg8Y29kZT5BUFBMRV9URUFNX0lEPC9jb2RlPiwgPGNvZGU+QVBQTEVfS0VZX0lEPC9jb2RlPixcbiAgICAgIDxjb2RlPkFQUExFX1BSSVZBVEVfS0VZPC9jb2RlPikuIEl0IHNlbmRzIHRoZSBuYW1lIG9uY2UsIHdpdGggdGhlIGZpcnN0IGxvZ2luLjwvbGk+XG4gIDxsaT5MaW5rZWRJbiBzcGVha3MgT3BlbklEIENvbm5lY3Qgd2l0aG91dCBhIG5vbmNlIGFuZCwgZm9yIGEgd2ViIGFwcGxpY2F0aW9uLCB3aXRob3V0IFBLQ0UgLVxuICAgICAgbmVpdGhlciBpcyBhIHBhcmFtZXRlciBvZiBpdHMgYXV0aG9yaXphdGlvbiAtIGFuZCBpdHMgaWRfdG9rZW4gbmFtZXNcbiAgICAgIDxjb2RlPmh0dHBzOi8vd3d3LmxpbmtlZGluLmNvbTwvY29kZT4gYXMgaXRzIGlzc3VlciB3aGVyZSBpdHMgZGlzY292ZXJ5IGRvY3VtZW50IHNheXNcbiAgICAgIDxjb2RlPmh0dHBzOi8vd3d3LmxpbmtlZGluLmNvbS9vYXV0aDwvY29kZT46IDxjb2RlPmxpbmtlZGluPC9jb2RlPiB0YWtlcyBlaXRoZXIsIHdoaWNoIHRoZVxuICAgICAgZ2VuZXJpYyA8Y29kZT5vaWRjPC9jb2RlPiBjYW5ub3QuPC9saT5cbiAgPGxpPjxjb2RlPm9pZGM8L2NvZGU+IGlzIGFueSBPcGVuSUQgQ29ubmVjdCBwcm92aWRlciAtIEtleWNsb2FrLCBBdXRoZW50aWssIEF1dGgwIC0gaXRzIGVuZHBvaW50c1xuICAgICAgcmVhZCBmcm9tIHRoZSBpc3N1ZXIncyA8Y29kZT4vLndlbGwta25vd24vb3BlbmlkLWNvbmZpZ3VyYXRpb248L2NvZGU+LjwvbGk+XG4gIDxsaT5BIFNsYWNrIHVzZXIncyBpZCBpcyB1bmlxdWUgd2l0aGluIGl0cyB3b3Jrc3BhY2UgYWxvbmUsIHNvIFNsYWNrJ3MgPGNvZGU+c3ViPC9jb2RlPiBpcyBib3RoLFxuICAgICAgPGNvZGU+VDBSN0dSL1UwUjdKTTwvY29kZT4uIDxjb2RlPnRlYW09PC9jb2RlPiAob3IgPGNvZGU+U0xBQ0tfVEVBTTwvY29kZT4pIGtlZXBzIHRoZSBsb2dpbiB0b1xuICAgICAgb25lIHdvcmtzcGFjZTogU2xhY2sgaXMgYXNrZWQgZm9yIGl0LCBhbmQgYSB0b2tlbiBvZiBhbnkgb3RoZXIgaXMgcmVmdXNlZC48L2xpPlxuICA8bGk+WCByZXF1aXJlcyBQS0NFIGFuZCB0YWtlcyBpdHMgY2xpZW50J3MgaWQgYW5kIHNlY3JldCBhcyBIVFRQIEJhc2ljLiBJdCBnaXZlcyBhbiBhZGRyZXNzXG4gICAgICBvbmx5IHRvIGFuIGFwcCBhbGxvd2VkIHRoZSBzY29wZSA8Y29kZT51c2Vycy5lbWFpbDwvY29kZT4gLSBhc2sgZm9yIGl0IHdpdGhcbiAgICAgIDxjb2RlPnNjb3Blcz0ndHdlZXQucmVhZCB1c2Vycy5yZWFkIHVzZXJzLmVtYWlsJzwvY29kZT4gYW5kIHRoZSB1c2VyJ3NcbiAgICAgIDxjb2RlPmNvbmZpcm1lZF9lbWFpbDwvY29kZT4gaXMgZmV0Y2hlZCB0b28uPC9saT5cbiAgPGxpPlRoZSBpZF90b2tlbiBvZiBPcGVuSUQgQ29ubmVjdCBpcyBjaGVja2VkIGZvciBpdHMgaXNzdWVyLCBhdWRpZW5jZSwgZXhwaXJ5IGFuZCB0aGUgbm9uY2UuXG4gICAgICBJdHMgc2lnbmF0dXJlIGlzIG5vdDogaXQgY29tZXMgc3RyYWlnaHQgZnJvbSB0aGUgdG9rZW4gZW5kcG9pbnQgb3ZlciBUTFMsIHdoaWNoIE9wZW5JRFxuICAgICAgQ29ubmVjdCBDb3JlIDMuMS4zLjcgbGV0cyBzdGFuZCBmb3IgdGhlIHNpZ25hdHVyZSAtIHNvIGV2ZXJ5IGFkZHJlc3Mgb2YgYSBwcm92aWRlciwgaXRzXG4gICAgICBpc3N1ZXIsIDxjb2RlPmJhc2U9PC9jb2RlPiBhbmQgdGhlIGVuZHBvaW50cyBpdHMgZG9jdW1lbnQgbmFtZXMsIG11c3QgYmUgaHR0cHMgKGh0dHAgb25cbiAgICAgIGxvY2FsaG9zdCBhbG9uZSkuPC9saT5cbiAgPGxpPkEgc3RhdGUgd29ya3Mgb25jZSBhbmQgZm9yIHRlbiBtaW51dGVzLiBBIG5vIGF0IHRoZSBwcm92aWRlciwgYSBzdGFsZSBzdGF0ZSBvciBhIHJlZnVzZWRcbiAgICAgIGNvZGUgYW5zd2VycyBGQUxTRSAtIDxjb2RlPnBhZE9BdXRoRXJyb3IgKCk8L2NvZGU+IHNheXMgd2hpY2ggLSBuZXZlciBhbiBlcnJvciBvZiB0aGUgcGFnZS48L2xpPlxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+                      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>meta </font><font color="red">title=<font color="black">'</font>Social login<font color="black">'</font></font>/}</b><br><br>&lt;p&gt;"Log in with GitHub" is two calls on one page. &lt;code&gt;padOAuthStart ( 'github' )&lt;/code&gt; sends the<br>visitor to GitHub - after keeping a random state, a PKCE verifier and, for an OpenID Connect<br>provider, a nonce in the session. GitHub sends the visitor back with a code;<br>&lt;code&gt;padOAuthUser ( 'github' )&lt;/code&gt; checks the state, trades the code for a token, fetches the<br>user and answers a row for &lt;code&gt;padLogin&lt;/code&gt;:&lt;/p&gt;<br><br>// oauth/[provider].php - the start and the way back of every provider<br>if ( ! padRequestHas ( 'code' ) and ! padRequestHas ( 'error' ) )<br>  padOAuthStart ( $provider );<br>if ( $user = padOAuthUser ( $provider ) ) {<br>  padLogin ( $user );<br>  padRedirectIntended ();<br>}<br>$problem = padOAuthError ();<br><br>&lt;p&gt;The example does both halves in one request, GitHub answered by fakes:&lt;/p&gt;<br><br><b>{<font color="blue"><font color="purple">common</font><font color="black"><b>:</b></font>example </font><font color="red"><font color="black">'</font>fragments/oauth_2<font color="black">'</font></font>/}</b><br><br>&lt;h2&gt;The buttons&lt;/h2&gt;<br><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>oauth </font><font color="red"><font color="black">'</font>github<font color="black">'</font></font>/}</b> is the link that starts it, styled as a button - to<br>&lt;code&gt;oauth/github&lt;/code&gt; of the application, the page above, unless &lt;code&gt;href=&lt;/code&gt; names another;<br>&lt;code&gt;label=&lt;/code&gt; changes its text. The provider's icon shows when the icon set has one of its<br>name.&lt;/p&gt;<br><br><b>{<font color="blue"><font color="purple">common</font><font color="black"><b>:</b></font>example </font><font color="red"><font color="black">'</font>fragments/oauth_1<font color="black">'</font></font>/}</b><br><br>&lt;h2&gt;The providers&lt;/h2&gt;<br><br>&lt;p&gt;Every provider is a file of &lt;code&gt;pad/subs/oauth/types/&lt;/code&gt; - <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font><font color="black">,</font> <font color="black">'</font><font color="black">,</font> padOAuthKinds())</font>/}</b> -<br>an array with its endpoints, its scopes, whether it takes PKCE, the settings it needs and how its<br>answer becomes the user: &lt;code&gt;provider&lt;/code&gt;, &lt;code&gt;id&lt;/code&gt; (&lt;code&gt;github:583231&lt;/code&gt;, never the<br>same for two providers - nor for two instances of one: a GitLab of one's own has its address in<br>it, &lt;code&gt;gitlab@git.example.org:42&lt;/code&gt;, and so has every OpenID issuer), &lt;code&gt;sub&lt;/code&gt;, &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;email&lt;/code&gt;, &lt;code&gt;email_verified&lt;/code&gt;, &lt;code&gt;avatar&lt;/code&gt;<br>and &lt;code&gt;username&lt;/code&gt;. A provider is added by adding its file.&lt;/p&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;The settings are &lt;code&gt;.env&lt;/code&gt; values: &lt;code&gt;GITHUB_CLIENT_ID&lt;/code&gt; and<br>      &lt;code&gt;GITHUB_CLIENT_SECRET&lt;/code&gt;, and so on per provider; &lt;code&gt;GITLAB_URL&lt;/code&gt; and<br>      &lt;code&gt;FORGEJO_URL&lt;/code&gt; for a forge of one's own, &lt;code&gt;MICROSOFT_TENANT&lt;/code&gt;, &lt;code&gt;SLACK_TEAM&lt;/code&gt;,<br>      &lt;code&gt;OIDC_ISSUER&lt;/code&gt;. A missing one is an error under the strict check that names it.&lt;/li&gt;<br>  &lt;li&gt;GitHub keeps an address private by answering null; it is then taken from<br>      &lt;code&gt;/user/emails&lt;/code&gt; - the primary one, verified.&lt;/li&gt;<br>  &lt;li&gt;Bitbucket's consumer has its permissions - Account and Email - set at Bitbucket, not asked<br>      for in the address, and its key and secret go to the token endpoint as HTTP Basic. Its<br>      &lt;code&gt;/2.0/user&lt;/code&gt; holds no address: it comes from &lt;code&gt;/2.0/user/emails&lt;/code&gt;, the<br>      primary one when it is confirmed, else another confirmed one.&lt;/li&gt;<br>  &lt;li&gt;The &lt;code&gt;email&lt;/code&gt; is a way to reach the person, not who they are: a provider may hold<br>      an address its user typed and never proved. &lt;code&gt;email_verified&lt;/code&gt; is TRUE only when<br>      the provider vouches for it - Google's, Apple's, LinkedIn's, Slack's and an OpenID provider's<br>      &lt;code&gt;email_verified&lt;/code&gt;, Discord's &lt;code&gt;verified&lt;/code&gt;, GitLab's<br>      &lt;code&gt;confirmed_at&lt;/code&gt;, GitHub's and Forgejo's verified addresses, Bitbucket's confirmed<br>      ones, X's &lt;code&gt;confirmed_email&lt;/code&gt;, Microsoft's optional<br>      claim &lt;code&gt;xms_edov&lt;/code&gt;. Link a login to an account that exists already by its address<br>      only when it is TRUE; else the address is anyone's to claim.&lt;/li&gt;<br>  &lt;li&gt;Apple wants a client secret made for every exchange: an ES256 JWT signed with the key of<br>      the developer account (&lt;code&gt;APPLE_TEAM_ID&lt;/code&gt;, &lt;code&gt;APPLE_KEY_ID&lt;/code&gt;,<br>      &lt;code&gt;APPLE_PRIVATE_KEY&lt;/code&gt;). It sends the name once, with the first login.&lt;/li&gt;<br>  &lt;li&gt;LinkedIn speaks OpenID Connect without a nonce and, for a web application, without PKCE -<br>      neither is a parameter of its authorization - and its id_token names<br>      &lt;code&gt;https://www.linkedin.com&lt;/code&gt; as its issuer where its discovery document says<br>      &lt;code&gt;https://www.linkedin.com/oauth&lt;/code&gt;: &lt;code&gt;linkedin&lt;/code&gt; takes either, which the<br>      generic &lt;code&gt;oidc&lt;/code&gt; cannot.&lt;/li&gt;<br>  &lt;li&gt;&lt;code&gt;oidc&lt;/code&gt; is any OpenID Connect provider - Keycloak, Authentik, Auth0 - its endpoints<br>      read from the issuer's &lt;code&gt;/.well-known/openid-configuration&lt;/code&gt;.&lt;/li&gt;<br>  &lt;li&gt;A Slack user's id is unique within its workspace alone, so Slack's &lt;code&gt;sub&lt;/code&gt; is both,<br>      &lt;code&gt;T0R7GR/U0R7JM&lt;/code&gt;. &lt;code&gt;team=&lt;/code&gt; (or &lt;code&gt;SLACK_TEAM&lt;/code&gt;) keeps the login to<br>      one workspace: Slack is asked for it, and a token of any other is refused.&lt;/li&gt;<br>  &lt;li&gt;X requires PKCE and takes its client's id and secret as HTTP Basic. It gives an address<br>      only to an app allowed the scope &lt;code&gt;users.email&lt;/code&gt; - ask for it with<br>      &lt;code&gt;scopes='tweet.read users.read users.email'&lt;/code&gt; and the user's<br>      &lt;code&gt;confirmed_email&lt;/code&gt; is fetched too.&lt;/li&gt;<br>  &lt;li&gt;The id_token of OpenID Connect is checked for its issuer, audience, expiry and the nonce.<br>      Its signature is not: it comes straight from the token endpoint over TLS, which OpenID<br>      Connect Core 3.1.3.7 lets stand for the signature - so every address of a provider, its<br>      issuer, &lt;code&gt;base=&lt;/code&gt; and the endpoints its document names, must be https (http on<br>      localhost alone).&lt;/li&gt;<br>  &lt;li&gt;A state works once and for ten minutes. A no at the provider, a stale state or a refused<br>      code answers FALSE - &lt;code&gt;padOAuthError ()&lt;/code&gt; says which - never an error of the page.&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxe9cf807ae61fd7eff9274b57afb6b97e"></div>
+                      <script>
+                      padAjaxe9cf807ae61fd7eff9274b57afb6b97e = new XMLHttpRequest();
+                      padAjaxe9cf807ae61fd7eff9274b57afb6b97e.onreadystatechange=function() {
+                      if (padAjaxe9cf807ae61fd7eff9274b57afb6b97e.readyState === 4) {
+                      if (padAjaxe9cf807ae61fd7eff9274b57afb6b97e.status === 200) {
+                      document.getElementById("padAjaxe9cf807ae61fd7eff9274b57afb6b97e").innerHTML=padAjaxe9cf807ae61fd7eff9274b57afb6b97e.responseText;
+                      } else {
+                      document.getElementById("padAjaxe9cf807ae61fd7eff9274b57afb6b97e").innerHTML=padAjaxe9cf807ae61fd7eff9274b57afb6b97e.statusText;
+                      }
+                      }
+                      }
+                      padAjaxe9cf807ae61fd7eff9274b57afb6b97e.open("GET","http://localhost/pad/manual/?pages/social_login&padInclude",true);
+                      padAjaxe9cf807ae61fd7eff9274b57afb6b97e.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+              </center>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>

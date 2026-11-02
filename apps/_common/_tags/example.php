@@ -16,7 +16,7 @@
     $exampleSource   = $exampleRoute ['page'];
 
   // The title is the last part of the name. strrpos answers FALSE when the name has no / at
-  // all, and FALSE + 1 is 1, so an example named without a directory - {example 'offices'} -
+  // all, and FALSE + 1 is 1, so an example named without a directory - {app:example 'offices'} -
   // used to lose its first letter and come out as "ffices". A title= given on the tag wins:
   // an example of a file rather than a page has no name to take it from.
 
@@ -52,7 +52,7 @@
     if ( ! padFileGet ( $examplePad ) ) $padPrm [$pad] ['skipPad'] = TRUE;
   }
 
-  // The icon that takes the example to the playground (_lib/playground.php): its template and
+  // The icon that takes the example to the WASM editor (_lib/playground.php): its template and
   // its PHP, at the top right of its table - or, in a table an example before it opened,
   // at the right of its own cell. Only where the template is shown.
 

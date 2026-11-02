@@ -1,11 +1,11 @@
-{data 'myYaml', 'level_demo.yaml'/}
+{pad:data 'myYaml', 'level_demo.yaml'/}
 
 <table border='1'>
-  {myYaml}
+  {data:myYaml}
     <tr>
-      {column}
+      {array:column}
         <td>{$column}</td>
-      {/column}
+      {/array:column}
     </tr>
-  {/myYaml}
+  {/data:myYaml}
 </table>

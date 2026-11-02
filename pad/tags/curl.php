@@ -1,9 +1,9 @@
 <?php
 
-  // {curl 'http://...'} fetches a URL and hands the response body back as the tag's
+  // {pad:curl 'http://...'} fetches a URL and hands the response body back as the tag's
   // value.
   //
-  // url= or the first parameter gives the address; every variable {set} at this level is
+  // url= or the first parameter gives the address; every variable {pad:set} at this level is
   // appended to it as a query parameter, and a SELF:// prefix becomes $padHost so an app
   // can call itself whatever host and mount prefix it is served under. The tag's
   // parameters as a whole are the input array of padCurl(), so what it reads travels with
@@ -18,7 +18,7 @@
   if ( ! isset ($padPrm [$pad] ['url']) )
     $padPrm [$pad] ['url'] = $padParm;
 
-  // An address a visitor chose is not fetched, as data= has it (options/data.php): {curl $v}
+  // An address a visitor chose is not fetched, as data= has it (options/data.php): {pad:curl $v}
   // with a request value had the server connect to any host and port it can reach - its own
   // pages behind an address guard, cloud metadata - and write the answer into the page, kept
   // for every later visitor under a ttl. Judged as written, before SELF:// becomes the host,
@@ -26,7 +26,7 @@
   // padDataValueAddress).
 
   if ( $padProtectValues and is_string ( $padPrm [$pad] ['url'] ) and padDataValueAddress ( $padPrm [$pad] ['url'] ) )
-    return padError ( "the {curl} address reads as an address a request value chose - write the address in the template, {curl 'https://...'/}, or fetch it in the page's PHP with padCurl" );
+    return padError ( "the {pad:curl} address reads as an address a request value chose - write the address in the template, {pad:curl 'https://...'/}, or fetch it in the page's PHP with padCurl" );
 
   foreach ( $padSetLvl [$pad] as $padK => $padV )
     $padPrm [$pad] ['url'] = padAddGet ($padPrm [$pad] ['url'], $padK, $padV );
@@ -34,7 +34,7 @@
   $padPrm [$pad] ['url'] = str_replace('SELF://', $padHost, $padPrm [$pad] ['url']);
 
   // Those are read here, by padCurl: the strict sweep of options nothing reads refused
-  // {curl ..., post='a=1'} - after the post had gone out.
+  // {pad:curl ..., post='a=1'} - after the post had gone out.
 
   foreach ( [ 'url', 'get', 'post', 'user', 'password', 'cookies', 'headers', 'options' ] as $padCurlKey )
     padDone ( $padCurlKey );

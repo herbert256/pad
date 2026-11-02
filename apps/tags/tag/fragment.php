@@ -5,7 +5,7 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{fragment 'name'} ... {/fragment}
+{pad:fragment 'name'} ... {/pad:fragment}
 PAD;
 
   $tagParms   = [

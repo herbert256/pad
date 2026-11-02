@@ -7,11 +7,11 @@
   // window into $pqRandomSteps discrete steps, which loop.php uses to snap each draw onto
   // the grid.
 
-  // A numeric parameter is the one-in-how-many of {random 4}, which has to be 1 or more for
+  // A numeric parameter is the one-in-how-many of {sequence:random 4}, which has to be 1 or more for
   // there to be a draw at all; anything else it may hold - a '50%', a store - is loop.php's
   // to read, so only a number is checked here. A parameter of 0 is how loop.php reads "none
-  // given", and goes on to draw from the window like a bare {random} - spelled '0.0', '-0' or
-  // '00' too, which are true and were taken for a parameter below 1: {sequence random='0.0'}
+  // given", and goes on to draw from the window like a bare {sequence:random} - spelled '0.0', '-0' or
+  // '00' too, which are true and were taken for a parameter below 1: {sequence:random '0.0'}
   // ended the request on the error below where random=0 draws.
 
   if ( is_numeric ( $pqParm ) and $pqParm != 0 and $pqParm < 1 )
@@ -47,7 +47,7 @@
                  : ( floor ( $pqRandomEnd ) >= PHP_INT_MAX ? PHP_INT_MAX : (int) floor ( $pqRandomEnd ) );
 
   // An increment below 1 makes no steps - the loop never starts on one - and divided by
-  // nothing here: {sequence random, increment=0} ended the request instead of answering
+  // nothing here: {sequence:random increment=0} ended the request instead of answering
   // nothing, and so did random as a play under a run with that increment.
   //
   // The steps of whole numbers are counted in whole numbers, and those of a window wider than

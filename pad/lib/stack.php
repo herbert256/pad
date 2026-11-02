@@ -4,15 +4,15 @@
   // the page prints - a component declares the script or stylesheet it needs where it is
   // used, and the layout writes them all in its <head>.
   //
-  //   {push 'scripts', once='chart'} <script src="chart.js"></script> {/push}
-  //   {stack 'scripts'}
+  //   {pad:push 'scripts', once='chart'} <script src="chart.js"></script> {/pad:push}
+  //   {pad:stack 'scripts'}
   //
-  // The page renders from top to bottom, so a {stack} in the <head> comes out before the
+  // The page renders from top to bottom, so a {pad:stack} in the <head> comes out before the
   // components further down have pushed anything. It therefore prints a marker, and the
   // marker is replaced by the stack's text once the whole page has rendered - padStackFill,
   // from exits/exits.php. The marker carries a number made from the stack's name rather
-  // than the name itself: a pipe on the tag - {stack 'css' | upper} - cannot change it,
-  // and the same name makes the same marker on every request, so a {stack} inside a
+  // than the name itself: a pipe on the tag - {pad:stack 'css' | upper} - cannot change it,
+  // and the same name makes the same marker on every request, so a {pad:stack} inside a
   // cached fragment still finds its stack. It is sealed (padMarkSeal): a value carrying a
   // marker's characters and the number of a stack is text, where the stack's scripts were
   // written into it a second time.
@@ -21,7 +21,7 @@
   // the scripts and a 'chart' in the styles are two different things. once without a key
   // compares the rendered text itself.
   //
-  // The pushes live in $padStackStore, one of the stores of padStrSto: a {page} pass adds
+  // The pushes live in $padStackStore, one of the stores of padStrSto: a {pad:page} pass adds
   // to the page's stacks, a sandboxed pass leaves no trace in them, as with the content
   // and data stores. A push made inside a fragment-cache section is kept with the cached
   // rendering and made again on every hit - lib/fragment.php - or a cached component
@@ -71,9 +71,9 @@
     $padStackStore [$name] ['text'] [] = $text;
 
     // Every fragment-cache section that is rendering around this push records it, so a
-    // hit can make it again - up to a {nocache} round the push, which makes it again itself.
+    // hit can make it again - up to a {pad:nocache} round the push, which makes it again itself.
     //
-    // The page cache keeps a page with its stacks filled in, so a push a {nocache} part
+    // The page cache keeps a page with its stacks filled in, so a push a {pad:nocache} part
     // makes again on every hit had no stack left to land in: the stack showed the first
     // visitor's push for the entry's whole life. Such a page is not kept (lib/cache.php).
 
@@ -110,10 +110,10 @@
     foreach ( array_keys ( $padStackStore ?? [] ) as $name )
       $markers [ padStackMarker ( $name ) ] = padStackText ( $name );
 
-    // A stack's text can hold the marker of another - a push of head markup with a {stack}
+    // A stack's text can hold the marker of another - a push of head markup with a {pad:stack}
     // of its own: filled again while one is left, as many rounds as there are stacks, so a
     // stack pushed into itself ends. One pass left it to the line below, which took it for
-    // a stack nothing pushed to, and the css stack of {push 'head'}{stack 'css'}{/push} was
+    // a stack nothing pushed to, and the css stack of {pad:push 'head'}{pad:stack 'css'}{/pad:push} was
     // lost.
 
     for ( $round = 0; $round <= count ( $markers ); $round++ ) {

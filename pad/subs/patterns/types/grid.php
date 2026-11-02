@@ -3,7 +3,7 @@
   // grid - graph paper: a thin line every size pixels in the first ink and a bolder one every
   // fifth in the second. A tile repeated by a <pattern>: the seed changes nothing.
   //
-  //   {pattern 'grid', size=12, colors='#fffdf8, #f2d7d5, #d98880'/}
+  //   {pattern:grid size=12, colors='#fffdf8, #f2d7d5, #d98880'/}
 
   return [
 

@@ -20,7 +20,7 @@ function ClickExample() {
     <div>
       <div ref={area} onClick={click} role="button" tabIndex={0} aria-label="Click anywhere"
            style={{ position: 'relative', height: 240, borderRadius: 16, overflow: 'hidden', cursor: 'crosshair', userSelect: 'none',
-                    display: 'grid', placeItems: 'center', background: 'linear-gradient(135deg, var(--pad-soft), var(--react-soft))', border: '1px solid var(--line)' }}>
+                    display: 'grid', placeItems: 'center', background: 'linear-gradient(135deg, var(--pad-soft), var(--accent-soft))', border: '1px solid var(--line)' }}>
         <div style={{ textAlign: 'center', pointerEvents: 'none' }}>
           <div key={clicks} className="pop" style={{ fontSize: 56, fontWeight: 900 }}>{clicks}</div>
           <div className="muted">{clicks ? 'clicks - keep going' : 'click anywhere in here'}</div>

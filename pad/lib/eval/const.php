@@ -51,7 +51,7 @@
   const padEval_txt = [ 'LT', 'LE', 'GT', 'GE', 'EQ', 'NE', 'AND', 'XOR', 'OR', 'NOT' ];
   const padEval_one = [ 'NOT', '!', 'NEG', 'POS' ];
 
-  // The pipe functions that read infix as a test - {if $s in ('a', 'b')}, $s not like 'A%' -
+  // The pipe functions that read infix as a test - {pad:if $s in ('a', 'b')}, $s not like 'A%' -
   // the value on their left being their input.
 
   const padEval_tests = [ 'in', 'like', 'matches', 'range', 'between', 'contains' ];

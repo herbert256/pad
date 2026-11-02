@@ -1,1 +1,1 @@
-[{echo $flag | left(1) | php:bin2hex(@)/}][{echo $nfd | left(1) | php:bin2hex(@)/}][{echo $fam | right(1) | php:bin2hex(@)/}][{echo $nfd | mid(2, 2)/}][{echo $flag | max_len(1) | php:bin2hex(@)/}][{echo $nfd | substr(1)/}][{echo $nfd | truncate(3, '.') | php:bin2hex(@)/}]
+[{pad:echo $flag | left(1) | php:bin2hex(@)/}][{pad:echo $nfd | left(1) | php:bin2hex(@)/}][{pad:echo $fam | right(1) | php:bin2hex(@)/}][{pad:echo $nfd | mid(2, 2)/}][{pad:echo $flag | max_len(1) | php:bin2hex(@)/}][{pad:echo $nfd | substr(1)/}][{pad:echo $nfd | truncate(3, '.') | php:bin2hex(@)/}]

@@ -5,34 +5,13 @@
 //                      them as events (htmx:beforeRequest, htmx:afterRequest)
 //   the rules switch   a checkbox data-toggle-rules="<selector>" takes the data-pad-rules of
 //                      a form away, so a bad post reaches the server and PAD answers it
-//   the theme          light or dark, remembered in localStorage
 //
+// Light, dark and the themes are the frame's (www/_common/pad.js and the switcher in its bar).
 // Loaded in the <head>, before htmx.
 
 (function () {
 
   'use strict';
-
-  var themeKey = 'pad-htmx-theme';
-
-  function stored() {
-    try { return localStorage.getItem(themeKey); } catch (e) { return null; }
-  }
-
-  function apply(theme) {
-    if (theme === 'light' || theme === 'dark') document.documentElement.setAttribute('data-theme', theme);
-  }
-
-  apply(stored());
-
-  document.addEventListener('click', function (event) {
-    if (!event.target.closest('[data-theme-toggle]')) return;
-    var now = document.documentElement.getAttribute('data-theme') ||
-              (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    var next = now === 'dark' ? 'light' : 'dark';
-    apply(next);
-    try { localStorage.setItem(themeKey, next); } catch (e) { /* private window */ }
-  });
 
   // ---------------------------------------------------------------- the request log
 

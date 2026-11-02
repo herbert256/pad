@@ -10,14 +10,15 @@
   // loop until that level closes again, and start/pad/end.php puts the saved state back.
   // The nested level's output, $padOut[$pad+1], is the value returned to the include.
 
-  // A pass whose text is a template written to render once - an explicit {code} or
-  // {sandbox}, as a tag or as a pipe, a mail template (lib/mail.php sets $padSectionsNext
+  // A pass whose text is a template written to render once - an explicit {pad:code} or
+  // {pad:sandbox}, as a tag or as a pipe, a mail template (lib/mail.php sets $padSectionsNext
   // for its pass) and a page build (build/build.php says so for its level) - has its
   // @start@ and @end@ taken out by occurrence/init.php. Text the engine itself runs through
   // padCode() - a _data file, a snippet, an option - is no such template, and a marker in it
   // is its own text: decided here, while $pad is still the level that asked for the pass.
 
-  $padSectionsPass = ( ( $padSectionsNext ?? FALSE ) or in_array ( $padTag [$pad] ?? '', [ 'code', 'sandbox' ], TRUE ) );
+  $padSectionsPass = ( ( $padSectionsNext ?? FALSE ) or ( ( $padType [$pad] ?? '' ) == 'pad'
+                       and in_array ( $padTag [$pad] ?? '', [ 'code', 'sandbox' ], TRUE ) ) );
   $padSectionsNext = FALSE;
 
   include PAD . 'start/pad/start.php';
@@ -27,13 +28,13 @@
   include PAD . "start/pad/$padStrBld.php";
   include PAD . 'start/pad/level.php';
 
-  // An isolated pass gets its stores back as they were, the {push} stacks among them, so a
-  // {stack} it printed is filled in now, from what was pushed while it ran - lib/stack.php.
+  // An isolated pass gets its stores back as they were, the {pad:push} stacks among them, so a
+  // {pad:stack} it printed is filled in now, from what was pushed while it ran - lib/stack.php.
 
   if ( $padStrBox or $padStrCln or $padStrRes )
     $padOut [$pad+1] = padStackFill ( $padOut [$pad+1] );
 
-  // A {toc} lists the headings of the page that holds it: a page a {page} renders fills its
+  // A {pad:toc} lists the headings of the page that holds it: a page a {pad:page} renders fills its
   // own here, before the page around it sees it - lib/toc.php.
 
   if ( $padStrBld == 'page' )

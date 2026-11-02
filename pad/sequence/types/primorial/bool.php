@@ -2,7 +2,7 @@
 
   // Membership test for primorial, 1, 2, 6, 30, 210, ...: the primes are divided out of x in
   // order, each once, and 1 must be left before a prime does not divide it. build/check.php
-  // asks it for {keep primorial}, {remove primorial} and {flag primorial}.
+  // asks it for {keep:primorial}, {remove:primorial} and {pad:flag primorial}.
   //
   // Not the type's build: pqBuild() ranks function.php before bool.php.
 

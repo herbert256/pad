@@ -1,9 +1,9 @@
 
-<p><code>{barcode}</code> encodes its first parameter as a barcode and writes it as inline SVG -
+<p><code>{barcode:auto}</code> encodes its first parameter as a barcode and writes it as inline SVG -
 the bars of a product, a ticket, a carton or a parcel label, or the squares of a Data Matrix,
 drawn on the server, no font or image needed. It is the codes subsystem of PAD
 (<code>pad/subs/codes/</code>): a symbology is a file of <code>pad/subs/codes/types/</code>, and
-<code>type</code> names it.</p>
+the name after <code>barcode:</code> selects it.</p>
 
 <h3>The symbologies</h3>
 <ul>
@@ -22,16 +22,13 @@ drawn on the server, no font or image needed. It is the codes subsystem of PAD
   <code>codabar</code> (digits and <code>- $ : / . +</code> between the start and stop letters
   A to D, A at both ends when the text has none) and <code>msi</code> (a Luhn check digit, or
   <code>check='mod1010'</code> or <code>'none'</code>).</li>
-  <li><b>Two-dimensional</b> - <code>qr</code>, the code of <a href="index%EF%B9%96tag%EA%A4%B7qr.html">{qr}</a>, and
+  <li><b>Two-dimensional</b> - <code>qr</code>, the code of <a href="index%EF%B9%96tag%EA%A4%B7qr.html">{barcode:qr}</a>, and
   <code>datamatrix</code>, Data Matrix ECC 200 in the smallest of its 24 square sizes: any
   text - one beyond ASCII marked as UTF-8 (ECI 26) - <code>size</code> in pixels in place of
   <code>height</code>, <code>scale</code> and <code>plain</code>.</li>
 </ul>
 
-<p>Without <code>type</code> the tag decides by the text: twelve or thirteen digits are an
-EAN-13, anything else Code 128. The barcode type writes a symbology by its name,
-<code>{barcode:upce '0425261'/}</code>, and so does the name alone,
-<code>{itf14 '1540014128876'/}</code>, when no tag, store, field or sequence has it.</p>
+<p><code>{barcode:auto $code/}</code> selects EAN-13 for twelve or thirteen digits and Code 128 otherwise. Select other symbologies explicitly, such as <code>{barcode:upce '0425261'/}</code> or <code>{barcode:itf14 '1540014128876'/}</code>.</p>
 
 <p><code>scale</code> is the width of the thinnest bar; keep it at 2 or more for a printed
 label a scanner has to read. <code>plain</code> leaves the human-readable text out. The

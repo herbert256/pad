@@ -5,19 +5,19 @@
   // and a script that upgrades it finds the root waiting.
   //
   //   <pad-card>
-  //     {shadow css='www:card.css'}
+  //     {pad:shadow css='www:card.css'}
   //       <header><slot name="title"></slot></header>
   //       <slot></slot>
-  //     {/shadow}
+  //     {/pad:shadow}
   //     <h2 slot="title">{$title}</h2>
   //     <p>The light DOM, slotted by the browser.</p>
   //   </pad-card>
   //
-  // {shadow} writes <template shadowrootmode="open"> round its content - mode='closed' for a
+  // {pad:shadow} writes <template shadowrootmode="open"> round its content - mode='closed' for a
   // closed root, focus for shadowrootdelegatesfocus - and inlines the stylesheets css= names
   // as one <style> at the start of the root: a shadow root takes no styles from the page, and
   // a <style> written into a template would have its braces read as PAD tags. The files follow
-  // the rule of {source}: a file of the application, or www: one in its www/ directory -
+  // the rule of {pad:source}: a file of the application, or www: one in its www/ directory -
   // padSourceList and padSourcePath of tags/_lib/source.php.
   //
   // padShadowOpen  the opening template tag with its <style>
@@ -30,7 +30,7 @@
     $mode = strtolower ( trim ( (string) $mode ) );
 
     if ( ! in_array ( $mode, [ 'open', 'closed' ], TRUE ) ) {
-      padError ( "{shadow} has no mode '" . padMakeSafe ( $mode, 20 ) . "' - open or closed" );
+      padError ( "{pad:shadow} has no mode '" . padMakeSafe ( $mode, 20 ) . "' - open or closed" );
       $mode = 'open';
     }
 
@@ -54,7 +54,7 @@
         $path = padSourcePath ( $name );
 
         if ( $path === FALSE or strtolower ( pathinfo ( $path, PATHINFO_EXTENSION ) ) !== 'css' ) {
-          padError ( "{shadow} has no stylesheet '" . padMakeSafe ( $name, 60 ) . "' of the application - a .css file, www: for one in its www/ directory" );
+          padError ( "{pad:shadow} has no stylesheet '" . padMakeSafe ( $name, 60 ) . "' of the application - a .css file, www: for one in its www/ directory" );
           $read [$name] = '';
           continue;
         }

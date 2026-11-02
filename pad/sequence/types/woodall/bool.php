@@ -2,7 +2,7 @@
 
   // Membership test for woodall, 1, 7, 23, 63, 159, ...: the terms more than double at every
   // step, so the n that could make x are walked until a term passes it - 57 of them at the
-  // most. build/check.php asks it for {keep woodall}, {remove woodall} and {flag woodall}.
+  // most. build/check.php asks it for {keep:woodall}, {remove:woodall} and {pad:flag woodall}.
   //
   // Not the type's build: pqBuild() ranks function.php before bool.php.
 

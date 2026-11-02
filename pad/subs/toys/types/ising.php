@@ -16,8 +16,8 @@
   // 256); algorithm= metropolis (unless given) or clusters; initial= random, a hot start (unless
   // given), or up, a cold one; speed= the sweeps a second (20, 1 to 100).
   //
-  //   {ising temperature=2.0, initial='up'/}
-  //   {ising algorithm='clusters', size=200, seed=4/}
+  //   {toy:ising temperature=2.0, initial='up'/}
+  //   {toy:ising algorithm='clusters', size=200, seed=4/}
 
   return padToy ( 'ising', 'Ising model', [
     'temperature' => padToyNumber ( 'temperature', 2.27, 0.5, 5 ),

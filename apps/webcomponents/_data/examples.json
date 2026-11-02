@@ -17,8 +17,8 @@
       "group":  "server",
       "icon":   "🃏",
       "title":  "Cards with slots",
-      "lede":   "{card title='Revenue'} is a PAD custom tag that writes <pad-card> with its shadow root: encapsulated styles inlined by {shadow css=}, named slots the browser fills from the light DOM - and not a line of JavaScript.",
-      "server": [ "{shadow}", "_tags/card.pad", "{parms}" ],
+      "lede":   "{app:card title='Revenue'} is a PAD custom tag that writes <pad-card> with its shadow root: encapsulated styles inlined by {pad:shadow css=}, named slots the browser fills from the light DOM - and not a line of JavaScript.",
+      "server": [ "{pad:shadow}", "_tags/card.pad", "{pad:parms}" ],
       "client": [ "shadowrootmode", "<slot>", "::slotted" ],
       "files":  [ "_tags/card.pad", "www:elements/card.css" ]
     },
@@ -28,7 +28,7 @@
       "icon":   "🗂️",
       "title":  "Tabs, upgraded",
       "lede":   "The tabs are complete HTML when they arrive - the first panel shows. Once tabs.js defines <pad-tabs>, the element takes the root PAD rendered and adds clicks and arrow keys.",
-      "server": [ "{shadow}", "_tags/tabs.pad" ],
+      "server": [ "{pad:shadow}", "_tags/tabs.pad" ],
       "client": [ "customElements.define", "this.shadowRoot" ],
       "files":  [ "_tags/tabs.pad", "www:elements/tabs.js", "www:elements/tabs.css" ]
     },
@@ -47,8 +47,8 @@
       "group":  "upgrade",
       "icon":   "🔢",
       "title":  "A field of a form",
-      "lede":   "<pad-stepper> is form-associated: ElementInternals gives the {form} its value, the post carries it like any field, and padValidate checks it on the server.",
-      "server": [ "{form}", "padValidate", "padPosted" ],
+      "lede":   "<pad-stepper> is form-associated: ElementInternals gives the {pad:form} its value, the post carries it like any field, and padValidate checks it on the server.",
+      "server": [ "{pad:form}", "padValidate", "padPosted" ],
       "client": [ "formAssociated", "ElementInternals" ],
       "files":  [ "_tags/stepper.pad", "www:elements/stepper.js", "www:elements/stepper.css" ]
     },

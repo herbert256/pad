@@ -7,9 +7,9 @@
   // to the B over the highest, two octaves at least; from= and to= set its ends, C3 and B5.
   // size= is its height in pixels (120 unless given), title= the accessible name.
   //
-  //   {piano 'C4 E4 G4'/}
-  //   {piano 'Dm7'/}
-  //   {piano 'A3 C#4 E4', from='C3', to='B4'/}
+  //   {notation:piano 'C4 E4 G4'/}
+  //   {notation:piano 'Dm7'/}
+  //   {notation:piano 'A3 C#4 E4', from='C3', to='B4'/}
 
   $padPianoFound = padPianoNotes ( $padNotationText );
 

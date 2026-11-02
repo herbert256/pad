@@ -7,8 +7,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{oauth 'github'/}
-{oauth 'oidc', href='?login/company', label='Log in with your company account'/}
+{pad:oauth 'github'/}
+{pad:oauth 'oidc', href='?login/company', label='Log in with your company account'/}
 PAD;
 
   $tagParms   = [
@@ -20,5 +20,7 @@ PAD;
     'label' => 'Its text, <code>Log in with &lt;name&gt;</code> by default.' ];
 
   $tagSee     = [ 'auth', 'guest', 'form' ];
+
+  $subsystemKindLinks = appSubsystemLinks ( 'oauth' );
 
 ?>

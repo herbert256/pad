@@ -1,6 +1,6 @@
 <?php
 
-  // {pager 'products', window=2}: the page links of a tag written with the page option -
+  // {pad:pager 'products', window=2}: the page links of a tag written with the page option -
   // ‹ 1 … 4 5 [6] 7 8 … 20 › - from the page, rows and total the handling walk booked under
   // the tag's name (padPagerKeep in lib/pager.php). window is the number of pages shown on
   // each side of the current one, 2 when not given; query names the request value the
@@ -23,7 +23,7 @@
   if ( ! isset ( $padPager [$padPagerName] ) ) {
 
     if ( $padCheckSyntax and ! padStrHidden ( $padPagerName ) )
-      padError ( "there is no paged tag named '" . padMakeSafe ( $padPagerName, 40 ) . "' before this {pager} - the tag with page= comes first" );
+      padError ( "there is no paged tag named '" . padMakeSafe ( $padPagerName, 40 ) . "' before this {pad:pager} - the tag with page= comes first" );
 
     return $padPair [$pad] ? [] : '';
 

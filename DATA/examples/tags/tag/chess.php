@@ -1,16 +1,17 @@
 <?php
 
-  $tagAbout   = 'A chess position from FEN as an SVG board, with marked squares and arrows.';
+  $tagAbout   = 'A chess position from FEN as an SVG board, with marked squares and arrows - the chess notation, selected with notation:chess.';
   $tagGroup   = 'games';
-  $tagForm    = 'single';
+  $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{chess 'fen'/}
-{chess 'fen', flip, highlight='e2, e4', arrow='e2-e4, g8-f6', size=320, title='Name'/}
+{notation:chess 'fen'/}
+{notation:chess 'fen', flip, highlight='e2, e4', arrow='e2-e4, g8-f6', size=320, title='Name'/}
+{notation:chess flip} fen {/notation:chess}
 PAD;
 
   $tagParms   = [
-    'fen' => 'The position in FEN. The piece placement alone will do; side to move, castling, en passant and the two counters are checked when written.' ];
+    'fen' => 'The position in FEN. The piece placement alone will do; side to move, castling, en passant and the two counters are checked when written. Without it the content between the tags is the FEN.' ];
 
   $tagOptions = [
     'flip'      => 'Bare option: turn the board, Black at the bottom.',
@@ -19,6 +20,6 @@ PAD;
     'size'      => 'Width and height in pixels, 360 when not given (80 at least); the board shrinks to fit a narrower container.',
     'title'     => 'The accessible name of the board. <code>Chess position, White to move</code> when not given.' ];
 
-  $tagSee     = [ 'game', 'chart' ];
+  $tagSee     = [ 'notation:math', 'notation:chess', 'notation:draughts', 'notation:go', 'game:memory' ];
 
 ?>

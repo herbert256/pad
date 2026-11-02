@@ -2,7 +2,7 @@
 
   // How a total is made up, step by step: each bar floats from where the one before ended.
   //
-  //   {chart 'waterfall', data='result', label='step', value='amount', total='Profit'}
+  //   {chart:waterfall data='result', label='step', value='amount', total='Profit'}
   //
   // A row is a step up (green) or down (red) of value= - else the first numeric field -
   // named by label=. A closing bar from zero to the end, in the series colour, is named by

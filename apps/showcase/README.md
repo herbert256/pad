@@ -15,12 +15,12 @@ so what is shown is exactly what runs.
 
 | File | Description |
 |------|-------------|
-| `index.pad` | The home page: a section per tag, a card per example, each drawn through `{page}` |
+| `index.pad` | The home page: a section per tag, a card per example, each drawn through `{pad:page}` |
 | `_inits.pad` | The shared frame, `{common:padFrame}`, and on an example page the cells around `@page@` |
 | `_inits.php` | The frame's menu and title from the catalog and, for an example, its data source and template |
 | `_lib/catalog.php` | The catalog, read from the directories: a tag is a directory with an `_about.txt` |
 | `<tag>/_about.txt` | Three lines: the title, one line about the tag, its group |
-| `<tag>/<example>.pad` | An example; its first line `{meta title='...', about='...'/}` names it - in the menu and in the bar |
+| `<tag>/<example>.pad` | An example; its first line `{pad:meta title='...', about='...'/}` names it - in the menu and in the bar |
 | `<tag>/<example>.php` | The data of an example that builds it in PHP |
 | `_config/config.php` | Switches `_common` off: the frame is reached with the `common:` prefix, and nothing else of `_common` is needed |
 

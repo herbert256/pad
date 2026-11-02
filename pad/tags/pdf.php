@@ -1,23 +1,23 @@
 <?php
 
-  // {pdf file='invoice-114'} ... {/pdf} - what the content renders, sent as a PDF instead of
+  // {pad:pdf file='invoice-114'} ... {/pad:pdf} - what the content renders, sent as a PDF instead of
   // the page (tags/_lib/pdf.php): a pure PHP writer, the standard fonts, the HTML of a document -
   // headings, paragraphs, lists, tables, JPEG pictures. file= names the download (else the
   // page), download sends it as an attachment instead of showing it, size= A4 (default),
   // Letter, A5 or Legal, landscape turns the page, font= helvetica (default), times or
   // courier, title= the document's title (else its first heading). Written as a single tag,
-  // {pdf download}, the whole page is the document.
+  // {pad:pdf download}, the whole page is the document.
   //
   // preview keeps the page a page: the content is shown on a sheet with links to the
   // document - the same page asked with &padPdf (padPdf=download for the attachment)
-  // answers the PDF. Inside a {page} - a document shown in another page, a card that links
+  // answers the PDF. Inside a {pad:page} - a document shown in another page, a card that links
   // on its own - the content is the sheet alone and the response stays the page's: only the
   // page the request asked for answers a document.
   //
-  // Like {live} a pair runs twice: first to ask for the end walk, then on the rendered
+  // Like {pad:live} a pair runs twice: first to ask for the end walk, then on the rendered
   // content.
   //
-  // A {cache} section round it is not kept (padFragmentKeepNot): on a hit the tag did not
+  // A {pad:cache} section round it is not kept (padFragmentKeepNot): on a hit the tag did not
   // run, and the request that asked for the document got the page's HTML.
 
   padFragmentKeepNot ();

@@ -1,10 +1,10 @@
-{meta title='What the trace writes', about='root.txt for a two-row loop: the level path, the event number, what it started from, the event and the result.'/}
-{trace}{sequence '1..2'}{$sequence}{/sequence}{/trace}
+{pad:meta title='What the trace writes', about='root.txt for a two-row loop: the level path, the event number, what it started from, the event and the result.'/}
+{pad:trace}{sequence:range '1..2'}{$sequence}{/sequence:range}{/pad:trace}
 
 {# DATA/trace/<page>/<id>-0/root.txt - beside it trace/local.txt and trace/sequence/local.txt
 1        1             trace     start
 1/1      2             occur     start
-2        3             level     start     {sequence '1..2'}
+2        3             level     start     {sequence:range '1..2'}
 2/1      4             occur     start
 2/1      5      4      occur     end       1
 2/2      6             occur     start

@@ -4,11 +4,11 @@
   // a coin, a drum - made from a recipe, with no audio file anywhere.
   //
   //   {sound:chime/}                              a button that plays it, named Chime
-  //   {sound 'chime', button='Play'/}             the tag; button= the button's label
+  //   {sound:chime button='Play'/}             the tag; button= the button's label
   //   {sound:pop on='click', target='#save'/}     no button: played when #save is clicked
   //   <button data-pad-sound="pop">Pop</button>   any element, once the script is on the page
   //   {sound:chime download/}                     with a link to the sound as a WAV file
-  //   {toast 'Saved', sound='success'/}           a toast that sounds as it shows
+  //   {widget:toast 'Saved', sound='success'/}           a toast that sounds as it shows
   //
   // A sound is a file of subs/sounds/types/ that returns its recipe, a PHP array - the files
   // there are the sounds there are (padSoundKinds, lib/sound.php). A recipe is voices played
@@ -52,7 +52,7 @@
   // padSoundRender     the recipe as 16-bit samples
   // padSoundWavBytes   the samples as a WAV file
   // padSoundAnswer     the WAV as the answer of the request
-  // padSoundTag        what {sound} writes: the button, the binding, the download link
+  // padSoundTag        what {sound:chime} writes: the button, the binding, the download link
   // padSoundScript     the runtime and every recipe, once per page with the CSP nonce
   // padSoundStyle      the button's look, once per page
 
@@ -61,7 +61,7 @@
   const PAD_SOUND_WAVES   = [ 'sine', 'square', 'saw', 'triangle', 'noise' ];
   const PAD_SOUND_FILTERS = [ 'lowpass', 'highpass', 'bandpass' ];
 
-  // The events a sound is played on - on= of {sound}, data-pad-sound-on of an element - and
+  // The events a sound is played on - on= of {sound:chime}, data-pad-sound-on of an element - and
   // the DOM event each listens to; hover is the pointer coming onto the element.
 
   const PAD_SOUND_EVENTS  = [ 'click' => 'click', 'pointerdown' => 'pointerdown', 'hover' => 'pointerover',
@@ -428,7 +428,7 @@
   }
 
   // The WAV as the answer of this request - the page asked again with &padSound=<kind> by
-  // the download link of a {sound}, or a page's own PHP through padSoundSend: the headers
+  // the download link of a {sound:chime}, or a page's own PHP through padSoundSend: the headers
   // set, the rest of the page left out, as padUploadSend sends a file.
 
   function padSoundAnswer ( $kind, $download = FALSE ) {
@@ -471,7 +471,7 @@
   // The tag.
   // ------------------------------------------------------------------------------------
 
-  // What {sound} writes, as the options ask: a button that plays the sound - its label
+  // What {sound:chime} writes, as the options ask: a button that plays the sound - its label
   // button=, else the sound's title - unless target= binds the sound to elements of the
   // page instead (on= the event, click unless told); with download a link to the WAV file
   // beside it; on= the event the button plays on as well, click unless told. volume= the
@@ -495,7 +495,7 @@
 
     if ( $target === '' and in_array ( $on, [ 'change', 'input', 'submit' ], TRUE ) ) {
       if ( $padCheckSyntax )
-        padError ( "the {sound} plays on '$on' only with target= - a button of its own is never submitted, changed nor typed in: target='"
+        padError ( "the {sound:chime} plays on '$on' only with target= - a button of its own is never submitted, changed nor typed in: target='"
                    . ( $on == 'submit' ? 'form' : 'input' ) . "'" );
       $on = 'click';
     }
@@ -528,7 +528,7 @@
       $html .= " <a class=\"pad-sound-download\" href=\"$url\" type=\"audio/wav\" download=\"$kind.wav\">" . padWidgetAttr ( $text ) . '</a>';
     }
 
-    // A {cache} section round a link to the WAV is not kept, as one round a {pdf} is not
+    // A {pad:cache} section round a link to the WAV is not kept, as one round a {pad:pdf} is not
     // (padFragmentKeepNot): on a hit the tag did not run, and the page asked with &padSound
     // answered its HTML - and the link holds this request's own values.
 
@@ -540,7 +540,7 @@
   }
 
   // This page asked again for the WAV of a sound: its route and its own request values, as
-  // {pdf preview} links to its document (padPdfLinks), with padSound=<kind>.
+  // {pad:pdf preview} links to its document (padPdfLinks), with padSound=<kind>.
 
   function padSoundUrl ( $kind ) {
 
@@ -578,7 +578,7 @@
       return $value;
 
     if ( $padCheckSyntax )
-      padError ( "the {sound} has no $option '" . padMakeSafe ( $value, 20 ) . "' - " . implode ( ', ', $choices ) );
+      padError ( "the {sound:chime} has no $option '" . padMakeSafe ( $value, 20 ) . "' - " . implode ( ', ', $choices ) );
 
     return $default;
 
@@ -597,7 +597,7 @@
       return (int) $text;
 
     if ( $padCheckSyntax )
-      padError ( "the {sound} has no volume '" . padMakeSafe ( $text, 20 ) . "' - a whole number from 0 to 100" );
+      padError ( "the {sound:chime} has no volume '" . padMakeSafe ( $text, 20 ) . "' - a whole number from 0 to 100" );
 
     return 100;
 
@@ -608,7 +608,7 @@
   // ------------------------------------------------------------------------------------
 
   // The runtime, www/assets/sounds/sound.js, and every recipe there is, settled - so a data-pad-sound
-  // of any kind plays once a {sound} or a toast with a sound has written the script.
+  // of any kind plays once a {sound:chime} or a toast with a sound has written the script.
 
   function padSoundScript () {
 

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      {pad:icon} · PAD tags
+      {icon:*} · PAD tags
     </title>
     <link rel="stylesheet" href="../_common/pad.css">
     <link rel="stylesheet" href="../_common/brand.css">
     <script src="../_common/pad.js"></script>
     <script src="../_common/brand.js" defer></script>
     <link rel="stylesheet" href="tags.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
   </head>
   <body class="frame app-tags">
     <aside class="frame-side">
@@ -24,89 +27,113 @@
             </summary>
             <nav class="pad-brand-apps" aria-label="PAD applications">
               <div class="pad-brand-columns">
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    PAD
-                  </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
-                  <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
-                  <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Showcases
-                  </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                  <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                  <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                  <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Front ends
-                  </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
-                  <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
-                  <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
-                  <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Offline
-                  </div><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                  <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
-                  <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
-                  <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Examples
-                  </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/playground/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
-                  <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>playground</b><small>Type a template, see the result</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-                  <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Tools
-                  </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
-                  <circle cx="9" cy="7" r="2"></circle>
-                  <circle cx="15" cy="12" r="2"></circle>
-                  <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
-                  <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
-                  <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
                 </div>
               </div>
             </nav>
@@ -130,26 +157,80 @@
     <main class="frame-main">
       <header class="frame-top">
         <form class="search" action="" method="get" role="search">
-          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 634 tags" autocomplete="off">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags and kinds</label> <input type="search" id="q" name="q" value="" placeholder="Search 1220 entries" autocomplete="off">
         </form>
         <div class="frame-tools">
-          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
         </div>
       </header>
       <div class="frame-body">
         <article class="tag">
           <nav class="crumbs" aria-label="Where you are">
-            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#pictures">Pictures and media</a><span>/</span><span aria-current="page">pad:icon</span>
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#pictures">Pictures and media</a><span>/</span><span aria-current="page">icon:*</span>
           </nav>
           <header class="tag-head">
             <h1>
-              <span class="brace">{</span>pad:icon<span class="brace">}</span>
+              <span class="brace">{</span>icon:*<span class="brace">}</span>
             </h1>
             <p class="tag-about">
-              Writes an interface icon from PAD's own set of 202 as inline SVG, drawn in the colour of the text around it.
+              Writes an interface icon from PAD's own set of 232 as inline SVG, drawn in the colour of the text around it.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#pictures">Pictures and media</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
@@ -159,18 +240,18 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'arrow-right'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'trash'</span>, <span class="hl-opt">size</span>=<span class="hl-num">20</span>, <span class="hl-opt">stroke</span>=<span class="hl-num">2</span>, <span class="hl-opt">label</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon:arrow</span>-right<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">icon:trash</span> <span class="hl-opt">size</span>=<span class="hl-num">20</span>, <span class="hl-opt">stroke</span>=<span class="hl-num">2</span>, <span class="hl-opt">label</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">icon:star</span> <span class="hl-opt">size</span>=<span class="hl-num">20</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
             <dl class="defs">
               <dt>
-                <code>name</code>
+                <code>kind after colon</code>
               </dt>
               <dd>
-                The icon, a file of <code>pad/subs/icons/types/</code>: arrows (<code>arrow-right</code>, <code>chevron-down</code>, <code>undo</code>, <code>refresh</code> ...), marks (<code>check</code>, <code>x</code>, <code>plus</code>, <code>info</code>, <code>alert</code>, <code>star</code>, <code>heart</code> ...), layout (<code>home</code>, <code>menu</code>, <code>search</code>, <code>settings</code>, <code>table</code> ...), people and talk (<code>user</code>, <code>mail</code>, <code>chat</code>, <code>bell</code> ...), files (<code>file</code>, <code>folder</code>, <code>edit</code>, <code>trash</code>, <code>save</code> ...), media (<code>play</code>, <code>mic</code>, <code>volume</code> ...), devices and code (<code>monitor</code>, <code>cpu</code>, <code>bug</code>, <code>terminal</code> ...), money, weather and things. The icon type names it as well, <code>{icon:star/}</code>. <code>padIconNames ()</code> lists them all.
+                The icon, a file of <code>pad/subs/icons/types/</code>: arrows (<code>arrow-right</code>, <code>chevron-down</code>, <code>undo</code>, <code>refresh</code> ...), marks (<code>check</code>, <code>x</code>, <code>plus</code>, <code>info</code>, <code>alert</code>, <code>star</code>, <code>heart</code> ...), layout (<code>home</code>, <code>menu</code>, <code>search</code>, <code>settings</code>, <code>table</code> ...), text formatting (<code>bold</code>, <code>italic</code>, <code>list-ordered</code>, <code>quote</code> ...), people and talk (<code>user</code>, <code>mail</code>, <code>chat</code>, <code>bell</code> ...), files (<code>file</code>, <code>folder</code>, <code>edit</code>, <code>trash</code>, <code>save</code> ...), media (<code>play</code>, <code>mic</code>, <code>volume</code> ...), devices and code (<code>monitor</code>, <code>cpu</code>, <code>bug</code>, <code>terminal</code> ...), money, weather and things. The icon: prefix selects it, <code>{icon:star/}</code>. <code>padIconNames ()</code> lists them all.
               </dd>
             </dl>
             <h3>
@@ -202,16 +283,16 @@
               Description
             </h2>
             <p>
-              <code>{icon}</code> writes an icon from PAD's own set: 202 interface symbols drawn on a 24 by 24 grid as lines, circles and rectangles, written as inline SVG - no icon font, no sprite file, no request. The icon is drawn with <code>stroke="currentColor"</code>, round caps and joins and no fill, so it takes the colour of the text around it and scales with <code>size</code>.
+              <code>{icon:star}</code> writes an icon from PAD's own set: 232 interface symbols drawn on a 24 by 24 grid as lines, circles and rectangles, written as inline SVG - no icon font, no sprite file, no request. The icon is drawn with <code>stroke="currentColor"</code>, round caps and joins and no fill, so it takes the colour of the text around it and scales with <code>size</code>.
             </p>
             <p>
               The icons are the icon subsystem of PAD (<code>pad/subs/icons/</code>): each is a file of <code>pad/subs/icons/types/</code>, <code>&lt;name&gt;.svg</code> - a whole SVG a browser shows as it is, whose drawing the tag writes inside an svg element of its own - and an icon is added by adding its file. The icon type writes one by its name, <code>{icon:star size=20/}</code>; the names are never reached bare, as they are the names of fields and pages too.
             </p>
             <p>
-              Without <code>label</code> the icon is decoration - <code>aria-hidden="true"</code> and <code>focusable="false"</code> - right for an icon beside the text it goes with, like <code>{icon 'trash'/} Delete</code>. An icon that stands alone in a button or a link needs <code>label</code>: it then becomes <code>role="img"</code> with that name, so a screen reader says what the button does.
+              Without <code>label</code> the icon is decoration - <code>aria-hidden="true"</code> and <code>focusable="false"</code> - right for an icon beside the text it goes with, like <code>{icon:trash/} Delete</code>. An icon that stands alone in a button or a link needs <code>label</code>: it then becomes <code>role="img"</code> with that name, so a screen reader says what the button does.
             </p>
             <p>
-              Each icon has the classes <code>pad-icon pad-icon-&lt;name&gt;</code> for styling; <code>stroke</code> makes the lines lighter or heavier. No name, or a name not in the set, is an error under the strict check that names the icons close to it (<code>did you mean arrow-left?</code>). <code>padIconNames ()</code> answers the whole list to PHP, and the showcase draws <a href="../showcase/index%EF%B9%96icon%EA%A4%B7gallery.html">every icon</a>. For a picture character in text see <a href="index%EF%B9%96tag%EA%A4%B7emoji.html">{emoji}</a>.
+              Each icon has the classes <code>pad-icon pad-icon-&lt;name&gt;</code> for styling; <code>stroke</code> makes the lines lighter or heavier. No name, or a name not in the set, is an error under the strict check that names the icons close to it (<code>did you mean arrow-left?</code>). <code>padIconNames ()</code> answers the whole list to PHP, and the showcase draws <a href="../showcase/index%EF%B9%96icon%EA%A4%B7gallery.html">every icon</a>. For a picture character in text see <a href="index%EF%B9%96tag%EA%A4%B7emoji.html">{pad:emoji}</a>.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -228,19 +309,22 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/icon/1-buttons.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/icon/1-buttons.pad</span></span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:flex; gap:8px; flex-wrap:wrap"</span><span class="hl-htm">&gt;</span>
-  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'download'</span>, <span class="hl-opt">size</span>=<span class="hl-num">16</span><span class="hl-brc">/}</span> Download<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
-  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'edit'</span>, <span class="hl-opt">size</span>=<span class="hl-num">16</span><span class="hl-brc">/}</span> Edit<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
-  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'trash'</span>, <span class="hl-opt">size</span>=<span class="hl-num">16</span><span class="hl-brc">/}</span> Delete<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
-  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'settings'</span>, <span class="hl-opt">size</span>=<span class="hl-num">16</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Settings'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">icon:download</span> <span class="hl-opt">size</span>=<span class="hl-num">16</span><span class="hl-brc">/}</span> Download<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">icon:edit</span> <span class="hl-opt">size</span>=<span class="hl-num">16</span><span class="hl-brc">/}</span> Edit<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">icon:trash</span> <span class="hl-opt">size</span>=<span class="hl-num">16</span><span class="hl-brc">/}</span> Delete<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">icon:settings</span> <span class="hl-opt">size</span>=<span class="hl-num">16</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Settings'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"?tag/icon"</span><span class="hl-htm">&gt;</span>More about icons <span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'arrow-right'</span>, <span class="hl-opt">size</span>=<span class="hl-num">16</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"?tag/icon"</span><span class="hl-htm">&gt;</span>More about icons <span class="hl-brc">{</span><span class="hl-tag">icon:arrow</span>-right <span class="hl-opt">size</span>=<span class="hl-num">16</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7icon%EA%A4%B71-buttons.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7icon%EA%A4%B71-buttons.html">open alone</a></span>
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cCBzdHlsZT1cImRpc3BsYXk6ZmxleDsgZ2FwOjhweDsgZmxleC13cmFwOndyYXBcIj5cbiAgPGJ1dHRvbiB0eXBlPVwiYnV0dG9uXCI+e2ljb246ZG93bmxvYWQgc2l6ZT0xNi99IERvd25sb2FkPC9idXR0b24+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiPntpY29uOmVkaXQgc2l6ZT0xNi99IEVkaXQ8L2J1dHRvbj5cbiAgPGJ1dHRvbiB0eXBlPVwiYnV0dG9uXCI+e2ljb246dHJhc2ggc2l6ZT0xNi99IERlbGV0ZTwvYnV0dG9uPlxuICA8YnV0dG9uIHR5cGU9XCJidXR0b25cIj57aWNvbjpzZXR0aW5ncyBzaXplPTE2LCBsYWJlbD0nU2V0dGluZ3MnL308L2J1dHRvbj5cbjwvcD5cbjxwPjxhIGhyZWY9XCI/dGFnL2ljb25cIj5Nb3JlIGFib3V0IGljb25zIHtpY29uOmFycm93LXJpZ2h0IHNpemU9MTYvfTwvYT48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8cCBzdHlsZT1cImRpc3BsYXk6ZmxleDsgZ2FwOjhweDsgZmxleC13cmFwOndyYXBcIj5cbiAgPGJ1dHRvbiB0eXBlPVwiYnV0dG9uXCI+e2ljb246ZG93bmxvYWQgc2l6ZT0xNi99IERvd25sb2FkPC9idXR0b24+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiPntpY29uOmVkaXQgc2l6ZT0xNi99IEVkaXQ8L2J1dHRvbj5cbiAgPGJ1dHRvbiB0eXBlPVwiYnV0dG9uXCI+e2ljb246dHJhc2ggc2l6ZT0xNi99IERlbGV0ZTwvYnV0dG9uPlxuICA8YnV0dG9uIHR5cGU9XCJidXR0b25cIj57aWNvbjpzZXR0aW5ncyBzaXplPTE2LCBsYWJlbD0nU2V0dGluZ3MnL308L2J1dHRvbj5cbjwvcD5cbjxwPjxhIGhyZWY9XCI/dGFnL2ljb25cIj5Nb3JlIGFib3V0IGljb25zIHtpY29uOmFycm93LXJpZ2h0IHNpemU9MTYvfTwvYT48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <p style="display:flex; gap:8px; flex-wrap:wrap">
@@ -275,18 +359,20 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/icon/2-sizes.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/icon/2-sizes.pad</span></span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:flex; gap:12px; align-items:center"</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'heart'</span>, <span class="hl-opt">size</span>=<span class="hl-num">16</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'heart'</span>, <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'heart'</span>, <span class="hl-opt">size</span>=<span class="hl-num">40</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'heart'</span>, <span class="hl-opt">size</span>=<span class="hl-num">40</span>, <span class="hl-opt">stroke</span>=<span class="hl-num">1</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">icon:heart</span> <span class="hl-opt">size</span>=<span class="hl-num">16</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">icon:heart</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">icon:heart</span> <span class="hl-opt">size</span>=<span class="hl-num">40</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">icon:heart</span> <span class="hl-opt">size</span>=<span class="hl-num">40</span>, <span class="hl-opt">stroke</span>=<span class="hl-num">1</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;p</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:flex; gap:12px; align-items:center; color:#2e7d32"</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'check-circle'</span>, <span class="hl-opt">size</span>=<span class="hl-num">28</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Done'</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'info'</span>, <span class="hl-opt">size</span>=<span class="hl-num">28</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Information'</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-str">'alert'</span>, <span class="hl-opt">size</span>=<span class="hl-num">28</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Warning'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">icon:check</span>-circle <span class="hl-opt">size</span>=<span class="hl-num">28</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Done'</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">icon:info</span> <span class="hl-opt">size</span>=<span class="hl-num">28</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Information'</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">icon:alert</span> <span class="hl-opt">size</span>=<span class="hl-num">28</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Warning'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7icon%EA%A4%B72-sizes.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7icon%EA%A4%B72-sizes.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cCBzdHlsZT1cImRpc3BsYXk6ZmxleDsgZ2FwOjEycHg7IGFsaWduLWl0ZW1zOmNlbnRlclwiPlxuICB7aWNvbjpoZWFydCBzaXplPTE2L317aWNvbjpoZWFydCBzaXplPTI0L317aWNvbjpoZWFydCBzaXplPTQwL317aWNvbjpoZWFydCBzaXplPTQwLCBzdHJva2U9MS99XG48L3A+XG48cCBzdHlsZT1cImRpc3BsYXk6ZmxleDsgZ2FwOjEycHg7IGFsaWduLWl0ZW1zOmNlbnRlcjsgY29sb3I6IzJlN2QzMlwiPlxuICB7aWNvbjpjaGVjay1jaXJjbGUgc2l6ZT0yOCwgbGFiZWw9J0RvbmUnL317aWNvbjppbmZvIHNpemU9MjgsIGxhYmVsPSdJbmZvcm1hdGlvbicvfXtpY29uOmFsZXJ0IHNpemU9MjgsIGxhYmVsPSdXYXJuaW5nJy99XG48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8cCBzdHlsZT1cImRpc3BsYXk6ZmxleDsgZ2FwOjEycHg7IGFsaWduLWl0ZW1zOmNlbnRlclwiPlxuICB7aWNvbjpoZWFydCBzaXplPTE2L317aWNvbjpoZWFydCBzaXplPTI0L317aWNvbjpoZWFydCBzaXplPTQwL317aWNvbjpoZWFydCBzaXplPTQwLCBzdHJva2U9MS99XG48L3A+XG48cCBzdHlsZT1cImRpc3BsYXk6ZmxleDsgZ2FwOjEycHg7IGFsaWduLWl0ZW1zOmNlbnRlcjsgY29sb3I6IzJlN2QzMlwiPlxuICB7aWNvbjpjaGVjay1jaXJjbGUgc2l6ZT0yOCwgbGFiZWw9J0RvbmUnL317aWNvbjppbmZvIHNpemU9MjgsIGxhYmVsPSdJbmZvcm1hdGlvbicvfXtpY29uOmFsZXJ0IHNpemU9MjgsIGxhYmVsPSdXYXJuaW5nJy99XG48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <p style="display:flex; gap:12px; align-items:center">
@@ -328,12 +414,12 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/icon/3-list.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/icon/3-list.pad</span></span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;ul</span> <span class="hl-opt">style</span>=<span class="hl-str">"list-style:none; padding:0; display:flex; flex-wrap:wrap; gap:16px"</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">glyphs</span><span class="hl-brc">}</span>
-  <span class="hl-htm">&lt;li</span> <span class="hl-opt">style</span>=<span class="hl-str">"text-align:center"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-var">$name</span>, <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;br</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">/glyphs</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">array:glyphs</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;li</span> <span class="hl-opt">style</span>=<span class="hl-str">"text-align:center"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">icon:</span><span class="hl-var">$name</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;br</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/array:glyphs</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/icon/3-list.php</span>
@@ -349,7 +435,9 @@
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7icon%EA%A4%B73-list.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7icon%EA%A4%B73-list.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWwgc3R5bGU9XCJsaXN0LXN0eWxlOm5vbmU7IHBhZGRpbmc6MDsgZGlzcGxheTpmbGV4OyBmbGV4LXdyYXA6d3JhcDsgZ2FwOjE2cHhcIj5cbiAge2FycmF5OmdseXBoc31cbiAgPGxpIHN0eWxlPVwidGV4dC1hbGlnbjpjZW50ZXJcIj57aWNvbjokbmFtZSBzaXplPTI0L308YnI+PGNvZGU+eyRuYW1lfTwvY29kZT48L2xpPlxuICB7L2FycmF5OmdseXBoc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGdseXBocyA9IFtcbiAgICBbICduYW1lJyA9PiAnaG9tZScgICAgIF0sIFsgJ25hbWUnID0+ICdzZWFyY2gnICAgXSwgWyAnbmFtZScgPT4gJ3VzZXInICBdLCBbICduYW1lJyA9PiAnbWFpbCcgICBdLFxuICAgIFsgJ25hbWUnID0+ICdjYWxlbmRhcicgXSwgWyAnbmFtZScgPT4gJ2Nsb2NrJyAgICBdLCBbICduYW1lJyA9PiAnbG9jaycgIF0sIFsgJ25hbWUnID0+ICdmb2xkZXInIF0sXG4gICAgWyAnbmFtZScgPT4gJ2NhcnQnICAgICBdLCBbICduYW1lJyA9PiAndGVybWluYWwnIF0gXTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWwgc3R5bGU9XCJsaXN0LXN0eWxlOm5vbmU7IHBhZGRpbmc6MDsgZGlzcGxheTpmbGV4OyBmbGV4LXdyYXA6d3JhcDsgZ2FwOjE2cHhcIj5cbiAge2FycmF5OmdseXBoc31cbiAgPGxpIHN0eWxlPVwidGV4dC1hbGlnbjpjZW50ZXJcIj57aWNvbjokbmFtZSBzaXplPTI0L308YnI+PGNvZGU+eyRuYW1lfTwvY29kZT48L2xpPlxuICB7L2FycmF5OmdseXBoc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGdseXBocyA9IFtcbiAgICBbICduYW1lJyA9PiAnaG9tZScgICAgIF0sIFsgJ25hbWUnID0+ICdzZWFyY2gnICAgXSwgWyAnbmFtZScgPT4gJ3VzZXInICBdLCBbICduYW1lJyA9PiAnbWFpbCcgICBdLFxuICAgIFsgJ25hbWUnID0+ICdjYWxlbmRhcicgXSwgWyAnbmFtZScgPT4gJ2Nsb2NrJyAgICBdLCBbICduYW1lJyA9PiAnbG9jaycgIF0sIFsgJ25hbWUnID0+ICdmb2xkZXInIF0sXG4gICAgWyAnbmFtZScgPT4gJ2NhcnQnICAgICBdLCBbICduYW1lJyA9PiAndGVybWluYWwnIF0gXTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <ul style="list-style:none; padding:0; display:flex; flex-wrap:wrap; gap:16px">
@@ -427,13 +515,15 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/icon/4-type.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/icon/4-type.pad</span></span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:flex; gap:12px; align-items:center"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">icon:star</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">icon:cloud</span>-upload <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">icon:thumb</span>-up <span class="hl-opt">size</span>=<span class="hl-num">24</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Like'</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">icon:cog</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span>, <span class="hl-opt">stroke</span>=<span class="hl-num">1.5</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7icon%EA%A4%B74-type.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7icon%EA%A4%B74-type.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cCBzdHlsZT1cImRpc3BsYXk6ZmxleDsgZ2FwOjEycHg7IGFsaWduLWl0ZW1zOmNlbnRlclwiPntpY29uOnN0YXIgc2l6ZT0yNC99e2ljb246Y2xvdWQtdXBsb2FkIHNpemU9MjQvfXtpY29uOnRodW1iLXVwIHNpemU9MjQsIGxhYmVsPSdMaWtlJy99e2ljb246Y29nIHNpemU9MjQsIHN0cm9rZT0xLjUvfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8cCBzdHlsZT1cImRpc3BsYXk6ZmxleDsgZ2FwOjEycHg7IGFsaWduLWl0ZW1zOmNlbnRlclwiPntpY29uOnN0YXIgc2l6ZT0yNC99e2ljb246Y2xvdWQtdXBsb2FkIHNpemU9MjQvfXtpY29uOnRodW1iLXVwIHNpemU9MjQsIGxhYmVsPSdMaWtlJy99e2ljb246Y29nIHNpemU9MjQsIHN0cm9rZT0xLjUvfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <p style="display:flex; gap:12px; align-items:center">
@@ -463,12 +553,12 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/icon/5-every.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/icon/5-every.pad</span></span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;ul</span> <span class="hl-opt">style</span>=<span class="hl-str">"list-style:none; padding:0; display:grid; grid-template-columns:repeat(auto-fill, minmax(104px, 1fr)); gap:12px"</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">glyphs</span><span class="hl-brc">}</span>
-  <span class="hl-htm">&lt;li</span> <span class="hl-opt">style</span>=<span class="hl-str">"text-align:center"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">icon</span> <span class="hl-var">$name</span>, <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;br</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;code</span> <span class="hl-opt">style</span>=<span class="hl-str">"font-size:11px"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">/glyphs</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">array:glyphs</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;li</span> <span class="hl-opt">style</span>=<span class="hl-str">"text-align:center"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">icon:</span><span class="hl-var">$name</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;br</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;code</span> <span class="hl-opt">style</span>=<span class="hl-str">"font-size:11px"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/array:glyphs</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/icon/5-every.php</span>
@@ -481,10 +571,19 @@
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7icon%EA%A4%B75-every.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7icon%EA%A4%B75-every.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWwgc3R5bGU9XCJsaXN0LXN0eWxlOm5vbmU7IHBhZGRpbmc6MDsgZGlzcGxheTpncmlkOyBncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KGF1dG8tZmlsbCwgbWlubWF4KDEwNHB4LCAxZnIpKTsgZ2FwOjEycHhcIj5cbiAge2FycmF5OmdseXBoc31cbiAgPGxpIHN0eWxlPVwidGV4dC1hbGlnbjpjZW50ZXJcIj57aWNvbjokbmFtZSBzaXplPTI0L308YnI+PGNvZGUgc3R5bGU9XCJmb250LXNpemU6MTFweFwiPnskbmFtZX08L2NvZGU+PC9saT5cbiAgey9hcnJheTpnbHlwaHN9XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRnbHlwaHMgPSBhcnJheV9tYXAgKCBmbiAoICRuYW1lICkgPT4gWyAnbmFtZScgPT4gJG5hbWUgXSwgcGFkSWNvbk5hbWVzICgpICk7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWwgc3R5bGU9XCJsaXN0LXN0eWxlOm5vbmU7IHBhZGRpbmc6MDsgZGlzcGxheTpncmlkOyBncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KGF1dG8tZmlsbCwgbWlubWF4KDEwNHB4LCAxZnIpKTsgZ2FwOjEycHhcIj5cbiAge2FycmF5OmdseXBoc31cbiAgPGxpIHN0eWxlPVwidGV4dC1hbGlnbjpjZW50ZXJcIj57aWNvbjokbmFtZSBzaXplPTI0L308YnI+PGNvZGUgc3R5bGU9XCJmb250LXNpemU6MTFweFwiPnskbmFtZX08L2NvZGU+PC9saT5cbiAgey9hcnJheTpnbHlwaHN9XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRnbHlwaHMgPSBhcnJheV9tYXAgKCBmbiAoICRuYW1lICkgPT4gWyAnbmFtZScgPT4gJG5hbWUgXSwgcGFkSWNvbk5hbWVzICgpICk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <ul style="list-style:none; padding:0; display:grid; grid-template-columns:repeat(auto-fill, minmax(104px, 1fr)); gap:12px">
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-accessibility" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <circle cx="12" cy="7" r="1"></circle>
+                        <path d="M7 10l5 1.2 5-1.2M12 11.2V14l-2.8 4.5M12 14l2.8 4.5"></path></svg><br>
+                        <code style="font-size:11px">accessibility</code>
+                      </li>
                       <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-activity" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M2.5 12h4l3-7.5 5 15 3-7.5h4"></path></svg><br>
@@ -545,6 +644,11 @@
                         <code style="font-size:11px">arrow-down-left</code>
                       </li>
                       <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-arrow-down-right" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 7l10 10M8.5 17H17V8.5"></path></svg><br>
+                        <code style="font-size:11px">arrow-down-right</code>
+                      </li>
+                      <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-arrow-left" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M19 12H5M11 6l-6 6 6 6"></path></svg><br>
                         <code style="font-size:11px">arrow-left</code>
@@ -558,6 +662,11 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-arrow-up" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 19V5M6 11l6-6 6 6"></path></svg><br>
                         <code style="font-size:11px">arrow-up</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-arrow-up-left" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 17L7 7M15.5 7H7v8.5"></path></svg><br>
+                        <code style="font-size:11px">arrow-up-left</code>
                       </li>
                       <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-arrow-up-right" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -622,6 +731,11 @@
                         <code style="font-size:11px">bluetooth</code>
                       </li>
                       <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bold" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 4h5.5a4 4 0 0 1 0 8H7ZM7 12h6.5a4 4 0 0 1 0 8H7Z"></path></svg><br>
+                        <code style="font-size:11px">bold</code>
+                      </li>
+                      <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-book" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5Z"></path>
                         <path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3"></path></svg><br>
@@ -667,6 +781,12 @@
                         <rect x="3.5" y="5" width="17" height="15" rx="2"></rect>
                         <path d="M3.5 10h17M8 3v4M16 3v4"></path></svg><br>
                         <code style="font-size:11px">calendar</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-calendar-range" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3.5" y="5" width="17" height="15" rx="2"></rect>
+                        <path d="M3.5 10h17M8 3v4M16 3v4M7.5 13.5v3M16.5 13.5v3M7.5 15h9"></path></svg><br>
+                        <code style="font-size:11px">calendar-range</code>
                       </li>
                       <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-camera" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -736,6 +856,11 @@
                         <code style="font-size:11px">chevron-up</code>
                       </li>
                       <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevrons-down" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 5.5l6 6 6-6M6 12.5l6 6 6-6"></path></svg><br>
+                        <code style="font-size:11px">chevrons-down</code>
+                      </li>
+                      <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevrons-left" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M18.5 6l-6 6 6 6M11.5 6l-6 6 6 6"></path></svg><br>
                         <code style="font-size:11px">chevrons-left</code>
@@ -744,6 +869,11 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevrons-right" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M5.5 6l6 6-6 6M12.5 6l6 6-6 6"></path></svg><br>
                         <code style="font-size:11px">chevrons-right</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevrons-up" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 18.5l6-6 6 6M6 11.5l6-6 6 6"></path></svg><br>
+                        <code style="font-size:11px">chevrons-up</code>
                       </li>
                       <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-circle" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -895,6 +1025,12 @@
                         <code style="font-size:11px">file</code>
                       </li>
                       <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-plus" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                        <path d="M14 3v5h5M12 11.5v6M9 14.5h6"></path></svg><br>
+                        <code style="font-size:11px">file-plus</code>
+                      </li>
+                      <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
                         <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><br>
@@ -932,6 +1068,12 @@
                         <code style="font-size:11px">folder-open</code>
                       </li>
                       <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder-plus" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path>
+                        <path d="M12 10.5v6M9 13.5h6"></path></svg><br>
+                        <code style="font-size:11px">folder-plus</code>
+                      </li>
+                      <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-frown" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="9"></circle>
                         <path d="M8.5 16.5a4.5 4.5 0 0 1 7 0M9 9.5v.01M15 9.5v.01"></path></svg><br>
@@ -952,6 +1094,27 @@
                         <code style="font-size:11px">git-branch</code>
                       </li>
                       <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-git-commit" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3.5"></circle>
+                        <path d="M3 12h5.5M15.5 12H21"></path></svg><br>
+                        <code style="font-size:11px">git-commit</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-git-compare" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="6" cy="6" r="2.5"></circle>
+                        <circle cx="18" cy="18" r="2.5"></circle>
+                        <path d="M6 8.5V15a3 3 0 0 0 3 3h3.5M10.5 15.5L13 18l-2.5 2.5M18 15.5V9a3 3 0 0 0-3-3h-3.5M13.5 8.5L11 6l2.5-2.5"></path></svg><br>
+                        <code style="font-size:11px">git-compare</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-git-merge" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="6.5" cy="5.5" r="2.5"></circle>
+                        <circle cx="6.5" cy="18.5" r="2.5"></circle>
+                        <circle cx="17.5" cy="15" r="2.5"></circle>
+                        <path d="M6.5 8v8M6.5 8c.5 4.5 4 7 8.5 7"></path></svg><br>
+                        <code style="font-size:11px">git-merge</code>
+                      </li>
+                      <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-globe" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="9"></circle>
                         <path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3Z"></path></svg><br>
@@ -964,6 +1127,23 @@
                         <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
                         <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><br>
                         <code style="font-size:11px">grid</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grip" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="5.5" r="1"></circle>
+                        <circle cx="15" cy="5.5" r="1"></circle>
+                        <circle cx="9" cy="12" r="1"></circle>
+                        <circle cx="15" cy="12" r="1"></circle>
+                        <circle cx="9" cy="18.5" r="1"></circle>
+                        <circle cx="15" cy="18.5" r="1"></circle></svg><br>
+                        <code style="font-size:11px">grip</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-hard-drive" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2.5 13.5L5.5 5h13l3 8.5"></path>
+                        <rect x="2.5" y="13.5" width="19" height="6.5" rx="1.5"></rect>
+                        <path d="M6.5 16.75h.01M10 16.75h.01"></path></svg><br>
+                        <code style="font-size:11px">hard-drive</code>
                       </li>
                       <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-hash" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1023,6 +1203,11 @@
                         <code style="font-size:11px">info</code>
                       </li>
                       <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-italic" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 4h7M6 20h7M14.5 4l-5 16"></path></svg><br>
+                        <code style="font-size:11px">italic</code>
+                      </li>
+                      <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-key" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="8" cy="15.5" r="4.5"></circle>
                         <path d="M11.2 12.3L20 3.5M16.5 7l3 3M14 9.5l2 2"></path></svg><br>
@@ -1068,9 +1253,19 @@
                         <code style="font-size:11px">link</code>
                       </li>
                       <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-link-off" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15.5 13.5l3.2-3.2a4 4 0 0 0-5.7-5.7l-3.2 3.2M8.5 10.5l-3.2 3.2a4 4 0 0 0 5.7 5.7l3.2-3.2M7.5 3.5V6M3.5 7.5H6M16.5 20.5V18M20.5 16.5H18"></path></svg><br>
+                        <code style="font-size:11px">link-off</code>
+                      </li>
+                      <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><br>
                         <code style="font-size:11px">list</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list-ordered" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 6h9M11 12h9M11 18h9M3.5 5L5.5 3.5V9.5M3.5 16a2 2 0 0 1 4 0c0 1.8-4 2.5-4 4.5h4"></path></svg><br>
+                        <code style="font-size:11px">list-ordered</code>
                       </li>
                       <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-loader" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1121,6 +1316,12 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-maximize" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path></svg><br>
                         <code style="font-size:11px">maximize</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-megaphone" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 9h4l10-5v16l-10-5H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1Z"></path>
+                        <path d="M8 9v6M7.5 15l1.5 5.5h2.5L10.5 16"></path></svg><br>
+                        <code style="font-size:11px">megaphone</code>
                       </li>
                       <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-menu" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1220,6 +1421,12 @@
                         <code style="font-size:11px">package</code>
                       </li>
                       <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-palette" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3a9 9 0 1 0 1.5 17.9c1.2-.2 1.6-1.3 1-2.3l-.4-.7c-.7-1.2.2-2.9 1.6-2.9h1.8A3.5 3.5 0 0 0 21 11.5C21 6.8 17 3 12 3Z"></path>
+                        <path d="M7.5 12.5h.01M8.5 8h.01M12.5 6.5h.01M16.5 8.5h.01"></path></svg><br>
+                        <code style="font-size:11px">palette</code>
+                      </li>
+                      <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-paperclip" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20 11.5l-8 8a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.4 8.4a1.7 1.7 0 0 1-2.4-2.4l7.6-7.6"></path></svg><br>
                         <code style="font-size:11px">paperclip</code>
@@ -1241,6 +1448,11 @@
                         <rect x="7" y="3" width="10" height="18" rx="2"></rect>
                         <path d="M11 18h2"></path></svg><br>
                         <code style="font-size:11px">phone</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-pin" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M8.5 3.5h7M10 3.5v5L6.5 13h11L14 8.5v-5M12 13v7.5"></path></svg><br>
+                        <code style="font-size:11px">pin</code>
                       </li>
                       <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1283,6 +1495,17 @@
                         <code style="font-size:11px">qr-code</code>
                       </li>
                       <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-quote" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 18.5c3.5-1.5 5-4 5-7.5V7H5v4.5h5M14 18.5c3.5-1.5 5-4 5-7.5V7h-5v4.5h5"></path></svg><br>
+                        <code style="font-size:11px">quote</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-receipt" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5.5 3.5h13V21l-3.25-1.5L12 21l-3.25-1.5L5.5 21Z"></path>
+                        <path d="M9 8h6M9 11.5h6M9 15h4"></path></svg><br>
+                        <code style="font-size:11px">receipt</code>
+                      </li>
+                      <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-redo" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M15.5 13.5L20 9l-4.5-4.5"></path>
                         <path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"></path></svg><br>
@@ -1307,6 +1530,13 @@
                         <code style="font-size:11px">rewind</code>
                       </li>
                       <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-rocket" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2.5c3 2.2 4.5 5.5 4.5 9.5v4.5h-9V12c0-4 1.5-7.3 4.5-9.5Z"></path>
+                        <circle cx="12" cy="9.5" r="1.5"></circle>
+                        <path d="M7.5 12.5L5 15v4l2.5-1.5M16.5 12.5L19 15v4l-2.5-1.5M10.5 19v2M13.5 19v2"></path></svg><br>
+                        <code style="font-size:11px">rocket</code>
+                      </li>
+                      <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-rss" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M5 11a8 8 0 0 1 8 8M5 4.5A14.5 14.5 0 0 1 19.5 19"></path>
                         <circle cx="6" cy="18" r="1"></circle></svg><br>
@@ -1317,6 +1547,11 @@
                         <path d="M5 3.5h11l4.5 4.5V19a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 19V5A1.5 1.5 0 0 1 5 3.5Z"></path>
                         <path d="M7.5 3.5v5h7v-5M7 20.5v-6h10v6"></path></svg><br>
                         <code style="font-size:11px">save</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-scan" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 8.5V6a2 2 0 0 1 2-2h2.5M15.5 4H18a2 2 0 0 1 2 2v2.5M20 15.5V18a2 2 0 0 1-2 2h-2.5M8.5 20H6a2 2 0 0 1-2-2v-2.5M7.5 12h9"></path></svg><br>
+                        <code style="font-size:11px">scan</code>
                       </li>
                       <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-scissors" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1415,6 +1650,12 @@
                         <code style="font-size:11px">sparkle</code>
                       </li>
                       <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-split-pane" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                        <path d="M12 4v16M8.5 9.5L6 12l2.5 2.5M15.5 9.5L18 12l-2.5 2.5"></path></svg><br>
+                        <code style="font-size:11px">split-pane</code>
+                      </li>
+                      <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-square" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="4" y="4" width="16" height="16" rx="2"></rect></svg><br>
                         <code style="font-size:11px">square</code>
@@ -1434,6 +1675,17 @@
                         <circle cx="12" cy="13.5" r="7.5"></circle>
                         <path d="M12 13.5V10M10 2.5h4M12 2.5V6M18.2 7.3l1.3-1.3"></path></svg><br>
                         <code style="font-size:11px">stopwatch</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-store" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3.5 9.5L5.5 4h13l2 5.5"></path>
+                        <path d="M3.5 9.5a2.83 2.83 0 0 0 5.67 0 2.83 2.83 0 0 0 5.67 0 2.83 2.83 0 0 0 5.67 0M5 12.3V20h14v-7.7M10 20v-4.5h4V20"></path></svg><br>
+                        <code style="font-size:11px">store</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-strikethrough" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16.5 6.5c-.8-1.3-2.4-2-4.5-2-2.5 0-4.5 1.3-4.5 3.4 0 4.6 9.5 2.4 9.5 7.6 0 2.2-2 3.5-5 3.5-2.2 0-4-.8-5-2.3M4 12h16"></path></svg><br>
+                        <code style="font-size:11px">strikethrough</code>
                       </li>
                       <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1535,6 +1787,11 @@
                         <code style="font-size:11px">umbrella</code>
                       </li>
                       <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-underline" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 4v6a5 5 0 0 0 10 0V4M5 20h14"></path></svg><br>
+                        <code style="font-size:11px">underline</code>
+                      </li>
+                      <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-undo" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M8.5 13.5L4 9l4.5-4.5"></path>
                         <path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"></path></svg><br>
@@ -1562,6 +1819,12 @@
                         <circle cx="10" cy="8" r="4"></circle>
                         <path d="M3 20c0-4 3.1-6.5 7-6.5 1.4 0 2.7.3 3.8.9M15 17l2 2 4-4"></path></svg><br>
                         <code style="font-size:11px">user-check</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-user-minus" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="10" cy="8" r="4"></circle>
+                        <path d="M3 20c0-4 3.1-6.5 7-6.5 1.4 0 2.7.3 3.8.9M15 16.5h6"></path></svg><br>
+                        <code style="font-size:11px">user-minus</code>
                       </li>
                       <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-user-plus" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1603,6 +1866,11 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wifi" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.6 15.9a5 5 0 0 1 6.8 0M12 19.5v.01"></path></svg><br>
                         <code style="font-size:11px">wifi</code>
+                      </li>
+                      <li style="text-align:center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wifi-off" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.6 15.9a5 5 0 0 1 6.8 0M12 19.5v.01M4 4l16 16"></path></svg><br>
+                        <code style="font-size:11px">wifi-off</code>
                       </li>
                       <li style="text-align:center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wind" aria-hidden="true" focusable="false" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1660,12 +1928,12 @@
             </ul>
           </section>
           <nav class="prevnext" aria-label="Other tags">
-            <a href="index%EF%B9%96tag%EA%A4%B7highlight.html">← {pad:highlight}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7identicon.html">{pad:identicon} →</a>
+            <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7ylorrd.html">← palette / ylorrd</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7ajax.html">{pad:ajax} →</a>
           </nav>
         </article>
         <footer class="foot">
           <p>
-            634 tags of PAD - the built-in tags, the kinds of the subsystems and the sequence types - each with its syntax and live examples, every result on this site rendered by the tag it documents.
+            1220 tags and kinds of PAD, with syntax and usage examples. Safe, self-contained examples run here; examples requiring credentials, delivery or application files are shown as source.
           </p>
         </footer>
       </div>

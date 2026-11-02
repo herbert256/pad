@@ -8,13 +8,13 @@
   //
   // Only the built-in types and the sequence tags are swept: an application or _common
   // tag reads its options from its own template, and a branch not taken is allowed to
-  // leave one unread - the {example} tag's onlyResult form reads none of its panel
+  // leave one unread - the {common:example} tag's onlyResult form reads none of its panel
   // switches. The kinds of the subsystems (lib/subsystem.php) are built in too, written
-  // with their prefix or bare - {widget:modal}, {modal}, {toy:life}, {life}: they run the
-  // code {widget 'modal'} and {toy 'life'} run, and a misspelled titel= or widht= went by
+  // with their prefix or bare - {widget:modal}, {widget:modal}, {toy:life}, {toy:life}: they run the
+  // code {widget:modal} and {toy:life} run, and a misspelled titel= or widht= went by
   // in silence there, where the tag form named it.
 
-  // A custom tag that declares its parameters with {parms} is swept too: a parameter it was
+  // A custom tag that declares its parameters with {pad:parms} is swept too: a parameter it was
   // given and does not declare is reported by name (lib/slot.php).
 
   $padUnreadDeclared = $padSlot [$pad] ['declared'] ?? NULL;
@@ -46,7 +46,7 @@
                           'left' => 'trim', 'right' => 'trim', 'both' => 'trim' ] [$padUnreadName] ?? NULL;
 
       if ( $padUnreadOwner !== NULL and ! $padTagSeq [$pad] and ! isset ( $padPrm [$pad] [$padUnreadOwner] ) )
-        return padError ( "the tag {" . $padTag [$pad] . "} was given an option '$padUnreadName' that nothing reads - "
+        return padError ( "the tag {" . padTagDisplay () . "} was given an option '$padUnreadName' that nothing reads - "
                           . ( $padUnreadOwner == 'randomize'
                               ? 'the randomize action of a sequence reads it'
                               : "$padUnreadOwner reads it, and the tag has no $padUnreadOwner" ) );
@@ -58,7 +58,7 @@
       if ( file_exists ( PAD . "handling/types/$padUnreadName.php" ) and ! $padTagSeq [$pad] )
         continue;
 
-      // A piped tag can carry its pipe functions into the parsed options - {echo $d |
+      // A piped tag can carry its pipe functions into the parsed options - {pad:echo $d |
       // date('Y-m-d')} does - and a pipe function is not an unread option.
 
       if ( file_exists ( PAD . "functions/$padUnreadName.php" ) )
@@ -82,10 +82,10 @@
       }
 
       if ( $padUnreadDeclared !== NULL )
-        return padError ( "the tag {" . $padTag [$pad] . "} has no parameter '" . $padUnreadName . "' - it declares "
+        return padError ( "the tag {" . padTagDisplay () . "} has no parameter '" . $padUnreadName . "' - it declares "
                           . ( $padUnreadDeclared ? implode ( ', ', $padUnreadDeclared ) : 'none' ) );
 
-      return padError ( "the tag {" . $padTag [$pad] . "} was given an option '" . $padUnreadName . "' that nothing reads" );
+      return padError ( "the tag {" . padTagDisplay () . "} was given an option '" . $padUnreadName . "' that nothing reads" );
 
     }
 

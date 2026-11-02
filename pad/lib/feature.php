@@ -28,7 +28,7 @@
   // decided by the user's id from then on, and may see a flag change once.
   //
   // A name that is no flag is FALSE, and under the strict check an error - a misspelled
-  // flag in a template stayed off and nobody knew. {feature 'name'}...{else}...{/feature}
+  // flag in a template stayed off and nobody knew. {pad:feature 'name'}...{pad:else}...{/pad:feature}
   // asks from a template.
 
   const padFeatureCookie = 'padFeatureId';

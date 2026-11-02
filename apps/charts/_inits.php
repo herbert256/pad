@@ -6,7 +6,7 @@
   // its three cells show - its data source, its template and, through @page@, the chart -
   // read from the page's own files, so a cell can never drift from what draws the chart.
   //
-  // The home page draws every example through {page}, which runs this file again for each:
+  // The home page draws every example through {pad:page}, which runs this file again for each:
   // only the first run - the page that was asked for - sets the frame.
 
   if ( isset ( $chartsFrame ) )
@@ -58,7 +58,7 @@
     $tagOnly   = $tagPair || ! str_contains ( $tagSource, '<' );
 
     // Cell 1: the paired PHP when there is one, else the _data file the tag names - and
-    // none for a {chart}...{/chart} pair, whose data stands in the tag cell, between the tags.
+    // none for a {chart:bar}...{/chart:bar} pair, whose data stands in the tag cell, between the tags.
 
     $dataFile = $dataLang = $dataSource = '';
 
@@ -84,7 +84,7 @@
     $dataHtml  = padHighlightTokens ( $dataSource, $dataLang );
     $dataLines = substr_count ( $dataSource, "\n" ) + 1;
 
-    // The icon at the top right of the example that takes it to the playground
+    // The icon at the top right of the example that takes it to the WASM editor
     // (_common/_lib/playground.php): the template, with the paired PHP in the PHP box or the
     // _data file it names in the data box, under that name.
 

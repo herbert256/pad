@@ -1,11 +1,10 @@
 <?php
 
-  // Type entry for make: reached from types/make.php for the prefixed forms {make:fibonacci}
-  // and {fibonacci:make}, which padTypeSeq() accepts either way round. Notes the entry point
-  // for {info} in $pqSetStart and runs the tag pipeline.
+  // Entry for make:kind and make:auto. The namespace chooses the operation;
+  // the shared pipeline resolves the kind, source and ordered parameters.
 
   $pqSetStart = __FILE__;
 
-  return include PQ . "sequence/type.php";
+  return include PQ . 'sequence/type.php';
 
 ?>

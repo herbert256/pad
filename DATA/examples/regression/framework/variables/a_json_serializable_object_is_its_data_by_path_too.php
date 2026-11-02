@@ -1,7 +1,7 @@
 <?php
 
   // A path or a prefix into a JsonSerializable reads the data its jsonSerialize answers, the
-  // one view {^user} and {user}..{/user} have: read by its public properties, {$user.name}
+  // one view {^user} and {array:user}..{/array:user} have: read by its public properties, {$user.name}
   // printed Ann where {^user} wrote ANN, and {$user.password_hash} the hash its JSON leaves out.
 
   class padCaseJsonPathUser implements JsonSerializable {

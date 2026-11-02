@@ -7,7 +7,7 @@ This document provides a complete reference for all PAD data handling functions.
 Data handling functions transform data arrays before they are rendered in templates. They are applied as options on PAD tags:
 
 ```
-{tagName sort="field", first="5", reverse}
+{type:tagName sort="field", first="5", reverse}
 ```
 
 Multiple handlers can be combined and are applied in sequence.
@@ -21,11 +21,11 @@ Multiple handlers can be combined and are applied in sequence.
 Sorts data by one or more fields with configurable direction and sort type.
 
 ```
-{items sort}
-{items sort="fieldName"}
-{items sort="fieldName ASC"}
-{items sort="fieldName DESC"}
-{items sort="field1 ASC; field2 DESC"}
+{array:items sort}
+{array:items sort="fieldName"}
+{array:items sort="fieldName ASC"}
+{array:items sort="fieldName DESC"}
+{array:items sort="field1 ASC; field2 DESC"}
 ```
 
 **Parameters:**
@@ -44,11 +44,11 @@ Sorts data by one or more fields with configurable direction and sort type.
 
 **Examples:**
 ```html
-{users sort="name"}
-{users sort="age DESC"}
-{users sort="department ASC; name ASC"}
-{products sort="price NUMERIC DESC"}
-{files sort="name NATURAL ASC"}
+{array:users sort="name"}
+{array:users sort="age DESC"}
+{array:users sort="department ASC; name ASC"}
+{array:products sort="price NUMERIC DESC"}
+{pad:files sort="name NATURAL ASC"}
 ```
 
 **Implementation:** Uses `array_multisort()` for efficient multi-column sorting.
@@ -60,14 +60,14 @@ Sorts data by one or more fields with configurable direction and sort type.
 Reverses the order of data array.
 
 ```
-{items reverse}
+{array:items reverse}
 ```
 
 **Parameters:** None (boolean flag)
 
 **Example:**
 ```html
-{users sort="date", reverse}
+{array:users sort="date", reverse}
 {-- Sort by date then reverse for newest first --}
 ```
 
@@ -80,14 +80,14 @@ Reverses the order of data array.
 Randomly shuffles all elements.
 
 ```
-{items shuffle}
+{array:items shuffle}
 ```
 
 **Parameters:** None (boolean flag)
 
 **Example:**
 ```html
-{quotes shuffle, first="1"}
+{array:quotes shuffle, first="1"}
 {-- Get one random quote --}
 ```
 
@@ -100,9 +100,9 @@ Randomly shuffles all elements.
 Selects random elements with advanced options.
 
 ```
-{items random}
-{items random="5"}
-{items random="3", orderly, duplicates}
+{array:items random}
+{array:items random="5"}
+{array:items random="3", orderly, duplicates}
 ```
 
 **Parameters:**
@@ -115,13 +115,13 @@ action only; on a data tag it has no effect.
 
 **Examples:**
 ```html
-{products random="4"}
+{array:products random="4"}
 {-- Select 4 random products --}
 
-{users random="3", orderly}
+{array:users random="3", orderly}
 {-- Select 3 random users, maintain their original order --}
 
-{colors random="10", duplicates}
+{array:colors random="10", duplicates}
 {-- Select 10 colors, allowing repeats --}
 ```
 
@@ -136,8 +136,8 @@ action only; on a data tag it has no effect.
 Keeps the rows for which an expression holds - on any data, not only on Select tables.
 
 ```
-{staff where='$salary gt 2500'}
-{orders where='$status eq "open" and $total gt $minimum'}
+{local:staff where='$salary gt 2500'}
+{array:orders where='$status eq "open" and $total gt $minimum'}
 ```
 
 **Parameters:**
@@ -150,10 +150,10 @@ Keeps the rows for which an expression holds - on any data, not only on Select t
 
 **Examples:**
 ```html
-{staff where='$salary gt 1500', first=2}
+{local:staff where='$salary gt 1500', first=2}
 {-- The first two of the rows that pass --}
 
-{staff where='$salary gt 2500', negative}
+{local:staff where='$salary gt 2500', negative}
 {-- Every row that does not pass --}
 ```
 
@@ -167,8 +167,8 @@ SQL, applied by the query - and is left alone by this handler.
 Gets the first N elements.
 
 ```
-{items first}
-{items first="5"}
+{array:items first}
+{array:items first="5"}
 ```
 
 **Parameters:**
@@ -177,10 +177,10 @@ Gets the first N elements.
 
 **Examples:**
 ```html
-{news first="3"}
+{array:news first="3"}
 {-- Show first 3 news items --}
 
-{users sort="score DESC", first="10"}
+{array:users sort="score DESC", first="10"}
 {-- Top 10 users by score --}
 ```
 
@@ -193,8 +193,8 @@ Gets the first N elements.
 Gets the last N elements.
 
 ```
-{items last}
-{items last="5"}
+{array:items last}
+{array:items last="5"}
 ```
 
 **Parameters:**
@@ -203,10 +203,10 @@ Gets the last N elements.
 
 **Examples:**
 ```html
-{logs last="20"}
+{array:logs last="20"}
 {-- Show last 20 log entries --}
 
-{orders sort="date", last="5"}
+{array:orders sort="date", last="5"}
 {-- Last 5 orders --}
 ```
 
@@ -219,7 +219,7 @@ Gets the last N elements.
 Gets a specific row by number.
 
 ```
-{items row="3"}
+{array:items row="3"}
 ```
 
 **Parameters:**
@@ -227,7 +227,7 @@ Gets a specific row by number.
 
 **Example:**
 ```html
-{users row="1"}
+{array:users row="1"}
 {-- Get first user --}
 ```
 
@@ -242,8 +242,8 @@ Gets a specific row by number.
 Paginates data into pages.
 
 ```
-{items page="1", rows="10"}
-{items page="2", rows="25"}
+{array:items page="1", rows="10"}
+{array:items page="2", rows="25"}
 ```
 
 **Parameters:**
@@ -256,15 +256,15 @@ Paginates data into pages.
 
 **Examples:**
 ```html
-{users page="1", rows="20"}
+{array:users page="1", rows="20"}
 {-- First 20 users --}
 
-{products page="3", rows="12"}
+{array:products page="3", rows="12"}
 {-- Products 25-36 (page 3 with 12 per page) --}
 ```
 
 **Page links:** a tag written with `page` books its page, rows and total - the rows the
-options written before `page` left - under its name, and `{pager 'products'}` after it
+options written before `page` left - under its name, and `{pad:pager 'products'}` after it
 writes the links to the other pages (see [TAGS.md](TAGS.md#pager)). Write the page as a
 request variable, `page=$pg ?? 1`, and the links set `pg`.
 
@@ -275,7 +275,7 @@ request variable, `page=$pg ?? 1`, and the links set `pg`.
 Gets a specific number of rows (shorthand for pagination).
 
 ```
-{items rows="10"}
+{array:items rows="10"}
 ```
 
 **Parameters:**
@@ -288,10 +288,10 @@ Gets a specific number of rows (shorthand for pagination).
 
 **Example:**
 ```html
-{users rows="5"}
+{array:users rows="5"}
 {-- First 5 users --}
 
-{logs end="-1", rows="10"}
+{array:logs end="-1", rows="10"}
 {-- The 10 log entries before the last one --}
 ```
 
@@ -302,8 +302,8 @@ Gets a specific number of rows (shorthand for pagination).
 Sets the starting position for data selection.
 
 ```
-{items start="5"}
-{items start="-3"}
+{array:items start="5"}
+{array:items start="-3"}
 ```
 
 **Parameters:**
@@ -312,10 +312,10 @@ Sets the starting position for data selection.
 
 **Examples:**
 ```html
-{users start="11", rows="10"}
+{array:users start="11", rows="10"}
 {-- Users 11-20 --}
 
-{items start="-5"}
+{array:items start="-5"}
 {-- Last 5 items --}
 ```
 
@@ -326,8 +326,8 @@ Sets the starting position for data selection.
 Sets the ending position for data selection.
 
 ```
-{items end="10"}
-{items end="-1"}
+{array:items end="10"}
+{array:items end="-1"}
 ```
 
 **Parameters:**
@@ -336,10 +336,10 @@ Sets the ending position for data selection.
 
 **Examples:**
 ```html
-{users start="1", end="10"}
+{array:users start="1", end="10"}
 {-- Users 1-10 --}
 
-{items end="-1"}
+{array:items end="-1"}
 {-- All items except the last one --}
 ```
 
@@ -352,8 +352,8 @@ Sets the ending position for data selection.
 Extracts a portion of the array (keeps selected elements).
 
 ```
-{items slice="5"}
-{items slice="3|7"}
+{array:items slice="5"}
+{array:items slice="3|7"}
 ```
 
 **Parameters:**
@@ -362,13 +362,13 @@ Extracts a portion of the array (keeps selected elements).
 
 **Examples:**
 ```html
-{items slice="10"}
+{array:items slice="10"}
 {-- Keep first 10 items --}
 
-{items slice="-5"}
+{array:items slice="-5"}
 {-- Keep last 5 items --}
 
-{items slice="5|3"}
+{array:items slice="5|3"}
 {-- Keep 3 items starting at offset 5, the sixth --}
 ```
 
@@ -381,8 +381,8 @@ Extracts a portion of the array (keeps selected elements).
 Removes a portion of the array (removes selected elements).
 
 ```
-{items splice="5"}
-{items splice="3|2"}
+{array:items splice="5"}
+{array:items splice="3|2"}
 ```
 
 **Parameters:**
@@ -391,13 +391,13 @@ Removes a portion of the array (removes selected elements).
 
 **Examples:**
 ```html
-{items splice="2"}
+{array:items splice="2"}
 {-- Remove first 2 items --}
 
-{items splice="-3"}
+{array:items splice="-3"}
 {-- Remove last 3 items --}
 
-{items splice="5|2"}
+{array:items splice="5|2"}
 {-- Remove 2 items starting at offset 5, the sixth --}
 ```
 
@@ -412,7 +412,7 @@ Removes a portion of the array (removes selected elements).
 Removes duplicate entries from single-field arrays.
 
 ```
-{items dedup}
+{array:items dedup}
 ```
 
 **Parameters:** None (boolean flag)
@@ -435,11 +435,11 @@ Removes duplicate entries from single-field arrays.
 Trims elements from the beginning and/or end of the array.
 
 ```
-{items trim}
-{items trim="2"}
-{items trim="3", left}
-{items trim="3", right}
-{items trim="2", both}
+{array:items trim}
+{array:items trim="2"}
+{array:items trim="3", left}
+{array:items trim="3", right}
+{array:items trim="2", both}
 ```
 
 **Parameters:**
@@ -450,13 +450,13 @@ Trims elements from the beginning and/or end of the array.
 
 **Examples:**
 ```html
-{items trim="1"}
+{array:items trim="1"}
 {-- Remove first and last item --}
 
-{items trim="2", left}
+{array:items trim="2", left}
 {-- Remove first 2 items --}
 
-{items trim="3", right}
+{array:items trim="3", right}
 {-- Remove last 3 items --}
 ```
 
@@ -472,19 +472,19 @@ Folds the rows into one occurrence per distinct value of a field, with a count, 
 fields and the group's own rows as nested data.
 
 ```
-{orders group='customer', sum='total'}
+{array:orders group='customer', sum='total'}
   <h2>{$customer}: {$count} orders, {$total}</h2>
-  {rows}
+  {array:rows}
     <p>{$number}: {$total}</p>
-  {/rows}
-{/orders}
+  {/array:rows}
+{/array:orders}
 ```
 
 **Each group occurrence holds:**
 - the grouping field(s), with the group's value
 - `count` - the number of rows in the group
 - the aggregates asked for (below)
-- `rows` - the group's rows; `{rows}` iterates them, and inside it a field is the row's own
+- `rows` - the group's rows; `{array:rows}` iterates them, and inside it a field is the row's own
   value again
 
 **Parameters:**
@@ -508,16 +508,16 @@ group's own; grouping on such a field is an error under the strict check.
 
 **Examples:**
 ```html
-{orders sort='customer', group='customer'}
+{array:orders sort='customer', group='customer'}
 {-- Groups in customer order, the rows inside them too --}
 
-{orders group='customer', sum='total', sort='total DESC', first=3}
+{array:orders group='customer', sum='total', sort='total DESC', first=3}
 {-- The three customers with the highest total --}
 
-{orders group='customer', where='$count gt 1'}
+{array:orders group='customer', where='$count gt 1'}
 {-- The customers with more than one order --}
 
-{orders group='year'}{$year}{rows group='month', sum='total'}{$month}: {$total}{/rows}{/orders}
+{array:orders group='year'}{$year}{array:rows group='month', sum='total'}{$month}: {$total}{/array:rows}{/array:orders}
 {-- Grouped again inside a group --}
 ```
 
@@ -535,8 +535,8 @@ When the tag found rows and the handling options left none - a `where` nothing p
 `demand` is an error unless an option stood in:
 
 ```
-{staff where='$salary gt 9999'}{$name}@else@Nobody earns that much{/staff}
-{staff where='$salary gt 9999', else='nobody'}{$name}{/staff}
+{local:staff where='$salary gt 9999'}{$name}@else@Nobody earns that much{/local:staff}
+{local:staff where='$salary gt 9999', else='nobody'}{$name}{/local:staff}
 ```
 
 ---
@@ -545,11 +545,11 @@ When the tag found rows and the handling options left none - a `where` nothing p
 
 The `negative` option inverts the selection - keeping items that would normally be removed.
 An option that selects nothing - `sort`, `reverse`, `shuffle`, `group` - is left alone by it,
-so `{staff where='$salary gt 2500', sort='name', negative}` is every row that does not pass,
+so `{local:staff where='$salary gt 2500', sort='name', negative}` is every row that does not pass,
 sorted.
 
 ```
-{items first="3", negative}
+{array:items first="3", negative}
 {-- Gets all items EXCEPT the first 3 --}
 ```
 
@@ -561,15 +561,15 @@ sorted.
 
 The handlers that select nothing are left alone: `sort`, `reverse` and `shuffle` only put the
 rows in another order, `group` folds them, and `rows` beside `page`, `start` or `end` (and
-`end` beside `start`) is read by that partner - `{staff where='$salary gt 2500', sort='name',
+`end` beside `start`) is read by that partner - `{local:staff where='$salary gt 2500', sort='name',
 negative}` is every row that does not pass, sorted by name.
 
 **Examples:**
 ```html
-{users first="5", negative}
+{array:users first="5", negative}
 {-- All users except first 5 --}
 
-{items random="3", negative}
+{array:items random="3", negative}
 {-- All items except 3 random ones --}
 ```
 
@@ -604,13 +604,13 @@ negative}` is every row that does not pass, sorted by name.
 Functions can be combined and are applied in sequence:
 
 ```html
-{users sort="name", first="10"}
+{array:users sort="name", first="10"}
 {-- Sort by name, then get first 10 --}
 
-{products sort="price DESC", page="1", rows="20"}
+{array:products sort="price DESC", page="1", rows="20"}
 {-- Sort by price descending, paginate --}
 
-{items shuffle, first="5"}
+{array:items shuffle, first="5"}
 {-- Shuffle then get first 5 (5 random items) --}
 
 {tags sort, dedup, first="100"}
@@ -625,8 +625,8 @@ Handlers are processed in the order they appear in the tag parameters. Consider 
 
 ```html
 {-- Different results: --}
-{items first="10", shuffle}    {-- First 10, then shuffled --}
-{items shuffle, first="10"}    {-- Shuffled, then first 10 --}
+{array:items first="10", shuffle}    {-- First 10, then shuffled --}
+{array:items shuffle, first="10"}    {-- Shuffled, then first 10 --}
 ```
 
 **Recommended order:**

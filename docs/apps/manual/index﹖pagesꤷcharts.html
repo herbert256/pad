@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="../_common/brand.css">
     <script src="../_common/pad.js"></script>
     <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/play.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
     <style>
     :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
     </style>
@@ -71,89 +75,113 @@
             </summary>
             <nav class="pad-brand-apps" aria-label="PAD applications">
               <div class="pad-brand-columns">
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    PAD
-                  </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
-                  <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
-                  <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Showcases
-                  </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                  <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                  <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                  <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Front ends
-                  </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
-                  <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
-                  <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
-                  <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Offline
-                  </div><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                  <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
-                  <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
-                  <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Examples
-                  </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/playground/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
-                  <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>playground</b><small>Type a template, see the result</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-                  <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Tools
-                  </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
-                  <circle cx="9" cy="7" r="2"></circle>
-                  <circle cx="15" cy="12" r="2"></circle>
-                  <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
-                  <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
-                  <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
                 </div>
               </div>
             </nav>
@@ -177,13 +205,13 @@
         </div><a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a> <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a> <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a> <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a> <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a> <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a> <a href="index%EF%B9%96pages%EA%A4%B7ending_the_request.html">Ending the request</a> <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a> <a href="index%EF%B9%96pages%EA%A4%B7sequences.html">Sequences</a>
         <div class="frame-head">
           Data
-        </div><a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a> <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a> <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a> <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a> <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a> <a href="index%EF%B9%96pages%EA%A4%B7padSelect.html">PadSelect</a> <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a> <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a> <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a> <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a> <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
+        </div><a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a> <a href="index%EF%B9%96pages%EA%A4%B7grouping.html">Grouping</a> <a href="index%EF%B9%96pages%EA%A4%B7pager.html">Pager</a> <a href="index%EF%B9%96pages%EA%A4%B7lookup.html">Lookup</a> <a href="index%EF%B9%96pages%EA%A4%B7database.html">Database</a> <a href="index%EF%B9%96pages%EA%A4%B7padSelect.html">PadSelect</a> <a href="index%EF%B9%96pages%EA%A4%B7sqlite.html">Sqlite</a> <a href="index%EF%B9%96pages%EA%A4%B7search.html">Search</a> <a href="index%EF%B9%96pages%EA%A4%B7data_formats.html">Data formats</a> <a href="index%EF%B9%96pages%EA%A4%B7feeds_and_exports.html">Feeds and exports</a> <a href="index%EF%B9%96pages%EA%A4%B7collections.html">Collections</a> <a href="index%EF%B9%96pages%EA%A4%B7remote_data.html">Remote data</a> <a href="index%EF%B9%96pages%EA%A4%B7parallel_fetching.html">Parallel fetching</a> <a href="index%EF%B9%96pages%EA%A4%B7data_answers.html">Data answers</a>
         <div class="frame-head">
           PHP helpers
-        </div><a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a> <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a> <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a> <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a> <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a> <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a> <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a> <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
+        </div><a href="index%EF%B9%96pages%EA%A4%B7arrays.html">Arrays</a> <a href="index%EF%B9%96pages%EA%A4%B7strings.html">Strings</a> <a href="index%EF%B9%96pages%EA%A4%B7values.html">Values</a> <a href="index%EF%B9%96pages%EA%A4%B7numbers.html">Numbers</a> <a href="index%EF%B9%96pages%EA%A4%B7requests_and_sessions.html">Requests and sessions</a> <a href="index%EF%B9%96pages%EA%A4%B7holidays.html">Holidays</a> <a href="index%EF%B9%96pages%EA%A4%B7environment_and_cache.html">Environment and cache</a> <a href="index%EF%B9%96pages%EA%A4%B7dates_and_logging.html">Dates and logging</a> <a href="index%EF%B9%96pages%EA%A4%B7hashing_and_encryption.html">Hashing and encryption</a>
         <div class="frame-head">
           Output
-        </div><a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a> <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a> <a href="index%EF%B9%96pages%EA%A4%B7showing_code.html">Showing code</a> <a href="index%EF%B9%96pages%EA%A4%B7charts.html" aria-current="page">Charts</a> <a href="index%EF%B9%96pages%EA%A4%B7diagrams.html">Diagrams</a> <a href="index%EF%B9%96pages%EA%A4%B7games.html">Games</a> <a href="index%EF%B9%96pages%EA%A4%B7toys.html">Toys</a> <a href="index%EF%B9%96pages%EA%A4%B7widgets.html">Widgets</a> <a href="index%EF%B9%96pages%EA%A4%B7codes.html">Codes</a> <a href="index%EF%B9%96pages%EA%A4%B7icons.html">Icons</a> <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a> <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a> <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a> <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a> <a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>
+        </div><a href="index%EF%B9%96pages%EA%A4%B7html_helpers.html">Html helpers</a> <a href="index%EF%B9%96pages%EA%A4%B7markdown.html">Markdown</a> <a href="index%EF%B9%96pages%EA%A4%B7showing_code.html">Showing code</a> <a href="index%EF%B9%96pages%EA%A4%B7charts.html" aria-current="page">Charts</a> <a href="index%EF%B9%96pages%EA%A4%B7diagrams.html">Diagrams</a> <a href="index%EF%B9%96pages%EA%A4%B7games.html">Games</a> <a href="index%EF%B9%96pages%EA%A4%B7toys.html">Toys</a> <a href="index%EF%B9%96pages%EA%A4%B7widgets.html">Widgets</a> <a href="index%EF%B9%96pages%EA%A4%B7codes.html">Codes</a> <a href="index%EF%B9%96pages%EA%A4%B7icons.html">Icons</a> <a href="index%EF%B9%96pages%EA%A4%B7locale.html">Locale</a> <a href="index%EF%B9%96pages%EA%A4%B7sounds.html">Sounds</a> <a href="index%EF%B9%96pages%EA%A4%B7printables.html">Printables</a> <a href="index%EF%B9%96pages%EA%A4%B7fragment_cache.html">Fragment cache</a> <a href="index%EF%B9%96pages%EA%A4%B7flush.html">Flush</a> <a href="index%EF%B9%96pages%EA%A4%B7live.html">Live</a> <a href="index%EF%B9%96pages%EA%A4%B7server_sent_events.html">Server sent events</a>
         <div class="frame-head">
           Layouts and components
         </div><a href="index%EF%B9%96pages%EA%A4%B7layouts.html">Layouts</a> <a href="index%EF%B9%96pages%EA%A4%B7page_meta.html">Page meta</a> <a href="index%EF%B9%96pages%EA%A4%B7components.html">Components</a> <a href="index%EF%B9%96pages%EA%A4%B7stacks.html">Stacks</a> <a href="index%EF%B9%96pages%EA%A4%B7response_fragments.html">Response fragments</a>
@@ -197,6 +225,9 @@
           Forms and security
         </div><a href="index%EF%B9%96pages%EA%A4%B7forms.html">Forms</a> <a href="index%EF%B9%96pages%EA%A4%B7client_validation.html">Client validation</a> <a href="index%EF%B9%96pages%EA%A4%B7inputs.html">Inputs</a> <a href="index%EF%B9%96pages%EA%A4%B7csrf_protection.html">Csrf protection</a> <a href="index%EF%B9%96pages%EA%A4%B7flash_messages.html">Flash messages</a> <a href="index%EF%B9%96pages%EA%A4%B7directory_guards.html">Directory guards</a> <a href="index%EF%B9%96pages%EA%A4%B7security_headers.html">Security headers</a> <a href="index%EF%B9%96pages%EA%A4%B7file_uploads.html">File uploads</a>
         <div class="frame-head">
+          Outside services
+        </div><a href="index%EF%B9%96pages%EA%A4%B7social_login.html">Social login</a> <a href="index%EF%B9%96pages%EA%A4%B7notifications.html">Notifications</a> <a href="index%EF%B9%96pages%EA%A4%B7language_models.html">Language models</a>
+        <div class="frame-head">
           Development tools
         </div><a href="index%EF%B9%96pages%EA%A4%B7debug.html">Debug</a> <a href="/pad/manual/?pages/template_errors">Template errors</a> <a href="index%EF%B9%96pages%EA%A4%B7toolbar.html">Toolbar</a> <a href="index%EF%B9%96pages%EA%A4%B7output_checks.html">Output checks</a> <a href="index%EF%B9%96pages%EA%A4%B7coverage.html">Coverage</a> <a href="index%EF%B9%96pages%EA%A4%B7replay.html">Replay</a> <a href="index%EF%B9%96pages%EA%A4%B7live_reload.html">Live reload</a> <a href="index%EF%B9%96pages%EA%A4%B7samples.html">Samples</a> <a href="index%EF%B9%96pages%EA%A4%B7typescript_types.html">Typescript types</a> <a href="index%EF%B9%96pages%EA%A4%B7app_tests.html">App tests</a> <a href="index%EF%B9%96pages%EA%A4%B7pad_command.html">Pad command</a> <a href="index%EF%B9%96pages%EA%A4%B7static_export.html">Static export</a> <a href="index%EF%B9%96pages%EA%A4%B7playground.html">Playground</a> <a href="index%EF%B9%96pages%EA%A4%B7editor_support.html">Editor support</a> <a href="index%EF%B9%96pages%EA%A4%B7pad_in_the_browser.html">Pad in the browser</a> <a href="index%EF%B9%96pages%EA%A4%B7offline_applications.html">Offline applications</a>
       </nav>
@@ -207,17 +238,71 @@
           Charts
         </h1>
         <div class="frame-tools">
-          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
         </div>
       </header>
       <div class="frame-body">
         <p>
-          <b>{chart}</b> draws a chart as inline SVG on the server. There is no JavaScript, so the chart prints, works where scripts do not run, and caches like any other output. A <code>bar</code> chart puts columns on a zero baseline; a <code>line</code> chart draws a line over a light wash with the last point marked.
+          <b>{chart:bar}</b> draws a chart as inline SVG on the server. There is no JavaScript, so the chart prints, works where scripts do not run, and caches like any other output. A <code>bar</code> chart puts columns on a zero baseline; a <code>line</code> chart draws a line over a light wash with the last point marked.
         </p>
-        <table border="1" cellpadding="10" cellspacing="0">
+        <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
           <tr>
             <th bgcolor="#DDDDDD">
               PHP<br>
@@ -236,7 +321,10 @@
               <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $sales </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jan'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1200 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Feb'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">950 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Mar'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1430 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Apr'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1610 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
             </td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font><br>              title=<font color="black">'</font>Sales per month<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=200</font>/}</b></code></pre>
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9J2Ftb3VudCcsXG4gICAgICAgICAgICAgIHRpdGxlPSdTYWxlcyBwZXIgbW9udGgnLCB3aWR0aD00ODAsIGhlaWdodD0yMDAvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRzYWxlcyA9IFtcbiAgICBbICdtb250aCcgPT4gJ0phbicsICdhbW91bnQnID0+IDEyMDAgXSxcbiAgICBbICdtb250aCcgPT4gJ0ZlYicsICdhbW91bnQnID0+ICA5NTAgXSxcbiAgICBbICdtb250aCcgPT4gJ01hcicsICdhbW91bnQnID0+IDE0MzAgXSxcbiAgICBbICdtb250aCcgPT4gJ0FwcicsICdhbW91bnQnID0+IDE2MTAgXVxuICBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9J2Ftb3VudCcsXG4gICAgICAgICAgICAgIHRpdGxlPSdTYWxlcyBwZXIgbW9udGgnLCB3aWR0aD00ODAsIGhlaWdodD0yMDAvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRzYWxlcyA9IFtcbiAgICBbICdtb250aCcgPT4gJ0phbicsICdhbW91bnQnID0+IDEyMDAgXSxcbiAgICBbICdtb250aCcgPT4gJ0ZlYicsICdhbW91bnQnID0+ICA5NTAgXSxcbiAgICBbICdtb250aCcgPT4gJ01hcicsICdhbW91bnQnID0+IDE0MzAgXSxcbiAgICBbICdtb250aCcgPT4gJ0FwcicsICdhbW91bnQnID0+IDE2MTAgXVxuICBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font><br>              title=<font color="black">'</font>Sales per month<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=200</font>/}</b></code></pre>
             </td>
             <td style="vertical-align:top">
               <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-bar" role="img" aria-labelledby="pad-chart-53d0fed9-title pad-chart-53d0fed9-desc" width="480" height="200" viewbox="0 0 480 200">
@@ -421,14 +509,14 @@
           An option left out takes the first field that fits: a numeric one for a number, another one for a name.
         </p>
         <p>
-          Every kind is a file of <code>pad/subs/charts/types/</code>, and the files there are the kinds there are - the <a href="../reference/index.html">reference</a> lists them, each with the pages that draw it. The kind can also be the name of the tag: <code>{chart:pie data='budget'/}</code> is the chart type, the same chart as <code>{chart 'pie', data='budget'/}</code>, and so is the bare <code>{pie data='budget'/}</code> when no tag, store, field or sequence has the name.
+          Every kind is a file of <code>pad/subs/charts/types/</code>, and the files there are the kinds there are - the <a href="../reference/index.html">reference</a> lists them, each with the pages that draw it. Select a kind with its qualified name: <code>{chart:pie data='budget'/}</code>.
         </p>
         <h2>
           Where the numbers come from
         </h2>
         <ul>
           <li>
-            <code>data='sales'</code> - a <b>{data}</b> store, a sequence store, an array of the page's PHP, or a <code>_data</code> file of that name.
+            <code>data='sales'</code> - a <b>{pad:data}</b> store, a sequence store, an array of the page's PHP, or a <code>_data</code> file of that name.
           </li>
           <li>
             <code>value=</code> names the field with the number, <code>label=</code> the field for the axis. Without them the first numeric field is the value and the first other field the label.
@@ -443,7 +531,7 @@
         <p>
           A list of fields in <code>value=</code> draws a series each - bars side by side, or on top of each other with <code>stacked</code>, or a line each, named at its end. A legend above the plot names them in the fixed order of the colours; eight series at most.
         </p>
-        <table border="1" cellpadding="10" cellspacing="0">
+        <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
           <tr>
             <th bgcolor="#DDDDDD">
               PHP<br>
@@ -462,7 +550,10 @@
               <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $sales </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jan'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1200</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">800 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Feb'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">950</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1100 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Mar'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1430</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">960 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'month' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Apr'</span><span style="color: #007700">, </span><span style="color: #DD0000">'online' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1610</span><span style="color: #007700">, </span><span style="color: #DD0000">'shop' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">720 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
             </td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>online<font color="black">,</font> shop<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=220</font>/}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>online<font color="black">,</font> shop<font color="black">'</font><font color="black">,</font> stacked<font color="black">,</font> width=480<font color="black">,</font> height=220</font>/}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>line<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>online<font color="black">,</font> shop<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=220</font>/}</b></code></pre>
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9J29ubGluZSwgc2hvcCcsIHdpZHRoPTQ4MCwgaGVpZ2h0PTIyMC99XG57Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9J29ubGluZSwgc2hvcCcsIHN0YWNrZWQsIHdpZHRoPTQ4MCwgaGVpZ2h0PTIyMC99XG57Y2hhcnQ6bGluZSBkYXRhPSdzYWxlcycsIGxhYmVsPSdtb250aCcsIHZhbHVlPSdvbmxpbmUsIHNob3AnLCB3aWR0aD00ODAsIGhlaWdodD0yMjAvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRzYWxlcyA9IFtcbiAgICBbICdtb250aCcgPT4gJ0phbicsICdvbmxpbmUnID0+IDEyMDAsICdzaG9wJyA9PiA4MDAgXSxcbiAgICBbICdtb250aCcgPT4gJ0ZlYicsICdvbmxpbmUnID0+ICA5NTAsICdzaG9wJyA9PiAxMTAwIF0sXG4gICAgWyAnbW9udGgnID0+ICdNYXInLCAnb25saW5lJyA9PiAxNDMwLCAnc2hvcCcgPT4gOTYwIF0sXG4gICAgWyAnbW9udGgnID0+ICdBcHInLCAnb25saW5lJyA9PiAxNjEwLCAnc2hvcCcgPT4gNzIwIF1cbiAgXTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9J29ubGluZSwgc2hvcCcsIHdpZHRoPTQ4MCwgaGVpZ2h0PTIyMC99XG57Y2hhcnQ6YmFyIGRhdGE9J3NhbGVzJywgbGFiZWw9J21vbnRoJywgdmFsdWU9J29ubGluZSwgc2hvcCcsIHN0YWNrZWQsIHdpZHRoPTQ4MCwgaGVpZ2h0PTIyMC99XG57Y2hhcnQ6bGluZSBkYXRhPSdzYWxlcycsIGxhYmVsPSdtb250aCcsIHZhbHVlPSdvbmxpbmUsIHNob3AnLCB3aWR0aD00ODAsIGhlaWdodD0yMjAvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRzYWxlcyA9IFtcbiAgICBbICdtb250aCcgPT4gJ0phbicsICdvbmxpbmUnID0+IDEyMDAsICdzaG9wJyA9PiA4MDAgXSxcbiAgICBbICdtb250aCcgPT4gJ0ZlYicsICdvbmxpbmUnID0+ICA5NTAsICdzaG9wJyA9PiAxMTAwIF0sXG4gICAgWyAnbW9udGgnID0+ICdNYXInLCAnb25saW5lJyA9PiAxNDMwLCAnc2hvcCcgPT4gOTYwIF0sXG4gICAgWyAnbW9udGgnID0+ICdBcHInLCAnb25saW5lJyA9PiAxNjEwLCAnc2hvcCcgPT4gNzIwIF1cbiAgXTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>online<font color="black">,</font> shop<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=220</font>/}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>online<font color="black">,</font> shop<font color="black">'</font><font color="black">,</font> stacked<font color="black">,</font> width=480<font color="black">,</font> height=220</font>/}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>line </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>online<font color="black">,</font> shop<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=220</font>/}</b></code></pre>
             </td>
             <td style="vertical-align:top">
               <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-bar" role="img" aria-labelledby="pad-chart-4eb9ece9-title pad-chart-4eb9ece9-desc" width="480" height="220" viewbox="0 0 480 220">
@@ -756,7 +847,7 @@
         <p>
           <code>hbar</code> lays the bars down, the names on the left - for long names or many categories.
         </p>
-        <table border="1" cellpadding="10" cellspacing="0">
+        <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
           <tr>
             <th bgcolor="#DDDDDD">
               PHP<br>
@@ -773,7 +864,10 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>teams<font color="black">'</font></font>}</b><br>  team,points<br>  Lions,71<br>  Tigers,84<br>  Bears,-12<br>  Wolves,55<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>hbar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>teams<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>team<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>points<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=200</font>/}</b></code></pre>
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3RlYW1zJ31cbiAgdGVhbSxwb2ludHNcbiAgTGlvbnMsNzFcbiAgVGlnZXJzLDg0XG4gIEJlYXJzLC0xMlxuICBXb2x2ZXMsNTVcbnsvcGFkOmRhdGF9XG57Y2hhcnQ6aGJhciBkYXRhPSd0ZWFtcycsIGxhYmVsPSd0ZWFtJywgdmFsdWU9J3BvaW50cycsIHdpZHRoPTQ4MCwgaGVpZ2h0PTIwMC99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3RlYW1zJ31cbiAgdGVhbSxwb2ludHNcbiAgTGlvbnMsNzFcbiAgVGlnZXJzLDg0XG4gIEJlYXJzLC0xMlxuICBXb2x2ZXMsNTVcbnsvcGFkOmRhdGF9XG57Y2hhcnQ6aGJhciBkYXRhPSd0ZWFtcycsIGxhYmVsPSd0ZWFtJywgdmFsdWU9J3BvaW50cycsIHdpZHRoPTQ4MCwgaGVpZ2h0PTIwMC99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>teams<font color="black">'</font></font>}</b><br>  team,points<br>  Lions,71<br>  Tigers,84<br>  Bears,-12<br>  Wolves,55<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>hbar </font><font color="red">data=<font color="black">'</font>teams<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>team<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>points<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=200</font>/}</b></code></pre>
             </td>
             <td style="vertical-align:top">
               <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-hbar" role="img" aria-labelledby="pad-chart-fab05d08-title pad-chart-fab05d08-desc" width="480" height="200" viewbox="0 0 480 200">
@@ -853,7 +947,7 @@
         <p>
           Parts of a whole: only positive values count, clockwise from twelve o'clock, a legend with each value and its share. Past eight parts the smallest are folded into one grey <em>Other</em>. A donut shows the total in its middle.
         </p>
-        <table border="1" cellpadding="10" cellspacing="0">
+        <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
           <tr>
             <th bgcolor="#DDDDDD">
               PHP<br>
@@ -870,7 +964,10 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>budget<font color="black">'</font></font>}</b><br>  post,amount<br>  Housing,1200<br>  Food,450<br>  Transport,200<br>  Savings,300<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>pie<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>budget<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>post<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=420<font color="black">,</font> height=200</font>/}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>donut<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>budget<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>post<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=420<font color="black">,</font> height=200</font>/}</b></code></pre>
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ2J1ZGdldCd9XG4gIHBvc3QsYW1vdW50XG4gIEhvdXNpbmcsMTIwMFxuICBGb29kLDQ1MFxuICBUcmFuc3BvcnQsMjAwXG4gIFNhdmluZ3MsMzAwXG57L3BhZDpkYXRhfVxue2NoYXJ0OnBpZSBkYXRhPSdidWRnZXQnLCBsYWJlbD0ncG9zdCcsIHZhbHVlPSdhbW91bnQnLCB3aWR0aD00MjAsIGhlaWdodD0yMDAvfVxue2NoYXJ0OmRvbnV0IGRhdGE9J2J1ZGdldCcsIGxhYmVsPSdwb3N0JywgdmFsdWU9J2Ftb3VudCcsIHdpZHRoPTQyMCwgaGVpZ2h0PTIwMC99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ2J1ZGdldCd9XG4gIHBvc3QsYW1vdW50XG4gIEhvdXNpbmcsMTIwMFxuICBGb29kLDQ1MFxuICBUcmFuc3BvcnQsMjAwXG4gIFNhdmluZ3MsMzAwXG57L3BhZDpkYXRhfVxue2NoYXJ0OnBpZSBkYXRhPSdidWRnZXQnLCBsYWJlbD0ncG9zdCcsIHZhbHVlPSdhbW91bnQnLCB3aWR0aD00MjAsIGhlaWdodD0yMDAvfVxue2NoYXJ0OmRvbnV0IGRhdGE9J2J1ZGdldCcsIGxhYmVsPSdwb3N0JywgdmFsdWU9J2Ftb3VudCcsIHdpZHRoPTQyMCwgaGVpZ2h0PTIwMC99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>budget<font color="black">'</font></font>}</b><br>  post,amount<br>  Housing,1200<br>  Food,450<br>  Transport,200<br>  Savings,300<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>pie </font><font color="red">data=<font color="black">'</font>budget<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>post<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=420<font color="black">,</font> height=200</font>/}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>donut </font><font color="red">data=<font color="black">'</font>budget<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>post<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=420<font color="black">,</font> height=200</font>/}</b></code></pre>
             </td>
             <td style="vertical-align:top">
               <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-pie" role="img" aria-labelledby="pad-chart-b39be8ae-title pad-chart-b39be8ae-desc" width="420" height="200" viewbox="0 0 420 200">
@@ -970,7 +1067,7 @@
         <p>
           A dot per row on two numeric axes, <code>x=</code> and <code>y=</code>. <code>color=</code> colours the dots by a field, <code>trend</code> draws the least-squares line. A bubble's <code>size=</code> sets its area.
         </p>
-        <table border="1" cellpadding="10" cellspacing="0">
+        <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
           <tr>
             <th bgcolor="#DDDDDD">
               PHP<br>
@@ -989,7 +1086,10 @@
               <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $cars </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'model' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alto'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'weight' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1000</span><span style="color: #007700">, </span><span style="color: #DD0000">'mpg' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">45</span><span style="color: #007700">, </span><span style="color: #DD0000">'origin' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Japan'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'sold' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">12 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'model' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Berlin'</span><span style="color: #007700">, </span><span style="color: #DD0000">'weight' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1200</span><span style="color: #007700">, </span><span style="color: #DD0000">'mpg' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">40</span><span style="color: #007700">, </span><span style="color: #DD0000">'origin' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Europe'</span><span style="color: #007700">, </span><span style="color: #DD0000">'sold' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">5 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'model' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Corsa'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'weight' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1350</span><span style="color: #007700">, </span><span style="color: #DD0000">'mpg' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">37</span><span style="color: #007700">, </span><span style="color: #DD0000">'origin' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Japan'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'sold' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">3 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'model' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Dakota'</span><span style="color: #007700">, </span><span style="color: #DD0000">'weight' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1500</span><span style="color: #007700">, </span><span style="color: #DD0000">'mpg' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">33</span><span style="color: #007700">, </span><span style="color: #DD0000">'origin' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'USA'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'sold' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">20 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'model' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Eagle'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'weight' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1800</span><span style="color: #007700">, </span><span style="color: #DD0000">'mpg' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">28</span><span style="color: #007700">, </span><span style="color: #DD0000">'origin' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'USA'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'sold' </span><span style="color: #007700">=&gt;  </span><span style="color: #0000BB">8 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'model' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Falcon'</span><span style="color: #007700">, </span><span style="color: #DD0000">'weight' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2100</span><span style="color: #007700">, </span><span style="color: #DD0000">'mpg' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">22</span><span style="color: #007700">, </span><span style="color: #DD0000">'origin' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'USA'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'sold' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">30 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
             </td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>scatter<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>cars<font color="black">'</font><font color="black">,</font> x=<font color="black">'</font>weight<font color="black">'</font><font color="black">,</font> y=<font color="black">'</font>mpg<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>model<font color="black">'</font><font color="black">,</font> color=<font color="black">'</font>origin<font color="black">'</font><font color="black">,</font> trend<font color="black">,</font> width=480<font color="black">,</font> height=240</font>/}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bubble<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>cars<font color="black">'</font><font color="black">,</font> x=<font color="black">'</font>weight<font color="black">'</font><font color="black">,</font> y=<font color="black">'</font>mpg<font color="black">'</font><font color="black">,</font> size=<font color="black">'</font>sold<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>model<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=240</font>/}</b></code></pre>
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6c2NhdHRlciBkYXRhPSdjYXJzJywgeD0nd2VpZ2h0JywgeT0nbXBnJywgbGFiZWw9J21vZGVsJywgY29sb3I9J29yaWdpbicsIHRyZW5kLCB3aWR0aD00ODAsIGhlaWdodD0yNDAvfVxue2NoYXJ0OmJ1YmJsZSBkYXRhPSdjYXJzJywgeD0nd2VpZ2h0JywgeT0nbXBnJywgc2l6ZT0nc29sZCcsIGxhYmVsPSdtb2RlbCcsIHdpZHRoPTQ4MCwgaGVpZ2h0PTI0MC99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGNhcnMgPSBbXG4gICAgWyAnbW9kZWwnID0+ICdBbHRvJywgICAnd2VpZ2h0JyA9PiAxMDAwLCAnbXBnJyA9PiA0NSwgJ29yaWdpbicgPT4gJ0phcGFuJywgICdzb2xkJyA9PiAxMiBdLFxuICAgIFsgJ21vZGVsJyA9PiAnQmVybGluJywgJ3dlaWdodCcgPT4gMTIwMCwgJ21wZycgPT4gNDAsICdvcmlnaW4nID0+ICdFdXJvcGUnLCAnc29sZCcgPT4gIDUgXSxcbiAgICBbICdtb2RlbCcgPT4gJ0NvcnNhJywgICd3ZWlnaHQnID0+IDEzNTAsICdtcGcnID0+IDM3LCAnb3JpZ2luJyA9PiAnSmFwYW4nLCAgJ3NvbGQnID0+ICAzIF0sXG4gICAgWyAnbW9kZWwnID0+ICdEYWtvdGEnLCAnd2VpZ2h0JyA9PiAxNTAwLCAnbXBnJyA9PiAzMywgJ29yaWdpbicgPT4gJ1VTQScsICAgICdzb2xkJyA9PiAyMCBdLFxuICAgIFsgJ21vZGVsJyA9PiAnRWFnbGUnLCAgJ3dlaWdodCcgPT4gMTgwMCwgJ21wZycgPT4gMjgsICdvcmlnaW4nID0+ICdVU0EnLCAgICAnc29sZCcgPT4gIDggXSxcbiAgICBbICdtb2RlbCcgPT4gJ0ZhbGNvbicsICd3ZWlnaHQnID0+IDIxMDAsICdtcGcnID0+IDIyLCAnb3JpZ2luJyA9PiAnVVNBJywgICAgJ3NvbGQnID0+IDMwIF1cbiAgXTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6c2NhdHRlciBkYXRhPSdjYXJzJywgeD0nd2VpZ2h0JywgeT0nbXBnJywgbGFiZWw9J21vZGVsJywgY29sb3I9J29yaWdpbicsIHRyZW5kLCB3aWR0aD00ODAsIGhlaWdodD0yNDAvfVxue2NoYXJ0OmJ1YmJsZSBkYXRhPSdjYXJzJywgeD0nd2VpZ2h0JywgeT0nbXBnJywgc2l6ZT0nc29sZCcsIGxhYmVsPSdtb2RlbCcsIHdpZHRoPTQ4MCwgaGVpZ2h0PTI0MC99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGNhcnMgPSBbXG4gICAgWyAnbW9kZWwnID0+ICdBbHRvJywgICAnd2VpZ2h0JyA9PiAxMDAwLCAnbXBnJyA9PiA0NSwgJ29yaWdpbicgPT4gJ0phcGFuJywgICdzb2xkJyA9PiAxMiBdLFxuICAgIFsgJ21vZGVsJyA9PiAnQmVybGluJywgJ3dlaWdodCcgPT4gMTIwMCwgJ21wZycgPT4gNDAsICdvcmlnaW4nID0+ICdFdXJvcGUnLCAnc29sZCcgPT4gIDUgXSxcbiAgICBbICdtb2RlbCcgPT4gJ0NvcnNhJywgICd3ZWlnaHQnID0+IDEzNTAsICdtcGcnID0+IDM3LCAnb3JpZ2luJyA9PiAnSmFwYW4nLCAgJ3NvbGQnID0+ICAzIF0sXG4gICAgWyAnbW9kZWwnID0+ICdEYWtvdGEnLCAnd2VpZ2h0JyA9PiAxNTAwLCAnbXBnJyA9PiAzMywgJ29yaWdpbicgPT4gJ1VTQScsICAgICdzb2xkJyA9PiAyMCBdLFxuICAgIFsgJ21vZGVsJyA9PiAnRWFnbGUnLCAgJ3dlaWdodCcgPT4gMTgwMCwgJ21wZycgPT4gMjgsICdvcmlnaW4nID0+ICdVU0EnLCAgICAnc29sZCcgPT4gIDggXSxcbiAgICBbICdtb2RlbCcgPT4gJ0ZhbGNvbicsICd3ZWlnaHQnID0+IDIxMDAsICdtcGcnID0+IDIyLCAnb3JpZ2luJyA9PiAnVVNBJywgICAgJ3NvbGQnID0+IDMwIF1cbiAgXTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>scatter </font><font color="red">data=<font color="black">'</font>cars<font color="black">'</font><font color="black">,</font> x=<font color="black">'</font>weight<font color="black">'</font><font color="black">,</font> y=<font color="black">'</font>mpg<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>model<font color="black">'</font><font color="black">,</font> color=<font color="black">'</font>origin<font color="black">'</font><font color="black">,</font> trend<font color="black">,</font> width=480<font color="black">,</font> height=240</font>/}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bubble </font><font color="red">data=<font color="black">'</font>cars<font color="black">'</font><font color="black">,</font> x=<font color="black">'</font>weight<font color="black">'</font><font color="black">,</font> y=<font color="black">'</font>mpg<font color="black">'</font><font color="black">,</font> size=<font color="black">'</font>sold<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>model<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=240</font>/}</b></code></pre>
             </td>
             <td style="vertical-align:top">
               <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-scatter" role="img" aria-labelledby="pad-chart-78d3c5f0-title pad-chart-78d3c5f0-desc" width="480" height="240" viewbox="0 0 480 240">
@@ -1195,7 +1295,7 @@
         <p>
           Two categories as columns (<code>x=</code>) and rows (<code>y=</code>), each cell coloured by its value in seven steps of one hue, with the scale underneath.
         </p>
-        <table border="1" cellpadding="10" cellspacing="0">
+        <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
           <tr>
             <th bgcolor="#DDDDDD">
               PHP<br>
@@ -1212,7 +1312,10 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>visits<font color="black">'</font></font>}</b><br>  day,hour,count<br>  Mon,9h,3<br>  Mon,12h,12<br>  Mon,15h,7<br>  Tue,9h,5<br>  Tue,12h,20<br>  Tue,15h,9<br>  Wed,9h,1<br>  Wed,12h,15<br>  Wed,15h,4<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>heatmap<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>visits<font color="black">'</font><font color="black">,</font> x=<font color="black">'</font>hour<font color="black">'</font><font color="black">,</font> y=<font color="black">'</font>day<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>count<font color="black">'</font><font color="black">,</font> width=420<font color="black">,</font> height=200</font>/}</b></code></pre>
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3Zpc2l0cyd9XG4gIGRheSxob3VyLGNvdW50XG4gIE1vbiw5aCwzXG4gIE1vbiwxMmgsMTJcbiAgTW9uLDE1aCw3XG4gIFR1ZSw5aCw1XG4gIFR1ZSwxMmgsMjBcbiAgVHVlLDE1aCw5XG4gIFdlZCw5aCwxXG4gIFdlZCwxMmgsMTVcbiAgV2VkLDE1aCw0XG57L3BhZDpkYXRhfVxue2NoYXJ0OmhlYXRtYXAgZGF0YT0ndmlzaXRzJywgeD0naG91cicsIHk9J2RheScsIHZhbHVlPSdjb3VudCcsIHdpZHRoPTQyMCwgaGVpZ2h0PTIwMC99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3Zpc2l0cyd9XG4gIGRheSxob3VyLGNvdW50XG4gIE1vbiw5aCwzXG4gIE1vbiwxMmgsMTJcbiAgTW9uLDE1aCw3XG4gIFR1ZSw5aCw1XG4gIFR1ZSwxMmgsMjBcbiAgVHVlLDE1aCw5XG4gIFdlZCw5aCwxXG4gIFdlZCwxMmgsMTVcbiAgV2VkLDE1aCw0XG57L3BhZDpkYXRhfVxue2NoYXJ0OmhlYXRtYXAgZGF0YT0ndmlzaXRzJywgeD0naG91cicsIHk9J2RheScsIHZhbHVlPSdjb3VudCcsIHdpZHRoPTQyMCwgaGVpZ2h0PTIwMC99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>visits<font color="black">'</font></font>}</b><br>  day,hour,count<br>  Mon,9h,3<br>  Mon,12h,12<br>  Mon,15h,7<br>  Tue,9h,5<br>  Tue,12h,20<br>  Tue,15h,9<br>  Wed,9h,1<br>  Wed,12h,15<br>  Wed,15h,4<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>heatmap </font><font color="red">data=<font color="black">'</font>visits<font color="black">'</font><font color="black">,</font> x=<font color="black">'</font>hour<font color="black">'</font><font color="black">,</font> y=<font color="black">'</font>day<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>count<font color="black">'</font><font color="black">,</font> width=420<font color="black">,</font> height=200</font>/}</b></code></pre>
             </td>
             <td style="vertical-align:top">
               <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-heatmap" role="img" aria-labelledby="pad-chart-a7526fb5-title pad-chart-a7526fb5-desc" width="420" height="200" viewbox="0 0 420 200">
@@ -1334,7 +1437,7 @@
         <p>
           A row is a flow from <code>source=</code> to <code>target=</code>, as wide as its <code>value=</code>. The columns follow the flows; flows that go round in a circle are an error.
         </p>
-        <table border="1" cellpadding="10" cellspacing="0">
+        <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
           <tr>
             <th bgcolor="#DDDDDD">
               PHP<br>
@@ -1351,7 +1454,10 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>energy<font color="black">'</font></font>}</b><br>  from,to,amount<br>  Coal,Electricity,40<br>  Gas,Electricity,30<br>  Gas,Heat,25<br>  Solar,Electricity,15<br>  Electricity,Homes,45<br>  Electricity,Industry,30<br>  Electricity,Losses,10<br>  Heat,Homes,25<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>sankey<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>energy<font color="black">'</font><font color="black">,</font> source=<font color="black">'</font>from<font color="black">'</font><font color="black">,</font> target=<font color="black">'</font>to<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=260</font>/}</b></code></pre>
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ2VuZXJneSd9XG4gIGZyb20sdG8sYW1vdW50XG4gIENvYWwsRWxlY3RyaWNpdHksNDBcbiAgR2FzLEVsZWN0cmljaXR5LDMwXG4gIEdhcyxIZWF0LDI1XG4gIFNvbGFyLEVsZWN0cmljaXR5LDE1XG4gIEVsZWN0cmljaXR5LEhvbWVzLDQ1XG4gIEVsZWN0cmljaXR5LEluZHVzdHJ5LDMwXG4gIEVsZWN0cmljaXR5LExvc3NlcywxMFxuICBIZWF0LEhvbWVzLDI1XG57L3BhZDpkYXRhfVxue2NoYXJ0OnNhbmtleSBkYXRhPSdlbmVyZ3knLCBzb3VyY2U9J2Zyb20nLCB0YXJnZXQ9J3RvJywgdmFsdWU9J2Ftb3VudCcsIHdpZHRoPTQ4MCwgaGVpZ2h0PTI2MC99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ2VuZXJneSd9XG4gIGZyb20sdG8sYW1vdW50XG4gIENvYWwsRWxlY3RyaWNpdHksNDBcbiAgR2FzLEVsZWN0cmljaXR5LDMwXG4gIEdhcyxIZWF0LDI1XG4gIFNvbGFyLEVsZWN0cmljaXR5LDE1XG4gIEVsZWN0cmljaXR5LEhvbWVzLDQ1XG4gIEVsZWN0cmljaXR5LEluZHVzdHJ5LDMwXG4gIEVsZWN0cmljaXR5LExvc3NlcywxMFxuICBIZWF0LEhvbWVzLDI1XG57L3BhZDpkYXRhfVxue2NoYXJ0OnNhbmtleSBkYXRhPSdlbmVyZ3knLCBzb3VyY2U9J2Zyb20nLCB0YXJnZXQ9J3RvJywgdmFsdWU9J2Ftb3VudCcsIHdpZHRoPTQ4MCwgaGVpZ2h0PTI2MC99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>energy<font color="black">'</font></font>}</b><br>  from,to,amount<br>  Coal,Electricity,40<br>  Gas,Electricity,30<br>  Gas,Heat,25<br>  Solar,Electricity,15<br>  Electricity,Homes,45<br>  Electricity,Industry,30<br>  Electricity,Losses,10<br>  Heat,Homes,25<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>sankey </font><font color="red">data=<font color="black">'</font>energy<font color="black">'</font><font color="black">,</font> source=<font color="black">'</font>from<font color="black">'</font><font color="black">,</font> target=<font color="black">'</font>to<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=260</font>/}</b></code></pre>
             </td>
             <td style="vertical-align:top">
               <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-sankey" role="img" aria-labelledby="pad-chart-6d268db3-title pad-chart-6d268db3-desc" width="480" height="260" viewbox="0 0 480 260">
@@ -1474,7 +1580,7 @@
         <p>
           A row is a link between two nodes. The default <code>layout='force'</code> pulls linked nodes together - the same data always draws the same picture - and <code>layout='radial'</code> sets them on a circle; <code>arrows</code> shows the direction.
         </p>
-        <table border="1" cellpadding="10" cellspacing="0">
+        <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
           <tr>
             <th bgcolor="#DDDDDD">
               PHP<br>
@@ -1491,7 +1597,10 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>friends<font color="black">'</font></font>}</b><br>  from,to<br>  Ann,Bob<br>  Ann,Cas<br>  Bob,Cas<br>  Cas,Dirk<br>  Dirk,Eva<br>  Eva,Fay<br>  Fay,Dirk<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>network<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>friends<font color="black">'</font><font color="black">,</font> source=<font color="black">'</font>from<font color="black">'</font><font color="black">,</font> target=<font color="black">'</font>to<font color="black">'</font><font color="black">,</font> arrows<font color="black">,</font> width=420<font color="black">,</font> height=260</font>/}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>network<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>friends<font color="black">'</font><font color="black">,</font> source=<font color="black">'</font>from<font color="black">'</font><font color="black">,</font> target=<font color="black">'</font>to<font color="black">'</font><font color="black">,</font> layout=<font color="black">'</font>radial<font color="black">'</font><font color="black">,</font> width=420<font color="black">,</font> height=260</font>/}</b></code></pre>
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ2ZyaWVuZHMnfVxuICBmcm9tLHRvXG4gIEFubixCb2JcbiAgQW5uLENhc1xuICBCb2IsQ2FzXG4gIENhcyxEaXJrXG4gIERpcmssRXZhXG4gIEV2YSxGYXlcbiAgRmF5LERpcmtcbnsvcGFkOmRhdGF9XG57Y2hhcnQ6bmV0d29yayBkYXRhPSdmcmllbmRzJywgc291cmNlPSdmcm9tJywgdGFyZ2V0PSd0bycsIGFycm93cywgd2lkdGg9NDIwLCBoZWlnaHQ9MjYwL31cbntjaGFydDpuZXR3b3JrIGRhdGE9J2ZyaWVuZHMnLCBzb3VyY2U9J2Zyb20nLCB0YXJnZXQ9J3RvJywgbGF5b3V0PSdyYWRpYWwnLCB3aWR0aD00MjAsIGhlaWdodD0yNjAvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ2ZyaWVuZHMnfVxuICBmcm9tLHRvXG4gIEFubixCb2JcbiAgQW5uLENhc1xuICBCb2IsQ2FzXG4gIENhcyxEaXJrXG4gIERpcmssRXZhXG4gIEV2YSxGYXlcbiAgRmF5LERpcmtcbnsvcGFkOmRhdGF9XG57Y2hhcnQ6bmV0d29yayBkYXRhPSdmcmllbmRzJywgc291cmNlPSdmcm9tJywgdGFyZ2V0PSd0bycsIGFycm93cywgd2lkdGg9NDIwLCBoZWlnaHQ9MjYwL31cbntjaGFydDpuZXR3b3JrIGRhdGE9J2ZyaWVuZHMnLCBzb3VyY2U9J2Zyb20nLCB0YXJnZXQ9J3RvJywgbGF5b3V0PSdyYWRpYWwnLCB3aWR0aD00MjAsIGhlaWdodD0yNjAvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>friends<font color="black">'</font></font>}</b><br>  from,to<br>  Ann,Bob<br>  Ann,Cas<br>  Bob,Cas<br>  Cas,Dirk<br>  Dirk,Eva<br>  Eva,Fay<br>  Fay,Dirk<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network </font><font color="red">data=<font color="black">'</font>friends<font color="black">'</font><font color="black">,</font> source=<font color="black">'</font>from<font color="black">'</font><font color="black">,</font> target=<font color="black">'</font>to<font color="black">'</font><font color="black">,</font> arrows<font color="black">,</font> width=420<font color="black">,</font> height=260</font>/}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>network </font><font color="red">data=<font color="black">'</font>friends<font color="black">'</font><font color="black">,</font> source=<font color="black">'</font>from<font color="black">'</font><font color="black">,</font> target=<font color="black">'</font>to<font color="black">'</font><font color="black">,</font> layout=<font color="black">'</font>radial<font color="black">'</font><font color="black">,</font> width=420<font color="black">,</font> height=260</font>/}</b></code></pre>
             </td>
             <td style="vertical-align:top">
               <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-network" role="img" aria-labelledby="pad-chart-95fdf3e9-title pad-chart-95fdf3e9-desc" width="420" height="260" viewbox="0 0 420 260">
@@ -1511,17 +1620,17 @@
                   Ann → Bob
                 </title>
               </line>
-              <line class="pc-edge" x1="325.7" y1="16" x2="264" y2="92.3" stroke-width="1.5" marker-end="url(#pad-chart-95fdf3e9-arrow)">
+              <line class="pc-edge" x1="325.7" y1="16" x2="264.1" y2="92.4" stroke-width="1.5" marker-end="url(#pad-chart-95fdf3e9-arrow)">
                 <title>
                   Ann → Cas
                 </title>
               </line>
-              <line class="pc-edge" x1="376" y1="90.4" x2="267.2" y2="98.4" stroke-width="1.5" marker-end="url(#pad-chart-95fdf3e9-arrow)">
+              <line class="pc-edge" x1="376" y1="90.5" x2="267.3" y2="98.4" stroke-width="1.5" marker-end="url(#pad-chart-95fdf3e9-arrow)">
                 <title>
                   Bob → Cas
                 </title>
               </line>
-              <line class="pc-edge" x1="258.6" y1="99" x2="141" y2="157.2" stroke-width="1.5" marker-end="url(#pad-chart-95fdf3e9-arrow)">
+              <line class="pc-edge" x1="258.7" y1="99.1" x2="141" y2="157.3" stroke-width="1.5" marker-end="url(#pad-chart-95fdf3e9-arrow)">
                 <title>
                   Cas → Dirk
                 </title>
@@ -1531,12 +1640,12 @@
                   Dirk → Eva
                 </title>
               </line>
-              <line class="pc-edge" x1="66" y1="244" x2="20.5" y2="176.2" stroke-width="1.5" marker-end="url(#pad-chart-95fdf3e9-arrow)">
+              <line class="pc-edge" x1="66" y1="244" x2="20.5" y2="176.1" stroke-width="1.5" marker-end="url(#pad-chart-95fdf3e9-arrow)">
                 <title>
                   Eva → Fay
                 </title>
               </line>
-              <line class="pc-edge" x1="16" y1="169.4" x2="124.7" y2="161.7" stroke-width="1.5" marker-end="url(#pad-chart-95fdf3e9-arrow)">
+              <line class="pc-edge" x1="16" y1="169.4" x2="124.8" y2="161.7" stroke-width="1.5" marker-end="url(#pad-chart-95fdf3e9-arrow)">
                 <title>
                   Fay → Dirk
                 </title>
@@ -1549,20 +1658,20 @@
               <text x="335.8" y="20">
                 Ann
               </text>
-              <circle class="pc-mark pc-ring pc-c1" cx="376" cy="90.4" r="6.1">
+              <circle class="pc-mark pc-ring pc-c1" cx="376" cy="90.5" r="6.1">
                 <title>
                   Bob: 2 links
                 </title>
               </circle>
-              <text x="386.1" y="94.4">
+              <text x="386.1" y="94.5">
                 Bob
               </text>
-              <circle class="pc-mark pc-ring pc-c1" cx="258.6" cy="99" r="6.6">
+              <circle class="pc-mark pc-ring pc-c1" cx="258.7" cy="99.1" r="6.6">
                 <title>
                   Cas: 3 links
                 </title>
               </circle>
-              <text x="269.2" y="103">
+              <text x="269.3" y="103.1">
                 Cas
               </text>
               <circle class="pc-mark pc-ring pc-c1" cx="133.3" cy="161.1" r="6.6">
@@ -1687,7 +1796,7 @@
         <p>
           <code>levels=</code> lists the fields above the parts, the outermost first. A treemap nests rectangles, a sunburst rings; the colour is that of the outermost level.
         </p>
-        <table border="1" cellpadding="10" cellspacing="0">
+        <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
           <tr>
             <th bgcolor="#DDDDDD">
               PHP<br>
@@ -1704,7 +1813,10 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>spend<font color="black">'</font></font>}</b><br>  dept,post,amount<br>  IT,Laptops,500<br>  IT,Cloud,800<br>  IT,Licences,300<br>  HR,Training,400<br>  HR,Recruiting,250<br>  Sales,Travel,600<br>  Sales,Events,350<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>treemap<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>spend<font color="black">'</font><font color="black">,</font> levels=<font color="black">'</font>dept<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>post<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=260</font>/}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>sunburst<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>spend<font color="black">'</font><font color="black">,</font> levels=<font color="black">'</font>dept<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>post<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=300</font>/}</b></code></pre>
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3NwZW5kJ31cbiAgZGVwdCxwb3N0LGFtb3VudFxuICBJVCxMYXB0b3BzLDUwMFxuICBJVCxDbG91ZCw4MDBcbiAgSVQsTGljZW5jZXMsMzAwXG4gIEhSLFRyYWluaW5nLDQwMFxuICBIUixSZWNydWl0aW5nLDI1MFxuICBTYWxlcyxUcmF2ZWwsNjAwXG4gIFNhbGVzLEV2ZW50cywzNTBcbnsvcGFkOmRhdGF9XG57Y2hhcnQ6dHJlZW1hcCBkYXRhPSdzcGVuZCcsIGxldmVscz0nZGVwdCcsIGxhYmVsPSdwb3N0JywgdmFsdWU9J2Ftb3VudCcsIHdpZHRoPTQ4MCwgaGVpZ2h0PTI2MC99XG57Y2hhcnQ6c3VuYnVyc3QgZGF0YT0nc3BlbmQnLCBsZXZlbHM9J2RlcHQnLCBsYWJlbD0ncG9zdCcsIHZhbHVlPSdhbW91bnQnLCB3aWR0aD0zMDAsIGhlaWdodD0zMDAvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRhdGEgJ3NwZW5kJ31cbiAgZGVwdCxwb3N0LGFtb3VudFxuICBJVCxMYXB0b3BzLDUwMFxuICBJVCxDbG91ZCw4MDBcbiAgSVQsTGljZW5jZXMsMzAwXG4gIEhSLFRyYWluaW5nLDQwMFxuICBIUixSZWNydWl0aW5nLDI1MFxuICBTYWxlcyxUcmF2ZWwsNjAwXG4gIFNhbGVzLEV2ZW50cywzNTBcbnsvcGFkOmRhdGF9XG57Y2hhcnQ6dHJlZW1hcCBkYXRhPSdzcGVuZCcsIGxldmVscz0nZGVwdCcsIGxhYmVsPSdwb3N0JywgdmFsdWU9J2Ftb3VudCcsIHdpZHRoPTQ4MCwgaGVpZ2h0PTI2MC99XG57Y2hhcnQ6c3VuYnVyc3QgZGF0YT0nc3BlbmQnLCBsZXZlbHM9J2RlcHQnLCBsYWJlbD0ncG9zdCcsIHZhbHVlPSdhbW91bnQnLCB3aWR0aD0zMDAsIGhlaWdodD0zMDAvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data </font><font color="red"><font color="black">'</font>spend<font color="black">'</font></font>}</b><br>  dept,post,amount<br>  IT,Laptops,500<br>  IT,Cloud,800<br>  IT,Licences,300<br>  HR,Training,400<br>  HR,Recruiting,250<br>  Sales,Travel,600<br>  Sales,Events,350<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>treemap </font><font color="red">data=<font color="black">'</font>spend<font color="black">'</font><font color="black">,</font> levels=<font color="black">'</font>dept<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>post<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=480<font color="black">,</font> height=260</font>/}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>sunburst </font><font color="red">data=<font color="black">'</font>spend<font color="black">'</font><font color="black">,</font> levels=<font color="black">'</font>dept<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>post<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=300<font color="black">,</font> height=300</font>/}</b></code></pre>
             </td>
             <td style="vertical-align:top">
               <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-treemap" role="img" aria-labelledby="pad-chart-b5085267-title pad-chart-b5085267-desc" width="480" height="260" viewbox="0 0 480 260">
@@ -1860,9 +1972,9 @@
           Sparklines
         </h2>
         <p>
-          <b>{sparkline}</b> is a line chart the size of a word, without axes, to stand in a sentence or a table cell.
+          <b>{chart:sparkline}</b> is a line chart the size of a word, without axes, to stand in a sentence or a table cell.
         </p>
-        <table border="1" cellpadding="10" cellspacing="0">
+        <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
           <tr>
             <th bgcolor="#DDDDDD">
               PHP<br>
@@ -1879,7 +1991,10 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000">&lt;p&gt;Fibonacci grows fast: <b>{<font color="blue">sparkline </font><font color="red">sequence=<font color="black">'</font>fibonacci<font color="black">'</font><font color="black">,</font> rows=12</font>/}</b>&lt;/p&gt;</code></pre>
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5GaWJvbmFjY2kgZ3Jvd3MgZmFzdDoge2NoYXJ0OnNwYXJrbGluZSBzZXF1ZW5jZT0nZmlib25hY2NpJywgcm93cz0xMi99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5GaWJvbmFjY2kgZ3Jvd3MgZmFzdDoge2NoYXJ0OnNwYXJrbGluZSBzZXF1ZW5jZT0nZmlib25hY2NpJywgcm93cz0xMi99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre><code style="color: #000000">&lt;p&gt;Fibonacci grows fast: <b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>sparkline </font><font color="red">sequence=<font color="black">'</font>fibonacci<font color="black">'</font><font color="black">,</font> rows=12</font>/}</b>&lt;/p&gt;</code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
@@ -1893,6 +2008,49 @@
                 <path class="pc-line" d="M5,27L15,26.8L25,26.8L35,26.5L45,26.3L55,25.8L65,25L75,23.8L85,21.8L95,18.6L105,13.4L115,5"></path>
                 <circle class="pc-dot" cx="115" cy="5" r="3"></circle></svg>
               </p>
+            </td>
+          </tr>
+        </table>
+        <h2>
+          Drawn in the browser
+        </h2>
+        <p>
+          With <code>client</code> the browser draws the chart: the server hands it the rows and the options and draws nothing itself, and a script draws the same SVG - character for character - where the chart stands. Every kind has it.
+        </p>
+        <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+          <tr>
+            <th bgcolor="#DDDDDD">
+              PHP<br>
+              <font size="-2">fragments/charts_11.php</font>
+            </th>
+            <th bgcolor="#DDDDDD">
+              HTML<br>
+              <font size="-2">fragments/charts_11.pad</font>
+            </th>
+            <th bgcolor="#DDDDDD">
+              Result
+            </th>
+          </tr>
+          <tr>
+            <td style="vertical-align:top">
+              <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $budget </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'post' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Rent'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">950 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'post' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Groceries'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">420 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'post' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Transport'</span><span style="color: #007700">, </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">160 </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'post' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Savings'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'amount' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">300 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+            </td>
+            <td style="vertical-align:top">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6ZG9udXQgZGF0YT0nYnVkZ2V0JywgbGFiZWw9J3Bvc3QnLCB2YWx1ZT0nYW1vdW50JywgY2xpZW50L31cbntjaGFydDpsaW5lIGRhdGE9J2J1ZGdldCcsIGxhYmVsPSdwb3N0JywgdmFsdWU9J2Ftb3VudCcsIHdpZHRoPTMyMCwgaGVpZ2h0PTE4MCwgY2xpZW50L31cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkYnVkZ2V0ID0gW1xuICAgIFsgJ3Bvc3QnID0+ICdSZW50JywgICAgICAnYW1vdW50JyA9PiA5NTAgXSxcbiAgICBbICdwb3N0JyA9PiAnR3JvY2VyaWVzJywgJ2Ftb3VudCcgPT4gNDIwIF0sXG4gICAgWyAncG9zdCcgPT4gJ1RyYW5zcG9ydCcsICdhbW91bnQnID0+IDE2MCBdLFxuICAgIFsgJ3Bvc3QnID0+ICdTYXZpbmdzJywgICAnYW1vdW50JyA9PiAzMDAgXVxuICBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y2hhcnQ6ZG9udXQgZGF0YT0nYnVkZ2V0JywgbGFiZWw9J3Bvc3QnLCB2YWx1ZT0nYW1vdW50JywgY2xpZW50L31cbntjaGFydDpsaW5lIGRhdGE9J2J1ZGdldCcsIGxhYmVsPSdwb3N0JywgdmFsdWU9J2Ftb3VudCcsIHdpZHRoPTMyMCwgaGVpZ2h0PTE4MCwgY2xpZW50L31cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkYnVkZ2V0ID0gW1xuICAgIFsgJ3Bvc3QnID0+ICdSZW50JywgICAgICAnYW1vdW50JyA9PiA5NTAgXSxcbiAgICBbICdwb3N0JyA9PiAnR3JvY2VyaWVzJywgJ2Ftb3VudCcgPT4gNDIwIF0sXG4gICAgWyAncG9zdCcgPT4gJ1RyYW5zcG9ydCcsICdhbW91bnQnID0+IDE2MCBdLFxuICAgIFsgJ3Bvc3QnID0+ICdTYXZpbmdzJywgICAnYW1vdW50JyA9PiAzMDAgXVxuICBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>donut </font><font color="red">data=<font color="black">'</font>budget<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>post<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> client</font>/}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>line </font><font color="red">data=<font color="black">'</font>budget<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>post<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>amount<font color="black">'</font><font color="black">,</font> width=320<font color="black">,</font> height=180<font color="black">,</font> client</font>/}</b></code></pre>
+            </td>
+            <td style="vertical-align:top">
+              <script src="/pad/assets/charts/core.js?v=2e56c40953"></script>
+              <script src="/pad/assets/charts/pie.js?v=1d16b38116"></script>
+              <script src="/pad/assets/charts/series.js?v=cf3cd0ef36"></script><span class="pad-chart-client" data-pad-chart="{&quot;kind&quot;:&quot;donut&quot;,&quot;id&quot;:&quot;pad-chart-ef50aefc&quot;,&quot;rows&quot;:{&quot;m&quot;:[[0,{&quot;m&quot;:[[&quot;post&quot;,&quot;Rent&quot;],[&quot;amount&quot;,950]]}],[1,{&quot;m&quot;:[[&quot;post&quot;,&quot;Groceries&quot;],[&quot;amount&quot;,420]]}],[2,{&quot;m&quot;:[[&quot;post&quot;,&quot;Transport&quot;],[&quot;amount&quot;,160]]}],[3,{&quot;m&quot;:[[&quot;post&quot;,&quot;Savings&quot;],[&quot;amount&quot;,300]]}]]},&quot;params&quot;:{&quot;label&quot;:&quot;post&quot;,&quot;value&quot;:&quot;amount&quot;},&quot;name&quot;:&quot;&quot;,&quot;what&quot;:&quot;chart:donut&quot;,&quot;nonce&quot;:&quot;&quot;,&quot;check&quot;:true,&quot;zone&quot;:&quot;UTC&quot;}"></span>
+              <script>
+              PadChart.mount(document.currentScript.previousElementSibling)
+              </script> <span class="pad-chart-client" data-pad-chart="{&quot;kind&quot;:&quot;line&quot;,&quot;id&quot;:&quot;pad-chart-d9132f31&quot;,&quot;rows&quot;:{&quot;m&quot;:[[0,{&quot;m&quot;:[[&quot;post&quot;,&quot;Rent&quot;],[&quot;amount&quot;,950]]}],[1,{&quot;m&quot;:[[&quot;post&quot;,&quot;Groceries&quot;],[&quot;amount&quot;,420]]}],[2,{&quot;m&quot;:[[&quot;post&quot;,&quot;Transport&quot;],[&quot;amount&quot;,160]]}],[3,{&quot;m&quot;:[[&quot;post&quot;,&quot;Savings&quot;],[&quot;amount&quot;,300]]}]]},&quot;params&quot;:{&quot;label&quot;:&quot;post&quot;,&quot;value&quot;:&quot;amount&quot;,&quot;width&quot;:&quot;320&quot;,&quot;height&quot;:&quot;180&quot;},&quot;name&quot;:&quot;&quot;,&quot;what&quot;:&quot;chart:line&quot;,&quot;nonce&quot;:&quot;&quot;,&quot;check&quot;:true,&quot;zone&quot;:&quot;UTC&quot;}"></span>
+              <script>
+              PadChart.mount(document.currentScript.previousElementSibling)
+              </script>
             </td>
           </tr>
         </table>

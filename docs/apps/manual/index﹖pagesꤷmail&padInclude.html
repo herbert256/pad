@@ -14,7 +14,7 @@ email's layout, with <code>@page@</code> where the mail goes:</p>
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -44,7 +44,7 @@ email's layout, with <code>@page@</code> where the mail goes:</p>
           <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  padMail </span><span style="color: #007700">( </span><span style="color: #DD0000">'ann@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'welcome'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Welcome to the shop'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$mail </span><span style="color: #007700">= </span><span style="color: #0000BB">$padMailLast</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;To <b>{<font color="green"><font color="red">$</font>mail.to</font>}</b>: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>mail.subject</font>}</b>&lt;/b&gt;&lt;/p&gt;<br><b>{<font color="green"><font color="red">$</font>mail.text</font>}</b><br><b>{<font color="green"><font color="red">!</font>mail.html</font>}</b></code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="../_common/play.css"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5UbyB7JG1haWwudG99OiA8Yj57JG1haWwuc3ViamVjdH08L2I+PC9wPlxuPHByZT57JG1haWwudGV4dH08L3ByZT5cbnshbWFpbC5odG1sfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIHBhZE1haWwgKCAnYW5uQGV4YW1wbGUuY29tJywgJ3dlbGNvbWUnLCAnV2VsY29tZSB0byB0aGUgc2hvcCcsIFsgJ25hbWUnID0+ICdBbm4nIF0gKTtcblxuICAkbWFpbCA9ICRwYWRNYWlsTGFzdDtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5UbyB7JG1haWwudG99OiA8Yj57JG1haWwuc3ViamVjdH08L2I+PC9wPlxuPHByZT57JG1haWwudGV4dH08L3ByZT5cbnshbWFpbC5odG1sfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIHBhZE1haWwgKCAnYW5uQGV4YW1wbGUuY29tJywgJ3dlbGNvbWUnLCAnV2VsY29tZSB0byB0aGUgc2hvcCcsIFsgJ25hbWUnID0+ICdBbm4nIF0gKTtcblxuICAkbWFpbCA9ICRwYWRNYWlsTGFzdDtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;To <b>{<font color="green"><font color="red">$</font>mail.to</font>}</b>: &lt;b&gt;<b>{<font color="green"><font color="red">$</font>mail.subject</font>}</b>&lt;/b&gt;&lt;/p&gt;<br><b>{<font color="green"><font color="red">$</font>mail.text</font>}</b><br><b>{<font color="green"><font color="red">!</font>mail.html</font>}</b></code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -73,8 +73,8 @@ Your account is ready: sign in (https://example.com/account).
 
 
 
-<p>From a template, {mail} sends the same way. With a template it is
-<code>{mail to=$email, template='welcome', subject='Welcome'}</code>; as a pair,
+<p>From a template, {pad:mail} sends the same way. With a template it is
+<code>{pad:mail to=$email, template='welcome', subject='Welcome'}</code>; as a pair,
 the content is the HTML part, rendered where it stands - in a loop with the fields of the
 row:</p>
 
@@ -85,7 +85,7 @@ row:</p>
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -115,7 +115,7 @@ row:</p>
           <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $name </span><span style="color: #007700">= </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">mail </font><font color="red">to=<font color="black">'</font>ann<font color="black">@</font>example.com<font color="black">'</font><font color="black">,</font> subject=<font color="black">'</font>Your order<font color="black">'</font></font>}</b><br>  &lt;p&gt;Thank you for your order, <b>{<font color="green"><font color="red">$</font>name</font>}</b>.&lt;/p&gt;<br><b>{/<font color="blue">mail</font><font color="red"></font>}</b><br>&lt;p&gt;Sent: <b>{<font color="green"><font color="red">$</font>padMailLast.subject</font>}</b>&lt;/p&gt;</code></pre></td>
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOm1haWwgdG89J2FubkBleGFtcGxlLmNvbScsIHN1YmplY3Q9J1lvdXIgb3JkZXInfVxuICA8cD5UaGFuayB5b3UgZm9yIHlvdXIgb3JkZXIsIHskbmFtZX0uPC9wPlxuey9wYWQ6bWFpbH1cbjxwPlNlbnQ6IHskcGFkTWFpbExhc3Quc3ViamVjdH08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJG5hbWUgPSAnQW5uJztcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOm1haWwgdG89J2FubkBleGFtcGxlLmNvbScsIHN1YmplY3Q9J1lvdXIgb3JkZXInfVxuICA8cD5UaGFuayB5b3UgZm9yIHlvdXIgb3JkZXIsIHskbmFtZX0uPC9wPlxuey9wYWQ6bWFpbH1cbjxwPlNlbnQ6IHskcGFkTWFpbExhc3Quc3ViamVjdH08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJG5hbWUgPSAnQW5uJztcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>mail </font><font color="red">to=<font color="black">'</font>ann<font color="black">@</font>example.com<font color="black">'</font><font color="black">,</font> subject=<font color="black">'</font>Your order<font color="black">'</font></font>}</b><br>  &lt;p&gt;Thank you for your order, <b>{<font color="green"><font color="red">$</font>name</font>}</b>.&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>mail</font><font color="red"></font>}</b><br>&lt;p&gt;Sent: <b>{<font color="green"><font color="red">$</font>padMailLast.subject</font>}</b>&lt;/p&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">

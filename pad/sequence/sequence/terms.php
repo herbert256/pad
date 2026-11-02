@@ -4,7 +4,7 @@
   // checks that have to generate a sequence to look in it - build/check.php and
   // plays/play/order.php - and for pqArray(), through pqTerms() in lib/sequence.php.
   //
-  // Those used pqArray() when it wrote a {sequence} tag pair and rendered it through padCode:
+  // Those used pqArray() when it wrote a {sequence:loop} tag pair and rendered it through padCode:
   // every term cost a rendered occurrence, about forty times what generating it costs, so a
   // flag over values past a type's table spent seconds on each candidate and a range of them
   // ran into the time limit; and the parameter was pasted into the tag as template text, so

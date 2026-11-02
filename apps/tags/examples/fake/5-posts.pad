@@ -1,8 +1,8 @@
-{meta title='Posts of a blog', about='A title, the slug made from it and a paragraph a row - the posts of a prototype, the same on every request.'/}
-{fake 'title, slug, paragraph', sentences=2, rows=3, seed=4}
+{pad:meta title='Posts of a blog', about='A title, the slug made from it and a paragraph a row - the posts of a prototype, the same on every request.'/}
+{fake:rows 'title, slug, paragraph', sentences=2, rows=3, seed=4}
 <article>
   <h3>{$title}</h3>
   <p><code>/blog/{$slug}</code></p>
   <p>{$paragraph}</p>
 </article>
-{/fake}
+{/fake:rows}

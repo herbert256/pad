@@ -1,10 +1,10 @@
 <?php
 
-  // Syntax colouring on the server - the {highlight} tag and the highlight pipe.
+  // Syntax colouring on the server - the {pad:highlight} tag and the highlight pipe.
   //
-  //   {highlight 'php'} echo $hello; {/highlight}
-  //   {highlight 'json', file='_data/products.json', lines}
-  //   {echo $snippet | highlight('sql')}
+  //   {pad:highlight 'php'} echo $hello; {/pad:highlight}
+  //   {pad:highlight 'json', file='_data/products.json', lines}
+  //   {pad:echo $snippet | highlight('sql')}
   //
   // padHighlight        a block: <pre class="pad-highlight"><code> with the colours, a light
   //                     default look under :where() that follows the page's color-scheme

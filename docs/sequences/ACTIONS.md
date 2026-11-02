@@ -61,14 +61,14 @@ than an error.
 removed, and what stays in the store is the remainder:
 
 ```
-{sequence '1..10', push='nums'/}
+{sequence:range '1..10', push='nums'/}
 {pull:nums shift=2}{$sequence} {/pull:nums}   # shows 1 2
 {pull:nums}{$sequence} {/pull:nums}           # the store now holds 3 4 5 6 7 8 9 10
 ```
 
 A pull written as a single tag stores what it made back under the store's name, whatever
 the action - `{pull:nums first=2/}` leaves `nums` holding 1 2, `{pull:nums reverse/}` leaves
-it reversed - as `{resume}` does. Written as a pair, `{pull:nums first=2}...{/pull:nums}`, it
+it reversed - as `{pad:resume}` does. Written as a pair, `{pull:nums first=2}...{/pull:nums}`, it
 leaves the store as it was, and only `shift` and `pop` take values out. `push='x'`, `name='x'`
 and `toData='x'` on a shift or pop keep what the tag shows, the part removed.
 
@@ -172,8 +172,8 @@ These work on the bits of each value, not on true and false:
 With `seqA` holding 1 to 6 and `seqB` holding 4 to 9:
 
 ```
-{sequence '1..6', push='seqA'/}
-{sequence '4..9', push='seqB'/}
+{sequence:range '1..6', push='seqA'/}
+{sequence:range '4..9', push='seqB'/}
 {pull:seqA append='seqB'/}        # 1 2 3 4 5 6 4 5 6 7 8 9  - seqB on the end
 {pull:seqA prepend='seqB'/}       # 4 5 6 7 8 9 1 2 3 4 5 6  - seqB in front
 {pull:seqA combine='seqB'/}       # 1 2 3 4 4 5 5 6 6 7 8 9  - in order, duplicates kept
@@ -199,20 +199,20 @@ strict check names the store that is not there.
 Applies transformations to a stored sequence without pulling it:
 
 ```
-{sequence 25, push='mySeq'/}
-{resume add=100/}           # Add 100 to each value
-{resume reverse/}           # Reverse order
-{resume subtract=5/}        # Subtract 5 from each
+{sequence:loop 25, push='mySeq'/}
+{pad:resume add=100/}           # Add 100 to each value
+{pad:resume reverse/}           # Reverse order
+{pad:resume subtract=5/}        # Subtract 5 from each
 {pull:mySeq}{$sequence} {/pull:mySeq}
 ```
 
-It resumes the store pushed last, or the one it names - `{resume 'mySeq', reverse/}`,
-`{resume mySeq, reverse/}` or `pull='mySeq'`. A name that is no store is reported, as
+It resumes the store pushed last, or the one it names - `{pad:resume 'mySeq', reverse/}`,
+`{pad:resume mySeq, reverse/}` or `pull='mySeq'`. A name that is no store is reported, as
 `{pull:typo}` reports it, and no other store is touched. A quoted action name is that action:
-`{resume 'reverse'/}` is `{resume reverse/}`. The parameters after it are read as on the other
-sequence tags ([SEQUENCES.md](SEQUENCES.md#positional-parameters)): `{resume 'first', 2/}` and
-`{resume first, 2/}` are `{resume first=2/}`, `{resume 'mySeq', 'reverse'/}` is
-`{resume mySeq, reverse/}`, and one nothing reads is reported. `push='u'` and `name='u'` keep
+`{pad:resume 'reverse'/}` is `{pad:resume reverse/}`. The parameters after it are read as on the other
+sequence tags ([SEQUENCES.md](SEQUENCES.md#positional-parameters)): `{pad:resume 'first', 2/}` and
+`{pad:resume first, 2/}` are `{pad:resume first=2/}`, `{pad:resume 'mySeq', 'reverse'/}` is
+`{pad:resume mySeq, reverse/}`, and one nothing reads is reported. `push='u'` and `name='u'` keep
 the result under u as well, with the columns a later `{pull:u}` chains in, and after
 `push='u'` u is the store pushed last - as the store resumed is after `push='mySeq'` on it, or
 a bare `push`.
@@ -222,10 +222,10 @@ a bare `push`.
 Filter or transform sequences based on sequence types:
 
 ```
-{pull mySeq, keep, even}     # Keep only even values
-{pull mySeq, remove, odd}    # Remove odd values
-{pull mySeq, make, prime}    # Transform using prime
-{pull mySeq, flag, even}     # Mark even entries
+{pad:pull mySeq, keep, even}     # Keep only even values
+{pad:pull mySeq, remove, odd}    # Remove odd values
+{pad:pull mySeq, make, prime}    # Transform using prime
+{pad:pull mySeq, flag, even}     # Mark even entries
 ```
 
 ## Common Patterns
@@ -233,24 +233,24 @@ Filter or transform sequences based on sequence types:
 ### Generate and Transform
 
 ```
-{sequence '1..10', push='nums'/}
-{resume add=5/}
-{resume reverse/}
+{sequence:range '1..10', push='nums'/}
+{pad:resume add=5/}
+{pad:resume reverse/}
 {pull:nums sort}{$sequence} {/pull:nums}
 ```
 
 ### Combine Sequences
 
 ```
-{sequence '1..5', push='seqA'/}
-{sequence '10..15', push='seqB'/}
+{sequence:range '1..5', push='seqA'/}
+{sequence:range '10..15', push='seqB'/}
 {pull:seqA append='seqB'}{$sequence} {/pull:seqA}
 ```
 
 ### Aggregate Values
 
 ```
-{sequence '1..100', push='nums'/}
+{sequence:range '1..100', push='nums'/}
 Sum: {pull:nums sum}{$sequence}{/pull:nums}
 Avg: {pull:nums average}{$sequence}{/pull:nums}
 ```
@@ -305,11 +305,11 @@ An action named by the tag takes its first parameter as its own when it is the a
 of parameter - the name of a store or a list for `append`, `merge`, `sort` and the others that
 take stores, and for `first`, `shift` and the others that count a count (an offset for `slice`
 and `splice`): anything but the name of a store or a type. Anything else is read as any first
-parameter is. A store or a type it names is what the action runs over: `{sum 'nums'}`,
+parameter is. A store or a type it names is what the action runs over: `{action:sum 'nums'}`,
 `{action:sum $name}` and `{action:first 'nums'}` act on nums, as `{pull:nums sum}` does, and
-`{reverse 'prime'}` reverses the primes, as `{prime reverse}` does. A number is how many rows:
-`{append 5}` is `{sequence 5, append}`, as `{sum 5}` is `{sequence 5, sum}`. What none of it
-reads - `{sum 'abc'}` or `{reverse 'abc'}` with no store abc - is reported by the strict check.
+`{action:reverse 'prime'}` reverses the primes, as `{sequence:prime reverse}` does. A number is how many rows:
+`{action:append 5}` is `{sequence:loop 5, append}`, as `{action:sum 5}` is `{sequence:loop 5, sum}`. What none of it
+reads - `{action:sum 'abc'}` or `{action:reverse 'abc'}` with no store abc - is reported by the strict check.
 
 ## See Also
 

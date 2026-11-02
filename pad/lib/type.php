@@ -1,10 +1,10 @@
 <?php
 
-  // Type detection: given the name inside a {tag}, work out what kind of thing it is.
+  // Type detection: given the name inside a {type:tag}, work out what kind of thing it is.
   // level/type.php calls into here for every tag, and the answer selects the handler
   // types/<type>.php that will run it.
   //
-  // padTypeTag       the plain name case, resolved in priority order: application _tags/,
+  // padTypeTag       tag names used from expressions, resolved in priority order: application _tags/,
   //                  the _common application (unless $padCommon is off - the common: prefix
   //                  stays available), a built-in pad tag, then the shared cases below, and
   //                  finally a pipe function used as a tag
@@ -12,7 +12,7 @@
   //                  function, shared cases, then a tag used as a function. The $goTag /
   //                  $goFunction flags stop the two from recursing into each other
   // padTypeCommon    everything both can be: a stored sequence, bool, content block,
-  //                  {define}, {macro}, select, data block, _include/ snippet, tag
+  //                  {pad:define}, {pad:macro}, select, data block, _include/ snippet, tag
   //                  property, field, array, parameter, level variable, PHP constant,
   //                  _data/ file, _scripts/ script, PHP function, sequence type, sequence
   //                  action - in that order; a field or array that is only a request
@@ -20,13 +20,21 @@
   // padTypeTagCheck  used when the template gave an explicit prefix (app:, pad:, php: ...)
   //                  - it verifies that one type instead of searching, so the prefix both
   //                  disambiguates and asserts
-  // padTypeSeq       resolves prefixed sequence forms, where prefix and name may appear
-  //                  either way round (make:fibonacci as well as fibonacci:make)
+  // padTypeSeq       resolves sequence operations with the type first (make:fibonacci)
   // padPhpAllowed    whether a template may call the PHP function of that name, by
   //                  $padPhpFunctions. A bare name resolves to PHP only when it may - one
   //                  left out falls through to a sequence of the same name, as range or
   //                  sort - while an explicit php: still resolves, and is refused with
   //                  the reason where it is called
+
+  // The public spelling of an open tag, used by diagnostics and generated source.
+  function padTagDisplay ( $level = NULL ) {
+
+    $level ??= $GLOBALS ['pad'];
+    $type = $GLOBALS ['padPrefix'] [$level] ?: $GLOBALS ['padType'] [$level];
+    return $type . ':' . $GLOBALS ['padTag'] [$level];
+
+  }
 
   function padPhpAllowed ( $name ) {
 
@@ -53,9 +61,9 @@
   }
 
   // Whether a name is only a request value: a variable a GET, POST or cookie value made
-  // (padGetParms keeps the note) that the page has not set since, and no row or {set} of an
+  // (padGetParms keeps the note) that the page has not set since, and no row or {pad:set} of an
   // enclosing level holds - or, with no variable of the name, a value the field search finds
-  // in $_GET or $_POST. The visitor chooses the names: ?prime=<script>... made {prime} on the
+  // in $_GET or $_POST. The visitor chooses the names: ?prime=<script>... made {sequence:prime} on the
   // sequence application's prime page the field tag of that value, written out as it came,
   // ?navigate=x made the demo's menu, read from _data/navigate.json, iterate the text x, and
   // ?strrev=X made the pipe | strrev answer X. Such a name gives way to every kind the
@@ -63,7 +71,7 @@
   //
   // A variable the application's PHP names is the page's own, whatever it holds: $date =
   // $date ?? '2000-01-01' with ?date=2026-01-01 keeps the request's value, and an assignment
-  // of the same value cannot be told from none by the value - {date} then printed the date
+  // of the same value cannot be told from none by the value - {function:date} then printed the date
   // pipe's answer, or the asked date, as the visitor sent it or not (padTypePageNamed).
 
   function padTypeAsked ( $item ) {
@@ -121,7 +129,7 @@
   // The variables a file of PHP names in its own scope, read from its tokens: a word in a
   // comment or a string is none, nor a parameter or a local of a function, a closure or a
   // class - only a global statement there names one. Searched in the text, $upper in a
-  // comment made the page's own a name it never set, and ?upper=<script>... took {upper}'s
+  // comment made the page's own a name it never set, and ?upper=<script>... took {function:upper}'s
   // place again, written out raw.
 
   function padTypePageVars ( $code ) {
@@ -278,8 +286,8 @@
     elseif ( padAppIncludeCheck ( $item                          ) ) return 'include';
     elseif ( padTagCheck        ( $item                          ) ) return 'property';
 
-    // A page's own array variable is the data of {name}, where a request value of the same
-    // name must not be: a page sets $orders = db(...) and ?orders=evil made {orders} iterate
+    // A page's own array variable is the data of {property:name}, where a request value of the same
+    // name must not be: a page sets $orders = db(...) and ?orders=evil made {field:orders} iterate
     // the scalar 'evil' - the field check finds the request value in $_GET before the array
     // check reaches the page's $orders - and ?todo&todos=x answered 500 when {$task} inside
     // the loop then missed. A direct global that is an array wins over a like-named request
@@ -319,8 +327,8 @@
 
     $common = padTypeCommon ( $type );
 
-    // A PHP function of the same name as a pipe function gives way to it: {substr 0, 2}
-    // reached PHP's substr() and came back whole, where {mid} and {left} - names PHP does
+    // A PHP function of the same name as a pipe function gives way to it: {function:substr 0, 2}
+    // reached PHP's substr() and came back whole, where {function:mid} and {function:left} - names PHP does
     // not have - ran the pipe function as a tag. date, range, stripslashes, substr, time,
     // trim and ucwords are such names.
 
@@ -331,11 +339,11 @@
     if ( $common )
       return $common;
 
-    // A kind of a subsystem reached bare - {pie/}, {modal}, {slider/} - after every other kind
+    // A kind of a subsystem reached bare - {chart:pie/}, {widget:modal}, {input:slider/} - after every other kind
     // of tag (lib/subsystem.php), and only as a tag: a kind is no value, and the words of an
     // expression are asked of padTypeFunction, whose own padTypeTag ( $type, 0 ) must not find
     // one either. In padTypeCommon it made the bare word line, class or toggle of an
-    // expression the tag chart:line, and {echo line/} or {if $k eq class} ended the page on
+    // expression the tag chart:line, and {pad:echo line/} or {pad:if $k eq class} ended the page on
     // an expression error where the word had been the constant it names.
 
     if ( $goFunction and $subsystem = padSubsystemBare ( $type ) )
@@ -454,41 +462,22 @@
 
   }
 
+  // Sequence operations are namespace first, like every other named tag.
+  // Stores are named after pull: or in the pull= option, never as a prefix.
   function padTypeSeq ( $type, $item ) {
 
     global $padTypeSeq, $pqStore;
 
     $padTypeSeq = $type;
 
-    if ( ! padValidName ( $type ) or ! padValidName ( $item ) )
+    if ( ! padValidName ( $item )
+         or ! in_array ( $type, [ 'sequence', 'action', 'pull', 'make', 'keep', 'flag', 'remove' ], TRUE ) )
       return FALSE;
 
-    // The entries in start/types/ are named as they are written on disk, as the types and the
-    // actions are (pqNames in lib/sequence.php): asked of a file system that ignores case,
-    // {Flag:even '1..4'} found start/types/flag.php and ran as make - 2 2 4 4 - where a Linux
-    // server has no type named Flag.
+    if ( $item === 'auto' and in_array ( $type, padSequenceOperations, TRUE ) )
+      return $type;
 
-    $entry = pqNames ( PQ . 'start/types' );
-
-    if ( $type == 'action' and pqAction ( $item )                           ) return 'action';
-    if ( $item == 'action' and pqAction ( $type )                           ) return 'action';
-
-    if ( isset ( $pqStore [$type] ) and pqAction ( $item )                   ) return 'action';
-    if ( isset ( $pqStore [$item] ) and pqAction ( $type )                   ) return 'action';
-
-    if ( isset ( $pqStore [$type] ) and pqSeq ( $item )                       ) return 'make';
-    if ( isset ( $pqStore [$item] ) and pqSeq ( $type )                       ) return 'make';
-
-    if ( isset ( $pqStore [$type] ) and isset ( $entry ["$item.php"] )      ) return $item;
-    if ( isset ( $pqStore [$item] ) and isset ( $entry ["$type.php"] )      ) return $type;
-
-    if ( pqSeq ( $item )    and isset ( $entry ["$type.php"] )              ) return $type;
-    if ( pqSeq ( $type )    and isset ( $entry ["$item.php"] )              ) return $item;
-
-    if ( pqAction ( $item ) and isset ( $entry ["$type.php"] )              ) return $type;
-    if ( pqAction ( $type ) and isset ( $entry ["$item.php"] )              ) return $item;
-
-    return FALSE;
+    return ( isset ( $pqStore [$item] ) or pqSeq ( $item ) or pqAction ( $item ) ) ? $type : FALSE;
 
   }
 

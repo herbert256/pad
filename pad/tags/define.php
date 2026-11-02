@@ -1,9 +1,9 @@
 <?php
 
-  // {define 'card'}...{/define}: a custom tag written in the template - {card title='x'}
-  // from here on renders the body as _tags/card.pad would: {#title}, {parms}, @content@,
+  // {pad:define 'card'}...{/pad:define}: a custom tag written in the template - {define:card title='x'}
+  // from here on renders the body as _tags/card.pad would: {#title}, {pad:parms}, @content@,
   // slots. The body is kept as written and renders at each use - tags/_lib/macro.php, the
-  // code it shares with {macro}, read here.
+  // code it shares with {pad:macro}, read here.
 
   include_once PAD . 'tags/_lib/macro.php';
 

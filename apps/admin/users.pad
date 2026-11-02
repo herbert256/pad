@@ -1,11 +1,11 @@
 <section class="card scroll">
-  <h2>{icon 'users', size=18/} {$userCount} users</h2>
+  <h2>{icon:users size=18/} {$userCount} users</h2>
   <table class="list">
     <thead><tr><th>Name</th><th>Made</th><th>Last login</th><th>New password</th><th></th></tr></thead>
     <tbody>
-      {userRows}
+      {array:userRows}
         <tr>
-          <td><strong>{$name}</strong>{if $self} <span class="badge info">you</span>{/if}</td>
+          <td><strong>{$name}</strong>{pad:if $self} <span class="badge info">you</span>{/pad:if}</td>
           <td class="nowrap">{$created}</td>
           <td class="nowrap">{$login}</td>
           <td>
@@ -17,27 +17,27 @@
             </form>
           </td>
           <td>
-            {if $self eq 0}
+            {pad:if $self eq 0}
               <form method="post" class="inline">
                 <input type="hidden" name="action" value="delete"><input type="hidden" name="name" value="{$name}">
-                <button class="small danger" data-confirm="Remove {$name}?">{icon 'trash', size=14/} Remove</button>
+                <button class="small danger" data-confirm="Remove {$name}?">{icon:trash size=14/} Remove</button>
               </form>
-            {/if}
+            {/pad:if}
           </td>
         </tr>
-      {/userRows}
+      {/array:userRows}
     </tbody>
   </table>
 </section>
 
 <section class="card">
-  <h2>{icon 'plus', size=18/} Add a user</h2>
+  <h2>{icon:plus size=18/} Add a user</h2>
   <form method="post" class="bar">
     <input type="hidden" name="action" value="add">
     <label>Name <input type="text" name="name" pattern="[A-Za-z0-9_\-]+" maxlength="40" required autocomplete="off"></label>
     <label>Password <input type="password" name="password" minlength="8" required autocomplete="new-password"></label>
     <label>Again <input type="password" name="again" minlength="8" required autocomplete="new-password"></label>
-    <button class="primary">{icon 'plus', size=16/} Add</button>
+    <button class="primary">{icon:plus size=16/} Add</button>
   </form>
   <p class="dim">The console's users are its own - the editor keeps its own users too.</p>
 </section>

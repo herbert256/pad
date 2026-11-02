@@ -1,8 +1,8 @@
-{meta title='Multiselect'/}
-{about/}
+{pad:meta title='Multiselect'/}
+{include:about/}
 
-{form 'try', class='inputs-try', error}
-  {multiselect 'interests', label='Interests', options='PHP, Maps, Music, Charts, Games, Forms', value='PHP, Maps', rules='required|in:PHP,Maps,Music,Charts,Games,Forms'/}
+{pad:form 'try', class='inputs-try', error}
+  {input:multiselect 'interests', label='Interests', options='PHP, Maps, Music, Charts, Games, Forms', value='PHP, Maps', rules='required|in:PHP,Maps,Music,Charts,Games,Forms'/}
   {input:multiselect 'days', label='Days', rules='in:Monday,Tuesday,Wednesday,Thursday,Friday'}
     Monday
     Tuesday
@@ -11,8 +11,8 @@
     Friday
   {/input:multiselect}
   <button class="inputs-send">Send</button>
-{/form}
+{/pad:form}
 
-{received/}
+{include:received/}
 
-{template/}
+{include:template/}

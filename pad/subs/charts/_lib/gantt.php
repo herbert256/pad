@@ -2,8 +2,8 @@
 
   // Tasks in time: a row per task, a bar from its start to its end.
   //
-  //   {chart 'gantt', data='plan', label='task', from='begin', to='until'}
-  //   {chart 'gantt', data='plan', color='team', progress='done', mark='2026-10-07'}
+  //   {chart:gantt data='plan', label='task', from='begin', to='until'}
+  //   {chart:gantt data='plan', color='team', progress='done', mark='2026-10-07'}
   //
   // label= names the task - else the first field that is no date; from= and to= name the
   // fields of its start and end - else the first two fields that read as dates. Dates are

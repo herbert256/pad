@@ -17,7 +17,7 @@
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -47,13 +47,13 @@
           <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $avatar </span><span style="color: #007700">= </span><span style="color: #0000BB">padUpload </span><span style="color: #007700">( </span><span style="color: #DD0000">'avatar'</span><span style="color: #007700">, </span><span style="color: #0000BB">types</span><span style="color: #007700">: [ </span><span style="color: #DD0000">'image/png'</span><span style="color: #007700">, </span><span style="color: #DD0000">'image/jpeg' </span><span style="color: #007700">], </span><span style="color: #0000BB">max</span><span style="color: #007700">: </span><span style="color: #DD0000">'2M' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$said </span><span style="color: #007700">= </span><span style="color: #0000BB">$avatar </span><span style="color: #007700">? </span><span style="color: #DD0000">'Stored as ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$avatar </span><span style="color: #007700">[</span><span style="color: #DD0000">'file'</span><span style="color: #007700">] : </span><span style="color: #DD0000">'No picture was sent yet.'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>said</font>}</b>&lt;/p&gt;<br><br><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>picture<font color="black">'</font></font>}</b><br>  <b>{<font color="blue">input </font><font color="red"><font color="black">'</font>avatar<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>file<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your picture<font color="black">'</font></font>/}</b><br>  &lt;button&gt;Upload&lt;/button&gt;<br><b>{/<font color="blue">form</font><font color="red"></font>}</b></code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="../_common/play.css"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57JHNhaWR9PC9wPlxuXG57cGFkOmZvcm0gJ3BpY3R1cmUnfVxuICB7cGFkOmlucHV0ICdhdmF0YXInLCB0eXBlPSdmaWxlJywgbGFiZWw9J1lvdXIgcGljdHVyZScvfVxuICA8YnV0dG9uPlVwbG9hZDwvYnV0dG9uPlxuey9wYWQ6Zm9ybX1cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkYXZhdGFyID0gcGFkVXBsb2FkICggJ2F2YXRhcicsIHR5cGVzOiBbICdpbWFnZS9wbmcnLCAnaW1hZ2UvanBlZycgXSwgbWF4OiAnMk0nICk7XG5cbiAgJHNhaWQgPSAkYXZhdGFyID8gJ1N0b3JlZCBhcyAnIC4gJGF2YXRhciBbJ2ZpbGUnXSA6ICdObyBwaWN0dXJlIHdhcyBzZW50IHlldC4nO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57JHNhaWR9PC9wPlxuXG57cGFkOmZvcm0gJ3BpY3R1cmUnfVxuICB7cGFkOmlucHV0ICdhdmF0YXInLCB0eXBlPSdmaWxlJywgbGFiZWw9J1lvdXIgcGljdHVyZScvfVxuICA8YnV0dG9uPlVwbG9hZDwvYnV0dG9uPlxuey9wYWQ6Zm9ybX1cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkYXZhdGFyID0gcGFkVXBsb2FkICggJ2F2YXRhcicsIHR5cGVzOiBbICdpbWFnZS9wbmcnLCAnaW1hZ2UvanBlZycgXSwgbWF4OiAnMk0nICk7XG5cbiAgJHNhaWQgPSAkYXZhdGFyID8gJ1N0b3JlZCBhcyAnIC4gJGF2YXRhciBbJ2ZpbGUnXSA6ICdObyBwaWN0dXJlIHdhcyBzZW50IHlldC4nO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>said</font>}</b>&lt;/p&gt;<br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form </font><font color="red"><font color="black">'</font>picture<font color="black">'</font></font>}</b><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>input </font><font color="red"><font color="black">'</font>avatar<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>file<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Your picture<font color="black">'</font></font>/}</b><br>  &lt;button&gt;Upload&lt;/button&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>form</font><font color="red"></font>}</b></code></pre></td>
         
         
           <td style="vertical-align:top">
   <p>No picture was sent yet.</p>
 
-<form method="post" enctype="multipart/form-data"><input type="hidden" name="padCsrfToken" value="4b25003718c6f757b2f80e8e2cc7a4d7fafd1008f87264e86b0ab444ed2c0bae"><input type="hidden" name="padForm" value="picture">
+<form method="post" enctype="multipart/form-data"><input type="hidden" name="padCsrfToken" value="24ecfdd9a113ad54cec623b295c2f05c4b80125041f02d42c70419569ec0e614"><input type="hidden" name="padForm" value="picture">
   <label for="avatar">Your picture</label><input type="file" name="avatar" id="avatar">
   <button>Upload</button>
 </form>
@@ -79,10 +79,10 @@ name, for showing only), <code>file</code> (the path under <code>DATA</code>, fo
 <code>padFileGet</code>), <code>path</code>, <code>size</code>, <code>type</code> and
 <code>extension</code> - or <code>NULL</code> when the field brought no file, or
 <code>FALSE</code> when the file was refused. <code>padUploadError ( 'avatar' )</code> says
-why, and the <b>{input}</b> file field of the form shows it beside itself, in the words of its
+why, and the <b>{pad:input}</b> file field of the form shows it beside itself, in the words of its
 label.</p>
 
-<p>A <b>{form}</b> holding a file field posts as <code>multipart/form-data</code> by itself;
+<p>A <b>{pad:form}</b> holding a file field posts as <code>multipart/form-data</code> by itself;
 without that the browser sends only the file's name.</p>
 
 <p>What is stored under <code>DATA</code> no address reaches. A page sends it back with

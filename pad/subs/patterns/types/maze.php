@@ -4,7 +4,7 @@
   // other by exactly one way, its walls in the first ink, entered at the top left and left at
   // the bottom right.
   //
-  //   {pattern 'maze', size=16, seed=6, colors='#fdf6e3, #586e75'/}
+  //   {pattern:maze size=16, seed=6, colors='#fdf6e3, #586e75'/}
   //
   // Dug by the recursive backtracker: from the top left square to a neighbour not yet visited,
   // picked by the seed, the wall between them knocked through, and back along the way dug when

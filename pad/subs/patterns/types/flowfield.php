@@ -4,7 +4,7 @@
   // size apart and never closer than half of it, so the picture is evenly full of them, its
   // swirls some twenty sizes across. Each line is an ink the seed picks.
   //
-  //   {pattern 'flowfield', size=12, seed=8, colors='#0f1b2d, #7dd3c0, #4aa3c7, #f4d06f'/}
+  //   {pattern:flowfield size=12, seed=8, colors='#0f1b2d, #7dd3c0, #4aa3c7, #f4d06f'/}
   //
   // The flow's direction at a place is a sum of three sine waves, each running a direction, at
   // a length and a phase of the seed's, taken as an angle around one main direction. The lines

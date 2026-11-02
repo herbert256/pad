@@ -1,7 +1,7 @@
 <p>{$names}</p>
 <select name="customer">
-  {choices~}
-    <option value="{key@choices/}">{$choices}</option>
-  {~/choices}
+  {array:choices~}
+    <option value="{property:key@choices/}">{$choices}</option>
+  {~/array:choices}
 </select>
 <p>Customer 2 is {$two}</p>

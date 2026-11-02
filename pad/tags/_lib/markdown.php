@@ -2,7 +2,7 @@
 
   // The parts of the Markdown renderer: the blocks, the lists, the inline spans, the
   // escaping and the links - padMarkdown in lib/markdown.php is its entry, and reads this
-  // file the first time it runs, for the {markdown} tag, the markdown pipe, a {collection}'s
+  // file the first time it runs, for the {pad:markdown} tag, the markdown pipe, a {pad:collection}'s
   // bodies or a page's PHP.
 
   // A tab at the start of a line counts as four spaces, the CommonMark tab stop, so an

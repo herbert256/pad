@@ -1,6 +1,6 @@
 <?php
 
-  // The post of a {themes/} switcher - in the frame's bar of every PAD application - is
+  // The post of a {pad:themes/} switcher - in the frame's bar of every PAD application - is
   // answered before the application runs (inits/themes.php): a 303 back to the address it was
   // posted to, the query kept, and the page's own PHP never reached. Taken by the page, it
   // ran a page that acts on any POST - a cart, a guestbook, a logout - as this one would. The

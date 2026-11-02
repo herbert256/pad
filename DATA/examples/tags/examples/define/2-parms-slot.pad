@@ -1,9 +1,9 @@
-{meta title='Parameters and a slot', about='{parms} gives a default, and a {slot} takes a fill from the use - or shows its own default.'/}
-{define 'defineNote'}
-  {parms text, tone='info'/}
+{pad:meta title='Parameters and a slot', about='{pad:parms} gives a default, and a {pad:slot} takes a fill from the use - or shows its own default.'/}
+{pad:define 'defineNote'}
+  {pad:parms text, tone='info'/}
   <p style="margin:6px 0">[{#tone}] {#text}
-    {slot 'more'}<em>no details</em>{/slot}</p>
-{/define}
+    {pad:slot 'more'}<em>no details</em>{/pad:slot}</p>
+{/pad:define}
 
-{defineNote text='Backup finished'}{/defineNote}
-{defineNote text='Disk almost full', tone='warning'}{slot 'more'}<b>92% used</b>{/slot}{/defineNote}
+{define:defineNote text='Backup finished'}{/define:defineNote}
+{define:defineNote text='Disk almost full', tone='warning'}{pad:slot 'more'}<b>92% used</b>{/pad:slot}{/define:defineNote}

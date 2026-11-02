@@ -7,8 +7,8 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{ai provider='anthropic', model='name', system='text', tokens=500, ttl=86400} ... {/ai}
-{ai 'prompt'/}
+{pad:ai provider='anthropic', model='name', system='text', tokens=500, ttl=86400} ... {/pad:ai}
+{pad:ai 'prompt'/}
 PAD;
 
   $tagParms   = [
@@ -23,5 +23,7 @@ PAD;
     'ttl'      => 'The seconds an answer is kept - 3600 unless given, 0 keeps nothing.' ];
 
   $tagSee     = [ 'curl', 'cache', 'markdown' ];
+
+  $subsystemKindLinks = appSubsystemLinks ( 'ai' );
 
 ?>

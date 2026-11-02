@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-      {pad:diagram} · PAD tags
+      {diagram:*} · PAD tags
     </title>
     <link rel="stylesheet" href="../_common/pad.css">
     <link rel="stylesheet" href="../_common/brand.css">
     <script src="../_common/pad.js"></script>
     <script src="../_common/brand.js" defer></script>
     <link rel="stylesheet" href="tags.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
     <style>
     :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
     </style>
@@ -92,6 +95,33 @@
     <style>
     .pad-chart-diagram .pd-g1{fill:var(--pad-chart-1)}.pad-chart-diagram .pd-gl1{stroke:var(--pad-chart-1)}.pad-chart-diagram .pd-g2{fill:var(--pad-chart-2)}.pad-chart-diagram .pd-gl2{stroke:var(--pad-chart-2)}.pad-chart-diagram .pd-g3{fill:var(--pad-chart-3)}.pad-chart-diagram .pd-gl3{stroke:var(--pad-chart-3)}.pad-chart-diagram .pd-g4{fill:var(--pad-chart-4)}.pad-chart-diagram .pd-gl4{stroke:var(--pad-chart-4)}.pad-chart-diagram .pd-g5{fill:var(--pad-chart-5)}.pad-chart-diagram .pd-gl5{stroke:var(--pad-chart-5)}.pad-chart-diagram .pd-g6{fill:var(--pad-chart-6)}.pad-chart-diagram .pd-gl6{stroke:var(--pad-chart-6)}.pad-chart-diagram .pd-g7{fill:var(--pad-chart-7)}.pad-chart-diagram .pd-gl7{stroke:var(--pad-chart-7)}.pad-chart-diagram .pd-g8{fill:var(--pad-chart-8)}.pad-chart-diagram .pd-gl8{stroke:var(--pad-chart-8)}.pad-chart-diagram .pd-git-line{fill:none;stroke-width:3;stroke-linecap:round}.pad-chart-diagram .pd-commit{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart-diagram .pd-hole{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-cross{stroke:var(--pad-chart-surface);stroke-width:2;stroke-linecap:round}.pad-chart-diagram .pd-lane-name{fill:var(--pad-chart-surface);font-size:11px;font-weight:700}.pad-chart-diagram .pd-commit-name{font-size:10px}.pad-chart-diagram .pd-tag{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}
     </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+    <style>
+    :where(.pad-chart-diagram){--pad-diagram-node:#eaf2fc;--pad-diagram-border:#2a78d6;--pad-diagram-decision:#fdf3dc;--pad-diagram-decision-border:#c98500;--pad-diagram-round:#e1f5ec;--pad-diagram-round-border:#1baf7a;--pad-diagram-edge:#6b6a66;--pad-diagram-note:#fff8c5;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){--pad-diagram-node:light-dark(#eaf2fc,#1b2a3d);--pad-diagram-border:light-dark(#2a78d6,#5598e7);--pad-diagram-decision:light-dark(#fdf3dc,#3a2f14);--pad-diagram-decision-border:light-dark(#c98500,#eda100);--pad-diagram-round:light-dark(#e1f5ec,#15332a);--pad-diagram-round-border:light-dark(#1baf7a,#1baf7a);--pad-diagram-edge:light-dark(#6b6a66,#a3a29a);--pad-diagram-note:light-dark(#fff8c5,#3d3a1c);}}.pad-chart-diagram text{font-size:12px}.pad-chart-diagram .pd-node{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-diamond{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border)}.pad-chart-diagram .pd-circle{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border)}.pad-chart-diagram .pd-edge{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-dashed{stroke-dasharray:5 4}.pad-chart-diagram .pd-thick{stroke-width:3}.pad-chart-diagram .pd-head{fill:var(--pad-diagram-edge)}.pad-chart-diagram .pd-plate{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-life{stroke:var(--pad-diagram-edge);stroke-width:1;stroke-dasharray:4 4}.pad-chart-diagram .pd-note{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}.pad-chart-diagram .pd-frame{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-tab{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-small{font-size:11px;font-weight:600}.pad-chart-diagram .pd-number{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-number-text{fill:var(--pad-chart-surface);font-size:10px;font-weight:700}
+    </style>
+    <style>
+    .pad-chart-diagram .pd-fb-spine{stroke-width:3}.pad-chart-diagram .pd-fb-bone{stroke-width:2}.pad-chart-diagram .pd-fb-rib{stroke-width:1}.pad-chart-diagram .pd-node.pd-fb-head{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border);stroke-width:2}.pad-chart-diagram .pd-fb-effect{font-size:13px;font-weight:700}.pad-chart-diagram .pd-fb-category{font-weight:700}.pad-chart-diagram .pd-fb-deep{font-size:11px}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+    <style>
+    :where(.pad-chart-diagram){--pad-diagram-node:#eaf2fc;--pad-diagram-border:#2a78d6;--pad-diagram-decision:#fdf3dc;--pad-diagram-decision-border:#c98500;--pad-diagram-round:#e1f5ec;--pad-diagram-round-border:#1baf7a;--pad-diagram-edge:#6b6a66;--pad-diagram-note:#fff8c5;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){--pad-diagram-node:light-dark(#eaf2fc,#1b2a3d);--pad-diagram-border:light-dark(#2a78d6,#5598e7);--pad-diagram-decision:light-dark(#fdf3dc,#3a2f14);--pad-diagram-decision-border:light-dark(#c98500,#eda100);--pad-diagram-round:light-dark(#e1f5ec,#15332a);--pad-diagram-round-border:light-dark(#1baf7a,#1baf7a);--pad-diagram-edge:light-dark(#6b6a66,#a3a29a);--pad-diagram-note:light-dark(#fff8c5,#3d3a1c);}}.pad-chart-diagram text{font-size:12px}.pad-chart-diagram .pd-node{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-diamond{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border)}.pad-chart-diagram .pd-circle{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border)}.pad-chart-diagram .pd-edge{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-dashed{stroke-dasharray:5 4}.pad-chart-diagram .pd-thick{stroke-width:3}.pad-chart-diagram .pd-head{fill:var(--pad-diagram-edge)}.pad-chart-diagram .pd-plate{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-life{stroke:var(--pad-diagram-edge);stroke-width:1;stroke-dasharray:4 4}.pad-chart-diagram .pd-note{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}.pad-chart-diagram .pd-frame{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-tab{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-small{font-size:11px;font-weight:600}.pad-chart-diagram .pd-number{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-number-text{fill:var(--pad-chart-surface);font-size:10px;font-weight:700}
+    </style>
+    <style>
+    .pad-chart-diagram .pd-rr-line{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5}.pad-chart-diagram .pd-rr-arrow{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-rr-term{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border);stroke-width:1.5}.pad-chart-diagram .pd-rr-nt{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-rr-class{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border);stroke-width:1.5}.pad-chart-diagram .pd-rr-term-text,.pad-chart-diagram .pd-rr-class-text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.pad-chart-diagram .pd-rr-name{font-weight:700}.pad-chart-diagram .pd-rr-note{font-size:11px;font-style:italic}.pad-chart-diagram a:hover .pd-rr-nt-text,.pad-chart-diagram a:focus .pd-rr-nt-text{text-decoration:underline}.pad-chart-diagram a:focus-visible .pd-rr-nt{stroke-width:3}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+    <style>
+    :where(.pad-chart-diagram){--pad-diagram-node:#eaf2fc;--pad-diagram-border:#2a78d6;--pad-diagram-decision:#fdf3dc;--pad-diagram-decision-border:#c98500;--pad-diagram-round:#e1f5ec;--pad-diagram-round-border:#1baf7a;--pad-diagram-edge:#6b6a66;--pad-diagram-note:#fff8c5;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart-diagram){--pad-diagram-node:light-dark(#eaf2fc,#1b2a3d);--pad-diagram-border:light-dark(#2a78d6,#5598e7);--pad-diagram-decision:light-dark(#fdf3dc,#3a2f14);--pad-diagram-decision-border:light-dark(#c98500,#eda100);--pad-diagram-round:light-dark(#e1f5ec,#15332a);--pad-diagram-round-border:light-dark(#1baf7a,#1baf7a);--pad-diagram-edge:light-dark(#6b6a66,#a3a29a);--pad-diagram-note:light-dark(#fff8c5,#3d3a1c);}}.pad-chart-diagram text{font-size:12px}.pad-chart-diagram .pd-node{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-diamond{fill:var(--pad-diagram-decision);stroke:var(--pad-diagram-decision-border)}.pad-chart-diagram .pd-circle{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border)}.pad-chart-diagram .pd-edge{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1.5;stroke-linejoin:round}.pad-chart-diagram .pd-dashed{stroke-dasharray:5 4}.pad-chart-diagram .pd-thick{stroke-width:3}.pad-chart-diagram .pd-head{fill:var(--pad-diagram-edge)}.pad-chart-diagram .pd-plate{fill:var(--pad-chart-surface)}.pad-chart-diagram .pd-life{stroke:var(--pad-diagram-edge);stroke-width:1;stroke-dasharray:4 4}.pad-chart-diagram .pd-note{fill:var(--pad-diagram-note);stroke:var(--pad-diagram-decision-border);stroke-width:1}.pad-chart-diagram .pd-frame{fill:none;stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-tab{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-edge);stroke-width:1}.pad-chart-diagram .pd-small{font-size:11px;font-weight:600}.pad-chart-diagram .pd-number{fill:var(--pad-diagram-border)}.pad-chart-diagram .pd-number-text{fill:var(--pad-chart-surface);font-size:10px;font-weight:700}
+    </style>
+    <style>
+    .pad-chart-diagram .pd-pk-field.pd-pk-a{fill:var(--pad-diagram-node);stroke:var(--pad-diagram-border);stroke-width:1.5}.pad-chart-diagram .pd-pk-field.pd-pk-b{fill:var(--pad-diagram-round);stroke:var(--pad-diagram-round-border);stroke-width:1.5}.pad-chart-diagram .pd-pk-bit{font-size:9px;font-variant-numeric:tabular-nums}.pad-chart-diagram .pd-pk-heading{font-size:15px;font-weight:700}
+    </style>
   </head>
   <body class="frame app-tags">
     <aside class="frame-side">
@@ -105,89 +135,113 @@
             </summary>
             <nav class="pad-brand-apps" aria-label="PAD applications">
               <div class="pad-brand-columns">
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    PAD
-                  </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
-                  <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
-                  <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Showcases
-                  </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                  <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                  <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                  <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Front ends
-                  </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
-                  <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
-                  <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
-                  <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
                 </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Offline
-                  </div><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                  <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
-                  <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
-                  <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Examples
-                  </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/playground/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
-                  <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>playground</b><small>Type a template, see the result</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-                  <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
-                </div>
-                <div class="pad-brand-group">
-                  <div class="pad-brand-head">
-                    Tools
-                  </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
-                  <circle cx="9" cy="7" r="2"></circle>
-                  <circle cx="15" cy="12" r="2"></circle>
-                  <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
-                  <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
-                  <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                  <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
                 </div>
               </div>
             </nav>
@@ -211,26 +265,80 @@
     <main class="frame-main">
       <header class="frame-top">
         <form class="search" action="" method="get" role="search">
-          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 634 tags" autocomplete="off">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags and kinds</label> <input type="search" id="q" name="q" value="" placeholder="Search 1220 entries" autocomplete="off">
         </form>
         <div class="frame-tools">
-          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
         </div>
       </header>
       <div class="frame-body">
         <article class="tag">
           <nav class="crumbs" aria-label="Where you are">
-            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#graphics">Charts and codes</a><span>/</span><span aria-current="page">pad:diagram</span>
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#graphics">Charts and codes</a><span>/</span><span aria-current="page">diagram:*</span>
           </nav>
           <header class="tag-head">
             <h1>
-              <span class="brace">{</span>pad:diagram<span class="brace">}</span>
+              <span class="brace">{</span>diagram:*<span class="brace">}</span>
             </h1>
             <p class="tag-about">
-              Draws a diagram from Mermaid-style lines of text, laid out on the server as inline SVG - 9 kinds, from flowcharts and sequence diagrams to state machines, class and entity-relationship diagrams, mind maps, trees, user journeys and commit graphs.
+              Draws a diagram from Mermaid-style lines of text, laid out on the server as inline SVG - 13 kinds, from flowcharts and sequence diagrams to state machines, class and entity-relationship diagrams, mind maps, trees, user journeys, commit graphs, fishbones, railroad and packet diagrams.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#graphics">Charts and codes</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#pair">Tag pairs</a>
@@ -240,24 +348,27 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span>, <span class="hl-opt">edges</span>=<span class="hl-str">'curved'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> A[Start] --<span class="hl-htm">&gt;</span> B<span class="hl-brc">{</span><span class="hl-tag">Ready</span>?<span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">type</span>=<span class="hl-str">'sequence'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> Shop -<span class="hl-htm">&gt;</span><span class="hl-htm">&gt;</span> Bank: Charge <span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:auto</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span>, <span class="hl-opt">edges</span>=<span class="hl-str">'curved'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> A[Start] --<span class="hl-htm">&gt;</span> B<span class="hl-brc">{</span><span class="hl-tag">Ready</span>?<span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/diagram:auto</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:sequence</span> <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span> Shop -<span class="hl-htm">&gt;</span><span class="hl-htm">&gt;</span> Bank: Charge <span class="hl-brc">{</span><span class="hl-tag">/diagram:sequence</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">diagram:state</span><span class="hl-brc">}</span> [*] --<span class="hl-htm">&gt;</span> Idle <span class="hl-brc">{</span><span class="hl-tag">/diagram:state</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">diagram:class</span><span class="hl-brc">}</span> Animal &lt;|-- Duck <span class="hl-brc">{</span><span class="hl-tag">/diagram:class</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">diagram:er</span><span class="hl-brc">}</span> CUSTOMER ||--o<span class="hl-brc">{</span> ORDER : places <span class="hl-brc">{</span><span class="hl-tag">/diagram:er</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">mindmap</span><span class="hl-brc">}</span> Root ... <span class="hl-brc">{</span><span class="hl-tag">/mindmap</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:mindmap</span><span class="hl-brc">}</span> Root ... <span class="hl-brc">{</span><span class="hl-tag">/diagram:mindmap</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">diagram:tree</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span><span class="hl-brc">}</span> Root ... <span class="hl-brc">{</span><span class="hl-tag">/diagram:tree</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">journey</span><span class="hl-brc">}</span> section Morning ... <span class="hl-brc">{</span><span class="hl-tag">/journey</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">gitgraph</span><span class="hl-brc">}</span> commit ... <span class="hl-brc">{</span><span class="hl-tag">/gitgraph</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:journey</span><span class="hl-brc">}</span> section Morning ... <span class="hl-brc">{</span><span class="hl-tag">/diagram:journey</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:gitgraph</span><span class="hl-brc">}</span> commit ... <span class="hl-brc">{</span><span class="hl-tag">/diagram:gitgraph</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:fishbone</span><span class="hl-brc">}</span> Effect ... <span class="hl-brc">{</span><span class="hl-tag">/diagram:fishbone</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:railroad</span><span class="hl-brc">}</span> rule ::= <span class="hl-str">'a'</span> item* <span class="hl-brc">{</span><span class="hl-tag">/diagram:railroad</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diagram:packet</span> <span class="hl-opt">bits</span>=<span class="hl-num">32</span><span class="hl-brc">}</span> <span class="hl-num">0</span>-<span class="hl-num">15</span>: <span class="hl-str">"Field"</span> ... <span class="hl-brc">{</span><span class="hl-tag">/diagram:packet</span><span class="hl-brc">}</span></code></pre>
             <h3>
               Options
             </h3>
             <dl class="defs">
               <dt>
-                <code>type</code>
+                <code>bits</code>
               </dt>
               <dd>
-                The kind, a file of <code>pad/subs/diagrams/types/</code>: <code>class</code>, <code>er</code>, <code>flowchart</code>, <code>gitgraph</code>, <code>journey</code>, <code>mindmap</code>, <code>sequence</code>, <code>state</code>, <code>tree</code> - <code>flowchart</code> unless it says otherwise. The diagram type names it as well, <code>{diagram:state}</code>, and so does the bare name, <code>{state}</code>, when nothing else has it; <code>sequence</code> and <code>tree</code> are tags of their own, so those are <code>{diagram:sequence}</code> and <code>{diagram:tree}</code>. A first line written the Mermaid way - <code>sequenceDiagram</code>, <code>stateDiagram-v2</code>, <code>classDiagram</code>, <code>erDiagram</code>, <code>gitGraph</code> - names the kind too.
+                packet: the bits in a row, <code>32</code> unless given, 4 to 64.
               </dd>
               <dt>
                 <code>direction</code>
@@ -275,7 +386,7 @@
                 <code>title</code>
               </dt>
               <dd>
-                The accessible name, by default the kind's - <code>Flowchart</code>, <code>Sequence diagram</code>, <code>State diagram</code> ... - and for a journey its <code>title</code> line.
+                The accessible name, by default the kind's - <code>Flowchart</code>, <code>Sequence diagram</code>, <code>State diagram</code> ... - and for a journey and a packet its <code>title</code> line.
               </dd>
             </dl>
           </section>
@@ -284,7 +395,7 @@
               Description
             </h2>
             <p>
-              <code>{diagram}</code> turns a few lines of text in its content into a picture, written the way Mermaid writes them, and lays it out on the server (<code>pad/subs/diagrams/</code>) as inline SVG - no JavaScript in the browser, and the same lines always draw the same picture. The content is taken as it stands before the level walks it, so the braces of a decision like <code>B{Paid?}</code> or a class <code>class A {</code> need no ignore. Every kind is a file of <code>pad/subs/diagrams/types/</code>; each is written three ways - <code>{diagram type='state'}</code>, <code>{diagram:state}</code> and the bare <code>{state}</code> when nothing else has the name.
+              <code>{diagram:auto}</code> turns a few lines of text in its content into a picture, written the way Mermaid writes them, and lays it out on the server (<code>pad/subs/diagrams/</code>) as inline SVG - no JavaScript in the browser, and the same lines always draw the same picture. The content is taken as it stands before the level walks it, so the braces of a decision like <code>B{Paid?}</code> or a class <code>class A {</code> need no ignore. Every kind is a file of <code>pad/subs/diagrams/types/</code>; select one with its qualified name, such as <code>{diagram:state}</code>. <code>{diagram:auto}</code> detects a Mermaid header and otherwise draws a flowchart.
             </p>
             <h3>
               Flowcharts
@@ -296,7 +407,7 @@
               Sequence diagrams
             </h3>
             <p>
-              With <code>type='sequence'</code> or <code>{diagram:sequence}</code> - bare, <code>{sequence}</code> is the sequence tag: <code>participant A as Alice</code>, <code>actor U</code>, messages <code>-&gt;&gt;</code> (arrow), <code>--&gt;&gt;</code> (dashed), <code>-&gt;</code> and <code>--&gt;</code> (no head), <code>-x</code> (cross), <code>-)</code> (open), <code>Note left of A: text</code> (also <code>right of</code> and <code>over A,B</code>), the frames <code>loop</code>, <code>alt</code> / <code>else</code>, <code>opt</code>, <code>par</code> / <code>and</code>, <code>critical</code> and <code>break</code> closed by <code>end</code>, and <code>autonumber</code>.
+              With <code>{diagram:sequence}</code>: <code>participant A as Alice</code>, <code>actor U</code>, messages <code>-&gt;&gt;</code> (arrow), <code>--&gt;&gt;</code> (dashed), <code>-&gt;</code> and <code>--&gt;</code> (no head), <code>-x</code> (cross), <code>-)</code> (open), <code>Note left of A: text</code> (also <code>right of</code> and <code>over A,B</code>), the frames <code>loop</code>, <code>alt</code> / <code>else</code>, <code>opt</code>, <code>par</code> / <code>and</code>, <code>critical</code> and <code>break</code> closed by <code>end</code>, and <code>autonumber</code>.
             </p>
             <h3>
               State, class and entity-relationship diagrams
@@ -308,7 +419,25 @@
               Mind maps, trees, journeys and commit graphs
             </h3>
             <p>
-              A mind map and a tree read their hierarchy from the indentation - the mind map's shapes by their brackets, <code>[square]</code>, <code>(rounded)</code>, <code>((circle))</code>, <code>{{hexagon}}</code>, <code>)cloud(</code>, <code>))bang((</code>; the tree is <code>{diagram:tree}</code>, as <code>{tree}</code> is the tree tag. A journey: <code>title text</code>, <code>section text</code> and a step a line, <code>Make tea: 5: Me, Cat</code> with its score from 1 to 5. A commit graph: <code>commit id: "x" tag: "v1" type: HIGHLIGHT</code>, <code>branch name</code>, <code>checkout name</code>, <code>merge name</code> and <code>cherry-pick id: "x"</code>.
+              A mind map and a tree read their hierarchy from the indentation - the mind map's shapes by their brackets, <code>[square]</code>, <code>(rounded)</code>, <code>((circle))</code>, <code>{{hexagon}}</code>, <code>)cloud(</code>, <code>))bang((</code>; the tree is <code>{diagram:tree}</code>, as <code>{pad:tree}</code> is the tree tag. A journey: <code>title text</code>, <code>section text</code> and a step a line, <code>Make tea: 5: Me, Cat</code> with its score from 1 to 5. A commit graph: <code>commit id: "x" tag: "v1" type: HIGHLIGHT</code>, <code>branch name</code>, <code>checkout name</code>, <code>merge name</code> and <code>cherry-pick id: "x"</code>.
+            </p>
+            <h3>
+              Fishbones
+            </h3>
+            <p>
+              A fishbone reads its hierarchy from the indentation too: the first line the effect, in the head on the right, a line under it a category - a bone above or below the spine by turns - and a line under a category a cause, a rib along the bone, with the causes of a cause hanging off it. Mermaid's first line <code>ishikawa-beta</code> names the kind as well.
+            </p>
+            <h3>
+              Railroad diagrams
+            </h3>
+            <p>
+              A railroad diagram draws a grammar written in the EBNF of the W3C: <code>name ::= expression</code> a rule, <code>'text'</code> a terminal, a name a rule - a link to its track when the grammar has it - <code>[a-z]</code> and <code>#x20</code> a character class, <code>|</code> a choice, <code>?</code>, <code>*</code> and <code>+</code> optional, none or more, one or more, <code>A - B</code> A but not B, <code>/* comments */</code>.
+            </p>
+            <h3>
+              Packet diagrams
+            </h3>
+            <p>
+              A packet diagram draws the fields of a header by their bits, the Mermaid way: <code>0-15: "Source Port"</code>, <code>106: "URG"</code>, <code>+16: "Window"</code>, in rows of <code>bits=</code> (32).
             </p>
             <p>
               The SVG has <code>role="img"</code>, a <code>&lt;title&gt;</code> and a <code>&lt;desc&gt;</code> that says every edge, message, relation or step. A diagram without nodes answers nothing, so its <code>@else@</code> shows; a line it cannot read, or an unknown <code>type</code>, <code>direction</code> or <code>edges</code>, is an error under the strict check.
@@ -328,18 +457,21 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/diagram/1-flowchart.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/diagram/1-flowchart.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">title</span>=<span class="hl-str">'Handling an order'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:auto</span> <span class="hl-opt">title</span>=<span class="hl-str">'Handling an order'</span><span class="hl-brc">}</span>
   A([Order placed]) --<span class="hl-htm">&gt;</span> B<span class="hl-brc">{</span><span class="hl-tag">In</span> stock?<span class="hl-brc">}</span>
   B --<span class="hl-htm">&gt;</span>|no| C[Order from supplier]
   C -.-<span class="hl-htm">&gt;</span>|delivered| B
   B --<span class="hl-htm">&gt;</span>|yes| D[Take payment] --<span class="hl-htm">&gt;</span> E[(Orders database)] --<span class="hl-htm">&gt;</span> F((Shipped))
-<span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:auto</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B71-flowchart.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B71-flowchart.html">open alone</a></span>
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTphdXRvIHRpdGxlPSdIYW5kbGluZyBhbiBvcmRlcid9XG4gIEEoW09yZGVyIHBsYWNlZF0pIC0tPiBCe0luIHN0b2NrP31cbiAgQiAtLT58bm98IENbT3JkZXIgZnJvbSBzdXBwbGllcl1cbiAgQyAtLi0+fGRlbGl2ZXJlZHwgQlxuICBCIC0tPnx5ZXN8IERbVGFrZSBwYXltZW50XSAtLT4gRVsoT3JkZXJzIGRhdGFiYXNlKV0gLS0+IEYoKFNoaXBwZWQpKVxuey9kaWFncmFtOmF1dG99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTphdXRvIHRpdGxlPSdIYW5kbGluZyBhbiBvcmRlcid9XG4gIEEoW09yZGVyIHBsYWNlZF0pIC0tPiBCe0luIHN0b2NrP31cbiAgQiAtLT58bm98IENbT3JkZXIgZnJvbSBzdXBwbGllcl1cbiAgQyAtLi0+fGRlbGl2ZXJlZHwgQlxuICBCIC0tPnx5ZXN8IERbVGFrZSBwYXltZW50XSAtLT4gRVsoT3JkZXJzIGRhdGFiYXNlKV0gLS0+IEYoKFNoaXBwZWQpKVxuey9kaWFncmFtOmF1dG99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-7a2560d6-title pad-chart-7a2560d6-desc" width="338" height="442" viewbox="0 0 338 442">
@@ -453,19 +585,21 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/diagram/2-lr.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/diagram/2-lr.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span>, <span class="hl-opt">edges</span>=<span class="hl-str">'curved'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Deploy pipeline'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:auto</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span>, <span class="hl-opt">edges</span>=<span class="hl-str">'curved'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Deploy pipeline'</span><span class="hl-brc">}</span>
   code([Commit]) --<span class="hl-htm">&gt;</span> build[Build]
   build --<span class="hl-htm">&gt;</span> unit[Tests] & lint[Lint]
   unit & lint --<span class="hl-htm">&gt;</span> gate<span class="hl-brc">{</span><span class="hl-tag">Green</span>?<span class="hl-brc">}</span>
   gate --<span class="hl-htm">&gt;</span>|yes| live((Live))
   gate -.-<span class="hl-htm">&gt;</span>|no| code
-<span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:auto</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B72-lr.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B72-lr.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTphdXRvIGRpcmVjdGlvbj0nTFInLCBlZGdlcz0nY3VydmVkJywgdGl0bGU9J0RlcGxveSBwaXBlbGluZSd9XG4gIGNvZGUoW0NvbW1pdF0pIC0tPiBidWlsZFtCdWlsZF1cbiAgYnVpbGQgLS0+IHVuaXRbVGVzdHNdICYgbGludFtMaW50XVxuICB1bml0ICYgbGludCAtLT4gZ2F0ZXtHcmVlbj99XG4gIGdhdGUgLS0+fHllc3wgbGl2ZSgoTGl2ZSkpXG4gIGdhdGUgLS4tPnxub3wgY29kZVxuey9kaWFncmFtOmF1dG99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTphdXRvIGRpcmVjdGlvbj0nTFInLCBlZGdlcz0nY3VydmVkJywgdGl0bGU9J0RlcGxveSBwaXBlbGluZSd9XG4gIGNvZGUoW0NvbW1pdF0pIC0tPiBidWlsZFtCdWlsZF1cbiAgYnVpbGQgLS0+IHVuaXRbVGVzdHNdICYgbGludFtMaW50XVxuICB1bml0ICYgbGludCAtLT4gZ2F0ZXtHcmVlbj99XG4gIGdhdGUgLS0+fHllc3wgbGl2ZSgoTGl2ZSkpXG4gIGdhdGUgLS4tPnxub3wgY29kZVxuey9kaWFncmFtOmF1dG99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-8f4c9eb9-title pad-chart-8f4c9eb9-desc" width="587" height="145" viewbox="0 0 587 145">
@@ -582,9 +716,9 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/diagram/3-sequence.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/diagram/3-sequence.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">type</span>=<span class="hl-str">'sequence'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Paying an order'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:sequence</span> <span class="hl-opt">title</span>=<span class="hl-str">'Paying an order'</span><span class="hl-brc">}</span>
   participant S as Shop
   participant B as Bank
   autonumber
@@ -595,11 +729,13 @@
     B --<span class="hl-htm">&gt;</span><span class="hl-htm">&gt;</span> S: Refused
   end
   Note over S,B: The card number never reaches the shop
-<span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:sequence</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B73-sequence.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B73-sequence.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpzZXF1ZW5jZSB0aXRsZT0nUGF5aW5nIGFuIG9yZGVyJ31cbiAgcGFydGljaXBhbnQgUyBhcyBTaG9wXG4gIHBhcnRpY2lwYW50IEIgYXMgQmFua1xuICBhdXRvbnVtYmVyXG4gIFMgLT4+IEI6IENoYXJnZSA0Mi4wMFxuICBhbHQgRW5vdWdoIGZ1bmRzXG4gICAgQiAtLT4+IFM6IEFwcHJvdmVkXG4gIGVsc2UgRGVjbGluZWRcbiAgICBCIC0tPj4gUzogUmVmdXNlZFxuICBlbmRcbiAgTm90ZSBvdmVyIFMsQjogVGhlIGNhcmQgbnVtYmVyIG5ldmVyIHJlYWNoZXMgdGhlIHNob3BcbnsvZGlhZ3JhbTpzZXF1ZW5jZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpzZXF1ZW5jZSB0aXRsZT0nUGF5aW5nIGFuIG9yZGVyJ31cbiAgcGFydGljaXBhbnQgUyBhcyBTaG9wXG4gIHBhcnRpY2lwYW50IEIgYXMgQmFua1xuICBhdXRvbnVtYmVyXG4gIFMgLT4+IEI6IENoYXJnZSA0Mi4wMFxuICBhbHQgRW5vdWdoIGZ1bmRzXG4gICAgQiAtLT4+IFM6IEFwcHJvdmVkXG4gIGVsc2UgRGVjbGluZWRcbiAgICBCIC0tPj4gUzogUmVmdXNlZFxuICBlbmRcbiAgTm90ZSBvdmVyIFMsQjogVGhlIGNhcmQgbnVtYmVyIG5ldmVyIHJlYWNoZXMgdGhlIHNob3BcbnsvZGlhZ3JhbTpzZXF1ZW5jZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-8c142292-title pad-chart-8c142292-desc" width="326" height="354" viewbox="0 0 326 354">
@@ -708,7 +844,7 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/diagram/4-state.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/diagram/4-state.pad</span></span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:state</span> <span class="hl-opt">title</span>=<span class="hl-str">'A ticket'</span><span class="hl-brc">}</span>
   [*] --<span class="hl-htm">&gt;</span> Open
@@ -723,7 +859,9 @@
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B74-state.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B74-state.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpzdGF0ZSB0aXRsZT0nQSB0aWNrZXQnfVxuICBbKl0gLS0+IE9wZW5cbiAgT3BlbiAtLT4gV29ya2luZyA6IHRha2VcbiAgV29ya2luZyA6IHRoZSBjbG9jayBydW5zXG4gIHN0YXRlIERvbmUgPDxjaG9pY2U+PlxuICBXb3JraW5nIC0tPiBEb25lIDogZmluaXNoXG4gIERvbmUgLS0+IENsb3NlZCA6IGFjY2VwdGVkXG4gIERvbmUgLS0+IFdvcmtpbmcgOiByZWplY3RlZFxuICBDbG9zZWQgLS0+IFsqXVxuey9kaWFncmFtOnN0YXRlfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpzdGF0ZSB0aXRsZT0nQSB0aWNrZXQnfVxuICBbKl0gLS0+IE9wZW5cbiAgT3BlbiAtLT4gV29ya2luZyA6IHRha2VcbiAgV29ya2luZyA6IHRoZSBjbG9jayBydW5zXG4gIHN0YXRlIERvbmUgPDxjaG9pY2U+PlxuICBXb3JraW5nIC0tPiBEb25lIDogZmluaXNoXG4gIERvbmUgLS0+IENsb3NlZCA6IGFjY2VwdGVkXG4gIERvbmUgLS0+IFdvcmtpbmcgOiByZWplY3RlZFxuICBDbG9zZWQgLS0+IFsqXVxuey9kaWFncmFtOnN0YXRlfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-1cd07c97-title pad-chart-1cd07c97-desc" width="173" height="482" viewbox="0 0 173 482">
@@ -833,7 +971,7 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/diagram/5-class.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/diagram/5-class.pad</span></span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:class</span> <span class="hl-opt">title</span>=<span class="hl-str">'An order'</span><span class="hl-brc">}</span>
   class Order <span class="hl-brc">{</span>
@@ -850,7 +988,9 @@
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B75-class.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B75-class.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpjbGFzcyB0aXRsZT0nQW4gb3JkZXInfVxuICBjbGFzcyBPcmRlciB7XG4gICAgK0RhdGUgcGxhY2VkXG4gICAgK3RvdGFsKCkgTW9uZXlcbiAgfVxuICBjbGFzcyBMaW5lIHtcbiAgICAraW50IHF1YW50aXR5XG4gIH1cbiAgQ3VzdG9tZXIgXCIxXCIgLS0+IFwiKlwiIE9yZGVyIDogcGxhY2VzXG4gIE9yZGVyICotLSBcIjEuLipcIiBMaW5lXG4gIExpbmUgLS0+IFByb2R1Y3RcbnsvZGlhZ3JhbTpjbGFzc31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpjbGFzcyB0aXRsZT0nQW4gb3JkZXInfVxuICBjbGFzcyBPcmRlciB7XG4gICAgK0RhdGUgcGxhY2VkXG4gICAgK3RvdGFsKCkgTW9uZXlcbiAgfVxuICBjbGFzcyBMaW5lIHtcbiAgICAraW50IHF1YW50aXR5XG4gIH1cbiAgQ3VzdG9tZXIgXCIxXCIgLS0+IFwiKlwiIE9yZGVyIDogcGxhY2VzXG4gIE9yZGVyICotLSBcIjEuLipcIiBMaW5lXG4gIExpbmUgLS0+IFByb2R1Y3RcbnsvZGlhZ3JhbTpjbGFzc31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-6f881cd0-title pad-chart-6f881cd0-desc" width="142" height="472" viewbox="0 0 142 472">
@@ -957,7 +1097,7 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/diagram/6-er.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/diagram/6-er.pad</span></span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:er</span> <span class="hl-opt">direction</span>=<span class="hl-str">'LR'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'A shop'</span><span class="hl-brc">}</span>
   CUSTOMER ||--o<span class="hl-brc">{</span> ORDER : places
@@ -972,7 +1112,9 @@
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B76-er.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B76-er.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTplciBkaXJlY3Rpb249J0xSJywgdGl0bGU9J0Egc2hvcCd9XG4gIENVU1RPTUVSIHx8LS1veyBPUkRFUiA6IHBsYWNlc1xuICBPUkRFUiB8fC0tfHsgTElORS1JVEVNIDogY29udGFpbnNcbiAgUFJPRFVDVCB8fC0tb3sgTElORS1JVEVNIDogXCJpcyBpblwiXG4gIE9SREVSIHtcbiAgICBpbnQgaWQgUEtcbiAgICBpbnQgY3VzdG9tZXIgRktcbiAgICBkYXRlIHBsYWNlZFxuICB9XG57L2RpYWdyYW06ZXJ9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTplciBkaXJlY3Rpb249J0xSJywgdGl0bGU9J0Egc2hvcCd9XG4gIENVU1RPTUVSIHx8LS1veyBPUkRFUiA6IHBsYWNlc1xuICBPUkRFUiB8fC0tfHsgTElORS1JVEVNIDogY29udGFpbnNcbiAgUFJPRFVDVCB8fC0tb3sgTElORS1JVEVNIDogXCJpcyBpblwiXG4gIE9SREVSIHtcbiAgICBpbnQgaWQgUEtcbiAgICBpbnQgY3VzdG9tZXIgRktcbiAgICBkYXRlIHBsYWNlZFxuICB9XG57L2RpYWdyYW06ZXJ9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-8a1e5ff9-title pad-chart-8a1e5ff9-desc" width="531" height="156" viewbox="0 0 531 156">
@@ -1107,14 +1249,14 @@
                 A mind map and a tree
               </h3>
               <p class="example-about">
-                Both read the hierarchy from the indentation; the tree tag keeps the bare name tree, so the tree diagram is diagram:tree.
+                Both read the hierarchy from the indentation; pad:tree renders a tree, and diagram:tree draws the tree diagram.
               </p>
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/diagram/7-hierarchies.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/diagram/7-hierarchies.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram</span> <span class="hl-opt">type</span>=<span class="hl-str">'mindmap'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'A trip'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:mindmap</span> <span class="hl-opt">title</span>=<span class="hl-str">'A trip'</span><span class="hl-brc">}</span>
   Trip((Trip))
     Packing
       Passport
@@ -1125,7 +1267,7 @@
     Plans
       Museum
       Beach
-<span class="hl-brc">{</span><span class="hl-tag">/diagram</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:mindmap</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">diagram:tree</span> <span class="hl-opt">title</span>=<span class="hl-str">'The company'</span><span class="hl-brc">}</span>
   Board
     Sales
@@ -1137,7 +1279,9 @@
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B77-hierarchies.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B77-hierarchies.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTptaW5kbWFwIHRpdGxlPSdBIHRyaXAnfVxuICBUcmlwKChUcmlwKSlcbiAgICBQYWNraW5nXG4gICAgICBQYXNzcG9ydFxuICAgICAgQ2hhcmdlclxuICAgIFRyYXZlbFxuICAgICAgVHJhaW5cbiAgICAgIEZlcnJ5XG4gICAgUGxhbnNcbiAgICAgIE11c2V1bVxuICAgICAgQmVhY2hcbnsvZGlhZ3JhbTptaW5kbWFwfVxue2RpYWdyYW06dHJlZSB0aXRsZT0nVGhlIGNvbXBhbnknfVxuICBCb2FyZFxuICAgIFNhbGVzXG4gICAgICBOb3J0aFxuICAgICAgU291dGhcbiAgICBFbmdpbmVlcmluZ1xuICAgIEZpbmFuY2VcbnsvZGlhZ3JhbTp0cmVlfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTptaW5kbWFwIHRpdGxlPSdBIHRyaXAnfVxuICBUcmlwKChUcmlwKSlcbiAgICBQYWNraW5nXG4gICAgICBQYXNzcG9ydFxuICAgICAgQ2hhcmdlclxuICAgIFRyYXZlbFxuICAgICAgVHJhaW5cbiAgICAgIEZlcnJ5XG4gICAgUGxhbnNcbiAgICAgIE11c2V1bVxuICAgICAgQmVhY2hcbnsvZGlhZ3JhbTptaW5kbWFwfVxue2RpYWdyYW06dHJlZSB0aXRsZT0nVGhlIGNvbXBhbnknfVxuICBCb2FyZFxuICAgIFNhbGVzXG4gICAgICBOb3J0aFxuICAgICAgU291dGhcbiAgICBFbmdpbmVlcmluZ1xuICAgIEZpbmFuY2VcbnsvZGlhZ3JhbTp0cmVlfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-ec6cc38f-title pad-chart-ec6cc38f-desc" width="518" height="154" viewbox="0 0 518 154">
@@ -1277,9 +1421,9 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/diagram/8-journey.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/diagram/8-journey.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">journey</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:journey</span><span class="hl-brc">}</span>
   title A day at the office
   section Morning
     Make tea: <span class="hl-num">5</span>: Me
@@ -1287,11 +1431,13 @@
   section Afternoon
     Fix the build: <span class="hl-num">1</span>: Me, Team
     Go home: <span class="hl-num">5</span>: Me
-<span class="hl-brc">{</span><span class="hl-tag">/journey</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:journey</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B78-journey.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B78-journey.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpqb3VybmV5fVxuICB0aXRsZSBBIGRheSBhdCB0aGUgb2ZmaWNlXG4gIHNlY3Rpb24gTW9ybmluZ1xuICAgIE1ha2UgdGVhOiA1OiBNZVxuICAgIFJlYWQgdGhlIG1haWw6IDI6IE1lLCBDYXRcbiAgc2VjdGlvbiBBZnRlcm5vb25cbiAgICBGaXggdGhlIGJ1aWxkOiAxOiBNZSwgVGVhbVxuICAgIEdvIGhvbWU6IDU6IE1lXG57L2RpYWdyYW06am91cm5leX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpqb3VybmV5fVxuICB0aXRsZSBBIGRheSBhdCB0aGUgb2ZmaWNlXG4gIHNlY3Rpb24gTW9ybmluZ1xuICAgIE1ha2UgdGVhOiA1OiBNZVxuICAgIFJlYWQgdGhlIG1haWw6IDI6IE1lLCBDYXRcbiAgc2VjdGlvbiBBZnRlcm5vb25cbiAgICBGaXggdGhlIGJ1aWxkOiAxOiBNZSwgVGVhbVxuICAgIEdvIGhvbWU6IDU6IE1lXG57L2RpYWdyYW06am91cm5leX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-12eced6c-title pad-chart-12eced6c-desc" width="502" height="314" viewbox="0 0 502 314">
@@ -1409,20 +1555,22 @@
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span class="cell-file">examples/diagram/9-gitgraph.pad</span>
+                    <span>Template</span><span><span class="cell-file">examples/diagram/9-gitgraph.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">gitgraph</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:gitgraph</span><span class="hl-brc">}</span>
   commit id: <span class="hl-str">"Init"</span>
   branch develop
   commit id: <span class="hl-str">"Parser"</span> type: HIGHLIGHT
   checkout main
   commit id: <span class="hl-str">"Oops"</span> type: REVERSE
   merge develop tag: <span class="hl-str">"v1.0"</span>
-<span class="hl-brc">{</span><span class="hl-tag">/gitgraph</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:gitgraph</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B79-gitgraph.html">open alone</a>
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B79-gitgraph.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpnaXRncmFwaH1cbiAgY29tbWl0IGlkOiBcIkluaXRcIlxuICBicmFuY2ggZGV2ZWxvcFxuICBjb21taXQgaWQ6IFwiUGFyc2VyXCIgdHlwZTogSElHSExJR0hUXG4gIGNoZWNrb3V0IG1haW5cbiAgY29tbWl0IGlkOiBcIk9vcHNcIiB0eXBlOiBSRVZFUlNFXG4gIG1lcmdlIGRldmVsb3AgdGFnOiBcInYxLjBcIlxuey9kaWFncmFtOmdpdGdyYXBofVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpnaXRncmFwaH1cbiAgY29tbWl0IGlkOiBcIkluaXRcIlxuICBicmFuY2ggZGV2ZWxvcFxuICBjb21taXQgaWQ6IFwiUGFyc2VyXCIgdHlwZTogSElHSExJR0hUXG4gIGNoZWNrb3V0IG1haW5cbiAgY29tbWl0IGlkOiBcIk9vcHNcIiB0eXBlOiBSRVZFUlNFXG4gIG1lcmdlIGRldmVsb3AgdGFnOiBcInYxLjBcIlxuey9kaWFncmFtOmdpdGdyYXBofVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
                     <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-766cc1da-title pad-chart-766cc1da-desc" width="297" height="132" viewbox="0 0 297 132">
@@ -1487,6 +1635,397 @@
                 </div>
               </div>
             </div>
+            <div class="example" id="example-10">
+              <h3>
+                A fishbone
+              </h3>
+              <p class="example-about">
+                The effect in the head, the categories as bones above and below the spine, a cause a rib along its bone.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/diagram/10-fishbone.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:fishbone</span><span class="hl-brc">}</span>
+  Late trains
+    Weather
+      Snow on the points
+      Leaves on the line
+    Staff
+      Too few drivers
+        Training takes a year
+    Rolling stock
+      Old doors
+    Track
+      Signal faults
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:fishbone</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B710-fishbone.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpmaXNoYm9uZX1cbiAgTGF0ZSB0cmFpbnNcbiAgICBXZWF0aGVyXG4gICAgICBTbm93IG9uIHRoZSBwb2ludHNcbiAgICAgIExlYXZlcyBvbiB0aGUgbGluZVxuICAgIFN0YWZmXG4gICAgICBUb28gZmV3IGRyaXZlcnNcbiAgICAgICAgVHJhaW5pbmcgdGFrZXMgYSB5ZWFyXG4gICAgUm9sbGluZyBzdG9ja1xuICAgICAgT2xkIGRvb3JzXG4gICAgVHJhY2tcbiAgICAgIFNpZ25hbCBmYXVsdHNcbnsvZGlhZ3JhbTpmaXNoYm9uZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpmaXNoYm9uZX1cbiAgTGF0ZSB0cmFpbnNcbiAgICBXZWF0aGVyXG4gICAgICBTbm93IG9uIHRoZSBwb2ludHNcbiAgICAgIExlYXZlcyBvbiB0aGUgbGluZVxuICAgIFN0YWZmXG4gICAgICBUb28gZmV3IGRyaXZlcnNcbiAgICAgICAgVHJhaW5pbmcgdGFrZXMgYSB5ZWFyXG4gICAgUm9sbGluZyBzdG9ja1xuICAgICAgT2xkIGRvb3JzXG4gICAgVHJhY2tcbiAgICAgIFNpZ25hbCBmYXVsdHNcbnsvZGlhZ3JhbTpmaXNoYm9uZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-2ca6df67-title pad-chart-2ca6df67-desc" width="502" height="236" viewbox="0 0 502 236">
+                    <title id="pad-chart-2ca6df67-title">
+                      Fishbone diagram
+                    </title>
+                    <desc id="pad-chart-2ca6df67-desc">
+                      Late trains - possible causes: Weather, Staff, Rolling stock, Track; Weather: Snow on the points, Leaves on the line; Staff: Too few drivers; Too few drivers: Training takes a year; Rolling stock: Old doors; Track: Signal faults
+                    </desc>
+                    <path class="pd-edge pd-fb-spine" d="M160,118H367"></path>
+                    <path class="pd-head" d="M377,118L365,112L365,124Z"></path>
+                    <g class="pc-mark">
+                      <title>
+                        Weather: Snow on the points, Leaves on the line
+                      </title>
+                      <path class="pd-edge pd-fb-bone" d="M145,40L184,118"></path>
+                      <path class="pd-edge pd-fb-rib" d="M12,73H161.5"></path>
+                      <text x="144" y="68" text-anchor="end">
+                        <tspan x="144">
+                          Snow on the points
+                        </tspan>
+                      </text>
+                      <path class="pd-edge pd-fb-rib" d="M25,99H174.5"></path>
+                      <text x="157" y="94" text-anchor="end">
+                        <tspan x="157">
+                          Leaves on the line
+                        </tspan>
+                      </text>
+                      <rect class="pd-node" x="110.5" y="12" width="69" height="28" rx="4"></rect>
+                      <text class="pd-fb-category" x="145" y="30" text-anchor="middle">
+                        <tspan x="145">
+                          Weather
+                        </tspan>
+                      </text>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Staff: Too few drivers
+                      </title>
+                      <path class="pd-edge pd-fb-bone" d="M168.5,196L207.5,118"></path>
+                      <path class="pd-edge pd-fb-rib" d="M171,163V137"></path>
+                      <path class="pd-edge pd-fb-rib" d="M56.5,163H185"></path>
+                      <text x="167.5" y="177" text-anchor="end">
+                        <tspan x="167.5">
+                          Too few drivers
+                        </tspan>
+                      </text>
+                      <path class="pd-edge pd-fb-rib" d="M12,137H171"></path>
+                      <text class="pd-fb-deep" x="165" y="151" text-anchor="end">
+                        <tspan x="165">
+                          Training takes a year
+                        </tspan>
+                      </text>
+                      <rect class="pd-node" x="141" y="196" width="55" height="28" rx="4"></rect>
+                      <text class="pd-fb-category" x="168.5" y="214" text-anchor="middle">
+                        <tspan x="168.5">
+                          Staff
+                        </tspan>
+                      </text>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Rolling stock: Old doors
+                      </title>
+                      <path class="pd-edge pd-fb-bone" d="M266,66L292,118"></path>
+                      <path class="pd-edge pd-fb-rib" d="M196,99H282.5"></path>
+                      <text x="265" y="94" text-anchor="end">
+                        <tspan x="265">
+                          Old doors
+                        </tspan>
+                      </text>
+                      <rect class="pd-node" x="210.5" y="38" width="111" height="28" rx="4"></rect>
+                      <text class="pd-fb-category" x="266" y="56" text-anchor="middle">
+                        <tspan x="266">
+                          Rolling stock
+                        </tspan>
+                      </text>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        Track: Signal faults
+                      </title>
+                      <path class="pd-edge pd-fb-bone" d="M317.5,170L343.5,118"></path>
+                      <path class="pd-edge pd-fb-rib" d="M219.5,137H334"></path>
+                      <text x="316.5" y="151" text-anchor="end">
+                        <tspan x="316.5">
+                          Signal faults
+                        </tspan>
+                      </text>
+                      <rect class="pd-node" x="290" y="170" width="55" height="28" rx="4"></rect>
+                      <text class="pd-fb-category" x="317.5" y="188" text-anchor="middle">
+                        <tspan x="317.5">
+                          Track
+                        </tspan>
+                      </text>
+                    </g>
+                    <rect class="pd-node pd-fb-head" x="377" y="99" width="112.7" height="38" rx="6"></rect>
+                    <text class="pd-fb-effect" x="433.4" y="122" text-anchor="middle">
+                      <tspan x="433.4">
+                        Late trains
+                      </tspan>
+                    </text></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-11">
+              <h3>
+                A railroad diagram
+              </h3>
+              <p class="example-about">
+                Rules in W3C EBNF as syntax diagrams: a choice, an optional part, a repetition, a character class and a rule linked by its name.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/diagram/11-railroad.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:railroad</span><span class="hl-brc">}</span>
+  list   ::= <span class="hl-str">'['</span> ( item ( <span class="hl-str">','</span> item )* )? <span class="hl-str">']'</span>
+  item   ::= number | <span class="hl-str">'null'</span>
+  number ::= <span class="hl-str">'-'</span>? [<span class="hl-num">0</span>-<span class="hl-num">9</span>]+
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:railroad</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B711-railroad.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpyYWlscm9hZH1cbiAgbGlzdCAgIDo6PSAnWycgKCBpdGVtICggJywnIGl0ZW0gKSogKT8gJ10nXG4gIGl0ZW0gICA6Oj0gbnVtYmVyIHwgJ251bGwnXG4gIG51bWJlciA6Oj0gJy0nPyBbMC05XStcbnsvZGlhZ3JhbTpyYWlscm9hZH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpyYWlscm9hZH1cbiAgbGlzdCAgIDo6PSAnWycgKCBpdGVtICggJywnIGl0ZW0gKSogKT8gJ10nXG4gIGl0ZW0gICA6Oj0gbnVtYmVyIHwgJ251bGwnXG4gIG51bWJlciA6Oj0gJy0nPyBbMC05XStcbnsvZGlhZ3JhbTpyYWlscm9hZH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-f1cdf193-title pad-chart-f1cdf193-desc" width="390" height="292" viewbox="0 0 390 292">
+                    <title id="pad-chart-f1cdf193-title">
+                      Railroad diagram
+                    </title>
+                    <desc id="pad-chart-f1cdf193-desc">
+                      list ::= “[” (item (“,” item)*)? “]”; item ::= number | “null”; number ::= “-”? [0-9]+
+                    </desc>
+                    <g id="pad-chart-f1cdf193-r0" class="pc-mark">
+                      <title>
+                        list ::= “[” (item (“,” item)*)? “]”
+                      </title>
+                      <text class="pd-rr-name" x="12" y="24">
+                        list
+                      </text>
+                      <path class="pd-rr-line" d="M12,58V74M12,66H28"></path>
+                      <rect class="pd-rr-term" x="28" y="54" width="27.3" height="24" rx="12"></rect>
+                      <text class="pd-rr-term-text" x="41.7" y="70" text-anchor="middle">
+                        [
+                      </text>
+                      <path class="pd-rr-line" d="M55.3,66H67.3"></path>
+                      <path class="pd-rr-line" d="M67.3,66a10,10 0 0 0 10,-10V44a10,10 0 0 1 10,-10H294.6a10,10 0 0 1 10,10V56a10,10 0 0 0 10,10"></path>
+                      <path class="pd-rr-line" d="M67.3,66H87.3"></path>
+                      <path class="pd-rr-line" d="M294.6,66H314.6"></path><a href="#pad-chart-f1cdf193-r1">
+                      <rect class="pd-rr-nt" x="87.3" y="54" width="48" height="24" rx="0"></rect>
+                      <text class="pd-rr-nt-text" x="111.3" y="70" text-anchor="middle">
+                        item
+                      </text></a>
+                      <path class="pd-rr-line" d="M135.3,66H147.3"></path>
+                      <path class="pd-rr-line" d="M147.3,66a10,10 0 0 0 10,-10V54a10,10 0 0 1 10,-10H274.6a10,10 0 0 1 10,10V56a10,10 0 0 0 10,10"></path>
+                      <path class="pd-rr-line" d="M147.3,66H167.3"></path>
+                      <path class="pd-rr-line" d="M274.6,66H294.6"></path>
+                      <path class="pd-rr-line" d="M264.6,66a10,10 0 0 1 10,10V78a10,10 0 0 1 -10,10H177.3a10,10 0 0 1 -10,-10V76a10,10 0 0 1 10,-10"></path>
+                      <path class="pd-rr-arrow" d="M224,84L218,88L224,92"></path>
+                      <path class="pd-rr-line" d="M167.3,66H177.3"></path>
+                      <path class="pd-rr-line" d="M264.6,66H274.6"></path>
+                      <rect class="pd-rr-term" x="177.3" y="54" width="27.3" height="24" rx="12"></rect>
+                      <text class="pd-rr-term-text" x="191" y="70" text-anchor="middle">
+                        ,
+                      </text>
+                      <path class="pd-rr-line" d="M204.6,66H216.6"></path><a href="#pad-chart-f1cdf193-r1">
+                      <rect class="pd-rr-nt" x="216.6" y="54" width="48" height="24" rx="0"></rect>
+                      <text class="pd-rr-nt-text" x="240.6" y="70" text-anchor="middle">
+                        item
+                      </text></a>
+                      <path class="pd-rr-line" d="M314.6,66H326.6"></path>
+                      <rect class="pd-rr-term" x="326.6" y="54" width="27.3" height="24" rx="12"></rect>
+                      <text class="pd-rr-term-text" x="340.3" y="70" text-anchor="middle">
+                        ]
+                      </text>
+                      <path class="pd-rr-line" d="M353.9,66H369.9M369.9,58V74M374.9,58V74"></path>
+                    </g>
+                    <g id="pad-chart-f1cdf193-r1" class="pc-mark">
+                      <title>
+                        item ::= number | “null”
+                      </title>
+                      <text class="pd-rr-name" x="12" y="123">
+                        item
+                      </text>
+                      <path class="pd-rr-line" d="M12,137V153M12,145H28"></path>
+                      <path class="pd-rr-line" d="M28,145H48"></path>
+                      <path class="pd-rr-line" d="M110,145H130"></path><a href="#pad-chart-f1cdf193-r2">
+                      <rect class="pd-rr-nt" x="48" y="133" width="62" height="24" rx="0"></rect>
+                      <text class="pd-rr-nt-text" x="79" y="149" text-anchor="middle">
+                        number
+                      </text></a>
+                      <path class="pd-rr-line" d="M28,145a10,10 0 0 1 10,10V169a10,10 0 0 0 10,10H54.4M103.6,179H110a10,10 0 0 0 10,-10V155a10,10 0 0 1 10,-10"></path>
+                      <rect class="pd-rr-term" x="54.4" y="167" width="49.2" height="24" rx="12"></rect>
+                      <text class="pd-rr-term-text" x="79" y="183" text-anchor="middle">
+                        null
+                      </text>
+                      <path class="pd-rr-line" d="M130,145H146M146,137V153M151,137V153"></path>
+                    </g>
+                    <g id="pad-chart-f1cdf193-r2" class="pc-mark">
+                      <title>
+                        number ::= “-”? [0-9]+
+                      </title>
+                      <text class="pd-rr-name" x="12" y="225">
+                        number
+                      </text>
+                      <path class="pd-rr-line" d="M12,249V265M12,257H28"></path>
+                      <path class="pd-rr-line" d="M28,257a10,10 0 0 0 10,-10V245a10,10 0 0 1 10,-10H75.3a10,10 0 0 1 10,10V247a10,10 0 0 0 10,10"></path>
+                      <path class="pd-rr-line" d="M28,257H48"></path>
+                      <path class="pd-rr-line" d="M75.3,257H95.3"></path>
+                      <rect class="pd-rr-term" x="48" y="245" width="27.3" height="24" rx="12"></rect>
+                      <text class="pd-rr-term-text" x="61.7" y="261" text-anchor="middle">
+                        -
+                      </text>
+                      <path class="pd-rr-line" d="M95.3,257H107.3"></path>
+                      <path class="pd-rr-line" d="M173.8,257a10,10 0 0 1 10,10V269a10,10 0 0 1 -10,10H117.3a10,10 0 0 1 -10,-10V267a10,10 0 0 1 10,-10"></path>
+                      <path class="pd-rr-arrow" d="M148.6,275L142.6,279L148.6,283"></path>
+                      <path class="pd-rr-line" d="M107.3,257H117.3"></path>
+                      <path class="pd-rr-line" d="M173.8,257H183.8"></path>
+                      <rect class="pd-rr-class" x="117.3" y="245" width="56.5" height="24" rx="4"></rect>
+                      <text class="pd-rr-class-text" x="145.6" y="261" text-anchor="middle">
+                        [0-9]
+                      </text>
+                      <path class="pd-rr-line" d="M183.8,257H199.8M199.8,249V265M204.8,249V265"></path>
+                    </g></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-12">
+              <h3>
+                A packet diagram
+              </h3>
+              <p class="example-about">
+                The UDP header of RFC 768 - fields by their bits in rows of 32, the next ones counted with +16.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/diagram/12-packet.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:packet</span><span class="hl-brc">}</span>
+  title UDP header
+  <span class="hl-num">0</span>-<span class="hl-num">15</span>: <span class="hl-str">"Source Port"</span>
+  +<span class="hl-num">16</span>: <span class="hl-str">"Destination Port"</span>
+  <span class="hl-num">32</span>-<span class="hl-num">47</span>: <span class="hl-str">"Length"</span>
+  <span class="hl-num">48</span>-<span class="hl-num">63</span>: <span class="hl-str">"Checksum"</span>
+  <span class="hl-num">64</span>-<span class="hl-num">95</span>: <span class="hl-str">"Data"</span>
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:packet</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7diagram%EA%A4%B712-packet.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpwYWNrZXR9XG4gIHRpdGxlIFVEUCBoZWFkZXJcbiAgMC0xNTogXCJTb3VyY2UgUG9ydFwiXG4gICsxNjogXCJEZXN0aW5hdGlvbiBQb3J0XCJcbiAgMzItNDc6IFwiTGVuZ3RoXCJcbiAgNDgtNjM6IFwiQ2hlY2tzdW1cIlxuICA2NC05NTogXCJEYXRhXCJcbnsvZGlhZ3JhbTpwYWNrZXR9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGlhZ3JhbTpwYWNrZXR9XG4gIHRpdGxlIFVEUCBoZWFkZXJcbiAgMC0xNTogXCJTb3VyY2UgUG9ydFwiXG4gICsxNjogXCJEZXN0aW5hdGlvbiBQb3J0XCJcbiAgMzItNDc6IFwiTGVuZ3RoXCJcbiAgNDgtNjM6IFwiQ2hlY2tzdW1cIlxuICA2NC05NTogXCJEYXRhXCJcbnsvZGlhZ3JhbTpwYWNrZXR9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-diagram" role="img" aria-labelledby="pad-chart-2320f563-title pad-chart-2320f563-desc" width="664" height="200" viewbox="0 0 664 200">
+                    <title id="pad-chart-2320f563-title">
+                      UDP header
+                    </title>
+                    <desc id="pad-chart-2320f563-desc">
+                      bits 0-15: Source Port; bits 16-31: Destination Port; bits 32-47: Length; bits 48-63: Checksum; bits 64-95: Data
+                    </desc>
+                    <text class="pd-pk-heading" x="12" y="30">
+                      UDP header
+                    </text>
+                    <g class="pc-mark">
+                      <title>
+                        bits 0-15: Source Port
+                      </title>
+                      <rect class="pd-pk-field pd-pk-a" x="12" y="56" width="320" height="32"></rect>
+                      <text x="172" y="76" text-anchor="middle">
+                        <tspan x="172">
+                          Source Port
+                        </tspan>
+                      </text>
+                      <text class="pd-pk-bit" x="14" y="53">
+                        0
+                      </text>
+                      <text class="pd-pk-bit" x="330" y="53" text-anchor="end">
+                        15
+                      </text>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        bits 16-31: Destination Port
+                      </title>
+                      <rect class="pd-pk-field pd-pk-b" x="332" y="56" width="320" height="32"></rect>
+                      <text x="492" y="76" text-anchor="middle">
+                        <tspan x="492">
+                          Destination Port
+                        </tspan>
+                      </text>
+                      <text class="pd-pk-bit" x="334" y="53">
+                        16
+                      </text>
+                      <text class="pd-pk-bit" x="650" y="53" text-anchor="end">
+                        31
+                      </text>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        bits 32-47: Length
+                      </title>
+                      <rect class="pd-pk-field pd-pk-a" x="12" y="106" width="320" height="32"></rect>
+                      <text x="172" y="126" text-anchor="middle">
+                        <tspan x="172">
+                          Length
+                        </tspan>
+                      </text>
+                      <text class="pd-pk-bit" x="14" y="103">
+                        32
+                      </text>
+                      <text class="pd-pk-bit" x="330" y="103" text-anchor="end">
+                        47
+                      </text>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        bits 48-63: Checksum
+                      </title>
+                      <rect class="pd-pk-field pd-pk-b" x="332" y="106" width="320" height="32"></rect>
+                      <text x="492" y="126" text-anchor="middle">
+                        <tspan x="492">
+                          Checksum
+                        </tspan>
+                      </text>
+                      <text class="pd-pk-bit" x="334" y="103">
+                        48
+                      </text>
+                      <text class="pd-pk-bit" x="650" y="103" text-anchor="end">
+                        63
+                      </text>
+                    </g>
+                    <g class="pc-mark">
+                      <title>
+                        bits 64-95: Data
+                      </title>
+                      <rect class="pd-pk-field pd-pk-a" x="12" y="156" width="640" height="32"></rect>
+                      <text x="332" y="176" text-anchor="middle">
+                        <tspan x="332">
+                          Data
+                        </tspan>
+                      </text>
+                      <text class="pd-pk-bit" x="14" y="153">
+                        64
+                      </text>
+                      <text class="pd-pk-bit" x="650" y="153" text-anchor="end">
+                        95
+                      </text>
+                    </g></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
           <section class="block" aria-labelledby="see">
             <h2 id="see">
@@ -1494,23 +2033,23 @@
             </h2>
             <ul class="list">
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{pad:chart}</a> <span class="about">Draws a chart as inline SVG on the server - 45 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7chart%EA%A4%B7bar.html">{chart:bar}</a> <span class="about">Columns from a zero baseline.</span>
               </li>
               <li>
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{pad:timeline}</a> <span class="about">Draws events on a time axis as inline SVG - cards above and below the axis, spans as bars, or one under the other.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7tree.html">{pad:tree}</a> <span class="about">Renders a tree of rows: its body for every row, and {recurse} renders it again for the row's children.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7tree.html">{pad:tree}</a> <span class="about">Renders a tree of rows: its body for every row, and {pad:recurse} renders it again for the row's children.</span>
               </li>
             </ul>
           </section>
           <nav class="prevnext" aria-label="Other tags">
-            <a href="index%EF%B9%96tag%EA%A4%B7define.html">← {pad:define}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7diff.html">{pad:diff} →</a>
+            <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7ylorrd.html">← palette / ylorrd</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7ajax.html">{pad:ajax} →</a>
           </nav>
         </article>
         <footer class="foot">
           <p>
-            634 tags of PAD - the built-in tags, the kinds of the subsystems and the sequence types - each with its syntax and live examples, every result on this site rendered by the tag it documents.
+            1220 tags and kinds of PAD, with syntax and usage examples. Safe, self-contained examples run here; examples requiring credentials, delivery or application files are shown as source.
           </p>
         </footer>
       </div>

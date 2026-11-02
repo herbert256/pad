@@ -7,14 +7,14 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{fake 'kind', seed=7/}
+{fake:kind seed=7/}
 {fake:kind from=1, to=6/}
-{fake 'name, email', rows=5, toData='store'/}
-{fake 'field:kind, field:kind', rows=3} ... {/fake}
+{fake:rows 'name, email', rows=5, toData='store'/}
+{fake:rows 'field:kind, field:kind', rows=3} ... {/fake:rows}
 PAD;
 
   $tagParms   = [
-    'kind' => 'The kind, a file of <code>pad/subs/fakes/types/</code>: '
+    'fields (fake:rows)' => 'The kind, a file of <code>pad/subs/fakes/types/</code>: '
                 . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padFakeKinds () ) )
                 . ' - or several, each a field under its kind\'s name or as <code>field:kind</code> says. The fake type names one as well, <code>{fake:email/}</code>.' ];
 
@@ -24,11 +24,15 @@ PAD;
     'from'      => 'number, decimal, price: the lowest value; date: the first moment (<code>-1 year</code>); time: the first clock time (<code>08:00</code>).',
     'to'        => 'number, decimal, price: the highest value; date: the last moment (<code>now</code>); time: the last clock time (<code>18:00</code>).',
     'format'    => 'date: the format of the moment, <code>Y-m-d</code>.',
-    'decimals'  => 'decimal: the places it is rounded to, 2.',
+    'decimals'  => 'decimal: the places it is rounded to, 2; latitude, longitude: the places written, 6.',
     'chance'    => 'boolean: the chance of TRUE in percent, 50.',
-    'words'     => 'sentence: the number of words.',
+    'words'     => 'sentence, title, slug: the number of words.',
     'sentences' => 'paragraph: the number of sentences.',
-    'name'      => 'email: the name the address is made from.' ];
+    'name'      => 'email: the name the address is made from.',
+    'south'     => 'latitude: the southern edge of the band, -90.',
+    'north'     => 'latitude: the northern edge of the band, 90.',
+    'west'      => 'longitude: the western edge of the box, -180 - east of <code>east</code> the box crosses the 180th meridian.',
+    'east'      => 'longitude: the eastern edge of the box, 180.' ];
 
   $tagSee     = [ 'lorem', 'data', 'datatable' ];
 

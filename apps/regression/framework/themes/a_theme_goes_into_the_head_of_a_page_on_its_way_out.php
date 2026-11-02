@@ -6,8 +6,8 @@
   // the setting's theme goes in before </head>; on a page without one before its <body>, or
   // after its doctype, or at its start; never into an include request or a page that is no
   // HTML, not at all with $padTheme FALSE, and not into a page that wrote a theme of its own
-  // with {theme 'x'/}, whose style stands in its head once tidy moved it there - a box of a
-  // {theme}...{/theme} pair is no such theme. The style went in front of the doctype of a page
+  // with {pad:theme 'x'/}, whose style stands in its head once tidy moved it there - a box of a
+  // {pad:theme}...{/pad:theme} pair is no such theme. The style went in front of the doctype of a page
   // without </head>, which put the browser in quirks mode, and after the page's own theme,
   // which it then outweighed.
 

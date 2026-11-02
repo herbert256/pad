@@ -5,10 +5,10 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{resume reverse/}
-{resume add=10/}
-{resume keep, prime/}
-{resume first=3/}
+{pad:resume reverse/}
+{pad:resume add=10/}
+{pad:resume keep, prime/}
+{pad:resume first=3/}
 PAD;
 
   $tagParms   = [];
@@ -16,6 +16,6 @@ PAD;
   $tagOptions = [
     'action' => 'Any sequence action, as an option of its own or named with <code>action=\'reverse\'</code> - <code>reverse</code>, <code>sort</code>, <code>sum</code>, <code>first=3</code>, ... - or a play with a type: <code>add=10</code> (make), <code>keep, prime</code>, <code>remove, even</code>, <code>flag, odd</code>.' ];
 
-  $tagSee     = [ 'sequence', 'pull', 'action' ];
+  $tagSee     = [ 'sequence:auto', 'pull', 'action:auto' ];
 
 ?>

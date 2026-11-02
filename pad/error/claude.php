@@ -60,10 +60,10 @@
 
   }
 
-  // The engine's own fetches of this site - {get}, {curl 'SELF://...'}, {page} over HTTP -
+  // The engine's own fetches of this site - {pad:get}, {pad:curl 'SELF://...'}, {pad:page} over HTTP -
   // arrive from loopback with nothing forwarded, and were taken for this machine's own even
   // when a visitor from elsewhere had caused them: the page fetched for that visitor showed
-  // its {debug} boxes and its toolbar, answered its errors with the full report - or, the
+  // its {pad:debug} boxes and its toolbar, answered its errors with the full report - or, the
   // visitor's user agent riding along, with the JSON channel - and honoured the loopback
   // switches. Every fetch made for a request that is not local says so, with a header that
   // tells nothing about the visitor, and padLoopback takes a request carrying it for a
@@ -75,7 +75,7 @@
   // is the copy's content. Sent as a visitor's, the manual's template_errors - whose example
   // fetches the JSON error report only this machine gets - failed the export. Such a fetch
   // says X-PAD-Export, which padLoopback lets pass and padLocalView reads as no screen of
-  // this machine's: the page fetched kept its {debug} boxes, and the toolbar, live reload
+  // this machine's: the page fetched kept its {pad:debug} boxes, and the toolbar, live reload
   // and the output check its PHP switched on, and the copy carried them.
 
   function padSelfFetchHeaders () {
@@ -134,7 +134,7 @@
 
     // Into a new array: the one walked is a copy, but a row an application walked with
     // foreach ( ... as &$row ) is a reference in it, and the redaction written into the copy
-    // went through to the application's own data - after {debug}, after an error under the
+    // went through to the application's own data - after {pad:debug}, after an error under the
     // dump action, the page went on with its passwords replaced.
 
     $redacted = [];
@@ -153,7 +153,7 @@
   // writes it as well: X-Api-Key and Set-Cookie went out in clear, the pattern knowing only
   // the underscore, and so did the USERPWD of a fetch with a login and a passphrase. The
   // password words count anywhere in the name: a hash kept as password_hash, passwordHash
-  // or pass_hash - the column of every users table - showed in clear in {debug}, the
+  // or pass_hash - the column of every users table - showed in clear in {pad:debug}, the
   // toolbar and the reports, the word counting only at the end. A webhook's address is its
   // credential: WEBHOOK_URL, SLACK_WEBHOOK_URL - the environment's - and webhookUrl.
 
@@ -228,7 +228,7 @@
   // the database password and the application key are written, was the one text that
   // assigned them; inits/config.php keeps it in no global now, and the patterns that read
   // the assignments in every text ran PCRE out of its stack on a long quoted literal - the
-  // text came back empty, {debug} and the toolbar answered 500 - and cost a page full of
+  // text came back empty, {pad:debug} and the toolbar answered 500 - and cost a page full of
   // strings five times its time under the toolbar. What stays are cheap, possessive passes,
   // with the values to look for handed in by a walk that gathered them once.
 
@@ -349,7 +349,7 @@
 
       padClaudeFields ( $app, $pad, $php, $seq );
 
-      // The message too, as every value of the report: a failed {curl} quotes its address,
+      // The message too, as every value of the report: a failed {pad:curl} quotes its address,
       // and a login in it was the one place the report had it in clear.
 
       $claude ['error']    = padRedactText ( (string) $error );
@@ -374,7 +374,7 @@
       while ( ob_get_level () )
         ob_end_clean ();
 
-      // After an early {flush} (lib/flush.php) the status and the type have gone out with
+      // After an early {pad:flush} (lib/flush.php) the status and the type have gone out with
       // the first part of the page; the report follows it as it can.
 
       if ( ! headers_sent () ) {

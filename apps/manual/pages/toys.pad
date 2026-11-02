@@ -1,18 +1,16 @@
-{meta title='Toys'/}
+{pad:meta title='Toys'/}
 
-<p>{tag 'toy'/} puts a small live simulation or visual toy on the page - a Game of Life, a flock of
+<p>{app:tag 'toy:life'/} puts a small live simulation or visual toy on the page - a Game of Life, a flock of
 birds, a double pendulum, falling sand, the Mandelbrot set. The server checks the options it is
 given and writes its frame; the toy's script, written once per page, runs it. There are
-{echo php:count(padToyTypes())/} of them - every toy is a file of <code>pad/subs/toys/types/</code>, and the
+{pad:echo php:count(padToyTypes())/} of them - every toy is a file of <code>pad/subs/toys/types/</code>, and the
 <a href="../toys/">toys</a> application shows them all.</p>
 
-{example 'fragments/toys_1'/}
+{common:example 'fragments/toys_1'/}
 
-<h2>Three ways to write one</h2>
+<h2>Select a kind</h2>
 
-<p>The tag names the toy: <code>{open/}toy 'life'/{close/}</code>. The toy: type does the same,
-<code>{open/}toy:life/{close/}</code>, and so does the bare name, <code>{open/}life/{close/}</code>, as long as
-no tag, store, field or sequence has that name. Every toy can be touched: draw cells, drag a bob,
+<p>Use <code>{pad:open/}toy:life/{pad:close/}</code> to select the kind. Every toy can be touched: draw cells, drag a bob,
 throw a planet, stir the current - and has its controls below it, each with a label, and the keys
 it reads while it has the focus.</p>
 
@@ -23,7 +21,7 @@ it reads while it has the focus.</p>
 letter that is rewritten. They are taken as written, before the level walks them - a field or a tag
 there is not filled in.</p>
 
-{example 'fragments/toys_2'/}
+{common:example 'fragments/toys_2'/}
 
 <h2>Options</h2>
 
@@ -31,7 +29,7 @@ there is not filled in.</p>
 the rule of an ant - checked on the server: a number out of its bounds or a word the toy does not
 know is named under the strict check.</p>
 
-{example 'fragments/toys_3'/}
+{common:example 'fragments/toys_3'/}
 
 <h2>Waiting, and the same start every time</h2>
 
@@ -40,7 +38,7 @@ birds, the shells of the fireworks. <code>paused</code> has a toy wait for its P
 toy waits when the visitor asks for reduced motion; a drawing toy then shows its figure finished,
 as a still picture.</p>
 
-{example 'fragments/toys_4'/}
+{common:example 'fragments/toys_4'/}
 
 <ul>
   <li>A toy holds while the page is hidden or the toy is scrolled out of view, and goes on where it

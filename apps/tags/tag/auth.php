@@ -5,9 +5,9 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{auth} ... {/auth}
-{auth} Hello {$name} {else} ... {/auth}
-{auth} ... @else@ ... {/auth}
+{pad:auth} ... {/pad:auth}
+{pad:auth} Hello {$name} {pad:else} ... {/pad:auth}
+{pad:auth} ... @else@ ... {/pad:auth}
 PAD;
 
   $tagParms   = [];

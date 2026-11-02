@@ -1,6 +1,6 @@
 <?php
 
-  // Tag entry for {resume}: transform the last pushed sequence in place. Reached from
+  // Tag entry for {pad:resume}: transform the last pushed sequence in place. Reached from
   // tags/resume.php; notes the entry point for {info} in $pqSetStart and, unlike its
   // siblings, runs sequence/resume.php, which writes back to the store instead of iterating.
 

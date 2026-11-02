@@ -1,4 +1,4 @@
-{data 'words'}("alpha","beta"){/data}
+{pad:data 'words'}("alpha","beta"){/pad:data}
 
-<p>Closing tag pipe - handed everything the tag rendered: [{words}{$words} {/words | upper}]</p>
-<p>Opening tag pipe - handed the content template, which then repeats: [{words | upper}row {/words}]</p>
+<p>Closing tag pipe - handed everything the tag rendered: [{data:words}{$words} {/data:words | upper}]</p>
+<p>Opening tag pipe - handed the content template, which then repeats: [{data:words | upper}row {/data:words}]</p>

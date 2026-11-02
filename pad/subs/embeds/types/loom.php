@@ -2,7 +2,7 @@
 
   // loom - A recording of Loom - a screen and a face explaining something - in Loom's player:
   // loom.com/share/<id>, the title before the id or not, loom.com/embed/<id> and the old
-  // useloom.com; named, a bare id as well, {loom 'e5b8c04bca094dd8a5507925ab887002'} - the
+  // useloom.com; named, a bare id as well, {embed:loom 'e5b8c04bca094dd8a5507925ab887002'} - the
   // 32 hex digits of a video, nothing else. at= - or a ?t= in the address - is the moment to
   // start at, as Loom's own embed parameters say it (t=80s, t=1m20s). A recording is seen as
   // its owner shares it: one not open to anyone with the link asks the visitor to log in to

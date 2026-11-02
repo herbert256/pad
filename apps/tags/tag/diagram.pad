@@ -1,11 +1,10 @@
-{ignore}
-<p><code>{diagram}</code> turns a few lines of text in its content into a picture, written
+{pad:ignore}
+<p><code>{diagram:auto}</code> turns a few lines of text in its content into a picture, written
 the way Mermaid writes them, and lays it out on the server (<code>pad/subs/diagrams/</code>) as
 inline SVG - no JavaScript in the browser, and the same lines always draw the same picture.
 The content is taken as it stands before the level walks it, so the braces of a decision like
 <code>B{Paid?}</code> or a class <code>class A {</code> need no ignore. Every kind is a file of
-<code>pad/subs/diagrams/types/</code>; each is written three ways - <code>{diagram type='state'}</code>,
-<code>{diagram:state}</code> and the bare <code>{state}</code> when nothing else has the name.</p>
+<code>pad/subs/diagrams/types/</code>; select one with its qualified name, such as <code>{diagram:state}</code>. <code>{diagram:auto}</code> detects a Mermaid header and otherwise draws a flowchart.</p>
 
 <h3>Flowcharts</h3>
 <p>A line is a chain of nodes and edges. Nodes: <code>A[Box]</code>,
@@ -20,8 +19,7 @@ with as few crossings as it can find; <code>direction</code> turns it, <code>edg
 chooses how the lines run.</p>
 
 <h3>Sequence diagrams</h3>
-<p>With <code>type='sequence'</code> or <code>{diagram:sequence}</code> - bare,
-<code>{sequence}</code> is the sequence tag: <code>participant A as Alice</code>,
+<p>With <code>{diagram:sequence}</code>: <code>participant A as Alice</code>,
 <code>actor U</code>, messages <code>-&gt;&gt;</code> (arrow), <code>--&gt;&gt;</code>
 (dashed), <code>-&gt;</code> and <code>--&gt;</code> (no head), <code>-x</code> (cross),
 <code>-)</code> (open), <code>Note left of A: text</code> (also <code>right of</code> and
@@ -48,7 +46,7 @@ chooses how the lines run.</p>
 <p>A mind map and a tree read their hierarchy from the indentation - the mind map's shapes by
 their brackets, <code>[square]</code>, <code>(rounded)</code>, <code>((circle))</code>,
 <code>{{hexagon}}</code>, <code>)cloud(</code>, <code>))bang((</code>; the tree is
-<code>{diagram:tree}</code>, as <code>{tree}</code> is the tree tag. A journey:
+<code>{diagram:tree}</code>, as <code>{pad:tree}</code> is the tree tag. A journey:
 <code>title text</code>, <code>section text</code> and a step a line, <code>Make tea: 5: Me, Cat</code>
 with its score from 1 to 5. A commit graph: <code>commit id: "x" tag: "v1" type: HIGHLIGHT</code>,
 <code>branch name</code>, <code>checkout name</code>, <code>merge name</code> and
@@ -76,4 +74,4 @@ it - <code>[a-z]</code> and <code>#x20</code> a character class, <code>|</code> 
 nodes answers nothing, so its <code>&#64;else&#64;</code> shows; a line it cannot read, or an
 unknown <code>type</code>, <code>direction</code> or <code>edges</code>, is an error under the
 strict check.</p>
-{/ignore}
+{/pad:ignore}

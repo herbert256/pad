@@ -1,9 +1,9 @@
-{data 'xs'}
+{pad:data 'xs'}
   [1,2,3,4]
-{/data}
-{xs}
+{/pad:data}
+{data:xs}
   {$xs},
-  {if $xs eq 2}
-    {break 'xs'/}
-  {/if}
-{/xs}
+  {pad:if $xs eq 2}
+    {pad:break 'xs'/}
+  {/pad:if}
+{/data:xs}

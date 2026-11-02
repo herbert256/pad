@@ -10,13 +10,13 @@ Interactive demo showcasing PAD framework features with practical examples.
 |------|-------------|
 | Guestbook | A simple guestbook where visitors can leave messages |
 | Todo List | A task manager to add, complete, and delete tasks |
-| Contact Form | A contact form with `{form}` and `{input}` whose rules stand on the fields (`rules='required|email'`), checked before `contact.php` runs - refill and inline errors |
+| Contact Form | A contact form with `{pad:form}` and `{pad:input}` whose rules stand on the fields (`rules='required|email'`), checked before `contact.php` runs - refill and inline errors |
 | Page Counter | A visitor counter that tracks page views |
 | Clock | Display current date and time using a custom tag |
-| QR Codes | `{qr}` - a text typed in a form as a QR code, the four error correction levels, a Wi-Fi code |
-| Barcodes | `{barcode}` - EAN-13 for a product list, Code 128 on a shipping label, EAN-8 and UPC-A |
-| Calendar | `{calendar}` - a month with its agenda and links to the months around it, and a mini calendar from the pair form |
-| Highlight | `{highlight}` - PHP with line numbers, PAD, CSS, JavaScript, a file of the demo itself, and a value through the pipe |
+| QR Codes | `{barcode:qr}` - a text typed in a form as a QR code, the four error correction levels, a Wi-Fi code |
+| Barcodes | `{barcode:auto}` - EAN-13 for a product list, Code 128 on a shipping label, EAN-8 and UPC-A |
+| Calendar | `{pad:calendar}` - a month with its agenda and links to the months around it, and a mini calendar from the pair form |
+| Highlight | `{pad:highlight}` - PHP with line numbers, PAD, CSS, JavaScript, a file of the demo itself, and a value through the pipe |
 
 ## Structure
 
@@ -53,7 +53,7 @@ content of the pages in the frame's colours, so they follow light, dark and ever
 - **Data files**: `_data/navigate.json` holds the menu, which `_inits.php` hands to the frame as `$frameMenu`
 - **Form handling**: Contact form shows POST processing
 - **Flash messages**: the guestbook and contact thanks travel as `padFlash()` messages over
-  the redirect and show through `{flash}`
+  the redirect and show through `{pad:flash}`
 - **CSRF protection**: `$padCsrf = TRUE` in `_config/config.php` adds the session's token to
   every POST form and turns away a post without it (403)
 - **Data iteration**: Examples of iterating over arrays

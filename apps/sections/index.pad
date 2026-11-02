@@ -1,31 +1,31 @@
 {section:hero button='See every section', link='?sections', second='Try a theme', secondLink='?themes', note='Every block of this page is a tag - its template is on the page of its kind.'}
-  {slot 'eyebrow'}{shimmer}Sections · effects · themes · palettes{/shimmer}{/slot}
-  {slot 'title'}Dress a page in {gradient animate, repeat='forever', duration=8}minutes{/gradient}{/slot}
+  {pad:slot 'eyebrow'}{effect:shimmer}Sections · effects · themes · palettes{/effect:shimmer}{/pad:slot}
+  {pad:slot 'title'}Dress a page in {effect:gradient animate, repeat='forever', duration=8}minutes{/effect:gradient}{/pad:slot}
   Landing-page blocks in pure CSS, motion that stands still for whoever asks for less, the colours
   of every page swapped by a theme, and colour scales a chart takes with one word.
-  {slot 'image'}{chart 'donut', data='spread', label='part', value='kinds', palette='okabe-ito', title='The kinds in the box'/}{/slot}
+  {pad:slot 'image'}{chart:donut data='spread', label='part', value='kinds', palette='okabe-ito', title='The kinds in the box'/}{/pad:slot}
 {/section:hero}
 
 {section:stats title='In the box', align='center'}
-  {section:item $sectionCount, label='Sections'}{typewriter speed=20}hero to footer{/typewriter}{/section:item}
+  {section:item $sectionCount, label='Sections'}{effect:typewriter speed=20}hero to footer{/effect:typewriter}{/section:item}
   {section:item $effectCount, label='Effects'}CSS first, one script{/section:item}
   {section:item $themeCount, label='Themes'}every one WCAG AA{/section:item}
   {section:item $paletteCount, label='Palettes'}for every chart{/section:item}
 {/section:stats}
 
-{reveal}
+{effect:reveal}
 {section:features title='Four subsystems, one look', eyebrow='What is here', columns=2}
   They share the frame's palette, so a theme colours them all at once.
-  {section:item 'Sections', icon='layout', link='?sections'}A hero, the features, the prices, the questions, a footer - {highlighter}no script at all{/highlighter}, laid out by container queries.{/section:item}
+  {section:item 'Sections', icon='layout', link='?sections'}A hero, the features, the prices, the questions, a footer - {effect:highlighter}no script at all{/effect:highlighter}, laid out by container queries.{/section:item}
   {section:item 'Effects', icon='sparkle', link='?effects'}A typewriter, a marker, a count-up, a reveal on scroll, loaders and confetti - still and whole under reduced motion.{/section:item}
   {section:item 'Themes', icon='droplet', link='?themes'}Paper, terminal, newspaper, ocean, a high-contrast one - for a page, an application or the visitor's own choice.{/section:item}
   {section:item 'Palettes', icon='bar-chart', link='?palettes'}Viridis and its family, Okabe-Ito and Tol for every kind of colour vision, ColorBrewer's scales.{/section:item}
 {/section:features}
-{/reveal}
+{/effect:reveal}
 
 {section:steps title='A landing page in three tags', eyebrow='How it works'}
-  {section:item 'Pick the blocks'}<code>{open/}section:hero{close/}</code>, <code>{open/}section:pricing{close/}</code>, <code>{open/}section:faq{close/}</code> - in the order the page tells its story.{/section:item}
-  {section:item 'Fill them'}Options for the words, <code>{open/}slot{close/}</code> pairs for markup, <code>data=</code> or <code>{open/}section:item{close/}</code> for the lists.{/section:item}
+  {section:item 'Pick the blocks'}<code>{pad:open/}section:hero{pad:close/}</code>, <code>{pad:open/}section:pricing{pad:close/}</code>, <code>{pad:open/}section:faq{pad:close/}</code> - in the order the page tells its story.{/section:item}
+  {section:item 'Fill them'}Options for the words, <code>{pad:open/}pad:slot{pad:close/}</code> pairs for markup, <code>data=</code> or <code>{pad:open/}section:item{pad:close/}</code> for the lists.{/section:item}
   {section:item 'Choose the colours'}<code>$padTheme = 'paper'</code> - or let the visitor pick one in the bar above.{/section:item}
 {/section:steps}
 
@@ -44,7 +44,7 @@
 
 {section:cta 'Ready to dress a page?', link='?section/hero', button='Start with the hero'}
   Every block on this page links to its template.
-  {slot 'actions'}{confetti seed=3}<button type="button" class="sx-celebrate">Celebrate first</button>{/confetti}{/slot}
+  {pad:slot 'actions'}{effect:confetti seed=3}<button type="button" class="sx-celebrate">Celebrate first</button>{/effect:confetti}{/pad:slot}
 {/section:cta}
 
 {section:newsletter 'Hear what is new', button='Subscribe', note='One mail a month. Nothing is sent from this demo.'}

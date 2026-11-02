@@ -3,7 +3,7 @@
   // Two measures of a different kind on one chart: bars on the left axis, a line on the
   // right one.
   //
-  //   {chart 'dual', data='results', label='month', value='revenue', line='margin'}
+  //   {chart:dual data='results', label='month', value='revenue', line='margin'}
   //
   // label= names the categories - else the first field that is no number; value= the
   // field drawn as bars, on the left axis - else the first numeric field; line= the field

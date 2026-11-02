@@ -12,8 +12,8 @@
   // the type, so pqBuild() runs the whole range through it.
   //
   // 0 is the term for k = 0, A000217's first, as pqBoolFigurate takes it for the other
-  // figurate types and pronic: turned down, {sequence '0;1;3', flag, triangular} answered
-  // 0 1 1 where pronic, square and pentagonal flag their 0, and {sequence triangular, from=0}
+  // figurate types and pronic: turned down, {sequence:list '0;1;3', flag, triangular} answered
+  // 0 1 1 where pronic, square and pentagonal flag their 0, and {sequence:triangular from=0}
   // began on 1 where pronic and square begin on 0.
 
 function pqBoolTriangular ($num) {

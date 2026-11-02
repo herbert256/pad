@@ -12,7 +12,7 @@
   // static, so a link with them lands on the page as it renders without them. The assets
   // are what www/<app>/ holds beside the entry point - stylesheets, scripts, images, data
   // files - copied less the .php files, the _ and . names, and the directories that are
-  // applications of their own; _thumbs/, the thumbnails {img} made, goes along. The style
+  // applications of their own; _thumbs/, the thumbnails {pad:img} made, goes along. The style
   // sheets and scripts of the subsystems - www/assets/<sub>/, which a page of the server
   // links - are written into each exported page instead ($padExportRun, pad/lib/widget.php):
   // the copy stands on a host without them.
@@ -68,7 +68,7 @@
 
 
   // The links of one exported page, rewritten for the static copy: href, src, action, the
-  // poster of a {video} and each address of a srcset - the 1x and 2x thumbnails of an {img}
+  // poster of a {pad:video} and each address of a srcset - the 1x and 2x thumbnails of an {pad:img}
   // kept the server's /app/_thumbs/ addresses, where the copy has them at _thumbs/ - and of
   // the imagesrcset of a <link rel="preload">, a srcset by another name that a page one
   // directory down sent to the root's addresses.
@@ -232,8 +232,8 @@
 
     foreach ( scandir ( $dir ) as $file ) {
 
-      // The thumbnails {img} made while the pages rendered go along: www/<app>/_thumbs/ is
-      // the one _ name the copy needs - left out, every {img} of the copy had no picture.
+      // The thumbnails {pad:img} made while the pages rendered go along: www/<app>/_thumbs/ is
+      // the one _ name the copy needs - left out, every {pad:img} of the copy had no picture.
 
       if ( str_starts_with ( $file, '.' ) or ( str_starts_with ( $file, '_' ) and ( $file != '_thumbs' or $prefix !== '' ) ) )
         continue;

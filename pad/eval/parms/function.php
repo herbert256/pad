@@ -8,7 +8,7 @@
   // handler for that kind does the call.
   //
   // The tag form of the same prefix is types/function.php. Only that half existed, so
-  // {function:upper} worked as a tag while {echo $x | function:upper} - the spelling CLAUDE.md
+  // {function:upper} worked as a tag while {pad:echo $x | function:upper} - the spelling CLAUDE.md
   // documents - ended the request on a missing include.
 
   $padFunctionKind = padTypeFunction ( $name, 0 );

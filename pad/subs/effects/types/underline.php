@@ -1,6 +1,6 @@
 <?php
 
-  // {underline}the terms{/underline} or {underline 'this'/} - a line drawn under the words from
+  // {effect:underline}the terms{/effect:underline} or {effect:underline 'this'/} - a line drawn under the words from
   // left to right, once: a stroke of emphasis rather than the filled mark of the highlighter,
   // and a link inside keeps its look and its click. style= line (the default), double, dashed
   // or dotted; color= the ink (--pad-effect-accent when not given); thickness= whole pixels
@@ -12,7 +12,7 @@
   // drawn, or comes at once on hover; on paper and in forced colours it is the text's own
   // underline.
   //
-  //   Read {underline style='double', color='#e11d48'}the small print{/underline} first.
+  //   Read {effect:underline style='double', color='#e11d48'}the small print{/effect:underline} first.
 
   $padFxSource   = padEffectSource ();
   $padFxStyle    = padEffectChoice ( 'style', 'line', [ 'line', 'double', 'dashed', 'dotted' ] );
@@ -23,7 +23,7 @@
   $padFxWhen     = padEffectWhen ();
 
   if ( padEffectPlain ( $padFxSource ) === '' )
-    return padEffectNeedsText ( "{underline}this{/underline} or {underline 'this'/}" );
+    return padEffectNeedsText ( "{effect:underline}this{/effect:underline} or {effect:underline 'this'/}" );
 
   return padEffectDone ( 'underline',
     padProtect ( padEffectOpen ( 'underline', 'span', [

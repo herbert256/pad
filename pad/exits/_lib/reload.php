@@ -9,7 +9,7 @@
   // application's directory, its entry point directory in www/ and _common when the
   // application uses it; 'engine' watches pad/ as well, for work on the engine itself. Like
   // the toolbar it is for this machine's own requests only (padLocal), never in a
-  // &padInclude or {fragment} answer, a page that is not HTML answering 200, the page cache
+  // &padInclude or {pad:fragment} answer, a page that is not HTML answering 200, the page cache
   // - it is added on the way out - or a pad export.
   //
   // padReloadAdd     exits/output.php: the script, with the stamp the page was rendered at -

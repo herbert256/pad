@@ -4,15 +4,15 @@
   // as inline SVG - no image library, no font, no remote service - so a code prints, caches and
   // goes in an e-mail like any other output.
   //
-  //   {barcode '871234567890'/}                      EAN-13, the check digit added
-  //   {barcode 'PAD-2026-0042', type='code128'/}     any printable ASCII
+  //   {barcode:auto '871234567890'/}                      EAN-13, the check digit added
+  //   {barcode:code128 'PAD-2026-0042'/}     any printable ASCII
   //   {barcode:ean8 '9638507'/}                      the barcode: type
-  //   {code128 'PAD-2026-0042'/}                     bare, when nothing else has the name
-  //   {qr 'https://example.com'/}                    the QR code, a symbology with a tag of its own
+  //   {barcode:code128 'PAD-2026-0042'/}                     explicit symbology
+  //   {barcode:qr 'https://example.com'/}                    the QR code, a symbology with a tag of its own
   //
   // A symbology is a file of subs/codes/types/: the files there are the barcode types there are
-  // (padKinds ('codes'), lib/subsystem.php), and subs/codes/barcode.php is the body the {barcode}
-  // tag, the {qr} tag and the barcode: type all run. A symbology's file encodes the text and
+  // (padKinds ('codes'), lib/subsystem.php), and subs/codes/barcode.php is the body the {barcode:auto}
+  // tag, the {barcode:qr} tag and the barcode: type all run. A symbology's file encodes the text and
   // answers the SVG, drawn by the functions of this file; the encoder of a symbology that is
   // not one of the first four stands in a file of this directory of its own, included by the
   // symbology's file when a page draws one.
@@ -30,7 +30,7 @@
   //
   // An EAN or UPC number is given with or without its check digit: without it, it is
   // added; with it, it is checked. Code 128 switches to its double-density digit set C for
-  // a run of four or more digits, and to set B for the rest. The text is escaped as {qr}
+  // a run of four or more digits, and to set B for the rest. The text is escaped as {barcode:qr}
   // escapes it, padQrAttr of subs/codes/_lib/qr.php.
 
   include_once PAD . 'subs/codes/_lib/qr.php';

@@ -10,7 +10,7 @@
 
   $padSetTmp = [];
 
-  // A parameter of 0 is a parameter: tested for truth, {stars 0} published nothing, and the
+  // A parameter of 0 is a parameter: tested for truth, {input:stars 0} published nothing, and the
   // {$stars} inside it failed under the strict check as a field that is not there.
 
   if ( $padParm or is_numeric ( $padParm ) )

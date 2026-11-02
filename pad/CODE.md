@@ -466,7 +466,7 @@ Uses `include` statements for control flow instead of function calls.
 
 ### 3. Level System Complexity
 
-Each `{tag}` creates a new level scope with 30+ indexed arrays:
+Each `{function:tag}` creates a new level scope with 30+ indexed arrays:
 
 ```php
 $padTag[$pad], $padType[$pad], $padOpt[$pad], $padData[$pad],

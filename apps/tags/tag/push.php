@@ -5,9 +5,9 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{push 'name'} ... {/push}
-{push 'name', once='key'} ... {/push}
-{push 'name', once} ... {/push}
+{pad:push 'name'} ... {/pad:push}
+{pad:push 'name', once='key'} ... {/pad:push}
+{pad:push 'name', once} ... {/pad:push}
 PAD;
 
   $tagParms   = [

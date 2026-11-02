@@ -2,6 +2,6 @@
 
   // Text that came from somewhere else - a database, a form, a file.
 
-  $snippet = '{echo 6 * 7/}';
+  $snippet = '{pad:echo 6 * 7/}';
 
 ?>

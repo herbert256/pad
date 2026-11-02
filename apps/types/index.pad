@@ -1,34 +1,36 @@
-{meta title='Every PAD type'/}
+{pad:meta title='Every PAD type'/}
 <section class="hero">
   <h1>Every PAD type</h1>
   <p class="lead">A tag has a type, the prefix before the colon: <code>&#123;pad:if&#125;</code> is a
   built-in tag, <code>&#123;chart:pie&#125;</code> a chart type, <code>&#123;field:name&#125;</code>
-  a field of the row, <code>&#123;sequence:fibonacci&#125;</code> a sequence. Written without its
-  prefix a name is the first type that has it. A page for each type: what it reaches, how it is
-  written, where it stands in the order a bare name is tried in, the tags it has and live examples.</p>
+  a field of the row, <code>&#123;sequence:fibonacci&#125;</code> a sequence. Every named tag
+  must include its type prefix, on both halves of a pair. Variable and expression shorthand,
+  such as <code>&#123;$name&#125;</code>, stays available. Each type has its syntax, available
+  names and live examples. The options and helpers group lists subsystem kinds selected
+  through parameters or PHP helpers.</p>
   <ul class="stats">
-    <li><b>{$typesCount}</b> types</li>
-    <li><b>{$memberCount}</b> tags they reach by name</li>
+    <li><b>{$typesCount}</b> types and kind families</li>
+    <li><b>{$memberCount}</b> available names</li>
     <li><b>{$exampleCount}</b> examples</li>
   </ul>
 </section>
 
 <div class="cards">
-  {indexes}
+  {array:indexes}
   <a class="card" href="?{$page}">
     <h2>{$label}</h2>
     <p>{$text}</p>
   </a>
-  {/indexes}
+  {/array:indexes}
 </div>
 
 <h2>The groups</h2>
 <div class="cards">
-  {groups}
+  {array:groups}
   <section class="card">
     <h3><a href="?groups#{$key}">{$label}</a> <span class="count">{$count}</span></h3>
     <p>{$tagline}</p>
-    <div class="tagcloud">{types}<a href="?{$link}" title="{$about}">{$key}</a>{/types}</div>
+    <div class="tagcloud">{array:types}<a href="?{$link}" title="{$about}">{$key}</a>{/array:types}</div>
   </section>
-  {/groups}
+  {/array:groups}
 </div>

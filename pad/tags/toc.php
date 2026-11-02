@@ -1,13 +1,13 @@
 <?php
 
-  // {toc} - a table of contents of the page, from its own rendered headings: tags/_lib/toc.php.
+  // {pad:toc} - a table of contents of the page, from its own rendered headings: tags/_lib/toc.php.
   //
-  //   {toc}                                    the <h2> and <h3>, nested, titled Contents
-  //   {toc levels='2-4', title='On this page', list='ul'}
+  //   {pad:toc}                                    the <h2> and <h3>, nested, titled Contents
+  //   {pad:toc levels='2-4', title='On this page', list='ul'}
   //
   // levels= names the heading levels, '2,3' when not given; title= the label above the
   // list, '' for none; list= ol (numbered, the default) or ul. The tag prints a marker
-  // that is filled in once the whole page has rendered, as {stack} is, so the headings
+  // that is filled in once the whole page has rendered, as {pad:stack} is, so the headings
   // below it are in it - and each of them gets an id to link to when it has none.
 
   $padTocLevels = padTocLevels ( padTagParm ( 'levels', '2,3' ) );

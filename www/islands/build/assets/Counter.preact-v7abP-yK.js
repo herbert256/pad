@@ -6,4 +6,4 @@ import{d as u,m as s}from"./hooks.module-DB17ymvh.js";import"./preact.module-IRq
         <button onClick=${()=>o(t+1)} aria-label="One more">+</button>
       </div>
       <p class="counter-note">${e}: useState, no build step</p>
-    </div>`}export{l as default};
+    </div>`}export{data:l as default};

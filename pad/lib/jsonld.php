@@ -8,7 +8,7 @@
   //   $data = padJsonLd ( 'faq', $questions );                rows of question and answer
   //   $data = padJsonLd ( 'organization', $company, '#org' ); with an @id
   //
-  // padJsonLd       the object {jsonld} writes for the same kind and rows, as a plain PHP
+  // padJsonLd       the object {jsonld:article} writes for the same kind and rows, as a plain PHP
   //                 array - no HTML: json_encode it, add it to an API answer; a wrong
   //                 argument or a missing required field is reported with padError, and []
   //                 comes back

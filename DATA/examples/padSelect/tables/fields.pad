@@ -1,14 +1,14 @@
 <h3>A column list</h3>
-<p>{artists fields="name, formed", rows=3}{$name} ({$formed}){notLast@artists}, {/notLast@artists}{/artists}</p>
+<p>{select:artists fields="name, formed", rows=3}{$name} ({$formed}){property:notLast@artists}, {/property:notLast@artists}{/select:artists}</p>
 
 <h3>Expressions with an alias</h3>
 <ul>
-  {tracks fields="title, concat(seconds div 60, ':', lpad(seconds mod 60, 2, '0')) as length", $album_id=3}
+  {select:tracks fields="title, concat(seconds div 60, ':', lpad(seconds mod 60, 2, '0')) as length", $album_id=3}
   <li>{$title} {$length}</li>
-  {/tracks}
+  {/select:tracks}
 </ul>
 
 <h3>Declared as column => alias</h3>
 <ul>
-  {albumCards}<li>{$album}, {$year}</li>{/albumCards}
+  {select:albumCards}<li>{$album}, {$year}</li>{/select:albumCards}
 </ul>

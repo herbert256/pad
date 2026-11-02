@@ -1,5 +1,5 @@
 <h3>The countries of the artists</h3>
-<p>{artists fields="country", distinct, order="country"}{$country}{notLast@artists}, {/notLast@artists}{/artists}</p>
+<p>{select:artists fields="country", distinct, order="country"}{$country}{property:notLast@artists}, {/property:notLast@artists}{/select:artists}</p>
 
 <h3>The genres that have an album</h3>
-<p>{albums fields="genre_code", distinct, order="genre_code"}{genres}{$genre}{/genres}{notLast@albums}, {/notLast@albums}{/albums}</p>
+<p>{select:albums fields="genre_code", distinct, order="genre_code"}{select:genres}{$genre}{/select:genres}{property:notLast@albums}, {/property:notLast@albums}{/select:albums}</p>

@@ -1,7 +1,7 @@
 Stores are stored sequence lists, in below example mySeq is a store.
 
-{table}
-{demo}{sequence range='20..30', push='mySeq'/} {/demo}
-{demo}{sequence mySeq} {$sequence} {/sequence}{/demo}
-{demo}{mySeq} {$sequence} {/mySeq}{/demo}
-{/table}
+{common:table}
+{common:demo}{sequence:range '20..30', push='mySeq'/} {/common:demo}
+{common:demo}{sequence:auto mySeq} {$sequence} {/sequence:auto}{/common:demo}
+{common:demo}{pull:mySeq} {$sequence} {/pull:mySeq}{/common:demo}
+{/common:table}

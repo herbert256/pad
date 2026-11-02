@@ -5,7 +5,7 @@
   // parameters.
   //
   // The expression form of the same prefix is eval/single/parm.php, and reads the same value
-  // through the same call. Only that half existed, so {echo parm:name} worked while
+  // through the same call. Only that half existed, so {pad:echo parm:name} worked while
   // {parm:name} - the spelling CLAUDE.md documents - ended the request on a missing include.
 
   return padOptValue ( $padTag [$pad], 1 );

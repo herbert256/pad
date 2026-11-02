@@ -11,7 +11,7 @@
   // afterwards so the main sequence is unaffected.
 
   // increment= counts terms as from= and to= do, so it is doubled with them: set to 2
-  // whatever was asked, {sequence even, increment=3} counted every term where square counts
+  // whatever was asked, {sequence:even increment=3} counted every term where square counts
   // every third. One below 1 is left as it is, for the loop to refuse as it does for every
   // type.
 

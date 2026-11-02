@@ -14,7 +14,7 @@
   $pqSeq  = $pqSetAction;
   $pqRows = $pqSetParms [0] ?? 1;
 
-  // The call names the type and nothing more, as a bare {sequence multiply} does, and so the
+  // The call names the type and nothing more, as a bare {sequence:multiply} does, and so the
   // type's parameter is the TRUE a bare option is - read as the 1 those types default to. It
   // was the '' of a run with no parameter at all, which multiply, add, subtract, power and
   // exponentiation did arithmetic with: sequence:multiply(4) ended the request on int *

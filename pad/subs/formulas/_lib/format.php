@@ -9,7 +9,7 @@
   //                         an exponent where that shows more of it - 1/3 is 0.333333333,
   //                         123456789012 is 1.23457E+11
   //   padFormulaFormat      a value through a format code, what TEXT and the formats= of
-  //                         {spreadsheet} do - see below
+  //                         {pad:spreadsheet} do - see below
 
   const padFormulaCurrencies = '$€£¥';
 
@@ -146,7 +146,7 @@
 
   }
 
-  // A value through a format code, as TEXT ( value, code ) does and as {spreadsheet}'s
+  // A value through a format code, as TEXT ( value, code ) does and as {pad:spreadsheet}'s
   // formats= shows a column. A code has up to four sections split by ; - positive, negative,
   // zero and text; with two the negative numbers take the second, without their minus. What
   // a section holds:

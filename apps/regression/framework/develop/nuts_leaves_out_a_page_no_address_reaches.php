@@ -2,7 +2,7 @@
 
   // A page the router cannot reach - in a directory with a dot in its name, v1.0/old, or
   // with one in its own name, my.page - answers 404 to every address, and the walk of every
-  // page (padAppsList, _common) listed it: develop/?nuts ended on the {ajax} refusing it, a
+  // page (padAppsList, _common) listed it: develop/?nuts ended on the {pad:ajax} refusing it, a
   // 500 for the whole page. The two are made for the moment of one fetch and taken away
   // again, so no other walk of the tree meets them.
 

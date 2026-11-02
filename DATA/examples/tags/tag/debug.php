@@ -5,9 +5,9 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{debug/}
-{debug $value, $other/}
-{debug label=$value/}
+{pad:debug/}
+{pad:debug $value, $other/}
+{pad:debug label=$value/}
 PAD;
 
   $tagParms   = [

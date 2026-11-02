@@ -5,7 +5,7 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{stack 'name'/}
+{pad:stack 'name'/}
 PAD;
 
   $tagParms   = [

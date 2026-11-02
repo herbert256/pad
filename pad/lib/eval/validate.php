@@ -129,7 +129,7 @@
 
   // The one-based character position of the first comma of an expression that stands outside
   // every string and bracket, or 0. The scanner drops such a comma and the values on both
-  // sides of it are joined, as {echo 'a','b'} prints ab; for an expression that is one
+  // sides of it are joined, as {pad:echo 'a','b'} prints ab; for an expression that is one
   // condition - a where= - it is the mistake of a list written without its brackets:
   // where='$dept in "IT", "HR"' tested $dept in "IT" joined with "HR", true for every row.
   // Strings and printf formats are passed over as padEvalValidate passes them.
@@ -181,7 +181,7 @@
   // A second, token-level check, run after the scanner has split the expression: the
   // word that follows a | must name a pipe function (or a tag, which the type system can
   // apply as one). Without this a misspelled function is silently taken for a bare constant
-  // - {echo $x | uppr} quietly returns the word "uppr" rather than the upper-cased value -
+  // - {pad:echo $x | uppr} quietly returns the word "uppr" rather than the upper-cased value -
   // which is the single most confusing way an expression can go wrong.
   //
   // $pipe says the whole expression is itself a pipe body - what an opening or closing tag
@@ -257,9 +257,9 @@
       if ( $idx == 0 and ! $pipe       ) continue;   // in a general expression the head is a value
 
       // A signed number standing alone after a | is the missing-space form of the
-      // arithmetic pipe: {echo $x | +1} replaces the value with the literal +1 where
-      // {echo $x | + 1} adds one. It can only be that mistake, so it is named as one. A
-      // quoted string is the value the pipe puts in place, whatever it spells: {echo 10 |
+      // arithmetic pipe: {pad:echo $x | +1} replaces the value with the literal +1 where
+      // {pad:echo $x | + 1} adds one. It can only be that mistake, so it is named as one. A
+      // quoted string is the value the pipe puts in place, whatever it spells: {pad:echo 10 |
       // '-1'} was named as the missing space. Alone is also alone in brackets - ($n | +1),
       // [$n | +1, 2] - which ended the part there and was +1.
 
@@ -271,10 +271,10 @@
 
       if ( $tokens [0] [1] != 'other' ) continue;   // a quoted string, number, $field or @ is a value
 
-      // The head word of a segment is judged however much follows it - {echo $s | lft 2}
-      // printed lft2, {echo $s | uppr . 'x'} upprx. One called like a function is named by
+      // The head word of a segment is judged however much follows it - {pad:echo $s | lft 2}
+      // printed lft2, {pad:echo $s | uppr . 'x'} upprx. One called like a function is named by
       // the check of calls below; a segment that places the value with @ writes its words as
-      // text around it - {echo 'x' | zz@yy} is zzxyy.
+      // text around it - {pad:echo 'x' | zz@yy} is zzxyy.
 
       if ( count ( $tokens ) > 1 and $tokens [1] [1] == 'open' ) continue;
       if ( in_array ( '$$', array_column ( $tokens, 1 ), TRUE ) ) continue;
@@ -292,7 +292,7 @@
 
     // A sign the scanner read as NEG or POS - after an operator, a bracket or a comma - has
     // a value of its own to work on and never borrows the piped one: with nothing behind it
-    // it is a mistake, {echo $a + -}, which answered 5 + 0 without a word since the sign
+    // it is a mistake, {pad:echo $a + -}, which answered 5 + 0 without a word since the sign
     // became an operator of its own.
 
     $tokens = array_values ( $result );
@@ -319,7 +319,7 @@
     // value where there is no pipe value to borrow - one segment that is no pipe body, as for
     // a dangling operator below: the first was applied to the empty value alone and the rest
     // ran on as text, $n eq eq 3 printed 3 and $n + * 3 printed 30. In a pipe the first of
-    // the two works on the piped value on both sides (lib/eval/tree.php) - {echo 50 |
+    // the two works on the piped value on both sides (lib/eval/tree.php) - {pad:echo 50 |
     // '"' . . '"'} is "5050", a form regression/common misc/eval shows. === and !== are read
     // as == or != and then =, and are named as the PHP spellings they are wherever they stand.
 
@@ -377,8 +377,8 @@
         return padEvalValidateError ( "a 'not' after a value denies a test - write \$a not in (...), not like, not matches or not range, or put it in front: not \$a eq \$b", $eval );
 
     // A word called like a function - zzzq(2) - must name one, wherever it stands. Taken for
-    // the word itself it was joined to its arguments: {echo $x | zzzq(2)} printed zzzq2 and
-    // {if zzzq(1) eq 1} compared that, where {echo $x | zzzq} is named as no pipe function.
+    // the word itself it was joined to its arguments: {pad:echo $x | zzzq(2)} printed zzzq2 and
+    // {pad:if zzzq(1) eq 1} compared that, where {pad:echo $x | zzzq} is named as no pipe function.
 
     $tokens = array_values ( $result );
 
@@ -390,10 +390,10 @@
           return padEvalValidateError ( "there is no function named '{$token[0]}'", $eval );
 
     // A comparison or logical operator needs a value on both sides. When one is missing the
-    // evaluator borrows the pipe value for it, which is the point of {echo $x | + 1} - so
+    // evaluator borrows the pipe value for it, which is the point of {pad:echo $x | + 1} - so
     // the check is made only where there is no pipe value to borrow: an expression with no
     // | anywhere that is not itself a pipe body. There a leading or trailing eq, ne, and, or
-    // the rest is a mistake - {if $x eq} - not a shorthand, and is named as one: at either
+    // the rest is a mistake - {pad:if $x eq} - not a shorthand, and is named as one: at either
     // end of the expression, and of each group, argument and list item in it - (1 eq) and
     // php:max(1, 2 gt) borrowed the empty value and answered what that made.
 

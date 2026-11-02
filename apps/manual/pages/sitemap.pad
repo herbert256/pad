@@ -1,17 +1,17 @@
-{meta title='Sitemap'/}
+{pad:meta title='Sitemap'/}
 
 <p>Every page is a file, so the list of pages needs no route table: the application
-directory is the list. {open/}sitemap{close/} walks it and gives one row per page -
+directory is the list. {pad:open/}pad:sitemap{pad:close/} walks it and gives one row per page -
 <code>page</code>, <code>url</code> and <code>lastmod</code>, the newest time among the
 page's files. A directory names a part of the application; here the shop the
 <em>Clean URLs</em> page routes through:</p>
 
-{example 'fragments/sitemap_1'/}
+{common:example 'fragments/sitemap_1'/}
 
 <p>The routes <code>products/[id]</code> and <code>blog/[year]/[slug]</code> are not in the
 list: a bracketed page has no one address. Also left out are <code>_</code> entries,
 directories that hold a <code>_guard.php</code>, pages with no template whose PHP only
-redirects or writes, pages whose template says <code>{open/}meta sitemap=false/{close/}</code>,
+redirects or writes, pages whose template says <code>{pad:open/}pad:meta sitemap=false/{pad:close/}</code>,
 and every page or directory listed in <code>$padSitemapSkip</code>.</p>
 
 <p>With <code>$padSitemap = TRUE</code> in <code>_config/config.php</code> the application

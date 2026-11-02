@@ -29,6 +29,13 @@
   $srcPhp = ( $hasPhp ) ? padColorsFile ( $exDir . "$show.php" ) : '';
   $srcPad = ( $hasPad ) ? padColorsFile ( $exDir . "$show.pad" ) : '';
 
+  // The icon at the top right of the example that takes it to the WASM editor
+  // (_common/_lib/playground.php): its template, with its PHP.
+
+  include_once COMMON . '_lib/playground.php';
+
+  $play   = ( $hasPad ) ? padPlayLink ( padFileGet ( $exDir . "$show.pad" ), '', $hasPhp ? padFileGet ( $exDir . "$show.php" ) : '' ) : '';
+
   // The stored render is output as-is, so its braces are escaped the way the colours
   // library escapes its own - the exit unescapes them, the level loop never sees them.
 

@@ -1,6 +1,6 @@
 <?php
 
-  // {spotlight}<h2>Introducing PAD</h2><p>...</p>{/spotlight} - a block lit by a soft light
+  // {effect:spotlight}<h2>Introducing PAD</h2><p>...</p>{/effect:spotlight} - a block lit by a soft light
   // behind its content: the light sweeps across it from the left and comes to rest where at=
   // says - top (the default), center, bottom, left, right, a corner (top left, bottom right
   // ...) or two percentages, '30% 20%'. The pointer on it, or the focus in it, sweeps it
@@ -9,7 +9,7 @@
   // before the first. The light lies behind the content and takes no clicks. Under reduced
   // motion it stands where it rests. Only a pair: it wraps what it lights.
   //
-  //   {spotlight at='top left', color='#f59e0b'}<p>Limited offer</p>{/spotlight}
+  //   {effect:spotlight at='top left', color='#f59e0b'}<p>Limited offer</p>{/effect:spotlight}
 
   $padFxContent  = padEffectContent ();
   $padFxAt       = strtolower ( padEffectText ( 'at', 'top' ) );
@@ -36,7 +36,7 @@
   }
 
   if ( $padFxContent === NULL ) {
-    padEffectBad ( "wraps what it lights - {spotlight}<h2>...</h2>{/spotlight}" );
+    padEffectBad ( "wraps what it lights - {effect:spotlight}<h2>...</h2>{/effect:spotlight}" );
     return '';
   }
 

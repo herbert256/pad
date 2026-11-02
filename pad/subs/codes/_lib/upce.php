@@ -6,9 +6,9 @@
   // written with the odd and which with the even set of EAN bars (PAD_EAN_L and PAD_EAN_G of
   // subs/codes/_lib/barcode.php).
   //
-  //   {upce '425261'/}         number system 0, the check digit added: 04252614
-  //   {upce '04252614'/}       the same, the check digit checked
-  //   {upce '04210000526'/}    a UPC-A number, written in its short form when it has one
+  //   {barcode:upce '425261'/}         number system 0, the check digit added: 04252614
+  //   {barcode:upce '04252614'/}       the same, the check digit checked
+  //   {barcode:upce '04210000526'/}    a UPC-A number, written in its short form when it has one
   //
   // padCodeUpce        the bars, or the message why the text is no UPC-E
   // padCodeUpceExpand  the eleven digits of the UPC-A that six stand for

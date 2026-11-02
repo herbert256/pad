@@ -1,20 +1,20 @@
-{meta title='Locale and translations'/}
+{pad:meta title='Locale and translations'/}
 
 <p>One setting, <code>$padLocale</code>, says which language and conventions a request is
-written in. The {tag 'trans'/} tag and the <code>trans</code>, <code>currency</code> and
+written in. The {app:tag 'trans'/} tag and the <code>trans</code>, <code>currency</code> and
 <code>localDate</code> functions all read it.</p>
 
-{example 'fragments/locale_1'/}
+{common:example 'fragments/locale_1'/}
 
 <h2>Catalogs</h2>
 
 <p>The texts live in <code>_lang/&lt;locale&gt;.json</code>, one flat object of keys:</p>
 
-<pre>{open/}
+<pre>{pad:open/}
   "cart.title": "Je winkelwagen",
   "cart.items": "%d artikel|%d artikelen",
   "cart.owner": "Bewaard voor :name"
-{close/}</pre>
+{pad:close/}</pre>
 
 <ul>
   <li><code>count=</code> picks the plural form and replaces <code>%d</code>: two forms are one and other, three are zero, one and other.</li>

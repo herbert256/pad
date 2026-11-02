@@ -8,7 +8,7 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{section 'kind', 'heading', ...} ... {/section}
+{section:kind 'heading', ...} ... {/section:kind}
 {section:kind title='heading', ...} ... {/section:kind}
 {section:hero title='heading', button='text', link='?page', image='picture.jpg', alt='text'} text {/section:hero}
 {section:features title='heading', columns=3} {section:item 'name', icon='zap'} text {/section:item} ... {/section:features}
@@ -25,22 +25,22 @@
 {section:agenda timezone='CET'} {section:item 'title', from='09:00', to='10:00', track='name'/} ... {/section:agenda}
 {section:blog data='posts'/}
 {section:highlights} {section:item 'title', image='picture.jpg', alt='text'} text {/section:item} ... {/section:highlights}
-{section:hero} {slot 'eyebrow'} ... {/slot} {slot 'actions'} ... {/slot} {/section:hero}
+{section:hero} {pad:slot 'eyebrow'} ... {/pad:slot} {pad:slot 'actions'} ... {/pad:slot} {/section:hero}
 PAD;
 
   $tagParms   = [
-    'kind'    => 'The section, a file of <code>pad/subs/sections/types/</code>: '
+    'kind after colon'    => 'The section, a file of <code>pad/subs/sections/types/</code>: '
                . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padKinds ( 'sections' ) ) )
-               . '. The section: type names it as well - <code>{section:hero}</code> - and that prefix is always written: a section is never reached bare, as hero, team and footer are the names of fields and pages.',
-    'heading' => 'The section\'s own first value, the second of <code>{section}</code>: its heading, as <code>title=</code>; for <code>{section:item}</code> the item\'s name - a plan, a question, a person.' ];
+               . '. The section: prefix selects it - <code>{section:hero}</code> - and that prefix is always written: a section is never reached bare, as hero, team and footer are the names of fields and pages.',
+    'heading' => 'The section\'s own first value, used after <code>{section:hero}</code>: its heading, as <code>title=</code>; for <code>{section:item}</code> the item\'s name - a plan, a question, a person.' ];
 
   $tagOptions = [
-    'title'      => 'The heading; also the first value. A <code>{slot \'title\'}</code> of markup wins over it.',
+    'title'      => 'The heading; also the first value. A <code>{pad:slot \'title\'}</code> of markup wins over it.',
     'eyebrow'    => 'The small line above the heading.',
-    'text'       => 'The line under the heading - the content between the tags wins over it, and a <code>{slot \'text\'}</code> over both.',
+    'text'       => 'The line under the heading - the content between the tags wins over it, and a <code>{pad:slot \'text\'}</code> over both.',
     'button'     => 'hero, cta: the text of the main button, with <code>link</code> the page it goes to; newsletter, contact: the text of the form\'s button.',
     'second'     => 'hero, cta: a quieter second button, with <code>secondLink</code>.',
-    'image'      => 'hero: a picture beside the words, <code>alt</code> its text - a <code>{slot \'image\'}</code> of markup in its place.',
+    'image'      => 'hero: a picture beside the words, <code>alt</code> its text - a <code>{pad:slot \'image\'}</code> of markup in its place.',
     'note'       => 'hero, cta, pricing, newsletter: the small print; footer: the line under it all.',
     'data'       => 'A list section - features, pricing, testimonials, faq, stats, steps, team, logos, gallery, footer, comparison, changelog, downloads, agenda, blog, highlights: its items from the rows of a store, the page\'s array or a <code>_data</code> file, by their fields.',
     'columns'    => 'The cards side by side at the widest, 1 to 6 - fewer as the section narrows.',
@@ -55,6 +55,6 @@ PAD;
     'align'      => '<code>center</code> or <code>left</code>.',
     'id'         => 'The section\'s id, to link to it - <code>?page#pricing</code>.' ];
 
-  $tagSee     = [ 'slot', 'widget', 'form', 'icon' ];
+  $tagSee     = [ 'slot', 'widget:tabs', 'form', 'icon:star' ];
 
 ?>

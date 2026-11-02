@@ -1,4 +1,4 @@
-{meta title='Social login'/}
+{pad:meta title='Social login'/}
 
 <p>"Log in with GitHub" is two calls on one page. <code>padOAuthStart ( 'github' )</code> sends the
 visitor to GitHub - after keeping a random state, a PKCE verifier and, for an OpenID Connect
@@ -9,28 +9,28 @@ user and answers a row for <code>padLogin</code>:</p>
 <pre>// oauth/[provider].php - the start and the way back of every provider
 if ( ! padRequestHas ( 'code' ) and ! padRequestHas ( 'error' ) )
   padOAuthStart ( $provider );
-if ( $user = padOAuthUser ( $provider ) ) {open/}
+if ( $user = padOAuthUser ( $provider ) ) {pad:open/}
   padLogin ( $user );
   padRedirectIntended ();
-{close/}
+{pad:close/}
 $problem = padOAuthError ();</pre>
 
 <p>The example does both halves in one request, GitHub answered by fakes:</p>
 
-{example 'fragments/oauth_2'/}
+{common:example 'fragments/oauth_2'/}
 
 <h2>The buttons</h2>
 
-<p>{open/}oauth 'github'/{close/} is the link that starts it, styled as a button - to
+<p>{pad:open/}pad:oauth 'github'/{pad:close/} is the link that starts it, styled as a button - to
 <code>oauth/github</code> of the application, the page above, unless <code>href=</code> names another;
 <code>label=</code> changes its text. The provider's icon shows when the icon set has one of its
 name.</p>
 
-{example 'fragments/oauth_1'/}
+{common:example 'fragments/oauth_1'/}
 
 <h2>The providers</h2>
 
-<p>Every provider is a file of <code>pad/subs/oauth/types/</code> - {echo php:implode(', ', padOAuthKinds())/} -
+<p>Every provider is a file of <code>pad/subs/oauth/types/</code> - {pad:echo php:implode(', ', padOAuthKinds())/} -
 an array with its endpoints, its scopes, whether it takes PKCE, the settings it needs and how its
 answer becomes the user: <code>provider</code>, <code>id</code> (<code>github:583231</code>, never the
 same for two providers - nor for two instances of one: a GitLab of one's own has its address in

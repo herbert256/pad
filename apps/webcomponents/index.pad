@@ -15,29 +15,29 @@
   </div>
 
   <div class="hero-demo">
-    {card title='Rendered on the server', tone='good'}
+    {app:card title='Rendered on the server', tone='good'}
       <p>This card is a <code>&lt;pad-card&gt;</code> with its shadow root - and the page has no script for it.</p>
       <a slot="footer" href="?examples/cards">See how</a>
-    {/card}
+    {/app:card}
   </div>
 
 </section>
 
-{groups}
+{array:groups}
 <div class="group-head">
   <h2>{$title}</h2>
   <span class="badge">{$count} examples</span>
 </div>
 <p class="group-text">{$text}</p>
 <div class="grid">
-  {examples}
+  {array:examples}
   <a class="card" href="?{$page}">
     <span class="card-icon" aria-hidden="true">{$icon}</span>
     <span class="card-go" aria-hidden="true">→</span>
     <h3>{$title}</h3>
     <p>{$lede}</p>
-    <div class="chips">{server}<code class="chip is-server">{$server}</code>{/server}{client}<code class="chip is-client">{$client}</code>{/client}</div>
+    <div class="chips">{array:server}<code class="chip is-server">{$server}</code>{/array:server}{array:client}<code class="chip is-client">{$client}</code>{/array:client}</div>
   </a>
-  {/examples}
+  {/array:examples}
 </div>
-{/groups}
+{/array:groups}

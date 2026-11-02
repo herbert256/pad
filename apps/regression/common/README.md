@@ -6,18 +6,18 @@ difference is what the page is allowed to reach.
 
 `regression/pages` switched `_common` off (`$padCommon = FALSE` in its `_config/config.php`), so its
 tests prove a page needs nothing but its own application. The pages that do use `_common` -
-`{example}`, `{demo}`, `{table}`, the `{block}` snippet, the colouring functions in
+`{common:example}`, `{common:demo}`, `{common:table}`, the `{pad:block}` snippet, the colouring functions in
 `_common/_lib/` - moved here, where `_common` is on as it is for any ordinary application.
 
 What lives here:
 
 | test | why it is here |
 |------|----------------|
-| `deep/` | the page chain; `deep/four` embeds `deep/five` through `{example}` |
-| `manual/` | the parked manual pages - `{demo}`, `{table}`, `{example}`, `{block}` and `{source}` throughout |
-| `tableFun/` | the ten table pages `manual/table_fun` embeds through `{example}` |
-| `misc/eval` | shows its forms through `{demo}` and `{table}` |
-| `tags/redirect`, `tags/restart` | wrapped in `{demo}` and `{table}` |
+| `deep/` | the page chain; `deep/four` embeds `deep/five` through `{common:example}` |
+| `manual/` | the parked manual pages - `{common:demo}`, `{common:table}`, `{common:example}`, `{pad:block}` and `{pad:source}` throughout |
+| `tableFun/` | the ten table pages `manual/table_fun` embeds through `{common:example}` |
+| `misc/eval` | shows its forms through `{common:demo}` and `{common:table}` |
+| `tags/redirect`, `tags/restart` | wrapped in `{common:demo}` and `{common:table}` |
 | `hello/` | a copy of `regression/pages/hello` - the page `redirect` and `restart` land on, which must be in the same application |
 | `index` | the one test fetched without `&padInclude`, so it asserts the frame itself: `_common`'s `padFrame` and `padFrameEnd` and the title `_inits.php` derives |
 | `reference` | the `_common/_lib/` helper a page calls directly: `getReference()` over the type handlers |

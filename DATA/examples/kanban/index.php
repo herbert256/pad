@@ -1,6 +1,6 @@
 <?php
 
-  // The board. Its columns are a fragment - {fragment 'columns'} - that kanban.js asks for
+  // The board. Its columns are a fragment - {pad:fragment 'columns'} - that kanban.js asks for
   // again when the board moved on, and so is the activity: ?index&padFragment=columns. A new
   // card comes from the dialog's form, posted here.
 
@@ -29,5 +29,10 @@
   $cardFailed = padFormFailed ( 'card' );
   $cardLabel  = $cardFailed ? kanbanText ( 'label' ) : '';
   $labelList  = array_map ( fn ( $key, $name ) => [ 'key' => $key, 'name' => $name, 'chosen' => $key === $cardLabel ], array_keys ( kanbanLabels () ), kanbanLabels () );
+
+  // The board's name, the heading of the frame's bar. The dialog posts a title of its own,
+  // which the request makes a variable: this comes after it, so the bar names the board.
+
+  $title = 'Offline shop';
 
 ?>

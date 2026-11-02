@@ -124,7 +124,7 @@
     // A page not found, maintenance's 503 and a post without its CSRF token are answered
     // before the hand-over to the application (inits/app.php) defines APP2, the root the
     // lookup of every tag, snippet and option walks the directories from: the first tag of
-    // the page - an {if}, an {echo} - failed on "Undefined constant APP2", and the plain line
+    // the page - an {pad:if}, an {pad:echo} - failed on "Undefined constant APP2", and the plain line
     // answered for every error page but one of fields alone. The request ends with this
     // page, so the hand-over it marks has nothing left to change.
 
@@ -157,8 +157,8 @@
       $padCurrent [$i] = [];
     }
 
-    // A {stack} of the page or its frame is filled from what the page pushed - not from the
-    // pushes of the page that ended - and a {toc} from its own headings, as the page's own
+    // A {pad:stack} of the page or its frame is filled from what the page pushed - not from the
+    // pushes of the page that ended - and a {pad:toc} from its own headings, as the page's own
     // answer is (exits/exits.php): written out as it was, the marker of a stack stood in
     // the answer and what the page had pushed was lost.
 

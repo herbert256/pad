@@ -2,7 +2,7 @@
 
   // Membership test for the emirp sequence, 13, 17, 31, 37, 71, ...: a prime whose digits
   // reversed make another prime - the test loop.php makes of every candidate, kept here as a
-  // predicate. build/check.php asks it for {keep emirp}, {remove emirp} and {flag emirp}.
+  // predicate. build/check.php asks it for {keep:emirp}, {remove:emirp} and {pad:flag emirp}.
   // Without it the check read the PADemirp table, the emirps below 10,000, and generated on
   // past it for every larger candidate.
   //

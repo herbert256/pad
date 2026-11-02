@@ -1,1 +1,1 @@
-{data 'xs'}[1,2]{/data}{data 'ys'}[1,2,3]{/data}{xs}{ys}[{current@-1/}.{current@-2/} {echo current@-1/}.{echo current@-2/} {$ys | @ . current@-1} {if first@-1}F{else}f{/if}]{/ys}{/xs}
+{pad:data 'xs'}[1,2]{/pad:data}{pad:data 'ys'}[1,2,3]{/pad:data}{data:xs}{data:ys}[{property:current@-1/}.{property:current@-2/} {pad:echo current@-1/}.{pad:echo current@-2/} {$ys | @ . current@-1} {pad:if first@-1}F{pad:else}f{/pad:if}]{/data:ys}{/data:xs}

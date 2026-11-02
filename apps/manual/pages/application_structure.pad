@@ -1,4 +1,4 @@
-{meta title='Application Structure'/}
+{pad:meta title='Application Structure'/}
 
 <p>An application is a directory under <code>apps/</code>, and a page is a pair of files in
 it: <code>name.php</code> gathers the data, <code>name.pad</code> renders it - the
@@ -14,7 +14,7 @@ below it. This very page is inside one - the menu at the side and the bar with t
 above what you are reading come from the wrapper of the manual, which opens the frame every
 PAD application shares and closes it again below the page:</p>
 
-{source '_inits.pad'/}
+{app:source '_inits.pad'/}
 
 <p>Wrappers nest: the application's own <code>_inits.pad</code> wraps the subdirectory's,
 which wraps the page. The page never mentions any of them.</p>
@@ -23,13 +23,13 @@ which wraps the page. The page never mentions any of them.</p>
 
 <p>All PHP has run before any template renders. Down the directory chain and back up:</p>
 
-{ignore}
+{pad:ignore}
 <pre><code>/_inits.php
     /admin/_inits.php
         /admin/users.php
     /admin/_exits.php
 /_exits.php</code></pre>
-{/ignore}
+{/pad:ignore}
 
 <h2>Subdirectories inherit, and may override</h2>
 

@@ -8,7 +8,7 @@
   // inside); pen= how far out the hole is, in percent of the wheel (70, 5 to 100); outside
   // rolls the wheel round the outside of the ring.
   //
-  //   {spirograph ring=105, wheel=63, pen=80/}
+  //   {toy:spirograph ring=105, wheel=63, pen=80/}
 
   $padSpiroRing  = padToyInt ( 'ring', 96, 40, 160 );
   $padSpiroWheel = padToyInt ( 'wheel', 52, 10, 150 );

@@ -1,20 +1,20 @@
 <?php
 
-  // An accordion without JavaScript - the accordion widget: every {tab} an HTML <details>
+  // An accordion without JavaScript - the accordion widget: every {pad:tab} an HTML <details>
   // with its label as the <summary>, so the browser opens and closes it, from the keyboard
   // too, and a reader hears 'collapsed' or 'expanded'. A find in the page opens the item it
   // finds in, and printed what is open shows.
   //
-  //   {accordion single, open=1}
-  //     {tab 'Can I return it?'}Within 30 days ...{/tab}
-  //     {tab 'Is there a warranty?'}Two years ...{/tab}
-  //   {/accordion}
+  //   {widget:accordion single, open=1}
+  //     {pad:tab 'Can I return it?'}Within 30 days ...{/pad:tab}
+  //     {pad:tab 'Is there a warranty?'}Two years ...{/pad:tab}
+  //   {/widget:accordion}
   //
   // single gives the items one name - the HTML exclusive accordion: opening one closes the
   // one that was open. open= names the item open at first, by its number from 1 or its
   // label; open without a value opens them all, which a single accordion cannot.
   //
-  // The items are collected the way {tabs} collects its tabs - subs/widgets/_lib/tabs.php.
+  // The items are collected the way {widget:tabs} collects its tabs - subs/widgets/_lib/tabs.php.
 
   include_once PAD . 'subs/widgets/_lib/tabs.php';
 

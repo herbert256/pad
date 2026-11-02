@@ -4,7 +4,7 @@
   // was read as text and every tag in it listed - and marked as never run - and a { left
   // unclosed inside a {# #} comment carried the scan past its end.
 
-  $coverSource = "{-- {if \$old eq 1}gone{/if} --}{# an { open brace #}{items}{\$x}{/items}{#x}";
+  $coverSource = "{-- {pad:if \$old eq 1}gone{/pad:if} --}{# an { open brace #}{items}{\$x}{/items}{#x}";
   $coverTexts  = implode ( ' ', array_column ( padCoverageItems ( $coverSource ), 'text' ) );
 
 ?>

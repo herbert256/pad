@@ -1,8 +1,8 @@
 <?php
 
   // Fires from level/start.php once the level's parameters are parsed and before the tag
-  // handler runs - deliberately before: a tag that jumps ({break}, {continue}), ends the
-  // request ({exit}, {redirect}) or errors in its handler never reaches the after-the-fact
+  // handler runs - deliberately before: a tag that jumps ({pad:break}, {pad:continue}), ends the
+  // request ({pad:exit}, {pad:redirect}) or errors in its handler never reaches the after-the-fact
   // events, and used to stay off the xref record because of it.
   //
   // Records the tag under its type (with any @property suffix stripped off) plus, for

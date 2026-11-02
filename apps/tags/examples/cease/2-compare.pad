@@ -1,4 +1,4 @@
-{meta title='cease, break and continue', about='The same loop with each of the three: what happens to the rest of the pass and to the rows after it.'/}
-<p>cease: {sequence '1..5', name='ceaseN'}[{$ceaseN}{if $ceaseN eq 3}{cease/}{/if}.]{/sequence}</p>
-<p>break: {sequence '1..5', name='breakN'}[{$breakN}{if $breakN eq 3}{break/}{/if}.]{/sequence}</p>
-<p>continue: {sequence '1..5', name='contN'}[{$contN}{if $contN eq 3}{continue/}{/if}.]{/sequence}</p>
+{pad:meta title='cease, break and continue', about='The same loop with each of the three: what happens to the rest of the pass and to the rows after it.'/}
+<p>cease: {sequence:range '1..5', name='ceaseN'}[{$ceaseN}{pad:if $ceaseN eq 3}{pad:cease/}{/pad:if}.]{/sequence:range}</p>
+<p>break: {sequence:range '1..5', name='breakN'}[{$breakN}{pad:if $breakN eq 3}{pad:break/}{/pad:if}.]{/sequence:range}</p>
+<p>continue: {sequence:range '1..5', name='contN'}[{$contN}{pad:if $contN eq 3}{pad:continue/}{/pad:if}.]{/sequence:range}</p>

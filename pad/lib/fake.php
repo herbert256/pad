@@ -35,7 +35,7 @@
   // padFakeRows       rows of fields of those kinds - padFakeRows ( 'name, email', 5 ), or
   //                   [ 'customer' => 'name', 'total' => [ 'price', [ 'to' => 500 ] ] ] -
   //                   with a seed the same rows on every run, the sequence put back after
-  //                   them; the {fake} tag's rows= and seed= are the same rows
+  //                   them; the {fake:rows} tag's rows= and seed= are the same rows
   //
   // The sequence is PAD's own - xorshift32 in a static - not mt_rand, so seeding it leaves
   // the application's own mt_rand and rand alone, and a seeded run gives the same values on
@@ -443,11 +443,12 @@
 
   function padFakeKinds () {
 
-    return padKinds ( 'fakes' );
+    // rows composes primitive kinds; it is a tag selector, not a field generator.
+    return array_values ( array_diff ( padKinds ( 'fakes' ), [ 'rows' ] ) );
 
   }
 
-  // A value of a kind. $opts are its options by name, or TRUE inside the {fake} tag, whose
+  // A value of a kind. $opts are its options by name, or TRUE inside the {fake:rows} tag, whose
   // own options they then are (padTagParm, so the strict check sees an option no kind of
   // the tag reads). The options of an outer value are put back afterwards: a kind may ask
   // for a value of another kind.
@@ -522,7 +523,7 @@
         padError ( "the fake field '" . padMakeSafe ( (string) $field, 30 ) . "' is no plain name" );
         return NULL;
       }
-      if ( ! padKind ( 'fakes', $kind ) ) {
+      if ( $kind === 'rows' or ! padKind ( 'fakes', $kind ) ) {
         padError ( "there is no fake kind named '" . padMakeSafe ( is_scalar ( $kind ) ? (string) $kind : '', 30 ) . "' - " . implode ( ', ', padFakeKinds () ) );
         return NULL;
       }
@@ -537,7 +538,7 @@
   // back afterwards, so the values a page makes after them are what they would have been:
   // the rows of a seed are a fact of the seed alone, for a designer preview's sample or a
   // prototype's table. Without, they come from the sequence as it stands. $opts are the
-  // options of every field, TRUE those of the {fake} tag.
+  // options of every field, TRUE those of the {fake:rows} tag.
 
   function padFakeRows ( $fields, $count, $seed = NULL, $opts = [] ) {
 

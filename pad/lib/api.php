@@ -23,7 +23,7 @@
 
     if ( ! $go  ) $go  = implode ( '/', array_map ( 'rawurlencode', explode ( '/', ( $padPageAsked ?? '' ) !== '' ? $padPageAsked : $padPage ) ) );
 
-    // A page written the way a link writes it, ?about - {redirect} lets that form through
+    // A page written the way a link writes it, ?about - {pad:redirect} lets that form through
     // its check as a target of its own (start/redirect.php) - is that page: the ? is the one
     // the address gets anyway, where a second was put in front and the browser went to
     // ??about, a page that is not there.

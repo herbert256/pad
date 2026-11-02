@@ -1,5 +1,5 @@
-{ignore}
-<p><code>{widget}</code> puts an interactive part on the page - tabs, an accordion, a carousel,
+{pad:ignore}
+<p><code>{widget:tabs}</code> puts an interactive part on the page - tabs, an accordion, a carousel,
 a wizard, a lightbox, a split pane, a modal, a drawer, a dropdown, a context menu, a command
 palette, a tooltip, a toast, a copy box, a poll, a breadcrumb, a sortable list. Every one is built on the server and works without JavaScript: radio buttons and
 CSS, <code>&lt;details&gt;</code>, <code>&lt;dialog&gt;</code>, the <code>popover</code>
@@ -9,15 +9,10 @@ file of <code>pad/subs/widgets/types/</code>, its functions in <code>pad/subs/wi
 style and script in <code>www/assets/widgets/</code>; the files of <code>types/</code> are the
 widgets there are.</p>
 
-<p>A widget is written three ways, the same widget each time: the tag with the widget's name,
-<code>{widget 'modal', 'terms'}</code>, whose second parameter is the widget's own first; the
-widget: type, <code>{widget:modal 'terms'}</code>; and the bare name, <code>{modal 'terms'}</code>.
-The bare name comes after every other kind of tag, so a store, a field or an array of the name
-wins - a page's <code>$tabs</code> array is the data of <code>{tabs}</code>. Two names stay
-built-in tags: <a href="?tag/copy"><code>{copy}</code></a>, as PHP has a <code>copy()</code>
-function a bare name would reach first, and <a href="?tag/tab"><code>{tab}</code></a>, the item
-of the widgets that take a list of labelled parts - tabs, accordion, carousel, wizard,
-lightbox, splitpane and sortable.</p>
+<p>A widget uses a qualified name: <code>{widget:modal 'terms'}</code>. Its first parameter is the widget's value. The <code>widget:</code> prefix selects the widget even when the page has an array or store
+with the same name. <a href="?tag/widget/copy"><code>{widget:copy}</code></a> writes a copy box;
+<a href="?tag/tab"><code>{pad:tab}</code></a> supplies the labelled parts of tabs, accordion,
+carousel, wizard, lightbox, splitpane and sortable.</p>
 
 <ul>
   <li><b>tabs</b> - panels behind a row of tabs: a radio button and a label per tab, the arrow
@@ -54,4 +49,4 @@ dark ones in dark mode. A name that is no widget, an option a widget does not kn
 without what it needs - a name, a label, a tab - are errors under the strict check. The poll's
 examples are shown but not run: what it shows depends on the votes and the visitor's
 session.</p>
-{/ignore}
+{/pad:ignore}

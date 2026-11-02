@@ -1,17 +1,17 @@
-{meta title='Cheat sheet'/}
+{pad:meta title='Cheat sheet'/}
 <h1>Cheat sheet</h1>
-<p class="lead">How every type is written, with its prefix and without it, by group.</p>
+<p class="lead">How every tag type and subsystem family is used, by group.</p>
 
-{sheet}
+{array:sheet}
 <section class="section" id="{$key}">
   <div class="section-head"><h2>{$label}</h2></div>
   <div class="cheat">
-    {types}
+    {array:types}
     <div class="cheat-item">
       <a class="name" href="?{$link}">{$key}</a> <span class="about">{$about}</span>
       <pre class="code"><code>{!syntaxHtml}</code></pre>
     </div>
-    {/types}
+    {/array:types}
   </div>
 </section>
-{/sheet}
+{/array:sheet}

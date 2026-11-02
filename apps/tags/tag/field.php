@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{field "column from table where ..."/}
-{field "count(*) from orders", name='orderCount'/}
+{pad:field "column from table where ..."/}
+{pad:field "count(*) from orders", name='orderCount'/}
 PAD;
 
   $tagParms   = [

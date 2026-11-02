@@ -23,7 +23,7 @@
       "icon":   "🏝️",
       "title":  "Islands with props",
       "lede":   "PHP prepares the data, the ^ sigil writes a field as JSON into a data attribute, and one small runtime mounts a component on every island of the page - each with its own state.",
-      "server": [ "{^field}", "a {loop} of islands" ],
+      "server": [ "{^field}", "a {sequence:loop} of islands" ],
       "client": [ "PadReact.island", "props" ],
       "files":  [ "www:pad-react.js" ]
     },
@@ -33,7 +33,7 @@
       "icon":   "🌱",
       "title":  "Progressive enhancement",
       "lede":   "PAD renders a complete table - with JavaScript off it is all there. React then takes the same element over and adds search and sorting, and can show you what the server sent.",
-      "server": [ "{people}", "{^people}" ],
+      "server": [ "{array:people}", "{^people}" ],
       "client": [ "serverHtml", "useMemo" ]
     },
     {
@@ -50,9 +50,9 @@
       "page":   "examples/topic",
       "group":  "in",
       "icon":   "💬",
-      "title":  "Providers with {reactData}",
-      "lede":   "Four providers in _providers/ query the database, each building on the one before it; {reactData} writes every answer as a mount point and React draws the forum topic.",
-      "server": [ "{reactData}", "_providers/", "db()" ],
+      "title":  "Providers with {pad:reactData}",
+      "lede":   "Four providers in _providers/ query the database, each building on the one before it; {pad:reactData} writes every answer as a mount point and React draws the forum topic.",
+      "server": [ "{pad:reactData}", "_providers/", "db()" ],
       "client": [ "getAttribute('data')" ],
       "files":  [ "_providers/topic.php", "_providers/board_from_topic.php", "_providers/user_from_topic.php", "_providers/posts_from_topic.php" ]
     },
@@ -88,8 +88,8 @@
       "group":  "back",
       "icon":   "📈",
       "title":  "PAD draws, React steers",
-      "lede":   "React holds the controls; PAD renders the {chart} as SVG and answers just that {fragment}. The first chart is in the HTML before any script ran.",
-      "server": [ "{chart}", "{fragment}", "padFragment" ],
+      "lede":   "React holds the controls; PAD renders the {chart:bar} as SVG and answers just that {pad:fragment}. The first chart is in the HTML before any script ran.",
+      "server": [ "{chart:bar}", "{pad:fragment}", "padFragment" ],
       "client": [ "dangerouslySetInnerHTML" ]
     },
     {

@@ -1,50 +1,50 @@
 <table border=1>
-  {staff}
+  {local:staff}
     <tr>
       <td> {$name} </td>
       <td> {$phone} </td>
     </tr>
-  {/staff}
+  {/local:staff}
 </table>
 
 <hr>
 
 <table border=1>
-  {staff}
-    {if $name eq 'jack'}
-      {continue/}
-    {/if}
+  {local:staff}
+    {pad:if $name eq 'jack'}
+      {pad:continue/}
+    {/pad:if}
     <tr>
       <td> {$name} </td>
       <td> {$phone} </td>
     </tr>
-  {/staff}
+  {/local:staff}
 </table>
 
 <hr>
 
 <table border=1>
-  {staff}
-    {if $name eq 'jack'}
-      {continue 'staff'/}
-    {/if}
+  {local:staff}
+    {pad:if $name eq 'jack'}
+      {pad:continue 'staff'/}
+    {/pad:if}
     <tr>
       <td> {$name} </td>
       <td> {$phone} </td>
     </tr>
-  {/staff}
+  {/local:staff}
 </table>
 
 <hr>
 
 <table border=1>
-  {staff}
-    {if $name eq 'jack'}
-      {continue -2/}
-    {/if}
+  {local:staff}
+    {pad:if $name eq 'jack'}
+      {pad:continue -2/}
+    {/pad:if}
     <tr>
       <td> {$name} </td>
       <td> {$phone} </td>
     </tr>
-  {/staff}
+  {/local:staff}
 </table>

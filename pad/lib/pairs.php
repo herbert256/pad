@@ -4,12 +4,12 @@
   // renders: the slot fills a custom tag takes out of its content (lib/slot.php) and the
   // layout blocks the build step resolves (lib/layout.php).
   //
-  // padPairScan lists every {tag ...} ... {/tag} of one name in a text, nested ones too,
+  // padPairScan lists every {function:tag ...} ... {/function:tag} of one name in a text, nested ones too,
   // each with the offsets of its opener and closer, the text of its parameters and the
-  // text between. An opener is {tag followed by a space, a } or a /, so {slots} is not a
-  // {slot}; its end is found by brace depth, so a parameter holding a tag of its own reads
-  // to its real end; {tag .../} opens nothing. A closer may carry options or a pipe,
-  // {/tag | upper}. An opener without a closer is left out.
+  // text between. An opener is {function:tag followed by a space, a } or a /, so {slots} is not a
+  // {pad:slot}; its end is found by brace depth, so a parameter holding a tag of its own reads
+  // to its real end; {function:tag .../} opens nothing. A closer may carry options or a pipe,
+  // {/function:tag | upper}. An opener without a closer is left out.
 
   function padPairScan ( $text, $tag ) {
 
@@ -114,7 +114,7 @@
   }
 
   // The name a pair's parameters give it: a quoted literal as it stands, anything else
-  // evaluated - {slot $which}.
+  // evaluated - {pad:slot $which}.
 
   function padPairName ( $parms ) {
 

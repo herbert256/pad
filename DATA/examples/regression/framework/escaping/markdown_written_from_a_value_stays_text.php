@@ -1,3 +1,3 @@
 <?php
-  $text = "# {php:getcwd}\n\n{echo 'x'}";
+  $text = "# {php:getcwd}\n\n{pad:echo 'x'}";
 ?>

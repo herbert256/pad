@@ -1,6 +1,6 @@
 <?php
 
-  // The body of {palette 'viridis', steps=7/} - the colours of a palette as a row of swatches,
+  // The body of {pad:palette 'viridis', steps=7/} - the colours of a palette as a row of swatches,
   // each with its hex value written on it in black or white, whichever reads better
   // (padPaletteInk). The palette is a file of subs/palettes/types/ (padPaletteTypes,
   // _lib/palette.php); steps= is how many colours, a whole number from 1 to 256 - without it
@@ -23,7 +23,7 @@
   }
 
   if ( $padPair [$pad] and $padCheckSyntax )
-    padError ( "the {palette} takes no content - it is written single, {palette 'viridis'/}" );
+    padError ( "the {pad:palette} takes no content - it is written single, {pad:palette 'viridis'/}" );
 
   if ( $padInfoXref ?? FALSE )
     padInfoXref ( 'palette', $padPaletteName );
@@ -38,7 +38,7 @@
       $padPaletteSteps = (int) $padPaletteText;
     else {
       if ( $padCheckSyntax )
-        padError ( "the {palette} has no steps '" . padMakeSafe ( $padPaletteText, 20 ) . "' - a whole number from 1 to 256" );
+        padError ( "the {pad:palette} has no steps '" . padMakeSafe ( $padPaletteText, 20 ) . "' - a whole number from 1 to 256" );
       $padPaletteSteps = NULL;
     }
 

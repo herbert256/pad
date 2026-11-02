@@ -5,9 +5,9 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{files 'dir', base='app'} {$item} {$file} {$ext} {/files}
-{files dir='dir', base='data', mask='*.txt', exclude='old*', recursive, onlyFiles, includeHidden} ... {/files}
-{files 'dir', base='app', onlyDirs} ... {/files}
+{pad:files 'dir', base='app'} {$item} {$file} {$ext} {/pad:files}
+{pad:files dir='dir', base='data', mask='*.txt', exclude='old*', recursive, onlyFiles, includeHidden} ... {/pad:files}
+{pad:files 'dir', base='app', onlyDirs} ... {/pad:files}
 PAD;
 
   $tagParms   = [

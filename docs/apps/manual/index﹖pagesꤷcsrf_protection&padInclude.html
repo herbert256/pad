@@ -14,11 +14,11 @@ back is answered <code>403</code> before any of the application runs. The forms 
 application already has are protected without a change to them. A form that posts to another
 site gets no token, and neither does a GET form, whose fields end up in the url.</p>
 
-<h2>The {csrf} tag</h2>
+<h2>The {pad:csrf} tag</h2>
 
-<p><b>{csrf}</b> writes the field itself, for a form the page builds some other way, or for
+<p><b>{pad:csrf}</b> writes the field itself, for a form the page builds some other way, or for
 an application that leaves <code>$padCsrf</code> off and checks a post by hand with
-<code>padCsrfValid ()</code>. <code>{csrf token/}</code> is the bare token, for a
+<code>padCsrfValid ()</code>. <code>{pad:csrf token/}</code> is the bare token, for a
 script that sends it in an <code>X-CSRF-Token</code> header:</p>
 
 
@@ -28,7 +28,7 @@ script that sends it in an <code>X-CSRF-Token</code> header:</p>
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -58,12 +58,12 @@ script that sends it in an <code>X-CSRF-Token</code> header:</p>
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;form method="post"&gt;<br>  <b>{<font color="blue">csrf</font><font color="red"></font>/}</b><br>  &lt;input type="text" name="note"&gt;<br>  &lt;button&gt;Send&lt;/button&gt;<br>&lt;/form&gt;</code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="../_common/play.css"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8Zm9ybSBtZXRob2Q9XCJwb3N0XCI+XG4gIHtwYWQ6Y3NyZi99XG4gIDxpbnB1dCB0eXBlPVwidGV4dFwiIG5hbWU9XCJub3RlXCI+XG4gIDxidXR0b24+U2VuZDwvYnV0dG9uPlxuPC9mb3JtPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8Zm9ybSBtZXRob2Q9XCJwb3N0XCI+XG4gIHtwYWQ6Y3NyZi99XG4gIDxpbnB1dCB0eXBlPVwidGV4dFwiIG5hbWU9XCJub3RlXCI+XG4gIDxidXR0b24+U2VuZDwvYnV0dG9uPlxuPC9mb3JtPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;form method="post"&gt;<br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>csrf</font><font color="red"></font>/}</b><br>  &lt;input type="text" name="note"&gt;<br>  &lt;button&gt;Send&lt;/button&gt;<br>&lt;/form&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">
   <form method="post">
-  <input type="hidden" name="padCsrfToken" value="b174347560ef00e93b14eaa875f599977112a840091b2aef4b4a5df5032ec0d4">
+  <input type="hidden" name="padCsrfToken" value="5d8c23dcc61ece4c21bd4407abbc5d0eaf5f7f7c772c6273c9a1232662a50882">
   <input type="text" name="note">
   <button>Send</button>
 </form>

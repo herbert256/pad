@@ -11,7 +11,7 @@ shop
   FAIL  checkout
         want: &lt;p&gt;Total 42&lt;/p&gt;
         got:  HTTP 500 - assert failed: $total eq 42
-              apps/shop/_tests/checkout.pad:1:1  {assert $total eq 42/}
+              apps/shop/_tests/checkout.pad:1:1  {pad:assert $total eq 42/}
   2 tests, 1 failed</code></pre>
 
 
@@ -30,7 +30,7 @@ does that as its <code>apptests</code> line.</p>
 
 <h2>Asserts</h2>
 
-<p><b>{assert}</b> holds a page to a condition during a test run: false, and the test fails
+<p><b>{pad:assert}</b> holds a page to a condition during a test run: false, and the test fails
 with the condition and the message as its report. Anywhere else it is silent - the
 condition is not even evaluated - so it can stay in the application's own pages. The switch
 is <code>$padAssert</code>, which <code>pad test</code> turns on; this example turns it on in
@@ -43,7 +43,7 @@ its PHP:</p>
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -73,7 +73,7 @@ its PHP:</p>
           <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padAssert </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">42</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">assert </font><font color="red"><font color="red">$</font>total eq 42<font color="black">,</font> <font color="black">'</font>the cart total<font color="black">'</font></font>/}</b><br>&lt;p&gt;Total <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;</code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="../_common/play.css"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmFzc2VydCAkdG90YWwgZXEgNDIsICd0aGUgY2FydCB0b3RhbCcvfVxuPHA+VG90YWwgeyR0b3RhbH08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHBhZEFzc2VydCA9IFRSVUU7XG5cbiAgJHRvdGFsID0gNDI7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmFzc2VydCAkdG90YWwgZXEgNDIsICd0aGUgY2FydCB0b3RhbCcvfVxuPHA+VG90YWwgeyR0b3RhbH08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHBhZEFzc2VydCA9IFRSVUU7XG5cbiAgJHRvdGFsID0gNDI7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>assert </font><font color="red"><font color="red">$</font>total eq 42<font color="black">,</font> <font color="black">'</font>the cart total<font color="black">'</font></font>/}</b><br>&lt;p&gt;Total <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -99,12 +99,12 @@ its PHP:</p>
 <h2>A test page</h2>
 
 <p>It is a page like any other, rendered bare - without the application's wrappers - and no
-URL reaches it. It can bring in a real page with <code>{page 'cart'/}</code>, or
+URL reaches it. It can bring in a real page with <code>{pad:page 'cart'/}</code>, or
 include the page's own PHP and check the data it sets:</p>
 
 
 <pre><code>_tests/cart.php    &lt;?php include APP . 'cart.php'; ?&gt;
-_tests/cart.pad    {assert $total eq 42, 'the cart total'/}
+_tests/cart.pad    {pad:assert $total eq 42, 'the cart total'/}
                    &lt;p&gt;Total {$total}&lt;/p&gt;
 _tests/cart.txt    &lt;p&gt;Total 42&lt;/p&gt;</code></pre>
 

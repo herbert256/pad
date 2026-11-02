@@ -1,6 +1,6 @@
 <?php
 
-  // {spinner/} or {spinner style='dots', label='Saving'/} or {spinner}Loading the orders{/spinner}
+  // {effect:spinner/} or {effect:spinner style='dots', label='Saving'/} or {effect:spinner}Loading the orders{/effect:spinner}
   // - a loading indicator, the one effect for every loader: style= ring (the default), dots,
   // bars, pulse or orbit. It is a status (role="status"): a screen reader says its label -
   // label=, 'Loading' when not given - and the pair's content is a label shown beside it.

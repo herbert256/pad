@@ -1,14 +1,14 @@
 <?php
 
-  // {progress 72/} - a progress bar, tags/_lib/progress.php: the native <progress> element styled,
+  // {pad:progress 72/} - a progress bar, tags/_lib/progress.php: the native <progress> element styled,
   // under a line with the label and the percentage. The first parameter is the value; max=
   // is what it counts to (default 100), label= names it - shown, and the accessible name -
   // color= is accent (default), success, warning, danger or neutral, and size= small,
   // medium (default) or large. steps draws a row of dots instead, one per step up to max,
   // the steps up to the value filled: a checkout or a wizard.
   //
-  //   {progress 72, max=100, label='Upload'}
-  //   {progress 3, max=5, steps, label='Checkout'}
+  //   {pad:progress 72, max=100, label='Upload'}
+  //   {pad:progress 3, max=5, steps, label='Checkout'}
 
   $padProgressValue = trim ( (string) $padParm );
   $padProgressMax   = padTagParm ( 'max', 100 );
@@ -18,7 +18,7 @@
 
   if ( ! is_numeric ( $padProgressValue ) or ! is_finite ( (float) $padProgressValue ) ) {
     if ( $padCheckSyntax )
-      padError ( "the progress has no number for its value: '" . padMakeSafe ( $padProgressValue, 20 ) . "' - {progress 72/}" );
+      padError ( "the progress has no number for its value: '" . padMakeSafe ( $padProgressValue, 20 ) . "' - {pad:progress 72/}" );
     $padProgressValue = 0;
   }
 

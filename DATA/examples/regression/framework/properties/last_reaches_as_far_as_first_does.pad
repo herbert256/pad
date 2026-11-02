@@ -1,8 +1,8 @@
-{data 's'}
+{pad:data 's'}
   ["a","b","c"]
-{/data}
-{s}
-  {true}
-    {$s}{last 's'}#{/last}
-  {/true}
-{/s}
+{/pad:data}
+{data:s}
+  {pad:true}
+    {$s}{property:last 's'}#{/property:last}
+  {/pad:true}
+{/data:s}

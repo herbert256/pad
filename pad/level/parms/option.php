@@ -1,6 +1,6 @@
 <?php
 
-  // Stores a named option - {tag name='x'} or the bare {tag optional} form, where the value
+  // Stores a named option - {function:tag name='x'} or the bare {function:tag optional} form, where the value
   // defaults to TRUE - as $padPrm [$pad] [name], evaluating the right-hand side.
   //
   // Options that have a handler in an _options/ directory are also queued in

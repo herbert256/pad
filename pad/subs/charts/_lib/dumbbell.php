@@ -3,8 +3,8 @@
   // Two values per category - before and after, this year and last, men and women - as a
   // dumbbell: a row per category, a dot at each value and a line joining the two.
   //
-  //   {chart 'dumbbell', data='wages', label='country', from='y2015', to='y2025', names='2015, 2025'}
-  //   {chart 'dumbbell', data='scores', label='school', from='before', to='after', ranked}
+  //   {chart:dumbbell data='wages', label='country', from='y2015', to='y2025', names='2015, 2025'}
+  //   {chart:dumbbell data='scores', label='school', from='before', to='after', ranked}
   //
   // label= names the row - else the first field that is no number; from= and to= name the
   // fields of the two ends - else the first two numeric fields - from and to as gantt's bar

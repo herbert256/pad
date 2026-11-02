@@ -1,26 +1,26 @@
 <?php
 
-  // The {set $name = value} tag: makes the level's variable assignments stick as globals.
+  // The {pad:set $name = value} tag: makes the level's variable assignments stick as globals.
   //
   // Parsing has already evaluated every $name=value pair into $padSetLvl [$pad]; this copies
   // them into $GLOBALS and then empties $padSaveLvl/$padDeleteLvl, which is exactly what
   // stops padResetLvl() from rolling them back when the level closes. Refused as an
-  // open/close pair, since a {set} has no content to scope the assignment to.
+  // open/close pair, since a {pad:set} has no content to scope the assignment to.
 
   // Refused under the strict syntax check; the lenient walk lets the assignments stick
   // and renders the content like any other pair.
 
   if ( $padPair [$pad] and $padCheckSyntax )
-    padError ("{set ...} can not be used as a open/close tag");
+    padError ("{pad:set ...} can not be used as a open/close tag");
 
-  // A {set} whose words parsed into no assignment - a missing $, a missing value - used
+  // A {pad:set} whose words parsed into no assignment - a missing $, a missing value - used
   // to do nothing at all. Strict mode says so.
 
   if ( $padCheckSyntax and ! count ( $padSetLvl [$pad] ) )
-    padError ( "the {set} assigns nothing - it speaks in \$name = value pairs" );
+    padError ( "the {pad:set} assigns nothing - it speaks in \$name = value pairs" );
 
   // Written with padSetField (lib/scope.php): a name the row of a loop around holds is that
-  // row's field too - {rows}{set $n = $n - 1}{$n}{/rows} printed the row's n unchanged.
+  // row's field too - {rows}{pad:set $n = $n - 1}{$n}{/rows} printed the row's n unchanged.
 
   foreach ( $padSetLvl [$pad] as $padSetName => $padSetValue )
     padSetField ( $padSetName, $padSetValue );

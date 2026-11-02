@@ -14,7 +14,7 @@
   // parameters would come back to life there.
   //
   // The rest are small utilities: padJsonForHtmlAttr (JSON safe inside an HTML attribute,
-  // for {select} and {reactData}), padMD5 with its helpers padPack, padUnpack, padBase64
+  // for {select} and {pad:reactData}), padMD5 with its helpers padPack, padUnpack, padBase64
   // and padUnbase64 (a 22-character URL-safe digest used for etags and cache keys, with
   // padMD5Unpack giving the hex form back), padRandomString (session and request ids,
   // temporary file names), and padZip / padUnzip (gzip for cached output).
@@ -69,7 +69,7 @@
   // column is, and a caller passing one straight in - the select subsystem does, for a row
   // whose relation field is empty - would otherwise end the request on str_replace().
 
-  // In any case: a closing pipe over text an {ignore} kept - | upper - turned &open; into
+  // In any case: a closing pipe over text an {pad:ignore} kept - | upper - turned &open; into
   // &OPEN;, and the page printed CONST A &EQ; &OPEN;X: 1&CLOSE; for const a = {x: 1}.
 
   function padUnescape ( $string ) {
@@ -139,9 +139,9 @@
 
   }
 
-  // The seal of a marker the engine writes into the page to fill in later - {toc}, {stack} -
+  // The seal of a marker the engine writes into the page to fill in later - {pad:toc}, {pad:stack} -
   // so text that came in with a value is never taken for one: a keyed hash of what the
-  // marker holds, 16 decimal digits - a pipe on the tag, {stack 'css' | upper}, changes no
+  // marker holds, 16 decimal digits - a pipe on the tag, {pad:stack 'css' | upper}, changes no
   // digit. The key is this installation's (DATA/keys/markers.key),
   // the same on every request, so a marker inside a cached fragment still holds; when no
   // key file can be kept, one of this request.
@@ -221,9 +221,9 @@
   // run, so one that came in with the request - %EE%80%A2 is U+E022 - passed htmlentities
   // untouched and came out a live quote: title="{$name}" with ?name=x%EE%80%A2%20onclick=...
   // closed the attribute. An escaper reads it as the quote it will be, and escapes that -
-  // the pipes, the field's sanitize step, {attrs}, the forms, and the escape helpers of the
+  // the pipes, the field's sanitize step, {pad:attrs}, the forms, and the escape helpers of the
   // tags that draw (padChartAttr, padQrAttr and their like), which escaped the stand-in as
-  // the text it was: {qr ..., color=$c} and {countdown ..., past=$p} wrote an attribute a
+  // the text it was: {barcode:qr ..., color=$c} and {pad:countdown ..., past=$p} wrote an attribute a
   // visitor's value closed and filled with an event handler.
 
   function padUnprotectQuotes ( $string ) {
@@ -234,7 +234,7 @@
 
   // The tag kinds whose answer is template source rather than a value, which level/go.php
   // leaves unprotected: the include: type returns an _include/ snippet's text, the content:
-  // type a stored {content} block (or a snippet or page it falls back to), and the common:
+  // type a stored {pad:content} block (or a snippet or page it falls back to), and the common:
   // type a _common snippet when the name is not a _common tag.
 
   function padTagAnswersSource () {

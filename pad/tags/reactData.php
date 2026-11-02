@@ -1,6 +1,6 @@
 <?php
 
-  // The {reactData} tag: renders the mount point a React component reads its data from.
+  // The {pad:reactData} tag: renders the mount point a React component reads its data from.
   //
   // The provider named by provider= (defaulting to id=) is run out of the application's
   // _providers/ directory through call/any.php, and the result is parked in $padProviders

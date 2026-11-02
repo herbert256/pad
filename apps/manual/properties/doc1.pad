@@ -1,37 +1,37 @@
-{table}
+{common:table}
 
-{demo}
+{common:demo}
 
-{myContent1}
-  {staff}
+{content:myContent1}
+  {local:staff}
     <tr>
       <td> {$name}              </td>
-      <td> {first}  X {/first}  </td>
-      <td> {border} X {/border} </td>
-      <td> {middle} X {/middle} </td>
-      <td> {last}   X {/last}   </td>
-      <td> {even}   X {/even}   </td>
-      <td> {odd}    X {/odd}    </td>
+      <td> {property:first}  X {/property:first}  </td>
+      <td> {property:border} X {/property:border} </td>
+      <td> {property:middle} X {/property:middle} </td>
+      <td> {property:last}   X {/property:last}   </td>
+      <td> {property:even}   X {/property:even}   </td>
+      <td> {property:odd}    X {/property:odd}    </td>
     </tr>
-  {/staff}
-{/myContent1}
+  {/local:staff}
+{/content:myContent1}
 
-{/demo}{demo}
+{/common:demo}{common:demo}
 
-{myContent1}
-  {staff}
+{content:myContent1}
+  {local:staff}
     <tr>
       <td> {$name}              </td>
-      <td> {if &first}  X {/if} </td>
-      <td> {if &border} X {/if} </td>
-      <td> {if &middle} X {/if} </td>
-      <td> {if &last}   X {/if} </td>
-      <td> {if &even}   X {/if} </td>
-      <td> {if &odd}    X {/if} </td>
+      <td> {pad:if &first}  X {/pad:if} </td>
+      <td> {pad:if &border} X {/pad:if} </td>
+      <td> {pad:if &middle} X {/pad:if} </td>
+      <td> {pad:if &last}   X {/pad:if} </td>
+      <td> {pad:if &even}   X {/pad:if} </td>
+      <td> {pad:if &odd}    X {/pad:if} </td>
     </tr>
-  {/staff}
-{/myContent1}
+  {/local:staff}
+{/content:myContent1}
 
-{/demo}
+{/common:demo}
 
-{/table}
+{/common:table}

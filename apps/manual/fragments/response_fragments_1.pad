@@ -1,9 +1,9 @@
 <h4>Orders</h4>
 
-{fragment 'order-list'}
+{pad:fragment 'order-list'}
   <ul>
-    {sequence '101..103', name='number'}<li>Order {$number}</li>{/sequence}
+    {sequence:range '101..103', name='number'}<li>Order {$number}</li>{/sequence:range}
   </ul>
-{/fragment}
+{/pad:fragment}
 
 <p>The page goes on here.</p>

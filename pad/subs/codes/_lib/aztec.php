@@ -6,7 +6,7 @@
   // 27 by 27 modules, full ones of 4 to 32 layers up to 151 by 151, with a reference grid
   // every 16 modules. No quiet zone is needed; two modules are drawn, as for Data Matrix.
   //
-  //   {aztec 'Code 2D!'/}
+  //   {barcode:aztec 'Code 2D!'/}
   //   {barcode:aztec $ticket, size=200, ecc=33/}
   //
   // padAztec         the SVG, or '' when the text does not fit in the largest symbol

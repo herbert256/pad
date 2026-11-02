@@ -3,7 +3,7 @@
   // vignette - the corners of the picture darker, as an old lens draws them, by amount= percent
   // (50) at the very corner, the middle untouched.
   //
-  //   {img 'photos/harbour.jpg', width=400, filter='vignette', amount=70, alt='The harbour'/}
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='vignette', amount=70, alt='The harbour'/}
   //
   // A pixel's distance from the middle is measured in halves of the picture's width and height,
   // 1 at a corner; from 0.35 of the way out it darkens along a smoothstep to the amount.

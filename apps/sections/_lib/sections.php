@@ -89,7 +89,7 @@
   }
 
   // The examples of a kind: [ template, source, play ] each - the template run where it is
-  // shown, its source coloured, the icons that take it to the playground and the live
+  // shown, its source coloured, the icons that take it to the WASM editor and the live
   // application.
 
   function sectionsExamples ( $group, $kind ) {
@@ -148,14 +148,14 @@
 
   }
 
-  // A theme shown in a box of its own beside the page: {theme 'x'}...{/theme} around a
+  // A theme shown in a box of its own beside the page: {pad:theme 'x'}...{/pad:theme} around a
   // heading, a paragraph with a link, a note, a table and a button - the parts of a page
   // whose colours the theme sets.
 
   function sectionsThemeTemplate ( $theme ) {
 
     return <<<PAD
-{theme '$theme'}
+{pad:theme '$theme'}
   <h3>Spring catalogue</h3>
   <p>Our new range is in. Read the <a href="#notes">release notes</a> or browse
      the <code>2026</code> collection below.</p>
@@ -166,7 +166,7 @@
   </table>
   <p class="sx-note">Free delivery on orders over 50.</p>
   <button type="button" class="sx-button">Shop now</button>
-{/theme}
+{/pad:theme}
 PAD;
 
   }
@@ -181,34 +181,34 @@ PAD;
 
     $type = padPaletteData ( $palette ) ['type'];
 
-    $templates = [ "{palette '$palette'/}" ];
+    $templates = [ "{pad:palette '$palette'/}" ];
 
     $templates [] = <<<PAD
-{data 'sales'}
+{pad:data 'sales'}
 quarter,north,east,south,west
 Q1,42,31,25,18
 Q2,48,35,29,22
 Q3,51,39,27,26
 Q4,57,44,33,30
-{/data}
-{chart 'bar', data='sales', label='quarter', value='north, east, south, west', palette='$palette'/}
+{/pad:data}
+{chart:bar data='sales', label='quarter', value='north, east, south, west', palette='$palette'/}
 PAD;
 
     if ( $type == 'categorical' )
       $templates [] = <<<PAD
-{data 'traffic'}
+{pad:data 'traffic'}
 source,visits
 Search,4200
 Direct,2600
 Social,1800
 Mail,900
 Other,500
-{/data}
-{chart 'donut', data='traffic', label='source', value='visits', palette='$palette'/}
+{/pad:data}
+{chart:donut data='traffic', label='source', value='visits', palette='$palette'/}
 PAD;
     elseif ( $type == 'cyclic' )
       $templates [] = <<<PAD
-{data 'wind'}
+{pad:data 'wind'}
 from,days
 N,38
 NE,29
@@ -218,12 +218,12 @@ S,45
 SW,72
 W,64
 NW,49
-{/data}
-{chart 'donut', data='wind', label='from', value='days', palette='$palette'/}
+{/pad:data}
+{chart:donut data='wind', label='from', value='days', palette='$palette'/}
 PAD;
     else
       $templates [] = <<<PAD
-{data 'temps'}
+{pad:data 'temps'}
 month,day,change
 Jan,Mon,-4
 Jan,Wed,-1
@@ -237,8 +237,8 @@ Jul,Fri,9
 Oct,Mon,3
 Oct,Wed,0
 Oct,Fri,-2
-{/data}
-{chart 'heatmap', data='temps', x='month', y='day', value='change', palette='$palette'/}
+{/pad:data}
+{chart:heatmap data='temps', x='month', y='day', value='change', palette='$palette'/}
 PAD;
 
     return $templates;

@@ -1,15 +1,11 @@
 <?php
 
-  // The body of a diagram, whichever way it is written: {diagram type='sequence'}...{/diagram},
-  // the diagram: type - {diagram:sequence}...{/diagram:sequence} - or a bare
-  // {flowchart}...{/flowchart} when nothing else has the name. The caller sets
-  // $padDiagramKind, and $padDiagramNamed when the tag names it; a kind is a file of
-  // subs/diagrams/types/, and the files there are all the kinds there are (padDiagramTypes,
-  // subs/diagrams/_lib/diagram.php). A first line written the Mermaid way - sequenceDiagram,
-  // stateDiagram - names the kind too (padDiagramHeader).
+  // A diagram uses {diagram:sequence}...{/diagram:sequence} or another registered
+  // kind in subs/diagrams/types/. The caller sets $padDiagramKind and $padDiagramNamed;
+  // {diagram:auto} detects a Mermaid header and otherwise defaults to flowchart.
   //
   // The content is taken as it stands, before the level walks it, so the braces of a
-  // decision B{Paid?} need no {ignore}; the level is left no content of its own to render.
+  // decision B{Paid?} need no {pad:ignore}; the level is left no content of its own to render.
   // A diagram without nodes answers nothing, and its @else@ shows.
 
   include_once PAD . 'subs/diagrams/_lib/diagram.php';

@@ -183,7 +183,7 @@
 
   }
 
-  // A line's text and shape: id((text)), (text), [text], {{text}}, )text(, ))text(( or the
+  // A line's text and shape: id((text)), (text), [text], {{field:text}}, )text(, ))text(( or the
   // text alone. Quotes come off when they enclose the whole text, one quoted string -
   // id["text"] - as a flowchart's node has it: every quote at either end was taken, and
   // root((PAD "x")) was drawn as PAD "x, B(Press "OK") as Press "OK.

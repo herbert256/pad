@@ -1,6 +1,6 @@
 <?php
 
-  // Every list item of a {pdf} has its marker: one that starts with a table, one that is
+  // Every list item of a {pad:pdf} has its marker: one that starts with a table, one that is
   // empty and one that starts with a list of its own got none - "5." and "6." were missing,
   // and the inner bullet took the outer one's place - and start="0" counts from 0, as HTML.
 

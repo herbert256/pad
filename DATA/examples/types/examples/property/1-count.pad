@@ -1,5 +1,5 @@
-{meta title='A property of the tag around it', about='property:count and {&count} read how many rows the loop has; current@ the one it is at.'/}
-{data 'fruit'}["apple", "pear", "plum"]{/data}
+{pad:meta title='A property of the tag around it', about='property:count and {&count} read how many rows the loop has; current@ the one it is at.'/}
+{pad:data 'fruit'}["apple", "pear", "plum"]{/pad:data}
 <ul>
-  {fruit}<li>{$fruit} - {current@fruit/} of {property:count/}</li>{/fruit}
+  {data:fruit}<li>{$fruit} - {property:current@fruit/} of {property:count/}</li>{/data:fruit}
 </ul>

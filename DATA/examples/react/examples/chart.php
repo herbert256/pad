@@ -2,7 +2,7 @@
 
   // The chart the request asks for: its kind, how many months, which channels. The browser
   // gets the whole page; the component asks for &padFragment=chart with its choices and gets
-  // the {fragment 'chart'} of chart.pad alone - the SVG PAD drew, nothing around it.
+  // the {pad:fragment 'chart'} of chart.pad alone - the SVG PAD drew, nothing around it.
 
   $kind     = padRequest ( 'kind', 'bar' );
   $kind     = in_array ( $kind, [ 'bar', 'stacked', 'line', 'hbar' ] ) ? $kind : 'bar';

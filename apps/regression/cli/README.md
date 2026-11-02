@@ -10,10 +10,10 @@ refuses to overwrite, and the new page renders; `lint` lists the pages of `lintm
 one with its template position and a near name, and leaves its bracketed route `[id]` out;
 `serve` answers a page from the server it starts on a free port; `export` writes the
 `regression/site` fixture as static files, its links rewritten - from a subdirectory too - its
-assets copied - and a scratch application with the thumbnails of its `{img}`, their `srcset`
-and a `{video}` poster pointing into the copy, and a `srcset` whose addresses hold a comma (a
+assets copied - and a scratch application with the thumbnails of its `{pad:img}`, their `srcset`
+and a `{pad:video}` poster pointing into the copy, and a `srcset` whose addresses hold a comma (a
 Cloudinary path, a `data:` URI) kept whole; `test` runs the scratch application's `_tests` -
-a pass, a failing `{assert}`, a test without an answer that `--record` then writes, a pattern
+a pass, a failing `{pad:assert}`, a test without an answer that `--record` then writes, a pattern
 over a page of 1.6 MB, a pattern that cannot be run, a long line of a failure cut, bodies that
 read as a pattern or a status recorded as the pattern of exactly that body - and those of
 `regression/site`, whose test pages no URL reaches; `types` writes a page's variables and JSON

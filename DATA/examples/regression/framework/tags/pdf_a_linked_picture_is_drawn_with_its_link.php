@@ -1,6 +1,6 @@
 <?php
 
-  // A link that holds a picture alone - a linked logo - is the picture in a {pdf}, the link
+  // A link that holds a picture alone - a linked logo - is the picture in a {pad:pdf}, the link
   // over it, where the picture was left out and its alt text stood there as a link.
 
   $pdf = padPdf ( '<p><a href="https://harbour.example/"><img src="assets/photo.jpg" width="56" height="56" alt="Harbour Supplies"></a></p>',

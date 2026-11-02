@@ -1,7 +1,7 @@
 <?php
 
   // Fixed build for oeis: hands back a whole OEIS sequence as its term list, the one whose
-  // A-number is the parameter - {sequence oeis=45} for A000045, the Fibonacci numbers.
+  // A-number is the parameter - {sequence:oeis 45} for A000045, the Fibonacci numbers.
   //
   // Reads the table through oeis/read.php, which is indexed by A-number with the leading
   // zeroes dropped and answers with an empty list for an A-number it does not hold. Reached

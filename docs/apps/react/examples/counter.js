@@ -25,7 +25,7 @@ function CounterApp() {
     <div className="cols-2">
       <div style={{ textAlign: 'center' }}>
         <div key={count} className="pop" style={{ fontSize: 96, fontWeight: 900, letterSpacing: '-.04em', lineHeight: 1.1,
-             background: 'linear-gradient(100deg, var(--pad), var(--react))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>
+             background: 'linear-gradient(100deg, var(--pad), var(--accent))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>
           {count}
         </div>
 

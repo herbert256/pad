@@ -1,6 +1,6 @@
 <?php
 
-  // An escaped quote inside a {meta} value ends neither the value nor the item: the items
+  // An escaped quote inside a {pad:meta} value ends neither the value nor the item: the items
   // after it are read, and the file's own literals - padMeta for another page - come back
   // unescaped, as the expression evaluator reads them.
 

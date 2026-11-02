@@ -5,9 +5,9 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{holidays 'nl', year=2026}{$date} {$name} {$local}{/holidays}
-{holidays 'de-by', year=2026/}
-{holidays 'gb', region='sct', from='today', to='+6 months', lang='en'}...{/holidays}
+{pad:holidays 'nl', year=2026}{$date} {$name} {$local}{/pad:holidays}
+{pad:holidays 'de-by', year=2026/}
+{pad:holidays 'gb', region='sct', from='today', to='+6 months', lang='en'}...{/pad:holidays}
 PAD;
 
   $tagParms   = [
@@ -21,5 +21,7 @@ PAD;
     'lang'   => 'The language of <code>local</code> for a country of more than one: be <code>nl fr de</code>, lu <code>lb fr de</code>, ch <code>de fr it</code>, ca <code>en fr</code>, fi <code>fi sv</code>.' ];
 
   $tagSee     = [ 'calendar', 'countdown', 'timeline' ];
+
+  $subsystemKindLinks = appSubsystemLinks ( 'holidays' );
 
 ?>

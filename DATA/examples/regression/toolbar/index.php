@@ -21,7 +21,7 @@
 
     $local = ( $bar !== FALSE
                and $bar < strripos ( $page, '</body>' )
-               and str_contains ( $page, '{colors}' )
+               and str_contains ( $page, '{array:colors}' )
                and str_contains ( $page, 'SQL (1)' )
                and str_contains ( $page, '6 * 7' )
                and str_contains ( $page, 'apps/regression/toolbar/sample.pad' ) ) ? 'yes' : 'NO';

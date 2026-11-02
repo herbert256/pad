@@ -10,13 +10,13 @@
   // option naming a real sequence type is registered as a play of the current kind.
   //
   // A valued play is that one play: the kind it sets for plays/add.php is put back after
-  // it, where it stayed, and the options after it played as it did - in {sequence '1..10',
+  // it, where it stayed, and the options after it played as it did - in {sequence:range '1..10',
   // keep='even', multiply=3} multiply=3 kept the multiples of 3 and answered 6, where
   // written before keep= it is the make play that gives 6 12 18 24 30.
 
   // Only a tag's run has options to read. A run started from an expression has its call's
   // arguments and nothing else, and reading the level here gave it the plays of the tag it
-  // was evaluated inside: {sequence 5, make, eval='sequence:square(@)'} re-ran its own eval
+  // was evaluated inside: {sequence:loop 5, make, eval='sequence:square(@)'} re-ran its own eval
   // in every inner run, until the stack gave out.
 
   foreach ( ( $pqEntry == 'tag' ) ? $padParms [$pad] : [] as $pqPlaysAt => $padStartOption ) {
@@ -33,7 +33,7 @@
 
       // A type named without a |parameter plays as its bare option does, with TRUE: left at
       // '', make='multiply' did its arithmetic with the empty text and ended the request on
-      // "Unsupported operand types: int * string", where {sequence 3, make, multiply} gives 1 2 3.
+      // "Unsupported operand types: int * string", where {sequence:loop 3, make, multiply} gives 1 2 3.
 
       if ( $padPrmValue === '' )
         $padPrmValue = TRUE;

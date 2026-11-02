@@ -1,9 +1,9 @@
 Resume resumes with the last stored Sequence
 
-{table}
-{demo}{sequence 25, push='resumeDemo'/}
-{resume add=100/} 
-{resume reverse/} 
-{resume subtract=5/}{/demo} 
-{demo}{resumeDemo} {$sequence} {/resumeDemo}{/demo}
-{/table}
+{common:table}
+{common:demo}{sequence:loop 25, push='resumeDemo'/}
+{pad:resume add=100/} 
+{pad:resume reverse/} 
+{pad:resume subtract=5/}{/common:demo} 
+{common:demo}{pull:resumeDemo} {$sequence} {/pull:resumeDemo}{/common:demo}
+{/common:table}

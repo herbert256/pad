@@ -5,6 +5,6 @@
 
   $padProtectValues = FALSE;
 
-  $title = 'Braces {in} a "title"';
+  $title = 'Braces {function:in} a "title"';
 
 ?>

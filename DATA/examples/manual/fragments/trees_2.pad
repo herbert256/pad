@@ -1,7 +1,7 @@
-{tree 'menu', children='items', sort='title'}
-  <p style="margin: 0 0 0 {echo depth@tree | * 20/}px">
-    {branch}&#9662;@else@&middot;{/branch}
-    {$title} <small>({current@tree/} of {count@tree/})</small>
+{pad:tree 'menu', children='items', sort='title'}
+  <p style="margin: 0 0 0 {pad:echo depth@tree | * 20/}px">
+    {pad:branch}&#9662;@else@&middot;{/pad:branch}
+    {$title} <small>({property:current@tree/} of {property:count@tree/})</small>
   </p>
-  {branch}{recurse/}{/branch}
-{/tree}
+  {pad:branch}{pad:recurse/}{/pad:branch}
+{/pad:tree}

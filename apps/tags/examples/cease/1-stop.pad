@@ -1,6 +1,6 @@
-{meta title='Stop after this row', about='The row that ceases still renders in full; the rows after it do not.'/}
+{pad:meta title='Stop after this row', about='The row that ceases still renders in full; the rows after it do not.'/}
 <ol>
-{queue}
-  <li>{$name}{if $name eq 'Carol'}{cease/} - last one today{/if}</li>
-{/queue}
+{array:queue}
+  <li>{$name}{pad:if $name eq 'Carol'}{pad:cease/} - last one today{/pad:if}</li>
+{/array:queue}
 </ol>

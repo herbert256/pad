@@ -1,5 +1,5 @@
 <h3>Hello {$who | upper} !</h3>
 <ul>
-  {nums}<li>{$nums | * 2}</li>{/nums}
+  {array:nums}<li>{$nums | * 2}</li>{/array:nums}
 </ul>
-<p>{nums}{if last@nums}{count@nums/} of them{/if}{/nums}</p>
+<p>{array:nums}{pad:if last@nums}{property:count@nums/} of them{/pad:if}{/array:nums}</p>

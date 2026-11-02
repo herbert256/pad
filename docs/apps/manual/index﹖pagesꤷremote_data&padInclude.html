@@ -1,7 +1,7 @@
 
 
 <p>Data can come from another server: a URL as the data of a tag, a <code>.curl</code> file
-in <code>_data/</code>, or the <b>{curl}</b> tag for the raw answer. Each of them takes a
+in <code>_data/</code>, or the <b>{pad:curl}</b> tag for the raw answer. Each of them takes a
 <code>ttl</code> - the seconds to keep the answer - and within that time the page is served
 from the copy instead of asking the source again. A dashboard on an external API then costs
 one call per ttl, not one per visitor.</p>
@@ -25,7 +25,7 @@ reads the rates from a page of this manual standing in for an API:</p>
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -55,7 +55,7 @@ reads the rates from a page of this manual standing in for an API:</p>
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">rates</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>code</font>}</b>: <b>{<font color="green"><font color="red">$</font>rate</font>}</b>&lt;/li&gt;<b>{/<font color="blue">rates</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="../_common/play.css"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtsb2NhbDpyYXRlc308bGk+eyRjb2RlfTogeyRyYXRlfTwvbGk+ey9sb2NhbDpyYXRlc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtsb2NhbDpyYXRlc308bGk+eyRjb2RlfTogeyRyYXRlfTwvbGk+ey9sb2NhbDpyYXRlc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>rates</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>code</font>}</b>: <b>{<font color="green"><font color="red">$</font>rate</font>}</b>&lt;/li&gt;<b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>rates</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -80,8 +80,8 @@ reads the rates from a page of this manual standing in for an API:</p>
 
 
 <p>The same with the URL in the template - the ttl is an option of the tag the data is
-for, <code>{pad data='https://...', ttl=600}</code> - or the answer as it came,
-with <b>{curl}</b>:</p>
+for, <code>{pad:pad data='https://...', ttl=600}</code> - or the answer as it came,
+with <b>{pad:curl}</b>:</p>
 
 
 
@@ -90,7 +90,7 @@ with <b>{curl}</b>:</p>
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -120,7 +120,7 @@ with <b>{curl}</b>:</p>
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">curl </font><font color="red"><font color="black">'</font>SELF<font color="black">:</font>//manual/?fragments/rates&amp;padInclude<font color="black">'</font><font color="black">,</font> ttl=600</font>/}</b>&lt;/p&gt;</code></pre></td>
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57cGFkOmN1cmwgJ1NFTEY6Ly9tYW51YWwvP2ZyYWdtZW50cy9yYXRlcyZwYWRJbmNsdWRlJywgdHRsPTYwMC99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57cGFkOmN1cmwgJ1NFTEY6Ly9tYW51YWwvP2ZyYWdtZW50cy9yYXRlcyZwYWRJbmNsdWRlJywgdHRsPTYwMC99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>curl </font><font color="red"><font color="black">'</font>SELF<font color="black">:</font>//manual/?fragments/rates&amp;padInclude<font color="black">'</font><font color="black">,</font> ttl=600</font>/}</b>&lt;/p&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">

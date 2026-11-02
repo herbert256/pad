@@ -1,4 +1,4 @@
-{data 'ns'}[1, 2, 3, 4, 5]{/data}
-<p>continue skips one: {ns}{if $ns eq 3}{continue 'ns'/}{/if}{$ns} {/ns}</p>
-<p>cease ends gently: {ns}{if $ns eq 4}{cease 'ns'/}{/if}{$ns} {/ns}</p>
-<p>break ends at once: {ns}{if $ns eq 4}{break 'ns'/}{/if}{$ns} {/ns}</p>
+{pad:data 'ns'}[1, 2, 3, 4, 5]{/pad:data}
+<p>continue skips one: {data:ns}{pad:if $ns eq 3}{pad:continue 'ns'/}{/pad:if}{$ns} {/data:ns}</p>
+<p>cease ends gently: {data:ns}{pad:if $ns eq 4}{pad:cease 'ns'/}{/pad:if}{$ns} {/data:ns}</p>
+<p>break ends at once: {data:ns}{pad:if $ns eq 4}{pad:break 'ns'/}{/pad:if}{$ns} {/data:ns}</p>

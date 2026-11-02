@@ -2,7 +2,7 @@
 
   // Membership test for derangement, 1, 0, 1, 2, 9, 44, ...: the recurrence is walked until a
   // term passes x - from !2 on the terms climb, so 0 and 1 are let through the first steps.
-  // build/check.php asks it for {keep derangement}, {remove derangement} and {flag
+  // build/check.php asks it for {keep:derangement}, {remove:derangement} and {pad:flag
   // derangement}.
   //
   // Not the type's build: pqBuild() ranks function.php before bool.php.

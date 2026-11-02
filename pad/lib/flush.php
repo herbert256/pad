@@ -1,8 +1,8 @@
 <?php
 
-  // Early flush: {flush} sends the page as far as it is rendered, so the browser fetches the
-  // stylesheets and fonts the <head> names while the rest of the page - a slow {table}, a
-  // {curl}, a select over a big table - is still being rendered.
+  // Early flush: {pad:flush} sends the page as far as it is rendered, so the browser fetches the
+  // stylesheets and fonts the <head> names while the rest of the page - a slow {common:table}, a
+  // {pad:curl}, a select over a big table - is still being rendered.
   //
   // The response is otherwise one piece, sent after the whole page is rendered
   // (padWebSend, lib/output.php). A flushed response cannot be that piece, so the first
@@ -13,7 +13,7 @@
   //
   // Only the request's own page flushes, at its top level - in the wrapper or in the page,
   // not inside another tag: that is where everything above the tag is final. The level
-  // engine resolves a level left to right, so when it reaches {flush} the text before it
+  // engine resolves a level left to right, so when it reaches {pad:flush} the text before it
   // is the rendered page up to there.
   //
   // padFlushCan   whether this request can flush at this point
@@ -45,8 +45,8 @@
 
   }
 
-  // Whether the request answers a document instead of the page - a {pdf}: asked for it
-  // with &padPdf, or a {pdf} without preview in the page - or the WAV of a {sound}, asked
+  // Whether the request answers a document instead of the page - a {pad:pdf}: asked for it
+  // with &padPdf, or a {pad:pdf} without preview in the page - or the WAV of a {sound:chime}, asked
   // with &padSound. It flushes nothing: the head of the page a flush sent went out in front
   // of the PDF's bytes, the answer text/html, and the sound's answer was an error in the page.
 
@@ -57,7 +57,7 @@
 
     preg_match_all ( '/\{(?:pad:)?pdf(?=[\s}])[^}]*\}/', (string) ( $GLOBALS ['padBase'] [0] ?? '' ), $found );
 
-    // Only the bare option is a preview - {pdf preview}, {pdf file='x', preview}: the word in a
+    // Only the bare option is a preview - {pad:pdf preview}, {pad:pdf file='x', preview}: the word in a
     // title or a file name, or preview=$draft that may be false, took the document for a
     // preview and sent the head of the page in front of its bytes.
 
@@ -81,7 +81,7 @@
 
     $chunk = substr ( $raw, strlen ( $padFlushRaw ?? '' ) );
 
-    // A {toc} lists the headings of the whole page, so its marker is filled in once the page
+    // A {pad:toc} lists the headings of the whole page, so its marker is filled in once the page
     // is done (lib/toc.php): a part holding one is not sent - this flush sends nothing, nor
     // does any after it, and the headings around the toc go with the rest of the page, which
     // the toc is filled from. Sent, the raw marker went to the browser - private-use
@@ -108,11 +108,11 @@
       // session already: on every flushed page it gave each visitor - each bot - a session
       // and a cookie, which also kept that visitor out of the page cache from then on.
 
-      if ( $padCsrf and ( isset ( $_COOKIE [ session_name () ] ) or preg_match ( '/<form\b|\{form\b/i', $padOut [0] ) ) )
+      if ( $padCsrf and ( isset ( $_COOKIE [ session_name () ] ) or preg_match ( '/<form\b|\{pad:form\b/i', $padOut [0] ) ) )
         padCsrfToken ();
 
       // A visitor who brought a session has it opened now, while it still can be: below the
-      // flush the login could not be read - {auth}, {guest}, {can} and padUser took a
+      // flush the login could not be read - {pad:auth}, {pad:guest}, {pad:can} and padUser took a
       // logged-in user for a guest, and the menu after </head> said "Log in".
 
       if ( isset ( $_COOKIE [ session_name () ] ) )
@@ -124,7 +124,7 @@
 
     $padFlushRaw .= $chunk;
 
-    // A {stack} in the part that goes now gets the pushes made so far: what is pushed after
+    // A {pad:stack} in the part that goes now gets the pushes made so far: what is pushed after
     // the flush cannot reach text the browser already has. Its posting forms get the CSRF
     // token as exits/exits.php gives it to the rest of the page - the part sent early went
     // out without it.
@@ -144,7 +144,7 @@
       // refused 403 - the strict check says why, where nothing did.
 
       if ( ( $GLOBALS ['padCsrfSplit'] ?? FALSE ) and $padCheckSyntax )
-        padError ( 'a {flush} stands inside a posting form, which then gets no CSRF token - put the flush outside it, after </head>' );
+        padError ( 'a {pad:flush} stands inside a posting form, which then gets no CSRF token - put the flush outside it, after </head>' );
 
     } else
       padCsrfBaseKeep ( $chunk );

@@ -2,14 +2,14 @@
 
   // A notice the visitor dismisses - the toast widget.
   //
-  //   {toast 'Saved', tone='success'}Your changes are kept.{/toast}
-  //   {toast 'Payment failed', tone='error', place='top'/}
+  //   {widget:toast 'Saved', tone='success'}Your changes are kept.{/widget:toast}
+  //   {widget:toast 'Payment failed', tone='error', place='top'/}
   //
   // The toast is a <dialog> with the open attribute: shown as the page arrives, not modal -
   // the page stays usable - and closed by its button, whose commandfor and command="close"
   // attributes (HTML invoker commands) have the browser close the dialog without a script;
   // a browser without them has the toast's script do it. The button is no form of its own:
-  // it closed the dialog by submitting a form of method dialog, which inside a {form} the
+  // it closed the dialog by submitting a form of method dialog, which inside a {pad:form} the
   // HTML parser dropped - the button then submitted the page's form, and the inner </form>
   // closed the outer one, every field after the toast falling out of it. Its text is a
   // status region, an alert for a warning or an error, so a toast a fragment or a live
@@ -76,7 +76,7 @@
     }
 
     if ( $padCheckSyntax )
-      padError ( "the {toast} has no sound '" . padMakeSafe ( $value, 20 ) . "' - " . implode ( ', ', padSoundKinds () ) );
+      padError ( "the {widget:toast} has no sound '" . padMakeSafe ( $value, 20 ) . "' - " . implode ( ', ', padSoundKinds () ) );
 
     return '';
 
@@ -99,7 +99,7 @@
       return (int) $value;
 
     if ( $padCheckSyntax )
-      padError ( "the {toast} has no timeout '" . padMakeSafe ( $value, 20 ) . "' - a whole number of seconds from 1 to 600" );
+      padError ( "the {widget:toast} has no timeout '" . padMakeSafe ( $value, 20 ) . "' - a whole number of seconds from 1 to 600" );
 
     return 0;
 

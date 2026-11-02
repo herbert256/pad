@@ -2,8 +2,8 @@
 
   // Amounts over time as filled areas, and the streamgraph:
   //
-  //   {chart 'area', data='energy', label='year', value='coal, gas, wind, solar', stacked}
-  //   {chart 'stream', data='listening', label='month', value='pop, rock, jazz, hiphop'}
+  //   {chart:area data='energy', label='year', value='coal, gas, wind, solar', stacked}
+  //   {chart:stream data='listening', label='month', value='pop, rock, jazz, hiphop'}
   //
   // area: value= lists the fields - else every numeric field but label= - each a light
   // area over the label= axis with its line on top, a legend above when there are several.

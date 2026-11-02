@@ -5,10 +5,10 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{keep '1..50', square} ... {/keep}
-{keep palindrome, from=100, rows=5} ... {/keep}
+{keep:range '1..50', square} ... {/keep:range}
+{keep:palindrome from=100, rows=5} ... {/keep:palindrome}
 {keep:prime from=10, rows=4} ... {/keep:prime}
-{keep store, even} ... {/keep}
+{keep:auto store, even} ... {/keep:auto}
 PAD;
 
   $tagParms   = [
@@ -17,6 +17,6 @@ PAD;
 
   $tagOptions = [];
 
-  $tagSee     = [ 'remove', 'flag', 'make', 'sequence', 'pull' ];
+  $tagSee     = [ 'remove:auto', 'flag', 'make:auto', 'sequence:auto', 'pull' ];
 
 ?>

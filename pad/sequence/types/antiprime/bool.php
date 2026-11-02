@@ -5,7 +5,7 @@
   // 120, 180, 240, 360, ...
   //
   // Counting the divisors of every smaller number again for each candidate cost on the order
-  // of n * sqrt(n) per candidate: a flag over 720720 took five seconds and {sequence
+  // of n * sqrt(n) per candidate: a flag over 720720 took five seconds and {sequence:auto
   // antiprime, from=500000, to=730000} ran into the time limit. The list is made once
   // instead, for every number an integer holds. Spreading a number's prime exponents in
   // falling order over the smallest primes neither raises it nor changes its divisor count,
