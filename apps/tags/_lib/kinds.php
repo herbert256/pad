@@ -24,6 +24,7 @@
       'barcode'  => [ 'Barcode types',     'encoded on the server', 'single', " 'value'/}",                                'barcode' ],
       'embed'    => [ 'Embed providers',   'loaded on a click',      'single', " 'address', title='...'/}",                   'embed'   ],
       'input'    => [ 'Rich form fields',  'A field of {pad:input} each, posted by any form',        'single', " 'name', label='...'/}",                      'input'   ],
+      'avatar'   => [ 'Avatars', 'deterministic local SVG', 'single', " 'identity', label='Name'/}", 'avatar' ],
       'icon'     => [ 'Icons',             'Outlines on a 24 grid',    'single', ' size=24/}',                                  'icon'    ],
       'fake'     => [ 'Fake kinds',        'the same for the same seed',  'both',   '/}',                                           'fake'    ],
       'sequence' => [ 'Sequence types',    'Mathematical sequences, sources and operations, iterated as loops',    'both',   " rows=10}{\$%s} {/sequence:%s}",              'sequence' ],
