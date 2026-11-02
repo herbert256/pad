@@ -1,0 +1,14 @@
+{diagram:c4 direction='LR'}
+person user "Customer"
+boundary platform "Shop" {
+  container api "Order service" "PHP"
+  boundary storage "Data boundary" {
+    container db "Orders" "PostgreSQL"
+  }
+}
+system payments "Payment provider"
+user -> api: places order
+api -> db: stores order
+api -> payments: authorizes
+payments -> api: confirms
+{/diagram:c4}
