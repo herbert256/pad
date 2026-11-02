@@ -97,7 +97,7 @@
 
   function padDiagramHeader ( $text, $named ) {
 
-    if ( ! preg_match ( '/^\s*([a-z]+)(?:((?:Diagram|Graph)(?:-v2)?)(?:[ \t]+[A-Z]{2}:?)?|-beta)?[ \t]*(\r?\n|$)/', (string) $text, $match ) )
+    if ( ! preg_match ( '/^\s*([a-z][a-z0-9]*)(?:((?:Diagram|Graph)(?:-v2)?)(?:[ \t]+[A-Z]{2}:?)?|-beta)?[ \t]*(\r?\n|$)/', (string) $text, $match ) )
       return '';
 
     $more = $match [2] ?? '';
