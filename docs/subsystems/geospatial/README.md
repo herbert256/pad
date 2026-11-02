@@ -1,0 +1,9 @@
+# Geographic operations
+
+All points are `[longitude, latitude]` in decimal degrees (WGS84 axes), longitude -180..180 and latitude -90..90. `padGeo('distance', $a, $b, ['unit'=>'km'])` computes great-circle distance using a sphere with mean Earth radius 6371008.8 m. This model can differ from ellipsoidal distances by roughly 0.5%; it is not surveying accuracy. Default unit is metres; symbols from the length units family are accepted. Bearing returns initial clockwise degrees from north in [0,360); coincident, antipodal and starting-pole bearings are undefined and rejected.
+
+`padGeo('bbox', $points)` returns `[west,south,east,north]` for the shortest longitude arc, with west > east indicating dateline crossing; at most 10000 points. Tied gaps choose the first sorted gap. `padGeo('contains', $point, $geoJsonPolygon, ['boundary'=>true])` tests a simple GeoJSON Polygon with holes using straight edges in unwrapped longitude/latitude coordinates, not geodesic arcs. Rings must be closed, nondegenerate, nonintersecting; holes must be disjoint and strictly inside. Boundary includes hole boundaries by default; set false to exclude all boundaries. Tolerance is 1e-10 degree-squared for edge collinearity. At most 1000 total ring vertices; polar rings, vertices at poles and ambiguous 180-degree edges are rejected. This is intentionally bounded simple-polygon support, not arbitrary GIS topology or projections.
+
+`padGeo('geohash', [-5.6,42.6], NULL, ['precision'=>5])` returns `ezs42`. Passing a lowercase geohash string decodes to `['point'=>[lon,lat], 'bbox'=>[west,south,east,north]]`. Precision is an integer 1–12, default 9. Malformed coordinates/options call padError and return NULL if execution continues. No network access or geocoding is involved.
+
+Run `php tests/subsystems/geospatial.php` for analytic sphere distances, dateline/pole behavior, holes, boundaries, the standard geohash example and invalid geometries.
