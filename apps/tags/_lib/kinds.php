@@ -257,10 +257,13 @@
                         "{{$type}:auto $args}{\$sequence} {/{$type}:auto}" );
     }
 
-    // A feature's complete example may require its paired PHP data file.
-    if ( is_file ( APPS . "tags/examples/$type/$kind.pad" ) )
+    // Keep the page for editor links and paired PHP data. Self-contained templates also
+    // expose their source to callers that render an example directly.
+    $file = APPS . "tags/examples/$type/$kind";
+    if ( is_file ( "$file.pad" ) )
       return $example ( "The $kind $type", $type === 'embed' && $kind === 'googleslides'
-        ? 'Replace the publication URL with your own published presentation.' : 'A complete working example.', '', "examples/$type/$kind" );
+        ? 'Replace the publication URL with your own published presentation.' : 'A complete working example.',
+        is_file ( "$file.php" ) ? '' : trim ( padFileGet ( "$file.pad" ) ), "examples/$type/$kind" );
 
     if ( $type === 'avatar' and in_array ( $kind, [ 'rings', 'mosaic', 'pixelbot' ], TRUE ) )
       return $example ( "The $kind avatar", 'Local deterministic SVG.', "{avatar:$kind 'Ann Example', label='Ann Example'/}" );

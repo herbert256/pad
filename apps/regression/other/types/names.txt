@@ -1,17 +1,17 @@
 <h1>Types by name</h1>
-<p class="lead">All 64 tag types and kind families from A to Z.</p>
+<p class="lead">All 69 tag types and kind families from A to Z.</p>
 
 <ul class="list">
   
   <li><a class="name" href="?type/action">action:</a> <span class="about">A sequence action - reverse, sort, sum, first ... - over the terms it is given. <a class="meta" href="?groups#sequences">Sequences</a></span></li>
   
-  <li><a class="name" href="?type/ai">AI providers</a> <span class="about">The provider= option of {pad:ai} or padAi. <a class="meta" href="?groups#kinds">Options and helpers</a></span></li>
+  <li><a class="name" href="?type/ai">ai:</a> <span class="about">Text and validated JSON responses. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   
   <li><a class="name" href="?type/app">app:</a> <span class="about">A tag of the application, a file of a _tags/ directory from the page up to the root. <a class="meta" href="?groups#tags">Tags</a></span></li>
   
   <li><a class="name" href="?type/array">array:</a> <span class="about">An array of the current row or of the page, its elements the rows of the tag. <a class="meta" href="?groups#values">Values of the page</a></span></li>
   
-  <li><a class="name" href="?type/avatar">avatar:</a> <span class="about">Deterministic local SVG identity artwork. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
+  <li><a class="name" href="?type/avatar">avatar:</a> <span class="about">An identity picture: initials, identicons, rings, mosaic, pixelbot, Gravatar, geometric art or a photograph with a local fallback. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   
   <li><a class="name" href="?type/barcode">barcode:</a> <span class="about">A barcode symbology, a file of pad/subs/codes/types/, encoded on the server. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   
@@ -29,13 +29,13 @@
   
   <li><a class="name" href="?type/content">content:</a> <span class="about">A content store - a piece of template kept by {pad:content} to be shown elsewhere. <a class="meta" href="?groups#stores">Stores and data</a></span></li>
   
-  <li><a class="name" href="?type/data">data:</a> <span class="about">A data store - rows kept by {pad:data} or a file of _data/ read through the format registry. <a class="meta" href="?groups#stores">Stores and data</a></span></li>
+  <li><a class="name" href="?type/data">data:</a> <span class="about">A data store - rows kept by {format:auto} or a file of _data/ read through the format registry. <a class="meta" href="?groups#stores">Stores and data</a></span></li>
   
   <li><a class="name" href="?type/define">define:</a> <span class="about">A tag defined in the template by {pad:define} - its body the template of the tag. <a class="meta" href="?groups#tags">Tags</a></span></li>
   
   <li><a class="name" href="?type/diagram">diagram:</a> <span class="about">A diagram type, a file of pad/subs/diagrams/types/, laid out on the server. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   
-  <li><a class="name" href="?type/diff">Comparison kinds</a> <span class="about">Typed change records through padDiffCompare, and escaped HTML through padDiffRender. <a class="meta" href="?groups#kinds">Options and helpers</a></span></li>
+  <li><a class="name" href="?type/diff">diff:</a> <span class="about">A comparison of texts, JSON or keyed records from pad/subs/diffs/types/. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   
   <li><a class="name" href="?type/distribution">Sampling distributions</a> <span class="about">Seeded samples through padSample. <a class="meta" href="?groups#kinds">Options and helpers</a></span></li>
   
@@ -47,13 +47,13 @@
   
   <li><a class="name" href="?type/field">field:</a> <span class="about">A field of the current row, or a variable of the page. <a class="meta" href="?groups#values">Values of the page</a></span></li>
   
-  <li><a class="name" href="?type/filter">Image filters</a> <span class="about">The filter= option of {pad:img} selects a filter or placeholder. <a class="meta" href="?groups#kinds">Options and helpers</a></span></li>
+  <li><a class="name" href="?type/filter">Image filters</a> <span class="about">The filter= option of {image:thumbnail} selects a filter or placeholder. <a class="meta" href="?groups#kinds">Options and helpers</a></span></li>
   
   <li><a class="name" href="?type/flag">flag:</a> <span class="about">Every term a 1 or a 0: whether it belongs to the sequence type named. <a class="meta" href="?groups#sequences">Sequences</a></span></li>
   
-  <li><a class="name" href="?type/format">Data formats</a> <span class="about">The format= option of {pad:data}, file extensions and the format helpers. <a class="meta" href="?groups#kinds">Options and helpers</a></span></li>
+  <li><a class="name" href="?type/format">format:</a> <span class="about">Read documents into named data stores. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   
-  <li><a class="name" href="?type/formula">Spreadsheet functions</a> <span class="about">Functions inside the formulas of {pad:spreadsheet} cells. <a class="meta" href="?groups#kinds">Options and helpers</a></span></li>
+  <li><a class="name" href="?type/formula">Spreadsheet functions</a> <span class="about">Functions inside the formulas of {sheet:grid} cells. <a class="meta" href="?groups#kinds">Options and helpers</a></span></li>
   
   <li><a class="name" href="?type/function">function:</a> <span class="about">A pipe function used as a tag, over the content between its tags. <a class="meta" href="?groups#tags">Tags</a></span></li>
   
@@ -63,9 +63,11 @@
   
   <li><a class="name" href="?type/highlighter">Syntax languages</a> <span class="about">Languages selected by padHighlight and the highlight tag. <a class="meta" href="?groups#kinds">Options and helpers</a></span></li>
   
-  <li><a class="name" href="?type/holidays">Holiday calendars</a> <span class="about">The country parameter of {pad:holidays}, with optional regions. <a class="meta" href="?groups#kinds">Options and helpers</a></span></li>
+  <li><a class="name" href="?type/holidays">holidays:</a> <span class="about">Country and regional public holidays. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   
   <li><a class="name" href="?type/icon">icon:</a> <span class="about">An icon, a file of pad/subs/icons/types/, drawn as inline SVG - never bare. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
+  
+  <li><a class="name" href="?type/image">image:</a> <span class="about">Local images as thumbnails, responsive pictures, captioned figures or contact sheets. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   
   <li><a class="name" href="?type/include">include:</a> <span class="about">A snippet of the application, a file of an _include/ directory. <a class="meta" href="?groups#tags">Tags</a></span></li>
   
@@ -83,7 +85,7 @@
   
   <li><a class="name" href="?type/make">make:</a> <span class="about">The terms of a sequence type, made as a play - the same terms {sequence:x} gives. <a class="meta" href="?groups#sequences">Sequences</a></span></li>
   
-  <li><a class="name" href="?type/map">Map views</a> <span class="about">The view parameter of {pad:map} selects a country or region. <a class="meta" href="?groups#kinds">Options and helpers</a></span></li>
+  <li><a class="name" href="?type/map">map:</a> <span class="about">Choropleths, markers and proportional bubbles. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   
   <li><a class="name" href="?type/notation">notation:</a> <span class="about">A notation, a file of pad/subs/notations/types/ - a formula, a tune, a word or a position drawn on the server. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   
@@ -113,7 +115,7 @@
   
   <li><a class="name" href="?type/script">script:</a> <span class="about">A shell script of a _scripts/ directory, its output the tag&#039;s. <a class="meta" href="?groups#tags">Tags</a></span></li>
   
-  <li><a class="name" href="?type/search">Search languages</a> <span class="about">The lang= option of {pad:search} selects stop words and a stemmer. <a class="meta" href="?groups#kinds">Options and helpers</a></span></li>
+  <li><a class="name" href="?type/search">search:</a> <span class="about">Ranked search, exact filters and facets. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   
   <li><a class="name" href="?type/section">section:</a> <span class="about">A section of a landing page, a file of pad/subs/sections/types/ - pure CSS, coloured by the theme, never bare. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   
@@ -121,9 +123,17 @@
   
   <li><a class="name" href="?type/sequence">sequence:</a> <span class="about">A sequence type of the sequence subsystem, its terms the rows of the tag. <a class="meta" href="?groups#sequences">Sequences</a></span></li>
   
+  <li><a class="name" href="?type/sheet">sheet:</a> <span class="about">Formula grids computed on the server. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
+  
   <li><a class="name" href="?type/sound">sound:</a> <span class="about">A sound, a file of pad/subs/sounds/types/ - a recipe the browser plays and the server writes as a WAV, never bare. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   
+  <li><a class="name" href="?type/table">table:</a> <span class="about">A table of rows, grouped records, a pivot or a matrix from pad/subs/tables/types/. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
+  
   <li><a class="name" href="?type/theme">Themes</a> <span class="about">The name parameter of {pad:theme} selects page or box colours. <a class="meta" href="?groups#kinds">Options and helpers</a></span></li>
+  
+  <li><a class="name" href="?type/time">time:</a> <span class="about">Time displays from pad/subs/times/types/ - countdown, relative time, world clocks and stopwatches. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
+  
+  <li><a class="name" href="?type/timeline">timeline:</a> <span class="about">Event views from pad/subs/timelines/types/ - horizontal, vertical, roadmap and swimlane. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   
   <li><a class="name" href="?type/toy">toy:</a> <span class="about">A toy, a file of pad/subs/toys/types/ - a live simulation in the browser. <a class="meta" href="?groups#subsystems">Subsystems</a></span></li>
   

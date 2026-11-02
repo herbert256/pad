@@ -199,7 +199,7 @@
     $html = [];
     foreach ( (array) $families as $family )
       foreach ( padKinds ( padSubsystemKinds [$family] ) as $kind )
-        $html [] = '<a href="' . htmlspecialchars ( ( isset ( padSubsystems [$family] ) and $base === '?kind/' ? '?tag/' : $base ) . "$family/$kind", ENT_QUOTES ) . '"><code>' . htmlspecialchars ( $kind ) . '</code></a>';
+        $html [] = '<a href="' . htmlspecialchars ( ( isset ( padSubsystems [$family] ) && $base === '?kind/' ? '?tag/' : $base ) . "$family/$kind", ENT_QUOTES ) . '"><code>' . htmlspecialchars ( $kind ) . '</code></a>';
 
     return implode ( ', ', $html );
 
