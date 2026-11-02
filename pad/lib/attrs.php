@@ -20,6 +20,9 @@
 
     global $pad, $padTag, $padType;
 
+    if ( ( $padType [$pad] ?? '' ) === 'diff' and in_array ( $padTag [$pad] ?? '', [ 'json', 'rows' ], TRUE ) )
+      return TRUE;
+
     if ( ( $padType [$pad] ?? '' ) == 'input' )
       return TRUE;
 
