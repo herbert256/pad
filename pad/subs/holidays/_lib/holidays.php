@@ -1,5 +1,7 @@
 <?php
 
+  include_once PAD . 'subs/holidays/_lib/merge.php';
+
   // Public holidays - the holidays subsystem behind {pad:holidays}, the holidays= option of
   // {calendar:month} and the helpers padHolidays, padIsHoliday, padWorkdays and padAddWorkdays
   // (lib/holidays.php). No service, no table to keep up to date: every holiday is a rule, and

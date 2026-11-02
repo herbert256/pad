@@ -41,6 +41,7 @@
   // The rows, the numbers and the SVG opening are {chart:bar}'s, subs/charts/_lib/chart.php.
 
   include_once PAD . 'subs/charts/_lib/chart.php';
+  include_once PAD . 'subs/maps/_lib/markers.php';
 
   // The outlines a view draws: [ every outline by code, the index of the codes and names, the
   // codes of the regions a view of regions is about (NULL for the countries), the box of a
@@ -173,7 +174,7 @@
   // countries, when it lists them, is the land around them, drawn without a value. A view of
   // regions is about every region of its file, and the land around them is the rest of it.
 
-  function padMap ( $view, $values, $title, $width, $height, $scale = 'linear' ) {
+  function padMap ( $view, $values, $title, $width, $height, $scale = 'linear', $markers = [] ) {
 
     list ( $countries, , $regions ) = padMapCountries ( $view );
     list ( $x0, $y0, $x1, $y1 ) = padMapBox ( $view );
@@ -212,13 +213,19 @@
     foreach ( $inside as $code => list ( $value ) )
       $desc [] = $countries [$code] [1] . ': ' . padChartNumber ( $value );
 
+    [ $markers, $markersOutside ] = padMapMarkerView ( $markers, $view );
+    foreach ( $markers as $marker )
+      $desc [] = $marker ['label'] . ( $marker ['value'] === NULL ? '' : ': ' . padChartNumber ( $marker ['value'] ) );
+    if ( $markersOutside )
+      $title .= ' (' . $markersOutside . ' markers outside this view)';
+
     if ( ! $desc )
       $desc [] = 'No values';
 
     if ( $outside )
       $title .= ' (not in this view: ' . implode ( ', ', array_slice ( $outside, 0, 10 ) ) . ')';
 
-    list ( $id, $svg ) = padChartOpen ( 'map', [ $view, $inside ], $desc, $title, $width, $height );
+    list ( $id, $svg ) = padChartOpen ( 'map', $markers ? [ $view, $inside, $markers ] : [ $view, $inside ], $desc, $title, $width, $height );
 
     $svg .= padMapStyle ( $around );
 
@@ -261,7 +268,10 @@
 
     }
 
-    $svg .= "$later</svg>";
+    $svg .= $later;
+    if ( $markers )
+      $svg .= padMapMarkerSvg ( $markers, max ( $boxW / $width, $boxH / $mapH ) );
+    $svg .= '</svg>';
 
     if ( ! $inside )
       return "$svg</svg>";
