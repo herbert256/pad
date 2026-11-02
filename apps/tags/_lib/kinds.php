@@ -95,8 +95,11 @@
         if ( $type === 'image' and $kind === 'contactsheet' )
           $tail = " data='photos', src='src', caption='caption'/}";
 
-        if ( $type === 'calendar' )
-          $tail = " '" . ( [ 'day' => '2026-11-04', 'week' => '2026-11-02', 'year' => '2026', 'quarter' => '2026-Q4' ] [$kind] ?? '2026-11' ) . "', data='appointments'/}";
+        if ( $type === 'calendar' ) {
+          $date = [ 'day' => '2026-11-04', 'week' => '2026-11-02', 'timegrid' => '2026-11-02',
+                    'resources' => '2026-11-02', 'year' => '2026', 'quarter' => '2026-Q4' ] [$kind] ?? '2026-11';
+          $tail = " '$date', data='appointments'" . ( $kind === 'resources' ? ", resources=['room-a'=>'Room A']" : '' ) . '/}';
+        }
 
         if ( $syntax === '' ) {
           $syntax = "{{$type}:$kind" . sprintf ( $tail, $kind, $kind );
