@@ -128,16 +128,9 @@
   }
 
   function padAvatarLuminance ( $hex ) {
-
+    include_once PAD . 'subs/colors/_lib/colors.php';
     $hex = ltrim ( $hex, '#' );
-    $sum = 0;
-
-    foreach ( [ 0 => 0.2126, 2 => 0.7152, 4 => 0.0722 ] as $at => $weight ) {
-      $c    = hexdec ( substr ( $hex, $at, 2 ) ) / 255;
-      $sum += $weight * ( ( $c <= 0.03928 ) ? $c / 12.92 : ( ( $c + 0.055 ) / 1.055 ) ** 2.4 );
-    }
-
-    return $sum;
+    return padColorLuminance ( array_map ( fn ( $at ) => hexdec ( substr ( $hex, $at, 2 ) ) / 255, [ 0, 2, 4 ] ) );
 
   }
 

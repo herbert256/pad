@@ -184,12 +184,8 @@
   // The relative luminance of a colour and the contrast of two, as WCAG 2 defines them.
 
   function padPaletteLuminance ( $hex ) {
-
-    $lin = fn ( $c ) => ( ( $c /= 255 ) <= 0.04045 ) ? $c / 12.92 : ( ( $c + 0.055 ) / 1.055 ) ** 2.4;
-
-    [ $r, $g, $b ] = padPaletteRgb ( $hex );
-
-    return 0.2126 * $lin ( $r ) + 0.7152 * $lin ( $g ) + 0.0722 * $lin ( $b );
+    include_once PAD . 'subs/colors/_lib/colors.php';
+    return padColorLuminance ( array_map ( fn ( $c ) => $c / 255, padPaletteRgb ( $hex ) ) );
 
   }
 
