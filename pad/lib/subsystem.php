@@ -49,6 +49,7 @@
     'highlighter' => 'highlighters',
     'diff' => 'diffs',
     'recurrence' => 'recurrences',
+    'geo' => 'geospatial',
     'distribution' => 'distributions',
     'unit' => 'units',
   ];
