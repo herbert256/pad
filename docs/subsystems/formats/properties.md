@@ -1,0 +1,5 @@
+# Format: properties
+
+Java-style properties map, explicit UTF-8 Reader-style default; `encoding=>'ISO-8859-1'` enables Java InputStream-style input. Supports comments (#/!), whitespace/=/: separators, escaped keys/values, odd-backslash continuations, `\uXXXX` and paired surrogate escapes. Unknown escape letters lose the backslash like Java. Duplicate keys default to last wins; `duplicates=>'error'` rejects them. Unpaired surrogates are rejected because PAD returns valid UTF-8. No automatic BOM removal. Writers sort keys and escape significant whitespace/separators/control characters; `ascii=>true` emits Unicode escapes and is required/default with ISO-8859-1 output. `padFormatRead('properties', "title=Hello\ncount=4\n")` returns a string-valued map. PHP's usual numeric-string key coercion applies. Extension .properties, text/x-java-properties, data shape; no auto-sniffing. Exact raw input preserves continuations and trailing spaces.
+
+Both read and write use the existing padFormat helpers and strict/lenient error contract. Run `php tests/subsystems/format-properties.php`.
