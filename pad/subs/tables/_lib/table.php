@@ -1,13 +1,13 @@
 <?php
 
-  // Tables from rows - the {pad:datatable} tag. A complete HTML table is written on the server:
+  // Tables from rows - the {table:standard} tag. A complete HTML table is written on the server:
   // a header from the field names, numbers right-aligned and formatted alike down their
   // column, a totals row, header links that sort and page links that page - each a plain
   // link to the same page, so it needs no JavaScript and works in print and in an e-mail.
   //
-  //   {pad:datatable data='orders', columns='number, customer, total', totals='total'}
-  //   {pad:datatable data='orders', sortable, rows=10, striped, caption='Orders'}
-  //   {pad:datatable totals='amount'} month,amount ... {/pad:datatable}
+  //   {table:standard data='orders', columns='number, customer, total', totals='total'}
+  //   {table:standard data='orders', sortable, rows=10, striped, caption='Orders'}
+  //   {table:standard totals='amount'} month,amount ... {/table:standard}
   //
   // padDatatableColumns  the columns: those columns= names, else every scalar field of the
   //                      first row
@@ -253,18 +253,36 @@
 
     $html .= '</tr></thead><tbody>';
 
+    $lastGroup = NULL;
     foreach ( $table ['rows'] as $row ) {
-
+      if ( $table ['groupFields'] ?? [] ) {
+        $groupKey = padTableGroupKey ( $row, $table ['groupFields'] );
+        if ( $groupKey !== $lastGroup ) {
+          if ( $lastGroup !== NULL and $table ['totals'] ) $html .= padTableSubtotal ( $table, $table ['groups'] [$lastGroup] );
+          $html .= '<tr class="pad-table-group"><th scope="rowgroup" colspan="' . count ( $table ['columns'] ) . '">'
+            . padChartAttr ( $table ['groups'] [$groupKey] ['label'] ) . '</th></tr>';
+          $lastGroup = $groupKey;
+        }
+      }
       $html .= '<tr>';
 
-      foreach ( $table ['columns'] as $column )
-        $html .= '<td' . ( $column ['numeric'] ? ' class="num"' : '' ) . '>'
-               . padChartAttr ( padDatatableCell ( $row [ $column ['field'] ] ?? '', $column ) ) . '</td>';
+      foreach ( $table ['columns'] as $column ) {
+        $class = $column ['numeric'] ? 'num' : '';
+        $value = $row [ $column ['field'] ] ?? '';
+        if ( ( $table ['heat'] ?? [] ) and $column ['field'] !== 'row_label' and is_numeric ( $value ) ) {
+          [ $min, $max ] = $table ['heat'];
+          $bucket = $max == $min ? 3 : 1 + (int) round ( 4 * ( $value - $min ) / ( $max - $min ) );
+          $class .= ' pad-table-heat-' . $bucket;
+        }
+        $html .= '<td' . ( $class !== '' ? ' class="' . $class . '"' : '' ) . '>'
+               . padChartAttr ( padDatatableCell ( $value, $column ) ) . '</td>';
+      }
 
       $html .= '</tr>';
 
     }
 
+    if ( $lastGroup !== NULL and $table ['totals'] ) $html .= padTableSubtotal ( $table, $table ['groups'] [$lastGroup] );
     $html .= '</tbody>';
 
     // The totals row: the sum under each totals= column, the word Total in the first cell

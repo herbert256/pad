@@ -19,6 +19,6 @@ PAD;
     'open'  => 'The number of levels shown unfolded, 2 when not given; 0 folds everything.',
     'title' => 'A label for the outermost level.' ];
 
-  $tagSee     = [ 'debug', 'dump', 'data', 'datatable' ];
+  $tagSee     = [ 'debug', 'dump', 'data', 'table:standard' ];
 
 ?>

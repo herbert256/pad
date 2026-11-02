@@ -1085,3 +1085,7 @@ types/
 {pull:fib}{$sequence} {/pull:fib}
 {remove:fib even}{$sequence} {/remove:fib}
 ```
+
+### table
+
+`table:standard`, `table:grouped`, `table:pivot` and `table:matrix` render data as formatted tables. Grouped tables add group headers and subtotals; pivots and matrices aggregate row/column intersections using sum, count, avg, min or max. All kinds support column filters, sorting and paging. See [Tables](../../pad/subs/tables/README.md) for options and examples.

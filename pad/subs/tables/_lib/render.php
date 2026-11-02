@@ -1,11 +1,11 @@
 <?php
 
-  // {pad:datatable data='orders'} - the rows as a complete HTML table, tags/_lib/datatable.php. The
+  // {table:standard data='orders'} - the rows as a complete HTML table, subs/tables/_lib/table.php. The
   // rows come from data= - a {pad:data} store, a page array or a _data file, as for {chart:bar} -
   // or, as a pair, from the content: JSON, YAML, XML or CSV, told apart on sight.
   //
-  //   {pad:datatable data='orders', columns='number, customer, total', totals='total'}
-  //   {pad:datatable data='orders', format='total:currency(\'EUR\')', sortable, rows=10}
+  //   {table:standard data='orders', columns='number, customer, total', totals='total'}
+  //   {table:standard data='orders', format='total:currency(\'EUR\')', sortable, rows=10}
   //
   // columns= names the columns and their order, else every field of the first row;
   // labels= the header of each, else the field name as a headline (order_date is Order
@@ -26,19 +26,54 @@
 
   if ( ! isset ( $padPrm [$pad] ['data'] ) and trim ( (string) $padContent ) === '' and ! isset ( $padPrm [$pad] ['sequence'] ) ) {
     if ( $padCheckSyntax )
-      padError ( "the datatable has no data - data='name' or the rows between {pad:datatable} and {/pad:datatable}" );
+      padError ( "the datatable has no data - data='name' or the rows between {table:standard} and {/table:standard}" );
     return '';
   }
 
   $padDatatableRows = array_values ( array_map ( 'padChartRow', (array) padChartRows ( $padContent, 'datatable' ) ) );
+  $padHandDone [$pad] = TRUE; // row=, group= and rows= belong to this renderer.
   $padContent       = '';
   $padData [$pad]   = padDefaultData ();
 
-  $padDatatableFields  = padDatatableColumns ( $padDatatableRows, padTagParm ( 'columns' ) );
-  $padDatatableLabels  = padDatatableSplit ( padTagParm ( 'labels' ) );
+  $padTableFilterFields = padChartFields ( padTagParm ( 'filters' ) );
+  $padTableGroupFields = padChartFields ( padTagParm ( 'group' ) );
+  $padTableGroups = [];
+  $padTableQuery = padTagParm ( 'query' );
+  if ( ! is_scalar ( $padTableQuery ) ) {
+    if ( $padCheckSyntax ) padError ( 'the query prefix of a table must be text' );
+    $padTableQuery = '';
+  }
+  $padTableQuery = trim ( (string) $padTableQuery );
+  padTableFieldCheck ( $padDatatableRows, $padTableFilterFields, 'filters' );
+  $padDatatableRows = padTableFilter ( $padDatatableRows, $padTableFilterFields, $padTableQuery );
+  $padTablePivot = in_array ( $padTableKind, [ 'pivot', 'matrix' ], TRUE );
+  if ( $padTablePivot ) {
+    $padTableRow = padTagParm ( 'row' );
+    $padTableColumn = padTagParm ( 'column' );
+    $padTableValue = padTagParm ( 'value' );
+    $padTableAggregate = padTagParm ( 'aggregate', $padTableKind === 'matrix' ? 'count' : 'sum' );
+    if ( ! is_string ( $padTableAggregate ) or ! in_array ( $padTableAggregate, [ 'sum', 'count', 'avg', 'min', 'max' ], TRUE ) ) {
+      if ( $padCheckSyntax ) padError ( 'the aggregate of a table must be sum, count, avg, min or max' );
+      return '';
+    }
+    if ( ! is_string ( $padTableRow ) or $padTableRow === '' or ! is_string ( $padTableColumn ) or $padTableColumn === ''
+         or ( $padTableAggregate !== 'count' and ( ! is_string ( $padTableValue ) or $padTableValue === '' ) ) ) {
+      if ( $padCheckSyntax ) padError ( 'a pivot or matrix requires row= and column= fields, and value= unless aggregate=count' );
+      return '';
+    }
+    padTableFieldCheck ( $padDatatableRows, array_merge ( [ $padTableRow, $padTableColumn ], $padTableAggregate === 'count' ? [] : [ $padTableValue ] ), 'pivot' );
+    [ $padDatatableRows, $padTablePivotFields, $padTablePivotLabels ] = padTablePivot ( $padDatatableRows, $padTableRow, $padTableColumn, $padTableValue, $padTableAggregate );
+  }
+  if ( $padTableKind === 'grouped' ) {
+    if ( ! $padTableGroupFields and $padCheckSyntax ) padError ( 'a grouped table requires group= with one or more fields' );
+    padTableFieldCheck ( $padDatatableRows, $padTableGroupFields, 'group' );
+  } else $padTableGroupFields = [];
+
+  $padDatatableFields  = $padTablePivot ? $padTablePivotFields : padDatatableColumns ( $padDatatableRows, padTagParm ( 'columns' ) );
+  $padDatatableLabels  = $padTablePivot ? $padTablePivotLabels : padDatatableSplit ( padTagParm ( 'labels' ) );
   $padDatatableTotals  = padChartFields ( padTagParm ( 'totals' ) );
   $padDatatableFormats = [];
-  $padDatatableQuery   = trim ( (string) padTagParm ( 'query' ) );
+  $padDatatableQuery   = $padTableQuery;
   $padDatatablePerPage = padTagParm ( 'rows', 0 );
 
   // Every name an option gives must be a column the table shows.
@@ -84,7 +119,7 @@
   }
 
   if ( ! $padDatatableRows )
-    return '';
+    return $padTableFilterFields ? padTableExtraStyle () . padTableFilterForm ( $padTableFilterFields, $padDatatableQuery ) . '<p class="pad-table-empty">No matching rows.</p>' : '';
 
   // The columns, and the sums of the totals= ones over every row.
 
@@ -142,6 +177,18 @@
 
   }
 
+  // Sort within each group, keeping groups together; subtotals describe the complete
+  // filtered group even when its rows span several pages.
+  if ( $padTableGroupFields ) {
+    $padTableGroups = padTableGroups ( $padDatatableRows, $padTableGroupFields, $padDatatableTotals );
+    $padDatatableRows = array_merge ( ...array_column ( $padTableGroups, 'rows' ) );
+  }
+  $padTableHeat = [];
+  if ( $padTableKind === 'matrix' )
+    foreach ( $padDatatableRows as $padTableHeatRow )
+      foreach ( $padTableHeatRow as $padTableHeatField => $padTableHeatValue )
+        if ( $padTableHeatField !== 'row_label' and is_numeric ( $padTableHeatValue ) ) $padTableHeat [] = $padTableHeatValue;
+
   // One page of the rows, and the links to the others - the {pad:pager}'s items.
 
   $padDatatablePager = [];
@@ -162,7 +209,11 @@
 
   }
 
-  return padDatatableHtml ( [
+  return ( $padTableKind !== 'standard' || $padTableFilterFields ? padTableExtraStyle () : '' )
+    . padTableFilterForm ( $padTableFilterFields, $padDatatableQuery ) . padDatatableHtml ( [
+    'groupFields' => $padTableGroupFields,
+    'groups' => $padTableGroups,
+    'heat' => $padTableHeat ? [ min ( $padTableHeat ), max ( $padTableHeat ) ] : [],
     'columns'  => $padDatatableColumns,
     'rows'     => $padDatatableRows,
     'totals'   => (bool) $padDatatableSums,

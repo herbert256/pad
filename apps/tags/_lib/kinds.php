@@ -16,6 +16,7 @@
   function tagsKindTypes () {
 
     return [
+      'table' => [ 'Tables', 'Formatted, grouped and aggregated rows', 'both', " data='rows'/}", 'datatable' ],
       'calendar' => [ 'Calendars', 'Gregorian dates, events and holidays', 'both', " '2026-11', data='appointments'/}", 'calendar' ],
       'chart'    => [ 'Chart types',       'inline SVG',                 'both',   " data='rows', label='field', value='field'/}", 'chart'   ],
       'game'     => [ 'Games',             'played in the browser',       'both',   '/}',                                           'game'    ],
@@ -71,6 +72,9 @@
         $form = ( $type == 'sequence' and in_array ( $kind, tagsKindParameterized () ) ) ? 'both' : $form;
 
         $tail = ( $type == 'sequence' ) ? tagsKindSequenceParm ( $kind ) . $after : $after;
+
+        if ( $type === 'table' )
+          $tail = " data='rows'" . ( [ 'grouped' => ", group='region', totals='amount'", 'pivot' => ", row='region', column='quarter', value='amount'", 'matrix' => ", row='region', column='quarter'" ] [$kind] ?? '' ) . '/}';
 
         if ( $type === 'calendar' )
           $tail = " '" . ( [ 'day' => '2026-11-04', 'week' => '2026-11-02', 'year' => '2026', 'quarter' => '2026-Q4' ] [$kind] ?? '2026-11' ) . "', data='appointments'/}";
@@ -231,6 +235,10 @@
     }
 
     switch ( $type ) {
+
+      case 'table':
+        $file = APPS . "tags/examples/table/$kind.pad";
+        return $example ( "A $kind table", 'Rows formatted and aggregated on the server.', trim ( padFileGet ( $file ) ) );
 
       case 'calendar':
         $file = APPS . "calendars/_examples/$kind.pad";

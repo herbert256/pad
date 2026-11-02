@@ -489,7 +489,7 @@ function padSplitOnUnquotedColon ( $str ) {
   }
 
   // Whether an expression about to be evaluated - the eval sequence's, a where=, a format= of
-  // {pad:datatable} - holds a value kept by padSpliceRecord outside the expression's own strings,
+  // {table:standard} - holds a value kept by padSpliceRecord outside the expression's own strings,
   // where it is part of the code.
 
   function padSpliceInCode ( $expression ) {
