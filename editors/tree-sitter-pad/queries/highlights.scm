@@ -120,12 +120,12 @@
     "sunburst" "switch" "tab" "tablature" "tabs" "taginput" "tartan" "team"
     "terrazzo" "testimonials" "textarea" "theme" "themes" "tick" "tickets" "tictactoe"
     "tidy" "tiktok" "tilt" "time" "timeago" "timeline" "timepicker" "timezone"
-    "title" "toast" "toc" "toggle" "toggleon" "tooltip" "topography" "trace"
-    "trans" "tree" "treemap" "treepicker" "triangles" "truchet" "true" "twitch"
-    "typewriter" "underline" "until" "upca" "upce" "url" "username" "uuid"
-    "validator" "venn" "video" "videofile" "vimeo" "violin" "vite" "voronoi"
-    "waffle" "warning" "waterdrop" "waterfall" "wave" "waves" "website" "when"
-    "while" "whoosh" "wizard" "woodblock" "word" "wordsearch" "youtube"))
+    "title" "toast" "toc" "toggle" "toggleoff" "toggleon" "tooltip" "topography"
+    "trace" "trans" "tree" "treemap" "treepicker" "triangles" "truchet" "true"
+    "twitch" "typewriter" "underline" "until" "upca" "upce" "url" "username"
+    "uuid" "validator" "venn" "video" "videofile" "vimeo" "violin" "vite"
+    "voronoi" "waffle" "warning" "waterdrop" "waterfall" "wave" "waves" "website"
+    "when" "while" "whoosh" "wizard" "woodblock" "word" "wordsearch" "youtube"))
 
 (tag_name
   name: (identifier) @tag
@@ -185,12 +185,12 @@
     "sunburst" "switch" "tab" "tablature" "tabs" "taginput" "tartan" "team"
     "terrazzo" "testimonials" "textarea" "theme" "themes" "tick" "tickets" "tictactoe"
     "tidy" "tiktok" "tilt" "time" "timeago" "timeline" "timepicker" "timezone"
-    "title" "toast" "toc" "toggle" "toggleon" "tooltip" "topography" "trace"
-    "trans" "tree" "treemap" "treepicker" "triangles" "truchet" "true" "twitch"
-    "typewriter" "underline" "until" "upca" "upce" "url" "username" "uuid"
-    "validator" "venn" "video" "videofile" "vimeo" "violin" "vite" "voronoi"
-    "waffle" "warning" "waterdrop" "waterfall" "wave" "waves" "website" "when"
-    "while" "whoosh" "wizard" "woodblock" "word" "wordsearch" "youtube"))
+    "title" "toast" "toc" "toggle" "toggleoff" "toggleon" "tooltip" "topography"
+    "trace" "trans" "tree" "treemap" "treepicker" "triangles" "truchet" "true"
+    "twitch" "typewriter" "underline" "until" "upca" "upce" "url" "username"
+    "uuid" "validator" "venn" "video" "videofile" "vimeo" "violin" "vite"
+    "voronoi" "waffle" "warning" "waterdrop" "waterfall" "wave" "waves" "website"
+    "when" "while" "whoosh" "wizard" "woodblock" "word" "wordsearch" "youtube"))
 
 ((function_name) @function.builtin
   (#any-of? @function.builtin
