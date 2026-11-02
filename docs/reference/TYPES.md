@@ -1154,11 +1154,12 @@ types/
 ### diff
 
 `diff:words`, `diff:lines` and `diff:side` compare texts. `diff:json` compares JSON structures by path, preserving types and distinguishing absent fields from null. `diff:rows` matches records by a unique `key` before comparing their fields. See [Diffs](../../pad/subs/diffs/README.md).
-### timeline:
+
+### timeline
 
 Event views from `pad/subs/timelines/types/`: `horizontal`, `vertical`, `auto`, `roadmap` and `swimlane`. Shared date/span parsing, labels, detail, colours and accessible names. Roadmap adds month/quarter/year columns with lane grouping and milestone badges; swimlane adds named lanes on a shared time axis. See `pad/subs/timelines/README.md` for options and runnable examples in `apps/tags/examples/timeline/`.
 
-### time:
+### time
 
 Time displays from `pad/subs/times/types/`: `countdown`, `relative`, `clock` and `stopwatch`. The date views share the engine's date parser; clocks support IANA timezones and live daylight-saving changes; stopwatches provide independent keyboard-accessible start, pause and reset. See `pad/subs/times/README.md` and `apps/tags/examples/time/`.
 

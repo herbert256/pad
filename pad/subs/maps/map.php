@@ -100,7 +100,11 @@
 
   }
 
-  $padMapTitle = (string) padTagParm ( 'title', ( $padMapValue !== '' ? ucfirst ( $padMapValue ) . ' by ' . padMapView ( $padMapView ) ['unit'] : padMapView ( $padMapView ) ['name'] ) );
+  // A dictionary's scalar values receive the tag word as their internal field.
+  // Do not expose an implementation selector such as auto or europe as the value label.
+  $padMapTitleField = ( $padMapValue === $padTag [$pad] and ! isset ( $padPrm [$pad] ['value'] ) ) ? 'map' : $padMapValue;
+
+  $padMapTitle = (string) padTagParm ( 'title', ( $padMapTitleField !== '' ? ucfirst ( $padMapTitleField ) . ' by ' . padMapView ( $padMapView ) ['unit'] : padMapView ( $padMapView ) ['name'] ) );
 
   if ( $padMapMissed )
     $padMapTitle .= ' (not on the map: ' . implode ( ', ', array_slice ( array_unique ( $padMapMissed ), 0, 10 ) ) . ')';

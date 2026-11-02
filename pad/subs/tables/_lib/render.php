@@ -128,7 +128,7 @@
 
   foreach ( $padDatatableFields as $padDatatableIndex => $padDatatableField ) {
 
-    $padDatatableNumeric = padDatatableNumeric ( $padDatatableRows, $padDatatableField );
+    $padDatatableNumeric = ( $padTablePivot and $padDatatableField === 'row_label' ) ? FALSE : padDatatableNumeric ( $padDatatableRows, $padDatatableField );
     $padDatatableTotal   = in_array ( $padDatatableField, $padDatatableTotals, TRUE );
 
     if ( $padDatatableTotal and ! $padDatatableNumeric ) {

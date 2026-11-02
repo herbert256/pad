@@ -1,4 +1,3 @@
-
 <p><code>{pad:cache 'name', ttl=300}</code> ... <code>{/pad:cache}</code> renders its content once and
 keeps the result; for the next <code>ttl</code> seconds every request gets the stored rendering
 and nothing inside the section runs - no tag, no query, no remote fetch. It is for the parts of
@@ -20,7 +19,7 @@ page is kept with it and made again on a hit: its <code>{pad:push}</code>es, and
 paged tag for a <code>{pad:pager}</code> further down.</p>
 
 <p>Otherwise a section keeps its text, not its effects: what it sets, stores or defines - a
-<code>{pad:set}</code>, <code>{pad:increment}</code>, a <code>{pad:data}</code>, <code>{pad:content}</code> or
+<code>{pad:set}</code>, <code>{pad:increment}</code>, a <code>{format:auto}</code>, <code>{pad:content}</code> or
 <code>{pad:bool}</code> store, a <code>{pad:define}</code> or <code>{pad:macro}</code>, the totals of a
 <code>callback=</code> - happens on the miss only, and on a hit the page goes on with the
 variables and stores this request has. Put such a tag before the section, or in a
@@ -32,4 +31,3 @@ variables and stores this request has. Put such a tag before the section, or in 
 <code>$padFragmentCache</code> chooses the store - <code>'file'</code> (the default, under
 <code>DATA/cache/fragments/</code>), <code>'apcu'</code>, or <code>FALSE</code> to render every
 time. A <code>{pad:cache}</code> without a name, or without its closing tag, is a strict error.</p>
-

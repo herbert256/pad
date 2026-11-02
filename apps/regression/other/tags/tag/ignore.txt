@@ -1,4 +1,3 @@
-
 <p>Everything between <code>&#123;pad:ignore&#125;</code> and <code>&#123;/pad:ignore&#125;</code> is written out as it
 stands: the characters PAD reads as syntax - <code>{ } | = , @</code> - are swapped for
 stand-ins before the engine looks at the content, and turned back into the real characters
@@ -12,7 +11,7 @@ read as a tag, and the strict check would report it. External files are better s
 pair is for the few lines that belong in the page.</p>
 
 <p>The same protection comes in two more forms. The <code>ignore</code> option on any tag wraps
-that tag's content in <code>&#123;pad:ignore&#125;</code>: <code>{pad:data 'config' ignore}</code>,
+that tag's content in <code>&#123;pad:ignore&#125;</code>: <code>{format:auto 'config' ignore}</code>,
 <code>{pad:markdown ignore}</code>. The <code>ignore</code> pipe escapes a value:
 <code>{pad:echo $json | ignore/}</code>. For a single brace in text,
 <a href="?tag/open"><code>{pad:open}</code></a> and <a href="?tag/close"><code>{pad:close}</code></a>
@@ -21,4 +20,3 @@ stands too, so a coloured code sample needs no <code>&#123;pad:ignore&#125;</cod
 
 <p>An <code>&#123;pad:ignore&#125;</code> without its <code>&#123;/pad:ignore&#125;</code> protects nothing; the strict
 check names it rather than blaming some tag inside.</p>
-

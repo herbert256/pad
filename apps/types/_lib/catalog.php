@@ -97,7 +97,7 @@
 
     $text ??= (string) @file_get_contents ( dirname ( APPS ) . '/docs/reference/TYPES.md' );
 
-    if ( ! preg_match ( '/^### ' . preg_quote ( $name, '/' ) . '\s*\n(.*?)(?=^#{2,3} |^---)/ms', $text, $match ) )
+    if ( ! preg_match ( '/^### ' . preg_quote ( $name, '/' ) . '\s*\n(.*?)(?=^#{2,3} |^---|\z)/ms', $text, $match ) )
       return '';
 
     // A link of the section to another document - ../DATABASE.md - is to that file in the
