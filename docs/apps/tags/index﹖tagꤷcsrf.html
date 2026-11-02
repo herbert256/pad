@@ -265,7 +265,7 @@
               The token is one per session, not one per form: two tabs and the back button keep working. A POST made from another site can make the browser send the session cookie, but cannot read the page to learn the token.
             </p>
             <p>
-              With <code>$padCsrf = TRUE</code> in the configuration every <code>&lt;form method="post"&gt;</code> that posts back to the site gets the field without asking, and every POST, PUT, PATCH or DELETE without the token is answered 403 before the application runs. A <a href="index%EF%B9%96tag%EA%A4%B7form.html">{pad:form}</a> writes the field by itself as well. <code>{pad:csrf}</code> is for a form the page builds some other way, or for an application that checks posts itself.
+              With <code>$padCsrf = TRUE</code> in the configuration every <code>&lt;form method="post"&gt;</code> that posts back to the site gets the field without asking, and every POST, PUT, PATCH or DELETE without the token is answered 403 before the application runs. A <a href="index%EF%B9%96tag%EA%A4%B7form.html">{input:form}</a> writes the field by itself as well. <code>{pad:csrf}</code> is for a form the page builds some other way, or for an application that checks posts itself.
             </p>
             <p>
               The token differs per visitor, so a page holding one is never stored in the page cache, and the examples here are shown, not run.
@@ -328,7 +328,7 @@
             </h2>
             <ul class="list">
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{pad:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{input:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
               </li>
               <li>
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7nonce.html">{pad:nonce}</a> <span class="about">This request's Content-Security-Policy nonce, for a script or style the policy lets run.</span>

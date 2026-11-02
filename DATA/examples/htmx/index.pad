@@ -16,7 +16,7 @@
   </div>
 
   <div class="hero-code">
-{pad:highlight 'pad'}
+{widget:highlight 'pad'}
 <input name="q" hx-get="?products"
        hx-trigger="input changed delay:300ms"
        hx-target="#results">
@@ -26,7 +26,7 @@
     {local:products}<li>{$name}</li>{/local:products}
   {/pad:fragment}
 </ul>
-{/pad:highlight}
+{/widget:highlight}
     <p class="small muted">The request carries <code>HX-Target: results</code>; PAD answers that fragment alone.</p>
   </div>
 

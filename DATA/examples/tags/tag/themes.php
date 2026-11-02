@@ -7,8 +7,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{pad:themes/}
-{pad:themes label='Colours', button='Use'/}
+{widget:themes/}
+{widget:themes label='Colours', button='Use'/}
 PAD;
 
   $tagParms   = [];

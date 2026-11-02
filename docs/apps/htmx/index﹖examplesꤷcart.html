@@ -328,7 +328,7 @@
 <span class="hl-line" data-line="5">  <span class="hl-com">// new count, then the parts elsewhere on the page that changed too, each marked</span></span>
 <span class="hl-line" data-line="6">  <span class="hl-com">// hx-swap-oob - htmx puts the card back where the button was and the rest where their ids</span></span>
 <span class="hl-line" data-line="7">  <span class="hl-com">// are: the count in the header, the summary beside the shelf. Emptying the cart is an</span></span>
-<span class="hl-line" data-line="8">  <span class="hl-com">// ordinary {pad:form} post that ends in a redirect, the page coming back whole.</span></span>
+<span class="hl-line" data-line="8">  <span class="hl-com">// ordinary {input:form} post that ends in a redirect, the page coming back whole.</span></span>
 <span class="hl-line" data-line="9"></span>
 <span class="hl-line" data-line="10">  <span class="hl-var">$counts</span>   <span class="hl-pun">=</span> <span class="hl-fn">padSession</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;htmxCart&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>
 <span class="hl-line" data-line="11">  <span class="hl-var">$products</span> <span class="hl-pun">=</span> <span class="hl-fn">array_slice</span> <span class="hl-pun">(</span> <span class="hl-fn">htmxData</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;products&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">,</span> <span class="hl-num">0</span><span class="hl-pun">,</span> <span class="hl-num">8</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></span>

@@ -2,23 +2,23 @@
 
   <p class="crumbs"><a href="{$padGo}index">← The board</a></p>
 
-  {pad:form 'edit', error, class='card-form sheet'}
-    {pad:input 'title', label='Title', value=$draft.title, rules='required|max:100'/}
-    {pad:textarea 'body', label='Details', value=$draft.body, rows=6, rules='max:2000'/}
+  {input:form 'edit', error, class='card-form sheet'}
+    {input:field 'title', label='Title', value=$draft.title, rules='required|max:100'/}
+    {input:textarea 'body', label='Details', value=$draft.body, rows=6, rules='max:2000'/}
     <div class="row">
       <div><label for="label">Label</label>
         <select id="label" name="label"><option value="">None</option>{array:labelList}<option value="{$key}"{pad:if $chosen} selected{/pad:if}>{$name}</option>{/array:labelList}</select></div>
       <div><label for="column">Column</label>
         <select id="column" name="column">{array:columnList}<option value="{$id}"{pad:if $chosen} selected{/pad:if}>{$name}</option>{/array:columnList}</select></div>
-      <div>{pad:input 'due', type='date', label='Due', value=$draft.due/}</div>
+      <div>{input:field 'due', type='date', label='Due', value=$draft.due/}</div>
     </div>
     <div class="bar"><button class="button primary">Save</button><a class="button" href="{$padGo}index">Cancel</a></div>
-  {/pad:form}
+  {/input:form}
 
   {pad:if $isCard}
   <details class="danger-zone">
     <summary>Delete this card…</summary>
-    {pad:form 'remove'}<button class="button danger">Delete “{$cardTitle}”</button>{/pad:form}
+    {input:form 'remove'}<button class="button danger">Delete “{$cardTitle}”</button>{/input:form}
   </details>
   {/pad:if}
 

@@ -1,6 +1,6 @@
 <?php
 
-  // An {pad:input} item that is an expression with an array value adds its keys as attributes,
+  // An {input:field} item that is an expression with an array value adds its keys as attributes,
   // as {pad:attrs} does, so they are judged as {pad:attrs} judges them: a key that is no attribute
   // name, an event handler and a URL that runs script are left out.
 

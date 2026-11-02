@@ -2,7 +2,7 @@
 <p><code>{pad:search 'blog', q=$q}...{/pad:search}</code> hands over the rows of the source that the
 query finds, the best first: each the source's own row with <code>$score</code> and
 <code>$excerpt</code> added - the words around the first match, every matched word in a
-<code>&lt;mark&gt;</code>, escaped as <code>{pad:excerpt}</code> escapes it. It is HTML: print it
+<code>&lt;mark&gt;</code>, escaped as <code>{widget:excerpt}</code> escapes it. It is HTML: print it
 with <code>{!excerpt}</code>. Nothing found is the <code>@else@</code>; the handling options
 work on the rows, <code>first=10</code> for the ten best.</p>
 

@@ -254,20 +254,20 @@
               Description
             </h2>
             <p>
-              A rich form field of the kind the tag names - a slider, a stepper, a date picker, stars, a signature ... - the inputs subsystem in <code>PAD/subs/inputs/</code> writes it, a field of its <code>{pad:form}</code> as <code>{pad:input}</code> is: a native field a form posts without any script, made more of by its script.
+              A rich form field of the kind the tag names - a slider, a stepper, a date picker, stars, a signature ... - the inputs subsystem in <code>PAD/subs/inputs/</code> writes it, a field of its <code>{input:form}</code> as <code>{input:field}</code> is: a native field a form posts without any script, made more of by its script.
             </p>
             <pre><code>{input:slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}
 {input:datepicker 'arrival', label='Arrival', min='2026-01-01'/}
 {input:stars 'score', label='Score'/}
 </code></pre>
             <p>
-              <strong>Resolution:</strong> a PHP file <code>PAD/subs/inputs/types/&lt;name&gt;.php</code>, its script and style in <code>www/assets/inputs/</code>, the field written by <code>PAD/subs/inputs/input.php</code>: the files of <code>types/</code> are the kinds, and a kind is added by adding its file. Its items are read raw, as <code>{pad:input}</code>'s are - <code>label=</code>, <code>rules=</code>, <code>min=</code> are the field's, never an option of the engine. Every named tag requires its type prefix; other namespaces do not shadow it.
+              <strong>Resolution:</strong> a PHP file <code>PAD/subs/inputs/types/&lt;name&gt;.php</code>, its script and style in <code>www/assets/inputs/</code>, the field written by <code>PAD/subs/inputs/input.php</code>: the files of <code>types/</code> are the kinds, and a kind is added by adding its file. Its items are read raw, as <code>{input:field}</code>'s are - <code>label=</code>, <code>rules=</code>, <code>min=</code> are the field's, never an option of the engine. Every named tag requires its type prefix; other namespaces do not shadow it.
             </p>
             <h3>
               The handler
             </h3>
             <p>
-              <code>pad/types/input.php</code>: Type handler for a rich form field: {input:slider 'volume', min=0, max=100/}, or a bare tag naming a file of subs/inputs/types/ when nothing else has the name, {input:slider 'volume'/}. The kind is the tag's name, and the field is written by subs/inputs/input.php - run as a built-in tag's PHP half is run, types/_go/tag.php. Its items are read raw, as {pad:input}'s are (padParmsRaw, lib/attrs.php): label=, rules=, min= and every attribute are the field's, never an option of the engine - rows= of a markdown editor is no handling option.
+              <code>pad/types/input.php</code>: Type handler for a rich form field: {input:slider 'volume', min=0, max=100/}, or a bare tag naming a file of subs/inputs/types/ when nothing else has the name, {input:slider 'volume'/}. The kind is the tag's name, and the field is written by subs/inputs/input.php - run as a built-in tag's PHP half is run, types/_go/tag.php. Its items are read raw, as {input:field}'s are (padParmsRaw, lib/attrs.php): label=, rules=, min= and every attribute are the field's, never an option of the engine - rows= of a markdown editor is no handling option.
             </p>
           </section>
           <section class="block" aria-labelledby="members">
@@ -290,7 +290,7 @@
                 A rich form field
               </h3>
               <p class="example-about">
-                A slider, a native range field its script makes more of - standing in a {pad:form} it is posted with it.
+                A slider, a native range field its script makes more of - standing in a {input:form} it is posted with it.
               </p>
               <div class="example-grid">
                 <div class="cell">

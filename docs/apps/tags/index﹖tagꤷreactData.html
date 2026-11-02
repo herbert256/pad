@@ -240,8 +240,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'catalog'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'array'</span><span class="hl-brc">/}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'catalog'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'array'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Options
             </h3>
@@ -271,7 +271,7 @@
               Description
             </h2>
             <p>
-              <code>{pad:reactData id='products'/}</code> runs the provider <code>_providers/products.php</code> and writes <code>&lt;div id="products" data="..."&gt;&lt;/div&gt;</code>, the provider's result as JSON, HTML-escaped for the attribute. A React component mounted on the div reads it with <code>JSON.parse ( el.getAttribute ( 'data' ) )</code> - <code>getAttribute</code>, not <code>dataset.data</code>, which reads <code>data-data</code>.
+              <code>{widget:reactData id='products'/}</code> runs the provider <code>_providers/products.php</code> and writes <code>&lt;div id="products" data="..."&gt;&lt;/div&gt;</code>, the provider's result as JSON, HTML-escaped for the attribute. A React component mounted on the div reads it with <code>JSON.parse ( el.getAttribute ( 'data' ) )</code> - <code>getAttribute</code>, not <code>dataset.data</code>, which reads <code>data-data</code>.
             </p>
             <p>
               <code>provider=</code> names another file than the id; it must be a plain name, so no path outside <code>_providers/</code> can be run. The result keeps the types the provider gave it - numbers stay numbers, a text like <code>"007"</code> stays a text. It is also kept in <code>$padProviders</code> under the id, for a later provider. <code>type='check'</code> collapses it to 1 or 0.
@@ -295,11 +295,11 @@
                 <div class="cell">
                   <div class="cell-head">
                     <span>Template</span><span><span class="cell-file">examples/reactData/1-mount.src</span></span>
-                    <link rel="stylesheet" href="../_common/play.css"><a class="pad-play pad-live pad-play-inline pad-live-alone" href="/pad/live/#s=eyJzb3VyY2UiOiI8aDI+UHJvZHVjdHM8L2gyPlxue3BhZDpyZWFjdERhdGEgaWQ9J3Byb2R1Y3RzJy99XG48c2NyaXB0IHNyYz1cIntwYWQ6YXNzZXQgJ3Byb2R1Y3RzLmpzJy99XCIgdHlwZT1cIm1vZHVsZVwiPjwvc2NyaXB0PlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <link rel="stylesheet" href="../_common/play.css"><a class="pad-play pad-live pad-play-inline pad-live-alone" href="/pad/live/#s=eyJzb3VyY2UiOiI8aDI+UHJvZHVjdHM8L2gyPlxue3dpZGdldDpyZWFjdERhdGEgaWQ9J3Byb2R1Y3RzJy99XG48c2NyaXB0IHNyYz1cIntwYWQ6YXNzZXQgJ3Byb2R1Y3RzLmpzJy99XCIgdHlwZT1cIm1vZHVsZVwiPjwvc2NyaXB0PlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span>Products<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;script</span> <span class="hl-opt">src</span>=<span class="hl-str">"{pad:asset 'products.js'/}"</span> <span class="hl-opt">type</span>=<span class="hl-str">"module"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/script</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
               </div>
@@ -314,11 +314,11 @@
               <div class="example-grid is-static">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span><span class="cell-file">examples/reactData/2-provider.src</span><a class="pad-play pad-live pad-play-inline pad-live-alone" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnJlYWN0RGF0YSBpZD0nYmVzdFNlbGxlcnMnLCBwcm92aWRlcj0ncHJvZHVjdHMnLCB0eXBlPSdhcnJheScvfVxue3BhZDpyZWFjdERhdGEgaWQ9J2hhc1N0b2NrJywgcHJvdmlkZXI9J3N0b2NrJywgdHlwZT0nY2hlY2snL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <span>Template</span><span><span class="cell-file">examples/reactData/2-provider.src</span><a class="pad-play pad-live pad-play-inline pad-live-alone" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnJlYWN0RGF0YSBpZD0nYmVzdFNlbGxlcnMnLCBwcm92aWRlcj0ncHJvZHVjdHMnLCB0eXBlPSdhcnJheScvfVxue3dpZGdldDpyZWFjdERhdGEgaWQ9J2hhc1N0b2NrJywgcHJvdmlkZXI9J3N0b2NrJywgdHlwZT0nY2hlY2snL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'bestSellers'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'products'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'array'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'hasStock'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'stock'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'check'</span><span class="hl-brc">/}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'bestSellers'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'products'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'array'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'hasStock'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'stock'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'check'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
               </div>
             </div>

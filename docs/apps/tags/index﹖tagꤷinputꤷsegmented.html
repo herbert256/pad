@@ -255,7 +255,7 @@
               One of the 20 rich form fields of <a href="index%EF%B9%96tag%EA%A4%B7input.html"><code>input:*</code></a>, written <code>{input:segmented 'name', label='...'/}</code>.
             </p>
             <p>
-              One of a few choices shown side by side as one bar, the chosen one filled: a native radio group in a fieldset whose legend is the label, drawn as segments by its style alone, so it needs no script - Tab comes to the group once, the arrow keys move along it and choose, as in any radio group. The choices are options=, a list, or the rows of the store data= names - field= the field of a row they are read from, its first unless given - or the lines between the tags, as a combobox's; value= the choice made before a post. After a post it shows the choice posted - none when the form came back without one, and a posted value that is no choice is not shown: rules='required|in:...' holds the field to the list. The first choice has the field's id, the others the id with their place, size-2, as the boxes of <code>{pad:input}</code>'s group have.
+              One of a few choices shown side by side as one bar, the chosen one filled: a native radio group in a fieldset whose legend is the label, drawn as segments by its style alone, so it needs no script - Tab comes to the group once, the arrow keys move along it and choose, as in any radio group. The choices are options=, a list, or the rows of the store data= names - field= the field of a row they are read from, its first unless given - or the lines between the tags, as a combobox's; value= the choice made before a post. After a post it shows the choice posted - none when the form came back without one, and a posted value that is no choice is not shown: rules='required|in:...' holds the field to the list. The first choice has the field's id, the others the id with their place, size-2, as the boxes of <code>{input:field}</code>'s group have.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -274,16 +274,16 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file"></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:form</span> <span class="hl-str">'try'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:form</span> <span class="hl-str">'try'</span><span class="hl-brc">}</span>
   <span class="hl-brc">{</span><span class="hl-tag">input:segmented</span> <span class="hl-str">'size'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Size'</span>, <span class="hl-opt">options</span>=<span class="hl-str">'S, M, L, XL'</span><span class="hl-brc">/}</span>
   <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">/pad:form</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">/input:form</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
                     <span>Result</span><span></span>
-                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ3RyeSd9XG4gIHtpbnB1dDpzZWdtZW50ZWQgJ3NpemUnLCBsYWJlbD0nU2l6ZScsIG9wdGlvbnM9J1MsIE0sIEwsIFhMJy99XG4gIDxidXR0b24+U2VuZDwvYnV0dG9uPlxuey9wYWQ6Zm9ybX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ3RyeSd9XG4gIHtpbnB1dDpzZWdtZW50ZWQgJ3NpemUnLCBsYWJlbD0nU2l6ZScsIG9wdGlvbnM9J1MsIE0sIEwsIFhMJy99XG4gIDxidXR0b24+U2VuZDwvYnV0dG9uPlxuey9wYWQ6Zm9ybX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6Zm9ybSAndHJ5J31cbiAge2lucHV0OnNlZ21lbnRlZCAnc2l6ZScsIGxhYmVsPSdTaXplJywgb3B0aW9ucz0nUywgTSwgTCwgWEwnL31cbiAgPGJ1dHRvbj5TZW5kPC9idXR0b24+XG57L2lucHV0OmZvcm19XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6Zm9ybSAndHJ5J31cbiAge2lucHV0OnNlZ21lbnRlZCAnc2l6ZScsIGxhYmVsPSdTaXplJywgb3B0aW9ucz0nUywgTSwgTCwgWEwnL31cbiAgPGJ1dHRvbj5TZW5kPC9idXR0b24+XG57L2lucHV0OmZvcm19XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
@@ -305,7 +305,7 @@
             </h2>
             <ul class="list">
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{pad:input}</a> <span class="about">A form field with its label that refills from what its form sent and shows the error validation found for it.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{input:field}</a> <span class="about">A form field with its label that refills from what its form sent and shows the error validation found for it.</span>
               </li>
             </ul>
           </section>

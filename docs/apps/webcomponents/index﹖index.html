@@ -209,8 +209,8 @@ footer { padding: 10px 18px; border-top: 1px solid var(--line, #e3e6eb); font-si
     <span class="card-icon" aria-hidden="true">🃏</span>
     <span class="card-go" aria-hidden="true">→</span>
     <h3>Cards with slots</h3>
-    <p>{app:card title=&#039;Revenue&#039;} is a PAD custom tag that writes &lt;pad-card&gt; with its shadow root: encapsulated styles inlined by {pad:shadow css=}, named slots the browser fills from the light DOM - and not a line of JavaScript.</p>
-    <div class="chips"><code class="chip is-server">{pad:shadow}</code><code class="chip is-server">_tags/card.pad</code><code class="chip is-server">{pad:parms}</code><code class="chip is-client">shadowrootmode</code><code class="chip is-client">&lt;slot&gt;</code><code class="chip is-client">::slotted</code></div>
+    <p>{app:card title=&#039;Revenue&#039;} is a PAD custom tag that writes &lt;pad-card&gt; with its shadow root: encapsulated styles inlined by {widget:shadow css=}, named slots the browser fills from the light DOM - and not a line of JavaScript.</p>
+    <div class="chips"><code class="chip is-server">{widget:shadow}</code><code class="chip is-server">_tags/card.pad</code><code class="chip is-server">{pad:parms}</code><code class="chip is-client">shadowrootmode</code><code class="chip is-client">&lt;slot&gt;</code><code class="chip is-client">::slotted</code></div>
   </a>
   
 </div>
@@ -227,7 +227,7 @@ footer { padding: 10px 18px; border-top: 1px solid var(--line, #e3e6eb); font-si
     <span class="card-go" aria-hidden="true">→</span>
     <h3>Tabs, upgraded</h3>
     <p>The tabs are complete HTML when they arrive - the first panel shows. Once tabs.js defines &lt;pad-tabs&gt;, the element takes the root PAD rendered and adds clicks and arrow keys.</p>
-    <div class="chips"><code class="chip is-server">{pad:shadow}</code><code class="chip is-server">_tags/tabs.pad</code><code class="chip is-client">customElements.define</code><code class="chip is-client">this.shadowRoot</code></div>
+    <div class="chips"><code class="chip is-server">{widget:shadow}</code><code class="chip is-server">_tags/tabs.pad</code><code class="chip is-client">customElements.define</code><code class="chip is-client">this.shadowRoot</code></div>
   </a>
   
   <a class="card" href="index%EF%B9%96examples%EA%A4%B7rating.html">
@@ -242,8 +242,8 @@ footer { padding: 10px 18px; border-top: 1px solid var(--line, #e3e6eb); font-si
     <span class="card-icon" aria-hidden="true">🔢</span>
     <span class="card-go" aria-hidden="true">→</span>
     <h3>A field of a form</h3>
-    <p>&lt;pad-stepper&gt; is form-associated: ElementInternals gives the {pad:form} its value, the post carries it like any field, and padValidate checks it on the server.</p>
-    <div class="chips"><code class="chip is-server">{pad:form}</code><code class="chip is-server">padValidate</code><code class="chip is-server">padPosted</code><code class="chip is-client">formAssociated</code><code class="chip is-client">ElementInternals</code></div>
+    <p>&lt;pad-stepper&gt; is form-associated: ElementInternals gives the {input:form} its value, the post carries it like any field, and padValidate checks it on the server.</p>
+    <div class="chips"><code class="chip is-server">{input:form}</code><code class="chip is-server">padValidate</code><code class="chip is-server">padPosted</code><code class="chip is-client">formAssociated</code><code class="chip is-client">ElementInternals</code></div>
   </a>
   
   <a class="card" href="index%EF%B9%96examples%EA%A4%B7lit.html">

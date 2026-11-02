@@ -1,6 +1,6 @@
 <?php
 
-  // A broken UTF-8 byte in a {pad:toc}'s title - a visitor's value - is a stand-in character, as
+  // A broken UTF-8 byte in a {widget:toc}'s title - a visitor's value - is a stand-in character, as
   // {$t} shows it, where the JSON of the marker's options was nothing: the request ended,
   // and once the marker was sealed its digits stood in the page as text.
 

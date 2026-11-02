@@ -360,7 +360,7 @@
               A provider is a file of <code>pad/subs/embeds/types/</code> - the files there are the providers there are, and a provider is added by adding its file. It says the addresses it knows, the site its frame comes from and what the frame is given. <code>{embed:auto 'address'}</code> asks each of them, the ones that know their host first; the embed type names one - <code>{embed:vimeo '76979871'}</code> - and then reads a bare id of that provider as well. The type prefix is required. A file of the application - a video, a sound, a PDF - is an element of its own that loads nothing before it is played, or a frame of the application loaded lazily; nothing about it is another site's.
             </p>
             <p>
-              The frames need the providers' origins in a Content Security Policy's <code>frame-src</code>: <code>padEmbedSources()</code> lists the ones the files name - <code>https://www.youtube-nocookie.com https://player.vimeo.com ...</code> - and a PeerTube instance is added by hand. <code>thumbnail</code> shows YouTube's own picture as the poster, which asks Google's image server for it before the click, and needs <code>img-src https://i.ytimg.com</code>. For the video sites alone, with the poster of the site, <a href="index%EF%B9%96tag%EA%A4%B7video.html">{pad:video}</a> is the older form.
+              The frames need the providers' origins in a Content Security Policy's <code>frame-src</code>: <code>padEmbedSources()</code> lists the ones the files name - <code>https://www.youtube-nocookie.com https://player.vimeo.com ...</code> - and a PeerTube instance is added by hand. <code>thumbnail</code> shows YouTube's own picture as the poster, which asks Google's image server for it before the click, and needs <code>img-src https://i.ytimg.com</code>. For the video sites alone, with the poster of the site, <a href="index%EF%B9%96tag%EA%A4%B7video.html">{widget:video}</a> is the older form.
             </p>
             <p>
               A frame is given what the provider's own embed code gives it: the permissions of its <code>allow</code> and, where that code has one, its <code>sandbox</code> - Apple Music and Apple Podcasts are framed with the six tokens of Apple's, so their frame may do only what Apple's player needs.
@@ -576,7 +576,7 @@
             </h2>
             <ul class="list">
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7video.html">{pad:video}</a> <span class="about">Shows a YouTube or Vimeo video as its poster with a play button, loading the player only when pressed - or a video file as a video element.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7video.html">{widget:video}</a> <span class="about">Shows a YouTube or Vimeo video as its poster with a play button, loading the player only when pressed - or a video file as a video element.</span>
               </li>
               <li>
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7map.html">{pad:map}</a> <span class="about">Draws a choropleth map as inline SVG - every country, or every state or province of a country, coloured by a value of its row - of the world or one of its 26 regions.</span>

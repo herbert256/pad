@@ -250,9 +250,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'viridis'</span>, <span class="hl-opt">steps</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'okabe-ito'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Our chart colours'</span><span class="hl-brc">/}</span>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'viridis'</span>, <span class="hl-opt">steps</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'okabe-ito'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Our chart colours'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">chart:bar</span> <span class="hl-opt">data</span>=<span class="hl-str">'sales'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'north, south'</span>, <span class="hl-opt">palette</span>=<span class="hl-str">'viridis'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
@@ -262,7 +262,7 @@
                 <code>name</code>
               </dt>
               <dd>
-                The palette, a file of <code>pad/subs/palettes/types/</code>: <code>batlow</code>, <code>blues</code>, <code>brbg</code>, <code>cividis</code>, <code>dark2</code>, <code>earth</code>, <code>glasbey</code>, <code>greens</code>, <code>greys</code>, <code>inferno</code>, <code>magma</code>, <code>okabe-ito</code>, <code>oranges</code>, <code>paired</code>, <code>pastel</code>, <code>piyg</code>, <code>plasma</code>, <code>puor</code>, <code>rdbu</code>, <code>rdylbu</code>, <code>romao</code>, <code>tol-bright</code>, <code>tol-muted</code>, <code>tol-vibrant</code>, <code>turbo</code>, <code>vik</code>, <code>viridis</code>, <code>ylgnbu</code>, <code>ylorrd</code>. <code>padPalette ( 'viridis', 7 )</code> answers the same colours to a page's PHP.
+                The palette, a file of <code>pad/subs/themes/palettes/types/</code>: <code>batlow</code>, <code>blues</code>, <code>brbg</code>, <code>cividis</code>, <code>dark2</code>, <code>earth</code>, <code>glasbey</code>, <code>greens</code>, <code>greys</code>, <code>inferno</code>, <code>magma</code>, <code>okabe-ito</code>, <code>oranges</code>, <code>paired</code>, <code>pastel</code>, <code>piyg</code>, <code>plasma</code>, <code>puor</code>, <code>rdbu</code>, <code>rdylbu</code>, <code>romao</code>, <code>tol-bright</code>, <code>tol-muted</code>, <code>tol-vibrant</code>, <code>turbo</code>, <code>vik</code>, <code>viridis</code>, <code>ylgnbu</code>, <code>ylorrd</code>. <code>padPalette ( 'viridis', 7 )</code> answers the same colours to a page's PHP.
               </dd>
             </dl>
             <h3>
@@ -288,7 +288,7 @@
               Description
             </h2>
             <p>
-              <code>{pad:palette}</code> shows the colours of a palette as a row of swatches, each with its hex value written on it in black or white, whichever reads better. A palette is a file of <code>pad/subs/palettes/types/</code> - its name, its type and its colours - and the files there are the palettes there are; the subsystem is <code>pad/subs/palettes/</code>.
+              <code>{widget:palette}</code> shows the colours of a palette as a row of swatches, each with its hex value written on it in black or white, whichever reads better. A palette is a file of <code>pad/subs/themes/palettes/types/</code> - its name, its type and its colours - and the files there are the palettes there are; the subsystem is <code>pad/subs/themes/palettes/</code>.
             </p>
             <p>
               Four types. The sequential ones run from low to high: viridis, magma, plasma, inferno and cividis from matplotlib's published 256-colour tables, perceptually uniform, readable in grey and by colour-blind eyes, Fabio Crameri's batlow, made the same way, ColorBrewer's blues, greens, oranges and greys and its multi-hue ylgnbu and ylorrd, and Google's turbo, a smooth rainbow for reading a value off its hue - neither in grey nor for colour-blind eyes. The diverging ones meet in a light middle - ColorBrewer's rdbu, brbg, piyg, rdylbu and puor and Crameri's vik. The cyclic one goes round, for an angle, a direction, the hour or the month: Crameri's romaO, whose last colour is next to its first, so twelve steps of it are twelve colours, none twice. The categorical ones tell things apart: okabe-ito and Paul Tol's bright, muted and vibrant, made for every kind of colour vision, ColorBrewer's pastel, dark2 and paired - six pairs of a light and a dark of one hue, for categories that come in twos - PAD's own earth and, for many categories, glasbey's 32 colours, each as far from those before it as it can be.
@@ -325,13 +325,13 @@
                   <div class="cell-head">
                     <span>Template</span><span><span class="cell-file">examples/palette/1-viridis.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'viridis'</span>, <span class="hl-opt">steps</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'viridis'</span>, <span class="hl-opt">steps</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
                     <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7palette%EA%A4%B71-viridis.html">open alone</a></span>
-                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnBhbGV0dGUgJ3ZpcmlkaXMnLCBzdGVwcz03L31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnBhbGV0dGUgJ3ZpcmlkaXMnLCBzdGVwcz03L31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnBhbGV0dGUgJ3ZpcmlkaXMnLCBzdGVwcz03L31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnBhbGV0dGUgJ3ZpcmlkaXMnLCBzdGVwcz03L31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
@@ -354,12 +354,12 @@
                   <div class="cell-head">
                     <span>Template</span><span><span class="cell-file">examples/palette/2-okabe-ito.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'okabe-ito'</span><span class="hl-brc">/}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'okabe-ito'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7palette%EA%A4%B72-okabe-ito.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnBhbGV0dGUgJ29rYWJlLWl0bycvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnBhbGV0dGUgJ29rYWJlLWl0bycvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7palette%EA%A4%B72-okabe-ito.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnBhbGV0dGUgJ29rYWJlLWl0bycvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnBhbGV0dGUgJ29rYWJlLWl0bycvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
@@ -503,7 +503,7 @@ Q3,<span class="hl-num">51</span>,<span class="hl-num">27</span>,<span class="hl
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7chart%EA%A4%B7bar.html">{chart:bar}</a> <span class="about">Columns from a zero baseline.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7theme.html">{pad:theme}</a> <span class="about">The colours of the page swapped for a theme - 16 of them, from paper and sepia to a terminal, an ocean and a high-contrast one - or its content alone in a box of the theme.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7theme.html">{widget:theme}</a> <span class="about">The colours of the page swapped for a theme - 16 of them, from paper and sepia to a terminal, an ocean and a high-contrast one - or its content alone in a box of the theme.</span>
               </li>
               <li>
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7progress.html">{pad:progress}</a> <span class="about">Writes an accessible progress bar - the native progress element, styled, with its label and percentage - or a row of step dots.</span>

@@ -1,15 +1,15 @@
-{pad:form 'party', error}
-{pad:input 'current', type='password'/}
-{pad:input 'password', type='password', rules='required|different:current'/}
-{pad:input 'bottles', rules='multiple_of:6|max:120'/}
-{pad:input 'min_price'/}
-{pad:input 'max_price', rules='numeric|gt:min_price'/}
-{pad:input 'arrive', type='date'/}
-{pad:input 'leave', type='date', rules='after_or_equal:arrive'/}
-{pad:input 'toppings[]', type='checkbox', value='cheese', rules='required|min_items:2|max_items:3'/}
-{pad:input 'toppings[]', type='checkbox', value='olives'/}
-{pad:input 'toppings[]', type='checkbox', value='basil'/}
-{pad:input 'toppings[]', type='checkbox', value='onion'/}
-{pad:textarea 'note', rules='max_words:5'/}
-{/pad:form}
+{input:form 'party', error}
+{input:field 'current', type='password'/}
+{input:field 'password', type='password', rules='required|different:current'/}
+{input:field 'bottles', rules='multiple_of:6|max:120'/}
+{input:field 'min_price'/}
+{input:field 'max_price', rules='numeric|gt:min_price'/}
+{input:field 'arrive', type='date'/}
+{input:field 'leave', type='date', rules='after_or_equal:arrive'/}
+{input:field 'toppings[]', type='checkbox', value='cheese', rules='required|min_items:2|max_items:3'/}
+{input:field 'toppings[]', type='checkbox', value='olives'/}
+{input:field 'toppings[]', type='checkbox', value='basil'/}
+{input:field 'toppings[]', type='checkbox', value='onion'/}
+{input:textarea 'note', rules='max_words:5'/}
+{/input:form}
 {$partyState}

@@ -246,7 +246,7 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:tabs</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'One'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:tabs</span><span class="hl-brc">}</span>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:tabs</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'One'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:tabs</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">widget:tabs</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tabs</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">widget:tabs</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tabs</span><span class="hl-brc">}</span></code></pre>
           </section>
@@ -257,9 +257,9 @@
             <p>
               An interactive part of the page - tabs, an accordion, a carousel, a modal, a copy box, a poll ... - of the kind the tag names: the widgets subsystem in <code>PAD/subs/widgets/</code> builds it.
             </p>
-            <pre><code>{widget:tabs active=2}{pad:tab 'Overview'}...{/pad:tab}{pad:tab 'Specs'}...{/pad:tab}{/widget:tabs}
+            <pre><code>{widget:tabs active=2}{widget:tab 'Overview'}...{/widget:tab}{widget:tab 'Specs'}...{/widget:tab}{/widget:tabs}
 {widget:modal 'terms', title='Terms of sale'}...{/widget:modal}
-{widget:tabs}{pad:tab 'Overview'}...{/pad:tab}{/widget:tabs}
+{widget:tabs}{widget:tab 'Overview'}...{/widget:tab}{/widget:tabs}
 </code></pre>
             <p>
               <strong>Resolution:</strong> a PHP file <code>PAD/subs/widgets/types/&lt;name&gt;.php</code> (<code>padWidgetType()</code> in <code>PAD/lib/widget.php</code>), the widget's tag code; its functions in <code>PAD/subs/widgets/_lib/&lt;name&gt;.php</code>, its style and script in <code>www/assets/widgets/&lt;name&gt;.css</code> and <code>.js</code>. The files of <code>types/</code> are the widgets, and a widget is added by adding its files. Every named tag requires its type prefix; other namespaces do not shadow it.
@@ -291,7 +291,7 @@
                 A widget
               </h3>
               <p class="example-about">
-                Tabs without JavaScript, every {pad:tab} a panel.
+                Tabs without JavaScript, every {widget:tab} a panel.
               </p>
               <div class="example-grid">
                 <div class="cell">
@@ -299,15 +299,15 @@
                     <span>Template</span><span><span class="cell-file">examples/widget/1-tabs.pad</span></span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:tabs</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'Overview'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>What it is.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'Details'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>How it works.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'Overview'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>What it is.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'Details'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>How it works.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/widget:tabs</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
                     <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B71-tabs.html">open alone</a></span>
-                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRhYnN9XG4gIHtwYWQ6dGFiICdPdmVydmlldyd9PHA+V2hhdCBpdCBpcy48L3A+ey9wYWQ6dGFifVxuICB7cGFkOnRhYiAnRGV0YWlscyd9PHA+SG93IGl0IHdvcmtzLjwvcD57L3BhZDp0YWJ9XG57L3dpZGdldDp0YWJzfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRhYnN9XG4gIHtwYWQ6dGFiICdPdmVydmlldyd9PHA+V2hhdCBpdCBpcy48L3A+ey9wYWQ6dGFifVxuICB7cGFkOnRhYiAnRGV0YWlscyd9PHA+SG93IGl0IHdvcmtzLjwvcD57L3BhZDp0YWJ9XG57L3dpZGdldDp0YWJzfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRhYnN9XG4gIHt3aWRnZXQ6dGFiICdPdmVydmlldyd9PHA+V2hhdCBpdCBpcy48L3A+ey93aWRnZXQ6dGFifVxuICB7d2lkZ2V0OnRhYiAnRGV0YWlscyd9PHA+SG93IGl0IHdvcmtzLjwvcD57L3dpZGdldDp0YWJ9XG57L3dpZGdldDp0YWJzfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRhYnN9XG4gIHt3aWRnZXQ6dGFiICdPdmVydmlldyd9PHA+V2hhdCBpdCBpcy48L3A+ey93aWRnZXQ6dGFifVxuICB7d2lkZ2V0OnRhYiAnRGV0YWlscyd9PHA+SG93IGl0IHdvcmtzLjwvcD57L3dpZGdldDp0YWJ9XG57L3dpZGdldDp0YWJzfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">

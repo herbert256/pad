@@ -1,7 +1,7 @@
 {pad:meta title='Multiselect'/}
 {include:about/}
 
-{pad:form 'try', class='inputs-try', error}
+{input:form 'try', class='inputs-try', error}
   {input:multiselect 'interests', label='Interests', options='PHP, Maps, Music, Charts, Games, Forms', value='PHP, Maps', rules='required|in:PHP,Maps,Music,Charts,Games,Forms'/}
   {input:multiselect 'days', label='Days', rules='in:Monday,Tuesday,Wednesday,Thursday,Friday'}
     Monday
@@ -11,7 +11,7 @@
     Friday
   {/input:multiselect}
   <button class="inputs-send">Send</button>
-{/pad:form}
+{/input:form}
 
 {include:received/}
 

@@ -15,14 +15,14 @@
   </div>
 
   <div class="hero-code">
-{pad:highlight 'pad'}
+{widget:highlight 'pad'}
 <div x-data="{^profile}">          <!-- $profile from the page's PHP -->
   <h2 x-text="name"></h2>
   <button @click="likes++">
     ♥ <span x-text="likes"></span>
   </button>
 </div>
-{/pad:highlight}
+{/widget:highlight}
     <p class="small muted">The template holds no brace of Alpine's: the state is the JSON of a PHP array.</p>
   </div>
 

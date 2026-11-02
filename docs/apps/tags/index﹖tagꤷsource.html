@@ -264,9 +264,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:source</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:source</span> <span class="hl-str">'page'</span>, <span class="hl-opt">files</span>=<span class="hl-str">'_lib/orders.php, www:orders.js'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:source</span> <span class="hl-opt">only</span>=<span class="hl-str">'_tags/card.pad, www:card.js'</span><span class="hl-brc">/}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:source</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:source</span> <span class="hl-str">'page'</span>, <span class="hl-opt">files</span>=<span class="hl-str">'_lib/orders.php, www:orders.js'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:source</span> <span class="hl-opt">only</span>=<span class="hl-str">'_tags/card.pad, www:card.js'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -301,7 +301,7 @@
               Description
             </h2>
             <p>
-              <code>{pad:source}</code> reads the template and the PHP of a page and shows them as tabs, each file coloured as <a href="index%EF%B9%96tag%EA%A4%B7highlight.html"><code>{pad:highlight}</code></a> colours it. Because the code is read from the files that run, a page that explains itself can never show a sample that has drifted from what it does. Without a parameter it is the page being rendered - inside a <code>{pad:page}</code>, the page that <code>{pad:page}</code> renders.
+              <code>{widget:source}</code> reads the template and the PHP of a page and shows them as tabs, each file coloured as <a href="index%EF%B9%96tag%EA%A4%B7highlight.html"><code>{widget:highlight}</code></a> colours it. Because the code is read from the files that run, a page that explains itself can never show a sample that has drifted from what it does. Without a parameter it is the page being rendered - inside a <code>{pad:page}</code>, the page that <code>{pad:page}</code> renders.
             </p>
             <p>
               <code>files=</code> adds more files after the page's, as a text with commas: a path of the application (<code>_lib/orders.php</code>, <code>_tags/card.pad</code>) or <code>www:</code> followed by a file of the application's <code>www/</code> directory (<code>www:orders.js</code>). <code>only=</code> shows its files alone. A label carries <code>data-side="server"</code> for a file of the application and <code>"client"</code> for one under <code>www/</code> - what runs on the server, and what the browser gets.
@@ -310,7 +310,7 @@
               The tabs are a radio button and a label per file, then a panel per file, and work by CSS alone. The default look is written once a page under <code>:where()</code>, so the page's own CSS wins: style <code>.pad-source</code>, <code>.pad-source &gt; label</code> and <code>.pad-source-panel</code>.
             </p>
             <p>
-              It follows the file rule of <code>{pad:highlight file=}</code>: never a file outside the application or its <code>www/</code> directory, under <code>_config/</code> or a dotfile. Such a file, one that is not there, and a page that has neither a template nor PHP are errors.
+              It follows the file rule of <code>{widget:highlight file=}</code>: never a file outside the application or its <code>www/</code> directory, under <code>_config/</code> or a dotfile. Such a file, one that is not there, and a page that has neither a template nor PHP are errors.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -330,7 +330,7 @@
                     <span>Template</span><span><span class="cell-file">examples/source/1-self.pad</span></span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$greeting</span><span class="hl-brc">}</span>, <span class="hl-brc">{</span><span class="hl-var">$visitor</span><span class="hl-brc">}</span>!<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:source</span><span class="hl-brc">/}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">widget:source</span><span class="hl-brc">/}</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/source/1-self.php</span>
                   </div>
@@ -344,8 +344,8 @@
                 <div class="cell">
                   <div class="cell-head">
                     <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7source%EA%A4%B71-self.html">open alone</a></span>
-                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57JGdyZWV0aW5nfSwgeyR2aXNpdG9yfSE8L3A+XG57cGFkOnNvdXJjZS99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGdyZWV0aW5nID0gJ0dvb2QgbW9ybmluZyc7XG4gICR2aXNpdG9yICA9ICdBbmEnO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57JGdyZWV0aW5nfSwgeyR2aXNpdG9yfSE8L3A+XG57cGFkOnNvdXJjZS99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGdyZWV0aW5nID0gJ0dvb2QgbW9ybmluZyc7XG4gICR2aXNpdG9yICA9ICdBbmEnO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57JGdyZWV0aW5nfSwgeyR2aXNpdG9yfSE8L3A+XG57d2lkZ2V0OnNvdXJjZS99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGdyZWV0aW5nID0gJ0dvb2QgbW9ybmluZyc7XG4gICR2aXNpdG9yICA9ICdBbmEnO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57JGdyZWV0aW5nfSwgeyR2aXNpdG9yfSE8L3A+XG57d2lkZ2V0OnNvdXJjZS99XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGdyZWV0aW5nID0gJ0dvb2QgbW9ybmluZyc7XG4gICR2aXNpdG9yICA9ICdBbmEnO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
@@ -357,7 +357,7 @@
                       <div class="pad-source-panel">
                         <pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-brc">{</span><span class="hl-tag">pad:meta</span> <span class="hl-opt">title</span>=<span class="hl-str">'The page itself'</span>, <span class="hl-opt">about</span>=<span class="hl-str">'Without a parameter: the template and the PHP of the page asked for, as tabs.'</span><span class="hl-brc">/}</span></span>
 <span class="hl-line" data-line="2"><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$greeting</span><span class="hl-brc">}</span>, <span class="hl-brc">{</span><span class="hl-var">$visitor</span><span class="hl-brc">}</span>!<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
-<span class="hl-line" data-line="3"><span class="hl-brc">{</span><span class="hl-tag">pad:source</span><span class="hl-brc">/}</span></span></code></pre>
+<span class="hl-line" data-line="3"><span class="hl-brc">{</span><span class="hl-tag">widget:source</span><span class="hl-brc">/}</span></span></code></pre>
                       </div>
                       <div class="pad-source-panel">
                         <pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
@@ -384,12 +384,12 @@
                   <div class="cell-head">
                     <span>Template</span><span><span class="cell-file">examples/source/2-files.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:source</span> <span class="hl-str">'examples/source/1-self'</span>, <span class="hl-opt">files</span>=<span class="hl-str">'_lang/en.json'</span><span class="hl-brc">/}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:source</span> <span class="hl-str">'examples/source/1-self'</span>, <span class="hl-opt">files</span>=<span class="hl-str">'_lang/en.json'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7source%EA%A4%B72-files.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSAnZXhhbXBsZXMvc291cmNlLzEtc2VsZicsIGZpbGVzPSdfbGFuZy9lbi5qc29uJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSAnZXhhbXBsZXMvc291cmNlLzEtc2VsZicsIGZpbGVzPSdfbGFuZy9lbi5qc29uJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7source%EA%A4%B72-files.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnNvdXJjZSAnZXhhbXBsZXMvc291cmNlLzEtc2VsZicsIGZpbGVzPSdfbGFuZy9lbi5qc29uJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnNvdXJjZSAnZXhhbXBsZXMvc291cmNlLzEtc2VsZicsIGZpbGVzPSdfbGFuZy9lbi5qc29uJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
@@ -398,7 +398,7 @@
                       <div class="pad-source-panel">
                         <pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-brc">{</span><span class="hl-tag">pad:meta</span> <span class="hl-opt">title</span>=<span class="hl-str">'The page itself'</span>, <span class="hl-opt">about</span>=<span class="hl-str">'Without a parameter: the template and the PHP of the page asked for, as tabs.'</span><span class="hl-brc">/}</span></span>
 <span class="hl-line" data-line="2"><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$greeting</span><span class="hl-brc">}</span>, <span class="hl-brc">{</span><span class="hl-var">$visitor</span><span class="hl-brc">}</span>!<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
-<span class="hl-line" data-line="3"><span class="hl-brc">{</span><span class="hl-tag">pad:source</span><span class="hl-brc">/}</span></span></code></pre>
+<span class="hl-line" data-line="3"><span class="hl-brc">{</span><span class="hl-tag">widget:source</span><span class="hl-brc">/}</span></span></code></pre>
                       </div>
                       <div class="pad-source-panel">
                         <pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
@@ -433,12 +433,12 @@
                   <div class="cell-head">
                     <span>Template</span><span><span class="cell-file">examples/source/3-only.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:source</span> <span class="hl-opt">only</span>=<span class="hl-str">'examples/source/1-self.php, _lang/en.json'</span><span class="hl-brc">/}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:source</span> <span class="hl-opt">only</span>=<span class="hl-str">'examples/source/1-self.php, _lang/en.json'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7source%EA%A4%B73-only.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSBvbmx5PSdleGFtcGxlcy9zb3VyY2UvMS1zZWxmLnBocCwgX2xhbmcvZW4uanNvbicvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNvdXJjZSBvbmx5PSdleGFtcGxlcy9zb3VyY2UvMS1zZWxmLnBocCwgX2xhbmcvZW4uanNvbicvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7source%EA%A4%B73-only.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnNvdXJjZSBvbmx5PSdleGFtcGxlcy9zb3VyY2UvMS1zZWxmLnBocCwgX2xhbmcvZW4uanNvbicvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnNvdXJjZSBvbmx5PSdleGFtcGxlcy9zb3VyY2UvMS1zZWxmLnBocCwgX2xhbmcvZW4uanNvbicvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
@@ -472,7 +472,7 @@
             </h2>
             <ul class="list">
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7highlight.html">{pad:highlight}</a> <span class="about">Colours source code on the server - PAD, PHP, HTML, CSS, JavaScript, JSON, YAML, SQL or shell - with optional line numbers and marked lines.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7highlight.html">{widget:highlight}</a> <span class="about">Colours source code on the server - PAD, PHP, HTML, CSS, JavaScript, JSON, YAML, SQL or shell - with optional line numbers and marked lines.</span>
               </li>
               <li>
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7tabs.html">{widget:tabs}</a> <span class="about">Tabs without JavaScript: a radio button and a label per tab, the CSS shows the panel of the checked one.</span>

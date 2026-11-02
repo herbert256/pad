@@ -5,10 +5,10 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{pad:lorem/}
-{pad:lorem words=4/}
-{pad:lorem sentences=2, seed=7/}
-{pad:lorem paragraphs=3, sentences=4, varied/}
+{widget:lorem/}
+{widget:lorem words=4/}
+{widget:lorem sentences=2, seed=7/}
+{widget:lorem paragraphs=3, sentences=4, varied/}
 PAD;
 
   $tagParms   = [];

@@ -249,9 +249,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:highlight</span> <span class="hl-str">'lang'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:highlight</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:highlight</span> <span class="hl-str">'lang'</span>, lines, <span class="hl-opt">mark</span>=<span class="hl-str">'3, 5-7'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:highlight</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:highlight</span> <span class="hl-opt">file</span>=<span class="hl-str">'_data/products.json'</span><span class="hl-brc">/}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:highlight</span> <span class="hl-str">'lang'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:highlight</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:highlight</span> <span class="hl-str">'lang'</span>, lines, <span class="hl-opt">mark</span>=<span class="hl-str">'3, 5-7'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:highlight</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:highlight</span> <span class="hl-opt">file</span>=<span class="hl-str">'_data/products.json'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -292,7 +292,7 @@
               Description
             </h2>
             <p>
-              <code>{pad:highlight 'php'}</code> ... <code>{/pad:highlight}</code> writes its content as coloured source code: every piece HTML-escaped and wrapped in a <code>&lt;span class="hl-..."&gt;</code> - comments, strings, numbers, keywords, variables, tags, attributes, functions - inside <code>&lt;pre class="pad-highlight" data-lang="php"&gt;&lt;code&gt;</code>. It is done on the server by <code>lib/highlight.php</code>; no JavaScript library is loaded.
+              <code>{widget:highlight 'php'}</code> ... <code>{/widget:highlight}</code> writes its content as coloured source code: every piece HTML-escaped and wrapped in a <code>&lt;span class="hl-..."&gt;</code> - comments, strings, numbers, keywords, variables, tags, attributes, functions - inside <code>&lt;pre class="pad-highlight" data-lang="php"&gt;&lt;code&gt;</code>. It is done on the server by <code>lib/highlight.php</code>; no JavaScript library is loaded.
             </p>
             <p>
               The content is taken as it stands, before the engine walks it: the braces of PHP, CSS, JSON or of PAD itself need no <a href="index%EF%B9%96tag%EA%A4%B7ignore.html"><code>{pad:ignore}</code></a>, and a field inside is shown rather than resolved. The indent the lines share is taken off, so the sample can be indented with the template. One exception: a <code>{# comment #}</code> is gone before any tag sees it, so a PAD sample keeps none.
@@ -301,7 +301,7 @@
               <code>file=</code> colours a file of the application instead of the content - its language from the extension unless the first parameter says otherwise. It never reads a file outside the application, under <code>_config/</code> or a dotfile; such a name, or one that is not there, is a strict error, as is a language that does not exist. <code>lines</code> numbers the lines and <code>mark</code> sets some apart.
             </p>
             <p>
-              The default colours are written once a page under <code>:where()</code>, following the page's <code>color-scheme</code>, so the page's own CSS wins. The <code>highlight</code> pipe does the same for a value - <code>{$query | highlight('sql')}</code> - and <a href="index%EF%B9%96tag%EA%A4%B7source.html"><code>{pad:source}</code></a> shows the files behind a page as tabs, each coloured this way.
+              The default colours are written once a page under <code>:where()</code>, following the page's <code>color-scheme</code>, so the page's own CSS wins. The <code>highlight</code> pipe does the same for a value - <code>{$query | highlight('sql')}</code> - and <a href="index%EF%B9%96tag%EA%A4%B7source.html"><code>{widget:source}</code></a> shows the files behind a page as tabs, each coloured this way.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -320,7 +320,7 @@
                   <div class="cell-head">
                     <span>Template</span><span><span class="cell-file">examples/highlight/1-php.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:highlight</span> <span class="hl-str">'php'</span>, lines, <span class="hl-opt">mark</span>=<span class="hl-str">'4'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:highlight</span> <span class="hl-str">'php'</span>, lines, <span class="hl-opt">mark</span>=<span class="hl-str">'4'</span><span class="hl-brc">}</span>
   &lt;<span class="hl-var">?php</span>
     function total ( <span class="hl-var">$rows</span> ) <span class="hl-brc">{</span>
       <span class="hl-var">$sum</span> = <span class="hl-num">0</span>;
@@ -328,13 +328,13 @@
       return <span class="hl-var">$sum</span>;
     <span class="hl-brc">}</span>
   ?<span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">/pad:highlight</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:highlight</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
                     <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7highlight%EA%A4%B71-php.html">open alone</a></span>
-                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmhpZ2hsaWdodCAncGhwJywgbGluZXMsIG1hcms9JzQnfVxuICA8P3BocFxuICAgIGZ1bmN0aW9uIHRvdGFsICggJHJvd3MgKSB7XG4gICAgICAkc3VtID0gMDtcbiAgICAgIGZvcmVhY2ggKCAkcm93cyBhcyAkcm93ICkgJHN1bSArPSAkcm93IFsncHJpY2UnXTtcbiAgICAgIHJldHVybiAkc3VtO1xuICAgIH1cbiAgPz5cbnsvcGFkOmhpZ2hsaWdodH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmhpZ2hsaWdodCAncGhwJywgbGluZXMsIG1hcms9JzQnfVxuICA8P3BocFxuICAgIGZ1bmN0aW9uIHRvdGFsICggJHJvd3MgKSB7XG4gICAgICAkc3VtID0gMDtcbiAgICAgIGZvcmVhY2ggKCAkcm93cyBhcyAkcm93ICkgJHN1bSArPSAkcm93IFsncHJpY2UnXTtcbiAgICAgIHJldHVybiAkc3VtO1xuICAgIH1cbiAgPz5cbnsvcGFkOmhpZ2hsaWdodH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OmhpZ2hsaWdodCAncGhwJywgbGluZXMsIG1hcms9JzQnfVxuICA8P3BocFxuICAgIGZ1bmN0aW9uIHRvdGFsICggJHJvd3MgKSB7XG4gICAgICAkc3VtID0gMDtcbiAgICAgIGZvcmVhY2ggKCAkcm93cyBhcyAkcm93ICkgJHN1bSArPSAkcm93IFsncHJpY2UnXTtcbiAgICAgIHJldHVybiAkc3VtO1xuICAgIH1cbiAgPz5cbnsvd2lkZ2V0OmhpZ2hsaWdodH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OmhpZ2hsaWdodCAncGhwJywgbGluZXMsIG1hcms9JzQnfVxuICA8P3BocFxuICAgIGZ1bmN0aW9uIHRvdGFsICggJHJvd3MgKSB7XG4gICAgICAkc3VtID0gMDtcbiAgICAgIGZvcmVhY2ggKCAkcm93cyBhcyAkcm93ICkgJHN1bSArPSAkcm93IFsncHJpY2UnXTtcbiAgICAgIHJldHVybiAkc3VtO1xuICAgIH1cbiAgPz5cbnsvd2lkZ2V0OmhpZ2hsaWdodH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
@@ -361,16 +361,16 @@
                   <div class="cell-head">
                     <span>Template</span><span><span class="cell-file">examples/highlight/2-pad.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:highlight</span> <span class="hl-str">'pad'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:highlight</span> <span class="hl-str">'pad'</span><span class="hl-brc">}</span>
   <span class="hl-brc">{</span><span class="hl-tag">array:orders</span> <span class="hl-opt">sort</span>=<span class="hl-str">'date'</span>, <span class="hl-opt">first</span>=<span class="hl-num">3</span><span class="hl-brc">}</span>
     <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$number</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$total</span> | money<span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">/array:orders</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">/pad:highlight</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:highlight</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7highlight%EA%A4%B72-pad.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmhpZ2hsaWdodCAncGFkJ31cbiAge2FycmF5Om9yZGVycyBzb3J0PSdkYXRlJywgZmlyc3Q9M31cbiAgICA8bGk+eyRudW1iZXJ9OiB7JHRvdGFsIHwgbW9uZXl9PC9saT5cbiAgey9hcnJheTpvcmRlcnN9XG57L3BhZDpoaWdobGlnaHR9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmhpZ2hsaWdodCAncGFkJ31cbiAge2FycmF5Om9yZGVycyBzb3J0PSdkYXRlJywgZmlyc3Q9M31cbiAgICA8bGk+eyRudW1iZXJ9OiB7JHRvdGFsIHwgbW9uZXl9PC9saT5cbiAgey9hcnJheTpvcmRlcnN9XG57L3BhZDpoaWdobGlnaHR9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7highlight%EA%A4%B72-pad.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OmhpZ2hsaWdodCAncGFkJ31cbiAge2FycmF5Om9yZGVycyBzb3J0PSdkYXRlJywgZmlyc3Q9M31cbiAgICA8bGk+eyRudW1iZXJ9OiB7JHRvdGFsIHwgbW9uZXl9PC9saT5cbiAgey9hcnJheTpvcmRlcnN9XG57L3dpZGdldDpoaWdobGlnaHR9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OmhpZ2hsaWdodCAncGFkJ31cbiAge2FycmF5Om9yZGVycyBzb3J0PSdkYXRlJywgZmlyc3Q9M31cbiAgICA8bGk+eyRudW1iZXJ9OiB7JHRvdGFsIHwgbW9uZXl9PC9saT5cbiAgey9hcnJheTpvcmRlcnN9XG57L3dpZGdldDpoaWdobGlnaHR9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
@@ -393,12 +393,12 @@
                   <div class="cell-head">
                     <span>Template</span><span><span class="cell-file">examples/highlight/3-file.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:highlight</span> <span class="hl-opt">file</span>=<span class="hl-str">'_lang/en.json'</span><span class="hl-brc">/}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:highlight</span> <span class="hl-opt">file</span>=<span class="hl-str">'_lang/en.json'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7highlight%EA%A4%B73-file.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmhpZ2hsaWdodCBmaWxlPSdfbGFuZy9lbi5qc29uJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmhpZ2hsaWdodCBmaWxlPSdfbGFuZy9lbi5qc29uJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7highlight%EA%A4%B73-file.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OmhpZ2hsaWdodCBmaWxlPSdfbGFuZy9lbi5qc29uJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OmhpZ2hsaWdodCBmaWxlPSdfbGFuZy9lbi5qc29uJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
@@ -419,10 +419,10 @@
             </h2>
             <ul class="list">
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7source.html">{pad:source}</a> <span class="about">Shows the files behind a page as tabs, each coloured as highlight colours it - the code shown is the code that runs.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7source.html">{widget:source}</a> <span class="about">Shows the files behind a page as tabs, each coloured as highlight colours it - the code shown is the code that runs.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7markdown.html">{pad:markdown}</a> <span class="about">Renders its content, or the value of its parameter, as Markdown and writes the HTML.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7markdown.html">{widget:markdown}</a> <span class="about">Renders its content, or the value of its parameter, as Markdown and writes the HTML.</span>
               </li>
               <li>
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7ignore.html">{pad:ignore}</a> <span class="about">Keeps PAD from reading the braces in its content as tags - for inline JavaScript, CSS, JSON and code samples.</span>

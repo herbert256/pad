@@ -1,10 +1,10 @@
 <?php
 
-  // The scripts and styles of an {pad:excerpt ..., html} text are left out in one pass: an
+  // The scripts and styles of an {widget:excerpt ..., html} text are left out in one pass: an
   // unclosed <script> before a megabyte of text emptied the excerpt (or ended the request),
   // and openers without a closer took seconds - every one scanned on to the end.
 
-  include_once PAD . 'tags/_lib/excerpt.php';
+  include_once PAD . 'subs/widgets/_lib/excerpt.php';
 
   $big   = '<p>Hello</p><script>' . str_repeat ( 'x', 1000000 );
   $start = hrtime ( TRUE );

@@ -257,7 +257,7 @@
               It is what inline code with braces needs. A <code>&lt;script&gt;</code> with an object literal, a <code>&lt;style&gt;</code> with its selector blocks, a JSON sample in a <code>&lt;pre&gt;</code> - without <code>{pad:ignore}</code> each <code>{ ... }</code> would be read as a tag, and the strict check would report it. External files are better still; the pair is for the few lines that belong in the page.
             </p>
             <p>
-              The same protection comes in two more forms. The <code>ignore</code> option on any tag wraps that tag's content in <code>{pad:ignore}</code>: <code>{pad:data 'config' ignore}</code>, <code>{pad:markdown ignore}</code>. The <code>ignore</code> pipe escapes a value: <code>{pad:echo $json | ignore/}</code>. For a single brace in text, <a href="index%EF%B9%96tag%EA%A4%B7open.html"><code>{pad:open}</code></a> and <a href="index%EF%B9%96tag%EA%A4%B7close.html"><code>{pad:close}</code></a> are enough. <a href="index%EF%B9%96tag%EA%A4%B7highlight.html"><code>{pad:highlight}</code></a> takes its content as it stands too, so a coloured code sample needs no <code>{pad:ignore}</code>.
+              The same protection comes in two more forms. The <code>ignore</code> option on any tag wraps that tag's content in <code>{pad:ignore}</code>: <code>{pad:data 'config' ignore}</code>, <code>{widget:markdown ignore}</code>. The <code>ignore</code> pipe escapes a value: <code>{pad:echo $json | ignore/}</code>. For a single brace in text, <a href="index%EF%B9%96tag%EA%A4%B7open.html"><code>{pad:open}</code></a> and <a href="index%EF%B9%96tag%EA%A4%B7close.html"><code>{pad:close}</code></a> are enough. <a href="index%EF%B9%96tag%EA%A4%B7highlight.html"><code>{widget:highlight}</code></a> takes its content as it stands too, so a coloured code sample needs no <code>{pad:ignore}</code>.
             </p>
             <p>
               An <code>{pad:ignore}</code> without its <code>{/pad:ignore}</code> protects nothing; the strict check names it rather than blaming some tag inside.
@@ -384,10 +384,10 @@ if ( user.role == 'admin' ) { show ( '{$secret}' ); }</pre>
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7close.html">{pad:close}</a> <span class="about">Writes a literal closing brace that the template engine does not read as the end of a tag.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7highlight.html">{pad:highlight}</a> <span class="about">Colours source code on the server - PAD, PHP, HTML, CSS, JavaScript, JSON, YAML, SQL or shell - with optional line numbers and marked lines.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7highlight.html">{widget:highlight}</a> <span class="about">Colours source code on the server - PAD, PHP, HTML, CSS, JavaScript, JSON, YAML, SQL or shell - with optional line numbers and marked lines.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7markdown.html">{pad:markdown}</a> <span class="about">Renders its content, or the value of its parameter, as Markdown and writes the HTML.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7markdown.html">{widget:markdown}</a> <span class="about">Renders its content, or the value of its parameter, as Markdown and writes the HTML.</span>
               </li>
             </ul>
           </section>

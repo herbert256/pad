@@ -318,7 +318,7 @@
               Description
             </h2>
             <p>
-              <code>{pad:spreadsheet}</code> computes a grid of cells on the server and writes it as a table, the column letters and row numbers around it. A cell starting with <code>=</code> is a formula in spreadsheet syntax - <code>=B2*C2</code>, <code>=SUM(D2:D9)</code>, <code>=VLOOKUP(E2,$I$2:$J$6,2)</code> - read by a parser of its own and computed with the functions of <code>pad/subs/formulas/types/</code>, which answer what Excel answers; the cells are worked through in the order the formulas need them, and a circle of references answers <code>#REF!</code> in each of its cells. The cells come from the content - a line a row, a comma between cells - or from <code>data=</code>.
+              <code>{pad:spreadsheet}</code> computes a grid of cells on the server and writes it as a table, the column letters and row numbers around it. A cell starting with <code>=</code> is a formula in spreadsheet syntax - <code>=B2*C2</code>, <code>=SUM(D2:D9)</code>, <code>=VLOOKUP(E2,$I$2:$J$6,2)</code> - read by a parser of its own and computed with the functions of <code>pad/subs/tables/formulas/types/</code>, which answer what Excel answers; the cells are worked through in the order the formulas need them, and a circle of references answers <code>#REF!</code> in each of its cells. The cells come from the content - a line a row, a comma between cells - or from <code>data=</code>.
             </p>
             <h3>
               Formulas, totals and formats
@@ -330,7 +330,7 @@
               Cells to edit
             </h3>
             <p>
-              <code>editable</code> makes cells fields. In a <a href="index%EF%B9%96tag%EA%A4%B7form.html"><code>{pad:form}</code></a> they post with it; in a <a href="index%EF%B9%96tag%EA%A4%B7live.html"><code>{pad:live}</code></a> region a change posts the region and it comes back computed, without a script of the page's own; anywhere else the sheet is a form of its own with a Recalculate button. Under the strict check a formula of the template that cannot be read is an error naming its cell and the place in it.
+              <code>editable</code> makes cells fields. In a <a href="index%EF%B9%96tag%EA%A4%B7form.html"><code>{input:form}</code></a> they post with it; in a <a href="index%EF%B9%96tag%EA%A4%B7live.html"><code>{pad:live}</code></a> region a change posts the region and it comes back computed, without a script of the page's own; anywhere else the sheet is a form of its own with a Recalculate button. Under the strict check a formula of the template that cannot be read is an error naming its cell and the place in it.
             </p>
             <h3>
               Spreadsheet functions
@@ -724,7 +724,7 @@
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7live.html">{pad:live}</a> <span class="about">A region of the page that re-renders on the server when something in it is clicked, submitted or changed, and swaps itself in.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{pad:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{input:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
               </li>
             </ul>
           </section>

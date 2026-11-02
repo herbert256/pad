@@ -22,8 +22,8 @@ PAD;
     'format'  => '<code>jpeg</code>, <code>png</code> or <code>webp</code> - default the source\'s, a GIF becoming a PNG.',
     'quality' => '1 to 100 for JPEG and WebP, default 80.',
     'alt'     => 'Required: the text for whoever cannot see the picture. <code>alt=\'\'</code> marks it as decoration.',
-    'filter'  => 'A comma list of the filters of <code>pad/subs/filters/types/</code>, applied in the order written: '
-               . implode ( ', ', array_map ( fn ( $filter ) => "<code>$filter</code>", padKinds ( 'filters' ) ) )
+    'filter'  => 'A comma list of the filters of <code>pad/subs/images/filters/types/</code>, applied in the order written: '
+               . implode ( ', ', array_map ( fn ( $filter ) => "<code>$filter</code>", padKinds ( 'images/filters' ) ) )
                . '. halftone and ascii write the picture as SVG dots or text; blurhash, thumbhash, dominant and lqip are placeholders behind the picture while it loads.',
     'colors'     => 'duotone, dither, atkinson, bayer, halftone, threshold: two hex colours, the dark one first - <code>colors=\'#123, #fc6\'</code>; edges: the ground, then the lines.',
     'levels'     => 'posterize: the steps of a channel (4); dither, atkinson, bayer: the greys (2).',

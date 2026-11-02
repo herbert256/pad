@@ -232,7 +232,7 @@
               pattern:
             </h1>
             <p class="tag-about">
-              A pattern, a file of pad/subs/patterns/types/ - a seeded SVG background, never bare.
+              A pattern, a file of pad/subs/images/patterns/types/ - a seeded SVG background, never bare.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#subsystems">Subsystems</a> <a class="chip chip-form" href="index%EF%B9%96order.html#prefixed">Type prefix required</a>
@@ -250,13 +250,13 @@
               Description
             </h2>
             <p>
-              A seeded SVG background or piece of generative art, the kind the tag names - the pattern subsystem in <code>PAD/subs/patterns/</code> draws it, the same bytes for the same options.
+              A seeded SVG background or piece of generative art, the kind the tag names - the pattern subsystem in <code>PAD/subs/images/patterns/</code> draws it, the same bytes for the same options.
             </p>
             <pre><code>{pattern:topography seed=7, levels=16/}
 {pattern:dots size=24, as='url'/}
 </code></pre>
             <p>
-              <strong>Resolution:</strong> a PHP file <code>PAD/subs/patterns/types/&lt;name&gt;.php</code> (<code>padPatternKinds ()</code> in <code>PAD/lib/pattern.php</code>) that answers its default size and colours, its own options and the function that draws it: the files there are the patterns, and a pattern is added by adding its file. The type is only ever written with its prefix - a pattern's name alone (dots, grid, waves) is no tag, the names being those of fields and pages as well.
+              <strong>Resolution:</strong> a PHP file <code>PAD/subs/images/patterns/types/&lt;name&gt;.php</code> (<code>padPatternKinds ()</code> in <code>PAD/lib/pattern.php</code>) that answers its default size and colours, its own options and the function that draws it: the files there are the patterns, and a pattern is added by adding its file. The type is only ever written with its prefix - a pattern's name alone (dots, grid, waves) is no tag, the names being those of fields and pages as well.
             </p>
             <h3>
               The handler

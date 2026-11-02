@@ -1,5 +1,5 @@
 
-<p><code>{pad:form 'contact'}</code> writes a <code>&lt;form method="post"&gt;</code> round its
+<p><code>{input:form 'contact'}</code> writes a <code>&lt;form method="post"&gt;</code> round its
 content that posts back to the page it stands in. A posting form carries two hidden fields:
 the visitor's CSRF token (<code>padCsrfToken</code>, the session starts on demand) and its
 own name (<code>padForm</code>). In the page's PHP, <code>padPosted('contact')</code> is TRUE
@@ -16,7 +16,7 @@ site gets none. A posting form holding a file field gets
 
 <h3>Fields that refill</h3>
 
-<p>The <a href="index%EF%B9%96tag%EA%A4%B7input.html">{pad:input}</a> and <a href="index%EF%B9%96tag%EA%A4%B7textarea.html">{pad:textarea}</a> fields
+<p>The <a href="index%EF%B9%96tag%EA%A4%B7input.html">{input:field}</a> and <a href="index%EF%B9%96tag%EA%A4%B7textarea.html">{input:textarea}</a> fields
 inside know which form they are in. When that form came back they show what was sent,
 escaped, and the message <code>padValidate</code> left for them - a field of the same name in
 another form of the page stays as it was. A GET form refills from the query string once it
@@ -39,9 +39,9 @@ run: they are rendered here through <code>{pad:page}</code>.</p>
 
 <p><code>client</code> checks the same rules in the browser as well, with the same messages,
 before the form leaves: the form gets <code>novalidate</code>, its rules in
-<code>data-pad-rules</code>, and the checker script (see <a href="index%EF%B9%96tag%EA%A4%B7validator.html">{pad:validator}</a>)
+<code>data-pad-rules</code>, and the checker script (see <a href="index%EF%B9%96tag%EA%A4%B7validator.html">{input:validator}</a>)
 follows it once a page. A form with <code>client</code> needs a name and at least one field
-with rules. The pair must close - a lone <code>{pad:form}</code> is an error under the strict
+with rules. The pair must close - a lone <code>{input:form}</code> is an error under the strict
 check.</p>
 
 

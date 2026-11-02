@@ -15,9 +15,9 @@
   // ImageOps.autocontrast ( preserve_tone=True ) gives for the same pixels, the photo's
   // thumbnails too.
 
-  include_once PAD . 'subs/filters/_lib/filter.php';
+  include_once PAD . 'subs/images/filters/_lib/filter.php';
 
-  $spec = include PAD . 'subs/filters/types/autocontrast.php';
+  $spec = include PAD . 'subs/images/filters/types/autocontrast.php';
 
   $ramp = function ( $from, $to, $extra = [] ) {
     $image = imagecreatetruecolor ( $to - $from + 1 + count ( $extra ), 1 );

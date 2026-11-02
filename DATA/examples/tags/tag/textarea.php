@@ -5,9 +5,9 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{pad:textarea 'message'/}
-{pad:textarea 'message', label='Message', value='', id='msg', rows=6, required/}
-{pad:textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
+{input:textarea 'message'/}
+{input:textarea 'message', label='Message', value='', id='msg', rows=6, required/}
+{input:textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
 PAD;
 
   $tagParms   = [
@@ -17,7 +17,7 @@ PAD;
     'label' => 'A <code>&lt;label for&gt;</code> before the text area, and the word its error message uses.',
     'value' => 'The text before anything was sent, escaped.',
     'id'    => 'The id, by default the name.',
-    'rules' => 'The field\'s rules - <code>required|max:2000</code> - read from the page\'s own template and checked before its PHP runs. Only in a named <code>{pad:form}</code> of the page itself.' ];
+    'rules' => 'The field\'s rules - <code>required|max:2000</code> - read from the page\'s own template and checked before its PHP runs. Only in a named <code>{input:form}</code> of the page itself.' ];
 
   $tagSee     = [ 'input', 'form', 'attrs' ];
 

@@ -240,8 +240,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:notifications</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:notifications</span> <span class="hl-opt">for</span>=<span class="hl-var">$id</span>, all<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$text</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$created</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$link</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:notifications</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:notifications</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:notifications</span> <span class="hl-opt">for</span>=<span class="hl-var">$id</span>, all<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$text</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$created</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$link</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:notifications</span><span class="hl-brc">}</span></code></pre>
             <h3>
               Options
             </h3>
@@ -265,7 +265,7 @@
               Description
             </h2>
             <p>
-              <code>padNotify ( $user, 'order-shipped', $data, [ 'database' ] )</code> keeps a notification on the site, under <code>DATA/notifications/</code>; <code>{pad:notifications/}</code> lists the unread ones of the user logged in, newest first - its title, its text, its time and a <em>Mark read</em> link. The link brings the page back with the id and a signature of the application, the recipient and the id, so it marks only that notification of that person. A guest gets nothing.
+              <code>padNotify ( $user, 'order-shipped', $data, [ 'database' ] )</code> keeps a notification on the site, under <code>DATA/notifications/</code>; <code>{widget:notifications/}</code> lists the unread ones of the user logged in, newest first - its title, its text, its time and a <em>Mark read</em> link. The link brings the page back with the id and a signature of the application, the recipient and the id, so it marks only that notification of that person. A guest gets nothing.
             </p>
             <p>
               As a pair the notifications are its rows - <code>id</code>, <code>name</code>, <code>title</code>, <code>text</code>, <code>html</code>, <code>url</code>, <code>created</code>, <code>read</code> and <code>link</code> - and the handling options apply to them. From PHP: <code>padNotifications ( $to, $all )</code> and <code>padNotificationRead ( $id, $to )</code>.
@@ -298,11 +298,11 @@
                 <div class="cell">
                   <div class="cell-head">
                     <span>Template</span><span><span class="cell-file">examples/notifications/1-list.src</span></span>
-                    <link rel="stylesheet" href="../_common/play.css"><a class="pad-play pad-live pad-play-inline pad-live-alone" href="/pad/live/#s=eyJzb3VyY2UiOiI8aDI+Tm90aWZpY2F0aW9uczwvaDI+XG57cGFkOm5vdGlmaWNhdGlvbnMvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <link rel="stylesheet" href="../_common/play.css"><a class="pad-play pad-live pad-play-inline pad-live-alone" href="/pad/live/#s=eyJzb3VyY2UiOiI8aDI+Tm90aWZpY2F0aW9uczwvaDI+XG57d2lkZ2V0Om5vdGlmaWNhdGlvbnMvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span>Notifications<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:notifications</span><span class="hl-brc">/}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">widget:notifications</span><span class="hl-brc">/}</span></code></pre>
                 </div>
               </div>
             </div>
@@ -316,15 +316,15 @@
               <div class="example-grid is-static">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span><span class="cell-file">examples/notifications/2-rows.src</span><a class="pad-play pad-live pad-play-inline pad-live-alone" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtwYWQ6bm90aWZpY2F0aW9ucyBhbGwsIGZpcnN0PTEwfVxuICAgIDxsaSBjbGFzcz1cIntwYWQ6aWYgJHJlYWR9cmVhZHsvcGFkOmlmfVwiPnskdGl0bGV9IC0geyRjcmVhdGVkfSB7cGFkOmlmICEgJHJlYWR9PGEgaHJlZj1cInskbGlua31cIj5kb25lPC9hPnsvcGFkOmlmfTwvbGk+XG4gIEBlbHNlQFxuICAgIDxsaT5Ob3RoaW5nIHlldC48L2xpPlxuICB7L3BhZDpub3RpZmljYXRpb25zfVxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <span>Template</span><span><span class="cell-file">examples/notifications/2-rows.src</span><a class="pad-play pad-live pad-play-inline pad-live-alone" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHt3aWRnZXQ6bm90aWZpY2F0aW9ucyBhbGwsIGZpcnN0PTEwfVxuICAgIDxsaSBjbGFzcz1cIntwYWQ6aWYgJHJlYWR9cmVhZHsvcGFkOmlmfVwiPnskdGl0bGV9IC0geyRjcmVhdGVkfSB7cGFkOmlmICEgJHJlYWR9PGEgaHJlZj1cInskbGlua31cIj5kb25lPC9hPnsvcGFkOmlmfTwvbGk+XG4gIEBlbHNlQFxuICAgIDxsaT5Ob3RoaW5nIHlldC48L2xpPlxuICB7L3dpZGdldDpub3RpZmljYXRpb25zfVxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:notifications</span> all, <span class="hl-opt">first</span>=<span class="hl-num">10</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">widget:notifications</span> all, <span class="hl-opt">first</span>=<span class="hl-num">10</span><span class="hl-brc">}</span>
     <span class="hl-htm">&lt;li</span> <span class="hl-opt">class</span>=<span class="hl-str">"{pad:if $read}read{/pad:if}"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span> - <span class="hl-brc">{</span><span class="hl-var">$created</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">pad:if</span> ! <span class="hl-var">$read</span><span class="hl-brc">}</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"{$link}"</span><span class="hl-htm">&gt;</span>done<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:if</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
   <span class="hl-var">@else@</span>
     <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>Nothing yet.<span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">/pad:notifications</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/widget:notifications</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
               </div>

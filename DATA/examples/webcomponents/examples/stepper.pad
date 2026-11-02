@@ -2,14 +2,14 @@
   <div class="callout is-good"><p><strong>Ordered:</strong> {$qty} × size {$size} - the stepper's value came with the post like any field.</p></div>
 {/pad:if}
 
-{pad:form 'order', error, class='stack'}
+{input:form 'order', error, class='stack'}
   <label for="qty">Quantity</label>
   {app:stepper name='qty', value=$qty, min=1, max=12/}
   {pad:if $qtyError}<span class="error">{$qtyError}</span>{/pad:if}
 
-  {pad:input 'size', label='Size - s, m or l', class='input', value=$size/}
+  {input:field 'size', label='Size - s, m or l', class='input', value=$size/}
 
   <button>Order</button>
-{/pad:form}
+{/input:form}
 
 <script type="module" src="{$padRoot}webcomponents/elements/stepper.js"></script>

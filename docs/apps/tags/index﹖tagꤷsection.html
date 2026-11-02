@@ -274,7 +274,7 @@
                 <code>kind after colon</code>
               </dt>
               <dd>
-                The section, a file of <code>pad/subs/sections/types/</code>: <code>agenda</code>, <code>blog</code>, <code>changelog</code>, <code>comparison</code>, <code>contact</code>, <code>cta</code>, <code>downloads</code>, <code>faq</code>, <code>features</code>, <code>footer</code>, <code>gallery</code>, <code>hero</code>, <code>highlights</code>, <code>item</code>, <code>logos</code>, <code>newsletter</code>, <code>pricing</code>, <code>stats</code>, <code>steps</code>, <code>team</code>, <code>testimonials</code>. The section: prefix selects it - <code>{section:hero}</code> - and that prefix is always written: a section is never reached bare, as hero, team and footer are the names of fields and pages.
+                The section, a file of <code>pad/subs/widgets/sections/types/</code>: <code>agenda</code>, <code>blog</code>, <code>changelog</code>, <code>comparison</code>, <code>contact</code>, <code>cta</code>, <code>downloads</code>, <code>faq</code>, <code>features</code>, <code>footer</code>, <code>gallery</code>, <code>hero</code>, <code>highlights</code>, <code>item</code>, <code>logos</code>, <code>newsletter</code>, <code>pricing</code>, <code>stats</code>, <code>steps</code>, <code>team</code>, <code>testimonials</code>. The section: prefix selects it - <code>{section:hero}</code> - and that prefix is always written: a section is never reached bare, as hero, team and footer are the names of fields and pages.
               </dd>
               <dt>
                 <code>heading</code>
@@ -408,7 +408,7 @@
               Description
             </h2>
             <p>
-              <code>{section:hero}</code> puts a block of a landing page on the page - a hero, the features, the prices, what customers say, the questions, a call to action, the numbers, the steps, the team, the logos, a newsletter form, the contact details, a gallery or the footer. Every section is a file of <code>pad/subs/sections/types/</code>, its style in <code>www/assets/sections/</code>; the files of <code>types/</code> are the sections there are. It is HTML and CSS only - the questions open and close by themselves, the forms post back without a script.
+              <code>{section:hero}</code> puts a block of a landing page on the page - a hero, the features, the prices, what customers say, the questions, a call to action, the numbers, the steps, the team, the logos, a newsletter form, the contact details, a gallery or the footer. Every section is a file of <code>pad/subs/widgets/sections/types/</code>, its style in <code>www/assets/sections/</code>; the files of <code>types/</code> are the sections there are. It is HTML and CSS only - the questions open and close by themselves, the forms post back without a script.
             </p>
             <p>
               The section is selected by its prefix and name: <code>{section:hero title='...'}</code>. The heading is its first parameter, or <code>title=</code>.
@@ -417,7 +417,7 @@
               Its parts come three ways, the first that has one winning: a <code>{pad:slot 'name'}</code> pair directly in its content, an option of the part's name, and - for the text under the heading - the rest of the content. A slot is template: it renders where the section stands, a field of the loop around it, a tag. A section that lists things - features, plans, quotes, questions, numbers, steps, people, logos, pictures, the footer's columns - takes its items from the rows of <code>data=</code>, by their fields, and from <code>{section:item}</code> pairs inside it: the item's first value is its name, its options its fields, its content its text - a plan's features a line each, a question's answer.
             </p>
             <p>
-              The newsletter and the contact form post back to the page as <code>{pad:form}</code> does - the session's token and the form's name, so the page's PHP asks <code>padPosted ( 'newsletter' )</code> and checks the post with <code>padValidate</code>; the fields refill and show the messages, and once the post came back right the section says thanks in the form's place.
+              The newsletter and the contact form post back to the page as <code>{input:form}</code> does - the session's token and the form's name, so the page's PHP asks <code>padPosted ( 'newsletter' )</code> and checks the post with <code>padValidate</code>; the fields refill and show the messages, and once the post came back right the section says thanks in the form's place.
             </p>
             <p>
               Each section is a size container: its layout follows the room it has, not the window. The colours are <code>--pad-section-bg</code>, <code>-panel</code>, <code>-text</code>, <code>-soft</code>, <code>-dim</code>, <code>-line</code>, <code>-accent</code>, <code>-accent-text</code> and <code>-accent-soft</code>, falling back to the frame's palette, so a theme colours them; <code>--pad-section-hero</code>, <code>-radius</code>, <code>-max</code>, <code>-font</code> and <code>-heading-font</code> the rest. The style is written once per page with the CSP nonce.
@@ -681,7 +681,7 @@
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7tabs.html">{widget:tabs}</a> <span class="about">Tabs without JavaScript: a radio button and a label per tab, the CSS shows the panel of the checked one.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{pad:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{input:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
               </li>
               <li>
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7icon%EA%A4%B7star.html">{icon:star}</a> <span class="about">The star icon - an outline on a grid of 24, drawn in the colour of its text.</span>

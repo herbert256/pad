@@ -2,8 +2,8 @@
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; max-width: 640px">
   {sequence:range '1..6', name='card'}
     <div style="border: 1px solid rgba(128,128,128,.35); border-radius: 10px; padding: 12px 14px">
-      <strong>{pad:lorem words=2, seed=$card, varied/}</strong>
-      <p style="margin: 6px 0 0; font-size: 14px; opacity: .8">{pad:lorem words=18, seed=$card + 100, varied/}</p>
+      <strong>{widget:lorem words=2, seed=$card, varied/}</strong>
+      <p style="margin: 6px 0 0; font-size: 14px; opacity: .8">{widget:lorem words=18, seed=$card + 100, varied/}</p>
     </div>
   {/sequence:range}
 </div>

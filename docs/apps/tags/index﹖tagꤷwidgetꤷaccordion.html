@@ -234,7 +234,7 @@
               <span class="brace">{</span>widget:accordion<span class="brace">}</span>
             </h1>
             <p class="tag-about">
-              Every {pad:tab} a &lt;details&gt; with its label as the &lt;summary&gt;.
+              Every {widget:tab} a &lt;details&gt; with its label as the &lt;summary&gt;.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#kind-widget">Widgets</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
@@ -244,17 +244,17 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:accordion</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'Question'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:accordion</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:accordion</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'Question'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:accordion</span><span class="hl-brc">}</span></code></pre>
           </section>
           <section class="block prose" aria-labelledby="description">
             <h2 id="description">
               Description
             </h2>
             <p>
-              One of the 17 widgets of <a href="index%EF%B9%96tag%EA%A4%B7widget.html"><code>widget:*</code></a>, written <code>{widget:accordion}</code>{pad:tab 'Question'}...{/pad:tab}{/widget:accordion}.
+              One of the 17 widgets of <a href="index%EF%B9%96tag%EA%A4%B7widget.html"><code>widget:*</code></a>, written <code>{widget:accordion}</code>{widget:tab 'Question'}...{/widget:tab}{/widget:accordion}.
             </p>
             <p>
-              <code>{widget:accordion}</code><code>{pad:tab 'Question'}</code>...<code>{/pad:tab}</code><code>{/widget:accordion}</code> - every <code>{pad:tab}</code> a &lt;details&gt; with its label as the &lt;summary&gt;: opened and closed by the browser, no JavaScript. single lets one item be open at a time (the exclusive accordion of HTML, a shared name); open= names the item open at first - its number from 1 or its label - and open alone opens them all. subs/widgets/_lib/accordion.php; the <code>{pad:tab}</code>s are collected as <code>{widget:tabs}</code> collects them, subs/widgets/_lib/tabs.php.
+              <code>{widget:accordion}</code><code>{widget:tab 'Question'}</code>...<code>{/widget:tab}</code><code>{/widget:accordion}</code> - every <code>{widget:tab}</code> a &lt;details&gt; with its label as the &lt;summary&gt;: opened and closed by the browser, no JavaScript. single lets one item be open at a time (the exclusive accordion of HTML, a shared name); open= names the item open at first - its number from 1 or its label - and open alone opens them all. subs/widgets/_lib/accordion.php; the <code>{widget:tab}</code>s are collected as <code>{widget:tabs}</code> collects them, subs/widgets/_lib/tabs.php.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -274,22 +274,22 @@
                     <span>Template</span><span class="cell-file">examples/widget/accordion-1-faq.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:accordion</span> single, <span class="hl-opt">open</span>=<span class="hl-num">1</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'When will my order arrive?'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'When will my order arrive?'</span><span class="hl-brc">}</span>
     <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Orders placed before <span class="hl-num">22</span>:<span class="hl-num">00</span> on a working day are delivered the next day.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'Can I return something?'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'Can I return something?'</span><span class="hl-brc">}</span>
     <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Yes - within <span class="hl-num">30</span> days, unused and in its box.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'Is there a warranty?'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'Is there a warranty?'</span><span class="hl-brc">}</span>
     <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Two years on every appliance.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/widget:accordion</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
                     <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7accordion-1-faq.html">open alone</a></span>
-                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OmFjY29yZGlvbiBzaW5nbGUsIG9wZW49MX1cbiAge3BhZDp0YWIgJ1doZW4gd2lsbCBteSBvcmRlciBhcnJpdmU/J31cbiAgICA8cD5PcmRlcnMgcGxhY2VkIGJlZm9yZSAyMjowMCBvbiBhIHdvcmtpbmcgZGF5IGFyZSBkZWxpdmVyZWQgdGhlIG5leHQgZGF5LjwvcD5cbiAgey9wYWQ6dGFifVxuICB7cGFkOnRhYiAnQ2FuIEkgcmV0dXJuIHNvbWV0aGluZz8nfVxuICAgIDxwPlllcyAtIHdpdGhpbiAzMCBkYXlzLCB1bnVzZWQgYW5kIGluIGl0cyBib3guPC9wPlxuICB7L3BhZDp0YWJ9XG4gIHtwYWQ6dGFiICdJcyB0aGVyZSBhIHdhcnJhbnR5Pyd9XG4gICAgPHA+VHdvIHllYXJzIG9uIGV2ZXJ5IGFwcGxpYW5jZS48L3A+XG4gIHsvcGFkOnRhYn1cbnsvd2lkZ2V0OmFjY29yZGlvbn1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OmFjY29yZGlvbiBzaW5nbGUsIG9wZW49MX1cbiAge3BhZDp0YWIgJ1doZW4gd2lsbCBteSBvcmRlciBhcnJpdmU/J31cbiAgICA8cD5PcmRlcnMgcGxhY2VkIGJlZm9yZSAyMjowMCBvbiBhIHdvcmtpbmcgZGF5IGFyZSBkZWxpdmVyZWQgdGhlIG5leHQgZGF5LjwvcD5cbiAgey9wYWQ6dGFifVxuICB7cGFkOnRhYiAnQ2FuIEkgcmV0dXJuIHNvbWV0aGluZz8nfVxuICAgIDxwPlllcyAtIHdpdGhpbiAzMCBkYXlzLCB1bnVzZWQgYW5kIGluIGl0cyBib3guPC9wPlxuICB7L3BhZDp0YWJ9XG4gIHtwYWQ6dGFiICdJcyB0aGVyZSBhIHdhcnJhbnR5Pyd9XG4gICAgPHA+VHdvIHllYXJzIG9uIGV2ZXJ5IGFwcGxpYW5jZS48L3A+XG4gIHsvcGFkOnRhYn1cbnsvd2lkZ2V0OmFjY29yZGlvbn1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OmFjY29yZGlvbiBzaW5nbGUsIG9wZW49MX1cbiAge3dpZGdldDp0YWIgJ1doZW4gd2lsbCBteSBvcmRlciBhcnJpdmU/J31cbiAgICA8cD5PcmRlcnMgcGxhY2VkIGJlZm9yZSAyMjowMCBvbiBhIHdvcmtpbmcgZGF5IGFyZSBkZWxpdmVyZWQgdGhlIG5leHQgZGF5LjwvcD5cbiAgey93aWRnZXQ6dGFifVxuICB7d2lkZ2V0OnRhYiAnQ2FuIEkgcmV0dXJuIHNvbWV0aGluZz8nfVxuICAgIDxwPlllcyAtIHdpdGhpbiAzMCBkYXlzLCB1bnVzZWQgYW5kIGluIGl0cyBib3guPC9wPlxuICB7L3dpZGdldDp0YWJ9XG4gIHt3aWRnZXQ6dGFiICdJcyB0aGVyZSBhIHdhcnJhbnR5Pyd9XG4gICAgPHA+VHdvIHllYXJzIG9uIGV2ZXJ5IGFwcGxpYW5jZS48L3A+XG4gIHsvd2lkZ2V0OnRhYn1cbnsvd2lkZ2V0OmFjY29yZGlvbn1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OmFjY29yZGlvbiBzaW5nbGUsIG9wZW49MX1cbiAge3dpZGdldDp0YWIgJ1doZW4gd2lsbCBteSBvcmRlciBhcnJpdmU/J31cbiAgICA8cD5PcmRlcnMgcGxhY2VkIGJlZm9yZSAyMjowMCBvbiBhIHdvcmtpbmcgZGF5IGFyZSBkZWxpdmVyZWQgdGhlIG5leHQgZGF5LjwvcD5cbiAgey93aWRnZXQ6dGFifVxuICB7d2lkZ2V0OnRhYiAnQ2FuIEkgcmV0dXJuIHNvbWV0aGluZz8nfVxuICAgIDxwPlllcyAtIHdpdGhpbiAzMCBkYXlzLCB1bnVzZWQgYW5kIGluIGl0cyBib3guPC9wPlxuICB7L3dpZGdldDp0YWJ9XG4gIHt3aWRnZXQ6dGFiICdJcyB0aGVyZSBhIHdhcnJhbnR5Pyd9XG4gICAgPHA+VHdvIHllYXJzIG9uIGV2ZXJ5IGFwcGxpYW5jZS48L3A+XG4gIHsvd2lkZ2V0OnRhYn1cbnsvd2lkZ2V0OmFjY29yZGlvbn1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">

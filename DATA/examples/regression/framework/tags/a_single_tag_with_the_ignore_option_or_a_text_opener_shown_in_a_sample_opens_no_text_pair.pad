@@ -1,4 +1,4 @@
 {pad:if 1 eq 1}[{pad:echo 'ab' ignore/}]{/pad:if}
 [{pad:if 0 eq 1}{pad:echo 'a' ignore/}{pad:else}B{/pad:if}][{pad:case 2}{pad:when 1}{pad:echo 'a' ignore/}{pad:when 2}two{pad:else}none{/pad:case}]
-[{pad:if 1 eq 1}E{pad:ignore}open a sample with {pad:highlight 'pad'} and {pad:data 'd' ignore}{/pad:ignore}F{/pad:if}]
-[{pad:if 0 eq 1}{pad:ignore}write {pad:highlight 'pad'} first{/pad:ignore}{pad:else}B{/pad:if}]
+[{pad:if 1 eq 1}E{pad:ignore}open a sample with {widget:highlight 'pad'} and {pad:data 'd' ignore}{/pad:ignore}F{/pad:if}]
+[{pad:if 0 eq 1}{pad:ignore}write {widget:highlight 'pad'} first{/pad:ignore}{pad:else}B{/pad:if}]

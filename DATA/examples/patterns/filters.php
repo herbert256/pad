@@ -1,6 +1,6 @@
 <?php
 
-  // The image filters of {pad:img} - the files of pad/subs/filters/types/, as the engine reads them
+  // The image filters of {pad:img} - the files of pad/subs/images/filters/types/, as the engine reads them
   // - each on the same picture, www/patterns/photos/tulips.jpg, with the template that makes
   // it: the example the filter's own file gives, its picture this application's, and the
   // first sentence of that file's comment as its line. A placeholder is shown with the
@@ -12,11 +12,11 @@
   $title   = 'Image filters';
   $filters = [];
 
-  foreach ( padKinds ( 'filters' ) as $filter ) {
+  foreach ( padKinds ( 'images/filters' ) as $filter ) {
 
-    list ( $text, $example ) = patternsComment ( PAD . "subs/filters/types/$filter.php", $filter );
+    list ( $text, $example ) = patternsComment ( PAD . "subs/images/filters/types/$filter.php", $filter );
 
-    $spec     = include PAD . "subs/filters/types/$filter.php";
+    $spec     = include PAD . "subs/images/filters/types/$filter.php";
     $template = str_replace ( [ "'photos/harbour.jpg'", 'width=400' ], [ "'photos/tulips.jpg'", 'width=360' ], $example );
     $template = preg_replace ( "/alt='[^']*'/", "alt='Rows of tulips running to a windmill'", $template );
 

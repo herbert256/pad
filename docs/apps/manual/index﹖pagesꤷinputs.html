@@ -266,7 +266,7 @@
       </header>
       <div class="frame-body">
         <p>
-          Beside <code>{pad:input}</code> and <code>{pad:textarea}</code> a form can hold fields that do more: a slider, a row of stars, a switch, a month to choose a day from, a tag input, a signature, a Markdown editor with its preview. There are 20 of them - every kind is a file of <code>pad/subs/inputs/types/</code>, its script and style in <code>www/assets/inputs/</code>, and the <a href="../inputs/index.html">inputs</a> application shows them all, each in a form that posts back.
+          Beside <code>{input:field}</code> and <code>{input:textarea}</code> a form can hold fields that do more: a slider, a row of stars, a switch, a month to choose a day from, a tag input, a signature, a Markdown editor with its preview. There are 20 of them - every kind is a file of <code>pad/subs/inputs/types/</code>, its script and style in <code>www/assets/inputs/</code>, and the <a href="../inputs/index.html">inputs</a> application shows them all, each in a form that posts back.
         </p>
         <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
           <tr>
@@ -320,7 +320,7 @@
           Writing a field
         </h2>
         <p>
-          The input: type names the kind, <code>{input:slider 'volume'/}</code>. The first parameter is the field's name, <code>label=</code> its label, and every other item the kind does not take is an attribute of its field, as with <code>{pad:input}</code>: <code>required</code>, <code>placeholder=</code>, <code>autocomplete=</code>.
+          The input: type names the kind, <code>{input:slider 'volume'/}</code>. The first parameter is the field's name, <code>label=</code> its label, and every other item the kind does not take is an attribute of its field, as with <code>{input:field}</code>: <code>required</code>, <code>placeholder=</code>, <code>autocomplete=</code>.
         </p>
         <h2>
           A real value, with or without a script
@@ -635,7 +635,7 @@
           Refilled, with the message beside it
         </h2>
         <p>
-          The fields are fields of the <a href="index%EF%B9%96pages%EA%A4%B7forms.html">{pad:form}</a> around them: after a post of that form they show what was posted, and the message <code>padValidate</code> left for them after their frame, in the words of their label. <code>rules=</code> on a field is read from the template before the page's PHP runs, as on <code>{pad:input}</code>, and <code>client</code> on the form checks the same rules in the browser. Here the post is pretended in the PHP:
+          The fields are fields of the <a href="index%EF%B9%96pages%EA%A4%B7forms.html">{input:form}</a> around them: after a post of that form they show what was posted, and the message <code>padValidate</code> left for them after their frame, in the words of their label. <code>rules=</code> on a field is read from the template before the page's PHP runs, as on <code>{input:field}</code>, and <code>client</code> on the form checks the same rules in the browser. Here the post is pretended in the PHP:
         </p>
         <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
           <tr>

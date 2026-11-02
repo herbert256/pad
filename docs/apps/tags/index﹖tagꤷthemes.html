@@ -240,8 +240,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:themes</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:themes</span> <span class="hl-opt">label</span>=<span class="hl-str">'Colours'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'Use'</span><span class="hl-brc">/}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:themes</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:themes</span> <span class="hl-opt">label</span>=<span class="hl-str">'Colours'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'Use'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Options
             </h3>
@@ -265,7 +265,7 @@
               Description
             </h2>
             <p>
-              <code>{pad:themes/}</code> writes a switcher of the themes of <code>pad/subs/themes/types/</code>: a list of them, with Default first. Choosing one posts it back to the page, which keeps it in a cookie of the PAD applications - their pages are in that theme from then on, this one already: the pages built on the frame, and every page of an application that sets a <code>$padTheme</code>. Default takes the choice away: the application's <code>$padTheme</code>, or the frame's own colours.
+              <code>{widget:themes/}</code> writes a switcher of the themes of <code>pad/subs/themes/types/</code>: a list of them, with Default first. Choosing one posts it back to the page, which keeps it in a cookie of the PAD applications - their pages are in that theme from then on, this one already: the pages built on the frame, and every page of an application that sets a <code>$padTheme</code>. Default takes the choice away: the application's <code>$padTheme</code>, or the frame's own colours.
             </p>
             <p>
               A small script posts the form the moment a theme is chosen; without JavaScript a button does it. The list's label is there for a screen reader, not shown. The post is answered before the application runs, with a redirect back to the page, so the page's own PHP never sees it. The form writes no token of its own, so showing it or choosing starts no session, and a post from another site changes nothing; with <code>$padCsrf</code> on it carries the session's token as every form then does. <code>$padTheme = FALSE</code> turns themes off, the visitor's choice too.
@@ -296,13 +296,13 @@
                   <div class="cell-head">
                     <span>Template</span><span><span class="cell-file">examples/themes/1-switcher.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:themes</span><span class="hl-brc">/}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:themes</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
                     <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7themes%EA%A4%B71-switcher.html">open alone</a></span>
-                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnRoZW1lcy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnRoZW1lcy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lcy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lcy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
@@ -372,10 +372,10 @@
             </h2>
             <ul class="list">
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7theme.html">{pad:theme}</a> <span class="about">The colours of the page swapped for a theme - 16 of them, from paper and sepia to a terminal, an ocean and a high-contrast one - or its content alone in a box of the theme.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7theme.html">{widget:theme}</a> <span class="about">The colours of the page swapped for a theme - 16 of them, from paper and sepia to a terminal, an ocean and a high-contrast one - or its content alone in a box of the theme.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{pad:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{input:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
               </li>
             </ul>
           </section>

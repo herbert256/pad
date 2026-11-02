@@ -15,19 +15,19 @@
   </div>
 
   <div class="hero-code">
-{pad:highlight 'pad'}
+{widget:highlight 'pad'}
 <div data-island="VueCounter" data-props="{^vue}"></div>
 <div data-island="SvelteCounter" data-load="visible"
      data-props="{^svelte}"></div>
 
 {pad:vite 'src/main.js'/}
-{/pad:highlight}
-{pad:highlight 'js'}
+{/widget:highlight}
+{widget:highlight 'js'}
 islands({
   VueCounter:    vue(() => import('./Counter.vue')),
   SvelteCounter: svelte(() => import('./Counter.svelte'))
 });
-{/pad:highlight}
+{/widget:highlight}
   </div>
 
 </section>

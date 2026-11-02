@@ -12,14 +12,14 @@
     <h2>1. The data, in PHP</h2>
     <p>The page's PHP gathers what the component starts with - from the database, a file in
        <code>_data/</code>, the session. Nothing about React here.</p>
-{pad:highlight 'php', file='_guide/orders.php'/}
+{widget:highlight 'php', file='_guide/orders.php'/}
   </div>
 
   <div>
     <h2>2. The island, in the template</h2>
     <p>An element with <code>data-island</code> names the component; <code>{pad:open/}^orders{pad:close/}</code> writes the
        field as JSON, escaped for the attribute. What stands inside shows until React takes over.</p>
-{pad:highlight 'pad', file='_guide/orders.pad'/}
+{widget:highlight 'pad', file='_guide/orders.pad'/}
   </div>
 
 </div>
@@ -27,7 +27,7 @@
 <h2>3. The component, in www/</h2>
 <p>A plain file under <code>www/react/</code>, served as it is - so its braces never meet the PAD parser.
    <code>PadReact.island</code> mounts it on every island of that name, the JSON as its props.</p>
-{pad:highlight 'js', file='_guide/orders.js'/}
+{widget:highlight 'js', file='_guide/orders.js'/}
 
 <h2>4. Talking back</h2>
 <div class="cols-2">
@@ -35,7 +35,7 @@
     <p>The page answers JSON when asked - but only what <code>$padExpose</code> names. The templates do not
        run for such a request. A post needs the session's CSRF token, which <code>PadReact.post</code>
        sends in a header when <code>$padCsrf</code> is on.</p>
-{pad:highlight 'php'}
+{widget:highlight 'php'}
 // orders.php - one more line
 $padExpose = [ 'orders' ];
 
@@ -45,12 +45,12 @@ if ( padRequestIs ( 'POST' ) ) {
   if ( ! $errors )
     db ( "UPDATE orders SET qty={0} WHERE id={1}", [ $qty, $id ] );
 }
-{/pad:highlight}
+{/widget:highlight}
   </div>
   <div>
     <p>From the component it is one call each - and <code>{pad:open/}pad:fragment 'name'{pad:close/}</code> in the template
        lets a component fetch one rendered part of a page as HTML.</p>
-{pad:highlight 'js'}
+{widget:highlight 'js'}
 // ?orders&padFormat=json
 const { orders } = await PadReact.get('orders', { status: 'open' });
 
@@ -62,7 +62,7 @@ const html = await PadReact.fragment('orders', 'summary');
 
 // as a hook: asked again whenever status changes
 const { data, loading } = PadReact.useData('orders', { status }, first);
-{/pad:highlight}
+{/widget:highlight}
   </div>
 </div>
 

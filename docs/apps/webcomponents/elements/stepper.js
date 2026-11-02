@@ -1,5 +1,5 @@
 // <pad-stepper>: a form-associated custom element. ElementInternals hands the form its value,
-// so a post of the {pad:form} carries name=value like an <input> - and a reset puts it back.
+// so a post of the {input:form} carries name=value like an <input> - and a reset puts it back.
 
 class PadStepper extends HTMLElement {
 

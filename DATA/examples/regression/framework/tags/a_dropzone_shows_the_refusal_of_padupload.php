@@ -1,7 +1,7 @@
 <?php
 
   // padUpload refused the file: the drop zone shows why, in the words of its label, as
-  // {pad:input type='file'} does.
+  // {input:field type='file'} does.
 
   $_SERVER ['REQUEST_METHOD'] = 'POST';
   $_POST = [ 'padForm' => 'f' ];

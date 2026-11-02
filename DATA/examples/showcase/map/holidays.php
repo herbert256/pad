@@ -1,7 +1,7 @@
 <?php
 
   // The public holidays of 2026 in each of the sixteen states of Germany, as the holidays
-  // subsystem has them (padHolidays, pad/subs/holidays/types/de.php) - the nine of every
+  // subsystem has them (padHolidays, pad/subs/calendars/holidays/types/de.php) - the nine of every
   // state and the state's own - each under the region code the map reads too: its ISO
   // 3166-2 code without DE-.
 

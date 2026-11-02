@@ -3,7 +3,7 @@
 the column letters and row numbers around it. A cell starting with <code>=</code> is a formula
 in spreadsheet syntax - <code>=B2*C2</code>, <code>=SUM(D2:D9)</code>,
 <code>=VLOOKUP(E2,$I$2:$J$6,2)</code> - read by a parser of its own and computed with the
-functions of <code>pad/subs/formulas/types/</code>, which answer what Excel answers; the cells
+functions of <code>pad/subs/tables/formulas/types/</code>, which answer what Excel answers; the cells
 are worked through in the order the formulas need them, and a circle of references answers
 <code>#REF!</code> in each of its cells. The cells come from the content - a line a row, a
 comma between cells - or from <code>data=</code>.</p>
@@ -21,7 +21,7 @@ and every formula is in its cell's <code>title</code> and <code>data-formula</co
 
 <h3>Cells to edit</h3>
 
-<p><code>editable</code> makes cells fields. In a <a href="?tag/form"><code>{pad:form}</code></a>
+<p><code>editable</code> makes cells fields. In a <a href="?tag/form"><code>{input:form}</code></a>
 they post with it; in a <a href="?tag/live"><code>{pad:live}</code></a> region a change posts the
 region and it comes back computed, without a script of the page's own; anywhere else the sheet
 is a form of its own with a Recalculate button. Under the strict check a formula of the

@@ -250,7 +250,7 @@
               <code>{pad:nonce}</code> answers this request's nonce: 18 random bytes, base64 - one value for the whole request, made on first use. Put it on the scripts and styles the page itself writes: <code>&lt;script nonce="{pad:nonce}"&gt;</code>.
             </p>
             <p>
-              The engine puts the same value in the Content-Security-Policy header: <code>'nonce'</code> (quotes included) in <code>$padCsp</code> becomes <code>'nonce-&lt;the value&gt;'</code>, so <code>$padCsp = "default-src 'self'; script-src 'self' 'nonce'"</code> lets exactly the scripts that carry it run - an injected script cannot know the value. The engine never adds it to script tags by itself, except to the scripts it writes, such as <a href="index%EF%B9%96tag%EA%A4%B7validator.html">{pad:validator}</a>'s.
+              The engine puts the same value in the Content-Security-Policy header: <code>'nonce'</code> (quotes included) in <code>$padCsp</code> becomes <code>'nonce-&lt;the value&gt;'</code>, so <code>$padCsp = "default-src 'self'; script-src 'self' 'nonce'"</code> lets exactly the scripts that carry it run - an injected script cannot know the value. The engine never adds it to script tags by itself, except to the scripts it writes, such as <a href="index%EF%B9%96tag%EA%A4%B7validator.html">{input:validator}</a>'s.
             </p>
             <p>
               Write it outside an <code>{pad:ignore}</code> pair: inside one it is text. The value is new on every request, so a page carrying a nonce is never stored in the page cache, and the examples here are shown, not run.
@@ -316,7 +316,7 @@
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7asset.html">{pad:asset}</a> <span class="about">The address of a file of www/&lt;app&gt;/ with a version of its contents, safe behind a far-future cache header.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7validator.html">{pad:validator}</a> <span class="about">The browser's checker of the validation rules as one inline script, for a form a component draws.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7validator.html">{input:validator}</a> <span class="about">The browser's checker of the validation rules as one inline script, for a form a component draws.</span>
               </li>
             </ul>
           </section>

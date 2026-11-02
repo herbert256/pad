@@ -257,7 +257,7 @@
               A page-cache hit runs no PHP - not the page's, nor an <code>_inits.php</code> - so a part there sees what a request has without it: request and session values, the configuration, the <code>_lib</code> functions and the application's tags. A page-cache entry with parts is never answered with a 304 from the entry alone, nor does a hit renew it.
             </p>
             <p>
-              A <a href="index%EF%B9%96tag%EA%A4%B7form.html"><code>{pad:form}</code></a>'s CSRF token or a <a href="index%EF%B9%96tag%EA%A4%B7nonce.html"><code>{pad:nonce}</code></a> inside a part no longer keeps a section out of the fragment cache: the part renders for each visitor. <code>{pad:nocache}</code> takes no parameter, and is always a pair - a single <code>{pad:nocache}</code> is an error under the strict check.
+              A <a href="index%EF%B9%96tag%EA%A4%B7form.html"><code>{input:form}</code></a>'s CSRF token or a <a href="index%EF%B9%96tag%EA%A4%B7nonce.html"><code>{pad:nonce}</code></a> inside a part no longer keeps a section out of the fragment cache: the part renders for each visitor. <code>{pad:nocache}</code> takes no parameter, and is always a pair - a single <code>{pad:nocache}</code> is an error under the strict check.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">

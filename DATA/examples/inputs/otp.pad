@@ -1,11 +1,11 @@
 {pad:meta title='One-time code'/}
 {include:about/}
 
-{pad:form 'try', class='inputs-try', error}
+{input:form 'try', class='inputs-try', error}
   {input:otp 'code', label='The code we sent you', rules='required|digits:6'/}
   {input:otp 'voucher', label='Voucher', length=8, letters/}
   <button class="inputs-send">Send</button>
-{/pad:form}
+{/input:form}
 
 {include:received/}
 

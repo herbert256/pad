@@ -2,10 +2,10 @@
 <div style="width:100%; max-width:640px">
   {widget:tabs}
     {array:plans}
-      {pad:tab $name}
+      {widget:tab $name}
         <p><strong>{$price}</strong> a month - {$about}</p>
         <ul>{array:features}<li>{$features}</li>{/array:features}</ul>
-      {/pad:tab}
+      {/widget:tab}
     {/array:plans}
   {/widget:tabs}
 </div>

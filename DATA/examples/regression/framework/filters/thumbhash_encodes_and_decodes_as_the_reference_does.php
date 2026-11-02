@@ -14,7 +14,7 @@
   // can part there - so the check is what it draws, one colour, where the noise counts for
   // nothing (its scale quantises to 0). A hash shorter than its header decodes to nothing.
 
-  include_once PAD . 'subs/filters/_lib/thumbhash.php';
+  include_once PAD . 'subs/images/filters/_lib/thumbhash.php';
 
   $fit = function ( $source ) {
     $out = imagecreatetruecolor ( 100, 67 );

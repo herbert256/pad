@@ -310,7 +310,7 @@
               Description
             </h2>
             <p>
-              <code>{pad:search 'blog', q=$q}...{/pad:search}</code> hands over the rows of the source that the query finds, the best first: each the source's own row with <code>$score</code> and <code>$excerpt</code> added - the words around the first match, every matched word in a <code>&lt;mark&gt;</code>, escaped as <code>{pad:excerpt}</code> escapes it. It is HTML: print it with <code>{!excerpt}</code>. Nothing found is the <code>@else@</code>; the handling options work on the rows, <code>first=10</code> for the ten best.
+              <code>{pad:search 'blog', q=$q}...{/pad:search}</code> hands over the rows of the source that the query finds, the best first: each the source's own row with <code>$score</code> and <code>$excerpt</code> added - the words around the first match, every matched word in a <code>&lt;mark&gt;</code>, escaped as <code>{widget:excerpt}</code> escapes it. It is HTML: print it with <code>{!excerpt}</code>. Nothing found is the <code>@else@</code>; the handling options work on the rows, <code>first=10</code> for the ten best.
             </p>
             <p>
               No search server: the first search makes an inverted index of the source and keeps it in <code>DATA/cache/search/&lt;app&gt;/</code>, made again when a file of the collection or the rows changed. Words are reduced to their stems by the language's Snowball stemmer - the files of <code>pad/subs/search/types/</code>: <code>en</code>, <code>nl</code>, <code>de</code>, <code>fr</code>, <code>es</code>, <code>it</code>, <code>pt</code>, <code>sv</code>, <code>da</code>, <code>no</code>, <code>ru</code> - and compared without their accents; stop words are skipped. The ranking is BM25, a field weighed by its boost in <code>fields</code>.
@@ -624,7 +624,7 @@
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7collection.html">{pad:collection}</a> <span class="about">Reads a folder of Markdown files from _content/ and repeats its content once per file, the front matter as fields.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7excerpt.html">{pad:excerpt}</a> <span class="about">Cuts a long text to whole words with an ellipsis, centred on the first match of search words, every match marked.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7excerpt.html">{widget:excerpt}</a> <span class="about">Cuts a long text to whole words with an ellipsis, centred on the first match of search words, every match marked.</span>
               </li>
               <li>
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7data.html">{pad:data}</a> <span class="about">Reads a supported data format, a list or a range into a named data set for a later tag to iterate.</span>

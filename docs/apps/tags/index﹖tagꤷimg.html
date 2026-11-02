@@ -300,7 +300,7 @@
                 <code>filter</code>
               </dt>
               <dd>
-                A comma list of the filters of <code>pad/subs/filters/types/</code>, applied in the order written: <code>ascii</code>, <code>atkinson</code>, <code>autocontrast</code>, <code>bayer</code>, <code>blur</code>, <code>blurhash</code>, <code>dither</code>, <code>dominant</code>, <code>duotone</code>, <code>edges</code>, <code>grayscale</code>, <code>halftone</code>, <code>invert</code>, <code>lqip</code>, <code>pixelate</code>, <code>posterize</code>, <code>sepia</code>, <code>sharpen</code>, <code>solarize</code>, <code>threshold</code>, <code>thumbhash</code>, <code>vignette</code>. halftone and ascii write the picture as SVG dots or text; blurhash, thumbhash, dominant and lqip are placeholders behind the picture while it loads.
+                A comma list of the filters of <code>pad/subs/images/filters/types/</code>, applied in the order written: <code>ascii</code>, <code>atkinson</code>, <code>autocontrast</code>, <code>bayer</code>, <code>blur</code>, <code>blurhash</code>, <code>dither</code>, <code>dominant</code>, <code>duotone</code>, <code>edges</code>, <code>grayscale</code>, <code>halftone</code>, <code>invert</code>, <code>lqip</code>, <code>pixelate</code>, <code>posterize</code>, <code>sepia</code>, <code>sharpen</code>, <code>solarize</code>, <code>threshold</code>, <code>thumbhash</code>, <code>vignette</code>. halftone and ascii write the picture as SVG dots or text; blurhash, thumbhash, dominant and lqip are placeholders behind the picture while it loads.
               </dd>
               <dt>
                 <code>colors</code>
@@ -381,7 +381,7 @@
               <code>alt</code> is required - a picture without it is read out by its file name; <code>alt=''</code> says it is decoration. A missing <code>alt</code>, a file that is not there or is no picture, an unknown <code>fit</code> or <code>format</code> and a <code>quality</code> outside 1-100 are errors under the strict check. A <code>_thumbs/</code> directory the web server cannot write is an error too, and the original picture is written instead. While no picture exists yet, <a href="index%EF%B9%96tag%EA%A4%B7placeholder.html">{pad:placeholder}</a> keeps its place.
             </p>
             <p>
-              <code>filter=</code> runs the picture through the filters of <code>pad/subs/filters/types/</code>, a comma list applied in the order written: grayscale, sepia, duotone, posterize, pixelate, blur, sharpen, vignette, invert, edges, threshold, solarize, autocontrast and the dithers - dither (Floyd and Steinberg), atkinson and bayer - change the picture, and the filter and its options are part of the thumbnail's name; halftone writes it as SVG dots and ascii as text in a <code>&lt;pre&gt;</code>, each named by the alt text; blurhash, thumbhash, dominant and lqip are placeholders - a BlurHash or a ThumbHash decoded to a small PNG, the dominant colour, a tiny blurred picture - behind the <code>&lt;img&gt;</code> while it loads. A pixel filter - pixelate and the dithers - is made at 1x and drawn with its pixels sharp. An unknown filter, an option out of its bounds, a filter after halftone or ascii and a placeholder beside them are errors under the strict check. The <code>patterns</code> application shows every filter on one picture.
+              <code>filter=</code> runs the picture through the filters of <code>pad/subs/images/filters/types/</code>, a comma list applied in the order written: grayscale, sepia, duotone, posterize, pixelate, blur, sharpen, vignette, invert, edges, threshold, solarize, autocontrast and the dithers - dither (Floyd and Steinberg), atkinson and bayer - change the picture, and the filter and its options are part of the thumbnail's name; halftone writes it as SVG dots and ascii as text in a <code>&lt;pre&gt;</code>, each named by the alt text; blurhash, thumbhash, dominant and lqip are placeholders - a BlurHash or a ThumbHash decoded to a small PNG, the dominant colour, a tiny blurred picture - behind the <code>&lt;img&gt;</code> while it loads. A pixel filter - pixelate and the dithers - is made at 1x and drawn with its pixels sharp. An unknown filter, an option out of its bounds, a filter after halftone or ascii and a placeholder beside them are errors under the strict check. The <code>patterns</code> application shows every filter on one picture.
             </p>
             <h3>
               Image filters
@@ -468,7 +468,7 @@
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7asset.html">{pad:asset}</a> <span class="about">The address of a file of www/&lt;app&gt;/ with a version of its contents, safe behind a far-future cache header.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7video.html">{pad:video}</a> <span class="about">Shows a YouTube or Vimeo video as its poster with a play button, loading the player only when pressed - or a video file as a video element.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7video.html">{widget:video}</a> <span class="about">Shows a YouTube or Vimeo video as its poster with a play button, loading the player only when pressed - or a video file as a video element.</span>
               </li>
             </ul>
           </section>

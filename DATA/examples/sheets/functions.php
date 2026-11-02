@@ -1,6 +1,6 @@
 <?php
 
-  // Every function of the formulas subsystem - the files of pad/subs/formulas/types/ - with
+  // Every function of the formulas subsystem - the files of pad/subs/tables/formulas/types/ - with
   // what its file says of it and its examples, computed here on the sample sheet.
 
   $title  = 'Functions';

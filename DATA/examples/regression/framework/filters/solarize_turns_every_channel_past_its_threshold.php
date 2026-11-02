@@ -8,9 +8,9 @@
   // A pixel keeps its opacity. And the photo as {pad:img} makes it, the same bytes as PIL's
   // solarize gave for the same picture.
 
-  include_once PAD . 'subs/filters/_lib/filter.php';
+  include_once PAD . 'subs/images/filters/_lib/filter.php';
 
-  $spec = include PAD . 'subs/filters/types/solarize.php';
+  $spec = include PAD . 'subs/images/filters/types/solarize.php';
 
   $pixels = function ( $colours, $threshold, $alpha = 0 ) use ( $spec ) {
     $image = imagecreatetruecolor ( count ( $colours ), 1 );

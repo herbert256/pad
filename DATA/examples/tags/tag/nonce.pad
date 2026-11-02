@@ -8,7 +8,7 @@ writes: <code>&lt;script nonce="{pad:nonce}"&gt;</code>.</p>
 <code>$padCsp = "default-src 'self'; script-src 'self' 'nonce'"</code> lets exactly the
 scripts that carry it run - an injected script cannot know the value. The engine never adds
 it to script tags by itself, except to the scripts it writes, such as
-<a href="?tag/validator">{pad:validator}</a>'s.</p>
+<a href="?tag/validator">{input:validator}</a>'s.</p>
 
 <p>Write it outside an <code>&#123;pad:ignore&#125;</code> pair: inside one it is text. The value is new on every
 request, so a page carrying a nonce is never stored in the page cache, and the examples here

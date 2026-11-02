@@ -244,8 +244,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'github'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'oidc'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'?login/company'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Log in with your company account'</span><span class="hl-brc">/}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'github'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'oidc'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'?login/company'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Log in with your company account'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -280,7 +280,7 @@
               Description
             </h2>
             <p>
-              <code>{pad:oauth 'github'/}</code> is the link that starts a login at GitHub, styled as a button with the provider's name - and its icon, when the icon set has one of its name. It goes to the page <code>oauth/github</code> of the application unless <code>href=</code> names another: one page, <code>oauth/[provider].php</code>, serves every provider - <code>padOAuthStart ( $provider )</code> sends the visitor off with a state, a PKCE challenge and (OpenID Connect) a nonce kept in the session, and on the way back <code>padOAuthUser ( $provider )</code> checks the state, exchanges the code, checks the id_token and answers the user for <code>padLogin</code>.
+              <code>{widget:oauth 'github'/}</code> is the link that starts a login at GitHub, styled as a button with the provider's name - and its icon, when the icon set has one of its name. It goes to the page <code>oauth/github</code> of the application unless <code>href=</code> names another: one page, <code>oauth/[provider].php</code>, serves every provider - <code>padOAuthStart ( $provider )</code> sends the visitor off with a state, a PKCE challenge and (OpenID Connect) a nonce kept in the session, and on the way back <code>padOAuthUser ( $provider )</code> checks the state, exchanges the code, checks the id_token and answers the user for <code>padLogin</code>.
             </p>
             <p>
               The button reads no setting and makes no request; the page it links to needs the client id and secret - <code>GITHUB_CLIENT_ID</code> and <code>GITHUB_CLIENT_SECRET</code> in <code>.env</code>. An unknown provider is an error under the strict check.
@@ -312,21 +312,21 @@
                     <span>Template</span><span><span class="cell-file">examples/oauth/1-buttons.pad</span></span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'github'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#github'</span><span class="hl-brc">/}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'gitlab'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#gitlab'</span><span class="hl-brc">/}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'bitbucket'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#bitbucket'</span><span class="hl-brc">/}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'google'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#google'</span><span class="hl-brc">/}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'linkedin'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#linkedin'</span><span class="hl-brc">/}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'slack'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#slack'</span><span class="hl-brc">/}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'x'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#x'</span><span class="hl-brc">/}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'oidc'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#company'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Your company account'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'github'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#github'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'gitlab'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#gitlab'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'bitbucket'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#bitbucket'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'google'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#google'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'linkedin'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#linkedin'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'slack'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#slack'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'x'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#x'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'oidc'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#company'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Your company account'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
                     <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7oauth%EA%A4%B71-buttons.html">open alone</a></span>
-                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5cbiAge3BhZDpvYXV0aCAnZ2l0aHViJywgaHJlZj0nI2dpdGh1YicvfVxuICB7cGFkOm9hdXRoICdnaXRsYWInLCBocmVmPScjZ2l0bGFiJy99XG4gIHtwYWQ6b2F1dGggJ2JpdGJ1Y2tldCcsIGhyZWY9JyNiaXRidWNrZXQnL31cbiAge3BhZDpvYXV0aCAnZ29vZ2xlJywgaHJlZj0nI2dvb2dsZScvfVxuICB7cGFkOm9hdXRoICdsaW5rZWRpbicsIGhyZWY9JyNsaW5rZWRpbicvfVxuICB7cGFkOm9hdXRoICdzbGFjaycsIGhyZWY9JyNzbGFjaycvfVxuICB7cGFkOm9hdXRoICd4JywgaHJlZj0nI3gnL31cbiAge3BhZDpvYXV0aCAnb2lkYycsIGhyZWY9JyNjb21wYW55JywgbGFiZWw9J1lvdXIgY29tcGFueSBhY2NvdW50Jy99XG48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5cbiAge3BhZDpvYXV0aCAnZ2l0aHViJywgaHJlZj0nI2dpdGh1YicvfVxuICB7cGFkOm9hdXRoICdnaXRsYWInLCBocmVmPScjZ2l0bGFiJy99XG4gIHtwYWQ6b2F1dGggJ2JpdGJ1Y2tldCcsIGhyZWY9JyNiaXRidWNrZXQnL31cbiAge3BhZDpvYXV0aCAnZ29vZ2xlJywgaHJlZj0nI2dvb2dsZScvfVxuICB7cGFkOm9hdXRoICdsaW5rZWRpbicsIGhyZWY9JyNsaW5rZWRpbicvfVxuICB7cGFkOm9hdXRoICdzbGFjaycsIGhyZWY9JyNzbGFjaycvfVxuICB7cGFkOm9hdXRoICd4JywgaHJlZj0nI3gnL31cbiAge3BhZDpvYXV0aCAnb2lkYycsIGhyZWY9JyNjb21wYW55JywgbGFiZWw9J1lvdXIgY29tcGFueSBhY2NvdW50Jy99XG48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5cbiAge3dpZGdldDpvYXV0aCAnZ2l0aHViJywgaHJlZj0nI2dpdGh1YicvfVxuICB7d2lkZ2V0Om9hdXRoICdnaXRsYWInLCBocmVmPScjZ2l0bGFiJy99XG4gIHt3aWRnZXQ6b2F1dGggJ2JpdGJ1Y2tldCcsIGhyZWY9JyNiaXRidWNrZXQnL31cbiAge3dpZGdldDpvYXV0aCAnZ29vZ2xlJywgaHJlZj0nI2dvb2dsZScvfVxuICB7d2lkZ2V0Om9hdXRoICdsaW5rZWRpbicsIGhyZWY9JyNsaW5rZWRpbicvfVxuICB7d2lkZ2V0Om9hdXRoICdzbGFjaycsIGhyZWY9JyNzbGFjaycvfVxuICB7d2lkZ2V0Om9hdXRoICd4JywgaHJlZj0nI3gnL31cbiAge3dpZGdldDpvYXV0aCAnb2lkYycsIGhyZWY9JyNjb21wYW55JywgbGFiZWw9J1lvdXIgY29tcGFueSBhY2NvdW50Jy99XG48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5cbiAge3dpZGdldDpvYXV0aCAnZ2l0aHViJywgaHJlZj0nI2dpdGh1YicvfVxuICB7d2lkZ2V0Om9hdXRoICdnaXRsYWInLCBocmVmPScjZ2l0bGFiJy99XG4gIHt3aWRnZXQ6b2F1dGggJ2JpdGJ1Y2tldCcsIGhyZWY9JyNiaXRidWNrZXQnL31cbiAge3dpZGdldDpvYXV0aCAnZ29vZ2xlJywgaHJlZj0nI2dvb2dsZScvfVxuICB7d2lkZ2V0Om9hdXRoICdsaW5rZWRpbicsIGhyZWY9JyNsaW5rZWRpbicvfVxuICB7d2lkZ2V0Om9hdXRoICdzbGFjaycsIGhyZWY9JyNzbGFjaycvfVxuICB7d2lkZ2V0Om9hdXRoICd4JywgaHJlZj0nI3gnL31cbiAge3dpZGdldDpvYXV0aCAnb2lkYycsIGhyZWY9JyNjb21wYW55JywgbGFiZWw9J1lvdXIgY29tcGFueSBhY2NvdW50Jy99XG48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
@@ -358,7 +358,7 @@
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7guest.html">{pad:guest}</a> <span class="about">Renders its content when nobody is logged in, and its else half for a user.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{pad:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{input:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
               </li>
             </ul>
           </section>

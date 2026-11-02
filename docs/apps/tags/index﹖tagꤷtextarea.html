@@ -240,9 +240,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:textarea</span> <span class="hl-str">'message'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">value</span>=<span class="hl-str">''</span>, <span class="hl-opt">id</span>=<span class="hl-str">'msg'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, required<span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:2000'</span><span class="hl-brc">/}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:textarea</span> <span class="hl-str">'message'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input:textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">value</span>=<span class="hl-str">''</span>, <span class="hl-opt">id</span>=<span class="hl-str">'msg'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, required<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input:textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:2000'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -280,7 +280,7 @@
                 <code>rules</code>
               </dt>
               <dd>
-                The field's rules - <code>required|max:2000</code> - read from the page's own template and checked before its PHP runs. Only in a named <code>{pad:form}</code> of the page itself.
+                The field's rules - <code>required|max:2000</code> - read from the page's own template and checked before its PHP runs. Only in a named <code>{input:form}</code> of the page itself.
               </dd>
             </dl>
           </section>
@@ -289,13 +289,13 @@
               Description
             </h2>
             <p>
-              <code>{pad:textarea}</code> is <a href="index%EF%B9%96tag%EA%A4%B7input.html">{pad:input}</a> for a multi-line text: a <code>&lt;label for&gt;</code> when <code>label=</code> is given, then a <code>&lt;textarea&gt;</code> with the name and an id. The text inside is <code>value=</code> before a post and what was sent after a post of its <a href="index%EF%B9%96tag%EA%A4%B7form.html">{pad:form}</a> - escaped both times, so markup in it stays text.
+              <code>{input:textarea}</code> is <a href="index%EF%B9%96tag%EA%A4%B7input.html">{input:field}</a> for a multi-line text: a <code>&lt;label for&gt;</code> when <code>label=</code> is given, then a <code>&lt;textarea&gt;</code> with the name and an id. The text inside is <code>value=</code> before a post and what was sent after a post of its <a href="index%EF%B9%96tag%EA%A4%B7form.html">{input:form}</a> - escaped both times, so markup in it stays text.
             </p>
             <p>
               The tag takes <code>label</code>, <code>value</code>, <code>id</code> and <code>rules</code>; every other item - <code>rows=</code>, <code>cols=</code>, <code>maxlength=</code>, <code>placeholder=</code>, a bare <code>required</code> - is an attribute of the text area.
             </p>
             <p>
-              The error the validation found for it follows the text area as for an input, with <code>aria-invalid</code> and <code>aria-describedby</code>. <code>rules=</code> follows the same rules as on <code>{pad:input}</code>: only in a named form written in the page's own template.
+              The error the validation found for it follows the text area as for an input, with <code>aria-invalid</code> and <code>aria-describedby</code>. <code>rules=</code> follows the same rules as on <code>{input:field}</code>: only in a named form written in the page's own template.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -314,13 +314,13 @@
                   <div class="cell-head">
                     <span>Template</span><span><span class="cell-file">examples/textarea/1-basic.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:textarea</span> <span class="hl-str">'note'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Note'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">4</span>, <span class="hl-opt">cols</span>=<span class="hl-num">40</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Deliver after &lt;5 pm&gt; & ring twice'</span><span class="hl-brc">/}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:textarea</span> <span class="hl-str">'note'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Note'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">4</span>, <span class="hl-opt">cols</span>=<span class="hl-num">40</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Deliver after &lt;5 pm&gt; & ring twice'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
                     <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7textarea%EA%A4%B71-basic.html">open alone</a></span>
-                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnRleHRhcmVhICdub3RlJywgbGFiZWw9J05vdGUnLCByb3dzPTQsIGNvbHM9NDAsIHZhbHVlPSdEZWxpdmVyIGFmdGVyIDw1IHBtPiAmIHJpbmcgdHdpY2UnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnRleHRhcmVhICdub3RlJywgbGFiZWw9J05vdGUnLCByb3dzPTQsIGNvbHM9NDAsIHZhbHVlPSdEZWxpdmVyIGFmdGVyIDw1IHBtPiAmIHJpbmcgdHdpY2UnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dGV4dGFyZWEgJ25vdGUnLCBsYWJlbD0nTm90ZScsIHJvd3M9NCwgY29scz00MCwgdmFsdWU9J0RlbGl2ZXIgYWZ0ZXIgPDUgcG0+ICYgcmluZyB0d2ljZScvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6dGV4dGFyZWEgJ25vdGUnLCBsYWJlbD0nTm90ZScsIHJvd3M9NCwgY29scz00MCwgdmFsdWU9J0RlbGl2ZXIgYWZ0ZXIgPDUgcG0+ICYgcmluZyB0d2ljZScvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
@@ -336,23 +336,23 @@ Deliver after &lt;5 pm&gt; &amp; ring twice</textarea>
                 In a form
               </h3>
               <p class="example-about">
-                Inside a {pad:form} the text area refills from what that form sent; other items are attributes.
+                Inside a {input:form} the text area refills from what that form sent; other items are attributes.
               </p>
               <div class="example-grid">
                 <div class="cell">
                   <div class="cell-head">
                     <span>Template</span><span><span class="cell-file">examples/textarea/2-form.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:form</span> <span class="hl-str">'feedback'</span>, <span class="hl-opt">method</span>=<span class="hl-str">'get'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'subject'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Subject'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Hello'</span><span class="hl-brc">/}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:textarea</span> <span class="hl-str">'body'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Your message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">5</span>, <span class="hl-opt">maxlength</span>=<span class="hl-num">500</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'Write here'</span>, required<span class="hl-brc">/}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:form</span> <span class="hl-str">'feedback'</span>, <span class="hl-opt">method</span>=<span class="hl-str">'get'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input:field</span> <span class="hl-str">'subject'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Subject'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Hello'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input:textarea</span> <span class="hl-str">'body'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Your message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">5</span>, <span class="hl-opt">maxlength</span>=<span class="hl-num">500</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'Write here'</span>, required<span class="hl-brc">/}</span>
   <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">/pad:form</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">/input:form</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7textarea%EA%A4%B72-form.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ2ZlZWRiYWNrJywgbWV0aG9kPSdnZXQnfVxuICB7cGFkOmlucHV0ICdzdWJqZWN0JywgbGFiZWw9J1N1YmplY3QnLCB2YWx1ZT0nSGVsbG8nL31cbiAge3BhZDp0ZXh0YXJlYSAnYm9keScsIGxhYmVsPSdZb3VyIG1lc3NhZ2UnLCByb3dzPTUsIG1heGxlbmd0aD01MDAsIHBsYWNlaG9sZGVyPSdXcml0ZSBoZXJlJywgcmVxdWlyZWQvfVxuICA8YnV0dG9uPlNlbmQ8L2J1dHRvbj5cbnsvcGFkOmZvcm19XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ2ZlZWRiYWNrJywgbWV0aG9kPSdnZXQnfVxuICB7cGFkOmlucHV0ICdzdWJqZWN0JywgbGFiZWw9J1N1YmplY3QnLCB2YWx1ZT0nSGVsbG8nL31cbiAge3BhZDp0ZXh0YXJlYSAnYm9keScsIGxhYmVsPSdZb3VyIG1lc3NhZ2UnLCByb3dzPTUsIG1heGxlbmd0aD01MDAsIHBsYWNlaG9sZGVyPSdXcml0ZSBoZXJlJywgcmVxdWlyZWQvfVxuICA8YnV0dG9uPlNlbmQ8L2J1dHRvbj5cbnsvcGFkOmZvcm19XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7textarea%EA%A4%B72-form.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6Zm9ybSAnZmVlZGJhY2snLCBtZXRob2Q9J2dldCd9XG4gIHtpbnB1dDpmaWVsZCAnc3ViamVjdCcsIGxhYmVsPSdTdWJqZWN0JywgdmFsdWU9J0hlbGxvJy99XG4gIHtpbnB1dDp0ZXh0YXJlYSAnYm9keScsIGxhYmVsPSdZb3VyIG1lc3NhZ2UnLCByb3dzPTUsIG1heGxlbmd0aD01MDAsIHBsYWNlaG9sZGVyPSdXcml0ZSBoZXJlJywgcmVxdWlyZWQvfVxuICA8YnV0dG9uPlNlbmQ8L2J1dHRvbj5cbnsvaW5wdXQ6Zm9ybX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6Zm9ybSAnZmVlZGJhY2snLCBtZXRob2Q9J2dldCd9XG4gIHtpbnB1dDpmaWVsZCAnc3ViamVjdCcsIGxhYmVsPSdTdWJqZWN0JywgdmFsdWU9J0hlbGxvJy99XG4gIHtpbnB1dDp0ZXh0YXJlYSAnYm9keScsIGxhYmVsPSdZb3VyIG1lc3NhZ2UnLCByb3dzPTUsIG1heGxlbmd0aD01MDAsIHBsYWNlaG9sZGVyPSdXcml0ZSBoZXJlJywgcmVxdWlyZWQvfVxuICA8YnV0dG9uPlNlbmQ8L2J1dHRvbj5cbnsvaW5wdXQ6Zm9ybX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
@@ -375,14 +375,14 @@ Deliver after &lt;5 pm&gt; &amp; ring twice</textarea>
               <div class="example-grid is-static">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span><span class="cell-file">examples/textarea/3-rules.src</span><a class="pad-play pad-live pad-play-inline pad-live-alone" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmZvcm0gJ2NvbnRhY3QnLCBlcnJvcn1cbiAge3BhZDppbnB1dCAnZW1haWwnLCB0eXBlPSdlbWFpbCcsIGxhYmVsPSdFLW1haWwnLCBydWxlcz0ncmVxdWlyZWR8ZW1haWwnL31cbiAge3BhZDp0ZXh0YXJlYSAnbWVzc2FnZScsIGxhYmVsPSdNZXNzYWdlJywgcm93cz02LCBydWxlcz0ncmVxdWlyZWR8bWF4OjIwMDAnL31cbiAgPGJ1dHRvbj5TZW5kPC9idXR0b24+XG57L3BhZDpmb3JtfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <span>Template</span><span><span class="cell-file">examples/textarea/3-rules.src</span><a class="pad-play pad-live pad-play-inline pad-live-alone" href="/pad/live/#s=eyJzb3VyY2UiOiJ7aW5wdXQ6Zm9ybSAnY29udGFjdCcsIGVycm9yfVxuICB7aW5wdXQ6ZmllbGQgJ2VtYWlsJywgdHlwZT0nZW1haWwnLCBsYWJlbD0nRS1tYWlsJywgcnVsZXM9J3JlcXVpcmVkfGVtYWlsJy99XG4gIHtpbnB1dDp0ZXh0YXJlYSAnbWVzc2FnZScsIGxhYmVsPSdNZXNzYWdlJywgcm93cz02LCBydWxlcz0ncmVxdWlyZWR8bWF4OjIwMDAnL31cbiAgPGJ1dHRvbj5TZW5kPC9idXR0b24+XG57L2lucHV0OmZvcm19XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:form</span> <span class="hl-str">'contact'</span>, error<span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">/}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">pad:textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:2000'</span><span class="hl-brc">/}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:form</span> <span class="hl-str">'contact'</span>, error<span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input:field</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input:textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:2000'</span><span class="hl-brc">/}</span>
   <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">/pad:form</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">/input:form</span><span class="hl-brc">}</span></code></pre>
                 </div>
               </div>
             </div>
@@ -393,10 +393,10 @@ Deliver after &lt;5 pm&gt; &amp; ring twice</textarea>
             </h2>
             <ul class="list">
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{pad:input}</a> <span class="about">A form field with its label that refills from what its form sent and shows the error validation found for it.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{input:field}</a> <span class="about">A form field with its label that refills from what its form sent and shows the error validation found for it.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{pad:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{input:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
               </li>
               <li>
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7attrs.html">{pad:attrs}</a> <span class="about">Writes HTML attributes from values - quoted and escaped, a true boolean attribute bare, a false one left out.</span>

@@ -13,9 +13,9 @@
   // The framework's photo, 160 wide at 1x and 320 at 2x: the mean of the lines about the
   // same, where the 2x picture's was about half.
 
-  include_once PAD . 'subs/filters/_lib/filter.php';
+  include_once PAD . 'subs/images/filters/_lib/filter.php';
 
-  $edges = include PAD . 'subs/filters/types/edges.php';
+  $edges = include PAD . 'subs/images/filters/types/edges.php';
 
   $row = function ( $values, $scale ) use ( $edges ) {
     $image = imagecreatetruecolor ( count ( $values ), 1 );

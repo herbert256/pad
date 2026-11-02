@@ -2,7 +2,7 @@
 <p><code>{section:hero}</code> puts a block of a landing page on the page - a hero, the features, the prices,
 what customers say, the questions, a call to action, the numbers, the steps, the team, the logos,
 a newsletter form, the contact details, a gallery or the footer. Every section is a file of
-<code>pad/subs/sections/types/</code>, its style in <code>www/assets/sections/</code>; the files of
+<code>pad/subs/widgets/sections/types/</code>, its style in <code>www/assets/sections/</code>; the files of
 <code>types/</code> are the sections there are. It is HTML and CSS only - the questions open and close
 by themselves, the forms post back without a script.</p>
 
@@ -17,7 +17,7 @@ steps, people, logos, pictures, the footer's columns - takes its items from the 
 first value is its name, its options its fields, its content its text - a plan's features a
 line each, a question's answer.</p>
 
-<p>The newsletter and the contact form post back to the page as <code>{pad:form}</code> does - the
+<p>The newsletter and the contact form post back to the page as <code>{input:form}</code> does - the
 session's token and the form's name, so the page's PHP asks <code>padPosted ( 'newsletter' )</code>
 and checks the post with <code>padValidate</code>; the fields refill and show the messages, and once
 the post came back right the section says thanks in the form's place.</p>

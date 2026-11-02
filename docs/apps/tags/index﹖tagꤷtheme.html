@@ -243,9 +243,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'paper'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'terminal'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'paper'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'terminal'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span>
 <span class="hl-var">$padTheme</span> = <span class="hl-str">'paper'</span>;</code></pre>
             <h3>
               Parameters
@@ -264,13 +264,13 @@
               Description
             </h2>
             <p>
-              <code>{pad:theme 'paper'/}</code> puts the page in a theme: the colours of the frame the PAD applications share - its side, its bar and the palette the pages build on, <code>--bg</code>, <code>--text</code>, <code>--accent</code> and the rest - swapped for the theme's, with its <code>color-scheme</code>, so whatever follows the scheme - the charts, the widgets, the toys - follows the theme. A theme is a file of <code>pad/subs/themes/types/</code> - its name, light or dark, and its colours - and the files there are the themes there are; the subsystem is <code>pad/subs/themes/</code>.
+              <code>{widget:theme 'paper'/}</code> puts the page in a theme: the colours of the frame the PAD applications share - its side, its bar and the palette the pages build on, <code>--bg</code>, <code>--text</code>, <code>--accent</code> and the rest - swapped for the theme's, with its <code>color-scheme</code>, so whatever follows the scheme - the charts, the widgets, the toys - follows the theme. A theme is a file of <code>pad/subs/themes/types/</code> - its name, light or dark, and its colours - and the files there are the themes there are; the subsystem is <code>pad/subs/themes/</code>.
             </p>
             <p>
-              As a pair, <code>{pad:theme 'terminal'}...{/pad:theme}</code>, the theme colours its content alone, in a box with the theme's background and text: one theme beside another.
+              As a pair, <code>{widget:theme 'terminal'}...{/widget:theme}</code>, the theme colours its content alone, in a box with the theme's background and text: one theme beside another.
             </p>
             <p>
-              For every page of an application, <code>$padTheme = 'paper'</code> in its <code>_config/config.php</code>; <code>{pad:themes/}</code> lets the visitor choose, kept in a cookie of the application, and that choice wins over the setting. <code>$padTheme = FALSE</code> turns themes off. The setting's or the visitor's theme goes into the page's <code>&lt;head&gt;</code> on its way out, after the page cache, so a cached page is served in the theme of whoever asks. Under a theme the frame's light/dark switch is hidden: the theme is the scheme.
+              For every page of an application, <code>$padTheme = 'paper'</code> in its <code>_config/config.php</code>; <code>{widget:themes/}</code> lets the visitor choose, kept in a cookie of the application, and that choice wins over the setting. <code>$padTheme = FALSE</code> turns themes off. The setting's or the visitor's theme goes into the page's <code>&lt;head&gt;</code> on its way out, after the page cache, so a cached page is served in the theme of whoever asks. Under a theme the frame's light/dark switch is hidden: the theme is the scheme.
             </p>
             <p>
               Every theme's text contrasts 4.5 to 1 or more with each of its backgrounds, WCAG AA, and the contrast themes' - contrast and contrast-dark - 7 to 1, AAA, their links underlined. The frame's own files are not changed: a theme is a <code>&lt;style&gt;</code> on top of them, with the request's nonce.
@@ -301,16 +301,16 @@
                   <div class="cell-head">
                     <span>Template</span><span><span class="cell-file">examples/theme/1-box.pad</span></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'terminal'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'terminal'</span><span class="hl-brc">}</span>
   <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>$ pad serve<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
   <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Listening on <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#"</span><span class="hl-htm">&gt;</span>http://<span class="hl-num">127.0</span>.<span class="hl-num">0.1</span>:<span class="hl-num">8000</span>/<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
                     <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7theme%EA%A4%B71-box.html">open alone</a></span>
-                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnRoZW1lICd0ZXJtaW5hbCd9XG4gIDxwPiQgcGFkIHNlcnZlPC9wPlxuICA8cD5MaXN0ZW5pbmcgb24gPGEgaHJlZj1cIiNcIj5odHRwOi8vMTI3LjAuMC4xOjgwMDAvPC9hPjwvcD5cbnsvcGFkOnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnRoZW1lICd0ZXJtaW5hbCd9XG4gIDxwPiQgcGFkIHNlcnZlPC9wPlxuICA8cD5MaXN0ZW5pbmcgb24gPGEgaHJlZj1cIiNcIj5odHRwOi8vMTI3LjAuMC4xOjgwMDAvPC9hPjwvcD5cbnsvcGFkOnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <link rel="stylesheet" href="../_common/play.css"><span><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICd0ZXJtaW5hbCd9XG4gIDxwPiQgcGFkIHNlcnZlPC9wPlxuICA8cD5MaXN0ZW5pbmcgb24gPGEgaHJlZj1cIiNcIj5odHRwOi8vMTI3LjAuMC4xOjgwMDAvPC9hPjwvcD5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICd0ZXJtaW5hbCd9XG4gIDxwPiQgcGFkIHNlcnZlPC9wPlxuICA8cD5MaXN0ZW5pbmcgb24gPGEgaHJlZj1cIiNcIj5odHRwOi8vMTI3LjAuMC4xOjgwMDAvPC9hPjwvcD5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
                   <div class="result">
@@ -336,10 +336,10 @@
               <div class="example-grid is-static">
                 <div class="cell">
                   <div class="cell-head">
-                    <span>Template</span><span><span class="cell-file">examples/theme/2-page.src</span><a class="pad-play pad-live pad-play-inline pad-live-alone" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnRoZW1lICdwYXBlcicvfVxuPGgxPk5vdGVzPC9oMT5cbjxwPlRoZSBmcmFtZSwgdGhlIHBhZ2UgYW5kIGV2ZXJ5IGNoYXJ0IGluIHBhcGVyIGFuZCBpbmsuPC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <span>Template</span><span><span class="cell-file">examples/theme/2-page.src</span><a class="pad-play pad-live pad-play-inline pad-live-alone" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdwYXBlcicvfVxuPGgxPk5vdGVzPC9oMT5cbjxwPlRoZSBmcmFtZSwgdGhlIHBhZ2UgYW5kIGV2ZXJ5IGNoYXJ0IGluIHBhcGVyIGFuZCBpbmsuPC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'paper'</span><span class="hl-brc">/}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'paper'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;h1</span><span class="hl-htm">&gt;</span>Notes<span class="hl-htm">&lt;/h1</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The frame, the page and every chart in paper and ink.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
@@ -352,10 +352,10 @@
             </h2>
             <ul class="list">
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7themes.html">{pad:themes}</a> <span class="about">A switcher of the themes: the visitor's choice kept in a cookie, the pages built on the frame in that theme from then on, applied the moment it is chosen.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7themes.html">{widget:themes}</a> <span class="about">A switcher of the themes: the visitor's choice kept in a cookie, the pages built on the frame in that theme from then on, applied the moment it is chosen.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7palette.html">{pad:palette}</a> <span class="about">The colours of a palette as swatches with their hex values - 29 of them: viridis and its family, the colour-blind safe Okabe-Ito and Tol schemes, ColorBrewer's scales - the same palettes palette= gives a chart.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7palette.html">{widget:palette}</a> <span class="about">The colours of a palette as swatches with their hex values - 29 of them: viridis and its family, the colour-blind safe Okabe-Ito and Tol schemes, ColorBrewer's scales - the same palettes palette= gives a chart.</span>
               </li>
               <li>
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7section%EA%A4%B7hero.html">{section:hero}</a> <span class="about">The opening block of a page.</span>

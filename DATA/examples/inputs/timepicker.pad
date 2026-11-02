@@ -1,11 +1,11 @@
 {pad:meta title='Time picker'/}
 {include:about/}
 
-{pad:form 'try', class='inputs-try', error}
+{input:form 'try', class='inputs-try', error}
   {input:timepicker 'pickup', label='Pick-up time', min='08:00', max='18:00', every=15, rules='required|time'/}
   {input:timepicker 'alarm', label='Alarm'/}
   <button class="inputs-send">Send</button>
-{/pad:form}
+{/input:form}
 
 {include:received/}
 

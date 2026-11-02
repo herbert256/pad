@@ -2,7 +2,7 @@
 
   // One list of rules for both sides. padValidate checks a post against it; for the browser
   // padValidateClient exports the same list, every rule with the message padValidate would
-  // give, and {pad:validator} in the template brings the checker that reads it. A good post is
+  // give, and {input:validator} in the template brings the checker that reads it. A good post is
   // kept in the session; the answer is JSON either way - the messages, or the new list.
 
   $rules = [ 'name'  => 'required|max:40',

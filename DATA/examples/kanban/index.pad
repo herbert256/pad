@@ -38,12 +38,12 @@
 </div>
 
 <dialog id="new-card" aria-labelledby="new-card-title"{pad:if $cardFailed} open{/pad:if}>
-  {pad:form 'card', class='card-form', error='The card was not added - see the fields below.'}
+  {input:form 'card', class='card-form', error='The card was not added - see the fields below.'}
     <h2 id="new-card-title">New card</h2>
-    {pad:input 'title', label='Title', rules='required|max:100', autofocus/}
-    {pad:textarea 'body', label='Details', rows=4, rules='max:2000'/}
+    {input:field 'title', label='Title', rules='required|max:100', autofocus/}
+    {input:textarea 'body', label='Details', rows=4, rules='max:2000'/}
     <label for="new-label">Label</label>
     <select id="new-label" name="label"><option value="">None</option>{array:labelList}<option value="{$key}"{pad:if $chosen} selected{/pad:if}>{$name}</option>{/array:labelList}</select>
     <div class="bar"><button class="button primary">Add to Backlog</button><button class="button" type="button" data-close>Cancel</button></div>
-  {/pad:form}
+  {/input:form}
 </dialog>

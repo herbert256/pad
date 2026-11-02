@@ -1,4 +1,4 @@
-{pad:form 'trip', error}
+{input:form 'trip', error}
 {input:slider 'volume', rules='integer|between:10,90'/}
 {input:stepper 'guests', label='Guests', rules='required|integer|between:1,8'/}
 {input:toggle 'terms', label='Terms', rules='accepted'/}
@@ -12,5 +12,5 @@
 {input:newpassword 'password', rules='required|min:8'/}
 {input:otp 'code', rules='required|digits:6'/}
 {input:combobox 'city', options='Rome, Oslo', rules='in:Rome,Oslo'/}
-{/pad:form}
+{/input:form}
 {$state}

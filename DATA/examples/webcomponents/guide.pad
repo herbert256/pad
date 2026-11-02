@@ -6,25 +6,25 @@
 
 <h2>1. A PAD custom tag writes the element</h2>
 <p>A <code>.pad</code> file in <code>_tags/</code> is a tag of the application. It writes the custom element, and
-   {pad:open/}pad:shadow{pad:close/} writes its shadow root as a <code>&lt;template shadowrootmode="open"&gt;</code> - with the
+   {pad:open/}widget:shadow{pad:close/} writes its shadow root as a <code>&lt;template shadowrootmode="open"&gt;</code> - with the
    stylesheet inlined, since a shadow root takes no styles from the page and a <code>&lt;style&gt;</code> in a
    template would have its braces read as PAD tags:</p>
-{pad:highlight 'pad', file='_tags/card.pad'/}
+{widget:highlight 'pad', file='_tags/card.pad'/}
 
 <h2>2. The page uses it like any tag</h2>
 <p>Parameters for what the tag writes, content for the light DOM the browser slots in -
    <code>slot="footer"</code> goes to the <code>&lt;slot name="footer"&gt;</code> of the root:</p>
-{pad:highlight 'pad'}
+{widget:highlight 'pad'}
 {app:card title='Revenue', tone='good'}
   <p class="stat">{$revenue}</p>
   <a slot="footer" href="?report">Details</a>
 {/app:card}
-{/pad:highlight}
+{/widget:highlight}
 
 <h2>3. A module upgrades it</h2>
 <p><code>customElements.define</code> in a module of <code>www/</code>. The element finds the root PAD rendered in
    <code>this.shadowRoot</code> and only adds behaviour; before the module ran, the element already showed:</p>
-{pad:source only='www:elements/tabs.js'/}
+{widget:source only='www:elements/tabs.js'/}
 
 <h2>4. Data, posts and forms</h2>
 <ul>
@@ -33,7 +33,7 @@
   <li>A post sends the session's CSRF token in the <code>X-CSRF-Token</code> header, read from
       <code>&lt;meta name="csrf-token"&gt;</code>; the page answers the JSON of <code>$padExpose</code>.</li>
   <li>A form-associated element - <code>static formAssociated = true</code> and
-      <code>ElementInternals.setFormValue</code> - posts its value with a {pad:open/}pad:form{pad:close/} like an
+      <code>ElementInternals.setFormValue</code> - posts its value with a {pad:open/}input:form{pad:close/} like an
       <code>&lt;input&gt;</code>, and <code>padValidate</code> checks it on the server.</li>
   <li>A library works the same: Lit reads PAD's JSON from an attribute into a property.</li>
 </ul>

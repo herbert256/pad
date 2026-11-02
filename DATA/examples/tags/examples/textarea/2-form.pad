@@ -1,6 +1,6 @@
-{pad:meta title='In a form', about='Inside a {pad:form} the text area refills from what that form sent; other items are attributes.'/}
-{pad:form 'feedback', method='get'}
-  {pad:input 'subject', label='Subject', value='Hello'/}
-  {pad:textarea 'body', label='Your message', rows=5, maxlength=500, placeholder='Write here', required/}
+{pad:meta title='In a form', about='Inside a {input:form} the text area refills from what that form sent; other items are attributes.'/}
+{input:form 'feedback', method='get'}
+  {input:field 'subject', label='Subject', value='Hello'/}
+  {input:textarea 'body', label='Your message', rows=5, maxlength=500, placeholder='Write here', required/}
   <button>Send</button>
-{/pad:form}
+{/input:form}

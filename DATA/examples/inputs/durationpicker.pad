@@ -1,12 +1,12 @@
 {pad:meta title='Duration picker'/}
 {include:about/}
 
-{pad:form 'try', class='inputs-try', error}
+{input:form 'try', class='inputs-try', error}
   {input:durationpicker 'length', label='Length of the talk', parts='hm', value=5400, rules='required|integer|between:600,28800'/}
   {input:durationpicker 'lap', label='Lap time', parts='ms', max=3599/}
   {input:durationpicker 'project', label='Time spent', parts='dhm'/}
   <button class="inputs-send">Send</button>
-{/pad:form}
+{/input:form}
 
 {include:received/}
 

@@ -3,7 +3,7 @@
 form checks the rules in the browser before the form leaves, with the messages the server gives -
 the server checks the post again all the same. Send it empty to see them.</p>
 
-{pad:form 'booking', class='inputs-try', client, error='Please correct the fields marked below.'}
+{input:form 'booking', class='inputs-try', client, error='Please correct the fields marked below.'}
   {input:slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}
   {input:stepper 'guests', label='Guests', min=1, max=12, rules='required|integer|between:1,12'/}
   {input:toggle 'terms', label='I accept the terms', rules='accepted'/}
@@ -25,7 +25,7 @@ the server checks the post again all the same. Send it empty to see them.</p>
   {input:daterange 'stay', label='Your stay', labels='Arrival, Departure', nights/}
   {input:treepicker 'topic', label='Topic', options='Forms > Fields, Forms > Rules, Pages > Layouts, Pages > Wrappers', leaves, rules='required|in:Fields,Rules,Layouts,Wrappers'/}
   <button class="inputs-send">Send</button>
-{/pad:form}
+{/input:form}
 
 {include:received/}
 

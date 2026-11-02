@@ -12,9 +12,9 @@
   // outline 255 from the opacity's own edge, the ground still transparent. amount=50: the
   // step at half, 128.
 
-  include_once PAD . 'subs/filters/_lib/filter.php';
+  include_once PAD . 'subs/images/filters/_lib/filter.php';
 
-  $edges = include PAD . 'subs/filters/types/edges.php';
+  $edges = include PAD . 'subs/images/filters/types/edges.php';
 
   $canvas = function ( $w, $h, $fill ) {
     $image = imagecreatetruecolor ( $w, $h );

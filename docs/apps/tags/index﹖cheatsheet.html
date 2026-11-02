@@ -496,10 +496,10 @@
           </div>
           <div class="cheat">
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7pager.html">{pad:pager}</a> <span class="about">Page links for a tag written with the page option: first and last, a window round the current page, previous and next.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:pager</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:pager</span> <span class="hl-str">'name'</span>, <span class="hl-opt">window</span>=<span class="hl-num">2</span>, <span class="hl-opt">query</span>=<span class="hl-str">'p'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:pager</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-var">$kind</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$page</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$label</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$href</span><span class="hl-brc">}</span> ... <span class="hl-var">@else@</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:pager</span><span class="hl-brc">}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7pager.html">{widget:pager}</a> <span class="about">Page links for a tag written with the page option: first and last, a window round the current page, previous and next.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:pager</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:pager</span> <span class="hl-str">'name'</span>, <span class="hl-opt">window</span>=<span class="hl-num">2</span>, <span class="hl-opt">query</span>=<span class="hl-str">'p'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:pager</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-var">$kind</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$page</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$label</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$href</span><span class="hl-brc">}</span> ... <span class="hl-var">@else@</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:pager</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7redirect.html">{pad:redirect}</a> <span class="about">Sends the browser to another page or address with a 302 and ends the request.</span>
@@ -533,18 +533,18 @@
 <span class="hl-brc">{</span><span class="hl-tag">pad:flash</span> <span class="hl-str">'error'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$message</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/pad:flash</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{pad:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:form</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:form</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:form</span> <span class="hl-str">'name'</span>, <span class="hl-opt">method</span>=<span class="hl-str">'get'</span>, <span class="hl-opt">class</span>=<span class="hl-str">'search'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:form</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:form</span> <span class="hl-str">'name'</span>, <span class="hl-opt">error</span>=<span class="hl-str">'Please correct the errors below.'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:form</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:form</span> <span class="hl-str">'name'</span>, client, error<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:form</span><span class="hl-brc">}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{input:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:form</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/input:form</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input:form</span> <span class="hl-str">'name'</span>, <span class="hl-opt">method</span>=<span class="hl-str">'get'</span>, <span class="hl-opt">class</span>=<span class="hl-str">'search'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/input:form</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input:form</span> <span class="hl-str">'name'</span>, <span class="hl-opt">error</span>=<span class="hl-str">'Please correct the errors below.'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/input:form</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input:form</span> <span class="hl-str">'name'</span>, client, error<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/input:form</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{pad:input}</a> <span class="about">A form field with its label that refills from what its form sent and shows the error validation found for it.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">value</span>=<span class="hl-str">''</span>, <span class="hl-opt">id</span>=<span class="hl-str">'mail'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'you@example.org'</span>, required<span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'terms'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'checkbox'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'I agree'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'yes'</span>, checked<span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">/}</span>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{input:field}</a> <span class="about">A form field with its label that refills from what its form sent and shows the error validation found for it.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:field</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input:field</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">value</span>=<span class="hl-str">''</span>, <span class="hl-opt">id</span>=<span class="hl-str">'mail'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'you@example.org'</span>, required<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input:field</span> <span class="hl-str">'terms'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'checkbox'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'I agree'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'yes'</span>, checked<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input:field</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">input:slider</span> <span class="hl-str">'volume'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Volume'</span>, <span class="hl-opt">min</span>=<span class="hl-num">0</span>, <span class="hl-opt">max</span>=<span class="hl-num">100</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
@@ -552,14 +552,14 @@
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:nonce</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7textarea.html">{pad:textarea}</a> <span class="about">A text area with its label that refills from what its form sent and shows the error validation found for it.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:textarea</span> <span class="hl-str">'message'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">value</span>=<span class="hl-str">''</span>, <span class="hl-opt">id</span>=<span class="hl-str">'msg'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, required<span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:2000'</span><span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7textarea.html">{input:textarea}</a> <span class="about">A text area with its label that refills from what its form sent and shows the error validation found for it.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:textarea</span> <span class="hl-str">'message'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input:textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">value</span>=<span class="hl-str">''</span>, <span class="hl-opt">id</span>=<span class="hl-str">'msg'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, required<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input:textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:2000'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7validator.html">{pad:validator}</a> <span class="about">The browser's checker of the validation rules as one inline script, for a form a component draws.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:validator</span><span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7validator.html">{input:validator}</a> <span class="about">The browser's checker of the validation rules as one inline script, for a form a component draws.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:validator</span><span class="hl-brc">/}</span></code></pre>
             </div>
           </div>
         </section>
@@ -598,14 +598,14 @@
 <span class="hl-brc">{</span><span class="hl-tag">pad:guest</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">pad:else</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:guest</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7notifications.html">{pad:notifications}</a> <span class="about">Lists the notifications padNotify kept on the site for the user logged in, unread, each with a link that marks it read.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:notifications</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:notifications</span> <span class="hl-opt">for</span>=<span class="hl-var">$id</span>, all<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$text</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$created</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$link</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:notifications</span><span class="hl-brc">}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7notifications.html">{widget:notifications}</a> <span class="about">Lists the notifications padNotify kept on the site for the user logged in, unread, each with a link that marks it read.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:notifications</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:notifications</span> <span class="hl-opt">for</span>=<span class="hl-var">$id</span>, all<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$text</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$created</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$link</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:notifications</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7oauth.html">{pad:oauth}</a> <span class="about">Writes a "Log in with ..." link styled as a button, for the OAuth login of padOAuthStart and padOAuthUser.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'github'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'oidc'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'?login/company'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Log in with your company account'</span><span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7oauth.html">{widget:oauth}</a> <span class="about">Writes a "Log in with ..." link styled as a button, for the OAuth login of padOAuthStart and padOAuthUser.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'github'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'oidc'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'?login/company'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Log in with your company account'</span><span class="hl-brc">/}</span></code></pre>
             </div>
           </div>
         </section>
@@ -719,9 +719,9 @@
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:output</span> <span class="hl-str">'type'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7reactData.html">{pad:reactData}</a> <span class="about">Writes the mount point of a React component, its data from a provider in _providers/ as JSON in an attribute.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'catalog'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'array'</span><span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7reactData.html">{widget:reactData}</a> <span class="about">Writes the mount point of a React component, its data from a provider in _providers/ as JSON in an attribute.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'catalog'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'array'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7spaceless.html">{pad:spaceless}</a> <span class="about">Takes out the whitespace between HTML tags, and at both ends of the content.</span>
@@ -775,41 +775,41 @@
 <span class="hl-brc">{</span><span class="hl-tag">pad:diff</span> <span class="hl-var">$old</span>, <span class="hl-var">$new</span>, side, <span class="hl-opt">from</span>=<span class="hl-str">'before'</span>, <span class="hl-opt">to</span>=<span class="hl-str">'after'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7emoji.html">{pad:emoji}</a> <span class="about">An emoji by its GitHub or Slack shortcode, as a labelled image a screen reader names.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:emoji</span> <span class="hl-str">'rocket'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:emoji</span> <span class="hl-str">':tada:'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Party!'</span><span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7emoji.html">{image:emoji}</a> <span class="about">An emoji by its GitHub or Slack shortcode, as a labelled image a screen reader names.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">image:emoji</span> <span class="hl-str">'rocket'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">image:emoji</span> <span class="hl-str">':tada:'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Party!'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7excerpt.html">{pad:excerpt}</a> <span class="about">Cuts a long text to whole words with an ellipsis, centred on the first match of search words, every match marked.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:excerpt</span> <span class="hl-var">$text</span>, <span class="hl-opt">words</span>=<span class="hl-num">40</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:excerpt</span> <span class="hl-var">$text</span>, <span class="hl-opt">words</span>=<span class="hl-num">24</span>, <span class="hl-opt">highlight</span>=<span class="hl-var">$q</span>, <span class="hl-opt">ellipsis</span>=<span class="hl-str">'...'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:excerpt</span> <span class="hl-var">$html</span>, <span class="hl-opt">words</span>=<span class="hl-num">30</span>, html<span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7excerpt.html">{widget:excerpt}</a> <span class="about">Cuts a long text to whole words with an ellipsis, centred on the first match of search words, every match marked.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:excerpt</span> <span class="hl-var">$text</span>, <span class="hl-opt">words</span>=<span class="hl-num">40</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:excerpt</span> <span class="hl-var">$text</span>, <span class="hl-opt">words</span>=<span class="hl-num">24</span>, <span class="hl-opt">highlight</span>=<span class="hl-var">$q</span>, <span class="hl-opt">ellipsis</span>=<span class="hl-str">'...'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:excerpt</span> <span class="hl-var">$html</span>, <span class="hl-opt">words</span>=<span class="hl-num">30</span>, html<span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7highlight.html">{pad:highlight}</a> <span class="about">Colours source code on the server - PAD, PHP, HTML, CSS, JavaScript, JSON, YAML, SQL or shell - with optional line numbers and marked lines.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:highlight</span> <span class="hl-str">'lang'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:highlight</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:highlight</span> <span class="hl-str">'lang'</span>, lines, <span class="hl-opt">mark</span>=<span class="hl-str">'3, 5-7'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:highlight</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:highlight</span> <span class="hl-opt">file</span>=<span class="hl-str">'_data/products.json'</span><span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7highlight.html">{widget:highlight}</a> <span class="about">Colours source code on the server - PAD, PHP, HTML, CSS, JavaScript, JSON, YAML, SQL or shell - with optional line numbers and marked lines.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:highlight</span> <span class="hl-str">'lang'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:highlight</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:highlight</span> <span class="hl-str">'lang'</span>, lines, <span class="hl-opt">mark</span>=<span class="hl-str">'3, 5-7'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:highlight</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:highlight</span> <span class="hl-opt">file</span>=<span class="hl-str">'_data/products.json'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7lorem.html">{pad:lorem}</a> <span class="about">Placeholder text - Lorem ipsum and Latin words - in words, sentences or paragraphs, the same text for the same seed.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:lorem</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:lorem</span> <span class="hl-opt">words</span>=<span class="hl-num">4</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:lorem</span> <span class="hl-opt">sentences</span>=<span class="hl-num">2</span>, <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:lorem</span> <span class="hl-opt">paragraphs</span>=<span class="hl-num">3</span>, <span class="hl-opt">sentences</span>=<span class="hl-num">4</span>, varied<span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7lorem.html">{widget:lorem}</a> <span class="about">Placeholder text - Lorem ipsum and Latin words - in words, sentences or paragraphs, the same text for the same seed.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:lorem</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:lorem</span> <span class="hl-opt">words</span>=<span class="hl-num">4</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:lorem</span> <span class="hl-opt">sentences</span>=<span class="hl-num">2</span>, <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:lorem</span> <span class="hl-opt">paragraphs</span>=<span class="hl-num">3</span>, <span class="hl-opt">sentences</span>=<span class="hl-num">4</span>, varied<span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7markdown.html">{pad:markdown}</a> <span class="about">Renders its content, or the value of its parameter, as Markdown and writes the HTML.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:markdown</span> <span class="hl-var">$text</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:markdown</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:markdown</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:markdown</span> html<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:markdown</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:markdown</span> ignore<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:markdown</span><span class="hl-brc">}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7markdown.html">{widget:markdown}</a> <span class="about">Renders its content, or the value of its parameter, as Markdown and writes the HTML.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:markdown</span> <span class="hl-var">$text</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:markdown</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:markdown</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:markdown</span> html<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:markdown</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:markdown</span> ignore<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:markdown</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7source.html">{pad:source}</a> <span class="about">Shows the files behind a page as tabs, each coloured as highlight colours it - the code shown is the code that runs.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:source</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:source</span> <span class="hl-str">'page'</span>, <span class="hl-opt">files</span>=<span class="hl-str">'_lib/orders.php, www:orders.js'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:source</span> <span class="hl-opt">only</span>=<span class="hl-str">'_tags/card.pad, www:card.js'</span><span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7source.html">{widget:source}</a> <span class="about">Shows the files behind a page as tabs, each coloured as highlight colours it - the code shown is the code that runs.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:source</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:source</span> <span class="hl-str">'page'</span>, <span class="hl-opt">files</span>=<span class="hl-str">'_lib/orders.php, www:orders.js'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:source</span> <span class="hl-opt">only</span>=<span class="hl-str">'_tags/card.pad, www:card.js'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7timeago.html">{pad:timeago}</a> <span class="about">How long ago a moment was, in words, inside a time element that keeps the exact moment as its datetime and title.</span>
@@ -817,9 +817,9 @@
 <span class="hl-brc">{</span><span class="hl-tag">pad:timeago</span> <span class="hl-var">$moment</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'j M Y'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7toc.html">{pad:toc}</a> <span class="about">A table of contents of the page from its own rendered headings, nested and linked - filled in once the page has rendered.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:toc</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:toc</span> <span class="hl-opt">levels</span>=<span class="hl-str">'2-4'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'On this page'</span>, <span class="hl-opt">list</span>=<span class="hl-str">'ul'</span><span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7toc.html">{widget:toc}</a> <span class="about">A table of contents of the page from its own rendered headings, nested and linked - filled in once the page has rendered.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:toc</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:toc</span> <span class="hl-opt">levels</span>=<span class="hl-str">'2-4'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'On this page'</span>, <span class="hl-opt">list</span>=<span class="hl-str">'ul'</span><span class="hl-brc">/}</span></code></pre>
             </div>
           </div>
         </section>
@@ -843,10 +843,10 @@
 <span class="hl-brc">{</span><span class="hl-tag">pad:map</span> <span class="hl-str">'europe'</span>, <span class="hl-opt">key</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'field'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:map</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7palette.html">{pad:palette}</a> <span class="about">The colours of a palette as swatches with their hex values - 29 of them: viridis and its family, the colour-blind safe Okabe-Ito and Tol schemes, ColorBrewer's scales - the same palettes palette= gives a chart.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'viridis'</span>, <span class="hl-opt">steps</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'okabe-ito'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Our chart colours'</span><span class="hl-brc">/}</span>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7palette.html">{widget:palette}</a> <span class="about">The colours of a palette as swatches with their hex values - 29 of them: viridis and its family, the colour-blind safe Okabe-Ito and Tol schemes, ColorBrewer's scales - the same palettes palette= gives a chart.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'viridis'</span>, <span class="hl-opt">steps</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'okabe-ito'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Our chart colours'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">chart:bar</span> <span class="hl-opt">data</span>=<span class="hl-str">'sales'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'north, south'</span>, <span class="hl-opt">palette</span>=<span class="hl-str">'viridis'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
@@ -870,9 +870,9 @@
 <span class="hl-brc">{</span><span class="hl-tag">pad:avatar</span> <span class="hl-var">$name</span>, <span class="hl-opt">size</span>=<span class="hl-num">48</span>, <span class="hl-opt">shape</span>=<span class="hl-str">'square'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7country.html">{pad:country}</a> <span class="about">Writes a country's flag from its ISO 3166 code or English name, optionally with the name beside it.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:country</span> <span class="hl-str">'NL'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:country</span> <span class="hl-var">$code</span>, name<span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7country.html">{image:country}</a> <span class="about">Writes a country's flag from its ISO 3166 code or English name, optionally with the name beside it.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">image:country</span> <span class="hl-str">'NL'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">image:country</span> <span class="hl-var">$code</span>, name<span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7gravatar.html">{pad:gravatar}</a> <span class="about">Writes the Gravatar picture of an e-mail address as an img - only a hash of the address leaves the page - or a local avatar instead.</span>
@@ -916,10 +916,10 @@
 <span class="hl-brc">{</span><span class="hl-tag">pad:rating</span> <span class="hl-var">$score</span>, <span class="hl-opt">max</span>=<span class="hl-num">5</span>, <span class="hl-opt">size</span>=<span class="hl-num">20</span>, <span class="hl-opt">icon</span>=<span class="hl-str">'heart'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7video.html">{pad:video}</a> <span class="about">Shows a YouTube or Vimeo video as its poster with a play button, loading the player only when pressed - or a video file as a video element.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:video</span> <span class="hl-str">'https://www.youtube.com/watch?v=id'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:video</span> <span class="hl-str">'https://vimeo.com/id#t=1m30s'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">poster</span>=<span class="hl-str">'photos/still.jpg'</span>, <span class="hl-opt">ratio</span>=<span class="hl-str">'16:9'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:video</span> <span class="hl-str">'clips/sunrise.webm'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">poster</span>=<span class="hl-str">'photos/sunrise.jpg'</span><span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7video.html">{widget:video}</a> <span class="about">Shows a YouTube or Vimeo video as its poster with a play button, loading the player only when pressed - or a video file as a video element.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:video</span> <span class="hl-str">'https://www.youtube.com/watch?v=id'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:video</span> <span class="hl-str">'https://vimeo.com/id#t=1m30s'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">poster</span>=<span class="hl-str">'photos/still.jpg'</span>, <span class="hl-opt">ratio</span>=<span class="hl-str">'16:9'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:video</span> <span class="hl-str">'clips/sunrise.webm'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">poster</span>=<span class="hl-str">'photos/sunrise.jpg'</span><span class="hl-brc">/}</span></code></pre>
             </div>
           </div>
         </section>
@@ -952,8 +952,8 @@
 <span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-str">'name'</span>, <span class="hl-opt">editable</span>=<span class="hl-str">'B2:C9'</span>, <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:spreadsheet</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7tab.html">{pad:tab}</a> <span class="about">One item of a tabs, accordion, carousel, wizard, lightbox, splitpane or sortable widget: its label and its content, handed to that owner.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7tab.html">{widget:tab}</a> <span class="about">One item of a tabs, accordion, carousel, wizard, lightbox, splitpane or sortable widget: its label and its content, handed to that owner.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'label'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span></code></pre>
             </div>
           </div>
         </section>
@@ -1016,9 +1016,9 @@
 <span class="hl-brc">{</span><span class="hl-tag">pad:push</span> <span class="hl-str">'name'</span>, once<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:push</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7shadow.html">{pad:shadow}</a> <span class="about">The shadow root of a custom element, rendered on the server as declarative shadow DOM.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:shadow</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:shadow</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:shadow</span> <span class="hl-opt">css</span>=<span class="hl-str">'file.css, www:other.css'</span>, <span class="hl-opt">mode</span>=<span class="hl-str">'closed'</span>, focus<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:shadow</span><span class="hl-brc">}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7shadow.html">{widget:shadow}</a> <span class="about">The shadow root of a custom element, rendered on the server as declarative shadow DOM.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:shadow</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:shadow</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:shadow</span> <span class="hl-opt">css</span>=<span class="hl-str">'file.css, www:other.css'</span>, <span class="hl-opt">mode</span>=<span class="hl-str">'closed'</span>, focus<span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:shadow</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7slot.html">{pad:slot}</a> <span class="about">A named place in a custom tag's template - and the fill a caller gives it.</span>
@@ -1031,16 +1031,16 @@
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:stack</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7theme.html">{pad:theme}</a> <span class="about">The colours of the page swapped for a theme - 16 of them, from paper and sepia to a terminal, an ocean and a high-contrast one - or its content alone in a box of the theme.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'paper'</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'terminal'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7theme.html">{widget:theme}</a> <span class="about">The colours of the page swapped for a theme - 16 of them, from paper and sepia to a terminal, an ocean and a high-contrast one - or its content alone in a box of the theme.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'paper'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'terminal'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span>
 <span class="hl-var">$padTheme</span> = <span class="hl-str">'paper'</span>;</code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7themes.html">{pad:themes}</a> <span class="about">A switcher of the themes: the visitor's choice kept in a cookie, the pages built on the frame in that theme from then on, applied the moment it is chosen.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:themes</span><span class="hl-brc">/}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:themes</span> <span class="hl-opt">label</span>=<span class="hl-str">'Colours'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'Use'</span><span class="hl-brc">/}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7themes.html">{widget:themes}</a> <span class="about">A switcher of the themes: the visitor's choice kept in a cookie, the pages built on the frame in that theme from then on, applied the moment it is chosen.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:themes</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:themes</span> <span class="hl-opt">label</span>=<span class="hl-str">'Colours'</span>, <span class="hl-opt">button</span>=<span class="hl-str">'Use'</span><span class="hl-brc">/}</span></code></pre>
             </div>
           </div>
         </section>
@@ -1621,16 +1621,16 @@
           </div>
           <div class="cheat">
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7accordion.html">{widget:accordion}</a> <span class="about">Every {pad:tab} a &lt;details&gt; with its label as the &lt;summary&gt;.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:accordion</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'Question'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:accordion</span><span class="hl-brc">}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7accordion.html">{widget:accordion}</a> <span class="about">Every {widget:tab} a &lt;details&gt; with its label as the &lt;summary&gt;.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:accordion</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'Question'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:accordion</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7breadcrumb.html">{widget:breadcrumb}</a> <span class="about">Where the page stands: a &lt;nav&gt; with an ordered list of links from the application's home to the page, the last one the page itself.</span>
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:breadcrumb</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7carousel.html">{widget:carousel}</a> <span class="about">Every {pad:tab} a slide of a row that scrolls and snaps sideways, with previous and next links on each slide and a dot per slide below.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:carousel</span> <span class="hl-opt">label</span>=<span class="hl-str">'Our kettles'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'Sunrise'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'Ocean'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:carousel</span><span class="hl-brc">}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7carousel.html">{widget:carousel}</a> <span class="about">Every {widget:tab} a slide of a row that scrolls and snaps sideways, with previous and next links on each slide and a dot per slide below.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:carousel</span> <span class="hl-opt">label</span>=<span class="hl-str">'Our kettles'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'Sunrise'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'Ocean'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:carousel</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7commandpalette.html">{widget:commandpalette}</a> <span class="about">A search over the commands of an application.</span>
@@ -1655,8 +1655,8 @@
               <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:dropdown</span> <span class="hl-str">'Account'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"?profile"</span><span class="hl-htm">&gt;</span>Profile<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:dropdown</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7lightbox.html">{widget:lightbox}</a> <span class="about">A gallery: every {pad:tab} a thumbnail in a grid, a link that opens the picture large over the page, with its caption.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:lightbox</span> <span class="hl-opt">label</span>=<span class="hl-str">'The harbour'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'At dawn'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;img</span> <span class="hl-opt">src</span>=<span class="hl-str">"dawn.jpg"</span> <span class="hl-opt">alt</span>=<span class="hl-str">"..."</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:lightbox</span><span class="hl-brc">}</span></code></pre>
+              <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7lightbox.html">{widget:lightbox}</a> <span class="about">A gallery: every {widget:tab} a thumbnail in a grid, a link that opens the picture large over the page, with its caption.</span>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:lightbox</span> <span class="hl-opt">label</span>=<span class="hl-str">'The harbour'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'At dawn'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;img</span> <span class="hl-opt">src</span>=<span class="hl-str">"dawn.jpg"</span> <span class="hl-opt">alt</span>=<span class="hl-str">"..."</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:lightbox</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7modal.html">{widget:modal}</a> <span class="about">A &lt;dialog&gt; with the content, and a button that opens it.</span>
@@ -1668,15 +1668,15 @@
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7sortable.html">{widget:sortable}</a> <span class="about">A short list put in order by hand, its order posted with the form it stands in.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:sortable</span> <span class="hl-str">'priority'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'a1'</span><span class="hl-brc">}</span>Write the report<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'b7'</span><span class="hl-brc">}</span>Call the bank<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:sortable</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:sortable</span> <span class="hl-str">'priority'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'a1'</span><span class="hl-brc">}</span>Write the report<span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'b7'</span><span class="hl-brc">}</span>Call the bank<span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:sortable</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7splitpane.html">{widget:splitpane}</a> <span class="about">Two panes side by side, or stacked, with a bar between them that resizes them.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:splitpane</span> <span class="hl-opt">size</span>=<span class="hl-num">30</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'Folders'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'Message'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:splitpane</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:splitpane</span> <span class="hl-opt">size</span>=<span class="hl-num">30</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'Folders'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'Message'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:splitpane</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7tabs.html">{widget:tabs}</a> <span class="about">Tabs without JavaScript: a radio button and a label per tab, the CSS shows the panel of the checked one.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:tabs</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'Overview'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'Specs'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:tabs</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:tabs</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'Overview'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'Specs'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:tabs</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7toast.html">{widget:toast}</a> <span class="about">A notice the visitor dismisses.</span>
@@ -1690,7 +1690,7 @@
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7wizard.html">{widget:wizard}</a> <span class="about">A form or a story in steps, one shown at a time.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:wizard</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'Address'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">'Payment'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:wizard</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:wizard</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'Address'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">widget:tab</span> <span class="hl-str">'Payment'</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:wizard</span><span class="hl-brc">}</span></code></pre>
             </div>
           </div>
         </section>
@@ -4566,51 +4566,51 @@
           <div class="cheat">
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7apple.html">oauth / apple</a> <span class="about">Sign in with Apple: a Services ID as APPLE_CLIENT_ID, and in place of a fixed secret a key of the developer account - APPLE_TEAM_ID, APPLE_KEY_ID and the key itself in APPLE_PRIVATE_KEY (the PEM text of the .p8 file, or its path) - from which every token exchange makes the client secret Apple asks for: an ES256 JWT, signed with openssl.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'apple'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'apple'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7bitbucket.html">oauth / bitbucket</a> <span class="about">Log in with Bitbucket (Bitbucket Cloud): an OAuth consumer of a workspace (Settings, OAuth consumers), its key and secret in BITBUCKET_CLIENT_ID and BITBUCKET_CLIENT_SECRET, its callback URL the address of the login page, and its permissions Account: Read and Email - a consumer's scopes are set there, not asked for in the address.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'bitbucket'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'bitbucket'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7discord.html">oauth / discord</a> <span class="about">Log in with Discord: an application of the developer portal, its id and secret in DISCORD_CLIENT_ID and DISCORD_CLIENT_SECRET.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'discord'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'discord'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7forgejo.html">oauth / forgejo</a> <span class="about">Log in with Forgejo (or Gitea): Codeberg by default, or the forge at the address in the option base or FORGEJO_URL; an OAuth2 application's id and secret in FORGEJO_CLIENT_ID and FORGEJO_CLIENT_SECRET.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'forgejo'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'forgejo'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7github.html">oauth / github</a> <span class="about">Log in with GitHub: an OAuth app (Settings, Developer settings), its client id and secret in GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'github'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'github'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7gitlab.html">oauth / gitlab</a> <span class="about">Log in with GitLab: an application of gitlab.com, or of a GitLab of your own with its address in the option base or GITLAB_URL; its id and secret in GITLAB_CLIENT_ID and GITLAB_CLIENT_SECRET.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'gitlab'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'gitlab'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7google.html">oauth / google</a> <span class="about">Sign in with Google, OpenID Connect: a client of the Google Cloud console, its id and secret in GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'google'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'google'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7linkedin.html">oauth / linkedin</a> <span class="about">Sign In with LinkedIn using OpenID Connect: an app of the developer portal with that product added, its client id and secret in LINKEDIN_CLIENT_ID and LINKEDIN_CLIENT_SECRET.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'linkedin'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'linkedin'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7microsoft.html">oauth / microsoft</a> <span class="about">Sign in with Microsoft, OpenID Connect on the identity platform: an app registration's id and secret in MICROSOFT_CLIENT_ID and MICROSOFT_CLIENT_SECRET, the tenant in the option tenant or MICROSOFT_TENANT - common (default: work, school and personal accounts), organizations, consumers, or a tenant's own id or domain.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'microsoft'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'microsoft'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7oidc.html">oauth / oidc</a> <span class="about">Any OpenID Connect provider - Keycloak, Authentik, Zitadel, Auth0, Okta, a company's own: its issuer in the option issuer or OIDC_ISSUER, its client in OIDC_CLIENT_ID and OIDC_CLIENT_SECRET (or another prefix with the option env='KEYCLOAK' - KEYCLOAK_ISSUER, KEYCLOAK_CLIENT_ID ...).</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'oidc'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'oidc'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7slack.html">oauth / slack</a> <span class="about">Sign in with Slack, OpenID Connect: a Slack app with its redirect URL set under OAuth & Permissions, its client id and secret in SLACK_CLIENT_ID and SLACK_CLIENT_SECRET.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'slack'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'slack'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7oauth%EA%A4%B7x.html">oauth / x</a> <span class="about">Log in with X (Twitter): a Web App of the X developer console - a confidential client, with OAuth 2.0 switched on and the login page as its callback URL - its client id and secret in X_CLIENT_ID and X_CLIENT_SECRET.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">'x'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:oauth</span> <span class="hl-str">'x'</span>, <span class="hl-opt">href</span>=<span class="hl-str">'#example'</span><span class="hl-brc">/}</span></code></pre>
             </div>
           </div>
         </section>
@@ -4622,7 +4622,7 @@
           </div>
           <div class="cheat">
             <div class="cheat-item">
-              <a class="name" href="index%EF%B9%96kind%EA%A4%B7channel%EA%A4%B7database.html">channel / database</a> <span class="about">The notification kept on the site, for the person to read there: the {pad:notifications/} tag lists the unread ones of the user logged in, each with a link that marks it read; padNotifications and padNotificationRead do the same from PHP.</span>
+              <a class="name" href="index%EF%B9%96kind%EA%A4%B7channel%EA%A4%B7database.html">channel / database</a> <span class="about">The notification kept on the site, for the person to read there: the {widget:notifications/} tag lists the unread ones of the user logged in, each with a link that marks it read; padNotifications and padNotificationRead do the same from PHP.</span>
               <pre class="code"><code><span class="hl-fn">padNotify</span> <span class="hl-pun">(</span> <span class="hl-var">$recipient</span><span class="hl-pun">,</span> <span class="hl-str">'order-shipped'</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">'order'</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">42</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">'database'</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
 <span class="hl-var">$results</span> <span class="hl-pun">=</span> <span class="hl-fn">padNotifyResults</span> <span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
             </div>
@@ -6709,67 +6709,67 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
           <div class="cheat">
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7blueprint.html">theme / blueprint</a> <span class="about">White lines on the deep blue of a cyanotype drawing: a faint grid on the page, a fine one every 20 pixels and a stronger one every 100 as on drawing paper, the headings lettered in capitals as a title block is, the links the yellow of an engineer's marking pencil - for technical pages, demos and diagrams.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'blueprint'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the blueprint theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'blueprint'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the blueprint theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7contrast.html">theme / contrast</a> <span class="about">Black on white, a dark blue for the links: every text of the frame at 7 to 1 or more, WCAG AAA, the links underlined and the focus ringed thick, so colour is never all that tells them apart.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'contrast'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the contrast theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'contrast'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the contrast theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7contrast-dark.html">theme / contrast-dark</a> <span class="about">White on black, yellow for the links, as the high-contrast black scheme of an operating system has them: the dark counterpart of contrast, every text of the frame at 7 to 1 or more, WCAG AAA, the links underlined, the focus ringed thick in yellow and the lines light enough to be seen.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'contrast-dark'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the contrast-dark theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'contrast-dark'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the contrast-dark theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7dark.html">theme / dark</a> <span class="about">The frame's own dark colours, kept dark whatever the system or the frame's switch says, the side's headings lightened to WCAG AA.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'dark'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the dark theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'dark'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the dark theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7forest.html">theme / forest</a> <span class="about">A light page in the greens of leaves, a deep forest-green side and accent.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'forest'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the forest theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'forest'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the forest theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7light.html">theme / light</a> <span class="about">The frame's own light colours, kept light whatever the system or the frame's switch says, with the two greys and the soft accent the frame's set has below WCAG AA - its dim text, the side's headings, a link on the accent's tint - darkened to it.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'light'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the light theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'light'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the light theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7mono.html">theme / mono</a> <span class="about">Greys only, black links underlined and black buttons: a page whose colour is all in its pictures and charts.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'mono'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the mono theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'mono'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the mono theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7newspaper.html">theme / newspaper</a> <span class="about">Black on newsprint, a deep red for the links and a serif for every line, the headings set tight as a paper's are.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'newspaper'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the newspaper theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'newspaper'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the newspaper theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7night.html">theme / night</a> <span class="about">A dark page for reading late, in warm colours alone: parchment text on a brown-black ground, an amber accent, the messages in olive, gold and coral - every colour's blue below its red and its green, as a screen's night mode shifts away from blue light.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'night'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the night theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'night'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the night theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7ocean.html">theme / ocean</a> <span class="about">Deep navy water under a pale blue text, the links the cyan of a shallow lagoon.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'ocean'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the ocean theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'ocean'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the ocean theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7paper.html">theme / paper</a> <span class="about">Warm off-white paper and soft black ink, a blue-black accent like a fountain pen's, the type a book face: quiet pages for reading.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'paper'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the paper theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'paper'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the paper theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7readable.html">theme / readable</a> <span class="about">A page set for readers with dyslexia, after the British Dyslexia Association's Dyslexia Style Guide: dark text on cream rather than black on white, a plain, evenly spaced sans-serif (Atkinson Hyperlegible where it is installed, else the guide's Verdana, Tahoma or Trebuchet), 16 pixels, the lines 1.6 apart, the letters .06em and the words .16em further apart - within what WCAG 1.4.12 asks a page to bear - paragraphs no wider than 70 characters, bold instead of italics, no block capitals in the side's headings, and the messages in Okabe and Ito's blue, orange and vermilion, darkened to AA: no green and no red, which the guide asks to avoid for colour-blind readers.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'readable'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the readable theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'readable'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the readable theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7sepia.html">theme / sepia</a> <span class="about">The browns of an old photograph, dark umber on a parchment page and a saddle-brown accent: easy on the eyes for a long read.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'sepia'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the sepia theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'sepia'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the sepia theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7solarized-dark.html">theme / solarized-dark</a> <span class="about">The deep blue-green and cream of Solarized's dark mode: its base tones for the page, the panels, the side and the code, its blue for the links, its green, yellow and red for the messages.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'solarized-dark'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the solarized-dark theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'solarized-dark'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the solarized-dark theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7solarized-light.html">theme / solarized-light</a> <span class="about">The cream and blue-green of Solarized's light mode: its base tones for the page, the side and the code, its blue for the links, its green, yellow and red for the messages.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'solarized-light'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the solarized-light theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'solarized-light'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the solarized-light theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7theme%EA%A4%B7terminal.html">theme / terminal</a> <span class="about">Green phosphor on black with an amber accent, every letter monospaced, as an old video terminal showed it.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">'terminal'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the terminal theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'terminal'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the terminal theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
             </div>
           </div>
         </section>
@@ -6782,119 +6782,119 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
           <div class="cheat">
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7batlow.html">palette / batlow</a> <span class="about">Fabio Crameri's sequential scale batlow, from a dark navy through teal, a moss green, olive and ochre to salmon and a pale pink: perceptually uniform, its lightness rising all the way, so it prints as a ramp in grey, and read by colour-vision-deficient and colour-blind eyes, as Crameri's scientific colour maps all are.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'batlow'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'batlow'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7blues.html">palette / blues</a> <span class="about">ColorBrewer's single-hue sequential scale of nine blues, from nearly white to navy (Cynthia Brewer, colorbrewer2.org).</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'blues'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'blues'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7brbg.html">palette / brbg</a> <span class="about">ColorBrewer's diverging scale of eleven classes from brown through a light grey to blue-green, readable by colour-blind eyes (Cynthia Brewer, colorbrewer2.org).</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'brbg'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'brbg'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7cividis.html">palette / cividis</a> <span class="about">A perceptually uniform scale from navy to yellow made to look alike to people with and without a red-green colour vision deficiency (Nuñez, Anderton and Renslow, 2018).</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'cividis'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'cividis'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7dark2.html">palette / dark2</a> <span class="about">ColorBrewer's qualitative Dark2, eight deep colours to tell categories apart - teal green, orange, slate violet, magenta, green, mustard, brown and grey (Cynthia Brewer, colorbrewer2.org): darker and more saturated than its pastels, so thin lines and small marks stay visible on a light surface; ColorBrewer marks its first three safe for colour-blind eyes, four to six possibly, more not.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'dark2'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'dark2'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7earth.html">palette / earth</a> <span class="about">Eight tones of soil, clay, moss and sand, PAD's own qualitative palette: umber, olive, ochre, slate, sienna, moss, sand and a dark brown - quiet colours for a page in warm tones.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'earth'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'earth'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7glasbey.html">palette / glasbey</a> <span class="about">Thirty-two colours to tell many categories apart, each chosen as far as it can be from all before it, by the method of Chris Glasbey, Gerie van der Heijden, Vivian Toh and others ("Colour displays for categorical images", Color Research and Application 32.4, 2007): started from white and black, so none is near either, and no grey among them, every colour of a chroma of 20 or more.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'glasbey'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'glasbey'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7greens.html">palette / greens</a> <span class="about">ColorBrewer's single-hue sequential scale of nine greens, from nearly white to a deep forest green (Cynthia Brewer, colorbrewer2.org).</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'greens'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'greens'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7greys.html">palette / greys</a> <span class="about">ColorBrewer's sequential scale of nine greys, from white to black (Cynthia Brewer, colorbrewer2.org).</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'greys'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'greys'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7inferno.html">palette / inferno</a> <span class="about">A perceptually uniform scale from black through purple, red and orange to a pale yellow, of the matplotlib family of viridis.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'inferno'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'inferno'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7magma.html">palette / magma</a> <span class="about">A perceptually uniform scale from black through purple and red to a pale yellow, of the matplotlib family of viridis.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'magma'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'magma'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7okabe-ito.html">palette / okabe-ito</a> <span class="about">The eight colours Masataka Okabe and Kei Ito chose to stay apart for every kind of colour vision (Color Universal Design, 2008): orange, sky blue, bluish green, yellow, blue, vermillion, reddish purple and black - black put last here, where the original lists it first, as it vanishes on a dark surface.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'okabe-ito'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'okabe-ito'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7oranges.html">palette / oranges</a> <span class="about">ColorBrewer's single-hue sequential scale of nine oranges, from cream to a dark burnt orange (Cynthia Brewer, colorbrewer2.org).</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'oranges'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'oranges'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7paired.html">palette / paired</a> <span class="about">ColorBrewer's qualitative Paired, twelve colours in six pairs, a light and a dark of one hue each - blue, green, red, orange, purple, and a pale yellow with a brown (Cynthia Brewer, colorbrewer2.org): for categories that come in pairs - last year and this, planned and done - the pair's hue telling the group and its lightness the member; ColorBrewer marks it safe for colour-blind eyes up to four colours, possibly to eight, more not.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'paired'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'paired'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7pastel.html">palette / pastel</a> <span class="about">ColorBrewer's Pastel1, nine light qualitative colours for large areas behind dark text - a background, a map, the fills of a treemap (Cynthia Brewer, colorbrewer2.org).</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'pastel'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'pastel'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7piyg.html">palette / piyg</a> <span class="about">ColorBrewer's diverging scale of eleven classes from pink through a light grey to yellow-green, readable by colour-blind eyes (Cynthia Brewer, colorbrewer2.org).</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'piyg'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'piyg'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7plasma.html">palette / plasma</a> <span class="about">A perceptually uniform scale from deep blue through magenta and orange to yellow, of the matplotlib family of viridis.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'plasma'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'plasma'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7puor.html">palette / puor</a> <span class="about">ColorBrewer's diverging scale PuOr of eleven classes, from a dark brown through orange to a light grey middle and on through lilac to a dark purple (Cynthia Brewer, colorbrewer2.org), in ColorBrewer's order, its orange end first: orange against purple, two hues red-green colour-blind eyes still tell apart, and ColorBrewer marks it safe for them.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'puor'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'puor'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7rdbu.html">palette / rdbu</a> <span class="about">ColorBrewer's diverging scale of eleven classes from dark red through a light grey to dark blue, for values on both sides of a middle - colder and warmer, less and more (Cynthia Brewer, colorbrewer2.org).</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'rdbu'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'rdbu'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7rdylbu.html">palette / rdylbu</a> <span class="about">ColorBrewer's diverging scale RdYlBu of eleven classes, from a dark red through orange to a pale yellow middle and on through light blue to a dark indigo (Cynthia Brewer, colorbrewer2.org), for values on both sides of a middle - hotter and colder, above and below: the spread of a rainbow, but ColorBrewer marks it safe for colour-blind eyes at every number of classes, where its Spectral and RdYlGn are at most possibly so, and only up to five.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'rdylbu'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'rdylbu'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7romao.html">palette / romao</a> <span class="about">Fabio Crameri's cyclic scale romaO, for what goes round - an angle, a direction, the hour, the month: from a dark plum through brick, ochre and a pale yellow, a pale green, sky blue and indigo back to the plum, its last colour next to its first.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'romao'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'romao'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7tol-bright.html">palette / tol-bright</a> <span class="about">Paul Tol's bright qualitative scheme of seven colours, told apart by colour-blind eyes and in print: blue, red, green, yellow, cyan, purple and grey, in his order (from the colors.json of his tol_colors package).</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'tol-bright'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'tol-bright'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7tol-muted.html">palette / tol-muted</a> <span class="about">Paul Tol's muted qualitative scheme of ten colours, softer than the bright one and still told apart by colour-blind eyes: rose, indigo, sand, green, cyan, wine, teal, olive, purple and a pale grey, in his order (from the colors.json of his tol_colors package).</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'tol-muted'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'tol-muted'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7tol-vibrant.html">palette / tol-vibrant</a> <span class="about">Paul Tol's vibrant qualitative scheme of seven colours, made for TensorBoard and told apart by colour-blind eyes: orange, blue, cyan, magenta, red, teal and grey, in his order (from the colors.json of his tol_colors package).</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'tol-vibrant'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'tol-vibrant'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7turbo.html">palette / turbo</a> <span class="about">Google's rainbow made smooth, by Anton Mikhailov (2019): from a dark indigo through blue, cyan, green, yellow and orange to a dark red, every step a visible change of hue, for a depth map or a field where the eye must read a value at a glance.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'turbo'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'turbo'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7vik.html">palette / vik</a> <span class="about">Fabio Crameri's diverging scale vik, from a dark navy through blue and a pale blue to a light middle and on through tan and rust to a dark red-brown, for values on both sides of a middle: perceptually uniform, its two halves nearly alike in lightness, and read by colour-vision-deficient and colour-blind eyes, as Crameri's scientific colour maps all are.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'vik'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'vik'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7viridis.html">palette / viridis</a> <span class="about">A perceptually uniform scale from dark purple through blue and green to yellow, the default of matplotlib (Stéfan van der Walt and Nathaniel Smith, 2015): even steps look even, it prints in grey as a ramp, and the common forms of colour blindness read it.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'viridis'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'viridis'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7ylgnbu.html">palette / ylgnbu</a> <span class="about">ColorBrewer's multi-hue sequential scale YlGnBu of nine classes, from a pale yellow through green and teal to blue and a dark navy (Cynthia Brewer, colorbrewer2.org): its hue turns as its lightness falls, so the steps of a map or a heatmap tell apart better than in one hue, and ColorBrewer marks it safe for colour-blind eyes.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'ylgnbu'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'ylgnbu'</span><span class="hl-brc">/}</span></code></pre>
             </div>
             <div class="cheat-item">
               <a class="name" href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7ylorrd.html">palette / ylorrd</a> <span class="about">ColorBrewer's multi-hue sequential scale YlOrRd of nine classes, from a pale yellow through orange and red to a dark crimson (Cynthia Brewer, colorbrewer2.org), for heat, risk or intensity: its hue turns as its lightness falls, and ColorBrewer marks it safe for colour-blind eyes.</span>
-              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">'ylorrd'</span><span class="hl-brc">/}</span></code></pre>
+              <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:palette</span> <span class="hl-str">'ylorrd'</span><span class="hl-brc">/}</span></code></pre>
             </div>
           </div>
         </section>

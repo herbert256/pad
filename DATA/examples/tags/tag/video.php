@@ -5,9 +5,9 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{pad:video 'https://www.youtube.com/watch?v=id', title='text'/}
-{pad:video 'https://vimeo.com/id#t=1m30s', title='text', poster='photos/still.jpg', ratio='16:9'/}
-{pad:video 'clips/sunrise.webm', title='text', poster='photos/sunrise.jpg'/}
+{widget:video 'https://www.youtube.com/watch?v=id', title='text'/}
+{widget:video 'https://vimeo.com/id#t=1m30s', title='text', poster='photos/still.jpg', ratio='16:9'/}
+{widget:video 'clips/sunrise.webm', title='text', poster='photos/sunrise.jpg'/}
 PAD;
 
   $tagParms   = [

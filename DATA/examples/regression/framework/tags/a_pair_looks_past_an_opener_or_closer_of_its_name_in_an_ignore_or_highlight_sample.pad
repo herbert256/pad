@@ -1,4 +1,4 @@
 {pad:set $a = 1/}{pad:set $xs = ['a', 'b']/}
 [{pad:if $a eq 1}Open a branch with {pad:ignore}{pad:if $x}{/pad:ignore} and close it.{/pad:if}]
 [{array:xs}{$xs}: end a loop with {pad:ignore}{/array:xs}{/pad:ignore}. {/array:xs}]
-[{pad:if $a eq 1}Close it with {pad:highlight 'pad'}{/pad:if}{/pad:highlight | php:preg_replace('#<style>.*</style>#s', '', @) | php:strip_tags(@)} at the end.{/pad:if}]
+[{pad:if $a eq 1}Close it with {widget:highlight 'pad'}{/pad:if}{/widget:highlight | php:preg_replace('#<style>.*</style>#s', '', @) | php:strip_tags(@)} at the end.{/pad:if}]
