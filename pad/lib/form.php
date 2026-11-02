@@ -1236,6 +1236,10 @@
 
         [ $text, $shown ] = padValidateMessage ( $field, $name, $arg, $number, $messages );
 
+        // A rule can provide its exact server-side argument set to the browser.
+        if ( isset ( padRule ( $name ) ['client'] ) )
+          $arg = padRule ( $name ) ['client'] ( $arg );
+
         $one [] = [ $name, $arg, $text, (string) $shown ];
 
         if ( isset ( padRule ( $name ) ['fields'] ) )
