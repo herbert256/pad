@@ -1,0 +1,12 @@
+<?php
+function padChartControl($rows,$w,$h){
+ $p=padChartProcessSeries($rows,padChartProcessOption('x','x'),padChartProcessOption('value','value'));if(!$p)return '';$fields=[];foreach(['center','lower','upper'] as $k)$fields[$k]=padChartProcessOption($k,$k);$lines=['center'=>[],'lower'=>[],'upper'=>[]];$values=[];$desc=[];$violations=[];
+ foreach($p as $i=>$r){$limits=[];foreach($fields as $k=>$field){$v=$r[2][$field]??NULL;if($v!==NULL&&$v!==''&&!padChartFinite($v))throw new InvalidArgumentException('Control limits must be finite or missing');$v=$v===NULL||$v===''?NULL:(float)$v;$limits[$k]=$v;$lines[$k][]=[$r[0],$v];if($v!==NULL)$values[]=$v;}
+ if($limits['lower']!==NULL&&$limits['upper']!==NULL&&$limits['lower']>$limits['upper'])throw new InvalidArgumentException('Control lower limit exceeds upper limit');if($limits['center']!==NULL&&(($limits['lower']!==NULL&&$limits['center']<$limits['lower'])||($limits['upper']!==NULL&&$limits['center']>$limits['upper'])))throw new InvalidArgumentException('Control center must lie within supplied limits');
+ $bad=$r[1]!==NULL&&(($limits['lower']!==NULL&&$r[1]<$limits['lower'])||($limits['upper']!==NULL&&$r[1]>$limits['upper']));$violations[$i]=$bad;if($r[1]!==NULL)$values[]=$r[1];$d=padChartNumber($r[0]).': '.($r[1]===NULL?'missing observation':padChartNumber($r[1]));foreach($limits as $k=>$v)$d.=', '.$k.' '.($v===NULL?'missing':padChartNumber($v));$desc[]=$d.($bad?', violation':'');}
+ if(!$values)return '';[$svg,$x,$y]=padChartProcessFrame('control',$p,$desc,padChartProcessOption('title','Process control chart'),$w,$h,$p[0][0],end($p)[0],min($values),max($values));
+ foreach($lines as $k=>$points)$svg.='<path class="'.($k==='center'?'pc-axis':'pc-l2').'" fill="none" stroke-dasharray="'.($k==='center'?'6 3':'2 3').'" d="'.padChartProcessStepPath($points,$x,$y,'after','break').'"><title>Supplied '.$k.'</title></path>';
+ $d='';$start=TRUE;foreach($p as $r){if($r[1]===NULL){$start=TRUE;continue;}$d.=($start?'M':'L').padChartXY($x($r[0])).' '.padChartXY($y($r[1]));$start=FALSE;}$svg.='<path class="pc-l1" fill="none" d="'.$d.'"/>';
+ foreach($p as $i=>$r)if($r[1]!==NULL){$svg.='<circle class="'.($violations[$i]?'pc-c2':'pc-c1').'" cx="'.padChartXY($x($r[0])).'" cy="'.padChartXY($y($r[1])).'" r="4"><title>'.padChartAttr($desc[$i]).'</title></circle>';if($violations[$i])$svg.='<text x="'.padChartXY($x($r[0])).'" y="'.padChartXY($y($r[1])-8).'" text-anchor="middle">violation</text>';}
+ return $svg.'</svg>';
+}
