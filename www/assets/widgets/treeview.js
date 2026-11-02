@@ -1,5 +1,5 @@
 (function(){if(window.padTreeviewReady)return;window.padTreeviewReady=true;
- function init(root){if(root.dataset.ready)return;root.dataset.ready='1';var tree=root.firstElementChild,links=Array.from(tree.querySelectorAll('a'));tree.setAttribute('role','tree');tree.setAttribute('aria-label',root.getAttribute('aria-label'));
+ function init(root){if(document.readyState==='loading')return;if(root.dataset.ready)return;root.dataset.ready='1';var tree=root.firstElementChild,links=Array.from(tree.querySelectorAll('a'));tree.setAttribute('role','tree');tree.setAttribute('aria-label',root.getAttribute('aria-label'));
  links.forEach(function(a,i){a.setAttribute('role','treeitem');a.tabIndex=i?-1:0;a.parentNode.setAttribute('role','none');var child=a.nextElementSibling;if(child){child.setAttribute('role','group');a.setAttribute('aria-expanded','true');}});
  function focus(a){links.forEach(function(x){x.tabIndex=-1;});a.tabIndex=0;a.focus();}
  function select(a){links.forEach(function(x){x.setAttribute('aria-selected',String(x===a));});root.dispatchEvent(new CustomEvent('pad-tree-select',{bubbles:true,detail:{id:a.dataset.treeId}}));}
