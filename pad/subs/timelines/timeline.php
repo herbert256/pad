@@ -1,29 +1,18 @@
 <?php
 
-  // {pad:timeline data='releases', date='when', label='what', text='detail'} - events on a time
-  // axis as inline SVG, drawn by tags/_lib/timeline.php. data= names the rows as for {chart:bar} - a
-  // {pad:data} store, a page array or a _data file - and as a pair the content is the rows,
-  // JSON, YAML, XML or CSV:
-  //
-  //   {pad:timeline date='year', label='what'}
-  //     year,what
-  //     1969,Moon landing
-  //   {/pad:timeline}
-  //
-  // date= names the field of a moment - a year (1969), a month (2026-10) or anything
-  // strtotime reads - else the first field that reads as one; from= and to= name the
-  // fields of a span, drawn as a bar. label= names the title of an event and text= the
-  // line under it, else the first other text fields. color= groups the events by a field,
-  // a colour each and a legend; format= writes the dates with a PHP date format.
-  //
-  // Across the page by default: a time axis with round ticks - years, months or days by
-  // the span - the cards above and below it, out of each other's way. vertical lays the
-  // events one under the other instead, dates left and cards right, for a long list - and
-  // more than 150 events are laid out so whatever is asked: finding each card its place
-  // across the page takes time with the cube of their number, 28 seconds for 800.
-  // width= is the width (720, vertical 600), height= follows from the cards unless given;
-  // title= names the timeline for a screen reader. A timeline without events answers
-  // nothing, and its @else@ shows.
+  // Shared event parsing for the timeline views. Existing horizontal/vertical SVG stays
+  // unchanged; roadmap and swimlane use the same dates, spans, labels and colour groups.
+  include_once PAD . 'subs/timelines/_lib/timeline.php';
+  include_once PAD . 'subs/timelines/_lib/views.php';
+
+  if ( ! padKind ( 'timelines', $padTimelineKind ) ) {
+    if ( $padCheckSyntax )
+      padError ( "there is no timeline type named '" . padMakeSafe ( $padTimelineKind, 20 ) . "'" );
+    return FALSE;
+  }
+
+  if ( $padInfoXref ?? FALSE )
+    padInfoXref ( 'timeline', $padTimelineKind );
 
   $padTimelineSource = $padContent;
   $padContent        = '';
@@ -55,7 +44,9 @@
   $padTimelineFrom    = (string) padTagParm ( 'from' );
   $padTimelineTo      = (string) padTagParm ( 'to' );
   $padTimelineColor   = (string) padTagParm ( 'color' );
-  $padTimelineUsed    = [ $padTimelineFrom, $padTimelineTo, $padTimelineColor ];
+  $padTimelineLane = in_array ( $padTimelineKind, [ 'roadmap', 'swimlane' ], TRUE ) ? (string) padTagParm ( 'lane', '' ) : '';
+  $padTimelineMilestone = in_array ( $padTimelineKind, [ 'roadmap', 'swimlane' ], TRUE ) ? (string) padTagParm ( 'milestone', '' ) : '';
+  $padTimelineUsed    = [ $padTimelineFrom, $padTimelineTo, $padTimelineColor, $padTimelineLane, $padTimelineMilestone ];
   $padTimelineAt      = ( $padTimelineFrom !== '' and $padTimelineTo !== '' ) ? (string) padTagParm ( 'date' ) : padChartPick ( 'date', $padTimelineDates, $padTimelineUsed );
   $padTimelineUsed [] = $padTimelineAt;
   $padTimelineLabel   = padChartPick ( 'label', $padTimelineTexts, $padTimelineUsed );
@@ -85,10 +76,6 @@
 
   $padTimelineTitle = (string) padTagParm ( 'title', 'Timeline' );
 
-  if ( padTagParm ( 'vertical', FALSE ) or count ( $padTimelineEvents ) > 150 )
-    return padTimelineColumn ( $padTimelineEvents, $padTimelineGroups, $padTimelineTitle, max ( 200, (int) padTagParm ( 'width', 600 ) ) );
-
-  return padTimeline ( $padTimelineEvents, $padTimelineGroups, $padTimelineTitle,
-                       max ( 200, (int) padTagParm ( 'width', 720 ) ), (int) padTagParm ( 'height', 0 ) );
+  return include PAD . "subs/timelines/types/$padTimelineKind.php";
 
 ?>

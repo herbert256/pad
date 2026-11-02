@@ -97,6 +97,8 @@
                   "{diff:words \$old, \$new/}\n{diff:json \$old, \$new/}\n{diff:rows \$old, \$new, key='id'/}" ],
       'table' => [ 'A table of rows, grouped records, a pivot or a matrix from pad/subs/tables/types/.', 'subsystems',
                    "{table:standard data='orders', sortable/}\n{table:grouped data='orders', group='region', totals='amount'/}" ],
+      'timeline' => [ 'Event views from pad/subs/timelines/types/ - horizontal, vertical, roadmap and swimlane.', 'subsystems',
+                      "{timeline:horizontal data='events'/}\n{timeline:roadmap data='events', lane='team'/}\n{timeline:swimlane data='events', lane='team'/}" ],
       'calendar' => [ 'A Gregorian calendar view from pad/subs/calendars/types/ - days, weeks, months, quarters, years and agendas.', 'subsystems',
                       "{calendar:month '2026-11'/}\n{calendar:week '2026-11-02'/}\n{calendar:year '2026'/}" ],
       'notation' => [ 'A notation, a file of pad/subs/notations/types/ - a formula, a tune, a word or a position drawn on the server.', 'subsystems',

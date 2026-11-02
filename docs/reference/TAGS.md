@@ -4017,17 +4017,17 @@ outlying areas, Bonaire, Saba and Sint Eustatius - is named as one it does not s
 
 ---
 
-### timeline
-Events on a time axis as inline SVG (`tags/_lib/timeline.php`) - cards above and below the axis,
+### timeline:*
+Events on a time axis as inline SVG (`subs/timelines/_lib/timeline.php`) - cards above and below the axis,
 spans as bars, or one under the other for a long list.
 
 ```html
-{pad:timeline data='releases', date='when', label='what', text='detail'/}
-{pad:timeline data='plan', from='start', to='end', date='day', label='name', color='kind'/}
-{pad:timeline date='year', label='what', vertical}
+{timeline:horizontal data='releases', date='when', label='what', text='detail'/}
+{timeline:horizontal data='plan', from='start', to='end', date='day', label='name', color='kind'/}
+{timeline:vertical date='year', label='what'}
   year,what
   1969,Moon landing
-{/pad:timeline}
+{/timeline:vertical}
 ```
 
 **Parameters:**
@@ -4040,7 +4040,7 @@ spans as bars, or one under the other for a long list.
 | `label`, `text` | The title of an event and the line under it - else the first other text fields |
 | `color` | A field that groups the events: a colour each and a legend |
 | `format` | A PHP date format for the dates written - else by the date's precision (`1969`, `Oct 2026`, `Oct 8, 2026`) |
-| `vertical` | Dates on the left, cards on the right, one under the other |
+| `vertical` | Runtime layout selector for `timeline:auto`; explicit views use `timeline:vertical` or `timeline:horizontal` |
 | `width`, `height` | Default 720 (vertical 600) wide; the height follows from the cards unless given (not in the vertical form) |
 | `title` | The accessible name, default `Timeline` |
 
@@ -4053,6 +4053,8 @@ the axis, their label inside or beside. The colours are the chart's categorical 
 (`light-dark()` defaults); every event has a `<title>` and the `<desc>` lists them all. A
 timeline without events answers nothing and its `@else@` shows; rows of which none has a
 date are an error under the strict check.
+
+`timeline:roadmap` groups events by `period='month|quarter|year'` (default quarter), with `lane=` subgroups and `milestone=` badges. Spans appear in their starting period with their full date range. `timeline:swimlane` draws named lanes on one shared time axis, with bars and milestone diamonds. Both use the same event fields; point events are milestones by default. See `pad/subs/timelines/README.md`.
 
 ---
 

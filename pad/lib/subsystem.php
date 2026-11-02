@@ -11,6 +11,7 @@
   const padSubsystems = [
     'diff' => [ 'diffs', FALSE, 'diff type' ],
     'table' => [ 'tables', FALSE, 'table type' ],
+    'timeline' => [ 'timelines', FALSE, 'timeline type' ],
     'calendar' => [ 'calendars', FALSE, 'calendar type' ],
     'chart'   => [ 'charts',   TRUE,  'chart type'     ],
     'game'    => [ 'games',    TRUE,  'game'           ],

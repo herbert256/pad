@@ -1,11 +1,11 @@
 <?php
 
-  // Events in time - the {pad:timeline} tag. Inline SVG drawn on the server, as {chart:bar} draws:
+  // Events in time - the {timeline:horizontal} tag. Inline SVG drawn on the server, as {chart:bar} draws:
   // no JavaScript, so a timeline works in print and in an e-mail.
   //
-  //   {pad:timeline data='releases', date='when', label='what', text='detail'}
-  //   {pad:timeline data='eras', from='begin', to='end', label='name', color='kind'}
-  //   {pad:timeline data='history', vertical}
+  //   {timeline:horizontal data='releases', date='when', label='what', text='detail'}
+  //   {timeline:horizontal data='eras', from='begin', to='end', label='name', color='kind'}
+  //   {timeline:vertical data='history' }
   //
   // padTimelineDate    a date as [ moment, precision ]: a year (1969), a month (2026-10) or
   //                    anything strtotime reads

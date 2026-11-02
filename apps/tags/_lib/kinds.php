@@ -18,6 +18,7 @@
     return [
       'diff' => [ 'Diffs', 'Text and structured changes', 'single', " \$old, \$new/}", 'diff' ],
       'table' => [ 'Tables', 'Formatted, grouped and aggregated rows', 'both', " data='rows'/}", 'datatable' ],
+      'timeline' => [ 'Timelines', 'Events, milestones and lanes', 'both', " date='date', label='label'}...{/timeline:%s}", 'timeline' ],
       'calendar' => [ 'Calendars', 'Gregorian dates, events and holidays', 'both', " '2026-11', data='appointments'/}", 'calendar' ],
       'chart'    => [ 'Chart types',       'inline SVG',                 'both',   " data='rows', label='field', value='field'/}", 'chart'   ],
       'game'     => [ 'Games',             'played in the browser',       'both',   '/}',                                           'game'    ],
@@ -246,6 +247,9 @@
       case 'table':
         $file = APPS . "tags/examples/table/$kind.pad";
         return $example ( "A $kind table", 'Rows formatted and aggregated on the server.', trim ( padFileGet ( $file ) ) );
+      case 'timeline':
+        $file = APPS . "tags/examples/timeline/$kind.pad";
+        return $example ( "The $kind timeline", 'Events and spans from the same row format.', trim ( padFileGet ( $file ) ) );
 
       case 'calendar':
         $file = APPS . "calendars/_examples/$kind.pad";
