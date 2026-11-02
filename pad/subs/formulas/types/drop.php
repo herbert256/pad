@@ -1,0 +1,4 @@
+<?php
+// drop - DROP(array,rows,[columns]) selects everything after dropping the requested count. Negative counts operate from the end; oversized counts clamp to the dimension. Empty output returns #CALC!. DROP zero leaves that dimension unchanged; TAKE zero is empty.
+include_once PAD.'subs/formulas/_lib/array-kit.php';
+return ['group'=>'Lookup','args'=>[2,3],'dynamic'=>TRUE,'call'=>function($args,$env){$a=padFormulaMatrix($args[0]);if(padFormulaIsError($a))return $a;$nr=padFormulaArrayInteger($args[1],$env);$nc=isset($args[2])?padFormulaArrayInteger($args[2],$env):NULL;if($e=padFormulaFirstError($nr,$nc))return $e;$rows=$nr<0?array_slice($a['range'],0,max(0,$a['h']+$nr)):array_slice($a['range'],min($nr,$a['h']));if($nc!==NULL)$rows=array_map(fn($r)=>$nc<0?array_slice($r,0,max(0,$a['w']+$nc)):array_slice($r,min($nc,$a['w'])),$rows);return padFormulaArrayResult($rows);}];
