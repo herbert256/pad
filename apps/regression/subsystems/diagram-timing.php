@@ -1,0 +1,3 @@
+<?php
+require __DIR__.'/_visual_boot.php';require PAD.'subs/diagrams/_lib/timing.php';
+$d=padDiagramTimingParse("clock: 0 1 . x z\nmark 2 \"<ready>\"");verify(is_array($d)&&$d[0][0][1][2]==='1','repeat');foreach(['a: . 1','a: 2',"a: 0\nmark 2 \"late\""] as $s)verify(is_string(padDiagramTimingParse($s)),'invalid');$a=padDiagramTimingSvg($d,10,'ns',FALSE,'Timing');svgValid($a);verify(str_contains($a,'&lt;ready&gt; at 20ns'),'marker time');verify(visualNormalize($a)===visualNormalize(padDiagramTimingSvg($d,10,'ns',FALSE,'Timing')),'deterministic');verify(visualNormalize($a)!==visualNormalize(padDiagramTimingSvg($d,10,'ns',TRUE,'Timing')),'direction');echo "diagram timing: OK\n";
