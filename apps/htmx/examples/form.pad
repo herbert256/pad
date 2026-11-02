@@ -8,12 +8,12 @@
       <p><button class="btn-sm btn-ghost" hx-get="?examples/form" hx-target="#signup">Sign up someone else</button></p>
     </div>
   {pad:else}
-    {pad:form 'signup', client, error, hx-post='?examples/form', hx-target='#signup', class='stack'}
-      {pad:input 'name', label='Name', rules='required|max:40', class='input'/}
-      {pad:input 'email', type='email', label='E-mail', rules='required|email', class='input'/}
-      {pad:input 'age', label='Age', rules='integer|min:18', class='input'/}
+    {input:form 'signup', client, error, hx-post='?examples/form', hx-target='#signup', class='stack'}
+      {input:field 'name', label='Name', rules='required|max:40', class='input'/}
+      {input:field 'email', type='email', label='E-mail', rules='required|email', class='input'/}
+      {input:field 'age', label='Age', rules='integer|min:18', class='input'/}
       <button>Sign up</button>
-    {/pad:form}
+    {/input:form}
   {/pad:if}
 {/pad:fragment}
 </div>

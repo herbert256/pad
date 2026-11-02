@@ -14,16 +14,16 @@
     <p class="flash error" role="alert">{$loginError}</p>
   {/pad:if}
 
-  {pad:form 'login'}
-    <p>{pad:input 'name', label='Name', autocomplete='username', required, autofocus/}</p>
+  {input:form 'login'}
+    <p>{input:field 'name', label='Name', autocomplete='username', required, autofocus/}</p>
     {pad:if $loginSetup eq 1}
-      <p>{pad:input 'password', type='password', label='Password', autocomplete='new-password', required, minlength=8/}</p>
-      <p>{pad:input 'again', type='password', label='Password again', autocomplete='new-password', required, minlength=8/}</p>
+      <p>{input:field 'password', type='password', label='Password', autocomplete='new-password', required, minlength=8/}</p>
+      <p>{input:field 'again', type='password', label='Password again', autocomplete='new-password', required, minlength=8/}</p>
       <p><button type="submit" class="primary">Make the user and log in</button></p>
     {pad:else}
-      <p>{pad:input 'password', type='password', label='Password', autocomplete='current-password', required/}</p>
+      <p>{input:field 'password', type='password', label='Password', autocomplete='current-password', required/}</p>
       <p><button type="submit" class="primary">Log in</button></p>
     {/pad:if}
-  {/pad:form}
+  {/input:form}
 
 </div>

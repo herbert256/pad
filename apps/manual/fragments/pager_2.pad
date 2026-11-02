@@ -1,6 +1,6 @@
 {array:products page=$p ?? 1, rows=10}{/array:products}
 
-{pad:pager 'products'}
+{widget:pager 'products'}
   {pad:if $href eq ''}
     <span>{$label}</span>
   {pad:elseif $kind eq 'current'}
@@ -8,4 +8,4 @@
   {pad:else}
     <a href="{$href}">{$label}</a>
   {/pad:if}
-{/pad:pager}
+{/widget:pager}

@@ -1,6 +1,6 @@
 <?php
 
-  // The toys are the files of pad/subs/toys/types/, as the engine reads them (padToyTypes).
+  // The toys are the files of pad/subs/games/toys/types/, as the engine reads them (padToyTypes).
 
   $tagAbout   = 'A small live simulation or visual toy in the browser - ' . count ( padToyTypes () ) . ' of them, from the Game of Life and a flock of birds to the Mandelbrot set and falling sand.';
   $tagGroup   = 'games';
@@ -25,7 +25,7 @@
 PAD;
 
   $tagParms   = [
-    'kind after colon' => 'The toy, a file of <code>pad/subs/toys/types/</code>: '
+    'kind after colon' => 'The toy, a file of <code>pad/subs/games/toys/types/</code>: '
             . implode ( ', ', array_map ( fn ( $toy ) => "<code>$toy</code>", padToyTypes () ) )
             . '. The toy: prefix selects it - <code>{toy:life/}</code>.' ];
 

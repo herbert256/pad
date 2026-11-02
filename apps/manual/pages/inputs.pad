@@ -1,9 +1,10 @@
 {pad:meta title='Rich form fields'/}
 
-<p>Beside <code>{pad:open/}pad:input{pad:close/}</code> and <code>{pad:open/}pad:textarea{pad:close/}</code> a form can hold
+<p>Beside <code>{pad:open/}input:field{pad:close/}</code> and <code>{pad:open/}input:textarea{pad:close/}</code> a form can hold
 fields that do more: a slider, a row of stars, a switch, a month to choose a day from, a tag input,
-a signature, a Markdown editor with its preview. There are {pad:echo php:count(padInputTypes())/} of
-them - every kind is a file of <code>pad/subs/inputs/types/</code>, its script and style in
+a signature, a Markdown editor with its preview. The subsystem has {pad:echo php:count(padInputTypes())/}
+types, including the native field, textarea, form container and standalone validator.
+Every kind is a file of <code>pad/subs/inputs/types/</code>, with rich fields' scripts and styles in
 <code>www/assets/inputs/</code>, and the <a href="../inputs/">inputs</a> application shows them all,
 each in a form that posts back.</p>
 
@@ -13,7 +14,7 @@ each in a form that posts back.</p>
 
 <p>The input: type names the kind, <code>{pad:open/}input:slider 'volume'/{pad:close/}</code>. The
 first parameter is the field's name, <code>label=</code> its label, and every other item the kind
-does not take is an attribute of its field, as with <code>{pad:open/}pad:input{pad:close/}</code>:
+does not take is an attribute of its field, as with <code>{pad:open/}input:field{pad:close/}</code>:
 <code>required</code>, <code>placeholder=</code>, <code>autocomplete=</code>.</p>
 
 <h2>A real value, with or without a script</h2>
@@ -35,10 +36,10 @@ tags.</p>
 
 <h2>Refilled, with the message beside it</h2>
 
-<p>The fields are fields of the <a href="?pages/forms">{pad:open/}pad:form{pad:close/}</a> around them: after a
+<p>The fields are fields of the <a href="?pages/forms">{pad:open/}input:form{pad:close/}</a> around them: after a
 post of that form they show what was posted, and the message <code>padValidate</code> left for them
 after their frame, in the words of their label. <code>rules=</code> on a field is read from the
-template before the page's PHP runs, as on <code>{pad:open/}pad:input{pad:close/}</code>, and <code>client</code>
+template before the page's PHP runs, as on <code>{pad:open/}input:field{pad:close/}</code>, and <code>client</code>
 on the form checks the same rules in the browser. Here the post is pretended in the PHP:</p>
 
 {common:example 'fragments/inputs_4'/}

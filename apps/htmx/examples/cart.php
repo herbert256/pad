@@ -5,7 +5,7 @@
   // new count, then the parts elsewhere on the page that changed too, each marked
   // hx-swap-oob - htmx puts the card back where the button was and the rest where their ids
   // are: the count in the header, the summary beside the shelf. Emptying the cart is an
-  // ordinary {pad:form} post that ends in a redirect, the page coming back whole.
+  // ordinary {input:form} post that ends in a redirect, the page coming back whole.
 
   $counts   = padSession ( 'htmxCart', [] );
   $products = array_slice ( htmxData ( 'products' ), 0, 8 );

@@ -6,7 +6,7 @@
   $padCommon = FALSE;
   $padTidy   = FALSE;
 
-  // A post without the session's token is answered 403 before the page runs. A {pad:form}
+  // A post without the session's token is answered 403 before the page runs. A {input:form}
   // carries the token as a field; the hx-post of anything else sends it in the
   // X-CSRF-Token header the element around the page names with hx-headers (_inits.pad).
   $padCsrf = TRUE;

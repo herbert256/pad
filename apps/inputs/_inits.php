@@ -25,13 +25,13 @@
   // checked before any of this PHP ran.
 
   // The icon that takes a page's form to the WASM editor (_common/_lib/playground.php): the
-  // {pad:form} of its template, the field or fields it tries - the rest of the page is this
+  // {input:form} of its template, the field or fields it tries - the rest of the page is this
   // application's. [kind].php makes its own.
 
   include_once COMMON . '_lib/playground.php';
 
   $playText = (string) @file_get_contents ( APP . "$padPage.pad" );
-  $play     = preg_match ( '#\{pad:form\b.*?\{/pad:form\}#s', $playText, $playForm ) ? padPlayLink ( $playForm [0] . "\n" ) : '';
+  $play     = preg_match ( '#\{input:form\b.*?\{/input:form\}#s', $playText, $playForm ) ? padPlayLink ( $playForm [0] . "\n" ) : '';
 
   unset ( $playText, $playForm );
 

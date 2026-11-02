@@ -9,7 +9,7 @@ Demonstrates how to combine PAD (server-side template engine) with React (client
 PAD builds the page on the server - the data, the HTML, the routing by file name. React takes
 over the parts that move: islands in the page, each handed its first data by PAD and talking
 back to PAD while it runs. Fourteen examples, each a page with the live component on top and
-its template, PHP and component underneath (coloured on the server by the `{pad:source}` tag).
+its template, PHP and component underneath (coloured on the server by the `{widget:source}` tag).
 
 - `?index` - the home page: what goes where, and an island that asks the server again
 - `?patterns` - every example, grouped
@@ -30,7 +30,7 @@ theme colours them too.
 | `examples/props` | Islands with props: `data-props="{^field}"`, one island per row of a PAD loop |
 | `examples/enhance` | Progressive enhancement: a complete PAD table that React takes over |
 | `examples/products` | A custom tag (`_tags/json.php`) writing `_data/products.json` into an attribute |
-| `examples/topic` | `{pad:reactData}` with four providers in `_providers/` querying the database |
+| `examples/topic` | `{widget:reactData}` with four providers in `_providers/` querying the database |
 
 **React back to PAD** - the component asks the server while it runs.
 
@@ -54,7 +54,7 @@ apps/react/
 ├── _data/                 # examples.json (the catalogue - and the menu), products, team, sales
 ├── _lib/react.php         # reactData, reactGroups, reactExample, reactCart, reactText
 ├── _tags/json.php         # {app:json 'products'/} - a _data file for an attribute
-├── _providers/            # the {pad:reactData/} providers of the topic example
+├── _providers/            # the {widget:reactData/} providers of the topic example
 ├── _guide/                # the sample files the guide shows
 ├── index, patterns, guide # the three pages on top of the menu
 └── examples/

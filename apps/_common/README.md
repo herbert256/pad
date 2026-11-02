@@ -28,7 +28,7 @@ Its files for the browser are in `www/_common/`: `pad.css` and `pad.js`, the fra
 - **The frame of the PAD applications**: every PAD application - with `_common` on, or
   reaching it with the `common:` prefix - looks the same: a side with the brand on top, the
   application's own menu under it, and a bar with the page's title and the theme switcher
-  (`{pad:themes/}`) above the page - light, or in the theme chosen, the side with the page
+  (`{widget:themes/}`) above the page - light, or in the theme chosen, the side with the page
 - **Title extraction**: `_inits.php` derives the page's title from its name, for the bar
 - **Shared libraries**: Common functions available across applications
 - **Reusable tags and snippets**: `{app:example}`, `{app:demo}`, `{app:table}`, `{pad:block}`, `{include:lines}` ...

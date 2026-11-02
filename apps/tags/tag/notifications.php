@@ -5,8 +5,8 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{pad:notifications/}
-{pad:notifications for=$id, all} ... {$title} {$text} {$created} {$link} ... {/pad:notifications}
+{widget:notifications/}
+{widget:notifications for=$id, all} ... {$title} {$text} {$created} {$link} ... {/widget:notifications}
 PAD;
 
   $tagParms   = [];

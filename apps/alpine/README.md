@@ -7,7 +7,7 @@ Alpine brings parts of a PAD page to life where they stand; PAD hands it its sta
 ## Overview
 
 Six examples, each a page with the live component on top, the requests it made to PAD under
-it and the template, PHP and script below that (`{pad:source}`).
+it and the template, PHP and script below that (`{widget:source}`).
 
 The pages stand in the frame the PAD applications share (`{common:padFrame}`, as in the
 sections application): the brand and the menu - the home page, the guide and the examples
@@ -20,7 +20,7 @@ colours them too.
 | `examples/state` | `x-data="{^profile}"` - the state is the JSON of a PHP array, no brace of Alpine's in the template |
 | `examples/components` | Tabs, an accordion and a dialog registered with `Alpine.data` in `www/alpine/`, called with PAD's data as the argument |
 | `examples/search` | `x-model.debounce` and a fetch of the same page with `padFormat=json` (`$padExpose`) |
-| `examples/form` | One list of rules: `padValidate` on the server, `padValidateClient` + `{pad:validator}` in the browser |
+| `examples/form` | One list of rules: `padValidate` on the server, `padValidateClient` + `{input:validator}` in the browser |
 | `examples/todos` | A list kept in the session - a change shows at once, the server's answer is the truth |
 | `examples/live` | `padSse` with `every=`, an `EventSource` opened in `x-init` |
 

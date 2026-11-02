@@ -7,9 +7,9 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{pad:theme 'name'/}
-{pad:theme 'paper'/}
-{pad:theme 'terminal'} ... {/pad:theme}
+{widget:theme 'name'/}
+{widget:theme 'paper'/}
+{widget:theme 'terminal'} ... {/widget:theme}
 $padTheme = 'paper';
 PAD;
 

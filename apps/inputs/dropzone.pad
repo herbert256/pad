@@ -1,11 +1,11 @@
 {pad:meta title='Drop zone'/}
 {include:about/}
 
-{pad:form 'try', class='inputs-try', error}
+{input:form 'try', class='inputs-try', error}
   {input:dropzone 'resume', label='Your CV', accept='.pdf, .txt, application/pdf', limit='2M'/}
   {input:dropzone 'photos[]', label='Photos', accept='image/*', multiple/}
   <button class="inputs-send">Send</button>
-{/pad:form}
+{/input:form}
 
 {include:received/}
 

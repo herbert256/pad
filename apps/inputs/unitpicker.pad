@@ -2,11 +2,11 @@
 {include:about/}
 <p>The form sends each amount with its selected unit, so the server can convert it when needed.</p>
 
-{pad:form 'try', class='inputs-try'}
+{input:form 'try', class='inputs-try'}
   {input:unitpicker 'distance', family='length', value=100, unit='cm', label='Distance'/}
   {input:unitpicker 'temperature', family='temperature', value=20, unit='°C', label='Temperature'/}
   <button class="inputs-send">Send</button>
-{/pad:form}
+{/input:form}
 
 {include:received/}
 

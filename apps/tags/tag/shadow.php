@@ -5,8 +5,8 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{pad:shadow} ... {/pad:shadow}
-{pad:shadow css='file.css, www:other.css', mode='closed', focus} ... {/pad:shadow}
+{widget:shadow} ... {/widget:shadow}
+{widget:shadow css='file.css, www:other.css', mode='closed', focus} ... {/widget:shadow}
 PAD;
 
   $tagParms   = [];

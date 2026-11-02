@@ -5,9 +5,9 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{pad:pager 'name'/}
-{pad:pager 'name', window=2, query='p'/}
-{pad:pager 'name'} ... {$kind} {$page} {$label} {$href} ... @else@ ... {/pad:pager}
+{widget:pager 'name'/}
+{widget:pager 'name', window=2, query='p'/}
+{widget:pager 'name'} ... {$kind} {$page} {$label} {$href} ... @else@ ... {/widget:pager}
 PAD;
 
   $tagParms   = [

@@ -38,7 +38,7 @@
   // and pad.js - and the brand's brand.css and brand.js - with a version from their contents
   // as {pad:asset} writes it.
   //
-  // The theme switcher - {pad:themes/}, the themes of pad/subs/themes/ - stands in the bar of
+  // The theme switcher - {widget:themes/}, the themes of pad/subs/themes/ - stands in the bar of
   // every page, at the end of the bar after the tools slot, so the visitor's
   // choice is at hand in every application; $padTheme = FALSE, which turns the themes off,
   // takes it out of the bar.

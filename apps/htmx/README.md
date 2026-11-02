@@ -8,7 +8,7 @@ htmx asks the server for a part of the page and swaps it in; PAD answers with th
 
 The application is seven examples, each a page with the live example on top, the requests
 htmx made under it - with the part PAD answered - and the template and PHP below that
-(`{pad:source}`). There is no JavaScript of the application's own but that request log and the
+(`{widget:source}`). There is no JavaScript of the application's own but that request log and the
 switch that turns the browser's check of a form off.
 
 The pages stand in the frame the PAD applications share (`{common:padFrame}`, as in the
@@ -23,7 +23,7 @@ theme colours them too.
 | `examples/lazy` | Lazy loading - the slow part asked for once the page has loaded (`hx-trigger="load"`) |
 | `examples/scroll` | Infinite scroll - the last row asks for the next batch, `&padFragment=rows` |
 | `examples/edit` | Inline editing - one row of a loop as the answer, `padValidate`, the session |
-| `examples/form` | A `{pad:form}` with `rules=` and `client` posted through htmx, coming back with PAD's messages |
+| `examples/form` | A `{input:form}` with `rules=` and `client` posted through htmx, coming back with PAD's messages |
 | `examples/cart` | Out-of-band updates - the card that was pressed and the cart count in the frame's bar |
 | `examples/live` | Server-sent events - `padSse` pushes rows of HTML, htmx's sse extension swaps them in |
 
@@ -33,7 +33,7 @@ theme colours them too.
   that fragment alone; without such a fragment the page renders whole (`pad/inits/vars.php`).
 - `&padFragment=name` in the address names the fragment outright, and `$padFragmentOnly` in the
   page's PHP does the same.
-- With `$padCsrf` on (`_config/config.php`) every post needs the session's token: `{pad:form}`
+- With `$padCsrf` on (`_config/config.php`) every post needs the session's token: `{input:form}`
   carries it, and `<div class="htmx-page" hx-headers="{^htmxHeaders}">` around the page
   (`_inits.pad`) sends it with every htmx request.
 - An answer for a part never has the frame around it: the engine leaves the wrappers out of a

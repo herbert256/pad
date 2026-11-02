@@ -68,7 +68,7 @@
 
 
   // The links of one exported page, rewritten for the static copy: href, src, action, the
-  // poster of a {pad:video} and each address of a srcset - the 1x and 2x thumbnails of an {image:thumbnail}
+  // poster of a {widget:video} and each address of a srcset - the 1x and 2x thumbnails of an {image:thumbnail}
   // kept the server's /app/_thumbs/ addresses, where the copy has them at _thumbs/ - and of
   // the imagesrcset of a <link rel="preload">, a srcset by another name that a page one
   // directory down sent to the root's addresses.

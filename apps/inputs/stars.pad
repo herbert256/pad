@@ -1,11 +1,11 @@
 {pad:meta title='Stars'/}
 {include:about/}
 
-{pad:form 'try', class='inputs-try', error}
+{input:form 'try', class='inputs-try', error}
   {input:stars 'score', label='How was your stay?', rules='required|integer|between:1,5'/}
   {input:stars 'food', label='The food', max=10/}
   <button class="inputs-send">Send</button>
-{/pad:form}
+{/input:form}
 
 {include:received/}
 

@@ -28,7 +28,7 @@
         <div class="about">
           <a href="{$padGo}file&id={$id}&download" download="{$name}" title="Download {$name}">{$name}</a>
           <span>{$bytes}</span>
-          {pad:form 'detach'}<input type="hidden" name="attachment" value="{$id}"><button class="remove" title="Remove {$name}" aria-label="Remove {$name}">×</button>{/pad:form}
+          {input:form 'detach'}<input type="hidden" name="attachment" value="{$id}"><button class="remove" title="Remove {$name}" aria-label="Remove {$name}">×</button>{/input:form}
         </div>
       </li>
       {/array:noteFiles}
@@ -40,7 +40,7 @@
     <a class="button primary" href="{$padGo}edit&id={$note.id}">Edit</a>
     <details>
       <summary class="button danger">Delete…</summary>
-      {pad:form 'delete'}<span>Delete this note and its files?</span><button class="button danger">Delete</button>{/pad:form}
+      {input:form 'delete'}<span>Delete this note and its files?</span><button class="button danger">Delete</button>{/input:form}
     </details>
   </div>
 

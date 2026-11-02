@@ -104,7 +104,7 @@
              'syntax'  => trim ( $tagSyntax ),
              'parms'   => $tagParms,
              'options' => $tagOptions,
-             'see'     => array_map ( fn ( $see ) => str_contains ( $see, ':' ) ? $see : "pad:$see", $tagSee ) ];
+             'see'     => array_map ( fn ( $see ) => str_contains ( $see, ':' ) ? $see : ( tagsRenderingTags () [$see] ?? "pad:$see" ), $tagSee ) ];
 
   }
 
@@ -276,7 +276,7 @@
 
     $catalog = tagsCatalog ();
     foreach ( array_merge ( array_keys ( padSubsystems ), padSequenceOperations ) as $type )
-      if ( is_file ( APPS . "tags/tag/$type.php" ) && ! padTagBuiltIn ( $type ) )
+      if ( is_file ( APPS . "tags/tag/$type.php" ) && ! padTagBuiltIn ( $type ) && ! isset ( tagsRenderingTags () [$type] ) )
         $catalog ["$type:*"] = tagsRead ( APPS . "tags/tag/$type.php" );
 
     foreach ( $catalog as $key => $tag )

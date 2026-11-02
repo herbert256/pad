@@ -9,7 +9,7 @@
     $info = [
       'map'      => [ 'Map views', 'The view parameter of {map:auto} selects a country or region.', 'map', 'world' ],
       'rule'     => [ 'Validation rules', 'Rules passed to padValidate or a form field\'s rules= option.', 'validator', 'required' ],
-      'oauth'    => [ 'OAuth providers', 'The provider parameter of {pad:oauth}, padOAuthStart and padOAuthUser.', 'oauth', 'github' ],
+      'oauth'    => [ 'OAuth providers', 'The provider parameter of {widget:oauth}, padOAuthStart and padOAuthUser.', 'oauth', 'github' ],
       'channel'  => [ 'Notification channels', 'Delivery channels selected in the fourth argument of padNotify.', 'notifications', 'mail' ],
       'ai'       => [ 'AI providers', 'The provider= option of {ai:auto} or padAi.', 'ai', 'anthropic' ],
       'filter'   => [ 'Image filters', 'The filter= option of {image:thumbnail} selects a filter or placeholder.', 'image:thumbnail', 'grayscale' ],
@@ -17,14 +17,14 @@
       'search'   => [ 'Search languages', 'The lang= option of {search:auto} selects stop words and a stemmer.', 'search', 'en' ],
       'format'   => [ 'Data formats', 'The format= option of {format:auto}, file extensions and the format helpers.', 'data', 'toml' ],
       'formula'  => [ 'Spreadsheet functions', 'Functions inside the formulas of {sheet:grid} cells.', 'sheet:grid', 'sum' ],
-      'theme'    => [ 'Themes', 'The name parameter of {pad:theme} selects page or box colours.', 'theme', 'paper' ],
+      'theme'    => [ 'Themes', 'The name parameter of {widget:theme} selects page or box colours.', 'theme', 'paper' ],
       'unit' => [ 'Unit conversions', 'Dimension-checked numeric conversion through padConvert.', '', 'length' ],
       'highlighter' => [ 'Syntax languages', 'Languages selected by padHighlight and the highlight tag.', 'highlight', 'python' ],
       'diff' => [ 'Comparison kinds', 'Typed change records through padDiffCompare, and escaped HTML through padDiffRender.', 'diff', 'json' ],
       'recurrence' => [ 'Calendar recurrences', 'Bounded occurrences between explicit dates through padOccurrences.', '', 'weekly' ],
       'geo' => [ 'Geographic operations', 'Plain data operations through padGeo, with longitude before latitude.', '', 'distance' ],
       'distribution' => [ 'Sampling distributions', 'Seeded samples through padSample.', '', 'normal' ],
-      'palette'  => [ 'Colour palettes', 'The name parameter of {pad:palette}, or palette= on a chart.', 'palette', 'viridis' ],
+      'palette'  => [ 'Colour palettes', 'The name parameter of {widget:palette}, or palette= on a chart.', 'palette', 'viridis' ],
     ];
 
     $families = [];
@@ -48,7 +48,8 @@
 
     $text = trim ( preg_replace ( '/^[ \t]*\/\/ ?/m', '', $match [1] ?? '' ) );
     if ( $text !== '' ) return $text;
-    foreach ( [ "docs/subsystems/$directory/$kind.md", "docs/subsystems/$directory.md", "docs/subsystems/$directory/README.md", "docs/subsystems/$directory/index.md" ] as $doc )
+    $docs = basename ( $directory );
+    foreach ( [ "docs/subsystems/$docs/$kind.md", "docs/subsystems/$docs.md", "docs/subsystems/$docs/README.md", "docs/subsystems/$docs/index.md" ] as $doc )
       if ( is_file ( dirname ( APPS ) . '/' . $doc ) ) return (string) file_get_contents ( dirname ( APPS ) . '/' . $doc );
     return ucfirst ( $kind ) . ' is selected through the ' . $family . ' subsystem API.';
 
@@ -93,7 +94,7 @@
         $about = 'The view without data; data= and value= colour its regions.';
         break;
       case 'oauth':
-        $source = "{pad:oauth '$kind', href='#example'/}";
+        $source = "{widget:oauth '$kind', href='#example'/}";
         $run = TRUE;
         $about = 'The button only. In your application, link to a login page that calls padOAuthStart and handles padOAuthUser on return.';
         break;
@@ -140,11 +141,11 @@
         }
         break;
       case 'theme':
-        $source = "{pad:theme '$kind'}<p>A box in the $kind theme.</p>{/pad:theme}";
+        $source = "{widget:theme '$kind'}<p>A box in the $kind theme.</p>{/widget:theme}";
         $run = TRUE;
         break;
       case 'palette':
-        $source = "{pad:palette '$kind'/}";
+        $source = "{widget:palette '$kind'/}";
         $run = TRUE;
         break;
       case 'rule':

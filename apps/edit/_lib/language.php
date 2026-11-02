@@ -29,8 +29,8 @@
   // The tags that never open a pair are the ones completions.json marks single - what
   // editors/generate.php decides for the language server and the kits. A list of its own here
   // still held true, false, null, chart and highlight, which the applications write as a pair
-  // more often than not: after {items}{pad:highlight 'pad'}<p>x</p> the editor offered {/items}
-  // and paired the {/pad:highlight} with nothing.
+  // more often than not: after {items}{widget:highlight 'pad'}<p>x</p> the editor offered {/items}
+  // and paired the {/widget:highlight} with nothing.
 
   const editBranchTags = [ 'else', 'elseif', 'when' ];
 

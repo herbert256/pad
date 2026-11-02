@@ -1,8 +1,8 @@
 <div class="narrow">
 
-  {pad:form 'entry', error, class='entry'}
-    {pad:input 'day', type='date', label='Day', value=$dayDefault, rules='required|date'/}
-    {pad:input 'amount', label='Amount', inputmode='decimal', placeholder='42.50', rules='required|regex:/^[0-9]+([.,][0-9][0-9]?)?$/'/}
+  {input:form 'entry', error, class='entry'}
+    {input:field 'day', type='date', label='Day', value=$dayDefault, rules='required|date'/}
+    {input:field 'amount', label='Amount', inputmode='decimal', placeholder='42.50', rules='required|regex:/^[0-9]+([.,][0-9][0-9]?)?$/'/}
     <label for="category">Category</label>
     <select id="category" name="category">
       <optgroup label="Spending">{array:expenseList}<option value="{$id}">{$name}</option>{/array:expenseList}</optgroup>
@@ -10,9 +10,9 @@
     </select>
     <label for="account">Account</label>
     <select id="account" name="account">{array:accountList}<option value="{$id}">{$name}</option>{/array:accountList}</select>
-    {pad:input 'note', label='Note', placeholder='What it was', rules='max:120'/}
+    {input:field 'note', label='Note', placeholder='What it was', rules='max:120'/}
     <div class="bar"><button class="button primary">Book it</button><a class="button" href="{$padGo}index{?month}">Cancel</a></div>
-  {/pad:form}
+  {/input:form}
 
   <p class="dim">Spending goes out and income comes in, whichever sign you type.</p>
 

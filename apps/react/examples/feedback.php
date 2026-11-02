@@ -7,7 +7,7 @@
   // with none the message goes on the wall. The answer to the post is the JSON of $padExpose.
   //
   // One list of rules for both sides: padValidate checks the post with it, and the component
-  // gets it as padValidateClient exports it, for the browser's checker that {pad:validator} in
+  // gets it as padValidateClient exports it, for the browser's checker that {input:validator} in
   // the template brings - the same rules, the same messages, before the post leaves.
 
   $rules = [ 'name'    => 'required|max:40',

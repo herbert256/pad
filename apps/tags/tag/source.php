@@ -5,9 +5,9 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{pad:source/}
-{pad:source 'page', files='_lib/orders.php, www:orders.js'/}
-{pad:source only='_tags/card.pad, www:card.js'/}
+{widget:source/}
+{widget:source 'page', files='_lib/orders.php, www:orders.js'/}
+{widget:source only='_tags/card.pad, www:card.js'/}
 PAD;
 
   $tagParms   = [

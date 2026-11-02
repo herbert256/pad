@@ -1,21 +1,21 @@
 <?php
 
-  // The palettes are the files of pad/subs/palettes/types/, as the engine reads them (padKinds).
+  // The palettes are the files of pad/subs/themes/palettes/types/, as the engine reads them (padKinds).
 
-  $tagAbout   = 'The colours of a palette as swatches with their hex values - ' . count ( padKinds ( 'palettes' ) ) . ' of them: viridis and its family, the colour-blind safe Okabe-Ito and Tol schemes, ColorBrewer\'s scales - the same palettes palette= gives a chart.';
+  $tagAbout   = 'The colours of a palette as swatches with their hex values - ' . count ( padKinds ( 'themes/palettes' ) ) . ' of them: viridis and its family, the colour-blind safe Okabe-Ito and Tol schemes, ColorBrewer\'s scales - the same palettes palette= gives a chart.';
   $tagGroup   = 'graphics';
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{pad:palette 'name'/}
-{pad:palette 'viridis', steps=7/}
-{pad:palette 'okabe-ito', title='Our chart colours'/}
+{widget:palette 'name'/}
+{widget:palette 'viridis', steps=7/}
+{widget:palette 'okabe-ito', title='Our chart colours'/}
 {chart:bar data='sales', value='north, south', palette='viridis'/}
 PAD;
 
   $tagParms   = [
-    'name' => 'The palette, a file of <code>pad/subs/palettes/types/</code>: '
-            . implode ( ', ', array_map ( fn ( $palette ) => "<code>$palette</code>", padKinds ( 'palettes' ) ) )
+    'name' => 'The palette, a file of <code>pad/subs/themes/palettes/types/</code>: '
+            . implode ( ', ', array_map ( fn ( $palette ) => "<code>$palette</code>", padKinds ( 'themes/palettes' ) ) )
             . '. <code>padPalette ( \'viridis\', 7 )</code> answers the same colours to a page\'s PHP.' ];
 
   $tagOptions = [

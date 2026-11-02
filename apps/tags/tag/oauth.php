@@ -7,8 +7,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{pad:oauth 'github'/}
-{pad:oauth 'oidc', href='?login/company', label='Log in with your company account'/}
+{widget:oauth 'github'/}
+{widget:oauth 'oidc', href='?login/company', label='Log in with your company account'/}
 PAD;
 
   $tagParms   = [

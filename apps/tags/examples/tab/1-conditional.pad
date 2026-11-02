@@ -1,9 +1,9 @@
 {pad:meta title='A tab in an if', about='A tab only shows up when its condition holds - the hand-over skips the if around it.'/}
 {pad:set $hasReviews = 0/}
 {widget:tabs}
-  {pad:tab 'Overview'}<p>A kettle in brushed steel.</p>{/pad:tab}
+  {widget:tab 'Overview'}<p>A kettle in brushed steel.</p>{/widget:tab}
   {pad:if $hasReviews gt 0}
-    {pad:tab 'Reviews'}<p>The reviews.</p>{/pad:tab}
+    {widget:tab 'Reviews'}<p>The reviews.</p>{/widget:tab}
   {/pad:if}
-  {pad:tab 'Delivery'}<p>Delivered the next working day.</p>{/pad:tab}
+  {widget:tab 'Delivery'}<p>Delivered the next working day.</p>{/widget:tab}
 {/widget:tabs}

@@ -6,7 +6,7 @@
   //   sheetsExamples  the example pages, in the order of the menu: name, title, lead
   //   sheetsShow      what an example page shows - sets $lead, $template, $source, $play and,
   //                   for an example whose cells come from PHP, $phpSource
-  //   sheetsFunctions every function as its file of pad/subs/formulas/types/ says it: the
+  //   sheetsFunctions every function as its file of pad/subs/tables/formulas/types/ says it: the
   //                   comment at its top - its syntax and what it does - its group and its
   //                   examples, each computed on the sample sheet as a cell beside it
   //   sheetsSample    the sample sheet the examples of the functions read, _data/sample.csv
@@ -53,9 +53,9 @@
 
     $functions = [];
 
-    foreach ( padKinds ( 'formulas' ) as $name ) {
+    foreach ( padKinds ( 'tables/formulas' ) as $name ) {
 
-      $file = PAD . "subs/formulas/types/$name.php";
+      $file = PAD . "subs/tables/formulas/types/$name.php";
       $text = (string) file_get_contents ( $file );
       $type = include $file;
 

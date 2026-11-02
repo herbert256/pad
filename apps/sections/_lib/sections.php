@@ -1,8 +1,8 @@
 <?php
 
   // The sections application: the four subsystems of the engine that dress a page - the
-  // sections (pad/subs/sections/), the effects (pad/subs/effects/), the themes
-  // (pad/subs/themes/) and the palettes (pad/subs/palettes/) - each read as the engine reads
+  // sections (pad/subs/widgets/sections/), the effects (pad/subs/widgets/effects/), the themes
+  // (pad/subs/themes/) and the palettes (pad/subs/themes/palettes/) - each read as the engine reads
   // it: its kinds are the files of its types/ (padKinds), and what a kind is the comment at
   // the top of its file. A kind added to the engine is here without a change to the
   // application.
@@ -16,10 +16,10 @@
   function sectionsGroups () {
 
     return [
-      'section' => [ 'Sections', 'sections', 'Blocks a landing page is built from - a hero, features, prices, questions, a footer - in pure CSS, coloured by the theme.', 'layout' ],
-      'effect'  => [ 'Effects',  'effects',  'Motion and decoration, CSS first - still for whoever asks for reduced motion, and read whole by a screen reader.', 'sparkle' ],
+      'section' => [ 'Sections', 'widgets/sections', 'Blocks a landing page is built from - a hero, features, prices, questions, a footer - in pure CSS, coloured by the theme.', 'layout' ],
+      'effect'  => [ 'Effects',  'widgets/effects',  'Motion and decoration, CSS first - still for whoever asks for reduced motion, and read whole by a screen reader.', 'sparkle' ],
       'theme'   => [ 'Themes',   'themes',   'The colours of the frame swapped for another set - for a page, an application or the visitor\'s own choice.', 'droplet' ],
-      'palette' => [ 'Palettes', 'palettes', 'Colour scales for charts and anything else - perceptual, colour-blind safe, sequential, diverging and cyclic.', 'bar-chart' ],
+      'palette' => [ 'Palettes', 'themes/palettes', 'Colour scales for charts and anything else - perceptual, colour-blind safe, sequential, diverging and cyclic.', 'bar-chart' ],
     ];
 
   }
@@ -148,14 +148,14 @@
 
   }
 
-  // A theme shown in a box of its own beside the page: {pad:theme 'x'}...{/pad:theme} around a
+  // A theme shown in a box of its own beside the page: {widget:theme 'x'}...{/widget:theme} around a
   // heading, a paragraph with a link, a note, a table and a button - the parts of a page
   // whose colours the theme sets.
 
   function sectionsThemeTemplate ( $theme ) {
 
     return <<<PAD
-{pad:theme '$theme'}
+{widget:theme '$theme'}
   <h3>Spring catalogue</h3>
   <p>Our new range is in. Read the <a href="#notes">release notes</a> or browse
      the <code>2026</code> collection below.</p>
@@ -166,7 +166,7 @@
   </table>
   <p class="sx-note">Free delivery on orders over 50.</p>
   <button type="button" class="sx-button">Shop now</button>
-{/pad:theme}
+{/widget:theme}
 PAD;
 
   }
@@ -177,11 +177,11 @@ PAD;
 
   function sectionsPaletteTemplates ( $palette ) {
 
-    include_once PAD . 'subs/palettes/_lib/palette.php';
+    include_once PAD . 'subs/themes/palettes/_lib/palette.php';
 
     $type = padPaletteData ( $palette ) ['type'];
 
-    $templates = [ "{pad:palette '$palette'/}" ];
+    $templates = [ "{widget:palette '$palette'/}" ];
 
     $templates [] = <<<PAD
 {format:auto 'sales'}

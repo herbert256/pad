@@ -1,10 +1,10 @@
 <p>The <code>{pad:ignore}{barcode:qr}{/pad:ignore}</code> tag encodes a text as a QR code and writes it as inline SVG -
 no image library, no remote service, no JavaScript. Type a text and scan the result with your phone.</p>
 
-{pad:form 'qr', error='Please correct the errors below.'}
-  <p>{pad:input 'text', label='Text or address:', value=$text, rules='required|max:1000'/}</p>
+{input:form 'qr', error='Please correct the errors below.'}
+  <p>{input:field 'text', label='Text or address:', value=$text, rules='required|max:1000'/}</p>
   <p><input type="submit" value="Make the QR code"></p>
-{/pad:form}
+{/input:form}
 
 <div class="qr-big">{barcode:qr $text, size=220/}</div>
 

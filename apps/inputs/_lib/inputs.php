@@ -13,7 +13,7 @@
 
     $inputs = [];
 
-    foreach ( padInputTypes () as $kind ) {
+    foreach ( array_diff ( padInputTypes (), [ 'form', 'validator' ] ) as $kind ) {
 
       $comment = [];
 
@@ -44,7 +44,7 @@
 
     $file = APP . "_inputs/$kind.pad";
 
-    return is_file ( $file ) ? trim ( file_get_contents ( $file ) ) : "{" . $kind . " '$kind', label='" . ucfirst ( $kind ) . "'/}";
+    return is_file ( $file ) ? trim ( file_get_contents ( $file ) ) : "{input:" . $kind . " '$kind', label='" . ucfirst ( $kind ) . "'/}";
 
   }
 

@@ -30,25 +30,25 @@
 <h2>2. Load order</h2>
 <p>The application's scripts first, Alpine last and deferred - a page's components register
    themselves on <code>alpine:init</code> before Alpine walks the page:</p>
-{pad:highlight 'html'}
+{widget:highlight 'html'}
 <script src="alpine-app.js"></script>                         <!-- pad.get, pad.post -->
 <script defer src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"></script>
 ...
 <script src="examples/search.js"></script>                    <!-- Alpine.data('search', ...) -->
-{/pad:highlight}
+{/widget:highlight}
 
 <h2>3. Talking back</h2>
 <p>A page answers JSON when asked - <code>?page&amp;padFormat=json</code> - with only what its PHP
    names in <code>$padExpose</code>; the templates do not run for it. A post carries the session's
    token in a header, read from <code>&lt;meta name="csrf-token" content="{pad:open/}pad:csrf token/{pad:close/}"&gt;</code>:</p>
-{pad:highlight 'js'}
+{widget:highlight 'js'}
 const answer = await pad.get('examples/search', { q: this.q });   // the JSON of $padExpose
 const saved  = await pad.post('examples/todos', { op: 'add', text }); // X-CSRF-Token sent
-{/pad:highlight}
+{/widget:highlight}
 
 <h2>4. One set of rules</h2>
 <p>Keep a form's rules in PHP: <code>padValidate ( $rules )</code> checks the post,
-   <code>padValidateClient ( $rules )</code> hands them to the component, {pad:open/}pad:validator{pad:close/} brings the
+   <code>padValidateClient ( $rules )</code> hands them to the component, {pad:open/}input:validator{pad:close/} brings the
    checker, and <code>padValidate.field ( rules.email, value, form )</code> answers in the server's
    words.</p>
 

@@ -1,6 +1,6 @@
-{pad:highlight 'php', lines, mark='3'}
+{widget:highlight 'php', lines, mark='3'}
   <?php
     $orders = db ( "ARRAY * FROM orders WHERE status = {0}", [ 'open' ] );
     $total  = padArrSum ( $orders, 'amount' );
   ?>
-{/pad:highlight}
+{/widget:highlight}

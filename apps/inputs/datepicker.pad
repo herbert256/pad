@@ -1,11 +1,11 @@
 {pad:meta title='Date picker'/}
 {include:about/}
 
-{pad:form 'try', class='inputs-try', error}
+{input:form 'try', class='inputs-try', error}
   {input:datepicker 'arrival', label='Arrival', min='2026-01-01', max='2027-12-31', rules='required|date'/}
   {input:datepicker 'birthday', label='Birthday', weekstart='sunday'/}
   <button class="inputs-send">Send</button>
-{/pad:form}
+{/input:form}
 
 {include:received/}
 

@@ -1,10 +1,10 @@
 {pad:meta title='Currency'/}
 {include:about/}
 
-{pad:form 'try', class='inputs-try', error}
+{input:form 'try', class='inputs-try', error}
   {input:currency 'price', currency='EUR', value='12.50', label='Price in euros', min=0, rules='required|numeric|between:0,1000000'/}
   <button class="inputs-send">Send</button>
-{/pad:form}
+{/input:form}
 
 {include:received/}
 

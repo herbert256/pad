@@ -1,8 +1,8 @@
 {pad:meta title='As rows', about='The pair form: every notification a row, read ones too with all - the handling options apply.'/}
 <ul>
-  {pad:notifications all, first=10}
+  {widget:notifications all, first=10}
     <li class="{pad:if $read}read{/pad:if}">{$title} - {$created} {pad:if ! $read}<a href="{$link}">done</a>{/pad:if}</li>
   @else@
     <li>Nothing yet.</li>
-  {/pad:notifications}
+  {/widget:notifications}
 </ul>

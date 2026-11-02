@@ -1,5 +1,7 @@
 <?php
 
+  include_once __DIR__ . '/catalog.php';
+
   // The kinds of the subsystems - the chart types, the games, the toys ... - and the sequence
   // types: each a tag of its own, written with its type prefix, {chart:pie/}, and listed by
   // the tags application beside the built-in tags, {pad:if}. Nothing lists them here: a kind
@@ -38,7 +40,7 @@
       'widget'   => [ 'Widgets',           'working without script',  'both',   " 'name'}...{/widget:%s}",                     'widget'  ],
       'barcode'  => [ 'Barcode types',     'encoded on the server', 'single', " 'value'/}",                                'barcode' ],
       'embed'    => [ 'Embed providers',   'loaded on a click',      'single', " 'address', title='...'/}",                   'embed'   ],
-      'input'    => [ 'Rich form fields',  'A field of {pad:input} each, posted by any form',        'single', " 'name', label='...'/}",                      'input'   ],
+      'input'    => [ 'Rich form fields',  'A field of {input:field} each, posted by any form',        'single', " 'name', label='...'/}",                      'input'   ],
       'icon'     => [ 'Icons',             'Outlines on a 24 grid',    'single', ' size=24/}',                                  'icon'    ],
       'fake'     => [ 'Fake kinds',        'the same for the same seed',  'both',   '/}',                                           'fake'    ],
       'sequence' => [ 'Sequence types',    'Mathematical sequences, sources and operations, iterated as loops',    'both',   " rows=10}{\$%s} {/sequence:%s}",              'sequence' ],
@@ -49,6 +51,36 @@
       'section'  => [ 'Sections',          'pure CSS', 'pair', " title='...'}\n  ...\n{/section:%s}",          'section' ],
       'effect'   => [ 'Effects',           'Motion and decoration',  'both',   "}...{/effect:%s}",                             'effect'  ],
       'jsonld'   => [ 'JSON-LD kinds',     'for search engines', 'single', " data='rows'/}",                          'jsonld'  ],
+    ];
+
+  }
+
+  // Documentation names retained for migrated rendering tags and their live examples.
+  function tagsRenderingTags () {
+
+    return [
+      'toc' => 'widget:toc',
+      'pager' => 'widget:pager',
+      'tab' => 'widget:tab',
+      'source' => 'widget:source',
+      'highlight' => 'widget:highlight',
+      'markdown' => 'widget:markdown',
+      'excerpt' => 'widget:excerpt',
+      'lorem' => 'widget:lorem',
+      'shadow' => 'widget:shadow',
+      'reactData' => 'widget:reactData',
+      'notifications' => 'widget:notifications',
+      'oauth' => 'widget:oauth',
+      'theme' => 'widget:theme',
+      'themes' => 'widget:themes',
+      'palette' => 'widget:palette',
+      'video' => 'widget:video',
+      'emoji' => 'image:emoji',
+      'country' => 'image:country',
+      'form' => 'input:form',
+      'input' => 'input:field',
+      'textarea' => 'input:textarea',
+      'validator' => 'input:validator'
     ];
 
   }
@@ -122,6 +154,15 @@
           'see'     => padTagBuiltIn ( $tag ) ? [ "pad:$tag" ] : [] ];
 
       }
+
+    // Preserve the detailed options, forms and syntax of the former core tag pages.
+    foreach ( tagsRenderingTags () as $old => $key ) {
+      if ( ! isset ( $kinds [$key] ) or ! is_file ( APPS . "tags/tag/$old.php" ) ) continue;
+      $record = tagsRead ( APPS . "tags/tag/$old.php" );
+      foreach ( [ 'about', 'form', 'syntax', 'parms', 'options', 'see' ] as $field )
+        $kinds [$key] [$field] = $record [$field];
+      $kinds [$key] ['documentation'] = $old;
+    }
 
     foreach ( padSequenceOperations as $operation ) {
       $sample = tagsKindExample ( $operation, 'auto' );
@@ -251,6 +292,17 @@
 
     $example = fn ( $title, $about, $source = '', $page = '', $app = '', $run = TRUE ) => compact ( 'title', 'about', 'source', 'page', 'app', 'run' );
 
+    $old = array_search ( "$type:$kind", tagsRenderingTags (), TRUE );
+    if ( $old !== FALSE ) {
+      foreach ( tagsExamples ( $old ) as $sample )
+        if ( $sample ['run'] )
+          return $example ( $sample ['title'], $sample ['about'], '', $sample ['page'] );
+      if ( $type === 'widget' and $kind === 'tab' )
+        return $example ( 'A tab inside its owner', '', "{widget:tabs}{widget:tab 'One'}One{/widget:tab}{/widget:tabs}" );
+      if ( $type === 'widget' and $kind === 'reactData' )
+        return $example ( 'A provider mount point', 'Define _providers/example.php in the application first.', "{widget:reactData id='example'/}", '', '', FALSE );
+    }
+
     if ( $kind === 'auto' and in_array ( $type, padSequenceOperations, TRUE ) ) {
       $args = [ 'sequence' => "'1..5'", 'action' => "'1..5', reverse",
                 'keep' => "'1..10', prime", 'make' => "'1..5', add=10",
@@ -361,7 +413,7 @@
         $line = preg_match ( "/\\{input:$kind\\s[^\\n]*?\\/\\}/", padFileGet ( APPS . 'inputs/form.pad' ), $m ) ? $m [0] : "{input:$kind 'field', label='Try it'/}";
         $line = preg_replace ( "/, rules='[^']*'/", '', $line );
         return $example ( 'A field of a form', "As the inputs application's form writes it - its rules= left out, which the page's own template must hold.",
-                          "{pad:form 'try'}\n  $line\n  <button>Send</button>\n{/pad:form}" );
+                          "{input:form 'try'}\n  $line\n  <button>Send</button>\n{/input:form}" );
 
       case 'barcode':
         return $example ( "A $kind barcode", '', "{barcode:$kind '" . ( tagsKindBarcodeValues () [$kind] ?? '12345' ) . "'/}" );

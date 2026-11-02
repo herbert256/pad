@@ -32,7 +32,7 @@ and its `.php` are marked as a pair (Alt+O switches between them); git's view of
   options, properties, type prefixes, strings, operators, comments, `{pad:ignore}` blocks and
   constructs - inside HTML, attribute values included.
 - Completion of what PAD would accept where the cursor stands: after `{` every tag, the
-  application's own tags and snippets, and pair snippets (`{pad:if}`, `{pad:case}`, `{pad:form}` ...);
+  application's own tags and snippets, and pair snippets (`{pad:if}`, `{pad:case}`, `{input:form}` ...);
   after `{/` the tags still open, innermost first; after `$` the fields the page's PHP
   assigns; after `|` the pipe functions; after a tag name its options; after `first@` the
   open tags; inside `{pad:page '...'/}`, `{include '...'}`, `callback='...'`, `{pad:trans '...'/}` and
@@ -42,7 +42,7 @@ and its `.php` are marked as a pair (Alt+O switches between them); git's view of
 - Go to definition (F12, Ctrl/⌘+click) follows PAD's own lookup: a tag to the nearest
   `_tags/`, a pipe to `_functions/`, a snippet to `_include/`, a field to the PHP that sets it.
 - Tag pairs fold, make the outline (Ctrl/⌘+Shift+O), and rename together: editing `{items}`
-  edits its `{/items}`. Typing the `}` of `{pad:if ...}`, `{format:auto ...}`, `{pad:form ...}` puts in the
+  edits its `{/items}`. Typing the `}` of `{pad:if ...}`, `{format:auto ...}`, `{input:form ...}` puts in the
   closing tag when the template has none.
 - Checks by PAD itself: a page is rendered under the strict syntax check
   (`editors/render.php`, as the language server does) when it is opened and saved (F7 checks

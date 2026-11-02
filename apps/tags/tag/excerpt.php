@@ -5,9 +5,9 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{pad:excerpt $text, words=40/}
-{pad:excerpt $text, words=24, highlight=$q, ellipsis='...'/}
-{pad:excerpt $html, words=30, html/}
+{widget:excerpt $text, words=40/}
+{widget:excerpt $text, words=24, highlight=$q, ellipsis='...'/}
+{widget:excerpt $html, words=30, html/}
 PAD;
 
   $tagParms   = [

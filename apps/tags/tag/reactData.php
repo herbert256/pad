@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{pad:reactData id='products'/}
-{pad:reactData id='products', provider='catalog', type='array'/}
+{widget:reactData id='products'/}
+{widget:reactData id='products', provider='catalog', type='array'/}
 PAD;
 
   $tagParms   = [];

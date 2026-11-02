@@ -12,6 +12,8 @@
   // ?tag/chart/pie - that binds the two names.
 
   $tagKey        = str_contains ( $padPage, '[' ) ? "$tagType:$tagKind" : 'pad:' . basename ( $padPage );
+  if ( ! str_contains ( $padPage, '[' ) )
+    $tagKey = tagsRenderingTags () [ basename ( $padPage ) ] ?? $tagKey;
   $tagFamily     = ! str_contains ( $padPage, '[' ) and ! isset ( tagsCatalog () [$tagKey] );
   $tagInfo       = $tagFamily ? tagsRead ( APP . $padPage . '.php' ) : tagsCatalog () [$tagKey];
   if ( $tagFamily ) {
@@ -56,9 +58,9 @@
 
   include_once COMMON . '_lib/playground.php';
 
-  if ( $tagInfo ['type'] == 'pad' )
+  if ( $tagInfo ['type'] == 'pad' or ( isset ( $tagInfo ['documentation'] ) and ! str_contains ( $padPage, '[' ) ) )
 
-    foreach ( tagsExamples ( $tagName ) as $i => $example ) {
+    foreach ( tagsExamples ( $tagInfo ['documentation'] ?? $tagName ) as $i => $example ) {
 
       $file = $example ['run'] ? $example ['page'] . '.pad' : $example ['page'];
       $php  = $example ['run'] && file_exists ( APP . $example ['page'] . '.php' ) ? $example ['page'] . '.php' : '';

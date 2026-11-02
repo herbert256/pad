@@ -1,9 +1,9 @@
 <?php
 
-  // The sections are the files of pad/subs/sections/types/, as the engine reads them (padSectionTypes,
-  // pad/subs/sections/_lib/section.php - loaded when a page uses a section).
+  // The sections are the files of pad/subs/widgets/sections/types/, as the engine reads them (padSectionTypes,
+  // pad/subs/widgets/sections/_lib/section.php - loaded when a page uses a section).
 
-  $tagAbout   = 'A block of a landing page - ' . count ( padKinds ( 'sections' ) ) . ' of them, from a hero, the features and the prices to the questions, a newsletter form and the footer - in pure CSS.';
+  $tagAbout   = 'A block of a landing page - ' . count ( padKinds ( 'widgets/sections' ) ) . ' of them, from a hero, the features and the prices to the questions, a newsletter form and the footer - in pure CSS.';
   $tagGroup   = 'layout';
   $tagForm    = 'both';
 
@@ -29,8 +29,8 @@
 PAD;
 
   $tagParms   = [
-    'kind after colon'    => 'The section, a file of <code>pad/subs/sections/types/</code>: '
-               . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padKinds ( 'sections' ) ) )
+    'kind after colon'    => 'The section, a file of <code>pad/subs/widgets/sections/types/</code>: '
+               . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padKinds ( 'widgets/sections' ) ) )
                . '. The section: prefix selects it - <code>{section:hero}</code> - and that prefix is always written: a section is never reached bare, as hero, team and footer are the names of fields and pages.',
     'heading' => 'The section\'s own first value, used after <code>{section:hero}</code>: its heading, as <code>title=</code>; for <code>{section:item}</code> the item\'s name - a plan, a question, a person.' ];
 

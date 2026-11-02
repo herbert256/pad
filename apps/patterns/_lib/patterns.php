@@ -1,6 +1,6 @@
 <?php
 
-  // The patterns of the engine, as the engine reads them - the files of pad/subs/patterns/types/
+  // The patterns of the engine, as the engine reads them - the files of pad/subs/images/patterns/types/
   // (padPatternKinds) - each with what its own file says of it: the comment at its top, its
   // first paragraph the text of its page, the first sentence of that its line, and the
   // example the comment holds.
@@ -11,7 +11,7 @@
 
     foreach ( padPatternKinds () as $kind ) {
 
-      list ( $text, $example ) = patternsComment ( PAD . "subs/patterns/types/$kind.php", $kind );
+      list ( $text, $example ) = patternsComment ( PAD . "subs/images/patterns/types/$kind.php", $kind );
 
       // The line of a card: the first sentence up to its colon or dash, at most sixteen words.
 

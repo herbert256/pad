@@ -8,24 +8,24 @@
 <p>An element names its component and carries its props - the ^ sigil writes a field as JSON for the
    attribute - and <code>data-load</code> says when its code is fetched. What stands inside shows
    until the component takes over.</p>
-{pad:highlight 'pad'}
+{widget:highlight 'pad'}
 <div data-island="VueCounter" data-load="visible" data-props="{^counter}">
   <p>{$counter.start}</p>
 </div>
 
 {pad:vite 'src/main.js'/}
-{/pad:highlight}
+{/widget:highlight}
 
 <h2>2. The registry, in the build</h2>
 <p><code>_frontend/src/main.js</code> names every island and pairs it with its framework. Both are
    fetched by <code>import()</code> when an island of the name is due - a page without a Vue island
    loads no Vue:</p>
-{pad:highlight 'js', file='_frontend/src/main.js'/}
+{widget:highlight 'js', file='_frontend/src/main.js'/}
 
 <h2>3. An adapter per framework</h2>
 <p>An adapter is a dozen lines: it mounts a component on an element with props and answers how to
    unmount it. Each is a module of its own, so it travels with its framework:</p>
-{pad:highlight 'js', file='_frontend/src/adapters/svelte.js'/}
+{widget:highlight 'js', file='_frontend/src/adapters/svelte.js'/}
 
 <h2>4. Talking to PAD, and to each other</h2>
 <p><code>pad-islands.js</code> also exports <code>get(page, params)</code> - the JSON of a page's
@@ -36,12 +36,12 @@
 <h2>5. Build and dev server</h2>
 <div class="cols-2">
   <div>
-{pad:highlight 'bash'}
+{widget:highlight 'bash'}
 cd apps/islands/_frontend
 npm install
 npm run build     # www/islands/build/ with .vite/manifest.json
 npm run dev       # the dev server; build/hot holds its address
-{/pad:highlight}
+{/widget:highlight}
   </div>
   <div>
     <p>{pad:open/}pad:vite 'src/main.js'/{pad:close/} reads the manifest and writes the entry's CSS, its chunks as

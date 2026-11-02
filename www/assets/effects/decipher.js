@@ -1,4 +1,4 @@
-/* Decipher - an effect of PAD with a script (pad/subs/effects/types/decipher.php). Written once
+/* Decipher - an effect of PAD with a script (pad/subs/widgets/effects/types/decipher.php). Written once
    per page with the CSP nonce. A {decipher}...{/decipher} lays a layer of changing signs over
    its text when it comes into view - after the delay in its data-pad-decipher - and again when
    the pointer comes on it or the focus into it; the signs settle into the text's letters one

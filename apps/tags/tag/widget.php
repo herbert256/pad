@@ -8,13 +8,13 @@
 
   $tagSyntax  = <<<'PAD'
 {widget:name ...} ... {/widget:name}
-{widget:tabs active='label'} {pad:tab 'label'} ... {/pad:tab} ... {/widget:tabs}
-{widget:accordion single, open=1} {pad:tab 'label'} ... {/pad:tab} ... {/widget:accordion}
-{widget:carousel label='name'} {pad:tab 'caption'} ... {/pad:tab} ... {/widget:carousel}
-{widget:wizard active=1, next='Next', back='Back'} {pad:tab 'step'} ... {/pad:tab} ... {/widget:wizard}
-{widget:lightbox label='name'} {pad:tab 'caption'} <img ...> {/pad:tab} ... {/widget:lightbox}
-{widget:splitpane size=30, min=20, max=60, stacked, collapse, height='16rem'} {pad:tab 'label'} ... {/pad:tab} {pad:tab 'label'} ... {/pad:tab} {/widget:splitpane}
-{widget:sortable 'name', label='text'} {pad:tab 'key'} ... {/pad:tab} ... {/widget:sortable}
+{widget:tabs active='label'} {widget:tab 'label'} ... {/widget:tab} ... {/widget:tabs}
+{widget:accordion single, open=1} {widget:tab 'label'} ... {/widget:tab} ... {/widget:accordion}
+{widget:carousel label='name'} {widget:tab 'caption'} ... {/widget:tab} ... {/widget:carousel}
+{widget:wizard active=1, next='Next', back='Back'} {widget:tab 'step'} ... {/widget:tab} ... {/widget:wizard}
+{widget:lightbox label='name'} {widget:tab 'caption'} <img ...> {/widget:tab} ... {/widget:lightbox}
+{widget:splitpane size=30, min=20, max=60, stacked, collapse, height='16rem'} {widget:tab 'label'} ... {/widget:tab} {widget:tab 'label'} ... {/widget:tab} {/widget:splitpane}
+{widget:sortable 'name', label='text'} {widget:tab 'key'} ... {/widget:tab} ... {/widget:sortable}
 {widget:modal 'name', title='heading', button='text'} ... {/widget:modal}
 {widget:drawer 'name', title='heading', button='text', side='left'} ... {/widget:drawer}
 {widget:dropdown 'text', align='end'} <a href="..."> ... </a> ... {/widget:dropdown}

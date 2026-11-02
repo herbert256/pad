@@ -5,10 +5,10 @@
   $tagForm    = 'pair';
 
   $tagSyntax  = <<<'PAD'
-{pad:form 'name'} ... {/pad:form}
-{pad:form 'name', method='get', class='search'} ... {/pad:form}
-{pad:form 'name', error='Please correct the errors below.'} ... {/pad:form}
-{pad:form 'name', client, error} ... {/pad:form}
+{input:form 'name'} ... {/input:form}
+{input:form 'name', method='get', class='search'} ... {/input:form}
+{input:form 'name', error='Please correct the errors below.'} ... {/input:form}
+{input:form 'name', client, error} ... {/input:form}
 PAD;
 
   $tagParms   = [

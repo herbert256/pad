@@ -1,9 +1,9 @@
 {pad:parms name, value=1, min=1, max=10/}
 {pad:set $stepperValue = {#value}/}
 <pad-stepper name="{#name}" id="{#name}" value="{#value}" min="{#min}" max="{#max}">
-  {pad:shadow css='www:elements/stepper.css', focus}
+  {widget:shadow css='www:elements/stepper.css', focus}
     <button type="button" part="less" aria-label="One less">−</button>
     <output part="value">{$stepperValue}</output>
     <button type="button" part="more" aria-label="One more">+</button>
-  {/pad:shadow}
+  {/widget:shadow}
 </pad-stepper>

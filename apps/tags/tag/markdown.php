@@ -5,10 +5,10 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{pad:markdown $text/}
-{pad:markdown} ... {/pad:markdown}
-{pad:markdown html} ... {/pad:markdown}
-{pad:markdown ignore} ... {/pad:markdown}
+{widget:markdown $text/}
+{widget:markdown} ... {/widget:markdown}
+{widget:markdown html} ... {/widget:markdown}
+{widget:markdown ignore} ... {/widget:markdown}
 PAD;
 
   $tagParms   = [

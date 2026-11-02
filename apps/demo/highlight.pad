@@ -1,10 +1,10 @@
-<p>The <code>{pad:ignore}{pad:highlight}{/pad:ignore}</code> tag colours source code on the server - PAD, PHP, HTML,
+<p>The <code>{pad:ignore}{widget:highlight}{/pad:ignore}</code> tag colours source code on the server - PAD, PHP, HTML,
 CSS, JavaScript, JSON, YAML, SQL and Bash. No JavaScript library, and the braces inside need no
 <code>&#123;pad:ignore&#125;</code>.</p>
 
 <h2>PHP, with line numbers and a marked line</h2>
 
-{pad:highlight 'php', lines, mark='4'}
+{widget:highlight 'php', lines, mark='4'}
   <?php
 
     $orders = db ( "ARRAY * FROM orders WHERE status = 'open'" );
@@ -14,13 +14,13 @@ CSS, JavaScript, JSON, YAML, SQL and Bash. No JavaScript library, and the braces
       padRedirect ( 'empty' );
 
   ?>
-{/pad:highlight}
+{/widget:highlight}
 
-<p><code>{pad:ignore}{pad:highlight 'php', lines, mark='4'}...{/pad:highlight}{/pad:ignore}</code></p>
+<p><code>{pad:ignore}{widget:highlight 'php', lines, mark='4'}...{/widget:highlight}{/pad:ignore}</code></p>
 
 <h2>PAD itself</h2>
 
-{pad:highlight 'pad'}
+{widget:highlight 'pad'}
   {array:orders sort='date', first=10}
     <li class="{property:even@orders ? 'even' : 'odd'/}">
       {$number}: {$total | money}
@@ -28,28 +28,28 @@ CSS, JavaScript, JSON, YAML, SQL and Bash. No JavaScript library, and the braces
   @else@
     <li>No orders yet</li>
   {/array:orders}
-{/pad:highlight}
+{/widget:highlight}
 
 <h2>CSS and JavaScript</h2>
 
-{pad:highlight 'css'}
+{widget:highlight 'css'}
   .card { padding: 12px 16px; border-radius: 8px; color: #333; }
   @media (prefers-color-scheme: dark) { .card { color: #eee; } }
-{/pad:highlight}
+{/widget:highlight}
 
-{pad:highlight 'js'}
+{widget:highlight 'js'}
   // Counts the clicks on every button with a data-count attribute
   document.querySelectorAll('[data-count]').forEach(button => {
     let clicks = 0;
     button.addEventListener('click', () => button.textContent = `Clicked ${++clicks} times`);
   });
-{/pad:highlight}
+{/widget:highlight}
 
 <h2>A file of this application</h2>
 
-{pad:highlight file='qr.php'/}
+{widget:highlight file='qr.php'/}
 
-<p><code>{pad:ignore}{pad:highlight file='qr.php'}{/pad:ignore}</code> - the language follows the extension.</p>
+<p><code>{pad:ignore}{widget:highlight file='qr.php'}{/pad:ignore}</code> - the language follows the extension.</p>
 
 <h2>A value, through the pipe</h2>
 
