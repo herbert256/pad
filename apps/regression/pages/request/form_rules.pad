@@ -1,7 +1,7 @@
-{pad:form 'order', error}
-{pad:input 'qty', label='Quantity', rules='required|integer|min:1'/}
-{pad:input 'email', type='email', rules='required|email'/}
-{pad:input 'note'/}
-{pad:if 1 eq 2}{pad:input 'code', rules='required'/}{/pad:if}
-{/pad:form}
+{input:form 'order', error}
+{input:field 'qty', label='Quantity', rules='required|integer|min:1'/}
+{input:field 'email', type='email', rules='required|email'/}
+{input:field 'note'/}
+{pad:if 1 eq 2}{input:field 'code', rules='required'/}{/pad:if}
+{/input:form}
 {$state}

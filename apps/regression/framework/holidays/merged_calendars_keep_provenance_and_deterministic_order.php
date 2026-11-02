@@ -1,6 +1,6 @@
 <?php
 
-include_once PAD . 'subs/holidays/_lib/holidays.php';
+include_once PAD . 'subs/calendars/holidays/_lib/holidays.php';
 $from = padHolidaysDay ( 2026, 1, 1 ); $to = padHolidaysDay ( 2026, 1, 6 );
 $a = padHolidaysMerge ( 'nl,de-by,nl', $from, $to );
 $b = padHolidaysMerge ( [ 'DE-BY', 'nl' ], $from, $to );

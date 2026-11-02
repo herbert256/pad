@@ -2,7 +2,7 @@
 
   // The provider the misc/react_types test runs: a value keeps its type - a code "007" and a
   // year "2024" stay text, a number from PHP or an integer column from the database is a
-  // number. {pad:reactData} made every numeric-looking string a number.
+  // number. {widget:reactData} made every numeric-looking string a number.
 
   return [
     'php' => [ 'code' => '007', 'year' => '2024', 'n' => 7 ],

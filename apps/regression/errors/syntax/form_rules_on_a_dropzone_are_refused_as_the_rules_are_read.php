@@ -5,6 +5,6 @@
   // file field's is: refused only as the field rendered, they were kept, and under an error
   // action that goes on every post failed on a field the post never has.
 
-  padFormRulesOf ( "{pad:form 'f'}{input:dropzone 'cv', rules='required'/}<button>Send</button>{/pad:form}" );
+  padFormRulesOf ( "{input:form 'f'}{input:dropzone 'cv', rules='required'/}<button>Send</button>{/input:form}" );
 
 ?>

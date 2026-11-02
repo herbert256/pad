@@ -1,6 +1,6 @@
 <?php
 
-  // A section whose rendering holds the visitor's CSRF token - a {pad:form}, {pad:csrf}, a live
+  // A section whose rendering holds the visitor's CSRF token - a {input:form}, {pad:csrf}, a live
   // region - is rendered every time and never kept: the copy went to every later visitor,
   // who got the first one's token to post with on that visitor's behalf. The second section
   // of that name finds no stored copy and renders its own content. One holding the CSP

@@ -1,7 +1,7 @@
 <?php
 
   // The rules on the rich fields of a template are checked before the page's PHP runs, as
-  // those of {pad:input}: a post that breaks every one comes back with each field refilled - a
+  // those of {input:field}: a post that breaks every one comes back with each field refilled - a
   // password never - its message after its frame and the form's error= above them, and the
   // page's PHP does not store it; a post that keeps them is stored. The style and the script
   // of the fields, and the session's token, are left out of what is compared.

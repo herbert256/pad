@@ -5,7 +5,7 @@
   // on the 13th, where the calendar put a timestamp and an offset date on their UTC day,
   // the 12th, and the timeline wrote them as 22:00 and 22:30 of the 12th.
 
-  include_once PAD . 'subs/timelines/_lib/timeline.php';
+  include_once PAD . 'subs/charts/timelines/_lib/timeline.php';
 
   $padTimezone = 'Europe/Amsterdam';
 

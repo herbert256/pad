@@ -1,6 +1,6 @@
 
-<p><code>{pad:source}</code> reads the template and the PHP of a page and shows them as tabs, each
-file coloured as <a href="?tag/highlight"><code>&#123;pad:highlight&#125;</code></a> colours it. Because
+<p><code>{widget:source}</code> reads the template and the PHP of a page and shows them as tabs, each
+file coloured as <a href="?tag/highlight"><code>&#123;widget:highlight&#125;</code></a> colours it. Because
 the code is read from the files that run, a page that explains itself can never show a sample
 that has drifted from what it does. Without a parameter it is the page being rendered - inside
 a <code>{pad:page}</code>, the page that <code>{pad:page}</code> renders.</p>
@@ -17,7 +17,7 @@ alone. The default look is written once a page under <code>:where()</code>, so t
 CSS wins: style <code>.pad-source</code>, <code>.pad-source &gt; label</code> and
 <code>.pad-source-panel</code>.</p>
 
-<p>It follows the file rule of <code>{pad:highlight file=}</code>: never a file outside the
+<p>It follows the file rule of <code>{widget:highlight file=}</code>: never a file outside the
 application or its <code>www/</code> directory, under <code>_config/</code> or a dotfile. Such a
 file, one that is not there, and a page that has neither a template nor PHP are errors.</p>
 

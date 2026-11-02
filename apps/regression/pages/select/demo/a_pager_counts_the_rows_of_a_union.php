@@ -1,6 +1,6 @@
 <?php
 
-  // A {pad:pager} after a select with union= counts the rows of the whole union - four staff
+  // A {widget:pager} after a select with union= counts the rows of the whole union - four staff
   // and seven office cities - and not those of a select before it on the same level. Over
   // the staff and offices tables of the demo database.
 

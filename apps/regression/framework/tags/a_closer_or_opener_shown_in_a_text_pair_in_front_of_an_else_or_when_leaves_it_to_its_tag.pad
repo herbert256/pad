@@ -1,4 +1,4 @@
-1[{pad:if 1 eq 2}S{pad:highlight 'pad'}{/pad:if}{/pad:highlight | php:preg_replace('#<style>.*</style>#s', '', @) | php:strip_tags(@)}{pad:else}N{/pad:if}]
+1[{pad:if 1 eq 2}S{widget:highlight 'pad'}{/pad:if}{/widget:highlight | php:preg_replace('#<style>.*</style>#s', '', @) | php:strip_tags(@)}{pad:else}N{/pad:if}]
 2[{pad:case 2}{pad:when 1}a{pad:ignore}{/pad:case}{/pad:ignore}{pad:when 2}b{/pad:case}]
 3[{pad:if 1}S{pad:ignore}{/pad:if}{/pad:ignore}{pad:else}N{/pad:if}]
 4[{pad:if 1 eq 2}S{pad:ignore}{pad:if $x}{/pad:ignore}{pad:else}N{/pad:if}]

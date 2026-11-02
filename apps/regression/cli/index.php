@@ -10,7 +10,7 @@
   //   serve   a page fetched from the server it starts, on a free port
   //   export  the regression/site fixture as static files: page links turned into relative
   //           .html files, from a subdirectory too, the assets copied, the outside link kept;
-  //           and a scratch application with its {image:thumbnail} thumbnails, srcset and {pad:video} poster,
+  //           and a scratch application with its {image:thumbnail} thumbnails, srcset and {widget:video} poster,
   //           and a srcset whose addresses hold a comma kept whole
   //   test    the _tests of the scratch application - a pass, a failing {pad:assert}, a test
   //           without an answer and --record writing it, a pattern over a page of 1.6 MB, a
@@ -301,7 +301,7 @@
     $schedule = ( $codeQ5 === 0 and str_contains ( $outQ5, '0 3 * * *' ) and str_contains ( $outQ5, '2026-10-13 03:00' )
                   and $codeQ6 === 0 and preg_match ( '/done\s+note/', $outQ6 ) ) ? 'yes' : 'NO';
 
-    // export of a scratch application with an {image:thumbnail} and a {pad:video} poster: the thumbnails
+    // export of a scratch application with an {image:thumbnail} and a {widget:video} poster: the thumbnails
     // of www/<app>/_thumbs/ go along with the copy, src and srcset both pointing into it, and
     // the poster is the relative path to the picture's copy - the srcset kept the server's
     // /gallery/_thumbs/ addresses, of a directory the copy did not have
@@ -312,7 +312,7 @@
     imagepng ( imagecreatetruecolor ( 400, 200 ), "$home/www/gallery/photos/p.png" );
     file_put_contents ( "$home/www/gallery/clip.mp4", '' );
     file_put_contents ( "$home/apps/gallery/pic.pad",
-      "<p>{image:thumbnail 'photos/p.png', width=100, height=50, alt='p'/}</p>\n{pad:video 'clip.mp4', title='Clip', poster='photos/p.png'/}" );
+      "<p>{image:thumbnail 'photos/p.png', width=100, height=50, alt='p'/}</p>\n{widget:video 'clip.mp4', title='Clip', poster='photos/p.png'/}" );
 
     // a srcset whose addresses hold a comma - a Cloudinary path, a data: URI - on a page one
     // directory down: each address is the run up to whitespace, so the outside ones stay as

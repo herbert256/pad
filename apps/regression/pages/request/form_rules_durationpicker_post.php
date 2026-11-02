@@ -1,7 +1,7 @@
 <?php
 
   // The rules on a duration picker of the template are those of the seconds it posts, checked
-  // before the page's PHP as those of {pad:input}: a post of text that is no number of seconds
+  // before the page's PHP as those of {input:field}: a post of text that is no number of seconds
   // breaks integer and comes back as it was posted, five minutes break between and come back
   // as 300, and an hour and a half is stored as 5400. The style and the script of the field,
   // and the session's token, are left out of what is compared.

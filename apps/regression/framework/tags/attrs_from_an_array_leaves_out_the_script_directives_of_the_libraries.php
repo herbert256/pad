@@ -2,7 +2,7 @@
 
   // The keys of an array are data, often a visitor's: the directives with which Alpine, Vue,
   // htmx, Angular, Livewire, hyperscript and Knockout run their value as script - in every
-  // spelling those libraries read - are left out, by {pad:attrs} and by an {pad:input} item alike.
+  // spelling those libraries read - are left out, by {pad:attrs} and by an {input:field} item alike.
 
   $j = '{"x-bind:title":"a","v-bind:title":"b","data-hx-on:click":"c","data-hx-on-click":"d",'
      . '"x-init":"e","x-data":"{f:1}","x-effect":"g","x-html":"h","v-html":"i","ng-click":"j",'

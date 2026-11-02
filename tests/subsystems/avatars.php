@@ -3,7 +3,7 @@ const PAD = __DIR__.'/../../pad/';
 const APPS = __DIR__.'/../../apps/';
 function padWidgetOnce($s){return false;}
 function padUnprotectQuotes($s){return $s;}
-require PAD.'subs/avatars/_lib/avatar.php';
+require PAD.'subs/images/avatars/_lib/avatar.php';
 function check($ok){if(!$ok)throw new Exception('Avatar assertion failed');}
 foreach(['rings','mosaic','pixelbot'] as $kind){
  $a=padAvatarMake($kind,'secret@example.com',['label'=>'<Ada & Jo>']);
@@ -16,7 +16,7 @@ check(padAvatarMake('initials','Ada Lovelace',['size'=>48])===padAvatar('Ada Lov
 check(padAvatarMake('identicon',' ADA ',['size'=>64])===padIdenticon(' ADA '));
 try{padAvatarMake('rings','a',['palette'=>['url(x)','#ffffff']]);throw new Exception('Accepted unsafe color');}catch(InvalidArgumentException $e){}
 // The old include path must remain safe after the canonical module has loaded.
-include_once PAD.'subs/avatars/_lib/initials.php';
+include_once PAD.'subs/images/avatars/_lib/initials.php';
 check(str_contains(padAvatarMake('initials','Ada'),'width="64"'));
 check(str_contains(padAvatarMake('identicon','ada',['title'=>'Title','label'=>'Alias']),'aria-label="Title"'));
 $expected=[

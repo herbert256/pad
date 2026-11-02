@@ -1,4 +1,4 @@
-distinct: [{select:orderSel join="customers on customers.customerNumber = orders.customerNumber", fields="distinct orders.status", where="customers.country = 'France'", order="orders.status", page=1, rows=1}{$status} {/select:orderSel}] ({pad:pager 'orderSel', window=0}{$kind}:{$page} {/pad:pager})
+distinct: [{select:orderSel join="customers on customers.customerNumber = orders.customerNumber", fields="distinct orders.status", where="customers.country = 'France'", order="orders.status", page=1, rows=1}{$status} {/select:orderSel}] ({widget:pager 'orderSel', window=0}{$kind}:{$page} {/widget:pager})
 {array:caseSql}
 {$caseSql}
 {/array:caseSql}

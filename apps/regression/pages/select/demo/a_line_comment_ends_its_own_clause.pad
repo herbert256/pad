@@ -3,4 +3,4 @@ having: [{select:staffSel fields="floor(salary / 2000) as band, count(*) as n", 
 rollup: [{select:staffSel fields="floor(salary / 2000) as band, sum(salary) as pay", group="band -- per band", rollup}{$pay} {/select:staffSel}]
 where: [{select:staffSel where="salary > 2000 -- the well paid", order="name"}{$name} {/select:staffSel}]
 order: [{select:staffSel order="salary desc -- best paid first", rows=2}{$name} {/select:staffSel}]
-pages: [{select:staffSel fields="floor(salary / 2000) as band, count(*) as n", group="band", having="n > 0 -- every band", page=1, rows=2}{$band} {/select:staffSel}] ({pad:pager 'staffSel', window=0}{$kind}:{$page} {/pad:pager})
+pages: [{select:staffSel fields="floor(salary / 2000) as band, count(*) as n", group="band", having="n > 0 -- every band", page=1, rows=2}{$band} {/select:staffSel}] ({widget:pager 'staffSel', window=0}{$kind}:{$page} {/widget:pager})

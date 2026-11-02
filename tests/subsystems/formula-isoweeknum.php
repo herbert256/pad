@@ -2,7 +2,7 @@
   define ( 'PAD', dirname ( __DIR__, 2 ) . '/pad/' );
   function padDirList ( $p ) { return scandir ( $p ); }
   require PAD . 'lib/subsystem.php';
-  foreach ( [ 'formula', 'collect', 'functions', 'dates', 'format' ] as $lib ) require PAD . "subs/formulas/_lib/$lib.php";
+  foreach ( [ 'formula', 'collect', 'functions', 'dates', 'format' ] as $lib ) require PAD . "subs/tables/formulas/_lib/$lib.php";
   function runFormula ( $name, ...$args ) { return padFormulaType ( $name ) ['call'] ( $args, [] ); }
   function vector ( $values ) { return [ 'range'=>array_map(fn($v)=>[$v],$values), 'w'=>1,'h'=>count($values),'c'=>1,'r'=>1 ]; }
   function check ( $v ) { if ( ! $v ) throw new Exception ( 'formula fixture failed' ); }

@@ -4,7 +4,7 @@ define('PAD', dirname ( __DIR__, 2 ) . '/pad/');
 define('DATA', '/nonexistent-pad-test-data/');
 require PAD . 'lib/dirs.php';
 require PAD . 'lib/subsystem.php';
-require PAD . 'subs/palettes/_lib/palette.php';
+require PAD . 'subs/themes/palettes/_lib/palette.php';
 function verify($ok, $message) { if (!$ok) throw new RuntimeException($message); }
 $data=padPaletteData('phase');
 verify($data['type']==='cyclic', 'classification');

@@ -521,7 +521,7 @@
               <a href="/pad/patterns/">patterns</a>
             </td>
             <td>
-              Every pattern of the engine's patterns subsystem - seeded SVG backgrounds and generative art - to look at: the home page has a card per pattern, a pattern's page draws it large beside the template that does, with links to the seeds next to the one shown (`?topography&amp;seed=8`), then the example the pattern's own file gives and the pattern as the background of a box, written with `as='url'`. The patterns are the files of `pad/subs/patterns/types/` - the list, the names, the descriptions and the examples are read from them (`_lib/patterns.php`), so a pattern added to the engine is here without a change to this application. The filters page does the same for the image filters of `{image:thumbnail}`, the other subsystem shown here: every filter on one picture.
+              Every pattern of the engine's patterns subsystem - seeded SVG backgrounds and generative art - to look at: the home page has a card per pattern, a pattern's page draws it large beside the template that does, with links to the seeds next to the one shown (`?topography&amp;seed=8`), then the example the pattern's own file gives and the pattern as the background of a box, written with `as='url'`. The patterns are the files of `pad/subs/images/patterns/types/` - the list, the names, the descriptions and the examples are read from them (`_lib/patterns.php`), so a pattern added to the engine is here without a change to this application. The filters page does the same for the image filters of `{image:thumbnail}`, the other subsystem shown here: every filter on one picture.
             </td>
             <td>
               <a href="/pad/edit/?index&amp;app=patterns">edit</a>
@@ -576,7 +576,7 @@
               <a href="/pad/sections/">sections</a>
             </td>
             <td>
-              The four subsystems of the engine that dress a page, shown at work: the sections (`pad/subs/sections/`) - the blocks a landing page is built of -, the effects (`pad/subs/effects/`) - motion and decoration -, the themes (`pad/subs/themes/`) - the frame's colours swapped - and the palettes (`pad/subs/palettes/`) - colour scales for charts and anything else. The home page is a landing page built from sections and effects; the theme switcher, `{pad:themes/}`, stands in the bar of every page. A page per group shows every kind with its examples, a page per kind its examples alone - a theme's page with the contrast of each of its texts on each of its backgrounds and a button that puts every page in it, a palette's with its swatches and charts in it. Every example is its template beside what it renders, with the icons that take it to the WASM editor and the live application. The kinds are read from the engine - the files of each subsystem's `types/` and the comment at the top of each (`_lib/sections.php`) - so a kind added to the engine is here without a change to this application.
+              The four subsystems of the engine that dress a page, shown at work: the sections (`pad/subs/widgets/sections/`) - the blocks a landing page is built of -, the effects (`pad/subs/widgets/effects/`) - motion and decoration -, the themes (`pad/subs/themes/`) - the frame's colours swapped - and the palettes (`pad/subs/themes/palettes/`) - colour scales for charts and anything else. The home page is a landing page built from sections and effects; the theme switcher, `{widget:themes/}`, stands in the bar of every page. A page per group shows every kind with its examples, a page per kind its examples alone - a theme's page with the contrast of each of its texts on each of its backgrounds and a button that puts every page in it, a palette's with its swatches and charts in it. Every example is its template beside what it renders, with the icons that take it to the WASM editor and the live application. The kinds are read from the engine - the files of each subsystem's `types/` and the comment at the top of each (`_lib/sections.php`) - so a kind added to the engine is here without a change to this application.
             </td>
             <td>
               <a href="/pad/edit/?index&amp;app=sections">edit</a>
@@ -598,7 +598,7 @@
               <a href="/pad/sheets/">sheets</a>
             </td>
             <td>
-              Spreadsheets in a page, made with the `{sheet:grid}` tag of the formulas subsystem: the cells are lines of text with a comma between them, or the rows of `data=`, and their formulas - spreadsheet syntax, read by a parser of the engine's own - are computed on the server with the functions of `pad/subs/formulas/types/`, which answer what Excel answers. Each example page runs its template and shows it, with the WASM editor and live icons; the functions page lists every function as its file describes it, each example computed on a sample sheet - a function added to the engine is there without a change to this application.
+              Spreadsheets in a page, made with the `{sheet:grid}` tag of the formulas subsystem: the cells are lines of text with a comma between them, or the rows of `data=`, and their formulas - spreadsheet syntax, read by a parser of the engine's own - are computed on the server with the functions of `pad/subs/tables/formulas/types/`, which answer what Excel answers. Each example page runs its template and shows it, with the WASM editor and live icons; the functions page lists every function as its file describes it, each example computed on a sample sheet - a function added to the engine is there without a change to this application.
             </td>
             <td>
               <a href="/pad/edit/?index&amp;app=sheets">edit</a>
@@ -664,7 +664,7 @@
               <a href="/pad/toys/">toys</a>
             </td>
             <td>
-              Every toy of the engine's toys subsystem, to play with: the home page has a card per toy, a toy's page runs it and shows the template that does. The toys are the files of `pad/subs/toys/types/` - the list, the names and the descriptions are read from them (`_lib/toys.php`), so a toy added to the engine is here without a change to this application.
+              Every toy of the engine's toys subsystem, to play with: the home page has a card per toy, a toy's page runs it and shows the template that does. The toys are the files of `pad/subs/games/toys/types/` - the list, the names and the descriptions are read from them (`_lib/toys.php`), so a toy added to the engine is here without a change to this application.
             </td>
             <td>
               <a href="/pad/edit/?index&amp;app=toys">edit</a>

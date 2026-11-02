@@ -1,12 +1,12 @@
-<p><code>{pad:validator}</code> writes the browser's half of <code>padValidate</code> into the page
+<p><code>{input:validator}</code> writes the browser's half of <code>padValidate</code> into the page
 as one inline script: the runtime, <code>www/assets/rules/validate.js</code>, with the script of
 every rule beside it - the same rules, the same messages. The rules are the files of
-<code>pad/subs/rules/types/</code>, each with its script in <code>www/assets/rules/</code>:
+<code>pad/subs/inputs/rules/types/</code>, each with its script in <code>www/assets/rules/</code>:
 accepted, after, after_or_equal, alpha, alphanum, before, before_or_equal, between, color, date, different, digits, distinct, email, ends_with, gt, gte, iban, in, integer, ip, isbn, json, lowercase, lt, lte, max, max_items, max_words, min, min_items, min_words, multiple_of, not_in, numeric, regex, required, required_if, required_unless, required_with, required_without, same, semver, slug, starts_with, time, timezone, ulid, uppercase, url, uuid. It is written once a page - a second
-<code>{pad:validator}</code>, or one after a <code>{pad:form ..., client}</code> that brought it
+<code>{input:validator}</code>, or one after a <code>{input:form ..., client}</code> that brought it
 already, writes nothing.</p>
 
-<p>It is for forms the template does not write as a <a href="?tag/form">{pad:form}</a> - a form a
+<p>It is for forms the template does not write as a <a href="?tag/form">{input:form}</a> - a form a
 React, Vue or Alpine component draws, or a plain HTML form. Keep the rules in the page's PHP:
 <code>padValidate ( $rules )</code> checks the post, and <code>padValidateClient ( $rules )</code>
 exports the same list for the browser, each rule with the message padValidate would give.</p>

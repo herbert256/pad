@@ -5,7 +5,7 @@
   require PAD . 'lib/subsystem.php';
   require PAD . 'lib/fake.php';
   function check ( $v ) { if ( ! $v ) throw new Exception ( 'fixture failed' ); }
-  $rule = include PAD . 'subs/rules/types/ulid.php';
+  $rule = include PAD . 'subs/inputs/rules/types/ulid.php';
   padFakeSeed ( 7 ); $one = padFake ( 'ulid', [ 'time' => 1700000000000 ] );
   padFakeSeed ( 7 ); check ( $one === padFake ( 'ulid', [ 'time' => 1700000000000 ] ) );
   check ( substr ( $one, 0, 10 ) === '01HF7YAT00' );

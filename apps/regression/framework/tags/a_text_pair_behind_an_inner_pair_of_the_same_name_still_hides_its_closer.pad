@@ -1,3 +1,3 @@
 1[{pad:if 1}{pad:if 2}a{/pad:if}{pad:ignore}{/pad:if}{/pad:ignore}b{/pad:if}]
-2[{pad:if 1}{pad:if 2}b{/pad:if} {pad:highlight 'pad'}{/pad:if}{/pad:highlight | php:preg_replace('#<style>.*</style>#s', '', @) | php:strip_tags(@)}{/pad:if}]
+2[{pad:if 1}{pad:if 2}b{/pad:if} {widget:highlight 'pad'}{/pad:if}{/widget:highlight | php:preg_replace('#<style>.*</style>#s', '', @) | php:strip_tags(@)}{/pad:if}]
 3[{pad:if 1 eq 2}{pad:if 2}c{/pad:if}{pad:ignore}{pad:else}{/pad:ignore}{pad:else}N{/pad:if}]

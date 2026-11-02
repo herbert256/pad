@@ -1,6 +1,6 @@
 <?php
 
-include_once PAD . 'subs/holidays/_lib/holidays.php';
+include_once PAD . 'subs/calendars/holidays/_lib/holidays.php';
 $a = padHolidaysDay ( 2026, 1, 1 ); $b = padHolidaysDay ( 2026, 12, 31 );
 $answer = is_string ( padHolidaysMerge ( 'nl,not-a-country', $a, $b ) )
   && is_string ( padHolidaysMerge ( 'nz', padHolidaysDay ( 2053, 1, 1 ), padHolidaysDay ( 2053, 12, 31 ) ) )

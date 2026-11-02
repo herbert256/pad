@@ -11,7 +11,7 @@
   // for a visitor with the host's session cookie - a stale cookie got a new session on every
   // request - a cookieless cross-site post of the switcher started one and planted its theme,
   // and a theme chosen in one application coloured every other one, its own design or not.
-  // A page with a {pad:theme 'sepia'/} of its own (themes/own) gets no other theme: the hook's
+  // A page with a {widget:theme 'sepia'/} of its own (themes/own) gets no other theme: the hook's
   // went in after the one tidy had moved into the head, and outweighed it. The frame with its
   // stylesheet written into the page, as offline (themes/inline, <body class="frame">), is
   // a framed page too: a theme chosen in a packed application was kept and never shown.

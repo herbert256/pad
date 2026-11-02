@@ -1,3 +1,3 @@
-alone: [{select:allNames order="name", page=1, rows=3}{$name} {/select:allNames}] ({pad:pager 'allNames', window=0}{$kind}:{$page} {/pad:pager})
-first: [{select:staffSel page=1, rows=3}{$name} {/select:staffSel}] ({pad:pager 'staffSel', window=0}{$kind}:{$page} {/pad:pager})
-after: [{select:allNames order="name", page=2, rows=3}{$name} {/select:allNames}] ({pad:pager 'allNames', window=0}{$kind}:{$page} {/pad:pager})
+alone: [{select:allNames order="name", page=1, rows=3}{$name} {/select:allNames}] ({widget:pager 'allNames', window=0}{$kind}:{$page} {/widget:pager})
+first: [{select:staffSel page=1, rows=3}{$name} {/select:staffSel}] ({widget:pager 'staffSel', window=0}{$kind}:{$page} {/widget:pager})
+after: [{select:allNames order="name", page=2, rows=3}{$name} {/select:allNames}] ({widget:pager 'allNames', window=0}{$kind}:{$page} {/widget:pager})

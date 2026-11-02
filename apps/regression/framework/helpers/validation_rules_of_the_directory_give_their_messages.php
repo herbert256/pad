@@ -1,6 +1,6 @@
 <?php
 
-  // The rules added to pad/subs/rules/types/ beside the first twelve, each failing once with its
+  // The rules added to pad/subs/inputs/rules/types/ beside the first twelve, each failing once with its
   // message: the argument as the message shows it - digits:4, between:18,65 read 18 and 65,
   // a list of prefixes read with or - and the number words of between on a number field.
 

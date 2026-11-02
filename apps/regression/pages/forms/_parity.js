@@ -2,8 +2,8 @@
 // forms/client_parity.php as padValidate does - the same field passes or fails, with the
 // same message. The page is rendered on the command line, the checker run in a bare context
 // with what it needs of a browser. The checker is the one a page gets: the runtime,
-// www/assets/rules/validate.js, with the script of every rule of pad/subs/rules/types/ - written
-// by {pad:validator}, so a rule added to the directory is judged here as it is in the page. The
+// www/assets/rules/validate.js, with the script of every rule of pad/subs/inputs/rules/types/ - written
+// by {input:validator}, so a rule added to the directory is judged here as it is in the page. The
 // cases hold the shared table of forms/_rules.php too - the rules that look at other fields
 // and not_in - and a form's watcher is walked through the steps of a visitor below.
 
@@ -19,10 +19,10 @@ const render = (page, input) => execFileSync('php', [path.join(home, 'editors/re
 
 const cases = JSON.parse(render('forms/client_parity')).parity;
 
-const checker = render('forms/client_parity_checker', '{pad:validator/}').match(/<script[^>]*>([\s\S]*)<\/script>/);
+const checker = render('forms/client_parity_checker', '{input:validator/}').match(/<script[^>]*>([\s\S]*)<\/script>/);
 
 if (!checker) {
-  console.error('{pad:validator/} wrote no script');
+  console.error('{input:validator/} wrote no script');
   process.exit(1);
 }
 
@@ -139,13 +139,13 @@ function world(template, fields, server, action) {
 
 const watching = [];
 
-const tripForm = "{pad:form 'trip', client}{pad:input 'delivery'/}{pad:input 'address', rules='required_if:delivery,ship'/}" +
-                 "{pad:input 'password'/}{pad:input 'confirm', rules='same:password'/}{pad:input 'start'/}{pad:input 'end', rules='after:start'/}{/pad:form}";
+const tripForm = "{input:form 'trip', client}{input:field 'delivery'/}{input:field 'address', rules='required_if:delivery,ship'/}" +
+                 "{input:field 'password'/}{input:field 'confirm', rules='same:password'/}{input:field 'start'/}{input:field 'end', rules='after:start'/}{/input:form}";
 
 const trip = world(tripForm,
                    [['delivery', 'ship'], ['address', ''], ['password', 'secret'], ['confirm', 'secret'], ['start', '2026-05-01'], ['end', '']]);
 
-if (!trip) watching.push('{pad:form ..., client} wrote no data-pad-rules');
+if (!trip) watching.push('{input:form ..., client} wrote no data-pad-rules');
 else {
   const { fire, controls } = trip;
   const expect = (step, name, text) => {
@@ -190,7 +190,7 @@ else {
 // the checker leaves to the server - stays, unless the checker has a message of its own.
 const posted = (server, steps) => {
   const back = world(tripForm, [['delivery', 'ship'], ['address', ''], ['password', 'secret'], ['confirm', 'secret'], ['start', '2026-05-01'], ['end', '2026-06-01']], server);
-  if (!back) return watching.push('{pad:form ..., client} wrote no data-pad-rules');
+  if (!back) return watching.push('{input:form ..., client} wrote no data-pad-rules');
   steps(back, (step, name, text) => {
     const got = back.shown(name);
     const invalid = back.controls[name].getAttribute('aria-invalid') === 'true';
@@ -217,11 +217,11 @@ posted({ address: 'Address is required when Delivery is ship', end: 'End must be
 
 // A field watched under the place PHP files it: phones names the list phones[0] is an item
 // of, first_name the field first.name is.
-const filedForm = world("{pad:form 'reach', client}{pad:input 'phones[0]'/}{pad:input 'code', rules='required_with:phones'/}" +
-                        "{pad:input 'first.name'/}{pad:input 'note', rules='required_if:first_name,x'/}{/pad:form}",
+const filedForm = world("{input:form 'reach', client}{input:field 'phones[0]'/}{input:field 'code', rules='required_with:phones'/}" +
+                        "{input:field 'first.name'/}{input:field 'note', rules='required_if:first_name,x'/}{/input:form}",
                         [['phones[0]', ''], ['code', ''], ['first.name', ''], ['note', '']]);
 
-if (!filedForm) watching.push('{pad:form ..., client} wrote no data-pad-rules');
+if (!filedForm) watching.push('{input:form ..., client} wrote no data-pad-rules');
 else {
   [['code', 'phones[0]', '0612', 'Code is required when Phones is filled in'], ['note', 'first.name', 'x', 'Note is required when First name is x']].forEach(([name, other, value, text]) => {
     filedForm.fire('focusout', name);
@@ -235,13 +235,13 @@ else {
 // as the server reads the request (padRequestInput): posted to ?checkout&delivery=collect&
 // newsletter=1 without them, the page has delivery collect and a newsletter, and a field the
 // form does send wins (request/form_rules_that_look_at_other_fields_post holds the server).
-const checkoutForm = "{pad:form 'checkout', client}{pad:input 'address', rules='required_unless:delivery,collect'/}" +
-                     "{pad:input 'email', rules='required_with:newsletter'/}{/pad:form}";
+const checkoutForm = "{input:form 'checkout', client}{input:field 'address', rules='required_unless:delivery,collect'/}" +
+                     "{input:field 'email', rules='required_with:newsletter'/}{/input:form}";
 
 [[[], { address: '', email: 'Email is required when Newsletter is filled in' }],
  [[['delivery', 'ship'], ['newsletter', '']], { address: 'Address is required unless Delivery is collect', email: '' }]].forEach(([sent, want]) => {
   const out = world(checkoutForm, [['address', ''], ['email', '']].concat(sent), {}, 'http://localhost/pad/shop/?checkout&delivery=collect&newsletter=1');
-  if (!out) return watching.push('{pad:form ..., client} wrote no data-pad-rules');
+  if (!out) return watching.push('{input:form ..., client} wrote no data-pad-rules');
   out.padValidate.form(out.form);
   Object.keys(want).forEach(name => {
     if (out.shown(name) !== want[name])
@@ -252,10 +252,10 @@ const checkoutForm = "{pad:form 'checkout', client}{pad:input 'address', rules='
 // A multiselect is left when the focus leaves its filter box, which has no name of its own:
 // the select, hidden, names it in data-pad-shows. Left empty, it is checked again when the
 // field its rules look at changes, as a text field left empty is.
-const picks = world("{pad:form 'pick', client}{pad:input 'plan'/}{input:multiselect 'extras', label='Extras', options='a, b, c', rules='required_if:plan,pro'/}{/pad:form}",
+const picks = world("{input:form 'pick', client}{input:field 'plan'/}{input:multiselect 'extras', label='Extras', options='a, b, c', rules='required_if:plan,pro'/}{/input:form}",
                     [['plan', ''], ['extras[]', null, { key: 'select', id: 'extras-select', attrs: { 'data-pad-shows': 'extras' } }], ['', '', { key: 'filter', id: 'extras' }]]);
 
-if (!picks) watching.push('{pad:form ..., client} wrote no data-pad-rules');
+if (!picks) watching.push('{input:form ..., client} wrote no data-pad-rules');
 else {
   picks.fire('focusout', 'filter');
   picks.fire('input', 'plan', 'pro');
@@ -278,8 +278,8 @@ if (before !== '' || after !== 'Note is required when Kinds is gift')
 // once for all of them: read again for each, it took time growing with the square of their
 // number - half a second a key at 500 watchers.
 const keystroke = watchers => {
-  const big = world("{pad:form 'big', client}{pad:input 'master'/}" +
-                    Array.from({ length: watchers }, (none, i) => `{pad:input 'f${i}', rules='required_with:master'/}`).join('') + '{/pad:form}',
+  const big = world("{input:form 'big', client}{input:field 'master'/}" +
+                    Array.from({ length: watchers }, (none, i) => `{input:field 'f${i}', rules='required_with:master'/}`).join('') + '{/input:form}',
                     [['master', '']].concat(Array.from({ length: watchers }, (none, i) => ['f' + i, ''])));
   if (!big) return null;
   big.padValidate.form(big.form);
@@ -291,7 +291,7 @@ const keystroke = watchers => {
 
 const few = keystroke(2), many = keystroke(40);
 
-if (!few || !many) watching.push('{pad:form ..., client} wrote no data-pad-rules');
+if (!few || !many) watching.push('{input:form ..., client} wrote no data-pad-rules');
 else if (few.shown !== 2 || many.shown !== 40)
   watching.push(`watcher: a keystroke in a field 2 and 40 fields watch showed ${few.shown} and ${many.shown} messages`);
 else if (few.rules !== many.rules || few.values !== many.values || few.walks !== many.walks)

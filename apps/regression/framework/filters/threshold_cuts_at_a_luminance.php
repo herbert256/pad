@@ -6,9 +6,9 @@
   // is cut by its luminance: red 76 and green 150 at 50 are ink and paper. A pixel keeps its
   // opacity: a transparent one stays transparent, one of half keeps its half.
 
-  include_once PAD . 'subs/filters/_lib/filter.php';
+  include_once PAD . 'subs/images/filters/_lib/filter.php';
 
-  $spec = include PAD . 'subs/filters/types/threshold.php';
+  $spec = include PAD . 'subs/images/filters/types/threshold.php';
 
   $ramp = function () {
     $image = imagecreatetruecolor ( 256, 1 );

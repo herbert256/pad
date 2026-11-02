@@ -14,7 +14,7 @@ What lives here:
 | test | why it is here |
 |------|----------------|
 | `deep/` | the page chain; `deep/four` embeds `deep/five` through `{common:example}` |
-| `manual/` | the parked manual pages - `{common:demo}`, `{common:table}`, `{common:example}`, `{pad:block}` and `{pad:source}` throughout |
+| `manual/` | the parked manual pages - `{common:demo}`, `{common:table}`, `{common:example}`, `{pad:block}` and `{widget:source}` throughout |
 | `tableFun/` | the ten table pages `manual/table_fun` embeds through `{common:example}` |
 | `misc/eval` | shows its forms through `{common:demo}` and `{common:table}` |
 | `tags/redirect`, `tags/restart` | wrapped in `{common:demo}` and `{common:table}` |

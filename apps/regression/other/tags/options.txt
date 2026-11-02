@@ -100,7 +100,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">all</td>
-      <td><a class="name" href="?tag/notifications">{pad:notifications}</a></td>
+      <td><a class="name" href="?tag/widget/notifications">{widget:notifications}</a></td>
       <td>The read notifications too.</td>
     </tr>
     
@@ -190,7 +190,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="3">at</td>
-      <td><a class="name" href="?tag/video">{pad:video}</a></td>
+      <td><a class="name" href="?tag/widget/video">{widget:video}</a></td>
       <td>The moment to start at - <code>90</code>, <code>1m30s</code> or <code>1:30</code>; a <code>t=</code>, <code>start=</code> or <code>#t=</code> in the address says it too.</td>
     </tr>
     
@@ -320,7 +320,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="4">button</td>
-      <td><a class="name" href="?tag/themes">{pad:themes}</a></td>
+      <td><a class="name" href="?tag/widget/themes">{widget:themes}</a></td>
       <td>The text of the button that applies the choice without JavaScript (<code>Apply</code>).</td>
     </tr>
     
@@ -440,7 +440,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">checked</td>
-      <td><a class="name" href="?tag/input">{pad:input}</a></td>
+      <td><a class="name" href="?tag/input/field">{input:field}</a></td>
       <td>Bare option: a checkbox or radio is checked before a post.</td>
     </tr>
     
@@ -486,7 +486,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">client</td>
-      <td><a class="name" href="?tag/form">{pad:form}</a></td>
+      <td><a class="name" href="?tag/input/form">{input:form}</a></td>
       <td>Bare option: check the <code>rules=</code> of the fields in the browser too, with the same messages - the form gets <code>novalidate</code>, <code>data-pad-rules</code> and the checker script.</td>
     </tr>
     
@@ -674,7 +674,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">css</td>
-      <td><a class="name" href="?tag/shadow">{pad:shadow}</a></td>
+      <td><a class="name" href="?tag/widget/shadow">{widget:shadow}</a></td>
       <td>Stylesheets inlined as one <code>&lt;style&gt;</code> at the start of the root, separated by commas: a <code>.css</code> file of the application, or <code>www:</code> one of its <code>www/</code> directory.</td>
     </tr>
     
@@ -912,7 +912,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">ellipsis</td>
-      <td><a class="name" href="?tag/excerpt">{pad:excerpt}</a></td>
+      <td><a class="name" href="?tag/widget/excerpt">{widget:excerpt}</a></td>
       <td>What stands for the text that was cut off, default <code>…</code>.</td>
     </tr>
     
@@ -952,7 +952,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">error</td>
-      <td><a class="name" href="?tag/form">{pad:form}</a></td>
+      <td><a class="name" href="?tag/input/form">{input:form}</a></td>
       <td>The message shown above the fields, in <code>&lt;div class="error" role="alert"&gt;</code>, when the form came back with errors. Bare option: <em>Please correct the errors below.</em></td>
     </tr>
     
@@ -1008,14 +1008,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="4">file</td>
-      <td><a class="name" href="?tag/highlight">{pad:highlight}</a></td>
-      <td>A file of the application to show instead of the content - never one outside it, under <code>_config/</code> or a dotfile.</td>
+      <td><a class="name" href="?tag/pdf">{pad:pdf}</a></td>
+      <td>The file name of the document, default the page's name (<code>.pdf</code> is added).</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="?tag/pdf">{pad:pdf}</a></td>
-      <td>The file name of the document, default the page's name (<code>.pdf</code> is added).</td>
+      <td><a class="name" href="?tag/widget/highlight">{widget:highlight}</a></td>
+      <td>A file of the application to show instead of the content - never one outside it, under <code>_config/</code> or a dotfile.</td>
     </tr>
     
     <tr>
@@ -1034,7 +1034,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">files</td>
-      <td><a class="name" href="?tag/source">{pad:source}</a></td>
+      <td><a class="name" href="?tag/widget/source">{widget:source}</a></td>
       <td>Files after the page's, a text with commas: a file of the application, or <code>www:</code> one in its <code>www/</code> directory.</td>
     </tr>
     
@@ -1050,7 +1050,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">focus</td>
-      <td><a class="name" href="?tag/shadow">{pad:shadow}</a></td>
+      <td><a class="name" href="?tag/widget/shadow">{widget:shadow}</a></td>
       <td>Bare option: adds <code>shadowrootdelegatesfocus</code>.</td>
     </tr>
     
@@ -1082,7 +1082,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">for</td>
-      <td><a class="name" href="?tag/notifications">{pad:notifications}</a></td>
+      <td><a class="name" href="?tag/widget/notifications">{widget:notifications}</a></td>
       <td>The recipient - an id or an e-mail address - instead of the user logged in.</td>
     </tr>
     
@@ -1320,7 +1320,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">highlight</td>
-      <td><a class="name" href="?tag/excerpt">{pad:excerpt}</a></td>
+      <td><a class="name" href="?tag/widget/excerpt">{widget:excerpt}</a></td>
       <td>Search words - a query, split at everything that is no letter or digit. The cut is centred on the first match and every match is put in a <code>&lt;mark&gt;</code>.</td>
     </tr>
     
@@ -1380,7 +1380,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">href</td>
-      <td><a class="name" href="?tag/oauth">{pad:oauth}</a></td>
+      <td><a class="name" href="?tag/widget/oauth">{widget:oauth}</a></td>
       <td>Where it links - <code>oauth/&lt;provider&gt;</code> of the application by default, the page that calls <code>padOAuthStart</code> and <code>padOAuthUser</code>.</td>
     </tr>
     
@@ -1394,13 +1394,13 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
-      <td><a class="name" href="?tag/excerpt">{pad:excerpt}</a></td>
+      <td><a class="name" href="?tag/widget/excerpt">{widget:excerpt}</a></td>
       <td>Bare option: the text is HTML - its tags (and the content of <code>script</code> and <code>style</code>) are dropped and its entities read before it is cut.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="?tag/markdown">{pad:markdown}</a></td>
+      <td><a class="name" href="?tag/widget/markdown">{widget:markdown}</a></td>
       <td>Bare option: let the author's own raw HTML through - inline tags, and a block-level element or comment at the start of a line up to the next blank line. Without it raw HTML is escaped.</td>
     </tr>
     
@@ -1414,19 +1414,19 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
-      <td><a class="name" href="?tag/input">{pad:input}</a></td>
-      <td>The id, by default the name.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="?tag/reactData">{pad:reactData}</a></td>
+      <td><a class="name" href="?tag/widget/reactData">{widget:reactData}</a></td>
       <td>The id of the <code>&lt;div&gt;</code>, and the key the result is kept under in <code>$padProviders</code> - default <code>myReactId</code>.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="?tag/textarea">{pad:textarea}</a></td>
+      <td><a class="name" href="?tag/input/field">{input:field}</a></td>
+      <td>The id, by default the name.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/input/textarea">{input:textarea}</a></td>
       <td>The id, by default the name.</td>
     </tr>
     
@@ -1460,7 +1460,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">ignore</td>
-      <td><a class="name" href="?tag/markdown">{pad:markdown}</a></td>
+      <td><a class="name" href="?tag/widget/markdown">{widget:markdown}</a></td>
       <td>Bare option: the braces in the content are text, not tags - for code samples in the Markdown.</td>
     </tr>
     
@@ -1608,32 +1608,32 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="9">label</td>
-      <td><a class="name" href="?tag/emoji">{pad:emoji}</a></td>
+      <td><a class="name" href="?tag/image/emoji">{image:emoji}</a></td>
       <td>The name a screen reader says, default the emoji's own name.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="?tag/input">{pad:input}</a></td>
-      <td>A <code>&lt;label for&gt;</code> before the field - after a checkbox or radio - and the word its error message uses.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="?tag/oauth">{pad:oauth}</a></td>
+      <td><a class="name" href="?tag/widget/oauth">{widget:oauth}</a></td>
       <td>Its text, <code>Log in with &lt;name&gt;</code> by default.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="?tag/textarea">{pad:textarea}</a></td>
-      <td>A <code>&lt;label for&gt;</code> before the text area, and the word its error message uses.</td>
+      <td><a class="name" href="?tag/widget/themes">{widget:themes}</a></td>
+      <td>The label of the list of themes (<code>Theme</code>), for a screen reader - it is not shown.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="?tag/themes">{pad:themes}</a></td>
-      <td>The label of the list of themes (<code>Theme</code>), for a screen reader - it is not shown.</td>
+      <td><a class="name" href="?tag/input/field">{input:field}</a></td>
+      <td>A <code>&lt;label for&gt;</code> before the field - after a checkbox or radio - and the word its error message uses.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/input/textarea">{input:textarea}</a></td>
+      <td>A <code>&lt;label for&gt;</code> before the text area, and the word its error message uses.</td>
     </tr>
     
     <tr>
@@ -1738,7 +1738,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="4">levels</td>
-      <td><a class="name" href="?tag/toc">{pad:toc}</a></td>
+      <td><a class="name" href="?tag/widget/toc">{widget:toc}</a></td>
       <td>The heading levels listed - a list or a range, <code>'2,3'</code> by default, <code>'2-4'</code>.</td>
     </tr>
     
@@ -1780,7 +1780,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="3">lines</td>
-      <td><a class="name" href="?tag/highlight">{pad:highlight}</a></td>
+      <td><a class="name" href="?tag/widget/highlight">{widget:highlight}</a></td>
       <td>Bare option: number the lines.</td>
     </tr>
     
@@ -1800,7 +1800,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">list</td>
-      <td><a class="name" href="?tag/toc">{pad:toc}</a></td>
+      <td><a class="name" href="?tag/widget/toc">{widget:toc}</a></td>
       <td><code>ol</code> (numbered, the default) or <code>ul</code>.</td>
     </tr>
     
@@ -1870,7 +1870,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">mark</td>
-      <td><a class="name" href="?tag/highlight">{pad:highlight}</a></td>
+      <td><a class="name" href="?tag/widget/highlight">{widget:highlight}</a></td>
       <td>Lines to set apart: <code>'4'</code>, <code>'3, 5-7'</code>.</td>
     </tr>
     
@@ -1916,7 +1916,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">method</td>
-      <td><a class="name" href="?tag/form">{pad:form}</a></td>
+      <td><a class="name" href="?tag/input/form">{input:form}</a></td>
       <td><code>post</code> (the default) or <code>get</code>. A GET form gets no token and no name field, and its fields refill from the query string.</td>
     </tr>
     
@@ -1948,7 +1948,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">mode</td>
-      <td><a class="name" href="?tag/shadow">{pad:shadow}</a></td>
+      <td><a class="name" href="?tag/widget/shadow">{widget:shadow}</a></td>
       <td><code>open</code> (the default) or <code>closed</code>.</td>
     </tr>
     
@@ -2014,12 +2014,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
-      <td><a class="name" href="?tag/country">{pad:country}</a></td>
-      <td>Bare option: writes the English name beside the flag; the flag is then decoration (<code>aria-hidden</code>).</td>
-    </tr>
-    
-    <tr>
-      
       <td><a class="name" href="?tag/field">{pad:field}</a></td>
       <td>In the designer preview (<code>&amp;padSample</code>) the value of that name in the page's sample answers instead of the database; <code>&amp;padSample=capture</code> records the database's answer under it.</td>
     </tr>
@@ -2040,6 +2034,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/trans">{pad:trans}</a></td>
       <td>Any other name: its value replaces <code>:name</code> in the text. The names are read raw, so even <code>content=</code> or <code>data=</code> is a substitution here.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/image/country">{image:country}</a></td>
+      <td>Bare option: writes the English name beside the flag; the flag is then decoration (<code>aria-hidden</code>).</td>
     </tr>
     
     <tr>
@@ -2160,7 +2160,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">only</td>
-      <td><a class="name" href="?tag/source">{pad:source}</a></td>
+      <td><a class="name" href="?tag/widget/source">{widget:source}</a></td>
       <td>Those files alone, without the page's - the same kind of list as <code>files=</code>.</td>
     </tr>
     
@@ -2318,7 +2318,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">paragraphs</td>
-      <td><a class="name" href="?tag/lorem">{pad:lorem}</a></td>
+      <td><a class="name" href="?tag/widget/lorem">{widget:lorem}</a></td>
       <td>So many <code>&lt;p&gt;</code> paragraphs, of four to seven sentences unless <code>sentences</code> says.</td>
     </tr>
     
@@ -2512,7 +2512,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">poster</td>
-      <td><a class="name" href="?tag/video">{pad:video}</a></td>
+      <td><a class="name" href="?tag/widget/video">{widget:video}</a></td>
       <td>A picture of <code>www/&lt;application&gt;/</code> (versioned as <code>{pad:asset}</code>) in place of the site's thumbnail.</td>
     </tr>
     
@@ -2598,7 +2598,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">provider</td>
-      <td><a class="name" href="?tag/reactData">{pad:reactData}</a></td>
+      <td><a class="name" href="?tag/widget/reactData">{widget:reactData}</a></td>
       <td>The file <code>_providers/&lt;name&gt;.php</code> that answers the data - default the id. A plain name only.</td>
     </tr>
     
@@ -2652,7 +2652,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">query</td>
-      <td><a class="name" href="?tag/pager">{pad:pager}</a></td>
+      <td><a class="name" href="?tag/widget/pager">{widget:pager}</a></td>
       <td>The request value the links set. By default the variable <code>page=</code> was written with - <code>page=$pg</code> makes the links set <code>pg</code> - else <code>page</code>.</td>
     </tr>
     
@@ -2708,7 +2708,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="3">ratio</td>
-      <td><a class="name" href="?tag/video">{pad:video}</a></td>
+      <td><a class="name" href="?tag/widget/video">{widget:video}</a></td>
       <td>The proportion, default <code>16:9</code>; a short is <code>9:16</code> and kept to a phone's width.</td>
     </tr>
     
@@ -2836,14 +2836,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">rules</td>
-      <td><a class="name" href="?tag/input">{pad:input}</a></td>
-      <td>The field's rules - <code>required|email|max:80</code> - read from the page's own template and checked before its PHP runs. Only in a named <code>{pad:form}</code> of the page itself.</td>
+      <td><a class="name" href="?tag/input/field">{input:field}</a></td>
+      <td>The field's rules - <code>required|email|max:80</code> - read from the page's own template and checked before its PHP runs. Only in a named <code>{input:form}</code> of the page itself.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="?tag/textarea">{pad:textarea}</a></td>
-      <td>The field's rules - <code>required|max:2000</code> - read from the page's own template and checked before its PHP runs. Only in a named <code>{pad:form}</code> of the page itself.</td>
+      <td><a class="name" href="?tag/input/textarea">{input:textarea}</a></td>
+      <td>The field's rules - <code>required|max:2000</code> - read from the page's own template and checked before its PHP runs. Only in a named <code>{input:form}</code> of the page itself.</td>
     </tr>
     
   
@@ -2910,7 +2910,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="5">seed</td>
-      <td><a class="name" href="?tag/lorem">{pad:lorem}</a></td>
+      <td><a class="name" href="?tag/widget/lorem">{widget:lorem}</a></td>
       <td>Another text, the same again for the same seed - default 0.</td>
     </tr>
     
@@ -2958,7 +2958,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">sentences</td>
-      <td><a class="name" href="?tag/lorem">{pad:lorem}</a></td>
+      <td><a class="name" href="?tag/widget/lorem">{widget:lorem}</a></td>
       <td>So many sentences of six to fourteen words; with <code>paragraphs</code>, the sentences of each paragraph.</td>
     </tr>
     
@@ -3256,7 +3256,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">steps</td>
-      <td><a class="name" href="?tag/palette">{pad:palette}</a></td>
+      <td><a class="name" href="?tag/widget/palette">{widget:palette}</a></td>
       <td>How many colours, 1 to 256: a sequential or diverging palette sampled evenly from its first colour to its last, a cyclic one evenly round its circle, never its first colour twice, a categorical one its colours in order, starting again past its last. Without it a categorical palette shows its own, a cyclic one twelve, the others nine.</td>
     </tr>
     
@@ -3448,25 +3448,25 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
-      <td><a class="name" href="?tag/palette">{pad:palette}</a></td>
-      <td>The name of the row for a screen reader, else the palette's name and the count.</td>
-    </tr>
-    
-    <tr>
-      
       <td><a class="name" href="?tag/pdf">{pad:pdf}</a></td>
       <td>The document's title, default its first heading.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="?tag/toc">{pad:toc}</a></td>
+      <td><a class="name" href="?tag/widget/palette">{widget:palette}</a></td>
+      <td>The name of the row for a screen reader, else the palette's name and the count.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/widget/toc">{widget:toc}</a></td>
       <td>The label above the list, <code>Contents</code> by default; <code>''</code> for none.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="?tag/video">{pad:video}</a></td>
+      <td><a class="name" href="?tag/widget/video">{widget:video}</a></td>
       <td>Required: the play button's text, the iframe's title, the video element's name.</td>
     </tr>
     
@@ -3684,14 +3684,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="4">type</td>
-      <td><a class="name" href="?tag/input">{pad:input}</a></td>
-      <td>The input type, <code>text</code> by default: <code>email</code>, <code>number</code>, <code>checkbox</code>, <code>radio</code>, <code>hidden</code>, <code>password</code>, <code>file</code>, <code>submit</code> ...</td>
+      <td><a class="name" href="?tag/widget/reactData">{widget:reactData}</a></td>
+      <td><code>check</code> turns the result into 1 or 0; otherwise (<code>record</code>, the default, or <code>array</code>) it is passed as the provider returned it.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="?tag/reactData">{pad:reactData}</a></td>
-      <td><code>check</code> turns the result into 1 or 0; otherwise (<code>record</code>, the default, or <code>array</code>) it is passed as the provider returned it.</td>
+      <td><a class="name" href="?tag/input/field">{input:field}</a></td>
+      <td>The input type, <code>text</code> by default: <code>email</code>, <code>number</code>, <code>checkbox</code>, <code>radio</code>, <code>hidden</code>, <code>password</code>, <code>file</code>, <code>submit</code> ...</td>
     </tr>
     
     <tr>
@@ -3750,13 +3750,13 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="3">value</td>
-      <td><a class="name" href="?tag/input">{pad:input}</a></td>
+      <td><a class="name" href="?tag/input/field">{input:field}</a></td>
       <td>The value before anything was sent; for a checkbox or radio its own value (<code>on</code> by default).</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="?tag/textarea">{pad:textarea}</a></td>
+      <td><a class="name" href="?tag/input/textarea">{input:textarea}</a></td>
       <td>The text before anything was sent, escaped.</td>
     </tr>
     
@@ -3770,7 +3770,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">varied</td>
-      <td><a class="name" href="?tag/lorem">{pad:lorem}</a></td>
+      <td><a class="name" href="?tag/widget/lorem">{widget:lorem}</a></td>
       <td>Bare option: leave the classic opening "Lorem ipsum dolor sit amet" out - for the second text on a page.</td>
     </tr>
     
@@ -3886,7 +3886,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">window</td>
-      <td><a class="name" href="?tag/pager">{pad:pager}</a></td>
+      <td><a class="name" href="?tag/widget/pager">{widget:pager}</a></td>
       <td>The number of pages shown on each side of the current one; 2 by default. The first and the last page always show, a gap (<code>…</code>) stands for the pages left out.</td>
     </tr>
     
@@ -3894,13 +3894,13 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="3">words</td>
-      <td><a class="name" href="?tag/excerpt">{pad:excerpt}</a></td>
+      <td><a class="name" href="?tag/widget/excerpt">{widget:excerpt}</a></td>
       <td>The length in words, default 40. A text no longer than that stays whole.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="?tag/lorem">{pad:lorem}</a></td>
+      <td><a class="name" href="?tag/widget/lorem">{widget:lorem}</a></td>
       <td>So many words exactly, as sentences; fewer than five are a title, without a full stop. 50 when no length is given.</td>
     </tr>
     

@@ -1,7 +1,7 @@
 <?php
 
-include_once PAD . 'subs/avatars/_lib/avatar.php';
-include_once PAD . 'subs/avatars/_lib/views.php';
+include_once PAD . 'subs/images/avatars/_lib/avatar.php';
+include_once PAD . 'subs/images/avatars/_lib/views.php';
 $views = [];
 foreach ( [ 'rings', 'mosaic', 'beam' ] as $style )
   $views [] = padAvatarGeometric ( 'Ada', 64, $style, '<script>"&' );

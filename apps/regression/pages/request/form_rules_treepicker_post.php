@@ -1,7 +1,7 @@
 <?php
 
   // The rules on a tree picker of the template are checked before the page's PHP as those of
-  // {pad:input}: a post without a choice breaks required and comes back with none chosen, an item
+  // {input:field}: a post without a choice breaks required and comes back with none chosen, an item
   // that is a group - no choice with leaves, so no radio posts it - breaks in: and comes back
   // with none shown, and a leaf is stored - each post with the padLists[] the form sends
   // beside the tree, which tells it sent without a choice. The style and the script of the

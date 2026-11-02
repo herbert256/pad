@@ -1,6 +1,6 @@
 <?php
 
-  // A page saved in the live application is a page like any other: a {pad:form} in it posts back
+  // A page saved in the live application is a page like any other: a {input:form} in it posts back
   // to it, with the page's own CSRF token, and the posted value is there on the way back. Its
   // data is YAML, read as PAD reads data: the key title is the page's variable.
 
@@ -11,7 +11,7 @@
   $first = padCurl ( [
     'url'     => $padHost . 'live/?save',
     'cookies' => $jar,
-    'post'    => [ 'source'       => "<p>{\$title}: {pad:echo \$word ?? 'nothing yet'/}</p>{pad:form 'hi'}{pad:input 'word'/}{/pad:form}",
+    'post'    => [ 'source'       => "<p>{\$title}: {pad:echo \$word ?? 'nothing yet'/}</p>{input:form 'hi'}{input:field 'word'/}{/input:form}",
                    'mode'         => 'data',
                    'data'         => "title: yaml\nkind: data",
                    'padCsrfToken' => $token ]
