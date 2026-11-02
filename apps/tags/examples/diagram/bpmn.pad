@@ -1,0 +1,13 @@
+{diagram:bpmn}
+lane sales "Sales"
+lane ops "Operations"
+start begin sales "Order received"
+task check sales "Check order"
+exclusive paid sales "Paid?"
+task pack ops "Pack goods"
+end done ops "Dispatched"
+begin -> check
+check -> paid
+paid -> pack "yes"
+pack -> done
+{/diagram:bpmn}
