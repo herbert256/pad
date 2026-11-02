@@ -1,0 +1,5 @@
+<?php
+function padRecurrenceExplicitBounds($rule,$from,$to){
+ $tz=$rule['timezone']??'UTC';if(!is_string($tz)||!in_array($tz,DateTimeZone::listIdentifiers(DateTimeZone::ALL_WITH_BC),TRUE))throw new InvalidArgumentException('recurrence requires an IANA timezone');$zone=new DateTimeZone($tz);$from=padRecurrenceDate($from,$zone);$to=padRecurrenceDate($to,$zone);if($from>=$to)throw new InvalidArgumentException('recurrence bounds must increase');$limit=padRecurrenceInteger($rule['limit']??1000,1,10000,'limit');$list=$rule['exclude']??[];if(!is_array($list)||!array_is_list($list)||count($list)>10000)throw new InvalidArgumentException('exclude must be a list of at most 10000 ISO values');$exclude=[];foreach($list as $value){$date=padRecurrenceDate($value,$zone);$exclude[is_string($value)&&strlen($value)===10?'d:'.$date->format('Y-m-d'):'t:'.$date->getTimestamp()]=TRUE;}return [$zone,$from,$to,$limit,$exclude];
+}
+function padRecurrenceExplicitExcluded($date,$exclude){return isset($exclude['d:'.$date->format('Y-m-d')])||isset($exclude['t:'.$date->getTimestamp()]);}
