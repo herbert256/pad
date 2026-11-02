@@ -70,14 +70,14 @@ const cases = [
   [ 'empty PHP',          '<p>Empty PHP</p>', '', /<p>Empty PHP<\/p>/, { mode: 'php', php: '<?php\n\n?>' } ],
   [ 'data after PHP',     '{$name}', '{"name":"Data again"}', /Data again/ ],
   [ 'browser runtime flag', '{pad:if padWasm()}browser{pad:else}server{/pad:if}', {}, /^browser$/ ],
-  [ 'tabs include their CSS', "{widget:tabs}{pad:tab 'One'}First{/pad:tab}{pad:tab 'Two'}Second{/pad:tab}{/widget:tabs}", {},
+  [ 'tabs include their CSS', "{widget:tabs}{widget:tab 'One'}First{/widget:tab}{widget:tab 'Two'}Second{/widget:tab}{/widget:tabs}", {},
     /<style[^>]*>[\s\S]*?\.pad-tabs-panel\{display:none/ ],
   [ 'game CSS and ordered scripts', "{game:memory pairs=3/}", {}, html =>
     html.includes('.mem-grid') && /<script>\s*\/\*[\s\S]*?window\.PadGames[\s\S]*?<\/script>\s*<script>PadGames\.register\('memory'/.test(html)
     && ! /(?:src|href)="[^"]*assets\//.test(html) ],
   [ 'game assets once per page', "{game:memory pairs=3/}{game:memory pairs=4/}", {}, html =>
     (html.match(/<script>PadGames\.register\('memory'/g) || []).length === 1 ],
-  [ 'input CSS and scripts', "{pad:form 'try'}{input:stepper 'quantity', label='Quantity', value=2/}{/pad:form}", {}, html =>
+  [ 'input CSS and scripts', "{input:form 'try'}{input:stepper 'quantity', label='Quantity', value=2/}{/input:form}", {}, html =>
     html.includes('.pi-stepper-row') && html.includes("PadInputs.register('stepper'") && html.includes('window.PadInputs') ],
   [ 'section CSS', "{section:hero title='Browser styling'}Hello{/section:hero}", {}, /<style[^>]*>[\s\S]*?container:pad-section\/inline-size/ ],
   [ 'client chart scripts', "{chart:bar client, label='month', value='amount'}\nmonth,amount\nJan,12\nFeb,9\n{/chart:bar}", {}, html =>

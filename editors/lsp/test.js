@@ -155,17 +155,17 @@ async function main() {
     const singleClosers = (r.result || []).map((c) => c.label);
     expect('close-tag completion skips the tags that are never a pair', singleClosers.join(',') === 'array:items', singleClosers);
 
-    // a tag written both ways that is a pair as often as not - {pad:highlight}, {pad:true} - is one
+    // a tag written both ways that is a pair as often as not - {widget:highlight}, {pad:true} - is one
     const bothUri = uri('orders.pad').replace('orders.pad', 'both.pad');
-    notify('textDocument/didOpen', { textDocument: { uri: bothUri, languageId: 'pad', version: 1, text: '{array:items}\n{pad:highlight "pad"}<p>x</p>\n{pad:true}yes\n{/' } });
+    notify('textDocument/didOpen', { textDocument: { uri: bothUri, languageId: 'pad', version: 1, text: '{array:items}\n{widget:highlight "pad"}<p>x</p>\n{pad:true}yes\n{/' } });
     r = await request('textDocument/completion', { textDocument: { uri: bothUri }, position: { line: 3, character: 2 } });
     const bothClosers = (r.result || []).map((c) => c.label);
-    expect('close-tag completion offers a tag written both ways, as a pair as often as not', bothClosers.join(',') === 'pad:true,pad:highlight,array:items', bothClosers);
+    expect('close-tag completion offers a tag written both ways, as a pair as often as not', bothClosers.join(',') === 'pad:true,widget:highlight,array:items', bothClosers);
 
     // a single tag is written {function:tag/} - before a pipe too, {function:tag x /| pipe} - and opens no pair,
     // whatever its name; a tag without the slash opens one, {icon:star} as well as {array:items}
     const aloneUri = uri('orders.pad').replace('orders.pad', 'alone.pad');
-    notify('textDocument/didOpen', { textDocument: { uri: aloneUri, languageId: 'pad', version: 1, text: "{array:items}\n{map:auto 'europe', data='sales'/}{widget:jsonview $r /| trim}{pad:pager 'items'/}{chart:bar}{/chart:bar}\n{/" } });
+    notify('textDocument/didOpen', { textDocument: { uri: aloneUri, languageId: 'pad', version: 1, text: "{array:items}\n{map:auto 'europe', data='sales'/}{widget:jsonview $r /| trim}{widget:pager 'items'/}{chart:bar}{/chart:bar}\n{/" } });
     r = await request('textDocument/completion', { textDocument: { uri: aloneUri }, position: { line: 2, character: 2 } });
     const aloneClosers = (r.result || []).map((c) => c.label);
     expect('close-tag completion skips a tag written single, {function:tag/}', aloneClosers.join(',') === 'array:items', aloneClosers);

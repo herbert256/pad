@@ -404,11 +404,11 @@
     'while': 'pad:while ${1:\\$i} ${2:le} ${3:10}}\n\t$0\n\t{pad:increment ${1:\\$i}/}\n{/pad:while}',
     'data': 'pad:data \'${1:name}\'}\n\t${0:["a", "b"]}\n{/pad:data}',
     'ignore': 'pad:ignore}\n$0\n{/pad:ignore}',
-    'form': 'pad:form \'${1:name}\', error}\n\t{pad:input \'${2:email}\', type=\'${3:email}\', label=\'${4:E-mail}\', rules=\'${5:required|email}\'/}\n\t<button>${6:Send}</button>\n{/pad:form}',
+    'form': 'input:form \'${1:name}\', error}\n\t{input:field \'${2:email}\', type=\'${3:email}\', label=\'${4:E-mail}\', rules=\'${5:required|email}\'/}\n\t<button>${6:Send}</button>\n{/input:form}',
     'cache': 'pad:cache \'${1:name}\', ttl=${2:300}}\n\t$0\n{/pad:cache}',
     'block': 'pad:block \'${1:title}\'}$0{/pad:block}',
     'fragment': 'pad:fragment \'${1:name}\'}\n\t$0\n{/pad:fragment}',
-    'markdown': 'pad:markdown}\n$0\n{/pad:markdown}',
+    'markdown': 'widget:markdown}\n$0\n{/widget:markdown}',
     'live': 'pad:live \'${1:region}\'}\n\t$0\n{/pad:live}',
     'push': 'pad:push \'${1:scripts}\'}\n\t$0\n{/pad:push}',
     'tree': 'pad:tree \'${1:menu}\', children=\'${2:items}\'}\n\t<li>{${3:\\$title}}{pad:branch}<ul>{pad:recurse/}</ul>{/pad:branch}</li>\n{/pad:tree}',
@@ -797,7 +797,7 @@
     return null;
   }
 
-  // When the } of a structural tag is typed - {pad:if ...}, {pad:data ...}, {pad:form ...} - and the
+  // When the } of a structural tag is typed - {pad:if ...}, {pad:data ...}, {input:form ...} - and the
   // rest of the template does not close one, its {/function:tag} is put in after the cursor.
   // The } is either typed into the text or, when the editor closed the brace already, typed
   // over: the one is a change of the text, the other only a key.
