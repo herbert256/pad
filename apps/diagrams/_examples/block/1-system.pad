@@ -1,0 +1,8 @@
+{diagram:block}
+frontend "Web interface" at 1,1 span 2,1
+api "Application API" at 1,2
+store "Data store" at 2,2
+frontend -> api: request
+api -> store: query
+store -> api: result
+{/diagram:block}
