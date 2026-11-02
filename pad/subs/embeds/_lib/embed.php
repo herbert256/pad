@@ -170,6 +170,9 @@
     $embed    = $provider ['embed'] ( $parts, $opts ) + [ 'mode' => 'frame', 'link' => '', 'thumb' => '', 'ratio' => '16:9', 'allow' => '', 'sandbox' => '',
                                                          'type' => '', 'name' => $provider ['name'] ];
 
+    if ( $embed ['mode'] === 'sandbox' )
+      return padEmbedSandbox ( $embed ['src'], $title, $opts );
+
     if ( ( $embed ['mode'] == 'link' ? $embed ['link'] : $embed ['src'] ) === '' )
       return '';
 
