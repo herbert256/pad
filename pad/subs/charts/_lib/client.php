@@ -25,6 +25,7 @@
     'pareto'       => [ 'pareto' ],
     'slope' => [ 'slope' ],
     'bump' => [ 'bump' ],
+    'horizon' => [ 'horizon' ],
     'arc'          => [ 'arc' ],                        'area'         => [ 'area' ],
     'bar'          => [ 'pie', 'series' ],              'boxplot'      => [ 'distribution' ],
     'bubble'       => [ 'scatter' ],                    'bullet'       => [ 'bullet' ],

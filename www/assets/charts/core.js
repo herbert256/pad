@@ -1007,6 +1007,7 @@
   // -------------------------------------------------------------------------------------
 
   C.types = {
+    horizon: function () { return C.padChartHorizon(C.padChartGather(), ...C.padChartSize(600,300)); },
     bump: function () { return C.padChartBump(C.padChartGather(), ...C.padChartSize(600,300)); },
     slope: function () { return C.padChartSlope(C.padChartGather(), ...C.padChartSize(600,300)); },
     pareto: function () { return C.padChartPareto(C.padChartGather(), ...C.padChartSize(600,300)); },
