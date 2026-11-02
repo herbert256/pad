@@ -77,6 +77,7 @@
     'schema' => 'schemas',
     'textanalysis' => 'textanalysis',
     'solve' => 'constraints',
+    'interval' => 'intervals',
   ];
 
   // The kinds of the subsystem in pad/subs/<directory>/: the names of the files of its types/,
