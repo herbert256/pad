@@ -1,0 +1,14 @@
+<p class="pr-lead">Pages made for paper - sheets of labels, name badges, business cards, tickets, a
+certificate, envelopes, letters and invoices for a window envelope, index cards and place cards,
+folded cards, graph paper, music paper and a wall calendar -
+each a tag of its own: a file of <code>pad/subs/printables/types/</code> in the engine, written
+<code>{pad:open/}printable:labels{pad:close/}...{pad:open/}/printable:labels{pad:close/}</code>. The content between
+the tags is one item, repeated over the data. The screen shows the sheets as they will be printed;
+printed, the page prints the sheets alone, each on a page of its own size; and the same sheets come
+out of PAD's own PDF writer.</p>
+
+<ul class="pr-cards">
+  {array:printables}
+  <li><a class="pr-card" href="?{$kind}"><b>{$name}</b><span>{$line}</span><code>{pad:open/}printable:{$kind}{pad:close/}</code></a></li>
+  {/array:printables}
+</ul>

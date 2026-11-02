@@ -1,0 +1,8 @@
+{pad:search 'kitchen', q='"hot oven"'}{$slug} {/pad:search}|
+{pad:search 'kitchen', q='"oven hot"'}{$slug} @else@no phrase{/pad:search}|
+{pad:search 'kitchen', q='"a slice of bread"'}{$slug} {/pad:search}|
+{pad:search 'kitchen', q='brea*'}{$slug} {/pad:search}|
+{pad:search 'kitchen', q='bread -cheese'}{$slug} {/pad:search}|
+{pad:search 'kitchen', q='bread -"slice of bread"'}{$slug} {/pad:search}|
+{pad:search 'kitchen', q='hot "coffee"'}{$slug} {/pad:search}|
+{pad:search 'kitchen', q='the and of'}{$slug} @else@only stop words{/pad:search}

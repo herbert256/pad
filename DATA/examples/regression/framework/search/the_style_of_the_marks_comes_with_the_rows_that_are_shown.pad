@@ -1,0 +1,5 @@
+[{array:found sort='slug DESC', first=1}{$slug}: {!excerpt}{/array:found}]
+[{pad:search 'kitchen', q='bread'}{$slug};{/pad:search}]
+[{pad:excerpt 'some text with bread in it', words=3, highlight='bread'/}]
+[{pad:search 'kitchen', q='bread', sort='slug DESC', first=1}{$slug}: {!excerpt}{/pad:search}]
+[{pad:search 'kitchen', q='bread', link='slug'/}]

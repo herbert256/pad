@@ -1,0 +1,6 @@
+{pad:spreadsheet 'hours', headers=FALSE, formats='C:[h]:mm, D:h:mm'}
+  Start,End,Worked,Worked
+  1:45,13:45,=B2-A2,=B2-A2
+  =TEXT(B2-A2,"[h]:mm"),=TEXT(1/24-1E-9,"[h]:mm"),=TEXT(0.5-1E-12,"[m]"),=TEXT(0.5-1E-12,"[s]")
+  =TEXT(45306.99999999,"yyyy-mm-dd hh:mm:ss"),=TEXT(45306.99999999,"dddd"),=TEXT(1.5,"[h]:mm"),=TEXT(45306.75,"yyyy-mm-dd hh:mm:ss")
+{/pad:spreadsheet | after('</style>')}

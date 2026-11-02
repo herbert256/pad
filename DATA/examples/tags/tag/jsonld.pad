@@ -1,0 +1,22 @@
+{pad:ignore}
+<p><code>{jsonld:article}</code> writes the structured data of a page: one
+<code>&lt;script type="application/ld+json"&gt;</code> holding a Schema.org object, which search
+engines read for a rich result - an article's headline and date, an event's place and tickets, a
+product's price, the questions of an FAQ, the trail of a breadcrumb. Every kind is a file of
+<code>pad/subs/jsonld/types/</code> that maps its fields onto Schema.org by name; the files there
+are the kinds there are.</p>
+
+<p>The fields come from the row or rows <code>data=</code> names and from options of their names,
+which win over the row's. Only what a kind maps is written - never a row whole - so a password, a
+cost price or an e-mail address of the row cannot reach the page. An empty field is left out; a
+required one missing, a date that is none, a price written with a comma and an option the kind does
+not take are errors under the strict check.</p>
+
+<p>Addresses are made absolute - relative to the application's address, as an
+<code>&lt;img&gt;</code> of its pages finds its file - and dates are ISO 8601, or written so from
+what PHP's <code>date_parse</code> reads in full. The JSON is safe in its element: a
+<code>&lt;/script&gt;</code> in a value is written <code>\u003C/script\u003E</code>, and the braces
+of a value stay text. The script is a data block the browser never runs, so it needs no CSP nonce.
+The examples show it with the <code>html</code> pipe; on a page the tag alone writes it, unseen. In
+a page's PHP, <code>padJsonLd ( 'article', $post )</code> answers the same object as an array.</p>
+{/pad:ignore}

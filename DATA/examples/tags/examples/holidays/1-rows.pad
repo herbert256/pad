@@ -1,0 +1,6 @@
+{pad:meta title='The holidays of a year as rows', about='Every row has its date, the English and the local name, and whether it is a day off.'/}
+<ul>
+  {pad:holidays 'nl', year=2026}
+    <li>{$date} {$name} - <i>{$local}</i>{pad:if $type eq 'observance'} (no day off){/pad:if}</li>
+  {/pad:holidays}
+</ul>

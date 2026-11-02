@@ -1,0 +1,10 @@
+{pad:spreadsheet 'big', headers=FALSE}
+  Formula,=10^20
+  Typed,12345678901234567890
+  Past a float,1e400
+  Below a float,5e-324
+  Computed below,=1E-300/1E10
+  Exponent,=TEXT(5E-324,"0.00E+00")
+  Scaled past,=TEXT(1E300,"0.0E+0%%%%%%")
+  Read,=VALUE("1e400")
+{/pad:spreadsheet | after('</style>')}{pad:spreadsheet 'ship', data='shipments', headers=FALSE/}

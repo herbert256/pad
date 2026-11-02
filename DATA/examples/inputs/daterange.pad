@@ -1,0 +1,12 @@
+{pad:meta title='Date range'/}
+{include:about/}
+
+{pad:form 'try', class='inputs-try', error}
+  {input:daterange 'stay', label='Your stay', labels='Arrival, Departure', nights, min='2026-01-01'/}
+  {input:daterange 'leave', label='Leave', value='2026-07-06, 2026-07-17', weekstart='sunday'/}
+  <button class="inputs-send">Send</button>
+{/pad:form}
+
+{include:received/}
+
+{include:template/}

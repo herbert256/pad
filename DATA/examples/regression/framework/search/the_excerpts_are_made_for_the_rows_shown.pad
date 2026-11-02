@@ -1,0 +1,3 @@
+{$shown}|
+{pad:search 'hitRows', q=$prefixes, first=10}{pad:if $excerpt ne ''}+{/pad:if}{/pad:search}|
+{pad:echo php:hrtime(1) - $hitStart lt $allNs / 2 ? 'in part of the time' : 'in all of it'/}

@@ -1,0 +1,3 @@
+{pad:holidays 'mx', year=2026}{$date} {$local}|{/pad:holidays}
+{pad:holidays 'mx', from='2018-01-01', to='2030-12-31', where='$name eq "Inauguration Day"'}{$date}|{/pad:holidays}
+{pad:holidays 'mx', year=2025, where='$name eq "Inauguration Day"'}{$date}@else@none in 2025|{/pad:holidays}

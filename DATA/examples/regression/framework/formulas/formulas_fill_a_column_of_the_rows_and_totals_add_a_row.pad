@@ -1,0 +1,7 @@
+{pad:data 'orders'}
+  item,price,qty
+  Apples,1.20,3
+  Pears,0.80,5
+  Plums,2.25,2
+{/pad:data}
+{pad:spreadsheet 'orders', data='orders', formulas='total=B2*C2, share=D2/$D$5', totals='qty, total', formats='price:0.00, total:0.00, share:0%'}{/pad:spreadsheet | after('</style>')}

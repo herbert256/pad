@@ -1,0 +1,32 @@
+{pad:data 'doc', format='toml'}
+  # This is a TOML document
+
+  title = "TOML Example"
+
+  [owner]
+  name = "Tom Preston-Werner"
+  dob = 1979-05-27T07:32:00-08:00
+
+  [database]
+  enabled = true
+  ports = [ 8000, 8001, 8002 ]
+  data = [ ["delta", "phi"], [3.14] ]
+  temp_targets = { cpu = 79.5, case = 72.0 }
+
+  [servers]
+
+  [servers.alpha]
+  ip = "10.0.0.1"
+  role = "frontend"
+
+  [servers.beta]
+  ip = "10.0.0.2"
+  role = "backend"
+{/pad:data}
+{data:doc}
+  [{$title}]
+  [{$owner.name} {$owner.dob}]
+  [{pad:if $database.enabled}enabled{/pad:if} {$database.ports.0} {$database.ports.2} {$database.data.0.1} {$database.data.1.0}]
+  [{$database.temp_targets.cpu} {$database.temp_targets.case}]
+  [{$servers.alpha.ip} {$servers.alpha.role} {$servers.beta.ip} {$servers.beta.role}]
+{/data:doc}

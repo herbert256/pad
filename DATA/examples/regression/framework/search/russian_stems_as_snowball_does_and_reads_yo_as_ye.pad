@@ -1,0 +1,9 @@
+{pad:data 'stranitsy'}
+[ { "t": "Новые книги" }, { "t": "Книга о море" }, { "t": "Ёлки в лесу" }, { "t": "Новогодняя елка" }, { "t": "Она ещё здесь" } ]
+{/pad:data}
+{!stems}|
+{pad:search 'stranitsy', q='книга', lang='ru'}{$t}; {/pad:search}|
+{pad:search 'stranitsy', q='ёлка', lang='ru'}{$t}; {/pad:search}|
+{pad:search 'stranitsy', q='ел*', lang='ru'}{$t}; {/pad:search}|
+{pad:search 'stranitsy', q='ещё', lang='ru'}{$t}; @else@none{/pad:search}|
+{pad:search 'stranitsy', q='"книги о море"', lang='ru'}{$t}; @else@none{/pad:search}

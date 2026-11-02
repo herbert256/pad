@@ -1,0 +1,5 @@
+{pad:live 'calc'}{pad:spreadsheet 'calc', editable='B1:B2', headers=FALSE}
+  Price,1.20
+  Qty,3
+  Total,=B1*B2
+{/pad:spreadsheet | after('</style>')}{/pad:live | beforeLast('<script')}

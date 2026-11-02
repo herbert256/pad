@@ -1,0 +1,37 @@
+{pad:meta title='Tree picker'/}
+{include:about/}
+
+{pad:data 'categories'}
+[
+  { "id": 1, "parent": "",  "name": "Books" },
+  { "id": 2, "parent": 1,   "name": "Fiction" },
+  { "id": 3, "parent": 2,   "name": "Crime" },
+  { "id": 4, "parent": 2,   "name": "Fantasy" },
+  { "id": 5, "parent": 1,   "name": "Cooking" },
+  { "id": 6, "parent": "",  "name": "Music" },
+  { "id": 7, "parent": 6,   "name": "Jazz" },
+  { "id": 8, "parent": 6,   "name": "Classical" }
+]
+{/pad:data}
+
+{pad:form 'try', class='inputs-try', error}
+  {input:treepicker 'category', label='Category', data='categories', value=4, rules='required|in:1,2,3,4,5,6,7,8'/}
+  {input:treepicker 'city', label='City', leaves}
+    Europe
+      France
+        Lyon
+        Paris
+      Netherlands
+        Amsterdam
+        Utrecht
+    Asia
+      Japan
+        Kyoto
+        Osaka
+  {/input:treepicker}
+  <button class="inputs-send">Send</button>
+{/pad:form}
+
+{include:received/}
+
+{include:template/}

@@ -1,0 +1,54 @@
+{pad:ignore}
+<p><code>{notation:math}</code> draws a text written in a notation on the server, the way
+<code>{diagram:auto}</code> lays out a flowchart: a formula, a chemical equation, a tune, a guitar
+chord, a word in braille, morse, semaphore or signal flags, a chess, go or draughts position, a
+guitar tab, a Karnaugh map, a bridge deal, a juggling pattern, the moves of a cube.
+Every notation is a file of <code>pad/subs/notations/types/</code> - its functions in
+<code>pad/subs/notations/_lib/</code>, its style in <code>www/assets/notations/</code> -
+and the files there are the notations there are. Nothing needs a script: the formulas are
+MathML, which every current browser draws, the rest HTML and inline SVG, the same bytes for the
+same text.</p>
+
+<p>The notation is selected by its prefix and name: <code>{notation:braille 'Hello'/}</code>. Its first parameter is the text. Without the text as a parameter the content between the tags is the text,
+taken as written before the level walks it: <code>{notation:math}{(x, if x &gt;= 0),(-x, if x &lt; 0):}{/notation:math}</code>
+needs no ignore. A field gives the text as a parameter, <code>{notation:chess $fen/}</code>.</p>
+
+<ul>
+  <li><b>math</b> - AsciiMath, not TeX, as TeX's braces are PAD's: <code>x^2</code>,
+  <code>a/b</code>, <code>sqrt x</code>, <code>root(3)(x)</code>, <code>sum_(i=1)^n</code>,
+  matrices <code>[[a,b],[c,d]]</code>, <code>text(...)</code>, the Greek letters and the
+  symbols, written as MathML. <b>chem</b> - formulas and equations: <code>H2SO4</code>,
+  <code>Fe^3+</code>, <code>2H2 + O2 -&gt; 2H2O</code>, <code>&lt;=&gt;</code>, states, hydrates,
+  isotopes, every element checked.</li>
+  <li><b>abc</b> - a tune in ABC notation as a staff: a treble clef, the key and the meter, the
+  notes with their stems, beams, ledger lines and accidentals, rests, bars and repeats, chord
+  names. <b>chord</b> - the box of a guitar or ukulele chord from its name or its frets.
+  <b>piano</b> - notes or a chord on a keyboard.</li>
+  <li><b>braille</b> - Unified English Braille, grade 1, as braille characters or drawn dots.
+  <b>morse</b> - the international code and its signal. <b>semaphore</b> - the figures of flag
+  semaphore. <b>signals</b> - the flags of the International Code of Signals.</li>
+  <li><b>chess</b> - a position in FEN, selected with <code>notation:chess</code>. <b>go</b> - a
+  game record in SGF played out, captures and all. <b>draughts</b> - a position in the FEN of
+  PDN, international or on 8 by 8.</li>
+  <li><b>tablature</b> - a tab for a guitar, a bass or a ukulele as players write it in plain
+  text, a line a string, drawn as a printed tab with the signs of the On-line Guitar Archive's
+  guide to tab notation - hammer-ons, pull-offs, bends, slides, vibrato, harmonics - and every
+  note said with its string, its fret and its pitch.</li>
+  <li><b>karnaugh</b> - a Boolean function of two to four variables - its minterms, its maxterms,
+  the column of its truth table or an expression - as its Karnaugh map, the groups of a minimal
+  cover looped round and the minimal sum of products, or with <code>form='pos'</code> product of
+  sums, under it.</li>
+  <li><b>bridge</b> - a deal of contract bridge in the Deal tag of PBN, the Portable Bridge
+  Notation, as the diagram of a bridge column, the dealer and the vulnerable sides marked.
+  <b>siteswap</b> - a juggling pattern in siteswap notation, vanilla, multiplex or synchronous,
+  as a ladder diagram of the two hands, checked to be one a juggler can throw. <b>cube</b> -
+  moves of a twisty cube in the notation of the World Cube Association, made on a solved cube and
+  drawn as a net of its faces or seen from above.</li>
+</ul>
+
+<p>Every drawing is an image for a screen reader with a name and a description in words - the
+pieces, the stones, the notes, the flags - or MathML, which a screen reader reads itself. A name
+that is no notation, an option a notation does not know and a text it cannot read - a FEN with
+seven ranks, an element that does not exist, a character morse has no sign for - are errors
+under the strict check.</p>
+{/pad:ignore}

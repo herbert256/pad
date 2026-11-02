@@ -1,0 +1,10 @@
+{pad:form 'trip', error}
+{pad:input 'delivery'/}
+{pad:input 'user[address]', label='Address', rules='required_if:delivery,ship'/}
+{pad:input 'user[email]', type='email', rules='email'/}
+{pad:input 'phone', rules='required_without:user[email]'/}
+{pad:input 'start', type='date', rules='required|after:2026-01-01'/}
+{pad:input 'end', type='date', rules='after:start'/}
+{pad:input 'login', rules='required|not_in:admin,root'/}
+{/pad:form}
+{$tripState}

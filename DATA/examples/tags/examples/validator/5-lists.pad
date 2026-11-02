@@ -1,0 +1,19 @@
+{pad:meta title='Rules that count', about='A field named guests[] posts a list: distinct refuses a value it holds twice, the fields left blank left out; min_items and max_items count the boxes ticked, max_words the words of a text.'/}
+<form method="get" novalidate data-pad-rules="{^partyRules}">
+  <fieldset>
+    <legend>Guests</legend>
+    <label>First <input name="guests[]" type="email"></label>
+    <label>Second <input name="guests[]" type="email"></label>
+    <label>Third <input name="guests[]" type="email"></label>
+  </fieldset>
+  <fieldset>
+    <legend>Toppings, two or three</legend>
+    <input type="checkbox" name="toppings[]" value="cheese" id="l-cheese"> <label for="l-cheese">Cheese</label>
+    <input type="checkbox" name="toppings[]" value="olives" id="l-olives"> <label for="l-olives">Olives</label>
+    <input type="checkbox" name="toppings[]" value="basil" id="l-basil"> <label for="l-basil">Basil</label>
+    <input type="checkbox" name="toppings[]" value="onion" id="l-onion"> <label for="l-onion">Onion</label>
+  </fieldset>
+  <label for="l-note">A note for the host</label> <textarea name="note" id="l-note" rows="2"></textarea>
+  <button>Check</button>
+</form>
+{pad:validator/}

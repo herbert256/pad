@@ -1,0 +1,20 @@
+{pad:data 'invoices'}
+[ { "number": "2026-114", "date": "1 November 2026", "due": "1 December 2026",
+    "customer": "Ann Smith", "street": "Canal Street 12", "city": "1012 AB Amsterdam",
+    "entries": [ { "item": "Label sheets a4-3x8, 100", "amount": "24.00" },
+               { "item": "Name badges, 50", "amount": "37.50" },
+               { "item": "Shipping", "amount": "6.95" } ],
+    "total": "68.45" } ]
+{/pad:data}
+{printable:invoice data='invoices', sender='PAD, Main Street 1, 3511 AB Utrecht', scale=0.45, pdf}
+  <header><h2>PAD</h2></header>
+  <address>{$customer}<br>{$street}<br>{$city}</address>
+  <aside>Invoice {$number}<br>Date {$date}<br>Due {$due}</aside>
+  <table>
+    <tr><th>Item</th><th align="right">Amount</th></tr>
+    {array:entries}<tr><td>{$item}</td><td align="right">{$amount}</td></tr>{/array:entries}
+    <tfoot><tr><td><b>Total</b></td><td align="right"><b>{$total}</b></td></tr></tfoot>
+  </table>
+  <p>Please pay before {$due}.</p>
+  <footer>PAD - IBAN NL91 TEST 0123 4567 89 - VAT NL001234567B01</footer>
+{/printable:invoice}

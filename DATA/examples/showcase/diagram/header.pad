@@ -1,0 +1,22 @@
+{pad:meta title='The header of a TCP segment', about='A packet diagram - the fields of the TCP header as RFC 9293 draws them, 32 bits a row, the eight one-bit flags turned on their side, the first and last bit over every field.'/}
+{diagram:packet}
+  title TCP header (RFC 9293)
+  0-15: "Source Port"
+  16-31: "Destination Port"
+  32-63: "Sequence Number"
+  64-95: "Acknowledgment Number"
+  96-99: "Data Offset"
+  100-103: "Rsrvd"
+  104: "CWR"
+  105: "ECE"
+  106: "URG"
+  107: "ACK"
+  108: "PSH"
+  109: "RST"
+  110: "SYN"
+  111: "FIN"
+  112-127: "Window"
+  128-143: "Checksum"
+  144-159: "Urgent Pointer"
+  160-191: "Options and padding"
+{/diagram:packet}

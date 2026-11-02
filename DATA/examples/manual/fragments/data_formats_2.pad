@@ -1,0 +1,23 @@
+{pad:data 'agenda'}
+  BEGIN:VCALENDAR
+  VERSION:2.0
+  BEGIN:VEVENT
+  UID:talk@example.com
+  DTSTART:20261106T090000Z
+  DTEND:20261106T100000Z
+  SUMMARY:Opening talk
+  LOCATION:Hall A
+  END:VEVENT
+  BEGIN:VEVENT
+  UID:dinner@example.com
+  DTSTART;VALUE=DATE:20261107
+  SUMMARY:Conference dinner\, all welcome
+  END:VEVENT
+  END:VCALENDAR
+{/pad:data}
+
+<ul>
+  {data:agenda}
+    <li>{$summary} - {$start}{pad:if $allday} (all day){/pad:if}{pad:if $location} - {$location}{/pad:if}</li>
+  {/data:agenda}
+</ul>

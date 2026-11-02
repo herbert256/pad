@@ -1,0 +1,5 @@
+<?php
+
+  $padCheckSyntax = FALSE;
+
+?>

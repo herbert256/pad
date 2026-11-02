@@ -1,0 +1,9 @@
+{pad:meta title='Rules that look at another field', about='required_if and after name another field of the form: the checker checks the field again when that one changes, so its message follows it.'/}
+<form method="get" novalidate data-pad-rules="{^tripRules}">
+  <label for="c-delivery">Delivery</label> <select name="delivery" id="c-delivery"><option>collect</option><option>ship</option></select>
+  <label for="c-address">Address</label> <input name="address" id="c-address">
+  <label for="c-start">Start</label> <input name="start" id="c-start" type="date">
+  <label for="c-end">End</label> <input name="end" id="c-end" type="date">
+  <button>Check</button>
+</form>
+{pad:validator/}

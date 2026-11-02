@@ -1,0 +1,20 @@
+{pad:data 'walk', format='kml'}
+  <kml xmlns="http://www.opengis.net/kml/2.2">
+    <Folder>
+      <name>Ghent</name>
+      <Placemark>
+        <name>Gravensteen</name>
+        <ExtendedData><Data name="hours"><value>2</value></Data></ExtendedData>
+        <Point><coordinates>3.7206,51.0573</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>Along the Leie</name>
+        <LineString><coordinates>3.7206,51.0573 3.7189,51.0545</coordinates></LineString>
+      </Placemark>
+    </Folder>
+  </kml>
+{/pad:data}
+
+<ul>
+  {data:walk}<li>{$folder}: {$name} - {$geometry}{pad:if $lat} at {$lat}, {$lon}{/pad:if}</li>{/data:walk}
+</ul>

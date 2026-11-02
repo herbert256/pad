@@ -1,0 +1,63 @@
+{# The island carries the server time, so the page differs on every request: the stored
+   answer is a pattern. #}
+<section class="hero">
+
+  <div>
+    <span class="eyebrow"><b>●</b> PHP renders &middot; React reacts</span>
+    <h2>Server pages,<br><span class="grad">living islands.</span></h2>
+    <p class="lede">
+      PAD builds the page on the server - the data, the HTML, the routing by file name. React
+      takes over the parts that move: an island here, a widget there, each handed its data by
+      PAD and talking back to PAD while it runs.
+    </p>
+    <div class="hero-actions">
+      <a class="btn" href="?patterns">See the patterns</a>
+      <a class="btn btn-ghost" href="?guide">Build your own</a>
+    </div>
+  </div>
+
+  <div data-island="HelloServer" data-props="{^hello}">
+    <div class="island-fallback">PAD says: <strong>{$hello.message}</strong> at {$hello.time} - React takes this box over in a moment.</div>
+  </div>
+
+</section>
+
+<div class="flow">
+  <div class="flow-step">
+    <h3>PHP gathers</h3>
+    <p>The page's <code>.php</code> reads the database, a <code>_data/</code> file, the session.</p>
+  </div>
+  <div class="flow-step">
+    <h3>PAD writes</h3>
+    <p>The template places the islands and hands each its props: <code>data-props="{pad:open/}^field{pad:close/}"</code>.</p>
+  </div>
+  <div class="flow-step is-client">
+    <h3>React mounts</h3>
+    <p><code>PadReact.island()</code> finds the islands and renders a component on each.</p>
+  </div>
+  <div class="flow-step is-client">
+    <h3>React asks back</h3>
+    <p>The same pages answer JSON, one fragment, or a post - <code>padFormat=json</code>, <code>padFragment</code>.</p>
+  </div>
+</div>
+
+{array:groups}
+<div class="group-head">
+  <h2>{$title}</h2>
+  <span class="badge">{$count} examples</span>
+</div>
+<p class="group-text">{$text}</p>
+<div class="grid">
+  {array:examples}
+  <a class="card rise" href="?{$page}">
+    <span class="card-icon" aria-hidden="true">{$icon}</span>
+    <span class="card-go" aria-hidden="true">→</span>
+    <h3>{$title}</h3>
+    <p>{$lede}</p>
+    <div class="chips">{array:server}<code class="chip is-server">{$server}</code>{/array:server}{array:client}<code class="chip is-client">{$client}</code>{/array:client}</div>
+  </a>
+  {/array:examples}
+</div>
+{/array:groups}
+
+<script type="text/babel" src="{$padRoot}react/index.js"></script>

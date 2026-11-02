@@ -1,0 +1,18 @@
+{pad:ignore}
+<p><code>padNotify ( $user, 'order-shipped', $data, [ 'database' ] )</code> keeps a notification on the
+site, under <code>DATA/notifications/</code>; <code>{pad:notifications/}</code> lists the unread ones of the
+user logged in, newest first - its title, its text, its time and a <em>Mark read</em> link. The link
+brings the page back with the id and a signature of the application, the recipient and the id, so
+it marks only that notification of that person. A guest gets nothing.</p>
+
+<p>As a pair the notifications are its rows - <code>id</code>, <code>name</code>, <code>title</code>,
+<code>text</code>, <code>html</code>, <code>url</code>, <code>created</code>, <code>read</code> and
+<code>link</code> - and the handling options apply to them. From PHP:
+<code>padNotifications ( $to, $all )</code> and <code>padNotificationRead ( $id, $to )</code>.</p>
+
+<p>Its examples need notifications kept first, so they are shown, not run.</p>
+{/pad:ignore}
+
+<h3>Notification channels</h3>
+<p>Each kind has its own description and usage example:</p>
+<p>{!subsystemKindLinks}</p>

@@ -1,0 +1,9 @@
+{pad:data 'questions'}
+[ { "question": "Why?", "answer": "Because." } ]
+{/pad:data}
+{pad:data 'more'}
+[ "Where?", "When?" ]
+{/pad:data}
+{section:faq data='questions', title='FAQ'}
+  {data:more}{section:item $more}Soon.{/section:item}{/data:more}
+{/section:faq}

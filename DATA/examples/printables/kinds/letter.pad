@@ -1,0 +1,10 @@
+{fake:rows 'name, street, postcode, city', rows=2, seed=6, toData='customers'/}
+{printable:letter data='customers', sender='PAD, Main Street 1, 3511 AB Utrecht', scale=0.45, pdf}
+  <header><h2>PAD</h2>Main Street 1, 3511 AB Utrecht</header>
+  <address>{$name}<br>{$street}<br>{$postcode} {$city}</address>
+  <aside>Utrecht, 1 November 2026<br>Our reference: 2026-114</aside>
+  <p>Dear {$name},</p>
+  <p>Thank you for your order. Your labels are on their way and should be with you within three working days.</p>
+  <p>Kind regards,<br>The PAD team</p>
+  <footer>PAD - Main Street 1 - 3511 AB Utrecht - hello@example.org</footer>
+{/printable:letter}

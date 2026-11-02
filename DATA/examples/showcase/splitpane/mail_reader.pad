@@ -1,0 +1,25 @@
+{pad:meta title='A mail reader', about='The folders beside the message - drag the bar, or focus it and use the arrow keys, Home and End; Enter folds the folders away and back.'/}
+<div style="width:100%; max-width:620px">
+  {widget:splitpane size=32, min=20, max=60, height='16rem', collapse}
+    {pad:tab 'Folders'}
+      <p><b>Inbox</b> (3)</p>
+      <p>Drafts</p>
+      <p>Sent</p>
+      <p>Archive</p>
+    {/pad:tab}
+    {pad:tab 'Message'}
+      <p><b>The kettle you ordered</b><br>From: Aurora shop</p>
+      <p>Your Aurora electric kettle left our warehouse this morning and is with you tomorrow
+      between 9:00 and 13:00. The driver rings twice; a neighbour may take it in.</p>
+      <p>Kind regards,<br>The Aurora team</p>
+    {/pad:tab}
+  {/widget:splitpane}
+  {widget:splitpane stacked, size=55, height='14rem'}
+    {pad:tab 'Notes'}
+      <p>Ship the kettles on Monday. Ask the warehouse for the new boxes.</p>
+    {/pad:tab}
+    {pad:tab 'Preview'}
+      <p>Ship the kettles on <b>Monday</b>. Ask the warehouse for the new boxes.</p>
+    {/pad:tab}
+  {/widget:splitpane}
+</div>

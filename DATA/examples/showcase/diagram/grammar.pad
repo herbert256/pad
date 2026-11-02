@@ -1,0 +1,13 @@
+{pad:meta title='The grammar of JSON', about='A railroad diagram from W3C EBNF - terminals in rounded boxes, rules as links to their tracks, choices stacked, optional parts passed over and repetitions looping back.'/}
+{diagram:railroad title='The grammar of JSON'}
+  /* JSON as RFC 8259 writes it, whitespace left out */
+  value  ::= object | array | string | number | 'true' | 'false' | 'null'
+  object ::= '{' ( member ( ',' member )* )? '}'
+  member ::= string ':' value
+  array  ::= '[' ( value ( ',' value )* )? ']'
+  string ::= '"' char* '"'
+  char   ::= [#x20-#x10FFFF] - ( '"' | '\' ) | '\' escape
+  escape ::= '"' | '\' | '/' | 'b' | 'f' | 'n' | 'r' | 't' | 'u' hex hex hex hex
+  hex    ::= [0-9a-fA-F]
+  number ::= '-'? ( '0' | [1-9] [0-9]* ) ( '.' [0-9]+ )? ( ( 'e' | 'E' ) ( '+' | '-' )? [0-9]+ )?
+{/diagram:railroad}

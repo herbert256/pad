@@ -1,0 +1,12 @@
+{pad:spreadsheet 'trailing', headers=FALSE}
+  Item,Price	
+  Apples,1.20
+  Pears,0.80
+{/pad:spreadsheet | after('</style>')}{pad:spreadsheet 'indented', headers=FALSE}
+Item,Price
+	Apples,1.20
+	Pears,0.80
+{/pad:spreadsheet}{pad:spreadsheet 'copied', headers=FALSE}
+  Item	Price
+  Apples	1.20
+{/pad:spreadsheet}

@@ -1,0 +1,8 @@
+{diagram:railroad title='JSON'}
+  /* JSON, after RFC 8259 */
+  value  ::= object | array | string | number | 'true' | 'false' | 'null'
+  object ::= '{' ( member ( ',' member )* )? '}'
+  member ::= string ':' value
+  number ::= '-'? ( '0' | [1-9] [0-9]* ) ( '.' [0-9]+ )? ( ( 'e' | 'E' ) ( '+' | '-' )? [0-9]+ )?
+  char   ::= [#x20-#x10FFFF] - ( '"' | '\' ) | '\' escape
+{/diagram:railroad | php:md5(@)}
