@@ -48,6 +48,7 @@
     'palette'  => 'palettes',
     'highlighter' => 'highlighters',
     'diff' => 'diffs',
+    'recurrence' => 'recurrences',
   ];
 
   // The kinds of the subsystem in pad/subs/<directory>/: the names of the files of its types/,

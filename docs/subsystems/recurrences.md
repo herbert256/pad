@@ -1,0 +1,11 @@
+# Calendar recurrence expansion
+
+`padOccurrences($kind, $rule, $from, $to)` returns ISO date strings (date DTSTART) or ISO date-times with offsets (timed DTSTART), sorted within **[from, to)**. Kinds: `daily`, `weekly`, `monthly`, `yearly`, `rrule`. All bounds are explicit ISO dates/date-times or DateTimeInterface values; there are no relative dates. UTC is the default; `timezone` accepts IANA identifiers. Convert these starts into event rows for calendars/planners or ICS export; this helper neither schedules jobs nor changes stored events.
+
+Common rule fields: required `start`; optional `timezone`, positive `interval`, `count` or inclusive `until`, `exclude` list, `limit` (default 1000, maximum 10000). Weekly adds `byday` (MO..SU or ISO weekday integers) and `weekstart` (default MO). Monthly adds `monthday` (1..31 or -1..-31). Yearly adds `month` (1..12) and `monthday`. Omitted filters inherit DTSTART. DTSTART must satisfy the supplied filters. Unknown options are rejected.
+
+Intervals are calendar intervals from DTSTART. Invalid month dates and nonexistent DST wall times are skipped without counting. An ambiguous time uses the first occurrence. COUNT includes valid DTSTART and occurrences before the requested window; exclusions are applied after counting. Date exclusions remove the entire local date; timed exclusions remove one instant. More output than `limit` throws, never silently truncates. Scanning is bounded to 200000 calendar days from DTSTART. This deliberately bounds old rules even when the output window is small.
+
+RRULE rules use `['start' => ..., 'timezone' => ..., 'rrule' => 'FREQ=WEEKLY;BYDAY=MO,WE;COUNT=8']`. Supported parts: FREQ=DAILY/WEEKLY/MONTHLY/YEARLY, INTERVAL, COUNT, UNTIL; BYDAY and WKST only for WEEKLY, BYMONTHDAY only for MONTHLY/YEARLY, BYMONTH only for YEARLY. Date UNTIL uses YYYYMMDD; timed UNTIL must be UTC YYYYMMDDTHHMMSSZ. COUNT and UNTIL cannot coexist. Ordinal BYDAY, BYSETPOS, hourly/minutely frequencies, RDATE and other parts are explicitly rejected. This is a documented subset, not a complete iCalendar processor.
+
+Policies and independent date fixtures follow [RFC 5545](https://www.rfc-editor.org/rfc/rfc5545.html), sections 3.3.5, 3.3.10 and 3.8.5.3. Run `php apps/regression/subsystems/recurrences.php`.
