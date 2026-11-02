@@ -5,6 +5,6 @@
     if ( ! padKind ( 'recurrences', $kind ) or ! is_array ( $rule ) ) throw new InvalidArgumentException ( 'Unknown recurrence or invalid rule' );
     if ( $kind === 'rrule' ) [ $kind, $rule ] = padRecurrenceRrule ( $rule );
     $type = include PAD . "subs/recurrences/types/$kind.php";
-    return padRecurrenceExpand ( $kind, $type, $rule, $from, $to );
+    return isset ( $type ['expand'] ) ? $type ['expand'] ( $rule, $from, $to ) : padRecurrenceExpand ( $kind, $type, $rule, $from, $to );
   }
 ?>
