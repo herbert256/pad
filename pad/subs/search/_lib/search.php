@@ -171,7 +171,7 @@
     if ( isset ( $language ['normalize'] ) )
       $text = $language ['normalize'] ( $text );
 
-    preg_match_all ( "/[\\p{L}\\p{N}\\p{M}]+(?:['’][\\p{L}\\p{N}\\p{M}]+)*/u", $text, $m );
+    preg_match_all ( $language ['tokenPattern'] ?? "/[\\p{L}\\p{N}\\p{M}]+(?:['’][\\p{L}\\p{N}\\p{M}]+)*/u", $text, $m );
 
     $words = [];
 
@@ -203,7 +203,9 @@
     if ( isset ( $memo [$key] [$word] ) )
       return $memo [$key] [$word];
 
-    if ( isset ( $language ['stop'] [ isset ( $language ['letters'] ) ? strtr ( $word, $language ['letters'] ) : $word ] ) )
+    if ( $language ['verbatim'] ?? FALSE )
+      $terms = [ $word ];
+    elseif ( isset ( $language ['stop'] [ isset ( $language ['letters'] ) ? strtr ( $word, $language ['letters'] ) : $word ] ) )
       $terms = [];
     elseif ( preg_match ( '/\p{N}/u', $word ) )
       $terms = [ padSearchFold ( $word ) ];
