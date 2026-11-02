@@ -1,6 +1,6 @@
 <?php
 
-  // Fires from tags/_go/store.php right after a {pad:data} / {pad:content} / {pad:bool} block has been
+  // Fires from tags/_go/store.php right after a {format:auto} / {pad:content} / {pad:bool} block has been
   // written into its global store, and traces the name it was stored under together with the
   // stored value when $padInfoTraceStore is on.
 

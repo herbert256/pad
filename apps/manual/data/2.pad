@@ -1,22 +1,22 @@
 {common:table}{common:demo}
 
-{pad:data 'myXML'}
+{format:auto 'myXML'}
   <data>
     <row name="bob"   phone="555-1111" />
     <row name="jim"   phone="555-2222" />
     <row name="joe"   phone="555-3333" />
     <row name="jerry" phone="555-4444" />
   </data>
-{/pad:data}
+{/format:auto}
 
-{pad:data 'myJSON'}
+{format:auto 'myJSON'}
   [ { "name": "bob",   "phone": "555-5555" },
     { "name": "jim",   "phone": "555-6666" },
     { "name": "joe",   "phone": "555-7777" },      
     { "name": "jerry", "phone": "555-8888" } ]
-{/pad:data}
+{/format:auto}
 
-{pad:data 'myYAML'}
+{format:auto 'myYAML'}
   ---
   - name: bob
     phone: 555-3425
@@ -26,19 +26,19 @@
     phone: 555-3422
   - name: jerry
     phone: 555-4973
-{/pad:data}
+{/format:auto}
 
-{pad:data 'myCSV'}
+{format:auto 'myCSV'}
   name,phone
   bob,555-3425
   jim,555-4364
   joe,555-3422
   jerry,555-4973
-{/pad:data}
+{/format:auto}
 
-{pad:data 'myList'}
+{format:auto 'myList'}
   ( 'myXML', 'myJSON', 'myYAML', 'myCSV' )
-{/pad:data}
+{/format:auto}
 
 {/common:demo}{common:demo}
 

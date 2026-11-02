@@ -1,7 +1,7 @@
 <?php
 
   // Renders the template Live preview posts, with the data posted beside it: a text in any
-  // format PAD reads data in - JSON, YAML, XML, CSV ... - its type recognised as {pad:data}
+  // format PAD reads data in - JSON, YAML, XML, CSV ... - its type recognised as {format:auto}
   // recognises it, each top-level key a variable of the template, as a page's .php would set
   // it - or, with mode=php, PHP code that is such a .php. The template runs in a nested pass
   // of this request (padCode) under the application's limits - no PHP functions, no request

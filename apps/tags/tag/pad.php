@@ -15,6 +15,6 @@ PAD;
 
   $tagOptions = [];
 
-  $tagSee     = [ 'data', 'content', 'code', 'set' ];
+  $tagSee     = [ 'format:auto', 'content', 'code', 'set' ];
 
 ?>

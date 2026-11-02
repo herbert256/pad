@@ -3,7 +3,7 @@
   // The shared body of jsonld:kind tags, such as {jsonld:article}. The caller sets
   // $padJsonLdKind; registered kinds are files in subs/jsonld/types/.
   //
-  // The fields come from the row or rows data= names - a {pad:data} store, the page's array, a
+  // The fields come from the row or rows data= names - a {format:auto} store, the page's array, a
   // field holding a list, a _data file, as a widget reads them - and from options of their
   // names, which win over a row's field of the same name: {jsonld:article data='post',
   // url=$url/}. Each option is read with padTagParm, so one the kind does not take is
@@ -51,7 +51,7 @@
 
   if ( $padJsonLdRows !== NULL ) {
 
-    // Plain values come as a list. A {pad:data} block of one record is made rows of one field
+    // Plain values come as a list. A {format:auto} block of one record is made rows of one field
     // too, keyed by the record's names: those stay rows, never a value each - a password of
     // the record would have been written as a name.
 

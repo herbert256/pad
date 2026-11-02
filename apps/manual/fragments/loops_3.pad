@@ -1,4 +1,4 @@
-{pad:data 'ns'}[1, 2, 3, 4, 5]{/pad:data}
+{format:auto 'ns'}[1, 2, 3, 4, 5]{/format:auto}
 <p>continue skips one: {data:ns}{pad:if $ns eq 3}{pad:continue 'ns'/}{/pad:if}{$ns} {/data:ns}</p>
 <p>cease ends gently: {data:ns}{pad:if $ns eq 4}{pad:cease 'ns'/}{/pad:if}{$ns} {/data:ns}</p>
 <p>break ends at once: {data:ns}{pad:if $ns eq 4}{pad:break 'ns'/}{/pad:if}{$ns} {/data:ns}</p>

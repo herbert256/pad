@@ -146,14 +146,14 @@
     if ($now !== '')
       $output [] = $now;
 
-    // An option written after a parameter without its comma - {pad:data 'rawJson' ignore}, the
+    // An option written after a parameter without its comma - {format:auto 'rawJson' ignore}, the
     // form CLAUDE.md and the manual's ignore page show - is the option it names: a single
     // value, a space, and the name of an engine or application option. The evaluator read
     // the two as a value piped into the function of that name, so ignore('rawJson') named
     // the store and the option never applied. A word that names no option stays that pipe:
     // {pad:echo 'abc' upper} is ABC. An application option with only an end-phase file -
-    // _options/end/shout.php - is an option as well: {pad:data 'd' shout} was "a comma is
-    // missing", where {pad:data 'd' frame}, which has both files, worked. The data handlers
+    // _options/end/shout.php - is an option as well: {format:auto 'd' shout} was "a comma is
+    // missing", where {format:auto 'd' frame}, which has both files, worked. The data handlers
     // (handling/types) are left out on purpose:
     // trim, left, right and reverse are pipe functions as well, and {pad:echo $x trim} pipes.
 

@@ -1,4 +1,4 @@
-{pad:data 'walk', format='kml'}
+{format:auto 'walk', format='kml'}
   <kml xmlns="http://www.opengis.net/kml/2.2">
     <Folder>
       <name>Ghent</name>
@@ -13,7 +13,7 @@
       </Placemark>
     </Folder>
   </kml>
-{/pad:data}
+{/format:auto}
 
 <ul>
   {data:walk}<li>{$folder}: {$name} - {$geometry}{pad:if $lat} at {$lat}, {$lon}{/pad:if}</li>{/data:walk}

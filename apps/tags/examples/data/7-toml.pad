@@ -1,8 +1,8 @@
 {pad:meta title='A TOML document', about='format= selects TOML explicitly; its fields become the rows read by the following tag.'/}
-{pad:data 'delivery', format='toml'}
+{format:auto 'delivery', format='toml'}
 title = "Deliveries"
 [[people]]
 name = "Ann"
 city = "Utrecht"
-{/pad:data}
+{/format:auto}
 {data:delivery}<h3>{$title}</h3>{array:people}<p>{$name} — {$city}</p>{/array:people}{/data:delivery}

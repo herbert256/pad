@@ -14,7 +14,7 @@ PAD;
   $tagParms   = [];
 
   $tagOptions = [
-    'data'     => 'The rows: a <code>{pad:data}</code> store, a page array or a <code>_data</code> file. As a pair the content is the rows instead - JSON, YAML, XML or CSV, told apart on sight.',
+    'data'     => 'The rows: a <code>{format:auto}</code> store, a page array or a <code>_data</code> file. As a pair the content is the rows instead - JSON, YAML, XML or CSV, told apart on sight.',
     'columns'  => 'The fields shown, in their order. Every field of the first row when not given.',
     'labels'   => 'The header of each column, in the order of <code>columns</code>. The field name as a headline when not given (<code>order_date</code> is Order Date).',
     'format'   => 'A pipe per column, <code>column:pipe</code> separated by commas - <code>total:money, date:date(\'j M\')</code>.',
@@ -25,6 +25,6 @@ PAD;
     'striped'  => 'Bare option: every other row shaded.',
     'caption'  => 'The table\'s <code>&lt;caption&gt;</code>.' ];
 
-  $tagSee     = [ 'pager', 'chart:bar', 'data' ];
+  $tagSee     = [ 'pager', 'chart:bar', 'format:auto' ];
 
 ?>

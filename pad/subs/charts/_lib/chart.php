@@ -16,11 +16,11 @@
   // reads the rows with padChartGather, its size with padChartSize - its own default size -
   // and answers the SVG, drawn by the functions of this directory.
   //
-  //   padChartRows       the rows behind a chart: a {pad:data} store or a sequence store by name,
+  //   padChartRows       the rows behind a chart: a {format:auto} store or a sequence store by name,
   //                      the page's own array of that name, a _data file, or the data=
   //                      literal the data option already read - or the first rows terms of a
   //                      sequence, or the content of a pair, {chart:bar}...{/chart:bar}, read
-  //                      as {pad:data} reads its own: JSON, YAML, XML or CSV, told apart on sight
+  //                      as {format:auto} reads its own: JSON, YAML, XML or CSV, told apart on sight
   //                      (type= names it)
   //   padChartPoints     the rows as [ label, value ] points: value= names the field (else
   //                      the first numeric one), label= the field for the axis (else the
@@ -32,7 +32,7 @@
   // The other files of this directory draw the other kinds - scatter.php scatter and bubble,
   // hierarchy.php treemap and sunburst, and so on - and the parts they share: the opening,
   // the style and the number format. They are all included with this file, which is included
-  // when a page draws a chart; {pad:map}, {pad:timeline}, {pad:datatable}, {calendar:month} and {diagram:auto}, that
+  // when a page draws a chart; {map:auto}, {pad:timeline}, {pad:datatable}, {calendar:month} and {diagram:auto}, that
   // draw with its parts, include it themselves. padChartAttr and padChartDedent, which tags
   // that draw no chart use as well, are in lib/chart.php, loaded on every request.
   //

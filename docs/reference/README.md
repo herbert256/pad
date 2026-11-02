@@ -38,7 +38,7 @@ Every named tag requires a type prefix, including closing tags and branches: `{p
 ## Quick Reference
 
 ### Most Used Tags
-`{pad:if}`, `{pad:while}`, `{pad:data}`, `{pad:set}`, `{pad:echo}`, `{pad:get}`, `{pad:case}`
+`{pad:if}`, `{pad:while}`, `{format:auto}`, `{pad:set}`, `{pad:echo}`, `{pad:get}`, `{pad:case}`
 
 ### Most Used Functions
 `trim`, `upper`, `lower`, `html`, `date`, `+ n`, `- n`

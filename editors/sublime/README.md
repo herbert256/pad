@@ -13,7 +13,7 @@ packages.
 | `PAD.sublime-settings` | Auto-completion triggers for `{/`, `:` and `$` |
 | `Default (OSX).sublime-keymap` | The `cmd+alt+.` binding (merge into your own keymap if you already have one) |
 | `PAD Comments.tmPreferences` | `cmd+/` inside a PAD tag toggles `{-- --}` (HTML comments elsewhere) |
-| `PAD Indent.tmPreferences` | Auto-indent after `{pad:if}`, `{pad:data}` etc., dedent on `{/function:tag}` / `{pad:else}` / `{pad:when}` |
+| `PAD Indent.tmPreferences` | Auto-indent after `{pad:if}`, `{format:auto}` etc., dedent on `{/function:tag}` / `{pad:else}` / `{pad:when}` |
 | `PAD.sublime-build` | `cmd+B` on a `.pad` file renders the page through `http://localhost/pad/` (uses `padrun.sh`) |
 | `snippets/` | `padif`, `padloop`, `paddata`, `padcase`, `padignore` + Tab |
 

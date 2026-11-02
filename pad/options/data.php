@@ -37,7 +37,7 @@
 
   }
 
-  // A list - ( 'a', $b, 2 * 3 ) - evaluates every element as an expression. A {pad:data} block
+  // A list - ( 'a', $b, 2 * 3 ) - evaluates every element as an expression. A {format:auto} block
   // reads one from the template; through data= the text is a value, often a field's, so
   // under $padProtectValues a value that reads as a list is refused rather than run.
 

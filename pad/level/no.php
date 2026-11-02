@@ -113,7 +113,7 @@
           // Kind selection now happens here instead of in a pad: dispatch wrapper.
           // Keep the available kinds and spelling suggestions in the diagnostic.
           $padNoName = $padTypeCheck;
-          $padNoHint = ' - ' . implode ( ', ', padKinds ( padSubsystems [$padNoPrefix] [0] ) );
+          $padNoHint = ' - ' . implode ( ', ', padSubsystemTagKinds ( $padNoPrefix ) );
           if ( $padNoPrefix == 'icon' ) {
             include_once PAD . 'subs/icons/_lib/icon.php';
             $padNoLike = padIconSimilar ( $padNoName );

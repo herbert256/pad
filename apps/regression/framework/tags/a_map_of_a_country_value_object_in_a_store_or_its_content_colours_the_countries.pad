@@ -1,4 +1,4 @@
-{pad:data 'mapObject'}{"NL": 1200, "BE": 800, "Germany": 300}{/pad:data}{pad:map 'europe', data='mapObject' | php:preg_replace('/^.*?(<desc[^>]*>[^<]*).*$/s', '$1', @)/}|{pad:map 'europe'}{"NL": 1200, "BE": 800}{/pad:map | php:preg_replace('/^.*?(<desc[^>]*>[^<]*).*$/s', '$1', @)}|{pad:map 'europe'}
+{format:auto 'mapObject'}{"NL": 1200, "BE": 800, "Germany": 300}{/format:auto}{map:auto 'europe', data='mapObject' | php:preg_replace('/^.*?(<desc[^>]*>[^<]*).*$/s', '$1', @)/}|{map:auto 'europe'}{"NL": 1200, "BE": 800}{/map:auto | php:preg_replace('/^.*?(<desc[^>]*>[^<]*).*$/s', '$1', @)}|{map:auto 'europe'}
 NL: 1200
 FR: 700
-{/pad:map | php:preg_replace('/^.*?(<desc[^>]*>[^<]*).*$/s', '$1', @)}
+{/map:auto | php:preg_replace('/^.*?(<desc[^>]*>[^<]*).*$/s', '$1', @)}

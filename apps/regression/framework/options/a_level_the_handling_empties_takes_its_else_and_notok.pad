@@ -1,2 +1,2 @@
-{pad:content 'none'}nothing{/pad:content}{pad:content 'oops'}bad{/pad:content}{pad:data 'xs'}[1,2,3]{/pad:data}
+{pad:content 'none'}nothing{/pad:content}{pad:content 'oops'}bad{/pad:content}{format:auto 'xs'}[1,2,3]{/format:auto}
 else:[{data:xs where='$xs gt 5', else='none'}{$xs},{/data:xs}] first:[{data:xs first=0, else='none'}{$xs},{/data:xs}] notOk:[{data:xs where='$xs gt 5', notOk='oops'}{$xs},{/data:xs}] kept:[{data:xs where='$xs gt 1', else='none'}{$xs},{/data:xs}]

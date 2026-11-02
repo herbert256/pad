@@ -13,7 +13,7 @@ PAD;
   $tagParms   = [];
 
   $tagOptions = [
-    'data'     => 'The rows: a <code>{pad:data}</code> store, a sequence store, an array of the page (or a field of the current row holding a list) or a <code>_data</code> file of that name, or a literal (<code>data=\'[3,1,4]\'</code>). Left out on a pair, the content is the data.',
+    'data'     => 'The rows: a <code>{format:auto}</code> store, a sequence store, an array of the page (or a field of the current row holding a list) or a <code>_data</code> file of that name, or a literal (<code>data=\'[3,1,4]\'</code>). Left out on a pair, the content is the data.',
     'type'     => 'For a pair: the format of the content - <code>json</code>, <code>yaml</code>, <code>xml</code> or <code>csv</code> - when it is not to be recognised on sight.',
     'sequence' => 'Plot the first <code>rows</code> terms (default 10) of a sequence type.',
     'value'    => 'The field with the number - else the first numeric field.',
@@ -22,6 +22,6 @@ PAD;
     'width'    => 'The width in pixels, default 120.',
     'height'   => 'The height in pixels, default 32.' ];
 
-  $tagSee     = [ 'chart:bar', 'sequence:auto', 'data' ];
+  $tagSee     = [ 'chart:bar', 'sequence:auto', 'format:auto' ];
 
 ?>

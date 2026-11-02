@@ -19,8 +19,8 @@ their own could leave the local server no worker to answer them.
 | `padcurlforget_drops_the_copy_the_curl_tag_keeps.php/pad` | `padCurlForget ( $url )` drops the copy `{pad:curl $url, ttl=}` keeps |
 | `an_address_written_after_a_printed_value_is_fetched.php/pad` | A written address is fetched though a value printed before it starts it |
 | `an_address_a_component_is_given_in_the_template_is_fetched.pad` | A {pad:define} fetching the address its caller wrote, data='{#src}' |
-| `an_address_written_inside_a_condition_of_close_named_data_is_fetched.pad` | A written address inside an {pad:if} of a {pad:data} named at its close |
-| `a_page_variable_address_is_fetched.php/pad` | An address in a page variable, in {pad:data 'd', $u} and through `{$padHost}` - the page's own, fetched |
+| `an_address_written_inside_a_condition_of_close_named_data_is_fetched.pad` | A written address inside an {pad:if} of a {format:auto} named at its close |
+| `a_page_variable_address_is_fetched.php/pad` | An address in a page variable, in {format:auto 'd', $u} and through `{$padHost}` - the page's own, fetched |
 | `an_address_the_page_built_is_fetched_beside_values_holding_its_host.php/pad` | Request values that merely hold the host's text do not refuse the page's own address |
 | `disposition.php` | A download named `report.file` whose body is the name of a data file here |
 | `curl_data_disposition.pad` | That download is read as the text it is - `_data/localOnly.json` is never read |

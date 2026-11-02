@@ -257,11 +257,11 @@
       'tableFun/fun_8'            => 'One of the ten ways of showing the same table, embedded by manual/table_fun',
       'tableFun/fun_9'            => 'One of the ten ways of showing the same table, embedded by manual/table_fun',
       'tableFun/fun_0'            => 'The {pad:content} definition the other nine print their cells through - it renders nothing itself',
-      'spreadsheet/form'          => 'The fixture of spreadsheet/a_posted_cell_is_computed_again, fetched bare: an editable {pad:spreadsheet} in a {pad:form}',
-      'spreadsheet/live'          => 'The fixture of spreadsheet/a_live_change_comes_back_computed_with_the_other_cells, fetched bare: an editable {pad:spreadsheet} in a {pad:live} region',
-      'spreadsheet/a_posted_cell_is_computed_again' => 'An editable {pad:spreadsheet} in a {pad:form} posts its cells back and is computed again - a typed formula too; a cell not to edit and an overlong text are left, a broken formula shows #ERROR!',
-      'spreadsheet/a_live_change_comes_back_computed_with_the_other_cells' => 'An editable {pad:spreadsheet} of a {pad:live} region is a form a change submits, the region its first field and every cell once; the region comes back computed',
-      'spreadsheet/a_live_change_carrying_more_than_1000_values_comes_back_computed' => 'A live change of an editable {pad:spreadsheet} carrying more than 1000 values - in padValue or as fields - comes back computed, no 500 from parse_str',
+      'spreadsheet/form'          => 'The fixture of spreadsheet/a_posted_cell_is_computed_again, fetched bare: an editable {sheet:grid} in a {pad:form}',
+      'spreadsheet/live'          => 'The fixture of spreadsheet/a_live_change_comes_back_computed_with_the_other_cells, fetched bare: an editable {sheet:grid} in a {pad:live} region',
+      'spreadsheet/a_posted_cell_is_computed_again' => 'An editable {sheet:grid} in a {pad:form} posts its cells back and is computed again - a typed formula too; a cell not to edit and an overlong text are left, a broken formula shows #ERROR!',
+      'spreadsheet/a_live_change_comes_back_computed_with_the_other_cells' => 'An editable {sheet:grid} of a {pad:live} region is a form a change submits, the region its first field and every cell once; the region comes back computed',
+      'spreadsheet/a_live_change_carrying_more_than_1000_values_comes_back_computed' => 'A live change of an editable {sheet:grid} carrying more than 1000 values - in padValue or as fields - comes back computed, no 500 from parse_str',
 
     ];
 

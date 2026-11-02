@@ -1,5 +1,5 @@
 {pad:live 'shop'}
-  {pad:spreadsheet 'shop', editable='B2:C6, C8, B9', caption='Change a quantity or a price',
+  {sheet:grid 'shop', editable='B2:C6, C8, B9', caption='Change a quantity or a price',
     formats='C2:C6:€ #,##0.00, D:€ #,##0.00'}
     Item,Qty,Price,Total
     Bread,2,2.45,=B2*C2
@@ -11,5 +11,5 @@
     Discount over € 50,,10%,=IF(D7>50,-D7*C8,0)
     VAT,21%,,=(D7+D8)*B9
     Total,,,=D7+D8+D9
-  {/pad:spreadsheet}
+  {/sheet:grid}
 {/pad:live}

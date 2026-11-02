@@ -13,7 +13,7 @@ PAD;
   $tagParms   = [];
 
   $tagOptions = [
-    'data'     => 'The rows: a <code>{pad:data}</code> store, a page array or a <code>_data</code> file, as for <code>{chart:bar}</code>. As a pair the content is the rows - JSON, YAML, XML or CSV.',
+    'data'     => 'The rows: a <code>{format:auto}</code> store, a page array or a <code>_data</code> file, as for <code>{chart:bar}</code>. As a pair the content is the rows - JSON, YAML, XML or CSV.',
     'date'     => 'The field of a moment: a year (<code>1969</code>), a month (<code>2026-10</code>) or anything <code>strtotime</code> reads - else the first field that reads as one.',
     'from'     => 'The field with the start of a span, drawn as a bar (with <code>to</code>).',
     'to'       => 'The field with the end of a span.',

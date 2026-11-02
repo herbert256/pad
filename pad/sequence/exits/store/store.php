@@ -17,7 +17,7 @@
   // the store pushed last stays the one {pad:resume} and a bare {pad:pull} take - a loop named step,
   // count or first ended the page on "Store name can not be equal to", and a loop named i
   // between a push and a {pad:resume} took the resume for itself. Nor when the page made something
-  // of that name - an array, a {pad:data} or other store (pqStoreHeld): the store took its place
+  // of that name - an array, a {format:auto} or other store (pqStoreHeld): the store took its place
   // for {property:name}.
 
   if ( $padPair [$pad] and ! $pqPush ) {

@@ -5,7 +5,7 @@
   // children - {pad:branch} ... {/pad:branch} only when the row has any. depth@tree is 1 for these
   // rows and one more per {pad:recurse}. See tags/_lib/tree.php.
   //
-  // The rows are named by the first parameter or by data= - a {pad:data} block, a stored
+  // The rows are named by the first parameter or by data= - a {format:auto} block, a stored
   // sequence, an array of the page or an enclosing row, a _data/ file (padNamedRows in
   // functions/_lib/lookup.php); children names the
   // field that holds a row's children, 'children' when not given. The body is the content

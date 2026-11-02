@@ -8,7 +8,17 @@
   // Sequence namespaces with an explicit auto selector for parameter-driven runs.
   const padSequenceOperations = [ 'sequence', 'action', 'keep', 'make', 'remove' ];
 
+  // Virtual selectors preserve parameter-driven selection without pretending to be
+  // a provider, language or file format in the underlying directory registry.
+  const padSubsystemAuto = [ 'map', 'holidays', 'search', 'ai', 'format' ];
+
   const padSubsystems = [
+    'map'      => [ 'maps', FALSE, 'map view' ],
+    'holidays' => [ 'holidays', FALSE, 'holiday country' ],
+    'search'   => [ 'search', FALSE, 'search language' ],
+    'ai'       => [ 'ai', FALSE, 'AI provider' ],
+    'format'   => [ 'formats', FALSE, 'data format' ],
+    'sheet'    => [ 'sheets', FALSE, 'sheet view' ],
     'calendar' => [ 'calendars', FALSE, 'calendar type' ],
     'chart'   => [ 'charts',   TRUE,  'chart type'     ],
     'game'    => [ 'games',    TRUE,  'game'           ],
@@ -29,8 +39,8 @@
     'jsonld'  => [ 'jsonld',   FALSE, 'JSON-LD kind'   ],
   ];
 
-  // The subsystems of pad/subs/ whose kinds are no tag type - a view of {pad:map}, a rule of
-  // padValidate, a provider of padOAuthStart, a format of {pad:data}, a function of {pad:spreadsheet} ...
+  // The subsystems of pad/subs/ whose kinds are no tag type - a view of {map:auto}, a rule of
+  // padValidate, a provider of padOAuthStart, a format of {format:auto}, a function of {sheet:grid} ...
   // - by the name the use of a kind is recorded under (padInfoXref, which files every kind of a
   // subsystem whatever the page's text says) and their directory.
 
@@ -83,6 +93,19 @@
 
   }
 
+  // Names available as tags, including parameter-driven selectors. padKinds remains
+  // the actual file registry used by provider validation and format detection.
+
+  function padSubsystemTagKinds ( $type ) {
+
+    if ( ! isset ( padSubsystems [$type] ) ) return [];
+    $kinds = padKinds ( padSubsystems [$type] [0] );
+    if ( in_array ( $type, padSubsystemAuto, TRUE ) ) $kinds [] = 'auto';
+    sort ( $kinds );
+    return $kinds;
+
+  }
+
   // The type a bare name is a kind of - the first subsystem of the list that reaches its kinds
   // bare and has one of the name - or FALSE.
 
@@ -100,7 +123,8 @@
 
   function padSubsystemHas ( $type, $name ) {
 
-    return isset ( padSubsystems [$type] ) and padKind ( padSubsystems [$type] [0], $name );
+    return isset ( padSubsystems [$type] ) and ( padKind ( padSubsystems [$type] [0], $name )
+      or ( $name === 'auto' and in_array ( $type, padSubsystemAuto, TRUE ) ) );
 
   }
 

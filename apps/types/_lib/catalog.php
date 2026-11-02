@@ -141,7 +141,7 @@
       return array_map ( fn ( $name ) => [ "pad:$name", "$tags$name" ], $names ( PAD . 'tags' ) );
 
     if ( isset ( padSubsystems [$type] ) )
-      return array_map ( fn ( $kind ) => [ "$type:$kind", "$tags$type/$kind" ], padKinds ( padSubsystems [$type] [0] ) );
+      return array_map ( fn ( $kind ) => [ "$type:$kind", "$tags$type/$kind" ], padSubsystemTagKinds ( $type ) );
 
     if ( isset ( padSubsystemKinds [$type] ) )
       return array_map ( fn ( $kind ) => [ $kind, "{$padRoot}tags/?kind/$type/$kind" ], padKinds ( padSubsystemKinds [$type] ) );

@@ -1,6 +1,6 @@
 <?php
 
-  // A {pad:data} named on its closing tag reads its walked content, and a value that is the
+  // A {format:auto} named on its closing tag reads its walked content, and a value that is the
   // whole of it, or starts it, chose the address the server fetched.
 
   // The value as a visitor sends it, ?v=..., which the request made the variable: the

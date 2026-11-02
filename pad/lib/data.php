@@ -84,7 +84,7 @@
 
       // A type word with no parser behind it used to end the request on a raw missing
       // include. Strict mode names it; the lenient walk falls back to sniffing the type
-      // from the data, the way an untyped {pad:data} is read. A type is a word - type= is often a
+      // from the data, the way an untyped {format:auto} is read. A type is a word - type= is often a
       // value, and as part of the include path ../../x with a value's name included and ran
       // any .php file on the disk.
 
@@ -268,11 +268,11 @@
   // download saved as UTF-8: it is no whitespace, so trim leaves it, and it made the first
   // CSV column "\xEF\xBB\xBFname" and pushed an XML document's <?xml off the start, while a
   // JSON or XML string behind it was not recognised on sight and read as CSV. The guards that
-  // refuse a value reading as a PAD list - {pad:data 'd', $v}, data=$v, a fetched body - judge
+  // refuse a value reading as a PAD list - {format:auto 'd', $v}, data=$v, a fetched body - judge
   // this same text, so white space before the BOM cannot hide the list from them.
   //
   // The indent all its lines share is taken off first, so a block written indented in its
-  // template - as a {pad:data} pair is written - reads as it would unindented. Trimmed alone, the
+  // template - as a {format:auto} pair is written - reads as it would unindented. Trimmed alone, the
   // first line lost its indent where the others kept theirs: YAML without its --- start,
   //   city: Paris / country: FR, read the second key as inside the first and ended on "YAML
   // parse error: mapping values are not allowed", an indented - name: a list the same.

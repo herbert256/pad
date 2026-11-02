@@ -6,11 +6,11 @@
   // its edge, dashed and for the screen alone.
 
   $answer = printablesShow ( <<<'PAD'
-{pad:data 'people'}
+{format:auto 'people'}
 [ { "name": "Ann Smith", "street": "Main Street 1", "city": "3511 AB Utrecht", "company": "Acme", "code": "T-001" },
   { "name": "Bob Jones", "street": "High Road 22", "city": "1012 JS Amsterdam", "company": "Globex", "code": "T-002" },
   { "name": "Cleo Brown", "street": "Church Lane 3", "city": "2511 CV Den Haag", "company": "Initech", "code": "T-003" } ]
-{/pad:data}
+{/format:auto}
 {printable:labels data='people', sheet='a4-3x8', skip=2}<b>{$name}</b><br>{$street}<br>{$city}{/printable:labels}
 PAD, 9 );
 

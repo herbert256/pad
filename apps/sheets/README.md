@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Spreadsheets in a page, made with the `{pad:spreadsheet}` tag of the formulas subsystem: the cells
+Spreadsheets in a page, made with the `{sheet:grid}` tag of the formulas subsystem: the cells
 are lines of text with a comma between them, or the rows of `data=`, and their formulas -
 spreadsheet syntax, read by a parser of the engine's own - are computed on the server with the
 functions of `pad/subs/formulas/types/`, which answer what Excel answers. Each example page runs

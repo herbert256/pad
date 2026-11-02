@@ -52,7 +52,7 @@ module.exports = grammar({
     ),
 
     // Text runs to the next brace or @; the whitespace in front of it is an extra, as in
-    // front of every node. A brace that cannot open a tag - {"a": 1} in a {pad:data} block, {
+    // front of every node. A brace that cannot open a tag - {"a": 1} in a {format:auto} block, {
     // in a script - is text with the character after it.
     text: _ => token(choice(
       /[^{@\s][^{@]*/,

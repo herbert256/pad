@@ -348,7 +348,7 @@ them. `$padTimezone` sets the timezone. Formatting uses PHP's intl extension whe
 |----------|------------|-------------|
 | `lookup` | set, key, field | The field of the row in another data set whose key equals the value - a join between lists from different sources |
 
-The set is named as a data tag names its rows: a `{pad:data}` block, a stored sequence, an array
+The set is named as a data tag names its rows: a `{format:auto}` block, a stored sequence, an array
 of the page or of an enclosing row, or a `_data/` file. `key` defaults to `id`; without a
 `field` the answer is the row's first field other than the key. The first matching row
 counts; no match answers `''`, so `| ?? 'fallback'` supplies one. The set is indexed on the

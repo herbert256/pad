@@ -1,5 +1,5 @@
-{pad:holidays 'ro', year=2026}{$date} {$local}|{/pad:holidays}
-{pad:holidays 'ro', from='2024-05-01', to='2024-06-30', where='$type eq "public"'}{$date} {$name}|{/pad:holidays}
-{pad:holidays 'ro', year=2018, where='$name eq "Good Friday"'}{$date} {$name}|{/pad:holidays}
-{pad:holidays 'ro', year=2017, where='$name eq "Good Friday"'}{$date}@else@no Good Friday in 2017|{/pad:holidays}
-{pad:holidays 'ro', year=2023, where='$date le "2023-01-31"'}{$date} {$name}|{/pad:holidays}
+{holidays:auto 'ro', year=2026}{$date} {$local}|{/holidays:auto}
+{holidays:auto 'ro', from='2024-05-01', to='2024-06-30', where='$type eq "public"'}{$date} {$name}|{/holidays:auto}
+{holidays:auto 'ro', year=2018, where='$name eq "Good Friday"'}{$date} {$name}|{/holidays:auto}
+{holidays:auto 'ro', year=2017, where='$name eq "Good Friday"'}{$date}@else@no Good Friday in 2017|{/holidays:auto}
+{holidays:auto 'ro', year=2023, where='$date le "2023-01-31"'}{$date} {$name}|{/holidays:auto}

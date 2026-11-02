@@ -1,7 +1,7 @@
 <?php
 
   // {pad:datatable data='orders'} - the rows as a complete HTML table, tags/_lib/datatable.php. The
-  // rows come from data= - a {pad:data} store, a page array or a _data file, as for {chart:bar} -
+  // rows come from data= - a {format:auto} store, a page array or a _data file, as for {chart:bar} -
   // or, as a pair, from the content: JSON, YAML, XML or CSV, told apart on sight.
   //
   //   {pad:datatable data='orders', columns='number, customer, total', totals='total'}

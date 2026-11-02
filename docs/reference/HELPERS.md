@@ -1073,7 +1073,7 @@ are 2010 to 2052, the last year of its Matariki schedule.
 
 | Function | Answers |
 |----------|---------|
-| `padSearch ( $source, $query, $options = [] )` | The rows found, the best first, each with its own fields and `score` (BM25F) and `excerpt` (HTML, the matches in `<mark>`, the style of the marks in front of each) added. `$source` is the name of a Markdown collection (`_content/<name>/`), of a data store, a page's array or a `_data` file - or the rows themselves, a `db()` result. The options: `fields` (`'title^2, body'`), `lang` (`en`, `nl`, `de`, `fr`, `es`, `it`, `pt`, `sv`, `da`, `no`, `ru` - `nb` and `nn` are `no`), `words` (the excerpt's length, 30), `excerpt` (its field), `first` (the best rows only - an excerpt is made for those alone) and `name` - what an index of rows is kept under in `DATA/cache/search/<app>/`, `'rows'` by default; it is made again whenever the fields searched change. The query as `{pad:search}` reads it: words, `"a phrase"`, `prefix*`, `-word` - a list, as `?q[]=` makes one, is searched for its words. A wrong option - one that is no value - is a `padError` naming the function, which then answers no rows |
+| `padSearch ( $source, $query, $options = [] )` | The rows found, the best first, each with its own fields and `score` (BM25F) and `excerpt` (HTML, the matches in `<mark>`, the style of the marks in front of each) added. `$source` is the name of a Markdown collection (`_content/<name>/`), of a data store, a page's array or a `_data` file - or the rows themselves, a `db()` result. The options: `fields` (`'title^2, body'`), `lang` (`en`, `nl`, `de`, `fr`, `es`, `it`, `pt`, `sv`, `da`, `no`, `ru` - `nb` and `nn` are `no`), `words` (the excerpt's length, 30), `excerpt` (its field), `first` (the best rows only - an excerpt is made for those alone) and `name` - what an index of rows is kept under in `DATA/cache/search/<app>/`, `'rows'` by default; it is made again whenever the fields searched change. The query as `{search:auto}` reads it: words, `"a phrase"`, `prefix*`, `-word` - a list, as `?q[]=` makes one, is searched for its words. A wrong option - one that is no value - is a `padError` naming the function, which then answers no rows |
 
 ## Data formats
 
@@ -1108,7 +1108,7 @@ are 2010 to 2052, the last year of its Matariki schedule.
 ## Spreadsheet formulas
 
 `pad/lib/formulas.php` - the entries of the formulas subsystem, whose engine and functions stand
-in `pad/subs/formulas/` and are loaded on the first call; `{pad:spreadsheet}` is the tag. A formula
+in `pad/subs/formulas/` and are loaded on the first call; `{sheet:grid}` is the tag. A formula
 is spreadsheet syntax, never PHP and never a PAD expression - see
 [Spreadsheets](../FEATURES.md#spreadsheets).
 

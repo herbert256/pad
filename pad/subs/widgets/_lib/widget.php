@@ -71,7 +71,7 @@
 
   }
 
-  // The rows a data= option names - a {pad:data} store, a sequence store, the page's array, a
+  // The rows a data= option names - a {format:auto} store, a sequence store, the page's array, a
   // field holding a list or a _data file, as {chart:bar} and the games read them - or NULL
   // without data=. The level got those rows as its data from the data option, and would
   // write the widget once per row: it gets its one default occurrence back.

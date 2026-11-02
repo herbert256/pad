@@ -14,7 +14,7 @@
   // The stores of padStrSto are declared here rather than on first write. A nested pass
   // that runs inside a PHP function body - padCode() and padSandbox() - binds the globals it
   // can see at the moment it opens, so a store that does not exist yet is never bound, and
-  // start/start/resetPad.php cannot empty what is not set either. Writing {pad:data 'x'} then
+  // start/start/resetPad.php cannot empty what is not set either. Writing {format:auto 'x'} then
   // reading {data:x} would land in two different scopes.
 
   $pad          = -1;
