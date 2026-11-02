@@ -1,0 +1,3 @@
+<?php
+include_once PAD.'subs/tables/_lib/masterdetail.php';
+try{$rows=array_values(array_map('padChartRow',(array)padChartRows($padContent,'table')));$padContent='';$padData[$pad]=padDefaultData();$opts=[];foreach(['id'=>'id','filter'=>'','sort'=>'','descending'=>FALSE,'pagesize'=>25,'page'=>1,'caption'=>'Records','template'=>NULL,'detail'=>'detail'] as $k=>$v)$opts[$k]=padTagParm($k,$v);$columns=padTagParm('columns','id,name');if(is_string($columns))$columns=array_map('trim',explode(',',$columns));return padTableMasterDetail($rows,$columns,$opts);}catch(Exception $e){padError($e->getMessage());return '';}
