@@ -1,12 +1,12 @@
 <?php
 
-  // Identicons - the {pad:identicon} tag. A value - an e-mail address, a user id, a key - becomes
+  // Identicons - the {avatar:identicon} tag. A value - an e-mail address, a user id, a key - becomes
   // a symmetric pattern of 5 by 5 cells with a colour of its own, as inline SVG: a picture
   // that tells accounts apart at a glance without anyone uploading one, and without sending
   // the address anywhere.
   //
-  //   {pad:identicon $email}
-  //   {pad:identicon $user.id, size=32, title='Your identicon'}
+  //   {avatar:identicon $email}
+  //   {avatar:identicon $user.id, size=32, title='Your identicon'}
   //
   // padIdenticon        the SVG of a value
   // padIdenticonCells   the pattern: 5 rows of 5 booleans, the left half mirrored right

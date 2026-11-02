@@ -16,6 +16,7 @@
   function tagsKindTypes () {
 
     return [
+      'avatar' => [ 'Avatars', 'Identity pictures and private fallbacks', 'single', " 'Ada Lovelace'/}", 'avatar' ],
       'calendar' => [ 'Calendars', 'Gregorian dates, events and holidays', 'both', " '2026-11', data='appointments'/}", 'calendar' ],
       'chart'    => [ 'Chart types',       'inline SVG',                 'both',   " data='rows', label='field', value='field'/}", 'chart'   ],
       'game'     => [ 'Games',             'played in the browser',       'both',   '/}',                                           'game'    ],
@@ -231,6 +232,10 @@
     }
 
     switch ( $type ) {
+
+      case 'avatar':
+        $file = APPS . "tags/examples/avatar/$kind.pad";
+        return $example ( "A $kind avatar", 'An identity picture with accessible text.', trim ( padFileGet ( $file ) ) );
 
       case 'calendar':
         $file = APPS . "calendars/_examples/$kind.pad";

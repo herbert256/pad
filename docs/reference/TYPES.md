@@ -1085,3 +1085,7 @@ types/
 {pull:fib}{$sequence} {/pull:fib}
 {remove:fib even}{$sequence} {/remove:fib}
 ```
+
+### avatar
+
+The avatar subsystem provides `avatar:initials`, `avatar:identicon`, `avatar:gravatar`, `avatar:geometric` and `avatar:photo`. See [the subsystem reference](../../pad/subs/avatars/README.md) for examples and photo fallback behaviour.

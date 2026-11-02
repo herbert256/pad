@@ -1951,13 +1951,13 @@ The `notations` application shows every kind with its examples.
 
 ### Showcase tags
 ```
-{pad:avatar 'Herbert Jebbink', size=48, shape='square'/}   # initials in a circle/square, colour from a hash of the name
-{pad:identicon $email, size=64/}                   # a symmetric 5x5 pattern from a sha256 hash, own colour
+{avatar:initials 'Herbert Jebbink', size=48, shape='square'/}   # initials in a circle/square, colour from a hash of the name
+{avatar:identicon $email, size=64/}                   # a symmetric 5x5 pattern from a sha256 hash, own colour
 {pad:placeholder '600x300', text='Hero image'/}    # grey SVG box with crossing lines; ratio='16:9', fluid
 {pad:progress 72, max=100, label='Upload'/}       # styled <progress> with label and %; steps for dots, color=, size=
 {pad:rating 4.5, max=5/}                           # stars as SVG, half stars clipped, aria '4.5 out of 5'; icon='heart'
 {icon:arrow-right size=20, label='Next'/}   # line icon in currentColor, a file of subs/icons/types/; see Icons
-{pad:gravatar $email, size=64, default='identicon'/} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
+{avatar:gravatar $email, size=64, default='identicon'/} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
 {notation:chess $fen, flip, highlight='e2,e4', arrow='e2-e4'/}   # a FEN as an SVG board, pieces described for a screen reader
 {game:sudoku '53..7....6..195...'/}                   # a game - played in the page; see Games
 {pad:diff $old, $new/}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
