@@ -16,7 +16,7 @@
   // a _data file. Records come under a first row of their field names and their values are
   // never formulas; a list of rows of values, or cells by their names ([ 'A1' => 10, 'B1' =>
   // '=A1*2' ]), may hold formulas as the content does. The content is read as written, as
-  // {pad:datatable}'s is: tags in it do not run, a cell holding {$x} holds that text.
+  // {table:standard}'s is: tags in it do not run, a cell holding {$x} holds that text.
   //
   //   formulas=  formulas put in cells: total=B2*C2 fills a column - named in the first row,
   //              a new one when none is - down every row below the first, the formula being

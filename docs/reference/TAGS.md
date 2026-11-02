@@ -4056,19 +4056,19 @@ date are an error under the strict check.
 
 ---
 
-### datatable
-Rows as a complete, accessible HTML table (`tags/_lib/datatable.php`) - a header from the field names,
+### table:standard
+Rows as a complete, accessible HTML table (`subs/tables/_lib/table.php`) - a header from the field names,
 numbers right-aligned and formatted alike down their column, a totals row, header links that
 sort and page links that page, all on the server.
 
 ```html
-{pad:datatable data='orders', columns='number, customer, total', totals='total'/}
-{pad:datatable data='orders', format="total:currency('EUR'), date:date('j M')", sortable, striped/}
-{pad:datatable data='cities', rows=10, sortable, caption='Largest cities'/}
-{pad:datatable totals='amount'}
+{table:standard data='orders', columns='number, customer, total', totals='total'/}
+{table:standard data='orders', format="total:currency('EUR'), date:date('j M')", sortable, striped/}
+{table:standard data='cities', rows=10, sortable, caption='Largest cities'/}
+{table:standard totals='amount'}
   month,amount
   Jan,12400
-{/pad:datatable}
+{/table:standard}
 ```
 
 **Parameters:**

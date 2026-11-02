@@ -93,6 +93,8 @@
                       "{sound:chime/}\n{sound:chime/}\n{sound:pop on='click', target='#save'/}" ],
       'printable' => [ 'A printable, a file of pad/subs/printables/types/ - pages made for paper, the same on the screen, printed and as a PDF, never bare.', 'subsystems',
                       "{printable:labels data='rows', sheet='a4-3x8'}...{/printable:labels}\n{printable:labels data='rows'}...{/printable:labels}" ],
+      'table' => [ 'A table of rows, grouped records, a pivot or a matrix from pad/subs/tables/types/.', 'subsystems',
+                   "{table:standard data='orders', sortable/}\n{table:grouped data='orders', group='region', totals='amount'/}" ],
       'calendar' => [ 'A Gregorian calendar view from pad/subs/calendars/types/ - days, weeks, months, quarters, years and agendas.', 'subsystems',
                       "{calendar:month '2026-11'/}\n{calendar:week '2026-11-02'/}\n{calendar:year '2026'/}" ],
       'notation' => [ 'A notation, a file of pad/subs/notations/types/ - a formula, a tune, a word or a position drawn on the server.', 'subsystems',

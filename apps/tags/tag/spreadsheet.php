@@ -24,7 +24,7 @@ PAD;
     'editable' => 'Cells to edit: bare, every number, date and logical value; or the cells and ranges named. An edit posts back and the sheet is computed again.',
     'seed'     => 'The seed of RAND, 0 when not given: the same numbers on every request.' ];
 
-  $tagSee     = [ 'datatable', 'live', 'form' ];
+  $tagSee     = [ 'table:standard', 'live', 'form' ];
 
   $subsystemKindLinks = appSubsystemLinks ( 'formula' );
 

@@ -34,6 +34,6 @@ PAD;
     'west'      => 'longitude: the western edge of the box, -180 - east of <code>east</code> the box crosses the 180th meridian.',
     'east'      => 'longitude: the eastern edge of the box, 180.' ];
 
-  $tagSee     = [ 'lorem', 'data', 'datatable' ];
+  $tagSee     = [ 'lorem', 'data', 'table:standard' ];
 
 ?>

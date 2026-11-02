@@ -32,7 +32,7 @@
   // The other files of this directory draw the other kinds - scatter.php scatter and bubble,
   // hierarchy.php treemap and sunburst, and so on - and the parts they share: the opening,
   // the style and the number format. They are all included with this file, which is included
-  // when a page draws a chart; {pad:map}, {pad:timeline}, {pad:datatable}, {calendar:month} and {diagram:auto}, that
+  // when a page draws a chart; {pad:map}, {pad:timeline}, {table:standard}, {calendar:month} and {diagram:auto}, that
   // draw with its parts, include it themselves. padChartAttr and padChartDedent, which tags
   // that draw no chart use as well, are in lib/chart.php, loaded on every request.
   //

@@ -17,6 +17,6 @@ PAD;
     'window' => 'The number of pages shown on each side of the current one; 2 by default. The first and the last page always show, a gap (<code>…</code>) stands for the pages left out.',
     'query'  => 'The request value the links set. By default the variable <code>page=</code> was written with - <code>page=$pg</code> makes the links set <code>pg</code> - else <code>page</code>.' ];
 
-  $tagSee     = [ 'datatable', 'array', 'collection' ];
+  $tagSee     = [ 'table:standard', 'array', 'collection' ];
 
 ?>
