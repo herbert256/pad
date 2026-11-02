@@ -93,6 +93,8 @@
                       "{sound:chime/}\n{sound:chime/}\n{sound:pop on='click', target='#save'/}" ],
       'printable' => [ 'A printable, a file of pad/subs/printables/types/ - pages made for paper, the same on the screen, printed and as a PDF, never bare.', 'subsystems',
                       "{printable:labels data='rows', sheet='a4-3x8'}...{/printable:labels}\n{printable:labels data='rows'}...{/printable:labels}" ],
+      'image' => [ 'Local images as thumbnails, responsive pictures, captioned figures or contact sheets.', 'subsystems',
+                   "{image:thumbnail 'photo.jpg', width=320, alt='A landscape'/}\n{image:picture 'photo.jpg', widths='320,640,960', alt='A landscape'/}" ],
       'avatar' => [ 'An identity picture: initials, identicons, Gravatar, geometric art or a photograph with a local fallback.', 'subsystems',
                     "{avatar:initials 'Ada Lovelace'/}\n{avatar:geometric 'ada', style='rings'/}" ],
       'calendar' => [ 'A Gregorian calendar view from pad/subs/calendars/types/ - days, weeks, months, quarters, years and agendas.', 'subsystems',

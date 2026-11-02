@@ -1,13 +1,13 @@
 <?php
 
-  // Thumbnails - the {pad:img} tag. A picture of www/<application>/ is resized with GD to the
+  // Thumbnails - the {image:thumbnail} tag. A picture of www/<application>/ is resized with GD to the
   // size the page shows it at, once, and written beside the entry point as a file the web
   // server sends on its own: www/<application>/_thumbs/<hash>.<ext>. The page gets an
   // <img> with its width and height (no layout shift), loading="lazy", decoding="async"
   // and a srcset whose second picture is made at twice the size for a sharp screen.
   //
-  //   {pad:img 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'}
-  //   {pad:img 'photos/dunes.jpg', width=300, fit='contain', format='webp', quality=70, alt=''}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'}
+  //   {image:thumbnail 'photos/dunes.jpg', width=300, fit='contain', format='webp', quality=70, alt=''}
   //
   // padImg         the <img> element of a picture, '' when it cannot be made
   // padImgSource   the picture's path, checked: inside www/<application>/, a JPEG, PNG,
@@ -83,7 +83,7 @@
     $width  = max ( 0, (int) ( $opts ['width']  ?? 0 ) );
     $height = max ( 0, (int) ( $opts ['height'] ?? 0 ) );
 
-    list ( $crop, $w1, $h1, $max ) = padImgSizes ( $sw, $sh, $width, $height, $fit );
+    list ( $crop, $w1, $h1, $max ) = padImgSizes ( $sw, $sh, $width, $height, $fit, padImageFocus ( $opts ['focusx'] ?? 50 ), padImageFocus ( $opts ['focusy'] ?? 50 ) );
 
     // The filters, without those past their budget at this size (padFilterBudget).
 
@@ -140,6 +140,12 @@
     if ( $images )
       $base [] = padFilterKey ( $images );
 
+    if ( $markup and ( isset ( $opts ['_picture'] ) or isset ( $opts ['_result'] ) ) ) {
+      if ( $padCheckSyntax )
+        padError ( 'picture and contactsheet require image filters, not ascii or halftone markup' );
+      return '';
+    }
+
     if ( $markup )
       return padFilterStyle () . padImgMarkup ( $path, $type, $turn, $crop, $w1, $h1, $images, $markup, $base, $opts ['alt'] );
 
@@ -147,6 +153,12 @@
 
     if ( $one === NULL )
       return padImgTag ( padAsset ( $name ), '', $w1, $h1, $opts ['alt'] );
+
+    if ( $opts ['_result'] ?? FALSE )
+      return [ $one, $w1, $h1 ];
+
+    if ( $opts ['_picture'] ?? FALSE )
+      return padImageResponsive ( $path, $type, $turn, $crop, $w1, $h1, $format, $quality, $base, $images, $holds, $loops, $pixels, $opts );
 
     // The 2x picture, as far as the source reaches: a density of 1.2 or more is worth a
     // second file, less is the same picture again. A picture of pixel filters has none: its
@@ -291,7 +303,18 @@
   // The part of the upright source that is drawn - x, y, width, height - the size of the
   // 1x picture, and how much larger than that the source is: the most a 2x can be.
 
-  function padImgSizes ( $sw, $sh, $width, $height, $fit ) {
+  function padImageFocus ( $value ) {
+
+    global $padCheckSyntax;
+    if ( ! is_numeric ( $value ) or ! is_finite ( (float) $value ) or $value < 0 or $value > 100 ) {
+      if ( $padCheckSyntax ) padError ( 'image focusx= and focusy= must be percentages from 0 to 100' );
+      return 50;
+    }
+    return (float) $value;
+
+  }
+
+  function padImgSizes ( $sw, $sh, $width, $height, $fit, $focusx = 50, $focusy = 50 ) {
 
     if ( ! $width and ! $height )
       list ( $width, $height ) = [ $sw, $sh ];
@@ -313,8 +336,8 @@
     $ratio = $width / $height;
     $cw    = min ( $sw, $sh * $ratio );
     $ch    = $cw / $ratio;
-    $cx    = (int) round ( ( $sw - $cw ) / 2 );
-    $cy    = (int) round ( ( $sh - $ch ) / 2 );
+    $cx    = (int) max ( 0, min ( $sw - $cw, round ( $sw * $focusx / 100 - $cw / 2 ) ) );
+    $cy    = (int) max ( 0, min ( $sh - $ch, round ( $sh * $focusy / 100 - $ch / 2 ) ) );
     $f     = min ( 1, $cw / $width );
     $w1    = max ( 1, (int) round ( $width  * $f ) );
     $h1    = max ( 1, (int) round ( $height * $f ) );

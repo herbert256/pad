@@ -12,7 +12,7 @@
       'oauth'    => [ 'OAuth providers', 'The provider parameter of {pad:oauth}, padOAuthStart and padOAuthUser.', 'oauth', 'github' ],
       'channel'  => [ 'Notification channels', 'Delivery channels selected in the fourth argument of padNotify.', 'notifications', 'mail' ],
       'ai'       => [ 'AI providers', 'The provider= option of {pad:ai} or padAi.', 'ai', 'anthropic' ],
-      'filter'   => [ 'Image filters', 'The filter= option of {pad:img} selects a filter or placeholder.', 'img', 'grayscale' ],
+      'filter'   => [ 'Image filters', 'The filter= option of {image:thumbnail} selects a filter or placeholder.', 'image:thumbnail', 'grayscale' ],
       'holidays' => [ 'Holiday calendars', 'The country parameter of {pad:holidays}, with optional regions.', 'holidays', 'nl' ],
       'search'   => [ 'Search languages', 'The lang= option of {pad:search} selects stop words and a stemmer.', 'search', 'en' ],
       'format'   => [ 'Data formats', 'The format= option of {pad:data}, file extensions and the format helpers.', 'data', 'toml' ],
@@ -72,7 +72,7 @@
         $about = 'Set up the provider and its credentials first. Shown as source because it calls a model service.';
         break;
       case 'filter':
-        $source = "{pad:img 'photo.jpg', alt='A landscape', width=320, filter='$kind'/}";
+        $source = "{image:thumbnail 'photo.jpg', alt='A landscape', width=320, filter='$kind'/}";
         $about = 'Put photo.jpg in the application\'s www directory before running this example.';
         break;
       case 'holidays':

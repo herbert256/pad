@@ -3,7 +3,7 @@
   // bayer - ordered dithering: every pixel weighed against Bayer's threshold map of 8 by 8, the
   // cross-hatch of an old screen; levels= and colors= as dither's.
   //
-  //   {pad:img 'photos/harbour.jpg', width=400, filter='bayer', levels=4, alt='The harbour'/}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, filter='bayer', levels=4, alt='The harbour'/}
 
   return [
 

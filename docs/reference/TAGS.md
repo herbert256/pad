@@ -3409,14 +3409,14 @@ errors under the strict check; the lenient walk shows the items as they are, wit
 
 ---
 
-### img
+### image:thumbnail
 A picture of `www/<application>/` as a thumbnail of the size the page shows it at - resized
-once with GD (`tags/_lib/img.php`) and kept in `www/<application>/_thumbs/`, where the web server
+once with GD (`subs/images/_lib/img.php`) and kept in `www/<application>/_thumbs/`, where the web server
 sends it like any asset.
 
 ```html
-{pad:img 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'/}
-{pad:img 'photos/dunes.jpg', width=300, height=300, fit='contain', format='webp', quality=70, alt=''/}
+{image:thumbnail 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'/}
+{image:thumbnail 'photos/dunes.jpg', width=300, height=300, fit='contain', format='webp', quality=70, alt=''/}
 ```
 
 **Parameters:**
@@ -3436,10 +3436,10 @@ sends it like any asset.
 files of its `types/` the filters there are, written in the order they apply:
 
 ```html
-{pad:img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
-{pad:img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='The harbour'/}
-{pad:img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour in dots'/}
-{pad:img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='The harbour'/}
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour in dots'/}
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}
 ```
 
 | Filter | Does | Its options |

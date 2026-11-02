@@ -4,7 +4,7 @@
   // covers (GD's pixelate filter, its advanced form); made at 1x and shown with its pixels
   // sharp, written as a PNG unless format= says otherwise.
   //
-  //   {pad:img 'photos/harbour.jpg', width=400, filter='pixelate', cell=12, alt='The harbour'/}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, filter='pixelate', cell=12, alt='The harbour'/}
 
   return [
 

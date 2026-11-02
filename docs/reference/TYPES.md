@@ -1089,3 +1089,7 @@ types/
 ### avatar
 
 The avatar subsystem provides `avatar:initials`, `avatar:identicon`, `avatar:gravatar`, `avatar:geometric` and `avatar:photo`. See [the subsystem reference](../../pad/subs/avatars/README.md) for examples and photo fallback behaviour.
+
+### image
+
+The image subsystem provides `image:thumbnail`, `image:picture`, `image:figure` and `image:contactsheet`. See [the subsystem reference](../../pad/subs/images/README.md) for responsive variants, focal-point cropping, captions and composite contact sheets.

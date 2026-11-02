@@ -16,6 +16,7 @@
   function tagsKindTypes () {
 
     return [
+      'image' => [ 'Images', 'Responsive pictures, figures and contact sheets', 'single', " 'photos/avatar-demo.jpg', alt='Harbour'/}", 'image' ],
       'avatar' => [ 'Avatars', 'Identity pictures and private fallbacks', 'single', " 'Ada Lovelace'/}", 'avatar' ],
       'calendar' => [ 'Calendars', 'Gregorian dates, events and holidays', 'both', " '2026-11', data='appointments'/}", 'calendar' ],
       'chart'    => [ 'Chart types',       'inline SVG',                 'both',   " data='rows', label='field', value='field'/}", 'chart'   ],
@@ -72,6 +73,9 @@
         $form = ( $type == 'sequence' and in_array ( $kind, tagsKindParameterized () ) ) ? 'both' : $form;
 
         $tail = ( $type == 'sequence' ) ? tagsKindSequenceParm ( $kind ) . $after : $after;
+
+        if ( $type === 'image' and $kind === 'contactsheet' )
+          $tail = " data='photos', src='src', caption='caption'/}";
 
         if ( $type === 'calendar' )
           $tail = " '" . ( [ 'day' => '2026-11-04', 'week' => '2026-11-02', 'year' => '2026', 'quarter' => '2026-Q4' ] [$kind] ?? '2026-11' ) . "', data='appointments'/}";
@@ -232,6 +236,10 @@
     }
 
     switch ( $type ) {
+
+      case 'image':
+        $file = APPS . "tags/examples/image/$kind.pad";
+        return $example ( "An image $kind", 'Local images through the shared filter and thumbnail pipeline.', trim ( padFileGet ( $file ) ) );
 
       case 'avatar':
         $file = APPS . "tags/examples/avatar/$kind.pad";

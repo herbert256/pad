@@ -18,6 +18,6 @@ PAD;
     'text'  => 'Written in the middle and the accessible name; by default the size (<code>600 × 300</code>) or the ratio.',
     'fluid' => 'Bare option: as wide as the container (<code>width="100%"</code>), the height following from the proportions.' ];
 
-  $tagSee     = [ 'img', 'lorem' ];
+  $tagSee     = [ 'image:thumbnail', 'lorem' ];
 
 ?>

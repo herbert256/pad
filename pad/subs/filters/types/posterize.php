@@ -3,7 +3,7 @@
   // posterize - every colour channel cut to levels= steps (4), as a screen print of flat
   // areas; written as a PNG unless format= says otherwise.
   //
-  //   {pad:img 'photos/harbour.jpg', width=400, filter='posterize', levels=3, alt='The harbour'/}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, filter='posterize', levels=3, alt='The harbour'/}
 
   return [
 

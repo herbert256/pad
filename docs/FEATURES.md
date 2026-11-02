@@ -1853,18 +1853,18 @@ application shows every pattern with a seed to change by link.
 
 ### Image filters
 ```
-{pad:img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
-{pad:img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='The harbour'/}   # in the order written
-{pad:img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour'/}    # SVG dots for the <img>
-{pad:img 'photos/harbour.jpg', width=400, filter='ascii', columns=80, alt='The harbour'/}   # text in a <pre role="img">
-{pad:img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}            # a placeholder behind it
-{pad:img 'logos/shop.png', width=200, filter='thumbhash', alt='The shop'/}                  # ThumbHash: its shape, transparency kept
-{pad:img 'photos/harbour.jpg', width=400, filter='edges', colors='#fbfaf7, #1d1d1b', alt='The harbour'/}   # Sobel: ink on paper
-{pad:img 'scans/letter.png', width=600, filter='threshold', threshold=60, alt='The letter'/}  # ink or paper, a hard cut
-{pad:img 'photos/harbour.jpg', width=400, filter='solarize', threshold=40, alt='The harbour'/} # the highlights turned negative
-{pad:img 'photos/misty.jpg', width=400, filter='autocontrast', cutoff=2, alt='The valley'/}   # its tones from black to white
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='The harbour'/}   # in the order written
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour'/}    # SVG dots for the <img>
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='ascii', columns=80, alt='The harbour'/}   # text in a <pre role="img">
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}            # a placeholder behind it
+{image:thumbnail 'logos/shop.png', width=200, filter='thumbhash', alt='The shop'/}                  # ThumbHash: its shape, transparency kept
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='edges', colors='#fbfaf7, #1d1d1b', alt='The harbour'/}   # Sobel: ink on paper
+{image:thumbnail 'scans/letter.png', width=600, filter='threshold', threshold=60, alt='The letter'/}  # ink or paper, a hard cut
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='solarize', threshold=40, alt='The harbour'/} # the highlights turned negative
+{image:thumbnail 'photos/misty.jpg', width=400, filter='autocontrast', cutoff=2, alt='The valley'/}   # its tones from black to white
 ```
-`filter=` on `{pad:img}` runs the picture through the filter subsystem, `pad/subs/filters/`: a filter
+`filter=` on `{image:thumbnail}` runs the picture through the filter subsystem, `pad/subs/filters/`: a filter
 is a file of its `types/` - no tag of its own, a word of `filter=` as a validation rule is a word of
 `padValidate` - and the files there are the filters there are. grayscale, sepia (`amount=`),
 duotone (`colors=`, dark first), posterize (`levels=`), pixelate (`cell=`), blur (`radius=` CSS
@@ -1883,7 +1883,7 @@ every pixel in PHP (sepia, duotone, posterize, vignette, the dithers, dominant) 
 at most, its 2x picture made only as far as those reach, and halftone draws 50,000 dots at most. An
 unknown filter, an option out of its bounds, a filter that cannot follow the one before and a filter
 past its budget are errors under the strict check, left out without it. Code: `pad/subs/filters/` - `_lib/filter.php` the chain and its options, `_lib/dither.php`,
-`_lib/blurhash.php`, `types/` the filters - and `pad/tags/_lib/img.php`, which applies them. The
+`_lib/blurhash.php`, `types/` the filters - and `pad/subs/images/_lib/img.php`, which applies them. The
 `patterns` application shows every filter on the same picture.
 thumbhash is a placeholder as well: Evan Wallace's ThumbHash (`_lib/thumbhash.php`, the reference
 implementation's encode and decode, MIT) in `data-thumbhash`, base64, and decoded to a PNG of at most
@@ -1964,7 +1964,7 @@ The `notations` application shows every kind with its examples.
 {pad:excerpt $body, words=24, highlight=$q/}         # whole words around the first match, <mark>ed, escaped; html
 {pad:lorem paragraphs=3, seed=7/}                    # placeholder text, classic start, reproducible; words=, sentences=, varied
 {widget:tabs}...{/widget:tabs}  {widget:modal 'x'}...{/widget:modal}         # the widgets - see Widgets
-{pad:img 'photos/harbour.jpg', width=400, height=300, alt='The harbour'/}   # GD thumbnail in www/<app>/_thumbs/, 2x srcset, lazy
+{image:thumbnail 'photos/harbour.jpg', width=400, height=300, alt='The harbour'/}   # GD thumbnail in www/<app>/_thumbs/, 2x srcset, lazy
 {pad:video 'https://youtu.be/ID', title='Launch'/}  # poster + play button, nocookie iframe only after a click; {embed:auto} for more sites
 {pad:pdf file='invoice', download}...{/pad:pdf}   # the content as a PDF (plain PHP writer) instead of the page; preview: a sheet + link
 {printable:labels data='rows', sheet='a4-3x8', pdf}...{/printable:labels}   # sheets for paper, printed alone, the same in the PDF; see Printables

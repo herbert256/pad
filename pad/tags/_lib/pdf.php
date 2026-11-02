@@ -1445,7 +1445,7 @@
   }
 
   // The bytes of a JPEG an address names: a data: address, or a file of www/<application>/
-  // by its name or by the root-relative address {pad:asset} and {pad:img} write. Anything else - a
+  // by its name or by the root-relative address {pad:asset} and {image:thumbnail} write. Anything else - a
   // PNG, another site's picture - is NULL, and the alt text stands in.
 
   function padPdfImageData ( $src ) {
