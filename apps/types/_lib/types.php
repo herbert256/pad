@@ -8,6 +8,12 @@
   function typesInfo () {
 
     return [
+      'map' => [ 'Choropleths, markers and proportional bubbles.', 'subsystems', "{map:europe width=540/}" ],
+      'holidays' => [ 'Country and regional public holidays.', 'subsystems', "{holidays:nl year=2026/}" ],
+      'search' => [ 'Ranked search, exact filters and facets.', 'subsystems', "{search:en 'documents', q='PAD'/}" ],
+      'ai' => [ 'Text and validated JSON responses.', 'subsystems', "{ai:anthropic 'Name three rivers.'/}" ],
+      'format' => [ 'Read documents into named data stores.', 'subsystems', "{format:json 'rows'}[1,2,3]{/format:json}" ],
+      'sheet' => [ 'Formula grids computed on the server.', 'subsystems', "{sheet:grid}Name,Amount\nOne,12\nTwo,=B2*2{/sheet:grid}" ],
 
       'pad'      => [ 'A built-in tag of the engine - a file of pad/tags/.', 'tags',
                       "{pad:if \$count gt 0}...{/pad:if}" ],
@@ -28,7 +34,7 @@
       'script'   => [ 'A shell script of a _scripts/ directory, its output the tag\'s.', 'tags',
                       "{script:backup/}" ],
 
-      'data'     => [ 'A data store - rows kept by {pad:data} or a file of _data/ read through the format registry.', 'stores',
+      'data'     => [ 'A data store - rows kept by {format:auto} or a file of _data/ read through the format registry.', 'stores',
                       "{data:colors}{\$colors} {/data:colors}" ],
       'content'  => [ 'A content store - a piece of template kept by {pad:content} to be shown elsewhere.', 'stores',
                       "{content:footer/}" ],
@@ -126,6 +132,12 @@
   function typesGroups () {
 
     return [
+      'map' => [ 'Choropleths, markers and proportional bubbles.', 'subsystems', "{map:europe width=540/}" ],
+      'holidays' => [ 'Country and regional public holidays.', 'subsystems', "{holidays:nl year=2026/}" ],
+      'search' => [ 'Ranked search, exact filters and facets.', 'subsystems', "{search:en 'documents', q='PAD'/}" ],
+      'ai' => [ 'Text and validated JSON responses.', 'subsystems', "{ai:anthropic 'Name three rivers.'/}" ],
+      'format' => [ 'Read documents into named data stores.', 'subsystems', "{format:json 'rows'}[1,2,3]{/format:json}" ],
+      'sheet' => [ 'Formula grids computed on the server.', 'subsystems', "{sheet:grid}Name,Amount\nOne,12\nTwo,=B2*2{/sheet:grid}" ],
       'tags'       => [ 'Tags',               'Tags with code of their own - the engine\'s, the application\'s, the template\'s' ],
       'stores'     => [ 'Stores and data',    'What a page keeps under a name and reads back'                                    ],
       'values'     => [ 'Values of the page', 'Fields, arrays, parameters and properties where the tag stands'                   ],

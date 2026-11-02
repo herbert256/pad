@@ -15,6 +15,6 @@ PAD;
   $tagOptions = [
     'name' => 'Bare option: writes the English name beside the flag; the flag is then decoration (<code>aria-hidden</code>).' ];
 
-  $tagSee     = [ 'map', 'emoji' ];
+  $tagSee     = [ 'map:auto', 'emoji' ];
 
 ?>

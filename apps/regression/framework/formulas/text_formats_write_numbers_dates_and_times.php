@@ -1,6 +1,6 @@
 <?php
 
-  // The format codes of TEXT, which formats= of {pad:spreadsheet} writes its columns with
+  // The format codes of TEXT, which formats= of {sheet:grid} writes its columns with
   // (_lib/formulas.php): 0 # ? and the decimal point, a comma between digits for thousands
   // and after them for a thousandth, % and E+, sections for the negative numbers and 0,
   // texts in quotes, and the dates and times - an m after an h or before an s the minutes.

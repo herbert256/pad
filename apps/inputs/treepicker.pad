@@ -1,7 +1,7 @@
 {pad:meta title='Tree picker'/}
 {include:about/}
 
-{pad:data 'categories'}
+{format:auto 'categories'}
 [
   { "id": 1, "parent": "",  "name": "Books" },
   { "id": 2, "parent": 1,   "name": "Fiction" },
@@ -12,7 +12,7 @@
   { "id": 7, "parent": 6,   "name": "Jazz" },
   { "id": 8, "parent": 6,   "name": "Classical" }
 ]
-{/pad:data}
+{/format:auto}
 
 {pad:form 'try', class='inputs-try', error}
   {input:treepicker 'category', label='Category', data='categories', value=4, rules='required|in:1,2,3,4,5,6,7,8'/}

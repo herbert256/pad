@@ -1,1 +1,1 @@
-{pad:data 'users'}[{"name":"a","admin":0}]{/pad:data}{data:users where='$admin eq 1', toData='admins'}{$name}@else@No admins{/data:users}[{pad:pad data='admins'}{$name},{/pad:pad}]
+{format:auto 'users'}[{"name":"a","admin":0}]{/format:auto}{data:users where='$admin eq 1', toData='admins'}{$name}@else@No admins{/data:users}[{pad:pad data='admins'}{$name},{/pad:pad}]

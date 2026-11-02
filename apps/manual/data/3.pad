@@ -1,34 +1,34 @@
 {common:table}{common:demo}
 
-{pad:data 'myJson'}
+{format:auto 'myJson'}
   [ { "name": "bob",   "phone": "555-5555" },
     { "name": "jim",   "phone": "555-6666" },
     { "name": "joe",   "phone": "555-7777" },      
     { "name": "jerry", "phone": "555-8888" } ]
-{/pad:data}
+{/format:auto}
 
-{pad:data}
+{format:auto}
   name,phone
   {data:myJson}
     {$name}, {$phone}
   {/data:myJson}
-{/pad:data 'myCsv'}
+{/format:auto 'myCsv'}
 
-{pad:data}
+{format:auto}
   <records>
     {data:myCsv}
       <record name="{$name}" phone="{$phone}"/>
     {/data:myCsv}
   </records>
-{/pad:data 'myXml'}
+{/format:auto 'myXml'}
 
-{pad:data}
+{format:auto}
   ---
     {data:myXml} 
     - name: {$name}
       phone: {$phone}
     {/data:myXml}
-{/pad:data 'myYaml'}
+{/format:auto 'myYaml'}
 
 {/common:demo}{common:demo}
 

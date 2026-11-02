@@ -3,7 +3,7 @@
 <p>The public holidays of twenty-eight countries, computed from rules - no service to ask, no
 table of dates to keep up to date. A country is a file of <code>pad/subs/holidays/types/</code>,
 named by its two-letter ISO code: at, be, br, ca, ch, cz, de, dk, es, fi, fr, gb, hu, ie, it, jp, lu, mx, nl, no, nz, pl, pt, ro,
-se, sk, us and za. {app:tag 'holidays'/} lists the holidays of a year; four helpers answer a page's PHP;
+se, sk, us and za. {app:tag 'holidays:auto'/} lists the holidays of a year; four helpers answer a page's PHP;
 {app:tag 'calendar:month'/} marks them in a month.</p>
 
 {common:example 'fragments/holidays_1'/}
@@ -58,7 +58,7 @@ its day. South Africa makes up for a Sunday on the Monday after it.</p>
 
 <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
   <tr><th>function</th><th>what it answers</th></tr>
-  <tr><td><code>padHolidays ( $country, $year, $region = '' )</code></td><td>the rows of a year, as {app:tag 'holidays'/} hands them over</td></tr>
+  <tr><td><code>padHolidays ( $country, $year, $region = '' )</code></td><td>the rows of a year, as {app:tag 'holidays:auto'/} hands them over</td></tr>
   <tr><td><code>padIsHoliday ( $date, $country )</code></td><td>whether the date is a public holiday there</td></tr>
   <tr><td><code>padWorkdays ( $from, $to, $country )</code></td><td>the weekdays from one date to the other that are no public holiday, both counted</td></tr>
   <tr><td><code>padAddWorkdays ( $date, $n, $country )</code></td><td>the date <code>$n</code> workdays later - or earlier, for a negative <code>$n</code></td></tr>

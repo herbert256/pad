@@ -11,11 +11,11 @@
 PAD;
 
   $tagParms   = [
-    'rows' => 'The name of the rows: a <code>{pad:data}</code> block, a stored sequence, an array of the page or of an enclosing row, or a <code>_data/</code> file. <code>data=</code> names them as well.' ];
+    'rows' => 'The name of the rows: a <code>{format:auto}</code> block, a stored sequence, an array of the page or of an enclosing row, or a <code>_data/</code> file. <code>data=</code> names them as well.' ];
 
   $tagOptions = [
     'children' => 'The field of a row that holds its children, at every depth. Default <code>children</code>.' ];
 
-  $tagSee     = [ 'branch', 'recurse', 'data' ];
+  $tagSee     = [ 'branch', 'recurse', 'format:auto' ];
 
 ?>

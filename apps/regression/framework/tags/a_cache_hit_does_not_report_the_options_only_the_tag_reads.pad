@@ -1,2 +1,2 @@
-{pad:data 'menu'}[{"name":"a","kids":[{"name":"b"}]}]{/pad:data}
+{format:auto 'menu'}[{"name":"a","kids":[{"name":"b"}]}]{/format:auto}
 {pad:tree 'menu', children='kids', cache=60, vary=$token}[{$name}{pad:recurse/}]{/pad:tree}|{pad:tree 'menu', children='kids', cache=60, vary=$token}[{$name}{pad:recurse/}]{/pad:tree}

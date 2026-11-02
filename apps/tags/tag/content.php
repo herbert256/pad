@@ -16,6 +16,6 @@ PAD;
 
   $tagOptions = [];
 
-  $tagSee     = [ 'data', 'bool', 'null', 'false' ];
+  $tagSee     = [ 'format:auto', 'bool', 'null', 'false' ];
 
 ?>

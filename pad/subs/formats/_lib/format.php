@@ -66,7 +66,7 @@
     $text = (string) $text;
 
     // A text as padData takes one (padDataText) - the indent its lines share and a byte order
-    // mark taken off - so a helper's text and a {pad:data} content read alike; a raw format's
+    // mark taken off - so a helper's text and a {format:auto} content read alike; a raw format's
     // without touching what is data in it (padFormatRawText), the bytes of a binary one as
     // they are.
 
@@ -98,7 +98,7 @@
   }
 
   // The text of a raw format - TSV, whose tabs are cells: the blank lines around it and a
-  // byte order mark taken off, and the indent of spaces its lines share - a {pad:data} content
+  // byte order mark taken off, and the indent of spaces its lines share - a {format:auto} content
   // written indented in its template - but never a tab, nor any white space inside a line.
   // padDataText trimmed the first line's leading tab, an empty first cell, and cut a tab
   // all lines open with as indent, the first column of each.

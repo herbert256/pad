@@ -5,7 +5,7 @@
   // $padChartKind. Data comes from a store, page array or _data file named by data=,
   // or the first rows terms of sequence=. title= names the chart for a screen reader.
   //
-  // As a pair the content is the data - JSON, YAML, XML or CSV, recognised as {pad:data}
+  // As a pair the content is the data - JSON, YAML, XML or CSV, recognised as {format:auto}
   // recognises it - when neither data= nor sequence= names it:
   //
   //   {chart:bar label='month', value='amount'}

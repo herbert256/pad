@@ -147,7 +147,7 @@
 
   }
 
-  // The rows data= names - a {pad:data} store, a sequence store, the page's array, a field
+  // The rows data= names - a {format:auto} store, a sequence store, the page's array, a field
   // holding a list or a _data file, as {chart:bar} and the widgets read them - or NULL without
   // data=. The level got those rows as its data from the data option, and would write the
   // section once per row: it gets its one default occurrence back.

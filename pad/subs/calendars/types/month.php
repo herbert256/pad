@@ -2,7 +2,7 @@
 
   // month - a month with events, holidays and links to its neighbours. The month is the first parameter
   // ('2026-10'), else the request value named by query= ('month') - the links to the months
-  // around it set that value - else this month. data= gives events - a {pad:data} store, a page
+  // around it set that value - else this month. data= gives events - a {format:auto} store, a page
   // array or a _data file, as for {chart:bar} - date= names their date field and title= their
   // text, else the first field that reads as a date and the first other text; link= names a
   // field with a link for the event. sunday starts the weeks on Sunday instead of Monday.

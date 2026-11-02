@@ -1,6 +1,6 @@
 {pad:meta title='A collection searched', about='The books of _content/collectionBooks/ that a query finds, ranked, the matched words marked in the excerpt.'/}
-{pad:search 'collectionBooks', q='planets'}
+{search:auto 'collectionBooks', q='planets'}
   <p><b>{$title}</b> ({$year}) - score {$score}<br>{!excerpt}</p>
 @else@
   <p>Nothing found.</p>
-{/pad:search}
+{/search:auto}

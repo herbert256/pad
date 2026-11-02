@@ -7,23 +7,23 @@
   function appSubsystemFamilies () {
 
     $info = [
-      'map'      => [ 'Map views', 'The view parameter of {pad:map} selects a country or region.', 'map', 'world' ],
+      'map'      => [ 'Map views', 'The view parameter of {map:auto} selects a country or region.', 'map', 'world' ],
       'rule'     => [ 'Validation rules', 'Rules passed to padValidate or a form field\'s rules= option.', 'validator', 'required' ],
       'oauth'    => [ 'OAuth providers', 'The provider parameter of {pad:oauth}, padOAuthStart and padOAuthUser.', 'oauth', 'github' ],
       'channel'  => [ 'Notification channels', 'Delivery channels selected in the fourth argument of padNotify.', 'notifications', 'mail' ],
-      'ai'       => [ 'AI providers', 'The provider= option of {pad:ai} or padAi.', 'ai', 'anthropic' ],
+      'ai'       => [ 'AI providers', 'The provider= option of {ai:auto} or padAi.', 'ai', 'anthropic' ],
       'filter'   => [ 'Image filters', 'The filter= option of {image:thumbnail} selects a filter or placeholder.', 'image:thumbnail', 'grayscale' ],
-      'holidays' => [ 'Holiday calendars', 'The country parameter of {pad:holidays}, with optional regions.', 'holidays', 'nl' ],
-      'search'   => [ 'Search languages', 'The lang= option of {pad:search} selects stop words and a stemmer.', 'search', 'en' ],
-      'format'   => [ 'Data formats', 'The format= option of {pad:data}, file extensions and the format helpers.', 'data', 'toml' ],
-      'formula'  => [ 'Spreadsheet functions', 'Functions inside the formulas of {pad:spreadsheet} cells.', 'spreadsheet', 'sum' ],
+      'holidays' => [ 'Holiday calendars', 'The country parameter of {holidays:auto}, with optional regions.', 'holidays', 'nl' ],
+      'search'   => [ 'Search languages', 'The lang= option of {search:auto} selects stop words and a stemmer.', 'search', 'en' ],
+      'format'   => [ 'Data formats', 'The format= option of {format:auto}, file extensions and the format helpers.', 'data', 'toml' ],
+      'formula'  => [ 'Spreadsheet functions', 'Functions inside the formulas of {sheet:grid} cells.', 'sheet:grid', 'sum' ],
       'theme'    => [ 'Themes', 'The name parameter of {pad:theme} selects page or box colours.', 'theme', 'paper' ],
       'palette'  => [ 'Colour palettes', 'The name parameter of {pad:palette}, or palette= on a chart.', 'palette', 'viridis' ],
     ];
 
     $families = [];
 
-    foreach ( padSubsystemKinds as $key => $directory ) {
+    foreach ( array_diff_key ( padSubsystemKinds, padSubsystems ) as $key => $directory ) {
       [ $label, $about, $tag, $example ] = $info [$key] ?? [ ucfirst ( $directory ), 'Kinds selected through the subsystem\'s API.', '', '' ];
       $families [$key] = compact ( 'key', 'directory', 'label', 'about', 'tag', 'example' );
     }
@@ -53,7 +53,7 @@
 
     switch ( $family ) {
       case 'map':
-        $source = "{pad:map '$kind', width=540/}";
+        $source = "{map:auto '$kind', width=540/}";
         $run = TRUE;
         $about = 'The view without data; data= and value= colour its regions.';
         break;
@@ -68,7 +68,7 @@
         $about = 'Provide the recipient, channel settings and _notifications/order-shipped.pad first. Shown as source because this call delivers a notification.';
         break;
       case 'ai':
-        $source = "{pad:ai 'Name three rivers of France.', provider='$kind'/}";
+        $source = "{ai:auto 'Name three rivers of France.', provider='$kind'/}";
         $about = 'Set up the provider and its credentials first. Shown as source because it calls a model service.';
         break;
       case 'filter':
@@ -76,11 +76,11 @@
         $about = 'Put photo.jpg in the application\'s www directory before running this example.';
         break;
       case 'holidays':
-        $source = "{pad:holidays '$kind', year=2026/}";
+        $source = "{holidays:auto '$kind', year=2026/}";
         $run = TRUE;
         break;
       case 'search':
-        $source = "{pad:data 'catalogDocs'}\n[ { \"title\": \"PAD\", \"body\": \"Templates on the server\" } ]\n{/pad:data}\n{pad:search 'catalogDocs', q='PAD', fields='title, body', lang='$kind'}\n  <p>{\$title}: {!excerpt}</p>\n{/pad:search}";
+        $source = "{format:auto 'catalogDocs'}\n[ { \"title\": \"PAD\", \"body\": \"Templates on the server\" } ]\n{/format:auto}\n{search:auto 'catalogDocs', q='PAD', fields='title, body', lang='$kind'}\n  <p>{\$title}: {!excerpt}</p>\n{/search:auto}";
         $run = TRUE;
         break;
       case 'format':
@@ -95,7 +95,7 @@
         if ( preg_match ( '/^  (=\S.*?)(?:[ \t]{2,}\S.*)?$/m', $text, $match ) ) {
           $formula = str_replace ( [ '\\', "'" ], [ '\\\\', "\\'" ], $match [1] );
           $sample = trim ( (string) padFileGet ( APPS . 'sheets/_data/sample.csv' ) );
-          $source = "{pad:spreadsheet formulas='G1$formula'}\n$sample\n{/pad:spreadsheet}";
+          $source = "{sheet:grid formulas='G1$formula'}\n$sample\n{/sheet:grid}";
           $run = TRUE;
           $about = 'The first example from the function\'s source, computed in G1 on the sheets application\'s sample data.';
         } else {
@@ -150,7 +150,7 @@
           'link' => "kind/$family/$kind", 'about' => ucfirst ( $first ?: $info ['about'] ),
           'text' => $text, 'group' => "subsystem-$family", 'form' => 'usage',
           'syntax' => $example ['source'], 'language' => $example ['language'], 'example' => $example,
-          'parms' => [], 'options' => [], 'see' => $info ['tag'] ? [ 'pad:' . $info ['tag'] ] : []
+          'parms' => [], 'options' => [], 'see' => $info ['tag'] ? [ str_contains ( $info ['tag'], ':' ) ? $info ['tag'] : 'pad:' . $info ['tag'] ] : []
         ];
       }
 
@@ -163,7 +163,7 @@
     $html = [];
     foreach ( (array) $families as $family )
       foreach ( padKinds ( padSubsystemKinds [$family] ) as $kind )
-        $html [] = '<a href="' . htmlspecialchars ( "$base$family/$kind", ENT_QUOTES ) . '"><code>' . htmlspecialchars ( $kind ) . '</code></a>';
+        $html [] = '<a href="' . htmlspecialchars ( ( isset ( padSubsystems [$family] ) and $base === '?kind/' ? '?tag/' : $base ) . "$family/$kind", ENT_QUOTES ) . '"><code>' . htmlspecialchars ( $kind ) . '</code></a>';
 
     return implode ( ', ', $html );
 

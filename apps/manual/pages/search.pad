@@ -1,6 +1,6 @@
 {pad:meta title='Site search'/}
 
-<p>A search box without a search server: {app:tag 'search'/} finds the rows of a source that
+<p>A search box without a search server: {app:tag 'search:auto'/} finds the rows of a source that
 match a query and ranks them, the best first. This manual has a little collection of recipes,
 <code>_content/recipes/</code> - six Markdown files - and the examples search it live.</p>
 
@@ -8,7 +8,7 @@ match a query and ranks them, the best first. This manual has a little collectio
 
 <ul>
   <li>The source is a Markdown collection, as {app:tag 'collection'/} reads it, else a
-  {app:tag 'data'/} store, a page's array - a <code>db()</code> result - or a <code>_data</code>
+  {app:tag 'format:auto'/} store, a page's array - a <code>db()</code> result - or a <code>_data</code>
   file of the name.</li>
   <li>A row found is the source's own row with two fields added: <code>score</code> and
   <code>excerpt</code> - the words around the first match, every matched word marked. The
@@ -56,6 +56,6 @@ title, a link when <code>link=</code> names a field with one, and the excerpt -
   <li>A page with a search box sends <code>q</code> to itself:
   <code>&lt;form&gt;&lt;input name="q"&gt;&lt;/form&gt;</code>, its PHP takes
   <code>$q = padRequest ( 'q', '' );</code> and the template searches with
-  <code>{pad:open/}pad:search 'recipes', q=$q{pad:close/}</code> - an empty query finds nothing, the
+  <code>{pad:open/}search:auto 'recipes', q=$q{pad:close/}</code> - an empty query finds nothing, the
   <code>@else@</code>.</li>
 </ul>

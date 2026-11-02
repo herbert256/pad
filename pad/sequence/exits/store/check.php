@@ -10,9 +10,9 @@
   if ( $pqStoreTaken )
     padError ( "Store name '$padLastPush' can not be equal to $pqStoreTaken" );
 
-  // A name the page made something of already - an array, a {pad:data}, {pad:content}, {pad:bool} or
+  // A name the page made something of already - an array, a {format:auto}, {pad:content}, {pad:bool} or
   // {pad:define} - is no free name either: the sequence store would take its place for {property:name}
-  // (pqStoreHeld). The strict check says so, as the {pad:data} side says it of a sequence store;
+  // (pqStoreHeld). The strict check says so, as the {format:auto} side says it of a sequence store;
   // the lenient walk writes the store, as it did.
 
   elseif ( ( $GLOBALS ['padCheckSyntax'] ?? FALSE ) and ( $pqStoreHeld = pqStoreHeld ( $padLastPush ) ) )

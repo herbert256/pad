@@ -90,7 +90,7 @@ This directory contains PAD applications and examples.
 | [regression/errors](regression/errors/README.md) | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
 | [regression/common](regression/common/README.md) | Test | The pages of the suite that use _common - {common:example}, {common:demo}, {common:table} - fetched and compared the same way |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos - gallery, listen and guess pages |
-| [sheets](sheets/README.md) | Standard | Spreadsheets made with `{pad:spreadsheet}` - budget, loan, grades, dates, an editable sheet - and every function of `pad/subs/formulas/types/` with its examples |
+| [sheets](sheets/README.md) | Standard | Spreadsheets made with `{sheet:grid}` - budget, loan, grades, dates, an editable sheet - and every function of `pad/subs/formulas/types/` with its examples |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |
 | [test](test/README.md) | Minimal | A scratch application for trying things out, with `_common` switched off |
 | [webcomponents](webcomponents/README.md) | Standard | Web components: custom elements PAD renders with their shadow root (`{pad:shadow}`), upgraded by small modules - cards, tabs, a rating, a form-associated stepper, Lit |

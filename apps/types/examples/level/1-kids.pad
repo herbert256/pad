@@ -1,6 +1,6 @@
 {pad:meta title='An array field of an enclosing row', about='Each family has its kids; level:kids is that array of the row around it.'/}
-{pad:data 'families'}[ {"family": "Jansen", "kids": [ {"name": "Eva"}, {"name": "Tim"} ]},
-                   {"family": "Smit",   "kids": [ {"name": "Noor"} ]} ]{/pad:data}
+{format:auto 'families'}[ {"family": "Jansen", "kids": [ {"name": "Eva"}, {"name": "Tim"} ]},
+                   {"family": "Smit",   "kids": [ {"name": "Noor"} ]} ]{/format:auto}
 <ul>
   {data:families}<li>{$family}: {level:kids}{$name} {/level:kids}</li>{/data:families}
 </ul>

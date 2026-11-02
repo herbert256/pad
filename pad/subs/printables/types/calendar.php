@@ -63,7 +63,7 @@
   // the local ones when the page's locale is in a language of the country - Koningsdag - as
   // {calendar:month} has them, else the English ones. A month year= or month= fixes in a year the
   // country's file does not know (New Zealand's after 2052) is an error under the strict
-  // check, as for {calendar:month} and {pad:holidays}; this year, which the template does not fix, is
+  // check, as for {calendar:month} and {holidays:auto}; this year, which the template does not fix, is
   // shown with only the days inside those years marked - where the rules' rows were marked
   // without a word, New Zealand's 2060 with King's Birthday and no Matariki.
 

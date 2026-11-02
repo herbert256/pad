@@ -1,4 +1,4 @@
 {pad:set $name = '  ada lovelace  '/}
 <p>{$name | trim | ucwords}</p>
-{pad:data 'langs'}["php", "sql", "pad"]{/pad:data}
+{format:auto 'langs'}["php", "sql", "pad"]{/format:auto}
 <p>{data:langs}{$langs} {/data:langs | upper}</p>

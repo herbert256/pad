@@ -1,6 +1,6 @@
 <?php
 
-  // The body of {pad:search}: the rows of a source a query finds, the best first - the search
+  // The body of {search:auto}: the rows of a source a query finds, the best first - the search
   // subsystem, subs/search/_lib/search.php. The first parameter names the source: a Markdown
   // collection (_content/<name>/), else a data store, a page's array (a db() result) or a
   // _data file of the name. q= is the query - words, "a phrase", prefix*, -left out;
@@ -16,25 +16,34 @@
   // tag a list of them - the first= best: the first field of fields= as the title, a link
   // to the field link= names, and the excerpt.
   //
-  //   {pad:search 'blog', q=$q, fields='title^2, body', lang='en'}
+  //   {search:auto 'blog', q=$q, fields='title^2, body', lang='en'}
   //     <a href="?blog/post&slug={$slug}">{$title}</a> {$score} {!excerpt}
   //   @else@
   //     Nothing found.
-  //   {/pad:search}
+  //   {/search:auto}
 
   include_once PAD . 'subs/search/_lib/search.php';
+
+  padSearchInfo ( [ 'total' => 0, 'facets' => [] ] );
 
   $padSearchSource = padSearchSource ( padUnprotect ( (string) $padParm ) );
 
   if ( is_string ( $padSearchSource ) ) {
     if ( $padCheckSyntax )
-      padError ( "{pad:search}: $padSearchSource" );
+      padError ( "{search:auto}: $padSearchSource" );
     return [];
   }
 
   $padSearchOptions = [ 'lang'   => padUnprotect ( (string) padTagParm ( 'lang', padSearchLocale () ) ),
                         'fields' => padUnprotect ( (string) padTagParm ( 'fields', '' ) ),
                         'words'  => padTagParm ( 'words', 30 ) ];
+
+  if ( $padTag [$pad] !== 'auto' )
+    $padSearchOptions ['lang'] = $padTag [$pad];
+
+  foreach ( [ 'filters', 'facets' ] as $padSearchOption )
+    if ( ( $padSearchValue = padTagParm ( $padSearchOption, NULL ) ) !== NULL )
+      $padSearchOptions [$padSearchOption] = is_string ( $padSearchValue ) ? padParmText ( $padSearchValue ) : $padSearchValue;
 
   if ( ( $padSearchExcerpt = padTagParm ( 'excerpt', NULL ) ) !== NULL )
     $padSearchOptions ['excerpt'] = padUnprotect ( (string) $padSearchExcerpt );
@@ -60,7 +69,7 @@
 
   if ( is_string ( $padSearchRows ) ) {
     if ( $padCheckSyntax )
-      padError ( "{pad:search}: $padSearchRows" );
+      padError ( "{search:auto}: $padSearchRows" );
     return [];
   }
 

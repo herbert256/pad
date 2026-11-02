@@ -1,5 +1,5 @@
 {pad:meta title='Threaded comments', about='Each reply is rendered by the same body one level deeper, indented by its depth.'/}
-{pad:data 'recurseThread'}
+{format:auto 'recurseThread'}
 [
   { "who": "Ann", "text": "Is the shop open on Sunday?", "children": [
       { "who": "Ben", "text": "Only in December.", "children": [
@@ -7,7 +7,7 @@
       { "who": "Cy", "text": "Check the calendar page." } ] },
   { "who": "Dee", "text": "Great service." }
 ]
-{/pad:data}
+{/format:auto}
 {pad:tree 'recurseThread'}
   <p style="margin-left: {pad:echo (depth@tree - 1) * 2/}em"><strong>{$who}</strong>: {$text}</p>
   {pad:recurse/}

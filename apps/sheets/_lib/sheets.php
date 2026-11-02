@@ -1,6 +1,6 @@
 <?php
 
-  // The sheets application: a few spreadsheets made with {pad:spreadsheet}, each a page that runs
+  // The sheets application: a few spreadsheets made with {sheet:grid}, each a page that runs
   // its template and shows it, and a page of every function of the formulas subsystem.
   //
   //   sheetsExamples  the example pages, in the order of the menu: name, title, lead

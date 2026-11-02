@@ -93,7 +93,7 @@ body again for the current row's children - menus, category trees, threaded comm
 ```
 
 **Parameters:**
-- First parameter, or `data=`: the rows - a `{pad:data}` block, a stored sequence, an array of
+- First parameter, or `data=`: the rows - a `{format:auto}` block, a stored sequence, an array of
   the page or of an enclosing row, or a `_data/` file
 - `children` - the field holding a row's children (default `children`)
 
@@ -216,9 +216,9 @@ so it is not parsed again. A stored content block is read with `{content:name}` 
 Store data to the data store for iteration.
 
 ```html
-{pad:data 'store_name'}
+{format:auto 'store_name'}
   Content to iterate
-{/pad:data}
+{/format:auto}
 ```
 
 **Parameters:**
@@ -315,17 +315,17 @@ Site search without a search server: the rows of a source a query finds, ranked 
 (`pad/subs/search/`).
 
 ```html
-{pad:search 'blog', q=$q, fields='title^2, body', lang='en'}
+{search:auto 'blog', q=$q, fields='title^2, body', lang='en'}
   <a href="?blog/post&slug={$slug}">{$title}</a> {$score} {!excerpt}
 @else@
   Nothing found.
-{/pad:search}
-{pad:search 'products', q=$q, link='url'/}                    <!-- a list -->
+{/search:auto}
+{search:auto 'products', q=$q, link='url'/}                    <!-- a list -->
 ```
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The source: a Markdown collection `_content/<name>/`, else a `{pad:data}` store, a page's array (a `db()` result) or a `_data` file of the name |
+| first parameter | The source: a Markdown collection `_content/<name>/`, else a `{format:auto}` store, a page's array (a `db()` result) or a `_data` file of the name |
 | `q` | The query: words (any), `"a phrase"` (required, in order), `prefix*`, `-word` and `-"a phrase"` (left out) |
 | `fields` | The fields searched, each with its boost: `'title^2, body'` - a collection's default; other rows every field that holds text in any row (none is an error under the strict check) |
 | `lang` | The language of the stop words and the stemmer - `en`, `nl`, `de`, `fr`, `es`, `it`, `pt`, `sv`, `da`, `no` (`nb` and `nn` are `no`), `ru`, the files of `pad/subs/search/types/`; default the locale's language, else `en` |
@@ -1232,8 +1232,8 @@ template are errors. From PHP: `padMail ( $to, $template, $subject, $vars, $opti
 The answer of a language model, printed as text (`pad/subs/ai/`).
 
 ```html
-{pad:ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/pad:ai}
-{pad:ai 'Name three rivers of France.', system='Answer briefly.'/}
+{ai:auto provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/ai:auto}
+{ai:auto 'Name three rivers of France.', system='Answer briefly.'/}
 ```
 
 **Parameters:** single, the prompt.
@@ -1507,7 +1507,7 @@ pages that draw it.
 | `sparkline` | See below | `label`, `value` |
 
 **As a pair** the content between the tags is the data, when neither `data` nor `sequence`
-names it - JSON, YAML, XML or CSV, recognised on sight as `{pad:data}` recognises it (`type=`
+names it - JSON, YAML, XML or CSV, recognised on sight as `{format:auto}` recognises it (`type=`
 names it outright). The content is read before the level walks it, so the braces of JSON need
 no `{pad:ignore}`, and the indent it shares under the tag is taken off:
 
@@ -1530,7 +1530,7 @@ is one that nothing reads under the strict check. The handling options (`row`, `
 
 | Option | Description |
 |--------|-------------|
-| `data` | The rows: a `{pad:data}` store, a sequence store, the page's array or a `_data` file of that name, or a literal (`data='[3,1,4]'`); without it, the content of a pair |
+| `data` | The rows: a `{format:auto}` store, a sequence store, the page's array or a `_data` file of that name, or a literal (`data='[3,1,4]'`); without it, the content of a pair |
 | `type` | For a pair: the format of its content - `json`, `yaml`, `xml`, `csv` - when it is not to be recognised on sight |
 | `sequence` | Plot the first `rows` terms (default 10) of a sequence type instead |
 | `value` | The field that holds the number - by default the first numeric field; a comma list draws a series each (eight at most) |
@@ -1683,13 +1683,13 @@ also provides `mini`, `week`, `day`, `agenda`, `quarter` and `year` views; see [
 | Option | Description |
 |--------|-------------|
 | first parameter | The month, `2026-10`; else the request value named by `query`, else this month (`padNow`, so `padNowFreeze` holds it) |
-| `data` | The events: a `{pad:data}` store, a page array or a `_data` file, as for `{chart:bar}` |
+| `data` | The events: a `{format:auto}` store, a page array or a `_data` file, as for `{chart:bar}` |
 | `date` | The field with an event's date - by default the first field that reads as one |
 | `title` | The field with an event's text - by default the first other text field |
 | `link` | A field with a link for the event - http(s), a page or an anchor; never `javascript:` or `data:` |
 | `query` | The request value the links to the months around set, default `month` |
 | `sunday` | Weeks start on Sunday instead of Monday |
-| `holidays` | A country's public holidays marked - `'nl'`, or with its region `'de-by'` (see `{pad:holidays}`): the day's class gets `holiday` (`observance` for a day that is no day off) and its name stands under the number - the local name when the request's locale speaks the country's language; the pair form's days get `$holiday`, the name or `''` - only with `holidays`, so without it a page's own `$holiday` is read there |
+| `holidays` | A country's public holidays marked - `'nl'`, or with its region `'de-by'` (see `{holidays:auto}`): the day's class gets `holiday` (`observance` for a day that is no day off) and its name stands under the number - the local name when the request's locale speaks the country's language; the pair form's days get `$holiday`, the name or `''` - only with `holidays`, so without it a page's own `$holiday` is read there |
 
 **Behavior:** as a single tag it answers a table - the month in its caption between links to
 the month before and after (keeping the other request values, as `{pad:pager}` does; none when the
@@ -1708,15 +1708,15 @@ field of that name - `{level:events}` reaches it then.
 The public holidays of a country, from the rules of its file in `pad/subs/holidays/types/`.
 
 ```html
-{pad:holidays 'nl', year=2026}{$date} {$name} ({$local}){/pad:holidays}
-{pad:holidays 'de-by', year=2026/}                             <!-- a table -->
-{pad:holidays 'gb-sct', from='today', to='+6 months', where='$type eq "public"'}...{/pad:holidays}
+{holidays:auto 'nl', year=2026}{$date} {$name} ({$local}){/holidays:auto}
+{holidays:auto 'de-by', year=2026/}                             <!-- a table -->
+{holidays:auto 'gb-sct', from='today', to='+6 months', where='$type eq "public"'}...{/holidays:auto}
 ```
 
 | Option | Description |
 |--------|-------------|
 | first parameter | The country, its ISO 3166-1 alpha-2 code in any case - at, be, br, ca, ch, cz, de, dk, es, fi, fr, gb, hu, ie, it, jp, lu, mx, nl, no, nz, pl, pt, ro, se, sk, us, za - with a region after it as ISO 3166-2 writes it, `'de-by'` |
-| `region` | The region apart: `{pad:holidays 'de', region='by'}` - Germany's states, the United Kingdom's nations (`sct`, `nir`; `eng` and `wls` are the default), France's `57`, `67`, `68`, `971`-`976`, Finland's Åland (`01`), Portugal's Azores (`20`) and Madeira (`30`), New Zealand's provinces by their region's code (`auk`, `can`, `cit`, `hkb`, `mbh`, `nsn`, `ota`, `stl`, `tki`, `wgn`, `wtc`) |
+| `region` | The region apart: `{holidays:auto 'de', region='by'}` - Germany's states, the United Kingdom's nations (`sct`, `nir`; `eng` and `wls` are the default), France's `57`, `67`, `68`, `971`-`976`, Finland's Åland (`01`), Portugal's Azores (`20`) and Madeira (`30`), New Zealand's provinces by their region's code (`auk`, `can`, `cit`, `hkb`, `mbh`, `nsn`, `ota`, `stl`, `tki`, `wgn`, `wtc`) |
 | `year` | The year, 1583 to 9999 - default this year (`padNow`); a country whose file names the years it knows (New Zealand 2010 to 2052) only those |
 | `from`, `to` | The days between two dates instead of a year - any date `padDateParse` reads, `today`, `+3 months`; one alone is a year from it (or from today); `to` before `from` is an error under the strict check |
 | `lang` | The language of `local` for a country of more than one - be `nl fr de`, lu `lb fr de`, ch `de fr it`, ca `en fr`, fi `fi sv`; the first by default |
@@ -1948,7 +1948,7 @@ PHP that runs before the template - the page's `.php` - runs on a hit too. What 
 leaves for the rest of the page is kept with it and made again on a hit: its `{pad:push}`es, and
 the page booking of a paged tag in it, for a `{pad:pager}` further down. Otherwise a section keeps
 its text, not its effects: what it sets, stores or defines - a `{pad:set}`, `{pad:increment}` or
-`{pad:decrement}`, a `{pad:data}`, `{pad:content}` or `{pad:bool}` store, a `{pad:define}` or `{pad:macro}`, the totals
+`{pad:decrement}`, a `{format:auto}`, `{pad:content}` or `{pad:bool}` store, a `{pad:define}` or `{pad:macro}`, the totals
 of a `callback=` - happens on the miss only, and on a hit the page goes on with the variables
 and stores this request has. Put such a tag before the section, or in a `{pad:nocache}` part, which
 renders every time. A request for one
@@ -3949,13 +3949,13 @@ server by the map subsystem in `pad/subs/maps/` from Natural Earth's outlines (`
 `subs/maps/_lib/world.json`) - no JavaScript, no tiles, no remote service.
 
 ```html
-{pad:map 'world', data='sales', key='country', value='amount'/}
-{pad:map 'europe', data='visitors', scale='quantile', title='Visitors per country'/}
-{pad:map 'benelux', data='shops', key='country', value='count'/}
-{pad:map 'south-america', key='code', value='forest', width=320}
+{map:auto 'world', data='sales', key='country', value='amount'/}
+{map:auto 'europe', data='visitors', scale='quantile', title='Visitors per country'/}
+{map:auto 'benelux', data='shops', key='country', value='count'/}
+{map:auto 'south-america', key='code', value='forest', width=320}
   code,forest
   BRA,59.1
-{/pad:map}
+{/map:auto}
 ```
 
 **Parameters:**
@@ -3963,7 +3963,7 @@ server by the map subsystem in `pad/subs/maps/` from Natural Earth's outlines (`
 | Option | Description |
 |--------|-------------|
 | first parameter | The view, a file of `pad/subs/maps/types/`: `world` (default), the continents `europe`, `africa`, `asia`, `north-america`, `south-america`, `oceania`, and the regions `middle-east`, `mediterranean`, `eu`, `nordic`, `benelux`, `baltic`, `british-isles`, `iberia`, `dach`, `balkans`, `central-america`, `caribbean`, `east-asia`, `southeast-asia`, `south-asia`, `central-asia`; and the regions of a country: `us-states`, `nl-provinces`, `de-states`, `au-states` |
-| `data` | The rows - a `{pad:data}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV). A row that is a value alone takes its key as the country: `[ 'NL' => 1200, 'BE' => 800 ]` |
+| `data` | The rows - a `{format:auto}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV). A row that is a value alone takes its key as the country: `[ 'NL' => 1200, 'BE' => 800 ]` |
 | `key` | The field with the country: its ISO 3166 alpha-2 or alpha-3 code or its English name, in any case - on a view of a country's regions the region: its ISO 3166-2 code with or without the country (`US-CA`, `CA`) or its name - else the first field that is no number |
 | `value` | The number - else the first numeric field |
 | `scale` | `linear` (default: seven steps from the lowest value to the highest) or `quantile` (seven steps by rank) - of the values the view draws |
@@ -4034,7 +4034,7 @@ spans as bars, or one under the other for a long list.
 
 | Option | Description |
 |--------|-------------|
-| `data` | The rows - a `{pad:data}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV) |
+| `data` | The rows - a `{format:auto}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV) |
 | `date` | The field of a moment: a year (`1969`), a month (`2026-10`) or anything `strtotime` reads - else the first field that reads as one |
 | `from`, `to` | The fields of a span, drawn as a bar |
 | `label`, `text` | The title of an event and the line under it - else the first other text fields |
@@ -4077,7 +4077,7 @@ sort and page links that page, all on the server.
 
 | Option | Description |
 |--------|-------------|
-| `data` | The rows - a `{pad:data}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV, told apart on sight, `type=` names it) |
+| `data` | The rows - a `{format:auto}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV, told apart on sight, `type=` names it) |
 | `columns` | The fields shown and their order, default every field of the first row |
 | `labels` | The header of each column, in the order of `columns` - default the field name as a headline (`order_date` is Order Date) |
 | `format` | A pipe per column, `column:pipe` - `total:money, date:date('j M Y')` - run as `{pad:echo $value \| pipe/}` |
@@ -4109,13 +4109,13 @@ its own, its functions the files of `pad/subs/formulas/types/` (SUM, IF, VLOOKUP
 them), answering what Excel answers. See [Spreadsheets](../FEATURES.md#spreadsheets).
 
 ```html
-{pad:spreadsheet 'shop', formats='B:0.00, D:€ #,##0.00', totals='D'}
+{sheet:grid 'shop', formats='B:0.00, D:€ #,##0.00', totals='D'}
   Item,Price,Qty,Total
   Apples,1.20,3,=B2*C2
   Pears,0.80,5,=B3*C3
-{/pad:spreadsheet}
-{pad:spreadsheet data='orders', formulas='total=B2*C2, F1=SUM(D:D)'/}
-{pad:live 'calc'}{pad:spreadsheet 'calc', editable='B1:B3'}...{/pad:spreadsheet}{/pad:live}
+{/sheet:grid}
+{sheet:grid data='orders', formulas='total=B2*C2, F1=SUM(D:D)'/}
+{pad:live 'calc'}{sheet:grid 'calc', editable='B1:B3'}...{/sheet:grid}{/pad:live}
 ```
 
 **Parameters:**
@@ -4298,7 +4298,7 @@ list a `<details>`, no script.
 | Option | Description |
 |--------|-------------|
 | first parameter | The value - a `$field` holding a list (a page array, a row) or a text; a text that is a JSON object or list is decoded |
-| `data` | A `{pad:data}` store, a page array or a `_data` file by name - a `.json` file read as it is written |
+| `data` | A `{format:auto}` store, a page array or a `_data` file by name - a `.json` file read as it is written |
 | `open` | The levels shown unfolded, default 2; 0 folds everything |
 | `title` | A label for the outermost level |
 
@@ -4745,7 +4745,7 @@ A custom tag written in the template itself - what an `_tags/name.pad` file is, 
 with its fields - a `{pad:define}` can use itself, for rows below the current one. Everything of a
 custom tag works: `{#name}` reads a parameter, `{pad:parms}` declares them, `@content@` takes the
 caller's content in, `{pad:slot}`s take fills. A define exists from the point it is walked, as a
-`{pad:content}` or `{pad:data}` store does - a use before it is an unknown tag. `define:card` asserts the
+`{pad:content}` or `{format:auto}` store does - a use before it is an unknown tag. `define:card` asserts the
 kind. Under the strict check a name that is a built-in or application tag, or already a
 `{pad:macro}`, is an error, and so is a define without a name or without its body.
 
@@ -5336,9 +5336,9 @@ Resolve naming conflicts with explicit prefixes:
 
 ## Options Reference
 
-Options modify tag behavior. Add them to any tag, separated by commas: `{pad:data 'x', ignore}`.
+Options modify tag behavior. Add them to any tag, separated by commas: `{format:auto 'x', ignore}`.
 An option name without a value directly after a single parameter may leave the comma out -
-`{pad:data 'x' ignore}` is the same tag; one with a value, `{pad:pad 'x' toContent='c'}`, is lost. That holds for the options below and an application's own `_options/`; any
+`{format:auto 'x' ignore}` is the same tag; one with a value, `{pad:pad 'x' toContent='c'}`, is lost. That holds for the options below and an application's own `_options/`; any
 other word after a value is a pipe, `{pad:echo 'abc' upper/}` gives `ABC`.
 
 ### Data Flow Options

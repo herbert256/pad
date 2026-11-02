@@ -372,7 +372,7 @@
 
     // A target that names no enclosing level is a missing reference, as an undefined $field
     // is, and the strict check names it with the words of the tag form {property:count@nosuch}
-    // (level/no.php): a misspelt {pad:if last@itms} never closed its list, and count@d of a {pad:data}
+    // (level/no.php): a misspelt {pad:if last@itms} never closed its list, and count@d of a {format:auto}
     // store outside its loop was '' - {pad:while $i lt count@d} never ran - in silence. With the
     // check off it answers '' as before.
 

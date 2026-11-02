@@ -1,2 +1,2 @@
-{pad:data 'xs'}[{"n":1}]{/pad:data}
+{format:auto 'xs'}[{"n":1}]{/format:auto}
 A[{array:e toBool='b1', toContent='c1'}x@else@none{/array:e}][{content:c1/}] B[{array:e toContent='c2', toBool='b2'}x@else@none{/array:e}][{content:c2/}] C[{data:xs where='$n gt 9', toBool='b3', toContent='c3'}{$n}@else@nobody{/data:xs}][{content:c3/}] D[{pad:if bool:b1 or bool:b2 or bool:b3}set{pad:else}unset{/pad:if}]

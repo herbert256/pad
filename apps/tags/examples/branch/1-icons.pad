@@ -1,12 +1,12 @@
 {pad:meta title='Folders and files', about='A row with children gets a folder and its list; a leaf gets the @else@ part.'/}
-{pad:data 'branchFiles'}
+{format:auto 'branchFiles'}
 [
   { "name": "photos", "children": [
       { "name": "2026", "children": [ { "name": "harbour.jpg" } ] },
       { "name": "cat.jpg" } ] },
   { "name": "notes.txt" }
 ]
-{/pad:data}
+{/format:auto}
 <ul>
 {pad:tree 'branchFiles'}
   <li>{pad:branch}&#128193; {$name}<ul>{pad:recurse/}</ul>@else@&#128196; {$name}{/pad:branch}</li>
