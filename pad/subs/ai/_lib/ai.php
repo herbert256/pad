@@ -23,12 +23,36 @@
   // $ask is what the request is made of: provider, model, system, prompt, tokens, key. The
   // fetch is padCurl's - a test answers it with padCurlFake - and waits two minutes at most.
 
+  include_once PAD . 'subs/ai/_lib/json.php';
+
   function padAiAsk ( $prompt, $options, $function ) {
 
     padAiStore ( 'error', '' );
+    padAiStore ( 'json', NULL );
 
     if ( ! is_array ( $options ) )
       return padAiAuthor ( "$function: the options are an array - [ 'provider' => 'anthropic' ] - not " . get_debug_type ( $options ) );
+
+    $schema = $options ['schema'] ?? [];
+    if ( array_key_exists ( 'schema', $options ) && is_string ( $options ['schema'] ) ) {
+      try {
+        $object = json_decode ( $options ['schema'], FALSE, 64, JSON_THROW_ON_ERROR );
+        if ( ! ( $object instanceof stdClass ) )
+          return padAiAuthor ( "$function: schema text must be a JSON object" );
+        $schema = json_decode ( $options ['schema'], TRUE, 64, JSON_THROW_ON_ERROR );
+        $options ['schema'] = $schema;
+      } catch ( JsonException $error ) {
+        return padAiAuthor ( "$function: schema text must be a valid JSON object" );
+      }
+    }
+    $json = $options ['json'] ?? FALSE;
+    if ( ! is_bool ( $json ) && $json !== 0 && $json !== 1 )
+      return padAiAuthor ( "$function: json must be true or false" );
+    if ( array_key_exists ( 'schema', $options ) ) {
+      if ( ( $error = padAiJsonSchemaError ( $options ['schema'] ) ) !== '' )
+        return padAiAuthor ( "$function: $error" );
+      $json = TRUE;
+    }
 
     $provider = $options ['provider'] ?? padEnv ( 'PAD_AI_PROVIDER', 'anthropic' );
     $provider = is_string ( $provider ) ? strtolower ( trim ( $provider ) ) : '';
@@ -75,7 +99,7 @@
       return padAiAuthor ( "$function: there is no prompt to send - the question, as text" );
 
     $ask = [ 'provider' => $provider, 'model' => $model, 'system' => trim ( (string) $system ), 'prompt' => trim ( (string) $prompt ),
-             'tokens'   => (int) $tokens, 'key' => trim ( $key ) ];
+             'tokens'   => (int) $tokens, 'key' => trim ( $key ), 'json' => (bool) $json, 'schema' => $schema ];
 
     if ( ( $kind ['check'] ?? NULL ) instanceof Closure and ( $said = (string) ( $kind ['check'] ) ( $ask, $options ['url'] ?? NULL ) ) !== '' )
       return padAiAuthor ( "$function: $said" );
@@ -94,8 +118,11 @@
 
     if ( $keep ) {
       $hit = padCacheGet ( $cache );
-      if ( is_string ( $hit ) and $hit !== '' )
-        return $hit;
+      if ( is_string ( $hit ) and $hit !== '' ) {
+        if ( ! $json || padAiJsonAnswer ( $hit, $schema ) === '' )
+          return $hit;
+        padCacheForget ( $cache );
+      }
     }
 
     $out = padCurl ( [ 'url'     => $url,
@@ -125,6 +152,9 @@
 
     }
 
+    if ( $json && ( $error = padAiJsonAnswer ( $text, $schema ) ) !== '' )
+      return padAiFail ( $kind ['name'] . ' (' . $model . ') returned invalid structured data: ' . $error, $provider, $model, $status );
+
     if ( $keep )
       padCachePut ( $cache, $text, (int) $ttl );
 
@@ -134,7 +164,7 @@
 
   function padAiCacheKey ( $ask, $url ) {
 
-    return 'pad-ai:' . hash ( 'sha256', json_encode ( [ $ask ['provider'], $ask ['model'], $ask ['system'], $ask ['prompt'], $ask ['tokens'], $url ] ) );
+    return 'pad-ai:' . hash ( 'sha256', json_encode ( [ $ask ['provider'], $ask ['model'], $ask ['system'], $ask ['prompt'], $ask ['tokens'], $url, $ask ['json'] ?? FALSE, $ask ['schema'] ?? [] ] ) );
 
   }
 

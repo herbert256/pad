@@ -40,6 +40,7 @@
   // padSearchList      the hits as the list the single {pad:search/} writes
 
   include_once PAD . 'subs/search/_lib/snowball.php';
+  include_once PAD . 'subs/search/_lib/facets.php';
   include_once PAD . 'tags/_lib/excerpt.php';
 
   // Raised when the index's form changes: every kept index is then made again.
@@ -900,7 +901,27 @@
 
   function padSearchRun ( $source, $q, $options ) {
 
+    padSearchInfo ( [ 'total' => 0, 'facets' => [] ] );
+    $filters = padSearchFilterSpec ( $options ['filters'] ?? [] );
+    if ( is_string ( $filters ) )
+      return $filters;
+    $facets = padSearchFacetFields ( $options ['facets'] ?? [] );
+    if ( is_string ( $facets ) )
+      return $facets;
+    padSearchInfo ( [ 'total' => 0, 'facets' => array_fill_keys ( $facets, [] ) ] );
+
     [ $name, $sign, $rows, $keepRows, $fieldsDefault ] = $source + [ 4 => '' ];
+
+    // Filter the corpus before indexing/ranking: excluded documents do not affect BM25.
+    // Read the current metadata even when a collection index was previously cached.
+    if ( $filters ) {
+      if ( is_callable ( $rows ) )
+        $rows = $rows ();
+      $rows = padSearchFilterRows ( $rows, $filters );
+      $name .= ':filters:' . hash ( 'sha256', serialize ( $filters ) );
+      $sign = NULL;
+      $keepRows = FALSE;
+    }
 
     $language = padSearchLanguage ( $options ['lang'] ?? padSearchLocale () );
 
@@ -971,6 +992,10 @@
       $rows = padSearchKeptRows ( $index ) ?? ( is_callable ( $rows ) ? $rows () : $rows );
     elseif ( is_callable ( $rows ) )
       $rows = $rows ();
+
+    $rows = array_values ( (array) $rows );
+    $matched = $facets ? array_intersect_key ( $rows, $scores ) : [];
+    padSearchInfo ( [ 'total' => count ( $scores ), 'facets' => padSearchFacetCounts ( $matched, $facets ) ] );
 
     // The rows found are cut to first before anything is made of them, and an excerpt is
     // made for the first excerpts rows only - the rows a page can show: every hit had its
