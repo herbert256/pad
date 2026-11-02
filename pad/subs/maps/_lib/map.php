@@ -73,7 +73,7 @@
           $index [ mb_strtolower ( $key ) ] ??= $code;
 
       $sets [$file] = [ $countries + ( $json ['context'] ?? [] ), $index,
-                        isset ( $json ['regions'] ) ? array_keys ( $countries ) : NULL, $json ['_box'] ?? NULL ];
+                        isset ( $json ['regions'] ) ? array_keys ( $countries ) : NULL, $json ['_box'] ?? NULL, $json ['_insets'] ?? [] ];
 
     }
 
@@ -215,6 +215,10 @@
     if ( ! $desc )
       $desc [] = 'No values';
 
+    $insets = padMapCountries ( $view ) [4];
+    if ( $insets )
+      $desc [] = 'Overseas regions are shown in separate insets at different scales';
+
     if ( $outside )
       $title .= ' (not in this view: ' . implode ( ', ', array_slice ( $outside, 0, 10 ) ) . ')';
 
@@ -243,6 +247,11 @@
 
     $svg .= '<svg x="0" y="0" width="' . $width . '" height="' . $mapH . '" viewBox="' . padChartXY ( $x0 ) . ' ' . padChartXY ( $y0 ) . ' ' . padChartXY ( $boxW ) . ' ' . padChartXY ( $boxH )
           . '" preserveAspectRatio="xMidYMid meet">';
+
+    // Source-authored inset frames carry their own scale warning in the description.
+    foreach ( $insets as [ $ix, $iy, $iw, $ih, $label ] )
+      $svg .= '<rect class="pc-grid" fill="none" x="' . padChartXY ( $ix ) . '" y="' . padChartXY ( $iy ) . '" width="' . padChartXY ( $iw ) . '" height="' . padChartXY ( $ih ) . '"/>'
+            . '<text x="' . padChartXY ( $ix + $iw / 2 ) . '" y="' . padChartXY ( $iy + 24 ) . '" text-anchor="middle" font-size="20">' . padChartAttr ( $label ) . '</text>';
 
     // The countries without a value first, so the borders of the coloured ones lie on top.
 
