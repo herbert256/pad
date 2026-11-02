@@ -668,13 +668,13 @@
   <div class="cheat">
     
     <div class="cheat-item">
-      <a class="name" href="?tag/map">{pad:map}</a> <span class="about">Draws a choropleth map as inline SVG - every country, or every state or province of a country, coloured by a value of its row - of the world or one of its 26 regions.</span>
+      <a class="name" href="?tag/map">{pad:map}</a> <span class="about">Draws a choropleth map as inline SVG - every country, or every state or province of a country, coloured by a value of its row - of the world or one of its 29 regions.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:map</span> <span class="hl-str">&#039;world&#039;</span>, <span class="hl-opt">data</span>=<span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">key</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">scale</span>=<span class="hl-str">&#039;quantile&#039;</span>, <span class="hl-opt">title</span>=<span class="hl-str">&#039;text&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">720</span>, <span class="hl-opt">height</span>=<span class="hl-num">400</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">pad:map</span> <span class="hl-str">&#039;europe&#039;</span>, <span class="hl-opt">key</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:map</span><span class="hl-brc">}</span></code></pre>
     </div>
     
     <div class="cheat-item">
-      <a class="name" href="?tag/palette">{pad:palette}</a> <span class="about">The colours of a palette as swatches with their hex values - 29 of them: viridis and its family, the colour-blind safe Okabe-Ito and Tol schemes, ColorBrewer&#039;s scales - the same palettes palette= gives a chart.</span>
+      <a class="name" href="?tag/palette">{pad:palette}</a> <span class="about">The colours of a palette as swatches with their hex values - 32 of them: viridis and its family, the colour-blind safe Okabe-Ito and Tol schemes, ColorBrewer&#039;s scales - the same palettes palette= gives a chart.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">&#039;name&#039;</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">&#039;viridis&#039;</span>, <span class="hl-opt">steps</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">&#039;okabe-ito&#039;</span>, <span class="hl-opt">title</span>=<span class="hl-str">&#039;Our chart colours&#039;</span><span class="hl-brc">/}</span>
@@ -884,7 +884,7 @@
     </div>
     
     <div class="cheat-item">
-      <a class="name" href="?tag/theme">{pad:theme}</a> <span class="about">The colours of the page swapped for a theme - 16 of them, from paper and sepia to a terminal, an ocean and a high-contrast one - or its content alone in a box of the theme.</span>
+      <a class="name" href="?tag/theme">{pad:theme}</a> <span class="about">The colours of the page swapped for a theme - 17 of them, from paper and sepia to a terminal, an ocean and a high-contrast one - or its content alone in a box of the theme.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">&#039;name&#039;</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">&#039;paper&#039;</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">&#039;terminal&#039;</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span>
@@ -1007,6 +1007,16 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/calendar/resources">{calendar:resources}</a> <span class="about">Timed bookings grouped by named resources, with timezone-aware intervals and overlap lanes.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">calendar:resources</span> <span class="hl-str">&#039;2026-11&#039;</span>, <span class="hl-opt">data</span>=<span class="hl-str">&#039;appointments&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/calendar/timegrid">{calendar:timegrid}</a> <span class="about">Timed events in timezone-aware day columns, with overlap lanes and a readable print layout.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">calendar:timegrid</span> <span class="hl-str">&#039;2026-11&#039;</span>, <span class="hl-opt">data</span>=<span class="hl-str">&#039;appointments&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/calendar/week">{calendar:week}</a> <span class="about">Seven days, Monday first or Sunday with sunday.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">calendar:week</span> <span class="hl-str">&#039;2026-11-02&#039;</span>, <span class="hl-opt">data</span>=<span class="hl-str">&#039;appointments&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -1051,6 +1061,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/chart/bullet">{chart:bullet}</a> <span class="about">A track per row with a thin bar of value and target.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart:bullet</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/chart/bump">{chart:bump}</a> <span class="about">Ranks across several periods, with one line per item and missing periods left as gaps.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart:bump</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -1139,6 +1154,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/chart/horizon">{chart:horizon}</a> <span class="about">Compact rows of signed values folded into colour bands around zero.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart:horizon</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/chart/likert">{chart:likert}</a> <span class="about">Answers on an ordered scale.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart:likert</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -1176,6 +1196,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/chart/parallel">{chart:parallel}</a> <span class="about">Parallel coordinates: an upright axis per measure of value.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart:parallel</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/chart/pareto">{chart:pareto}</a> <span class="about">Contributions sorted from largest to smallest, with a cumulative-percentage line.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart:pareto</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -1231,6 +1256,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/chart/scatter">{chart:scatter}</a> <span class="about">A dot per row on two numeric axes.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart:scatter</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/chart/slope">{chart:slope}</a> <span class="about">Two-period values joined by lines, with labels separated at each endpoint.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart:slope</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -1291,6 +1321,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/game/connectfour">{game:connectfour}</a> <span class="about">A local two-player game of dropping discs to connect four horizontally, vertically or diagonally.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">game:connectfour</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/game/crossword">{game:crossword}</a> <span class="about">A crossword made from a list of words.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">game:crossword</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -1341,6 +1376,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/game/minesweeper">{game:minesweeper}</a> <span class="about">Uncover safe cells and flag hidden mines, with a safe first reveal and keyboard controls.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">game:minesweeper</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/game/morris">{game:morris}</a> <span class="about">Nine men&#039;s morris, the mill game played since Roman times.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">game:morris</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -1378,6 +1418,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/game/snake">{game:snake}</a> <span class="about">Steer a snake round a field with the arrow keys, by swiping or with the buttons, to eat the apples.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">game:snake</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/game/sokoban">{game:sokoban}</a> <span class="about">Push boxes onto goals in authored warehouse puzzles, with undo and restart controls.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">game:sokoban</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -1463,6 +1508,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/toy/lorenz">{toy:lorenz}</a> <span class="about">Explore the Lorenz attractor with adjustable parameters, projections, timestep and a single-step control.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">toy:lorenz</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/toy/lsystem">{toy:lsystem}</a> <span class="about">Plants and fractal curves grown from a few rewriting rules, Lindenmayer&#039;s systems.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">toy:lsystem</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -1473,8 +1523,18 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/toy/optics">{toy:optics}</a> <span class="about">Trace rays through a movable light source, lenses and a plane mirror on an interactive optics bench.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">toy:optics</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/toy/orbits">{toy:orbits}</a> <span class="about">Planets and stars pulling at each other by gravity, every body on every other, drawing their paths as they go.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">toy:orbits</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/toy/pathfinding">{toy:pathfinding}</a> <span class="about">Compare breadth-first search, Dijkstra and A star on an editable grid with obstacles and weighted cells.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">toy:pathfinding</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -1529,6 +1589,20 @@
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:auto</span><span class="hl-brc">}</span>
   ...
 <span class="hl-brc">{</span><span class="hl-tag">/diagram:auto</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/diagram/block">{diagram:block}</a> <span class="about">Labelled nodes placed on an explicit grid, with row and column spans and routed connections.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:block</span><span class="hl-brc">}</span>
+  ...
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:block</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/diagram/c4">{diagram:c4}</a> <span class="about">Software architecture with people, systems, containers and components inside optional nested boundaries.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:c4</span><span class="hl-brc">}</span>
+  ...
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:c4</span><span class="hl-brc">}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -1609,6 +1683,13 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/diagram/timing">{diagram:timing}</a> <span class="about">Digital signal traces aligned to common time slots, with high, low, unknown and high-impedance states.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:timing</span><span class="hl-brc">}</span>
+  ...
+<span class="hl-brc">{</span><span class="hl-tag">/diagram:timing</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/diagram/tree">{diagram:tree}</a> <span class="about">A hierarchy read from the indentation.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:tree</span><span class="hl-brc">}</span>
   ...
@@ -1665,6 +1746,16 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/widget/imagecompare">{widget:imagecompare}</a> <span class="about">Two images separated by an adjustable divider with a native range control.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:imagecompare</span> <span class="hl-opt">before</span>=<span class="hl-str">&#039;before.svg&#039;</span>, <span class="hl-opt">after</span>=<span class="hl-str">&#039;after.svg&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/widget/kanban">{widget:kanban}</a> <span class="about">Cards grouped by status, movable with a select control or drag and drop.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:kanban</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;cards&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/widget/lightbox">{widget:lightbox}</a> <span class="about">A gallery: every {pad:tab} a thumbnail in a grid, a link that opens the picture large over the page, with its caption.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:lightbox</span> <span class="hl-opt">label</span>=<span class="hl-str">&#039;The harbour&#039;</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">&#039;At dawn&#039;</span><span class="hl-brc">}</span><span class="hl-htm">&lt;img</span> <span class="hl-opt">src</span>=<span class="hl-str">&quot;dawn.jpg&quot;</span> <span class="hl-opt">alt</span>=<span class="hl-str">&quot;...&quot;</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/widget:lightbox</span><span class="hl-brc">}</span></code></pre>
     </div>
@@ -1707,6 +1798,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/widget/treeview">{widget:treeview}</a> <span class="about">A hierarchical navigation list with expandable branches and keyboard navigation.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:treeview</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;nodes&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/widget/wizard">{widget:wizard}</a> <span class="about">A form or a story in steps, one shown at a time.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:wizard</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">&#039;Address&#039;</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">pad:tab</span> <span class="hl-str">&#039;Payment&#039;</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/pad:tab</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:wizard</span><span class="hl-brc">}</span></code></pre>
     </div>
@@ -1736,6 +1832,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/barcode/codabar">{barcode:codabar}</a> <span class="about">Codabar, the barcode of libraries, blood banks and parcel services.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">barcode:codabar</span> <span class="hl-str">&#039;value&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/barcode/code11">{barcode:code11}</a> <span class="about">Code 11: digits/hyphens, checks=0/1/2.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">barcode:code11</span> <span class="hl-str">&#039;value&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -1786,6 +1887,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/barcode/itf14">{barcode:itf14}</a> <span class="about">ITF-14, the GS1 number of a carton or a pallet of products.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">barcode:itf14</span> <span class="hl-str">&#039;value&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/barcode/microqr">{barcode:microqr}</a> <span class="about">Micro QR versions M1 through M4, with explicit encoding mode, error correction and mask options.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">barcode:microqr</span> <span class="hl-str">&#039;value&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -1856,6 +1962,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/embed/googleslides">{embed:googleslides}</a> <span class="about">Published Google Slides presentations loaded only after the visitor chooses to view them.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">embed:googleslides</span> <span class="hl-str">&#039;address&#039;</span>, <span class="hl-opt">title</span>=<span class="hl-str">&#039;...&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/embed/internetarchive">{embed:internetarchive}</a> <span class="about">An item of the Internet Archive.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">embed:internetarchive</span> <span class="hl-str">&#039;address&#039;</span>, <span class="hl-opt">title</span>=<span class="hl-str">&#039;...&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -1863,6 +1974,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/embed/loom">{embed:loom}</a> <span class="about">A recording of Loom - a screen and a face explaining something.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">embed:loom</span> <span class="hl-str">&#039;address&#039;</span>, <span class="hl-opt">title</span>=<span class="hl-str">&#039;...&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/embed/observable">{embed:observable}</a> <span class="about">Classic Observable notebooks or selected cells loaded only after visitor consent.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">embed:observable</span> <span class="hl-str">&#039;address&#039;</span>, <span class="hl-opt">title</span>=<span class="hl-str">&#039;...&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -1938,6 +2054,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/input/currency">{input:currency}</a> <span class="about">A decimal amount with an explicit currency and a localized formatting preview.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:currency</span> <span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;...&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/input/datepicker">{input:datepicker}</a> <span class="about">A day typed or chosen from a month that opens beside the field.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:datepicker</span> <span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;...&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -1983,6 +2104,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/input/repeatable">{input:repeatable}</a> <span class="about">Editable rows of named fields with add and remove controls and per-field validation.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:repeatable</span> <span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;...&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/input/segmented">{input:segmented}</a> <span class="about">One of a few choices shown side by side as one bar, the chosen one filled.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:segmented</span> <span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;...&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -2025,6 +2151,43 @@
     <div class="cheat-item">
       <a class="name" href="?tag/input/treepicker">{input:treepicker}</a> <span class="about">One item of a hierarchy, a category of a category, a place in a country.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:treepicker</span> <span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;...&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/input/unitpicker">{input:unitpicker}</a> <span class="about">A numeric value paired with a unit from a physical measurement family.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:unitpicker</span> <span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;...&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+  </div>
+</section>
+
+<section class="section" id="kind-avatar">
+  <div class="section-head"><h2>Avatars</h2></div>
+  <div class="cheat">
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/avatar/identicon">{avatar:identicon}</a> <span class="about">A symmetric pixel avatar derived deterministically from an identity.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">avatar:identicon</span> <span class="hl-str">&#039;identity&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Name&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/avatar/initials">{avatar:initials}</a> <span class="about">A local avatar showing the initials of a name in a deterministic colour.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">avatar:initials</span> <span class="hl-str">&#039;identity&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Name&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/avatar/mosaic">{avatar:mosaic}</a> <span class="about">A grid of coloured triangles derived deterministically from an identity.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">avatar:mosaic</span> <span class="hl-str">&#039;identity&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Name&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/avatar/pixelbot">{avatar:pixelbot}</a> <span class="about">A small robot avatar with deterministic colours and facial details.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">avatar:pixelbot</span> <span class="hl-str">&#039;identity&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Name&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/avatar/rings">{avatar:rings}</a> <span class="about">Concentric coloured arcs derived deterministically from an identity.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">avatar:rings</span> <span class="hl-str">&#039;identity&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Name&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
   </div>
@@ -2192,6 +2355,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/icon/bookmark">{icon:bookmark}</a> <span class="about">The bookmark icon - an outline on a grid of 24, drawn in the colour of its text.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon:bookmark</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/icon/braces">{icon:braces}</a> <span class="about">The braces icon - an outline on a grid of 24, drawn in the colour of its text.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon:braces</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -2432,6 +2600,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/icon/file">{icon:file}</a> <span class="about">The file icon - an outline on a grid of 24, drawn in the colour of its text.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon:file</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/icon/file-diff">{icon:file-diff}</a> <span class="about">The file-diff icon - an outline on a grid of 24, drawn in the colour of its text.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon:file</span>-diff <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -2835,6 +3008,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/icon/puzzle">{icon:puzzle}</a> <span class="about">The puzzle icon - an outline on a grid of 24, drawn in the colour of its text.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon:puzzle</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/icon/qr-code">{icon:qr-code}</a> <span class="about">The qr-code icon - an outline on a grid of 24, drawn in the colour of its text.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon:qr</span>-code <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -3155,6 +3333,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/icon/webhook">{icon:webhook}</a> <span class="about">The webhook icon - an outline on a grid of 24, drawn in the colour of its text.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon:webhook</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/icon/wifi">{icon:wifi}</a> <span class="about">The wifi icon - an outline on a grid of 24, drawn in the colour of its text.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon:wifi</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -3167,6 +3350,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/icon/wind">{icon:wind}</a> <span class="about">The wind icon - an outline on a grid of 24, drawn in the colour of its text.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon:wind</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/icon/workflow">{icon:workflow}</a> <span class="about">The workflow icon - an outline on a grid of 24, drawn in the colour of its text.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon:workflow</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -3347,6 +3535,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/fake/semver">{fake:semver}</a> <span class="about">A reproducible semantic version with optional prerelease and build identifiers.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">fake:semver</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/fake/sentence">{fake:sentence}</a> <span class="about">A sentence of lorem ipsum, its first letter a capital and a full stop after it.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">fake:sentence</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -3377,6 +3570,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/fake/ulid">{fake:ulid}</a> <span class="about">A fixture ULID: explicit Unix milliseconds, plus this fake stream&#039;s 80 random bits.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">fake:ulid</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/fake/url">{fake:url}</a> <span class="about">An address of the web at example.com, .org or .net, the domains kept for examples, with a path of one or two words.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">fake:url</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -3389,6 +3587,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/fake/uuid">{fake:uuid}</a> <span class="about">A version 4 UUID made from the sequence, so a seed gives it again.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">fake:uuid</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/fake/weighted">{fake:weighted}</a> <span class="about">A seeded choice from explicit values and finite nonnegative weights.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">fake:weighted</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -4046,6 +4249,11 @@
   <div class="cheat">
     
     <div class="cheat-item">
+      <a class="name" href="?tag/pattern/basketweave">{pattern:basketweave}</a> <span class="about">Alternating over/under strand bundles in a seamless four-quadrant tile.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pattern:basketweave</span> <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/pattern/blobs">{pattern:blobs}</a> <span class="about">Soft organic shapes about the size across, scattered by the seed.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pattern:blobs</span> <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -4073,6 +4281,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/pattern/constellation">{pattern:constellation}</a> <span class="about">Stars joined to their neighbours by lines.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pattern:constellation</span> <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/pattern/crosshatch">{pattern:crosshatch}</a> <span class="about">Two perpendicular stroke families in rotated seamless tiles.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pattern:crosshatch</span> <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -4133,6 +4346,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/pattern/scales">{pattern:scales}</a> <span class="about">Overlapping scales, row over row.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pattern:scales</span> <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/pattern/squircle">{pattern:squircle}</a> <span class="about">A grid of superellipses: exponent=2 gives circles, larger exponents approach rounded squares.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pattern:squircle</span> <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -4283,6 +4501,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/sound/softsuccess">{sound:softsuccess}</a> <span class="about">A quiet two-note acknowledgement for frequent saves.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sound:softsuccess</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/sound/sparkle">{sound:sparkle}</a> <span class="about">A little magic: high bell tones of E major tumbling over each other, each ringing on under the next, with a breath of bright noise.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sound:sparkle</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -4295,6 +4518,16 @@
     <div class="cheat-item">
       <a class="name" href="?tag/sound/tick">{sound:tick}</a> <span class="about">The tick of a clock: a high wooden tap, shorter and brighter than a click.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sound:tick</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/sound/toggleoff">{sound:toggleoff}</a> <span class="about">A matching falling cue for disabling a state.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sound:toggleoff</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/sound/toggleon">{sound:toggleon}</a> <span class="about">A brief rising cue for enabling a state.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sound:toggleon</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -4330,6 +4563,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/printable/booklet">{printable:booklet}</a> <span class="about">Booklet pages arranged for duplex printing, folding and left or right binding.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">printable:booklet</span><span class="hl-brc">}</span>Pages<span class="hl-brc">{</span><span class="hl-tag">/printable:booklet</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/printable/calendar">{printable:calendar}</a> <span class="about">A wall calendar, a month to a sheet.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">printable:calendar</span> <span class="hl-opt">year</span>=<span class="hl-num">2027</span>, <span class="hl-opt">holidays</span>=<span class="hl-str">&#039;nl&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -4347,6 +4585,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/printable/envelope">{printable:envelope}</a> <span class="about">Envelopes to print on, one to a sheet the size of the envelope.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">printable:envelope</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;customers&#039;</span>, <span class="hl-opt">sender</span>=<span class="hl-str">&#039;PAD, Main Street 1, 3511 AB Utrecht&#039;</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/printable:envelope</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/printable/flashcards">{printable:flashcards}</a> <span class="about">Duplex flashcards with mirrored backs and optional alignment guides.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">printable:flashcards</span><span class="hl-brc">}</span>Question<span class="hl-htm">&lt;footer</span><span class="hl-htm">&gt;</span>Answer<span class="hl-htm">&lt;/footer</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/printable:flashcards</span><span class="hl-brc">}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -4385,6 +4628,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/printable/planner">{printable:planner}</a> <span class="about">Weekly planning sheets with dated columns, working hours and a notes area.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">printable:planner</span> <span class="hl-opt">date</span>=<span class="hl-str">&#039;2026-11-02&#039;</span><span class="hl-brc">}</span>Tasks<span class="hl-brc">{</span><span class="hl-tag">/printable:planner</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/printable/staffpaper">{printable:staffpaper}</a> <span class="about">Music paper, manuscript paper to write music on.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">printable:staffpaper</span> <span class="hl-opt">copies</span>=<span class="hl-num">4</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -4404,6 +4652,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/notation/abc">{notation:abc}</a> <span class="about">A tune in ABC notation drawn as a staff.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">notation:abc</span> <span class="hl-str">&#039;text&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/notation/backgammon">{notation:backgammon}</a> <span class="about">A board position with numbered points, checkers, bar, borne-off pieces and doubling cube.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">notation:backgammon</span> <span class="hl-str">&#039;text&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -4439,6 +4692,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/notation/draughts">{notation:draughts}</a> <span class="about">A draughts position from the FEN of PDN, drawn as a board.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">notation:draughts</span> <span class="hl-str">&#039;text&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/notation/fretboard">{notation:fretboard}</a> <span class="about">Scale notes across a fretted instrument, labelled by note or interval.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">notation:fretboard</span> <span class="hl-str">&#039;text&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -4486,6 +4744,11 @@
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">notation:tablature</span> <span class="hl-str">&#039;text&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
+    <div class="cheat-item">
+      <a class="name" href="?tag/notation/xiangqi">{notation:xiangqi}</a> <span class="about">A Chinese chess position on its nine-file, ten-rank board, with river and palaces.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">notation:xiangqi</span> <span class="hl-str">&#039;text&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
   </div>
 </section>
 
@@ -4501,6 +4764,16 @@
     <div class="cheat-item">
       <a class="name" href="?tag/section/blog">{section:blog}</a> <span class="about">The latest articles, a card each.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">section:blog</span> <span class="hl-opt">title</span>=<span class="hl-str">&#039;From the blog&#039;</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">section:item</span> <span class="hl-str">&#039;Pages that drive themselves&#039;</span>, <span class="hl-opt">link</span>=<span class="hl-str">&#039;?blog/drive&#039;</span>, <span class="hl-opt">date</span>=<span class="hl-str">&#039;2026-10-30&#039;</span>, <span class="hl-opt">author</span>=<span class="hl-str">&#039;Ada Lovelace&#039;</span>, <span class="hl-opt">tag</span>=<span class="hl-str">&#039;Templates&#039;</span>, <span class="hl-opt">image</span>=<span class="hl-str">&#039;drive.jpg&#039;</span><span class="hl-brc">}</span>What changes when the template decides.<span class="hl-brc">{</span><span class="hl-tag">/section:item</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/section:blog</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/section/careers">{section:careers}</a> <span class="about">Job listings with roles, locations, working arrangements and application links.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">section:careers</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;jobs&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/section/casestudy">{section:casestudy}</a> <span class="about">Case studies describing a problem, approach, result and supporting metrics.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">section:casestudy</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;studies&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -4579,6 +4852,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/section/roadmap">{section:roadmap}</a> <span class="about">Roadmap entries grouped as planned, in progress and released.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">section:roadmap</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;items&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/section/stats">{section:stats}</a> <span class="about">The numbers that tell the story, side by side.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">section:stats</span> <span class="hl-opt">title</span>=<span class="hl-str">&#039;heading&#039;</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">section:item</span> <span class="hl-str">&#039;99.9%&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Uptime&#039;</span><span class="hl-brc">/}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/section:stats</span><span class="hl-brc">}</span></code></pre>
     </div>
@@ -4631,6 +4909,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/effect/flipnumber">{effect:flipnumber}</a> <span class="about">A number whose digits animate when its value changes, with readable text and reduced-motion support.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">effect:flipnumber</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/effect:flipnumber</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/effect/glitch">{effect:glitch}</a> <span class="about">A digital glitch: for a moment the text tears into slices that jump aside in two colours, then it stands still again.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">effect:glitch</span><span class="hl-brc">}</span>SIGNAL LOST<span class="hl-brc">{</span><span class="hl-tag">/effect:glitch</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">effect:glitch</span> <span class="hl-str">&#039;SIGNAL LOST&#039;</span><span class="hl-brc">/}</span></code></pre>
@@ -4663,6 +4946,11 @@
     <div class="cheat-item">
       <a class="name" href="?tag/effect/reveal">{effect:reveal}</a> <span class="about">A block that comes into view as it is scrolled to.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">effect:reveal</span><span class="hl-brc">}</span><span class="hl-htm">&lt;div</span> <span class="hl-opt">class</span>=<span class="hl-str">&quot;card&quot;</span><span class="hl-htm">&gt;</span>...<span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/effect:reveal</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/effect/ripple">{effect:ripple}</a> <span class="about">An activation ripple around an existing button or link, preserving its normal action.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">effect:ripple</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/effect:ripple</span><span class="hl-brc">}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -4744,6 +5032,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/jsonld/book">{jsonld:book}</a> <span class="about">Book metadata with named authors, a validated ISBN and edition details.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:book</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/jsonld/breadcrumb">{jsonld:breadcrumb}</a> <span class="about">A BreadcrumbList: where the page stands, from the home page down, each step a ListItem numbered by its position.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:breadcrumb</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">jsonld:breadcrumb</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;trail&#039;</span><span class="hl-brc">/}</span></code></pre>
@@ -4759,6 +5052,11 @@
       <a class="name" href="?tag/jsonld/course">{jsonld:course}</a> <span class="about">A Course: a series of lessons, what it teaches and who gives it.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:course</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;course&#039;</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">jsonld:course</span> <span class="hl-opt">name</span>=<span class="hl-str">&#039;PAD in a day&#039;</span>, <span class="hl-opt">description</span>=<span class="hl-str">&#039;The template language from the first tag to a shop.&#039;</span>, <span class="hl-opt">provider</span>=<span class="hl-str">&#039;PAD Academy&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/jsonld/dataset">{jsonld:dataset}</a> <span class="about">Dataset metadata with a named creator, license and explicitly validated downloads.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:dataset</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -4818,6 +5116,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?tag/jsonld/service">{jsonld:service}</a> <span class="about">Service metadata with a provider, served places and optional priced offer.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:service</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/jsonld/software">{jsonld:software}</a> <span class="about">A SoftwareApplication: a program, an app, a web application.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:software</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;app&#039;</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">jsonld:software</span> <span class="hl-opt">name</span>=<span class="hl-str">&#039;Pocket Ledger&#039;</span>, <span class="hl-opt">os</span>=<span class="hl-str">&#039;Android 12, iOS 17&#039;</span>, <span class="hl-opt">category</span>=<span class="hl-str">&#039;finance&#039;</span>, <span class="hl-opt">price</span>=<span class="hl-str">&#039;0&#039;</span>, <span class="hl-opt">rating</span>=<span class="hl-str">&#039;4.6&#039;</span>, <span class="hl-opt">ratings</span>=<span class="hl-str">&#039;1523&#039;</span><span class="hl-brc">/}</span></code></pre>
@@ -4867,6 +5170,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?kind/map/be-provinces">map / be-provinces</a> <span class="about">Boundary provenance and reproduction: docs/subsystems/maps/be-provinces.md.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:map</span> <span class="hl-str">&#039;be-provinces&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">540</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/map/benelux">map / benelux</a> <span class="about">Belgium, the Netherlands and Luxembourg, at full detail; France, Germany and the English coast are the land around them.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:map</span> <span class="hl-str">&#039;benelux&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">540</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -4874,6 +5182,11 @@
     <div class="cheat-item">
       <a class="name" href="?kind/map/british-isles">map / british-isles</a> <span class="about">The United Kingdom and Ireland, the Isle of Man and the Channel Islands, Shetland at the top; the coast of France and Belgium is the land around them.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:map</span> <span class="hl-str">&#039;british-isles&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">540</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/map/ca-provinces">map / ca-provinces</a> <span class="about">Boundary provenance and reproduction: docs/subsystems/maps/ca-provinces.md.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:map</span> <span class="hl-str">&#039;ca-provinces&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">540</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -4914,6 +5227,11 @@
     <div class="cheat-item">
       <a class="name" href="?kind/map/europe">map / europe</a> <span class="about">Iceland to the foot of the Urals and the North Cape to Crete, with Cyprus, the Canary Islands&#039; latitude and the coast of North Africa at its southern edge.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:map</span> <span class="hl-str">&#039;europe&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">540</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/map/fr-regions">map / fr-regions</a> <span class="about">Boundary provenance and reproduction: docs/subsystems/maps/fr-regions.md.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:map</span> <span class="hl-str">&#039;fr-regions&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">540</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -5089,6 +5407,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?kind/rule/isbn">rule / isbn</a> <span class="about">ISBN-10 or ISBN-13 with its required check digit, allowing spaces and hyphens.</span>
+      <pre class="code"><code><span class="hl-var">$errors</span> <span class="hl-pun">=</span> <span class="hl-fn">padValidate</span> <span class="hl-pun">(</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;value&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;isbn&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-var">$values</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/rule/json">rule / json</a> <span class="about">A JSON text PHP reads: a settings field, a snippet of data.</span>
       <pre class="code"><code><span class="hl-var">$errors</span> <span class="hl-pun">=</span> <span class="hl-fn">padValidate</span> <span class="hl-pun">(</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;value&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;json&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-var">$values</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
@@ -5189,6 +5512,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?kind/rule/semver">rule / semver</a> <span class="about">Validation only: canonical Semantic Versioning 2.0.0.</span>
+      <pre class="code"><code><span class="hl-var">$errors</span> <span class="hl-pun">=</span> <span class="hl-fn">padValidate</span> <span class="hl-pun">(</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;value&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;semver&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-var">$values</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/rule/slug">rule / slug</a> <span class="about">The name of a page in an address, as padStrSlug makes one: lower case letters and digits, words joined by one dash, no dash at either end.</span>
       <pre class="code"><code><span class="hl-var">$errors</span> <span class="hl-pun">=</span> <span class="hl-fn">padValidate</span> <span class="hl-pun">(</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;value&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;slug&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-var">$values</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
@@ -5201,6 +5529,16 @@
     <div class="cheat-item">
       <a class="name" href="?kind/rule/time">rule / time</a> <span class="about">A time of day on the 24-hour clock, HH:MM or HH:MM:SS, the hour with one digit or two: what &lt;input type=&quot;time&quot;&gt; posts, 09:30, and what a person types, 9:30.</span>
       <pre class="code"><code><span class="hl-var">$errors</span> <span class="hl-pun">=</span> <span class="hl-fn">padValidate</span> <span class="hl-pun">(</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;value&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;time&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-var">$values</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/rule/timezone">rule / timezone</a> <span class="about">The browser receives this exact runtime list through the client argument hook.</span>
+      <pre class="code"><code><span class="hl-var">$errors</span> <span class="hl-pun">=</span> <span class="hl-fn">padValidate</span> <span class="hl-pun">(</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;value&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;timezone&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-var">$values</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/rule/ulid">rule / ulid</a> <span class="about">Validation only: canonical uppercase Crockford ULID, overflow excluded.</span>
+      <pre class="code"><code><span class="hl-var">$errors</span> <span class="hl-pun">=</span> <span class="hl-fn">padValidate</span> <span class="hl-pun">(</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;value&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;ulid&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-var">$values</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -5266,6 +5604,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?kind/oauth/mastodon">oauth / mastodon</a> <span class="about">Administrator-registered application on one configured Mastodon 4.3+ instance (PKCE S256).</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">&#039;mastodon&#039;</span>, <span class="hl-opt">href</span>=<span class="hl-str">&#039;#example&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/oauth/microsoft">oauth / microsoft</a> <span class="about">Sign in with Microsoft, OpenID Connect on the identity platform: an app registration&#039;s id and secret in MICROSOFT_CLIENT_ID and MICROSOFT_CLIENT_SECRET, the tenant in the option tenant or MICROSOFT_TENANT - common (default: work, school and personal accounts), organizations, consumers, or a tenant&#039;s own id or domain.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:oauth</span> <span class="hl-str">&#039;microsoft&#039;</span>, <span class="hl-opt">href</span>=<span class="hl-str">&#039;#example&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -5301,6 +5644,12 @@
     <div class="cheat-item">
       <a class="name" href="?kind/channel/discord">channel / discord</a> <span class="about">A message to a Discord channel through a webhook: its address in DISCORD_WEBHOOK_URL, or the option url - never a field of the recipient, as for slack.</span>
       <pre class="code"><code><span class="hl-fn">padNotify</span> <span class="hl-pun">(</span> <span class="hl-var">$recipient</span><span class="hl-pun">,</span> <span class="hl-str">&#039;order-shipped&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;order&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">42</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;discord&#039;</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+<span class="hl-var">$results</span> <span class="hl-pun">=</span> <span class="hl-fn">padNotifyResults</span> <span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/channel/googlechat">channel / googlechat</a> <span class="about">Google Chat incoming webhook delivery with mention-neutralized text.</span>
+      <pre class="code"><code><span class="hl-fn">padNotify</span> <span class="hl-pun">(</span> <span class="hl-var">$recipient</span><span class="hl-pun">,</span> <span class="hl-str">&#039;order-shipped&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;order&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">42</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;googlechat&#039;</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
 <span class="hl-var">$results</span> <span class="hl-pun">=</span> <span class="hl-fn">padNotifyResults</span> <span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
     
@@ -5382,6 +5731,12 @@
 <span class="hl-var">$results</span> <span class="hl-pun">=</span> <span class="hl-fn">padNotifyResults</span> <span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
     
+    <div class="cheat-item">
+      <a class="name" href="?kind/channel/zulip">channel / zulip</a> <span class="about">Zulip stream or direct messages with mention-neutralized text and explicit recipients.</span>
+      <pre class="code"><code><span class="hl-fn">padNotify</span> <span class="hl-pun">(</span> <span class="hl-var">$recipient</span><span class="hl-pun">,</span> <span class="hl-str">&#039;order-shipped&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;order&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">42</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;zulip&#039;</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+<span class="hl-var">$results</span> <span class="hl-pun">=</span> <span class="hl-fn">padNotifyResults</span> <span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
   </div>
 </section>
 
@@ -5392,6 +5747,11 @@
     <div class="cheat-item">
       <a class="name" href="?kind/ai/anthropic">ai / anthropic</a> <span class="about">Claude, through Anthropic&#039;s Messages API: the key in ANTHROPIC_API_KEY, claude-opus-5-5 unless model= names another.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:ai</span> <span class="hl-str">&#039;Name three rivers of France.&#039;</span>, <span class="hl-opt">provider</span>=<span class="hl-str">&#039;anthropic&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/ai/azure">ai / azure</a> <span class="about">Azure v1 chat completions: model is the deployment name; dated deployment APIs are separate.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:ai</span> <span class="hl-str">&#039;Name three rivers of France.&#039;</span>, <span class="hl-opt">provider</span>=<span class="hl-str">&#039;azure&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -5472,6 +5832,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?kind/filter/colormatrix">filter / colormatrix</a> <span class="about">Transform normalized RGBA channels with four rows of five coefficients.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:img</span> <span class="hl-str">&#039;photo.jpg&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;A landscape&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">320</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;colormatrix&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/filter/dither">filter / dither</a> <span class="about">Floyd and Steinberg&#039;s error diffusion: the picture in levels= greys (2, ink and paper alone) from the first of colors= to the second, every pixel&#039;s error carried to its neighbours not yet drawn; made at 1x, its pixels sharp, written as a PNG.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:img</span> <span class="hl-str">&#039;photo.jpg&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;A landscape&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">320</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;dither&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -5489,6 +5854,16 @@
     <div class="cheat-item">
       <a class="name" href="?kind/filter/edges">filter / edges</a> <span class="about">The outlines of the picture: Sobel&#039;s operator, how fast its brightness changes across and down every pixel, drawn from the first of colors= where nothing changes to the second where the change is strongest - white lines on black, or &#039;#fbfaf7, #1d1d1b&#039; for a drawing in ink on paper; amount= percent (100) makes the lines stronger or fainter.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:img</span> <span class="hl-str">&#039;photo.jpg&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;A landscape&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">320</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;edges&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/filter/emboss">filter / emboss</a> <span class="about">Reveal edges as a gray relief with a directional luminance kernel.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:img</span> <span class="hl-str">&#039;photo.jpg&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;A landscape&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">320</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;emboss&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/filter/gamma">filter / gamma</a> <span class="about">Adjust the midtones in encoded sRGB channel space.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:img</span> <span class="hl-str">&#039;photo.jpg&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;A landscape&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">320</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;gamma&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -5564,6 +5939,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?kind/holidays/au">holidays / au</a> <span class="about">Australia: common national baseline, with complete statewide NSW and ACT full-day calendars.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:holidays</span> <span class="hl-str">&#039;au&#039;</span>, <span class="hl-opt">year</span>=<span class="hl-num">2026</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/holidays/be">holidays / be</a> <span class="about">Belgium: the ten legal public holidays (wettelijke feestdagen, jours f&eacute;ri&eacute;s l&eacute;gaux), their names in Dutch, French and German - lang= picks one, Dutch the default.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:holidays</span> <span class="hl-str">&#039;be&#039;</span>, <span class="hl-opt">year</span>=<span class="hl-num">2026</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -5599,6 +5979,11 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?kind/holidays/ee">holidays / ee</a> <span class="about">Estonia: the national day and eleven public holidays (Public Holidays and Days of National Importance Act &sect;&sect;1&ndash;2), including Christmas Eve since 2005.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:holidays</span> <span class="hl-str">&#039;ee&#039;</span>, <span class="hl-opt">year</span>=<span class="hl-num">2026</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/holidays/es">holidays / es</a> <span class="about">Spain: the national holidays (fiestas de &aacute;mbito nacional, Real Decreto 2001/1983): New Year&#039;s Day, Good Friday, Labour Day, Assumption Day, the National Day, All Saints&#039; Day, Constitution Day, the Immaculate Conception and Christmas Day, and Epiphany, which a community may replace but every one keeps.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:holidays</span> <span class="hl-str">&#039;es&#039;</span>, <span class="hl-opt">year</span>=<span class="hl-num">2026</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -5616,6 +6001,11 @@
     <div class="cheat-item">
       <a class="name" href="?kind/holidays/gb">holidays / gb</a> <span class="about">The United Kingdom: the bank holidays of England and Wales, and with region= those of a nation by its ISO 3166-2 code - eng and wls the same, sct Scotland (2 January, the first Monday of August, St Andrew&#039;s Day; no Easter Monday), nir Northern Ireland (St Patrick&#039;s Day, the Battle of the Boyne).</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:holidays</span> <span class="hl-str">&#039;gb&#039;</span>, <span class="hl-opt">year</span>=<span class="hl-num">2026</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/holidays/gr">holidays / gr</a> <span class="about">Greece: mandatory nationwide holidays under Law 4808/2021, plus explicitly non-universal religious observances.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:holidays</span> <span class="hl-str">&#039;gr&#039;</span>, <span class="hl-opt">year</span>=<span class="hl-num">2026</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -5746,6 +6136,16 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?kind/search/fi">search / fi</a> <span class="about">Snowball 3.2.0 generated algorithm, pinned upstream commit in scoped documentation.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:data</span> <span class="hl-str">&#039;catalogDocs&#039;</span><span class="hl-brc">}</span>
+[ <span class="hl-brc">{</span> <span class="hl-str">&quot;title&quot;</span>: <span class="hl-str">&quot;PAD&quot;</span>, <span class="hl-str">&quot;body&quot;</span>: <span class="hl-str">&quot;Templates on the server&quot;</span> <span class="hl-brc">}</span> ]
+<span class="hl-brc">{</span><span class="hl-tag">/pad:data</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">&#039;catalogDocs&#039;</span>, <span class="hl-opt">q</span>=<span class="hl-str">&#039;PAD&#039;</span>, <span class="hl-opt">fields</span>=<span class="hl-str">&#039;title, body&#039;</span>, <span class="hl-opt">lang</span>=<span class="hl-str">&#039;fi&#039;</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">!excerpt</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/search/fr">search / fr</a> <span class="about">French: Snowball&#039;s stop words and its French stemmer as Snowball 3 has it (snowballstem.org/algorithms/french), step for step after french.sbl - an elision, a standard suffix, else an i-verb or another verb ending, else a residual one, then a double consonant and an accent undone: continuellement is continuel, l&#039;homme homm, nationales national.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:data</span> <span class="hl-str">&#039;catalogDocs&#039;</span><span class="hl-brc">}</span>
 [ <span class="hl-brc">{</span> <span class="hl-str">&quot;title&quot;</span>: <span class="hl-str">&quot;PAD&quot;</span>, <span class="hl-str">&quot;body&quot;</span>: <span class="hl-str">&quot;Templates on the server&quot;</span> <span class="hl-brc">}</span> ]
@@ -5786,6 +6186,16 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?kind/search/pl">search / pl</a> <span class="about">Snowball 3.2.0 generated algorithm, pinned upstream commit in scoped documentation.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:data</span> <span class="hl-str">&#039;catalogDocs&#039;</span><span class="hl-brc">}</span>
+[ <span class="hl-brc">{</span> <span class="hl-str">&quot;title&quot;</span>: <span class="hl-str">&quot;PAD&quot;</span>, <span class="hl-str">&quot;body&quot;</span>: <span class="hl-str">&quot;Templates on the server&quot;</span> <span class="hl-brc">}</span> ]
+<span class="hl-brc">{</span><span class="hl-tag">/pad:data</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">&#039;catalogDocs&#039;</span>, <span class="hl-opt">q</span>=<span class="hl-str">&#039;PAD&#039;</span>, <span class="hl-opt">fields</span>=<span class="hl-str">&#039;title, body&#039;</span>, <span class="hl-opt">lang</span>=<span class="hl-str">&#039;pl&#039;</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">!excerpt</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/search/pt">search / pt</a> <span class="about">Portuguese: Snowball&#039;s stop words and its Portuguese stemmer as Snowball 3.1 has it (snowballstem.org/algorithms/portuguese), step for step after portuguese.sbl - a standard suffix or else a verb ending (and an i after a c then), else a residual vowel, then a final e and the u of gue or the i of cie, and &ccedil; as c - for Portuguese as written in Portugal and in Brazil alike, Snowball having one stemmer for both: informa&ccedil;&otilde;es is inform, rapidamente rapid, brasileira brasileir, cidades cidad.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:data</span> <span class="hl-str">&#039;catalogDocs&#039;</span><span class="hl-brc">}</span>
 [ <span class="hl-brc">{</span> <span class="hl-str">&quot;title&quot;</span>: <span class="hl-str">&quot;PAD&quot;</span>, <span class="hl-str">&quot;body&quot;</span>: <span class="hl-str">&quot;Templates on the server&quot;</span> <span class="hl-brc">}</span> ]
@@ -5815,6 +6225,16 @@
 <span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span></code></pre>
     </div>
     
+    <div class="cheat-item">
+      <a class="name" href="?kind/search/tr">search / tr</a> <span class="about">Snowball 3.2.0 generated algorithm, pinned upstream commit in scoped documentation.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:data</span> <span class="hl-str">&#039;catalogDocs&#039;</span><span class="hl-brc">}</span>
+[ <span class="hl-brc">{</span> <span class="hl-str">&quot;title&quot;</span>: <span class="hl-str">&quot;PAD&quot;</span>, <span class="hl-str">&quot;body&quot;</span>: <span class="hl-str">&quot;Templates on the server&quot;</span> <span class="hl-brc">}</span> ]
+<span class="hl-brc">{</span><span class="hl-tag">/pad:data</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">&#039;catalogDocs&#039;</span>, <span class="hl-opt">q</span>=<span class="hl-str">&#039;PAD&#039;</span>, <span class="hl-opt">fields</span>=<span class="hl-str">&#039;title, body&#039;</span>, <span class="hl-opt">lang</span>=<span class="hl-str">&#039;tr&#039;</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">!excerpt</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
   </div>
 </section>
 
@@ -5831,6 +6251,11 @@
       <a class="name" href="?kind/format/csv">format / csv</a> <span class="about">Comma separated values (RFC 4180), read and written: the reader is the engine&#039;s own, data/csv.php - a header line naming the fields, then a row per line - and the writer the one a CSV page answer is made with: a header row of every key the rows use, a cell holding a list as its JSON, and a text cell a spreadsheet would run as a formula (=, +, -, @ in front) with a &#039; before it.</span>
       <pre class="code"><code><span class="hl-var">$rows</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatRead</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;csv&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$contents</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
 <span class="hl-var">$contents</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatWrite</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;csv&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$rows</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/format/fixedwidth">format / fixedwidth</a> <span class="about">Fixed-width records read and written with explicit column widths and alignment.</span>
+      <pre class="code"><code><span class="hl-var">$rows</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatRead</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;fixedwidth&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$contents</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;columns&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;name&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">12</span><span class="hl-pun">,</span> <span class="hl-str">&#039;age&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">3</span> <span class="hl-pun">]</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -5881,6 +6306,12 @@
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?kind/format/logfmt">format / logfmt</a> <span class="about">Logfmt key-value records with quoted values and explicit escape handling.</span>
+      <pre class="code"><code><span class="hl-var">$rows</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatRead</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;logfmt&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$contents</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+<span class="hl-var">$contents</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatWrite</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;logfmt&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$rows</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/format/markdown">format / markdown</a> <span class="about">Markdown pipe tables (GitHub Flavored Markdown), read and written: the first table of a text - a README, a page of notes - as rows, and rows as a table whose columns line up, numbers on the right.</span>
       <pre class="code"><code><span class="hl-var">$rows</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatRead</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;markdown&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$contents</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
 <span class="hl-var">$contents</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatWrite</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;markdown&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$rows</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
@@ -5890,6 +6321,12 @@
       <a class="name" href="?kind/format/ndjson">format / ndjson</a> <span class="about">Newline delimited JSON (JSON Lines): a JSON value a line, a row each, read and written - what a log, a stream or a bulk export is made of.</span>
       <pre class="code"><code><span class="hl-var">$rows</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatRead</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;ndjson&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$contents</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
 <span class="hl-var">$contents</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatWrite</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;ndjson&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$rows</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/format/properties">format / properties</a> <span class="about">Java-style properties with escaped separators, Unicode escapes and continuation lines.</span>
+      <pre class="code"><code><span class="hl-var">$rows</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatRead</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;properties&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$contents</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+<span class="hl-var">$contents</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatWrite</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;properties&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$rows</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -6045,6 +6482,19 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
     <div class="cheat-item">
       <a class="name" href="?kind/formula/concat">formula / concat</a> <span class="about">CONCAT(text, ...) joins texts into one - every cell of a range in its order, a number as it reads in text, TRUE and FALSE in capitals, an empty cell as nothing.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-opt">formulas</span>=<span class="hl-str">&#039;G1=CONCAT(&quot;a&quot;, 1, TRUE)&#039;</span><span class="hl-brc">}</span>
+Item,Qty,Price,Date,Flow
+Apples,<span class="hl-num">10</span>,<span class="hl-num">1.20</span>,<span class="hl-num">2024</span>-<span class="hl-num">01</span>-<span class="hl-num">15</span>,-<span class="hl-num">70000</span>
+Pears,<span class="hl-num">5</span>,<span class="hl-num">0.80</span>,<span class="hl-num">2024</span>-<span class="hl-num">02</span>-<span class="hl-num">29</span>,<span class="hl-num">12000</span>
+Cherries,<span class="hl-num">20</span>,<span class="hl-num">3.50</span>,<span class="hl-num">2024</span>-<span class="hl-num">03</span>-<span class="hl-num">31</span>,<span class="hl-num">15000</span>
+Apples,<span class="hl-num">15</span>,<span class="hl-num">1.10</span>,<span class="hl-num">2024</span>-<span class="hl-num">04</span>-<span class="hl-num">01</span>,<span class="hl-num">18000</span>
+Plums,<span class="hl-num">0</span>,<span class="hl-num">2.25</span>,<span class="hl-num">2024</span>-<span class="hl-num">12</span>-<span class="hl-num">31</span>,<span class="hl-num">21000</span>
+Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class="hl-num">2025</span>-<span class="hl-num">06</span>-<span class="hl-num">30</span>,<span class="hl-num">26000</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:spreadsheet</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/formula/correl">formula / correl</a> <span class="about">CORREL(array1, array2) returns the Pearson correlation of paired numbers.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-opt">formulas</span>=<span class="hl-str">&#039;G1=CORREL(B2:B7, B2:B7)&#039;</span><span class="hl-brc">}</span>
 Item,Qty,Price,Date,Flow
 Apples,<span class="hl-num">10</span>,<span class="hl-num">1.20</span>,<span class="hl-num">2024</span>-<span class="hl-num">01</span>-<span class="hl-num">15</span>,-<span class="hl-num">70000</span>
 Pears,<span class="hl-num">5</span>,<span class="hl-num">0.80</span>,<span class="hl-num">2024</span>-<span class="hl-num">02</span>-<span class="hl-num">29</span>,<span class="hl-num">12000</span>
@@ -6500,6 +6950,19 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
     <div class="cheat-item">
       <a class="name" href="?kind/formula/isodd">formula / isodd</a> <span class="about">ISODD(number) is TRUE when the number is odd and FALSE when it is even - a fraction is cut toward zero first, so 2.5 is even, and an empty cell is 0.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-opt">formulas</span>=<span class="hl-str">&#039;G1=ISODD(B3)&#039;</span><span class="hl-brc">}</span>
+Item,Qty,Price,Date,Flow
+Apples,<span class="hl-num">10</span>,<span class="hl-num">1.20</span>,<span class="hl-num">2024</span>-<span class="hl-num">01</span>-<span class="hl-num">15</span>,-<span class="hl-num">70000</span>
+Pears,<span class="hl-num">5</span>,<span class="hl-num">0.80</span>,<span class="hl-num">2024</span>-<span class="hl-num">02</span>-<span class="hl-num">29</span>,<span class="hl-num">12000</span>
+Cherries,<span class="hl-num">20</span>,<span class="hl-num">3.50</span>,<span class="hl-num">2024</span>-<span class="hl-num">03</span>-<span class="hl-num">31</span>,<span class="hl-num">15000</span>
+Apples,<span class="hl-num">15</span>,<span class="hl-num">1.10</span>,<span class="hl-num">2024</span>-<span class="hl-num">04</span>-<span class="hl-num">01</span>,<span class="hl-num">18000</span>
+Plums,<span class="hl-num">0</span>,<span class="hl-num">2.25</span>,<span class="hl-num">2024</span>-<span class="hl-num">12</span>-<span class="hl-num">31</span>,<span class="hl-num">21000</span>
+Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class="hl-num">2025</span>-<span class="hl-num">06</span>-<span class="hl-num">30</span>,<span class="hl-num">26000</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:spreadsheet</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/formula/isoweeknum">formula / isoweeknum</a> <span class="about">ISOWEEKNUM(date) returns the ISO week, with Monday as its first day and the first Thursday identifying week one.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-opt">formulas</span>=<span class="hl-str">&#039;G1=ISOWEEKNUM(DATE(2021, 1, 1))&#039;</span><span class="hl-brc">}</span>
 Item,Qty,Price,Date,Flow
 Apples,<span class="hl-num">10</span>,<span class="hl-num">1.20</span>,<span class="hl-num">2024</span>-<span class="hl-num">01</span>-<span class="hl-num">15</span>,-<span class="hl-num">70000</span>
 Pears,<span class="hl-num">5</span>,<span class="hl-num">0.80</span>,<span class="hl-num">2024</span>-<span class="hl-num">02</span>-<span class="hl-num">29</span>,<span class="hl-num">12000</span>
@@ -7343,6 +7806,32 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?kind/formula/textafter">formula / textafter</a> <span class="about">TEXTAFTER(text, delimiter, [instance_num], [match_mode], [match_end], [if_not_found]) returns the text after a selected delimiter.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-opt">formulas</span>=<span class="hl-str">&#039;G1=TEXTAFTER(&quot;a/b/c&quot;, &quot;/&quot;)&#039;</span><span class="hl-brc">}</span>
+Item,Qty,Price,Date,Flow
+Apples,<span class="hl-num">10</span>,<span class="hl-num">1.20</span>,<span class="hl-num">2024</span>-<span class="hl-num">01</span>-<span class="hl-num">15</span>,-<span class="hl-num">70000</span>
+Pears,<span class="hl-num">5</span>,<span class="hl-num">0.80</span>,<span class="hl-num">2024</span>-<span class="hl-num">02</span>-<span class="hl-num">29</span>,<span class="hl-num">12000</span>
+Cherries,<span class="hl-num">20</span>,<span class="hl-num">3.50</span>,<span class="hl-num">2024</span>-<span class="hl-num">03</span>-<span class="hl-num">31</span>,<span class="hl-num">15000</span>
+Apples,<span class="hl-num">15</span>,<span class="hl-num">1.10</span>,<span class="hl-num">2024</span>-<span class="hl-num">04</span>-<span class="hl-num">01</span>,<span class="hl-num">18000</span>
+Plums,<span class="hl-num">0</span>,<span class="hl-num">2.25</span>,<span class="hl-num">2024</span>-<span class="hl-num">12</span>-<span class="hl-num">31</span>,<span class="hl-num">21000</span>
+Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class="hl-num">2025</span>-<span class="hl-num">06</span>-<span class="hl-num">30</span>,<span class="hl-num">26000</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:spreadsheet</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/formula/textbefore">formula / textbefore</a> <span class="about">TEXTBEFORE(text, delimiter, [instance_num], [match_mode], [match_end], [if_not_found]) returns the text before a selected delimiter.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-opt">formulas</span>=<span class="hl-str">&#039;G1=TEXTBEFORE(&quot;a/b/c&quot;, &quot;/&quot;)&#039;</span><span class="hl-brc">}</span>
+Item,Qty,Price,Date,Flow
+Apples,<span class="hl-num">10</span>,<span class="hl-num">1.20</span>,<span class="hl-num">2024</span>-<span class="hl-num">01</span>-<span class="hl-num">15</span>,-<span class="hl-num">70000</span>
+Pears,<span class="hl-num">5</span>,<span class="hl-num">0.80</span>,<span class="hl-num">2024</span>-<span class="hl-num">02</span>-<span class="hl-num">29</span>,<span class="hl-num">12000</span>
+Cherries,<span class="hl-num">20</span>,<span class="hl-num">3.50</span>,<span class="hl-num">2024</span>-<span class="hl-num">03</span>-<span class="hl-num">31</span>,<span class="hl-num">15000</span>
+Apples,<span class="hl-num">15</span>,<span class="hl-num">1.10</span>,<span class="hl-num">2024</span>-<span class="hl-num">04</span>-<span class="hl-num">01</span>,<span class="hl-num">18000</span>
+Plums,<span class="hl-num">0</span>,<span class="hl-num">2.25</span>,<span class="hl-num">2024</span>-<span class="hl-num">12</span>-<span class="hl-num">31</span>,<span class="hl-num">21000</span>
+Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class="hl-num">2025</span>-<span class="hl-num">06</span>-<span class="hl-num">30</span>,<span class="hl-num">26000</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:spreadsheet</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/formula/textjoin">formula / textjoin</a> <span class="about">TEXTJOIN(delimiter, ignore_empty, text, ...) joins texts with a delimiter between them - every cell of a range in its order; with ignore_empty TRUE the empty ones are left out.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-opt">formulas</span>=<span class="hl-str">&#039;G1=TEXTJOIN(&quot;, &quot;, TRUE, A2:A4)&#039;</span><span class="hl-brc">}</span>
 Item,Qty,Price,Date,Flow
@@ -7564,6 +8053,19 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?kind/formula/xmatch">formula / xmatch</a> <span class="about">XMATCH(value, lookup_array, [match_mode], [search_mode]) returns a one-based position.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-opt">formulas</span>=<span class="hl-str">&#039;G1=XMATCH(&quot;Plums&quot;, A2:A7)&#039;</span><span class="hl-brc">}</span>
+Item,Qty,Price,Date,Flow
+Apples,<span class="hl-num">10</span>,<span class="hl-num">1.20</span>,<span class="hl-num">2024</span>-<span class="hl-num">01</span>-<span class="hl-num">15</span>,-<span class="hl-num">70000</span>
+Pears,<span class="hl-num">5</span>,<span class="hl-num">0.80</span>,<span class="hl-num">2024</span>-<span class="hl-num">02</span>-<span class="hl-num">29</span>,<span class="hl-num">12000</span>
+Cherries,<span class="hl-num">20</span>,<span class="hl-num">3.50</span>,<span class="hl-num">2024</span>-<span class="hl-num">03</span>-<span class="hl-num">31</span>,<span class="hl-num">15000</span>
+Apples,<span class="hl-num">15</span>,<span class="hl-num">1.10</span>,<span class="hl-num">2024</span>-<span class="hl-num">04</span>-<span class="hl-num">01</span>,<span class="hl-num">18000</span>
+Plums,<span class="hl-num">0</span>,<span class="hl-num">2.25</span>,<span class="hl-num">2024</span>-<span class="hl-num">12</span>-<span class="hl-num">31</span>,<span class="hl-num">21000</span>
+Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class="hl-num">2025</span>-<span class="hl-num">06</span>-<span class="hl-num">30</span>,<span class="hl-num">26000</span>
+<span class="hl-brc">{</span><span class="hl-tag">/pad:spreadsheet</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/formula/xor">formula / xor</a> <span class="about">XOR(logical, ...) is TRUE when an odd number of the values are TRUE, read as AND reads them.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-opt">formulas</span>=<span class="hl-str">&#039;G1=XOR(TRUE, TRUE, TRUE)&#039;</span><span class="hl-brc">}</span>
 Item,Qty,Price,Date,Flow
@@ -7652,6 +8154,11 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?kind/theme/projection">theme / projection</a> <span class="about">Large readable type and strong focus/state boundaries for projected pages.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">&#039;projection&#039;</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the projection theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/theme/readable">theme / readable</a> <span class="about">A page set for readers with dyslexia, after the British Dyslexia Association&#039;s Dyslexia Style Guide: dark text on cream rather than black on white, a plain, evenly spaced sans-serif (Atkinson Hyperlegible where it is installed, else the guide&#039;s Verdana, Tahoma or Trebuchet), 16 pixels, the lines 1.6 apart, the letters .06em and the words .16em further apart - within what WCAG 1.4.12 asks a page to bear - paragraphs no wider than 70 characters, bold instead of italics, no block capitals in the side&#039;s headings, and the messages in Okabe and Ito&#039;s blue, orange and vermilion, darkened to AA: no green and no red, which the guide asks to avoid for colour-blind readers.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">&#039;readable&#039;</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the readable theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
     </div>
@@ -7684,8 +8191,18 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
   <div class="cheat">
     
     <div class="cheat-item">
+      <a class="name" href="?kind/palette/amber">palette / amber</a> <span class="about">Warm scale from cream to dark amber.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">&#039;amber&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/palette/batlow">palette / batlow</a> <span class="about">Fabio Crameri&#039;s sequential scale batlow, from a dark navy through teal, a moss green, olive and ochre to salmon and a pale pink: perceptually uniform, its lightness rising all the way, so it prints as a ramp in grey, and read by colour-vision-deficient and colour-blind eyes, as Crameri&#039;s scientific colour maps all are.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">&#039;batlow&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/palette/blue-orange">palette / blue-orange</a> <span class="about">Deviations around a neutral #f2f2f2 midpoint.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">&#039;blue-orange&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -7759,6 +8276,11 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?kind/palette/phase">palette / phase</a> <span class="about">Cyclic angle scale; samples stop before the repeated first color.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">&#039;phase&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?kind/palette/piyg">palette / piyg</a> <span class="about">ColorBrewer&#039;s diverging scale of eleven classes from pink through a light grey to yellow-green, readable by colour-blind eyes (Cynthia Brewer, colorbrewer2.org).</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">&#039;piyg&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -7826,6 +8348,257 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
     <div class="cheat-item">
       <a class="name" href="?kind/palette/ylorrd">palette / ylorrd</a> <span class="about">ColorBrewer&#039;s multi-hue sequential scale YlOrRd of nine classes, from a pale yellow through orange and red to a dark crimson (Cynthia Brewer, colorbrewer2.org), for heat, risk or intensity: its hue turns as its lightness falls, and ColorBrewer marks it safe for colour-blind eyes.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:palette</span> <span class="hl-str">&#039;ylorrd&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+  </div>
+</section>
+
+<section class="section" id="subsystem-highlighter">
+  <div class="section-head"><h2>Syntax languages</h2></div>
+  <div class="cheat">
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/bash">highlighter / bash</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;bash&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/css">highlighter / css</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;css&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/diff">highlighter / diff</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;diff&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/go">highlighter / go</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;go&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/html">highlighter / html</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;html&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/js">highlighter / js</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;js&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/json">highlighter / json</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;json&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/pad">highlighter / pad</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;pad&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/php">highlighter / php</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;php&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/python">highlighter / python</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;python&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/rust">highlighter / rust</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;rust&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/sql">highlighter / sql</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;sql&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/text">highlighter / text</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;text&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/typescript">highlighter / typescript</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;typescript&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/highlighter/yaml">highlighter / yaml</a> <span class="about"># Syntax highlighters</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;yaml&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+  </div>
+</section>
+
+<section class="section" id="subsystem-diff">
+  <div class="section-head"><h2>Comparison kinds</h2></div>
+  <div class="cheat">
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/diff/json">diff / json</a> <span class="about"># Structured comparisons</span>
+      <pre class="code"><code><span class="hl-var">$changes</span> <span class="hl-pun">=</span> <span class="hl-fn">padDiffCompare</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;json&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$before</span><span class="hl-pun">,</span> <span class="hl-var">$after</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+<span class="hl-fn">padDiffRender</span> <span class="hl-pun">(</span> <span class="hl-var">$changes</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/diff/lines">diff / lines</a> <span class="about"># Structured comparisons</span>
+      <pre class="code"><code><span class="hl-var">$changes</span> <span class="hl-pun">=</span> <span class="hl-fn">padDiffCompare</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;lines&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$before</span><span class="hl-pun">,</span> <span class="hl-var">$after</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+<span class="hl-fn">padDiffRender</span> <span class="hl-pun">(</span> <span class="hl-var">$changes</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/diff/rows">diff / rows</a> <span class="about"># Structured comparisons</span>
+      <pre class="code"><code><span class="hl-var">$changes</span> <span class="hl-pun">=</span> <span class="hl-fn">padDiffCompare</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;rows&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$before</span><span class="hl-pun">,</span> <span class="hl-var">$after</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;key&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;id&#039;</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+<span class="hl-fn">padDiffRender</span> <span class="hl-pun">(</span> <span class="hl-var">$changes</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/diff/words">diff / words</a> <span class="about"># Structured comparisons</span>
+      <pre class="code"><code><span class="hl-var">$changes</span> <span class="hl-pun">=</span> <span class="hl-fn">padDiffCompare</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;words&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$before</span><span class="hl-pun">,</span> <span class="hl-var">$after</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+<span class="hl-fn">padDiffRender</span> <span class="hl-pun">(</span> <span class="hl-var">$changes</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+  </div>
+</section>
+
+<section class="section" id="subsystem-recurrence">
+  <div class="section-head"><h2>Calendar recurrences</h2></div>
+  <div class="cheat">
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/recurrence/daily">recurrence / daily</a> <span class="about"># Calendar recurrence expansion</span>
+      <pre class="code"><code><span class="hl-fn">padOccurrences</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;daily&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;start&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;2026-11-02&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;count&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">4</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-str">&#039;2026-11-01&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;2031-12-01&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/recurrence/monthly">recurrence / monthly</a> <span class="about"># Calendar recurrence expansion</span>
+      <pre class="code"><code><span class="hl-fn">padOccurrences</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;monthly&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;start&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;2026-11-02&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;count&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">4</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-str">&#039;2026-11-01&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;2031-12-01&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/recurrence/rrule">recurrence / rrule</a> <span class="about"># Calendar recurrence expansion</span>
+      <pre class="code"><code><span class="hl-fn">padOccurrences</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;rrule&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;start&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;2026-11-02&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;rrule&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;FREQ=WEEKLY;COUNT=4&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-str">&#039;2026-11-01&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;2031-12-01&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/recurrence/weekly">recurrence / weekly</a> <span class="about"># Calendar recurrence expansion</span>
+      <pre class="code"><code><span class="hl-fn">padOccurrences</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;weekly&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;start&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;2026-11-02&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;count&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">4</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-str">&#039;2026-11-01&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;2031-12-01&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/recurrence/yearly">recurrence / yearly</a> <span class="about"># Calendar recurrence expansion</span>
+      <pre class="code"><code><span class="hl-fn">padOccurrences</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;yearly&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;start&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;2026-11-02&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;count&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">4</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-str">&#039;2026-11-01&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;2031-12-01&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+  </div>
+</section>
+
+<section class="section" id="subsystem-geo">
+  <div class="section-head"><h2>Geographic operations</h2></div>
+  <div class="cheat">
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/geo/bbox">geo / bbox</a> <span class="about"># Geographic operations</span>
+      <pre class="code"><code><span class="hl-fn">padGeo</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;bbox&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-pun">[</span><span class="hl-num">179</span><span class="hl-pun">,</span><span class="hl-num">10</span><span class="hl-pun">]</span><span class="hl-pun">,</span><span class="hl-pun">[</span><span class="hl-pun">-</span><span class="hl-num">179</span><span class="hl-pun">,</span><span class="hl-num">20</span><span class="hl-pun">]</span><span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/geo/bearing">geo / bearing</a> <span class="about"># Geographic operations</span>
+      <pre class="code"><code><span class="hl-fn">padGeo</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;bearing&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-num">4.9</span><span class="hl-pun">,</span><span class="hl-num">52.37</span><span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-num">2.35</span><span class="hl-pun">,</span><span class="hl-num">48.86</span><span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/geo/contains">geo / contains</a> <span class="about"># Geographic operations</span>
+      <pre class="code"><code><span class="hl-fn">padGeo</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;contains&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-num">1</span><span class="hl-pun">,</span><span class="hl-num">1</span><span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-str">&#039;type&#039;</span><span class="hl-pun">=&gt;</span><span class="hl-str">&#039;Polygon&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;coordinates&#039;</span><span class="hl-pun">=&gt;</span><span class="hl-pun">[</span><span class="hl-pun">[</span><span class="hl-pun">[</span><span class="hl-num">0</span><span class="hl-pun">,</span><span class="hl-num">0</span><span class="hl-pun">]</span><span class="hl-pun">,</span><span class="hl-pun">[</span><span class="hl-num">2</span><span class="hl-pun">,</span><span class="hl-num">0</span><span class="hl-pun">]</span><span class="hl-pun">,</span><span class="hl-pun">[</span><span class="hl-num">2</span><span class="hl-pun">,</span><span class="hl-num">2</span><span class="hl-pun">]</span><span class="hl-pun">,</span><span class="hl-pun">[</span><span class="hl-num">0</span><span class="hl-pun">,</span><span class="hl-num">2</span><span class="hl-pun">]</span><span class="hl-pun">,</span><span class="hl-pun">[</span><span class="hl-num">0</span><span class="hl-pun">,</span><span class="hl-num">0</span><span class="hl-pun">]</span><span class="hl-pun">]</span><span class="hl-pun">]</span><span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/geo/distance">geo / distance</a> <span class="about"># Geographic operations</span>
+      <pre class="code"><code><span class="hl-fn">padGeo</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;distance&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-num">4.9</span><span class="hl-pun">,</span><span class="hl-num">52.37</span><span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-num">2.35</span><span class="hl-pun">,</span><span class="hl-num">48.86</span><span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/geo/geohash">geo / geohash</a> <span class="about"># Geographic operations</span>
+      <pre class="code"><code><span class="hl-fn">padGeo</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;geohash&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-num">4.9</span><span class="hl-pun">,</span><span class="hl-num">52.37</span><span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+  </div>
+</section>
+
+<section class="section" id="subsystem-distribution">
+  <div class="section-head"><h2>Sampling distributions</h2></div>
+  <div class="cheat">
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/distribution/bernoulli">distribution / bernoulli</a> <span class="about"># Statistical sampling</span>
+      <pre class="code"><code><span class="hl-fn">padSample</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;bernoulli&#039;</span><span class="hl-pun">,</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;seed&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">7</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/distribution/binomial">distribution / binomial</a> <span class="about"># Statistical sampling</span>
+      <pre class="code"><code><span class="hl-fn">padSample</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;binomial&#039;</span><span class="hl-pun">,</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;seed&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">7</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/distribution/exponential">distribution / exponential</a> <span class="about"># Statistical sampling</span>
+      <pre class="code"><code><span class="hl-fn">padSample</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;exponential&#039;</span><span class="hl-pun">,</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;seed&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">7</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/distribution/normal">distribution / normal</a> <span class="about"># Statistical sampling</span>
+      <pre class="code"><code><span class="hl-fn">padSample</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;normal&#039;</span><span class="hl-pun">,</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;seed&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">7</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/distribution/poisson">distribution / poisson</a> <span class="about"># Statistical sampling</span>
+      <pre class="code"><code><span class="hl-fn">padSample</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;poisson&#039;</span><span class="hl-pun">,</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;seed&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">7</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/distribution/uniform">distribution / uniform</a> <span class="about"># Statistical sampling</span>
+      <pre class="code"><code><span class="hl-fn">padSample</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;uniform&#039;</span><span class="hl-pun">,</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;seed&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">7</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+  </div>
+</section>
+
+<section class="section" id="subsystem-unit">
+  <div class="section-head"><h2>Unit conversions</h2></div>
+  <div class="cheat">
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/unit/area">unit / area</a> <span class="about"># Unit conversion</span>
+      <pre class="code"><code><span class="hl-fn">padConvert</span> <span class="hl-pun">(</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-str">&#039;m2&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;ft2&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/unit/digital">unit / digital</a> <span class="about"># Unit conversion</span>
+      <pre class="code"><code><span class="hl-fn">padConvert</span> <span class="hl-pun">(</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-str">&#039;KiB&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;B&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/unit/length">unit / length</a> <span class="about"># Unit conversion</span>
+      <pre class="code"><code><span class="hl-fn">padConvert</span> <span class="hl-pun">(</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-str">&#039;cm&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;m&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/unit/mass">unit / mass</a> <span class="about"># Unit conversion</span>
+      <pre class="code"><code><span class="hl-fn">padConvert</span> <span class="hl-pun">(</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-str">&#039;kg&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;g&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/unit/temperature">unit / temperature</a> <span class="about"># Unit conversion</span>
+      <pre class="code"><code><span class="hl-fn">padConvert</span> <span class="hl-pun">(</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-str">&#039;C&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;F&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?kind/unit/volume">unit / volume</a> <span class="about"># Unit conversion</span>
+      <pre class="code"><code><span class="hl-fn">padConvert</span> <span class="hl-pun">(</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-str">&#039;L&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;mL&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
     
   </div>

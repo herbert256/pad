@@ -1,4 +1,8 @@
 <?php
+
+  // mosaic - A grid of coloured triangles derived deterministically from an identity.
+  //
+
 $svg='';
 for($y=0;$y<5;$y++) for($x=0;$x<5;$x++) {
  $n=$y*5+$x;$a=$palette[hexdec($hash[$n])%count($palette)];$b=$palette[hexdec($hash[$n+25])%count($palette)];

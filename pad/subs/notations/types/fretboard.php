@@ -1,4 +1,11 @@
 <?php
+
+  // fretboard - scale notes across a fretted instrument, labelled by note or interval.
+  // tuning= lists strings from low to high; firstfret= and frets= select the visible range.
+  // direction='left' mirrors the instrument for a left-handed view.
+  //
+  //   {notation:fretboard labels='intervals'}C major{/notation:fretboard}
+
 if(trim($padNotationText)==='')return '';
 $spec=padFretboardParse($padNotationText,padNotationOption('tuning','E2 A2 D3 G3 B3 E4'));
 if(is_string($spec)){if($padCheckSyntax)padError('the fretboard '.$spec);return '';}

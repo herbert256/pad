@@ -1,4 +1,7 @@
 <?php
+
+  // service - Service metadata with a provider, served places and optional priced offer.
+
   return [ 'type' => 'Service', 'fields' => [
     'name' => [ 'name', 'text', TRUE ], 'description' => [ 'description', 'text' ],
     'service' => [ 'serviceType', 'text' ], 'url' => [ 'url', 'url' ],

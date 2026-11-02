@@ -1,4 +1,8 @@
 <?php
+
+  // {printable:planner date='2026-11-02'}Tasks{/printable:planner} - Weekly planning sheets with dated columns, working hours and a notes area.
+  //
+
 $date=padPrintableText('date',gmdate('Y-m-d'));
 $start=DateTimeImmutable::createFromFormat('!Y-m-d',$date,new DateTimeZone('UTC'));
 if(!$start||$start->format('Y-m-d')!==$date){padError('planner date must be YYYY-MM-DD');return [];}

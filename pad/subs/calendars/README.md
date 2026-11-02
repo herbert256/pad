@@ -13,8 +13,10 @@ Gregorian calendar views selected by `{calendar:kind}`. Each kind is a PHP file 
 | `agenda` | `2026-11` | `month` | Days with events or holidays, in date order |
 | `quarter` | `2026-Q4` or `2026-11` | `quarter` | Three months containing `weeks` |
 | `year` | `2026` | `year` | Twelve months containing `weeks` |
+| `timegrid` | `2026-11-02` | None | Rendered view; no pair rows |
+| `resources` | `2026-11-02` | None | Rendered view; no pair rows |
 
-Without a parameter the view reads its query key, then defaults to today. Navigation
+For the seven date views, without a parameter the view reads its query key, then defaults to today. Navigation
 preserves the page and other query values. An explicit fixed period suppresses navigation;
 a parameter equal to the requested period retains it. `query='schedule'` supplies an
 independent query key. Invalid request values fall back to today; an invalid fixed period
@@ -22,7 +24,7 @@ is an error under PAD's strict check. Week and day parameters must be real Grego
 Years range from 0000 to 9999. The week view clips its days at either endpoint;
 navigation never links outside that range.
 
-All views accept the original options:
+The seven date views accept the original options:
 
 - `data`: a PAD data store, PHP array, data file or inline data literal of event rows.
 - `date`: the event date field; otherwise guessed, including `DateTimeInterface` values.
@@ -76,3 +78,28 @@ and need no JavaScript. Week views stack on narrow screens; year and quarter gri
 adapt their column count to the available space.
 
 The [calendars application](../../../apps/calendars/README.md) demonstrates every kind.
+
+## Timed events and resource bookings
+
+`timegrid` and `resources` use interval records instead of date-only events. Each timed
+record has `start` and `end` ISO timestamps with explicit offsets, plus optional `title`
+and safe `link`. With `allDay=true`, start/end are dates and the end is exclusive.
+`resources` also needs a `resource` ID on each event and a `resources` map of IDs to labels.
+
+```html
+{pad:data 'bookings', format='json'}
+[{"title":"Planning","resource":"room-a","start":"2026-11-02T09:00:00+01:00","end":"2026-11-02T10:30:00+01:00"}]
+{/pad:data}
+{calendar:timegrid '2026-11-02', data='bookings', timezone='Europe/Amsterdam', days=1/}
+{calendar:resources '2026-11-02', data='bookings', resources=['room-a'=>'Room A','room-b'=>'Room B'], timezone='Europe/Amsterdam'/}
+```
+
+The first parameter is a day; when absent it defaults to today, without reading a query
+key. `days=1` or `days=7` chooses a day or aligned week (`sunday` changes the week start).
+`timezone` defaults to UTC; `label` names the rendered view. These self-closing views show
+real timed intervals, all-day rows and overlap lanes, with no iterable calendar pair rows.
+They do not accept date-field mapping, holidays, query navigation or `empty`.
+
+See [timegrid](../../../docs/subsystems/calendars/timegrid.md) and
+[resources](../../../docs/subsystems/calendars/resources.md) for DST behavior and limits.
+The application provides complete examples at `?timegrid` and `?resources`.

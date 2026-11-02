@@ -1,4 +1,7 @@
 <?php
+
+  // microqr - Micro QR versions M1 through M4, with explicit encoding mode, error correction and mask options.
+
   include_once PAD . 'subs/codes/_lib/microqr.php';
   $padMicroText = padCodeText ( FALSE );
   $padMicroOptions = [];

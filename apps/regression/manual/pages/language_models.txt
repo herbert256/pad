@@ -1,5 +1,3 @@
-
-
 <p>{pad:ai} puts the answer of a language model in the page. What stands between the tags
 renders first - fields, loops, anything - and what it rendered is the prompt; the answer comes back
 as text. It is a value, never template code: markup in it is shown, not run, and so is a PAD tag:</p>
@@ -135,7 +133,7 @@ Ollama, which runs a model on this machine and needs no key:</p>
 
 <h2>Providers and options</h2>
 
-<p>Every provider is a file of <code>pad/subs/ai/types/</code> - anthropic, bedrock, cloudflare, cohere, gemini, lmstudio, mistral, ollama, openai -
+<p>Every provider is a file of <code>pad/subs/ai/types/</code> - anthropic, azure, bedrock, cloudflare, cohere, gemini, lmstudio, mistral, ollama, openai -
 with its endpoint, its headers, the request it builds and how it reads the text and an error out of
 the answer. A provider is added by adding its file.</p>
 

@@ -1,6 +1,6 @@
 # inputs: repeatable
 
-`{input:repeatable 'lines', columns=$columns, value=$lines, minrows=1, maxrows=20, label='Invoice lines'/}`
+`{input:repeatable 'lines', columns=array:columns, value=array:lines, minrows=1, maxrows=20, label='Invoice lines'/}`
 uses real names such as `lines[0][quantity]`. `columns` maps safe column identifiers
 to labels (up to 12); up to 100 rows. Native text controls render on the server;
 without JavaScript existing rows remain editable and submit normally. Enhancement adds

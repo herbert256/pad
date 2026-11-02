@@ -1,4 +1,7 @@
 <?php
+
+  // zulip - Zulip stream or direct messages with mention-neutralized text and explicit recipients.
+
   return [
     'settings' => [
       'server' => [ 'env' => 'ZULIP_URL', 'address' => TRUE ],

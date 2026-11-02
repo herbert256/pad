@@ -1,4 +1,8 @@
 <?php
+
+  // repeatable - Editable rows of named fields with add and remove controls and per-field validation.
+  //
+
 $columns=padInputTake('columns',['description'=>'Description','quantity'=>'Quantity']);
 if(!is_array($columns)||!$columns||count($columns)>12){padError('repeatable requires 1 to 12 named columns');return '';}
 foreach($columns as $key=>$title) if(!preg_match('/^[A-Za-z][A-Za-z0-9_]*$/D',(string)$key)||!is_scalar($title)){padError('Invalid repeatable column');return '';}

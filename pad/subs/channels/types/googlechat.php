@@ -1,4 +1,7 @@
 <?php
+
+  // googlechat - Google Chat incoming webhook delivery with mention-neutralized text.
+
   return [
     'settings' => [ 'url' => [ 'env' => 'GOOGLECHAT_WEBHOOK_URL', 'address' => TRUE, 'secret' => TRUE ] ],
     'send' => function ( $message, $settings ) {

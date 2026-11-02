@@ -1,4 +1,7 @@
 <?php
+
+  // semver - A reproducible semantic version with optional prerelease and build identifiers.
+
   $parts = [];
   foreach ( [ 'major' => [ 0, 10 ], 'minor' => [ 0, 20 ], 'patch' => [ 0, 100 ] ] as $name => $default ) {
     $range = padFakeOpt ( $name, $default );

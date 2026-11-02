@@ -1,0 +1,928 @@
+{
+  "analysis_base": "80f6604eae",
+  "feature_count": 92,
+  "new_subsystems": 7,
+  "new_types": 85,
+  "features": [
+    {
+      "id": "S01",
+      "category": "subsystem",
+      "subsystem": "units",
+      "name": "units",
+      "path": "pad/subs/units/types/area.php",
+      "commit": "423a7d5000379334beaae8c33ed6b93bf0b947c2",
+      "subject": "Add dimension-checked units conversion subsystem",
+      "documentation": "docs/subsystems/units/README.md"
+    },
+    {
+      "id": "S02",
+      "category": "subsystem",
+      "subsystem": "highlighters",
+      "name": "highlighters",
+      "path": "pad/subs/highlighters/types/bash.php",
+      "commit": "6befe607b524af6b9ae5367570805e648167606f",
+      "subject": "Add highlighters subsystem with language definitions",
+      "documentation": "docs/subsystems/highlighters.md"
+    },
+    {
+      "id": "S03",
+      "category": "subsystem",
+      "subsystem": "diffs",
+      "name": "diffs",
+      "path": "pad/subs/diffs/types/json.php",
+      "commit": "91efdb37eec1283033d76f6734de98b09d94a6f2",
+      "subject": "Add diffs subsystem with JSON and keyed row comparisons",
+      "documentation": "docs/subsystems/diffs.md"
+    },
+    {
+      "id": "S04",
+      "category": "subsystem",
+      "subsystem": "recurrences",
+      "name": "recurrences",
+      "path": "pad/subs/recurrences/types/daily.php",
+      "commit": "3a7c65bf6a4d07e0b5dd61aff192bda173c4621c",
+      "subject": "Add bounded calendar recurrences subsystem",
+      "documentation": "docs/subsystems/recurrences.md"
+    },
+    {
+      "id": "S05",
+      "category": "subsystem",
+      "subsystem": "geospatial",
+      "name": "geospatial",
+      "path": "pad/subs/geospatial/types/bbox.php",
+      "commit": "fce7d4a2342d4682cf9b38024704d6b5895c3583",
+      "subject": "Add bounded geospatial operations subsystem",
+      "documentation": "docs/subsystems/geospatial/README.md"
+    },
+    {
+      "id": "S06",
+      "category": "subsystem",
+      "subsystem": "distributions",
+      "name": "distributions",
+      "path": "pad/subs/distributions/types/bernoulli.php",
+      "commit": "59ad1fc271367cd3765ee9cbd0344cac53d53691",
+      "subject": "Add seeded statistical distributions subsystem",
+      "documentation": "docs/subsystems/distributions/README.md"
+    },
+    {
+      "id": "S07",
+      "category": "subsystem",
+      "subsystem": "avatars",
+      "name": "avatars",
+      "path": "pad/subs/avatars/types/identicon.php",
+      "commit": "b7576ae4c74e6a0e93fa4e6e09ec4dc72ab50f42",
+      "subject": "Add deterministic avatars subsystem with compatibility wrappers",
+      "documentation": "docs/subsystems/avatars/index.md"
+    },
+    {
+      "id": "T01",
+      "category": "type",
+      "subsystem": "charts",
+      "name": "pareto",
+      "path": "pad/subs/charts/types/pareto.php",
+      "commit": "44bfdd477eca3e97ce799f0e2ec2b38146374e66",
+      "subject": "Add Pareto charts with stable ranks and cumulative percentage parity",
+      "documentation": "docs/subsystems/charts/pareto.md"
+    },
+    {
+      "id": "T02",
+      "category": "type",
+      "subsystem": "charts",
+      "name": "slope",
+      "path": "pad/subs/charts/types/slope.php",
+      "commit": "45b84bc8d81ddc003727ed915893985a34f7813b",
+      "subject": "Add slope charts with missing endpoints and separated direct labels",
+      "documentation": "docs/subsystems/charts/slope.md"
+    },
+    {
+      "id": "T03",
+      "category": "type",
+      "subsystem": "charts",
+      "name": "bump",
+      "path": "pad/subs/charts/types/bump.php",
+      "commit": "fe9b1a94aae868ac013aee5310c6650030655042",
+      "subject": "Add bump charts with per-period competition ranks and data gaps",
+      "documentation": "docs/subsystems/charts/bump.md"
+    },
+    {
+      "id": "T04",
+      "category": "type",
+      "subsystem": "charts",
+      "name": "horizon",
+      "path": "pad/subs/charts/types/horizon.php",
+      "commit": "5ac22571dde58b46bf72ff34826646d10f763a40",
+      "subject": "Add horizon charts with signed folded bands and threshold interpolation",
+      "documentation": "docs/subsystems/charts/horizon.md"
+    },
+    {
+      "id": "T05",
+      "category": "type",
+      "subsystem": "inputs",
+      "name": "currency",
+      "path": "pad/subs/inputs/types/currency.php",
+      "commit": "693eb168b7b1ca7abb663d0923f644f7a22d0f5c",
+      "subject": "Add currency input with canonical native decimal submission",
+      "documentation": "docs/subsystems/inputs/currency.md"
+    },
+    {
+      "id": "T06",
+      "category": "type",
+      "subsystem": "inputs",
+      "name": "unitpicker",
+      "path": "pad/subs/inputs/types/unitpicker.php",
+      "commit": "714e707decb9e3798afec336476a5b9c777c4f8c",
+      "subject": "Add unitpicker input backed by physical unit definitions",
+      "documentation": "docs/subsystems/inputs/unitpicker.md"
+    },
+    {
+      "id": "T07",
+      "category": "type",
+      "subsystem": "inputs",
+      "name": "repeatable",
+      "path": "pad/subs/inputs/types/repeatable.php",
+      "commit": "c3578fb4c900f664d2c8fbd16b8aa3b266658871",
+      "subject": "Add repeatable input with nested row validation and accessible controls",
+      "documentation": "docs/subsystems/inputs/repeatable.md"
+    },
+    {
+      "id": "T08",
+      "category": "type",
+      "subsystem": "rules",
+      "name": "ulid",
+      "path": "pad/subs/rules/types/ulid.php",
+      "commit": "10e6671a3d5c79a5ee7a54ac8ce20deff536ff48",
+      "subject": "Add ulid validation rule with browser parity",
+      "documentation": "docs/subsystems/rules/ulid.md"
+    },
+    {
+      "id": "T09",
+      "category": "type",
+      "subsystem": "rules",
+      "name": "isbn",
+      "path": "pad/subs/rules/types/isbn.php",
+      "commit": "a71d9e42b82a351ff3e1a10268ebfb48203f7107",
+      "subject": "Add isbn validation rule with browser parity",
+      "documentation": "docs/subsystems/rules/isbn.md"
+    },
+    {
+      "id": "T10",
+      "category": "type",
+      "subsystem": "rules",
+      "name": "semver",
+      "path": "pad/subs/rules/types/semver.php",
+      "commit": "bea8557a6d0efd02aa64edd438d9861db6b750b6",
+      "subject": "Add semver validation rule with browser parity",
+      "documentation": "docs/subsystems/rules/semver.md"
+    },
+    {
+      "id": "T11",
+      "category": "type",
+      "subsystem": "rules",
+      "name": "timezone",
+      "path": "pad/subs/rules/types/timezone.php",
+      "commit": "bce1412838a46e91d9e4ba12a8d771686da87035",
+      "subject": "Add timezone validation rule with browser parity",
+      "documentation": "docs/subsystems/rules/timezone.md"
+    },
+    {
+      "id": "T12",
+      "category": "type",
+      "subsystem": "formats",
+      "name": "fixedwidth",
+      "path": "pad/subs/formats/types/fixedwidth.php",
+      "commit": "dbf6957392f3170d6d5a8737027ba9d01498b77c",
+      "subject": "Add exact-byte fixedwidth format reader and writer",
+      "documentation": "docs/subsystems/formats/fixedwidth.md"
+    },
+    {
+      "id": "T13",
+      "category": "type",
+      "subsystem": "formats",
+      "name": "logfmt",
+      "path": "pad/subs/formats/types/logfmt.php",
+      "commit": "edd12f38f62867d79ad8d65fe953035892da5378",
+      "subject": "Add logfmt format reader and writer",
+      "documentation": "docs/subsystems/formats/logfmt.md"
+    },
+    {
+      "id": "T14",
+      "category": "type",
+      "subsystem": "formats",
+      "name": "properties",
+      "path": "pad/subs/formats/types/properties.php",
+      "commit": "455d4a85beccd7d8b47d79bf9277f5a6a437bd21",
+      "subject": "Add properties format reader and writer",
+      "documentation": "docs/subsystems/formats/properties.md"
+    },
+    {
+      "id": "T15",
+      "category": "type",
+      "subsystem": "formulas",
+      "name": "xmatch",
+      "path": "pad/subs/formulas/types/xmatch.php",
+      "commit": "f5fda3792d2fee867fd5c1b2dab013fb30c7873a",
+      "subject": "Add XMATCH position lookup formula",
+      "documentation": "docs/subsystems/formulas/xmatch.md"
+    },
+    {
+      "id": "T16",
+      "category": "type",
+      "subsystem": "formulas",
+      "name": "textbefore",
+      "path": "pad/subs/formulas/types/textbefore.php",
+      "commit": "082a6b70400d4b5a23a2c7cb3858b6fc3ab06c88",
+      "subject": "Add TEXTBEFORE delimiter extraction formula",
+      "documentation": "docs/subsystems/formulas/textbefore.md"
+    },
+    {
+      "id": "T17",
+      "category": "type",
+      "subsystem": "formulas",
+      "name": "textafter",
+      "path": "pad/subs/formulas/types/textafter.php",
+      "commit": "ad67618fe1c334cf3b8f6e6b317f0849bd940b36",
+      "subject": "Add textafter spreadsheet formula",
+      "documentation": "docs/subsystems/formulas/textafter.md"
+    },
+    {
+      "id": "T18",
+      "category": "type",
+      "subsystem": "formulas",
+      "name": "isoweeknum",
+      "path": "pad/subs/formulas/types/isoweeknum.php",
+      "commit": "90f3b1f2650977351a6922f77d7e764d5caca91a",
+      "subject": "Add isoweeknum spreadsheet formula",
+      "documentation": "docs/subsystems/formulas/isoweeknum.md"
+    },
+    {
+      "id": "T19",
+      "category": "type",
+      "subsystem": "formulas",
+      "name": "correl",
+      "path": "pad/subs/formulas/types/correl.php",
+      "commit": "cfb17af750f72235087a77b12db54544fb9faaca",
+      "subject": "Add correl spreadsheet formula",
+      "documentation": "docs/subsystems/formulas/correl.md"
+    },
+    {
+      "id": "T20",
+      "category": "type",
+      "subsystem": "widgets",
+      "name": "treeview",
+      "path": "pad/subs/widgets/types/treeview.php",
+      "commit": "94a89417fcae7e5cd297782d894ffb0ef81811b2",
+      "subject": "Add navigation treeview with roving keyboard focus",
+      "documentation": "docs/subsystems/widgets/treeview.md"
+    },
+    {
+      "id": "T21",
+      "category": "type",
+      "subsystem": "widgets",
+      "name": "kanban",
+      "path": "pad/subs/widgets/types/kanban.php",
+      "commit": "6204614279f42b0f0908ed35f15fda2b762fe46b",
+      "subject": "Add kanban widget with accessible moves and application events",
+      "documentation": "docs/subsystems/widgets/kanban.md"
+    },
+    {
+      "id": "T22",
+      "category": "type",
+      "subsystem": "widgets",
+      "name": "imagecompare",
+      "path": "pad/subs/widgets/types/imagecompare.php",
+      "commit": "0dcda1ad95b35190b1cc9cfc5fbeb9fd53e140cd",
+      "subject": "Add image comparison with native range and print fallback",
+      "documentation": "docs/subsystems/widgets/imagecompare.md"
+    },
+    {
+      "id": "T23",
+      "category": "type",
+      "subsystem": "search",
+      "name": "fi",
+      "path": "pad/subs/search/types/fi.php",
+      "commit": "81ae0a2dceddad70eabceef9d327e8fe95baa9b9",
+      "subject": "Add Finnish search with verified Snowball stemmer",
+      "documentation": "docs/subsystems/search/fi.md"
+    },
+    {
+      "id": "T24",
+      "category": "type",
+      "subsystem": "search",
+      "name": "pl",
+      "path": "pad/subs/search/types/pl.php",
+      "commit": "fc7e43dba7687b4196fa5cbe27714f5b701c95fe",
+      "subject": "Add Polish search with verified Snowball stemmer",
+      "documentation": "docs/subsystems/search/pl.md"
+    },
+    {
+      "id": "T25",
+      "category": "type",
+      "subsystem": "search",
+      "name": "tr",
+      "path": "pad/subs/search/types/tr.php",
+      "commit": "c95c7808dc9795cedba4091f5466608d99baacd9",
+      "subject": "Add Turkish search with locale-aware case folding",
+      "documentation": "docs/subsystems/search/tr.md"
+    },
+    {
+      "id": "T26",
+      "category": "type",
+      "subsystem": "printables",
+      "name": "planner",
+      "path": "pad/subs/printables/types/planner.php",
+      "commit": "262938baf9d0b26bc060a9a4ff3fe6246ef138e7",
+      "subject": "Add weekly printable planner with explicit working hours",
+      "documentation": "docs/subsystems/printables/planner.md"
+    },
+    {
+      "id": "T27",
+      "category": "type",
+      "subsystem": "printables",
+      "name": "flashcards",
+      "path": "pad/subs/printables/types/flashcards.php",
+      "commit": "4153eb087ca1aa2252b441b960c39aa84d04ffa2",
+      "subject": "Add duplex flashcards with mirrored backs and calibration",
+      "documentation": "docs/subsystems/printables/flashcards.md"
+    },
+    {
+      "id": "T28",
+      "category": "type",
+      "subsystem": "printables",
+      "name": "booklet",
+      "path": "pad/subs/printables/types/booklet.php",
+      "commit": "1792d598be4fbb2ccec3b873524f94f25a85ce30",
+      "subject": "Add booklet imposition with blank padding and binding direction",
+      "documentation": "docs/subsystems/printables/booklet.md"
+    },
+    {
+      "id": "T29",
+      "category": "type",
+      "subsystem": "diagrams",
+      "name": "timing",
+      "path": "pad/subs/diagrams/types/timing.php",
+      "commit": "843a728db2da45ec4b28a4fa77861ffbc4c8056b",
+      "subject": "Add bounded digital timing diagrams with transitions and shared markers",
+      "documentation": "docs/subsystems/diagrams/timing.md"
+    },
+    {
+      "id": "T30",
+      "category": "type",
+      "subsystem": "diagrams",
+      "name": "c4",
+      "path": "pad/subs/diagrams/types/c4.php",
+      "commit": "7cf42ca853fe7c64df866de8767a37a874a49760",
+      "subject": "Add bounded C4 architecture diagrams with nested boundaries and relationships",
+      "documentation": "docs/subsystems/diagrams/c4.md"
+    },
+    {
+      "id": "T31",
+      "category": "type",
+      "subsystem": "diagrams",
+      "name": "block",
+      "path": "pad/subs/diagrams/types/block.php",
+      "commit": "894e8376cf2ccd5bce9e3a2bce921c3e688bd50f",
+      "subject": "Add explicit grid block diagrams with spans and bounded graph routing",
+      "documentation": "docs/subsystems/diagrams/block.md"
+    },
+    {
+      "id": "T32",
+      "category": "type",
+      "subsystem": "fakes",
+      "name": "ulid",
+      "path": "pad/subs/fakes/types/ulid.php",
+      "commit": "d1013dc788e6d703f7d3283990abea44457fd8b6",
+      "subject": "Add seeded ulid fake generator",
+      "documentation": "docs/subsystems/fakes/ulid.md"
+    },
+    {
+      "id": "T33",
+      "category": "type",
+      "subsystem": "fakes",
+      "name": "semver",
+      "path": "pad/subs/fakes/types/semver.php",
+      "commit": "4623547fc08efdc3ceecc4a78d184d7cff382842",
+      "subject": "Add seeded semver fake generator",
+      "documentation": "docs/subsystems/fakes/semver.md"
+    },
+    {
+      "id": "T34",
+      "category": "type",
+      "subsystem": "fakes",
+      "name": "weighted",
+      "path": "pad/subs/fakes/types/weighted.php",
+      "commit": "adea4db71ec48f6c1f06c9be56484cf4740e8c36",
+      "subject": "Add seeded weighted fake generator",
+      "documentation": "docs/subsystems/fakes/weighted.md"
+    },
+    {
+      "id": "T35",
+      "category": "type",
+      "subsystem": "filters",
+      "name": "gamma",
+      "path": "pad/subs/filters/types/gamma.php",
+      "commit": "f8b2ea17694e25278a7ac7dc7f1a85302e465482",
+      "subject": "Add alpha-preserving gamma image filter",
+      "documentation": "docs/subsystems/filters/gamma.md"
+    },
+    {
+      "id": "T36",
+      "category": "type",
+      "subsystem": "filters",
+      "name": "emboss",
+      "path": "pad/subs/filters/types/emboss.php",
+      "commit": "e47fe86f0e202e6430a1db419bfe53065159a79d",
+      "subject": "Add density-aware emboss image filter",
+      "documentation": "docs/subsystems/filters/emboss.md"
+    },
+    {
+      "id": "T37",
+      "category": "type",
+      "subsystem": "filters",
+      "name": "colormatrix",
+      "path": "pad/subs/filters/types/colormatrix.php",
+      "commit": "730572c3ea086d748a924455bfac213e0e291ee7",
+      "subject": "Add bounded RGBA color matrix image filter",
+      "documentation": "docs/subsystems/filters/colormatrix.md"
+    },
+    {
+      "id": "T38",
+      "category": "type",
+      "subsystem": "jsonld",
+      "name": "dataset",
+      "path": "pad/subs/jsonld/types/dataset.php",
+      "commit": "359da296ffcdb99ca8b5be824e4839525c171543",
+      "subject": "Add Dataset structured metadata type",
+      "documentation": "docs/subsystems/jsonld/dataset.md"
+    },
+    {
+      "id": "T39",
+      "category": "type",
+      "subsystem": "jsonld",
+      "name": "service",
+      "path": "pad/subs/jsonld/types/service.php",
+      "commit": "3431af111a9a342de6d3508ec16c6b183bcf9384",
+      "subject": "Add Service structured metadata type",
+      "documentation": "docs/subsystems/jsonld/service.md"
+    },
+    {
+      "id": "T40",
+      "category": "type",
+      "subsystem": "jsonld",
+      "name": "book",
+      "path": "pad/subs/jsonld/types/book.php",
+      "commit": "14a60a6146dd560a0e4ec5a3f19887b1f3c88c0d",
+      "subject": "Add Book structured metadata type",
+      "documentation": "docs/subsystems/jsonld/book.md"
+    },
+    {
+      "id": "T41",
+      "category": "type",
+      "subsystem": "maps",
+      "name": "be-provinces",
+      "path": "pad/subs/maps/types/be-provinces.php",
+      "commit": "4e9e6ac867b023db9d6654118862119565093a5f",
+      "subject": "Add Belgian province outlines with separate Brussels region and aliases",
+      "documentation": "docs/subsystems/maps/be-provinces.md"
+    },
+    {
+      "id": "T42",
+      "category": "type",
+      "subsystem": "maps",
+      "name": "fr-regions",
+      "path": "pad/subs/maps/types/fr-regions.php",
+      "commit": "0da41f4ec9325153ec2cc5e5e29f438e19964d87",
+      "subject": "Add all French regions with labeled overseas insets and reproducible boundaries",
+      "documentation": "docs/subsystems/maps/fr-regions.md"
+    },
+    {
+      "id": "T43",
+      "category": "type",
+      "subsystem": "maps",
+      "name": "ca-provinces",
+      "path": "pad/subs/maps/types/ca-provinces.php",
+      "commit": "9f85221b5b258c6b6ac0191fa05ae2f73d67414c",
+      "subject": "Add Canadian province and territory outlines including Arctic islands",
+      "documentation": "docs/subsystems/maps/ca-provinces.md"
+    },
+    {
+      "id": "T44",
+      "category": "type",
+      "subsystem": "holidays",
+      "name": "au",
+      "path": "pad/subs/holidays/types/au.php",
+      "commit": "862af1af5be27c8d7e3aed34914362032215a624",
+      "subject": "Add Australian holidays with scoped regional calendars",
+      "documentation": "docs/subsystems/holidays/au.md"
+    },
+    {
+      "id": "T45",
+      "category": "type",
+      "subsystem": "holidays",
+      "name": "gr",
+      "path": "pad/subs/holidays/types/gr.php",
+      "commit": "40c7145eeccbf851f4cba347db825acfe538be30",
+      "subject": "Add Greek holidays with Orthodox dates and declared May Day transfers",
+      "documentation": "docs/subsystems/holidays/gr.md"
+    },
+    {
+      "id": "T46",
+      "category": "type",
+      "subsystem": "holidays",
+      "name": "ee",
+      "path": "pad/subs/holidays/types/ee.php",
+      "commit": "c2512f7bbbb404dfe7b24f8a200dd47866369bac",
+      "subject": "Add Estonian holidays with statutory dates and localized names",
+      "documentation": "docs/subsystems/holidays/ee.md"
+    },
+    {
+      "id": "T47",
+      "category": "type",
+      "subsystem": "ai",
+      "name": "azure",
+      "path": "pad/subs/ai/types/azure.php",
+      "commit": "a1e8ce053a5d2dbee939f3d654cd878888584334",
+      "subject": "Add Azure v1 AI provider",
+      "documentation": "docs/subsystems/ai/azure.md"
+    },
+    {
+      "id": "T48",
+      "category": "type",
+      "subsystem": "channels",
+      "name": "googlechat",
+      "path": "pad/subs/channels/types/googlechat.php",
+      "commit": "39268b9a565b7a2bc22d5f8a5fbddd523be1bee8",
+      "subject": "Add Google Chat notification channel",
+      "documentation": "docs/subsystems/channels/googlechat.md"
+    },
+    {
+      "id": "T49",
+      "category": "type",
+      "subsystem": "channels",
+      "name": "zulip",
+      "path": "pad/subs/channels/types/zulip.php",
+      "commit": "bfa12818647235a46247bdc75a49264d67402e40",
+      "subject": "Add Zulip notification channel",
+      "documentation": "docs/subsystems/channels/zulip.md"
+    },
+    {
+      "id": "T50",
+      "category": "type",
+      "subsystem": "oauth",
+      "name": "mastodon",
+      "path": "pad/subs/oauth/types/mastodon.php",
+      "commit": "5360f9f5b0cbf126f60d4efe77601341acd3cdf5",
+      "subject": "Add instance scoped Mastodon OAuth provider",
+      "documentation": "docs/subsystems/oauth/mastodon.md"
+    },
+    {
+      "id": "T51",
+      "category": "type",
+      "subsystem": "embeds",
+      "name": "googleslides",
+      "path": "pad/subs/embeds/types/googleslides.php",
+      "commit": "d29f808e4ea99c40594960883b1b13101ffc024c",
+      "subject": "Add published Google Slides embed type",
+      "documentation": "docs/subsystems/embeds/googleslides.md"
+    },
+    {
+      "id": "T52",
+      "category": "type",
+      "subsystem": "embeds",
+      "name": "observable",
+      "path": "pad/subs/embeds/types/observable.php",
+      "commit": "029e41a2f598bb2b370744a00cace9add0f5fc9c",
+      "subject": "Add Observable notebook embed type",
+      "documentation": "docs/subsystems/embeds/observable.md"
+    },
+    {
+      "id": "T53",
+      "category": "type",
+      "subsystem": "codes",
+      "name": "microqr",
+      "path": "pad/subs/codes/types/microqr.php",
+      "commit": "b85b90c910a30689e21cf63e62703f3fb79d7789",
+      "subject": "Add native Micro QR M1-M4 barcode encoder",
+      "documentation": "docs/subsystems/codes/microqr.md"
+    },
+    {
+      "id": "T54",
+      "category": "type",
+      "subsystem": "codes",
+      "name": "code11",
+      "path": "pad/subs/codes/types/code11.php",
+      "commit": "aa3ac9588b8a0dc451879e64eb95de1e29504e12",
+      "subject": "Add Code 11 barcode with explicit checksum policy",
+      "documentation": "docs/subsystems/codes/code11.md"
+    },
+    {
+      "id": "T55",
+      "category": "type",
+      "subsystem": "sections",
+      "name": "casestudy",
+      "path": "pad/subs/sections/types/casestudy.php",
+      "commit": "cd80bf9250cd167f0415814d0f029161ec2f03e6",
+      "subject": "Add case-study sections with problem approach and outcomes",
+      "documentation": "docs/subsystems/sections/casestudy.md"
+    },
+    {
+      "id": "T56",
+      "category": "type",
+      "subsystem": "sections",
+      "name": "careers",
+      "path": "pad/subs/sections/types/careers.php",
+      "commit": "c2fc9dd32140f461c37c33a5ca5123bb67cd8da4",
+      "subject": "Add careers sections with explicit job metadata and links",
+      "documentation": "docs/subsystems/sections/careers.md"
+    },
+    {
+      "id": "T57",
+      "category": "type",
+      "subsystem": "sections",
+      "name": "roadmap",
+      "path": "pad/subs/sections/types/roadmap.php",
+      "commit": "6d75bddab1c7abc55657f11306a1a6c3e57e5200",
+      "subject": "Add roadmap sections grouped by delivery status",
+      "documentation": "docs/subsystems/sections/roadmap.md"
+    },
+    {
+      "id": "T58",
+      "category": "type",
+      "subsystem": "notations",
+      "name": "fretboard",
+      "path": "pad/subs/notations/types/fretboard.php",
+      "commit": "2ad3ce02c0c98435d8fe090245c9aa500caecf19",
+      "subject": "Add fretboard scale notation with tuning ranges and interval labels",
+      "documentation": "docs/subsystems/notations/fretboard.md"
+    },
+    {
+      "id": "T59",
+      "category": "type",
+      "subsystem": "notations",
+      "name": "xiangqi",
+      "path": "pad/subs/notations/types/xiangqi.php",
+      "commit": "cc1ad58d7fcbd4fe4d2680b60140c40a2e21a667",
+      "subject": "Add validated Xiangqi position notation with accessible piece coordinates",
+      "documentation": "docs/subsystems/notations/xiangqi.md"
+    },
+    {
+      "id": "T60",
+      "category": "type",
+      "subsystem": "notations",
+      "name": "backgammon",
+      "path": "pad/subs/notations/types/backgammon.php",
+      "commit": "3955595501213b97f99e8ee92accb9cb7e2f189f",
+      "subject": "Add validated backgammon positions with bar off counts and cube",
+      "documentation": "docs/subsystems/notations/backgammon.md"
+    },
+    {
+      "id": "T61",
+      "category": "type",
+      "subsystem": "patterns",
+      "name": "basketweave",
+      "path": "pad/subs/patterns/types/basketweave.php",
+      "commit": "15899b78a63afdbb1c5eaf6b5085d91735446fdc",
+      "subject": "Add seamless basketweave pattern with bounded strand geometry",
+      "documentation": "docs/subsystems/patterns/basketweave.md"
+    },
+    {
+      "id": "T62",
+      "category": "type",
+      "subsystem": "patterns",
+      "name": "crosshatch",
+      "path": "pad/subs/patterns/types/crosshatch.php",
+      "commit": "571a87730fba20600223b204d6f2691e95879834",
+      "subject": "Add adjustable seamless crosshatch pattern",
+      "documentation": "docs/subsystems/patterns/crosshatch.md"
+    },
+    {
+      "id": "T63",
+      "category": "type",
+      "subsystem": "patterns",
+      "name": "squircle",
+      "path": "pad/subs/patterns/types/squircle.php",
+      "commit": "c023692bf81d20fefb019a279f7b3250f6838d0a",
+      "subject": "Add bounded superellipse squircle pattern",
+      "documentation": "docs/subsystems/patterns/squircle.md"
+    },
+    {
+      "id": "T64",
+      "category": "type",
+      "subsystem": "palettes",
+      "name": "amber",
+      "path": "pad/subs/palettes/types/amber.php",
+      "commit": "c5bfe65de3e6fa08ba38384d91b1b414d6941bcc",
+      "subject": "Add amber sequential palette with measured luminance order",
+      "documentation": "docs/subsystems/palettes/amber.md"
+    },
+    {
+      "id": "T65",
+      "category": "type",
+      "subsystem": "palettes",
+      "name": "blue-orange",
+      "path": "pad/subs/palettes/types/blue-orange.php",
+      "commit": "2532a35b1d46fe9ddada38da476f12dd12901e37",
+      "subject": "Add blue-orange diverging palette with balanced neutral midpoint",
+      "documentation": "docs/subsystems/palettes/blue-orange.md"
+    },
+    {
+      "id": "T66",
+      "category": "type",
+      "subsystem": "palettes",
+      "name": "phase",
+      "path": "pad/subs/palettes/types/phase.php",
+      "commit": "0d61744d9dd4adfdf3f83f9539c68f4e07ad73e5",
+      "subject": "Add cyclic phase palette and wrap continuity checks",
+      "documentation": "docs/subsystems/palettes/phase.md"
+    },
+    {
+      "id": "T67",
+      "category": "type",
+      "subsystem": "themes",
+      "name": "projection",
+      "path": "pad/subs/themes/types/projection.php",
+      "commit": "f0bc64d83226616261b9698f0210ef9bfe100b9f",
+      "subject": "Add projection theme type",
+      "documentation": "docs/subsystems/themes/projection.md"
+    },
+    {
+      "id": "T68",
+      "category": "type",
+      "subsystem": "effects",
+      "name": "flipnumber",
+      "path": "pad/subs/effects/types/flipnumber.php",
+      "commit": "b01b1a835cfda2f1a70b05dde9d151c963b7812a",
+      "subject": "Add flipnumber decoration with stable accessible numeric text",
+      "documentation": "docs/subsystems/effects/flipnumber.md"
+    },
+    {
+      "id": "T69",
+      "category": "type",
+      "subsystem": "effects",
+      "name": "ripple",
+      "path": "pad/subs/effects/types/ripple.php",
+      "commit": "1b9139ab2b717994ca44cacd64b0a52fe6af794f",
+      "subject": "Add bounded activation ripple preserving native control actions",
+      "documentation": "docs/subsystems/effects/ripple.md"
+    },
+    {
+      "id": "T70",
+      "category": "type",
+      "subsystem": "sounds",
+      "name": "softsuccess",
+      "path": "pad/subs/sounds/types/softsuccess.php",
+      "commit": "6ce9462a50b63cd26a60a60e1c6311d2a01e2f18",
+      "subject": "Add softsuccess sound type",
+      "documentation": "docs/subsystems/sounds/softsuccess.md"
+    },
+    {
+      "id": "T71",
+      "category": "type",
+      "subsystem": "sounds",
+      "name": "toggleon",
+      "path": "pad/subs/sounds/types/toggleon.php",
+      "commit": "e50d0d45d0044ca80b34b307700acfb387b05b69",
+      "subject": "Add toggleon sound type",
+      "documentation": "docs/subsystems/sounds/toggleon.md"
+    },
+    {
+      "id": "T72",
+      "category": "type",
+      "subsystem": "sounds",
+      "name": "toggleoff",
+      "path": "pad/subs/sounds/types/toggleoff.php",
+      "commit": "787f9e01ff1f11fdc7010618d713fbb6f648fc48",
+      "subject": "Add toggleoff sound type",
+      "documentation": "docs/subsystems/sounds/toggleoff.md"
+    },
+    {
+      "id": "T73",
+      "category": "type",
+      "subsystem": "games",
+      "name": "minesweeper",
+      "path": "pad/subs/games/types/minesweeper.php",
+      "commit": "c2b77b1b45d9fb233574717e9179a27ed8697f19",
+      "subject": "Add minesweeper with safe first reveal flags and keyboard navigation",
+      "documentation": "docs/subsystems/games/minesweeper.md"
+    },
+    {
+      "id": "T74",
+      "category": "type",
+      "subsystem": "games",
+      "name": "connectfour",
+      "path": "pad/subs/games/types/connectfour.php",
+      "commit": "8ba020e1c383bee9e75a329874b1e477706c595c",
+      "subject": "Add connect four with gravity legal moves and terminal-state detection",
+      "documentation": "docs/subsystems/games/connectfour.md"
+    },
+    {
+      "id": "T75",
+      "category": "type",
+      "subsystem": "games",
+      "name": "sokoban",
+      "path": "pad/subs/games/types/sokoban.php",
+      "commit": "5dc0e9334f10fcb74383d9a285f318919cecffa1",
+      "subject": "Add Sokoban with validated authored levels undo and restart",
+      "documentation": "docs/subsystems/games/sokoban.md"
+    },
+    {
+      "id": "T76",
+      "category": "type",
+      "subsystem": "toys",
+      "name": "lorenz",
+      "path": "pad/subs/toys/types/lorenz.php",
+      "commit": "822221c59fc9947cfb8cf6d87e0e03763b5800b3",
+      "subject": "Add Lorenz attractor with bounded RK4 integration and timestep controls",
+      "documentation": "docs/subsystems/toys/lorenz.md"
+    },
+    {
+      "id": "T77",
+      "category": "type",
+      "subsystem": "toys",
+      "name": "optics",
+      "path": "pad/subs/toys/types/optics.php",
+      "commit": "7d852db4e84f39c263814e1a3a065723ca54a919",
+      "subject": "Add paraxial optics bench with lenses mirror and movable source",
+      "documentation": "docs/subsystems/toys/optics.md"
+    },
+    {
+      "id": "T78",
+      "category": "type",
+      "subsystem": "toys",
+      "name": "pathfinding",
+      "path": "pad/subs/toys/types/pathfinding.php",
+      "commit": "fc50d923412180ccbb69b965ac70c33d53ea2696",
+      "subject": "Add weighted pathfinding toy comparing BFS Dijkstra and A star",
+      "documentation": "docs/subsystems/toys/pathfinding.md"
+    },
+    {
+      "id": "T79",
+      "category": "type",
+      "subsystem": "icons",
+      "name": "braces",
+      "path": "pad/subs/icons/types/braces.svg",
+      "commit": "4dd9684657bfd29c4e28e4fa15fc90d59e24d66c",
+      "subject": "Add braces icon type",
+      "documentation": "docs/subsystems/icons/braces.md"
+    },
+    {
+      "id": "T80",
+      "category": "type",
+      "subsystem": "icons",
+      "name": "webhook",
+      "path": "pad/subs/icons/types/webhook.svg",
+      "commit": "9d16b58cecc9c5569005632a0fd3cf9333bdefc9",
+      "subject": "Add webhook icon type",
+      "documentation": "docs/subsystems/icons/webhook.md"
+    },
+    {
+      "id": "T81",
+      "category": "type",
+      "subsystem": "icons",
+      "name": "workflow",
+      "path": "pad/subs/icons/types/workflow.svg",
+      "commit": "4c328c4f03fdc30828073e21606c818143842e09",
+      "subject": "Add workflow icon type",
+      "documentation": "docs/subsystems/icons/workflow.md"
+    },
+    {
+      "id": "T82",
+      "category": "type",
+      "subsystem": "icons",
+      "name": "puzzle",
+      "path": "pad/subs/icons/types/puzzle.svg",
+      "commit": "e6d6c896559377fc70a3c8b16e42cf66f4b6d8fd",
+      "subject": "Add puzzle icon type",
+      "documentation": "docs/subsystems/icons/puzzle.md"
+    },
+    {
+      "id": "T83",
+      "category": "type",
+      "subsystem": "icons",
+      "name": "file-diff",
+      "path": "pad/subs/icons/types/file-diff.svg",
+      "commit": "e5a9d095614aa6bad5a92f68450a6de105a153e0",
+      "subject": "Add file-diff icon type",
+      "documentation": "docs/subsystems/icons/file-diff.md"
+    },
+    {
+      "id": "T84",
+      "category": "type",
+      "subsystem": "calendars",
+      "name": "timegrid",
+      "path": "pad/subs/calendars/types/timegrid.php",
+      "commit": "6d2eb2fecf52dc67a8a6ee9f517e75a3c5d055fb",
+      "subject": "Add timezone-aware calendar timegrid with overlap lanes and print fallback",
+      "documentation": "docs/subsystems/calendars/timegrid.md"
+    },
+    {
+      "id": "T85",
+      "category": "type",
+      "subsystem": "calendars",
+      "name": "resources",
+      "path": "pad/subs/calendars/types/resources.php",
+      "commit": "e46255164f42c7c4bc98cd7469c49098547dd2d0",
+      "subject": "Add calendar resource columns sharing the interval layout",
+      "documentation": "docs/subsystems/calendars/resources.md"
+    }
+  ]
+}

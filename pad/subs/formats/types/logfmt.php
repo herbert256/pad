@@ -1,4 +1,7 @@
 <?php
+
+  // logfmt - Logfmt key-value records with quoted values and explicit escape handling.
+
   return [
     'name' => 'logfmt', 'mime' => 'text/plain', 'accept' => [],
     'extension' => [ 'logfmt' ], 'shape' => 'rows',

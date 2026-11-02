@@ -1,4 +1,7 @@
 <?php
+
+  // properties - Java-style properties with escaped separators, Unicode escapes and continuation lines.
+
   return [
     'name' => 'properties', 'mime' => 'text/x-java-properties', 'accept' => [],
     'extension' => [ 'properties' ], 'shape' => 'data',

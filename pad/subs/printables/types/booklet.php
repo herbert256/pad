@@ -1,4 +1,8 @@
 <?php
+
+  // {printable:booklet}Pages{/printable:booklet} - Booklet pages arranged for duplex printing, folding and left or right binding.
+  //
+
 include_once PAD.'subs/printables/_lib/booklet.php';
 $binding=padPrintableChoice('binding','left',['left','right']);
 $paperName=padPrintableChoice('paper','a4',['a4','a3','letter']);

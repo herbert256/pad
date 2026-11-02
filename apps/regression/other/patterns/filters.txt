@@ -91,6 +91,15 @@ what stands behind it while it loads is what you see.</p>
   <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">pad:img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;blurhash&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
 </section>
 
+<section class="patterns-filter" id="colormatrix">
+  <h2>colormatrix</h2>
+  <p>Transform normalized RGBA channels with four rows of five coefficients.</p>
+  <div class="patterns-play">
+    <img class="pad-img" src="/pad/patterns/_thumbs/9be74a3ac8ed2645.jpg" srcset="/pad/patterns/_thumbs/9be74a3ac8ed2645.jpg 1x, /pad/patterns/_thumbs/ce0dafc68254cf88.jpg 2x" width="360" height="240" alt="Rows of tulips running to a windmill" loading="lazy" decoding="async">
+  </div>
+  <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">pad:img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;colormatrix&#039;</span>, <span class="hl-opt">matrix</span>=<span class="hl-str">&#039;0,0,1,0,0, 0,1,0,0,0, 1,0,0,0,0, 0,0,0,1,0&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
+</section>
+
 <section class="patterns-filter" id="dither">
   <h2>dither</h2>
   <p>Floyd and Steinberg&#039;s error diffusion: the picture in levels= greys (2, ink and paper alone) from the first of colors= to the second, every pixel&#039;s error carried to its neighbours not yet drawn; made at 1x, its pixels sharp, written as a PNG.</p>
@@ -125,6 +134,24 @@ what stands behind it while it loads is what you see.</p>
     <img class="pad-img" src="/pad/patterns/_thumbs/163c865c6f8c7a36.png" srcset="/pad/patterns/_thumbs/163c865c6f8c7a36.png 1x, /pad/patterns/_thumbs/11845d94599beaee.png 2x" width="360" height="240" alt="Rows of tulips running to a windmill" loading="lazy" decoding="async">
   </div>
   <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">pad:img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;edges&#039;</span>, <span class="hl-opt">colors</span>=<span class="hl-str">&#039;#fbfaf7, #1d1d1b&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
+</section>
+
+<section class="patterns-filter" id="emboss">
+  <h2>emboss</h2>
+  <p>Reveal edges as a gray relief with a directional luminance kernel.</p>
+  <div class="patterns-play">
+    <img class="pad-img" src="/pad/patterns/_thumbs/956fd7a006f5bfd0.png" srcset="/pad/patterns/_thumbs/956fd7a006f5bfd0.png 1x, /pad/patterns/_thumbs/c570525b7f025c58.png 2x" width="360" height="240" alt="Rows of tulips running to a windmill" loading="lazy" decoding="async">
+  </div>
+  <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">pad:img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;emboss&#039;</span>, <span class="hl-opt">strength</span>=<span class="hl-num">1.5</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
+</section>
+
+<section class="patterns-filter" id="gamma">
+  <h2>gamma</h2>
+  <p>Adjust the midtones in encoded sRGB channel space.</p>
+  <div class="patterns-play">
+    <img class="pad-img" src="/pad/patterns/_thumbs/76ea4954175a28fa.jpg" srcset="/pad/patterns/_thumbs/76ea4954175a28fa.jpg 1x, /pad/patterns/_thumbs/23ce0c3fe0474bb8.jpg 2x" width="360" height="240" alt="Rows of tulips running to a windmill" loading="lazy" decoding="async">
+  </div>
+  <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">pad:img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;gamma&#039;</span>, <span class="hl-opt">gamma</span>=<span class="hl-num">1.8</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
 </section>
 
 <section class="patterns-filter" id="grayscale">
@@ -234,4 +261,3 @@ what stands behind it while it loads is what you see.</p>
   </div>
   <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">pad:img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;vignette&#039;</span>, <span class="hl-opt">amount</span>=<span class="hl-num">70</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
 </section>
-

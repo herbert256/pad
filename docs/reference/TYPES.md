@@ -728,8 +728,9 @@ named 'zigzag'".
 ### calendar
 
 A Gregorian calendar view from `PAD/subs/calendars/types/`: `month`, `mini`, `week`,
-`day`, `agenda`, `quarter` or `year`. The first parameter selects a period; without it,
-the view reads its query parameter and then defaults to today. Every view accepts
+`day`, `agenda`, `quarter`, `year`, `timegrid` or `resources`. For the seven date views,
+the first parameter selects a period; without it, the view reads its query parameter
+and then defaults to today. Those date views accept
 `data`, `date`, `title`, `link`, `query`, `sunday` and `holidays`. `agenda` also accepts
 `empty` to include dates without events or holidays.
 
@@ -750,7 +751,14 @@ Pairs of `month` and `mini` yield weeks containing `days`. Pairs of `day`, `week
 `agenda` yield day rows with `events`. Pairs of `quarter` and `year` yield months
 containing `weeks`. See [Calendars](../../pad/subs/calendars/README.md) for period formats,
 query keys, row fields, navigation and boundary behavior. The `calendars` application
-shows all seven views with their templates.
+shows all nine views with their templates.
+
+`timegrid` and `resources` render timed intervals with `start`/`end` timestamps carrying
+explicit offsets; `allDay=true` uses dates with an exclusive end instead. Set `timezone`
+and `days=1` or `days=7`; resources also supplies an ID-to-label map and each event's
+`resource` ID. These views render with a self-closing tag, without iterable pair rows,
+date-field mapping, holidays or query navigation. The [calendars application](../../apps/calendars/README.md)
+provides complete runnable timegrid and resource examples, including their event data.
 
 ---
 

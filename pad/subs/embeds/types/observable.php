@@ -1,4 +1,7 @@
 <?php
+
+  // observable - Classic Observable notebooks or selected cells loaded only after visitor consent.
+
   return [
     'name' => 'Observable', 'kind' => 'code',
     'frame' => [ 'https://observablehq.com', 'https://old.observablehq.com' ],

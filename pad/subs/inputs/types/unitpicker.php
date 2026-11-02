@@ -1,4 +1,8 @@
 <?php
+
+  // unitpicker - A numeric value paired with a unit from a physical measurement family.
+  //
+
 include_once PAD . 'subs/units/_lib/units.php';
 $family=(string)padInputTake('family','length');
 $definition=padUnits($family);

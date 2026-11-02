@@ -1,4 +1,7 @@
 <?php
+
+  // googleslides - Published Google Slides presentations loaded only after the visitor chooses to view them.
+
   return [
     'name' => 'Google Slides', 'kind' => 'document', 'frame' => 'https://docs.google.com',
     'match' => function ( $source, $named ) {

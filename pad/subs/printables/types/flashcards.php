@@ -1,4 +1,8 @@
 <?php
+
+  // {printable:flashcards}Question<footer>Answer</footer>{/printable:flashcards} - Duplex flashcards with mirrored backs and optional alignment guides.
+  //
+
 include_once PAD.'subs/printables/_lib/flashcards.php';
 $across=padPrintableInt('across',2,1,4);$down=padPrintableInt('down',4,1,8);
 $edge=padPrintableChoice('flip','long',['long','short']);

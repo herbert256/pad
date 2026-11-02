@@ -1,5 +1,3 @@
-
-
 <p>"Log in with GitHub" is two calls on one page. <code>padOAuthStart ( 'github' )</code> sends the
 visitor to GitHub - after keeping a random state, a PKCE verifier and, for an OpenID Connect
 provider, a nonce in the session. GitHub sends the visitor back with a code;
@@ -149,7 +147,7 @@ name.</p>
 
 <h2>The providers</h2>
 
-<p>Every provider is a file of <code>pad/subs/oauth/types/</code> - apple, bitbucket, discord, forgejo, github, gitlab, google, linkedin, microsoft, oidc, slack, x -
+<p>Every provider is a file of <code>pad/subs/oauth/types/</code> - apple, bitbucket, discord, forgejo, github, gitlab, google, linkedin, mastodon, microsoft, oidc, slack, x -
 an array with its endpoints, its scopes, whether it takes PKCE, the settings it needs and how its
 answer becomes the user: <code>provider</code>, <code>id</code> (<code>github:583231</code>, never the
 same for two providers - nor for two instances of one: a GitLab of one's own has its address in

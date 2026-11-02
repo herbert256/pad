@@ -1,4 +1,8 @@
 <?php
+
+  // {section:roadmap data='items'/} - Roadmap entries grouped as planned, in progress and released.
+  //
+
 padSectionParts(['eyebrow','title','text']);
 $items=padSectionItems ( 'title',['title','status','date','text','link'],'text','roadmap items');
 $groups=['planned'=>[],'in-progress'=>[],'released'=>[]];

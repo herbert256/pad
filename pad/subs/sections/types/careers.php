@@ -1,4 +1,8 @@
 <?php
+
+  // {section:careers data='jobs'/} - Job listings with roles, locations, working arrangements and application links.
+  //
+
 padSectionParts(['eyebrow','title','text']);
 $items=padSectionItems ( 'role',['role','location','arrangement','employment','link','text','button'],'text','jobs');
 $level=min(6,padSectionLevel()+1);$html='';

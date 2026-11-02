@@ -352,6 +352,19 @@ addRule('ip', {
 });
 })();
 (function () {
+addRule('isbn', { check: function(value) {
+  value = value.replace(/[ -]/g, '');
+  var sum = 0, i;
+  if (/^[0-9]{9}[0-9X]$(?![\s\S])/.test(value)) {
+    for (i = 0; i < 10; i++) sum += (10 - i) * (value[i] === 'X' ? 10 : +value[i]);
+    return sum % 11 === 0;
+  }
+  if (!/^97[89][0-9]{10}$(?![\s\S])/.test(value)) return false;
+  for (i = 0; i < 13; i++) sum += +value[i] * (i % 2 ? 3 : 1);
+  return sum % 10 === 0;
+}});
+})();
+(function () {
 function whole(text) {
   return !/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]/.test(text);
 }
@@ -551,6 +564,9 @@ addRule('same', {
 });
 })();
 (function () {
+addRule('semver', { check: function(value) { return /^(?:(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(?:-(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*))*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)$(?![\s\S])/.test(value); } });
+})();
+(function () {
 addRule('slug', {
   check: function (value) { return /^[a-z0-9]+(-[a-z0-9]+)*$/.test(value); }
 });
@@ -566,6 +582,12 @@ addRule('starts_with', {
 addRule('time', {
   check: function (value) { return /^([01]?\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/.test(value); }
 });
+})();
+(function () {
+addRule('timezone', { check: function(value, argument) { try { return JSON.parse(argument).indexOf(value) !== -1; } catch (e) { return false; } } });
+})();
+(function () {
+addRule('ulid', { check: function(value) { return /^(?:[0-7][0-9A-HJKMNP-TV-Z]{25})$(?![\s\S])/.test(value); } });
 })();
 (function () {
 addRule('uppercase', {

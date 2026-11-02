@@ -1,0 +1,9 @@
+{pad:data 'timedAppointments', format='json'}
+[
+  {"title":"Team planning","start":"2026-11-02T09:00:00+01:00","end":"2026-11-02T10:30:00+01:00"},
+  {"title":"Design review","start":"2026-11-02T10:00:00+01:00","end":"2026-11-02T11:00:00+01:00"},
+  {"title":"Conference","start":"2026-11-03","end":"2026-11-04","allDay":true},
+  {"title":"Release watch","start":"2026-11-04T23:00:00+01:00","end":"2026-11-05T01:00:00+01:00"}
+]
+{/pad:data}
+{calendar:timegrid '2026-11-02', data='timedAppointments', timezone='Europe/Amsterdam', days=7, label='Team week'/}

@@ -3,6 +3,7 @@
   if ( ! is_string ( $kind ) || ! isset ( calendarsCatalog () [$kind] ) )
     padAbort ( 404 );
 
+  $calendarTimed = in_array ( $kind, [ 'timegrid', 'resources' ], TRUE );
   $title = calendarsCatalog () [$kind] ['name'];
   $calendarAbout = calendarsCatalog () [$kind] ['about'];
   $calendarSource = is_file ( APP . "_examples/$kind.pad" ) ? file_get_contents ( APP . "_examples/$kind.pad" ) : "{calendar:$kind/}";

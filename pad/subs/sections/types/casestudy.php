@@ -1,4 +1,8 @@
 <?php
+
+  // {section:casestudy data='studies'/} - Case studies describing a problem, approach, result and supporting metrics.
+  //
+
 padSectionParts(['eyebrow','title','text']);
 $items=padSectionItems ( 'title',['title','problem','approach','result','metrics','image','alt','attribution'],'result','case studies');
 $level=min(6,padSectionLevel()+1);$html='';

@@ -1,5 +1,8 @@
 <?php
-// The successful control is always a canonical decimal amount; formatting is only a preview.
+
+  // currency - A decimal amount with an explicit currency and a localized formatting preview.
+  //
+
 $currency = strtoupper((string)padInputTake('currency','EUR'));
 if (!preg_match('/^[A-Z]{3}$/D',$currency)) { padError('currency needs a three-letter currency code'); return ''; }
 $digits = padInputNumber('decimals',2,0,6,TRUE);

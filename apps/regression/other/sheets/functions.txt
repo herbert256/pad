@@ -1,4 +1,4 @@
-<p class="sheets-lead">The 126 functions a formula can call, each a file of
+<p class="sheets-lead">The 131 functions a formula can call, each a file of
 <code>pad/subs/formulas/types/</code> in the engine - a function is added by adding its file, and
 this page lists what each file says of itself. Their names are written in any case. The examples
 read the sample sheet below as if they stood in its cell G1, and each shows what that cell
@@ -6,7 +6,7 @@ shows.</p>
 
 <style>:where(.pad-sheet){--pad-sheet-text:#1f1f1d;--pad-sheet-muted:#6b6a66;--pad-sheet-line:#dcdbd6;--pad-sheet-head:#f2f1ed;--pad-sheet-formula:#f7f9fd;--pad-sheet-input:#fffdf2;--pad-sheet-error:#b42318;--pad-sheet-accent:#2a78d6;}@supports (color:light-dark(#000,#fff)){:where(.pad-sheet){--pad-sheet-text:light-dark(#1f1f1d,#ecebe6);--pad-sheet-muted:light-dark(#6b6a66,#9d9c93);--pad-sheet-line:light-dark(#dcdbd6,#3a3a37);--pad-sheet-head:light-dark(#f2f1ed,#262624);--pad-sheet-formula:light-dark(#f7f9fd,#1d2330);--pad-sheet-input:light-dark(#fffdf2,#2a2818);--pad-sheet-error:light-dark(#b42318,#f97066);--pad-sheet-accent:light-dark(#2a78d6,#5598e7);}}</style><link rel="stylesheet" href="/pad/assets/formulas/sheet.css?v=570799721c"><div class="pad-sheet" data-sheet="sample"><table class="pad-sheet-table"><caption>The sample sheet</caption><thead><tr><td class="pad-sheet-corner"></td><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">D</th><th scope="col">E</th></tr></thead><tbody><tr><th scope="row">1</th><td>Item</td><td>Qty</td><td>Price</td><td>Date</td><td>Flow</td></tr><tr><th scope="row">2</th><td>Apples</td><td class="num">10</td><td class="num">1.20</td><td class="num">2024-01-15</td><td class="num">-70000</td></tr><tr><th scope="row">3</th><td>Pears</td><td class="num">5</td><td class="num">0.80</td><td class="num">2024-02-29</td><td class="num">12000</td></tr><tr><th scope="row">4</th><td>Cherries</td><td class="num">20</td><td class="num">3.50</td><td class="num">2024-03-31</td><td class="num">15000</td></tr><tr><th scope="row">5</th><td>Apples</td><td class="num">15</td><td class="num">1.10</td><td class="num">2024-04-01</td><td class="num">18000</td></tr><tr><th scope="row">6</th><td>Plums</td><td class="num">0</td><td class="num">2.25</td><td class="num">2024-12-31</td><td class="num">21000</td></tr><tr><th scope="row">7</th><td>Figs</td><td class="num">8</td><td class="num">4.00</td><td class="num">2025-06-30</td><td class="num">26000</td></tr></tbody></table></div>
 
-<nav class="sheets-groups" aria-label="Groups"><a href="#group-math">Math</a><a href="#group-statistics">Statistics</a><a href="#group-logic">Logic</a><a href="#group-information">Information</a><a href="#group-text">Text</a><a href="#group-lookup">Lookup</a><a href="#group-date-and-time">Date and time</a><a href="#group-finance">Finance</a></nav>
+<nav class="sheets-groups" aria-label="Groups"><a href="#group-math">Math</a><a href="#group-statistics">Statistics</a><a href="#group-logic">Logic</a><a href="#group-information">Information</a><a href="#group-text">Text</a><a href="#group-lookup">Lookup</a><a href="#group-date-and-time">Date and time</a><a href="#group-finance">Finance</a><a href="#group-statistical">Statistical</a></nav>
 
 
 <h2 id="group-math">Math</h2>
@@ -568,6 +568,18 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=TEXT(1234.5, &quot;#,##0.00&quot;)</code> <samp>1,234.50</samp></li><li><code>=TEXT(0.256, &quot;0.0%&quot;)</code> <samp>25.6%</samp></li><li><code>=TEXT(D2, &quot;dddd d mmmm yyyy&quot;)</code> <samp>Monday 15 January 2024</samp></li><li><code>=TEXT(0.75, &quot;h:mm AM/PM&quot;)</code> <samp>6:00 PM</samp></li></ul></td>
     </tr>
   
+    <tr id="textafter">
+      <th scope="row">TEXTAFTER</th>
+      <td>TEXTAFTER(text, delimiter, [instance_num], [match_mode], [match_end], [if_not_found]) returns the text after a selected delimiter. A negative instance counts from the end; match_mode 1 ignores case.</td>
+      <td><ul class="sheets-examples"><li><code>=TEXTAFTER(&quot;a/b/c&quot;, &quot;/&quot;)</code> <samp>b/c</samp></li><li><code>=TEXTAFTER(&quot;abc&quot;, &quot;/&quot;, 1, 0, 0, &quot;missing&quot;)</code> <samp>missing</samp></li></ul></td>
+    </tr>
+  
+    <tr id="textbefore">
+      <th scope="row">TEXTBEFORE</th>
+      <td>TEXTBEFORE(text, delimiter, [instance_num], [match_mode], [match_end], [if_not_found]) returns the text before a selected delimiter. A negative instance counts from the end; match_mode 1 ignores case.</td>
+      <td><ul class="sheets-examples"><li><code>=TEXTBEFORE(&quot;a/b/c&quot;, &quot;/&quot;)</code> <samp>a</samp></li><li><code>=TEXTBEFORE(&quot;abc&quot;, &quot;/&quot;, 1, 0, 0, &quot;missing&quot;)</code> <samp>missing</samp></li></ul></td>
+    </tr>
+  
     <tr id="textjoin">
       <th scope="row">TEXTJOIN</th>
       <td>TEXTJOIN(delimiter, ignore_empty, text, ...) joins texts with a delimiter between them - every cell of a range in its order; with ignore_empty TRUE the empty ones are left out.</td>
@@ -636,6 +648,12 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=XLOOKUP(&quot;Plums&quot;, A2:A7, C2:C7)</code> <samp>2.25</samp></li><li><code>=XLOOKUP(&quot;Kiwis&quot;, A2:A7, C2:C7, &quot;none&quot;)</code> <samp>none</samp></li><li><code>=XLOOKUP(12, B2:B7, A2:A7, , 1)</code> <samp>Apples</samp></li><li><code>=XLOOKUP(&quot;Apples&quot;, A2:A7, B2:B7, , 0, -1)</code> <samp>15</samp></li></ul></td>
     </tr>
   
+    <tr id="xmatch">
+      <th scope="row">XMATCH</th>
+      <td>XMATCH(value, lookup_array, [match_mode], [search_mode]) returns a one-based position. Match modes: 0 exact, -1 next smaller, 1 next larger, 2 wildcard. Search modes: 1 forwards, -1 backwards, 2 ascending binary, -2 descending binary. Binary search requires the stated ordering; an absent value yields #N/A.</td>
+      <td><ul class="sheets-examples"><li><code>=XMATCH(&quot;Plums&quot;, A2:A7)</code> <samp>5</samp></li><li><code>=XMATCH(&quot;Apples&quot;, A2:A7, 0, -1)</code> <samp>4</samp></li></ul></td>
+    </tr>
+  
   </tbody>
 </table>
 
@@ -684,6 +702,12 @@ shows.</p>
       <th scope="row">HOUR</th>
       <td>HOUR(time) is the hour of a time, 0 to 23: of the fraction of a day a serial holds past its whole days, or of a text that reads as a time or a date and a time. The time is rounded to the second first, as it shows - 13:45 less 1:45 is 12. A date alone is midnight, 0; a serial below 0 or past 9999-12-31 is #NUM!, a text that is no time #VALUE!.</td>
       <td><ul class="sheets-examples"><li><code>=HOUR(0.75)</code> <samp>18</samp></li><li><code>=HOUR(&quot;2011-07-18 7:45&quot;)</code> <samp>7</samp></li><li><code>=HOUR(&quot;6:45 PM&quot;)</code> <samp>18</samp></li><li><code>=HOUR(D2)</code> <samp>0</samp></li></ul></td>
+    </tr>
+  
+    <tr id="isoweeknum">
+      <th scope="row">ISOWEEKNUM</th>
+      <td>ISOWEEKNUM(date) returns the ISO week, with Monday as its first day and the first Thursday identifying week one. It uses the sheet&#039;s serial calendar.</td>
+      <td><ul class="sheets-examples"><li><code>=ISOWEEKNUM(DATE(2021, 1, 1))</code> <samp>53</samp></li><li><code>=ISOWEEKNUM(DATE(2021, 1, 4))</code> <samp>1</samp></li></ul></td>
     </tr>
   
     <tr id="minute">
@@ -824,6 +848,20 @@ shows.</p>
       <th scope="row">RATE</th>
       <td>RATE(nper, pmt, pv, [fv], [type], [guess]) is the interest rate of a period that makes a payment pmt over nper periods bring pv to fv (0) - found by Newton&#039;s method from guess (10%), as Excel finds it: when 150 steps do not settle it to within 0.0000001, #NUM!.</td>
       <td><ul class="sheets-examples"><li><code>=ROUND(RATE(48, -200, 8000)*12, 4)</code> <samp>0.0924</samp></li><li><code>=ROUND(RATE(10, -1000, 7000), 4)</code> <samp>0.0707</samp></li></ul></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+<h2 id="group-statistical">Statistical</h2>
+<table class="sheets-functions">
+  <thead><tr><th scope="col">Function</th><th scope="col">What it does</th><th scope="col">Examples</th></tr></thead>
+  <tbody>
+  
+    <tr id="correl">
+      <th scope="row">CORREL</th>
+      <td>CORREL(array1, array2) returns the Pearson correlation of paired numbers. Text and blank cells are ignored as pairs; unequal sizes yield #N/A, a constant series or fewer than two numeric pairs yields #DIV/0!.</td>
+      <td><ul class="sheets-examples"><li><code>=CORREL(B2:B7, B2:B7)</code> <samp>1</samp></li><li><code>=CORREL(1, 2)</code> <samp>#DIV/0!</samp></li></ul></td>
     </tr>
   
   </tbody>

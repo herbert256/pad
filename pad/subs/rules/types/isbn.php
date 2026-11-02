@@ -1,4 +1,7 @@
 <?php
+
+  // isbn - ISBN-10 or ISBN-13 with its required check digit, allowing spaces and hyphens.
+
   return [
     'check' => function ( $value ) {
       $value = str_replace ( [ ' ', '-' ], '', $value );

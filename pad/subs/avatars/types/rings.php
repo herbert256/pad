@@ -1,4 +1,8 @@
 <?php
+
+  // rings - Concentric coloured arcs derived deterministically from an identity.
+  //
+
 $svg = '<rect width="100" height="100" rx="50" fill="'.$palette[0].'"/>';
 for ($i=0;$i<5;$i++) {
   $r=44-$i*8; $color=$palette[hexdec($hash[$i])%count($palette)];

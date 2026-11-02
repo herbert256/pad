@@ -1,4 +1,8 @@
 <?php
+
+  // {widget:imagecompare before='before.svg', after='after.svg'/} - Two images separated by an adjustable divider with a native range control.
+  //
+
 $before=padWidgetLink(padWidgetText('before'));$after=padWidgetLink(padWidgetText('after'));
 if($before===''||$after===''){padError('imagecompare needs before and after image URLs');return '';}
 $a=padWidgetAttr(padWidgetText('beforelabel','Before'));$b=padWidgetAttr(padWidgetText('afterlabel','After'));

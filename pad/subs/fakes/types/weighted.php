@@ -1,4 +1,7 @@
 <?php
+
+  // weighted - A seeded choice from explicit values and finite nonnegative weights.
+
   $values = padFakeOpt ( 'values', [] );
   $weights = padFakeOpt ( 'weights', [] );
   if ( ! is_array ( $values ) or ! is_array ( $weights ) or ! $values or count ( $values ) !== count ( $weights ) or count ( $values ) > 10000 ) {

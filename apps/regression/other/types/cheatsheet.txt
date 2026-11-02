@@ -180,6 +180,11 @@ sequence:fibonacci(<span class="hl-num">8</span>)</code></pre>
   <div class="cheat">
     
     <div class="cheat-item">
+      <a class="name" href="?type/avatar">avatar:</a> <span class="about">Deterministic local SVG identity artwork.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">avatar:rings</span> <span class="hl-str">&#039;identity&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Name&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?type/barcode">barcode:</a> <span class="about">A barcode symbology, a file of pad/subs/codes/types/, encoded on the server.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">barcode:ean13</span> <span class="hl-str">&#039;400638133393&#039;</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">barcode:ean13</span> <span class="hl-str">&#039;400638133393&#039;</span><span class="hl-brc">/}</span></code></pre>
@@ -315,6 +320,17 @@ sequence:fibonacci(<span class="hl-num">8</span>)</code></pre>
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?type/diff">Comparison kinds</a> <span class="about">Typed change records through padDiffCompare, and escaped HTML through padDiffRender.</span>
+      <pre class="code"><code><span class="hl-var">$changes</span> <span class="hl-pun">=</span> <span class="hl-fn">padDiffCompare</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;json&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$before</span><span class="hl-pun">,</span> <span class="hl-var">$after</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+<span class="hl-fn">padDiffRender</span> <span class="hl-pun">(</span> <span class="hl-var">$changes</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?type/distribution">Sampling distributions</a> <span class="about">Seeded samples through padSample.</span>
+      <pre class="code"><code><span class="hl-fn">padSample</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;normal&#039;</span><span class="hl-pun">,</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;seed&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">7</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?type/filter">Image filters</a> <span class="about">The filter= option of {pad:img} selects a filter or placeholder.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:img</span> <span class="hl-str">&#039;photo.jpg&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;A landscape&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">320</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;grayscale&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -339,6 +355,16 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?type/geo">Geographic operations</a> <span class="about">Plain data operations through padGeo, with longitude before latitude.</span>
+      <pre class="code"><code><span class="hl-fn">padGeo</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;distance&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-num">4.9</span><span class="hl-pun">,</span><span class="hl-num">52.37</span><span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-num">2.35</span><span class="hl-pun">,</span><span class="hl-num">48.86</span><span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?type/highlighter">Syntax languages</a> <span class="about">Languages selected by padHighlight and the highlight tag.</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;python&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?type/holidays">Holiday calendars</a> <span class="about">The country parameter of {pad:holidays}, with optional regions.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:holidays</span> <span class="hl-str">&#039;nl&#039;</span>, <span class="hl-opt">year</span>=<span class="hl-num">2026</span><span class="hl-brc">/}</span></code></pre>
     </div>
@@ -359,6 +385,11 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?type/recurrence">Calendar recurrences</a> <span class="about">Bounded occurrences between explicit dates through padOccurrences.</span>
+      <pre class="code"><code><span class="hl-fn">padOccurrences</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;weekly&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;start&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;2026-11-02&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;count&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">4</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-str">&#039;2026-11-01&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;2031-12-01&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?type/rule">Validation rules</a> <span class="about">Rules passed to padValidate or a form field&#039;s rules= option.</span>
       <pre class="code"><code><span class="hl-var">$errors</span> <span class="hl-pun">=</span> <span class="hl-fn">padValidate</span> <span class="hl-pun">(</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;value&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;required&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-var">$values</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
@@ -376,6 +407,11 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
     <div class="cheat-item">
       <a class="name" href="?type/theme">Themes</a> <span class="about">The name parameter of {pad:theme} selects page or box colours.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:theme</span> <span class="hl-str">&#039;paper&#039;</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the paper theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/pad:theme</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?type/unit">Unit conversions</a> <span class="about">Dimension-checked numeric conversion through padConvert.</span>
+      <pre class="code"><code><span class="hl-fn">padConvert</span> <span class="hl-pun">(</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-str">&#039;cm&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;m&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
     
   </div>

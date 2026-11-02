@@ -233,7 +233,8 @@
 
     // A feature's complete example may require its paired PHP data file.
     if ( is_file ( APPS . "tags/examples/$type/$kind.pad" ) )
-      return $example ( "The $kind $type", 'A complete working example.', '', "examples/$type/$kind" );
+      return $example ( "The $kind $type", $type === 'embed' && $kind === 'googleslides'
+        ? 'Replace the publication URL with your own published presentation.' : 'A complete working example.', '', "examples/$type/$kind" );
 
     if ( $type === 'avatar' )
       return $example ( "The $kind avatar", 'Local deterministic SVG.', "{avatar:$kind 'Ann Example', label='Ann Example'/}" );
