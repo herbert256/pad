@@ -1,0 +1,3 @@
+# zulip
+
+Configure ZULIP_URL (HTTPS origin), ZULIP_EMAIL (bot email), ZULIP_API_KEY, ZULIP_TO and optionally ZULIP_TOPIC. Per-channel options override these. `type='stream'` (default) sends to the named channel and topic. For `type='direct'`, `to` is a comma-separated list of positive numeric Zulip user IDs (maximum 100). The recipient's `zulip` field can supply `to`; credentials and server always come from configuration. Requests use form encoding and HTTP Basic auth; API success must explicitly report result=success. Mentions are neutralized. HTTP failures and throttling go back to the existing queue/retry layer. Source: [Zulip messages API](https://zulip.com/api/send-message). Test: `php apps/regression/subsystems/channel-zulip.php`.
