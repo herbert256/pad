@@ -12,6 +12,7 @@
   $kindAbout = $kindInfo ['about'];
   $kindGroup = $kindInfo ['group'];
   $kindParent = $familyInfo ['tag'];
+  $kindParentLink = str_replace ( ':', '/', $kindParent );
   $kindExample = $kindInfo ['example'];
   $kindSourceHtml = padHighlightTokens ( $kindExample ['source'], $kindExample ['language'] );
   $kindParagraphs = array_map ( fn ( $text ) => [ 'text' => trim ( $text ) ],

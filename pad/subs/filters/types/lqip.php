@@ -3,7 +3,7 @@
   // lqip - a placeholder: a low quality image of the picture, 16 pixels on its longer side and
   // blurred, as a PNG in the page behind the <img> until the picture has loaded.
   //
-  //   {pad:img 'photos/harbour.jpg', width=400, filter='lqip', alt='The harbour'/}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, filter='lqip', alt='The harbour'/}
   //
   // The 1x picture as shown - every image filter of the list applied, wherever the placeholder
   // stands in it - made small, each pixel the average of what it covers, and blurred once by

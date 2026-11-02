@@ -82,7 +82,7 @@
     }
 
     // The name as the characters it holds (padParmText): a field written inside the quoted
-    // name - {pad:img 'photos/{$file}'} - came with the stand-in of its @ and HTML-escaped, and
+    // name - {image:thumbnail 'photos/{$file}'} - came with the stand-in of its @ and HTML-escaped, and
     // logo@2x.png or Zürich.jpg was refused as no file name.
 
     $name = trim ( padParmText ( $file ) );

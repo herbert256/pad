@@ -102,6 +102,8 @@
       'timeline' => [ 'Event views from pad/subs/timelines/types/ - horizontal, vertical, roadmap and swimlane.', 'subsystems',
                       "{timeline:horizontal data='events'/}\n{timeline:roadmap data='events', lane='team'/}\n{timeline:swimlane data='events', lane='team'/}" ],
 
+      'image' => [ 'Local images as thumbnails, responsive pictures, captioned figures or contact sheets.', 'subsystems',
+                   "{image:thumbnail 'photo.jpg', width=320, alt='A landscape'/}\n{image:picture 'photo.jpg', widths='320,640,960', alt='A landscape'/}" ],
       'avatar' => [ 'An identity picture: initials, identicons, Gravatar, geometric art or a photograph with a local fallback.', 'subsystems',
                     "{avatar:initials 'Ada Lovelace'/}\n{avatar:geometric 'ada', style='rings'/}" ],
       'calendar' => [ 'A Gregorian calendar view from pad/subs/calendars/types/ - days, weeks, months, quarters, years and agendas.', 'subsystems',

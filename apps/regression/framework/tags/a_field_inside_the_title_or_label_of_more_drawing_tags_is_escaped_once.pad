@@ -13,4 +13,4 @@ tabs {widget:tabs active='{$t}'}{pad:tab 'B'}b{/pad:tab}{pad:tab '{$t}'}a{/pad:t
 accordion {widget:accordion open='{$t}'}{pad:tab 'B'}b{/pad:tab}{pad:tab '{$t}'}a{/pad:tab}{/widget:accordion | php:preg_match('/open><summary class..pad-accordion-summary.>Q&amp;A Å/u', @)};
 carousel {widget:carousel label='{$t}'}{pad:tab '{$t}'}a{/pad:tab}{/widget:carousel | php:substr_count(@, 'Q&amp;A Å')};
 poll {widget:poll 'fw-esc-once', title='{$t}', button='{$t}', options='{$t}, B' | php:substr_count(@, 'Q&amp;A Å')/};
-img {pad:img 'assets/photo.jpg', width=40, alt='{$t}' | php:substr_count(@, 'Q&amp;A Å')/}
+img {image:thumbnail 'assets/photo.jpg', width=40, alt='{$t}' | php:substr_count(@, 'Q&amp;A Å')/}

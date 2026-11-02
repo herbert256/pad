@@ -14,6 +14,7 @@
     'time' => [ 'times', FALSE, 'time display' ],
     'timeline' => [ 'timelines', FALSE, 'timeline type' ],
 
+    'image' => [ 'images', FALSE, 'image type' ],
     'avatar' => [ 'avatars', FALSE, 'avatar type' ],
     'calendar' => [ 'calendars', FALSE, 'calendar type' ],
     'chart'   => [ 'charts',   TRUE,  'chart type'     ],

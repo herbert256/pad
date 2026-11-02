@@ -2,7 +2,7 @@
 
   // invert - the negative of the picture, every channel 255 less itself (GD's negate filter).
   //
-  //   {pad:img 'photos/harbour.jpg', width=400, filter='invert', alt='The harbour as a negative'/}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, filter='invert', alt='The harbour as a negative'/}
 
   return [
 

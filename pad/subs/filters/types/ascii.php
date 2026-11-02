@@ -6,7 +6,7 @@
   // is the name of the <pre>, role="img": a screen reader says the alt, not the characters;
   // alt='' leaves it decoration.
   //
-  //   {pad:img 'photos/harbour.jpg', width=400, filter='ascii', columns=80, alt='The harbour'/}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, filter='ascii', columns=80, alt='The harbour'/}
   //
   // A character of a monospaced face is about 0.6 of its size wide and a line 1 high, so the
   // picture is cut into columns by columns x 0.6 x height / width lines, each the average of
