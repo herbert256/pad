@@ -1,50 +1,52 @@
 {common:padFrame}
-  {pad:slot 'head'}{common:showcaseAssets/}{pad:asset 'charts.css', tag/}{pad:asset 'charts.js', tag/}{/pad:slot}
+  {pad:slot 'head'}
+    {common:showcaseAssets/}
+    {pad:asset 'charts.css', tag/}
+    {pad:asset 'charts.js', tag/}
+  {/pad:slot}
 {/common:padFrame}
 {pad:if $isExample}
-<div class="page example">
+  <div class="page example">
+    <p class="lead"><span class="family-name">{$familyLabel}</span> {$exampleText}</p>
 
-  <p class="lead"><span class="family-name">{$familyLabel}</span> {$exampleText}</p>
+    <div class="stage{pad:if $oneCell} is-pair{/pad:if}">
+      {pad:if not $oneCell}
+        <section class="cell cell-data" aria-label="The data">
+          <header class="cell-head">
+            <span class="cell-num">1</span>
+            <span class="cell-name">The data</span>
+            <span class="cell-file">{$dataFile}</span>
+            <span class="badge badge-{$dataLang}">{$dataLang}</span>
+            <button type="button" class="copy" data-copy="data-src" aria-label="Copy the data">Copy</button>
+          </header>
+          <pre class="code" id="data-src"><code>{!dataHtml}</code></pre>
+        </section>
+      {/pad:if}
 
-  <div class="stage{pad:if $oneCell} is-pair{/pad:if}">
+      <section class="cell cell-tag" aria-label="The chart tag">
+        <header class="cell-head">
+          <span class="cell-num">{pad:if $oneCell}1{pad:else}2{/pad:if}</span>
+          <span class="cell-name">{pad:if $tagPair}The chart tag and its data{pad:elseif $tagOnly}The chart tag{pad:else}The template{/pad:if}</span>
+          <span class="cell-file">{$tagFile}</span>
+          <span class="badge badge-pad">pad</span>
+          <button type="button" class="copy" data-copy="tag-src" aria-label="Copy the tag">Copy</button>
+        </header>
+        <pre class="code" id="tag-src"><code>{!tagHtml}</code></pre>
+      </section>
 
-    {pad:if not $oneCell}
-    <section class="cell cell-data" aria-label="The data">
-      <header class="cell-head">
-        <span class="cell-num">1</span>
-        <span class="cell-name">The data</span>
-        <span class="cell-file">{$dataFile}</span>
-        <span class="badge badge-{$dataLang}">{$dataLang}</span>
-        <button type="button" class="copy" data-copy="data-src" aria-label="Copy the data">Copy</button>
-      </header>
-      <pre class="code" id="data-src"><code>{!dataHtml}</code></pre>
-    </section>
-    {/pad:if}
-
-    <section class="cell cell-tag" aria-label="The chart tag">
-      <header class="cell-head">
-        <span class="cell-num">{pad:if $oneCell}1{pad:else}2{/pad:if}</span>
-        <span class="cell-name">{pad:if $tagPair}The chart tag and its data{pad:elseif $tagOnly}The chart tag{pad:else}The template{/pad:if}</span>
-        <span class="cell-file">{$tagFile}</span>
-        <span class="badge badge-pad">pad</span>
-        <button type="button" class="copy" data-copy="tag-src" aria-label="Copy the tag">Copy</button>
-      </header>
-      <pre class="code" id="tag-src"><code>{!tagHtml}</code></pre>
-    </section>
-
-    <section class="cell cell-chart" aria-label="The chart">
-      <header class="cell-head">
-        <span class="cell-num">{pad:if $oneCell}2{pad:else}3{/pad:if}</span>
-        <span class="cell-name">The result</span>
-        <span class="cell-file">inline SVG · no JavaScript</span>
-        {!playLink}
-      </header>
-      <div class="canvas">
+      <section class="cell cell-chart" aria-label="The chart">
+        <header class="cell-head">
+          <span class="cell-num">{pad:if $oneCell}2{pad:else}3{/pad:if}</span>
+          <span class="cell-name">The result</span>
+          <span class="cell-file">inline SVG · no JavaScript</span>
+          {!playLink}
+        </header>
+        <div class="canvas">
 {/pad:if}
 @page@
 {pad:if $isExample}
-      </div>
-    </section>
+  </div>
+  </section>
 
   </div>
 
@@ -53,6 +55,6 @@
     <a class="pager-link next" href="?{$nextPage}"><span class="pager-dir">Next →</span><span class="pager-title">{$nextTitle}</span></a>
   </nav>
 
-</div>
+  </div>
 {/pad:if}
 {common:padFrameEnd/}

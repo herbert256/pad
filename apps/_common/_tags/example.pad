@@ -4,144 +4,170 @@
 
 {pad:if #withTitle}
   <h3>{$exampleTitle}</h3>
-{/pad:if} 
+{/pad:if}
 
-{pad:if #onlyResult or $exampleOnlyResult} 
-
+{pad:if #onlyResult or $exampleOnlyResult}
   {common:examplePage/}
 
 @else@
 
-  {pad:if ! #skipOpen} 
+  {pad:if ! #skipOpen}
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   {/pad:if}
 
   {pad:case $exampleLayout}
- 
-    {pad:when 'above'}
+  {pad:when 'above'}
 
-      {pad:if ! #skipPhp}
-        {pad:if ! #skipHeader}
-          <tr>
-            <th bgcolor="#dddddd" colspan="2" > 
-              PHP {pad:if ! #skipNames}<br><font size="-2">{$exampleFilePhp}</font>{/pad:if}
-            </th>
-          </tr>
-        {/pad:if}
-        <tr >
-          <td colspan="2" style="vertical-align:top">{!exampleSrcPhp} </td>
+    {pad:if ! #skipPhp}
+      {pad:if ! #skipHeader}
+        <tr>
+          <th bgcolor="#dddddd" colspan="2" >
+            PHP
+            {pad:if ! #skipNames}
+              <br>
+              <font size="-2">{$exampleFilePhp}</font>
+            {/pad:if}
+          </th>
         </tr>
       {/pad:if}
+      <tr >
+        <td colspan="2" style="vertical-align:top">{!exampleSrcPhp} </td>
+      </tr>
+    {/pad:if}
 
-      {pad:if ! #skipPad or ! #skipResult}
-
-        {pad:if ! #skipHeader}
-          <tr>
-            {pad:if ! #skipPad}
-              <th bgcolor="#dddddd">
-                 HTML {pad:if ! #skipNames}<br><font size="-2">{$exampleFilePad}</font>{/pad:if}
-              </th>
-            {/pad:if}
-            {pad:if ! #skipResult}
-              <th bgcolor="#dddddd">
-                {pad:if #withLink}<a href="?{$dir}/{$item}">{/pad:if}Result{pad:if #withLink}</a>{/pad:if}
-              </th>
-            {/pad:if}
-          </tr>
-        {/pad:if}
-
+    {pad:if ! #skipPad or ! #skipResult}
+      {pad:if ! #skipHeader}
         <tr>
           {pad:if ! #skipPad}
-            <td style="vertical-align:top">{!examplePlay}{!exampleSrcPad} </td>
-          {/pad:if}
-          {pad:if ! #skipResult}
-            <td style="vertical-align:top">{common:examplePage/}</td>
-          {/pad:if}
-        </tr>
-
-      {/pad:if}
-  
-    {pad:when 'horizontal'}
-
-      {pad:if ! #skipHeader}
-          <tr>
-          {pad:if ! #skipPhp}
             <th bgcolor="#dddddd">
-              PHP {pad:if ! #skipNames}<br><font size="-2">{$exampleFilePhp}</font>{/pad:if}
-            </th>
-          {/pad:if}
-          {pad:if ! #skipPad}
-            <th bgcolor="#dddddd">
-              HTML {pad:if ! #skipNames}<br><font size="-2">{$exampleFilePad}</font>{/pad:if}
+              HTML
+              {pad:if ! #skipNames}
+                <br>
+                <font size="-2">{$exampleFilePad}</font>
+              {/pad:if}
             </th>
           {/pad:if}
           {pad:if ! #skipResult}
             <th bgcolor="#dddddd">
-              {pad:if #withLink}<a href="?{$dir}/{$item}">{/pad:if}Result{pad:if #withLink}</a>{/pad:if}
+              {pad:if #withLink}<a href="?{$dir}/{$item}">{/pad:if}Result
+              {pad:if #withLink}
+                </a>
+              {/pad:if}
             </th>
           {/pad:if}
         </tr>
       {/pad:if}
 
       <tr>
-        {pad:if ! #skipPhp}
-          <td style="vertical-align:top">{!exampleSrcPhp} </td>
-        {/pad:if}
         {pad:if ! #skipPad}
-          <td style="vertical-align:top">{!examplePlay}{!exampleSrcPad}</td>
+          <td style="vertical-align:top">{!examplePlay}{!exampleSrcPad} </td>
         {/pad:if}
         {pad:if ! #skipResult}
           <td style="vertical-align:top">{common:examplePage/}</td>
         {/pad:if}
       </tr>
+    {/pad:if}
+  {pad:when 'horizontal'}
 
-    @else@
+    {pad:if ! #skipHeader}
+      <tr>
+        {pad:if ! #skipPhp}
+          <th bgcolor="#dddddd">
+            PHP
+            {pad:if ! #skipNames}
+              <br>
+              <font size="-2">{$exampleFilePhp}</font>
+            {/pad:if}
+          </th>
+        {/pad:if}
+        {pad:if ! #skipPad}
+          <th bgcolor="#dddddd">
+            HTML
+            {pad:if ! #skipNames}
+              <br>
+              <font size="-2">{$exampleFilePad}</font>
+            {/pad:if}
+          </th>
+        {/pad:if}
+        {pad:if ! #skipResult}
+          <th bgcolor="#dddddd">
+            {pad:if #withLink}<a href="?{$dir}/{$item}">{/pad:if}Result
+            {pad:if #withLink}
+              </a>
+            {/pad:if}
+          </th>
+        {/pad:if}
+      </tr>
+    {/pad:if}
 
+    <tr>
       {pad:if ! #skipPhp}
-        {pad:if ! #skipHeader}
-          <tr>
-            <th bgcolor="#dddddd">
-              PHP {pad:if ! #skipNames}<br><font size="-2">{$exampleFilePhp} </font>{/pad:if}
-            </th>
-          </tr>
-        {/pad:if}
-        <tr>
-          <td style="vertical-align:top">{!exampleSrcPhp} </td>       
-        </tr>
+        <td style="vertical-align:top">{!exampleSrcPhp} </td>
       {/pad:if}
-
       {pad:if ! #skipPad}
-        {pad:if ! #skipHeader}
-          <tr>
-            <th bgcolor="#dddddd">
-              HTML {pad:if ! #skipNames}<br><font size="-2">{$exampleFilePad}</font>{/pad:if}
-            </th>
-          </tr>
-        {/pad:if}
-        <tr>
-          <td style="vertical-align:top">{!examplePlay}{!exampleSrcPad}</td>
-        </tr>
+        <td style="vertical-align:top">{!examplePlay}{!exampleSrcPad}</td>
       {/pad:if}
-
       {pad:if ! #skipResult}
-        {pad:if ! #skipHeader}
-          <tr>
-            <th bgcolor="#dddddd">
-              {pad:if #withLink}<a href="?{$dir}/{$item}">{/pad:if}Result{pad:if #withLink}</a>{/pad:if}
-            </th>
-          </tr>
-        {/pad:if}
+        <td style="vertical-align:top">{common:examplePage/}</td>
+      {/pad:if}
+    </tr>
+
+  @else@
+
+    {pad:if ! #skipPhp}
+      {pad:if ! #skipHeader}
         <tr>
-          <td style="vertical-align:top">{common:examplePage/}</td>
+          <th bgcolor="#dddddd">
+            PHP
+            {pad:if ! #skipNames}
+              <br>
+              <font size="-2">{$exampleFilePhp} </font>
+            {/pad:if}
+          </th>
         </tr>
       {/pad:if}
+      <tr>
+        <td style="vertical-align:top">{!exampleSrcPhp} </td>
+      </tr>
+    {/pad:if}
 
+    {pad:if ! #skipPad}
+      {pad:if ! #skipHeader}
+        <tr>
+          <th bgcolor="#dddddd">
+            HTML
+            {pad:if ! #skipNames}
+              <br>
+              <font size="-2">{$exampleFilePad}</font>
+            {/pad:if}
+          </th>
+        </tr>
+      {/pad:if}
+      <tr>
+        <td style="vertical-align:top">{!examplePlay}{!exampleSrcPad}</td>
+      </tr>
+    {/pad:if}
+
+    {pad:if ! #skipResult}
+      {pad:if ! #skipHeader}
+        <tr>
+          <th bgcolor="#dddddd">
+            {pad:if #withLink}<a href="?{$dir}/{$item}">{/pad:if}Result
+            {pad:if #withLink}
+              </a>
+            {/pad:if}
+          </th>
+        </tr>
+      {/pad:if}
+      <tr>
+        <td style="vertical-align:top">{common:examplePage/}</td>
+      </tr>
+    {/pad:if}
   {/pad:case}
 
   {pad:if ! #skipClose}
     </table>
   {/pad:if}
-
 {/pad:if}
 
 {pad:if #center}

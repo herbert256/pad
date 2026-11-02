@@ -1,5 +1,4 @@
 <section class="hero">
-
   <div>
     <span class="eyebrow"><b>●</b> The platform's own components</span>
     <h2>Rendered by PAD,<br><span class="grad">defined by the browser.</span></h2>
@@ -20,24 +19,23 @@
       <a slot="footer" href="?examples/cards">See how</a>
     {/app:card}
   </div>
-
 </section>
 
 {array:groups}
-<div class="group-head">
-  <h2>{$title}</h2>
-  <span class="badge">{$count} examples</span>
-</div>
-<p class="group-text">{$text}</p>
-<div class="grid">
-  {array:examples}
-  <a class="card" href="?{$page}">
-    <span class="card-icon" aria-hidden="true">{$icon}</span>
-    <span class="card-go" aria-hidden="true">→</span>
-    <h3>{$title}</h3>
-    <p>{$lede}</p>
-    <div class="chips">{array:server}<code class="chip is-server">{$server}</code>{/array:server}{array:client}<code class="chip is-client">{$client}</code>{/array:client}</div>
-  </a>
-  {/array:examples}
-</div>
+  <div class="group-head">
+    <h2>{$title}</h2>
+    <span class="badge">{$count} examples</span>
+  </div>
+  <p class="group-text">{$text}</p>
+  <div class="grid">
+    {array:examples}
+      <a class="card" href="?{$page}">
+        <span class="card-icon" aria-hidden="true">{$icon}</span>
+        <span class="card-go" aria-hidden="true">→</span>
+        <h3>{$title}</h3>
+        <p>{$lede}</p>
+        <div class="chips">{array:server}<code class="chip is-server">{$server}</code>{/array:server}{array:client}<code class="chip is-client">{$client}</code>{/array:client}</div>
+      </a>
+    {/array:examples}
+  </div>
 {/array:groups}

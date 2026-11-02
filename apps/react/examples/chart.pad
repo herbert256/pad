@@ -1,13 +1,13 @@
 <div data-island="ChartStudio" data-props="{^choice}">
-{pad:fragment 'chart'}
-  <div class="chart-frame" data-total="{$total}">
-    {pad:if $stacked}
-      {chart:bar data='sales', label='month', value=$value, stacked, title='Sales per month, in thousands'/}
-    {pad:else}
-      {chart:$chartKind data='sales', label='month', value=$value, title='Sales per month, in thousands'/}
-    {/pad:if}
-  </div>
-{/pad:fragment}
+  {pad:fragment 'chart'}
+    <div class="chart-frame" data-total="{$total}">
+      {pad:if $stacked}
+        {chart:bar data='sales', label='month', value=$value, stacked, title='Sales per month, in thousands'/}
+      {pad:else}
+        {chart:$chartKind data='sales', label='month', value=$value, title='Sales per month, in thousands'/}
+      {/pad:if}
+    </div>
+  {/pad:fragment}
 </div>
 
 <script type="text/babel" src="{$padRoot}react/examples/chart.js"></script>

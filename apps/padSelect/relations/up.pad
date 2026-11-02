@@ -1,6 +1,14 @@
 <table>
-  <tr><th>Album</th><th>Artist</th><th>Genre</th></tr>
+  <tr>
+    <th>Album</th>
+    <th>Artist</th>
+    <th>Genre</th>
+  </tr>
   {select:albums order="title"}
-  <tr><td>{$title}</td><td>{select:artists}{$name}{/select:artists}</td><td>{select:genres}{$genre}{/select:genres}</td></tr>
+    <tr>
+      <td>{$title}</td>
+      <td>{select:artists}{$name}{/select:artists}</td>
+      <td>{select:genres}{$genre}{/select:genres}</td>
+    </tr>
   {/select:albums}
 </table>

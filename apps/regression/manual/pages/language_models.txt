@@ -4,59 +4,67 @@ as text. It is a value, never template code: markup in it is shown, not run, and
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/ai_1.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/ai_1.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Anthropic is not asked here: a fake answers in the shape of its Messages API, as a test<br>  // answers it. In an application the key stands in .env as ANTHROPIC_API_KEY; here it is<br>  // put where padEnv finds it first.<br><br>  </span><span style="color: #0000BB">$_ENV </span><span style="color: #007700">[</span><span style="color: #DD0000">'ANTHROPIC_API_KEY'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'sk-example'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padCurlFake </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'https://api.anthropic.com/v1/messages' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'data' </span><span style="color: #007700">=&gt; [<br>    </span><span style="color: #DD0000">'stop_reason' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'end_turn'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'content'     </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">'type' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'text'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Two friends trade pots of &lt;b&gt;jam&lt;/b&gt; &amp; {stories} across one long winter.' </span><span style="color: #007700">] ] ] ] ] );<br><br>  </span><span style="color: #0000BB">$body </span><span style="color: #007700">= </span><span style="color: #DD0000">'All winter long Ann and Bo swapped jars of jam over the fence, and with every jar a story.'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/ai_1.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57YWk6YXV0byBwcm92aWRlcj0nYW50aHJvcGljJywgdHRsPTg2NDAwfVN1bW1hcmlzZSBpbiBvbmUgc2VudGVuY2U6IHskYm9keX17L2FpOmF1dG99PC9wPlxue3BocDpwYWRDdXJsRmFrZVN0b3AvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIEFudGhyb3BpYyBpcyBub3QgYXNrZWQgaGVyZTogYSBmYWtlIGFuc3dlcnMgaW4gdGhlIHNoYXBlIG9mIGl0cyBNZXNzYWdlcyBBUEksIGFzIGEgdGVzdFxuICAvLyBhbnN3ZXJzIGl0LiBJbiBhbiBhcHBsaWNhdGlvbiB0aGUga2V5IHN0YW5kcyBpbiAuZW52IGFzIEFOVEhST1BJQ19BUElfS0VZOyBoZXJlIGl0IGlzXG4gIC8vIHB1dCB3aGVyZSBwYWRFbnYgZmluZHMgaXQgZmlyc3QuXG5cbiAgJF9FTlYgWydBTlRIUk9QSUNfQVBJX0tFWSddID0gJ3NrLWV4YW1wbGUnO1xuXG4gIHBhZEN1cmxGYWtlICggWyAnaHR0cHM6Ly9hcGkuYW50aHJvcGljLmNvbS92MS9tZXNzYWdlcycgPT4gWyAnZGF0YScgPT4gW1xuICAgICdzdG9wX3JlYXNvbicgPT4gJ2VuZF90dXJuJyxcbiAgICAnY29udGVudCcgICAgID0+IFsgWyAndHlwZScgPT4gJ3RleHQnLCAndGV4dCcgPT4gJ1R3byBmcmllbmRzIHRyYWRlIHBvdHMgb2YgPGI+amFtPC9iPiAmIHtzdG9yaWVzfSBhY3Jvc3Mgb25lIGxvbmcgd2ludGVyLicgXSBdIF0gXSBdICk7XG5cbiAgJGJvZHkgPSAnQWxsIHdpbnRlciBsb25nIEFubiBhbmQgQm8gc3dhcHBlZCBqYXJzIG9mIGphbSBvdmVyIHRoZSBmZW5jZSwgYW5kIHdpdGggZXZlcnkgamFyIGEgc3RvcnkuJztcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57YWk6YXV0byBwcm92aWRlcj0nYW50aHJvcGljJywgdHRsPTg2NDAwfVN1bW1hcmlzZSBpbiBvbmUgc2VudGVuY2U6IHskYm9keX17L2FpOmF1dG99PC9wPlxue3BocDpwYWRDdXJsRmFrZVN0b3AvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIEFudGhyb3BpYyBpcyBub3QgYXNrZWQgaGVyZTogYSBmYWtlIGFuc3dlcnMgaW4gdGhlIHNoYXBlIG9mIGl0cyBNZXNzYWdlcyBBUEksIGFzIGEgdGVzdFxuICAvLyBhbnN3ZXJzIGl0LiBJbiBhbiBhcHBsaWNhdGlvbiB0aGUga2V5IHN0YW5kcyBpbiAuZW52IGFzIEFOVEhST1BJQ19BUElfS0VZOyBoZXJlIGl0IGlzXG4gIC8vIHB1dCB3aGVyZSBwYWRFbnYgZmluZHMgaXQgZmlyc3QuXG5cbiAgJF9FTlYgWydBTlRIUk9QSUNfQVBJX0tFWSddID0gJ3NrLWV4YW1wbGUnO1xuXG4gIHBhZEN1cmxGYWtlICggWyAnaHR0cHM6Ly9hcGkuYW50aHJvcGljLmNvbS92MS9tZXNzYWdlcycgPT4gWyAnZGF0YScgPT4gW1xuICAgICdzdG9wX3JlYXNvbicgPT4gJ2VuZF90dXJuJyxcbiAgICAnY29udGVudCcgICAgID0+IFsgWyAndHlwZScgPT4gJ3RleHQnLCAndGV4dCcgPT4gJ1R3byBmcmllbmRzIHRyYWRlIHBvdHMgb2YgPGI+amFtPC9iPiAmIHtzdG9yaWVzfSBhY3Jvc3Mgb25lIGxvbmcgd2ludGVyLicgXSBdIF0gXSBdICk7XG5cbiAgJGJvZHkgPSAnQWxsIHdpbnRlciBsb25nIEFubiBhbmQgQm8gc3dhcHBlZCBqYXJzIG9mIGphbSBvdmVyIHRoZSBmZW5jZSwgYW5kIHdpdGggZXZlcnkgamFyIGEgc3RvcnkuJztcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">ai</font><font color="black"><b>:</b></font>auto </font><font color="red">provider=<font color="black">'</font>anthropic<font color="black">'</font><font color="black">,</font> ttl=86400</font>}</b>Summarise in one sentence: <b>{<font color="green"><font color="red">$</font>body</font>}</b><b>{/<font color="blue"><font color="purple">ai</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>padCurlFakeStop</font><font color="red"></font>/}</b></code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/ai_1.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Anthropic is not asked here: a fake answers in the shape of its Messages API, as a test<br>  // answers it. In an application the key stands in .env as ANTHROPIC_API_KEY; here it is<br>  // put where padEnv finds it first.<br><br>  </span><span style="color: #0000BB">$_ENV </span><span style="color: #007700">[</span><span style="color: #DD0000">'ANTHROPIC_API_KEY'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'sk-example'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padCurlFake </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'https://api.anthropic.com/v1/messages' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'data' </span><span style="color: #007700">=&gt; [<br>    </span><span style="color: #DD0000">'stop_reason' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'end_turn'</span><span style="color: #007700">,<br>    </span><span style="color: #DD0000">'content'     </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">'type' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'text'</span><span style="color: #007700">, </span><span style="color: #DD0000">'text' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Two friends trade pots of &lt;b&gt;jam&lt;/b&gt; &amp; {stories} across one long winter.' </span><span style="color: #007700">] ] ] ] ] );<br><br>  </span><span style="color: #0000BB">$body </span><span style="color: #007700">= </span><span style="color: #DD0000">'All winter long Ann and Bo swapped jars of jam over the fence, and with every jar a story.'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57YWk6YXV0byBwcm92aWRlcj0nYW50aHJvcGljJywgdHRsPTg2NDAwfVN1bW1hcmlzZSBpbiBvbmUgc2VudGVuY2U6IHskYm9keX17L2FpOmF1dG99PC9wPlxue3BocDpwYWRDdXJsRmFrZVN0b3AvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIEFudGhyb3BpYyBpcyBub3QgYXNrZWQgaGVyZTogYSBmYWtlIGFuc3dlcnMgaW4gdGhlIHNoYXBlIG9mIGl0cyBNZXNzYWdlcyBBUEksIGFzIGEgdGVzdFxuICAvLyBhbnN3ZXJzIGl0LiBJbiBhbiBhcHBsaWNhdGlvbiB0aGUga2V5IHN0YW5kcyBpbiAuZW52IGFzIEFOVEhST1BJQ19BUElfS0VZOyBoZXJlIGl0IGlzXG4gIC8vIHB1dCB3aGVyZSBwYWRFbnYgZmluZHMgaXQgZmlyc3QuXG5cbiAgJF9FTlYgWydBTlRIUk9QSUNfQVBJX0tFWSddID0gJ3NrLWV4YW1wbGUnO1xuXG4gIHBhZEN1cmxGYWtlICggWyAnaHR0cHM6Ly9hcGkuYW50aHJvcGljLmNvbS92MS9tZXNzYWdlcycgPT4gWyAnZGF0YScgPT4gW1xuICAgICdzdG9wX3JlYXNvbicgPT4gJ2VuZF90dXJuJyxcbiAgICAnY29udGVudCcgICAgID0+IFsgWyAndHlwZScgPT4gJ3RleHQnLCAndGV4dCcgPT4gJ1R3byBmcmllbmRzIHRyYWRlIHBvdHMgb2YgPGI+amFtPC9iPiAmIHtzdG9yaWVzfSBhY3Jvc3Mgb25lIGxvbmcgd2ludGVyLicgXSBdIF0gXSBdICk7XG5cbiAgJGJvZHkgPSAnQWxsIHdpbnRlciBsb25nIEFubiBhbmQgQm8gc3dhcHBlZCBqYXJzIG9mIGphbSBvdmVyIHRoZSBmZW5jZSwgYW5kIHdpdGggZXZlcnkgamFyIGEgc3RvcnkuJztcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57YWk6YXV0byBwcm92aWRlcj0nYW50aHJvcGljJywgdHRsPTg2NDAwfVN1bW1hcmlzZSBpbiBvbmUgc2VudGVuY2U6IHskYm9keX17L2FpOmF1dG99PC9wPlxue3BocDpwYWRDdXJsRmFrZVN0b3AvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIEFudGhyb3BpYyBpcyBub3QgYXNrZWQgaGVyZTogYSBmYWtlIGFuc3dlcnMgaW4gdGhlIHNoYXBlIG9mIGl0cyBNZXNzYWdlcyBBUEksIGFzIGEgdGVzdFxuICAvLyBhbnN3ZXJzIGl0LiBJbiBhbiBhcHBsaWNhdGlvbiB0aGUga2V5IHN0YW5kcyBpbiAuZW52IGFzIEFOVEhST1BJQ19BUElfS0VZOyBoZXJlIGl0IGlzXG4gIC8vIHB1dCB3aGVyZSBwYWRFbnYgZmluZHMgaXQgZmlyc3QuXG5cbiAgJF9FTlYgWydBTlRIUk9QSUNfQVBJX0tFWSddID0gJ3NrLWV4YW1wbGUnO1xuXG4gIHBhZEN1cmxGYWtlICggWyAnaHR0cHM6Ly9hcGkuYW50aHJvcGljLmNvbS92MS9tZXNzYWdlcycgPT4gWyAnZGF0YScgPT4gW1xuICAgICdzdG9wX3JlYXNvbicgPT4gJ2VuZF90dXJuJyxcbiAgICAnY29udGVudCcgICAgID0+IFsgWyAndHlwZScgPT4gJ3RleHQnLCAndGV4dCcgPT4gJ1R3byBmcmllbmRzIHRyYWRlIHBvdHMgb2YgPGI+amFtPC9iPiAmIHtzdG9yaWVzfSBhY3Jvc3Mgb25lIGxvbmcgd2ludGVyLicgXSBdIF0gXSBdICk7XG5cbiAgJGJvZHkgPSAnQWxsIHdpbnRlciBsb25nIEFubiBhbmQgQm8gc3dhcHBlZCBqYXJzIG9mIGphbSBvdmVyIHRoZSBmZW5jZSwgYW5kIHdpdGggZXZlcnkgamFyIGEgc3RvcnkuJztcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">ai</font><font color="black"><b>:</b></font>auto </font><font color="red">provider=<font color="black">'</font>anthropic<font color="black">'</font><font color="black">,</font> ttl=86400</font>}</b>Summarise in one sentence: <b>{<font color="green"><font color="red">$</font>body</font>}</b><b>{/<font color="blue"><font color="purple">ai</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>padCurlFakeStop</font><font color="red"></font>/}</b></code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>Two friends trade pots of &lt;b&gt;jam&lt;/b&gt; &amp; {stories} across one long winter.</p>
 
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -73,59 +81,67 @@ Ollama, which runs a model on this machine and needs no key:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/ai_2.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/ai_2.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Ollama runs a model on this machine and needs no key - here a fake answers in its shape,<br>  // and padCurlRecorded shows what was sent.<br><br>  </span><span style="color: #0000BB">padCurlFake </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'http://127.0.0.1:11434/api/chat' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'data' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'message' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'assistant'</span><span style="color: #007700">, </span><span style="color: #DD0000">'content' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Loire, Seine, Rhone.' </span><span style="color: #007700">] ] ] ] );<br><br>  </span><span style="color: #0000BB">$rivers </span><span style="color: #007700">= </span><span style="color: #0000BB">padAi </span><span style="color: #007700">( </span><span style="color: #DD0000">'Name three rivers of France.'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'provider' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ollama'</span><span style="color: #007700">, </span><span style="color: #DD0000">'system' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Answer in one line.'</span><span style="color: #007700">, </span><span style="color: #DD0000">'tokens' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">40 </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$sent     </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">padCurlRecorded </span><span style="color: #007700">() [</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'post'</span><span style="color: #007700">], </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$messages </span><span style="color: #007700">= </span><span style="color: #0000BB">$sent </span><span style="color: #007700">[</span><span style="color: #DD0000">'messages'</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">padCurlFakeStop </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/ai_2.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57JHJpdmVyc308L3A+XG48cD5TZW50IHRvIHskc2VudC5tb2RlbH06IHthcnJheTptZXNzYWdlc308aT57JHJvbGV9PC9pPjogeyRjb250ZW50fSB7L2FycmF5Om1lc3NhZ2VzfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBPbGxhbWEgcnVucyBhIG1vZGVsIG9uIHRoaXMgbWFjaGluZSBhbmQgbmVlZHMgbm8ga2V5IC0gaGVyZSBhIGZha2UgYW5zd2VycyBpbiBpdHMgc2hhcGUsXG4gIC8vIGFuZCBwYWRDdXJsUmVjb3JkZWQgc2hvd3Mgd2hhdCB3YXMgc2VudC5cblxuICBwYWRDdXJsRmFrZSAoIFsgJ2h0dHA6Ly8xMjcuMC4wLjE6MTE0MzQvYXBpL2NoYXQnID0+IFsgJ2RhdGEnID0+IFsgJ21lc3NhZ2UnID0+IFsgJ3JvbGUnID0+ICdhc3Npc3RhbnQnLCAnY29udGVudCcgPT4gJ0xvaXJlLCBTZWluZSwgUmhvbmUuJyBdIF0gXSBdICk7XG5cbiAgJHJpdmVycyA9IHBhZEFpICggJ05hbWUgdGhyZWUgcml2ZXJzIG9mIEZyYW5jZS4nLCBbICdwcm92aWRlcicgPT4gJ29sbGFtYScsICdzeXN0ZW0nID0+ICdBbnN3ZXIgaW4gb25lIGxpbmUuJywgJ3Rva2VucycgPT4gNDAgXSApO1xuXG4gICRzZW50ICAgICA9IGpzb25fZGVjb2RlICggcGFkQ3VybFJlY29yZGVkICgpIFswXSBbJ3Bvc3QnXSwgVFJVRSApO1xuICAkbWVzc2FnZXMgPSAkc2VudCBbJ21lc3NhZ2VzJ107XG5cbiAgcGFkQ3VybEZha2VTdG9wICgpO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57JHJpdmVyc308L3A+XG48cD5TZW50IHRvIHskc2VudC5tb2RlbH06IHthcnJheTptZXNzYWdlc308aT57JHJvbGV9PC9pPjogeyRjb250ZW50fSB7L2FycmF5Om1lc3NhZ2VzfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBPbGxhbWEgcnVucyBhIG1vZGVsIG9uIHRoaXMgbWFjaGluZSBhbmQgbmVlZHMgbm8ga2V5IC0gaGVyZSBhIGZha2UgYW5zd2VycyBpbiBpdHMgc2hhcGUsXG4gIC8vIGFuZCBwYWRDdXJsUmVjb3JkZWQgc2hvd3Mgd2hhdCB3YXMgc2VudC5cblxuICBwYWRDdXJsRmFrZSAoIFsgJ2h0dHA6Ly8xMjcuMC4wLjE6MTE0MzQvYXBpL2NoYXQnID0+IFsgJ2RhdGEnID0+IFsgJ21lc3NhZ2UnID0+IFsgJ3JvbGUnID0+ICdhc3Npc3RhbnQnLCAnY29udGVudCcgPT4gJ0xvaXJlLCBTZWluZSwgUmhvbmUuJyBdIF0gXSBdICk7XG5cbiAgJHJpdmVycyA9IHBhZEFpICggJ05hbWUgdGhyZWUgcml2ZXJzIG9mIEZyYW5jZS4nLCBbICdwcm92aWRlcicgPT4gJ29sbGFtYScsICdzeXN0ZW0nID0+ICdBbnN3ZXIgaW4gb25lIGxpbmUuJywgJ3Rva2VucycgPT4gNDAgXSApO1xuXG4gICRzZW50ICAgICA9IGpzb25fZGVjb2RlICggcGFkQ3VybFJlY29yZGVkICgpIFswXSBbJ3Bvc3QnXSwgVFJVRSApO1xuICAkbWVzc2FnZXMgPSAkc2VudCBbJ21lc3NhZ2VzJ107XG5cbiAgcGFkQ3VybEZha2VTdG9wICgpO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>rivers</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Sent to <b>{<font color="green"><font color="red">$</font>sent.model</font>}</b>: <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>messages</font><font color="red"></font>}</b>&lt;i&gt;<b>{<font color="green"><font color="red">$</font>role</font>}</b>&lt;/i&gt;: <b>{<font color="green"><font color="red">$</font>content</font>}</b> <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>messages</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/ai_2.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Ollama runs a model on this machine and needs no key - here a fake answers in its shape,<br>  // and padCurlRecorded shows what was sent.<br><br>  </span><span style="color: #0000BB">padCurlFake </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'http://127.0.0.1:11434/api/chat' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'data' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'message' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'assistant'</span><span style="color: #007700">, </span><span style="color: #DD0000">'content' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Loire, Seine, Rhone.' </span><span style="color: #007700">] ] ] ] );<br><br>  </span><span style="color: #0000BB">$rivers </span><span style="color: #007700">= </span><span style="color: #0000BB">padAi </span><span style="color: #007700">( </span><span style="color: #DD0000">'Name three rivers of France.'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'provider' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ollama'</span><span style="color: #007700">, </span><span style="color: #DD0000">'system' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Answer in one line.'</span><span style="color: #007700">, </span><span style="color: #DD0000">'tokens' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">40 </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$sent     </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">padCurlRecorded </span><span style="color: #007700">() [</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'post'</span><span style="color: #007700">], </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$messages </span><span style="color: #007700">= </span><span style="color: #0000BB">$sent </span><span style="color: #007700">[</span><span style="color: #DD0000">'messages'</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">padCurlFakeStop </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57JHJpdmVyc308L3A+XG48cD5TZW50IHRvIHskc2VudC5tb2RlbH06IHthcnJheTptZXNzYWdlc308aT57JHJvbGV9PC9pPjogeyRjb250ZW50fSB7L2FycmF5Om1lc3NhZ2VzfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBPbGxhbWEgcnVucyBhIG1vZGVsIG9uIHRoaXMgbWFjaGluZSBhbmQgbmVlZHMgbm8ga2V5IC0gaGVyZSBhIGZha2UgYW5zd2VycyBpbiBpdHMgc2hhcGUsXG4gIC8vIGFuZCBwYWRDdXJsUmVjb3JkZWQgc2hvd3Mgd2hhdCB3YXMgc2VudC5cblxuICBwYWRDdXJsRmFrZSAoIFsgJ2h0dHA6Ly8xMjcuMC4wLjE6MTE0MzQvYXBpL2NoYXQnID0+IFsgJ2RhdGEnID0+IFsgJ21lc3NhZ2UnID0+IFsgJ3JvbGUnID0+ICdhc3Npc3RhbnQnLCAnY29udGVudCcgPT4gJ0xvaXJlLCBTZWluZSwgUmhvbmUuJyBdIF0gXSBdICk7XG5cbiAgJHJpdmVycyA9IHBhZEFpICggJ05hbWUgdGhyZWUgcml2ZXJzIG9mIEZyYW5jZS4nLCBbICdwcm92aWRlcicgPT4gJ29sbGFtYScsICdzeXN0ZW0nID0+ICdBbnN3ZXIgaW4gb25lIGxpbmUuJywgJ3Rva2VucycgPT4gNDAgXSApO1xuXG4gICRzZW50ICAgICA9IGpzb25fZGVjb2RlICggcGFkQ3VybFJlY29yZGVkICgpIFswXSBbJ3Bvc3QnXSwgVFJVRSApO1xuICAkbWVzc2FnZXMgPSAkc2VudCBbJ21lc3NhZ2VzJ107XG5cbiAgcGFkQ3VybEZha2VTdG9wICgpO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57JHJpdmVyc308L3A+XG48cD5TZW50IHRvIHskc2VudC5tb2RlbH06IHthcnJheTptZXNzYWdlc308aT57JHJvbGV9PC9pPjogeyRjb250ZW50fSB7L2FycmF5Om1lc3NhZ2VzfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBPbGxhbWEgcnVucyBhIG1vZGVsIG9uIHRoaXMgbWFjaGluZSBhbmQgbmVlZHMgbm8ga2V5IC0gaGVyZSBhIGZha2UgYW5zd2VycyBpbiBpdHMgc2hhcGUsXG4gIC8vIGFuZCBwYWRDdXJsUmVjb3JkZWQgc2hvd3Mgd2hhdCB3YXMgc2VudC5cblxuICBwYWRDdXJsRmFrZSAoIFsgJ2h0dHA6Ly8xMjcuMC4wLjE6MTE0MzQvYXBpL2NoYXQnID0+IFsgJ2RhdGEnID0+IFsgJ21lc3NhZ2UnID0+IFsgJ3JvbGUnID0+ICdhc3Npc3RhbnQnLCAnY29udGVudCcgPT4gJ0xvaXJlLCBTZWluZSwgUmhvbmUuJyBdIF0gXSBdICk7XG5cbiAgJHJpdmVycyA9IHBhZEFpICggJ05hbWUgdGhyZWUgcml2ZXJzIG9mIEZyYW5jZS4nLCBbICdwcm92aWRlcicgPT4gJ29sbGFtYScsICdzeXN0ZW0nID0+ICdBbnN3ZXIgaW4gb25lIGxpbmUuJywgJ3Rva2VucycgPT4gNDAgXSApO1xuXG4gICRzZW50ICAgICA9IGpzb25fZGVjb2RlICggcGFkQ3VybFJlY29yZGVkICgpIFswXSBbJ3Bvc3QnXSwgVFJVRSApO1xuICAkbWVzc2FnZXMgPSAkc2VudCBbJ21lc3NhZ2VzJ107XG5cbiAgcGFkQ3VybEZha2VTdG9wICgpO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>rivers</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Sent to <b>{<font color="green"><font color="red">$</font>sent.model</font>}</b>: <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>messages</font><font color="red"></font>}</b>&lt;i&gt;<b>{<font color="green"><font color="red">$</font>role</font>}</b>&lt;/i&gt;: <b>{<font color="green"><font color="red">$</font>content</font>}</b> <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>messages</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>Loire, Seine, Rhone.</p>
 <p>Sent to llama3.2: <i>system</i>: Answer in one line. <i>user</i>: Name three rivers of France. </p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 

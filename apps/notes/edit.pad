@@ -1,7 +1,5 @@
 <div class="editor">
-
   {input:form 'note', error}
-
     {input:field 'title', label='Title', value=$draft.title, rules='required|max:120', placeholder='What is it about?'/}
 
     <div class="tabs" role="tablist" aria-label="Text">
@@ -11,7 +9,12 @@
     {input:textarea 'body', label='Text, in Markdown', value=$draft.body, rows=16, rules='max:20000'/}
     <div id="preview" class="preview body" hidden></div>
 
-    {input:field 'tags', label='Tags', value=$draftTags, placeholder='work, ideas - separated by commas', rules='max:200'/}
+    {input:field 'tags',
+      label='Tags',
+      value=$draftTags,
+      placeholder='work, ideas - separated by commas',
+      rules='max:200'
+    /}
 
     <fieldset class="colors">
       <legend>Colour</legend>
@@ -20,7 +23,11 @@
 
     <div class="drop">
       <span>Drop a picture, a PDF or a text file here - or choose one</span>
-      {input:field 'file', type='file', label='Attach a file', accept='image/*,application/pdf,text/plain,text/markdown,text/csv'/}
+      {input:field 'file',
+        type='file',
+        label='Attach a file',
+        accept='image/*,application/pdf,text/plain,text/markdown,text/csv'
+      /}
       <span class="chosen"></span>
     </div>
 
@@ -29,7 +36,5 @@
       <a class="button" href="{$padGo}{$leave}">Cancel</a>
       <small><kbd>Ctrl</kbd> + <kbd>S</kbd> saves</small>
     </div>
-
   {/input:form}
-
 </div>

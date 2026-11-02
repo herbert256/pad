@@ -5,16 +5,24 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
 <code>rows</code>, <code>group</code> and the rest - are not listed here.</p>
 
 <table class="options-table">
-  <thead><tr><th scope="col">Option</th><th scope="col">Tag</th><th scope="col">Meaning</th></tr></thead>
-  <tbody>
-  {array:optionRows}
-    {array:tags}
+  <thead>
     <tr>
-      {property:first@tags}<td class="opt" rowspan="{$count}">{$option}</td>{/property:first@tags}
-      <td><a class="name" href="?{$link}">{$label}</a></td>
-      <td>{!meaning}</td>
+      <th scope="col">Option</th>
+      <th scope="col">Tag</th>
+      <th scope="col">Meaning</th>
     </tr>
-    {/array:tags}
-  {/array:optionRows}
+  </thead>
+  <tbody>
+    {array:optionRows}
+      {array:tags}
+        <tr>
+          {property:first@tags}
+            <td class="opt" rowspan="{$count}">{$option}</td>
+          {/property:first@tags}
+          <td><a class="name" href="?{$link}">{$label}</a></td>
+          <td>{!meaning}</td>
+        </tr>
+      {/array:tags}
+    {/array:optionRows}
   </tbody>
 </table>

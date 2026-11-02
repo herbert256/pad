@@ -6,12 +6,15 @@
 <nav class="jump" aria-label="Forms">{array:forms}<a href="#{$key}">{$label}</a>{/array:forms}</nav>
 
 {array:forms}
-<section class="section" id="{$key}">
-  <div class="section-head"><h2>{$label}</h2><span>{$tagline} - {$count} {pad:echo $count eq 1 ? 'entry' : 'entries'/}</span></div>
-  <ul class="list">
-    {array:tags}
-    <li><a class="name" href="?{$link}">{$label}</a> <span class="about">{$about} <a class="meta" href="?groups#{$group}">{$groupLabel}</a></span></li>
-    {/array:tags}
-  </ul>
-</section>
+  <section class="section" id="{$key}">
+    <div class="section-head">
+      <h2>{$label}</h2>
+      <span>{$tagline} - {$count} {pad:echo $count eq 1 ? 'entry' : 'entries'/}</span>
+    </div>
+    <ul class="list">
+      {array:tags}
+        <li><a class="name" href="?{$link}">{$label}</a> <span class="about">{$about} <a class="meta" href="?groups#{$group}">{$groupLabel}</a></span></li>
+      {/array:tags}
+    </ul>
+  </section>
 {/array:forms}

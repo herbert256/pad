@@ -10,7 +10,6 @@
 </p>
 
 {pad:if $replayStore ne ''}
-
   <h3>{$replayStore}: {$replayCount} replayed, {$replaySame} the same</h3>
 
   <p>
@@ -19,7 +18,14 @@
   </p>
 
   <table border="1" cellpadding="4">
-    <tr><th>Page</th><th>Status</th><th>Line</th><th>Recorded</th><th>Now</th><th></th></tr>
+    <tr>
+      <th>Page</th>
+      <th>Status</th>
+      <th>Line</th>
+      <th>Recorded</th>
+      <th>Now</th>
+      <th></th>
+    </tr>
     {array:replayChanged}
       <tr>
         <td>{$url}</td>
@@ -33,8 +39,9 @@
         </td>
       </tr>
     @else@
-      <tr><td colspan="6">Every recorded page answers as it did.</td></tr>
+      <tr>
+        <td colspan="6">Every recorded page answers as it did.</td>
+      </tr>
     {/array:replayChanged}
   </table>
-
 {/pad:if}

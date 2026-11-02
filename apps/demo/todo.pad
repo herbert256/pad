@@ -13,16 +13,14 @@
 <h2>Tasks ({$pendingCount} pending, {$doneCount} done)</h2>
 
 {array:todos}
-
   <table>
-
     <tr>
       <th>Task</th>
       <th style="width: 120px;">Added</th>
       <th style="width: 5%; text-align: center;" colspan="2">Actions</th>
     </tr>
 
-  @start@
+    @start@
 
     <tr{pad:if $done} class="todo-item done"{/pad:if}>
       <td>{$task}</td>
@@ -41,16 +39,13 @@
       </td>
     </tr>
 
-  @end@
-
+    @end@
   </table>
 
   {pad:if $doneCount > 0}
     {include:todo 'clear', 'Clear Completed Tasks'}{/include:todo}
   {/pad:if}
-    
 @else@
 
   <p>No tasks yet. Add one above!</p>
-
 {/array:todos}

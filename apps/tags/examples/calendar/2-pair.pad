@@ -1,7 +1,21 @@
 {pad:meta title='Weeks and days as rows', about='As a pair the weeks are rows, each with its days, each day with its events.'/}
 <table>
-  <tr><th>Week</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th><th>Su</th></tr>
+  <tr>
+    <th>Week</th>
+    <th>Mo</th>
+    <th>Tu</th>
+    <th>We</th>
+    <th>Th</th>
+    <th>Fr</th>
+    <th>Sa</th>
+    <th>Su</th>
+  </tr>
   {calendar:month '2026-09', data='shifts'}
-  <tr><th>{$week}</th>{array:days}<td class="{$class}">{pad:if not $other}{$day}{array:events}<br><small>{$who}</small>{/array:events}{/pad:if}</td>{/array:days}</tr>
+    <tr>
+      <th>{$week}</th>
+      {array:days}
+        <td class="{$class}">{pad:if not $other}{$day}{array:events}<br><small>{$who}</small>{/array:events}{/pad:if}</td>
+      {/array:days}
+    </tr>
   {/calendar:month}
 </table>

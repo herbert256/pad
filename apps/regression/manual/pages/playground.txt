@@ -1,5 +1,3 @@
-
-
 <p>Use <a href="http://localhost/pad/live/">Live</a> to run code on the PAD HTTP server, or
 <a href="http://localhost/pad/wasm/">WASM</a> to run it in your browser. Both have template and
 data editors, a PHP switch, and a link that transfers the editors to the other app.
@@ -13,58 +11,66 @@ that preview's source. <b>open alone</b> opens a saved page in its own tab.</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/playground_1.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/playground_1.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $data </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #DD0000">'{ "name": "Ann", "tags": [ "red", "blue" ] }'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$name </span><span style="color: #007700">= </span><span style="color: #0000BB">$data </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$tags </span><span style="color: #007700">= </span><span style="color: #0000BB">$data </span><span style="color: #007700">[</span><span style="color: #DD0000">'tags'</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$html </span><span style="color: #007700">= </span><span style="color: #0000BB">padCode </span><span style="color: #007700">( </span><span style="color: #DD0000">'&lt;b&gt;{$name}&lt;/b&gt;: {array:tags}{$tags}{property:notLast@tags}, {/property:notLast@tags}{/array:tags}' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/playground_1.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57IWh0bWx9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRkYXRhID0ganNvbl9kZWNvZGUgKCAneyBcIm5hbWVcIjogXCJBbm5cIiwgXCJ0YWdzXCI6IFsgXCJyZWRcIiwgXCJibHVlXCIgXSB9JywgVFJVRSApO1xuXG4gICRuYW1lID0gJGRhdGEgWyduYW1lJ107XG4gICR0YWdzID0gJGRhdGEgWyd0YWdzJ107XG5cbiAgJGh0bWwgPSBwYWRDb2RlICggJzxiPnskbmFtZX08L2I+OiB7YXJyYXk6dGFnc317JHRhZ3N9e3Byb3BlcnR5Om5vdExhc3RAdGFnc30sIHsvcHJvcGVydHk6bm90TGFzdEB0YWdzfXsvYXJyYXk6dGFnc30nICk7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57IWh0bWx9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRkYXRhID0ganNvbl9kZWNvZGUgKCAneyBcIm5hbWVcIjogXCJBbm5cIiwgXCJ0YWdzXCI6IFsgXCJyZWRcIiwgXCJibHVlXCIgXSB9JywgVFJVRSApO1xuXG4gICRuYW1lID0gJGRhdGEgWyduYW1lJ107XG4gICR0YWdzID0gJGRhdGEgWyd0YWdzJ107XG5cbiAgJGh0bWwgPSBwYWRDb2RlICggJzxiPnskbmFtZX08L2I+OiB7YXJyYXk6dGFnc317JHRhZ3N9e3Byb3BlcnR5Om5vdExhc3RAdGFnc30sIHsvcHJvcGVydHk6bm90TGFzdEB0YWdzfXsvYXJyYXk6dGFnc30nICk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">!</font>html</font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/playground_1.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $data </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #DD0000">'{ "name": "Ann", "tags": [ "red", "blue" ] }'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$name </span><span style="color: #007700">= </span><span style="color: #0000BB">$data </span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$tags </span><span style="color: #007700">= </span><span style="color: #0000BB">$data </span><span style="color: #007700">[</span><span style="color: #DD0000">'tags'</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$html </span><span style="color: #007700">= </span><span style="color: #0000BB">padCode </span><span style="color: #007700">( </span><span style="color: #DD0000">'&lt;b&gt;{$name}&lt;/b&gt;: {array:tags}{$tags}{property:notLast@tags}, {/property:notLast@tags}{/array:tags}' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57IWh0bWx9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRkYXRhID0ganNvbl9kZWNvZGUgKCAneyBcIm5hbWVcIjogXCJBbm5cIiwgXCJ0YWdzXCI6IFsgXCJyZWRcIiwgXCJibHVlXCIgXSB9JywgVFJVRSApO1xuXG4gICRuYW1lID0gJGRhdGEgWyduYW1lJ107XG4gICR0YWdzID0gJGRhdGEgWyd0YWdzJ107XG5cbiAgJGh0bWwgPSBwYWRDb2RlICggJzxiPnskbmFtZX08L2I+OiB7YXJyYXk6dGFnc317JHRhZ3N9e3Byb3BlcnR5Om5vdExhc3RAdGFnc30sIHsvcHJvcGVydHk6bm90TGFzdEB0YWdzfXsvYXJyYXk6dGFnc30nICk7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57IWh0bWx9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRkYXRhID0ganNvbl9kZWNvZGUgKCAneyBcIm5hbWVcIjogXCJBbm5cIiwgXCJ0YWdzXCI6IFsgXCJyZWRcIiwgXCJibHVlXCIgXSB9JywgVFJVRSApO1xuXG4gICRuYW1lID0gJGRhdGEgWyduYW1lJ107XG4gICR0YWdzID0gJGRhdGEgWyd0YWdzJ107XG5cbiAgJGh0bWwgPSBwYWRDb2RlICggJzxiPnskbmFtZX08L2I+OiB7YXJyYXk6dGFnc317JHRhZ3N9e3Byb3BlcnR5Om5vdExhc3RAdGFnc30sIHsvcHJvcGVydHk6bm90TGFzdEB0YWdzfXsvYXJyYXk6dGFnc30nICk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">!</font>html</font>}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p><b>Ann</b>: red, blue</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 

@@ -1,4 +1,9 @@
 {pad:set $n = 7/}
 <p>{$n} is {pad:case $n % 2}{pad:when 0}even{pad:when 1}odd{/pad:case}</p>
 {pad:set $i = 1/}
-<p>{pad:while $i le 20}{$i} {pad:set $i = $i * 2/}{/pad:while}</p>
+<p>
+  {pad:while $i le 20}
+    {$i}
+    {pad:set $i = $i * 2/}
+  {/pad:while}
+</p>

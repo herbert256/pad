@@ -1,10 +1,14 @@
 <table>
-  <tr><th>Genre</th><th>Part of</th><th>Sub-genres</th></tr>
-  {select:genres}
   <tr>
-    <td>{$genre}</td>
-    <td>{select:parents}{$genre}@else@<span class="dim">-</span>{/select:parents}</td>
-    <td>{select:subgenres}{$genre}{property:notLast@subgenres}, {/property:notLast@subgenres}{/select:subgenres}</td>
+    <th>Genre</th>
+    <th>Part of</th>
+    <th>Sub-genres</th>
   </tr>
+  {select:genres}
+    <tr>
+      <td>{$genre}</td>
+      <td>{select:parents}{$genre}@else@<span class="dim">-</span>{/select:parents}</td>
+      <td>{select:subgenres}{$genre}{property:notLast@subgenres}, {/property:notLast@subgenres}{/select:subgenres}</td>
+    </tr>
   {/select:genres}
 </table>

@@ -2,6 +2,19 @@
 
 This directory contains PAD applications and examples.
 
+## Readable PAD sources
+
+The `.pad` files are learning material as well as executable applications. Use two
+spaces per nesting level, put block HTML and PAD control flow on separate lines,
+and split long tag argument lists so each option is easy to find. Keep short inline
+expressions together when line breaks would change the displayed text.
+
+Run `python3 scripts/format-pad.py --write` from the repository root to format all
+applications, or pass an app directory to format only that app. Use `--check` to
+check the layout without writing files. The formatter preserves literal data,
+code, preformatted text, whitespace controls and exact-source regression fixtures;
+these examples need their original content to demonstrate PAD correctly.
+
 ## Applications
 
 | Directory | Type | Description |

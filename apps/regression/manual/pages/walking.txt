@@ -1,7 +1,7 @@
 <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
   <tr>
     <td>
-<p>
+  <p>
 Normally all the occurences for a level are retrieved and placed in an internal table before
 the processing takes place.<br>
 When this table is processed PAD knows for example when it is handling the last Occurence.<br>
@@ -13,18 +13,17 @@ The below example with the <b>{sequence:range}</b> tag does do that:
 
 
 
-<p> 
+<p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
       
       
       <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT<link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteVRhYmxlfVxuXG4gIHtzZXF1ZW5jZTpyYW5nZSAnMS4uNSd9XG5cbiAgICA8dHI+XG4gICAgICA8dGQ+IHtwcm9wZXJ0eTpmaXJzdH0gIFggey9wcm9wZXJ0eTpmaXJzdH0gIDwvdGQ+XG4gICAgICA8dGQ+IHtwcm9wZXJ0eTptaWRkbGV9IFggey9wcm9wZXJ0eTptaWRkbGV9IDwvdGQ+XG4gICAgICA8dGQ+IHtwcm9wZXJ0eTpsYXN0fSAgIFggey9wcm9wZXJ0eTpsYXN0fSAgIDwvdGQ+XG4gICAgICA8dGQ+IHtwcm9wZXJ0eTpib3JkZXJ9IFggey9wcm9wZXJ0eTpib3JkZXJ9IDwvdGQ+XG4gICAgPC90cj5cblxuICB7L3NlcXVlbmNlOnJhbmdlfVxuXG57L2NvbnRlbnQ6bXlUYWJsZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteVRhYmxlfVxuXG4gIHtzZXF1ZW5jZTpyYW5nZSAnMS4uNSd9XG5cbiAgICA8dHI+XG4gICAgICA8dGQ+IHtwcm9wZXJ0eTpmaXJzdH0gIFggey9wcm9wZXJ0eTpmaXJzdH0gIDwvdGQ+XG4gICAgICA8dGQ+IHtwcm9wZXJ0eTptaWRkbGV9IFggey9wcm9wZXJ0eTptaWRkbGV9IDwvdGQ+XG4gICAgICA8dGQ+IHtwcm9wZXJ0eTpsYXN0fSAgIFggey9wcm9wZXJ0eTpsYXN0fSAgIDwvdGQ+XG4gICAgICA8dGQ+IHtwcm9wZXJ0eTpib3JkZXJ9IFggey9wcm9wZXJ0eTpib3JkZXJ9IDwvdGQ+XG4gICAgPC90cj5cblxuICB7L3NlcXVlbmNlOnJhbmdlfVxuXG57L2NvbnRlbnQ6bXlUYWJsZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a></th>
+      <th bgcolor="#dddddd">RESULT<link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteVRhYmxlfVxuICAgICAge3NlcXVlbmNlOnJhbmdlICcxLi41J31cbiAgICAgICAgPHRyPlxuICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5OmZpcnN0fSAgWCB7L3Byb3BlcnR5OmZpcnN0fSAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTptaWRkbGV9IFggey9wcm9wZXJ0eTptaWRkbGV9IDwvdGQ+XG4gICAgICAgICAgPHRkPiB7cHJvcGVydHk6bGFzdH0gICBYIHsvcHJvcGVydHk6bGFzdH0gICA8L3RkPlxuICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5OmJvcmRlcn0gWCB7L3Byb3BlcnR5OmJvcmRlcn0gPC90ZD5cbiAgICAgICAgPC90cj5cbiAgICAgIHsvc2VxdWVuY2U6cmFuZ2V9XG4gICAgey9jb250ZW50Om15VGFibGV9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteVRhYmxlfVxuICAgICAge3NlcXVlbmNlOnJhbmdlICcxLi41J31cbiAgICAgICAgPHRyPlxuICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5OmZpcnN0fSAgWCB7L3Byb3BlcnR5OmZpcnN0fSAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTptaWRkbGV9IFggey9wcm9wZXJ0eTptaWRkbGV9IDwvdGQ+XG4gICAgICAgICAgPHRkPiB7cHJvcGVydHk6bGFzdH0gICBYIHsvcHJvcGVydHk6bGFzdH0gICA8L3RkPlxuICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5OmJvcmRlcn0gWCB7L3Byb3BlcnR5OmJvcmRlcn0gPC90ZD5cbiAgICAgICAgPC90cj5cbiAgICAgIHsvc2VxdWVuY2U6cmFuZ2V9XG4gICAgey9jb250ZW50Om15VGFibGV9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a></th>
     </tr>
     
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myTable</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font></font>}</b><br><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range</font><font color="red"></font>}</b><br><br><b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myTable</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myTable</font><font color="red"></font>}</b><br>      <b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;/tr&gt;<br>      <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range</font><font color="red"></font>}</b><br>    <b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myTable</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
 
     <tr>
       <th> first  </th>
@@ -34,58 +33,45 @@ The below example with the <b>{sequence:range}</b> tag does do that:
      </tr>
 
     
-
-  
-
-    <tr>
-      <td>   X   </td>
-      <td>  </td>
-      <td>    </td>
-      <td>  X  </td>
-    </tr>
-
-  
-
-    <tr>
-      <td>   </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>  </td>
-    </tr>
-
-  
-
-    <tr>
-      <td>   </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>  </td>
-    </tr>
-
-  
-
-    <tr>
-      <td>   </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>  </td>
-    </tr>
-
-  
-
-    <tr>
-      <td>   </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>  X  </td>
-    </tr>
-
-  
-
-
+      
+        <tr>
+          <td>   X   </td>
+          <td>  </td>
+          <td>    </td>
+          <td>  X  </td>
+        </tr>
+      
+        <tr>
+          <td>   </td>
+          <td>  X  </td>
+          <td>    </td>
+          <td>  </td>
+        </tr>
+      
+        <tr>
+          <td>   </td>
+          <td>  X  </td>
+          <td>    </td>
+          <td>  </td>
+        </tr>
+      
+        <tr>
+          <td>   </td>
+          <td>  X  </td>
+          <td>    </td>
+          <td>  </td>
+        </tr>
+      
+        <tr>
+          <td>   </td>
+          <td>  </td>
+          <td>    X    </td>
+          <td>  X  </td>
+        </tr>
+      
+    
 
   </table><!-- END DEMO RESULT --></span></code></td></tr>
-
 
   </table>
 </p>
@@ -95,7 +81,7 @@ The below example with the <b>{sequence:range}</b> tag does do that:
 <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
   <tr>
     <td>
-<p>
+  <p>
   But some PAD tags use the PAD construct 'walking', then the occurences are processed one by one.<br>
   The tags <b>{pad:while}</b> &amp; <b>{pad:until}</b> are an example of this.<br>
   This 'walking' construct breaks those special pad tags like <b>{pad:last}</b> & <b>{pad:border}</b> that give information about a <b>{type:tag}</b><br>
@@ -107,18 +93,17 @@ The below example with the <b>{sequence:range}</b> tag does do that:
 
 
 
-<p> 
+<p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
       
       
       <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT<a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteVRhYmxlfVxuXG4gIHtwYWQ6c2V0ICRsb29wID0gMS99XG5cbiAge3BhZDp3aGlsZSAkbG9vcCBMRSA1fVxuXG4gICAgPHRyPlxuICAgICAgPHRkPiB7cHJvcGVydHk6Zmlyc3R9ICBYIHsvcHJvcGVydHk6Zmlyc3R9ICA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6bWlkZGxlfSBYIHsvcHJvcGVydHk6bWlkZGxlfSA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6bGFzdH0gICBYIHsvcHJvcGVydHk6bGFzdH0gICA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6Ym9yZGVyfSBYIHsvcHJvcGVydHk6Ym9yZGVyfSA8L3RkPlxuICAgIDwvdHI+XG5cbiAgICB7cGFkOmluY3JlbWVudCAkbG9vcC99XG5cbiAgey9wYWQ6d2hpbGV9XG5cbnsvY29udGVudDpteVRhYmxlfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteVRhYmxlfVxuXG4gIHtwYWQ6c2V0ICRsb29wID0gMS99XG5cbiAge3BhZDp3aGlsZSAkbG9vcCBMRSA1fVxuXG4gICAgPHRyPlxuICAgICAgPHRkPiB7cHJvcGVydHk6Zmlyc3R9ICBYIHsvcHJvcGVydHk6Zmlyc3R9ICA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6bWlkZGxlfSBYIHsvcHJvcGVydHk6bWlkZGxlfSA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6bGFzdH0gICBYIHsvcHJvcGVydHk6bGFzdH0gICA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6Ym9yZGVyfSBYIHsvcHJvcGVydHk6Ym9yZGVyfSA8L3RkPlxuICAgIDwvdHI+XG5cbiAgICB7cGFkOmluY3JlbWVudCAkbG9vcC99XG5cbiAgey9wYWQ6d2hpbGV9XG5cbnsvY29udGVudDpteVRhYmxlfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a></th>
+      <th bgcolor="#dddddd">RESULT<a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteVRhYmxlfVxuICAgICAge3BhZDpzZXQgJGxvb3AgPSAxL31cblxuICAgICAge3BhZDp3aGlsZSAkbG9vcCBMRSA1fVxuICAgICAgICA8dHI+XG4gICAgICAgICAgPHRkPiB7cHJvcGVydHk6Zmlyc3R9ICBYIHsvcHJvcGVydHk6Zmlyc3R9ICA8L3RkPlxuICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5Om1pZGRsZX0gWCB7L3Byb3BlcnR5Om1pZGRsZX0gPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpsYXN0fSAgIFggey9wcm9wZXJ0eTpsYXN0fSAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7cHJvcGVydHk6Ym9yZGVyfSBYIHsvcHJvcGVydHk6Ym9yZGVyfSA8L3RkPlxuICAgICAgICA8L3RyPlxuXG4gICAgICAgIHtwYWQ6aW5jcmVtZW50ICRsb29wL31cbiAgICAgIHsvcGFkOndoaWxlfVxuICAgIHsvY29udGVudDpteVRhYmxlfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteVRhYmxlfVxuICAgICAge3BhZDpzZXQgJGxvb3AgPSAxL31cblxuICAgICAge3BhZDp3aGlsZSAkbG9vcCBMRSA1fVxuICAgICAgICA8dHI+XG4gICAgICAgICAgPHRkPiB7cHJvcGVydHk6Zmlyc3R9ICBYIHsvcHJvcGVydHk6Zmlyc3R9ICA8L3RkPlxuICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5Om1pZGRsZX0gWCB7L3Byb3BlcnR5Om1pZGRsZX0gPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpsYXN0fSAgIFggey9wcm9wZXJ0eTpsYXN0fSAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7cHJvcGVydHk6Ym9yZGVyfSBYIHsvcHJvcGVydHk6Ym9yZGVyfSA8L3RkPlxuICAgICAgICA8L3RyPlxuXG4gICAgICAgIHtwYWQ6aW5jcmVtZW50ICRsb29wL31cbiAgICAgIHsvcGFkOndoaWxlfVxuICAgIHsvY29udGVudDpteVRhYmxlfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a></th>
     </tr>
     
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myTable</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>loop = 1</font>/}</b><br><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>while </font><font color="red"><font color="red">$</font>loop LE 5</font>}</b><br><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br><br>    <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>increment </font><font color="red"><font color="red">$</font>loop</font>/}</b><br><br>  <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>while</font><font color="red"></font>}</b><br><br><b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myTable</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myTable</font><font color="red"></font>}</b><br>      <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>loop = 1</font>/}</b><br><br>      <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>while </font><font color="red"><font color="red">$</font>loop LE 5</font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;/tr&gt;<br><br>        <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>increment </font><font color="red"><font color="red">$</font>loop</font>/}</b><br>      <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>while</font><font color="red"></font>}</b><br>    <b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myTable</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
 
     <tr>
       <th> first  </th>
@@ -128,70 +113,57 @@ The below example with the <b>{sequence:range}</b> tag does do that:
      </tr>
 
     
+      
 
-  
+      
+        <tr>
+          <td>   X   </td>
+          <td>  </td>
+          <td>    X    </td>
+          <td>  X  </td>
+        </tr>
 
-  
+        
+      
+        <tr>
+          <td>   </td>
+          <td>  </td>
+          <td>    X    </td>
+          <td>  X  </td>
+        </tr>
 
-    <tr>
-      <td>   X   </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>  X  </td>
-    </tr>
+        
+      
+        <tr>
+          <td>   </td>
+          <td>  </td>
+          <td>    X    </td>
+          <td>  X  </td>
+        </tr>
 
+        
+      
+        <tr>
+          <td>   </td>
+          <td>  </td>
+          <td>    X    </td>
+          <td>  X  </td>
+        </tr>
+
+        
+      
+        <tr>
+          <td>   </td>
+          <td>  </td>
+          <td>    X    </td>
+          <td>  X  </td>
+        </tr>
+
+        
+      
     
-
-  
-
-    <tr>
-      <td>   </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>  X  </td>
-    </tr>
-
-    
-
-  
-
-    <tr>
-      <td>   </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>  X  </td>
-    </tr>
-
-    
-
-  
-
-    <tr>
-      <td>   </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>  X  </td>
-    </tr>
-
-    
-
-  
-
-    <tr>
-      <td>   </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>  X  </td>
-    </tr>
-
-    
-
-  
-
-
 
   </table><!-- END DEMO RESULT --></span></code></td></tr>
-
 
   </table>
 </p>
@@ -201,7 +173,7 @@ The below example with the <b>{sequence:range}</b> tag does do that:
 <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
   <tr>
     <td>
-<p>
+  <p>
   To solve above breaking, place the result of a walking tag into the Data Store, and use it as a own tag.
 </p>
 </td>
@@ -210,20 +182,19 @@ The below example with the <b>{sequence:range}</b> tag does do that:
 
 
 
-<p> 
+<p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
       
       
       <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT<a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkbG9vcCA9IDEvfVxuXG57cGFkOndoaWxlICRsb29wIExFIDUsIHRvRGF0YT0nYWJjJ31cbiAge3BhZDppbmNyZW1lbnQgJGxvb3AvfVxuey9wYWQ6d2hpbGV9XG5cbntjb250ZW50Om15VGFibGV9XG5cbiAge2RhdGE6YWJjfVxuICAgIDx0cj5cbiAgICAgIDx0ZD4ge3Byb3BlcnR5OmZpcnN0fSAgWCB7L3Byb3BlcnR5OmZpcnN0fSAgPC90ZD5cbiAgICAgIDx0ZD4ge3Byb3BlcnR5Om1pZGRsZX0gWCB7L3Byb3BlcnR5Om1pZGRsZX0gPC90ZD5cbiAgICAgIDx0ZD4ge3Byb3BlcnR5Omxhc3R9ICAgWCB7L3Byb3BlcnR5Omxhc3R9ICAgPC90ZD5cbiAgICAgIDx0ZD4ge3Byb3BlcnR5OmJvcmRlcn0gWCB7L3Byb3BlcnR5OmJvcmRlcn0gPC90ZD5cbiAgICA8L3RyPlxuICB7L2RhdGE6YWJjfVxuXG57L2NvbnRlbnQ6bXlUYWJsZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkbG9vcCA9IDEvfVxuXG57cGFkOndoaWxlICRsb29wIExFIDUsIHRvRGF0YT0nYWJjJ31cbiAge3BhZDppbmNyZW1lbnQgJGxvb3AvfVxuey9wYWQ6d2hpbGV9XG5cbntjb250ZW50Om15VGFibGV9XG5cbiAge2RhdGE6YWJjfVxuICAgIDx0cj5cbiAgICAgIDx0ZD4ge3Byb3BlcnR5OmZpcnN0fSAgWCB7L3Byb3BlcnR5OmZpcnN0fSAgPC90ZD5cbiAgICAgIDx0ZD4ge3Byb3BlcnR5Om1pZGRsZX0gWCB7L3Byb3BlcnR5Om1pZGRsZX0gPC90ZD5cbiAgICAgIDx0ZD4ge3Byb3BlcnR5Omxhc3R9ICAgWCB7L3Byb3BlcnR5Omxhc3R9ICAgPC90ZD5cbiAgICAgIDx0ZD4ge3Byb3BlcnR5OmJvcmRlcn0gWCB7L3Byb3BlcnR5OmJvcmRlcn0gPC90ZD5cbiAgICA8L3RyPlxuICB7L2RhdGE6YWJjfVxuXG57L2NvbnRlbnQ6bXlUYWJsZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a></th>
+      <th bgcolor="#dddddd">RESULT<a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkbG9vcCA9IDEvfVxuXG4gICAge3BhZDp3aGlsZSAkbG9vcCBMRSA1LCB0b0RhdGE9J2FiYyd9XG4gICAgICB7cGFkOmluY3JlbWVudCAkbG9vcC99XG4gICAgey9wYWQ6d2hpbGV9XG5cbntjb250ZW50Om15VGFibGV9XG4gICAgICB7ZGF0YTphYmN9XG4gICAgICAgIDx0cj5cbiAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpmaXJzdH0gIFggey9wcm9wZXJ0eTpmaXJzdH0gIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7cHJvcGVydHk6bWlkZGxlfSBYIHsvcHJvcGVydHk6bWlkZGxlfSA8L3RkPlxuICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5Omxhc3R9ICAgWCB7L3Byb3BlcnR5Omxhc3R9ICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpib3JkZXJ9IFggey9wcm9wZXJ0eTpib3JkZXJ9IDwvdGQ+XG4gICAgICAgIDwvdHI+XG4gICAgICB7L2RhdGE6YWJjfVxuICAgIHsvY29udGVudDpteVRhYmxlfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkbG9vcCA9IDEvfVxuXG4gICAge3BhZDp3aGlsZSAkbG9vcCBMRSA1LCB0b0RhdGE9J2FiYyd9XG4gICAgICB7cGFkOmluY3JlbWVudCAkbG9vcC99XG4gICAgey9wYWQ6d2hpbGV9XG5cbntjb250ZW50Om15VGFibGV9XG4gICAgICB7ZGF0YTphYmN9XG4gICAgICAgIDx0cj5cbiAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpmaXJzdH0gIFggey9wcm9wZXJ0eTpmaXJzdH0gIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7cHJvcGVydHk6bWlkZGxlfSBYIHsvcHJvcGVydHk6bWlkZGxlfSA8L3RkPlxuICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5Omxhc3R9ICAgWCB7L3Byb3BlcnR5Omxhc3R9ICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpib3JkZXJ9IFggey9wcm9wZXJ0eTpib3JkZXJ9IDwvdGQ+XG4gICAgICAgIDwvdHI+XG4gICAgICB7L2RhdGE6YWJjfVxuICAgIHsvY29udGVudDpteVRhYmxlfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a></th>
     </tr>
     
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>loop = 1</font>/}</b><br><br>    <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>while </font><font color="red"><font color="red">$</font>loop LE 5<font color="black">,</font> toData=<font color="black">'</font>abc<font color="black">'</font></font>}</b><br>      <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>increment </font><font color="red"><font color="red">$</font>loop</font>/}</b><br>    <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>while</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
 
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>loop = 1</font>/}</b><br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>while </font><font color="red"><font color="red">$</font>loop LE 5<font color="black">,</font> toData=<font color="black">'</font>abc<font color="black">'</font></font>}</b><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>increment </font><font color="red"><font color="red">$</font>loop</font>/}</b><br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>while</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myTable</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>abc</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>abc</font><font color="red"></font>}</b><br><br><b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myTable</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myTable</font><font color="red"></font>}</b><br>      <b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>abc</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;/tr&gt;<br>      <b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>abc</font><font color="red"></font>}</b><br>    <b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myTable</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
 
     <tr>
       <th> first  </th>
@@ -233,86 +204,78 @@ The below example with the <b>{sequence:range}</b> tag does do that:
      </tr>
 
     
-
-  
-    <tr>
-      <td>   X   </td>
-      <td>  </td>
-      <td>    </td>
-      <td>  X  </td>
-    </tr>
-  
-    <tr>
-      <td>   </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>  </td>
-    </tr>
-  
-    <tr>
-      <td>   </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>  </td>
-    </tr>
-  
-    <tr>
-      <td>   </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>  </td>
-    </tr>
-  
-    <tr>
-      <td>   </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>  X  </td>
-    </tr>
-  
-
-
+      
+        <tr>
+          <td>   X   </td>
+          <td>  </td>
+          <td>    </td>
+          <td>  X  </td>
+        </tr>
+      
+        <tr>
+          <td>   </td>
+          <td>  X  </td>
+          <td>    </td>
+          <td>  </td>
+        </tr>
+      
+        <tr>
+          <td>   </td>
+          <td>  X  </td>
+          <td>    </td>
+          <td>  </td>
+        </tr>
+      
+        <tr>
+          <td>   </td>
+          <td>  X  </td>
+          <td>    </td>
+          <td>  </td>
+        </tr>
+      
+        <tr>
+          <td>   </td>
+          <td>  </td>
+          <td>    X    </td>
+          <td>  X  </td>
+        </tr>
+      
+    
 
   </table><!-- END DEMO RESULT --></span></code></td></tr>
-
 
   </table>
 </p>
 
 
 
-<hr><p>This manual page uses below PAD fragment.
+<hr>
+<p>
+  This manual page uses below PAD fragment.
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-
-      <tr>
-        
-        
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmNvbnRlbnQgJ215VGFibGUnfVxuXG4gIDx0YWJsZSBib3JkZXI9MT5cblxuICAgIDx0cj5cbiAgICAgIDx0aD4gZmlyc3QgIDwvdGg+XG4gICAgICA8dGg+IG1pZGRsZSA8L3RoPlxuICAgICAgPHRoPiBsYXN0ICAgPC90aD5cbiAgICAgIDx0aD4gYm9yZGVyIDwvdGg+XG4gICAgIDwvdHI+XG5cbiAgICBAY29udGVudEBcblxuICA8L3RhYmxlPlxuXG57L3BhZDpjb250ZW50fVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmNvbnRlbnQgJ215VGFibGUnfVxuXG4gIDx0YWJsZSBib3JkZXI9MT5cblxuICAgIDx0cj5cbiAgICAgIDx0aD4gZmlyc3QgIDwvdGg+XG4gICAgICA8dGg+IG1pZGRsZSA8L3RoPlxuICAgICAgPHRoPiBsYXN0ICAgPC90aD5cbiAgICAgIDx0aD4gYm9yZGVyIDwvdGg+XG4gICAgIDwvdHI+XG5cbiAgICBAY29udGVudEBcblxuICA8L3RhYmxlPlxuXG57L3BhZDpjb250ZW50fVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>content </font><font color="red"><font color="black">'</font>myTable<font color="black">'</font></font>}</b><br><br>  &lt;table border=1&gt;<br><br>    &lt;tr&gt;<br>      &lt;th&gt; first  &lt;/th&gt;<br>      &lt;th&gt; middle &lt;/th&gt;<br>      &lt;th&gt; last   &lt;/th&gt;<br>      &lt;th&gt; border &lt;/th&gt;<br>     &lt;/tr&gt;<br><br>    <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br><br>  &lt;/table&gt;<br><br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>content</font><font color="red"></font>}</b></code></pre></td>
-        
-        
-      </tr>
-
     
+
+    <tr>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmNvbnRlbnQgJ215VGFibGUnfVxuXG4gIDx0YWJsZSBib3JkZXI9MT5cblxuICAgIDx0cj5cbiAgICAgIDx0aD4gZmlyc3QgIDwvdGg+XG4gICAgICA8dGg+IG1pZGRsZSA8L3RoPlxuICAgICAgPHRoPiBsYXN0ICAgPC90aD5cbiAgICAgIDx0aD4gYm9yZGVyIDwvdGg+XG4gICAgIDwvdHI+XG5cbiAgICBAY29udGVudEBcblxuICA8L3RhYmxlPlxuXG57L3BhZDpjb250ZW50fVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmNvbnRlbnQgJ215VGFibGUnfVxuXG4gIDx0YWJsZSBib3JkZXI9MT5cblxuICAgIDx0cj5cbiAgICAgIDx0aD4gZmlyc3QgIDwvdGg+XG4gICAgICA8dGg+IG1pZGRsZSA8L3RoPlxuICAgICAgPHRoPiBsYXN0ICAgPC90aD5cbiAgICAgIDx0aD4gYm9yZGVyIDwvdGg+XG4gICAgIDwvdHI+XG5cbiAgICBAY29udGVudEBcblxuICA8L3RhYmxlPlxuXG57L3BhZDpjb250ZW50fVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>content </font><font color="red"><font color="black">'</font>myTable<font color="black">'</font></font>}</b><br><br>  &lt;table border=1&gt;<br><br>    &lt;tr&gt;<br>      &lt;th&gt; first  &lt;/th&gt;<br>      &lt;th&gt; middle &lt;/th&gt;<br>      &lt;th&gt; last   &lt;/th&gt;<br>      &lt;th&gt; border &lt;/th&gt;<br>     &lt;/tr&gt;<br><br>    <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br><br>  &lt;/table&gt;<br><br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>content</font><font color="red"></font>}</b></code></pre></td>
+      
+      
+    </tr>
+
+  
 
   
     </table>
-  
-
-
-
-
-
-

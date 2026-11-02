@@ -1,6 +1,6 @@
 <div class="grid">
-
   
+    
 <pad-card tone="good">
   <template shadowrootmode="open"><style>/* The shadow root of <pad-card>, inlined into it by {shadow css=}. Nothing of the page's
    stylesheet reaches in - but custom properties do: the frame's colours (www/_common/pad.css),
@@ -24,20 +24,26 @@ header { padding: 14px 18px 0; font: 700 12px/1.4 var(--sans, system-ui, sans-se
 .body { padding: 4px 18px 10px; }
 footer { padding: 10px 18px; border-top: 1px solid var(--line, #e3e6eb); font-size: 14px; }
 ::slotted([slot="footer"]) { color: var(--tone); font-weight: 600; text-decoration: none; }</style>
-    <header part="head"><slot name="title"></slot></header>
-    <div class="body"><slot></slot></div>
-    <footer part="foot"><slot name="footer"></slot></footer>
+    <header part="head">
+      <slot name="title"></slot>
+    </header>
+    <div class="body">
+      <slot></slot>
+    </div>
+    <footer part="foot">
+      <slot name="footer"></slot>
+    </footer>
   </template>
   <span slot="title">Revenue</span>
   
-    <p class="stat">&euro; 48,210</p>
-    <p class="muted">12% more than last month</p>
-    <a slot="footer" href="?examples/cards">Details →</a>
-  
+      <p class="stat">&euro; 48,210</p>
+      <p class="muted">12% more than last month</p>
+      <a slot="footer" href="?examples/cards">Details →</a>
+    
 </pad-card>
 
-
   
+    
 <pad-card tone="info">
   <template shadowrootmode="open"><style>/* The shadow root of <pad-card>, inlined into it by {shadow css=}. Nothing of the page's
    stylesheet reaches in - but custom properties do: the frame's colours (www/_common/pad.css),
@@ -61,20 +67,26 @@ header { padding: 14px 18px 0; font: 700 12px/1.4 var(--sans, system-ui, sans-se
 .body { padding: 4px 18px 10px; }
 footer { padding: 10px 18px; border-top: 1px solid var(--line, #e3e6eb); font-size: 14px; }
 ::slotted([slot="footer"]) { color: var(--tone); font-weight: 600; text-decoration: none; }</style>
-    <header part="head"><slot name="title"></slot></header>
-    <div class="body"><slot></slot></div>
-    <footer part="foot"><slot name="footer"></slot></footer>
+    <header part="head">
+      <slot name="title"></slot>
+    </header>
+    <div class="body">
+      <slot></slot>
+    </div>
+    <footer part="foot">
+      <slot name="footer"></slot>
+    </footer>
   </template>
   <span slot="title">Visitors</span>
   
-    <p class="stat">12,804</p>
-    <p class="muted">Most of them on a phone</p>
-    <a slot="footer" href="?examples/cards">Details →</a>
-  
+      <p class="stat">12,804</p>
+      <p class="muted">Most of them on a phone</p>
+      <a slot="footer" href="?examples/cards">Details →</a>
+    
 </pad-card>
 
-
   
+    
 <pad-card tone="bad">
   <template shadowrootmode="open"><style>/* The shadow root of <pad-card>, inlined into it by {shadow css=}. Nothing of the page's
    stylesheet reaches in - but custom properties do: the frame's colours (www/_common/pad.css),
@@ -98,19 +110,25 @@ header { padding: 14px 18px 0; font: 700 12px/1.4 var(--sans, system-ui, sans-se
 .body { padding: 4px 18px 10px; }
 footer { padding: 10px 18px; border-top: 1px solid var(--line, #e3e6eb); font-size: 14px; }
 ::slotted([slot="footer"]) { color: var(--tone); font-weight: 600; text-decoration: none; }</style>
-    <header part="head"><slot name="title"></slot></header>
-    <div class="body"><slot></slot></div>
-    <footer part="foot"><slot name="footer"></slot></footer>
+    <header part="head">
+      <slot name="title"></slot>
+    </header>
+    <div class="body">
+      <slot></slot>
+    </div>
+    <footer part="foot">
+      <slot name="footer"></slot>
+    </footer>
   </template>
   <span slot="title">Returns</span>
   
-    <p class="stat">38</p>
-    <p class="muted">Three more than usual</p>
-    <a slot="footer" href="?examples/cards">Details →</a>
-  
+      <p class="stat">38</p>
+      <p class="muted">Three more than usual</p>
+      <a slot="footer" href="?examples/cards">Details →</a>
+    
 </pad-card>
 
-
+  
 </div>
 
 <p class="muted small" style="margin-top: 18px">

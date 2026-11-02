@@ -8,21 +8,66 @@ cut in half. They are plain functions, loaded on every request like the rest of
 <code>pad/lib/</code>.</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>function</th><th>what it answers</th></tr>
-  <tr><td><code>padStrLimit ( $text, $limit = 100, $end = '...' )</code></td><td>at most <code>$limit</code> characters, <code>$end</code> added when something was cut</td></tr>
-  <tr><td><code>padStrWords ( $text, $words = 100, $end = '...' )</code></td><td>at most <code>$words</code> words</td></tr>
-  <tr><td><code>padStrExcerpt ( $text, $phrase, $radius = 100, $omission = '...' )</code></td><td>the phrase with <code>$radius</code> characters on either side, found case-insensitively</td></tr>
-  <tr><td><code>padStrSquish ( $text )</code></td><td>trimmed, every run of whitespace one space</td></tr>
-  <tr><td><code>padStrCamel</code>, <code>padStrStudly</code>, <code>padStrSnake ( $text, $delimiter = '_' )</code>, <code>padStrKebab</code>, <code>padStrHeadline</code></td><td>userName, UserName, user_name, user-name, User Name - from a name in any of those cases</td></tr>
-  <tr><td><code>padStrTitle ( $text )</code></td><td>every word with a capital</td></tr>
-  <tr><td><code>padStrSlug ( $text, $separator = '-' )</code></td><td>a readable URL part - what the <code>slug</code> pipe gives</td></tr>
-  <tr><td><code>padStrAfter</code>, <code>padStrAfterLast</code>, <code>padStrBefore</code>, <code>padStrBeforeLast ( $text, $search )</code></td><td>the text after or before the first or last occurrence - what the pipes of those names give</td></tr>
-  <tr><td><code>padStrBetween ( $text, $from, $to )</code></td><td>what stands between the first <code>$from</code> and the last <code>$to</code></td></tr>
-  <tr><td><code>padStrIs ( $pattern, $value )</code></td><td>whether the value matches a pattern with <code>*</code> wildcards, or one of a list</td></tr>
-  <tr><td><code>padStrMask ( $text, $character, $index, $length = NULL )</code></td><td>a stretch of the text replaced by one character</td></tr>
-  <tr><td><code>padStrPlural ( $word, $count = 2 )</code>, <code>padStrSingular ( $word )</code></td><td>the English plural or singular of a word</td></tr>
-  <tr><td><code>padStrRandom ( $length = 16 )</code></td><td>random letters and digits</td></tr>
-  <tr><td><code>padStrUuid ( $version = 4 )</code></td><td>a version 4 (random) or version 7 (time-ordered) UUID</td></tr>
+  <tr>
+    <th>function</th>
+    <th>what it answers</th>
+  </tr>
+  <tr>
+    <td><code>padStrLimit ( $text, $limit = 100, $end = '...' )</code></td>
+    <td>at most <code>$limit</code> characters, <code>$end</code> added when something was cut</td>
+  </tr>
+  <tr>
+    <td><code>padStrWords ( $text, $words = 100, $end = '...' )</code></td>
+    <td>at most <code>$words</code> words</td>
+  </tr>
+  <tr>
+    <td><code>padStrExcerpt ( $text, $phrase, $radius = 100, $omission = '...' )</code></td>
+    <td>the phrase with <code>$radius</code> characters on either side, found case-insensitively</td>
+  </tr>
+  <tr>
+    <td><code>padStrSquish ( $text )</code></td>
+    <td>trimmed, every run of whitespace one space</td>
+  </tr>
+  <tr>
+    <td><code>padStrCamel</code>, <code>padStrStudly</code>, <code>padStrSnake ( $text, $delimiter = '_' )</code>, <code>padStrKebab</code>, <code>padStrHeadline</code></td>
+    <td>userName, UserName, user_name, user-name, User Name - from a name in any of those cases</td>
+  </tr>
+  <tr>
+    <td><code>padStrTitle ( $text )</code></td>
+    <td>every word with a capital</td>
+  </tr>
+  <tr>
+    <td><code>padStrSlug ( $text, $separator = '-' )</code></td>
+    <td>a readable URL part - what the <code>slug</code> pipe gives</td>
+  </tr>
+  <tr>
+    <td><code>padStrAfter</code>, <code>padStrAfterLast</code>, <code>padStrBefore</code>, <code>padStrBeforeLast ( $text, $search )</code></td>
+    <td>the text after or before the first or last occurrence - what the pipes of those names give</td>
+  </tr>
+  <tr>
+    <td><code>padStrBetween ( $text, $from, $to )</code></td>
+    <td>what stands between the first <code>$from</code> and the last <code>$to</code></td>
+  </tr>
+  <tr>
+    <td><code>padStrIs ( $pattern, $value )</code></td>
+    <td>whether the value matches a pattern with <code>*</code> wildcards, or one of a list</td>
+  </tr>
+  <tr>
+    <td><code>padStrMask ( $text, $character, $index, $length = NULL )</code></td>
+    <td>a stretch of the text replaced by one character</td>
+  </tr>
+  <tr>
+    <td><code>padStrPlural ( $word, $count = 2 )</code>, <code>padStrSingular ( $word )</code></td>
+    <td>the English plural or singular of a word</td>
+  </tr>
+  <tr>
+    <td><code>padStrRandom ( $length = 16 )</code></td>
+    <td>random letters and digits</td>
+  </tr>
+  <tr>
+    <td><code>padStrUuid ( $version = 4 )</code></td>
+    <td>a version 4 (random) or version 7 (time-ordered) UUID</td>
+  </tr>
 </table>
 
 <h2>Shortening text</h2>

@@ -1,5 +1,3 @@
-
-
 <p>PAD also runs on PHP compiled to WebAssembly, inside a browser tab, with no PAD server at
 all. <code>php wasm/build.php</code> bundles the engine into one file, and the page
 <a href="http://localhost/pad/wasm/">wasm/</a> loads PHP into the tab, writes the engine into its memory
@@ -8,45 +6,54 @@ server, is the page's sample:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/pad_in_the_browser_1.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/pad_in_the_browser_1.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Fruit'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$items </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Apple'</span><span style="color: #007700">, </span><span style="color: #DD0000">'stock' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Pear'</span><span style="color: #007700">, </span><span style="color: #DD0000">'stock' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/pad_in_the_browser_1.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8aDI+eyR0aXRsZX08L2gyPlxuPHVsPlxuICB7YXJyYXk6aXRlbXN9XG4gICAgPGxpPnskbmFtZX17cGFkOmlmICRzdG9jayBlcSAwfSAtIHNvbGQgb3V0ey9wYWQ6aWZ9PC9saT5cbiAgey9hcnJheTppdGVtc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHRpdGxlID0gJ0ZydWl0JztcbiAgJGl0ZW1zID0gWyBbICduYW1lJyA9PiAnQXBwbGUnLCAnc3RvY2snID0+IDMgXSwgWyAnbmFtZScgPT4gJ1BlYXInLCAnc3RvY2snID0+IDAgXSBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8aDI+eyR0aXRsZX08L2gyPlxuPHVsPlxuICB7YXJyYXk6aXRlbXN9XG4gICAgPGxpPnskbmFtZX17cGFkOmlmICRzdG9jayBlcSAwfSAtIHNvbGQgb3V0ey9wYWQ6aWZ9PC9saT5cbiAgey9hcnJheTppdGVtc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHRpdGxlID0gJ0ZydWl0JztcbiAgJGl0ZW1zID0gWyBbICduYW1lJyA9PiAnQXBwbGUnLCAnc3RvY2snID0+IDMgXSwgWyAnbmFtZScgPT4gJ1BlYXInLCAnc3RvY2snID0+IDAgXSBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>items</font><font color="red"></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red"><font color="red">$</font>stock eq 0</font>}</b> - sold out<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>items</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/pad_in_the_browser_1.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Fruit'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$items </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Apple'</span><span style="color: #007700">, </span><span style="color: #DD0000">'stock' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Pear'</span><span style="color: #007700">, </span><span style="color: #DD0000">'stock' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8aDI+eyR0aXRsZX08L2gyPlxuPHVsPlxuICB7YXJyYXk6aXRlbXN9XG4gICAgPGxpPnskbmFtZX17cGFkOmlmICRzdG9jayBlcSAwfSAtIHNvbGQgb3V0ey9wYWQ6aWZ9PC9saT5cbiAgey9hcnJheTppdGVtc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHRpdGxlID0gJ0ZydWl0JztcbiAgJGl0ZW1zID0gWyBbICduYW1lJyA9PiAnQXBwbGUnLCAnc3RvY2snID0+IDMgXSwgWyAnbmFtZScgPT4gJ1BlYXInLCAnc3RvY2snID0+IDAgXSBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8aDI+eyR0aXRsZX08L2gyPlxuPHVsPlxuICB7YXJyYXk6aXRlbXN9XG4gICAgPGxpPnskbmFtZX17cGFkOmlmICRzdG9jayBlcSAwfSAtIHNvbGQgb3V0ey9wYWQ6aWZ9PC9saT5cbiAgey9hcnJheTppdGVtc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHRpdGxlID0gJ0ZydWl0JztcbiAgJGl0ZW1zID0gWyBbICduYW1lJyA9PiAnQXBwbGUnLCAnc3RvY2snID0+IDMgXSwgWyAnbmFtZScgPT4gJ1BlYXInLCAnc3RvY2snID0+IDAgXSBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;h2&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h2&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>items</font><font color="red"></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red"><font color="red">$</font>stock eq 0</font>}</b> - sold out<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>items</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <h2>Fruit</h2>
 <ul>
   
@@ -58,15 +65,14 @@ server, is the page's sample:</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 

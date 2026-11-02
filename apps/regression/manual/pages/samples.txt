@@ -1,5 +1,3 @@
-
-
 <p>A page is two files: the PHP that gets the data and the template that shows it. A
 designer working on the template needs the data, but not the database, the login or the
 rest of the server behind it. Ask for the page with <code>&amp;padSample</code> and PAD runs
@@ -9,61 +7,73 @@ page's directory instead.</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/samples_1.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/samples_1.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $who    </span><span style="color: #007700">= </span><span style="color: #DD0000">'the real page'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10100</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10223.83 </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10101</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10549.01 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/samples_1.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5PcmRlcnMsIGFzIHskd2hvfSBzZWVzIHRoZW06PC9wPlxuPHVsPlxuICB7YXJyYXk6b3JkZXJzfTxsaT57JG51bWJlcn06IHskdG90YWx9PC9saT57L2FycmF5Om9yZGVyc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHdobyAgICA9ICd0aGUgcmVhbCBwYWdlJztcbiAgJG9yZGVycyA9IFsgWyAnbnVtYmVyJyA9PiAxMDEwMCwgJ3RvdGFsJyA9PiAxMDIyMy44MyBdLFxuICAgICAgICAgICAgICBbICdudW1iZXInID0+IDEwMTAxLCAndG90YWwnID0+IDEwNTQ5LjAxIF0gXTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5PcmRlcnMsIGFzIHskd2hvfSBzZWVzIHRoZW06PC9wPlxuPHVsPlxuICB7YXJyYXk6b3JkZXJzfTxsaT57JG51bWJlcn06IHskdG90YWx9PC9saT57L2FycmF5Om9yZGVyc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHdobyAgICA9ICd0aGUgcmVhbCBwYWdlJztcbiAgJG9yZGVycyA9IFsgWyAnbnVtYmVyJyA9PiAxMDEwMCwgJ3RvdGFsJyA9PiAxMDIyMy44MyBdLFxuICAgICAgICAgICAgICBbICdudW1iZXInID0+IDEwMTAxLCAndG90YWwnID0+IDEwNTQ5LjAxIF0gXTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;Orders, as <b>{<font color="green"><font color="red">$</font>who</font>}</b> sees them:&lt;/p&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>orders</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>number</font>}</b>: <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/li&gt;<b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>orders</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/samples_1.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $who    </span><span style="color: #007700">= </span><span style="color: #DD0000">'the real page'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10100</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10223.83 </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10101</span><span style="color: #007700">, </span><span style="color: #DD0000">'total' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">10549.01 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5PcmRlcnMsIGFzIHskd2hvfSBzZWVzIHRoZW06PC9wPlxuPHVsPlxuICB7YXJyYXk6b3JkZXJzfVxuICAgIDxsaT57JG51bWJlcn06IHskdG90YWx9PC9saT5cbiAgey9hcnJheTpvcmRlcnN9XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR3aG8gICAgPSAndGhlIHJlYWwgcGFnZSc7XG4gICRvcmRlcnMgPSBbIFsgJ251bWJlcicgPT4gMTAxMDAsICd0b3RhbCcgPT4gMTAyMjMuODMgXSxcbiAgICAgICAgICAgICAgWyAnbnVtYmVyJyA9PiAxMDEwMSwgJ3RvdGFsJyA9PiAxMDU0OS4wMSBdIF07XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5PcmRlcnMsIGFzIHskd2hvfSBzZWVzIHRoZW06PC9wPlxuPHVsPlxuICB7YXJyYXk6b3JkZXJzfVxuICAgIDxsaT57JG51bWJlcn06IHskdG90YWx9PC9saT5cbiAgey9hcnJheTpvcmRlcnN9XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR3aG8gICAgPSAndGhlIHJlYWwgcGFnZSc7XG4gICRvcmRlcnMgPSBbIFsgJ251bWJlcicgPT4gMTAxMDAsICd0b3RhbCcgPT4gMTAyMjMuODMgXSxcbiAgICAgICAgICAgICAgWyAnbnVtYmVyJyA9PiAxMDEwMSwgJ3RvdGFsJyA9PiAxMDU0OS4wMSBdIF07XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;Orders, as <b>{<font color="green"><font color="red">$</font>who</font>}</b> sees them:&lt;/p&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>orders</font><font color="red"></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>number</font>}</b>: <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>orders</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>Orders, as the real page sees them:</p>
 <ul>
-  <li>10100: 10223.83</li><li>10101: 10549.01</li>
+  
+    <li>10100: 10223.83</li>
+  
+    <li>10101: 10549.01</li>
+  
 </ul>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 

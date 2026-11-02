@@ -1,11 +1,11 @@
 PAD is about {app:tag 'tags'/}
 
 <p>
-A single {app:tag 'tag', single/} or 
+  A single {app:tag 'tag', single/} or 
 an open/close combination {app:tag 'tag'/} .... {app:tag 'tag', close/}
 
-<p>
-A single tag is closed with a trailing <b>/</b> character. A tag written without it opens a pair,
+  <p>
+    A single tag is closed with a trailing <b>/</b> character. A tag written without it opens a pair,
 and its closing tag has to follow: under the strict syntax check a tag that has neither is an
 error - <code>the pair {pad:open/}pad:echo{pad:close/} never closes - a single tag is written {pad:open/}pad:echo .../{pad:close/}</code> -
 and the lenient walk reads it as a single tag. The slash may stand in front of an opening pipe

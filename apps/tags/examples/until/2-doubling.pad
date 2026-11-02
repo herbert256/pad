@@ -1,9 +1,9 @@
 {pad:meta title='Until a limit is passed', about='Doubling a value until it passes 100 - the condition is tested before each pass.'/}
 {pad:set $amount = 3/}
 <ul>
-{pad:until $amount gt 100}
-  <li>{$amount}</li>
-  {pad:set $amount = $amount * 2/}
-{/pad:until}
+  {pad:until $amount gt 100}
+    <li>{$amount}</li>
+    {pad:set $amount = $amount * 2/}
+  {/pad:until}
 </ul>
 <p>Stopped at {$amount}.</p>

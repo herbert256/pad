@@ -5,11 +5,22 @@
 {/format:auto}
 
 <table>
-  <tr><th>Customer</th><th>Orders</th><th>Total</th><th>Average</th><th>Smallest</th><th>Largest</th></tr>
+  <tr>
+    <th>Customer</th>
+    <th>Orders</th>
+    <th>Total</th>
+    <th>Average</th>
+    <th>Smallest</th>
+    <th>Largest</th>
+  </tr>
   {data:orders group='customer', sum='total', avg='total', min='total', max='total', sort='total DESC'}
     <tr>
-      <td>{$customer}</td><td>{$count}</td><td>{$total}</td>
-      <td>{$avg_total}</td><td>{$min_total}</td><td>{$max_total}</td>
+      <td>{$customer}</td>
+      <td>{$count}</td>
+      <td>{$total}</td>
+      <td>{$avg_total}</td>
+      <td>{$min_total}</td>
+      <td>{$max_total}</td>
     </tr>
   {/data:orders}
 </table>

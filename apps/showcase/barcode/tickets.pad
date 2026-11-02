@@ -8,6 +8,12 @@
     <div><b>Boarding pass</b> DOE/JOHN<br>AMS &rarr; LHR, KL 641, seat 12A</div>
     {barcode:pdf417 'M1DOE/JOHN            EABC123 AMSLHRKL 0641 307Y012A0042 100', title='Boarding pass of John Doe, KL 641'/}
   </div>
-  <figure style="margin:0; text-align:center">{barcode:aztec 'Code 2D!', size=90/}<figcaption>Aztec's own example</figcaption></figure>
-  <figure style="margin:0; text-align:center">{barcode:aztec php:str_repeat('Aztec ', 60), size=150/}<figcaption>360 letters, a full symbol</figcaption></figure>
+  <figure style="margin:0; text-align:center">
+    {barcode:aztec 'Code 2D!', size=90/}
+    <figcaption>Aztec's own example</figcaption>
+  </figure>
+  <figure style="margin:0; text-align:center">
+    {barcode:aztec php:str_repeat('Aztec ', 60), size=150/}
+    <figcaption>360 letters, a full symbol</figcaption>
+  </figure>
 </div>

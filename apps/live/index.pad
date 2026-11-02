@@ -1,8 +1,9 @@
 {common:padFrame fill}
-
   {pad:slot 'head'}
     {pad:asset 'live.css', tag/}
-    <noscript><style>.live #previewOut[hidden] { display: block; }</style></noscript>
+    <noscript>
+      <style>.live #previewOut[hidden] { display: block; }</style>
+    </noscript>
   {/pad:slot}
 
   {pad:slot 'tools'}
@@ -13,7 +14,6 @@
       <a id="toOther" class="toOther" href="{$padRoot}wasm/" title="The same template, data and PHP running in your browser">{icon:play size=14/}Open in WASM</a>
     </span>
   {/pad:slot}
-
 {/common:padFrame}
 
 <form method="post" action="?save" target="liveOut" id="liveForm" class="live" data-monaco="{$editorMonaco}" data-names="{^editorNames}">
@@ -37,7 +37,9 @@
   </div>
 </form>
 
-{pad:if $editorPadMode}<script src="{$editorPadMode}"></script>{/pad:if}
+{pad:if $editorPadMode}
+  <script src="{$editorPadMode}"></script>
+{/pad:if}
 <script src="{pad:asset 'live.js'/}"></script>
 
 {common:padFrameEnd/}

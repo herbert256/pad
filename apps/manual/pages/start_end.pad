@@ -1,51 +1,56 @@
 {common:block}
-<p>The {app:construct 'start'/} & {app:construct 'end'/} constructs limits the occurce content of a tag to the content between those 2 constructs</p>
+  <p>The {app:construct 'start'/} & {app:construct 'end'/} constructs limits the occurce content of a tag to the content between those 2 constructs</p>
 {/common:block}
 
-{common:table}{common:demo}
-
-{format:auto 'myArray'}
+{common:table}
+  {common:demo}
+    {format:auto 'myArray'}
   [1,2,3]
 {/format:auto}
+  {/common:demo}
+  {common:demo}
+    {data:myArray}
+      <table border="1">
+        <tr>
+          <td> Before the first occurrence </td>
+        </tr>
 
-{/common:demo}{common:demo}
+        @start@
+        <tr>
+          <td> For every occurence       </td>
+        </tr>
+        @end@
 
-{data:myArray}
-
-  <table border="1">
-    <tr> <td> Before the first occurrence </td> </tr>
-
-    @start@
-      <tr> <td> For every occurence       </td> </tr>
-    @end@
-
-    <tr> <td> After the last occurrence   </td> </tr>
-  </table>
-
-{/data:myArray}
-
-{/common:demo}{common:demo}
-
-{format:auto 'myArray'}
+        <tr>
+          <td> After the last occurrence   </td>
+        </tr>
+      </table>
+    {/data:myArray}
+  {/common:demo}
+  {common:demo}
+    {format:auto 'myArray'}
  []
 {/format:auto}
+  {/common:demo}
+  {common:demo}
+    {data:myArray}
+      <table border="1">
+        <tr>
+          <td> Before the first occurrence </td>
+        </tr>
+        @start@
+        <tr>
+          <td> For every occurence       </td>
+        </tr>
+        @end@
+        <tr>
+          <td> After the last occurrence   </td>
+        </tr>
+      </table>
 
-{/common:demo}{common:demo}
+    @else@
 
-{data:myArray}
-
-  <table border="1">
-    <tr> <td> Before the first occurrence </td> </tr>
-    @start@
-      <tr> <td> For every occurence       </td> </tr>
-    @end@
-    <tr> <td> After the last occurrence   </td> </tr>
-  </table>
-
-@else@
-
-  <p> No occurences at all </p>
-
-{/data:myArray}
-
-{/common:demo}{/common:table}
+      <p> No occurences at all </p>
+    {/data:myArray}
+  {/common:demo}
+{/common:table}

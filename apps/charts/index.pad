@@ -1,5 +1,4 @@
 <div class="page home">
-
   <section class="hero">
     <div class="hero-text">
       <span class="kicker">PAD · {pad:ignore}{chart:bar}{/pad:ignore}</span>
@@ -20,25 +19,24 @@
   </section>
 
   {array:families}
-  <section class="family" id="{$family}">
-    <header class="family-head">
-      <h2>{$label}</h2>
-      <span class="family-line">{$tagline}</span>
-    </header>
-    <div class="cards">
-      {array:examples}
-      <a class="card" href="?{$page}">
-        <span class="card-chart">{pad:page $page/}</span>
-        <span class="card-body">
-          <span class="card-title">{$title}</span>
-          <span class="card-text">{$text}</span>
-        </span>
-      </a>
-      {/array:examples}
-    </div>
-  </section>
+    <section class="family" id="{$family}">
+      <header class="family-head">
+        <h2>{$label}</h2>
+        <span class="family-line">{$tagline}</span>
+      </header>
+      <div class="cards">
+        {array:examples}
+          <a class="card" href="?{$page}">
+            <span class="card-chart">{pad:page $page/}</span>
+            <span class="card-body">
+              <span class="card-title">{$title}</span>
+              <span class="card-text">{$text}</span>
+            </span>
+          </a>
+        {/array:examples}
+      </div>
+    </section>
   {/array:families}
-
 </div>
 
 {common:showcaseExamples/}

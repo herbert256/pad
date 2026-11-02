@@ -7,25 +7,82 @@ values into variables - <code>$padRequestVars</code> - and keeps the
 PHP, whatever those settings let through.</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>function</th><th>what it does</th></tr>
-  <tr><td><code>padRequest ( $key, $default )</code></td><td>one value of the input by name or dot path - a post over the query, the body of a JSON request - or all of it</td></tr>
-  <tr><td><code>padRequestHas ( $keys )</code></td><td>whether every name was sent - an emptied field was</td></tr>
-  <tr><td><code>padRequestFilled ( $key )</code></td><td>whether it was sent and is not blank</td></tr>
-  <tr><td><code>padRequestOnly ( $keys )</code></td><td>the input with these names only</td></tr>
-  <tr><td><code>padRequestExcept ( $keys )</code></td><td>the input without these names</td></tr>
-  <tr><td><code>padRequestMethod ()</code></td><td>GET, POST, PUT ... - GET on the command line</td></tr>
-  <tr><td><code>padRequestIs ( $method )</code></td><td>whether the method is this one, or one of a list</td></tr>
-  <tr><td><code>padSession ( $key, $default )</code></td><td>one value of the session, or all of it - never starts a session</td></tr>
-  <tr><td><code>padSessionPut ( $key, $value )</code></td><td>keeps a value in the session, which starts on demand</td></tr>
-  <tr><td><code>padSessionHas ( $keys )</code></td><td>whether every name is in the session</td></tr>
-  <tr><td><code>padSessionPull ( $key, $default )</code></td><td>a value of the session, taken out of it</td></tr>
-  <tr><td><code>padSessionForget ( $keys )</code></td><td>removes names from the session</td></tr>
-  <tr><td><code>padSessionRegenerate ()</code></td><td>a new session id, the data kept - after a login</td></tr>
-  <tr><td><code>padFlashInput ( $except )</code></td><td>keeps this request's input for the next request only</td></tr>
-  <tr><td><code>padOld ( $key, $default )</code></td><td>reads that input there</td></tr>
-  <tr><td><code>padUrl ( $page, $vars, $absolute )</code></td><td>a link to a page of this application</td></tr>
-  <tr><td><code>padBack ( $fallback )</code></td><td>redirects to the page the visitor came from - never off-site</td></tr>
-  <tr><td><code>padAbort ( $status, $message )</code></td><td>ends the request with an error status</td></tr>
+  <tr>
+    <th>function</th>
+    <th>what it does</th>
+  </tr>
+  <tr>
+    <td><code>padRequest ( $key, $default )</code></td>
+    <td>one value of the input by name or dot path - a post over the query, the body of a JSON request - or all of it</td>
+  </tr>
+  <tr>
+    <td><code>padRequestHas ( $keys )</code></td>
+    <td>whether every name was sent - an emptied field was</td>
+  </tr>
+  <tr>
+    <td><code>padRequestFilled ( $key )</code></td>
+    <td>whether it was sent and is not blank</td>
+  </tr>
+  <tr>
+    <td><code>padRequestOnly ( $keys )</code></td>
+    <td>the input with these names only</td>
+  </tr>
+  <tr>
+    <td><code>padRequestExcept ( $keys )</code></td>
+    <td>the input without these names</td>
+  </tr>
+  <tr>
+    <td><code>padRequestMethod ()</code></td>
+    <td>GET, POST, PUT ... - GET on the command line</td>
+  </tr>
+  <tr>
+    <td><code>padRequestIs ( $method )</code></td>
+    <td>whether the method is this one, or one of a list</td>
+  </tr>
+  <tr>
+    <td><code>padSession ( $key, $default )</code></td>
+    <td>one value of the session, or all of it - never starts a session</td>
+  </tr>
+  <tr>
+    <td><code>padSessionPut ( $key, $value )</code></td>
+    <td>keeps a value in the session, which starts on demand</td>
+  </tr>
+  <tr>
+    <td><code>padSessionHas ( $keys )</code></td>
+    <td>whether every name is in the session</td>
+  </tr>
+  <tr>
+    <td><code>padSessionPull ( $key, $default )</code></td>
+    <td>a value of the session, taken out of it</td>
+  </tr>
+  <tr>
+    <td><code>padSessionForget ( $keys )</code></td>
+    <td>removes names from the session</td>
+  </tr>
+  <tr>
+    <td><code>padSessionRegenerate ()</code></td>
+    <td>a new session id, the data kept - after a login</td>
+  </tr>
+  <tr>
+    <td><code>padFlashInput ( $except )</code></td>
+    <td>keeps this request's input for the next request only</td>
+  </tr>
+  <tr>
+    <td><code>padOld ( $key, $default )</code></td>
+    <td>reads that input there</td>
+  </tr>
+  <tr>
+    <td><code>padUrl ( $page, $vars, $absolute )</code></td>
+    <td>a link to a page of this application</td>
+  </tr>
+  <tr>
+    <td><code>padBack ( $fallback )</code></td>
+    <td>redirects to the page the visitor came from - never off-site</td>
+  </tr>
+  <tr>
+    <td><code>padAbort ( $status, $message )</code></td>
+    <td>ends the request with an error status</td>
+  </tr>
 </table>
 
 <h2>The input</h2>

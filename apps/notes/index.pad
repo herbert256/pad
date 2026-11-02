@@ -4,26 +4,26 @@
   </div>
   <div id="results" data-tag="{$only}">
     {pad:fragment 'list'}
-    {pad:live 'notes'}
-    <div class="grid">
-      {array:notes}
-      <article class="note color-{$color}{pad:if $pinned} pinned{/pad:if}">
-        <button type="button" class="pin" pad-click="pin" pad-value="{$id}" aria-pressed="{pad:if $pinned}true{pad:else}false{/pad:if}" title="{pad:if $pinned}Unpin{pad:else}Pin to the top{/pad:if}">★</button>
-        <a class="open" href="{$padGo}note&id={$id}">
-          <h2>{$title}</h2>
-          <p>{$excerpt}</p>
-        </a>
-        <footer>
-          <time datetime="{$updated}">{$day}</time>
-          {pad:if $files gt 0}<span class="clip" title="Attached files">📎 {$files}</span>{/pad:if}
-          {level:tags}<a class="tag" href="{$padGo}index{?tag}">#{$tag}</a>{/level:tags}
-        </footer>
-      </article>
-      @else@
-      <p class="empty">{pad:if $search}Nothing found for “{$search}”.{pad:else}No notes here yet.{/pad:if} <a href="{$padGo}edit">Write one</a>.</p>
-      {/array:notes}
-    </div>
-    {/pad:live}
+      {pad:live 'notes'}
+        <div class="grid">
+          {array:notes}
+            <article class="note color-{$color}{pad:if $pinned} pinned{/pad:if}">
+              <button type="button" class="pin" pad-click="pin" pad-value="{$id}" aria-pressed="{pad:if $pinned}true{pad:else}false{/pad:if}" title="{pad:if $pinned}Unpin{pad:else}Pin to the top{/pad:if}">★</button>
+              <a class="open" href="{$padGo}note&id={$id}">
+                <h2>{$title}</h2>
+                <p>{$excerpt}</p>
+              </a>
+              <footer>
+                <time datetime="{$updated}">{$day}</time>
+                {pad:if $files gt 0}<span class="clip" title="Attached files">📎 {$files}</span>{/pad:if}
+                {level:tags}<a class="tag" href="{$padGo}index{?tag}">#{$tag}</a>{/level:tags}
+              </footer>
+            </article>
+          @else@
+            <p class="empty">{pad:if $search}Nothing found for “{$search}”.{pad:else}No notes here yet.{/pad:if} <a href="{$padGo}edit">Write one</a>.</p>
+          {/array:notes}
+        </div>
+      {/pad:live}
     {/pad:fragment}
   </div>
 </section>

@@ -3,15 +3,17 @@
 <p class="lead">How every tag type and subsystem family is used, by group.</p>
 
 {array:sheet}
-<section class="section" id="{$key}">
-  <div class="section-head"><h2>{$label}</h2></div>
-  <div class="cheat">
-    {array:types}
-    <div class="cheat-item">
-      <a class="name" href="?{$link}">{$key}</a> <span class="about">{$about}</span>
-      <pre class="code"><code>{!syntaxHtml}</code></pre>
+  <section class="section" id="{$key}">
+    <div class="section-head">
+      <h2>{$label}</h2>
     </div>
-    {/array:types}
-  </div>
-</section>
+    <div class="cheat">
+      {array:types}
+        <div class="cheat-item">
+          <a class="name" href="?{$link}">{$key}</a> <span class="about">{$about}</span>
+          <pre class="code"><code>{!syntaxHtml}</code></pre>
+        </div>
+      {/array:types}
+    </div>
+  </section>
 {/array:sheet}

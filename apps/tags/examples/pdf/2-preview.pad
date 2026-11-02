@@ -2,6 +2,8 @@
 {pad:pdf preview, file='packing-list', size='A5'}
   <h1>Packing list</h1>
   <ul>
-    {array:items}<li>{$qty} x {$item}</li>{/array:items}
+    {array:items}
+      <li>{$qty} x {$item}</li>
+    {/array:items}
   </ul>
 {/pad:pdf}

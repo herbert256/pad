@@ -2,5 +2,7 @@
 {format:auto 'families'}[ {"family": "Jansen", "kids": [ {"name": "Eva"}, {"name": "Tim"} ]},
                    {"family": "Smit",   "kids": [ {"name": "Noor"} ]} ]{/format:auto}
 <ul>
-  {data:families}<li>{$family}: {level:kids}{$name} {/level:kids}</li>{/data:families}
+  {data:families}
+    <li>{$family}: {level:kids}{$name} {/level:kids}</li>
+  {/data:families}
 </ul>

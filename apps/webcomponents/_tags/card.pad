@@ -1,9 +1,15 @@
 {pad:parms title, tone='info'/}
 <pad-card tone="{#tone}">
   {widget:shadow css='www:elements/card.css'}
-    <header part="head"><slot name="title"></slot></header>
-    <div class="body"><slot></slot></div>
-    <footer part="foot"><slot name="footer"></slot></footer>
+    <header part="head">
+      <slot name="title"></slot>
+    </header>
+    <div class="body">
+      <slot></slot>
+    </div>
+    <footer part="foot">
+      <slot name="footer"></slot>
+    </footer>
   {/widget:shadow}
   <span slot="title">{#title}</span>
   @content@

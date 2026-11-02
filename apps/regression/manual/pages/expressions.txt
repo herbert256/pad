@@ -15,45 +15,54 @@ occurrence assignment <code>%name = ...</code> on a tag that loops:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_1.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkcHJpY2UgPSAxMi41L31cbntwYWQ6c2V0ICRxdHkgICA9IDMvfVxuPHA+VG90YWw6IHtwYWQ6ZWNobyAkcHJpY2UgKiAkcXR5L308L3A+XG57cGFkOnNldCAkdG90YWwgPSAkcHJpY2UgKiAkcXR5L31cbjxwPntwYWQ6aWYgJHRvdGFsIGd0IDMwfUZyZWUgc2hpcHBpbmd7cGFkOmVsc2V9U2hpcHBpbmc6IDQuOTV7L3BhZDppZn08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkcHJpY2UgPSAxMi41L31cbntwYWQ6c2V0ICRxdHkgICA9IDMvfVxuPHA+VG90YWw6IHtwYWQ6ZWNobyAkcHJpY2UgKiAkcXR5L308L3A+XG57cGFkOnNldCAkdG90YWwgPSAkcHJpY2UgKiAkcXR5L31cbjxwPntwYWQ6aWYgJHRvdGFsIGd0IDMwfUZyZWUgc2hpcHBpbmd7cGFkOmVsc2V9U2hpcHBpbmc6IDQuOTV7L3BhZDppZn08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>price = 12.5</font>/}</b><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>qty   = 3</font>/}</b><br>&lt;p&gt;Total: <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>price * <font color="red">$</font>qty</font>/}</b>&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>total = <font color="red">$</font>price * <font color="red">$</font>qty</font>/}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red"><font color="red">$</font>total gt 30</font>}</b>Free shipping<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>else</font><font color="red"></font>}</b>Shipping: 4.95<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_1.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkcHJpY2UgPSAxMi41L31cbntwYWQ6c2V0ICRxdHkgICA9IDMvfVxuPHA+VG90YWw6IHtwYWQ6ZWNobyAkcHJpY2UgKiAkcXR5L308L3A+XG57cGFkOnNldCAkdG90YWwgPSAkcHJpY2UgKiAkcXR5L31cbjxwPntwYWQ6aWYgJHRvdGFsIGd0IDMwfUZyZWUgc2hpcHBpbmd7cGFkOmVsc2V9U2hpcHBpbmc6IDQuOTV7L3BhZDppZn08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkcHJpY2UgPSAxMi41L31cbntwYWQ6c2V0ICRxdHkgICA9IDMvfVxuPHA+VG90YWw6IHtwYWQ6ZWNobyAkcHJpY2UgKiAkcXR5L308L3A+XG57cGFkOnNldCAkdG90YWwgPSAkcHJpY2UgKiAkcXR5L31cbjxwPntwYWQ6aWYgJHRvdGFsIGd0IDMwfUZyZWUgc2hpcHBpbmd7cGFkOmVsc2V9U2hpcHBpbmc6IDQuOTV7L3BhZDppZn08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>price = 12.5</font>/}</b><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>qty   = 3</font>/}</b><br>&lt;p&gt;Total: <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>price * <font color="red">$</font>qty</font>/}</b>&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>total = <font color="red">$</font>price * <font color="red">$</font>qty</font>/}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red"><font color="red">$</font>total gt 30</font>}</b>Free shipping<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>else</font><font color="red"></font>}</b>Shipping: 4.95<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
 
 <p>Total: 37.5</p>
@@ -62,10 +71,10 @@ occurrence assignment <code>%name = ...</code> on a tag that loops:</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
@@ -78,45 +87,53 @@ occurrence assignment <code>%name = ...</code> on a tag that loops:</p>
 
 
 
- 
 
 
 
-   
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_2.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ3N0b2NrJ31cbiAgWyB7XCJpdGVtXCI6IFwicGVuXCIsIFwicXR5XCI6IDEyfSwge1wiaXRlbVwiOiBcImlua1wiLCBcInF0eVwiOiAwfSwge1wiaXRlbVwiOiBcInBhZFwiLCBcInF0eVwiOiA1fSBdXG57L2Zvcm1hdDphdXRvfVxue2RhdGE6c3RvY2sgd2hlcmU9JyRxdHkgZ3QgMCcsICVvcmRlciA9IDIwIC0gJHF0eX1cbiAgPHA+eyRpdGVtfTogeyRxdHl9IGluIHN0b2NrLCBvcmRlciB7JG9yZGVyfTwvcD5cbnsvZGF0YTpzdG9ja31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ3N0b2NrJ31cbiAgWyB7XCJpdGVtXCI6IFwicGVuXCIsIFwicXR5XCI6IDEyfSwge1wiaXRlbVwiOiBcImlua1wiLCBcInF0eVwiOiAwfSwge1wiaXRlbVwiOiBcInBhZFwiLCBcInF0eVwiOiA1fSBdXG57L2Zvcm1hdDphdXRvfVxue2RhdGE6c3RvY2sgd2hlcmU9JyRxdHkgZ3QgMCcsICVvcmRlciA9IDIwIC0gJHF0eX1cbiAgPHA+eyRpdGVtfTogeyRxdHl9IGluIHN0b2NrLCBvcmRlciB7JG9yZGVyfTwvcD5cbnsvZGF0YTpzdG9ja31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto </font><font color="red"><font color="black">'</font>stock<font color="black">'</font></font>}</b><br>  [ {"item": "pen", "qty": 12}, {"item": "ink", "qty": 0}, {"item": "pad", "qty": 5} ]<br><b>{/<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>stock </font><font color="red">where=<font color="black">'</font><font color="red">$</font>qty gt 0<font color="black">'</font><font color="black">,</font> <font color="black">%</font>order = 20 - <font color="red">$</font>qty</font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>item</font>}</b>: <b>{<font color="green"><font color="red">$</font>qty</font>}</b> in stock, order <b>{<font color="green"><font color="red">$</font>order</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>stock</font><font color="red"></font>}</b></code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_2.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ3N0b2NrJ31cbiAgWyB7XCJpdGVtXCI6IFwicGVuXCIsIFwicXR5XCI6IDEyfSwge1wiaXRlbVwiOiBcImlua1wiLCBcInF0eVwiOiAwfSwge1wiaXRlbVwiOiBcInBhZFwiLCBcInF0eVwiOiA1fSBdXG57L2Zvcm1hdDphdXRvfVxue2RhdGE6c3RvY2sgd2hlcmU9JyRxdHkgZ3QgMCcsICVvcmRlciA9IDIwIC0gJHF0eX1cbiAgPHA+eyRpdGVtfTogeyRxdHl9IGluIHN0b2NrLCBvcmRlciB7JG9yZGVyfTwvcD5cbnsvZGF0YTpzdG9ja31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ3N0b2NrJ31cbiAgWyB7XCJpdGVtXCI6IFwicGVuXCIsIFwicXR5XCI6IDEyfSwge1wiaXRlbVwiOiBcImlua1wiLCBcInF0eVwiOiAwfSwge1wiaXRlbVwiOiBcInBhZFwiLCBcInF0eVwiOiA1fSBdXG57L2Zvcm1hdDphdXRvfVxue2RhdGE6c3RvY2sgd2hlcmU9JyRxdHkgZ3QgMCcsICVvcmRlciA9IDIwIC0gJHF0eX1cbiAgPHA+eyRpdGVtfTogeyRxdHl9IGluIHN0b2NrLCBvcmRlciB7JG9yZGVyfTwvcD5cbnsvZGF0YTpzdG9ja31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto </font><font color="red"><font color="black">'</font>stock<font color="black">'</font></font>}</b><br>  [ {"item": "pen", "qty": 12}, {"item": "ink", "qty": 0}, {"item": "pad", "qty": 5} ]<br><b>{/<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>stock </font><font color="red">where=<font color="black">'</font><font color="red">$</font>qty gt 0<font color="black">'</font><font color="black">,</font> <font color="black">%</font>order = 20 - <font color="red">$</font>qty</font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>item</font>}</b>: <b>{<font color="green"><font color="red">$</font>qty</font>}</b> in stock, order <b>{<font color="green"><font color="red">$</font>order</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>stock</font><font color="red"></font>}</b></code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
 
   <p>pen: 12 in stock, order 8</p>
@@ -126,10 +143,10 @@ occurrence assignment <code>%name = ...</code> on a tag that loops:</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
@@ -142,61 +159,85 @@ occurrence assignment <code>%name = ...</code> on a tag that loops:</p>
 
 
 
- 
 
 
 
-   
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_3.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkbiA9IDcvfVxuPHA+eyRufSBpcyB7cGFkOmNhc2UgJG4gJSAyfXtwYWQ6d2hlbiAwfWV2ZW57cGFkOndoZW4gMX1vZGR7L3BhZDpjYXNlfTwvcD5cbntwYWQ6c2V0ICRpID0gMS99XG48cD57cGFkOndoaWxlICRpIGxlIDIwfXskaX0ge3BhZDpzZXQgJGkgPSAkaSAqIDIvfXsvcGFkOndoaWxlfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkbiA9IDcvfVxuPHA+eyRufSBpcyB7cGFkOmNhc2UgJG4gJSAyfXtwYWQ6d2hlbiAwfWV2ZW57cGFkOndoZW4gMX1vZGR7L3BhZDpjYXNlfTwvcD5cbntwYWQ6c2V0ICRpID0gMS99XG48cD57cGFkOndoaWxlICRpIGxlIDIwfXskaX0ge3BhZDpzZXQgJGkgPSAkaSAqIDIvfXsvcGFkOndoaWxlfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>n = 7</font>/}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b> is <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>case </font><font color="red"><font color="red">$</font>n <font color="black">%</font> 2</font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>when</font><font color="red">0</font>}</b>even<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>when </font><font color="red">1</font>}</b>odd<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>case</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>i = 1</font>/}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>while </font><font color="red"><font color="red">$</font>i le 20</font>}</b><b>{<font color="green"><font color="red">$</font>i</font>}</b> <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>i = <font color="red">$</font>i * 2</font>/}</b><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>while</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_3.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkbiA9IDcvfVxuPHA+eyRufSBpcyB7cGFkOmNhc2UgJG4gJSAyfXtwYWQ6d2hlbiAwfWV2ZW57cGFkOndoZW4gMX1vZGR7L3BhZDpjYXNlfTwvcD5cbntwYWQ6c2V0ICRpID0gMS99XG48cD5cbiAge3BhZDp3aGlsZSAkaSBsZSAyMH1cbiAgICB7JGl9XG4gICAge3BhZDpzZXQgJGkgPSAkaSAqIDIvfVxuICB7L3BhZDp3aGlsZX1cbjwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkbiA9IDcvfVxuPHA+eyRufSBpcyB7cGFkOmNhc2UgJG4gJSAyfXtwYWQ6d2hlbiAwfWV2ZW57cGFkOndoZW4gMX1vZGR7L3BhZDpjYXNlfTwvcD5cbntwYWQ6c2V0ICRpID0gMS99XG48cD5cbiAge3BhZDp3aGlsZSAkaSBsZSAyMH1cbiAgICB7JGl9XG4gICAge3BhZDpzZXQgJGkgPSAkaSAqIDIvfVxuICB7L3BhZDp3aGlsZX1cbjwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>n = 7</font>/}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b> is <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>case </font><font color="red"><font color="red">$</font>n <font color="black">%</font> 2</font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>when</font><font color="red">0</font>}</b>even<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>when </font><font color="red">1</font>}</b>odd<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>case</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>i = 1</font>/}</b><br>&lt;p&gt;<br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>while </font><font color="red"><font color="red">$</font>i le 20</font>}</b><br>    <b>{<font color="green"><font color="red">$</font>i</font>}</b><br>    <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>i = <font color="red">$</font>i * 2</font>/}</b><br>  <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>while</font><font color="red"></font>}</b><br>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
 <p>7 is odd</p>
 
-<p>1 2 4 8 16 </p>
+<p>
+  
+    1
+    
+  
+    2
+    
+  
+    4
+    
+  
+    8
+    
+  
+    16
+    
+  
+</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -208,45 +249,54 @@ does the closing tag of a pair, over everything the pair rendered. The
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_4.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkbmFtZSA9ICcgIGFkYSBsb3ZlbGFjZSAgJy99XG48cD57JG5hbWUgfCB0cmltIHwgdWN3b3Jkc308L3A+XG57Zm9ybWF0OmF1dG8gJ2xhbmdzJ31bXCJwaHBcIiwgXCJzcWxcIiwgXCJwYWRcIl17L2Zvcm1hdDphdXRvfVxuPHA+e2RhdGE6bGFuZ3N9eyRsYW5nc30gey9kYXRhOmxhbmdzIHwgdXBwZXJ9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkbmFtZSA9ICcgIGFkYSBsb3ZlbGFjZSAgJy99XG48cD57JG5hbWUgfCB0cmltIHwgdWN3b3Jkc308L3A+XG57Zm9ybWF0OmF1dG8gJ2xhbmdzJ31bXCJwaHBcIiwgXCJzcWxcIiwgXCJwYWRcIl17L2Zvcm1hdDphdXRvfVxuPHA+e2RhdGE6bGFuZ3N9eyRsYW5nc30gey9kYXRhOmxhbmdzIHwgdXBwZXJ9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>name = <font color="black">'</font>  ada lovelace  <font color="black">'</font></font>/}</b><br>&lt;p&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">trim</font> <font color="black">|</font> <font color="blue">ucwords</font>}</b>&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto </font><font color="red"><font color="black">'</font>langs<font color="black">'</font></font>}</b>["php", "sql", "pad"]<b>{/<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>langs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>langs</font>}</b> <b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>langs </font><font color="red"><font color="black">|</font> upper</font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_4.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkbmFtZSA9ICcgIGFkYSBsb3ZlbGFjZSAgJy99XG48cD57JG5hbWUgfCB0cmltIHwgdWN3b3Jkc308L3A+XG57Zm9ybWF0OmF1dG8gJ2xhbmdzJ31bXCJwaHBcIiwgXCJzcWxcIiwgXCJwYWRcIl17L2Zvcm1hdDphdXRvfVxuPHA+e2RhdGE6bGFuZ3N9eyRsYW5nc30gey9kYXRhOmxhbmdzIHwgdXBwZXJ9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkbmFtZSA9ICcgIGFkYSBsb3ZlbGFjZSAgJy99XG48cD57JG5hbWUgfCB0cmltIHwgdWN3b3Jkc308L3A+XG57Zm9ybWF0OmF1dG8gJ2xhbmdzJ31bXCJwaHBcIiwgXCJzcWxcIiwgXCJwYWRcIl17L2Zvcm1hdDphdXRvfVxuPHA+e2RhdGE6bGFuZ3N9eyRsYW5nc30gey9kYXRhOmxhbmdzIHwgdXBwZXJ9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>name = <font color="black">'</font>  ada lovelace  <font color="black">'</font></font>/}</b><br>&lt;p&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">trim</font> <font color="black">|</font> <font color="blue">ucwords</font>}</b>&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto </font><font color="red"><font color="black">'</font>langs<font color="black">'</font></font>}</b>["php", "sql", "pad"]<b>{/<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>langs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>langs</font>}</b> <b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>langs </font><font color="red"><font color="black">|</font> upper</font>}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
 <p>Ada Lovelace</p>
 
@@ -254,15 +304,14 @@ does the closing tag of a pair, over everything the pair rendered. The
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -279,12 +328,11 @@ exponents (<code>1e3</code>, <code>2.5E-1</code>). A minus before a number belon
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -325,12 +373,11 @@ strings, and numbers with them:</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -371,12 +418,11 @@ two<!-- END DEMO RESULT --></span></code></td></tr>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -419,60 +465,68 @@ array - <code>$user.address.city</code>, and <code>$items.0</code> by position.<
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/expressions_8.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_8.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $user  </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada'</span><span style="color: #007700">, </span><span style="color: #DD0000">'address' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'London'</span><span style="color: #007700">, </span><span style="color: #DD0000">'zip' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'W1' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$langs </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'PHP'</span><span style="color: #007700">, </span><span style="color: #DD0000">'SQL'</span><span style="color: #007700">, </span><span style="color: #DD0000">'PAD' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/expressions_8.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57cGFkOmVjaG8gJHVzZXIubmFtZSAuICcgZnJvbSAnIC4gJHVzZXIuYWRkcmVzcy5jaXR5L308L3A+XG48cD57cGFkOmVjaG8gJGxhbmdzLjAvfSBhbmQge3BhZDplY2hvICRsYW5ncy4yL308L3A+XG48cD57JHVzZXIuYWRkcmVzcy5jaXR5IHwgdXBwZXJ9LCB7JHVzZXIuYWRkcmVzcy56aXB9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR1c2VyICA9IFsgJ25hbWUnID0+ICdBZGEnLCAnYWRkcmVzcycgPT4gWyAnY2l0eScgPT4gJ0xvbmRvbicsICd6aXAnID0+ICdXMScgXSBdO1xuICAkbGFuZ3MgPSBbICdQSFAnLCAnU1FMJywgJ1BBRCcgXTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57cGFkOmVjaG8gJHVzZXIubmFtZSAuICcgZnJvbSAnIC4gJHVzZXIuYWRkcmVzcy5jaXR5L308L3A+XG48cD57cGFkOmVjaG8gJGxhbmdzLjAvfSBhbmQge3BhZDplY2hvICRsYW5ncy4yL308L3A+XG48cD57JHVzZXIuYWRkcmVzcy5jaXR5IHwgdXBwZXJ9LCB7JHVzZXIuYWRkcmVzcy56aXB9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR1c2VyICA9IFsgJ25hbWUnID0+ICdBZGEnLCAnYWRkcmVzcycgPT4gWyAnY2l0eScgPT4gJ0xvbmRvbicsICd6aXAnID0+ICdXMScgXSBdO1xuICAkbGFuZ3MgPSBbICdQSFAnLCAnU1FMJywgJ1BBRCcgXTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>user.name . <font color="black">'</font> from <font color="black">'</font> . <font color="red">$</font>user.address.city</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>langs.0</font>/}</b> and <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>langs.2</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$user.address.city</font> <font color="black">|</font> <font color="blue">upper</font>}</b>, <b>{<font color="green"><font color="red">$</font>user.address.zip</font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_8.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $user  </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada'</span><span style="color: #007700">, </span><span style="color: #DD0000">'address' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'London'</span><span style="color: #007700">, </span><span style="color: #DD0000">'zip' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'W1' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$langs </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'PHP'</span><span style="color: #007700">, </span><span style="color: #DD0000">'SQL'</span><span style="color: #007700">, </span><span style="color: #DD0000">'PAD' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57cGFkOmVjaG8gJHVzZXIubmFtZSAuICcgZnJvbSAnIC4gJHVzZXIuYWRkcmVzcy5jaXR5L308L3A+XG48cD57cGFkOmVjaG8gJGxhbmdzLjAvfSBhbmQge3BhZDplY2hvICRsYW5ncy4yL308L3A+XG48cD57JHVzZXIuYWRkcmVzcy5jaXR5IHwgdXBwZXJ9LCB7JHVzZXIuYWRkcmVzcy56aXB9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR1c2VyICA9IFsgJ25hbWUnID0+ICdBZGEnLCAnYWRkcmVzcycgPT4gWyAnY2l0eScgPT4gJ0xvbmRvbicsICd6aXAnID0+ICdXMScgXSBdO1xuICAkbGFuZ3MgPSBbICdQSFAnLCAnU1FMJywgJ1BBRCcgXTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57cGFkOmVjaG8gJHVzZXIubmFtZSAuICcgZnJvbSAnIC4gJHVzZXIuYWRkcmVzcy5jaXR5L308L3A+XG48cD57cGFkOmVjaG8gJGxhbmdzLjAvfSBhbmQge3BhZDplY2hvICRsYW5ncy4yL308L3A+XG48cD57JHVzZXIuYWRkcmVzcy5jaXR5IHwgdXBwZXJ9LCB7JHVzZXIuYWRkcmVzcy56aXB9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR1c2VyICA9IFsgJ25hbWUnID0+ICdBZGEnLCAnYWRkcmVzcycgPT4gWyAnY2l0eScgPT4gJ0xvbmRvbicsICd6aXAnID0+ICdXMScgXSBdO1xuICAkbGFuZ3MgPSBbICdQSFAnLCAnU1FMJywgJ1BBRCcgXTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>user.name . <font color="black">'</font> from <font color="black">'</font> . <font color="red">$</font>user.address.city</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>langs.0</font>/}</b> and <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>langs.2</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$user.address.city</font> <font color="black">|</font> <font color="blue">upper</font>}</b>, <b>{<font color="green"><font color="red">$</font>user.address.zip</font>}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>Ada from London</p>
 <p>PHP and PAD</p>
 <p>LONDON, W1</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -484,60 +538,68 @@ fields; the engine's own <code>pad...</code> variables are never read this way.<
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/expressions_9.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_9.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $lang     </span><span style="color: #007700">= </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hello_en </span><span style="color: #007700">= </span><span style="color: #DD0000">'Hello'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hello_nl </span><span style="color: #007700">= </span><span style="color: #DD0000">'Hallo'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hello_de </span><span style="color: #007700">= </span><span style="color: #DD0000">'Guten Tag'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$user     </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada'</span><span style="color: #007700">, </span><span style="color: #DD0000">'address' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'London' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$show     </span><span style="color: #007700">= </span><span style="color: #DD0000">'user.address.city'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/expressions_9.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAka2V5ID0gJ2hlbGxvXycgLiAkbGFuZy99XG48cD57cGFkOmVjaG8gJCRrZXkvfSwge3BhZDplY2hvICR1c2VyLm5hbWUvfTwvcD5cbjxwPntwYWQ6ZWNobyAkJHNob3cvfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkbGFuZyAgICAgPSAnbmwnO1xuICAkaGVsbG9fZW4gPSAnSGVsbG8nO1xuICAkaGVsbG9fbmwgPSAnSGFsbG8nO1xuICAkaGVsbG9fZGUgPSAnR3V0ZW4gVGFnJztcblxuICAkdXNlciAgICAgPSBbICduYW1lJyA9PiAnQWRhJywgJ2FkZHJlc3MnID0+IFsgJ2NpdHknID0+ICdMb25kb24nIF0gXTtcbiAgJHNob3cgICAgID0gJ3VzZXIuYWRkcmVzcy5jaXR5JztcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAka2V5ID0gJ2hlbGxvXycgLiAkbGFuZy99XG48cD57cGFkOmVjaG8gJCRrZXkvfSwge3BhZDplY2hvICR1c2VyLm5hbWUvfTwvcD5cbjxwPntwYWQ6ZWNobyAkJHNob3cvfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkbGFuZyAgICAgPSAnbmwnO1xuICAkaGVsbG9fZW4gPSAnSGVsbG8nO1xuICAkaGVsbG9fbmwgPSAnSGFsbG8nO1xuICAkaGVsbG9fZGUgPSAnR3V0ZW4gVGFnJztcblxuICAkdXNlciAgICAgPSBbICduYW1lJyA9PiAnQWRhJywgJ2FkZHJlc3MnID0+IFsgJ2NpdHknID0+ICdMb25kb24nIF0gXTtcbiAgJHNob3cgICAgID0gJ3VzZXIuYWRkcmVzcy5jaXR5JztcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>key = <font color="black">'</font>hello_<font color="black">'</font> . <font color="red">$</font>lang</font>/}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font><font color="red">$</font>key</font>/}</b>, <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>user.name</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font><font color="red">$</font>show</font>/}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_9.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $lang     </span><span style="color: #007700">= </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hello_en </span><span style="color: #007700">= </span><span style="color: #DD0000">'Hello'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hello_nl </span><span style="color: #007700">= </span><span style="color: #DD0000">'Hallo'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hello_de </span><span style="color: #007700">= </span><span style="color: #DD0000">'Guten Tag'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$user     </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada'</span><span style="color: #007700">, </span><span style="color: #DD0000">'address' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'London' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$show     </span><span style="color: #007700">= </span><span style="color: #DD0000">'user.address.city'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAka2V5ID0gJ2hlbGxvXycgLiAkbGFuZy99XG48cD57cGFkOmVjaG8gJCRrZXkvfSwge3BhZDplY2hvICR1c2VyLm5hbWUvfTwvcD5cbjxwPntwYWQ6ZWNobyAkJHNob3cvfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkbGFuZyAgICAgPSAnbmwnO1xuICAkaGVsbG9fZW4gPSAnSGVsbG8nO1xuICAkaGVsbG9fbmwgPSAnSGFsbG8nO1xuICAkaGVsbG9fZGUgPSAnR3V0ZW4gVGFnJztcblxuICAkdXNlciAgICAgPSBbICduYW1lJyA9PiAnQWRhJywgJ2FkZHJlc3MnID0+IFsgJ2NpdHknID0+ICdMb25kb24nIF0gXTtcbiAgJHNob3cgICAgID0gJ3VzZXIuYWRkcmVzcy5jaXR5JztcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAka2V5ID0gJ2hlbGxvXycgLiAkbGFuZy99XG48cD57cGFkOmVjaG8gJCRrZXkvfSwge3BhZDplY2hvICR1c2VyLm5hbWUvfTwvcD5cbjxwPntwYWQ6ZWNobyAkJHNob3cvfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkbGFuZyAgICAgPSAnbmwnO1xuICAkaGVsbG9fZW4gPSAnSGVsbG8nO1xuICAkaGVsbG9fbmwgPSAnSGFsbG8nO1xuICAkaGVsbG9fZGUgPSAnR3V0ZW4gVGFnJztcblxuICAkdXNlciAgICAgPSBbICduYW1lJyA9PiAnQWRhJywgJ2FkZHJlc3MnID0+IFsgJ2NpdHknID0+ICdMb25kb24nIF0gXTtcbiAgJHNob3cgICAgID0gJ3VzZXIuYWRkcmVzcy5jaXR5JztcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>key = <font color="black">'</font>hello_<font color="black">'</font> . <font color="red">$</font>lang</font>/}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font><font color="red">$</font>key</font>/}</b>, <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>user.name</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font><font color="red">$</font>show</font>/}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
 <p>Hallo, Ada</p>
 <p>London</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -560,47 +622,62 @@ list with a loop, or hand it to a function with the <code>array:</code> prefix, 
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_10.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRlZmluZSAnZ3Jvc3MnfXtwYWQ6cGFybXMgbmV0LCB2YXQ9MjEvfXtwYWQ6ZWNobyAjbmV0ICogKDEgKyAjdmF0IC8gMTAwKSB8ICUuMmYvfXsvcGFkOmRlZmluZX1cbjxwPntkZWZpbmU6Z3Jvc3MgbmV0PTEwMC99IGFuZCB7ZGVmaW5lOmdyb3NzIG5ldD0xMDAsIHZhdD05L308L3A+XG57Zm9ybWF0OmF1dG8gJ3N0ZXBzJ31bXCJwbGFuXCIsIFwiYnVpbGRcIiwgXCJzaGlwXCJdey9mb3JtYXQ6YXV0b31cbntkYXRhOnN0ZXBzfVxuICA8cD57cGFkOmVjaG8gJmN1cnJlbnQgLiAnIG9mICcgLiAmY291bnQvfTogeyRzdGVwc317cGFkOmVjaG8gbGFzdEBzdGVwcyA/ICcgLSB0aGUgbGFzdCBvbmUnIDogJycvfTwvcD5cbnsvZGF0YTpzdGVwc31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRlZmluZSAnZ3Jvc3MnfXtwYWQ6cGFybXMgbmV0LCB2YXQ9MjEvfXtwYWQ6ZWNobyAjbmV0ICogKDEgKyAjdmF0IC8gMTAwKSB8ICUuMmYvfXsvcGFkOmRlZmluZX1cbjxwPntkZWZpbmU6Z3Jvc3MgbmV0PTEwMC99IGFuZCB7ZGVmaW5lOmdyb3NzIG5ldD0xMDAsIHZhdD05L308L3A+XG57Zm9ybWF0OmF1dG8gJ3N0ZXBzJ31bXCJwbGFuXCIsIFwiYnVpbGRcIiwgXCJzaGlwXCJdey9mb3JtYXQ6YXV0b31cbntkYXRhOnN0ZXBzfVxuICA8cD57cGFkOmVjaG8gJmN1cnJlbnQgLiAnIG9mICcgLiAmY291bnQvfTogeyRzdGVwc317cGFkOmVjaG8gbGFzdEBzdGVwcyA/ICcgLSB0aGUgbGFzdCBvbmUnIDogJycvfTwvcD5cbnsvZGF0YTpzdGVwc31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>define </font><font color="red"><font color="black">'</font>gross<font color="black">'</font></font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>parms </font><font color="red">net<font color="black">,</font> vat=21</font>/}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">#net * (1 + #vat / 100) <font color="black">|</font> <font color="black">%</font>.2f</font>/}</b><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>define</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">define</font><font color="black"><b>:</b></font>gross </font><font color="red">net=100</font>/}</b> and <b>{<font color="blue"><font color="purple">define</font><font color="black"><b>:</b></font>gross </font><font color="red">net=100<font color="black">,</font> vat=9</font>/}</b>&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto </font><font color="red"><font color="black">'</font>steps<font color="black">'</font></font>}</b>["plan", "build", "ship"]<b>{/<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>steps</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">&amp;current . <font color="black">'</font> of <font color="black">'</font> . &amp;count</font>/}</b>: <b>{<font color="green"><font color="red">$</font>steps</font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">last<font color="black">@</font>steps ? <font color="black">'</font> - the last one<font color="black">'</font> <font color="black">:</font> <font color="black">'</font><font color="black">'</font></font>/}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>steps</font><font color="red"></font>}</b></code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_10.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmRlZmluZSAnZ3Jvc3MnfVxuICB7cGFkOnBhcm1zIG5ldCwgdmF0PTIxL31cbiAge3BhZDplY2hvICNuZXQgKiAoMSArICN2YXQgLyAxMDApIHwgJS4yZi99XG57L3BhZDpkZWZpbmV9XG48cD57ZGVmaW5lOmdyb3NzIG5ldD0xMDAvfSBhbmQge2RlZmluZTpncm9zcyBuZXQ9MTAwLCB2YXQ9OS99PC9wPlxue2Zvcm1hdDphdXRvICdzdGVwcyd9W1wicGxhblwiLCBcImJ1aWxkXCIsIFwic2hpcFwiXXsvZm9ybWF0OmF1dG99XG57ZGF0YTpzdGVwc31cbiAgPHA+e3BhZDplY2hvICZjdXJyZW50IC4gJyBvZiAnIC4gJmNvdW50L306IHskc3RlcHN9e3BhZDplY2hvIGxhc3RAc3RlcHMgPyAnIC0gdGhlIGxhc3Qgb25lJyA6ICcnL308L3A+XG57L2RhdGE6c3RlcHN9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmRlZmluZSAnZ3Jvc3MnfVxuICB7cGFkOnBhcm1zIG5ldCwgdmF0PTIxL31cbiAge3BhZDplY2hvICNuZXQgKiAoMSArICN2YXQgLyAxMDApIHwgJS4yZi99XG57L3BhZDpkZWZpbmV9XG48cD57ZGVmaW5lOmdyb3NzIG5ldD0xMDAvfSBhbmQge2RlZmluZTpncm9zcyBuZXQ9MTAwLCB2YXQ9OS99PC9wPlxue2Zvcm1hdDphdXRvICdzdGVwcyd9W1wicGxhblwiLCBcImJ1aWxkXCIsIFwic2hpcFwiXXsvZm9ybWF0OmF1dG99XG57ZGF0YTpzdGVwc31cbiAgPHA+e3BhZDplY2hvICZjdXJyZW50IC4gJyBvZiAnIC4gJmNvdW50L306IHskc3RlcHN9e3BhZDplY2hvIGxhc3RAc3RlcHMgPyAnIC0gdGhlIGxhc3Qgb25lJyA6ICcnL308L3A+XG57L2RhdGE6c3RlcHN9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>define </font><font color="red"><font color="black">'</font>gross<font color="black">'</font></font>}</b><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>parms </font><font color="red">net<font color="black">,</font> vat=21</font>/}</b><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">#net * (1 + #vat / 100) <font color="black">|</font> <font color="black">%</font>.2f</font>/}</b><br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>define</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">define</font><font color="black"><b>:</b></font>gross </font><font color="red">net=100</font>/}</b> and <b>{<font color="blue"><font color="purple">define</font><font color="black"><b>:</b></font>gross </font><font color="red">net=100<font color="black">,</font> vat=9</font>/}</b>&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto </font><font color="red"><font color="black">'</font>steps<font color="black">'</font></font>}</b>["plan", "build", "ship"]<b>{/<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>steps</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">&amp;current . <font color="black">'</font> of <font color="black">'</font> . &amp;count</font>/}</b>: <b>{<font color="green"><font color="red">$</font>steps</font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">last<font color="black">@</font>steps ? <font color="black">'</font> - the last one<font color="black">'</font> <font color="black">:</font> <font color="black">'</font><font color="black">'</font></font>/}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>steps</font><font color="red"></font>}</b></code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
-<p>121.00 and 109.00</p>
+<p>
+  
+  121.00
+ and 
+  
+  109.00
+</p>
 
 
   <p>1 of 3: plan</p>
@@ -612,15 +689,14 @@ list with a loop, or hand it to a function with the <code>array:</code> prefix, 
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -635,45 +711,54 @@ takes:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_11.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkYm9vayA9IFsgJ3RpdGxlJyA9PiAnTWludXRlcycsICdwYWdlcycgPT4gMiAqIDEyMCBdL31cbjxwPnskYm9vay50aXRsZX06IHskYm9vay5wYWdlc30gcGFnZXM8L3A+XG57cGFkOnNldCAkcHJpbWVzID0gWzIsIDMsIDUsIDddL31cbjxwPnthcnJheTpwcmltZXN9eyRwcmltZXN9IHsvYXJyYXk6cHJpbWVzfTwvcD5cbjxwPntwYWQ6ZWNobyBwaHA6aW1wbG9kZSgnICsgJywgWzEsIDIsIDNdKSAuICcgPSAnIC4gcGhwOmFycmF5X3N1bShbMSwgMiwgM10pL308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkYm9vayA9IFsgJ3RpdGxlJyA9PiAnTWludXRlcycsICdwYWdlcycgPT4gMiAqIDEyMCBdL31cbjxwPnskYm9vay50aXRsZX06IHskYm9vay5wYWdlc30gcGFnZXM8L3A+XG57cGFkOnNldCAkcHJpbWVzID0gWzIsIDMsIDUsIDddL31cbjxwPnthcnJheTpwcmltZXN9eyRwcmltZXN9IHsvYXJyYXk6cHJpbWVzfTwvcD5cbjxwPntwYWQ6ZWNobyBwaHA6aW1wbG9kZSgnICsgJywgWzEsIDIsIDNdKSAuICcgPSAnIC4gcGhwOmFycmF5X3N1bShbMSwgMiwgM10pL308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>book = [ <font color="black">'</font>title<font color="black">'</font> =&gt; <font color="black">'</font>Minutes<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pages<font color="black">'</font> =&gt; 2 * 120 ]</font>/}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>book.title</font>}</b>: <b>{<font color="green"><font color="red">$</font>book.pages</font>}</b> pages&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>primes = [2<font color="black">,</font> 3<font color="black">,</font> 5<font color="black">,</font> 7]</font>/}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>primes</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>primes</font>}</b> <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>primes</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font> + <font color="black">'</font><font color="black">,</font> [1<font color="black">,</font> 2<font color="black">,</font> 3]) . <font color="black">'</font> = <font color="black">'</font> . php<font color="black">:</font>array_sum([1<font color="black">,</font> 2<font color="black">,</font> 3])</font>/}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_11.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkYm9vayA9IFsgJ3RpdGxlJyA9PiAnTWludXRlcycsICdwYWdlcycgPT4gMiAqIDEyMCBdL31cbjxwPnskYm9vay50aXRsZX06IHskYm9vay5wYWdlc30gcGFnZXM8L3A+XG57cGFkOnNldCAkcHJpbWVzID0gWzIsIDMsIDUsIDddL31cbjxwPnthcnJheTpwcmltZXN9eyRwcmltZXN9IHsvYXJyYXk6cHJpbWVzfTwvcD5cbjxwPntwYWQ6ZWNobyBwaHA6aW1wbG9kZSgnICsgJywgWzEsIDIsIDNdKSAuICcgPSAnIC4gcGhwOmFycmF5X3N1bShbMSwgMiwgM10pL308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkYm9vayA9IFsgJ3RpdGxlJyA9PiAnTWludXRlcycsICdwYWdlcycgPT4gMiAqIDEyMCBdL31cbjxwPnskYm9vay50aXRsZX06IHskYm9vay5wYWdlc30gcGFnZXM8L3A+XG57cGFkOnNldCAkcHJpbWVzID0gWzIsIDMsIDUsIDddL31cbjxwPnthcnJheTpwcmltZXN9eyRwcmltZXN9IHsvYXJyYXk6cHJpbWVzfTwvcD5cbjxwPntwYWQ6ZWNobyBwaHA6aW1wbG9kZSgnICsgJywgWzEsIDIsIDNdKSAuICcgPSAnIC4gcGhwOmFycmF5X3N1bShbMSwgMiwgM10pL308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>book = [ <font color="black">'</font>title<font color="black">'</font> =&gt; <font color="black">'</font>Minutes<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pages<font color="black">'</font> =&gt; 2 * 120 ]</font>/}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>book.title</font>}</b>: <b>{<font color="green"><font color="red">$</font>book.pages</font>}</b> pages&lt;/p&gt;<br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>primes = [2<font color="black">,</font> 3<font color="black">,</font> 5<font color="black">,</font> 7]</font>/}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>primes</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>primes</font>}</b> <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>primes</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font> + <font color="black">'</font><font color="black">,</font> [1<font color="black">,</font> 2<font color="black">,</font> 3]) . <font color="black">'</font> = <font color="black">'</font> . php<font color="black">:</font>array_sum([1<font color="black">,</font> 2<font color="black">,</font> 3])</font>/}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
 <p>Minutes: 240 pages</p>
 
@@ -682,15 +767,14 @@ takes:</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -707,45 +791,54 @@ function), <code>function:</code>, <code>tag:</code> and the others the
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_12.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ2NvbG9ycyd9W1wicmVkXCIsIFwiZ3JlZW5cIiwgXCJibHVlXCJdey9mb3JtYXQ6YXV0b31cbntwYWQ6c2V0ICRudW1zID0gWzQsIDgsIDE1XS99XG57cGFkOnNldCAkdGl0bGUgPSAnUHJlZml4ZXMnL31cbjxwPntwYWQ6ZWNobyBjb25zdGFudDpQSFBfSU5UX1NJWkUvfTwvcD5cbjxwPntwYWQ6ZWNobyBwaHA6Y291bnQoZGF0YTpjb2xvcnMpL308L3A+XG48cD57cGFkOmVjaG8gcGhwOmNvdW50KGFycmF5Om51bXMpL30gbnVtYmVycywgdG9nZXRoZXIge3BhZDplY2hvIGFycmF5Om51bXMgKyAwL308L3A+XG48cD57cGFkOmVjaG8gcGhwOnN0cl9yZXBlYXQoJz0nLCA1KS99PC9wPlxuPHA+e3BhZDplY2hvIGZpZWxkOnRpdGxlIHwgdXBwZXIvfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ2NvbG9ycyd9W1wicmVkXCIsIFwiZ3JlZW5cIiwgXCJibHVlXCJdey9mb3JtYXQ6YXV0b31cbntwYWQ6c2V0ICRudW1zID0gWzQsIDgsIDE1XS99XG57cGFkOnNldCAkdGl0bGUgPSAnUHJlZml4ZXMnL31cbjxwPntwYWQ6ZWNobyBjb25zdGFudDpQSFBfSU5UX1NJWkUvfTwvcD5cbjxwPntwYWQ6ZWNobyBwaHA6Y291bnQoZGF0YTpjb2xvcnMpL308L3A+XG48cD57cGFkOmVjaG8gcGhwOmNvdW50KGFycmF5Om51bXMpL30gbnVtYmVycywgdG9nZXRoZXIge3BhZDplY2hvIGFycmF5Om51bXMgKyAwL308L3A+XG48cD57cGFkOmVjaG8gcGhwOnN0cl9yZXBlYXQoJz0nLCA1KS99PC9wPlxuPHA+e3BhZDplY2hvIGZpZWxkOnRpdGxlIHwgdXBwZXIvfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto </font><font color="red"><font color="black">'</font>colors<font color="black">'</font></font>}</b>["red", "green", "blue"]<b>{/<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>nums = [4<font color="black">,</font> 8<font color="black">,</font> 15]</font>/}</b><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>title = <font color="black">'</font>Prefixes<font color="black">'</font></font>/}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">constant<font color="black">:</font>PHP_INT_SIZE</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>count(data<font color="black">:</font>colors)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>count(array<font color="black">:</font>nums)</font>/}</b> numbers, together <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">array<font color="black">:</font>nums + 0</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>str_repeat(<font color="black">'</font>=<font color="black">'</font><font color="black">,</font> 5)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">field<font color="black">:</font>title <font color="black">|</font> upper</font>/}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_12.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ2NvbG9ycyd9W1wicmVkXCIsIFwiZ3JlZW5cIiwgXCJibHVlXCJdey9mb3JtYXQ6YXV0b31cbntwYWQ6c2V0ICRudW1zID0gWzQsIDgsIDE1XS99XG57cGFkOnNldCAkdGl0bGUgPSAnUHJlZml4ZXMnL31cbjxwPntwYWQ6ZWNobyBjb25zdGFudDpQSFBfSU5UX1NJWkUvfTwvcD5cbjxwPntwYWQ6ZWNobyBwaHA6Y291bnQoZGF0YTpjb2xvcnMpL308L3A+XG48cD57cGFkOmVjaG8gcGhwOmNvdW50KGFycmF5Om51bXMpL30gbnVtYmVycywgdG9nZXRoZXIge3BhZDplY2hvIGFycmF5Om51bXMgKyAwL308L3A+XG48cD57cGFkOmVjaG8gcGhwOnN0cl9yZXBlYXQoJz0nLCA1KS99PC9wPlxuPHA+e3BhZDplY2hvIGZpZWxkOnRpdGxlIHwgdXBwZXIvfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ2NvbG9ycyd9W1wicmVkXCIsIFwiZ3JlZW5cIiwgXCJibHVlXCJdey9mb3JtYXQ6YXV0b31cbntwYWQ6c2V0ICRudW1zID0gWzQsIDgsIDE1XS99XG57cGFkOnNldCAkdGl0bGUgPSAnUHJlZml4ZXMnL31cbjxwPntwYWQ6ZWNobyBjb25zdGFudDpQSFBfSU5UX1NJWkUvfTwvcD5cbjxwPntwYWQ6ZWNobyBwaHA6Y291bnQoZGF0YTpjb2xvcnMpL308L3A+XG48cD57cGFkOmVjaG8gcGhwOmNvdW50KGFycmF5Om51bXMpL30gbnVtYmVycywgdG9nZXRoZXIge3BhZDplY2hvIGFycmF5Om51bXMgKyAwL308L3A+XG48cD57cGFkOmVjaG8gcGhwOnN0cl9yZXBlYXQoJz0nLCA1KS99PC9wPlxuPHA+e3BhZDplY2hvIGZpZWxkOnRpdGxlIHwgdXBwZXIvfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto </font><font color="red"><font color="black">'</font>colors<font color="black">'</font></font>}</b>["red", "green", "blue"]<b>{/<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>nums = [4<font color="black">,</font> 8<font color="black">,</font> 15]</font>/}</b><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>title = <font color="black">'</font>Prefixes<font color="black">'</font></font>/}</b><br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">constant<font color="black">:</font>PHP_INT_SIZE</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>count(data<font color="black">:</font>colors)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>count(array<font color="black">:</font>nums)</font>/}</b> numbers, together <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">array<font color="black">:</font>nums + 0</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>str_repeat(<font color="black">'</font>=<font color="black">'</font><font color="black">,</font> 5)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">field<font color="black">:</font>title <font color="black">|</font> upper</font>/}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
 
 
@@ -757,15 +850,14 @@ function), <code>function:</code>, <code>tag:</code> and the others the
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -778,20 +870,62 @@ applied left to right - <code>10 - 2 + 3</code> is 11 - except <code>**</code>, 
 right to left. Round brackets group as usual.</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr style="background: #f0f0f0;"><th>operators</th><th>what they do</th></tr>
-  <tr><td><code>**</code></td><td>power, right to left: <code>2 ** 3 ** 2</code> is <code>2 ** 9</code></td></tr>
-  <tr><td><code>!</code>, a sign <code>-</code> <code>+</code> before a value</td><td>not, and the signs - weaker than <code>**</code>: <code>-3 ** 2</code> is -9</td></tr>
-  <tr><td><code>*</code> <code>/</code> <code>%</code></td><td>multiply, divide, remainder</td></tr>
-  <tr><td><code>+</code> <code>-</code></td><td>add, subtract</td></tr>
-  <tr><td><code>.</code></td><td>join as text</td></tr>
-  <tr><td><code>lt</code> <code>le</code> <code>gt</code> <code>ge</code> - <code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code></td><td>order</td></tr>
-  <tr><td><code>eq</code> <code>ne</code> - <code>==</code> <code>=</code> <code>!=</code> <code>&lt;&gt;</code></td><td>equal, not equal</td></tr>
-  <tr><td><code>not</code></td><td>denies what follows, a comparison included</td></tr>
-  <tr><td><code>and</code> - <code>&amp;&amp;</code></td><td>both hold</td></tr>
-  <tr><td><code>xor</code></td><td>exactly one holds</td></tr>
-  <tr><td><code>or</code> - <code>||</code></td><td>either holds</td></tr>
-  <tr><td><code>??</code></td><td>the left side, or the right one when the left is empty or missing</td></tr>
-  <tr><td><code>? :</code> and <code>?:</code></td><td>the inline ternary, weakest of all</td></tr>
+  <tr style="background: #f0f0f0;">
+    <th>operators</th>
+    <th>what they do</th>
+  </tr>
+  <tr>
+    <td><code>**</code></td>
+    <td>power, right to left: <code>2 ** 3 ** 2</code> is <code>2 ** 9</code></td>
+  </tr>
+  <tr>
+    <td><code>!</code>, a sign <code>-</code> <code>+</code> before a value</td>
+    <td>not, and the signs - weaker than <code>**</code>: <code>-3 ** 2</code> is -9</td>
+  </tr>
+  <tr>
+    <td><code>*</code> <code>/</code> <code>%</code></td>
+    <td>multiply, divide, remainder</td>
+  </tr>
+  <tr>
+    <td><code>+</code> <code>-</code></td>
+    <td>add, subtract</td>
+  </tr>
+  <tr>
+    <td><code>.</code></td>
+    <td>join as text</td>
+  </tr>
+  <tr>
+    <td><code>lt</code> <code>le</code> <code>gt</code> <code>ge</code> - <code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code></td>
+    <td>order</td>
+  </tr>
+  <tr>
+    <td><code>eq</code> <code>ne</code> - <code>==</code> <code>=</code> <code>!=</code> <code>&lt;&gt;</code></td>
+    <td>equal, not equal</td>
+  </tr>
+  <tr>
+    <td><code>not</code></td>
+    <td>denies what follows, a comparison included</td>
+  </tr>
+  <tr>
+    <td><code>and</code> - <code>&amp;&amp;</code></td>
+    <td>both hold</td>
+  </tr>
+  <tr>
+    <td><code>xor</code></td>
+    <td>exactly one holds</td>
+  </tr>
+  <tr>
+    <td><code>or</code> - <code>||</code></td>
+    <td>either holds</td>
+  </tr>
+  <tr>
+    <td><code>??</code></td>
+    <td>the left side, or the right one when the left is empty or missing</td>
+  </tr>
+  <tr>
+    <td><code>? :</code> and <code>?:</code></td>
+    <td>the inline ternary, weakest of all</td>
+  </tr>
 </table>
 
 <p>The tests <code>in</code>, <code>like</code>, <code>matches</code>, <code>range</code>,
@@ -806,12 +940,11 @@ a text that is not, <code>'a' + 1</code>, is an error, and so is a division by z
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -846,12 +979,11 @@ a text that is not, <code>'a' + 1</code>, is an error, and so is a division by z
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -891,12 +1023,11 @@ only where no value stands before it does a dot start a number.</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -937,12 +1068,11 @@ PHP's <code>===</code> and <code>!==</code> are not there. A comparison answers
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -982,12 +1112,11 @@ side that decides: <code>$n gt 0 and 10 / $n gt 1</code> never divides by zero.<
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1028,45 +1157,54 @@ the same:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/expressions_18.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_18.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $nickname </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$count    </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$tags     </span><span style="color: #007700">= [];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/expressions_18.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57cGFkOmVjaG8gJG5pY2tuYW1lID8/ICdubyBuaWNrbmFtZScvfTwvcD5cbjxwPntwYWQ6ZWNobyAkY291bnQgPz8gJ25vIGNvdW50Jy99PC9wPlxuPHA+e3BhZDplY2hvICRzdXJuYW1lID8/ICdubyBzdXJuYW1lJy99PC9wPlxuPHA+e3BhZDplY2hvICRzdXJuYW1lID8/ICRuaWNrbmFtZSA/PyAnbm90aGluZyBhdCBhbGwnL308L3A+XG48cD57JG5pY2tuYW1lIHwgPz8gJ2Fub255bW91cyd9IC0geyRuaWNrbmFtZSB8IGRlZmF1bHQoJ2Fub255bW91cycpfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkbmlja25hbWUgPSAnJztcbiAgJGNvdW50ICAgID0gMDtcbiAgJHRhZ3MgICAgID0gW107XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57cGFkOmVjaG8gJG5pY2tuYW1lID8/ICdubyBuaWNrbmFtZScvfTwvcD5cbjxwPntwYWQ6ZWNobyAkY291bnQgPz8gJ25vIGNvdW50Jy99PC9wPlxuPHA+e3BhZDplY2hvICRzdXJuYW1lID8/ICdubyBzdXJuYW1lJy99PC9wPlxuPHA+e3BhZDplY2hvICRzdXJuYW1lID8/ICRuaWNrbmFtZSA/PyAnbm90aGluZyBhdCBhbGwnL308L3A+XG48cD57JG5pY2tuYW1lIHwgPz8gJ2Fub255bW91cyd9IC0geyRuaWNrbmFtZSB8IGRlZmF1bHQoJ2Fub255bW91cycpfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkbmlja25hbWUgPSAnJztcbiAgJGNvdW50ICAgID0gMDtcbiAgJHRhZ3MgICAgID0gW107XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>nickname ?? <font color="black">'</font>no nickname<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>count ?? <font color="black">'</font>no count<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>surname ?? <font color="black">'</font>no surname<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>surname ?? <font color="red">$</font>nickname ?? <font color="black">'</font>nothing at all<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$nickname</font> <font color="black">|</font> <font color="blue">?? 'anonymous'</font>}</b> - <b>{<font color="green">$nickname</font> <font color="black">|</font> <font color="blue">default('anonymous')</font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_18.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $nickname </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$count    </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$tags     </span><span style="color: #007700">= [];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57cGFkOmVjaG8gJG5pY2tuYW1lID8/ICdubyBuaWNrbmFtZScvfTwvcD5cbjxwPntwYWQ6ZWNobyAkY291bnQgPz8gJ25vIGNvdW50Jy99PC9wPlxuPHA+e3BhZDplY2hvICRzdXJuYW1lID8/ICdubyBzdXJuYW1lJy99PC9wPlxuPHA+e3BhZDplY2hvICRzdXJuYW1lID8/ICRuaWNrbmFtZSA/PyAnbm90aGluZyBhdCBhbGwnL308L3A+XG48cD57JG5pY2tuYW1lIHwgPz8gJ2Fub255bW91cyd9IC0geyRuaWNrbmFtZSB8IGRlZmF1bHQoJ2Fub255bW91cycpfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkbmlja25hbWUgPSAnJztcbiAgJGNvdW50ICAgID0gMDtcbiAgJHRhZ3MgICAgID0gW107XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57cGFkOmVjaG8gJG5pY2tuYW1lID8/ICdubyBuaWNrbmFtZScvfTwvcD5cbjxwPntwYWQ6ZWNobyAkY291bnQgPz8gJ25vIGNvdW50Jy99PC9wPlxuPHA+e3BhZDplY2hvICRzdXJuYW1lID8/ICdubyBzdXJuYW1lJy99PC9wPlxuPHA+e3BhZDplY2hvICRzdXJuYW1lID8/ICRuaWNrbmFtZSA/PyAnbm90aGluZyBhdCBhbGwnL308L3A+XG48cD57JG5pY2tuYW1lIHwgPz8gJ2Fub255bW91cyd9IC0geyRuaWNrbmFtZSB8IGRlZmF1bHQoJ2Fub255bW91cycpfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkbmlja25hbWUgPSAnJztcbiAgJGNvdW50ICAgID0gMDtcbiAgJHRhZ3MgICAgID0gW107XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>nickname ?? <font color="black">'</font>no nickname<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>count ?? <font color="black">'</font>no count<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>surname ?? <font color="black">'</font>no surname<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>surname ?? <font color="red">$</font>nickname ?? <font color="black">'</font>nothing at all<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$nickname</font> <font color="black">|</font> <font color="blue">?? 'anonymous'</font>}</b> - <b>{<font color="green">$nickname</font> <font color="black">|</font> <font color="blue">default('anonymous')</font>}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>no nickname</p>
 <p>0</p>
 <p>no surname</p>
@@ -1075,15 +1213,14 @@ the same:</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -1101,12 +1238,11 @@ value is the condition:</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1138,45 +1274,54 @@ value is the condition:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_20.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ2NhcnQnfVxuICBbIHtcIml0ZW1cIjogXCJwZW5cIiwgXCJxdHlcIjogMX0sIHtcIml0ZW1cIjogXCJib29rXCIsIFwicXR5XCI6IDN9LCB7XCJpdGVtXCI6IFwibGFtcFwiLCBcInF0eVwiOiAwfSBdXG57L2Zvcm1hdDphdXRvfVxue2RhdGE6Y2FydH1cbiAgPHA+eyRxdHl9IHtwYWQ6ZWNobyAkcXR5IGVxIDEgPyAkaXRlbSA6ICRpdGVtIC4gJ3MnL317cGFkOmVjaG8gJHF0eSA/ICcnIDogJyAtIHNvbGQgb3V0Jy99PC9wPlxuey9kYXRhOmNhcnR9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ2NhcnQnfVxuICBbIHtcIml0ZW1cIjogXCJwZW5cIiwgXCJxdHlcIjogMX0sIHtcIml0ZW1cIjogXCJib29rXCIsIFwicXR5XCI6IDN9LCB7XCJpdGVtXCI6IFwibGFtcFwiLCBcInF0eVwiOiAwfSBdXG57L2Zvcm1hdDphdXRvfVxue2RhdGE6Y2FydH1cbiAgPHA+eyRxdHl9IHtwYWQ6ZWNobyAkcXR5IGVxIDEgPyAkaXRlbSA6ICRpdGVtIC4gJ3MnL317cGFkOmVjaG8gJHF0eSA/ICcnIDogJyAtIHNvbGQgb3V0Jy99PC9wPlxuey9kYXRhOmNhcnR9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto </font><font color="red"><font color="black">'</font>cart<font color="black">'</font></font>}</b><br>  [ {"item": "pen", "qty": 1}, {"item": "book", "qty": 3}, {"item": "lamp", "qty": 0} ]<br><b>{/<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>cart</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>qty</font>}</b> <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>qty eq 1 ? <font color="red">$</font>item <font color="black">:</font> <font color="red">$</font>item . <font color="black">'</font>s<font color="black">'</font></font>/}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>qty ? <font color="black">'</font><font color="black">'</font> <font color="black">:</font> <font color="black">'</font> - sold out<font color="black">'</font></font>/}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>cart</font><font color="red"></font>}</b></code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_20.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ2NhcnQnfVxuICBbIHtcIml0ZW1cIjogXCJwZW5cIiwgXCJxdHlcIjogMX0sIHtcIml0ZW1cIjogXCJib29rXCIsIFwicXR5XCI6IDN9LCB7XCJpdGVtXCI6IFwibGFtcFwiLCBcInF0eVwiOiAwfSBdXG57L2Zvcm1hdDphdXRvfVxue2RhdGE6Y2FydH1cbiAgPHA+eyRxdHl9IHtwYWQ6ZWNobyAkcXR5IGVxIDEgPyAkaXRlbSA6ICRpdGVtIC4gJ3MnL317cGFkOmVjaG8gJHF0eSA/ICcnIDogJyAtIHNvbGQgb3V0Jy99PC9wPlxuey9kYXRhOmNhcnR9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ2NhcnQnfVxuICBbIHtcIml0ZW1cIjogXCJwZW5cIiwgXCJxdHlcIjogMX0sIHtcIml0ZW1cIjogXCJib29rXCIsIFwicXR5XCI6IDN9LCB7XCJpdGVtXCI6IFwibGFtcFwiLCBcInF0eVwiOiAwfSBdXG57L2Zvcm1hdDphdXRvfVxue2RhdGE6Y2FydH1cbiAgPHA+eyRxdHl9IHtwYWQ6ZWNobyAkcXR5IGVxIDEgPyAkaXRlbSA6ICRpdGVtIC4gJ3MnL317cGFkOmVjaG8gJHF0eSA/ICcnIDogJyAtIHNvbGQgb3V0Jy99PC9wPlxuey9kYXRhOmNhcnR9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto </font><font color="red"><font color="black">'</font>cart<font color="black">'</font></font>}</b><br>  [ {"item": "pen", "qty": 1}, {"item": "book", "qty": 3}, {"item": "lamp", "qty": 0} ]<br><b>{/<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>cart</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>qty</font>}</b> <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>qty eq 1 ? <font color="red">$</font>item <font color="black">:</font> <font color="red">$</font>item . <font color="black">'</font>s<font color="black">'</font></font>/}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>qty ? <font color="black">'</font><font color="black">'</font> <font color="black">:</font> <font color="black">'</font> - sold out<font color="black">'</font></font>/}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>cart</font><font color="red"></font>}</b></code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
 
   <p>1 pen</p>
@@ -1188,15 +1333,14 @@ value is the condition:</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -1212,12 +1356,11 @@ them.</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1256,12 +1399,11 @@ add up as numbers.</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1291,13 +1433,34 @@ add up as numbers.</p>
 <h2 id="tests">Tests: in, like, matches, range, between, contains</h2>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr style="background: #f0f0f0;"><th>test</th><th>holds when</th></tr>
-  <tr><td><code>$x in (a, b, ...)</code></td><td>the value equals one of the list</td></tr>
-  <tr><td><code>$x like 'A%'</code></td><td>the value matches the SQL pattern: <code>%</code> any run of characters, <code>_</code> one character, <code>\\%</code> and <code>\\_</code> themselves; case is ignored</td></tr>
-  <tr><td><code>$x matches '/re/'</code></td><td>the regular expression matches</td></tr>
-  <tr><td><code>$x range (a, b)</code></td><td>a &lt;= value &lt;= b, the ends included</td></tr>
-  <tr><td><code>$x between (a, b)</code></td><td>a &lt; value &lt; b, the ends left out</td></tr>
-  <tr><td><code>$x contains y</code></td><td>the text holds y - or, for a list, an item of it equals y</td></tr>
+  <tr style="background: #f0f0f0;">
+    <th>test</th>
+    <th>holds when</th>
+  </tr>
+  <tr>
+    <td><code>$x in (a, b, ...)</code></td>
+    <td>the value equals one of the list</td>
+  </tr>
+  <tr>
+    <td><code>$x like 'A%'</code></td>
+    <td>the value matches the SQL pattern: <code>%</code> any run of characters, <code>_</code> one character, <code>\\%</code> and <code>\\_</code> themselves; case is ignored</td>
+  </tr>
+  <tr>
+    <td><code>$x matches '/re/'</code></td>
+    <td>the regular expression matches</td>
+  </tr>
+  <tr>
+    <td><code>$x range (a, b)</code></td>
+    <td>a &lt;= value &lt;= b, the ends included</td>
+  </tr>
+  <tr>
+    <td><code>$x between (a, b)</code></td>
+    <td>a &lt; value &lt; b, the ends left out</td>
+  </tr>
+  <tr>
+    <td><code>$x contains y</code></td>
+    <td>the text holds y - or, for a list, an item of it equals y</td>
+  </tr>
 </table>
 
 <p>A <code>not</code> between the value and the test denies the test, as SQL writes it:
@@ -1307,12 +1470,11 @@ add up as numbers.</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1344,12 +1506,11 @@ add up as numbers.</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1382,12 +1543,11 @@ tag - repeat the class, as below, or let the page's PHP hand the pattern over.</
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1416,12 +1576,11 @@ tag - repeat the class, as below, or let the page's PHP hand the pattern over.</
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1453,12 +1612,11 @@ for:</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1489,12 +1647,11 @@ first argument:</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1527,45 +1684,54 @@ covers with the other options:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_29.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ29yZGVycyd9XG4gIFsge1wibnJcIjogMSwgXCJzdGF0ZVwiOiBcInBhaWRcIiwgICAgICBcImN1c3RvbWVyXCI6IFwiQWRhXCJ9LFxuICAgIHtcIm5yXCI6IDIsIFwic3RhdGVcIjogXCJjYW5jZWxsZWRcIiwgXCJjdXN0b21lclwiOiBcIkFsYW5cIn0sXG4gICAge1wibnJcIjogMywgXCJzdGF0ZVwiOiBcInNlbnRcIiwgICAgICBcImN1c3RvbWVyXCI6IFwiQm9iXCJ9LFxuICAgIHtcIm5yXCI6IDQsIFwic3RhdGVcIjogXCJzZW50XCIsICAgICAgXCJjdXN0b21lclwiOiBcIkFsaWNlXCJ9IF1cbnsvZm9ybWF0OmF1dG99XG57ZGF0YTpvcmRlcnMgd2hlcmU9JyRzdGF0ZSBub3QgaW4gKFwiY2FuY2VsbGVkXCIsIFwicmVmdW5kZWRcIikgYW5kICRjdXN0b21lciBsaWtlIFwiQSVcIid9XG4gIDxwPnskbnJ9OiB7JGN1c3RvbWVyfSwgeyRzdGF0ZX08L3A+XG57L2RhdGE6b3JkZXJzfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ29yZGVycyd9XG4gIFsge1wibnJcIjogMSwgXCJzdGF0ZVwiOiBcInBhaWRcIiwgICAgICBcImN1c3RvbWVyXCI6IFwiQWRhXCJ9LFxuICAgIHtcIm5yXCI6IDIsIFwic3RhdGVcIjogXCJjYW5jZWxsZWRcIiwgXCJjdXN0b21lclwiOiBcIkFsYW5cIn0sXG4gICAge1wibnJcIjogMywgXCJzdGF0ZVwiOiBcInNlbnRcIiwgICAgICBcImN1c3RvbWVyXCI6IFwiQm9iXCJ9LFxuICAgIHtcIm5yXCI6IDQsIFwic3RhdGVcIjogXCJzZW50XCIsICAgICAgXCJjdXN0b21lclwiOiBcIkFsaWNlXCJ9IF1cbnsvZm9ybWF0OmF1dG99XG57ZGF0YTpvcmRlcnMgd2hlcmU9JyRzdGF0ZSBub3QgaW4gKFwiY2FuY2VsbGVkXCIsIFwicmVmdW5kZWRcIikgYW5kICRjdXN0b21lciBsaWtlIFwiQSVcIid9XG4gIDxwPnskbnJ9OiB7JGN1c3RvbWVyfSwgeyRzdGF0ZX08L3A+XG57L2RhdGE6b3JkZXJzfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto </font><font color="red"><font color="black">'</font>orders<font color="black">'</font></font>}</b><br>  [ {"nr": 1, "state": "paid",      "customer": "Ada"},<br>    {"nr": 2, "state": "cancelled", "customer": "Alan"},<br>    {"nr": 3, "state": "sent",      "customer": "Bob"},<br>    {"nr": 4, "state": "sent",      "customer": "Alice"} ]<br><b>{/<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>orders </font><font color="red">where=<font color="black">'</font><font color="red">$</font>state not in ("cancelled"<font color="black">,</font> "refunded") and <font color="red">$</font>customer like "A<font color="black">%</font>"<font color="black">'</font></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>nr</font>}</b>: <b>{<font color="green"><font color="red">$</font>customer</font>}</b>, <b>{<font color="green"><font color="red">$</font>state</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>orders</font><font color="red"></font>}</b></code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_29.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ29yZGVycyd9XG4gIFsge1wibnJcIjogMSwgXCJzdGF0ZVwiOiBcInBhaWRcIiwgICAgICBcImN1c3RvbWVyXCI6IFwiQWRhXCJ9LFxuICAgIHtcIm5yXCI6IDIsIFwic3RhdGVcIjogXCJjYW5jZWxsZWRcIiwgXCJjdXN0b21lclwiOiBcIkFsYW5cIn0sXG4gICAge1wibnJcIjogMywgXCJzdGF0ZVwiOiBcInNlbnRcIiwgICAgICBcImN1c3RvbWVyXCI6IFwiQm9iXCJ9LFxuICAgIHtcIm5yXCI6IDQsIFwic3RhdGVcIjogXCJzZW50XCIsICAgICAgXCJjdXN0b21lclwiOiBcIkFsaWNlXCJ9IF1cbnsvZm9ybWF0OmF1dG99XG57ZGF0YTpvcmRlcnMgd2hlcmU9JyRzdGF0ZSBub3QgaW4gKFwiY2FuY2VsbGVkXCIsIFwicmVmdW5kZWRcIikgYW5kICRjdXN0b21lciBsaWtlIFwiQSVcIid9XG4gIDxwPnskbnJ9OiB7JGN1c3RvbWVyfSwgeyRzdGF0ZX08L3A+XG57L2RhdGE6b3JkZXJzfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ29yZGVycyd9XG4gIFsge1wibnJcIjogMSwgXCJzdGF0ZVwiOiBcInBhaWRcIiwgICAgICBcImN1c3RvbWVyXCI6IFwiQWRhXCJ9LFxuICAgIHtcIm5yXCI6IDIsIFwic3RhdGVcIjogXCJjYW5jZWxsZWRcIiwgXCJjdXN0b21lclwiOiBcIkFsYW5cIn0sXG4gICAge1wibnJcIjogMywgXCJzdGF0ZVwiOiBcInNlbnRcIiwgICAgICBcImN1c3RvbWVyXCI6IFwiQm9iXCJ9LFxuICAgIHtcIm5yXCI6IDQsIFwic3RhdGVcIjogXCJzZW50XCIsICAgICAgXCJjdXN0b21lclwiOiBcIkFsaWNlXCJ9IF1cbnsvZm9ybWF0OmF1dG99XG57ZGF0YTpvcmRlcnMgd2hlcmU9JyRzdGF0ZSBub3QgaW4gKFwiY2FuY2VsbGVkXCIsIFwicmVmdW5kZWRcIikgYW5kICRjdXN0b21lciBsaWtlIFwiQSVcIid9XG4gIDxwPnskbnJ9OiB7JGN1c3RvbWVyfSwgeyRzdGF0ZX08L3A+XG57L2RhdGE6b3JkZXJzfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto </font><font color="red"><font color="black">'</font>orders<font color="black">'</font></font>}</b><br>  [ {"nr": 1, "state": "paid",      "customer": "Ada"},<br>    {"nr": 2, "state": "cancelled", "customer": "Alan"},<br>    {"nr": 3, "state": "sent",      "customer": "Bob"},<br>    {"nr": 4, "state": "sent",      "customer": "Alice"} ]<br><b>{/<font color="blue"><font color="purple">format</font><font color="black"><b>:</b></font>auto</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>orders </font><font color="red">where=<font color="black">'</font><font color="red">$</font>state not in ("cancelled"<font color="black">,</font> "refunded") and <font color="red">$</font>customer like "A<font color="black">%</font>"<font color="black">'</font></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>nr</font>}</b>: <b>{<font color="green"><font color="red">$</font>customer</font>}</b>, <b>{<font color="green"><font color="red">$</font>state</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>orders</font><font color="red"></font>}</b></code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
 
   <p>1: Ada, paid</p>
@@ -1575,15 +1741,14 @@ covers with the other options:</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -1600,12 +1765,11 @@ checked.</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1636,12 +1800,11 @@ checked.</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1680,12 +1843,11 @@ arguments where <code>@</code> stands: <code>$n | php:number_format(@, 2)</code>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1723,60 +1885,68 @@ application's own (see <a href="?pages/extending">extending</a>):</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_33.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57cGFkOmVjaG8gJ3dlbGwgZG9uZScgfCBzdGFycy99PC9wPlxuPHA+e3BhZDplY2hvICd3ZWxsIGRvbmUnIHwgZnVuY3Rpb246c3RhcnMvfTwvcD5cbjxwPntwYWQ6ZWNobyAnd2VsbCBkb25lJyB8IHVwcGVyIHwgc3RhcnMgfCBwaHA6c3RybGVuL308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57cGFkOmVjaG8gJ3dlbGwgZG9uZScgfCBzdGFycy99PC9wPlxuPHA+e3BhZDplY2hvICd3ZWxsIGRvbmUnIHwgZnVuY3Rpb246c3RhcnMvfTwvcD5cbjxwPntwYWQ6ZWNobyAnd2VsbCBkb25lJyB8IHVwcGVyIHwgc3RhcnMgfCBwaHA6c3RybGVuL308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> stars</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> function<font color="black">:</font>stars</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> upper <font color="black">|</font> stars <font color="black">|</font> php<font color="black">:</font>strlen</font>/}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_33.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57cGFkOmVjaG8gJ3dlbGwgZG9uZScgfCBzdGFycy99PC9wPlxuPHA+e3BhZDplY2hvICd3ZWxsIGRvbmUnIHwgZnVuY3Rpb246c3RhcnMvfTwvcD5cbjxwPntwYWQ6ZWNobyAnd2VsbCBkb25lJyB8IHVwcGVyIHwgc3RhcnMgfCBwaHA6c3RybGVuL308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57cGFkOmVjaG8gJ3dlbGwgZG9uZScgfCBzdGFycy99PC9wPlxuPHA+e3BhZDplY2hvICd3ZWxsIGRvbmUnIHwgZnVuY3Rpb246c3RhcnMvfTwvcD5cbjxwPntwYWQ6ZWNobyAnd2VsbCBkb25lJyB8IHVwcGVyIHwgc3RhcnMgfCBwaHA6c3RybGVuL308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> stars</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> function<font color="black">:</font>stars</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> upper <font color="black">|</font> stars <font color="black">|</font> php<font color="black">:</font>strlen</font>/}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>*** well done ***</p>
 <p>*** well done ***</p>
 <p>17</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -1789,12 +1959,11 @@ each over what the one before answered:</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1828,12 +1997,11 @@ operator and its operand is required: <code>| + 1</code>, never <code>| +1</code
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1864,12 +2032,11 @@ operator and its operand is required: <code>| + 1</code>, never <code>| +1</code
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1903,12 +2070,11 @@ needs it:</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1942,12 +2108,11 @@ the remainder: <code>| % 3</code>.</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -1984,12 +2149,11 @@ whole expression before it.</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -2023,60 +2187,68 @@ the page made itself, the wrong one for what a visitor typed:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_40.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkaHRtbCA9ICc8aT5wYWQ8L2k+Jy99XG48cD57JGh0bWwgfCB1cHBlcn08L3A+XG48cD57cGFkOmVjaG8gJGh0bWwgfCB1cHBlci99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkaHRtbCA9ICc8aT5wYWQ8L2k+Jy99XG48cD57JGh0bWwgfCB1cHBlcn08L3A+XG48cD57cGFkOmVjaG8gJGh0bWwgfCB1cHBlci99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>html = <font color="black">'</font>&lt;i&gt;pad&lt;/i&gt;<font color="black">'</font></font>/}</b><br>&lt;p&gt;<b>{<font color="green">$html</font> <font color="black">|</font> <font color="blue">upper</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>html <font color="black">|</font> upper</font>/}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_40.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkaHRtbCA9ICc8aT5wYWQ8L2k+Jy99XG48cD57JGh0bWwgfCB1cHBlcn08L3A+XG48cD57cGFkOmVjaG8gJGh0bWwgfCB1cHBlci99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkaHRtbCA9ICc8aT5wYWQ8L2k+Jy99XG48cD57JGh0bWwgfCB1cHBlcn08L3A+XG48cD57cGFkOmVjaG8gJGh0bWwgfCB1cHBlci99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>html = <font color="black">'</font>&lt;i&gt;pad&lt;/i&gt;<font color="black">'</font></font>/}</b><br>&lt;p&gt;<b>{<font color="green">$html</font> <font color="black">|</font> <font color="blue">upper</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>html <font color="black">|</font> upper</font>/}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
 <p>&lt;I&gt;PAD&lt;/I&gt;</p>
 <p><I>PAD</I></p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -2093,12 +2265,11 @@ plain text. <code>now</code> is the current time, and the
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -2135,12 +2306,11 @@ a list is handed over with the <code>array:</code> prefix:</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -2171,45 +2341,54 @@ a list is handed over with the <code>array:</code> prefix:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_43.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkc2NvcmVzID0gWzcsIDksIDQsIDEwXS99XG48cD5TdW0ge3BhZDplY2hvIGFycmF5OnNjb3JlcyArIDAvfSwgY291bnQge3BhZDplY2hvIHBocDpjb3VudChhcnJheTpzY29yZXMpL308L3A+XG48cD5BdmVyYWdlIHtwYWQ6ZWNobyAoYXJyYXk6c2NvcmVzICsgMCkgLyBwaHA6Y291bnQoYXJyYXk6c2NvcmVzKS99PC9wPlxuPHA+QmVzdCB7cGFkOmVjaG8gcGhwOm1heChhcnJheTpzY29yZXMpL30sIHdvcnN0IHtwYWQ6ZWNobyBwaHA6bWluKGFycmF5OnNjb3JlcykvfTwvcD5cbjxwPntwYWQ6ZWNobyBwaHA6aW1wbG9kZSgnLCAnLCBhcnJheTpzY29yZXMpL308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkc2NvcmVzID0gWzcsIDksIDQsIDEwXS99XG48cD5TdW0ge3BhZDplY2hvIGFycmF5OnNjb3JlcyArIDAvfSwgY291bnQge3BhZDplY2hvIHBocDpjb3VudChhcnJheTpzY29yZXMpL308L3A+XG48cD5BdmVyYWdlIHtwYWQ6ZWNobyAoYXJyYXk6c2NvcmVzICsgMCkgLyBwaHA6Y291bnQoYXJyYXk6c2NvcmVzKS99PC9wPlxuPHA+QmVzdCB7cGFkOmVjaG8gcGhwOm1heChhcnJheTpzY29yZXMpL30sIHdvcnN0IHtwYWQ6ZWNobyBwaHA6bWluKGFycmF5OnNjb3JlcykvfTwvcD5cbjxwPntwYWQ6ZWNobyBwaHA6aW1wbG9kZSgnLCAnLCBhcnJheTpzY29yZXMpL308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>scores = [7<font color="black">,</font> 9<font color="black">,</font> 4<font color="black">,</font> 10]</font>/}</b><br>&lt;p&gt;Sum <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">array<font color="black">:</font>scores + 0</font>/}</b>, count <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>count(array<font color="black">:</font>scores)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;Average <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">(array<font color="black">:</font>scores + 0) / php<font color="black">:</font>count(array<font color="black">:</font>scores)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;Best <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>max(array<font color="black">:</font>scores)</font>/}</b>, worst <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>min(array<font color="black">:</font>scores)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font><font color="black">,</font> <font color="black">'</font><font color="black">,</font> array<font color="black">:</font>scores)</font>/}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_43.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkc2NvcmVzID0gWzcsIDksIDQsIDEwXS99XG48cD5TdW0ge3BhZDplY2hvIGFycmF5OnNjb3JlcyArIDAvfSwgY291bnQge3BhZDplY2hvIHBocDpjb3VudChhcnJheTpzY29yZXMpL308L3A+XG48cD5BdmVyYWdlIHtwYWQ6ZWNobyAoYXJyYXk6c2NvcmVzICsgMCkgLyBwaHA6Y291bnQoYXJyYXk6c2NvcmVzKS99PC9wPlxuPHA+QmVzdCB7cGFkOmVjaG8gcGhwOm1heChhcnJheTpzY29yZXMpL30sIHdvcnN0IHtwYWQ6ZWNobyBwaHA6bWluKGFycmF5OnNjb3JlcykvfTwvcD5cbjxwPntwYWQ6ZWNobyBwaHA6aW1wbG9kZSgnLCAnLCBhcnJheTpzY29yZXMpL308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOnNldCAkc2NvcmVzID0gWzcsIDksIDQsIDEwXS99XG48cD5TdW0ge3BhZDplY2hvIGFycmF5OnNjb3JlcyArIDAvfSwgY291bnQge3BhZDplY2hvIHBocDpjb3VudChhcnJheTpzY29yZXMpL308L3A+XG48cD5BdmVyYWdlIHtwYWQ6ZWNobyAoYXJyYXk6c2NvcmVzICsgMCkgLyBwaHA6Y291bnQoYXJyYXk6c2NvcmVzKS99PC9wPlxuPHA+QmVzdCB7cGFkOmVjaG8gcGhwOm1heChhcnJheTpzY29yZXMpL30sIHdvcnN0IHtwYWQ6ZWNobyBwaHA6bWluKGFycmF5OnNjb3JlcykvfTwvcD5cbjxwPntwYWQ6ZWNobyBwaHA6aW1wbG9kZSgnLCAnLCBhcnJheTpzY29yZXMpL308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>scores = [7<font color="black">,</font> 9<font color="black">,</font> 4<font color="black">,</font> 10]</font>/}</b><br>&lt;p&gt;Sum <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">array<font color="black">:</font>scores + 0</font>/}</b>, count <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>count(array<font color="black">:</font>scores)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;Average <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">(array<font color="black">:</font>scores + 0) / php<font color="black">:</font>count(array<font color="black">:</font>scores)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;Best <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>max(array<font color="black">:</font>scores)</font>/}</b>, worst <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>min(array<font color="black">:</font>scores)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font><font color="black">,</font> <font color="black">'</font><font color="black">,</font> array<font color="black">:</font>scores)</font>/}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
 <p>Sum 30, count 4</p>
 <p>Average 7.5</p>
@@ -2218,15 +2397,14 @@ a list is handed over with the <code>array:</code> prefix:</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -2240,12 +2418,11 @@ written with PHP's precision, so <code>0.1 + 0.2</code> comes out as 0.3:</p>
 
 
 
- 
 
- 
+
 
   
-  <p> 
+  <p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
@@ -2282,60 +2459,68 @@ PAD on purpose, say so where it is used, with the <code>code</code> pipe (or
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/expressions_45.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/expressions_45.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Text that came from somewhere else - a database, a form, a file.<br><br>  </span><span style="color: #0000BB">$snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'{pad:echo 6 * 7/}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/expressions_45.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57JHNuaXBwZXR9PC9wPlxuPHA+e3BhZDplY2hvICRzbmlwcGV0IC4gJyBpcyB0ZXh0Jy99PC9wPlxuPHA+e3BhZDplY2hvICRzbmlwcGV0IHwgY29kZS99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRleHQgdGhhdCBjYW1lIGZyb20gc29tZXdoZXJlIGVsc2UgLSBhIGRhdGFiYXNlLCBhIGZvcm0sIGEgZmlsZS5cblxuICAkc25pcHBldCA9ICd7cGFkOmVjaG8gNiAqIDcvfSc7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57JHNuaXBwZXR9PC9wPlxuPHA+e3BhZDplY2hvICRzbmlwcGV0IC4gJyBpcyB0ZXh0Jy99PC9wPlxuPHA+e3BhZDplY2hvICRzbmlwcGV0IHwgY29kZS99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRleHQgdGhhdCBjYW1lIGZyb20gc29tZXdoZXJlIGVsc2UgLSBhIGRhdGFiYXNlLCBhIGZvcm0sIGEgZmlsZS5cblxuICAkc25pcHBldCA9ICd7cGFkOmVjaG8gNiAqIDcvfSc7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>snippet . <font color="black">'</font> is text<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>/}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/expressions_45.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Text that came from somewhere else - a database, a form, a file.<br><br>  </span><span style="color: #0000BB">$snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'{pad:echo 6 * 7/}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57JHNuaXBwZXR9PC9wPlxuPHA+e3BhZDplY2hvICRzbmlwcGV0IC4gJyBpcyB0ZXh0Jy99PC9wPlxuPHA+e3BhZDplY2hvICRzbmlwcGV0IHwgY29kZS99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRleHQgdGhhdCBjYW1lIGZyb20gc29tZXdoZXJlIGVsc2UgLSBhIGRhdGFiYXNlLCBhIGZvcm0sIGEgZmlsZS5cblxuICAkc25pcHBldCA9ICd7cGFkOmVjaG8gNiAqIDcvfSc7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57JHNuaXBwZXR9PC9wPlxuPHA+e3BhZDplY2hvICRzbmlwcGV0IC4gJyBpcyB0ZXh0Jy99PC9wPlxuPHA+e3BhZDplY2hvICRzbmlwcGV0IHwgY29kZS99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRleHQgdGhhdCBjYW1lIGZyb20gc29tZXdoZXJlIGVsc2UgLSBhIGRhdGFiYXNlLCBhIGZvcm0sIGEgZmlsZS5cblxuICAkc25pcHBldCA9ICd7cGFkOmVjaG8gNiAqIDcvfSc7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>snippet . <font color="black">'</font> is text<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>/}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>{pad:echo 6 * 7/}</p>
 <p>{pad:echo 6 * 7/} is text</p>
 <p>42</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -2350,26 +2535,86 @@ the lines around it (see <a href="?pages/template_errors">errors in the template
 some mistakes are told:</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr style="background: #f0f0f0;"><th>written</th><th>the error says</th></tr>
-  <tr><td><code>{pad:echo (1 + 2/}</code></td><td>the ( opened at position 1 is never closed</td></tr>
-  <tr><td><code>{pad:echo 'abc/}</code></td><td>the string opened with ' at position 1 is never closed</td></tr>
-  <tr><td><code>{pad:echo $name | uppr/}</code></td><td>there is no pipe function named 'uppr'</td></tr>
-  <tr><td><code>{pad:echo nofunc(1)/}</code></td><td>there is no function named 'nofunc'</td></tr>
-  <tr><td><code>{pad:if $typo eq 1}</code></td><td>there is no field named '$typo'</td></tr>
-  <tr><td><code>{pad:echo $items + 1/}</code></td><td>the field '$items' is a list, not a value</td></tr>
-  <tr><td><code>{pad:if $n eq}</code></td><td>the operator 'eq' has nothing on its right</td></tr>
-  <tr><td><code>{pad:echo $n + * 3/}</code></td><td>the operators '+' and '*' stand side by side - a value is missing between them</td></tr>
-  <tr><td><code>{pad:if $n === 5}</code></td><td>'===' is no operator - eq (==) compares two values</td></tr>
-  <tr><td><code>{pad:echo $n | +1/}</code></td><td>a pipe operator needs a space before its operand - write '| + 1', not '| +1'</td></tr>
-  <tr><td><code>{pad:echo 5 &amp; 3/}</code></td><td>'&amp;' is no operator or value</td></tr>
-  <tr><td><code>{pad:if $n not 5}</code></td><td>a 'not' after a value denies a test - write $a not in (...), not like, not matches or not range, or put it in front: not $a eq $b</td></tr>
-  <tr><td><code>{pad:echo 7 / 0/}</code></td><td>a division by zero in /</td></tr>
-  <tr><td><code>{pad:echo 'a' * 2/}</code></td><td>'a' is not a number for *</td></tr>
-  <tr><td><code>{pad:echo $n ? 'a'/}</code></td><td>the ? of an inline ternary has no : - write cond ? then : else</td></tr>
-  <tr><td><code>{pad:echo [ 'a' =&gt; ]/}</code></td><td>the key 'a' of a list has no value after its =&gt;</td></tr>
-  <tr><td><code>{pad:echo replace('abc')/}</code></td><td>the function 'replace' wants 2 parameters after the value it works on - written as a call its first argument is that value: replace($value, ...)</td></tr>
-  <tr><td><code>{pad:echo php:str_repeat('x', -1)/}</code></td><td>the PHP function 'str_repeat' refused its arguments: str_repeat(): Argument #2 ($times) must be greater than or equal to 0</td></tr>
-  <tr><td><code>{pad:echo 'a\qb'/}</code></td><td>Unsupported \ char</td></tr>
+  <tr style="background: #f0f0f0;">
+    <th>written</th>
+    <th>the error says</th>
+  </tr>
+  <tr>
+    <td><code>{pad:echo (1 + 2/}</code></td>
+    <td>the ( opened at position 1 is never closed</td>
+  </tr>
+  <tr>
+    <td><code>{pad:echo 'abc/}</code></td>
+    <td>the string opened with ' at position 1 is never closed</td>
+  </tr>
+  <tr>
+    <td><code>{pad:echo $name | uppr/}</code></td>
+    <td>there is no pipe function named 'uppr'</td>
+  </tr>
+  <tr>
+    <td><code>{pad:echo nofunc(1)/}</code></td>
+    <td>there is no function named 'nofunc'</td>
+  </tr>
+  <tr>
+    <td><code>{pad:if $typo eq 1}</code></td>
+    <td>there is no field named '$typo'</td>
+  </tr>
+  <tr>
+    <td><code>{pad:echo $items + 1/}</code></td>
+    <td>the field '$items' is a list, not a value</td>
+  </tr>
+  <tr>
+    <td><code>{pad:if $n eq}</code></td>
+    <td>the operator 'eq' has nothing on its right</td>
+  </tr>
+  <tr>
+    <td><code>{pad:echo $n + * 3/}</code></td>
+    <td>the operators '+' and '*' stand side by side - a value is missing between them</td>
+  </tr>
+  <tr>
+    <td><code>{pad:if $n === 5}</code></td>
+    <td>'===' is no operator - eq (==) compares two values</td>
+  </tr>
+  <tr>
+    <td><code>{pad:echo $n | +1/}</code></td>
+    <td>a pipe operator needs a space before its operand - write '| + 1', not '| +1'</td>
+  </tr>
+  <tr>
+    <td><code>{pad:echo 5 &amp; 3/}</code></td>
+    <td>'&amp;' is no operator or value</td>
+  </tr>
+  <tr>
+    <td><code>{pad:if $n not 5}</code></td>
+    <td>a 'not' after a value denies a test - write $a not in (...), not like, not matches or not range, or put it in front: not $a eq $b</td>
+  </tr>
+  <tr>
+    <td><code>{pad:echo 7 / 0/}</code></td>
+    <td>a division by zero in /</td>
+  </tr>
+  <tr>
+    <td><code>{pad:echo 'a' * 2/}</code></td>
+    <td>'a' is not a number for *</td>
+  </tr>
+  <tr>
+    <td><code>{pad:echo $n ? 'a'/}</code></td>
+    <td>the ? of an inline ternary has no : - write cond ? then : else</td>
+  </tr>
+  <tr>
+    <td><code>{pad:echo [ 'a' =&gt; ]/}</code></td>
+    <td>the key 'a' of a list has no value after its =&gt;</td>
+  </tr>
+  <tr>
+    <td><code>{pad:echo replace('abc')/}</code></td>
+    <td>the function 'replace' wants 2 parameters after the value it works on - written as a call its first argument is that value: replace($value, ...)</td>
+  </tr>
+  <tr>
+    <td><code>{pad:echo php:str_repeat('x', -1)/}</code></td>
+    <td>the PHP function 'str_repeat' refused its arguments: str_repeat(): Argument #2 ($times) must be greater than or equal to 0</td>
+  </tr>
+  <tr>
+    <td><code>{pad:echo 'a\qb'/}</code></td>
+    <td>Unsupported \ char</td>
+  </tr>
 </table>
 
 <h2>The lenient walk</h2>

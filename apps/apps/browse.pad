@@ -16,48 +16,43 @@
 </style>
 
 <div class="browse-page">
-
-{pad:if $app ne ''}
-
-  <div class="browse-container">
-
-    <div class="file-list">
-      <ul>
-        {pad:if $hasParent}
-          <li class="parent">
-            {pad:if $parentDir ne ''}
-              <a href="?browse&app={$app}&dir={$parentDir}">..</a>
-            @else@
-              <a href="?browse&app={$app}">..</a>
+  {pad:if $app ne ''}
+    <div class="browse-container">
+      <div class="file-list">
+        <ul>
+          {pad:if $hasParent}
+            <li class="parent">
+              {pad:if $parentDir ne ''}
+                <a href="?browse&app={$app}&dir={$parentDir}">..</a>
+              @else@
+                <a href="?browse&app={$app}">..</a>
+              {/pad:if}
+            </li>
+          {/pad:if}
+          {array:appDirs}
+            <li class="dir"><a href="?browse&app={$app}&dir={$path}">{$name}/</a></li>
+          {/array:appDirs}
+          {array:appFiles}
+            {pad:if $currentFile eq $path}
+              <li class="current">{$name}</li>
             {/pad:if}
-          </li>
-        {/pad:if}
-        {array:appDirs}
-          <li class="dir"><a href="?browse&app={$app}&dir={$path}">{$name}/</a></li>
-        {/array:appDirs}
-        {array:appFiles}
-          {pad:if $currentFile eq $path}
-            <li class="current">{$name}</li>
-          {/pad:if}
-          {pad:if $currentFile ne $path}
-            <li><a href="?browse&app={$app}&dir={$dir}&file={$path}">{$name}</a></li>
-          {/pad:if}
-        {/array:appFiles}
-      </ul>
-    </div>
-
-    {pad:if $currentFile ne ''}
-      <div class="source-view">
-        <h3>{$currentFile}</h3>
-        {!source}
+            {pad:if $currentFile ne $path}
+              <li><a href="?browse&app={$app}&dir={$dir}&file={$path}">{$name}</a></li>
+            {/pad:if}
+          {/array:appFiles}
+        </ul>
       </div>
-    {/pad:if}
 
-  </div>
+      {pad:if $currentFile ne ''}
+        <div class="source-view">
+          <h3>{$currentFile}</h3>
+          {!source}
+        </div>
+      {/pad:if}
+    </div>
+  {/pad:if}
 
-{/pad:if}
-
-{pad:if $app eq ''}
-  <p>No application specified. <a href="?index">Return to applications list</a>.</p>
-{/pad:if}
+  {pad:if $app eq ''}
+    <p>No application specified. <a href="?index">Return to applications list</a>.</p>
+  {/pad:if}
 </div>

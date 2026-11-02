@@ -1,6 +1,11 @@
 {pad:meta title='Rendered content', about='The content is template - here a loop over the page\'s data - rendered before it goes into the dialog.'/}
 {widget:modal 'opening-hours', button='Opening hours'}
   <table>
-    {array:hours}<tr><th>{$day}</th><td>{$open}</td></tr>{/array:hours}
+    {array:hours}
+      <tr>
+        <th>{$day}</th>
+        <td>{$open}</td>
+      </tr>
+    {/array:hours}
   </table>
 {/widget:modal}

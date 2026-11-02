@@ -1,21 +1,21 @@
 {common:table}
 
-{common:demo} {sequence:range '11..40', action='shift|2'   } {$sequence} {/sequence:range}  {/common:demo}
+{common:demo} {sequence:range '11..40', action='shift|2'} {$sequence} {/sequence:range}  {/common:demo}
 
-{common:demo} {sequence:range '11..40', push='mySequence' /}{/common:demo}
+{common:demo} {sequence:range '11..40', push='mySequence'/}{/common:demo}
 
-{common:demo} {pull:mySequence action='shift|2'           } {$sequence} {/pull:mySequence}        {/common:demo}
+{common:demo} {pull:mySequence action='shift|2'} {$sequence} {/pull:mySequence}        {/common:demo}
 
-{common:demo} {action:auto shift=2, mySequence       } {$sequence} {/action:auto}            {/common:demo}
-{common:demo} {action:auto mySequence, shift=2       } {$sequence} {/action:auto}            {/common:demo}
+{common:demo} {action:auto shift=2, mySequence} {$sequence} {/action:auto}            {/common:demo}
+{common:demo} {action:auto mySequence, shift=2} {$sequence} {/action:auto}            {/common:demo}
 
-{common:demo} {action:shift pull='mySequence', 2                    } {$sequence} {/action:shift}   {/common:demo}
+{common:demo} {action:shift pull='mySequence', 2} {$sequence} {/action:shift}   {/common:demo}
 
-{common:demo} {action:shift mySequence, 2          } {$sequence} {/action:shift}       {/common:demo}
+{common:demo} {action:shift mySequence, 2} {$sequence} {/action:shift}       {/common:demo}
 
-{common:demo} {action:shift mySequence, 2                 } {$sequence} {/action:shift}              {/common:demo}
-{common:demo} {action:shift pull='mySequence', 2                    } {$sequence} {/action:shift}   {/common:demo}
+{common:demo} {action:shift mySequence, 2} {$sequence} {/action:shift}              {/common:demo}
+{common:demo} {action:shift pull='mySequence', 2} {$sequence} {/action:shift}   {/common:demo}
 
-{common:demo} {action:mySequence shift=2          } {$sequence} {/action:mySequence} {/common:demo}
+{common:demo} {action:mySequence shift=2} {$sequence} {/action:mySequence} {/common:demo}
 
 {/common:table}

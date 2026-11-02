@@ -7,14 +7,38 @@ expires. PHP has the building blocks - <code>password_hash</code>, sodium,
 <code>hash_hmac</code> - and these helpers put them together the safe way.</p>
 
 <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>function</th><th>what it answers</th></tr>
-  <tr><td><code>padHash ( $password )</code></td><td>the password hashed with <code>password_hash</code> and PHP's default algorithm - the text to store</td></tr>
-  <tr><td><code>padHashCheck ( $password, $hash )</code></td><td>whether the password matches the hash</td></tr>
-  <tr><td><code>padHashNeedsRehash ( $hash )</code></td><td>whether the hash was made with weaker settings than PHP's default now</td></tr>
-  <tr><td><code>padEncrypt ( $value )</code></td><td>the value sealed: JSON-encoded, encrypted and signed, as one URL-safe string</td></tr>
-  <tr><td><code>padDecrypt ( $payload, $default = NULL )</code></td><td>the value back - or the default for a payload that was changed, cut short or sealed with another key</td></tr>
-  <tr><td><code>padSignedUrl ( $page, $vars = [], $expires = NULL )</code></td><td>a link to a page of this application with an expiry time and a signature</td></tr>
-  <tr><td><code>padSignatureValid ()</code></td><td>whether this request came by such a link, unchanged and not expired</td></tr>
+  <tr>
+    <th>function</th>
+    <th>what it answers</th>
+  </tr>
+  <tr>
+    <td><code>padHash ( $password )</code></td>
+    <td>the password hashed with <code>password_hash</code> and PHP's default algorithm - the text to store</td>
+  </tr>
+  <tr>
+    <td><code>padHashCheck ( $password, $hash )</code></td>
+    <td>whether the password matches the hash</td>
+  </tr>
+  <tr>
+    <td><code>padHashNeedsRehash ( $hash )</code></td>
+    <td>whether the hash was made with weaker settings than PHP's default now</td>
+  </tr>
+  <tr>
+    <td><code>padEncrypt ( $value )</code></td>
+    <td>the value sealed: JSON-encoded, encrypted and signed, as one URL-safe string</td>
+  </tr>
+  <tr>
+    <td><code>padDecrypt ( $payload, $default = NULL )</code></td>
+    <td>the value back - or the default for a payload that was changed, cut short or sealed with another key</td>
+  </tr>
+  <tr>
+    <td><code>padSignedUrl ( $page, $vars = [], $expires = NULL )</code></td>
+    <td>a link to a page of this application with an expiry time and a signature</td>
+  </tr>
+  <tr>
+    <td><code>padSignatureValid ()</code></td>
+    <td>whether this request came by such a link, unchanged and not expired</td>
+  </tr>
 </table>
 
 <h2>Passwords</h2>

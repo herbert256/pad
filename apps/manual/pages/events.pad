@@ -6,11 +6,31 @@ error to a tracker, log a slow query or an API that is down, or post-process the
 page.</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>file</th><th>runs when</th><th>its variables</th></tr>
-  <tr><td><code>_events/error.php</code></td><td>an error is raised, whatever the error action does with it next</td><td><code>$error</code>, <code>$file</code>, <code>$line</code></td></tr>
-  <tr><td><code>_events/sql.php</code></td><td><code>db()</code> ran a statement</td><td><code>$sql</code> as sent, <code>$input</code>, <code>$vars</code>, <code>$result</code>, <code>$rows</code>, <code>$ms</code></td></tr>
-  <tr><td><code>_events/curl.php</code></td><td>a remote fetch finished, well or not</td><td><code>$url</code>, <code>$result</code> (the HTTP code, 999 on a failure), <code>$error</code>, <code>$ms</code></td></tr>
-  <tr><td><code>_events/output.php</code></td><td>the page is about to be sent</td><td><code>$output</code> - change it to change the page</td></tr>
+  <tr>
+    <th>file</th>
+    <th>runs when</th>
+    <th>its variables</th>
+  </tr>
+  <tr>
+    <td><code>_events/error.php</code></td>
+    <td>an error is raised, whatever the error action does with it next</td>
+    <td><code>$error</code>, <code>$file</code>, <code>$line</code></td>
+  </tr>
+  <tr>
+    <td><code>_events/sql.php</code></td>
+    <td><code>db()</code> ran a statement</td>
+    <td><code>$sql</code> as sent, <code>$input</code>, <code>$vars</code>, <code>$result</code>, <code>$rows</code>, <code>$ms</code></td>
+  </tr>
+  <tr>
+    <td><code>_events/curl.php</code></td>
+    <td>a remote fetch finished, well or not</td>
+    <td><code>$url</code>, <code>$result</code> (the HTTP code, 999 on a failure), <code>$error</code>, <code>$ms</code></td>
+  </tr>
+  <tr>
+    <td><code>_events/output.php</code></td>
+    <td>the page is about to be sent</td>
+    <td><code>$output</code> - change it to change the page</td>
+  </tr>
 </table>
 
 <p>&nbsp;</p>

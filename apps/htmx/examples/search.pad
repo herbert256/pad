@@ -8,16 +8,28 @@
 </div>
 
 <div id="results">
-{pad:fragment 'results'}
-  <p class="muted small">{$count} {pad:if $count eq 1}product{pad:else}products{/pad:if}{pad:if $q} for <mark>{$q}</mark>{/pad:if}</p>
-  <table class="table">
-    <thead><tr><th>Product</th><th>Category</th><th class="num">Price</th></tr></thead>
-    <tbody>
-      {array:found}
-      <tr><td>{$emoji} {$name}</td><td><span class="badge">{$category}</span></td><td class="num">{$price | currency('EUR')}</td></tr>
-      {/array:found}
-    </tbody>
-  </table>
-  {pad:if $count eq 0}<div class="empty-state"><span class="big">🔎</span>Nothing in the catalogue matches.</div>{/pad:if}
-{/pad:fragment}
+  {pad:fragment 'results'}
+    <p class="muted small">{$count} {pad:if $count eq 1}product{pad:else}products{/pad:if}{pad:if $q} for <mark>{$q}</mark>{/pad:if}</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Category</th>
+          <th class="num">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {array:found}
+          <tr>
+            <td>{$emoji} {$name}</td>
+            <td><span class="badge">{$category}</span></td>
+            <td class="num">{$price | currency('EUR')}</td>
+          </tr>
+        {/array:found}
+      </tbody>
+    </table>
+    {pad:if $count eq 0}
+      <div class="empty-state"><span class="big">🔎</span>Nothing in the catalogue matches.</div>
+    {/pad:if}
+  {/pad:fragment}
 </div>

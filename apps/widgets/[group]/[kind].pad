@@ -7,8 +7,18 @@
   <p>Every text of the theme on each of its backgrounds, as WCAG 2 measures it -
      {pad:if $aaa}7 to 1 or more, AAA{pad:else}4.5 to 1 or more, AA{/pad:if}.</p>
   <table class="sx-contrast">
-    <tr><th>Text</th><th>On</th><th>Ratio</th></tr>
-    {array:contrasts}<tr><td>{$fore}</td><td>{$back}</td><td>{$ratio} : 1</td></tr>{/array:contrasts}
+    <tr>
+      <th>Text</th>
+      <th>On</th>
+      <th>Ratio</th>
+    </tr>
+    {array:contrasts}
+      <tr>
+        <td>{$fore}</td>
+        <td>{$back}</td>
+        <td>{$ratio} : 1</td>
+      </tr>
+    {/array:contrasts}
   </table>
   <form method="post" class="sx-use">
     <input type="hidden" name="padForm" value="padThemes">

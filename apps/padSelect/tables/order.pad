@@ -1,6 +1,14 @@
 <table>
-  <tr><th>Track</th><th>Album</th><th class="n">Seconds</th></tr>
+  <tr>
+    <th>Track</th>
+    <th>Album</th>
+    <th class="n">Seconds</th>
+  </tr>
   {select:tracks order="seconds desc", rows=5}
-  <tr><td>{$title}</td><td>{select:albums}{$title}{/select:albums}</td><td class="n">{$seconds}</td></tr>
+    <tr>
+      <td>{$title}</td>
+      <td>{select:albums}{$title}{/select:albums}</td>
+      <td class="n">{$seconds}</td>
+    </tr>
   {/select:tracks}
 </table>

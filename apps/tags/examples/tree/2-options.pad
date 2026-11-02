@@ -1,6 +1,11 @@
 {pad:meta title='Another children field, sorted, with depth', about='children= names the field; sort applies at every level; depth@tree counts the levels.'/}
 <ul>
-{pad:tree data='folders', children='sub', sort='name'}
-  <li>{$name} <small>(depth {property:depth@tree/}, {property:current@tree/} of {property:count@tree/})</small>{pad:branch}<ul>{pad:recurse/}</ul>{/pad:branch}</li>
-{/pad:tree}
+  {pad:tree data='folders', children='sub', sort='name'}
+    <li>
+      {$name} <small>(depth {property:depth@tree/}, {property:current@tree/} of {property:count@tree/})</small>
+      {pad:branch}
+        <ul>{pad:recurse/}</ul>
+      {/pad:branch}
+    </li>
+  {/pad:tree}
 </ul>

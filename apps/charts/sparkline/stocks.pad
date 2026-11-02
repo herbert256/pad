@@ -1,11 +1,16 @@
 <table class="quotes">
-  <tr><th>Share</th><th>15 days</th><th>Last</th><th>Change</th></tr>
-  {array:shares}
   <tr>
-    <td>{$name}</td>
-    <td>{chart:sparkline data='closes', width=140, height=30, title=$name/}</td>
-    <td>{$last}</td>
-    <td class="{pad:echo $change ge 0 ? 'up' : 'down'/}">{$change} %</td>
+    <th>Share</th>
+    <th>15 days</th>
+    <th>Last</th>
+    <th>Change</th>
   </tr>
+  {array:shares}
+    <tr>
+      <td>{$name}</td>
+      <td>{chart:sparkline data='closes', width=140, height=30, title=$name/}</td>
+      <td>{$last}</td>
+      <td class="{pad:echo $change ge 0 ? 'up' : 'down'/}">{$change} %</td>
+    </tr>
   {/array:shares}
 </table>

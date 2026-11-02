@@ -1,26 +1,29 @@
 {!tagKindHtml}
 </section>
 
-<section class="block" aria-labelledby="examples"><h2 id="examples">Example</h2>
+<section class="block" aria-labelledby="examples">
+  <h2 id="examples">Example</h2>
   {array:tagKindExample}
-  <div class="example" id="example-1">
-    <h3>{$title}</h3>
-    {pad:if $about}<p class="example-about">{$about}</p>{/pad:if}
-    <div class="example-grid{pad:if not $run} is-static{/pad:if}">
-      <div class="cell">
-        <div class="cell-head"><span>Template</span><span class="cell-file">{$file}</span></div>
-        <pre class="code"><code>{!padHtml}</code></pre>
-        {pad:if $php}
-        <div class="cell-head"><span>PHP</span><span class="cell-file">{$php}</span></div>
-        <pre class="code"><code>{!phpHtml}</code></pre>
+    <div class="example" id="example-1">
+      <h3>{$title}</h3>
+      {pad:if $about}
+        <p class="example-about">{$about}</p>
+      {/pad:if}
+      <div class="example-grid{pad:if not $run} is-static{/pad:if}">
+        <div class="cell">
+          <div class="cell-head"><span>Template</span><span class="cell-file">{$file}</span></div>
+          <pre class="code"><code>{!padHtml}</code></pre>
+          {pad:if $php}
+            <div class="cell-head"><span>PHP</span><span class="cell-file">{$php}</span></div>
+            <pre class="code"><code>{!phpHtml}</code></pre>
+          {/pad:if}
+        </div>
+        {pad:if $run}
+          <div class="cell">
+            <div class="cell-head"><span>Result</span><span>{pad:if $open}<a class="cell-file" href="{$open}">open alone</a>{/pad:if}{!play}</span></div>
+            <div class="result">{pad:if $app}{pad:page $page, app=$app, ajax=0/}{pad:elseif $page}{pad:page $page/}{pad:else}{pad:echo $source | code/}{/pad:if}</div>
+          </div>
         {/pad:if}
       </div>
-      {pad:if $run}
-      <div class="cell">
-        <div class="cell-head"><span>Result</span><span>{pad:if $open}<a class="cell-file" href="{$open}">open alone</a>{/pad:if}{!play}</span></div>
-        <div class="result">{pad:if $app}{pad:page $page, app=$app, ajax=0/}{pad:elseif $page}{pad:page $page/}{pad:else}{pad:echo $source | code/}{/pad:if}</div>
-      </div>
-      {/pad:if}
     </div>
-  </div>
   {/array:tagKindExample}

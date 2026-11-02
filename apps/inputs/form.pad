@@ -17,13 +17,26 @@ the server checks the post again all the same. Send it empty to see them.</p>
   {input:dropzone 'resume', label='Your CV', accept='.pdf'/}
   {input:newpassword 'password', label='Password', rules='required|min:12'/}
   {input:otp 'code', label='Code', rules='required|digits:6'/}
-  {input:combobox 'city', label='City', options='Amsterdam, Berlin, Paris, Rome', rules='required|in:Amsterdam,Berlin,Paris,Rome'/}
-  {input:multiselect 'interests', label='Interests', options='PHP, Maps, Music, Charts', rules='required|in:PHP,Maps,Music,Charts'/}
+  {input:combobox 'city',
+    label='City',
+    options='Amsterdam, Berlin, Paris, Rome',
+    rules='required|in:Amsterdam,Berlin,Paris,Rome'
+  /}
+  {input:multiselect 'interests',
+    label='Interests',
+    options='PHP, Maps, Music, Charts',
+    rules='required|in:PHP,Maps,Music,Charts'
+  /}
   {input:segmented 'size', label='Size', options='S, M, L, XL', rules='required|in:S,M,L,XL'/}
   {input:durationpicker 'length', label='Length', parts='hm', rules='required|integer|between:600,28800'/}
   {input:rangeslider 'budget', label='Budget', max=1000, step=50, unit=' EUR', value='200, 600'/}
   {input:daterange 'stay', label='Your stay', labels='Arrival, Departure', nights/}
-  {input:treepicker 'topic', label='Topic', options='Forms > Fields, Forms > Rules, Pages > Layouts, Pages > Wrappers', leaves, rules='required|in:Fields,Rules,Layouts,Wrappers'/}
+  {input:treepicker 'topic',
+    label='Topic',
+    options='Forms > Fields, Forms > Rules, Pages > Layouts, Pages > Wrappers',
+    leaves,
+    rules='required|in:Fields,Rules,Layouts,Wrappers'
+  /}
   <button class="inputs-send">Send</button>
 {/input:form}
 

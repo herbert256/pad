@@ -1,10 +1,25 @@
 {pad:meta title='Every kind', about='The kinds of pad/subs/fakes/types/ as a page array, a value of each - the same on every request; explicit date bounds, a fixed ULID timestamp and weighted choices keep the required inputs visible.'/}
 <table>
   {array:kinds}
-  <tr><td><code>{$kind}</code></td><td>{fake:$kind/}</td></tr>
+    <tr>
+      <td><code>{$kind}</code></td>
+      <td>{fake:$kind/}</td>
+    </tr>
   {/array:kinds}
-  <tr><td><code>coordinate</code></td><td>{fake:coordinate seed=42}{$coordinate.latitude}, {$coordinate.longitude}{/fake:coordinate}</td></tr>
-  <tr><td><code>date</code></td><td>{fake:date from='2026-01-01', to='2026-12-31'/}</td></tr>
-  <tr><td><code>ulid</code></td><td>{fake:ulid time=1767225600000/}</td></tr>
-  <tr><td><code>weighted</code></td><td>{fake:weighted values=['standard','express','pickup'], weights=[6,3,1]/}</td></tr>
+  <tr>
+    <td><code>coordinate</code></td>
+    <td>{fake:coordinate seed=42}{$coordinate.latitude}, {$coordinate.longitude}{/fake:coordinate}</td>
+  </tr>
+  <tr>
+    <td><code>date</code></td>
+    <td>{fake:date from='2026-01-01', to='2026-12-31'/}</td>
+  </tr>
+  <tr>
+    <td><code>ulid</code></td>
+    <td>{fake:ulid time=1767225600000/}</td>
+  </tr>
+  <tr>
+    <td><code>weighted</code></td>
+    <td>{fake:weighted values=['standard','express','pickup'], weights=[6,3,1]/}</td>
+  </tr>
 </table>

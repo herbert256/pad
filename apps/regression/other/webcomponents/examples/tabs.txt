@@ -12,12 +12,28 @@
 ::slotted([slot="tab"]:focus-visible) { outline: 3px solid var(--accent-soft, #e8effd); }
 .panels { margin-top: 14px; padding: 16px 18px; border-radius: 14px; border: 1px solid var(--line, #e3e6eb); background: var(--panel, #fff); }
 ::slotted([slot="panel"][hidden]) { display: none; }</style>
-    <div class="tablist" role="tablist" part="tablist"><slot name="tab"></slot></div>
-    <div class="panels"><slot name="panel"></slot></div>
+    <div class="tablist" role="tablist" part="tablist">
+      <slot name="tab"></slot>
+    </div>
+    <div class="panels">
+      <slot name="panel"></slot>
+    </div>
   </template>
   
   <button slot="tab" role="tab" id="tab-server" aria-controls="panel-server" aria-selected="true">On the server</button><button slot="tab" role="tab" id="tab-wire" aria-controls="panel-wire" aria-selected="false">In the HTML</button><button slot="tab" role="tab" id="tab-client" aria-controls="panel-client" aria-selected="false">In the browser</button>
-  <section slot="panel" role="tabpanel" id="panel-server" aria-labelledby="tab-server"><p>PAD renders &lt;pad-tabs&gt; with its shadow root - the tablist and the panel area - and every tab and panel as plain HTML inside it.</p></section><section slot="panel" role="tabpanel" id="panel-wire" aria-labelledby="tab-wire"><p>The browser builds the shadow root from the template while it parses the page: no script, no flash of unstyled tabs.</p></section><section slot="panel" role="tabpanel" id="panel-client" aria-labelledby="tab-client"><p>tabs.js defines the element: it finds the root already there and adds clicks and the arrow keys.</p></section>
+  
+    <section slot="panel" role="tabpanel" id="panel-server" aria-labelledby="tab-server">
+      <p>PAD renders &lt;pad-tabs&gt; with its shadow root - the tablist and the panel area - and every tab and panel as plain HTML inside it.</p>
+    </section>
+  
+    <section slot="panel" role="tabpanel" id="panel-wire" aria-labelledby="tab-wire">
+      <p>The browser builds the shadow root from the template while it parses the page: no script, no flash of unstyled tabs.</p>
+    </section>
+  
+    <section slot="panel" role="tabpanel" id="panel-client" aria-labelledby="tab-client">
+      <p>tabs.js defines the element: it finds the root already there and adds clicks and the arrow keys.</p>
+    </section>
+  
 
 </pad-tabs>
 

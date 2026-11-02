@@ -1,4 +1,4 @@
-<table border=1> 
+<table border=1>
   <tr>
     <td> employee </td>
     <td> manager </td>
@@ -9,9 +9,9 @@
       <td> {$lastName}, {$firstName} ({$employeeNumber}) </td>
       {select:managers}
         <td> {$lastName}, {$firstName} ({$employeeNumber}) </td>
-          {select:bosses}
-            <td> {$lastName}, {$firstName} ({$employeeNumber}) </td>
-          {/select:bosses}
+        {select:bosses}
+          <td> {$lastName}, {$firstName} ({$employeeNumber}) </td>
+        {/select:bosses}
       {/select:managers}
     </tr>
   {/select:employees}

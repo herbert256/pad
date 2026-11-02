@@ -1,6 +1,10 @@
 {select:playlists}
-<h3>{$name} <small class="dim">by {$curator}</small></h3>
-<ol>
-  {select:entries}{select:tracks}<li>{$title} &mdash; {select:albums}{$title}, {select:artists}{$name}{/select:artists}{/select:albums}</li>{/select:tracks}{/select:entries}
-</ol>
+  <h3>{$name} <small class="dim">by {$curator}</small></h3>
+  <ol>
+    {select:entries}
+      {select:tracks}
+        <li>{$title} &mdash; {select:albums}{$title}, {select:artists}{$name}{/select:artists}{/select:albums}</li>
+      {/select:tracks}
+    {/select:entries}
+  </ol>
 {/select:playlists}

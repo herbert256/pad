@@ -16,20 +16,20 @@
 
 <div class="cards">
   {array:indexes}
-  <a class="card" href="?{$page}">
-    <h2>{$label}</h2>
-    <p>{$text}</p>
-  </a>
+    <a class="card" href="?{$page}">
+      <h2>{$label}</h2>
+      <p>{$text}</p>
+    </a>
   {/array:indexes}
 </div>
 
 <h2>The groups</h2>
 <div class="cards">
   {array:groups}
-  <section class="card">
-    <h3><a href="?groups#{$key}">{$label}</a> <span class="count">{$count}</span></h3>
-    <p>{$tagline}</p>
-    <div class="tagcloud">{array:tags}<a href="?{$link}" title="{$about}">{$label}</a>{/array:tags}</div>
-  </section>
+    <section class="card">
+      <h3><a href="?groups#{$key}">{$label}</a> <span class="count">{$count}</span></h3>
+      <p>{$tagline}</p>
+      <div class="tagcloud">{array:tags}<a href="?{$link}" title="{$about}">{$label}</a>{/array:tags}</div>
+    </section>
   {/array:groups}
 </div>

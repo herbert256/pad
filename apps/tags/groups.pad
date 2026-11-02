@@ -5,12 +5,15 @@
 <nav class="jump" aria-label="Groups">{array:groups}<a href="#{$key}">{$label}</a>{/array:groups}</nav>
 
 {array:groups}
-<section class="section" id="{$key}">
-  <div class="section-head"><h2>{$label}</h2><span>{$tagline} - {$count} {pad:echo $count eq 1 ? 'entry' : 'entries'/}</span></div>
-  <ul class="list">
-    {array:tags}
-    <li><a class="name" href="?{$link}">{$label}</a> <span class="about">{$about}</span></li>
-    {/array:tags}
-  </ul>
-</section>
+  <section class="section" id="{$key}">
+    <div class="section-head">
+      <h2>{$label}</h2>
+      <span>{$tagline} - {$count} {pad:echo $count eq 1 ? 'entry' : 'entries'/}</span>
+    </div>
+    <ul class="list">
+      {array:tags}
+        <li><a class="name" href="?{$link}">{$label}</a> <span class="about">{$about}</span></li>
+      {/array:tags}
+    </ul>
+  </section>
 {/array:groups}

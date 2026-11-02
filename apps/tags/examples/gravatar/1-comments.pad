@@ -1,6 +1,9 @@
 {pad:meta title='Comments with Gravatars', about='An img per address, made from its SHA-256 hash; default=identicon for addresses Gravatar does not know.'/}
 <div style="display:grid; gap:12px">
   {array:comments}
-  <div style="display:flex; gap:10px; align-items:flex-start">{avatar:gravatar $email, size=40, default='identicon', alt=$name/} <div><strong>{$name}</strong><br>{$text}</div></div>
+    <div style="display:flex; gap:10px; align-items:flex-start">
+      {avatar:gravatar $email, size=40, default='identicon', alt=$name/}
+      <div><strong>{$name}</strong><br>{$text}</div>
+    </div>
   {/array:comments}
 </div>

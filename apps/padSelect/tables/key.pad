@@ -1,10 +1,16 @@
 <h3>One field of the key</h3>
-{select:albums $album_id=9}<p>{$title}, {$released}</p>{/select:albums}
+{select:albums $album_id=9}
+  <p>{$title}, {$released}</p>
+{/select:albums}
 
 <h3>Both fields of a key of two</h3>
-{select:tracks $album_id=3, $track_no=2}<p>Track {$track_no} of album {$album_id}: {$title}</p>{/select:tracks}
+{select:tracks $album_id=3, $track_no=2}
+  <p>Track {$track_no} of album {$album_id}: {$title}</p>
+{/select:tracks}
 
 <h3>The first field alone: every row it names</h3>
 <ol>
-  {select:tracks $album_id=3}<li>{$title}</li>{/select:tracks}
+  {select:tracks $album_id=3}
+    <li>{$title}</li>
+  {/select:tracks}
 </ol>

@@ -4,15 +4,21 @@
 
 <section class="card">
   <form method="post" action="?console" class="bar">
-    <label>Command
+    <label>
+      Command
       <select name="command">
-        {array:commandRows}<option value="{$key}" {pad:if $selected}selected{/pad:if}>{$label}</option>{/array:commandRows}
+        {array:commandRows}
+          <option value="{$key}" {pad:if $selected}selected{/pad:if}>{$label}</option>
+        {/array:commandRows}
       </select>
     </label>
-    <label>Application
+    <label>
+      Application
       <select name="app">
         <option value="">-</option>
-        {array:appRows}<option value="{$name}" {pad:if $selected}selected{/pad:if}>{$name}</option>{/array:appRows}
+        {array:appRows}
+          <option value="{$name}" {pad:if $selected}selected{/pad:if}>{$name}</option>
+        {/array:appRows}
       </select>
     </label>
     <label>Page (render) <input type="text" name="page" value="{$pageName}" placeholder="index"></label>
@@ -40,7 +46,15 @@
   <h2>{icon:clock size=18/} History</h2>
   {pad:if $histCount}
     <table class="list">
-      <thead><tr><th>When</th><th>Who</th><th>Command</th><th class="right">Exit</th><th class="right">ms</th></tr></thead>
+      <thead>
+        <tr>
+          <th>When</th>
+          <th>Who</th>
+          <th>Command</th>
+          <th class="right">Exit</th>
+          <th class="right">ms</th>
+        </tr>
+      </thead>
       <tbody>
         {array:history}
           <tr>

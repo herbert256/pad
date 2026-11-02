@@ -8,6 +8,6 @@
 <h3>Each artist's albums</h3>
 <ul>
   {select:artists where="artist_id in (4, 8)"}
-  <li>{$name}: {select:albums}{$title}@else@<span class="dim">no album yet</span>{/select:albums}</li>
+    <li>{$name}: {select:albums}{$title}@else@<span class="dim">no album yet</span>{/select:albums}</li>
   {/select:artists}
 </ul>

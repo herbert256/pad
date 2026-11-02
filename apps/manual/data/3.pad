@@ -1,20 +1,20 @@
-{common:table}{common:demo}
-
-{format:auto 'myJson'}
+{common:table}
+  {common:demo}
+    {format:auto 'myJson'}
   [ { "name": "bob",   "phone": "555-5555" },
     { "name": "jim",   "phone": "555-6666" },
     { "name": "joe",   "phone": "555-7777" },      
     { "name": "jerry", "phone": "555-8888" } ]
 {/format:auto}
 
-{format:auto}
+    {format:auto}
   name,phone
   {data:myJson}
     {$name}, {$phone}
   {/data:myJson}
 {/format:auto 'myCsv'}
 
-{format:auto}
+    {format:auto}
   <records>
     {data:myCsv}
       <record name="{$name}" phone="{$phone}"/>
@@ -22,23 +22,22 @@
   </records>
 {/format:auto 'myXml'}
 
-{format:auto}
+    {format:auto}
   ---
     {data:myXml} 
     - name: {$name}
       phone: {$phone}
     {/data:myXml}
 {/format:auto 'myYaml'}
-
-{/common:demo}{common:demo}
-
-<table border="1">
-  {data:myYaml}
-    <tr>
-      <td>{$name}</td> 
-      <td>{$phone}</td>
-    </tr>
-  {/data:myYaml}
-</table>
-
-{/common:demo}{/common:table}
+  {/common:demo}
+  {common:demo}
+    <table border="1">
+      {data:myYaml}
+        <tr>
+          <td>{$name}</td>
+          <td>{$phone}</td>
+        </tr>
+      {/data:myYaml}
+    </table>
+  {/common:demo}
+{/common:table}

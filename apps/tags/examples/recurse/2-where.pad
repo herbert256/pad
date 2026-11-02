@@ -9,7 +9,12 @@
 ]
 {/format:auto}
 <ul>
-{pad:tree 'recurseSite', where='$hidden eq 0'}
-  <li>{$page}{pad:branch}<ul>{pad:recurse/}</ul>{/pad:branch}</li>
-{/pad:tree}
+  {pad:tree 'recurseSite', where='$hidden eq 0'}
+    <li>
+      {$page}
+      {pad:branch}
+        <ul>{pad:recurse/}</ul>
+      {/pad:branch}
+    </li>
+  {/pad:tree}
 </ul>

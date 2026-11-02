@@ -1,48 +1,55 @@
-
-
 <p>The page cache answers a whole request from a store. The fragment cache keeps a <em>section</em> of a page rendered, while the page around it stays dynamic: on a hit nothing inside the section runs - no tag, no query - and the stored rendering takes its place.</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/cache_1.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/cache_1.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Start the example from an empty entry, so it shows a miss and then a hit.<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-cache' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$built </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/cache_1.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmNhY2hlICdtYW51YWwtY2FjaGUnLCB0dGw9NjB9XG4gIHtwYWQ6c2V0ICRidWlsdCA9ICRidWlsdCArIDEvfVxuICA8cD5SZW5kZXJlZCB3aGlsZSBidWlsZGluZzogYnVpbHQgeyRidWlsdH0gdGltZShzKTwvcD5cbnsvcGFkOmNhY2hlfVxuXG57cGFkOmNhY2hlICdtYW51YWwtY2FjaGUnLCB0dGw9NjB9XG4gIHtwYWQ6c2V0ICRidWlsdCA9ICRidWlsdCArIDEvfVxuICA8cD5SZW5kZXJlZCB3aGlsZSBidWlsZGluZzogYnVpbHQgeyRidWlsdH0gdGltZShzKTwvcD5cbnsvcGFkOmNhY2hlfVxuXG48cD5UaGUgc2VjdGlvbiB3YXMgYnVpbHQgeyRidWlsdH0gdGltZTogdGhlIHNlY29uZCBvbmUgY2FtZSBmcm9tIHRoZSBjYWNoZS48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gU3RhcnQgdGhlIGV4YW1wbGUgZnJvbSBhbiBlbXB0eSBlbnRyeSwgc28gaXQgc2hvd3MgYSBtaXNzIGFuZCB0aGVuIGEgaGl0LlxuXG4gIHBhZEZyYWdtZW50Rm9yZ2V0ICggJ21hbnVhbC1jYWNoZScgKTtcblxuICAkYnVpbHQgPSAwO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmNhY2hlICdtYW51YWwtY2FjaGUnLCB0dGw9NjB9XG4gIHtwYWQ6c2V0ICRidWlsdCA9ICRidWlsdCArIDEvfVxuICA8cD5SZW5kZXJlZCB3aGlsZSBidWlsZGluZzogYnVpbHQgeyRidWlsdH0gdGltZShzKTwvcD5cbnsvcGFkOmNhY2hlfVxuXG57cGFkOmNhY2hlICdtYW51YWwtY2FjaGUnLCB0dGw9NjB9XG4gIHtwYWQ6c2V0ICRidWlsdCA9ICRidWlsdCArIDEvfVxuICA8cD5SZW5kZXJlZCB3aGlsZSBidWlsZGluZzogYnVpbHQgeyRidWlsdH0gdGltZShzKTwvcD5cbnsvcGFkOmNhY2hlfVxuXG48cD5UaGUgc2VjdGlvbiB3YXMgYnVpbHQgeyRidWlsdH0gdGltZTogdGhlIHNlY29uZCBvbmUgY2FtZSBmcm9tIHRoZSBjYWNoZS48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gU3RhcnQgdGhlIGV4YW1wbGUgZnJvbSBhbiBlbXB0eSBlbnRyeSwgc28gaXQgc2hvd3MgYSBtaXNzIGFuZCB0aGVuIGEgaGl0LlxuXG4gIHBhZEZyYWdtZW50Rm9yZ2V0ICggJ21hbnVhbC1jYWNoZScgKTtcblxuICAkYnVpbHQgPSAwO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache </font><font color="red"><font color="black">'</font>manual-cache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>/}</b><br>  &lt;p&gt;Rendered while building: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s)&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache</font><font color="red"></font>}</b><br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache </font><font color="red"><font color="black">'</font>manual-cache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>/}</b><br>  &lt;p&gt;Rendered while building: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s)&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache</font><font color="red"></font>}</b><br><br>&lt;p&gt;The section was built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time: the second one came from the cache.&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/cache_1.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Start the example from an empty entry, so it shows a miss and then a hit.<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-cache' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$built </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmNhY2hlICdtYW51YWwtY2FjaGUnLCB0dGw9NjB9XG4gIHtwYWQ6c2V0ICRidWlsdCA9ICRidWlsdCArIDEvfVxuICA8cD5SZW5kZXJlZCB3aGlsZSBidWlsZGluZzogYnVpbHQgeyRidWlsdH0gdGltZShzKTwvcD5cbnsvcGFkOmNhY2hlfVxuXG57cGFkOmNhY2hlICdtYW51YWwtY2FjaGUnLCB0dGw9NjB9XG4gIHtwYWQ6c2V0ICRidWlsdCA9ICRidWlsdCArIDEvfVxuICA8cD5SZW5kZXJlZCB3aGlsZSBidWlsZGluZzogYnVpbHQgeyRidWlsdH0gdGltZShzKTwvcD5cbnsvcGFkOmNhY2hlfVxuXG48cD5UaGUgc2VjdGlvbiB3YXMgYnVpbHQgeyRidWlsdH0gdGltZTogdGhlIHNlY29uZCBvbmUgY2FtZSBmcm9tIHRoZSBjYWNoZS48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gU3RhcnQgdGhlIGV4YW1wbGUgZnJvbSBhbiBlbXB0eSBlbnRyeSwgc28gaXQgc2hvd3MgYSBtaXNzIGFuZCB0aGVuIGEgaGl0LlxuXG4gIHBhZEZyYWdtZW50Rm9yZ2V0ICggJ21hbnVhbC1jYWNoZScgKTtcblxuICAkYnVpbHQgPSAwO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmNhY2hlICdtYW51YWwtY2FjaGUnLCB0dGw9NjB9XG4gIHtwYWQ6c2V0ICRidWlsdCA9ICRidWlsdCArIDEvfVxuICA8cD5SZW5kZXJlZCB3aGlsZSBidWlsZGluZzogYnVpbHQgeyRidWlsdH0gdGltZShzKTwvcD5cbnsvcGFkOmNhY2hlfVxuXG57cGFkOmNhY2hlICdtYW51YWwtY2FjaGUnLCB0dGw9NjB9XG4gIHtwYWQ6c2V0ICRidWlsdCA9ICRidWlsdCArIDEvfVxuICA8cD5SZW5kZXJlZCB3aGlsZSBidWlsZGluZzogYnVpbHQgeyRidWlsdH0gdGltZShzKTwvcD5cbnsvcGFkOmNhY2hlfVxuXG48cD5UaGUgc2VjdGlvbiB3YXMgYnVpbHQgeyRidWlsdH0gdGltZTogdGhlIHNlY29uZCBvbmUgY2FtZSBmcm9tIHRoZSBjYWNoZS48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gU3RhcnQgdGhlIGV4YW1wbGUgZnJvbSBhbiBlbXB0eSBlbnRyeSwgc28gaXQgc2hvd3MgYSBtaXNzIGFuZCB0aGVuIGEgaGl0LlxuXG4gIHBhZEZyYWdtZW50Rm9yZ2V0ICggJ21hbnVhbC1jYWNoZScgKTtcblxuICAkYnVpbHQgPSAwO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache </font><font color="red"><font color="black">'</font>manual-cache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>/}</b><br>  &lt;p&gt;Rendered while building: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s)&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache</font><font color="red"></font>}</b><br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache </font><font color="red"><font color="black">'</font>manual-cache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>/}</b><br>  &lt;p&gt;Rendered while building: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s)&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache</font><font color="red"></font>}</b><br><br>&lt;p&gt;The section was built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time: the second one came from the cache.&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
   
   <p>Rendered while building: built 1 time(s)</p>
@@ -57,15 +64,14 @@
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -88,45 +94,54 @@
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/cache_2.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/cache_2.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Start the example from an empty entry, so it shows a miss and then a hit.<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-nocache' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$built </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$visit </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/cache_2.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmNhY2hlICdtYW51YWwtbm9jYWNoZScsIHR0bD02MH1cbiAge3BhZDpzZXQgJGJ1aWx0ID0gJGJ1aWx0ICsgMS99XG4gIDxwPkNhY2hlZDogYnVpbHQgeyRidWlsdH0gdGltZShzKSwge3BhZDpub2NhY2hlfWxpdmU6IHZpc2l0IHskdmlzaXR9ey9wYWQ6bm9jYWNoZX08L3A+XG57L3BhZDpjYWNoZX1cblxue3BhZDpzZXQgJHZpc2l0ID0gMi99XG5cbntwYWQ6Y2FjaGUgJ21hbnVhbC1ub2NhY2hlJywgdHRsPTYwfVxuICB7cGFkOnNldCAkYnVpbHQgPSAkYnVpbHQgKyAxL31cbiAgPHA+Q2FjaGVkOiBidWlsdCB7JGJ1aWx0fSB0aW1lKHMpLCB7cGFkOm5vY2FjaGV9bGl2ZTogdmlzaXQgeyR2aXNpdH17L3BhZDpub2NhY2hlfTwvcD5cbnsvcGFkOmNhY2hlfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFN0YXJ0IHRoZSBleGFtcGxlIGZyb20gYW4gZW1wdHkgZW50cnksIHNvIGl0IHNob3dzIGEgbWlzcyBhbmQgdGhlbiBhIGhpdC5cblxuICBwYWRGcmFnbWVudEZvcmdldCAoICdtYW51YWwtbm9jYWNoZScgKTtcblxuICAkYnVpbHQgPSAwO1xuICAkdmlzaXQgPSAxO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmNhY2hlICdtYW51YWwtbm9jYWNoZScsIHR0bD02MH1cbiAge3BhZDpzZXQgJGJ1aWx0ID0gJGJ1aWx0ICsgMS99XG4gIDxwPkNhY2hlZDogYnVpbHQgeyRidWlsdH0gdGltZShzKSwge3BhZDpub2NhY2hlfWxpdmU6IHZpc2l0IHskdmlzaXR9ey9wYWQ6bm9jYWNoZX08L3A+XG57L3BhZDpjYWNoZX1cblxue3BhZDpzZXQgJHZpc2l0ID0gMi99XG5cbntwYWQ6Y2FjaGUgJ21hbnVhbC1ub2NhY2hlJywgdHRsPTYwfVxuICB7cGFkOnNldCAkYnVpbHQgPSAkYnVpbHQgKyAxL31cbiAgPHA+Q2FjaGVkOiBidWlsdCB7JGJ1aWx0fSB0aW1lKHMpLCB7cGFkOm5vY2FjaGV9bGl2ZTogdmlzaXQgeyR2aXNpdH17L3BhZDpub2NhY2hlfTwvcD5cbnsvcGFkOmNhY2hlfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFN0YXJ0IHRoZSBleGFtcGxlIGZyb20gYW4gZW1wdHkgZW50cnksIHNvIGl0IHNob3dzIGEgbWlzcyBhbmQgdGhlbiBhIGhpdC5cblxuICBwYWRGcmFnbWVudEZvcmdldCAoICdtYW51YWwtbm9jYWNoZScgKTtcblxuICAkYnVpbHQgPSAwO1xuICAkdmlzaXQgPSAxO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache </font><font color="red"><font color="black">'</font>manual-nocache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>/}</b><br>  &lt;p&gt;Cached: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s), <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>nocache</font><font color="red"></font>}</b>live: visit <b>{<font color="green"><font color="red">$</font>visit</font>}</b><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>nocache</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache</font><font color="red"></font>}</b><br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>visit = 2</font>/}</b><br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache </font><font color="red"><font color="black">'</font>manual-nocache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>/}</b><br>  &lt;p&gt;Cached: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s), <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>nocache</font><font color="red"></font>}</b>live: visit <b>{<font color="green"><font color="red">$</font>visit</font>}</b><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>nocache</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache</font><font color="red"></font>}</b></code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/cache_2.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Start the example from an empty entry, so it shows a miss and then a hit.<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-nocache' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$built </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$visit </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmNhY2hlICdtYW51YWwtbm9jYWNoZScsIHR0bD02MH1cbiAge3BhZDpzZXQgJGJ1aWx0ID0gJGJ1aWx0ICsgMS99XG4gIDxwPkNhY2hlZDogYnVpbHQgeyRidWlsdH0gdGltZShzKSwge3BhZDpub2NhY2hlfWxpdmU6IHZpc2l0IHskdmlzaXR9ey9wYWQ6bm9jYWNoZX08L3A+XG57L3BhZDpjYWNoZX1cblxue3BhZDpzZXQgJHZpc2l0ID0gMi99XG5cbntwYWQ6Y2FjaGUgJ21hbnVhbC1ub2NhY2hlJywgdHRsPTYwfVxuICB7cGFkOnNldCAkYnVpbHQgPSAkYnVpbHQgKyAxL31cbiAgPHA+Q2FjaGVkOiBidWlsdCB7JGJ1aWx0fSB0aW1lKHMpLCB7cGFkOm5vY2FjaGV9bGl2ZTogdmlzaXQgeyR2aXNpdH17L3BhZDpub2NhY2hlfTwvcD5cbnsvcGFkOmNhY2hlfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFN0YXJ0IHRoZSBleGFtcGxlIGZyb20gYW4gZW1wdHkgZW50cnksIHNvIGl0IHNob3dzIGEgbWlzcyBhbmQgdGhlbiBhIGhpdC5cblxuICBwYWRGcmFnbWVudEZvcmdldCAoICdtYW51YWwtbm9jYWNoZScgKTtcblxuICAkYnVpbHQgPSAwO1xuICAkdmlzaXQgPSAxO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmNhY2hlICdtYW51YWwtbm9jYWNoZScsIHR0bD02MH1cbiAge3BhZDpzZXQgJGJ1aWx0ID0gJGJ1aWx0ICsgMS99XG4gIDxwPkNhY2hlZDogYnVpbHQgeyRidWlsdH0gdGltZShzKSwge3BhZDpub2NhY2hlfWxpdmU6IHZpc2l0IHskdmlzaXR9ey9wYWQ6bm9jYWNoZX08L3A+XG57L3BhZDpjYWNoZX1cblxue3BhZDpzZXQgJHZpc2l0ID0gMi99XG5cbntwYWQ6Y2FjaGUgJ21hbnVhbC1ub2NhY2hlJywgdHRsPTYwfVxuICB7cGFkOnNldCAkYnVpbHQgPSAkYnVpbHQgKyAxL31cbiAgPHA+Q2FjaGVkOiBidWlsdCB7JGJ1aWx0fSB0aW1lKHMpLCB7cGFkOm5vY2FjaGV9bGl2ZTogdmlzaXQgeyR2aXNpdH17L3BhZDpub2NhY2hlfTwvcD5cbnsvcGFkOmNhY2hlfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFN0YXJ0IHRoZSBleGFtcGxlIGZyb20gYW4gZW1wdHkgZW50cnksIHNvIGl0IHNob3dzIGEgbWlzcyBhbmQgdGhlbiBhIGhpdC5cblxuICBwYWRGcmFnbWVudEZvcmdldCAoICdtYW51YWwtbm9jYWNoZScgKTtcblxuICAkYnVpbHQgPSAwO1xuICAkdmlzaXQgPSAxO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache </font><font color="red"><font color="black">'</font>manual-nocache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>/}</b><br>  &lt;p&gt;Cached: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s), <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>nocache</font><font color="red"></font>}</b>live: visit <b>{<font color="green"><font color="red">$</font>visit</font>}</b><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>nocache</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache</font><font color="red"></font>}</b><br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>visit = 2</font>/}</b><br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache </font><font color="red"><font color="black">'</font>manual-nocache<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b><br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>set </font><font color="red"><font color="red">$</font>built = <font color="red">$</font>built + 1</font>/}</b><br>  &lt;p&gt;Cached: built <b>{<font color="green"><font color="red">$</font>built</font>}</b> time(s), <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>nocache</font><font color="red"></font>}</b>live: visit <b>{<font color="green"><font color="red">$</font>visit</font>}</b><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>nocache</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>cache</font><font color="red"></font>}</b></code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
   
   <p>Cached: built 1 time(s), live: visit 1</p>
@@ -141,15 +156,14 @@
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 

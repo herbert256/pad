@@ -3,8 +3,16 @@
   <div class="demo-stage">
     <div class="demo-sources">
       {pad:if $demoHasPhp}
-      <section class="demo-cell"><header class="demo-heading">The data <button type="button" data-demo-copy="demo-data">Copy</button></header><pre id="demo-data"><code>{!demoPhp}</code></pre></section>
+        <section class="demo-cell">
+          <header class="demo-heading">The data <button type="button" data-demo-copy="demo-data">Copy</button></header>
+          <pre id="demo-data"><code>{!demoPhp}</code></pre>
+        </section>
       {/pad:if}
-      <section class="demo-cell"><header class="demo-heading">The template <button type="button" data-demo-copy="demo-template">Copy</button></header><pre id="demo-template"><code>{!demoSource}</code></pre></section>
+      <section class="demo-cell">
+        <header class="demo-heading">The template <button type="button" data-demo-copy="demo-template">Copy</button></header>
+        <pre id="demo-template"><code>{!demoSource}</code></pre>
+      </section>
     </div>
-    <section class="demo-cell demo-result"><header class="demo-heading">The result <span>{!demoPlay}</span></header><div class="demo-canvas">
+    <section class="demo-cell demo-result">
+      <header class="demo-heading">The result <span>{!demoPlay}</span></header>
+      <div class="demo-canvas">

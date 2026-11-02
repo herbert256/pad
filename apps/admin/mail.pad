@@ -1,8 +1,14 @@
 {pad:if $viewing}
-
   <section class="card">
     <p><a href="?mail&amp;app={$app}">{icon:arrow-left size=14/} the outbox</a></p>
-    <table class="facts">{array:mailHead}<tr><th>{$name}</th><td>{$value}</td></tr>{/array:mailHead}</table>
+    <table class="facts">
+      {array:mailHead}
+        <tr>
+          <th>{$name}</th>
+          <td>{$value}</td>
+        </tr>
+      {/array:mailHead}
+    </table>
   </section>
 
   {pad:if $hasHtml}
@@ -18,7 +24,10 @@
   </section>
 
   <section class="card">
-    <details><summary>Source</summary><pre class="wrap">{!mailRaw}</pre></details>
+    <details>
+      <summary>Source</summary>
+      <pre class="wrap">{!mailRaw}</pre>
+    </details>
     <form method="post" style="margin-top:12px">
       <input type="hidden" name="action" value="delete"><input type="hidden" name="app" value="{$app}"><input type="hidden" name="mail" value="{$mail}">
       <button class="danger" data-confirm="Remove this mail?">{icon:trash size=16/} Remove this mail</button>
@@ -29,10 +38,13 @@
 
   <form class="bar" method="get">
     <input type="hidden" name="mail" value="">
-    <label>Application
+    <label>
+      Application
       <select name="app" onchange="this.form.submit()">
         <option value="">every application</option>
-        {array:appRows}<option value="{$name}" {pad:if $selected}selected{/pad:if}>{$name}</option>{/array:appRows}
+        {array:appRows}
+          <option value="{$name}" {pad:if $selected}selected{/pad:if}>{$name}</option>
+        {/array:appRows}
       </select>
     </label>
     <noscript><button>Show</button></noscript>
@@ -42,7 +54,14 @@
     <h2>{icon:mail size=18/} {$mailCount} mails</h2>
     {pad:if $mailCount}
       <table class="list">
-        <thead><tr><th>When</th><th>Application</th><th>To</th><th>Subject</th></tr></thead>
+        <thead>
+          <tr>
+            <th>When</th>
+            <th>Application</th>
+            <th>To</th>
+            <th>Subject</th>
+          </tr>
+        </thead>
         <tbody>
           {array:mailRows}
             <tr>
@@ -62,5 +81,4 @@
       <p>The outbox is empty. While <code>$padMailTransport</code> is 'file', the default, every mail an application sends lands here instead of leaving the server.</p>
     {/pad:if}
   </section>
-
 {/pad:if}

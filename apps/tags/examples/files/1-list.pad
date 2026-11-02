@@ -1,6 +1,6 @@
 {pad:meta title='A folder of the application', about='base=\'app\' reads the directory from the application\'s root; sort makes the order the file system keeps irrelevant.'/}
 <ul>
-{pad:files '_data/filesDemo', base='app', sort='item'}
-  <li>{$item} {pad:if $ext}<small>({$ext})</small>{pad:else}<small>(directory)</small>{/pad:if}</li>
-{/pad:files}
+  {pad:files '_data/filesDemo', base='app', sort='item'}
+    <li>{$item} {pad:if $ext}<small>({$ext})</small>{pad:else}<small>(directory)</small>{/pad:if}</li>
+  {/pad:files}
 </ul>

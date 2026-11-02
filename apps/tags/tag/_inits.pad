@@ -1,5 +1,4 @@
 <article class="tag">
-
   <nav class="crumbs" aria-label="Where you are">
     <a href="?index">Tags</a><span>/</span><a href="?groups#{$tagGroupKey}">{$tagGroupLabel}</a><span>/</span><span aria-current="page">{$tagKey}</span>
   </nav>
@@ -15,15 +14,27 @@
     <pre class="code"><code>{!tagSyntaxHtml}</code></pre>
 
     {array:tagParmRows}
-    {property:first@tagParmRows}<h3>Parameters</h3><dl class="defs">{/property:first@tagParmRows}
-      <dt><code>{$parm}</code></dt><dd>{!meaning}</dd>
-    {property:last@tagParmRows}</dl>{/property:last@tagParmRows}
+      {property:first@tagParmRows}
+        <h3>Parameters</h3>
+        <dl class="defs">
+      {/property:first@tagParmRows}
+      <dt><code>{$parm}</code></dt>
+      <dd>{!meaning}</dd>
+      {property:last@tagParmRows}
+        </dl>
+      {/property:last@tagParmRows}
     {/array:tagParmRows}
 
     {array:tagOptionRows}
-    {property:first@tagOptionRows}<h3>Options</h3><dl class="defs">{/property:first@tagOptionRows}
-      <dt><code>{$option}</code></dt><dd>{!meaning}</dd>
-    {property:last@tagOptionRows}</dl>{/property:last@tagOptionRows}
+      {property:first@tagOptionRows}
+        <h3>Options</h3>
+        <dl class="defs">
+      {/property:first@tagOptionRows}
+      <dt><code>{$option}</code></dt>
+      <dd>{!meaning}</dd>
+      {property:last@tagOptionRows}
+        </dl>
+      {/property:last@tagOptionRows}
     {/array:tagOptionRows}
   </section>
 

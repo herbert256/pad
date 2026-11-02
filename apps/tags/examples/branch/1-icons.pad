@@ -8,7 +8,14 @@
 ]
 {/format:auto}
 <ul>
-{pad:tree 'branchFiles'}
-  <li>{pad:branch}&#128193; {$name}<ul>{pad:recurse/}</ul>@else@&#128196; {$name}{/pad:branch}</li>
-{/pad:tree}
+  {pad:tree 'branchFiles'}
+    <li>
+      {pad:branch}
+        &#128193; {$name}
+        <ul>{pad:recurse/}</ul>
+      @else@
+        &#128196; {$name}
+      {/pad:branch}
+    </li>
+  {/pad:tree}
 </ul>

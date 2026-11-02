@@ -1,8 +1,10 @@
 {pad:meta title='Parameters and a slot', about='{pad:parms} gives a default, and a {pad:slot} takes a fill from the use - or shows its own default.'/}
 {pad:define 'defineNote'}
   {pad:parms text, tone='info'/}
-  <p style="margin:6px 0">[{#tone}] {#text}
-    {pad:slot 'more'}<em>no details</em>{/pad:slot}</p>
+  <p style="margin:6px 0">
+    [{#tone}] {#text}
+    {pad:slot 'more'}<em>no details</em>{/pad:slot}
+  </p>
 {/pad:define}
 
 {define:defineNote text='Backup finished'}{/define:defineNote}

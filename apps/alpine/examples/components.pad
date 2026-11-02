@@ -1,13 +1,12 @@
 <div class="cols-2">
-
   <section>
     <div class="panel-title">Accordion - accordion({pad:open/}^faq{pad:close/})</div>
     <div class="accordion" x-data="accordion({^faq})">
       {array:faq}
-      <div class="accordion-item" :class="isOpen({property:current@faq/}) && 'is-open'">
-        <button class="accordion-head" @click="toggle({property:current@faq/})" :aria-expanded="isOpen({property:current@faq/})">{$q}<span aria-hidden="true">+</span></button>
-        <div class="accordion-body" x-show="isOpen({property:current@faq/})" x-transition>{$a}</div>
-      </div>
+        <div class="accordion-item" :class="isOpen({property:current@faq/}) && 'is-open'">
+          <button class="accordion-head" @click="toggle({property:current@faq/})" :aria-expanded="isOpen({property:current@faq/})">{$q}<span aria-hidden="true">+</span></button>
+          <div class="accordion-body" x-show="isOpen({property:current@faq/})" x-transition>{$a}</div>
+        </div>
       {/array:faq}
     </div>
   </section>
@@ -35,7 +34,6 @@
       </div>
     </div>
   </section>
-
 </div>
 
 <script src="{$padRoot}alpine/examples/components.js"></script>

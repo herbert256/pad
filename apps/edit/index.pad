@@ -1,7 +1,5 @@
 <div class="editor-page" data-boot="{^editBoot}">
-
   <section class="work">
-
     <div class="tabs" id="tabs" role="tablist" aria-label="Open files"></div>
 
     <div class="center">
@@ -21,7 +19,9 @@
           <a class="btn ghost" id="previewOpen" href="#" target="_blank" rel="noopener" title="Open in a new tab" aria-label="Open in a new tab"></a>
           <button type="button" class="btn ghost" id="previewClose" title="Close the preview" aria-label="Close the preview"></button>
         </div>
-        <div class="preview-stage"><iframe id="previewFrame" title="Preview" sandbox="allow-scripts allow-forms allow-popups allow-modals allow-downloads"></iframe></div>
+        <div class="preview-stage">
+          <iframe id="previewFrame" title="Preview" sandbox="allow-scripts allow-forms allow-popups allow-modals allow-downloads"></iframe>
+        </div>
       </section>
     </div>
 
@@ -38,7 +38,9 @@
         <button type="button" class="btn small term-stop" id="termStop" hidden>Stop</button>
         <button type="button" class="btn ghost panel-close" id="panelClose" title="Close the panel" aria-label="Close the panel"></button>
       </div>
-      <div class="panel-body" id="panel-problems" role="tabpanel"><div id="problemsList"></div></div>
+      <div class="panel-body" id="panel-problems" role="tabpanel">
+        <div id="problemsList"></div>
+      </div>
       <div class="panel-body" id="panel-search" role="tabpanel" hidden>
         <form class="search-form" id="searchForm">
           <input type="search" id="searchInput" placeholder="Search in the application" aria-label="Search" spellcheck="false">
@@ -50,7 +52,9 @@
         </form>
         <div id="searchResults"></div>
       </div>
-      <div class="panel-body" id="panel-history" role="tabpanel" hidden><div id="historyList"></div></div>
+      <div class="panel-body" id="panel-history" role="tabpanel" hidden>
+        <div id="historyList"></div>
+      </div>
       <div class="panel-body dbg" id="panel-debug" role="tabpanel" hidden></div>
       <div class="panel-body term" id="panel-terminal" role="tabpanel" hidden>
         <div class="term-screen" id="termScreen">
@@ -62,7 +66,6 @@
         </div>
       </div>
     </section>
-
   </section>
 
   <footer class="status" id="status">
@@ -76,5 +79,4 @@
   {pad:asset 'pad-mode.js', tag/}
   {pad:asset 'php-mode.js', tag/}
   {pad:asset 'edit.js', tag/}
-
 </div>

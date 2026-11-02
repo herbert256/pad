@@ -19,7 +19,6 @@
 </p>
 
 {pad:if $coverSource ne ''}
-
   <h3>{$coverFile} - read by {$coverCount} requests of {$coverRun}</h3>
 
   <p><span class="pad-cover-hit">ran</span> / <mark class="pad-cover-miss">never ran</mark> - hover for the count</p>
@@ -27,15 +26,18 @@
   {pad:ignore}<style>.pad-cover-hit { background: #dfd; } .pad-cover-miss { background: #fcc; }</style>{/pad:ignore}
 
   <pre>{!coverSource}</pre>
-
 {/pad:if}
 
 {pad:if $coverRun ne '' and $coverFile eq ''}
-
   <h3>{$coverRun}: {$coverCount} requests</h3>
 
   <table border="1" cellpadding="4">
-    <tr><th>Template</th><th>Requests</th><th>Ran</th><th>%</th></tr>
+    <tr>
+      <th>Template</th>
+      <th>Requests</th>
+      <th>Ran</th>
+      <th>%</th>
+    </tr>
     {array:coverFiles}
       <tr>
         <td><a href="?coverage&amp;run={$coverRun}&amp;file={$file | url}">{$file}</a></td>
@@ -49,7 +51,8 @@
   <h3>Never read by this run</h3>
 
   <ul>
-    {array:coverUnread}<li>{$unread}</li>{/array:coverUnread}
+    {array:coverUnread}
+      <li>{$unread}</li>
+    {/array:coverUnread}
   </ul>
-
 {/pad:if}

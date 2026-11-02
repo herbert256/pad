@@ -2,7 +2,16 @@
   <h2>{icon:power size=18/} Down now</h2>
   {pad:if $downCount}
     <table class="list">
-      <thead><tr><th>Application</th><th>Since</th><th class="right">Retry-After</th><th>Message</th><th>Secret</th><th></th></tr></thead>
+      <thead>
+        <tr>
+          <th>Application</th>
+          <th>Since</th>
+          <th class="right">Retry-After</th>
+          <th>Message</th>
+          <th>Secret</th>
+          <th></th>
+        </tr>
+      </thead>
       <tbody>
         {array:downRows}
           <tr>
@@ -34,10 +43,13 @@
      The command line is never held back.</p>
   <form method="post" class="bar">
     <input type="hidden" name="action" value="down">
-    <label>Application
+    <label>
+      Application
       <select name="app" required>
         <option value="">- choose -</option>
-        {array:appRows}<option value="{$name}">{$name}</option>{/array:appRows}
+        {array:appRows}
+          <option value="{$name}">{$name}</option>
+        {/array:appRows}
       </select>
     </label>
     <label>Secret (optional) <input type="text" name="secret" autocomplete="off"></label>

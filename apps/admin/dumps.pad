@@ -1,5 +1,4 @@
 {pad:if $viewing}
-
   <section class="card">
     <p><a href="?dumps">{icon:arrow-left size=14/} every report</a> - <code>DATA/dumps/{$report}</code></p>
     <div class="bar">
@@ -18,7 +17,14 @@
     <h2>{icon:alert size=18/} {$reportCount} reports</h2>
     {pad:if $reportCount}
       <table class="list">
-        <thead><tr><th>When</th><th>Application</th><th>Page</th><th>Error</th></tr></thead>
+        <thead>
+          <tr>
+            <th>When</th>
+            <th>Application</th>
+            <th>Page</th>
+            <th>Error</th>
+          </tr>
+        </thead>
         <tbody>
           {array:reportRows}
             <tr>
@@ -38,5 +44,4 @@
       <p>No error reports - the 'dump' error action and the try guards write them when something fails.</p>
     {/pad:if}
   </section>
-
 {/pad:if}

@@ -1,5 +1,7 @@
 <h3>type='record': one row</h3>
-{select:albums type='record', $album_id=3}<p><b>{$title}</b>, {$released}, {$price}</p>{/select:albums}
+{select:albums type='record', $album_id=3}
+  <p><b>{$title}</b>, {$released}, {$price}</p>
+{/select:albums}
 
 <h3>type='field': one value</h3>
 <p>Albums: {select:albums type='field', fields="count(*)"/}</p>

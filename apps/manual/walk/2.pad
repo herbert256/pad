@@ -1,26 +1,18 @@
 {common:table}
+  {common:demo}
+    {content:myTable}
+      {pad:set $loop = 1/}
 
-{common:demo}
+      {pad:while $loop LE 5}
+        <tr>
+          <td> {property:first}  X {/property:first}  </td>
+          <td> {property:middle} X {/property:middle} </td>
+          <td> {property:last}   X {/property:last}   </td>
+          <td> {property:border} X {/property:border} </td>
+        </tr>
 
-{content:myTable}
-
-  {pad:set $loop = 1/}
-
-  {pad:while $loop LE 5}
-
-    <tr>
-      <td> {property:first}  X {/property:first}  </td>
-      <td> {property:middle} X {/property:middle} </td>
-      <td> {property:last}   X {/property:last}   </td>
-      <td> {property:border} X {/property:border} </td>
-    </tr>
-
-    {pad:increment $loop/}
-
-  {/pad:while}
-
-{/content:myTable}
-
-{/common:demo}
-
+        {pad:increment $loop/}
+      {/pad:while}
+    {/content:myTable}
+  {/common:demo}
 {/common:table}

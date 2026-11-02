@@ -3,11 +3,14 @@
 <p>Each literal link in each template, checked the way <code>$padCheckOutput</code> checks a rendered page.</p>
 
 <table border="1" cellpadding="4">
-
   {array:brokenLinks}
-    <tr><td>{$file}</td><td>{$broken}</td></tr>
+    <tr>
+      <td>{$file}</td>
+      <td>{$broken}</td>
+    </tr>
   @else@
-    <tr><td>No broken links.</td></tr>
+    <tr>
+      <td>No broken links.</td>
+    </tr>
   {/array:brokenLinks}
-
 </table>

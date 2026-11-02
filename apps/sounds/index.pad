@@ -6,12 +6,15 @@ makes the same samples into the WAV file each card links.</p>
 
 <ul class="sounds-board">
   {array:sounds}
-  <li class="sounds-card" id="sound-{$kind}">
-    <h2 class="sounds-name">{$name}</h2>
-    <p class="sounds-line">{$line}</p>
-    <div class="sounds-play">{sound:$kind download/}</div>
-    <p class="sounds-meta"><code>{pad:open/}sound:{$kind}/{pad:close/}</code> · {$seconds} s · {$voices} {pad:echo $voices eq 1 ? 'voice' : 'voices'/}</p>
-    <details class="sounds-recipe"><summary>The recipe</summary><pre><code>{!recipe}</code></pre></details>
-  </li>
+    <li class="sounds-card" id="sound-{$kind}">
+      <h2 class="sounds-name">{$name}</h2>
+      <p class="sounds-line">{$line}</p>
+      <div class="sounds-play">{sound:$kind download/}</div>
+      <p class="sounds-meta"><code>{pad:open/}sound:{$kind}/{pad:close/}</code> · {$seconds} s · {$voices} {pad:echo $voices eq 1 ? 'voice' : 'voices'/}</p>
+      <details class="sounds-recipe">
+        <summary>The recipe</summary>
+        <pre><code>{!recipe}</code></pre>
+      </details>
+    </li>
   {/array:sounds}
 </ul>

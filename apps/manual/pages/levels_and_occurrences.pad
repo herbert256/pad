@@ -12,14 +12,16 @@
 
 {common:block}
   If not specifield for a PAD tag then default it has 1 occurence.
-  <br><br><hr><br>
+  <br><br>
+  <hr>
+  <br>
   Just for fun, below the above example implemented in a few different ways.
   <br>
   Hopefully all this magic will be explained in this manual.
 {/common:block}
 
-<p> 
-{sequence:range '2..12', name='xxx'}
-  {common:example 'lvl_occ/{$xxx}', skipNames{property:notFirst},skipOpen,skipHeader{/property:notFirst}{property:notLast},skipClose{/property:notLast}/}
-{/sequence:range}
+<p>
+  {sequence:range '2..12', name='xxx'}
+    {common:example 'lvl_occ/{$xxx}', skipNames{property:notFirst},skipOpen,skipHeader{/property:notFirst}{property:notLast},skipClose{/property:notLast}/}
+  {/sequence:range}
 </p>

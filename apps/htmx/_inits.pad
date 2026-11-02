@@ -1,13 +1,13 @@
 {common:padFrame}
   {pad:slot 'head'}
-  {pad:asset 'htmx.css', tag/}
-  <script src="{pad:asset 'htmx-app.js'/}"></script>
-  <script src="https://unpkg.com/htmx.org@2.0.11/dist/htmx.min.js"></script>
-  <script src="https://unpkg.com/htmx-ext-sse@2.2.4/sse.js"></script>
+    {pad:asset 'htmx.css', tag/}
+    <script src="{pad:asset 'htmx-app.js'/}"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.11/dist/htmx.min.js"></script>
+    <script src="https://unpkg.com/htmx-ext-sse@2.2.4/sse.js"></script>
   {/pad:slot}
   {pad:slot 'tools'}<a class="cart-badge" href="?examples/cart" aria-label="The cart">{icon:cart size=18/} <span id="cart-count">{$cartCount}</span></a>{/pad:slot}
 {/common:padFrame}
 <div class="htmx-page" hx-headers="{^htmxHeaders}">
-@page@
+  @page@
 </div>
 {common:padFrameEnd/}

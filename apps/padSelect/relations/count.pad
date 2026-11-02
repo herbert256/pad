@@ -1,10 +1,14 @@
 <table>
-  <tr><th>Artist</th><th class="n">Albums</th><th class="n">Singles</th></tr>
-  {select:artists}
   <tr>
-    <td>{$name}</td>
-    <td class="n">{select:albums fields="count(*) as n"}{$n}{/select:albums}</td>
-    <td class="n">{select:singles fields="count(*) as n"}{$n}{/select:singles}</td>
+    <th>Artist</th>
+    <th class="n">Albums</th>
+    <th class="n">Singles</th>
   </tr>
+  {select:artists}
+    <tr>
+      <td>{$name}</td>
+      <td class="n">{select:albums fields="count(*) as n"}{$n}{/select:albums}</td>
+      <td class="n">{select:singles fields="count(*) as n"}{$n}{/select:singles}</td>
+    </tr>
   {/select:artists}
 </table>

@@ -1,8 +1,8 @@
 {pad:meta title='Ceasing a while', about='In a {pad:while} the current pass finishes and no further pass follows, whatever the condition says.'/}
 {pad:set $round = 0/}
 <ul>
-{pad:while $round lt 10}
-  {pad:increment $round/}
-  <li>round {$round}{pad:if $round eq 3}{pad:cease/} (the last){/pad:if}</li>
-{/pad:while}
+  {pad:while $round lt 10}
+    {pad:increment $round/}
+    <li>round {$round}{pad:if $round eq 3}{pad:cease/} (the last){/pad:if}</li>
+  {/pad:while}
 </ul>

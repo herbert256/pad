@@ -1,5 +1,9 @@
 {pad:meta title='One type first', about='{pad:flash \'error\'} takes the errors only; a {pad:flash} after it shows what is left.'/}
 <ul class="errors">
-  {pad:flash 'error'}<li>{$message}</li>{/pad:flash}
+  {pad:flash 'error'}
+    <li>{$message}</li>
+  {/pad:flash}
 </ul>
-{pad:flash}<p>{$message} ({$type})</p>{/pad:flash}
+{pad:flash}
+  <p>{$message} ({$type})</p>
+{/pad:flash}

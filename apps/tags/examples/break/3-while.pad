@@ -2,11 +2,11 @@
 {pad:set $sum = 0/}
 {pad:set $add = 0/}
 <p>
-{pad:while $add lt 100}
-  {pad:increment $add/}
-  {pad:set $sum = $sum + $add/}
-  {pad:if $sum gt 20}{pad:break/}{/pad:if}
-  {$sum}
-{/pad:while}
+  {pad:while $add lt 100}
+    {pad:increment $add/}
+    {pad:set $sum = $sum + $add/}
+    {pad:if $sum gt 20}{pad:break/}{/pad:if}
+    {$sum}
+  {/pad:while}
 </p>
 <p>Stopped when adding {$add} made {$sum}.</p>

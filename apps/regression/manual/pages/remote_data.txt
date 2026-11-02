@@ -1,5 +1,3 @@
-
-
 <p>Data can come from another server: a URL as the data of a tag, a <code>.curl</code> file
 in <code>_data/</code>, or the <b>{pad:curl}</b> tag for the raw answer. Each of them takes a
 <code>ttl</code> - the seconds to keep the answer - and within that time the page is served
@@ -20,60 +18,74 @@ reads the rates from a page of this manual standing in for an API:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/remote_1.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtsb2NhbDpyYXRlc308bGk+eyRjb2RlfTogeyRyYXRlfTwvbGk+ey9sb2NhbDpyYXRlc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtsb2NhbDpyYXRlc308bGk+eyRjb2RlfTogeyRyYXRlfTwvbGk+ey9sb2NhbDpyYXRlc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>rates</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>code</font>}</b>: <b>{<font color="green"><font color="red">$</font>rate</font>}</b>&lt;/li&gt;<b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>rates</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/remote_1.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtsb2NhbDpyYXRlc31cbiAgICA8bGk+eyRjb2RlfTogeyRyYXRlfTwvbGk+XG4gIHsvbG9jYWw6cmF0ZXN9XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtsb2NhbDpyYXRlc31cbiAgICA8bGk+eyRjb2RlfTogeyRyYXRlfTwvbGk+XG4gIHsvbG9jYWw6cmF0ZXN9XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>rates</font><font color="red"></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>code</font>}</b>: <b>{<font color="green"><font color="red">$</font>rate</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>rates</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <ul>
-  <li>EUR: 1</li><li>USD: 1.08</li><li>GBP: 0.86</li>
+  
+    <li>EUR: 1</li>
+  
+    <li>USD: 1.08</li>
+  
+    <li>GBP: 0.86</li>
+  
 </ul>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -85,58 +97,66 @@ with <b>{pad:curl}</b>:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/remote_2.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57cGFkOmN1cmwgJ1NFTEY6Ly9tYW51YWwvP2ZyYWdtZW50cy9yYXRlcyZwYWRJbmNsdWRlJywgdHRsPTYwMC99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57cGFkOmN1cmwgJ1NFTEY6Ly9tYW51YWwvP2ZyYWdtZW50cy9yYXRlcyZwYWRJbmNsdWRlJywgdHRsPTYwMC99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>curl </font><font color="red"><font color="black">'</font>SELF<font color="black">:</font>//manual/?fragments/rates&amp;padInclude<font color="black">'</font><font color="black">,</font> ttl=600</font>/}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/remote_2.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57cGFkOmN1cmwgJ1NFTEY6Ly9tYW51YWwvP2ZyYWdtZW50cy9yYXRlcyZwYWRJbmNsdWRlJywgdHRsPTYwMC99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57cGFkOmN1cmwgJ1NFTEY6Ly9tYW51YWwvP2ZyYWdtZW50cy9yYXRlcyZwYWRJbmNsdWRlJywgdHRsPTYwMC99PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>curl </font><font color="red"><font color="black">'</font>SELF<font color="black">:</font>//manual/?fragments/rates&amp;padInclude<font color="black">'</font><font color="black">,</font> ttl=600</font>/}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>[{"code":"EUR","rate":1},{"code":"USD","rate":1.08},{"code":"GBP","rate":0.86}]</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 

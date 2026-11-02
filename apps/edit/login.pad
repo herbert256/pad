@@ -1,7 +1,5 @@
 <div class="login-page">
-
   <div class="login-box">
-
     {pad:if $loginSetup eq 1}
       <p class="login-intro">Nobody can log in yet. Make the first user - more can be added in the editor later.</p>
     {pad:else}
@@ -17,17 +15,35 @@
     {/pad:if}
 
     {input:form 'login'}
-      <p>{input:field 'name', label='Name', autocomplete='username', required, autofocus/}</p>
+      <p>
+        {input:field 'name', label='Name', autocomplete='username', required, autofocus/}
+      </p>
       {pad:if $loginSetup eq 1}
-        <p>{input:field 'password', type='password', label='Password', autocomplete='new-password', required, minlength=8/}</p>
-        <p>{input:field 'again', type='password', label='Password again', autocomplete='new-password', required, minlength=8/}</p>
+        <p>
+          {input:field 'password',
+            type='password',
+            label='Password',
+            autocomplete='new-password',
+            required,
+            minlength=8
+          /}
+        </p>
+        <p>
+          {input:field 'again',
+            type='password',
+            label='Password again',
+            autocomplete='new-password',
+            required,
+            minlength=8
+          /}
+        </p>
         <p><button type="submit">Make the user and log in</button></p>
       {pad:else}
-        <p>{input:field 'password', type='password', label='Password', autocomplete='current-password', required/}</p>
+        <p>
+          {input:field 'password', type='password', label='Password', autocomplete='current-password', required/}
+        </p>
         <p><button type="submit">Log in</button></p>
       {/pad:if}
     {/input:form}
-
   </div>
-
 </div>

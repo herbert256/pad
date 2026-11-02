@@ -5,20 +5,28 @@
   </div>
   <div class="loads">
     {array:loads}
-    <div class="card load-card">
-      <div class="framework-head"><strong>{$framework}</strong><code class="badge">data-load="{$load}"</code></div>
-      {pad:if $load ne 'visible'}<div data-island="{$island}" data-load="{$load}" data-props="{^props}"><p class="muted small">Waiting to load ...</p></div>{/pad:if}
-    </div>
+      <div class="card load-card">
+        <div class="framework-head"><strong>{$framework}</strong><code class="badge">data-load="{$load}"</code></div>
+        {pad:if $load ne 'visible'}
+          <div data-island="{$island}" data-load="{$load}" data-props="{^props}">
+            <p class="muted small">Waiting to load ...</p>
+          </div>
+        {/pad:if}
+      </div>
     {/array:loads}
   </div>
 </div>
 
 <div class="far-below">
   <p class="muted">Far down the page - the island below loads only when it scrolls into view. Scroll on.</p>
-  {array:loads}{pad:if $load eq 'visible'}
-  <div class="card load-card">
-    <div class="framework-head"><strong>{$framework}</strong><code class="badge">data-load="{$load}"</code></div>
-    <div data-island="{$island}" data-load="{$load}" data-props="{^props}"><p class="muted small">Not loaded yet - it is not in view.</p></div>
-  </div>
-  {/pad:if}{/array:loads}
+  {array:loads}
+    {pad:if $load eq 'visible'}
+      <div class="card load-card">
+        <div class="framework-head"><strong>{$framework}</strong><code class="badge">data-load="{$load}"</code></div>
+        <div data-island="{$island}" data-load="{$load}" data-props="{^props}">
+          <p class="muted small">Not loaded yet - it is not in view.</p>
+        </div>
+      </div>
+    {/pad:if}
+  {/array:loads}
 </div>

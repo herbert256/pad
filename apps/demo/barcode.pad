@@ -5,12 +5,15 @@ phone reads them straight from the screen.</p>
 <h2>Products - EAN-13</h2>
 
 <table>
-  <tr><th>Product</th><th>Barcode</th></tr>
-  {array:products}
   <tr>
-    <td>{$name}</td>
-    <td>{barcode:auto $ean, height=50/}</td>
+    <th>Product</th>
+    <th>Barcode</th>
   </tr>
+  {array:products}
+    <tr>
+      <td>{$name}</td>
+      <td>{barcode:auto $ean, height=50/}</td>
+    </tr>
   {/array:products}
 </table>
 
@@ -31,7 +34,11 @@ runs of digits are packed two to a symbol.</p>
 <h2>The other types</h2>
 
 <table>
-  <tr><th>Type</th><th>Barcode</th><th>Tag</th></tr>
+  <tr>
+    <th>Type</th>
+    <th>Barcode</th>
+    <th>Tag</th>
+  </tr>
   <tr>
     <td>EAN-8</td>
     <td>{barcode:ean8 '9638507'/}</td>

@@ -1,77 +1,69 @@
-<p>There are 3 ways for randomizing, a sequence (random), an option (randomly) and an action (randomize)
+<p>
+  There are 3 ways for randomizing, a sequence (random), an option (randomly) and an action (randomize)
+  <h3>The sequence 'random'</h3>
 
-<h3>The sequence 'random'</h3>
+  {common:table}
+    {common:demo} {sequence:random rows=25, minimal=10, maximal=50              } {$sequence} {/sequence:random} {/common:demo}
+    {common:demo} {sequence:random rows=25, minimal=10, maximal=50, unique      } {$sequence} {/sequence:random} {/common:demo}
+    {common:demo} {sequence:random rows=15, minimal=10, maximal=50, increment=5 } {$sequence} {/sequence:random} {/common:demo}
+  {/common:table}
 
-{common:table}
-{common:demo} {sequence:random rows=25, minimal=10, maximal=50              } {$sequence} {/sequence:random} {/common:demo}
-{common:demo} {sequence:random rows=25, minimal=10, maximal=50, unique      } {$sequence} {/sequence:random} {/common:demo}
-{common:demo} {sequence:random rows=15, minimal=10, maximal=50, increment=5 } {$sequence} {/sequence:random} {/common:demo}
-{/common:table}
+  <h3>The sequence option 'randomly'</h3>
+  Here the loop index is randomly set before the sequence is executed.
+  {common:table}
+    {common:demo} {sequence:loop rows=10, randomly, from=10, to=20} {$sequence} {/sequence:loop} {/common:demo}
+    {common:demo} {sequence:power 2, rows=10, randomly, from=8,  to=16} {$sequence} {/sequence:power} {/common:demo}
+    {common:demo} {sequence:prime rows=10, randomly, to=1000       } {$sequence} {/sequence:prime} {/common:demo}
+  {/common:table}
+  {common:table}
+    {common:demo}
+      {sequence:auto rows=4, randomly}
+        {$sequence}
+      {/sequence:auto}
+    {/common:demo}
 
-<h3>The sequence option 'randomly'</h3>
+    {common:demo}
+      {sequence:auto rows=4, randomly, from=10000000000, increment=10000000000}
+        {$sequence}
+      {/sequence:auto}
+    {/common:demo}
+  {/common:table}
+  {common:table}
+    {common:demo} {sequence:auto from=10, to=20, push='mySeq'/}{/common:demo}
+    {common:demo} {pull:mySeq randomly}         {$sequence} {/pull:mySeq} {/common:demo}
+    {common:demo} {pull:mySeq randomly, unique} {$sequence} {/pull:mySeq} {/common:demo}
+  {/common:table}
 
-Here the loop index is randomly set before the sequence is executed.
+  <h3>The sequence action 'randomize'</h3>
 
-{common:table}
+  {common:table}
+    {common:demo} {sequence:auto from=10, to=20, push='mySeq'/}{/common:demo}
+    {common:demo} {pull:mySeq}                                     {$sequence} {/pull:mySeq} {/common:demo}
+    {common:demo} {pull:mySeq randomize                          } {$sequence} {/pull:mySeq} {/common:demo}
+    {common:demo} {pull:mySeq randomize=5                        } {$sequence} {/pull:mySeq} {/common:demo}
+    {common:demo} {pull:mySeq randomize=5, duplicates            } {$sequence} {/pull:mySeq} {/common:demo}
+    {common:demo} {pull:mySeq randomize=5, orderly               } {$sequence} {/pull:mySeq} {/common:demo}
+    {common:demo} {pull:mySeq randomize=5, orderly, duplicates   } {$sequence} {/pull:mySeq} {/common:demo}
+    {common:demo} {pull:mySeq randomize=25                       } {$sequence} {/pull:mySeq} {/common:demo}
+    {common:demo} {pull:mySeq randomize=25, orderly              } {$sequence} {/pull:mySeq} {/common:demo}
+    {common:demo} {pull:mySeq randomize=25, atLeastOnce          } {$sequence} {/pull:mySeq} {/common:demo}
+    {common:demo} {pull:mySeq randomize=25, atLeastOnce, orderly } {$sequence} {/pull:mySeq} {/common:demo}
+  {/common:table}
 
-{common:demo} {sequence:loop rows=10, randomly, from=10, to=20} {$sequence} {/sequence:loop} {/common:demo}
-{common:demo} {sequence:power 2, rows=10, randomly, from=8,  to=16} {$sequence} {/sequence:power} {/common:demo}
-{common:demo} {sequence:prime rows=10, randomly, to=1000       } {$sequence} {/sequence:prime} {/common:demo}
+  <h3>The sequence 'random' - other usages of it</h3>
 
-{/common:table}{common:table}
+  {common:table}
+    {common:demo} {sequence:random '75%', from=1, to=1000, push='myRandom2'/} {/common:demo}
+    {common:demo} {pull:myRandom2 action='count'} {$sequence} {/pull:myRandom2} {/common:demo}
+  {/common:table}
 
-{common:demo} {sequence:auto rows=4, randomly } 
-  {$sequence} 
-{/sequence:auto} {/common:demo}
+  {common:table}
+    {common:demo} {sequence:random 4, from=1, to=1000, push='myRandom'/} {/common:demo}
+    {common:demo} {pull:myRandom action='count'} {$sequence} {/pull:myRandom} {/common:demo}
+  {/common:table}
 
-{common:demo} {sequence:auto rows=4, randomly, from=10000000000, increment=10000000000} 
-  {$sequence} 
-{/sequence:auto} {/common:demo}
+  <h3>Yes, it works</h3>
 
-{/common:table}{common:table}
-
-{common:demo} {sequence:auto from=10, to=20, push='mySeq'/}{/common:demo} 
-{common:demo} {pull:mySeq randomly}         {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomly, unique} {$sequence} {/pull:mySeq} {/common:demo}
-
-{/common:table}
-
-<h3>The sequence action 'randomize'</h3>
-
-{common:table}
-
-{common:demo} {sequence:auto from=10, to=20, push='mySeq'/}{/common:demo} 
-{common:demo} {pull:mySeq}                                     {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize                          } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=5                        } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=5, duplicates            } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=5, orderly               } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=5, orderly, duplicates   } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=25                       } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=25, orderly              } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=25, atLeastOnce          } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=25, atLeastOnce, orderly } {$sequence} {/pull:mySeq} {/common:demo}
-
-{/common:table}
-
-
-<h3>The sequence 'random' - other usages of it</h3>
-
-{common:table}
-{common:demo} {sequence:random '75%', from=1, to=1000, push='myRandom2'/} {/common:demo}
-{common:demo} {pull:myRandom2 action='count'} {$sequence} {/pull:myRandom2} {/common:demo}
-{/common:table}
-
-{common:table}
-{common:demo} {sequence:random 4, from=1, to=1000, push='myRandom'/} {/common:demo}
-{common:demo} {pull:myRandom action='count'} {$sequence} {/pull:myRandom} {/common:demo}
-{/common:table}
-
-
-<h3>Yes, it works</h3>
-
-{common:table}
-
-{common:demo} {sequence:random randomly, randomize, maximal=1000} {$sequence} {/sequence:random} {/common:demo} 
-
-{/common:table}
+  {common:table}
+    {common:demo} {sequence:random randomly, randomize, maximal=1000} {$sequence} {/sequence:random} {/common:demo}
+  {/common:table}

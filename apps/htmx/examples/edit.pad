@@ -1,28 +1,35 @@
 <table class="table">
-  <thead><tr><th>Name</th><th>E-mail</th><th>City</th><th></th></tr></thead>
-  <tbody hx-target="closest tr" hx-swap="outerHTML">
-  {array:rows}
-  {pad:fragment 'row'}
-    {pad:if $editing}
-    <tr class="is-editing">
-      <td><input class="input{pad:if $errName} is-invalid{/pad:if}" name="name" value="{$name}" aria-label="Name">{pad:if $errName}<span class="error">{$errName}</span>{/pad:if}</td>
-      <td><input class="input{pad:if $errEmail} is-invalid{/pad:if}" name="email" value="{$email}" aria-label="E-mail">{pad:if $errEmail}<span class="error">{$errEmail}</span>{/pad:if}</td>
-      <td><input class="input{pad:if $errCity} is-invalid{/pad:if}" name="city" value="{$city}" aria-label="City">{pad:if $errCity}<span class="error">{$errCity}</span>{/pad:if}</td>
-      <td class="actions">
-        <button class="btn-sm" hx-post="?examples/edit&id={$id}&padFragment=row" hx-include="closest tr">Save</button>
-        <button class="btn-sm btn-ghost" hx-get="?examples/edit&id={$id}&padFragment=row">Cancel</button>
-      </td>
-    </tr>
-    {pad:else}
+  <thead>
     <tr>
-      <td><strong>{$name}</strong></td>
-      <td>{$email}</td>
-      <td>{$city}</td>
-      <td class="actions"><button class="btn-sm btn-ghost" hx-get="?examples/edit&id={$id}&mode=edit&padFragment=row">Edit</button></td>
+      <th>Name</th>
+      <th>E-mail</th>
+      <th>City</th>
+      <th></th>
     </tr>
-    {/pad:if}
-  {/pad:fragment}
-  {/array:rows}
+  </thead>
+  <tbody hx-target="closest tr" hx-swap="outerHTML">
+    {array:rows}
+      {pad:fragment 'row'}
+        {pad:if $editing}
+          <tr class="is-editing">
+            <td><input class="input{pad:if $errName} is-invalid{/pad:if}" name="name" value="{$name}" aria-label="Name">{pad:if $errName}<span class="error">{$errName}</span>{/pad:if}</td>
+            <td><input class="input{pad:if $errEmail} is-invalid{/pad:if}" name="email" value="{$email}" aria-label="E-mail">{pad:if $errEmail}<span class="error">{$errEmail}</span>{/pad:if}</td>
+            <td><input class="input{pad:if $errCity} is-invalid{/pad:if}" name="city" value="{$city}" aria-label="City">{pad:if $errCity}<span class="error">{$errCity}</span>{/pad:if}</td>
+            <td class="actions">
+              <button class="btn-sm" hx-post="?examples/edit&id={$id}&padFragment=row" hx-include="closest tr">Save</button>
+              <button class="btn-sm btn-ghost" hx-get="?examples/edit&id={$id}&padFragment=row">Cancel</button>
+            </td>
+          </tr>
+        {pad:else}
+          <tr>
+            <td><strong>{$name}</strong></td>
+            <td>{$email}</td>
+            <td>{$city}</td>
+            <td class="actions"><button class="btn-sm btn-ghost" hx-get="?examples/edit&id={$id}&mode=edit&padFragment=row">Edit</button></td>
+          </tr>
+        {/pad:if}
+      {/pad:fragment}
+    {/array:rows}
   </tbody>
 </table>
 

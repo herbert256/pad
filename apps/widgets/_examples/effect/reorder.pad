@@ -1,6 +1,13 @@
 <div id="reorder-example">
-  <p><button type="button" onclick="padReorder(document.getElementById('reorder-example').querySelector('[data-pad-reorder]'),['b','a'])">Second first</button>
-  <button type="button" onclick="padReorder(document.getElementById('reorder-example').querySelector('[data-pad-reorder]'),['a','b'])">Restore order</button></p>
-  {effect:reorder duration=250}<p data-pad-key="a">First item</p><p data-pad-key="b">Second item</p>{/effect:reorder}
-  <noscript><p>The items are shown in their initial order.</p></noscript>
+  <p>
+    <button type="button" onclick="padReorder(document.getElementById('reorder-example').querySelector('[data-pad-reorder]'),['b','a'])">Second first</button>
+    <button type="button" onclick="padReorder(document.getElementById('reorder-example').querySelector('[data-pad-reorder]'),['a','b'])">Restore order</button>
+  </p>
+  {effect:reorder duration=250}
+    <p data-pad-key="a">First item</p>
+    <p data-pad-key="b">Second item</p>
+  {/effect:reorder}
+  <noscript>
+    <p>The items are shown in their initial order.</p>
+  </noscript>
 </div>

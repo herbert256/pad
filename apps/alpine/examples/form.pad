@@ -1,5 +1,4 @@
 <div class="cols-2" x-data="signup({^start})">
-
   <form novalidate @submit.prevent="send()" class="stack-fields">
     <label class="label">Name <input class="input" name="name" x-model="form.name" @blur="leave('name')" :class="errors.name && 'is-invalid'"></label>
     <span class="error" x-text="errors.name" x-show="errors.name" x-cloak></span>
@@ -7,7 +6,8 @@
     <label class="label">E-mail <input class="input" name="email" type="email" x-model="form.email" @blur="leave('email')" :class="errors.email && 'is-invalid'"></label>
     <span class="error" x-text="errors.email" x-show="errors.email" x-cloak></span>
 
-    <label class="label">Team
+    <label class="label">
+      Team
       <select class="input" name="team" x-model="form.team" @change="leave('team')" :class="errors.team && 'is-invalid'">
         <option value="">Choose ...</option>
         <option value="web">Web</option>
@@ -33,7 +33,6 @@
     </template>
     <p class="muted small" x-show="people.length === 0">Nobody yet.</p>
   </div>
-
 </div>
 
 {input:validator/}

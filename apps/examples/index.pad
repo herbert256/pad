@@ -16,7 +16,13 @@
 {/pad:if}
 
 {array:results}
-  {property:first@results}<table class="example-list">{/property:first@results}
-  <tr><td><a href="?show{?item}{?q}">{$item}</a></td></tr>
-  {property:last@results}</table>{/property:last@results}
+  {property:first@results}
+    <table class="example-list">
+  {/property:first@results}
+  <tr>
+    <td><a href="?show{?item}{?q}">{$item}</a></td>
+  </tr>
+  {property:last@results}
+    </table>
+  {/property:last@results}
 {/array:results}

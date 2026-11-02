@@ -1,6 +1,14 @@
 <table>
-  <tr><th class="n">Year</th><th>Title</th><th>Kind</th></tr>
+  <tr>
+    <th class="n">Year</th>
+    <th>Title</th>
+    <th>Kind</th>
+  </tr>
   {select:releases order="released, title"}
-  <tr><td class="n">{$released}</td><td>{$title}</td><td>{$kind}</td></tr>
+    <tr>
+      <td class="n">{$released}</td>
+      <td>{$title}</td>
+      <td>{$kind}</td>
+    </tr>
   {/select:releases}
 </table>

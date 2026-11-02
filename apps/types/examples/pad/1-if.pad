@@ -1,4 +1,8 @@
 {pad:meta title='A built-in tag by its prefix', about='{pad:if} explicitly selects the if tag of the engine.'/}
 {pad:set $count = 3/}
-{pad:if $count gt 0}<p>{$count} items</p>{/pad:if}
-{pad:if $count gt 0}<p>The same core tag, explicitly prefixed.</p>{/pad:if}
+{pad:if $count gt 0}
+  <p>{$count} items</p>
+{/pad:if}
+{pad:if $count gt 0}
+  <p>The same core tag, explicitly prefixed.</p>
+{/pad:if}

@@ -5,13 +5,17 @@
 </section>
 
 {pad:if $scheduleCount eq 0}
-  <section class="card"><p>No application has a <code>_schedule.php</code>.</p></section>
+  <section class="card">
+    <p>No application has a <code>_schedule.php</code>.</p>
+  </section>
 {/pad:if}
 
 {array:scheduleRows}
   <section class="card">
-    <h2>{icon:calendar size=18/} <a href="?application&amp;app={$app}">{$app}</a>
-      <a class="dim" href="?files&amp;app={$app}&amp;file=_schedule.php">_schedule.php</a></h2>
+    <h2>
+      {icon:calendar size=18/} <a href="?application&amp;app={$app}">{$app}</a>
+      <a class="dim" href="?files&amp;app={$app}&amp;file=_schedule.php">_schedule.php</a>
+    </h2>
     <pre class="{pad:echo $code ? 'status-bad' : ''/}">{$listing}</pre>
     <form method="post" style="margin-top:10px">
       <input type="hidden" name="app" value="{$app}">

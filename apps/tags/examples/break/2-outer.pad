@@ -1,9 +1,9 @@
 {pad:meta title='Breaking out of two loops', about='Named, break leaves the outer loop too - the search ends at the first hit.'/}
 {pad:set $target = 12/}
 <p>
-{sequence:range '1..6', name='x'}
-  {sequence:range '1..6', name='y'}
-    {pad:if $x * $y eq $target}First pair: {$x} &times; {$y} = {$target}{pad:break 'x'/}{/pad:if}
+  {sequence:range '1..6', name='x'}
+    {sequence:range '1..6', name='y'}
+      {pad:if $x * $y eq $target}First pair: {$x} &times; {$y} = {$target}{pad:break 'x'/}{/pad:if}
+    {/sequence:range}
   {/sequence:range}
-{/sequence:range}
 </p>

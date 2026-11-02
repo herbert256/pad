@@ -1,19 +1,34 @@
 <div class="narrow">
-
   {input:form 'entry', error, class='entry'}
     {input:field 'day', type='date', label='Day', value=$dayDefault, rules='required|date'/}
-    {input:field 'amount', label='Amount', inputmode='decimal', placeholder='42.50', rules='required|regex:/^[0-9]+([.,][0-9][0-9]?)?$/'/}
+    {input:field 'amount',
+      label='Amount',
+      inputmode='decimal',
+      placeholder='42.50',
+      rules='required|regex:/^[0-9]+([.,][0-9][0-9]?)?$/'
+    /}
     <label for="category">Category</label>
     <select id="category" name="category">
-      <optgroup label="Spending">{array:expenseList}<option value="{$id}">{$name}</option>{/array:expenseList}</optgroup>
-      <optgroup label="Income">{array:incomeList}<option value="{$id}">{$name}</option>{/array:incomeList}</optgroup>
+      <optgroup label="Spending">
+        {array:expenseList}
+          <option value="{$id}">{$name}</option>
+        {/array:expenseList}
+      </optgroup>
+      <optgroup label="Income">
+        {array:incomeList}
+          <option value="{$id}">{$name}</option>
+        {/array:incomeList}
+      </optgroup>
     </select>
     <label for="account">Account</label>
-    <select id="account" name="account">{array:accountList}<option value="{$id}">{$name}</option>{/array:accountList}</select>
+    <select id="account" name="account">
+      {array:accountList}
+        <option value="{$id}">{$name}</option>
+      {/array:accountList}
+    </select>
     {input:field 'note', label='Note', placeholder='What it was', rules='max:120'/}
     <div class="bar"><button class="button primary">Book it</button><a class="button" href="{$padGo}index{?month}">Cancel</a></div>
   {/input:form}
 
   <p class="dim">Spending goes out and income comes in, whichever sign you type.</p>
-
 </div>

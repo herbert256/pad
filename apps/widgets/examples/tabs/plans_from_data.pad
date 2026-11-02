@@ -4,7 +4,11 @@
     {array:plans}
       {widget:tab $name}
         <p><strong>{$price}</strong> a month - {$about}</p>
-        <ul>{array:features}<li>{$features}</li>{/array:features}</ul>
+        <ul>
+          {array:features}
+            <li>{$features}</li>
+          {/array:features}
+        </ul>
       {/widget:tab}
     {/array:plans}
   {/widget:tabs}

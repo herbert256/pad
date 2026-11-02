@@ -1,5 +1,4 @@
 {pad:if $show eq ''}
-
   <p>Pick an example from the <a href="?index{?q}">search</a>.</p>
 
 @else@
@@ -8,7 +7,8 @@
 
   <p><a href="?index{?q}">back to the search</a></p>
 
-  <div class="example-view pad-play-box">{!play}
+  <div class="example-view pad-play-box">
+    {!play}
 
     {pad:if $hasPhp eq 1}
       <div class="example-panel">
@@ -28,7 +28,5 @@
       <h4>Result</h4>
       <div class="example-body">{!result}</div>
     </div>
-
   </div>
-
 {/pad:if}

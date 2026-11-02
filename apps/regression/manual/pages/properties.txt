@@ -1,179 +1,30 @@
 Tag properties give information about a tag, they can be used:
-
-<p><table border=0>
-<tr><td>- as a pad tag </td><td><code style="color: #000000"><b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b> ... <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b></code></td></tr>
-<tr><td>- as a variable with the & prefix &nbsp; </td><td><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;first</font>}</b> ... <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b></code></td></tr>
-</table>
-
-
-
-
-<p> 
-  <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+<p>
+  <table border=0>
     <tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT<link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteUNvbnRlbnQxfVxuICB7bG9jYWw6c3RhZmZ9XG4gICAgPHRyPlxuICAgICAgPHRkPiB7JG5hbWV9ICAgICAgICAgICAgICA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6Zmlyc3R9ICBYIHsvcHJvcGVydHk6Zmlyc3R9ICA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6Ym9yZGVyfSBYIHsvcHJvcGVydHk6Ym9yZGVyfSA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6bWlkZGxlfSBYIHsvcHJvcGVydHk6bWlkZGxlfSA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6bGFzdH0gICBYIHsvcHJvcGVydHk6bGFzdH0gICA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6ZXZlbn0gICBYIHsvcHJvcGVydHk6ZXZlbn0gICA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6b2RkfSAgICBYIHsvcHJvcGVydHk6b2RkfSAgICA8L3RkPlxuICAgIDwvdHI+XG4gIHsvbG9jYWw6c3RhZmZ9XG57L2NvbnRlbnQ6bXlDb250ZW50MX1cblxue2NvbnRlbnQ6bXlDb250ZW50MX1cbiAge2xvY2FsOnN0YWZmfVxuICAgIDx0cj5cbiAgICAgIDx0ZD4geyRuYW1lfSAgICAgICAgICAgICAgPC90ZD5cbiAgICAgIDx0ZD4ge3BhZDppZiAmZmlyc3R9ICBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgPHRkPiB7cGFkOmlmICZib3JkZXJ9IFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICA8dGQ+IHtwYWQ6aWYgJm1pZGRsZX0gWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgIDx0ZD4ge3BhZDppZiAmbGFzdH0gICBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgPHRkPiB7cGFkOmlmICZldmVufSAgIFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICA8dGQ+IHtwYWQ6aWYgJm9kZH0gICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICA8L3RyPlxuICB7L2xvY2FsOnN0YWZmfVxuey9jb250ZW50Om15Q29udGVudDF9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteUNvbnRlbnQxfVxuICB7bG9jYWw6c3RhZmZ9XG4gICAgPHRyPlxuICAgICAgPHRkPiB7JG5hbWV9ICAgICAgICAgICAgICA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6Zmlyc3R9ICBYIHsvcHJvcGVydHk6Zmlyc3R9ICA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6Ym9yZGVyfSBYIHsvcHJvcGVydHk6Ym9yZGVyfSA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6bWlkZGxlfSBYIHsvcHJvcGVydHk6bWlkZGxlfSA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6bGFzdH0gICBYIHsvcHJvcGVydHk6bGFzdH0gICA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6ZXZlbn0gICBYIHsvcHJvcGVydHk6ZXZlbn0gICA8L3RkPlxuICAgICAgPHRkPiB7cHJvcGVydHk6b2RkfSAgICBYIHsvcHJvcGVydHk6b2RkfSAgICA8L3RkPlxuICAgIDwvdHI+XG4gIHsvbG9jYWw6c3RhZmZ9XG57L2NvbnRlbnQ6bXlDb250ZW50MX1cblxue2NvbnRlbnQ6bXlDb250ZW50MX1cbiAge2xvY2FsOnN0YWZmfVxuICAgIDx0cj5cbiAgICAgIDx0ZD4geyRuYW1lfSAgICAgICAgICAgICAgPC90ZD5cbiAgICAgIDx0ZD4ge3BhZDppZiAmZmlyc3R9ICBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgPHRkPiB7cGFkOmlmICZib3JkZXJ9IFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICA8dGQ+IHtwYWQ6aWYgJm1pZGRsZX0gWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgIDx0ZD4ge3BhZDppZiAmbGFzdH0gICBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgPHRkPiB7cGFkOmlmICZldmVufSAgIFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICA8dGQ+IHtwYWQ6aWYgJm9kZH0gICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICA8L3RyPlxuICB7L2xvY2FsOnN0YWZmfVxuey9jb250ZW50Om15Q29udGVudDF9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a></th>
+      <td>- as a pad tag </td>
+      <td><code style="color: #000000"><b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b> ... <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b></code></td>
     </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>              &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>even</font><font color="red"></font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>odd</font><font color="red"></font>}</b>    X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br><b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
     <tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
+      <td>- as a variable with the & prefix &nbsp; </td>
+      <td><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;first</font>}</b> ... <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b></code></td>
     </tr>
-    
-  
-    <tr>
-      <td> joe              </td>
-      <td>   X   </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-  
-    <tr>
-      <td> jim              </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    X    </td>
-      <td>     </td>
-    </tr>
-  
-    <tr>
-      <td> john              </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-  
-    <tr>
-      <td> jack              </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    X    </td>
-      <td>     </td>
-    </tr>
-  
-    <tr>
-      <td> jerry              </td>
-      <td>   </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-  
-
-  </table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>              &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;first</font>}</b>  X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;border</font>}</b> X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;middle</font>}</b> X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;last</font>}</b>   X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;even</font>}</b>   X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;odd</font>}</b>    X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br><b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
-    <tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-    <tr>
-      <td> joe              </td>
-      <td>   X  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>     X  </td>
-    </tr>
-  
-    <tr>
-      <td> jim              </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X  </td>
-      <td>  </td>
-    </tr>
-  
-    <tr>
-      <td> john              </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>     X  </td>
-    </tr>
-  
-    <tr>
-      <td> jack              </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X  </td>
-      <td>  </td>
-    </tr>
-  
-    <tr>
-      <td> jerry              </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X  </td>
-      <td>  </td>
-      <td>     X  </td>
-    </tr>
-  
-
-  </table><!-- END DEMO RESULT --></span></code></td></tr>
-
-
   </table>
-</p>
+
+  
 
 
-
-<p>When working with properties of a tag that is deeper in the stack of tags, the name of that tag must be given.
- 
-<p><table border=0>
-<tr><td>- as parameter when used as tag</td></tr>
-<tr><td>- as prefix, when used as &var</td></tr>
-<tr><td>- relative level number</td></tr>
-</table>
-
-
-
-
-<p> 
+<p>
   <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
     <tr>
       
       
       
       <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT<a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteUNvbnRlbnQxfVxuICB7bG9jYWw6c3RhZmZ9XG4gICAge3BhZDp0cnVlfVxuICAgICAgPHRyPlxuICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgPHRkPiB7cHJvcGVydHk6Zmlyc3QgJ3N0YWZmJ30gIFggey9wcm9wZXJ0eTpmaXJzdH0gIDwvdGQ+XG4gICAgICAgIDx0ZD4ge3Byb3BlcnR5OmJvcmRlciAnc3RhZmYnfSBYIHsvcHJvcGVydHk6Ym9yZGVyfSA8L3RkPlxuICAgICAgICA8dGQ+IHtwcm9wZXJ0eTptaWRkbGUgJ3N0YWZmJ30gWCB7L3Byb3BlcnR5Om1pZGRsZX0gPC90ZD5cbiAgICAgICAgPHRkPiB7cHJvcGVydHk6bGFzdCAnc3RhZmYnfSAgIFggey9wcm9wZXJ0eTpsYXN0fSAgIDwvdGQ+XG4gICAgICAgIDx0ZD4ge3Byb3BlcnR5OmV2ZW4gJ3N0YWZmJ30gICBYIHsvcHJvcGVydHk6ZXZlbn0gICA8L3RkPlxuICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpvZGQgJ3N0YWZmJ30gICAgWCB7L3Byb3BlcnR5Om9kZH0gICAgPC90ZD5cbiAgICAgIDwvdHI+XG4gICAgey9wYWQ6dHJ1ZX1cbiAgey9sb2NhbDpzdGFmZn1cbnsvY29udGVudDpteUNvbnRlbnQxfVxuXG57Y29udGVudDpteUNvbnRlbnQxfVxuICB7bG9jYWw6c3RhZmZ9XG4gICAge3BhZDp0cnVlfVxuICAgICAgPHRyPlxuICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgIDx0ZD4ge3BhZDppZiAmc3RhZmY6Zmlyc3R9ICBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICA8dGQ+IHtwYWQ6aWYgJnN0YWZmOmJvcmRlcn0gWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgPHRkPiB7cGFkOmlmICZzdGFmZjptaWRkbGV9IFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICAgIDx0ZD4ge3BhZDppZiAmc3RhZmY6bGFzdH0gICBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICA8dGQ+IHtwYWQ6aWYgJnN0YWZmOmV2ZW59ICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgPHRkPiB7cGFkOmlmICZzdGFmZjpvZGR9ICAgIFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICA8L3RyPlxuICAgIHsvcGFkOnRydWV9XG4gIHsvbG9jYWw6c3RhZmZ9XG57L2NvbnRlbnQ6bXlDb250ZW50MX1cblxue2NvbnRlbnQ6bXlDb250ZW50MX1cbiAge2xvY2FsOnN0YWZmfVxuICAgICB7cGFkOnRydWV9XG4gICAgICA8dHI+IFxuICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgIDx0ZD4ge3Byb3BlcnR5OmZpcnN0IC0yfSAgWCB7L3Byb3BlcnR5OmZpcnN0fSAgPC90ZD5cbiAgICAgICAgPHRkPiB7cHJvcGVydHk6Ym9yZGVyIC0yfSBYIHsvcHJvcGVydHk6Ym9yZGVyfSA8L3RkPlxuICAgICAgICA8dGQ+IHtwcm9wZXJ0eTptaWRkbGUgLTJ9IFggey9wcm9wZXJ0eTptaWRkbGV9IDwvdGQ+XG4gICAgICAgIDx0ZD4ge3Byb3BlcnR5Omxhc3QgLTJ9ICAgWCB7L3Byb3BlcnR5Omxhc3R9ICAgPC90ZD5cbiAgICAgICAgPHRkPiB7cHJvcGVydHk6ZXZlbiAtMn0gICBYIHsvcHJvcGVydHk6ZXZlbn0gICA8L3RkPlxuICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpvZGQgLTJ9ICAgIFggey9wcm9wZXJ0eTpvZGR9ICAgIDwvdGQ+XG4gICAgICA8L3RyPlxuICAgIHsvcGFkOnRydWV9XG4gIHsvbG9jYWw6c3RhZmZ9XG57L2NvbnRlbnQ6bXlDb250ZW50MX1cblxue2NvbnRlbnQ6bXlDb250ZW50MX1cbiAge2xvY2FsOnN0YWZmfVxuICAgICB7cGFkOnRydWV9XG4gICAgICA8dHI+XG4gICAgICAgIDx0ZD4geyRuYW1lfSAgICAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgPHRkPiB7cGFkOmlmICYtMjpmaXJzdH0gIFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICAgIDx0ZD4ge3BhZDppZiAmLTI6Ym9yZGVyfSBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICA8dGQ+IHtwYWQ6aWYgJi0yOm1pZGRsZX0gWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgPHRkPiB7cGFkOmlmICYtMjpsYXN0fSAgIFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICAgIDx0ZD4ge3BhZDppZiAmLTI6ZXZlbn0gICBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICA8dGQ+IHtwYWQ6aWYgJi0yOm9kZH0gICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgIDwvdHI+XG4gICAgey9wYWQ6dHJ1ZX1cbiAgey9sb2NhbDpzdGFmZn1cbnsvY29udGVudDpteUNvbnRlbnQxfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteUNvbnRlbnQxfVxuICB7bG9jYWw6c3RhZmZ9XG4gICAge3BhZDp0cnVlfVxuICAgICAgPHRyPlxuICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgPHRkPiB7cHJvcGVydHk6Zmlyc3QgJ3N0YWZmJ30gIFggey9wcm9wZXJ0eTpmaXJzdH0gIDwvdGQ+XG4gICAgICAgIDx0ZD4ge3Byb3BlcnR5OmJvcmRlciAnc3RhZmYnfSBYIHsvcHJvcGVydHk6Ym9yZGVyfSA8L3RkPlxuICAgICAgICA8dGQ+IHtwcm9wZXJ0eTptaWRkbGUgJ3N0YWZmJ30gWCB7L3Byb3BlcnR5Om1pZGRsZX0gPC90ZD5cbiAgICAgICAgPHRkPiB7cHJvcGVydHk6bGFzdCAnc3RhZmYnfSAgIFggey9wcm9wZXJ0eTpsYXN0fSAgIDwvdGQ+XG4gICAgICAgIDx0ZD4ge3Byb3BlcnR5OmV2ZW4gJ3N0YWZmJ30gICBYIHsvcHJvcGVydHk6ZXZlbn0gICA8L3RkPlxuICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpvZGQgJ3N0YWZmJ30gICAgWCB7L3Byb3BlcnR5Om9kZH0gICAgPC90ZD5cbiAgICAgIDwvdHI+XG4gICAgey9wYWQ6dHJ1ZX1cbiAgey9sb2NhbDpzdGFmZn1cbnsvY29udGVudDpteUNvbnRlbnQxfVxuXG57Y29udGVudDpteUNvbnRlbnQxfVxuICB7bG9jYWw6c3RhZmZ9XG4gICAge3BhZDp0cnVlfVxuICAgICAgPHRyPlxuICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgIDx0ZD4ge3BhZDppZiAmc3RhZmY6Zmlyc3R9ICBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICA8dGQ+IHtwYWQ6aWYgJnN0YWZmOmJvcmRlcn0gWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgPHRkPiB7cGFkOmlmICZzdGFmZjptaWRkbGV9IFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICAgIDx0ZD4ge3BhZDppZiAmc3RhZmY6bGFzdH0gICBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICA8dGQ+IHtwYWQ6aWYgJnN0YWZmOmV2ZW59ICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgPHRkPiB7cGFkOmlmICZzdGFmZjpvZGR9ICAgIFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICA8L3RyPlxuICAgIHsvcGFkOnRydWV9XG4gIHsvbG9jYWw6c3RhZmZ9XG57L2NvbnRlbnQ6bXlDb250ZW50MX1cblxue2NvbnRlbnQ6bXlDb250ZW50MX1cbiAge2xvY2FsOnN0YWZmfVxuICAgICB7cGFkOnRydWV9XG4gICAgICA8dHI+IFxuICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgIDx0ZD4ge3Byb3BlcnR5OmZpcnN0IC0yfSAgWCB7L3Byb3BlcnR5OmZpcnN0fSAgPC90ZD5cbiAgICAgICAgPHRkPiB7cHJvcGVydHk6Ym9yZGVyIC0yfSBYIHsvcHJvcGVydHk6Ym9yZGVyfSA8L3RkPlxuICAgICAgICA8dGQ+IHtwcm9wZXJ0eTptaWRkbGUgLTJ9IFggey9wcm9wZXJ0eTptaWRkbGV9IDwvdGQ+XG4gICAgICAgIDx0ZD4ge3Byb3BlcnR5Omxhc3QgLTJ9ICAgWCB7L3Byb3BlcnR5Omxhc3R9ICAgPC90ZD5cbiAgICAgICAgPHRkPiB7cHJvcGVydHk6ZXZlbiAtMn0gICBYIHsvcHJvcGVydHk6ZXZlbn0gICA8L3RkPlxuICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpvZGQgLTJ9ICAgIFggey9wcm9wZXJ0eTpvZGR9ICAgIDwvdGQ+XG4gICAgICA8L3RyPlxuICAgIHsvcGFkOnRydWV9XG4gIHsvbG9jYWw6c3RhZmZ9XG57L2NvbnRlbnQ6bXlDb250ZW50MX1cblxue2NvbnRlbnQ6bXlDb250ZW50MX1cbiAge2xvY2FsOnN0YWZmfVxuICAgICB7cGFkOnRydWV9XG4gICAgICA8dHI+XG4gICAgICAgIDx0ZD4geyRuYW1lfSAgICAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgPHRkPiB7cGFkOmlmICYtMjpmaXJzdH0gIFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICAgIDx0ZD4ge3BhZDppZiAmLTI6Ym9yZGVyfSBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICA8dGQ+IHtwYWQ6aWYgJi0yOm1pZGRsZX0gWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgPHRkPiB7cGFkOmlmICYtMjpsYXN0fSAgIFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICAgIDx0ZD4ge3BhZDppZiAmLTI6ZXZlbn0gICBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICA8dGQ+IHtwYWQ6aWYgJi0yOm9kZH0gICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgIDwvdHI+XG4gICAgey9wYWQ6dHJ1ZX1cbiAgey9sb2NhbDpzdGFmZn1cbnsvY29udGVudDpteUNvbnRlbnQxfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a></th>
+      <th bgcolor="#dddddd">RESULT<link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteUNvbnRlbnQxfVxuICAgICAge2xvY2FsOnN0YWZmfVxuICAgICAgICA8dHI+XG4gICAgICAgICAgPHRkPiB7JG5hbWV9ICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5OmZpcnN0fSAgWCB7L3Byb3BlcnR5OmZpcnN0fSAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpib3JkZXJ9IFggey9wcm9wZXJ0eTpib3JkZXJ9IDwvdGQ+XG4gICAgICAgICAgPHRkPiB7cHJvcGVydHk6bWlkZGxlfSBYIHsvcHJvcGVydHk6bWlkZGxlfSA8L3RkPlxuICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5Omxhc3R9ICAgWCB7L3Byb3BlcnR5Omxhc3R9ICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpldmVufSAgIFggey9wcm9wZXJ0eTpldmVufSAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7cHJvcGVydHk6b2RkfSAgICBYIHsvcHJvcGVydHk6b2RkfSAgICA8L3RkPlxuICAgICAgICA8L3RyPlxuICAgICAgey9sb2NhbDpzdGFmZn1cbiAgICB7L2NvbnRlbnQ6bXlDb250ZW50MX1cblxue2NvbnRlbnQ6bXlDb250ZW50MX1cbiAgICAgIHtsb2NhbDpzdGFmZn1cbiAgICAgICAgPHRyPlxuICAgICAgICAgIDx0ZD4geyRuYW1lfSAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJmZpcnN0fSAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJmJvcmRlcn0gWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJm1pZGRsZX0gWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJmxhc3R9ICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJmV2ZW59ICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJm9kZH0gICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgPC90cj5cbiAgICAgIHsvbG9jYWw6c3RhZmZ9XG4gICAgey9jb250ZW50Om15Q29udGVudDF9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteUNvbnRlbnQxfVxuICAgICAge2xvY2FsOnN0YWZmfVxuICAgICAgICA8dHI+XG4gICAgICAgICAgPHRkPiB7JG5hbWV9ICAgICAgICAgICAgICA8L3RkPlxuICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5OmZpcnN0fSAgWCB7L3Byb3BlcnR5OmZpcnN0fSAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpib3JkZXJ9IFggey9wcm9wZXJ0eTpib3JkZXJ9IDwvdGQ+XG4gICAgICAgICAgPHRkPiB7cHJvcGVydHk6bWlkZGxlfSBYIHsvcHJvcGVydHk6bWlkZGxlfSA8L3RkPlxuICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5Omxhc3R9ICAgWCB7L3Byb3BlcnR5Omxhc3R9ICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpldmVufSAgIFggey9wcm9wZXJ0eTpldmVufSAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7cHJvcGVydHk6b2RkfSAgICBYIHsvcHJvcGVydHk6b2RkfSAgICA8L3RkPlxuICAgICAgICA8L3RyPlxuICAgICAgey9sb2NhbDpzdGFmZn1cbiAgICB7L2NvbnRlbnQ6bXlDb250ZW50MX1cblxue2NvbnRlbnQ6bXlDb250ZW50MX1cbiAgICAgIHtsb2NhbDpzdGFmZn1cbiAgICAgICAgPHRyPlxuICAgICAgICAgIDx0ZD4geyRuYW1lfSAgICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJmZpcnN0fSAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJmJvcmRlcn0gWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJm1pZGRsZX0gWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJmxhc3R9ICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJmV2ZW59ICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJm9kZH0gICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgPC90cj5cbiAgICAgIHsvbG9jYWw6c3RhZmZ9XG4gICAgey9jb250ZW50Om15Q29udGVudDF9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a></th>
     </tr>
-    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>  X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>even </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>odd </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>    X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br><b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b><br>      <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>              &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>even</font><font color="red"></font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>odd</font><font color="red"></font>}</b>    X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>        &lt;/tr&gt;<br>      <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    <b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
     <tr>
       <th>        </th>
       <th> first  </th>
@@ -183,457 +34,540 @@ Tag properties give information about a tag, they can be used:
       <th> even   </th>
       <th> odd    </th>
     </tr>
-    
-  
-    
-      <tr>
-        <td> joe                      </td>
-        <td>   X   </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> jim                      </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    X    </td>
-        <td>     </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> john                      </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> jack                      </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    X    </td>
-        <td>     </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> jerry                      </td>
-        <td>   </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-
-  </table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                    &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;staff<font color="black">:</font>first</font>}</b>  X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;staff<font color="black">:</font>border</font>}</b> X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;staff<font color="black">:</font>middle</font>}</b> X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;staff<font color="black">:</font>last</font>}</b>   X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;staff<font color="black">:</font>even</font>}</b>   X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;staff<font color="black">:</font>odd</font>}</b>    X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br><b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
-    <tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-    
-      <tr>
-        <td> joe                    </td>
-        <td>   X  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> jim                    </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> john                    </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> jack                    </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-      </tr>
-    
-  
-    
-      <tr>
-        <td> jerry                    </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-
-  </table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>     <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>      &lt;tr&gt; <br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                 &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first </font><font color="red">-2</font>}</b>  X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border </font><font color="red">-2</font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle </font><font color="red">-2</font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last </font><font color="red">-2</font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>even </font><font color="red">-2</font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>odd </font><font color="red">-2</font>}</b>    X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br><b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
-    <tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-     
-      <tr> 
-        <td> joe                 </td>
-        <td>   X   </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-     
-      <tr> 
-        <td> jim                 </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    X    </td>
-        <td>     </td>
-      </tr>
-    
-  
-     
-      <tr> 
-        <td> john                 </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-     
-      <tr> 
-        <td> jack                 </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    X    </td>
-        <td>     </td>
-      </tr>
-    
-  
-     
-      <tr> 
-        <td> jerry                 </td>
-        <td>   </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-  
-
-  </table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b><br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>     <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                 &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;-2<font color="black">:</font>first</font>}</b>  X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;-2<font color="black">:</font>border</font>}</b> X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;-2<font color="black">:</font>middle</font>}</b> X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;-2<font color="black">:</font>last</font>}</b>   X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;-2<font color="black">:</font>even</font>}</b>   X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;-2<font color="black">:</font>odd</font>}</b>    X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br><b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
-    <tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-  
-     
-      <tr>
-        <td> joe                 </td>
-        <td>   X  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-     
-      <tr>
-        <td> jim                 </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-      </tr>
-    
-  
-     
-      <tr>
-        <td> john                 </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-     
-      <tr>
-        <td> jack                 </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-      </tr>
-    
-  
-     
-      <tr>
-        <td> jerry                 </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-  
-
-  </table><!-- END DEMO RESULT --></span></code></td></tr>
-  </table>
-</p>
-
-
-
-<!-- todo-1 -->
-
-
-
-
-<p> 
-  <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
-    <tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT<a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteUNvbnRlbnQyfVxuICB7bG9jYWw6c3RhZmZ9XG4gICAgICA8dHI+XG4gICAgICAgIDx0ZD4geyRuYW1lfSAgICAgIDwvdGQ+XG4gICAgICAgIDx0ZD4geyZuYW1lfSAgICAgIDwvdGQ+XG4gICAgICAgIDx0ZD4geyZjb3VudH0gICAgIDwvdGQ+XG4gICAgICAgIDx0ZD4geyZrZXl9ICAgICAgIDwvdGQ+XG4gICAgICAgIDx0ZD4geyZjdXJyZW50fSAgIDwvdGQ+XG4gICAgICAgIDx0ZD4geyZkb25lfSAgICAgIDwvdGQ+XG4gICAgICAgIDx0ZD4geyZyZW1haW5pbmd9IDwvdGQ+ICAgXG4gICAgICA8L3RyPlxuICB7L2xvY2FsOnN0YWZmfVxuey9jb250ZW50Om15Q29udGVudDJ9XG5cbntjb250ZW50Om15Q29udGVudDJ9XG4gIHtsb2NhbDpzdGFmZn1cbiAgICB7cGFkOnRydWV9XG4gICAgICB7cGFkOnRydWV9XG4gICAgICAgIDx0cj5cbiAgICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICA8L3RkPlxuICAgICAgICAgIDx0ZD4geyYtMjpuYW1lfSAgICAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7Ji0yOmNvdW50fSAgICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHsmLTI6a2V5fSAgICAgICA8L3RkPlxuICAgICAgICAgIDx0ZD4geyYtMjpjdXJyZW50fSAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7Ji0yOmRvbmV9ICAgICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHsmLTI6cmVtYWluaW5nfSA8L3RkPiBcbiAgICAgICAgPC90cj5cbiAgICAgIHsvcGFkOnRydWV9XG4gICAgey9wYWQ6dHJ1ZX1cbiAgey9sb2NhbDpzdGFmZn1cbnsvY29udGVudDpteUNvbnRlbnQyfVxuXG57Y29udGVudDpteUNvbnRlbnQyfVxuICB7bG9jYWw6c3RhZmZ9XG4gICAge3BhZDp0cnVlfVxuICAgICAge3BhZDp0cnVlfVxuICAgICAgICA8dHI+XG4gICAgICAgICAgPHRkPiB7JG5hbWV9ICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHsmc3RhZmY6bmFtZX0gICAgICA8L3RkPlxuICAgICAgICAgIDx0ZD4geyZzdGFmZjpjb3VudH0gICAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7JnN0YWZmOmtleX0gICAgICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHsmc3RhZmY6Y3VycmVudH0gICA8L3RkPlxuICAgICAgICAgIDx0ZD4geyZzdGFmZjpkb25lfSAgICAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7JnN0YWZmOnJlbWFpbmluZ30gPC90ZD4gICBcbiAgICAgICAgPC90cj5cbiAgICAgIHsvcGFkOnRydWV9XG4gICAgey9wYWQ6dHJ1ZX1cbiAgey9sb2NhbDpzdGFmZn1cbnsvY29udGVudDpteUNvbnRlbnQyfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteUNvbnRlbnQyfVxuICB7bG9jYWw6c3RhZmZ9XG4gICAgICA8dHI+XG4gICAgICAgIDx0ZD4geyRuYW1lfSAgICAgIDwvdGQ+XG4gICAgICAgIDx0ZD4geyZuYW1lfSAgICAgIDwvdGQ+XG4gICAgICAgIDx0ZD4geyZjb3VudH0gICAgIDwvdGQ+XG4gICAgICAgIDx0ZD4geyZrZXl9ICAgICAgIDwvdGQ+XG4gICAgICAgIDx0ZD4geyZjdXJyZW50fSAgIDwvdGQ+XG4gICAgICAgIDx0ZD4geyZkb25lfSAgICAgIDwvdGQ+XG4gICAgICAgIDx0ZD4geyZyZW1haW5pbmd9IDwvdGQ+ICAgXG4gICAgICA8L3RyPlxuICB7L2xvY2FsOnN0YWZmfVxuey9jb250ZW50Om15Q29udGVudDJ9XG5cbntjb250ZW50Om15Q29udGVudDJ9XG4gIHtsb2NhbDpzdGFmZn1cbiAgICB7cGFkOnRydWV9XG4gICAgICB7cGFkOnRydWV9XG4gICAgICAgIDx0cj5cbiAgICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICA8L3RkPlxuICAgICAgICAgIDx0ZD4geyYtMjpuYW1lfSAgICAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7Ji0yOmNvdW50fSAgICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHsmLTI6a2V5fSAgICAgICA8L3RkPlxuICAgICAgICAgIDx0ZD4geyYtMjpjdXJyZW50fSAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7Ji0yOmRvbmV9ICAgICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHsmLTI6cmVtYWluaW5nfSA8L3RkPiBcbiAgICAgICAgPC90cj5cbiAgICAgIHsvcGFkOnRydWV9XG4gICAgey9wYWQ6dHJ1ZX1cbiAgey9sb2NhbDpzdGFmZn1cbnsvY29udGVudDpteUNvbnRlbnQyfVxuXG57Y29udGVudDpteUNvbnRlbnQyfVxuICB7bG9jYWw6c3RhZmZ9XG4gICAge3BhZDp0cnVlfVxuICAgICAge3BhZDp0cnVlfVxuICAgICAgICA8dHI+XG4gICAgICAgICAgPHRkPiB7JG5hbWV9ICAgICAgICAgICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHsmc3RhZmY6bmFtZX0gICAgICA8L3RkPlxuICAgICAgICAgIDx0ZD4geyZzdGFmZjpjb3VudH0gICAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7JnN0YWZmOmtleX0gICAgICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHsmc3RhZmY6Y3VycmVudH0gICA8L3RkPlxuICAgICAgICAgIDx0ZD4geyZzdGFmZjpkb25lfSAgICAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7JnN0YWZmOnJlbWFpbmluZ30gPC90ZD4gICBcbiAgICAgICAgPC90cj5cbiAgICAgIHsvcGFkOnRydWV9XG4gICAgey9wYWQ6dHJ1ZX1cbiAgey9sb2NhbDpzdGFmZn1cbnsvY29udGVudDpteUNvbnRlbnQyfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a></th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent2</font><font color="red"></font>}</b><br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>name</font>}</b>      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>count</font>}</b>     &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>key</font>}</b>       &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>current</font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>done</font>}</b>      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>remaining</font>}</b> &lt;/td&gt;   <br>      &lt;/tr&gt;<br>  <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br><b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
-      <tr>
-        <th>         </th>
-        <th> name    </th>
-        <th> count   </th>
-        <th> key     </th>
-        <th> current </th>
-        <th> done    </th>
-        <th> remain  </th>
-      </tr>
-    
-  
-      <tr>
-        <td> joe      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 0       </td>
-        <td> 1   </td>
-        <td> 0      </td>
-        <td> 4 </td>   
-      </tr>
-  
-      <tr>
-        <td> jim      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 1       </td>
-        <td> 2   </td>
-        <td> 1      </td>
-        <td> 3 </td>   
-      </tr>
-  
-      <tr>
-        <td> john      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 2       </td>
-        <td> 3   </td>
-        <td> 2      </td>
-        <td> 2 </td>   
-      </tr>
-  
-      <tr>
-        <td> jack      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 3       </td>
-        <td> 4   </td>
-        <td> 3      </td>
-        <td> 1 </td>   
-      </tr>
-  
-      <tr>
-        <td> jerry      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 4       </td>
-        <td> 5   </td>
-        <td> 4      </td>
-        <td> 0 </td>   
-      </tr>
-  
-
-  </table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent2</font><font color="red"></font>}</b><br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>      <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>         &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>name</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>count</font>}</b>     &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>key</font>}</b>       &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>current</font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>done</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>remaining</font>}</b> &lt;/td&gt; <br>        &lt;/tr&gt;<br>      <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>    <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br><b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
-      <tr>
-        <th>         </th>
-        <th> name    </th>
-        <th> count   </th>
-        <th> key     </th>
-        <th> current </th>
-        <th> done    </th>
-        <th> remain  </th>
-      </tr>
-    
-  
     
       
         <tr>
-          <td> joe         </td>
+          <td> joe              </td>
+          <td>   X   </td>
+          <td>  X  </td>
+          <td>  </td>
+          <td>    </td>
+          <td>    </td>
+          <td>     X     </td>
+        </tr>
+      
+        <tr>
+          <td> jim              </td>
+          <td>   </td>
+          <td>  </td>
+          <td>  X  </td>
+          <td>    </td>
+          <td>    X    </td>
+          <td>     </td>
+        </tr>
+      
+        <tr>
+          <td> john              </td>
+          <td>   </td>
+          <td>  </td>
+          <td>  X  </td>
+          <td>    </td>
+          <td>    </td>
+          <td>     X     </td>
+        </tr>
+      
+        <tr>
+          <td> jack              </td>
+          <td>   </td>
+          <td>  </td>
+          <td>  X  </td>
+          <td>    </td>
+          <td>    X    </td>
+          <td>     </td>
+        </tr>
+      
+        <tr>
+          <td> jerry              </td>
+          <td>   </td>
+          <td>  X  </td>
+          <td>  </td>
+          <td>    X    </td>
+          <td>    </td>
+          <td>     X     </td>
+        </tr>
+      
+    
+  </table><!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b><br>      <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>              &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;first</font>}</b>  X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;border</font>}</b> X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;middle</font>}</b> X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;last</font>}</b>   X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;even</font>}</b>   X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;odd</font>}</b>    X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;/tr&gt;<br>      <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    <b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
+    <tr>
+      <th>        </th>
+      <th> first  </th>
+      <th> border </th>
+      <th> middle </th>
+      <th> last   </th>
+      <th> even   </th>
+      <th> odd    </th>
+    </tr>
+    
+      
+        <tr>
+          <td> joe              </td>
+          <td>   X  </td>
+          <td>  X  </td>
+          <td>  </td>
+          <td>  </td>
+          <td>  </td>
+          <td>     X  </td>
+        </tr>
+      
+        <tr>
+          <td> jim              </td>
+          <td>  </td>
+          <td>  </td>
+          <td>  X  </td>
+          <td>  </td>
+          <td>    X  </td>
+          <td>  </td>
+        </tr>
+      
+        <tr>
+          <td> john              </td>
+          <td>  </td>
+          <td>  </td>
+          <td>  X  </td>
+          <td>  </td>
+          <td>  </td>
+          <td>     X  </td>
+        </tr>
+      
+        <tr>
+          <td> jack              </td>
+          <td>  </td>
+          <td>  </td>
+          <td>  X  </td>
+          <td>  </td>
+          <td>    X  </td>
+          <td>  </td>
+        </tr>
+      
+        <tr>
+          <td> jerry              </td>
+          <td>  </td>
+          <td>  X  </td>
+          <td>  </td>
+          <td>    X  </td>
+          <td>  </td>
+          <td>     X  </td>
+        </tr>
+      
+    
+  </table><!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+  <p>
+    When working with properties of a tag that is deeper in the stack of tags, the name of that tag must be given.
+    <p>
+      <table border=0>
+        <tr>
+          <td>- as parameter when used as tag</td>
+        </tr>
+        <tr>
+          <td>- as prefix, when used as &var</td>
+        </tr>
+        <tr>
+          <td>- relative level number</td>
+        </tr>
+      </table>
+
+      
+
+
+<p>
+  <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT<a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteUNvbnRlbnQxfVxuICAgICAge2xvY2FsOnN0YWZmfVxuICAgICAgICB7cGFkOnRydWV9XG4gICAgICAgICAgPHRyPlxuICAgICAgICAgICAgPHRkPiB7JG5hbWV9ICAgICAgICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpmaXJzdCAnc3RhZmYnfSAgWCB7L3Byb3BlcnR5OmZpcnN0fSAgPC90ZD5cbiAgICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5OmJvcmRlciAnc3RhZmYnfSBYIHsvcHJvcGVydHk6Ym9yZGVyfSA8L3RkPlxuICAgICAgICAgICAgPHRkPiB7cHJvcGVydHk6bWlkZGxlICdzdGFmZid9IFggey9wcm9wZXJ0eTptaWRkbGV9IDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpsYXN0ICdzdGFmZid9ICAgWCB7L3Byb3BlcnR5Omxhc3R9ICAgPC90ZD5cbiAgICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5OmV2ZW4gJ3N0YWZmJ30gICBYIHsvcHJvcGVydHk6ZXZlbn0gICA8L3RkPlxuICAgICAgICAgICAgPHRkPiB7cHJvcGVydHk6b2RkICdzdGFmZid9ICAgIFggey9wcm9wZXJ0eTpvZGR9ICAgIDwvdGQ+XG4gICAgICAgICAgPC90cj5cbiAgICAgICAgey9wYWQ6dHJ1ZX1cbiAgICAgIHsvbG9jYWw6c3RhZmZ9XG4gICAgey9jb250ZW50Om15Q29udGVudDF9XG5cbntjb250ZW50Om15Q29udGVudDF9XG4gICAgICB7bG9jYWw6c3RhZmZ9XG4gICAgICAgIHtwYWQ6dHJ1ZX1cbiAgICAgICAgICA8dHI+XG4gICAgICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJnN0YWZmOmZpcnN0fSAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICAgIDx0ZD4ge3BhZDppZiAmc3RhZmY6Ym9yZGVyfSBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICAgICAgPHRkPiB7cGFkOmlmICZzdGFmZjptaWRkbGV9IFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJnN0YWZmOmxhc3R9ICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICAgIDx0ZD4ge3BhZDppZiAmc3RhZmY6ZXZlbn0gICBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICAgICAgPHRkPiB7cGFkOmlmICZzdGFmZjpvZGR9ICAgIFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICAgICAgPC90cj5cbiAgICAgICAgey9wYWQ6dHJ1ZX1cbiAgICAgIHsvbG9jYWw6c3RhZmZ9XG4gICAgey9jb250ZW50Om15Q29udGVudDF9XG5cbntjb250ZW50Om15Q29udGVudDF9XG4gICAgICB7bG9jYWw6c3RhZmZ9XG4gICAgICAgIHtwYWQ6dHJ1ZX1cbiAgICAgICAgICA8dHI+XG4gICAgICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpmaXJzdCAtMn0gIFggey9wcm9wZXJ0eTpmaXJzdH0gIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpib3JkZXIgLTJ9IFggey9wcm9wZXJ0eTpib3JkZXJ9IDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTptaWRkbGUgLTJ9IFggey9wcm9wZXJ0eTptaWRkbGV9IDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpsYXN0IC0yfSAgIFggey9wcm9wZXJ0eTpsYXN0fSAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpldmVuIC0yfSAgIFggey9wcm9wZXJ0eTpldmVufSAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpvZGQgLTJ9ICAgIFggey9wcm9wZXJ0eTpvZGR9ICAgIDwvdGQ+XG4gICAgICAgICAgPC90cj5cbiAgICAgICAgey9wYWQ6dHJ1ZX1cbiAgICAgIHsvbG9jYWw6c3RhZmZ9XG4gICAgey9jb250ZW50Om15Q29udGVudDF9XG5cbntjb250ZW50Om15Q29udGVudDF9XG4gICAgICB7bG9jYWw6c3RhZmZ9XG4gICAgICAgIHtwYWQ6dHJ1ZX1cbiAgICAgICAgICA8dHI+XG4gICAgICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJi0yOmZpcnN0fSAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICAgIDx0ZD4ge3BhZDppZiAmLTI6Ym9yZGVyfSBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICAgICAgPHRkPiB7cGFkOmlmICYtMjptaWRkbGV9IFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJi0yOmxhc3R9ICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICAgIDx0ZD4ge3BhZDppZiAmLTI6ZXZlbn0gICBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICAgICAgPHRkPiB7cGFkOmlmICYtMjpvZGR9ICAgIFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICAgICAgPC90cj5cbiAgICAgICAgey9wYWQ6dHJ1ZX1cbiAgICAgIHsvbG9jYWw6c3RhZmZ9XG4gICAgey9jb250ZW50Om15Q29udGVudDF9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteUNvbnRlbnQxfVxuICAgICAge2xvY2FsOnN0YWZmfVxuICAgICAgICB7cGFkOnRydWV9XG4gICAgICAgICAgPHRyPlxuICAgICAgICAgICAgPHRkPiB7JG5hbWV9ICAgICAgICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpmaXJzdCAnc3RhZmYnfSAgWCB7L3Byb3BlcnR5OmZpcnN0fSAgPC90ZD5cbiAgICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5OmJvcmRlciAnc3RhZmYnfSBYIHsvcHJvcGVydHk6Ym9yZGVyfSA8L3RkPlxuICAgICAgICAgICAgPHRkPiB7cHJvcGVydHk6bWlkZGxlICdzdGFmZid9IFggey9wcm9wZXJ0eTptaWRkbGV9IDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpsYXN0ICdzdGFmZid9ICAgWCB7L3Byb3BlcnR5Omxhc3R9ICAgPC90ZD5cbiAgICAgICAgICAgIDx0ZD4ge3Byb3BlcnR5OmV2ZW4gJ3N0YWZmJ30gICBYIHsvcHJvcGVydHk6ZXZlbn0gICA8L3RkPlxuICAgICAgICAgICAgPHRkPiB7cHJvcGVydHk6b2RkICdzdGFmZid9ICAgIFggey9wcm9wZXJ0eTpvZGR9ICAgIDwvdGQ+XG4gICAgICAgICAgPC90cj5cbiAgICAgICAgey9wYWQ6dHJ1ZX1cbiAgICAgIHsvbG9jYWw6c3RhZmZ9XG4gICAgey9jb250ZW50Om15Q29udGVudDF9XG5cbntjb250ZW50Om15Q29udGVudDF9XG4gICAgICB7bG9jYWw6c3RhZmZ9XG4gICAgICAgIHtwYWQ6dHJ1ZX1cbiAgICAgICAgICA8dHI+XG4gICAgICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJnN0YWZmOmZpcnN0fSAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICAgIDx0ZD4ge3BhZDppZiAmc3RhZmY6Ym9yZGVyfSBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICAgICAgPHRkPiB7cGFkOmlmICZzdGFmZjptaWRkbGV9IFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJnN0YWZmOmxhc3R9ICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICAgIDx0ZD4ge3BhZDppZiAmc3RhZmY6ZXZlbn0gICBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICAgICAgPHRkPiB7cGFkOmlmICZzdGFmZjpvZGR9ICAgIFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICAgICAgPC90cj5cbiAgICAgICAgey9wYWQ6dHJ1ZX1cbiAgICAgIHsvbG9jYWw6c3RhZmZ9XG4gICAgey9jb250ZW50Om15Q29udGVudDF9XG5cbntjb250ZW50Om15Q29udGVudDF9XG4gICAgICB7bG9jYWw6c3RhZmZ9XG4gICAgICAgIHtwYWQ6dHJ1ZX1cbiAgICAgICAgICA8dHI+XG4gICAgICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpmaXJzdCAtMn0gIFggey9wcm9wZXJ0eTpmaXJzdH0gIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpib3JkZXIgLTJ9IFggey9wcm9wZXJ0eTpib3JkZXJ9IDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTptaWRkbGUgLTJ9IFggey9wcm9wZXJ0eTptaWRkbGV9IDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpsYXN0IC0yfSAgIFggey9wcm9wZXJ0eTpsYXN0fSAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpldmVuIC0yfSAgIFggey9wcm9wZXJ0eTpldmVufSAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwcm9wZXJ0eTpvZGQgLTJ9ICAgIFggey9wcm9wZXJ0eTpvZGR9ICAgIDwvdGQ+XG4gICAgICAgICAgPC90cj5cbiAgICAgICAgey9wYWQ6dHJ1ZX1cbiAgICAgIHsvbG9jYWw6c3RhZmZ9XG4gICAgey9jb250ZW50Om15Q29udGVudDF9XG5cbntjb250ZW50Om15Q29udGVudDF9XG4gICAgICB7bG9jYWw6c3RhZmZ9XG4gICAgICAgIHtwYWQ6dHJ1ZX1cbiAgICAgICAgICA8dHI+XG4gICAgICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJi0yOmZpcnN0fSAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICAgIDx0ZD4ge3BhZDppZiAmLTI6Ym9yZGVyfSBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICAgICAgPHRkPiB7cGFkOmlmICYtMjptaWRkbGV9IFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICAgICAgICA8dGQ+IHtwYWQ6aWYgJi0yOmxhc3R9ICAgWCB7L3BhZDppZn0gPC90ZD5cbiAgICAgICAgICAgIDx0ZD4ge3BhZDppZiAmLTI6ZXZlbn0gICBYIHsvcGFkOmlmfSA8L3RkPlxuICAgICAgICAgICAgPHRkPiB7cGFkOmlmICYtMjpvZGR9ICAgIFggey9wYWQ6aWZ9IDwvdGQ+XG4gICAgICAgICAgPC90cj5cbiAgICAgICAgey9wYWQ6dHJ1ZX1cbiAgICAgIHsvbG9jYWw6c3RhZmZ9XG4gICAgey9jb250ZW50Om15Q29udGVudDF9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a></th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b><br>      <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>        <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>          &lt;tr&gt;<br>            &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                      &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>  X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>even </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>odd </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>    X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>          &lt;/tr&gt;<br>        <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>      <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    <b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
+    <tr>
+      <th>        </th>
+      <th> first  </th>
+      <th> border </th>
+      <th> middle </th>
+      <th> last   </th>
+      <th> even   </th>
+      <th> odd    </th>
+    </tr>
+    
+      
+        
+          <tr>
+            <td> joe                      </td>
+            <td>   X   </td>
+            <td>  X  </td>
+            <td>  </td>
+            <td>    </td>
+            <td>    </td>
+            <td>     X     </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> jim                      </td>
+            <td>   </td>
+            <td>  </td>
+            <td>  X  </td>
+            <td>    </td>
+            <td>    X    </td>
+            <td>     </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> john                      </td>
+            <td>   </td>
+            <td>  </td>
+            <td>  X  </td>
+            <td>    </td>
+            <td>    </td>
+            <td>     X     </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> jack                      </td>
+            <td>   </td>
+            <td>  </td>
+            <td>  X  </td>
+            <td>    </td>
+            <td>    X    </td>
+            <td>     </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> jerry                      </td>
+            <td>   </td>
+            <td>  X  </td>
+            <td>  </td>
+            <td>    X    </td>
+            <td>    </td>
+            <td>     X     </td>
+          </tr>
+        
+      
+    
+  </table><!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b><br>      <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>        <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>          &lt;tr&gt;<br>            &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                    &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;staff<font color="black">:</font>first</font>}</b>  X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;staff<font color="black">:</font>border</font>}</b> X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;staff<font color="black">:</font>middle</font>}</b> X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;staff<font color="black">:</font>last</font>}</b>   X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;staff<font color="black">:</font>even</font>}</b>   X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;staff<font color="black">:</font>odd</font>}</b>    X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;/tr&gt;<br>        <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>      <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    <b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
+    <tr>
+      <th>        </th>
+      <th> first  </th>
+      <th> border </th>
+      <th> middle </th>
+      <th> last   </th>
+      <th> even   </th>
+      <th> odd    </th>
+    </tr>
+    
+      
+        
+          <tr>
+            <td> joe                    </td>
+            <td>   X  </td>
+            <td>  X  </td>
+            <td>  </td>
+            <td>  </td>
+            <td>  </td>
+            <td>     X  </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> jim                    </td>
+            <td>  </td>
+            <td>  </td>
+            <td>  X  </td>
+            <td>  </td>
+            <td>    X  </td>
+            <td>  </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> john                    </td>
+            <td>  </td>
+            <td>  </td>
+            <td>  X  </td>
+            <td>  </td>
+            <td>  </td>
+            <td>     X  </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> jack                    </td>
+            <td>  </td>
+            <td>  </td>
+            <td>  X  </td>
+            <td>  </td>
+            <td>    X  </td>
+            <td>  </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> jerry                    </td>
+            <td>  </td>
+            <td>  X  </td>
+            <td>  </td>
+            <td>    X  </td>
+            <td>  </td>
+            <td>     X  </td>
+          </tr>
+        
+      
+    
+  </table><!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b><br>      <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>        <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>          &lt;tr&gt;<br>            &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                 &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first </font><font color="red">-2</font>}</b>  X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border </font><font color="red">-2</font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>border</font><font color="red"></font>}</b> &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle </font><font color="red">-2</font>}</b> X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last </font><font color="red">-2</font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>even </font><font color="red">-2</font>}</b>   X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>odd </font><font color="red">-2</font>}</b>    X <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>          &lt;/tr&gt;<br>        <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>      <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    <b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
+    <tr>
+      <th>        </th>
+      <th> first  </th>
+      <th> border </th>
+      <th> middle </th>
+      <th> last   </th>
+      <th> even   </th>
+      <th> odd    </th>
+    </tr>
+    
+      
+        
+          <tr>
+            <td> joe                 </td>
+            <td>   X   </td>
+            <td>  X  </td>
+            <td>  </td>
+            <td>    </td>
+            <td>    </td>
+            <td>     X     </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> jim                 </td>
+            <td>   </td>
+            <td>  </td>
+            <td>  X  </td>
+            <td>    </td>
+            <td>    X    </td>
+            <td>     </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> john                 </td>
+            <td>   </td>
+            <td>  </td>
+            <td>  X  </td>
+            <td>    </td>
+            <td>    </td>
+            <td>     X     </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> jack                 </td>
+            <td>   </td>
+            <td>  </td>
+            <td>  X  </td>
+            <td>    </td>
+            <td>    X    </td>
+            <td>     </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> jerry                 </td>
+            <td>   </td>
+            <td>  X  </td>
+            <td>  </td>
+            <td>    X    </td>
+            <td>    </td>
+            <td>     X     </td>
+          </tr>
+        
+      
+    
+  </table><!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b><br>      <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>        <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>          &lt;tr&gt;<br>            &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                 &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;-2<font color="black">:</font>first</font>}</b>  X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;-2<font color="black">:</font>border</font>}</b> X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;-2<font color="black">:</font>middle</font>}</b> X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;-2<font color="black">:</font>last</font>}</b>   X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;-2<font color="black">:</font>even</font>}</b>   X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>            &lt;td&gt; <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red">&amp;-2<font color="black">:</font>odd</font>}</b>    X <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;/tr&gt;<br>        <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>      <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    <b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
+    <tr>
+      <th>        </th>
+      <th> first  </th>
+      <th> border </th>
+      <th> middle </th>
+      <th> last   </th>
+      <th> even   </th>
+      <th> odd    </th>
+    </tr>
+    
+      
+        
+          <tr>
+            <td> joe                 </td>
+            <td>   X  </td>
+            <td>  X  </td>
+            <td>  </td>
+            <td>  </td>
+            <td>  </td>
+            <td>     X  </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> jim                 </td>
+            <td>  </td>
+            <td>  </td>
+            <td>  X  </td>
+            <td>  </td>
+            <td>    X  </td>
+            <td>  </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> john                 </td>
+            <td>  </td>
+            <td>  </td>
+            <td>  X  </td>
+            <td>  </td>
+            <td>  </td>
+            <td>     X  </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> jack                 </td>
+            <td>  </td>
+            <td>  </td>
+            <td>  X  </td>
+            <td>  </td>
+            <td>    X  </td>
+            <td>  </td>
+          </tr>
+        
+      
+        
+          <tr>
+            <td> jerry                 </td>
+            <td>  </td>
+            <td>  X  </td>
+            <td>  </td>
+            <td>    X  </td>
+            <td>  </td>
+            <td>     X  </td>
+          </tr>
+        
+      
+    
+  </table><!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+
+
+      <!-- todo-1 -->
+
+      
+
+
+<p>
+  <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT<a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteUNvbnRlbnQyfVxuICAgICAge2xvY2FsOnN0YWZmfVxuICAgICAgICA8dHI+XG4gICAgICAgICAgPHRkPiB7JG5hbWV9ICAgICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHsmbmFtZX0gICAgICA8L3RkPlxuICAgICAgICAgIDx0ZD4geyZjb3VudH0gICAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7JmtleX0gICAgICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHsmY3VycmVudH0gICA8L3RkPlxuICAgICAgICAgIDx0ZD4geyZkb25lfSAgICAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7JnJlbWFpbmluZ30gPC90ZD5cbiAgICAgICAgPC90cj5cbiAgICAgIHsvbG9jYWw6c3RhZmZ9XG4gICAgey9jb250ZW50Om15Q29udGVudDJ9XG5cbntjb250ZW50Om15Q29udGVudDJ9XG4gICAgICB7bG9jYWw6c3RhZmZ9XG4gICAgICAgIHtwYWQ6dHJ1ZX1cbiAgICAgICAgICB7cGFkOnRydWV9XG4gICAgICAgICAgICA8dHI+XG4gICAgICAgICAgICAgIDx0ZD4geyRuYW1lfSAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD4geyYtMjpuYW1lfSAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD4geyYtMjpjb3VudH0gICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD4geyYtMjprZXl9ICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD4geyYtMjpjdXJyZW50fSAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD4geyYtMjpkb25lfSAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD4geyYtMjpyZW1haW5pbmd9IDwvdGQ+XG4gICAgICAgICAgICA8L3RyPlxuICAgICAgICAgIHsvcGFkOnRydWV9XG4gICAgICAgIHsvcGFkOnRydWV9XG4gICAgICB7L2xvY2FsOnN0YWZmfVxuICAgIHsvY29udGVudDpteUNvbnRlbnQyfVxuXG57Y29udGVudDpteUNvbnRlbnQyfVxuICAgICAge2xvY2FsOnN0YWZmfVxuICAgICAgICB7cGFkOnRydWV9XG4gICAgICAgICAge3BhZDp0cnVlfVxuICAgICAgICAgICAgPHRyPlxuICAgICAgICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+IHsmc3RhZmY6bmFtZX0gICAgICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+IHsmc3RhZmY6Y291bnR9ICAgICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+IHsmc3RhZmY6a2V5fSAgICAgICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+IHsmc3RhZmY6Y3VycmVudH0gICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+IHsmc3RhZmY6ZG9uZX0gICAgICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+IHsmc3RhZmY6cmVtYWluaW5nfSA8L3RkPlxuICAgICAgICAgICAgPC90cj5cbiAgICAgICAgICB7L3BhZDp0cnVlfVxuICAgICAgICB7L3BhZDp0cnVlfVxuICAgICAgey9sb2NhbDpzdGFmZn1cbiAgICB7L2NvbnRlbnQ6bXlDb250ZW50Mn1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Y29udGVudDpteUNvbnRlbnQyfVxuICAgICAge2xvY2FsOnN0YWZmfVxuICAgICAgICA8dHI+XG4gICAgICAgICAgPHRkPiB7JG5hbWV9ICAgICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHsmbmFtZX0gICAgICA8L3RkPlxuICAgICAgICAgIDx0ZD4geyZjb3VudH0gICAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7JmtleX0gICAgICAgPC90ZD5cbiAgICAgICAgICA8dGQ+IHsmY3VycmVudH0gICA8L3RkPlxuICAgICAgICAgIDx0ZD4geyZkb25lfSAgICAgIDwvdGQ+XG4gICAgICAgICAgPHRkPiB7JnJlbWFpbmluZ30gPC90ZD5cbiAgICAgICAgPC90cj5cbiAgICAgIHsvbG9jYWw6c3RhZmZ9XG4gICAgey9jb250ZW50Om15Q29udGVudDJ9XG5cbntjb250ZW50Om15Q29udGVudDJ9XG4gICAgICB7bG9jYWw6c3RhZmZ9XG4gICAgICAgIHtwYWQ6dHJ1ZX1cbiAgICAgICAgICB7cGFkOnRydWV9XG4gICAgICAgICAgICA8dHI+XG4gICAgICAgICAgICAgIDx0ZD4geyRuYW1lfSAgICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD4geyYtMjpuYW1lfSAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD4geyYtMjpjb3VudH0gICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD4geyYtMjprZXl9ICAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD4geyYtMjpjdXJyZW50fSAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD4geyYtMjpkb25lfSAgICAgIDwvdGQ+XG4gICAgICAgICAgICAgIDx0ZD4geyYtMjpyZW1haW5pbmd9IDwvdGQ+XG4gICAgICAgICAgICA8L3RyPlxuICAgICAgICAgIHsvcGFkOnRydWV9XG4gICAgICAgIHsvcGFkOnRydWV9XG4gICAgICB7L2xvY2FsOnN0YWZmfVxuICAgIHsvY29udGVudDpteUNvbnRlbnQyfVxuXG57Y29udGVudDpteUNvbnRlbnQyfVxuICAgICAge2xvY2FsOnN0YWZmfVxuICAgICAgICB7cGFkOnRydWV9XG4gICAgICAgICAge3BhZDp0cnVlfVxuICAgICAgICAgICAgPHRyPlxuICAgICAgICAgICAgICA8dGQ+IHskbmFtZX0gICAgICAgICAgICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+IHsmc3RhZmY6bmFtZX0gICAgICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+IHsmc3RhZmY6Y291bnR9ICAgICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+IHsmc3RhZmY6a2V5fSAgICAgICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+IHsmc3RhZmY6Y3VycmVudH0gICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+IHsmc3RhZmY6ZG9uZX0gICAgICA8L3RkPlxuICAgICAgICAgICAgICA8dGQ+IHsmc3RhZmY6cmVtYWluaW5nfSA8L3RkPlxuICAgICAgICAgICAgPC90cj5cbiAgICAgICAgICB7L3BhZDp0cnVlfVxuICAgICAgICB7L3BhZDp0cnVlfVxuICAgICAgey9sb2NhbDpzdGFmZn1cbiAgICB7L2NvbnRlbnQ6bXlDb250ZW50Mn1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a></th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent2</font><font color="red"></font>}</b><br>      <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">&</font>name</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">&</font>count</font>}</b>     &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">&</font>key</font>}</b>       &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">&</font>current</font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">&</font>done</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">&</font>remaining</font>}</b> &lt;/td&gt;<br>        &lt;/tr&gt;<br>      <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    <b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+      <tr>
+        <th>         </th>
+        <th> name    </th>
+        <th> count   </th>
+        <th> key     </th>
+        <th> current </th>
+        <th> done    </th>
+        <th> remain  </th>
+      </tr>
+    
+      
+        <tr>
+          <td> joe      </td>
           <td> staff      </td>
           <td> 5     </td>
           <td> 0       </td>
           <td> 1   </td>
           <td> 0      </td>
-          <td> 4 </td> 
+          <td> 4 </td>
         </tr>
       
-    
-  
-    
-      
         <tr>
-          <td> jim         </td>
+          <td> jim      </td>
           <td> staff      </td>
           <td> 5     </td>
           <td> 1       </td>
           <td> 2   </td>
           <td> 1      </td>
-          <td> 3 </td> 
+          <td> 3 </td>
         </tr>
       
-    
-  
-    
-      
         <tr>
-          <td> john         </td>
+          <td> john      </td>
           <td> staff      </td>
           <td> 5     </td>
           <td> 2       </td>
           <td> 3   </td>
           <td> 2      </td>
-          <td> 2 </td> 
+          <td> 2 </td>
         </tr>
       
-    
-  
-    
-      
         <tr>
-          <td> jack         </td>
+          <td> jack      </td>
           <td> staff      </td>
           <td> 5     </td>
           <td> 3       </td>
           <td> 4   </td>
           <td> 3      </td>
-          <td> 1 </td> 
+          <td> 1 </td>
         </tr>
       
-    
-  
-    
-      
         <tr>
-          <td> jerry         </td>
+          <td> jerry      </td>
           <td> staff      </td>
           <td> 5     </td>
           <td> 4       </td>
           <td> 5   </td>
           <td> 4      </td>
-          <td> 0 </td> 
+          <td> 0 </td>
         </tr>
       
     
-  
-
-  </table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent2</font><font color="red"></font>}</b><br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>      <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>            &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>name</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>count</font>}</b>     &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>key</font>}</b>       &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>current</font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>done</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>remaining</font>}</b> &lt;/td&gt;   <br>        &lt;/tr&gt;<br>      <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>    <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br><b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+  </table><!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent2</font><font color="red"></font>}</b><br>      <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>        <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>          <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>            &lt;tr&gt;<br>              &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>         &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>name</font>}</b>      &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>count</font>}</b>     &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>key</font>}</b>       &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>current</font>}</b>   &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>done</font>}</b>      &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>remaining</font>}</b> &lt;/td&gt;<br>            &lt;/tr&gt;<br>          <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>        <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>      <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    <b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
       <tr>
         <th>         </th>
         <th> name    </th>
@@ -644,118 +578,196 @@ Tag properties give information about a tag, they can be used:
         <th> remain  </th>
       </tr>
     
-  
-    
       
-        <tr>
-          <td> joe            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 0       </td>
-          <td> 1   </td>
-          <td> 0      </td>
-          <td> 4 </td>   
-        </tr>
+        
+          
+            <tr>
+              <td> joe         </td>
+              <td> staff      </td>
+              <td> 5     </td>
+              <td> 0       </td>
+              <td> 1   </td>
+              <td> 0      </td>
+              <td> 4 </td>
+            </tr>
+          
+        
+      
+        
+          
+            <tr>
+              <td> jim         </td>
+              <td> staff      </td>
+              <td> 5     </td>
+              <td> 1       </td>
+              <td> 2   </td>
+              <td> 1      </td>
+              <td> 3 </td>
+            </tr>
+          
+        
+      
+        
+          
+            <tr>
+              <td> john         </td>
+              <td> staff      </td>
+              <td> 5     </td>
+              <td> 2       </td>
+              <td> 3   </td>
+              <td> 2      </td>
+              <td> 2 </td>
+            </tr>
+          
+        
+      
+        
+          
+            <tr>
+              <td> jack         </td>
+              <td> staff      </td>
+              <td> 5     </td>
+              <td> 3       </td>
+              <td> 4   </td>
+              <td> 3      </td>
+              <td> 1 </td>
+            </tr>
+          
+        
+      
+        
+          
+            <tr>
+              <td> jerry         </td>
+              <td> staff      </td>
+              <td> 5     </td>
+              <td> 4       </td>
+              <td> 5   </td>
+              <td> 4      </td>
+              <td> 0 </td>
+            </tr>
+          
+        
       
     
-  
-    
-      
-        <tr>
-          <td> jim            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 1       </td>
-          <td> 2   </td>
-          <td> 1      </td>
-          <td> 3 </td>   
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> john            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 2       </td>
-          <td> 3   </td>
-          <td> 2      </td>
-          <td> 2 </td>   
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> jack            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 3       </td>
-          <td> 4   </td>
-          <td> 3      </td>
-          <td> 1 </td>   
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> jerry            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 4       </td>
-          <td> 5   </td>
-          <td> 4      </td>
-          <td> 0 </td>   
-        </tr>
-      
-    
-  
-
   </table><!-- END DEMO RESULT --></span></code></td></tr>
-
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent2</font><font color="red"></font>}</b><br>      <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>        <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>          <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>            &lt;tr&gt;<br>              &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>            &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>name</font>}</b>      &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>count</font>}</b>     &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>key</font>}</b>       &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>current</font>}</b>   &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>done</font>}</b>      &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>remaining</font>}</b> &lt;/td&gt;<br>            &lt;/tr&gt;<br>          <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>        <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>true</font><font color="red"></font>}</b><br>      <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>    <b>{/<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>myContent2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+      <tr>
+        <th>         </th>
+        <th> name    </th>
+        <th> count   </th>
+        <th> key     </th>
+        <th> current </th>
+        <th> done    </th>
+        <th> remain  </th>
+      </tr>
+    
+      
+        
+          
+            <tr>
+              <td> joe            </td>
+              <td> staff      </td>
+              <td> 5     </td>
+              <td> 0       </td>
+              <td> 1   </td>
+              <td> 0      </td>
+              <td> 4 </td>
+            </tr>
+          
+        
+      
+        
+          
+            <tr>
+              <td> jim            </td>
+              <td> staff      </td>
+              <td> 5     </td>
+              <td> 1       </td>
+              <td> 2   </td>
+              <td> 1      </td>
+              <td> 3 </td>
+            </tr>
+          
+        
+      
+        
+          
+            <tr>
+              <td> john            </td>
+              <td> staff      </td>
+              <td> 5     </td>
+              <td> 2       </td>
+              <td> 3   </td>
+              <td> 2      </td>
+              <td> 2 </td>
+            </tr>
+          
+        
+      
+        
+          
+            <tr>
+              <td> jack            </td>
+              <td> staff      </td>
+              <td> 5     </td>
+              <td> 3       </td>
+              <td> 4   </td>
+              <td> 3      </td>
+              <td> 1 </td>
+            </tr>
+          
+        
+      
+        
+          
+            <tr>
+              <td> jerry            </td>
+              <td> staff      </td>
+              <td> 5     </td>
+              <td> 4       </td>
+              <td> 5   </td>
+              <td> 4      </td>
+              <td> 0 </td>
+            </tr>
+          
+        
+      
+    
+  </table><!-- END DEMO RESULT --></span></code></td></tr>
 
   </table>
 </p>
 
 
 
-<hr><p>This manual page uses below PAD fragment.
+      <hr>
+<p>
+  This manual page uses below PAD fragment.
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-
-      <tr>
-        
-        
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmNvbnRlbnQgJ215Q29udGVudDEnfVxuICA8dGFibGUgYm9yZGVyPTEgdmFsaWduPWNlbnRlcj5cbiAgICA8dHI+XG4gICAgICA8dGg+ICAgICAgICA8L3RoPlxuICAgICAgPHRoPiBmaXJzdCAgPC90aD5cbiAgICAgIDx0aD4gYm9yZGVyIDwvdGg+XG4gICAgICA8dGg+IG1pZGRsZSA8L3RoPlxuICAgICAgPHRoPiBsYXN0ICAgPC90aD5cbiAgICAgIDx0aD4gZXZlbiAgIDwvdGg+XG4gICAgICA8dGg+IG9kZCAgICA8L3RoPlxuICAgIDwvdHI+XG4gICAgQGNvbnRlbnRAXG4gIDwvdGFibGU+XG57L3BhZDpjb250ZW50fVxuXG57cGFkOmNvbnRlbnQgJ215Q29udGVudDInfVxuICAgIDx0YWJsZSBib3JkZXI9MT5cbiAgICAgIDx0cj5cbiAgICAgICAgPHRoPiAgICAgICAgIDwvdGg+XG4gICAgICAgIDx0aD4gbmFtZSAgICA8L3RoPlxuICAgICAgICA8dGg+IGNvdW50ICAgPC90aD5cbiAgICAgICAgPHRoPiBrZXkgICAgIDwvdGg+XG4gICAgICAgIDx0aD4gY3VycmVudCA8L3RoPlxuICAgICAgICA8dGg+IGRvbmUgICAgPC90aD5cbiAgICAgICAgPHRoPiByZW1haW4gIDwvdGg+XG4gICAgICA8L3RyPlxuICAgIEBjb250ZW50QFxuICA8L3RhYmxlPlxuey9wYWQ6Y29udGVudH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmNvbnRlbnQgJ215Q29udGVudDEnfVxuICA8dGFibGUgYm9yZGVyPTEgdmFsaWduPWNlbnRlcj5cbiAgICA8dHI+XG4gICAgICA8dGg+ICAgICAgICA8L3RoPlxuICAgICAgPHRoPiBmaXJzdCAgPC90aD5cbiAgICAgIDx0aD4gYm9yZGVyIDwvdGg+XG4gICAgICA8dGg+IG1pZGRsZSA8L3RoPlxuICAgICAgPHRoPiBsYXN0ICAgPC90aD5cbiAgICAgIDx0aD4gZXZlbiAgIDwvdGg+XG4gICAgICA8dGg+IG9kZCAgICA8L3RoPlxuICAgIDwvdHI+XG4gICAgQGNvbnRlbnRAXG4gIDwvdGFibGU+XG57L3BhZDpjb250ZW50fVxuXG57cGFkOmNvbnRlbnQgJ215Q29udGVudDInfVxuICAgIDx0YWJsZSBib3JkZXI9MT5cbiAgICAgIDx0cj5cbiAgICAgICAgPHRoPiAgICAgICAgIDwvdGg+XG4gICAgICAgIDx0aD4gbmFtZSAgICA8L3RoPlxuICAgICAgICA8dGg+IGNvdW50ICAgPC90aD5cbiAgICAgICAgPHRoPiBrZXkgICAgIDwvdGg+XG4gICAgICAgIDx0aD4gY3VycmVudCA8L3RoPlxuICAgICAgICA8dGg+IGRvbmUgICAgPC90aD5cbiAgICAgICAgPHRoPiByZW1haW4gIDwvdGg+XG4gICAgICA8L3RyPlxuICAgIEBjb250ZW50QFxuICA8L3RhYmxlPlxuey9wYWQ6Y29udGVudH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>content </font><font color="red"><font color="black">'</font>myContent1<font color="black">'</font></font>}</b><br>  &lt;table border=1 valign=center&gt;<br>    &lt;tr&gt;<br>      &lt;th&gt;        &lt;/th&gt;<br>      &lt;th&gt; first  &lt;/th&gt;<br>      &lt;th&gt; border &lt;/th&gt;<br>      &lt;th&gt; middle &lt;/th&gt;<br>      &lt;th&gt; last   &lt;/th&gt;<br>      &lt;th&gt; even   &lt;/th&gt;<br>      &lt;th&gt; odd    &lt;/th&gt;<br>    &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>content</font><font color="red"></font>}</b><br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>content </font><font color="red"><font color="black">'</font>myContent2<font color="black">'</font></font>}</b><br>    &lt;table border=1&gt;<br>      &lt;tr&gt;<br>        &lt;th&gt;         &lt;/th&gt;<br>        &lt;th&gt; name    &lt;/th&gt;<br>        &lt;th&gt; count   &lt;/th&gt;<br>        &lt;th&gt; key     &lt;/th&gt;<br>        &lt;th&gt; current &lt;/th&gt;<br>        &lt;th&gt; done    &lt;/th&gt;<br>        &lt;th&gt; remain  &lt;/th&gt;<br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>content</font><font color="red"></font>}</b></code></pre></td>
-        
-        
-      </tr>
-
     
+
+    <tr>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmNvbnRlbnQgJ215Q29udGVudDEnfVxuICA8dGFibGUgYm9yZGVyPTEgdmFsaWduPWNlbnRlcj5cbiAgICA8dHI+XG4gICAgICA8dGg+ICAgICAgICA8L3RoPlxuICAgICAgPHRoPiBmaXJzdCAgPC90aD5cbiAgICAgIDx0aD4gYm9yZGVyIDwvdGg+XG4gICAgICA8dGg+IG1pZGRsZSA8L3RoPlxuICAgICAgPHRoPiBsYXN0ICAgPC90aD5cbiAgICAgIDx0aD4gZXZlbiAgIDwvdGg+XG4gICAgICA8dGg+IG9kZCAgICA8L3RoPlxuICAgIDwvdHI+XG4gICAgQGNvbnRlbnRAXG4gIDwvdGFibGU+XG57L3BhZDpjb250ZW50fVxuXG57cGFkOmNvbnRlbnQgJ215Q29udGVudDInfVxuICAgIDx0YWJsZSBib3JkZXI9MT5cbiAgICAgIDx0cj5cbiAgICAgICAgPHRoPiAgICAgICAgIDwvdGg+XG4gICAgICAgIDx0aD4gbmFtZSAgICA8L3RoPlxuICAgICAgICA8dGg+IGNvdW50ICAgPC90aD5cbiAgICAgICAgPHRoPiBrZXkgICAgIDwvdGg+XG4gICAgICAgIDx0aD4gY3VycmVudCA8L3RoPlxuICAgICAgICA8dGg+IGRvbmUgICAgPC90aD5cbiAgICAgICAgPHRoPiByZW1haW4gIDwvdGg+XG4gICAgICA8L3RyPlxuICAgIEBjb250ZW50QFxuICA8L3RhYmxlPlxuey9wYWQ6Y29udGVudH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmNvbnRlbnQgJ215Q29udGVudDEnfVxuICA8dGFibGUgYm9yZGVyPTEgdmFsaWduPWNlbnRlcj5cbiAgICA8dHI+XG4gICAgICA8dGg+ICAgICAgICA8L3RoPlxuICAgICAgPHRoPiBmaXJzdCAgPC90aD5cbiAgICAgIDx0aD4gYm9yZGVyIDwvdGg+XG4gICAgICA8dGg+IG1pZGRsZSA8L3RoPlxuICAgICAgPHRoPiBsYXN0ICAgPC90aD5cbiAgICAgIDx0aD4gZXZlbiAgIDwvdGg+XG4gICAgICA8dGg+IG9kZCAgICA8L3RoPlxuICAgIDwvdHI+XG4gICAgQGNvbnRlbnRAXG4gIDwvdGFibGU+XG57L3BhZDpjb250ZW50fVxuXG57cGFkOmNvbnRlbnQgJ215Q29udGVudDInfVxuICAgIDx0YWJsZSBib3JkZXI9MT5cbiAgICAgIDx0cj5cbiAgICAgICAgPHRoPiAgICAgICAgIDwvdGg+XG4gICAgICAgIDx0aD4gbmFtZSAgICA8L3RoPlxuICAgICAgICA8dGg+IGNvdW50ICAgPC90aD5cbiAgICAgICAgPHRoPiBrZXkgICAgIDwvdGg+XG4gICAgICAgIDx0aD4gY3VycmVudCA8L3RoPlxuICAgICAgICA8dGg+IGRvbmUgICAgPC90aD5cbiAgICAgICAgPHRoPiByZW1haW4gIDwvdGg+XG4gICAgICA8L3RyPlxuICAgIEBjb250ZW50QFxuICA8L3RhYmxlPlxuey9wYWQ6Y29udGVudH1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>content </font><font color="red"><font color="black">'</font>myContent1<font color="black">'</font></font>}</b><br>  &lt;table border=1 valign=center&gt;<br>    &lt;tr&gt;<br>      &lt;th&gt;        &lt;/th&gt;<br>      &lt;th&gt; first  &lt;/th&gt;<br>      &lt;th&gt; border &lt;/th&gt;<br>      &lt;th&gt; middle &lt;/th&gt;<br>      &lt;th&gt; last   &lt;/th&gt;<br>      &lt;th&gt; even   &lt;/th&gt;<br>      &lt;th&gt; odd    &lt;/th&gt;<br>    &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>content</font><font color="red"></font>}</b><br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>content </font><font color="red"><font color="black">'</font>myContent2<font color="black">'</font></font>}</b><br>    &lt;table border=1&gt;<br>      &lt;tr&gt;<br>        &lt;th&gt;         &lt;/th&gt;<br>        &lt;th&gt; name    &lt;/th&gt;<br>        &lt;th&gt; count   &lt;/th&gt;<br>        &lt;th&gt; key     &lt;/th&gt;<br>        &lt;th&gt; current &lt;/th&gt;<br>        &lt;th&gt; done    &lt;/th&gt;<br>        &lt;th&gt; remain  &lt;/th&gt;<br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>content</font><font color="red"></font>}</b></code></pre></td>
+      
+      
+    </tr>
+
+  
 
   
     </table>
-  
-
-
-
-
-
-

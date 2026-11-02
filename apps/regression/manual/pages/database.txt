@@ -1,5 +1,3 @@
-
-
 <p>PAD talks to the application's database - configured in
 <code>_config/config.php</code> - in two places: a page's PHP half calls
 <code>db()</code>, and the template side has tags that ask directly. The examples here read
@@ -11,70 +9,96 @@ the <code>staff.xml</code> file the manual's other examples use.</p>
 <p>The first word of the statement says what shape comes back:</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>word</th><th>answers with</th></tr>
-  <tr><td><code>field</code></td><td>one value</td></tr>
-  <tr><td><code>record</code></td><td>one row, as an array of fields</td></tr>
-  <tr><td><code>array</code></td><td>all rows, ready for a tag to iterate</td></tr>
-  <tr><td><code>check</code></td><td>whether a row exists - written <code>check table where ...</code>, with no column list</td></tr>
-  <tr><td><code>insert</code> / <code>update</code></td><td>writes, taking their values from an array</td></tr>
+  <tr>
+    <th>word</th>
+    <th>answers with</th>
+  </tr>
+  <tr>
+    <td><code>field</code></td>
+    <td>one value</td>
+  </tr>
+  <tr>
+    <td><code>record</code></td>
+    <td>one row, as an array of fields</td>
+  </tr>
+  <tr>
+    <td><code>array</code></td>
+    <td>all rows, ready for a tag to iterate</td>
+  </tr>
+  <tr>
+    <td><code>check</code></td>
+    <td>whether a row exists - written <code>check table where ...</code>, with no column list</td>
+  </tr>
+  <tr>
+    <td><code>insert</code> / <code>update</code></td>
+    <td>writes, taking their values from an array</td>
+  </tr>
 </table>
 
 <p>&nbsp;</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/database_1.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/database_1.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $phone </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"field phone from staff where name = 'jim'" </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/database_1.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5KaW0ncyBwaG9uZSBudW1iZXIgaXMgeyRwaG9uZX08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHBob25lID0gZGIgKCBcImZpZWxkIHBob25lIGZyb20gc3RhZmYgd2hlcmUgbmFtZSA9ICdqaW0nXCIgKTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5KaW0ncyBwaG9uZSBudW1iZXIgaXMgeyRwaG9uZX08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHBob25lID0gZGIgKCBcImZpZWxkIHBob25lIGZyb20gc3RhZmYgd2hlcmUgbmFtZSA9ICdqaW0nXCIgKTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;Jim's phone number is <b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/database_1.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $phone </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"field phone from staff where name = 'jim'" </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5KaW0ncyBwaG9uZSBudW1iZXIgaXMgeyRwaG9uZX08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHBob25lID0gZGIgKCBcImZpZWxkIHBob25lIGZyb20gc3RhZmYgd2hlcmUgbmFtZSA9ICdqaW0nXCIgKTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5KaW0ncyBwaG9uZSBudW1iZXIgaXMgeyRwaG9uZX08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHBob25lID0gZGIgKCBcImZpZWxkIHBob25lIGZyb20gc3RhZmYgd2hlcmUgbmFtZSA9ICdqaW0nXCIgKTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;Jim's phone number is <b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>Jim's phone number is 555-4364</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -85,45 +109,54 @@ the <code>staff.xml</code> file the manual's other examples use.</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/database_2.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/database_2.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $earners </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"array name, salary from staff where salary &gt;= 2000" </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/database_2.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dGFibGUgYm9yZGVyPVwiMVwiPlxuICB7YXJyYXk6ZWFybmVyc31cbiAgICA8dHI+XG4gICAgICA8dGQ+eyRuYW1lfTwvdGQ+XG4gICAgICA8dGQ+eyRzYWxhcnl9PC90ZD5cbiAgICA8L3RyPlxuICBAZWxzZUBcbiAgICA8dHI+XG4gICAgICA8dGQ+bm9ib2R5IGVhcm5zIHRoYXQgbXVjaDwvdGQ+XG4gICAgPC90cj5cbiAgey9hcnJheTplYXJuZXJzfVxuPC90YWJsZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkZWFybmVycyA9IGRiICggXCJhcnJheSBuYW1lLCBzYWxhcnkgZnJvbSBzdGFmZiB3aGVyZSBzYWxhcnkgPj0gMjAwMFwiICk7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dGFibGUgYm9yZGVyPVwiMVwiPlxuICB7YXJyYXk6ZWFybmVyc31cbiAgICA8dHI+XG4gICAgICA8dGQ+eyRuYW1lfTwvdGQ+XG4gICAgICA8dGQ+eyRzYWxhcnl9PC90ZD5cbiAgICA8L3RyPlxuICBAZWxzZUBcbiAgICA8dHI+XG4gICAgICA8dGQ+bm9ib2R5IGVhcm5zIHRoYXQgbXVjaDwvdGQ+XG4gICAgPC90cj5cbiAgey9hcnJheTplYXJuZXJzfVxuPC90YWJsZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkZWFybmVycyA9IGRiICggXCJhcnJheSBuYW1lLCBzYWxhcnkgZnJvbSBzdGFmZiB3aGVyZSBzYWxhcnkgPj0gMjAwMFwiICk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;table border="1"&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>earners</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>salary</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>    &lt;tr&gt;<br>      &lt;td&gt;nobody earns that much&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>earners</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/database_2.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $earners </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"array name, salary from staff where salary &gt;= 2000" </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dGFibGUgYm9yZGVyPVwiMVwiPlxuICB7YXJyYXk6ZWFybmVyc31cbiAgICA8dHI+XG4gICAgICA8dGQ+eyRuYW1lfTwvdGQ+XG4gICAgICA8dGQ+eyRzYWxhcnl9PC90ZD5cbiAgICA8L3RyPlxuICBAZWxzZUBcbiAgICA8dHI+XG4gICAgICA8dGQ+bm9ib2R5IGVhcm5zIHRoYXQgbXVjaDwvdGQ+XG4gICAgPC90cj5cbiAgey9hcnJheTplYXJuZXJzfVxuPC90YWJsZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkZWFybmVycyA9IGRiICggXCJhcnJheSBuYW1lLCBzYWxhcnkgZnJvbSBzdGFmZiB3aGVyZSBzYWxhcnkgPj0gMjAwMFwiICk7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dGFibGUgYm9yZGVyPVwiMVwiPlxuICB7YXJyYXk6ZWFybmVyc31cbiAgICA8dHI+XG4gICAgICA8dGQ+eyRuYW1lfTwvdGQ+XG4gICAgICA8dGQ+eyRzYWxhcnl9PC90ZD5cbiAgICA8L3RyPlxuICBAZWxzZUBcbiAgICA8dHI+XG4gICAgICA8dGQ+bm9ib2R5IGVhcm5zIHRoYXQgbXVjaDwvdGQ+XG4gICAgPC90cj5cbiAgey9hcnJheTplYXJuZXJzfVxuPC90YWJsZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkZWFybmVycyA9IGRiICggXCJhcnJheSBuYW1lLCBzYWxhcnkgZnJvbSBzdGFmZiB3aGVyZSBzYWxhcnkgPj0gMjAwMFwiICk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;table border="1"&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>earners</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>salary</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>    &lt;tr&gt;<br>      &lt;td&gt;nobody earns that much&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>earners</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <table border="1">
   
     <tr>
@@ -145,15 +178,14 @@ the <code>staff.xml</code> file the manual's other examples use.</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -169,45 +201,54 @@ keeps to <code>*</code>:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/database_3.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5Cb2IncyBwaG9uZSBudW1iZXIgaXMge3BhZDpmaWVsZCBcInBob25lIGZyb20gc3RhZmYgd2hlcmUgbmFtZSA9ICdib2InXCIvfTwvcD5cblxuPHRhYmxlIGJvcmRlcj1cIjFcIj5cbiAge3BhZDphcnJheSBcIiogZnJvbSBzdGFmZiB3aGVyZSBzYWxhcnkgPj0gMjAwMFwifVxuICAgIDx0cj5cbiAgICAgIDx0ZD57JG5hbWV9PC90ZD5cbiAgICAgIDx0ZD57JHBob25lfTwvdGQ+XG4gICAgPC90cj5cbiAgey9wYWQ6YXJyYXl9XG48L3RhYmxlPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5Cb2IncyBwaG9uZSBudW1iZXIgaXMge3BhZDpmaWVsZCBcInBob25lIGZyb20gc3RhZmYgd2hlcmUgbmFtZSA9ICdib2InXCIvfTwvcD5cblxuPHRhYmxlIGJvcmRlcj1cIjFcIj5cbiAge3BhZDphcnJheSBcIiogZnJvbSBzdGFmZiB3aGVyZSBzYWxhcnkgPj0gMjAwMFwifVxuICAgIDx0cj5cbiAgICAgIDx0ZD57JG5hbWV9PC90ZD5cbiAgICAgIDx0ZD57JHBob25lfTwvdGQ+XG4gICAgPC90cj5cbiAgey9wYWQ6YXJyYXl9XG48L3RhYmxlPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;Bob's phone number is <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>field </font><font color="red">"phone from staff where name = <font color="black">'</font>bob<font color="black">'</font>"</font>/}</b>&lt;/p&gt;<br><br>&lt;table border="1"&gt;<br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>array </font><font color="red">"* from staff where salary &gt;= 2000"</font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>array</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/database_3.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5Cb2IncyBwaG9uZSBudW1iZXIgaXMge3BhZDpmaWVsZCBcInBob25lIGZyb20gc3RhZmYgd2hlcmUgbmFtZSA9ICdib2InXCIvfTwvcD5cblxuPHRhYmxlIGJvcmRlcj1cIjFcIj5cbiAge3BhZDphcnJheSBcIiogZnJvbSBzdGFmZiB3aGVyZSBzYWxhcnkgPj0gMjAwMFwifVxuICAgIDx0cj5cbiAgICAgIDx0ZD57JG5hbWV9PC90ZD5cbiAgICAgIDx0ZD57JHBob25lfTwvdGQ+XG4gICAgPC90cj5cbiAgey9wYWQ6YXJyYXl9XG48L3RhYmxlPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5Cb2IncyBwaG9uZSBudW1iZXIgaXMge3BhZDpmaWVsZCBcInBob25lIGZyb20gc3RhZmYgd2hlcmUgbmFtZSA9ICdib2InXCIvfTwvcD5cblxuPHRhYmxlIGJvcmRlcj1cIjFcIj5cbiAge3BhZDphcnJheSBcIiogZnJvbSBzdGFmZiB3aGVyZSBzYWxhcnkgPj0gMjAwMFwifVxuICAgIDx0cj5cbiAgICAgIDx0ZD57JG5hbWV9PC90ZD5cbiAgICAgIDx0ZD57JHBob25lfTwvdGQ+XG4gICAgPC90cj5cbiAgey9wYWQ6YXJyYXl9XG48L3RhYmxlPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;Bob's phone number is <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>field </font><font color="red">"phone from staff where name = <font color="black">'</font>bob<font color="black">'</font>"</font>/}</b>&lt;/p&gt;<br><br>&lt;table border="1"&gt;<br>  <b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>array </font><font color="red">"* from staff where salary &gt;= 2000"</font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>array</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>Bob's phone number is 555-3425</p>
 
 <table border="1">
@@ -231,15 +272,14 @@ keeps to <code>*</code>:</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -264,59 +304,67 @@ then a variable of the page - so a value can never become SQL. The statement mus
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/database_4.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/database_4.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $pattern </span><span style="color: #007700">= </span><span style="color: #DD0000">'%4%'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$max     </span><span style="color: #007700">= </span><span style="color: #0000BB">10</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/database_4.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57bG9jYWw6c3RhZmZCeVBob25lfXskbmFtZX0gey9sb2NhbDpzdGFmZkJ5UGhvbmV9PC9wPlxuPHA+e2xvY2FsOnN0YWZmQnlQaG9uZSBwYXR0ZXJuPSclMyUnLCBtYXg9Mn17JG5hbWV9IHsvbG9jYWw6c3RhZmZCeVBob25lfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkcGF0dGVybiA9ICclNCUnO1xuICAkbWF4ICAgICA9IDEwO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57bG9jYWw6c3RhZmZCeVBob25lfXskbmFtZX0gey9sb2NhbDpzdGFmZkJ5UGhvbmV9PC9wPlxuPHA+e2xvY2FsOnN0YWZmQnlQaG9uZSBwYXR0ZXJuPSclMyUnLCBtYXg9Mn17JG5hbWV9IHsvbG9jYWw6c3RhZmZCeVBob25lfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkcGF0dGVybiA9ICclNCUnO1xuICAkbWF4ICAgICA9IDEwO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staffByPhone</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staffByPhone</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staffByPhone </font><font color="red">pattern=<font color="black">'</font><font color="black">%</font>3<font color="black">%</font><font color="black">'</font><font color="black">,</font> max=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staffByPhone</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/database_4.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $pattern </span><span style="color: #007700">= </span><span style="color: #DD0000">'%4%'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$max     </span><span style="color: #007700">= </span><span style="color: #0000BB">10</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57bG9jYWw6c3RhZmZCeVBob25lfXskbmFtZX0gey9sb2NhbDpzdGFmZkJ5UGhvbmV9PC9wPlxuPHA+e2xvY2FsOnN0YWZmQnlQaG9uZSBwYXR0ZXJuPSclMyUnLCBtYXg9Mn17JG5hbWV9IHsvbG9jYWw6c3RhZmZCeVBob25lfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkcGF0dGVybiA9ICclNCUnO1xuICAkbWF4ICAgICA9IDEwO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57bG9jYWw6c3RhZmZCeVBob25lfXskbmFtZX0gey9sb2NhbDpzdGFmZkJ5UGhvbmV9PC9wPlxuPHA+e2xvY2FsOnN0YWZmQnlQaG9uZSBwYXR0ZXJuPSclMyUnLCBtYXg9Mn17JG5hbWV9IHsvbG9jYWw6c3RhZmZCeVBob25lfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkcGF0dGVybiA9ICclNCUnO1xuICAkbWF4ICAgICA9IDEwO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staffByPhone</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staffByPhone</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staffByPhone </font><font color="red">pattern=<font color="black">'</font><font color="black">%</font>3<font color="black">%</font><font color="black">'</font><font color="black">,</font> max=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staffByPhone</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>bob jerry jim joe </p>
 <p>bob jerry </p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 

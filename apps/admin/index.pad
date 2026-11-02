@@ -8,17 +8,23 @@
   <section class="card warn">
     <h2>{icon:power size=18/} Down for maintenance</h2>
     <ul>
-      {array:downList}<li><a href="?application&amp;app={$app}">{$app}</a> - since {$since}{pad:if $message ne ''}: {$message}{/pad:if}</li>{/array:downList}
+      {array:downList}
+        <li><a href="?application&amp;app={$app}">{$app}</a> - since {$since}{pad:if $message ne ''}: {$message}{/pad:if}</li>
+      {/array:downList}
     </ul>
   </section>
 {/pad:if}
 
 <div class="grid2">
-
   <section class="card">
     <h2>{icon:info size=18/} System</h2>
     <table class="facts">
-      {array:facts}<tr><th>{$label}</th><td>{$value}</td></tr>{/array:facts}
+      {array:facts}
+        <tr>
+          <th>{$label}</th>
+          <td>{$value}</td>
+        </tr>
+      {/array:facts}
     </table>
   </section>
 
@@ -50,5 +56,4 @@
     {/pad:if}
     <p><a href="?storage">Storage</a></p>
   </section>
-
 </div>

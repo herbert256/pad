@@ -1,43 +1,58 @@
 <h3>Random vs shuffle</h3>
 
 {common:table}
+  {common:demo}
+    {sequence:range 'A..Z'}
+      {$sequence}
+    {/sequence:range }
+  {/common:demo}
 
-{common:demo}{sequence:range 'A..Z'}
-  {$sequence}
-{/sequence:range }{/common:demo}
+  {common:demo}
+    {sequence:range 'A..Z', shuffle}
+      {$sequence}
+    {/sequence:range }
+  {/common:demo}
 
-{common:demo}{sequence:range 'A..Z', shuffle}
-  {$sequence}
-{/sequence:range }{/common:demo}
+  {common:demo}
+    {sequence:range 'A..Z', shuffle, sort}
+      {$sequence}
+    {/sequence:range }
+  {/common:demo}
 
-{common:demo}{sequence:range 'A..Z', shuffle, sort}
-  {$sequence}
-{/sequence:range }{/common:demo}
+  {common:demo}
+    {sequence:range 'A..Z', random}
+      {$sequence}
+    {/sequence:range }
+  {/common:demo}
 
-{common:demo}{sequence:range 'A..Z', random}
-  {$sequence}
-{/sequence:range }{/common:demo}
+  {common:demo}
+    {sequence:range 'A..Z', random, sort}
+      {$sequence}
+    {/sequence:range }
+  {/common:demo}
+{/common:table}
+{common:table}
+  {common:demo}
+    {sequence:range 'A..Z', random, unique, sort}
+      {$sequence}
+    {/sequence:range }
+  {/common:demo}
 
-{common:demo}{sequence:range 'A..Z', random, sort}
-  {$sequence}
-{/sequence:range }{/common:demo}
+  {common:demo}
+    {sequence:range 'A..Z', random, dedup, sort}
+      {$sequence}
+    {/sequence:range }
+  {/common:demo}
 
-{/common:table} {common:table}
+  {common:demo}
+    {sequence:range 'A..Z', reverse}
+      {$sequence}
+    {/sequence:range}
+  {/common:demo}
 
-{common:demo}{sequence:range 'A..Z', random, unique, sort}
-  {$sequence}
-{/sequence:range }{/common:demo}
-
-{common:demo}{sequence:range 'A..Z', random, dedup, sort}
-  {$sequence}
-{/sequence:range }{/common:demo}
-
-{common:demo}{sequence:range 'A..Z', reverse}
-  {$sequence}
-{/sequence:range}{/common:demo}
-
-{common:demo}{sequence:range 'A..Z', reverse, sort}
-  {$sequence}
-{/sequence:range}{/common:demo}
-
+  {common:demo}
+    {sequence:range 'A..Z', reverse, sort}
+      {$sequence}
+    {/sequence:range}
+  {/common:demo}
 {/common:table}

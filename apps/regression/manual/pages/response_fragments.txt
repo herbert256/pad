@@ -1,53 +1,66 @@
-
-
 <p>A search result, a page of a list, a counter: a part of a page that the browser wants to refresh on its own. <code>{pad:fragment 'name'}...{/pad:fragment}</code> names such a part. A normal request renders the whole page, the fragment in its place:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/response_fragments_1.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8aDQ+T3JkZXJzPC9oND5cblxue3BhZDpmcmFnbWVudCAnb3JkZXItbGlzdCd9XG4gIDx1bD5cbiAgICB7c2VxdWVuY2U6cmFuZ2UgJzEwMS4uMTAzJywgbmFtZT0nbnVtYmVyJ308bGk+T3JkZXIgeyRudW1iZXJ9PC9saT57L3NlcXVlbmNlOnJhbmdlfVxuICA8L3VsPlxuey9wYWQ6ZnJhZ21lbnR9XG5cbjxwPlRoZSBwYWdlIGdvZXMgb24gaGVyZS48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8aDQ+T3JkZXJzPC9oND5cblxue3BhZDpmcmFnbWVudCAnb3JkZXItbGlzdCd9XG4gIDx1bD5cbiAgICB7c2VxdWVuY2U6cmFuZ2UgJzEwMS4uMTAzJywgbmFtZT0nbnVtYmVyJ308bGk+T3JkZXIgeyRudW1iZXJ9PC9saT57L3NlcXVlbmNlOnJhbmdlfVxuICA8L3VsPlxuey9wYWQ6ZnJhZ21lbnR9XG5cbjxwPlRoZSBwYWdlIGdvZXMgb24gaGVyZS48L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;h4&gt;Orders&lt;/h4&gt;<br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>fragment </font><font color="red"><font color="black">'</font>order-list<font color="black">'</font></font>}</b><br>  &lt;ul&gt;<br>    <b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range </font><font color="red"><font color="black">'</font>101..103<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>number<font color="black">'</font></font>}</b>&lt;li&gt;Order <b>{<font color="green"><font color="red">$</font>number</font>}</b>&lt;/li&gt;<b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range</font><font color="red"></font>}</b><br>  &lt;/ul&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>fragment</font><font color="red"></font>}</b><br><br>&lt;p&gt;The page goes on here.&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/response_fragments_1.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8aDQ+T3JkZXJzPC9oND5cblxue3BhZDpmcmFnbWVudCAnb3JkZXItbGlzdCd9XG4gIDx1bD5cbiAgICB7c2VxdWVuY2U6cmFuZ2UgJzEwMS4uMTAzJywgbmFtZT0nbnVtYmVyJ31cbiAgICAgIDxsaT5PcmRlciB7JG51bWJlcn08L2xpPlxuICAgIHsvc2VxdWVuY2U6cmFuZ2V9XG4gIDwvdWw+XG57L3BhZDpmcmFnbWVudH1cblxuPHA+VGhlIHBhZ2UgZ29lcyBvbiBoZXJlLjwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8aDQ+T3JkZXJzPC9oND5cblxue3BhZDpmcmFnbWVudCAnb3JkZXItbGlzdCd9XG4gIDx1bD5cbiAgICB7c2VxdWVuY2U6cmFuZ2UgJzEwMS4uMTAzJywgbmFtZT0nbnVtYmVyJ31cbiAgICAgIDxsaT5PcmRlciB7JG51bWJlcn08L2xpPlxuICAgIHsvc2VxdWVuY2U6cmFuZ2V9XG4gIDwvdWw+XG57L3BhZDpmcmFnbWVudH1cblxuPHA+VGhlIHBhZ2UgZ29lcyBvbiBoZXJlLjwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;h4&gt;Orders&lt;/h4&gt;<br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>fragment </font><font color="red"><font color="black">'</font>order-list<font color="black">'</font></font>}</b><br>  &lt;ul&gt;<br>    <b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range </font><font color="red"><font color="black">'</font>101..103<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>number<font color="black">'</font></font>}</b><br>      &lt;li&gt;Order <b>{<font color="green"><font color="red">$</font>number</font>}</b>&lt;/li&gt;<br>    <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>range</font><font color="red"></font>}</b><br>  &lt;/ul&gt;<br><b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>fragment</font><font color="red"></font>}</b><br><br>&lt;p&gt;The page goes on here.&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <h4>Orders</h4>
 
 
   <ul>
-    <li>Order 101</li><li>Order 102</li><li>Order 103</li>
+    
+      <li>Order 101</li>
+    
+      <li>Order 102</li>
+    
+      <li>Order 103</li>
+    
   </ul>
 
 
@@ -55,15 +68,14 @@
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -73,60 +85,74 @@
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/response_fragments_2.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmN1cmwgJ1NFTEY6Ly9tYW51YWwvP2ZyYWdtZW50cy9yZXNwb25zZV9mcmFnbWVudHNfMSZwYWRJbmNsdWRlJnBhZEZyYWdtZW50PW9yZGVyLWxpc3QnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmN1cmwgJ1NFTEY6Ly9tYW51YWwvP2ZyYWdtZW50cy9yZXNwb25zZV9mcmFnbWVudHNfMSZwYWRJbmNsdWRlJnBhZEZyYWdtZW50PW9yZGVyLWxpc3QnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>curl </font><font color="red"><font color="black">'</font>SELF<font color="black">:</font>//manual/?fragments/response_fragments_1&amp;padInclude&amp;padFragment=order-list<font color="black">'</font></font>/}</b></code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/response_fragments_2.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmN1cmwgJ1NFTEY6Ly9tYW51YWwvP2ZyYWdtZW50cy9yZXNwb25zZV9mcmFnbWVudHNfMSZwYWRJbmNsdWRlJnBhZEZyYWdtZW50PW9yZGVyLWxpc3QnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmN1cmwgJ1NFTEY6Ly9tYW51YWwvP2ZyYWdtZW50cy9yZXNwb25zZV9mcmFnbWVudHNfMSZwYWRJbmNsdWRlJnBhZEZyYWdtZW50PW9yZGVyLWxpc3QnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>curl </font><font color="red"><font color="black">'</font>SELF<font color="black">:</font>//manual/?fragments/response_fragments_1&amp;padInclude&amp;padFragment=order-list<font color="black">'</font></font>/}</b></code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <ul>
-    <li>Order 101</li><li>Order 102</li><li>Order 103</li>
+    
+      <li>Order 101</li>
+    
+      <li>Order 102</li>
+    
+      <li>Order 103</li>
+    
   </ul>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 

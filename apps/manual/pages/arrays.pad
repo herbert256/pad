@@ -72,25 +72,82 @@ value an array - NULL none, an array itself, anything else one item.</p>
 <h2>The functions</h2>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>function</th><th>what it answers</th></tr>
-  <tr><td><code>padArrGet ( $target, $key, $default = NULL )</code></td><td>the value at a dot path, or the default; a NULL key is the target itself</td></tr>
-  <tr><td><code>padArrSet ( &amp;$array, $key, $value )</code></td><td>sets the value at a dot path, making the levels on the way; the array</td></tr>
-  <tr><td><code>padArrHas ( $array, $keys )</code></td><td>whether every dot path given exists - a NULL value exists</td></tr>
-  <tr><td><code>padArrForget ( &amp;$array, $keys )</code></td><td>removes one or several dot paths; the array</td></tr>
-  <tr><td><code>padArrOnly ( $array, $keys )</code></td><td>the top-level keys given, in the order given</td></tr>
-  <tr><td><code>padArrExcept ( $array, $keys )</code></td><td>the array without the keys given - dot paths too</td></tr>
-  <tr><td><code>padArrPluck ( $rows, $value, $key = NULL )</code></td><td>one field of every row, keyed by another field when given</td></tr>
-  <tr><td><code>padArrWhere ( $rows, $key, $operator, $value )</code></td><td>the rows that pass, keys kept</td></tr>
-  <tr><td><code>padArrFirst ( $array, $callback = NULL, $default = NULL )</code></td><td>the first value, or the first a callback passes, or the default</td></tr>
-  <tr><td><code>padArrLast ( $array, $callback = NULL, $default = NULL )</code></td><td>the same from the end</td></tr>
-  <tr><td><code>padArrGroupBy ( $rows, $key )</code></td><td>the rows in groups by a field, each group a list</td></tr>
-  <tr><td><code>padArrKeyBy ( $rows, $key )</code></td><td>the rows keyed by a field, a later row winning</td></tr>
-  <tr><td><code>padArrSortBy ( $rows, $key, $descending = FALSE )</code></td><td>the rows sorted by a field, stable; string keys kept, a list numbered again</td></tr>
-  <tr><td><code>padArrFlatten ( $array, $depth = INF )</code></td><td>the values, nested arrays opened up</td></tr>
-  <tr><td><code>padArrDot ( $array, $prepend = '' )</code></td><td>a nested array as one level with dot path keys</td></tr>
-  <tr><td><code>padArrUndot ( $array )</code></td><td>dot path keys made nested arrays again</td></tr>
-  <tr><td><code>padArrWrap ( $value )</code></td><td>the value as an array</td></tr>
-  <tr><td><code>padArrSum / Avg / Min / Max ( $rows, $key = NULL )</code></td><td>the sum, average, smallest, largest of the numbers</td></tr>
+  <tr>
+    <th>function</th>
+    <th>what it answers</th>
+  </tr>
+  <tr>
+    <td><code>padArrGet ( $target, $key, $default = NULL )</code></td>
+    <td>the value at a dot path, or the default; a NULL key is the target itself</td>
+  </tr>
+  <tr>
+    <td><code>padArrSet ( &amp;$array, $key, $value )</code></td>
+    <td>sets the value at a dot path, making the levels on the way; the array</td>
+  </tr>
+  <tr>
+    <td><code>padArrHas ( $array, $keys )</code></td>
+    <td>whether every dot path given exists - a NULL value exists</td>
+  </tr>
+  <tr>
+    <td><code>padArrForget ( &amp;$array, $keys )</code></td>
+    <td>removes one or several dot paths; the array</td>
+  </tr>
+  <tr>
+    <td><code>padArrOnly ( $array, $keys )</code></td>
+    <td>the top-level keys given, in the order given</td>
+  </tr>
+  <tr>
+    <td><code>padArrExcept ( $array, $keys )</code></td>
+    <td>the array without the keys given - dot paths too</td>
+  </tr>
+  <tr>
+    <td><code>padArrPluck ( $rows, $value, $key = NULL )</code></td>
+    <td>one field of every row, keyed by another field when given</td>
+  </tr>
+  <tr>
+    <td><code>padArrWhere ( $rows, $key, $operator, $value )</code></td>
+    <td>the rows that pass, keys kept</td>
+  </tr>
+  <tr>
+    <td><code>padArrFirst ( $array, $callback = NULL, $default = NULL )</code></td>
+    <td>the first value, or the first a callback passes, or the default</td>
+  </tr>
+  <tr>
+    <td><code>padArrLast ( $array, $callback = NULL, $default = NULL )</code></td>
+    <td>the same from the end</td>
+  </tr>
+  <tr>
+    <td><code>padArrGroupBy ( $rows, $key )</code></td>
+    <td>the rows in groups by a field, each group a list</td>
+  </tr>
+  <tr>
+    <td><code>padArrKeyBy ( $rows, $key )</code></td>
+    <td>the rows keyed by a field, a later row winning</td>
+  </tr>
+  <tr>
+    <td><code>padArrSortBy ( $rows, $key, $descending = FALSE )</code></td>
+    <td>the rows sorted by a field, stable; string keys kept, a list numbered again</td>
+  </tr>
+  <tr>
+    <td><code>padArrFlatten ( $array, $depth = INF )</code></td>
+    <td>the values, nested arrays opened up</td>
+  </tr>
+  <tr>
+    <td><code>padArrDot ( $array, $prepend = '' )</code></td>
+    <td>a nested array as one level with dot path keys</td>
+  </tr>
+  <tr>
+    <td><code>padArrUndot ( $array )</code></td>
+    <td>dot path keys made nested arrays again</td>
+  </tr>
+  <tr>
+    <td><code>padArrWrap ( $value )</code></td>
+    <td>the value as an array</td>
+  </tr>
+  <tr>
+    <td><code>padArrSum / Avg / Min / Max ( $rows, $key = NULL )</code></td>
+    <td>the sum, average, smallest, largest of the numbers</td>
+  </tr>
 </table>
 
 <p>A field to work on - <code>$key</code>, <code>$value</code> - is a dot path or a callback

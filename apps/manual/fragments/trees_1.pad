@@ -1,7 +1,10 @@
 <ul>
-{pad:tree 'menu', children='items'}
-  <li>{$title}
-    {pad:branch}<ul>{pad:recurse/}</ul>{/pad:branch}
-  </li>
-{/pad:tree}
+  {pad:tree 'menu', children='items'}
+    <li>
+      {$title}
+      {pad:branch}
+        <ul>{pad:recurse/}</ul>
+      {/pad:branch}
+    </li>
+  {/pad:tree}
 </ul>

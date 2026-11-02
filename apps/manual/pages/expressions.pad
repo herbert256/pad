@@ -121,20 +121,62 @@ applied left to right - <code>10 - 2 + 3</code> is 11 - except <code>**</code>, 
 right to left. Round brackets group as usual.</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr style="background: #f0f0f0;"><th>operators</th><th>what they do</th></tr>
-  <tr><td><code>**</code></td><td>power, right to left: <code>2 ** 3 ** 2</code> is <code>2 ** 9</code></td></tr>
-  <tr><td><code>!</code>, a sign <code>-</code> <code>+</code> before a value</td><td>not, and the signs - weaker than <code>**</code>: <code>-3 ** 2</code> is -9</td></tr>
-  <tr><td><code>*</code> <code>/</code> <code>%</code></td><td>multiply, divide, remainder</td></tr>
-  <tr><td><code>+</code> <code>-</code></td><td>add, subtract</td></tr>
-  <tr><td><code>.</code></td><td>join as text</td></tr>
-  <tr><td><code>lt</code> <code>le</code> <code>gt</code> <code>ge</code> - <code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code></td><td>order</td></tr>
-  <tr><td><code>eq</code> <code>ne</code> - <code>==</code> <code>=</code> <code>!=</code> <code>&lt;&gt;</code></td><td>equal, not equal</td></tr>
-  <tr><td><code>not</code></td><td>denies what follows, a comparison included</td></tr>
-  <tr><td><code>and</code> - <code>&amp;&amp;</code></td><td>both hold</td></tr>
-  <tr><td><code>xor</code></td><td>exactly one holds</td></tr>
-  <tr><td><code>or</code> - <code>||</code></td><td>either holds</td></tr>
-  <tr><td><code>??</code></td><td>the left side, or the right one when the left is empty or missing</td></tr>
-  <tr><td><code>? :</code> and <code>?:</code></td><td>the inline ternary, weakest of all</td></tr>
+  <tr style="background: #f0f0f0;">
+    <th>operators</th>
+    <th>what they do</th>
+  </tr>
+  <tr>
+    <td><code>**</code></td>
+    <td>power, right to left: <code>2 ** 3 ** 2</code> is <code>2 ** 9</code></td>
+  </tr>
+  <tr>
+    <td><code>!</code>, a sign <code>-</code> <code>+</code> before a value</td>
+    <td>not, and the signs - weaker than <code>**</code>: <code>-3 ** 2</code> is -9</td>
+  </tr>
+  <tr>
+    <td><code>*</code> <code>/</code> <code>%</code></td>
+    <td>multiply, divide, remainder</td>
+  </tr>
+  <tr>
+    <td><code>+</code> <code>-</code></td>
+    <td>add, subtract</td>
+  </tr>
+  <tr>
+    <td><code>.</code></td>
+    <td>join as text</td>
+  </tr>
+  <tr>
+    <td><code>lt</code> <code>le</code> <code>gt</code> <code>ge</code> - <code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code></td>
+    <td>order</td>
+  </tr>
+  <tr>
+    <td><code>eq</code> <code>ne</code> - <code>==</code> <code>=</code> <code>!=</code> <code>&lt;&gt;</code></td>
+    <td>equal, not equal</td>
+  </tr>
+  <tr>
+    <td><code>not</code></td>
+    <td>denies what follows, a comparison included</td>
+  </tr>
+  <tr>
+    <td><code>and</code> - <code>&amp;&amp;</code></td>
+    <td>both hold</td>
+  </tr>
+  <tr>
+    <td><code>xor</code></td>
+    <td>exactly one holds</td>
+  </tr>
+  <tr>
+    <td><code>or</code> - <code>||</code></td>
+    <td>either holds</td>
+  </tr>
+  <tr>
+    <td><code>??</code></td>
+    <td>the left side, or the right one when the left is empty or missing</td>
+  </tr>
+  <tr>
+    <td><code>? :</code> and <code>?:</code></td>
+    <td>the inline ternary, weakest of all</td>
+  </tr>
 </table>
 
 <p>The tests <code>in</code>, <code>like</code>, <code>matches</code>, <code>range</code>,
@@ -229,13 +271,34 @@ add up as numbers.</p>
 <h2 id="tests">Tests: in, like, matches, range, between, contains</h2>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr style="background: #f0f0f0;"><th>test</th><th>holds when</th></tr>
-  <tr><td><code>$x in (a, b, ...)</code></td><td>the value equals one of the list</td></tr>
-  <tr><td><code>$x like 'A%'</code></td><td>the value matches the SQL pattern: <code>%</code> any run of characters, <code>_</code> one character, <code>\\%</code> and <code>\\_</code> themselves; case is ignored</td></tr>
-  <tr><td><code>$x matches '/re/'</code></td><td>the regular expression matches</td></tr>
-  <tr><td><code>$x range (a, b)</code></td><td>a &lt;= value &lt;= b, the ends included</td></tr>
-  <tr><td><code>$x between (a, b)</code></td><td>a &lt; value &lt; b, the ends left out</td></tr>
-  <tr><td><code>$x contains y</code></td><td>the text holds y - or, for a list, an item of it equals y</td></tr>
+  <tr style="background: #f0f0f0;">
+    <th>test</th>
+    <th>holds when</th>
+  </tr>
+  <tr>
+    <td><code>$x in (a, b, ...)</code></td>
+    <td>the value equals one of the list</td>
+  </tr>
+  <tr>
+    <td><code>$x like 'A%'</code></td>
+    <td>the value matches the SQL pattern: <code>%</code> any run of characters, <code>_</code> one character, <code>\\%</code> and <code>\\_</code> themselves; case is ignored</td>
+  </tr>
+  <tr>
+    <td><code>$x matches '/re/'</code></td>
+    <td>the regular expression matches</td>
+  </tr>
+  <tr>
+    <td><code>$x range (a, b)</code></td>
+    <td>a &lt;= value &lt;= b, the ends included</td>
+  </tr>
+  <tr>
+    <td><code>$x between (a, b)</code></td>
+    <td>a &lt; value &lt; b, the ends left out</td>
+  </tr>
+  <tr>
+    <td><code>$x contains y</code></td>
+    <td>the text holds y - or, for a list, an item of it equals y</td>
+  </tr>
 </table>
 
 <p>A <code>not</code> between the value and the test denies the test, as SQL writes it:
@@ -388,26 +451,86 @@ the lines around it (see <a href="?pages/template_errors">errors in the template
 some mistakes are told:</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr style="background: #f0f0f0;"><th>written</th><th>the error says</th></tr>
-  <tr><td><code>{pad:open/}pad:echo (1 + 2/{pad:close/}</code></td><td>the ( opened at position 1 is never closed</td></tr>
-  <tr><td><code>{pad:open/}pad:echo 'abc/{pad:close/}</code></td><td>the string opened with ' at position 1 is never closed</td></tr>
-  <tr><td><code>{pad:open/}pad:echo $name | uppr/{pad:close/}</code></td><td>there is no pipe function named 'uppr'</td></tr>
-  <tr><td><code>{pad:open/}pad:echo nofunc(1)/{pad:close/}</code></td><td>there is no function named 'nofunc'</td></tr>
-  <tr><td><code>{pad:open/}pad:if $typo eq 1{pad:close/}</code></td><td>there is no field named '$typo'</td></tr>
-  <tr><td><code>{pad:open/}pad:echo $items + 1/{pad:close/}</code></td><td>the field '$items' is a list, not a value</td></tr>
-  <tr><td><code>{pad:open/}pad:if $n eq{pad:close/}</code></td><td>the operator 'eq' has nothing on its right</td></tr>
-  <tr><td><code>{pad:open/}pad:echo $n + * 3/{pad:close/}</code></td><td>the operators '+' and '*' stand side by side - a value is missing between them</td></tr>
-  <tr><td><code>{pad:open/}pad:if $n === 5{pad:close/}</code></td><td>'===' is no operator - eq (==) compares two values</td></tr>
-  <tr><td><code>{pad:open/}pad:echo $n | +1/{pad:close/}</code></td><td>a pipe operator needs a space before its operand - write '| + 1', not '| +1'</td></tr>
-  <tr><td><code>{pad:open/}pad:echo 5 &amp; 3/{pad:close/}</code></td><td>'&amp;' is no operator or value</td></tr>
-  <tr><td><code>{pad:open/}pad:if $n not 5{pad:close/}</code></td><td>a 'not' after a value denies a test - write $a not in (...), not like, not matches or not range, or put it in front: not $a eq $b</td></tr>
-  <tr><td><code>{pad:open/}pad:echo 7 / 0/{pad:close/}</code></td><td>a division by zero in /</td></tr>
-  <tr><td><code>{pad:open/}pad:echo 'a' * 2/{pad:close/}</code></td><td>'a' is not a number for *</td></tr>
-  <tr><td><code>{pad:open/}pad:echo $n ? 'a'/{pad:close/}</code></td><td>the ? of an inline ternary has no : - write cond ? then : else</td></tr>
-  <tr><td><code>{pad:open/}pad:echo [ 'a' =&gt; ]/{pad:close/}</code></td><td>the key 'a' of a list has no value after its =&gt;</td></tr>
-  <tr><td><code>{pad:open/}pad:echo replace('abc')/{pad:close/}</code></td><td>the function 'replace' wants 2 parameters after the value it works on - written as a call its first argument is that value: replace($value, ...)</td></tr>
-  <tr><td><code>{pad:open/}pad:echo php:str_repeat('x', -1)/{pad:close/}</code></td><td>the PHP function 'str_repeat' refused its arguments: str_repeat(): Argument #2 ($times) must be greater than or equal to 0</td></tr>
-  <tr><td><code>{pad:open/}pad:echo 'a\qb'/{pad:close/}</code></td><td>Unsupported \ char</td></tr>
+  <tr style="background: #f0f0f0;">
+    <th>written</th>
+    <th>the error says</th>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo (1 + 2/{pad:close/}</code></td>
+    <td>the ( opened at position 1 is never closed</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo 'abc/{pad:close/}</code></td>
+    <td>the string opened with ' at position 1 is never closed</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo $name | uppr/{pad:close/}</code></td>
+    <td>there is no pipe function named 'uppr'</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo nofunc(1)/{pad:close/}</code></td>
+    <td>there is no function named 'nofunc'</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:if $typo eq 1{pad:close/}</code></td>
+    <td>there is no field named '$typo'</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo $items + 1/{pad:close/}</code></td>
+    <td>the field '$items' is a list, not a value</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:if $n eq{pad:close/}</code></td>
+    <td>the operator 'eq' has nothing on its right</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo $n + * 3/{pad:close/}</code></td>
+    <td>the operators '+' and '*' stand side by side - a value is missing between them</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:if $n === 5{pad:close/}</code></td>
+    <td>'===' is no operator - eq (==) compares two values</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo $n | +1/{pad:close/}</code></td>
+    <td>a pipe operator needs a space before its operand - write '| + 1', not '| +1'</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo 5 &amp; 3/{pad:close/}</code></td>
+    <td>'&amp;' is no operator or value</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:if $n not 5{pad:close/}</code></td>
+    <td>a 'not' after a value denies a test - write $a not in (...), not like, not matches or not range, or put it in front: not $a eq $b</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo 7 / 0/{pad:close/}</code></td>
+    <td>a division by zero in /</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo 'a' * 2/{pad:close/}</code></td>
+    <td>'a' is not a number for *</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo $n ? 'a'/{pad:close/}</code></td>
+    <td>the ? of an inline ternary has no : - write cond ? then : else</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo [ 'a' =&gt; ]/{pad:close/}</code></td>
+    <td>the key 'a' of a list has no value after its =&gt;</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo replace('abc')/{pad:close/}</code></td>
+    <td>the function 'replace' wants 2 parameters after the value it works on - written as a call its first argument is that value: replace($value, ...)</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo php:str_repeat('x', -1)/{pad:close/}</code></td>
+    <td>the PHP function 'str_repeat' refused its arguments: str_repeat(): Argument #2 ($times) must be greater than or equal to 0</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:echo 'a\qb'/{pad:close/}</code></td>
+    <td>Unsupported \ char</td>
+  </tr>
 </table>
 
 <h2>The lenient walk</h2>

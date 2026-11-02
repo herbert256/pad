@@ -1,16 +1,21 @@
 <form class="bar" method="get">
   <input type="hidden" name="queues" value="">
-  <label>Application
+  <label>
+    Application
     <select name="app" onchange="this.form.submit()">
       <option value="">every application with a queue</option>
-      {array:appRows}<option value="{$name}" {pad:if $selected}selected{/pad:if}>{$name}</option>{/array:appRows}
+      {array:appRows}
+        <option value="{$name}" {pad:if $selected}selected{/pad:if}>{$name}</option>
+      {/array:appRows}
     </select>
   </label>
   <noscript><button>Show</button></noscript>
 </form>
 
 {pad:if $queueAppCount eq 0}
-  <section class="card"><p>No application has queued a job yet - <code>padQueue ( 'name', $data )</code> does, from a page's PHP.</p></section>
+  <section class="card">
+    <p>No application has queued a job yet - <code>padQueue ( 'name', $data )</code> does, from a page's PHP.</p>
+  </section>
 {/pad:if}
 
 {array:queueApps}
@@ -19,11 +24,22 @@
 
     {pad:if $queueCount}
       <table class="list">
-        <thead><tr><th>Queue</th><th class="right">Due</th><th class="right">Delayed</th><th class="right">Running</th><th></th></tr></thead>
+        <thead>
+          <tr>
+            <th>Queue</th>
+            <th class="right">Due</th>
+            <th class="right">Delayed</th>
+            <th class="right">Running</th>
+            <th></th>
+          </tr>
+        </thead>
         <tbody>
           {array:queues}
             <tr>
-              <td>{$queue}</td><td class="right">{$due}</td><td class="right">{$delayed}</td><td class="right">{$running}</td>
+              <td>{$queue}</td>
+              <td class="right">{$due}</td>
+              <td class="right">{$delayed}</td>
+              <td class="right">{$running}</td>
               <td class="right">
                 <form method="post" class="inline">
                   <input type="hidden" name="app" value="{$name}"><input type="hidden" name="action" value="flush"><input type="hidden" name="queue" value="{$queue}">
@@ -58,13 +74,32 @@
     {pad:if $failedCount}
       <h3>Failed ({$failedCount})</h3>
       <table class="list">
-        <thead><tr><th>Id</th><th>Queue</th><th>Job</th><th class="right">Tries</th><th>Failed</th><th>Why</th><th></th></tr></thead>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Queue</th>
+            <th>Job</th>
+            <th class="right">Tries</th>
+            <th>Failed</th>
+            <th>Why</th>
+            <th></th>
+          </tr>
+        </thead>
         <tbody>
           {array:failedRows}
             <tr>
-              <td><code>{$id}</code></td><td>{$queue}</td><td>{$job}</td><td class="right">{$attempts}</td>
+              <td><code>{$id}</code></td>
+              <td>{$queue}</td>
+              <td>{$job}</td>
+              <td class="right">{$attempts}</td>
               <td class="nowrap">{$when}</td>
-              <td>{$why}<details><summary class="dim">data</summary><pre>{$payload}</pre></details></td>
+              <td>
+                {$why}
+                <details>
+                  <summary class="dim">data</summary>
+                  <pre>{$payload}</pre>
+                </details>
+              </td>
               <td>
                 <form method="post" class="inline">
                   <input type="hidden" name="app" value="{$name}"><input type="hidden" name="action" value="retry"><input type="hidden" name="id" value="{$id}">

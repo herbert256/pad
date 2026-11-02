@@ -1,5 +1,4 @@
 <div class="ps-home">
-
   <p class="ps-lead">The Select subsystem makes the tables of a database tags. Declare a table
   once - its key, its order - and the relations between the tables, and a template walks them
   without writing a join: a table nested in another reads only the rows related to the row
@@ -8,16 +7,15 @@
 
   <div class="ps-groups">
     {array:groups}
-    <section class="ps-group">
-      <h2>{$group}</h2>
-      <p>{$tagline}</p>
-      <ul>
-        {array:examples}
-        <li><a href="?{$page}">{$label}</a><span>{$about}</span></li>
-        {/array:examples}
-      </ul>
-    </section>
+      <section class="ps-group">
+        <h2>{$group}</h2>
+        <p>{$tagline}</p>
+        <ul>
+          {array:examples}
+            <li><a href="?{$page}">{$label}</a><span>{$about}</span></li>
+          {/array:examples}
+        </ul>
+      </section>
     {/array:groups}
   </div>
-
 </div>

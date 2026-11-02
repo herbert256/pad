@@ -7,7 +7,7 @@
 ]
 {/format:auto}
 <ul>
-{data:dataPlanets}
-  <li>{$name}: {$moons} {pad:echo $moons eq 1 ? 'moon' : 'moons'/}</li>
-{/data:dataPlanets}
+  {data:dataPlanets}
+    <li>{$name}: {$moons} {pad:echo $moons eq 1 ? 'moon' : 'moons'/}</li>
+  {/data:dataPlanets}
 </ul>

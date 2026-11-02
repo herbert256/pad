@@ -1,5 +1,9 @@
 <ul>
-  {select:albums join="artists using (artist_id)", fields="albums.title, artists.name", where="artists.country = $country", order="albums.title"}
-  <li>{$title} &mdash; {$name}</li>
+  {select:albums join="artists using (artist_id)",
+    fields="albums.title, artists.name",
+    where="artists.country = $country",
+    order="albums.title"
+  }
+    <li>{$title} &mdash; {$name}</li>
   {/select:albums}
 </ul>

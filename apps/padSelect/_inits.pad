@@ -1,44 +1,44 @@
 {common:padFrame}
-  {pad:slot 'head'}{pad:asset 'padSelect.css', tag/}{/pad:slot}
+  {pad:slot 'head'}
+    {pad:asset 'padSelect.css', tag/}
+  {/pad:slot}
 {/common:padFrame}
 {pad:if $isExample}
-<div class="ps-example">
+  <div class="ps-example">
+    <p class="ps-crumb"><a href="?index">PAD Select</a> <span>/</span> {$exampleGroup}</p>
+    <p class="ps-lead">{$exampleText}</p>
 
-  <p class="ps-crumb"><a href="?index">PAD Select</a> <span>/</span> {$exampleGroup}</p>
-  <p class="ps-lead">{$exampleText}</p>
+    <div class="ps-cells">
+      <section class="ps-cell ps-cell-decl" aria-label="The declarations">
+        <header class="ps-head"><span class="ps-num">1</span> The declarations</header>
+        {pad:if $modelHtml ne ''}
+          <p class="ps-file">_lib/select.php &mdash; the part this example reaches, <a href="?model">the whole model</a></p>
+          <pre class="ps-code"><code>{!modelHtml}</code></pre>
+        {/pad:if}
+        {pad:if $phpHtml ne ''}
+          <p class="ps-file">{$padPage}.php</p>
+          <pre class="ps-code"><code>{!phpHtml}</code></pre>
+        {/pad:if}
+      </section>
 
-  <div class="ps-cells">
+      <section class="ps-cell ps-cell-tpl" aria-label="The template">
+        <header class="ps-head"><span class="ps-num">2</span> The template <span class="ps-file">{$padPage}.pad</span></header>
+        <pre class="ps-code"><code>{!tagHtml}</code></pre>
+      </section>
 
-    <section class="ps-cell ps-cell-decl" aria-label="The declarations">
-      <header class="ps-head"><span class="ps-num">1</span> The declarations</header>
-      {pad:if $modelHtml ne ''}
-      <p class="ps-file">_lib/select.php &mdash; the part this example reaches, <a href="?model">the whole model</a></p>
-      <pre class="ps-code"><code>{!modelHtml}</code></pre>
-      {/pad:if}
-      {pad:if $phpHtml ne ''}
-      <p class="ps-file">{$padPage}.php</p>
-      <pre class="ps-code"><code>{!phpHtml}</code></pre>
-      {/pad:if}
-    </section>
-
-    <section class="ps-cell ps-cell-tpl" aria-label="The template">
-      <header class="ps-head"><span class="ps-num">2</span> The template <span class="ps-file">{$padPage}.pad</span></header>
-      <pre class="ps-code"><code>{!tagHtml}</code></pre>
-    </section>
-
-    <section class="ps-cell ps-cell-result" aria-label="The result">
-      <header class="ps-head"><span class="ps-num">3</span> The result</header>
-      <div class="ps-canvas">
+      <section class="ps-cell ps-cell-result" aria-label="The result">
+        <header class="ps-head"><span class="ps-num">3</span> The result</header>
+        <div class="ps-canvas">
 {/pad:if}
 @page@
 {pad:if $isExample}
-      </div>
-    </section>
+  </div>
+  </section>
 
-    <section class="ps-cell ps-cell-sql" aria-label="The SQL">
-      <header class="ps-head"><span class="ps-num">4</span> The SQL PAD sent</header>
-      {app:statements/}
-    </section>
+  <section class="ps-cell ps-cell-sql" aria-label="The SQL">
+    <header class="ps-head"><span class="ps-num">4</span> The SQL PAD sent</header>
+    {app:statements/}
+  </section>
 
   </div>
 
@@ -47,6 +47,6 @@
     <a href="?{$nextPage}" class="ps-next"><small>Next &rarr;</small>{$nextTitle}</a>
   </nav>
 
-</div>
+  </div>
 {/pad:if}
 {common:padFrameEnd/}

@@ -1,32 +1,25 @@
 A play is a sequence, but not used to build a list, it is used to exucute on a sequence list.
+<p>
+  There are 4 play operators
+  <table border=1>
+    {array:play}
+      <tr>
+        <td> {&play:key} </td>
+        <td> {$play}     </td>
+      </tr>
+    {/array:play}
+  </table>
 
-<p>There are 4 play operators
+  {common:block}
+    {common:table}
+      {common:demo}{sequence:range '20..30', push='mySequence'/} {/common:demo}
 
-<table border=1>
+      {common:demo}{pad:pull mySequence, make,   prime} {$sequence} {/pad:pull}{/common:demo}
 
-{array:play}
-  <tr>
-    <td> {&play:key} </td>
-    <td> {$play}     </td>
-  </tr>
-{/array:play}
+      {common:demo}{pad:pull mySequence, keep,   prime} {$sequence} {/pad:pull}{/common:demo}
 
-</table>
+      {common:demo}{pad:pull mySequence, remove, prime} {$sequence} {/pad:pull}{/common:demo}
 
-{common:block}
-
-{common:table}
-
-{common:demo}{sequence:range '20..30', push='mySequence'/} {/common:demo}
-
-{common:demo}{pad:pull mySequence, make,   prime} {$sequence} {/pad:pull}{/common:demo}
-
-{common:demo}{pad:pull mySequence, keep,   prime} {$sequence} {/pad:pull}{/common:demo}
-
-{common:demo}{pad:pull mySequence, remove, prime} {$sequence} {/pad:pull}{/common:demo}
-
-{common:demo}{pad:pull mySequence, flag,   prime} {$sequence} {/pad:pull}{/common:demo}
-
-{/common:table}
-
-{/common:block}
+      {common:demo}{pad:pull mySequence, flag,   prime} {$sequence} {/pad:pull}{/common:demo}
+    {/common:table}
+  {/common:block}

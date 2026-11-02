@@ -9,7 +9,12 @@
 ]
 {/format:auto}
 <ul>
-{pad:tree 'treeMenu'}
-  <li>{$title}{pad:branch}<ul>{pad:recurse/}</ul>{/pad:branch}</li>
-{/pad:tree}
+  {pad:tree 'treeMenu'}
+    <li>
+      {$title}
+      {pad:branch}
+        <ul>{pad:recurse/}</ul>
+      {/pad:branch}
+    </li>
+  {/pad:tree}
 </ul>

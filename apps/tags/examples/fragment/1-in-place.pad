@@ -1,6 +1,10 @@
 {pad:meta title='Rendered in place', about='A normal request renders the fragment where it stands - the text around it shows too.'/}
 <h4>Open orders</h4>
 {pad:fragment 'fragmentOrders'}
-  <ul id="fragmentOrders">{array:orders}<li>{$number}: {$customer}</li>{/array:orders}</ul>
+  <ul id="fragmentOrders">
+    {array:orders}
+      <li>{$number}: {$customer}</li>
+    {/array:orders}
+  </ul>
 {/pad:fragment}
 <p>Only <code>&amp;padFragment=fragmentOrders</code> would answer the list alone.</p>

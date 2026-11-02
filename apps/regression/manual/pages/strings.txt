@@ -1,5 +1,3 @@
-
-
 <p>The text a page shows is often made in its PHP first: a title cut to fit a card, a column
 name turned into a label, a slug for a database column, a token for a mail. PHP's own
 <code>substr</code> and <code>ucwords</code> count bytes and know only ASCII; the
@@ -8,21 +6,66 @@ cut in half. They are plain functions, loaded on every request like the rest of
 <code>pad/lib/</code>.</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>function</th><th>what it answers</th></tr>
-  <tr><td><code>padStrLimit ( $text, $limit = 100, $end = '...' )</code></td><td>at most <code>$limit</code> characters, <code>$end</code> added when something was cut</td></tr>
-  <tr><td><code>padStrWords ( $text, $words = 100, $end = '...' )</code></td><td>at most <code>$words</code> words</td></tr>
-  <tr><td><code>padStrExcerpt ( $text, $phrase, $radius = 100, $omission = '...' )</code></td><td>the phrase with <code>$radius</code> characters on either side, found case-insensitively</td></tr>
-  <tr><td><code>padStrSquish ( $text )</code></td><td>trimmed, every run of whitespace one space</td></tr>
-  <tr><td><code>padStrCamel</code>, <code>padStrStudly</code>, <code>padStrSnake ( $text, $delimiter = '_' )</code>, <code>padStrKebab</code>, <code>padStrHeadline</code></td><td>userName, UserName, user_name, user-name, User Name - from a name in any of those cases</td></tr>
-  <tr><td><code>padStrTitle ( $text )</code></td><td>every word with a capital</td></tr>
-  <tr><td><code>padStrSlug ( $text, $separator = '-' )</code></td><td>a readable URL part - what the <code>slug</code> pipe gives</td></tr>
-  <tr><td><code>padStrAfter</code>, <code>padStrAfterLast</code>, <code>padStrBefore</code>, <code>padStrBeforeLast ( $text, $search )</code></td><td>the text after or before the first or last occurrence - what the pipes of those names give</td></tr>
-  <tr><td><code>padStrBetween ( $text, $from, $to )</code></td><td>what stands between the first <code>$from</code> and the last <code>$to</code></td></tr>
-  <tr><td><code>padStrIs ( $pattern, $value )</code></td><td>whether the value matches a pattern with <code>*</code> wildcards, or one of a list</td></tr>
-  <tr><td><code>padStrMask ( $text, $character, $index, $length = NULL )</code></td><td>a stretch of the text replaced by one character</td></tr>
-  <tr><td><code>padStrPlural ( $word, $count = 2 )</code>, <code>padStrSingular ( $word )</code></td><td>the English plural or singular of a word</td></tr>
-  <tr><td><code>padStrRandom ( $length = 16 )</code></td><td>random letters and digits</td></tr>
-  <tr><td><code>padStrUuid ( $version = 4 )</code></td><td>a version 4 (random) or version 7 (time-ordered) UUID</td></tr>
+  <tr>
+    <th>function</th>
+    <th>what it answers</th>
+  </tr>
+  <tr>
+    <td><code>padStrLimit ( $text, $limit = 100, $end = '...' )</code></td>
+    <td>at most <code>$limit</code> characters, <code>$end</code> added when something was cut</td>
+  </tr>
+  <tr>
+    <td><code>padStrWords ( $text, $words = 100, $end = '...' )</code></td>
+    <td>at most <code>$words</code> words</td>
+  </tr>
+  <tr>
+    <td><code>padStrExcerpt ( $text, $phrase, $radius = 100, $omission = '...' )</code></td>
+    <td>the phrase with <code>$radius</code> characters on either side, found case-insensitively</td>
+  </tr>
+  <tr>
+    <td><code>padStrSquish ( $text )</code></td>
+    <td>trimmed, every run of whitespace one space</td>
+  </tr>
+  <tr>
+    <td><code>padStrCamel</code>, <code>padStrStudly</code>, <code>padStrSnake ( $text, $delimiter = '_' )</code>, <code>padStrKebab</code>, <code>padStrHeadline</code></td>
+    <td>userName, UserName, user_name, user-name, User Name - from a name in any of those cases</td>
+  </tr>
+  <tr>
+    <td><code>padStrTitle ( $text )</code></td>
+    <td>every word with a capital</td>
+  </tr>
+  <tr>
+    <td><code>padStrSlug ( $text, $separator = '-' )</code></td>
+    <td>a readable URL part - what the <code>slug</code> pipe gives</td>
+  </tr>
+  <tr>
+    <td><code>padStrAfter</code>, <code>padStrAfterLast</code>, <code>padStrBefore</code>, <code>padStrBeforeLast ( $text, $search )</code></td>
+    <td>the text after or before the first or last occurrence - what the pipes of those names give</td>
+  </tr>
+  <tr>
+    <td><code>padStrBetween ( $text, $from, $to )</code></td>
+    <td>what stands between the first <code>$from</code> and the last <code>$to</code></td>
+  </tr>
+  <tr>
+    <td><code>padStrIs ( $pattern, $value )</code></td>
+    <td>whether the value matches a pattern with <code>*</code> wildcards, or one of a list</td>
+  </tr>
+  <tr>
+    <td><code>padStrMask ( $text, $character, $index, $length = NULL )</code></td>
+    <td>a stretch of the text replaced by one character</td>
+  </tr>
+  <tr>
+    <td><code>padStrPlural ( $word, $count = 2 )</code>, <code>padStrSingular ( $word )</code></td>
+    <td>the English plural or singular of a word</td>
+  </tr>
+  <tr>
+    <td><code>padStrRandom ( $length = 16 )</code></td>
+    <td>random letters and digits</td>
+  </tr>
+  <tr>
+    <td><code>padStrUuid ( $version = 4 )</code></td>
+    <td>a version 4 (random) or version 7 (time-ordered) UUID</td>
+  </tr>
 </table>
 
 <h2>Shortening text</h2>
@@ -36,45 +79,54 @@ tabs, newlines and no-break spaces included.</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/strings_1.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/strings_1.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">'PAD templates drive the flow: data, logic and output '<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">'all follow the template.'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$limit   </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrLimit   </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">20 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$words   </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrWords   </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">4 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$excerpt </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrExcerpt </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #DD0000">'LOGIC'</span><span style="color: #007700">, </span><span style="color: #0000BB">10 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$squish  </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrSquish  </span><span style="color: #007700">( </span><span style="color: #DD0000">"  data,\n\t logic   and  output " </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/strings_1.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57JGxpbWl0fTwvcD5cbjxwPnskd29yZHN9PC9wPlxuPHA+eyRleGNlcnB0fTwvcD5cbjxwPlt7JHNxdWlzaH1dPC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR0ZXh0ID0gJ1BBRCB0ZW1wbGF0ZXMgZHJpdmUgdGhlIGZsb3c6IGRhdGEsIGxvZ2ljIGFuZCBvdXRwdXQgJ1xuICAgICAgICAuICdhbGwgZm9sbG93IHRoZSB0ZW1wbGF0ZS4nO1xuXG4gICRsaW1pdCAgID0gcGFkU3RyTGltaXQgICAoICR0ZXh0LCAyMCApO1xuICAkd29yZHMgICA9IHBhZFN0cldvcmRzICAgKCAkdGV4dCwgNCApO1xuICAkZXhjZXJwdCA9IHBhZFN0ckV4Y2VycHQgKCAkdGV4dCwgJ0xPR0lDJywgMTAgKTtcbiAgJHNxdWlzaCAgPSBwYWRTdHJTcXVpc2ggICggXCIgIGRhdGEsXFxuXFx0IGxvZ2ljICAgYW5kICBvdXRwdXQgXCIgKTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57JGxpbWl0fTwvcD5cbjxwPnskd29yZHN9PC9wPlxuPHA+eyRleGNlcnB0fTwvcD5cbjxwPlt7JHNxdWlzaH1dPC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR0ZXh0ID0gJ1BBRCB0ZW1wbGF0ZXMgZHJpdmUgdGhlIGZsb3c6IGRhdGEsIGxvZ2ljIGFuZCBvdXRwdXQgJ1xuICAgICAgICAuICdhbGwgZm9sbG93IHRoZSB0ZW1wbGF0ZS4nO1xuXG4gICRsaW1pdCAgID0gcGFkU3RyTGltaXQgICAoICR0ZXh0LCAyMCApO1xuICAkd29yZHMgICA9IHBhZFN0cldvcmRzICAgKCAkdGV4dCwgNCApO1xuICAkZXhjZXJwdCA9IHBhZFN0ckV4Y2VycHQgKCAkdGV4dCwgJ0xPR0lDJywgMTAgKTtcbiAgJHNxdWlzaCAgPSBwYWRTdHJTcXVpc2ggICggXCIgIGRhdGEsXFxuXFx0IGxvZ2ljICAgYW5kICBvdXRwdXQgXCIgKTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>limit</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>words</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>excerpt</font>}</b>&lt;/p&gt;<br>&lt;p&gt;[<b>{<font color="green"><font color="red">$</font>squish</font>}</b>]&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/strings_1.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">'PAD templates drive the flow: data, logic and output '<br>        </span><span style="color: #007700">. </span><span style="color: #DD0000">'all follow the template.'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$limit   </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrLimit   </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">20 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$words   </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrWords   </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #0000BB">4 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$excerpt </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrExcerpt </span><span style="color: #007700">( </span><span style="color: #0000BB">$text</span><span style="color: #007700">, </span><span style="color: #DD0000">'LOGIC'</span><span style="color: #007700">, </span><span style="color: #0000BB">10 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$squish  </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrSquish  </span><span style="color: #007700">( </span><span style="color: #DD0000">"  data,\n\t logic   and  output " </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57JGxpbWl0fTwvcD5cbjxwPnskd29yZHN9PC9wPlxuPHA+eyRleGNlcnB0fTwvcD5cbjxwPlt7JHNxdWlzaH1dPC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR0ZXh0ID0gJ1BBRCB0ZW1wbGF0ZXMgZHJpdmUgdGhlIGZsb3c6IGRhdGEsIGxvZ2ljIGFuZCBvdXRwdXQgJ1xuICAgICAgICAuICdhbGwgZm9sbG93IHRoZSB0ZW1wbGF0ZS4nO1xuXG4gICRsaW1pdCAgID0gcGFkU3RyTGltaXQgICAoICR0ZXh0LCAyMCApO1xuICAkd29yZHMgICA9IHBhZFN0cldvcmRzICAgKCAkdGV4dCwgNCApO1xuICAkZXhjZXJwdCA9IHBhZFN0ckV4Y2VycHQgKCAkdGV4dCwgJ0xPR0lDJywgMTAgKTtcbiAgJHNxdWlzaCAgPSBwYWRTdHJTcXVpc2ggICggXCIgIGRhdGEsXFxuXFx0IGxvZ2ljICAgYW5kICBvdXRwdXQgXCIgKTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57JGxpbWl0fTwvcD5cbjxwPnskd29yZHN9PC9wPlxuPHA+eyRleGNlcnB0fTwvcD5cbjxwPlt7JHNxdWlzaH1dPC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR0ZXh0ID0gJ1BBRCB0ZW1wbGF0ZXMgZHJpdmUgdGhlIGZsb3c6IGRhdGEsIGxvZ2ljIGFuZCBvdXRwdXQgJ1xuICAgICAgICAuICdhbGwgZm9sbG93IHRoZSB0ZW1wbGF0ZS4nO1xuXG4gICRsaW1pdCAgID0gcGFkU3RyTGltaXQgICAoICR0ZXh0LCAyMCApO1xuICAkd29yZHMgICA9IHBhZFN0cldvcmRzICAgKCAkdGV4dCwgNCApO1xuICAkZXhjZXJwdCA9IHBhZFN0ckV4Y2VycHQgKCAkdGV4dCwgJ0xPR0lDJywgMTAgKTtcbiAgJHNxdWlzaCAgPSBwYWRTdHJTcXVpc2ggICggXCIgIGRhdGEsXFxuXFx0IGxvZ2ljICAgYW5kICBvdXRwdXQgXCIgKTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>limit</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>words</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>excerpt</font>}</b>&lt;/p&gt;<br>&lt;p&gt;[<b>{<font color="green"><font color="red">$</font>squish</font>}</b>]&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>PAD templates drive...</p>
 <p>PAD templates drive the...</p>
 <p>...ow: data, logic and outpu...</p>
@@ -82,15 +134,14 @@ tabs, newlines and no-break spaces included.</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -106,80 +157,113 @@ recases a sentence and leaves the rest of it as it is.</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/strings_2.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/strings_2.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $names </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'created_at'</span><span style="color: #007700">, </span><span style="color: #DD0000">'orderTotal'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'customer-name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'HTMLParser' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$columns </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$names </span><span style="color: #007700">as </span><span style="color: #0000BB">$column </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$columns </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'column'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$column</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'camel'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrCamel    </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'studly'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrStudly   </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'snake'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrSnake    </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'kebab'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrKebab    </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'headline' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrHeadline </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">)<br>    ];<br><br>  </span><span style="color: #0000BB">$sentence </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrTitle </span><span style="color: #007700">( </span><span style="color: #DD0000">'the quick brown fox' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/strings_2.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dGFibGU+XG4gIDx0cj48dGg+bmFtZTwvdGg+PHRoPmNhbWVsPC90aD5cbiAgICAgIDx0aD5zdHVkbHk8L3RoPjx0aD5zbmFrZTwvdGg+XG4gICAgICA8dGg+a2ViYWI8L3RoPjx0aD5oZWFkbGluZTwvdGg+PC90cj5cbiAge2FycmF5OmNvbHVtbnN9XG4gIDx0cj48dGQ+eyRjb2x1bW59PC90ZD48dGQ+eyRjYW1lbH08L3RkPlxuICAgICAgPHRkPnskc3R1ZGx5fTwvdGQ+PHRkPnskc25ha2V9PC90ZD5cbiAgICAgIDx0ZD57JGtlYmFifTwvdGQ+PHRkPnskaGVhZGxpbmV9PC90ZD48L3RyPlxuICB7L2FycmF5OmNvbHVtbnN9XG48L3RhYmxlPlxuPHA+eyRzZW50ZW5jZX08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJG5hbWVzID0gWyAnY3JlYXRlZF9hdCcsICdvcmRlclRvdGFsJyxcbiAgICAgICAgICAgICAnY3VzdG9tZXItbmFtZScsICdIVE1MUGFyc2VyJyBdO1xuXG4gICRjb2x1bW5zID0gW107XG5cbiAgZm9yZWFjaCAoICRuYW1lcyBhcyAkY29sdW1uIClcbiAgICAkY29sdW1ucyBbXSA9IFtcbiAgICAgICdjb2x1bW4nICAgPT4gJGNvbHVtbixcbiAgICAgICdjYW1lbCcgICAgPT4gcGFkU3RyQ2FtZWwgICAgKCAkY29sdW1uICksXG4gICAgICAnc3R1ZGx5JyAgID0+IHBhZFN0clN0dWRseSAgICggJGNvbHVtbiApLFxuICAgICAgJ3NuYWtlJyAgICA9PiBwYWRTdHJTbmFrZSAgICAoICRjb2x1bW4gKSxcbiAgICAgICdrZWJhYicgICAgPT4gcGFkU3RyS2ViYWIgICAgKCAkY29sdW1uICksXG4gICAgICAnaGVhZGxpbmUnID0+IHBhZFN0ckhlYWRsaW5lICggJGNvbHVtbiApXG4gICAgXTtcblxuICAkc2VudGVuY2UgPSBwYWRTdHJUaXRsZSAoICd0aGUgcXVpY2sgYnJvd24gZm94JyApO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dGFibGU+XG4gIDx0cj48dGg+bmFtZTwvdGg+PHRoPmNhbWVsPC90aD5cbiAgICAgIDx0aD5zdHVkbHk8L3RoPjx0aD5zbmFrZTwvdGg+XG4gICAgICA8dGg+a2ViYWI8L3RoPjx0aD5oZWFkbGluZTwvdGg+PC90cj5cbiAge2FycmF5OmNvbHVtbnN9XG4gIDx0cj48dGQ+eyRjb2x1bW59PC90ZD48dGQ+eyRjYW1lbH08L3RkPlxuICAgICAgPHRkPnskc3R1ZGx5fTwvdGQ+PHRkPnskc25ha2V9PC90ZD5cbiAgICAgIDx0ZD57JGtlYmFifTwvdGQ+PHRkPnskaGVhZGxpbmV9PC90ZD48L3RyPlxuICB7L2FycmF5OmNvbHVtbnN9XG48L3RhYmxlPlxuPHA+eyRzZW50ZW5jZX08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJG5hbWVzID0gWyAnY3JlYXRlZF9hdCcsICdvcmRlclRvdGFsJyxcbiAgICAgICAgICAgICAnY3VzdG9tZXItbmFtZScsICdIVE1MUGFyc2VyJyBdO1xuXG4gICRjb2x1bW5zID0gW107XG5cbiAgZm9yZWFjaCAoICRuYW1lcyBhcyAkY29sdW1uIClcbiAgICAkY29sdW1ucyBbXSA9IFtcbiAgICAgICdjb2x1bW4nICAgPT4gJGNvbHVtbixcbiAgICAgICdjYW1lbCcgICAgPT4gcGFkU3RyQ2FtZWwgICAgKCAkY29sdW1uICksXG4gICAgICAnc3R1ZGx5JyAgID0+IHBhZFN0clN0dWRseSAgICggJGNvbHVtbiApLFxuICAgICAgJ3NuYWtlJyAgICA9PiBwYWRTdHJTbmFrZSAgICAoICRjb2x1bW4gKSxcbiAgICAgICdrZWJhYicgICAgPT4gcGFkU3RyS2ViYWIgICAgKCAkY29sdW1uICksXG4gICAgICAnaGVhZGxpbmUnID0+IHBhZFN0ckhlYWRsaW5lICggJGNvbHVtbiApXG4gICAgXTtcblxuICAkc2VudGVuY2UgPSBwYWRTdHJUaXRsZSAoICd0aGUgcXVpY2sgYnJvd24gZm94JyApO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;name&lt;/th&gt;&lt;th&gt;camel&lt;/th&gt;<br>      &lt;th&gt;studly&lt;/th&gt;&lt;th&gt;snake&lt;/th&gt;<br>      &lt;th&gt;kebab&lt;/th&gt;&lt;th&gt;headline&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>columns</font><font color="red"></font>}</b><br>  &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>column</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>camel</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>studly</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>snake</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>kebab</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>headline</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>  <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>columns</font><font color="red"></font>}</b><br>&lt;/table&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>sentence</font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/strings_2.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $names </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'created_at'</span><span style="color: #007700">, </span><span style="color: #DD0000">'orderTotal'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'customer-name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'HTMLParser' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$columns </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$names </span><span style="color: #007700">as </span><span style="color: #0000BB">$column </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$columns </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'column'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$column</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'camel'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrCamel    </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'studly'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrStudly   </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'snake'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrSnake    </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'kebab'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrKebab    </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'headline' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrHeadline </span><span style="color: #007700">( </span><span style="color: #0000BB">$column </span><span style="color: #007700">)<br>    ];<br><br>  </span><span style="color: #0000BB">$sentence </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrTitle </span><span style="color: #007700">( </span><span style="color: #DD0000">'the quick brown fox' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dGFibGU+XG4gIDx0cj5cbiAgICA8dGg+bmFtZTwvdGg+XG4gICAgPHRoPmNhbWVsPC90aD5cbiAgICA8dGg+c3R1ZGx5PC90aD5cbiAgICA8dGg+c25ha2U8L3RoPlxuICAgIDx0aD5rZWJhYjwvdGg+XG4gICAgPHRoPmhlYWRsaW5lPC90aD5cbiAgPC90cj5cbiAge2FycmF5OmNvbHVtbnN9XG4gICAgPHRyPlxuICAgICAgPHRkPnskY29sdW1ufTwvdGQ+XG4gICAgICA8dGQ+eyRjYW1lbH08L3RkPlxuICAgICAgPHRkPnskc3R1ZGx5fTwvdGQ+XG4gICAgICA8dGQ+eyRzbmFrZX08L3RkPlxuICAgICAgPHRkPnska2ViYWJ9PC90ZD5cbiAgICAgIDx0ZD57JGhlYWRsaW5lfTwvdGQ+XG4gICAgPC90cj5cbiAgey9hcnJheTpjb2x1bW5zfVxuPC90YWJsZT5cbjxwPnskc2VudGVuY2V9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRuYW1lcyA9IFsgJ2NyZWF0ZWRfYXQnLCAnb3JkZXJUb3RhbCcsXG4gICAgICAgICAgICAgJ2N1c3RvbWVyLW5hbWUnLCAnSFRNTFBhcnNlcicgXTtcblxuICAkY29sdW1ucyA9IFtdO1xuXG4gIGZvcmVhY2ggKCAkbmFtZXMgYXMgJGNvbHVtbiApXG4gICAgJGNvbHVtbnMgW10gPSBbXG4gICAgICAnY29sdW1uJyAgID0+ICRjb2x1bW4sXG4gICAgICAnY2FtZWwnICAgID0+IHBhZFN0ckNhbWVsICAgICggJGNvbHVtbiApLFxuICAgICAgJ3N0dWRseScgICA9PiBwYWRTdHJTdHVkbHkgICAoICRjb2x1bW4gKSxcbiAgICAgICdzbmFrZScgICAgPT4gcGFkU3RyU25ha2UgICAgKCAkY29sdW1uICksXG4gICAgICAna2ViYWInICAgID0+IHBhZFN0cktlYmFiICAgICggJGNvbHVtbiApLFxuICAgICAgJ2hlYWRsaW5lJyA9PiBwYWRTdHJIZWFkbGluZSAoICRjb2x1bW4gKVxuICAgIF07XG5cbiAgJHNlbnRlbmNlID0gcGFkU3RyVGl0bGUgKCAndGhlIHF1aWNrIGJyb3duIGZveCcgKTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dGFibGU+XG4gIDx0cj5cbiAgICA8dGg+bmFtZTwvdGg+XG4gICAgPHRoPmNhbWVsPC90aD5cbiAgICA8dGg+c3R1ZGx5PC90aD5cbiAgICA8dGg+c25ha2U8L3RoPlxuICAgIDx0aD5rZWJhYjwvdGg+XG4gICAgPHRoPmhlYWRsaW5lPC90aD5cbiAgPC90cj5cbiAge2FycmF5OmNvbHVtbnN9XG4gICAgPHRyPlxuICAgICAgPHRkPnskY29sdW1ufTwvdGQ+XG4gICAgICA8dGQ+eyRjYW1lbH08L3RkPlxuICAgICAgPHRkPnskc3R1ZGx5fTwvdGQ+XG4gICAgICA8dGQ+eyRzbmFrZX08L3RkPlxuICAgICAgPHRkPnska2ViYWJ9PC90ZD5cbiAgICAgIDx0ZD57JGhlYWRsaW5lfTwvdGQ+XG4gICAgPC90cj5cbiAgey9hcnJheTpjb2x1bW5zfVxuPC90YWJsZT5cbjxwPnskc2VudGVuY2V9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRuYW1lcyA9IFsgJ2NyZWF0ZWRfYXQnLCAnb3JkZXJUb3RhbCcsXG4gICAgICAgICAgICAgJ2N1c3RvbWVyLW5hbWUnLCAnSFRNTFBhcnNlcicgXTtcblxuICAkY29sdW1ucyA9IFtdO1xuXG4gIGZvcmVhY2ggKCAkbmFtZXMgYXMgJGNvbHVtbiApXG4gICAgJGNvbHVtbnMgW10gPSBbXG4gICAgICAnY29sdW1uJyAgID0+ICRjb2x1bW4sXG4gICAgICAnY2FtZWwnICAgID0+IHBhZFN0ckNhbWVsICAgICggJGNvbHVtbiApLFxuICAgICAgJ3N0dWRseScgICA9PiBwYWRTdHJTdHVkbHkgICAoICRjb2x1bW4gKSxcbiAgICAgICdzbmFrZScgICAgPT4gcGFkU3RyU25ha2UgICAgKCAkY29sdW1uICksXG4gICAgICAna2ViYWInICAgID0+IHBhZFN0cktlYmFiICAgICggJGNvbHVtbiApLFxuICAgICAgJ2hlYWRsaW5lJyA9PiBwYWRTdHJIZWFkbGluZSAoICRjb2x1bW4gKVxuICAgIF07XG5cbiAgJHNlbnRlbmNlID0gcGFkU3RyVGl0bGUgKCAndGhlIHF1aWNrIGJyb3duIGZveCcgKTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;table&gt;<br>  &lt;tr&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;camel&lt;/th&gt;<br>    &lt;th&gt;studly&lt;/th&gt;<br>    &lt;th&gt;snake&lt;/th&gt;<br>    &lt;th&gt;kebab&lt;/th&gt;<br>    &lt;th&gt;headline&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>columns</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>column</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>camel</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>studly</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>snake</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>kebab</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>headline</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>columns</font><font color="red"></font>}</b><br>&lt;/table&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>sentence</font>}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <table>
-  <tr><th>name</th><th>camel</th>
-      <th>studly</th><th>snake</th>
-      <th>kebab</th><th>headline</th></tr>
+  <tr>
+    <th>name</th>
+    <th>camel</th>
+    <th>studly</th>
+    <th>snake</th>
+    <th>kebab</th>
+    <th>headline</th>
+  </tr>
   
-  <tr><td>created_at</td><td>createdAt</td>
-      <td>CreatedAt</td><td>created_at</td>
-      <td>created-at</td><td>Created At</td></tr>
+    <tr>
+      <td>created_at</td>
+      <td>createdAt</td>
+      <td>CreatedAt</td>
+      <td>created_at</td>
+      <td>created-at</td>
+      <td>Created At</td>
+    </tr>
   
-  <tr><td>orderTotal</td><td>orderTotal</td>
-      <td>OrderTotal</td><td>order_total</td>
-      <td>order-total</td><td>Order Total</td></tr>
+    <tr>
+      <td>orderTotal</td>
+      <td>orderTotal</td>
+      <td>OrderTotal</td>
+      <td>order_total</td>
+      <td>order-total</td>
+      <td>Order Total</td>
+    </tr>
   
-  <tr><td>customer-name</td><td>customerName</td>
-      <td>CustomerName</td><td>customer_name</td>
-      <td>customer-name</td><td>Customer Name</td></tr>
+    <tr>
+      <td>customer-name</td>
+      <td>customerName</td>
+      <td>CustomerName</td>
+      <td>customer_name</td>
+      <td>customer-name</td>
+      <td>Customer Name</td>
+    </tr>
   
-  <tr><td>HTMLParser</td><td>htmlParser</td>
-      <td>HtmlParser</td><td>html_parser</td>
-      <td>html-parser</td><td>Html Parser</td></tr>
+    <tr>
+      <td>HTMLParser</td>
+      <td>htmlParser</td>
+      <td>HtmlParser</td>
+      <td>html_parser</td>
+      <td>html-parser</td>
+      <td>Html Parser</td>
+    </tr>
   
 </table>
 <p>The Quick Brown Fox</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -195,60 +279,68 @@ follows the first <code>$from</code> up to the last <code>$to</code>.</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/strings_3.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/strings_3.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $post </span><span style="color: #007700">= </span><span style="color: #DD0000">'Crème Brûlée &amp; Co. - a recipe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$slug </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrSlug </span><span style="color: #007700">( </span><span style="color: #0000BB">$post </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$file   </span><span style="color: #007700">= </span><span style="color: #DD0000">'shop/orders/list.pad'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$top    </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrBefore     </span><span style="color: #007700">( </span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$folder </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrBeforeLast </span><span style="color: #007700">( </span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$base   </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrAfterLast  </span><span style="color: #007700">( </span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$html    </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;title&gt;Orders&lt;/title&gt;'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$heading </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #0000BB">$html</span><span style="color: #007700">, </span><span style="color: #DD0000">'&lt;title&gt;'</span><span style="color: #007700">, </span><span style="color: #DD0000">'&lt;/title&gt;' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/strings_3.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57JHNsdWd9IC0gdGhlIHBpcGU6IHskcG9zdCB8IHNsdWd9PC9wPlxuPHA+eyR0b3B9IHwgeyRmb2xkZXJ9IHwgeyRiYXNlfTwvcD5cbjxwPnskaGVhZGluZ308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHBvc3QgPSAnQ3LDqG1lIEJyw7tsw6llICYgQ28uIC0gYSByZWNpcGUnO1xuICAkc2x1ZyA9IHBhZFN0clNsdWcgKCAkcG9zdCApO1xuXG4gICRmaWxlICAgPSAnc2hvcC9vcmRlcnMvbGlzdC5wYWQnO1xuICAkdG9wICAgID0gcGFkU3RyQmVmb3JlICAgICAoICRmaWxlLCAnLycgKTtcbiAgJGZvbGRlciA9IHBhZFN0ckJlZm9yZUxhc3QgKCAkZmlsZSwgJy8nICk7XG4gICRiYXNlICAgPSBwYWRTdHJBZnRlckxhc3QgICggJGZpbGUsICcvJyApO1xuXG4gICRodG1sICAgID0gJzx0aXRsZT5PcmRlcnM8L3RpdGxlPic7XG4gICRoZWFkaW5nID0gcGFkU3RyQmV0d2VlbiAoICRodG1sLCAnPHRpdGxlPicsICc8L3RpdGxlPicgKTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57JHNsdWd9IC0gdGhlIHBpcGU6IHskcG9zdCB8IHNsdWd9PC9wPlxuPHA+eyR0b3B9IHwgeyRmb2xkZXJ9IHwgeyRiYXNlfTwvcD5cbjxwPnskaGVhZGluZ308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHBvc3QgPSAnQ3LDqG1lIEJyw7tsw6llICYgQ28uIC0gYSByZWNpcGUnO1xuICAkc2x1ZyA9IHBhZFN0clNsdWcgKCAkcG9zdCApO1xuXG4gICRmaWxlICAgPSAnc2hvcC9vcmRlcnMvbGlzdC5wYWQnO1xuICAkdG9wICAgID0gcGFkU3RyQmVmb3JlICAgICAoICRmaWxlLCAnLycgKTtcbiAgJGZvbGRlciA9IHBhZFN0ckJlZm9yZUxhc3QgKCAkZmlsZSwgJy8nICk7XG4gICRiYXNlICAgPSBwYWRTdHJBZnRlckxhc3QgICggJGZpbGUsICcvJyApO1xuXG4gICRodG1sICAgID0gJzx0aXRsZT5PcmRlcnM8L3RpdGxlPic7XG4gICRoZWFkaW5nID0gcGFkU3RyQmV0d2VlbiAoICRodG1sLCAnPHRpdGxlPicsICc8L3RpdGxlPicgKTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>slug</font>}</b> - the pipe: <b>{<font color="green">$post</font> <font color="black">|</font> <font color="blue">slug</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>top</font>}</b> | <b>{<font color="green"><font color="red">$</font>folder</font>}</b> | <b>{<font color="green"><font color="red">$</font>base</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>heading</font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/strings_3.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $post </span><span style="color: #007700">= </span><span style="color: #DD0000">'Crème Brûlée &amp; Co. - a recipe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$slug </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrSlug </span><span style="color: #007700">( </span><span style="color: #0000BB">$post </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$file   </span><span style="color: #007700">= </span><span style="color: #DD0000">'shop/orders/list.pad'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$top    </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrBefore     </span><span style="color: #007700">( </span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$folder </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrBeforeLast </span><span style="color: #007700">( </span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$base   </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrAfterLast  </span><span style="color: #007700">( </span><span style="color: #0000BB">$file</span><span style="color: #007700">, </span><span style="color: #DD0000">'/' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$html    </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;title&gt;Orders&lt;/title&gt;'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$heading </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrBetween </span><span style="color: #007700">( </span><span style="color: #0000BB">$html</span><span style="color: #007700">, </span><span style="color: #DD0000">'&lt;title&gt;'</span><span style="color: #007700">, </span><span style="color: #DD0000">'&lt;/title&gt;' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD57JHNsdWd9IC0gdGhlIHBpcGU6IHskcG9zdCB8IHNsdWd9PC9wPlxuPHA+eyR0b3B9IHwgeyRmb2xkZXJ9IHwgeyRiYXNlfTwvcD5cbjxwPnskaGVhZGluZ308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHBvc3QgPSAnQ3LDqG1lIEJyw7tsw6llICYgQ28uIC0gYSByZWNpcGUnO1xuICAkc2x1ZyA9IHBhZFN0clNsdWcgKCAkcG9zdCApO1xuXG4gICRmaWxlICAgPSAnc2hvcC9vcmRlcnMvbGlzdC5wYWQnO1xuICAkdG9wICAgID0gcGFkU3RyQmVmb3JlICAgICAoICRmaWxlLCAnLycgKTtcbiAgJGZvbGRlciA9IHBhZFN0ckJlZm9yZUxhc3QgKCAkZmlsZSwgJy8nICk7XG4gICRiYXNlICAgPSBwYWRTdHJBZnRlckxhc3QgICggJGZpbGUsICcvJyApO1xuXG4gICRodG1sICAgID0gJzx0aXRsZT5PcmRlcnM8L3RpdGxlPic7XG4gICRoZWFkaW5nID0gcGFkU3RyQmV0d2VlbiAoICRodG1sLCAnPHRpdGxlPicsICc8L3RpdGxlPicgKTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57JHNsdWd9IC0gdGhlIHBpcGU6IHskcG9zdCB8IHNsdWd9PC9wPlxuPHA+eyR0b3B9IHwgeyRmb2xkZXJ9IHwgeyRiYXNlfTwvcD5cbjxwPnskaGVhZGluZ308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHBvc3QgPSAnQ3LDqG1lIEJyw7tsw6llICYgQ28uIC0gYSByZWNpcGUnO1xuICAkc2x1ZyA9IHBhZFN0clNsdWcgKCAkcG9zdCApO1xuXG4gICRmaWxlICAgPSAnc2hvcC9vcmRlcnMvbGlzdC5wYWQnO1xuICAkdG9wICAgID0gcGFkU3RyQmVmb3JlICAgICAoICRmaWxlLCAnLycgKTtcbiAgJGZvbGRlciA9IHBhZFN0ckJlZm9yZUxhc3QgKCAkZmlsZSwgJy8nICk7XG4gICRiYXNlICAgPSBwYWRTdHJBZnRlckxhc3QgICggJGZpbGUsICcvJyApO1xuXG4gICRodG1sICAgID0gJzx0aXRsZT5PcmRlcnM8L3RpdGxlPic7XG4gICRoZWFkaW5nID0gcGFkU3RyQmV0d2VlbiAoICRodG1sLCAnPHRpdGxlPicsICc8L3RpdGxlPicgKTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>slug</font>}</b> - the pipe: <b>{<font color="green">$post</font> <font color="black">|</font> <font color="blue">slug</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>top</font>}</b> | <b>{<font color="green"><font color="red">$</font>folder</font>}</b> | <b>{<font color="green"><font color="red">$</font>base</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>heading</font>}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>creme-brulee-co-a-recipe - the pipe: creme-brulee-co-a-recipe</p>
 <p>shop | shop/orders | list.pad</p>
 <p>Orders</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -263,45 +355,54 @@ counts from the end, a negative length stops that many characters before it.</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/strings_4.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/strings_4.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $allowed </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'admin/*'</span><span style="color: #007700">, </span><span style="color: #DD0000">'reports/*.pdf' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$paths </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'admin/users'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'reports/may.pdf'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'reports/may.csv' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$checks </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$paths </span><span style="color: #007700">as </span><span style="color: #0000BB">$path </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$checks </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'path'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$path</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'allowed' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrIs </span><span style="color: #007700">( </span><span style="color: #0000BB">$allowed</span><span style="color: #007700">, </span><span style="color: #0000BB">$path </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'<br>    </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$card  </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrMask </span><span style="color: #007700">( </span><span style="color: #DD0000">'4111 1111 1111 1234'</span><span style="color: #007700">, </span><span style="color: #DD0000">'*'</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, -</span><span style="color: #0000BB">4 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$email </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrMask </span><span style="color: #007700">( </span><span style="color: #DD0000">'ann.smith@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'*'</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">8 </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/strings_4.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7YXJyYXk6Y2hlY2tzfVxuICA8cD57JHBhdGh9OiB7JGFsbG93ZWR9PC9wPlxuey9hcnJheTpjaGVja3N9XG48cD57JGNhcmR9PC9wPlxuPHA+eyRlbWFpbH08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGFsbG93ZWQgPSBbICdhZG1pbi8qJywgJ3JlcG9ydHMvKi5wZGYnIF07XG5cbiAgJHBhdGhzID0gWyAnYWRtaW4vdXNlcnMnLFxuICAgICAgICAgICAgICdyZXBvcnRzL21heS5wZGYnLFxuICAgICAgICAgICAgICdyZXBvcnRzL21heS5jc3YnIF07XG5cbiAgJGNoZWNrcyA9IFtdO1xuXG4gIGZvcmVhY2ggKCAkcGF0aHMgYXMgJHBhdGggKVxuICAgICRjaGVja3MgW10gPSBbXG4gICAgICAncGF0aCcgICAgPT4gJHBhdGgsXG4gICAgICAnYWxsb3dlZCcgPT4gcGFkU3RySXMgKCAkYWxsb3dlZCwgJHBhdGggKSA/ICd5ZXMnIDogJ25vJ1xuICAgIF07XG5cbiAgJGNhcmQgID0gcGFkU3RyTWFzayAoICc0MTExIDExMTEgMTExMSAxMjM0JywgJyonLCAwLCAtNCApO1xuICAkZW1haWwgPSBwYWRTdHJNYXNrICggJ2Fubi5zbWl0aEBleGFtcGxlLmNvbScsICcqJywgMSwgOCApO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7YXJyYXk6Y2hlY2tzfVxuICA8cD57JHBhdGh9OiB7JGFsbG93ZWR9PC9wPlxuey9hcnJheTpjaGVja3N9XG48cD57JGNhcmR9PC9wPlxuPHA+eyRlbWFpbH08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGFsbG93ZWQgPSBbICdhZG1pbi8qJywgJ3JlcG9ydHMvKi5wZGYnIF07XG5cbiAgJHBhdGhzID0gWyAnYWRtaW4vdXNlcnMnLFxuICAgICAgICAgICAgICdyZXBvcnRzL21heS5wZGYnLFxuICAgICAgICAgICAgICdyZXBvcnRzL21heS5jc3YnIF07XG5cbiAgJGNoZWNrcyA9IFtdO1xuXG4gIGZvcmVhY2ggKCAkcGF0aHMgYXMgJHBhdGggKVxuICAgICRjaGVja3MgW10gPSBbXG4gICAgICAncGF0aCcgICAgPT4gJHBhdGgsXG4gICAgICAnYWxsb3dlZCcgPT4gcGFkU3RySXMgKCAkYWxsb3dlZCwgJHBhdGggKSA/ICd5ZXMnIDogJ25vJ1xuICAgIF07XG5cbiAgJGNhcmQgID0gcGFkU3RyTWFzayAoICc0MTExIDExMTEgMTExMSAxMjM0JywgJyonLCAwLCAtNCApO1xuICAkZW1haWwgPSBwYWRTdHJNYXNrICggJ2Fubi5zbWl0aEBleGFtcGxlLmNvbScsICcqJywgMSwgOCApO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>checks</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>path</font>}</b>: <b>{<font color="green"><font color="red">$</font>allowed</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>checks</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>card</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>email</font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/strings_4.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $allowed </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'admin/*'</span><span style="color: #007700">, </span><span style="color: #DD0000">'reports/*.pdf' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$paths </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'admin/users'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'reports/may.pdf'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'reports/may.csv' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$checks </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$paths </span><span style="color: #007700">as </span><span style="color: #0000BB">$path </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$checks </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'path'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$path</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'allowed' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrIs </span><span style="color: #007700">( </span><span style="color: #0000BB">$allowed</span><span style="color: #007700">, </span><span style="color: #0000BB">$path </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'<br>    </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$card  </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrMask </span><span style="color: #007700">( </span><span style="color: #DD0000">'4111 1111 1111 1234'</span><span style="color: #007700">, </span><span style="color: #DD0000">'*'</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, -</span><span style="color: #0000BB">4 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$email </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrMask </span><span style="color: #007700">( </span><span style="color: #DD0000">'ann.smith@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'*'</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">8 </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7YXJyYXk6Y2hlY2tzfVxuICA8cD57JHBhdGh9OiB7JGFsbG93ZWR9PC9wPlxuey9hcnJheTpjaGVja3N9XG48cD57JGNhcmR9PC9wPlxuPHA+eyRlbWFpbH08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGFsbG93ZWQgPSBbICdhZG1pbi8qJywgJ3JlcG9ydHMvKi5wZGYnIF07XG5cbiAgJHBhdGhzID0gWyAnYWRtaW4vdXNlcnMnLFxuICAgICAgICAgICAgICdyZXBvcnRzL21heS5wZGYnLFxuICAgICAgICAgICAgICdyZXBvcnRzL21heS5jc3YnIF07XG5cbiAgJGNoZWNrcyA9IFtdO1xuXG4gIGZvcmVhY2ggKCAkcGF0aHMgYXMgJHBhdGggKVxuICAgICRjaGVja3MgW10gPSBbXG4gICAgICAncGF0aCcgICAgPT4gJHBhdGgsXG4gICAgICAnYWxsb3dlZCcgPT4gcGFkU3RySXMgKCAkYWxsb3dlZCwgJHBhdGggKSA/ICd5ZXMnIDogJ25vJ1xuICAgIF07XG5cbiAgJGNhcmQgID0gcGFkU3RyTWFzayAoICc0MTExIDExMTEgMTExMSAxMjM0JywgJyonLCAwLCAtNCApO1xuICAkZW1haWwgPSBwYWRTdHJNYXNrICggJ2Fubi5zbWl0aEBleGFtcGxlLmNvbScsICcqJywgMSwgOCApO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7YXJyYXk6Y2hlY2tzfVxuICA8cD57JHBhdGh9OiB7JGFsbG93ZWR9PC9wPlxuey9hcnJheTpjaGVja3N9XG48cD57JGNhcmR9PC9wPlxuPHA+eyRlbWFpbH08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGFsbG93ZWQgPSBbICdhZG1pbi8qJywgJ3JlcG9ydHMvKi5wZGYnIF07XG5cbiAgJHBhdGhzID0gWyAnYWRtaW4vdXNlcnMnLFxuICAgICAgICAgICAgICdyZXBvcnRzL21heS5wZGYnLFxuICAgICAgICAgICAgICdyZXBvcnRzL21heS5jc3YnIF07XG5cbiAgJGNoZWNrcyA9IFtdO1xuXG4gIGZvcmVhY2ggKCAkcGF0aHMgYXMgJHBhdGggKVxuICAgICRjaGVja3MgW10gPSBbXG4gICAgICAncGF0aCcgICAgPT4gJHBhdGgsXG4gICAgICAnYWxsb3dlZCcgPT4gcGFkU3RySXMgKCAkYWxsb3dlZCwgJHBhdGggKSA/ICd5ZXMnIDogJ25vJ1xuICAgIF07XG5cbiAgJGNhcmQgID0gcGFkU3RyTWFzayAoICc0MTExIDExMTEgMTExMSAxMjM0JywgJyonLCAwLCAtNCApO1xuICAkZW1haWwgPSBwYWRTdHJNYXNrICggJ2Fubi5zbWl0aEBleGFtcGxlLmNvbScsICcqJywgMSwgOCApO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>checks</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>path</font>}</b>: <b>{<font color="green"><font color="red">$</font>allowed</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>checks</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>card</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>email</font>}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
   <p>admin/users: yes</p>
 
@@ -314,15 +415,14 @@ counts from the end, a negative length stops that many characters before it.</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -339,45 +439,54 @@ PERSON, PEOPLE. <code>padStrSingular</code> goes the other way.</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/strings_5.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/strings_5.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $carts </span><span style="color: #007700">= [];<br><br>  foreach ( [ </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">] as </span><span style="color: #0000BB">$n </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$carts </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'n'      </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$n</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'items'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrPlural </span><span style="color: #007700">( </span><span style="color: #DD0000">'item'</span><span style="color: #007700">,   </span><span style="color: #0000BB">$n </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'people' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrPlural </span><span style="color: #007700">( </span><span style="color: #DD0000">'person'</span><span style="color: #007700">, </span><span style="color: #0000BB">$n </span><span style="color: #007700">)<br>    ];<br><br>  </span><span style="color: #0000BB">$nouns </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'city'</span><span style="color: #007700">, </span><span style="color: #DD0000">'child'</span><span style="color: #007700">, </span><span style="color: #DD0000">'knife'</span><span style="color: #007700">, </span><span style="color: #DD0000">'analysis'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'sheep'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Person'</span><span style="color: #007700">, </span><span style="color: #DD0000">'blogPost' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$words </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$nouns </span><span style="color: #007700">as </span><span style="color: #0000BB">$word </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$words </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'word'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$word</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'plural' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrPlural </span><span style="color: #007700">( </span><span style="color: #0000BB">$word </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'back'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrSingular </span><span style="color: #007700">( </span><span style="color: #0000BB">padStrPlural </span><span style="color: #007700">( </span><span style="color: #0000BB">$word </span><span style="color: #007700">) )<br>    ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/strings_5.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7YXJyYXk6Y2FydHN9XG4gIDxwPnskbn0geyRpdGVtc30gZm9yIHskbn0geyRwZW9wbGV9PC9wPlxuey9hcnJheTpjYXJ0c31cbjx0YWJsZT5cbiAgPHRyPjx0aD53b3JkPC90aD48dGg+cGx1cmFsPC90aD48dGg+c2luZ3VsYXIgYWdhaW48L3RoPjwvdHI+XG4gIHthcnJheTp3b3Jkc31cbiAgPHRyPjx0ZD57JHdvcmR9PC90ZD48dGQ+eyRwbHVyYWx9PC90ZD48dGQ+eyRiYWNrfTwvdGQ+PC90cj5cbiAgey9hcnJheTp3b3Jkc31cbjwvdGFibGU+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGNhcnRzID0gW107XG5cbiAgZm9yZWFjaCAoIFsgMCwgMSwgMiBdIGFzICRuIClcbiAgICAkY2FydHMgW10gPSBbXG4gICAgICAnbicgICAgICA9PiAkbixcbiAgICAgICdpdGVtcycgID0+IHBhZFN0clBsdXJhbCAoICdpdGVtJywgICAkbiApLFxuICAgICAgJ3Blb3BsZScgPT4gcGFkU3RyUGx1cmFsICggJ3BlcnNvbicsICRuIClcbiAgICBdO1xuXG4gICRub3VucyA9IFsgJ2NpdHknLCAnY2hpbGQnLCAna25pZmUnLCAnYW5hbHlzaXMnLFxuICAgICAgICAgICAgICdzaGVlcCcsICdQZXJzb24nLCAnYmxvZ1Bvc3QnIF07XG5cbiAgJHdvcmRzID0gW107XG5cbiAgZm9yZWFjaCAoICRub3VucyBhcyAkd29yZCApXG4gICAgJHdvcmRzIFtdID0gW1xuICAgICAgJ3dvcmQnICAgPT4gJHdvcmQsXG4gICAgICAncGx1cmFsJyA9PiBwYWRTdHJQbHVyYWwgKCAkd29yZCApLFxuICAgICAgJ2JhY2snICAgPT4gcGFkU3RyU2luZ3VsYXIgKCBwYWRTdHJQbHVyYWwgKCAkd29yZCApIClcbiAgICBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7YXJyYXk6Y2FydHN9XG4gIDxwPnskbn0geyRpdGVtc30gZm9yIHskbn0geyRwZW9wbGV9PC9wPlxuey9hcnJheTpjYXJ0c31cbjx0YWJsZT5cbiAgPHRyPjx0aD53b3JkPC90aD48dGg+cGx1cmFsPC90aD48dGg+c2luZ3VsYXIgYWdhaW48L3RoPjwvdHI+XG4gIHthcnJheTp3b3Jkc31cbiAgPHRyPjx0ZD57JHdvcmR9PC90ZD48dGQ+eyRwbHVyYWx9PC90ZD48dGQ+eyRiYWNrfTwvdGQ+PC90cj5cbiAgey9hcnJheTp3b3Jkc31cbjwvdGFibGU+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGNhcnRzID0gW107XG5cbiAgZm9yZWFjaCAoIFsgMCwgMSwgMiBdIGFzICRuIClcbiAgICAkY2FydHMgW10gPSBbXG4gICAgICAnbicgICAgICA9PiAkbixcbiAgICAgICdpdGVtcycgID0+IHBhZFN0clBsdXJhbCAoICdpdGVtJywgICAkbiApLFxuICAgICAgJ3Blb3BsZScgPT4gcGFkU3RyUGx1cmFsICggJ3BlcnNvbicsICRuIClcbiAgICBdO1xuXG4gICRub3VucyA9IFsgJ2NpdHknLCAnY2hpbGQnLCAna25pZmUnLCAnYW5hbHlzaXMnLFxuICAgICAgICAgICAgICdzaGVlcCcsICdQZXJzb24nLCAnYmxvZ1Bvc3QnIF07XG5cbiAgJHdvcmRzID0gW107XG5cbiAgZm9yZWFjaCAoICRub3VucyBhcyAkd29yZCApXG4gICAgJHdvcmRzIFtdID0gW1xuICAgICAgJ3dvcmQnICAgPT4gJHdvcmQsXG4gICAgICAncGx1cmFsJyA9PiBwYWRTdHJQbHVyYWwgKCAkd29yZCApLFxuICAgICAgJ2JhY2snICAgPT4gcGFkU3RyU2luZ3VsYXIgKCBwYWRTdHJQbHVyYWwgKCAkd29yZCApIClcbiAgICBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>carts</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{<font color="green"><font color="red">$</font>items</font>}</b> for <b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{<font color="green"><font color="red">$</font>people</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>carts</font><font color="red"></font>}</b><br>&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;word&lt;/th&gt;&lt;th&gt;plural&lt;/th&gt;&lt;th&gt;singular again&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>words</font><font color="red"></font>}</b><br>  &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>word</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>plural</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>back</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>  <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>words</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/strings_5.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $carts </span><span style="color: #007700">= [];<br><br>  foreach ( [ </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">2 </span><span style="color: #007700">] as </span><span style="color: #0000BB">$n </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$carts </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'n'      </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$n</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'items'  </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrPlural </span><span style="color: #007700">( </span><span style="color: #DD0000">'item'</span><span style="color: #007700">,   </span><span style="color: #0000BB">$n </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'people' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrPlural </span><span style="color: #007700">( </span><span style="color: #DD0000">'person'</span><span style="color: #007700">, </span><span style="color: #0000BB">$n </span><span style="color: #007700">)<br>    ];<br><br>  </span><span style="color: #0000BB">$nouns </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'city'</span><span style="color: #007700">, </span><span style="color: #DD0000">'child'</span><span style="color: #007700">, </span><span style="color: #DD0000">'knife'</span><span style="color: #007700">, </span><span style="color: #DD0000">'analysis'</span><span style="color: #007700">,<br>             </span><span style="color: #DD0000">'sheep'</span><span style="color: #007700">, </span><span style="color: #DD0000">'Person'</span><span style="color: #007700">, </span><span style="color: #DD0000">'blogPost' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$words </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$nouns </span><span style="color: #007700">as </span><span style="color: #0000BB">$word </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$words </span><span style="color: #007700">[] = [<br>      </span><span style="color: #DD0000">'word'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$word</span><span style="color: #007700">,<br>      </span><span style="color: #DD0000">'plural' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrPlural </span><span style="color: #007700">( </span><span style="color: #0000BB">$word </span><span style="color: #007700">),<br>      </span><span style="color: #DD0000">'back'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">padStrSingular </span><span style="color: #007700">( </span><span style="color: #0000BB">padStrPlural </span><span style="color: #007700">( </span><span style="color: #0000BB">$word </span><span style="color: #007700">) )<br>    ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7YXJyYXk6Y2FydHN9XG4gIDxwPnskbn0geyRpdGVtc30gZm9yIHskbn0geyRwZW9wbGV9PC9wPlxuey9hcnJheTpjYXJ0c31cbjx0YWJsZT5cbiAgPHRyPlxuICAgIDx0aD53b3JkPC90aD5cbiAgICA8dGg+cGx1cmFsPC90aD5cbiAgICA8dGg+c2luZ3VsYXIgYWdhaW48L3RoPlxuICA8L3RyPlxuICB7YXJyYXk6d29yZHN9XG4gICAgPHRyPlxuICAgICAgPHRkPnskd29yZH08L3RkPlxuICAgICAgPHRkPnskcGx1cmFsfTwvdGQ+XG4gICAgICA8dGQ+eyRiYWNrfTwvdGQ+XG4gICAgPC90cj5cbiAgey9hcnJheTp3b3Jkc31cbjwvdGFibGU+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGNhcnRzID0gW107XG5cbiAgZm9yZWFjaCAoIFsgMCwgMSwgMiBdIGFzICRuIClcbiAgICAkY2FydHMgW10gPSBbXG4gICAgICAnbicgICAgICA9PiAkbixcbiAgICAgICdpdGVtcycgID0+IHBhZFN0clBsdXJhbCAoICdpdGVtJywgICAkbiApLFxuICAgICAgJ3Blb3BsZScgPT4gcGFkU3RyUGx1cmFsICggJ3BlcnNvbicsICRuIClcbiAgICBdO1xuXG4gICRub3VucyA9IFsgJ2NpdHknLCAnY2hpbGQnLCAna25pZmUnLCAnYW5hbHlzaXMnLFxuICAgICAgICAgICAgICdzaGVlcCcsICdQZXJzb24nLCAnYmxvZ1Bvc3QnIF07XG5cbiAgJHdvcmRzID0gW107XG5cbiAgZm9yZWFjaCAoICRub3VucyBhcyAkd29yZCApXG4gICAgJHdvcmRzIFtdID0gW1xuICAgICAgJ3dvcmQnICAgPT4gJHdvcmQsXG4gICAgICAncGx1cmFsJyA9PiBwYWRTdHJQbHVyYWwgKCAkd29yZCApLFxuICAgICAgJ2JhY2snICAgPT4gcGFkU3RyU2luZ3VsYXIgKCBwYWRTdHJQbHVyYWwgKCAkd29yZCApIClcbiAgICBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7YXJyYXk6Y2FydHN9XG4gIDxwPnskbn0geyRpdGVtc30gZm9yIHskbn0geyRwZW9wbGV9PC9wPlxuey9hcnJheTpjYXJ0c31cbjx0YWJsZT5cbiAgPHRyPlxuICAgIDx0aD53b3JkPC90aD5cbiAgICA8dGg+cGx1cmFsPC90aD5cbiAgICA8dGg+c2luZ3VsYXIgYWdhaW48L3RoPlxuICA8L3RyPlxuICB7YXJyYXk6d29yZHN9XG4gICAgPHRyPlxuICAgICAgPHRkPnskd29yZH08L3RkPlxuICAgICAgPHRkPnskcGx1cmFsfTwvdGQ+XG4gICAgICA8dGQ+eyRiYWNrfTwvdGQ+XG4gICAgPC90cj5cbiAgey9hcnJheTp3b3Jkc31cbjwvdGFibGU+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGNhcnRzID0gW107XG5cbiAgZm9yZWFjaCAoIFsgMCwgMSwgMiBdIGFzICRuIClcbiAgICAkY2FydHMgW10gPSBbXG4gICAgICAnbicgICAgICA9PiAkbixcbiAgICAgICdpdGVtcycgID0+IHBhZFN0clBsdXJhbCAoICdpdGVtJywgICAkbiApLFxuICAgICAgJ3Blb3BsZScgPT4gcGFkU3RyUGx1cmFsICggJ3BlcnNvbicsICRuIClcbiAgICBdO1xuXG4gICRub3VucyA9IFsgJ2NpdHknLCAnY2hpbGQnLCAna25pZmUnLCAnYW5hbHlzaXMnLFxuICAgICAgICAgICAgICdzaGVlcCcsICdQZXJzb24nLCAnYmxvZ1Bvc3QnIF07XG5cbiAgJHdvcmRzID0gW107XG5cbiAgZm9yZWFjaCAoICRub3VucyBhcyAkd29yZCApXG4gICAgJHdvcmRzIFtdID0gW1xuICAgICAgJ3dvcmQnICAgPT4gJHdvcmQsXG4gICAgICAncGx1cmFsJyA9PiBwYWRTdHJQbHVyYWwgKCAkd29yZCApLFxuICAgICAgJ2JhY2snICAgPT4gcGFkU3RyU2luZ3VsYXIgKCBwYWRTdHJQbHVyYWwgKCAkd29yZCApIClcbiAgICBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>carts</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{<font color="green"><font color="red">$</font>items</font>}</b> for <b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{<font color="green"><font color="red">$</font>people</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>carts</font><font color="red"></font>}</b><br>&lt;table&gt;<br>  &lt;tr&gt;<br>    &lt;th&gt;word&lt;/th&gt;<br>    &lt;th&gt;plural&lt;/th&gt;<br>    &lt;th&gt;singular again&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>words</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>word</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>plural</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>back</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>words</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
   <p>0 items for 0 people</p>
 
@@ -386,35 +495,66 @@ PERSON, PEOPLE. <code>padStrSingular</code> goes the other way.</p>
   <p>2 items for 2 people</p>
 
 <table>
-  <tr><th>word</th><th>plural</th><th>singular again</th></tr>
+  <tr>
+    <th>word</th>
+    <th>plural</th>
+    <th>singular again</th>
+  </tr>
   
-  <tr><td>city</td><td>cities</td><td>city</td></tr>
+    <tr>
+      <td>city</td>
+      <td>cities</td>
+      <td>city</td>
+    </tr>
   
-  <tr><td>child</td><td>children</td><td>child</td></tr>
+    <tr>
+      <td>child</td>
+      <td>children</td>
+      <td>child</td>
+    </tr>
   
-  <tr><td>knife</td><td>knives</td><td>knife</td></tr>
+    <tr>
+      <td>knife</td>
+      <td>knives</td>
+      <td>knife</td>
+    </tr>
   
-  <tr><td>analysis</td><td>analyses</td><td>analysis</td></tr>
+    <tr>
+      <td>analysis</td>
+      <td>analyses</td>
+      <td>analysis</td>
+    </tr>
   
-  <tr><td>sheep</td><td>sheep</td><td>sheep</td></tr>
+    <tr>
+      <td>sheep</td>
+      <td>sheep</td>
+      <td>sheep</td>
+    </tr>
   
-  <tr><td>Person</td><td>People</td><td>Person</td></tr>
+    <tr>
+      <td>Person</td>
+      <td>People</td>
+      <td>Person</td>
+    </tr>
   
-  <tr><td>blogPost</td><td>blogPosts</td><td>blogPost</td></tr>
+    <tr>
+      <td>blogPost</td>
+      <td>blogPosts</td>
+      <td>blogPost</td>
+    </tr>
   
 </table>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -430,60 +570,68 @@ their value differs on every request.</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/strings_6.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/strings_6.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $token </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrRandom </span><span style="color: #007700">( </span><span style="color: #0000BB">32 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$first </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrUuid </span><span style="color: #007700">( </span><span style="color: #0000BB">7 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$later </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrUuid </span><span style="color: #007700">( </span><span style="color: #0000BB">7 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$id    </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrUuid </span><span style="color: #007700">();<br><br>  </span><span style="color: #FF8000">// Random on every request: what is shown is their shape,<br>  // not their value.<br><br>  </span><span style="color: #0000BB">$tokenShape </span><span style="color: #007700">= </span><span style="color: #0000BB">preg_match </span><span style="color: #007700">( </span><span style="color: #DD0000">'/^[A-Za-z0-9]{32}$/'</span><span style="color: #007700">, </span><span style="color: #0000BB">$token </span><span style="color: #007700">)<br>              ? </span><span style="color: #DD0000">'32 letters and digits' </span><span style="color: #007700">: </span><span style="color: #DD0000">'wrong'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$shape      </span><span style="color: #007700">= </span><span style="color: #0000BB">preg_replace </span><span style="color: #007700">( </span><span style="color: #DD0000">'/[0-9a-f]/'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x'</span><span style="color: #007700">, </span><span style="color: #0000BB">$id </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$versions   </span><span style="color: #007700">= </span><span style="color: #0000BB">$id </span><span style="color: #007700">[</span><span style="color: #0000BB">14</span><span style="color: #007700">] . </span><span style="color: #DD0000">' and ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$first </span><span style="color: #007700">[</span><span style="color: #0000BB">14</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$ordered    </span><span style="color: #007700">= </span><span style="color: #0000BB">strcmp </span><span style="color: #007700">( </span><span style="color: #0000BB">$later</span><span style="color: #007700">, </span><span style="color: #0000BB">$first </span><span style="color: #007700">) &gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/strings_6.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD50b2tlbjogeyR0b2tlblNoYXBlfTwvcD5cbjxwPnV1aWQ6IHskc2hhcGV9LCB2ZXJzaW9ucyB7JHZlcnNpb25zfTwvcD5cbjxwPmEgbGF0ZXIgdmVyc2lvbiA3IHNvcnRzIGFmdGVyIGFuIGVhcmxpZXIgb25lOiB7JG9yZGVyZWR9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR0b2tlbiA9IHBhZFN0clJhbmRvbSAoIDMyICk7XG4gICRmaXJzdCA9IHBhZFN0clV1aWQgKCA3ICk7XG4gICRsYXRlciA9IHBhZFN0clV1aWQgKCA3ICk7XG4gICRpZCAgICA9IHBhZFN0clV1aWQgKCk7XG5cbiAgLy8gUmFuZG9tIG9uIGV2ZXJ5IHJlcXVlc3Q6IHdoYXQgaXMgc2hvd24gaXMgdGhlaXIgc2hhcGUsXG4gIC8vIG5vdCB0aGVpciB2YWx1ZS5cblxuICAkdG9rZW5TaGFwZSA9IHByZWdfbWF0Y2ggKCAnL15bQS1aYS16MC05XXszMn0kLycsICR0b2tlbiApXG4gICAgICAgICAgICAgID8gJzMyIGxldHRlcnMgYW5kIGRpZ2l0cycgOiAnd3JvbmcnO1xuICAkc2hhcGUgICAgICA9IHByZWdfcmVwbGFjZSAoICcvWzAtOWEtZl0vJywgJ3gnLCAkaWQgKTtcbiAgJHZlcnNpb25zICAgPSAkaWQgWzE0XSAuICcgYW5kICcgLiAkZmlyc3QgWzE0XTtcbiAgJG9yZGVyZWQgICAgPSBzdHJjbXAgKCAkbGF0ZXIsICRmaXJzdCApID4gMCA/ICd5ZXMnIDogJ25vJztcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD50b2tlbjogeyR0b2tlblNoYXBlfTwvcD5cbjxwPnV1aWQ6IHskc2hhcGV9LCB2ZXJzaW9ucyB7JHZlcnNpb25zfTwvcD5cbjxwPmEgbGF0ZXIgdmVyc2lvbiA3IHNvcnRzIGFmdGVyIGFuIGVhcmxpZXIgb25lOiB7JG9yZGVyZWR9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR0b2tlbiA9IHBhZFN0clJhbmRvbSAoIDMyICk7XG4gICRmaXJzdCA9IHBhZFN0clV1aWQgKCA3ICk7XG4gICRsYXRlciA9IHBhZFN0clV1aWQgKCA3ICk7XG4gICRpZCAgICA9IHBhZFN0clV1aWQgKCk7XG5cbiAgLy8gUmFuZG9tIG9uIGV2ZXJ5IHJlcXVlc3Q6IHdoYXQgaXMgc2hvd24gaXMgdGhlaXIgc2hhcGUsXG4gIC8vIG5vdCB0aGVpciB2YWx1ZS5cblxuICAkdG9rZW5TaGFwZSA9IHByZWdfbWF0Y2ggKCAnL15bQS1aYS16MC05XXszMn0kLycsICR0b2tlbiApXG4gICAgICAgICAgICAgID8gJzMyIGxldHRlcnMgYW5kIGRpZ2l0cycgOiAnd3JvbmcnO1xuICAkc2hhcGUgICAgICA9IHByZWdfcmVwbGFjZSAoICcvWzAtOWEtZl0vJywgJ3gnLCAkaWQgKTtcbiAgJHZlcnNpb25zICAgPSAkaWQgWzE0XSAuICcgYW5kICcgLiAkZmlyc3QgWzE0XTtcbiAgJG9yZGVyZWQgICAgPSBzdHJjbXAgKCAkbGF0ZXIsICRmaXJzdCApID4gMCA/ICd5ZXMnIDogJ25vJztcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;token: <b>{<font color="green"><font color="red">$</font>tokenShape</font>}</b>&lt;/p&gt;<br>&lt;p&gt;uuid: <b>{<font color="green"><font color="red">$</font>shape</font>}</b>, versions <b>{<font color="green"><font color="red">$</font>versions</font>}</b>&lt;/p&gt;<br>&lt;p&gt;a later version 7 sorts after an earlier one: <b>{<font color="green"><font color="red">$</font>ordered</font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/strings_6.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $token </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrRandom </span><span style="color: #007700">( </span><span style="color: #0000BB">32 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$first </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrUuid </span><span style="color: #007700">( </span><span style="color: #0000BB">7 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$later </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrUuid </span><span style="color: #007700">( </span><span style="color: #0000BB">7 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$id    </span><span style="color: #007700">= </span><span style="color: #0000BB">padStrUuid </span><span style="color: #007700">();<br><br>  </span><span style="color: #FF8000">// Random on every request: what is shown is their shape,<br>  // not their value.<br><br>  </span><span style="color: #0000BB">$tokenShape </span><span style="color: #007700">= </span><span style="color: #0000BB">preg_match </span><span style="color: #007700">( </span><span style="color: #DD0000">'/^[A-Za-z0-9]{32}$/'</span><span style="color: #007700">, </span><span style="color: #0000BB">$token </span><span style="color: #007700">)<br>              ? </span><span style="color: #DD0000">'32 letters and digits' </span><span style="color: #007700">: </span><span style="color: #DD0000">'wrong'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$shape      </span><span style="color: #007700">= </span><span style="color: #0000BB">preg_replace </span><span style="color: #007700">( </span><span style="color: #DD0000">'/[0-9a-f]/'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x'</span><span style="color: #007700">, </span><span style="color: #0000BB">$id </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$versions   </span><span style="color: #007700">= </span><span style="color: #0000BB">$id </span><span style="color: #007700">[</span><span style="color: #0000BB">14</span><span style="color: #007700">] . </span><span style="color: #DD0000">' and ' </span><span style="color: #007700">. </span><span style="color: #0000BB">$first </span><span style="color: #007700">[</span><span style="color: #0000BB">14</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$ordered    </span><span style="color: #007700">= </span><span style="color: #0000BB">strcmp </span><span style="color: #007700">( </span><span style="color: #0000BB">$later</span><span style="color: #007700">, </span><span style="color: #0000BB">$first </span><span style="color: #007700">) &gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD50b2tlbjogeyR0b2tlblNoYXBlfTwvcD5cbjxwPnV1aWQ6IHskc2hhcGV9LCB2ZXJzaW9ucyB7JHZlcnNpb25zfTwvcD5cbjxwPmEgbGF0ZXIgdmVyc2lvbiA3IHNvcnRzIGFmdGVyIGFuIGVhcmxpZXIgb25lOiB7JG9yZGVyZWR9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR0b2tlbiA9IHBhZFN0clJhbmRvbSAoIDMyICk7XG4gICRmaXJzdCA9IHBhZFN0clV1aWQgKCA3ICk7XG4gICRsYXRlciA9IHBhZFN0clV1aWQgKCA3ICk7XG4gICRpZCAgICA9IHBhZFN0clV1aWQgKCk7XG5cbiAgLy8gUmFuZG9tIG9uIGV2ZXJ5IHJlcXVlc3Q6IHdoYXQgaXMgc2hvd24gaXMgdGhlaXIgc2hhcGUsXG4gIC8vIG5vdCB0aGVpciB2YWx1ZS5cblxuICAkdG9rZW5TaGFwZSA9IHByZWdfbWF0Y2ggKCAnL15bQS1aYS16MC05XXszMn0kLycsICR0b2tlbiApXG4gICAgICAgICAgICAgID8gJzMyIGxldHRlcnMgYW5kIGRpZ2l0cycgOiAnd3JvbmcnO1xuICAkc2hhcGUgICAgICA9IHByZWdfcmVwbGFjZSAoICcvWzAtOWEtZl0vJywgJ3gnLCAkaWQgKTtcbiAgJHZlcnNpb25zICAgPSAkaWQgWzE0XSAuICcgYW5kICcgLiAkZmlyc3QgWzE0XTtcbiAgJG9yZGVyZWQgICAgPSBzdHJjbXAgKCAkbGF0ZXIsICRmaXJzdCApID4gMCA/ICd5ZXMnIDogJ25vJztcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD50b2tlbjogeyR0b2tlblNoYXBlfTwvcD5cbjxwPnV1aWQ6IHskc2hhcGV9LCB2ZXJzaW9ucyB7JHZlcnNpb25zfTwvcD5cbjxwPmEgbGF0ZXIgdmVyc2lvbiA3IHNvcnRzIGFmdGVyIGFuIGVhcmxpZXIgb25lOiB7JG9yZGVyZWR9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR0b2tlbiA9IHBhZFN0clJhbmRvbSAoIDMyICk7XG4gICRmaXJzdCA9IHBhZFN0clV1aWQgKCA3ICk7XG4gICRsYXRlciA9IHBhZFN0clV1aWQgKCA3ICk7XG4gICRpZCAgICA9IHBhZFN0clV1aWQgKCk7XG5cbiAgLy8gUmFuZG9tIG9uIGV2ZXJ5IHJlcXVlc3Q6IHdoYXQgaXMgc2hvd24gaXMgdGhlaXIgc2hhcGUsXG4gIC8vIG5vdCB0aGVpciB2YWx1ZS5cblxuICAkdG9rZW5TaGFwZSA9IHByZWdfbWF0Y2ggKCAnL15bQS1aYS16MC05XXszMn0kLycsICR0b2tlbiApXG4gICAgICAgICAgICAgID8gJzMyIGxldHRlcnMgYW5kIGRpZ2l0cycgOiAnd3JvbmcnO1xuICAkc2hhcGUgICAgICA9IHByZWdfcmVwbGFjZSAoICcvWzAtOWEtZl0vJywgJ3gnLCAkaWQgKTtcbiAgJHZlcnNpb25zICAgPSAkaWQgWzE0XSAuICcgYW5kICcgLiAkZmlyc3QgWzE0XTtcbiAgJG9yZGVyZWQgICAgPSBzdHJjbXAgKCAkbGF0ZXIsICRmaXJzdCApID4gMCA/ICd5ZXMnIDogJ25vJztcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;token: <b>{<font color="green"><font color="red">$</font>tokenShape</font>}</b>&lt;/p&gt;<br>&lt;p&gt;uuid: <b>{<font color="green"><font color="red">$</font>shape</font>}</b>, versions <b>{<font color="green"><font color="red">$</font>versions</font>}</b>&lt;/p&gt;<br>&lt;p&gt;a later version 7 sorts after an earlier one: <b>{<font color="green"><font color="red">$</font>ordered</font>}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>token: 32 letters and digits</p>
 <p>uuid: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx, versions 4 and 7</p>
 <p>a later version 7 sorts after an earlier one: yes</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 

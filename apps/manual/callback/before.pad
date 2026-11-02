@@ -1,14 +1,11 @@
 <table border=1>
-
   <tr>
     <th>Name</th>
     <th>Salary</th>
     <th>Bonus</th>
     <th>Total</th>
   </tr>
-  
   {local:staff callback='before.php', before}
-
     {property:first}
       <tr>
         <td>Totals</td>
@@ -24,7 +21,5 @@
       <td>{$bonus  | %.2f}</td>
       <td>{$total  | %.2f}</td>
     </tr>
-
   {/local:staff}
- 
 </table>

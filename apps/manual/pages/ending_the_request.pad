@@ -23,11 +23,26 @@ place of this one without a round trip to the browser.</p>
 <h2>The tags that end a request</h2>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>tag</th><th>what it does</th></tr>
-  <tr><td><code>{pad:open/}pad:exit{pad:close/}</code></td><td>ends the request where it stands - nothing is shipped, not even the output so far</td></tr>
-  <tr><td><code>{pad:open/}pad:error 'message'/{pad:close/}</code></td><td>reports an error through the configured error action, which normally ends the request with a 500</td></tr>
-  <tr><td><code>{pad:open/}pad:exception 'message'/{pad:close/}</code></td><td>throws a real PHP exception, for testing the nets that catch one</td></tr>
-  <tr><td><code>{pad:open/}pad:dump{pad:close/}</code></td><td>stops the request on a dump of the engine state, the heavy debugging tool</td></tr>
+  <tr>
+    <th>tag</th>
+    <th>what it does</th>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:exit{pad:close/}</code></td>
+    <td>ends the request where it stands - nothing is shipped, not even the output so far</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:error 'message'/{pad:close/}</code></td>
+    <td>reports an error through the configured error action, which normally ends the request with a 500</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:exception 'message'/{pad:close/}</code></td>
+    <td>throws a real PHP exception, for testing the nets that catch one</td>
+  </tr>
+  <tr>
+    <td><code>{pad:open/}pad:dump{pad:close/}</code></td>
+    <td>stops the request on a dump of the engine state, the heavy debugging tool</td>
+  </tr>
 </table>
 
 <h2>What happens on an error</h2>

@@ -15,16 +15,16 @@
     <th>Code</th>
   </tr>
   {array:apps}
-  <tr>
-    <td>
-      {pad:if $link ne ''}<a href="{$link}">{$name}</a>{/pad:if}
-      {pad:if $link eq ''}{$name}{/pad:if}
-    </td>
-    <td>
-      {pad:if $description ne ''}{$description}{/pad:if}
-      {pad:if $description eq ''}<i>No description available</i>{/pad:if}
-    </td>
-    <td>{pad:if $name ne 'wasm'}<a href="{$padRoot}edit/?index&app={$name}">edit</a>{/pad:if}</td>
-  </tr>
+    <tr>
+      <td>
+        {pad:if $link ne ''}<a href="{$link}">{$name}</a>{/pad:if}
+        {pad:if $link eq ''}{$name}{/pad:if}
+      </td>
+      <td>
+        {pad:if $description ne ''}{$description}{/pad:if}
+        {pad:if $description eq ''}<i>No description available</i>{/pad:if}
+      </td>
+      <td>{pad:if $name ne 'wasm'}<a href="{$padRoot}edit/?index&app={$name}">edit</a>{/pad:if}</td>
+    </tr>
   {/array:apps}
 </table>

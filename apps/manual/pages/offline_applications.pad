@@ -18,11 +18,31 @@ pad pack notes,ledger,kanban  # several, with a launcher</code></pre>
 <h2>Two ways to run it</h2>
 
 <table border="1" cellpadding="4">
-  <tr><th></th><th>Opened from the disk</th><th>Served over https, or on localhost</th></tr>
-  <tr><td>Start</td><td>double-click <code>index.html</code></td><td>open the address; the browser offers to install it</td></tr>
-  <tr><td>PHP runs</td><td>in the tab</td><td>in the service worker, for every window</td></tr>
-  <tr><td>The pages</td><td>in a frame filling the window, the address after the <code>#</code></td><td>at their own addresses</td></tr>
-  <tr><td>Offline</td><td>always</td><td>after the first visit</td></tr>
+  <tr>
+    <th></th>
+    <th>Opened from the disk</th>
+    <th>Served over https, or on localhost</th>
+  </tr>
+  <tr>
+    <td>Start</td>
+    <td>double-click <code>index.html</code></td>
+    <td>open the address; the browser offers to install it</td>
+  </tr>
+  <tr>
+    <td>PHP runs</td>
+    <td>in the tab</td>
+    <td>in the service worker, for every window</td>
+  </tr>
+  <tr>
+    <td>The pages</td>
+    <td>in a frame filling the window, the address after the <code>#</code></td>
+    <td>at their own addresses</td>
+  </tr>
+  <tr>
+    <td>Offline</td>
+    <td>always</td>
+    <td>after the first visit</td>
+  </tr>
 </table>
 
 <p>Both answer every request as a server would: cookies are kept - sessions, CSRF tokens, flash

@@ -1,5 +1,4 @@
 <article class="tag">
-
   <nav class="crumbs" aria-label="Where you are">
     <a href="?index">Types</a><span>/</span><a href="?groups#{$typeGroupKey}">{$typeGroupLabel}</a><span>/</span><span aria-current="page">{$typeKey}</span>
   </nav>
@@ -7,8 +6,10 @@
   <header class="tag-head">
     <h1>{$typeKey}</h1>
     <p class="tag-about">{$typeAbout}</p>
-    <p class="chips"><a class="chip" href="?groups#{$typeGroupKey}">{$typeGroupLabel}</a>
-    {pad:if not $typeHasPrefix}<span class="chip">Selected by an option or helper</span>{pad:else}<a class="chip chip-form" href="?order#prefixed">Type prefix required</a>{/pad:if}</p>
+    <p class="chips">
+      <a class="chip" href="?groups#{$typeGroupKey}">{$typeGroupLabel}</a>
+      {pad:if not $typeHasPrefix}<span class="chip">Selected by an option or helper</span>{pad:else}<a class="chip chip-form" href="?order#prefixed">Type prefix required</a>{/pad:if}
+    </p>
   </header>
 
   <section class="block" aria-labelledby="syntax">
@@ -19,38 +20,56 @@
   <section class="block prose" aria-labelledby="description">
     <h2 id="description">Description</h2>
     {!typeDocHtml}
-    {pad:if $typeComment}<h3>The handler</h3><p><code>pad/types/{$typeName}.php</code>: {$typeComment}</p>{/pad:if}
+    {pad:if $typeComment}
+      <h3>The handler</h3>
+      <p><code>pad/types/{$typeName}.php</code>: {$typeComment}</p>
+    {/pad:if}
   </section>
 
   {array:typeMembers}
-  {property:first@typeMembers}<section class="block" aria-labelledby="members"><h2 id="members">Available names</h2><p>{$typeMemberCount} of them{pad:if $typeName in ('pad', 'chart', 'game', 'toy', 'diagram', 'widget', 'barcode', 'embed', 'input', 'icon', 'fake', 'pattern', 'sound', 'printable', 'notation', 'section', 'effect', 'jsonld', 'sequence', 'flag', 'make', 'keep', 'remove')}, each with its page in the tags application{/pad:if}.</p><div class="tagcloud">{/property:first@typeMembers}
+    {property:first@typeMembers}
+      <section class="block" aria-labelledby="members">
+        <h2 id="members">Available names</h2>
+        <p>{$typeMemberCount} of them{pad:if $typeName in ('pad', 'chart', 'game', 'toy', 'diagram', 'widget', 'barcode', 'embed', 'input', 'icon', 'fake', 'pattern', 'sound', 'printable', 'notation', 'section', 'effect', 'jsonld', 'sequence', 'flag', 'make', 'keep', 'remove')}, each with its page in the tags application{/pad:if}.</p>
+        <div class="tagcloud">
+    {/property:first@typeMembers}
     {pad:if $link}<a href="{$link}">{$key}</a>{pad:else}<span>{$key}</span>{/pad:if}
-  {property:last@typeMembers}</div></section>{/property:last@typeMembers}
+    {property:last@typeMembers}
+      </div>
+      </section>
+    {/property:last@typeMembers}
   {/array:typeMembers}
 
   {array:typeExamples}
-  {property:first@typeExamples}<section class="block" aria-labelledby="examples"><h2 id="examples">Examples</h2>{/property:first@typeExamples}
+    {property:first@typeExamples}
+      <section class="block" aria-labelledby="examples">
+        <h2 id="examples">Examples</h2>
+    {/property:first@typeExamples}
     <div class="example" id="example-{$number}">
       <h3>{$title}</h3>
-      {pad:if $about}<p class="example-about">{$about}</p>{/pad:if}
+      {pad:if $about}
+        <p class="example-about">{$about}</p>
+      {/pad:if}
       <div class="example-grid{pad:if not $run} is-static{/pad:if}">
         <div class="cell">
           <div class="cell-head"><span>{pad:if $language == 'php'}PHP{pad:else}Template{/pad:if}</span><span><span class="cell-file">{$file}</span>{pad:if not $run}{!play}{/pad:if}</span></div>
           <pre class="code"><code>{!padHtml}</code></pre>
           {pad:if $php}
-          <div class="cell-head"><span>PHP</span><span class="cell-file">{$php}</span></div>
-          <pre class="code"><code>{!phpHtml}</code></pre>
+            <div class="cell-head"><span>PHP</span><span class="cell-file">{$php}</span></div>
+            <pre class="code"><code>{!phpHtml}</code></pre>
           {/pad:if}
         </div>
         {pad:if $run}
-        <div class="cell">
-          <div class="cell-head"><span>Result</span><span>{pad:if $page}<a class="cell-file" href="?{$page}">open alone</a>{/pad:if}{!play}</span></div>
-          <div class="result">{pad:if $page}{pad:page $page/}{pad:else}{pad:echo $source | code/}{/pad:if}</div>
-        </div>
+          <div class="cell">
+            <div class="cell-head"><span>Result</span><span>{pad:if $page}<a class="cell-file" href="?{$page}">open alone</a>{/pad:if}{!play}</span></div>
+            <div class="result">{pad:if $page}{pad:page $page/}{pad:else}{pad:echo $source | code/}{/pad:if}</div>
+          </div>
         {/pad:if}
       </div>
     </div>
-  {property:last@typeExamples}</section>{/property:last@typeExamples}
+    {property:last@typeExamples}
+      </section>
+    {/property:last@typeExamples}
   {/array:typeExamples}
 
   <nav class="prevnext" aria-label="Other types">
@@ -58,5 +77,4 @@
     <a href="?names">All types A-Z</a>
     <a href="?type/{$typeNext}">{$typeNextLabel} &rarr;</a>
   </nav>
-
 </article>

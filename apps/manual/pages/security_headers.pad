@@ -3,10 +3,26 @@
 <p>Every web response carries a few headers that cost nothing and close common holes:</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>header</th><th>default</th><th>what it does</th></tr>
-  <tr><td><code>X-Content-Type-Options</code></td><td><code>nosniff</code></td><td>the browser takes the content type as sent, and does not guess one</td></tr>
-  <tr><td><code>Referrer-Policy</code></td><td><code>strict-origin-when-cross-origin</code></td><td>other sites see where a visitor came from, not the full address</td></tr>
-  <tr><td><code>Content-Security-Policy</code></td><td><code>frame-ancestors 'self'</code></td><td>no other site can show your pages in a frame</td></tr>
+  <tr>
+    <th>header</th>
+    <th>default</th>
+    <th>what it does</th>
+  </tr>
+  <tr>
+    <td><code>X-Content-Type-Options</code></td>
+    <td><code>nosniff</code></td>
+    <td>the browser takes the content type as sent, and does not guess one</td>
+  </tr>
+  <tr>
+    <td><code>Referrer-Policy</code></td>
+    <td><code>strict-origin-when-cross-origin</code></td>
+    <td>other sites see where a visitor came from, not the full address</td>
+  </tr>
+  <tr>
+    <td><code>Content-Security-Policy</code></td>
+    <td><code>frame-ancestors 'self'</code></td>
+    <td>no other site can show your pages in a frame</td>
+  </tr>
 </table>
 
 <p><code>$padSecurityHeaders</code> in <code>_config/config.php</code> lists the first two,

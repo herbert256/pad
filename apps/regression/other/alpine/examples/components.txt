@@ -1,23 +1,22 @@
 <div class="cols-2">
-
   <section>
     <div class="panel-title">Accordion - accordion({^faq})</div>
     <div class="accordion" x-data="accordion([{&quot;q&quot;:&quot;Why not write the state in the template?&quot;,&quot;a&quot;:&quot;Alpine writes objects with braces, and PAD reads every brace of a template as the start of a tag. Let PAD write the JSON instead.&quot;},{&quot;q&quot;:&quot;Where do the components live?&quot;,&quot;a&quot;:&quot;In www/alpine/examples/components.js - a file the web server sends as it is, so its braces never meet the template parser.&quot;},{&quot;q&quot;:&quot;Does it work without JavaScript?&quot;,&quot;a&quot;:&quot;The answers are in the HTML PAD wrote; x-cloak and x-show only fold them away once Alpine runs.&quot;}])">
       
-      <div class="accordion-item" :class="isOpen(1) && 'is-open'">
-        <button class="accordion-head" @click="toggle(1)" :aria-expanded="isOpen(1)">Why not write the state in the template?<span aria-hidden="true">+</span></button>
-        <div class="accordion-body" x-show="isOpen(1)" x-transition>Alpine writes objects with braces, and PAD reads every brace of a template as the start of a tag. Let PAD write the JSON instead.</div>
-      </div>
+        <div class="accordion-item" :class="isOpen(1) && 'is-open'">
+          <button class="accordion-head" @click="toggle(1)" :aria-expanded="isOpen(1)">Why not write the state in the template?<span aria-hidden="true">+</span></button>
+          <div class="accordion-body" x-show="isOpen(1)" x-transition>Alpine writes objects with braces, and PAD reads every brace of a template as the start of a tag. Let PAD write the JSON instead.</div>
+        </div>
       
-      <div class="accordion-item" :class="isOpen(2) && 'is-open'">
-        <button class="accordion-head" @click="toggle(2)" :aria-expanded="isOpen(2)">Where do the components live?<span aria-hidden="true">+</span></button>
-        <div class="accordion-body" x-show="isOpen(2)" x-transition>In www/alpine/examples/components.js - a file the web server sends as it is, so its braces never meet the template parser.</div>
-      </div>
+        <div class="accordion-item" :class="isOpen(2) && 'is-open'">
+          <button class="accordion-head" @click="toggle(2)" :aria-expanded="isOpen(2)">Where do the components live?<span aria-hidden="true">+</span></button>
+          <div class="accordion-body" x-show="isOpen(2)" x-transition>In www/alpine/examples/components.js - a file the web server sends as it is, so its braces never meet the template parser.</div>
+        </div>
       
-      <div class="accordion-item" :class="isOpen(3) && 'is-open'">
-        <button class="accordion-head" @click="toggle(3)" :aria-expanded="isOpen(3)">Does it work without JavaScript?<span aria-hidden="true">+</span></button>
-        <div class="accordion-body" x-show="isOpen(3)" x-transition>The answers are in the HTML PAD wrote; x-cloak and x-show only fold them away once Alpine runs.</div>
-      </div>
+        <div class="accordion-item" :class="isOpen(3) && 'is-open'">
+          <button class="accordion-head" @click="toggle(3)" :aria-expanded="isOpen(3)">Does it work without JavaScript?<span aria-hidden="true">+</span></button>
+          <div class="accordion-body" x-show="isOpen(3)" x-transition>The answers are in the HTML PAD wrote; x-cloak and x-show only fold them away once Alpine runs.</div>
+        </div>
       
     </div>
   </section>
@@ -45,7 +44,6 @@
       </div>
     </div>
   </section>
-
 </div>
 
 <script src="/pad/alpine/examples/components.js"></script>

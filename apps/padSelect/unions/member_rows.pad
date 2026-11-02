@@ -1,6 +1,14 @@
 <table>
-  <tr><th class="n">Year</th><th>Title</th><th>Kind</th></tr>
+  <tr>
+    <th class="n">Year</th>
+    <th>Title</th>
+    <th>Kind</th>
+  </tr>
   {select:latest order="released desc, title"}
-  <tr><td class="n">{$released}</td><td>{$title}</td><td>{$kind}</td></tr>
+    <tr>
+      <td class="n">{$released}</td>
+      <td>{$title}</td>
+      <td>{$kind}</td>
+    </tr>
   {/select:latest}
 </table>

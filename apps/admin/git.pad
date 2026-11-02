@@ -1,31 +1,52 @@
 {pad:if $isGit eq 0}
-  <section class="card"><p>The PAD home is no git checkout, or git is not installed.</p></section>
+  <section class="card">
+    <p>The PAD home is no git checkout, or git is not installed.</p>
+  </section>
 {pad:else}
 
   <div class="grid2">
-
     <section class="card">
       <h2>{icon:link size=18/} Checkout</h2>
-      <table class="facts">{array:facts}<tr><th>{$label}</th><td><code>{$value}</code></td></tr>{/array:facts}</table>
+      <table class="facts">
+        {array:facts}
+          <tr>
+            <th>{$label}</th>
+            <td><code>{$value}</code></td>
+          </tr>
+        {/array:facts}
+      </table>
     </section>
 
     <section class="card scroll">
       <h2>{icon:edit size=18/} Not committed ({$changeCount})</h2>
       {pad:if $changeCount}
         <table class="list">
-          <tbody>{array:changeRows}<tr><td class="nowrap"><span class="badge {$tone}">{$state}</span></td><td><code>{$file}</code></td></tr>{/array:changeRows}</tbody>
+          <tbody>
+            {array:changeRows}
+              <tr>
+                <td class="nowrap"><span class="badge {$tone}">{$state}</span></td>
+                <td><code>{$file}</code></td>
+              </tr>
+            {/array:changeRows}
+          </tbody>
         </table>
       {pad:else}
         <p class="dim">Nothing - the working tree is clean.</p>
       {/pad:if}
     </section>
-
   </div>
 
   <section class="card scroll">
     <h2>{icon:clock size=18/} The last commits</h2>
     <table class="list">
-      <thead><tr><th>Commit</th><th>When</th><th>Who</th><th>What</th></tr></thead>
+      <thead>
+        <tr>
+          <th>Commit</th>
+          <th>When</th>
+          <th>Who</th>
+          <th>What</th>
+        </tr>
+      </thead>
       <tbody>
         {array:commitRows}
           <tr>
@@ -38,5 +59,4 @@
       </tbody>
     </table>
   </section>
-
 {/pad:if}

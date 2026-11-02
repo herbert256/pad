@@ -12,11 +12,21 @@ block, a page array or a <code>_data</code> file. The arrows move a month; today
 mini calendar with a dot per busy day is a few lines:</p>
 
 <table class="mini">
-  <tr><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th><th>Su</th></tr>
-  {calendar:month data='agenda'}
   <tr>
-    {array:days}<td class="{$class}" title="{$date}">{$day}{pad:if $count gt 0}<i></i>{/pad:if}</td>{/array:days}
+    <th>Mo</th>
+    <th>Tu</th>
+    <th>We</th>
+    <th>Th</th>
+    <th>Fr</th>
+    <th>Sa</th>
+    <th>Su</th>
   </tr>
+  {calendar:month data='agenda'}
+    <tr>
+      {array:days}
+        <td class="{$class}" title="{$date}">{$day}{pad:if $count gt 0}<i></i>{/pad:if}</td>
+      {/array:days}
+    </tr>
   {/calendar:month}
 </table>
 

@@ -1,62 +1,69 @@
 {common:table}
+  {common:demo}
+    <h3>From an pad tag</h3>
 
-{common:demo}
-<h3>From an pad tag</h3>
+    {pad:foo/}
+  {/common:demo}
+  {common:demo}
+    <h3>From an application tag </h3>
 
-{pad:foo/}
+    {app:foo/}
+  {/common:demo}
+  {common:demo}
+    <h3>From the &open;pad:content&close; tag </h3>
 
-{/common:demo}{common:demo}<h3>From an application tag </h3>
+    {content:foo/}
+  {/common:demo}
+  {common:demo}
+    <h3>From a PHP function !</h3>
 
-{app:foo/}
+    {php:foo/}
+  {/common:demo}
+  {common:demo}
+    <h3>From an own PAD function </h3>
 
-{/common:demo}{common:demo}<h3>From the &open;pad:content&close; tag </h3>
+    {function:foo/}
+  {/common:demo}
+  {common:demo}
+    <h3>From an defined bool</h3>
 
-{content:foo/}
-
-{/common:demo}{common:demo}<h3>From a PHP function !</h3>
-
-{php:foo/}
-
-{/common:demo}{common:demo}<h3>From an own PAD function </h3>
-
-{function:foo/}
-
-{/common:demo}{common:demo}<h3>From an defined bool</h3>
-
-{bool:foo}
+    {bool:foo}
   Bool 'foo' is true
 @else@
   Bool 'foo' is false
 {/bool:foo}
+  {/common:demo}
+  {common:demo}
+    <h3>From a PHP array</h3>
 
-{/common:demo}{common:demo}<h3>From a PHP array</h3>
+    {array:foo}
+      {$foo} <br>
+    {/array:foo}
+  {/common:demo}
+  {common:demo}
+    <h3>A defined constant</h3>
 
-{array:foo}
-  {$foo} <br>
-{/array:foo}
+    {constant:foo}
+      {$foo} <br>
+    {/constant:foo}
+  {/common:demo}
+  {common:demo}
+    <h3>From the &open;format:auto&close; tag</h3>
 
-{/common:demo}{common:demo}<h3>A defined constant</h3>
+    {data:foo}
+      {$foo} <br>
+    {/data:foo}
+  {/common:demo}
+  {common:demo}
+    <h3>From the local _data directory</h3>
 
-{constant:foo}
-  {$foo} <br>
-{/constant:foo}
+    {local:foo}
+      {$foo} <br>
+    {/local:foo}
+  {/common:demo}
+  {common:demo}
+    <h3>From the local _scripts directory</h3>
 
-{/common:demo}{common:demo}<h3>From the &open;format:auto&close; tag</h3>
-
-{data:foo}
-  {$foo} <br>
-{/data:foo}
-
-{/common:demo}{common:demo}<h3>From the local _data directory</h3>
-
-{local:foo}
-  {$foo} <br>
-{/local:foo}
-
-{/common:demo}{common:demo}<h3>From the local _scripts directory</h3>
-
-{script:foo/}
-
-{/common:demo}
-
+    {script:foo/}
+  {/common:demo}
 {/common:table}

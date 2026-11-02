@@ -1,12 +1,22 @@
 {pad:if $sent}
-<section class="inputs-received" aria-labelledby="inputs-received">
-  <h2 id="inputs-received">What the page received</h2>
-  <p class="inputs-verdict {pad:echo $passed ? 'is-good' : 'is-bad'/}">{pad:echo $passed ? 'The post kept the rules - the page would store it now.' : 'The post broke a rule - the form came back with the message beside the field.'/}</p>
-  <table class="inputs-table">
-    <thead><tr><th scope="col">Field</th><th scope="col">Value</th></tr></thead>
-    <tbody>
-      {array:gotRows}<tr><td><code>{$name}</code></td><td><code>{$value}</code></td></tr>{/array:gotRows}
-    </tbody>
-  </table>
-</section>
+  <section class="inputs-received" aria-labelledby="inputs-received">
+    <h2 id="inputs-received">What the page received</h2>
+    <p class="inputs-verdict {pad:echo $passed ? 'is-good' : 'is-bad'/}">{pad:echo $passed ? 'The post kept the rules - the page would store it now.' : 'The post broke a rule - the form came back with the message beside the field.'/}</p>
+    <table class="inputs-table">
+      <thead>
+        <tr>
+          <th scope="col">Field</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {array:gotRows}
+          <tr>
+            <td><code>{$name}</code></td>
+            <td><code>{$value}</code></td>
+          </tr>
+        {/array:gotRows}
+      </tbody>
+    </table>
+  </section>
 {/pad:if}

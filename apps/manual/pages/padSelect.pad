@@ -40,10 +40,22 @@ counts the related rows in the SQL.</p>
 {common:example 'fragments/padSelect_3'/}
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>the relation written</th><th>means</th></tr>
-  <tr><td><code>'officeCode'</code></td><td>a field both tables have</td></tr>
-  <tr><td><code>[ 'reportsTo' => 'employeeNumber' ]</code></td><td>field of the first table => field of the second, a pair per field</td></tr>
-  <tr><td><code>[ 'key' => 'salesRepEmployeeNumber' ]</code></td><td>the field of the first table that holds the declared key of the second</td></tr>
+  <tr>
+    <th>the relation written</th>
+    <th>means</th>
+  </tr>
+  <tr>
+    <td><code>'officeCode'</code></td>
+    <td>a field both tables have</td>
+  </tr>
+  <tr>
+    <td><code>[ 'reportsTo' => 'employeeNumber' ]</code></td>
+    <td>field of the first table => field of the second, a pair per field</td>
+  </tr>
+  <tr>
+    <td><code>[ 'key' => 'salesRepEmployeeNumber' ]</code></td>
+    <td>the field of the first table that holds the declared key of the second</td>
+  </tr>
 </table>
 
 <h2>Views - a table that stands on another</h2>
@@ -94,18 +106,54 @@ whole union.</p>
 <p>Each can stand in the declaration or on the tag; the tag's wins.</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>option</th><th>what it is</th></tr>
-  <tr><td><code>key</code></td><td>the field, or the fields, that name one row</td></tr>
-  <tr><td><code>db</code></td><td>the table read, when it is not the tag's name</td></tr>
-  <tr><td><code>base</code></td><td>the table a view stands on - in the declaration only</td></tr>
-  <tr><td><code>fields</code></td><td>the column list; declared as an array, column => alias</td></tr>
-  <tr><td><code>where</code>, <code>order</code></td><td>the SQL condition and sort</td></tr>
-  <tr><td><code>group</code>, <code>having</code>, <code>rollup</code></td><td>a row per group, a condition on the groups, the total row</td></tr>
-  <tr><td><code>distinct</code>, <code>distinctrow</code>, <code>all</code></td><td>the word after select</td></tr>
-  <tr><td><code>join</code>, <code>union</code></td><td>more tables in the row, more rows in the list</td></tr>
-  <tr><td><code>rows</code>, <code>page</code></td><td>the SQL limit</td></tr>
-  <tr><td><code>type</code></td><td><code>array</code> (every row), <code>record</code> (one row) or <code>field</code> (one value)</td></tr>
-  <tr><td><code>htmlAttrJson</code></td><td>the rows as JSON, escaped for an HTML attribute</td></tr>
+  <tr>
+    <th>option</th>
+    <th>what it is</th>
+  </tr>
+  <tr>
+    <td><code>key</code></td>
+    <td>the field, or the fields, that name one row</td>
+  </tr>
+  <tr>
+    <td><code>db</code></td>
+    <td>the table read, when it is not the tag's name</td>
+  </tr>
+  <tr>
+    <td><code>base</code></td>
+    <td>the table a view stands on - in the declaration only</td>
+  </tr>
+  <tr>
+    <td><code>fields</code></td>
+    <td>the column list; declared as an array, column => alias</td>
+  </tr>
+  <tr>
+    <td><code>where</code>, <code>order</code></td>
+    <td>the SQL condition and sort</td>
+  </tr>
+  <tr>
+    <td><code>group</code>, <code>having</code>, <code>rollup</code></td>
+    <td>a row per group, a condition on the groups, the total row</td>
+  </tr>
+  <tr>
+    <td><code>distinct</code>, <code>distinctrow</code>, <code>all</code></td>
+    <td>the word after select</td>
+  </tr>
+  <tr>
+    <td><code>join</code>, <code>union</code></td>
+    <td>more tables in the row, more rows in the list</td>
+  </tr>
+  <tr>
+    <td><code>rows</code>, <code>page</code></td>
+    <td>the SQL limit</td>
+  </tr>
+  <tr>
+    <td><code>type</code></td>
+    <td><code>array</code> (every row), <code>record</code> (one row) or <code>field</code> (one value)</td>
+  </tr>
+  <tr>
+    <td><code>htmlAttrJson</code></td>
+    <td>the rows as JSON, escaped for an HTML attribute</td>
+  </tr>
 </table>
 
 <p>The rows a select answers go through the handling options of every tag after the SQL -

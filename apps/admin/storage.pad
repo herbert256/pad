@@ -1,9 +1,16 @@
 <div class="grid2">
-
   <section class="card scroll">
     <h2>{icon:database size=18/} <code>{$dataPath}</code> - {$totalText}</h2>
     <table class="list">
-      <thead><tr><th>Directory</th><th class="right">Size</th><th class="right">Files</th><th>What it holds</th><th></th></tr></thead>
+      <thead>
+        <tr>
+          <th>Directory</th>
+          <th class="right">Size</th>
+          <th class="right">Files</th>
+          <th>What it holds</th>
+          <th></th>
+        </tr>
+      </thead>
       <tbody>
         {array:dirRows}
           <tr>
@@ -31,5 +38,4 @@
       {chart:donut data='chartRows', label='dir', value='mb', title='DATA/ by directory, MB'/}
     </section>
   {/pad:if}
-
 </div>

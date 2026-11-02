@@ -1,4 +1,6 @@
 <h3>The recent albums under 14</h3>
 <ul>
-  {select:recent where="price < 14"}<li>{$title} ({$released}) {$price}</li>{/select:recent}
+  {select:recent where="price < 14"}
+    <li>{$title} ({$released}) {$price}</li>
+  {/select:recent}
 </ul>

@@ -1,9 +1,13 @@
 <h3>Released since {$from}, under {$under}</h3>
 <ul>
-  {select:albums where="released >= $from and price < $under"}<li>{$title} ({$released}) {$price}</li>{/select:albums}
+  {select:albums where="released >= $from and price < $under"}
+    <li>{$title} ({$released}) {$price}</li>
+  {/select:albums}
 </ul>
 
 <h3>A text value: quotes, ampersands and all</h3>
 <ul>
-  {select:artists where="name = $artist"}<li>{$name}, formed {$formed}</li>{/select:artists}
+  {select:artists where="name = $artist"}
+    <li>{$name}, formed {$formed}</li>
+  {/select:artists}
 </ul>

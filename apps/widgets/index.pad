@@ -1,4 +1,9 @@
-{section:hero button='See every section', link='?sections', second='Try a theme', secondLink='?themes', note='Every block of this page is a tag - its template is on the page of its kind.'}
+{section:hero button='See every section',
+  link='?sections',
+  second='Try a theme',
+  secondLink='?themes',
+  note='Every block of this page is a tag - its template is on the page of its kind.'
+}
   {pad:slot 'eyebrow'}{effect:shimmer}Sections · effects · themes · palettes{/effect:shimmer}{/pad:slot}
   {pad:slot 'title'}Dress a page in {effect:gradient animate, repeat='forever', duration=8}minutes{/effect:gradient}{/pad:slot}
   Landing-page blocks in pure CSS, motion that stands still for whoever asks for less, the colours
@@ -14,13 +19,13 @@
 {/section:stats}
 
 {effect:reveal}
-{section:features title='Page design, one look', eyebrow='What is here', columns=2}
-  They share the frame's palette, so a theme colours them all at once.
+  {section:features title='Page design, one look', eyebrow='What is here', columns=2}
+    They share the frame's palette, so a theme colours them all at once.
   {section:item 'Sections', icon='layout', link='?sections'}A hero, the features, the prices, the questions, a footer - {effect:highlighter}no script at all{/effect:highlighter}, laid out by container queries.{/section:item}
-  {section:item 'Effects', icon='sparkle', link='?effects'}A typewriter, a marker, a count-up, a reveal on scroll, loaders and confetti - still and whole under reduced motion.{/section:item}
-  {section:item 'Themes', icon='droplet', link='?themes'}Paper, terminal, newspaper, ocean, a high-contrast one - for a page, an application or the visitor's own choice.{/section:item}
-  {section:item 'Palettes', icon='bar-chart', link='?palettes'}Viridis and its family, Okabe-Ito and Tol for every kind of colour vision, ColorBrewer's scales.{/section:item}
-{/section:features}
+    {section:item 'Effects', icon='sparkle', link='?effects'}A typewriter, a marker, a count-up, a reveal on scroll, loaders and confetti - still and whole under reduced motion.{/section:item}
+    {section:item 'Themes', icon='droplet', link='?themes'}Paper, terminal, newspaper, ocean, a high-contrast one - for a page, an application or the visitor's own choice.{/section:item}
+    {section:item 'Palettes', icon='bar-chart', link='?palettes'}Viridis and its family, Okabe-Ito and Tol for every kind of colour vision, ColorBrewer's scales.{/section:item}
+  {/section:features}
 {/effect:reveal}
 
 {section:steps title='A landing page in three tags', eyebrow='How it works'}

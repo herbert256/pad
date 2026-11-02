@@ -1,5 +1,7 @@
 {pad:meta title='A heading per group', about='Sorted on the city, the heading renders once at the start of each city.'/}
 {array:offices sort='city'}
-  {pad:ifchanged $city}<h4>{$city}</h4>{/pad:ifchanged}
+  {pad:ifchanged $city}
+    <h4>{$city}</h4>
+  {/pad:ifchanged}
   <p>{$person}</p>
 {/array:offices}

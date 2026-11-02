@@ -1,33 +1,21 @@
 <table border=1>
- 
   {select:customers $customerNumber = 495}
-
     {select:orders}
-
-        {select:details}
-    
-          {select:products}
-    
-            {common:lines}
-
-              <tr>
-                <td> {$customerNumber}  </td>
-                <td> {$customerName}    </td>
-                <td> {$orderNumber}     </td>
-                <td> {$orderDate}       </td>
-                <td> {$orderLineNumber} </td>
-                <td> {$productName}     </td>
-                <td> {$productLine}     </td>
-              </tr>
-    
-            {/common:lines}
-          
-          {/select:products}
-    
-        {/select:details}
-        
+      {select:details}
+        {select:products}
+          {common:lines}
+            <tr>
+              <td> {$customerNumber}  </td>
+              <td> {$customerName}    </td>
+              <td> {$orderNumber}     </td>
+              <td> {$orderDate}       </td>
+              <td> {$orderLineNumber} </td>
+              <td> {$productName}     </td>
+              <td> {$productLine}     </td>
+            </tr>
+          {/common:lines}
+        {/select:products}
+      {/select:details}
     {/select:orders}
-    
   {/select:customers}
-
 </table>

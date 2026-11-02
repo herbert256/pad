@@ -2,7 +2,9 @@
 
 {pad:fragment 'order-list'}
   <ul>
-    {sequence:range '101..103', name='number'}<li>Order {$number}</li>{/sequence:range}
+    {sequence:range '101..103', name='number'}
+      <li>Order {$number}</li>
+    {/sequence:range}
   </ul>
 {/pad:fragment}
 

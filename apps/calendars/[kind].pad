@@ -2,14 +2,15 @@
 <section class="cal-result" aria-label="Rendered calendar">{pad:echo $calendarSource | code/}</section>
 <section class="cal-source pad-play-box" aria-label="Calendar template">
   <h2>Template and events</h2>
-  {!calendarPlay}<pre><code>{!calendarCode}</code></pre>
+  {!calendarPlay}
+  <pre><code>{!calendarCode}</code></pre>
 </section>
 {pad:if $calendarTimed}
-<p class="cal-note">Timed events use <code>start</code> and <code>end</code> timestamps with explicit offsets.
+  <p class="cal-note">Timed events use <code>start</code> and <code>end</code> timestamps with explicit offsets.
 All-day dates have an exclusive end. Set <code>timezone</code> for display and <code>days=1</code> or <code>days=7</code>;
 resource bookings also name an ID from the <code>resources</code> map. Overlaps are shown, not resolved.</p>
 @else@
-<p class="cal-note">Use <code>sunday</code> to start weeks on Sunday, <code>holidays='nl'</code> to mark public holidays,
+  <p class="cal-note">Use <code>sunday</code> to start weeks on Sunday, <code>holidays='nl'</code> to mark public holidays,
 or <code>query='schedule'</code> to give this calendar its own navigation parameter.
 Omit the date parameter to browse periods with the previous and next links.</p>
 {/pad:if}

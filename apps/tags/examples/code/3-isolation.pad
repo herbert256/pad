@@ -1,5 +1,29 @@
 {pad:meta title='plain, reset, clean and sandbox', about='Whether a variable set inside the pass is still there after it.'/}
-<p>plain: [{pad:code}{pad:set $made1 = 'kept'/}{/pad:code}{$made1 | optional}]</p>
-<p>reset: [{pad:code reset}{pad:set $made2 = 'kept'/}{/pad:code}{$made2 | optional}]</p>
-<p>clean: [{pad:code clean}{pad:set $made3 = 'kept'/}{/pad:code}{$made3 | optional}]</p>
-<p>sandbox: [{pad:code sandbox}{pad:set $made4 = 'kept'/}{/pad:code}{$made4 | optional}]</p>
+<p>
+  plain: [
+  {pad:code}
+    {pad:set $made1 = 'kept'/}
+  {/pad:code}
+  {$made1 | optional}]
+</p>
+<p>
+  reset: [
+  {pad:code reset}
+    {pad:set $made2 = 'kept'/}
+  {/pad:code}
+  {$made2 | optional}]
+</p>
+<p>
+  clean: [
+  {pad:code clean}
+    {pad:set $made3 = 'kept'/}
+  {/pad:code}
+  {$made3 | optional}]
+</p>
+<p>
+  sandbox: [
+  {pad:code sandbox}
+    {pad:set $made4 = 'kept'/}
+  {/pad:code}
+  {$made4 | optional}]
+</p>

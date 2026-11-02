@@ -1,7 +1,18 @@
 <table>
-  <tr><th>Artist</th><th class="n">Albums</th><th>Years</th></tr>
+  <tr>
+    <th>Artist</th>
+    <th class="n">Albums</th>
+    <th>Years</th>
+  </tr>
   {select:albums fields="artist_id, count(*) as n, min(released) as first, max(released) as last",
-          group="artist_id", having="count(*) > $least", order="n desc, first"}
-  <tr><td>{select:artists}{$name}{/select:artists}</td><td class="n">{$n}</td><td>{$first} - {$last}</td></tr>
+    group="artist_id",
+    having="count(*) > $least",
+    order="n desc, first"
+  }
+    <tr>
+      <td>{select:artists}{$name}{/select:artists}</td>
+      <td class="n">{$n}</td>
+      <td>{$first} - {$last}</td>
+    </tr>
   {/select:albums}
 </table>

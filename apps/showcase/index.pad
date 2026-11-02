@@ -1,5 +1,4 @@
 <div class="page home">
-
   <section class="hero">
     <div class="hero-text">
       <span class="kicker">PAD · tags</span>
@@ -15,23 +14,22 @@
   {include:owners/}
 
   {array:sections}
-  <section class="family" id="{$family}">
-    <header class="family-head">
-      <h2>{$label}</h2>
-      <span class="family-line">{$tagline}</span>
-    </header>
-    <div class="cards">
-      {array:examples}
-      <article class="card">
-        <div class="card-chart" inert>{pad:page $page/}</div>
-        <div class="card-body">
-          <a class="card-title" href="?{$page}">{$title}</a>
-          <span class="card-text">{$text}</span>
-        </div>
-      </article>
-      {/array:examples}
-    </div>
-  </section>
+    <section class="family" id="{$family}">
+      <header class="family-head">
+        <h2>{$label}</h2>
+        <span class="family-line">{$tagline}</span>
+      </header>
+      <div class="cards">
+        {array:examples}
+          <article class="card">
+            <div class="card-chart" inert>{pad:page $page/}</div>
+            <div class="card-body">
+              <a class="card-title" href="?{$page}">{$title}</a>
+              <span class="card-text">{$text}</span>
+            </div>
+          </article>
+        {/array:examples}
+      </div>
+    </section>
   {/array:sections}
-
 </div>

@@ -1,5 +1,3 @@
-
-
 <p>Some values differ per machine and must not stand in the code: the database password, an
 API key, a debug switch. <code>padEnv</code> reads them from the server's environment or from
 a <code>.env</code> file beside the code, so the same application runs unchanged on a laptop
@@ -22,45 +20,54 @@ MANUAL_DEBUG=false</code></pre>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/environment_and_cache_1.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/environment_and_cache_1.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// apps/manual/.env holds MANUAL_SITE_NAME,<br>  // MANUAL_PAGE_SIZE and MANUAL_DEBUG.<br><br>  </span><span style="color: #0000BB">$site  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_SITE_NAME'</span><span style="color: #007700">, </span><span style="color: #DD0000">'My site' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$rows  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_PAGE_SIZE'</span><span style="color: #007700">, </span><span style="color: #0000BB">25 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$debug </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_DEBUG'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'on' </span><span style="color: #007700">: </span><span style="color: #DD0000">'off'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$maps  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_MAPS_KEY'</span><span style="color: #007700">, </span><span style="color: #DD0000">'not set' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/environment_and_cache_1.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIDxsaT5TaXRlOiB7JHNpdGV9PC9saT5cbiAgPGxpPlJvd3MgYSBwYWdlOiB7JHJvd3N9PC9saT5cbiAgPGxpPkRlYnVnZ2luZzogeyRkZWJ1Z308L2xpPlxuICA8bGk+TWFwcyBrZXk6IHskbWFwc308L2xpPlxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBhcHBzL21hbnVhbC8uZW52IGhvbGRzIE1BTlVBTF9TSVRFX05BTUUsXG4gIC8vIE1BTlVBTF9QQUdFX1NJWkUgYW5kIE1BTlVBTF9ERUJVRy5cblxuICAkc2l0ZSAgPSBwYWRFbnYgKCAnTUFOVUFMX1NJVEVfTkFNRScsICdNeSBzaXRlJyApO1xuICAkcm93cyAgPSBwYWRFbnYgKCAnTUFOVUFMX1BBR0VfU0laRScsIDI1ICk7XG4gICRkZWJ1ZyA9IHBhZEVudiAoICdNQU5VQUxfREVCVUcnLCBUUlVFICkgPyAnb24nIDogJ29mZic7XG4gICRtYXBzICA9IHBhZEVudiAoICdNQU5VQUxfTUFQU19LRVknLCAnbm90IHNldCcgKTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIDxsaT5TaXRlOiB7JHNpdGV9PC9saT5cbiAgPGxpPlJvd3MgYSBwYWdlOiB7JHJvd3N9PC9saT5cbiAgPGxpPkRlYnVnZ2luZzogeyRkZWJ1Z308L2xpPlxuICA8bGk+TWFwcyBrZXk6IHskbWFwc308L2xpPlxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBhcHBzL21hbnVhbC8uZW52IGhvbGRzIE1BTlVBTF9TSVRFX05BTUUsXG4gIC8vIE1BTlVBTF9QQUdFX1NJWkUgYW5kIE1BTlVBTF9ERUJVRy5cblxuICAkc2l0ZSAgPSBwYWRFbnYgKCAnTUFOVUFMX1NJVEVfTkFNRScsICdNeSBzaXRlJyApO1xuICAkcm93cyAgPSBwYWRFbnYgKCAnTUFOVUFMX1BBR0VfU0laRScsIDI1ICk7XG4gICRkZWJ1ZyA9IHBhZEVudiAoICdNQU5VQUxfREVCVUcnLCBUUlVFICkgPyAnb24nIDogJ29mZic7XG4gICRtYXBzICA9IHBhZEVudiAoICdNQU5VQUxfTUFQU19LRVknLCAnbm90IHNldCcgKTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  &lt;li&gt;Site: <b>{<font color="green"><font color="red">$</font>site</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Rows a page: <b>{<font color="green"><font color="red">$</font>rows</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Debugging: <b>{<font color="green"><font color="red">$</font>debug</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Maps key: <b>{<font color="green"><font color="red">$</font>maps</font>}</b>&lt;/li&gt;<br>&lt;/ul&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/environment_and_cache_1.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// apps/manual/.env holds MANUAL_SITE_NAME,<br>  // MANUAL_PAGE_SIZE and MANUAL_DEBUG.<br><br>  </span><span style="color: #0000BB">$site  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_SITE_NAME'</span><span style="color: #007700">, </span><span style="color: #DD0000">'My site' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$rows  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_PAGE_SIZE'</span><span style="color: #007700">, </span><span style="color: #0000BB">25 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$debug </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_DEBUG'</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ? </span><span style="color: #DD0000">'on' </span><span style="color: #007700">: </span><span style="color: #DD0000">'off'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$maps  </span><span style="color: #007700">= </span><span style="color: #0000BB">padEnv </span><span style="color: #007700">( </span><span style="color: #DD0000">'MANUAL_MAPS_KEY'</span><span style="color: #007700">, </span><span style="color: #DD0000">'not set' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIDxsaT5TaXRlOiB7JHNpdGV9PC9saT5cbiAgPGxpPlJvd3MgYSBwYWdlOiB7JHJvd3N9PC9saT5cbiAgPGxpPkRlYnVnZ2luZzogeyRkZWJ1Z308L2xpPlxuICA8bGk+TWFwcyBrZXk6IHskbWFwc308L2xpPlxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBhcHBzL21hbnVhbC8uZW52IGhvbGRzIE1BTlVBTF9TSVRFX05BTUUsXG4gIC8vIE1BTlVBTF9QQUdFX1NJWkUgYW5kIE1BTlVBTF9ERUJVRy5cblxuICAkc2l0ZSAgPSBwYWRFbnYgKCAnTUFOVUFMX1NJVEVfTkFNRScsICdNeSBzaXRlJyApO1xuICAkcm93cyAgPSBwYWRFbnYgKCAnTUFOVUFMX1BBR0VfU0laRScsIDI1ICk7XG4gICRkZWJ1ZyA9IHBhZEVudiAoICdNQU5VQUxfREVCVUcnLCBUUlVFICkgPyAnb24nIDogJ29mZic7XG4gICRtYXBzICA9IHBhZEVudiAoICdNQU5VQUxfTUFQU19LRVknLCAnbm90IHNldCcgKTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIDxsaT5TaXRlOiB7JHNpdGV9PC9saT5cbiAgPGxpPlJvd3MgYSBwYWdlOiB7JHJvd3N9PC9saT5cbiAgPGxpPkRlYnVnZ2luZzogeyRkZWJ1Z308L2xpPlxuICA8bGk+TWFwcyBrZXk6IHskbWFwc308L2xpPlxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBhcHBzL21hbnVhbC8uZW52IGhvbGRzIE1BTlVBTF9TSVRFX05BTUUsXG4gIC8vIE1BTlVBTF9QQUdFX1NJWkUgYW5kIE1BTlVBTF9ERUJVRy5cblxuICAkc2l0ZSAgPSBwYWRFbnYgKCAnTUFOVUFMX1NJVEVfTkFNRScsICdNeSBzaXRlJyApO1xuICAkcm93cyAgPSBwYWRFbnYgKCAnTUFOVUFMX1BBR0VfU0laRScsIDI1ICk7XG4gICRkZWJ1ZyA9IHBhZEVudiAoICdNQU5VQUxfREVCVUcnLCBUUlVFICkgPyAnb24nIDogJ29mZic7XG4gICRtYXBzICA9IHBhZEVudiAoICdNQU5VQUxfTUFQU19LRVknLCAnbm90IHNldCcgKTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  &lt;li&gt;Site: <b>{<font color="green"><font color="red">$</font>site</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Rows a page: <b>{<font color="green"><font color="red">$</font>rows</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Debugging: <b>{<font color="green"><font color="red">$</font>debug</font>}</b>&lt;/li&gt;<br>  &lt;li&gt;Maps key: <b>{<font color="green"><font color="red">$</font>maps</font>}</b>&lt;/li&gt;<br>&lt;/ul&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <ul>
   <li>Site: PAD manual</li>
   <li>Rows a page: 20</li>
@@ -70,15 +77,14 @@ MANUAL_DEBUG=false</code></pre>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -129,62 +135,76 @@ by hand.</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/environment_and_cache_2.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/environment_and_cache_2.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The first request of the next ten minutes runs the callback;<br>  // the others get what it left in the cache, without asking the<br>  // source again.<br><br>  </span><span style="color: #0000BB">$rates </span><span style="color: #007700">= </span><span style="color: #0000BB">padRemember </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-rates'</span><span style="color: #007700">, </span><span style="color: #0000BB">600</span><span style="color: #007700">, function () {<br>    return [ [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'EUR'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rate' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1.00' </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'USD'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rate' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1.08' </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'GBP'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rate' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'0.86' </span><span style="color: #007700">] ];<br>  } );<br><br>  </span><span style="color: #0000BB">padCachePut </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-notice'</span><span style="color: #007700">,<br>                </span><span style="color: #DD0000">'Maintenance on Sunday night'</span><span style="color: #007700">,<br>                </span><span style="color: #0000BB">3600 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$notice  </span><span style="color: #007700">= </span><span style="color: #0000BB">padCacheGet </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-notice'</span><span style="color: #007700">, </span><span style="color: #DD0000">'No notice' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$nothing </span><span style="color: #007700">= </span><span style="color: #0000BB">padCacheGet </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-nothing-kept'</span><span style="color: #007700">,<br>                           </span><span style="color: #DD0000">'Nothing kept under this key' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/environment_and_cache_2.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHthcnJheTpyYXRlc308bGk+eyRjb2RlfTogeyRyYXRlfTwvbGk+ey9hcnJheTpyYXRlc31cbjwvdWw+XG48cD57JG5vdGljZX08L3A+XG48cD57JG5vdGhpbmd9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBmaXJzdCByZXF1ZXN0IG9mIHRoZSBuZXh0IHRlbiBtaW51dGVzIHJ1bnMgdGhlIGNhbGxiYWNrO1xuICAvLyB0aGUgb3RoZXJzIGdldCB3aGF0IGl0IGxlZnQgaW4gdGhlIGNhY2hlLCB3aXRob3V0IGFza2luZyB0aGVcbiAgLy8gc291cmNlIGFnYWluLlxuXG4gICRyYXRlcyA9IHBhZFJlbWVtYmVyICggJ21hbnVhbC1yYXRlcycsIDYwMCwgZnVuY3Rpb24gKCkge1xuICAgIHJldHVybiBbIFsgJ2NvZGUnID0+ICdFVVInLCAncmF0ZScgPT4gJzEuMDAnIF0sXG4gICAgICAgICAgICAgWyAnY29kZScgPT4gJ1VTRCcsICdyYXRlJyA9PiAnMS4wOCcgXSxcbiAgICAgICAgICAgICBbICdjb2RlJyA9PiAnR0JQJywgJ3JhdGUnID0+ICcwLjg2JyBdIF07XG4gIH0gKTtcblxuICBwYWRDYWNoZVB1dCAoICdtYW51YWwtbm90aWNlJyxcbiAgICAgICAgICAgICAgICAnTWFpbnRlbmFuY2Ugb24gU3VuZGF5IG5pZ2h0JyxcbiAgICAgICAgICAgICAgICAzNjAwICk7XG5cbiAgJG5vdGljZSAgPSBwYWRDYWNoZUdldCAoICdtYW51YWwtbm90aWNlJywgJ05vIG5vdGljZScgKTtcbiAgJG5vdGhpbmcgPSBwYWRDYWNoZUdldCAoICdtYW51YWwtbm90aGluZy1rZXB0JyxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICdOb3RoaW5nIGtlcHQgdW5kZXIgdGhpcyBrZXknICk7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHthcnJheTpyYXRlc308bGk+eyRjb2RlfTogeyRyYXRlfTwvbGk+ey9hcnJheTpyYXRlc31cbjwvdWw+XG48cD57JG5vdGljZX08L3A+XG48cD57JG5vdGhpbmd9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSBmaXJzdCByZXF1ZXN0IG9mIHRoZSBuZXh0IHRlbiBtaW51dGVzIHJ1bnMgdGhlIGNhbGxiYWNrO1xuICAvLyB0aGUgb3RoZXJzIGdldCB3aGF0IGl0IGxlZnQgaW4gdGhlIGNhY2hlLCB3aXRob3V0IGFza2luZyB0aGVcbiAgLy8gc291cmNlIGFnYWluLlxuXG4gICRyYXRlcyA9IHBhZFJlbWVtYmVyICggJ21hbnVhbC1yYXRlcycsIDYwMCwgZnVuY3Rpb24gKCkge1xuICAgIHJldHVybiBbIFsgJ2NvZGUnID0+ICdFVVInLCAncmF0ZScgPT4gJzEuMDAnIF0sXG4gICAgICAgICAgICAgWyAnY29kZScgPT4gJ1VTRCcsICdyYXRlJyA9PiAnMS4wOCcgXSxcbiAgICAgICAgICAgICBbICdjb2RlJyA9PiAnR0JQJywgJ3JhdGUnID0+ICcwLjg2JyBdIF07XG4gIH0gKTtcblxuICBwYWRDYWNoZVB1dCAoICdtYW51YWwtbm90aWNlJyxcbiAgICAgICAgICAgICAgICAnTWFpbnRlbmFuY2Ugb24gU3VuZGF5IG5pZ2h0JyxcbiAgICAgICAgICAgICAgICAzNjAwICk7XG5cbiAgJG5vdGljZSAgPSBwYWRDYWNoZUdldCAoICdtYW51YWwtbm90aWNlJywgJ05vIG5vdGljZScgKTtcbiAgJG5vdGhpbmcgPSBwYWRDYWNoZUdldCAoICdtYW51YWwtbm90aGluZy1rZXB0JyxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICdOb3RoaW5nIGtlcHQgdW5kZXIgdGhpcyBrZXknICk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>rates</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>code</font>}</b>: <b>{<font color="green"><font color="red">$</font>rate</font>}</b>&lt;/li&gt;<b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>rates</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>notice</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>nothing</font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/environment_and_cache_2.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The first request of the next ten minutes runs the callback;<br>  // the others get what it left in the cache, without asking the<br>  // source again.<br><br>  </span><span style="color: #0000BB">$rates </span><span style="color: #007700">= </span><span style="color: #0000BB">padRemember </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-rates'</span><span style="color: #007700">, </span><span style="color: #0000BB">600</span><span style="color: #007700">, function () {<br>    return [ [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'EUR'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rate' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1.00' </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'USD'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rate' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'1.08' </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'code' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'GBP'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rate' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'0.86' </span><span style="color: #007700">] ];<br>  } );<br><br>  </span><span style="color: #0000BB">padCachePut </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-notice'</span><span style="color: #007700">,<br>                </span><span style="color: #DD0000">'Maintenance on Sunday night'</span><span style="color: #007700">,<br>                </span><span style="color: #0000BB">3600 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$notice  </span><span style="color: #007700">= </span><span style="color: #0000BB">padCacheGet </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-notice'</span><span style="color: #007700">, </span><span style="color: #DD0000">'No notice' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$nothing </span><span style="color: #007700">= </span><span style="color: #0000BB">padCacheGet </span><span style="color: #007700">( </span><span style="color: #DD0000">'manual-nothing-kept'</span><span style="color: #007700">,<br>                           </span><span style="color: #DD0000">'Nothing kept under this key' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHthcnJheTpyYXRlc31cbiAgICA8bGk+eyRjb2RlfTogeyRyYXRlfTwvbGk+XG4gIHsvYXJyYXk6cmF0ZXN9XG48L3VsPlxuPHA+eyRub3RpY2V9PC9wPlxuPHA+eyRub3RoaW5nfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBUaGUgZmlyc3QgcmVxdWVzdCBvZiB0aGUgbmV4dCB0ZW4gbWludXRlcyBydW5zIHRoZSBjYWxsYmFjaztcbiAgLy8gdGhlIG90aGVycyBnZXQgd2hhdCBpdCBsZWZ0IGluIHRoZSBjYWNoZSwgd2l0aG91dCBhc2tpbmcgdGhlXG4gIC8vIHNvdXJjZSBhZ2Fpbi5cblxuICAkcmF0ZXMgPSBwYWRSZW1lbWJlciAoICdtYW51YWwtcmF0ZXMnLCA2MDAsIGZ1bmN0aW9uICgpIHtcbiAgICByZXR1cm4gWyBbICdjb2RlJyA9PiAnRVVSJywgJ3JhdGUnID0+ICcxLjAwJyBdLFxuICAgICAgICAgICAgIFsgJ2NvZGUnID0+ICdVU0QnLCAncmF0ZScgPT4gJzEuMDgnIF0sXG4gICAgICAgICAgICAgWyAnY29kZScgPT4gJ0dCUCcsICdyYXRlJyA9PiAnMC44NicgXSBdO1xuICB9ICk7XG5cbiAgcGFkQ2FjaGVQdXQgKCAnbWFudWFsLW5vdGljZScsXG4gICAgICAgICAgICAgICAgJ01haW50ZW5hbmNlIG9uIFN1bmRheSBuaWdodCcsXG4gICAgICAgICAgICAgICAgMzYwMCApO1xuXG4gICRub3RpY2UgID0gcGFkQ2FjaGVHZXQgKCAnbWFudWFsLW5vdGljZScsICdObyBub3RpY2UnICk7XG4gICRub3RoaW5nID0gcGFkQ2FjaGVHZXQgKCAnbWFudWFsLW5vdGhpbmcta2VwdCcsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAnTm90aGluZyBrZXB0IHVuZGVyIHRoaXMga2V5JyApO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHthcnJheTpyYXRlc31cbiAgICA8bGk+eyRjb2RlfTogeyRyYXRlfTwvbGk+XG4gIHsvYXJyYXk6cmF0ZXN9XG48L3VsPlxuPHA+eyRub3RpY2V9PC9wPlxuPHA+eyRub3RoaW5nfTwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBUaGUgZmlyc3QgcmVxdWVzdCBvZiB0aGUgbmV4dCB0ZW4gbWludXRlcyBydW5zIHRoZSBjYWxsYmFjaztcbiAgLy8gdGhlIG90aGVycyBnZXQgd2hhdCBpdCBsZWZ0IGluIHRoZSBjYWNoZSwgd2l0aG91dCBhc2tpbmcgdGhlXG4gIC8vIHNvdXJjZSBhZ2Fpbi5cblxuICAkcmF0ZXMgPSBwYWRSZW1lbWJlciAoICdtYW51YWwtcmF0ZXMnLCA2MDAsIGZ1bmN0aW9uICgpIHtcbiAgICByZXR1cm4gWyBbICdjb2RlJyA9PiAnRVVSJywgJ3JhdGUnID0+ICcxLjAwJyBdLFxuICAgICAgICAgICAgIFsgJ2NvZGUnID0+ICdVU0QnLCAncmF0ZScgPT4gJzEuMDgnIF0sXG4gICAgICAgICAgICAgWyAnY29kZScgPT4gJ0dCUCcsICdyYXRlJyA9PiAnMC44NicgXSBdO1xuICB9ICk7XG5cbiAgcGFkQ2FjaGVQdXQgKCAnbWFudWFsLW5vdGljZScsXG4gICAgICAgICAgICAgICAgJ01haW50ZW5hbmNlIG9uIFN1bmRheSBuaWdodCcsXG4gICAgICAgICAgICAgICAgMzYwMCApO1xuXG4gICRub3RpY2UgID0gcGFkQ2FjaGVHZXQgKCAnbWFudWFsLW5vdGljZScsICdObyBub3RpY2UnICk7XG4gICRub3RoaW5nID0gcGFkQ2FjaGVHZXQgKCAnbWFudWFsLW5vdGhpbmcta2VwdCcsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAnTm90aGluZyBrZXB0IHVuZGVyIHRoaXMga2V5JyApO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>rates</font><font color="red"></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>code</font>}</b>: <b>{<font color="green"><font color="red">$</font>rate</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>rates</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>notice</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>nothing</font>}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <ul>
-  <li>EUR: 1.00</li><li>USD: 1.08</li><li>GBP: 0.86</li>
+  
+    <li>EUR: 1.00</li>
+  
+    <li>USD: 1.08</li>
+  
+    <li>GBP: 0.86</li>
+  
 </ul>
 <p>Maintenance on Sunday night</p>
 <p>Nothing kept under this key</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -217,61 +237,83 @@ on the account that is tried.</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/environment_and_cache_3.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/environment_and_cache_3.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Five login attempts a minute. A page of your own keys it on<br>  // the visitor - 'login:' . $_SERVER ['REMOTE_ADDR'] - this<br>  // example on a key of its own, so every reader of this page<br>  // starts from nothing.<br><br>  </span><span style="color: #0000BB">$key   </span><span style="color: #007700">= </span><span style="color: #DD0000">'login:' </span><span style="color: #007700">. </span><span style="color: #0000BB">padRandomString </span><span style="color: #007700">( </span><span style="color: #0000BB">8 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$tries </span><span style="color: #007700">= [];<br><br>  for ( </span><span style="color: #0000BB">$try </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$try </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">7</span><span style="color: #007700">; </span><span style="color: #0000BB">$try</span><span style="color: #007700">++ ) {<br>    </span><span style="color: #0000BB">$allowed  </span><span style="color: #007700">= </span><span style="color: #0000BB">padRateLimit </span><span style="color: #007700">( </span><span style="color: #0000BB">$key</span><span style="color: #007700">, </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #0000BB">60 </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$tries </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'try'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$try</span><span style="color: #007700">,<br>                  </span><span style="color: #DD0000">'answer' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$allowed </span><span style="color: #007700">? </span><span style="color: #DD0000">'allowed' </span><span style="color: #007700">: </span><span style="color: #DD0000">'too many' </span><span style="color: #007700">];<br>  }<br><br>  </span><span style="color: #0000BB">$left    </span><span style="color: #007700">= </span><span style="color: #0000BB">padRateLimitRemaining </span><span style="color: #007700">( </span><span style="color: #0000BB">$key</span><span style="color: #007700">, </span><span style="color: #0000BB">5 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$minutes </span><span style="color: #007700">= </span><span style="color: #0000BB">ceil </span><span style="color: #007700">( </span><span style="color: #0000BB">padRateLimitAvailableIn </span><span style="color: #007700">( </span><span style="color: #0000BB">$key </span><span style="color: #007700">) / </span><span style="color: #0000BB">60 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padRateLimitClear </span><span style="color: #007700">( </span><span style="color: #0000BB">$key </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/environment_and_cache_3.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHthcnJheTp0cmllc308bGk+QXR0ZW1wdCB7JHRyeX06IHskYW5zd2VyfTwvbGk+ey9hcnJheTp0cmllc31cbjwvdWw+XG48cD57JGxlZnR9IGF0dGVtcHRzIGxlZnQgLSB0cnkgYWdhaW4gaW4geyRtaW51dGVzfSBtaW51dGUuPC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIEZpdmUgbG9naW4gYXR0ZW1wdHMgYSBtaW51dGUuIEEgcGFnZSBvZiB5b3VyIG93biBrZXlzIGl0IG9uXG4gIC8vIHRoZSB2aXNpdG9yIC0gJ2xvZ2luOicgLiAkX1NFUlZFUiBbJ1JFTU9URV9BRERSJ10gLSB0aGlzXG4gIC8vIGV4YW1wbGUgb24gYSBrZXkgb2YgaXRzIG93biwgc28gZXZlcnkgcmVhZGVyIG9mIHRoaXMgcGFnZVxuICAvLyBzdGFydHMgZnJvbSBub3RoaW5nLlxuXG4gICRrZXkgICA9ICdsb2dpbjonIC4gcGFkUmFuZG9tU3RyaW5nICggOCApO1xuICAkdHJpZXMgPSBbXTtcblxuICBmb3IgKCAkdHJ5ID0gMTsgJHRyeSA8PSA3OyAkdHJ5KysgKSB7XG4gICAgJGFsbG93ZWQgID0gcGFkUmF0ZUxpbWl0ICggJGtleSwgNSwgNjAgKTtcbiAgICAkdHJpZXMgW10gPSBbICd0cnknICAgID0+ICR0cnksXG4gICAgICAgICAgICAgICAgICAnYW5zd2VyJyA9PiAkYWxsb3dlZCA/ICdhbGxvd2VkJyA6ICd0b28gbWFueScgXTtcbiAgfVxuXG4gICRsZWZ0ICAgID0gcGFkUmF0ZUxpbWl0UmVtYWluaW5nICggJGtleSwgNSApO1xuICAkbWludXRlcyA9IGNlaWwgKCBwYWRSYXRlTGltaXRBdmFpbGFibGVJbiAoICRrZXkgKSAvIDYwICk7XG5cbiAgcGFkUmF0ZUxpbWl0Q2xlYXIgKCAka2V5ICk7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHthcnJheTp0cmllc308bGk+QXR0ZW1wdCB7JHRyeX06IHskYW5zd2VyfTwvbGk+ey9hcnJheTp0cmllc31cbjwvdWw+XG48cD57JGxlZnR9IGF0dGVtcHRzIGxlZnQgLSB0cnkgYWdhaW4gaW4geyRtaW51dGVzfSBtaW51dGUuPC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIEZpdmUgbG9naW4gYXR0ZW1wdHMgYSBtaW51dGUuIEEgcGFnZSBvZiB5b3VyIG93biBrZXlzIGl0IG9uXG4gIC8vIHRoZSB2aXNpdG9yIC0gJ2xvZ2luOicgLiAkX1NFUlZFUiBbJ1JFTU9URV9BRERSJ10gLSB0aGlzXG4gIC8vIGV4YW1wbGUgb24gYSBrZXkgb2YgaXRzIG93biwgc28gZXZlcnkgcmVhZGVyIG9mIHRoaXMgcGFnZVxuICAvLyBzdGFydHMgZnJvbSBub3RoaW5nLlxuXG4gICRrZXkgICA9ICdsb2dpbjonIC4gcGFkUmFuZG9tU3RyaW5nICggOCApO1xuICAkdHJpZXMgPSBbXTtcblxuICBmb3IgKCAkdHJ5ID0gMTsgJHRyeSA8PSA3OyAkdHJ5KysgKSB7XG4gICAgJGFsbG93ZWQgID0gcGFkUmF0ZUxpbWl0ICggJGtleSwgNSwgNjAgKTtcbiAgICAkdHJpZXMgW10gPSBbICd0cnknICAgID0+ICR0cnksXG4gICAgICAgICAgICAgICAgICAnYW5zd2VyJyA9PiAkYWxsb3dlZCA/ICdhbGxvd2VkJyA6ICd0b28gbWFueScgXTtcbiAgfVxuXG4gICRsZWZ0ICAgID0gcGFkUmF0ZUxpbWl0UmVtYWluaW5nICggJGtleSwgNSApO1xuICAkbWludXRlcyA9IGNlaWwgKCBwYWRSYXRlTGltaXRBdmFpbGFibGVJbiAoICRrZXkgKSAvIDYwICk7XG5cbiAgcGFkUmF0ZUxpbWl0Q2xlYXIgKCAka2V5ICk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>tries</font><font color="red"></font>}</b>&lt;li&gt;Attempt <b>{<font color="green"><font color="red">$</font>try</font>}</b>: <b>{<font color="green"><font color="red">$</font>answer</font>}</b>&lt;/li&gt;<b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>tries</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>left</font>}</b> attempts left - try again in <b>{<font color="green"><font color="red">$</font>minutes</font>}</b> minute.&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/environment_and_cache_3.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Five login attempts a minute. A page of your own keys it on<br>  // the visitor - 'login:' . $_SERVER ['REMOTE_ADDR'] - this<br>  // example on a key of its own, so every reader of this page<br>  // starts from nothing.<br><br>  </span><span style="color: #0000BB">$key   </span><span style="color: #007700">= </span><span style="color: #DD0000">'login:' </span><span style="color: #007700">. </span><span style="color: #0000BB">padRandomString </span><span style="color: #007700">( </span><span style="color: #0000BB">8 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$tries </span><span style="color: #007700">= [];<br><br>  for ( </span><span style="color: #0000BB">$try </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$try </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">7</span><span style="color: #007700">; </span><span style="color: #0000BB">$try</span><span style="color: #007700">++ ) {<br>    </span><span style="color: #0000BB">$allowed  </span><span style="color: #007700">= </span><span style="color: #0000BB">padRateLimit </span><span style="color: #007700">( </span><span style="color: #0000BB">$key</span><span style="color: #007700">, </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #0000BB">60 </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$tries </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'try'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$try</span><span style="color: #007700">,<br>                  </span><span style="color: #DD0000">'answer' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$allowed </span><span style="color: #007700">? </span><span style="color: #DD0000">'allowed' </span><span style="color: #007700">: </span><span style="color: #DD0000">'too many' </span><span style="color: #007700">];<br>  }<br><br>  </span><span style="color: #0000BB">$left    </span><span style="color: #007700">= </span><span style="color: #0000BB">padRateLimitRemaining </span><span style="color: #007700">( </span><span style="color: #0000BB">$key</span><span style="color: #007700">, </span><span style="color: #0000BB">5 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$minutes </span><span style="color: #007700">= </span><span style="color: #0000BB">ceil </span><span style="color: #007700">( </span><span style="color: #0000BB">padRateLimitAvailableIn </span><span style="color: #007700">( </span><span style="color: #0000BB">$key </span><span style="color: #007700">) / </span><span style="color: #0000BB">60 </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padRateLimitClear </span><span style="color: #007700">( </span><span style="color: #0000BB">$key </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHthcnJheTp0cmllc31cbiAgICA8bGk+QXR0ZW1wdCB7JHRyeX06IHskYW5zd2VyfTwvbGk+XG4gIHsvYXJyYXk6dHJpZXN9XG48L3VsPlxuPHA+eyRsZWZ0fSBhdHRlbXB0cyBsZWZ0IC0gdHJ5IGFnYWluIGluIHskbWludXRlc30gbWludXRlLjwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBGaXZlIGxvZ2luIGF0dGVtcHRzIGEgbWludXRlLiBBIHBhZ2Ugb2YgeW91ciBvd24ga2V5cyBpdCBvblxuICAvLyB0aGUgdmlzaXRvciAtICdsb2dpbjonIC4gJF9TRVJWRVIgWydSRU1PVEVfQUREUiddIC0gdGhpc1xuICAvLyBleGFtcGxlIG9uIGEga2V5IG9mIGl0cyBvd24sIHNvIGV2ZXJ5IHJlYWRlciBvZiB0aGlzIHBhZ2VcbiAgLy8gc3RhcnRzIGZyb20gbm90aGluZy5cblxuICAka2V5ICAgPSAnbG9naW46JyAuIHBhZFJhbmRvbVN0cmluZyAoIDggKTtcbiAgJHRyaWVzID0gW107XG5cbiAgZm9yICggJHRyeSA9IDE7ICR0cnkgPD0gNzsgJHRyeSsrICkge1xuICAgICRhbGxvd2VkICA9IHBhZFJhdGVMaW1pdCAoICRrZXksIDUsIDYwICk7XG4gICAgJHRyaWVzIFtdID0gWyAndHJ5JyAgICA9PiAkdHJ5LFxuICAgICAgICAgICAgICAgICAgJ2Fuc3dlcicgPT4gJGFsbG93ZWQgPyAnYWxsb3dlZCcgOiAndG9vIG1hbnknIF07XG4gIH1cblxuICAkbGVmdCAgICA9IHBhZFJhdGVMaW1pdFJlbWFpbmluZyAoICRrZXksIDUgKTtcbiAgJG1pbnV0ZXMgPSBjZWlsICggcGFkUmF0ZUxpbWl0QXZhaWxhYmxlSW4gKCAka2V5ICkgLyA2MCApO1xuXG4gIHBhZFJhdGVMaW1pdENsZWFyICggJGtleSApO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHthcnJheTp0cmllc31cbiAgICA8bGk+QXR0ZW1wdCB7JHRyeX06IHskYW5zd2VyfTwvbGk+XG4gIHsvYXJyYXk6dHJpZXN9XG48L3VsPlxuPHA+eyRsZWZ0fSBhdHRlbXB0cyBsZWZ0IC0gdHJ5IGFnYWluIGluIHskbWludXRlc30gbWludXRlLjwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBGaXZlIGxvZ2luIGF0dGVtcHRzIGEgbWludXRlLiBBIHBhZ2Ugb2YgeW91ciBvd24ga2V5cyBpdCBvblxuICAvLyB0aGUgdmlzaXRvciAtICdsb2dpbjonIC4gJF9TRVJWRVIgWydSRU1PVEVfQUREUiddIC0gdGhpc1xuICAvLyBleGFtcGxlIG9uIGEga2V5IG9mIGl0cyBvd24sIHNvIGV2ZXJ5IHJlYWRlciBvZiB0aGlzIHBhZ2VcbiAgLy8gc3RhcnRzIGZyb20gbm90aGluZy5cblxuICAka2V5ICAgPSAnbG9naW46JyAuIHBhZFJhbmRvbVN0cmluZyAoIDggKTtcbiAgJHRyaWVzID0gW107XG5cbiAgZm9yICggJHRyeSA9IDE7ICR0cnkgPD0gNzsgJHRyeSsrICkge1xuICAgICRhbGxvd2VkICA9IHBhZFJhdGVMaW1pdCAoICRrZXksIDUsIDYwICk7XG4gICAgJHRyaWVzIFtdID0gWyAndHJ5JyAgICA9PiAkdHJ5LFxuICAgICAgICAgICAgICAgICAgJ2Fuc3dlcicgPT4gJGFsbG93ZWQgPyAnYWxsb3dlZCcgOiAndG9vIG1hbnknIF07XG4gIH1cblxuICAkbGVmdCAgICA9IHBhZFJhdGVMaW1pdFJlbWFpbmluZyAoICRrZXksIDUgKTtcbiAgJG1pbnV0ZXMgPSBjZWlsICggcGFkUmF0ZUxpbWl0QXZhaWxhYmxlSW4gKCAka2V5ICkgLyA2MCApO1xuXG4gIHBhZFJhdGVMaW1pdENsZWFyICggJGtleSApO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>tries</font><font color="red"></font>}</b><br>    &lt;li&gt;Attempt <b>{<font color="green"><font color="red">$</font>try</font>}</b>: <b>{<font color="green"><font color="red">$</font>answer</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>tries</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>left</font>}</b> attempts left - try again in <b>{<font color="green"><font color="red">$</font>minutes</font>}</b> minute.&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <ul>
-  <li>Attempt 1: allowed</li><li>Attempt 2: allowed</li><li>Attempt 3: allowed</li><li>Attempt 4: allowed</li><li>Attempt 5: allowed</li><li>Attempt 6: too many</li><li>Attempt 7: too many</li>
+  
+    <li>Attempt 1: allowed</li>
+  
+    <li>Attempt 2: allowed</li>
+  
+    <li>Attempt 3: allowed</li>
+  
+    <li>Attempt 4: allowed</li>
+  
+    <li>Attempt 5: allowed</li>
+  
+    <li>Attempt 6: too many</li>
+  
+    <li>Attempt 7: too many</li>
+  
 </ul>
 <p>0 attempts left - try again in 1 minute.</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -289,16 +331,52 @@ on the account that is tried.</p>
 </ul>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>function</th><th>what it does</th></tr>
-  <tr><td><code>padEnv ( $key, $default = NULL )</code></td><td>the value of an environment key - the real environment, then the application's <code>.env</code>, then <code>_common</code>'s, then the PAD home's <code>.env</code>, else the default</td></tr>
-  <tr><td><code>padCacheGet ( $key, $default = NULL )</code></td><td>the value kept under the key, else the default</td></tr>
-  <tr><td><code>padCachePut ( $key, $value, $ttl = 3600 )</code></td><td>keeps the value for <code>$ttl</code> seconds - <code>NULL</code> for ever; TRUE when it is kept</td></tr>
-  <tr><td><code>padCacheHas ( $key )</code></td><td>whether the key holds a value that has not expired</td></tr>
-  <tr><td><code>padCacheForget ( $key )</code></td><td>removes the key; TRUE when it held a value</td></tr>
-  <tr><td><code>padCacheFlush ()</code></td><td>removes every entry of this application, rate limits included</td></tr>
-  <tr><td><code>padRemember ( $key, $ttl, $callback )</code></td><td>the kept value, or the callback's answer - kept for <code>$ttl</code> seconds</td></tr>
-  <tr><td><code>padRateLimit ( $key, $maxAttempts, $decaySeconds = 60 )</code></td><td>counts a hit: TRUE within the limit, FALSE over it</td></tr>
-  <tr><td><code>padRateLimitRemaining ( $key, $maxAttempts )</code></td><td>the hits left in the current window</td></tr>
-  <tr><td><code>padRateLimitAvailableIn ( $key )</code></td><td>the seconds until the current window ends</td></tr>
-  <tr><td><code>padRateLimitClear ( $key )</code></td><td>ends the window - the key starts from nothing</td></tr>
+  <tr>
+    <th>function</th>
+    <th>what it does</th>
+  </tr>
+  <tr>
+    <td><code>padEnv ( $key, $default = NULL )</code></td>
+    <td>the value of an environment key - the real environment, then the application's <code>.env</code>, then <code>_common</code>'s, then the PAD home's <code>.env</code>, else the default</td>
+  </tr>
+  <tr>
+    <td><code>padCacheGet ( $key, $default = NULL )</code></td>
+    <td>the value kept under the key, else the default</td>
+  </tr>
+  <tr>
+    <td><code>padCachePut ( $key, $value, $ttl = 3600 )</code></td>
+    <td>keeps the value for <code>$ttl</code> seconds - <code>NULL</code> for ever; TRUE when it is kept</td>
+  </tr>
+  <tr>
+    <td><code>padCacheHas ( $key )</code></td>
+    <td>whether the key holds a value that has not expired</td>
+  </tr>
+  <tr>
+    <td><code>padCacheForget ( $key )</code></td>
+    <td>removes the key; TRUE when it held a value</td>
+  </tr>
+  <tr>
+    <td><code>padCacheFlush ()</code></td>
+    <td>removes every entry of this application, rate limits included</td>
+  </tr>
+  <tr>
+    <td><code>padRemember ( $key, $ttl, $callback )</code></td>
+    <td>the kept value, or the callback's answer - kept for <code>$ttl</code> seconds</td>
+  </tr>
+  <tr>
+    <td><code>padRateLimit ( $key, $maxAttempts, $decaySeconds = 60 )</code></td>
+    <td>counts a hit: TRUE within the limit, FALSE over it</td>
+  </tr>
+  <tr>
+    <td><code>padRateLimitRemaining ( $key, $maxAttempts )</code></td>
+    <td>the hits left in the current window</td>
+  </tr>
+  <tr>
+    <td><code>padRateLimitAvailableIn ( $key )</code></td>
+    <td>the seconds until the current window ends</td>
+  </tr>
+  <tr>
+    <td><code>padRateLimitClear ( $key )</code></td>
+    <td>ends the window - the key starts from nothing</td>
+  </tr>
 </table>

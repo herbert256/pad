@@ -1,9 +1,11 @@
 <h3>Labels and their artists</h3>
 {select:labels}
-<p><b>{$name}</b> ({$country}): {select:artists}{$name}{property:notLast@artists}, {/property:notLast@artists}{/select:artists}</p>
+  <p><b>{$name}</b> ({$country}): {select:artists}{$name}{property:notLast@artists}, {/property:notLast@artists}{/select:artists}</p>
 {/select:labels}
 
 <h3>Artists and their label</h3>
 <ul>
-  {select:artists}<li>{$name}: {select:labels}{$name}@else@<em>not signed</em>{/select:labels}</li>{/select:artists}
+  {select:artists}
+    <li>{$name}: {select:labels}{$name}@else@<em>not signed</em>{/select:labels}</li>
+  {/select:artists}
 </ul>

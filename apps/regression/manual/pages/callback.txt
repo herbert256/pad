@@ -1,7 +1,7 @@
 <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
   <tr>
     <td>
-<p>
+  <p>
 It's possible to put a PHP file in the directory '_callbacks' that is called back at the processing of a pad tag.<br>
 - With option 'before' the callback happens for every occurrence before the processing of the ocurrences.<br>
 - Without 'before' the callback happens during the processing of the occurrences, as each one is processed.
@@ -14,47 +14,55 @@ It's possible to put a PHP file in the directory '_callbacks' that is called bac
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">_callbacks/before.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">callback/before.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">switch (</span><span style="color: #0000BB">$padCallback</span><span style="color: #007700">) {<br><br>    case </span><span style="color: #DD0000">'init'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'row'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'total'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'salary'</span><span style="color: #007700">] + </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'bonus'</span><span style="color: #007700">];<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+= </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'salary'</span><span style="color: #007700">];<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">+= </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'bonus'</span><span style="color: #007700">];<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'exit'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$totalTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonusTotal </span><span style="color: #007700">;<br><br>        break;<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">_callbacks/before.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dGFibGUgYm9yZGVyPTE+XG5cbiAgPHRyPlxuICAgIDx0aD5OYW1lPC90aD5cbiAgICA8dGg+U2FsYXJ5PC90aD5cbiAgICA8dGg+Qm9udXM8L3RoPlxuICAgIDx0aD5Ub3RhbDwvdGg+XG4gIDwvdHI+XG4gIFxuICB7bG9jYWw6c3RhZmYgY2FsbGJhY2s9J2JlZm9yZS5waHAnLCBiZWZvcmV9XG5cbiAgICB7cHJvcGVydHk6Zmlyc3R9XG4gICAgICA8dHI+XG4gICAgICAgIDx0ZD5Ub3RhbHM8L3RkPlxuICAgICAgICA8dGQ+eyRzYWxhcnlUb3RhbCB8ICUuMmZ9PC90ZD5cbiAgICAgICAgPHRkPnskYm9udXNUb3RhbCAgfCAlLjJmfTwvdGQ+XG4gICAgICAgIDx0ZD57JHRvdGFsVG90YWwgIHwgJS4yZn08L3RkPlxuICAgICAgPC90cj5cbiAgICB7L3Byb3BlcnR5OmZpcnN0fVxuXG4gICAgPHRyIGFsaWduPVwicmlnaHRcIiBiZ2NvbG9yPVwie3BhZDpzd2l0Y2ggJ3llbGxvdycsICdwaW5rJy99XCI+XG4gICAgICA8dGQgYWxpZ249XCJsZWZ0XCI+eyRuYW1lIHwgY2FwaXRhbGl6ZX08L3RkPlxuICAgICAgPHRkPnskc2FsYXJ5IHwgJS4yZn08L3RkPlxuICAgICAgPHRkPnskYm9udXMgIHwgJS4yZn08L3RkPlxuICAgICAgPHRkPnskdG90YWwgIHwgJS4yZn08L3RkPlxuICAgIDwvdHI+XG5cbiAgey9sb2NhbDpzdGFmZn1cbiBcbjwvdGFibGU+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgc3dpdGNoICgkcGFkQ2FsbGJhY2spIHtcblxuICAgIGNhc2UgJ2luaXQnOlxuXG4gICAgICAgICRzYWxhcnlUb3RhbCA9IDA7XG4gICAgICAgICRib251c1RvdGFsICA9IDA7XG5cbiAgICAgICAgYnJlYWs7XG5cbiAgICBjYXNlICdyb3cnOlxuXG4gICAgICAgICRyb3cgWyd0b3RhbCddID0gJHJvdyBbJ3NhbGFyeSddICsgJHJvdyBbJ2JvbnVzJ107XG5cbiAgICAgICAgJHNhbGFyeVRvdGFsICs9ICRyb3cgWydzYWxhcnknXTtcbiAgICAgICAgJGJvbnVzVG90YWwgICs9ICRyb3cgWydib251cyddO1xuXG4gICAgICAgIGJyZWFrO1xuXG4gICAgY2FzZSAnZXhpdCc6XG5cbiAgICAgICAgJHRvdGFsVG90YWwgPSAkc2FsYXJ5VG90YWwgKyAkYm9udXNUb3RhbCA7XG5cbiAgICAgICAgYnJlYWs7XG5cbiAgfVxuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dGFibGUgYm9yZGVyPTE+XG5cbiAgPHRyPlxuICAgIDx0aD5OYW1lPC90aD5cbiAgICA8dGg+U2FsYXJ5PC90aD5cbiAgICA8dGg+Qm9udXM8L3RoPlxuICAgIDx0aD5Ub3RhbDwvdGg+XG4gIDwvdHI+XG4gIFxuICB7bG9jYWw6c3RhZmYgY2FsbGJhY2s9J2JlZm9yZS5waHAnLCBiZWZvcmV9XG5cbiAgICB7cHJvcGVydHk6Zmlyc3R9XG4gICAgICA8dHI+XG4gICAgICAgIDx0ZD5Ub3RhbHM8L3RkPlxuICAgICAgICA8dGQ+eyRzYWxhcnlUb3RhbCB8ICUuMmZ9PC90ZD5cbiAgICAgICAgPHRkPnskYm9udXNUb3RhbCAgfCAlLjJmfTwvdGQ+XG4gICAgICAgIDx0ZD57JHRvdGFsVG90YWwgIHwgJS4yZn08L3RkPlxuICAgICAgPC90cj5cbiAgICB7L3Byb3BlcnR5OmZpcnN0fVxuXG4gICAgPHRyIGFsaWduPVwicmlnaHRcIiBiZ2NvbG9yPVwie3BhZDpzd2l0Y2ggJ3llbGxvdycsICdwaW5rJy99XCI+XG4gICAgICA8dGQgYWxpZ249XCJsZWZ0XCI+eyRuYW1lIHwgY2FwaXRhbGl6ZX08L3RkPlxuICAgICAgPHRkPnskc2FsYXJ5IHwgJS4yZn08L3RkPlxuICAgICAgPHRkPnskYm9udXMgIHwgJS4yZn08L3RkPlxuICAgICAgPHRkPnskdG90YWwgIHwgJS4yZn08L3RkPlxuICAgIDwvdHI+XG5cbiAgey9sb2NhbDpzdGFmZn1cbiBcbjwvdGFibGU+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgc3dpdGNoICgkcGFkQ2FsbGJhY2spIHtcblxuICAgIGNhc2UgJ2luaXQnOlxuXG4gICAgICAgICRzYWxhcnlUb3RhbCA9IDA7XG4gICAgICAgICRib251c1RvdGFsICA9IDA7XG5cbiAgICAgICAgYnJlYWs7XG5cbiAgICBjYXNlICdyb3cnOlxuXG4gICAgICAgICRyb3cgWyd0b3RhbCddID0gJHJvdyBbJ3NhbGFyeSddICsgJHJvdyBbJ2JvbnVzJ107XG5cbiAgICAgICAgJHNhbGFyeVRvdGFsICs9ICRyb3cgWydzYWxhcnknXTtcbiAgICAgICAgJGJvbnVzVG90YWwgICs9ICRyb3cgWydib251cyddO1xuXG4gICAgICAgIGJyZWFrO1xuXG4gICAgY2FzZSAnZXhpdCc6XG5cbiAgICAgICAgJHRvdGFsVG90YWwgPSAkc2FsYXJ5VG90YWwgKyAkYm9udXNUb3RhbCA7XG5cbiAgICAgICAgYnJlYWs7XG5cbiAgfVxuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff </font><font color="red">callback=<font color="black">'</font>before.php<font color="black">'</font><font color="black">,</font> before</font>}</b><br><br>    <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;Totals&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b><br><br>    &lt;tr align="right" bgcolor="<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>/}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br> <br>&lt;/table&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">callback/before.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
-  <table border=1>
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
 
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">switch (</span><span style="color: #0000BB">$padCallback</span><span style="color: #007700">) {<br><br>    case </span><span style="color: #DD0000">'init'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'row'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'total'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'salary'</span><span style="color: #007700">] + </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'bonus'</span><span style="color: #007700">];<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+= </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'salary'</span><span style="color: #007700">];<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">+= </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'bonus'</span><span style="color: #007700">];<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'exit'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$totalTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonusTotal </span><span style="color: #007700">;<br><br>        break;<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dGFibGUgYm9yZGVyPTE+XG4gIDx0cj5cbiAgICA8dGg+TmFtZTwvdGg+XG4gICAgPHRoPlNhbGFyeTwvdGg+XG4gICAgPHRoPkJvbnVzPC90aD5cbiAgICA8dGg+VG90YWw8L3RoPlxuICA8L3RyPlxuICB7bG9jYWw6c3RhZmYgY2FsbGJhY2s9J2JlZm9yZS5waHAnLCBiZWZvcmV9XG4gICAge3Byb3BlcnR5OmZpcnN0fVxuICAgICAgPHRyPlxuICAgICAgICA8dGQ+VG90YWxzPC90ZD5cbiAgICAgICAgPHRkPnskc2FsYXJ5VG90YWwgfCAlLjJmfTwvdGQ+XG4gICAgICAgIDx0ZD57JGJvbnVzVG90YWwgIHwgJS4yZn08L3RkPlxuICAgICAgICA8dGQ+eyR0b3RhbFRvdGFsICB8ICUuMmZ9PC90ZD5cbiAgICAgIDwvdHI+XG4gICAgey9wcm9wZXJ0eTpmaXJzdH1cblxuICAgIDx0ciBhbGlnbj1cInJpZ2h0XCIgYmdjb2xvcj1cIntwYWQ6c3dpdGNoICd5ZWxsb3cnLCAncGluaycvfVwiPlxuICAgICAgPHRkIGFsaWduPVwibGVmdFwiPnskbmFtZSB8IGNhcGl0YWxpemV9PC90ZD5cbiAgICAgIDx0ZD57JHNhbGFyeSB8ICUuMmZ9PC90ZD5cbiAgICAgIDx0ZD57JGJvbnVzICB8ICUuMmZ9PC90ZD5cbiAgICAgIDx0ZD57JHRvdGFsICB8ICUuMmZ9PC90ZD5cbiAgICA8L3RyPlxuICB7L2xvY2FsOnN0YWZmfVxuPC90YWJsZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICBzd2l0Y2ggKCRwYWRDYWxsYmFjaykge1xuXG4gICAgY2FzZSAnaW5pdCc6XG5cbiAgICAgICAgJHNhbGFyeVRvdGFsID0gMDtcbiAgICAgICAgJGJvbnVzVG90YWwgID0gMDtcblxuICAgICAgICBicmVhaztcblxuICAgIGNhc2UgJ3Jvdyc6XG5cbiAgICAgICAgJHJvdyBbJ3RvdGFsJ10gPSAkcm93IFsnc2FsYXJ5J10gKyAkcm93IFsnYm9udXMnXTtcblxuICAgICAgICAkc2FsYXJ5VG90YWwgKz0gJHJvdyBbJ3NhbGFyeSddO1xuICAgICAgICAkYm9udXNUb3RhbCAgKz0gJHJvdyBbJ2JvbnVzJ107XG5cbiAgICAgICAgYnJlYWs7XG5cbiAgICBjYXNlICdleGl0JzpcblxuICAgICAgICAkdG90YWxUb3RhbCA9ICRzYWxhcnlUb3RhbCArICRib251c1RvdGFsIDtcblxuICAgICAgICBicmVhaztcblxuICB9XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dGFibGUgYm9yZGVyPTE+XG4gIDx0cj5cbiAgICA8dGg+TmFtZTwvdGg+XG4gICAgPHRoPlNhbGFyeTwvdGg+XG4gICAgPHRoPkJvbnVzPC90aD5cbiAgICA8dGg+VG90YWw8L3RoPlxuICA8L3RyPlxuICB7bG9jYWw6c3RhZmYgY2FsbGJhY2s9J2JlZm9yZS5waHAnLCBiZWZvcmV9XG4gICAge3Byb3BlcnR5OmZpcnN0fVxuICAgICAgPHRyPlxuICAgICAgICA8dGQ+VG90YWxzPC90ZD5cbiAgICAgICAgPHRkPnskc2FsYXJ5VG90YWwgfCAlLjJmfTwvdGQ+XG4gICAgICAgIDx0ZD57JGJvbnVzVG90YWwgIHwgJS4yZn08L3RkPlxuICAgICAgICA8dGQ+eyR0b3RhbFRvdGFsICB8ICUuMmZ9PC90ZD5cbiAgICAgIDwvdHI+XG4gICAgey9wcm9wZXJ0eTpmaXJzdH1cblxuICAgIDx0ciBhbGlnbj1cInJpZ2h0XCIgYmdjb2xvcj1cIntwYWQ6c3dpdGNoICd5ZWxsb3cnLCAncGluaycvfVwiPlxuICAgICAgPHRkIGFsaWduPVwibGVmdFwiPnskbmFtZSB8IGNhcGl0YWxpemV9PC90ZD5cbiAgICAgIDx0ZD57JHNhbGFyeSB8ICUuMmZ9PC90ZD5cbiAgICAgIDx0ZD57JGJvbnVzICB8ICUuMmZ9PC90ZD5cbiAgICAgIDx0ZD57JHRvdGFsICB8ICUuMmZ9PC90ZD5cbiAgICA8L3RyPlxuICB7L2xvY2FsOnN0YWZmfVxuPC90YWJsZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICBzd2l0Y2ggKCRwYWRDYWxsYmFjaykge1xuXG4gICAgY2FzZSAnaW5pdCc6XG5cbiAgICAgICAgJHNhbGFyeVRvdGFsID0gMDtcbiAgICAgICAgJGJvbnVzVG90YWwgID0gMDtcblxuICAgICAgICBicmVhaztcblxuICAgIGNhc2UgJ3Jvdyc6XG5cbiAgICAgICAgJHJvdyBbJ3RvdGFsJ10gPSAkcm93IFsnc2FsYXJ5J10gKyAkcm93IFsnYm9udXMnXTtcblxuICAgICAgICAkc2FsYXJ5VG90YWwgKz0gJHJvdyBbJ3NhbGFyeSddO1xuICAgICAgICAkYm9udXNUb3RhbCAgKz0gJHJvdyBbJ2JvbnVzJ107XG5cbiAgICAgICAgYnJlYWs7XG5cbiAgICBjYXNlICdleGl0JzpcblxuICAgICAgICAkdG90YWxUb3RhbCA9ICRzYWxhcnlUb3RhbCArICRib251c1RvdGFsIDtcblxuICAgICAgICBicmVhaztcblxuICB9XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;table border=1&gt;<br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff </font><font color="red">callback=<font color="black">'</font>before.php<font color="black">'</font><font color="black">,</font> before</font>}</b><br>    <b>{<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;Totals&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue"><font color="purple">property</font><font color="black"><b>:</b></font>first</font><font color="red"></font>}</b><br><br>    &lt;tr align="right" bgcolor="<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>/}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
+  <table border=1>
   <tr>
     <th>Name</th>
     <th>Salary</th>
@@ -62,8 +70,6 @@ It's possible to put a PHP file in the directory '_callbacks' that is called bac
     <th>Total</th>
   </tr>
   
-  
-
     
       <tr>
         <td>Totals</td>
@@ -79,9 +85,7 @@ It's possible to put a PHP file in the directory '_callbacks' that is called bac
       <td>500.00</td>
       <td>1500.00</td>
     </tr>
-
   
-
     
 
     <tr align="right" bgcolor="pink">
@@ -90,9 +94,7 @@ It's possible to put a PHP file in the directory '_callbacks' that is called bac
       <td>400.00</td>
       <td>2400.00</td>
     </tr>
-
   
-
     
 
     <tr align="right" bgcolor="yellow">
@@ -101,9 +103,7 @@ It's possible to put a PHP file in the directory '_callbacks' that is called bac
       <td>300.00</td>
       <td>3300.00</td>
     </tr>
-
   
-
     
 
     <tr align="right" bgcolor="pink">
@@ -112,9 +112,7 @@ It's possible to put a PHP file in the directory '_callbacks' that is called bac
       <td>200.00</td>
       <td>4200.00</td>
     </tr>
-
   
-
     
 
     <tr align="right" bgcolor="yellow">
@@ -123,65 +121,70 @@ It's possible to put a PHP file in the directory '_callbacks' that is called bac
       <td>100.00</td>
       <td>5100.00</td>
     </tr>
-
   
- 
 </table>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
     
-
-  
-
-
-
-
-          
-
-
- 
-
-
-
-  
-
-  
-
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">_callbacks/demand.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">callback/demand.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">switch (</span><span style="color: #0000BB">$padCallback</span><span style="color: #007700">) {<br><br>    case </span><span style="color: #DD0000">'init'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'row'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">$salary </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonus</span><span style="color: #007700">;<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+= </span><span style="color: #0000BB">$salary</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">+= </span><span style="color: #0000BB">$bonus</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'exit'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$totalTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonusTotal </span><span style="color: #007700">;<br><br>        break;<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">_callbacks/demand.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dGFibGUgYm9yZGVyPTE+XG5cbiAgPHRyPlxuICAgIDx0aD5OYW1lPC90aD5cbiAgICA8dGg+U2FsYXJ5PC90aD5cbiAgICA8dGg+Qm9udXM8L3RoPlxuICAgIDx0aD5Ub3RhbDwvdGg+XG4gIDwvdHI+XG4gIFxuICB7bG9jYWw6c3RhZmYgY2FsbGJhY2s9J2RlbWFuZC5waHAnfVxuXG4gICAgPHRyIGFsaWduPVwicmlnaHRcIiBcbiAgICAgICAgYmdjb2xvcj1cIntwYWQ6c3dpdGNoICd5ZWxsb3cnLCAncGluaycvfVwiPlxuICAgICAgPHRkIGFsaWduPVwibGVmdFwiPnskbmFtZSB8IGNhcGl0YWxpemV9PC90ZD5cbiAgICAgIDx0ZD57JHNhbGFyeSB8ICUuMmZ9PC90ZD5cbiAgICAgIDx0ZD57JGJvbnVzICB8ICUuMmZ9PC90ZD5cbiAgICAgIDx0ZD57JHRvdGFsICB8ICUuMmZ9PC90ZD5cbiAgICA8L3RyPlxuXG4gIHsvbG9jYWw6c3RhZmZ9XG5cbiAgPHRyPlxuICAgIDx0ZD5Ub3RhbHM8L3RkPlxuICAgIDx0ZD57JHNhbGFyeVRvdGFsIHwgJS4yZn08L3RkPlxuICAgIDx0ZD57JGJvbnVzVG90YWwgIHwgJS4yZn08L3RkPlxuICAgIDx0ZD57JHRvdGFsVG90YWwgIHwgJS4yZn08L3RkPlxuICA8L3RyPlxuIFxuPC90YWJsZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICBzd2l0Y2ggKCRwYWRDYWxsYmFjaykge1xuXG4gICAgY2FzZSAnaW5pdCc6XG5cbiAgICAgICAgJHNhbGFyeVRvdGFsID0gMDtcbiAgICAgICAgJGJvbnVzVG90YWwgID0gMDtcblxuICAgICAgICBicmVhaztcblxuICAgIGNhc2UgJ3Jvdyc6XG5cbiAgICAgICAgJHRvdGFsID0gJHNhbGFyeSArICRib251cztcblxuICAgICAgICAkc2FsYXJ5VG90YWwgKz0gJHNhbGFyeTtcbiAgICAgICAgJGJvbnVzVG90YWwgICs9ICRib251cztcblxuICAgICAgICBicmVhaztcblxuICAgIGNhc2UgJ2V4aXQnOlxuXG4gICAgICAgICR0b3RhbFRvdGFsID0gJHNhbGFyeVRvdGFsICsgJGJvbnVzVG90YWwgO1xuXG4gICAgICAgIGJyZWFrO1xuXG4gIH1cblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8dGFibGUgYm9yZGVyPTE+XG5cbiAgPHRyPlxuICAgIDx0aD5OYW1lPC90aD5cbiAgICA8dGg+U2FsYXJ5PC90aD5cbiAgICA8dGg+Qm9udXM8L3RoPlxuICAgIDx0aD5Ub3RhbDwvdGg+XG4gIDwvdHI+XG4gIFxuICB7bG9jYWw6c3RhZmYgY2FsbGJhY2s9J2RlbWFuZC5waHAnfVxuXG4gICAgPHRyIGFsaWduPVwicmlnaHRcIiBcbiAgICAgICAgYmdjb2xvcj1cIntwYWQ6c3dpdGNoICd5ZWxsb3cnLCAncGluaycvfVwiPlxuICAgICAgPHRkIGFsaWduPVwibGVmdFwiPnskbmFtZSB8IGNhcGl0YWxpemV9PC90ZD5cbiAgICAgIDx0ZD57JHNhbGFyeSB8ICUuMmZ9PC90ZD5cbiAgICAgIDx0ZD57JGJvbnVzICB8ICUuMmZ9PC90ZD5cbiAgICAgIDx0ZD57JHRvdGFsICB8ICUuMmZ9PC90ZD5cbiAgICA8L3RyPlxuXG4gIHsvbG9jYWw6c3RhZmZ9XG5cbiAgPHRyPlxuICAgIDx0ZD5Ub3RhbHM8L3RkPlxuICAgIDx0ZD57JHNhbGFyeVRvdGFsIHwgJS4yZn08L3RkPlxuICAgIDx0ZD57JGJvbnVzVG90YWwgIHwgJS4yZn08L3RkPlxuICAgIDx0ZD57JHRvdGFsVG90YWwgIHwgJS4yZn08L3RkPlxuICA8L3RyPlxuIFxuPC90YWJsZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICBzd2l0Y2ggKCRwYWRDYWxsYmFjaykge1xuXG4gICAgY2FzZSAnaW5pdCc6XG5cbiAgICAgICAgJHNhbGFyeVRvdGFsID0gMDtcbiAgICAgICAgJGJvbnVzVG90YWwgID0gMDtcblxuICAgICAgICBicmVhaztcblxuICAgIGNhc2UgJ3Jvdyc6XG5cbiAgICAgICAgJHRvdGFsID0gJHNhbGFyeSArICRib251cztcblxuICAgICAgICAkc2FsYXJ5VG90YWwgKz0gJHNhbGFyeTtcbiAgICAgICAgJGJvbnVzVG90YWwgICs9ICRib251cztcblxuICAgICAgICBicmVhaztcblxuICAgIGNhc2UgJ2V4aXQnOlxuXG4gICAgICAgICR0b3RhbFRvdGFsID0gJHNhbGFyeVRvdGFsICsgJGJvbnVzVG90YWwgO1xuXG4gICAgICAgIGJyZWFrO1xuXG4gIH1cblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff </font><font color="red">callback=<font color="black">'</font>demand.php<font color="black">'</font></font>}</b><br><br>    &lt;tr align="right" <br>        bgcolor="<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>/}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br><br>  &lt;tr&gt;<br>    &lt;td&gt;Totals&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br> <br>&lt;/table&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">callback/demand.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
-  <table border=1>
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
 
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">switch (</span><span style="color: #0000BB">$padCallback</span><span style="color: #007700">) {<br><br>    case </span><span style="color: #DD0000">'init'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'row'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">$salary </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonus</span><span style="color: #007700">;<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+= </span><span style="color: #0000BB">$salary</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">+= </span><span style="color: #0000BB">$bonus</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'exit'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$totalTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonusTotal </span><span style="color: #007700">;<br><br>        break;<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dGFibGUgYm9yZGVyPTE+XG4gIDx0cj5cbiAgICA8dGg+TmFtZTwvdGg+XG4gICAgPHRoPlNhbGFyeTwvdGg+XG4gICAgPHRoPkJvbnVzPC90aD5cbiAgICA8dGg+VG90YWw8L3RoPlxuICA8L3RyPlxuICB7bG9jYWw6c3RhZmYgY2FsbGJhY2s9J2RlbWFuZC5waHAnfVxuICAgIDx0ciBhbGlnbj1cInJpZ2h0XCIgXG4gICAgICAgIGJnY29sb3I9XCJ7cGFkOnN3aXRjaCAneWVsbG93JywgJ3BpbmsnL31cIj5cbiAgICAgIDx0ZCBhbGlnbj1cImxlZnRcIj57JG5hbWUgfCBjYXBpdGFsaXplfTwvdGQ+XG4gICAgICA8dGQ+eyRzYWxhcnkgfCAlLjJmfTwvdGQ+XG4gICAgICA8dGQ+eyRib251cyAgfCAlLjJmfTwvdGQ+XG4gICAgICA8dGQ+eyR0b3RhbCAgfCAlLjJmfTwvdGQ+XG4gICAgPC90cj5cbiAgey9sb2NhbDpzdGFmZn1cblxuICA8dHI+XG4gICAgPHRkPlRvdGFsczwvdGQ+XG4gICAgPHRkPnskc2FsYXJ5VG90YWwgfCAlLjJmfTwvdGQ+XG4gICAgPHRkPnskYm9udXNUb3RhbCAgfCAlLjJmfTwvdGQ+XG4gICAgPHRkPnskdG90YWxUb3RhbCAgfCAlLjJmfTwvdGQ+XG4gIDwvdHI+XG48L3RhYmxlPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIHN3aXRjaCAoJHBhZENhbGxiYWNrKSB7XG5cbiAgICBjYXNlICdpbml0JzpcblxuICAgICAgICAkc2FsYXJ5VG90YWwgPSAwO1xuICAgICAgICAkYm9udXNUb3RhbCAgPSAwO1xuXG4gICAgICAgIGJyZWFrO1xuXG4gICAgY2FzZSAncm93JzpcblxuICAgICAgICAkdG90YWwgPSAkc2FsYXJ5ICsgJGJvbnVzO1xuXG4gICAgICAgICRzYWxhcnlUb3RhbCArPSAkc2FsYXJ5O1xuICAgICAgICAkYm9udXNUb3RhbCAgKz0gJGJvbnVzO1xuXG4gICAgICAgIGJyZWFrO1xuXG4gICAgY2FzZSAnZXhpdCc6XG5cbiAgICAgICAgJHRvdGFsVG90YWwgPSAkc2FsYXJ5VG90YWwgKyAkYm9udXNUb3RhbCA7XG5cbiAgICAgICAgYnJlYWs7XG5cbiAgfVxuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiI8dGFibGUgYm9yZGVyPTE+XG4gIDx0cj5cbiAgICA8dGg+TmFtZTwvdGg+XG4gICAgPHRoPlNhbGFyeTwvdGg+XG4gICAgPHRoPkJvbnVzPC90aD5cbiAgICA8dGg+VG90YWw8L3RoPlxuICA8L3RyPlxuICB7bG9jYWw6c3RhZmYgY2FsbGJhY2s9J2RlbWFuZC5waHAnfVxuICAgIDx0ciBhbGlnbj1cInJpZ2h0XCIgXG4gICAgICAgIGJnY29sb3I9XCJ7cGFkOnN3aXRjaCAneWVsbG93JywgJ3BpbmsnL31cIj5cbiAgICAgIDx0ZCBhbGlnbj1cImxlZnRcIj57JG5hbWUgfCBjYXBpdGFsaXplfTwvdGQ+XG4gICAgICA8dGQ+eyRzYWxhcnkgfCAlLjJmfTwvdGQ+XG4gICAgICA8dGQ+eyRib251cyAgfCAlLjJmfTwvdGQ+XG4gICAgICA8dGQ+eyR0b3RhbCAgfCAlLjJmfTwvdGQ+XG4gICAgPC90cj5cbiAgey9sb2NhbDpzdGFmZn1cblxuICA8dHI+XG4gICAgPHRkPlRvdGFsczwvdGQ+XG4gICAgPHRkPnskc2FsYXJ5VG90YWwgfCAlLjJmfTwvdGQ+XG4gICAgPHRkPnskYm9udXNUb3RhbCAgfCAlLjJmfTwvdGQ+XG4gICAgPHRkPnskdG90YWxUb3RhbCAgfCAlLjJmfTwvdGQ+XG4gIDwvdHI+XG48L3RhYmxlPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIHN3aXRjaCAoJHBhZENhbGxiYWNrKSB7XG5cbiAgICBjYXNlICdpbml0JzpcblxuICAgICAgICAkc2FsYXJ5VG90YWwgPSAwO1xuICAgICAgICAkYm9udXNUb3RhbCAgPSAwO1xuXG4gICAgICAgIGJyZWFrO1xuXG4gICAgY2FzZSAncm93JzpcblxuICAgICAgICAkdG90YWwgPSAkc2FsYXJ5ICsgJGJvbnVzO1xuXG4gICAgICAgICRzYWxhcnlUb3RhbCArPSAkc2FsYXJ5O1xuICAgICAgICAkYm9udXNUb3RhbCAgKz0gJGJvbnVzO1xuXG4gICAgICAgIGJyZWFrO1xuXG4gICAgY2FzZSAnZXhpdCc6XG5cbiAgICAgICAgJHRvdGFsVG90YWwgPSAkc2FsYXJ5VG90YWwgKyAkYm9udXNUb3RhbCA7XG5cbiAgICAgICAgYnJlYWs7XG5cbiAgfVxuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;table border=1&gt;<br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff </font><font color="red">callback=<font color="black">'</font>demand.php<font color="black">'</font></font>}</b><br>    &lt;tr align="right" <br>        bgcolor="<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>/}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>staff</font><font color="red"></font>}</b><br><br>  &lt;tr&gt;<br>    &lt;td&gt;Totals&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
+  <table border=1>
   <tr>
     <th>Name</th>
     <th>Salary</th>
@@ -189,8 +192,6 @@ It's possible to put a PHP file in the directory '_callbacks' that is called bac
     <th>Total</th>
   </tr>
   
-  
-
     <tr align="right" 
         bgcolor="yellow">
       <td align="left">Joe</td>
@@ -198,9 +199,7 @@ It's possible to put a PHP file in the directory '_callbacks' that is called bac
       <td>500.00</td>
       <td>1500.00</td>
     </tr>
-
   
-
     <tr align="right" 
         bgcolor="pink">
       <td align="left">Jim</td>
@@ -208,9 +207,7 @@ It's possible to put a PHP file in the directory '_callbacks' that is called bac
       <td>400.00</td>
       <td>2400.00</td>
     </tr>
-
   
-
     <tr align="right" 
         bgcolor="yellow">
       <td align="left">John</td>
@@ -218,9 +215,7 @@ It's possible to put a PHP file in the directory '_callbacks' that is called bac
       <td>300.00</td>
       <td>3300.00</td>
     </tr>
-
   
-
     <tr align="right" 
         bgcolor="pink">
       <td align="left">Jack</td>
@@ -228,9 +223,7 @@ It's possible to put a PHP file in the directory '_callbacks' that is called bac
       <td>200.00</td>
       <td>4200.00</td>
     </tr>
-
   
-
     <tr align="right" 
         bgcolor="yellow">
       <td align="left">Jerry</td>
@@ -238,7 +231,6 @@ It's possible to put a PHP file in the directory '_callbacks' that is called bac
       <td>100.00</td>
       <td>5100.00</td>
     </tr>
-
   
 
   <tr>
@@ -247,21 +239,14 @@ It's possible to put a PHP file in the directory '_callbacks' that is called bac
     <td>1500.00</td>
     <td>16500.00</td>
   </tr>
- 
 </table>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
-  
-
-
-
-
-

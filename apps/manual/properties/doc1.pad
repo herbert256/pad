@@ -1,37 +1,32 @@
 {common:table}
-
-{common:demo}
-
-{content:myContent1}
-  {local:staff}
-    <tr>
-      <td> {$name}              </td>
-      <td> {property:first}  X {/property:first}  </td>
-      <td> {property:border} X {/property:border} </td>
-      <td> {property:middle} X {/property:middle} </td>
-      <td> {property:last}   X {/property:last}   </td>
-      <td> {property:even}   X {/property:even}   </td>
-      <td> {property:odd}    X {/property:odd}    </td>
-    </tr>
-  {/local:staff}
-{/content:myContent1}
-
-{/common:demo}{common:demo}
-
-{content:myContent1}
-  {local:staff}
-    <tr>
-      <td> {$name}              </td>
-      <td> {pad:if &first}  X {/pad:if} </td>
-      <td> {pad:if &border} X {/pad:if} </td>
-      <td> {pad:if &middle} X {/pad:if} </td>
-      <td> {pad:if &last}   X {/pad:if} </td>
-      <td> {pad:if &even}   X {/pad:if} </td>
-      <td> {pad:if &odd}    X {/pad:if} </td>
-    </tr>
-  {/local:staff}
-{/content:myContent1}
-
-{/common:demo}
-
+  {common:demo}
+    {content:myContent1}
+      {local:staff}
+        <tr>
+          <td> {$name}              </td>
+          <td> {property:first}  X {/property:first}  </td>
+          <td> {property:border} X {/property:border} </td>
+          <td> {property:middle} X {/property:middle} </td>
+          <td> {property:last}   X {/property:last}   </td>
+          <td> {property:even}   X {/property:even}   </td>
+          <td> {property:odd}    X {/property:odd}    </td>
+        </tr>
+      {/local:staff}
+    {/content:myContent1}
+  {/common:demo}
+  {common:demo}
+    {content:myContent1}
+      {local:staff}
+        <tr>
+          <td> {$name}              </td>
+          <td> {pad:if &first}  X {/pad:if} </td>
+          <td> {pad:if &border} X {/pad:if} </td>
+          <td> {pad:if &middle} X {/pad:if} </td>
+          <td> {pad:if &last}   X {/pad:if} </td>
+          <td> {pad:if &even}   X {/pad:if} </td>
+          <td> {pad:if &odd}    X {/pad:if} </td>
+        </tr>
+      {/local:staff}
+    {/content:myContent1}
+  {/common:demo}
 {/common:table}

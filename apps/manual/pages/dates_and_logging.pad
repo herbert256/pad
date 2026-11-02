@@ -6,13 +6,34 @@ a date whatever form it arrives in, put an age into words and keep a log of the
 application's own - plain functions, loaded on every request.</p>
 
 <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>function</th><th>what it answers</th></tr>
-  <tr><td><code>padNow ( $format = NULL )</code></td><td>now, as a <code>DateTimeImmutable</code> in <code>$padTimezone</code> (else PHP's zone) - or, with a format, the formatted text</td></tr>
-  <tr><td><code>padToday ( $format = NULL )</code></td><td>today at midnight</td></tr>
-  <tr><td><code>padNowFreeze ( $time = NULL )</code></td><td>fixes now for the rest of the request; <code>NULL</code> lets the clock run again</td></tr>
-  <tr><td><code>padDateParse ( $value )</code></td><td>a <code>DateTimeImmutable</code> from a timestamp, a date in text or a date object - <code>NULL</code> for what is none of those</td></tr>
-  <tr><td><code>padAgo ( $date, $now = NULL )</code></td><td>the age in words: just now, 5 minutes ago, yesterday, in 3 days</td></tr>
-  <tr><td><code>padLog ( $message, $level = 'info', $context = [] )</code></td><td>appends one line to the application's log of the day</td></tr>
+  <tr>
+    <th>function</th>
+    <th>what it answers</th>
+  </tr>
+  <tr>
+    <td><code>padNow ( $format = NULL )</code></td>
+    <td>now, as a <code>DateTimeImmutable</code> in <code>$padTimezone</code> (else PHP's zone) - or, with a format, the formatted text</td>
+  </tr>
+  <tr>
+    <td><code>padToday ( $format = NULL )</code></td>
+    <td>today at midnight</td>
+  </tr>
+  <tr>
+    <td><code>padNowFreeze ( $time = NULL )</code></td>
+    <td>fixes now for the rest of the request; <code>NULL</code> lets the clock run again</td>
+  </tr>
+  <tr>
+    <td><code>padDateParse ( $value )</code></td>
+    <td>a <code>DateTimeImmutable</code> from a timestamp, a date in text or a date object - <code>NULL</code> for what is none of those</td>
+  </tr>
+  <tr>
+    <td><code>padAgo ( $date, $now = NULL )</code></td>
+    <td>the age in words: just now, 5 minutes ago, yesterday, in 3 days</td>
+  </tr>
+  <tr>
+    <td><code>padLog ( $message, $level = 'info', $context = [] )</code></td>
+    <td>appends one line to the application's log of the day</td>
+  </tr>
 </table>
 
 <h2>Now and today</h2>

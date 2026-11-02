@@ -17,59 +17,67 @@ $problem = padOAuthError ();</pre>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/oauth_2.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/oauth_2.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// GitHub is not asked here: the requests a login makes - the code for a token, the token<br>  // for the user and for the addresses GitHub verified - are answered by fakes, as a test<br>  // answers them.<br><br>  </span><span style="color: #0000BB">padCurlFake </span><span style="color: #007700">( [<br>    </span><span style="color: #DD0000">'https://github.com/login/oauth/access_token' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'data' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'access_token' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'gho_example'</span><span style="color: #007700">, </span><span style="color: #DD0000">'token_type' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'bearer' </span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'https://api.github.com/user'                 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'data' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">583231</span><span style="color: #007700">, </span><span style="color: #DD0000">'login' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'octocat'</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The Octocat'</span><span style="color: #007700">,<br>                                                                   </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'octocat@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'avatar_url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://example.com/octocat.png' </span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'https://api.github.com/user/emails'          </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'data' </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'octocat@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'verified' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">, </span><span style="color: #DD0000">'primary' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">] ] ]<br>  ] );<br><br>  </span><span style="color: #FF8000">// In an application these two stand in .env as GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET.<br><br>  </span><span style="color: #0000BB">$options </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'client_id' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'example-id'</span><span style="color: #007700">, </span><span style="color: #DD0000">'client_secret' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'example-secret'</span><span style="color: #007700">, </span><span style="color: #DD0000">'redirect' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://shop.example/oauth/github' </span><span style="color: #007700">];<br><br>  </span><span style="color: #FF8000">// 1. The start: padOAuthStart ( 'github' ) sends the visitor to this address.<br><br>  </span><span style="color: #0000BB">$start </span><span style="color: #007700">= </span><span style="color: #0000BB">padOAuthUrl </span><span style="color: #007700">( </span><span style="color: #DD0000">'github'</span><span style="color: #007700">, </span><span style="color: #0000BB">$options </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">parse_str </span><span style="color: #007700">( </span><span style="color: #0000BB">parse_url </span><span style="color: #007700">( </span><span style="color: #0000BB">$start</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_URL_QUERY </span><span style="color: #007700">), </span><span style="color: #0000BB">$asked </span><span style="color: #007700">);<br><br>  </span><span style="color: #FF8000">// 2. GitHub sends the visitor back with a code and the state - here written into $_GET.<br><br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'code'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'a-code-from-github'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'state'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$asked </span><span style="color: #007700">[</span><span style="color: #DD0000">'state'</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$user </span><span style="color: #007700">= </span><span style="color: #0000BB">padOAuthUser </span><span style="color: #007700">( </span><span style="color: #DD0000">'github'</span><span style="color: #007700">, </span><span style="color: #0000BB">$options </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padCurlFakeStop </span><span style="color: #007700">();<br><br>  </span><span style="color: #0000BB">$page   </span><span style="color: #007700">= </span><span style="color: #0000BB">strtok </span><span style="color: #007700">( </span><span style="color: #0000BB">$start</span><span style="color: #007700">, </span><span style="color: #DD0000">'?' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$values </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">array_keys </span><span style="color: #007700">( </span><span style="color: #0000BB">$asked </span><span style="color: #007700">) );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/oauth_2.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5PZmYgdG8gPGNvZGU+eyRwYWdlfTwvY29kZT4gd2l0aCB7JHZhbHVlc30uPC9wPlxuPHA+QmFjayBhcyB7JHVzZXIuaWR9OiB7JHVzZXIubmFtZX0gJmx0O3skdXNlci5lbWFpbH0mZ3Q7e3BhZDppZiAkdXNlci5lbWFpbF92ZXJpZmllZH0sIHZlcmlmaWVkIGJ5IEdpdEh1YnsvcGFkOmlmfSwgdXNlcm5hbWUgeyR1c2VyLnVzZXJuYW1lfSAtIHRoZSByb3cgcGFkTG9naW4ga2VlcHMuPC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIEdpdEh1YiBpcyBub3QgYXNrZWQgaGVyZTogdGhlIHJlcXVlc3RzIGEgbG9naW4gbWFrZXMgLSB0aGUgY29kZSBmb3IgYSB0b2tlbiwgdGhlIHRva2VuXG4gIC8vIGZvciB0aGUgdXNlciBhbmQgZm9yIHRoZSBhZGRyZXNzZXMgR2l0SHViIHZlcmlmaWVkIC0gYXJlIGFuc3dlcmVkIGJ5IGZha2VzLCBhcyBhIHRlc3RcbiAgLy8gYW5zd2VycyB0aGVtLlxuXG4gIHBhZEN1cmxGYWtlICggW1xuICAgICdodHRwczovL2dpdGh1Yi5jb20vbG9naW4vb2F1dGgvYWNjZXNzX3Rva2VuJyA9PiBbICdkYXRhJyA9PiBbICdhY2Nlc3NfdG9rZW4nID0+ICdnaG9fZXhhbXBsZScsICd0b2tlbl90eXBlJyA9PiAnYmVhcmVyJyBdIF0sXG4gICAgJ2h0dHBzOi8vYXBpLmdpdGh1Yi5jb20vdXNlcicgICAgICAgICAgICAgICAgID0+IFsgJ2RhdGEnID0+IFsgJ2lkJyA9PiA1ODMyMzEsICdsb2dpbicgPT4gJ29jdG9jYXQnLCAnbmFtZScgPT4gJ1RoZSBPY3RvY2F0JyxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnZW1haWwnID0+ICdvY3RvY2F0QGV4YW1wbGUuY29tJywgJ2F2YXRhcl91cmwnID0+ICdodHRwczovL2V4YW1wbGUuY29tL29jdG9jYXQucG5nJyBdIF0sXG4gICAgJ2h0dHBzOi8vYXBpLmdpdGh1Yi5jb20vdXNlci9lbWFpbHMnICAgICAgICAgID0+IFsgJ2RhdGEnID0+IFsgWyAnZW1haWwnID0+ICdvY3RvY2F0QGV4YW1wbGUuY29tJywgJ3ZlcmlmaWVkJyA9PiBUUlVFLCAncHJpbWFyeScgPT4gVFJVRSBdIF0gXVxuICBdICk7XG5cbiAgLy8gSW4gYW4gYXBwbGljYXRpb24gdGhlc2UgdHdvIHN0YW5kIGluIC5lbnYgYXMgR0lUSFVCX0NMSUVOVF9JRCBhbmQgR0lUSFVCX0NMSUVOVF9TRUNSRVQuXG5cbiAgJG9wdGlvbnMgPSBbICdjbGllbnRfaWQnID0+ICdleGFtcGxlLWlkJywgJ2NsaWVudF9zZWNyZXQnID0+ICdleGFtcGxlLXNlY3JldCcsICdyZWRpcmVjdCcgPT4gJ2h0dHBzOi8vc2hvcC5leGFtcGxlL29hdXRoL2dpdGh1YicgXTtcblxuICAvLyAxLiBUaGUgc3RhcnQ6IHBhZE9BdXRoU3RhcnQgKCAnZ2l0aHViJyApIHNlbmRzIHRoZSB2aXNpdG9yIHRvIHRoaXMgYWRkcmVzcy5cblxuICAkc3RhcnQgPSBwYWRPQXV0aFVybCAoICdnaXRodWInLCAkb3B0aW9ucyApO1xuXG4gIHBhcnNlX3N0ciAoIHBhcnNlX3VybCAoICRzdGFydCwgUEhQX1VSTF9RVUVSWSApLCAkYXNrZWQgKTtcblxuICAvLyAyLiBHaXRIdWIgc2VuZHMgdGhlIHZpc2l0b3IgYmFjayB3aXRoIGEgY29kZSBhbmQgdGhlIHN0YXRlIC0gaGVyZSB3cml0dGVuIGludG8gJF9HRVQuXG5cbiAgJF9HRVQgWydjb2RlJ10gID0gJ2EtY29kZS1mcm9tLWdpdGh1Yic7XG4gICRfR0VUIFsnc3RhdGUnXSA9ICRhc2tlZCBbJ3N0YXRlJ107XG5cbiAgJHVzZXIgPSBwYWRPQXV0aFVzZXIgKCAnZ2l0aHViJywgJG9wdGlvbnMgKTtcblxuICBwYWRDdXJsRmFrZVN0b3AgKCk7XG5cbiAgJHBhZ2UgICA9IHN0cnRvayAoICRzdGFydCwgJz8nICk7XG4gICR2YWx1ZXMgPSBpbXBsb2RlICggJywgJywgYXJyYXlfa2V5cyAoICRhc2tlZCApICk7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5PZmYgdG8gPGNvZGU+eyRwYWdlfTwvY29kZT4gd2l0aCB7JHZhbHVlc30uPC9wPlxuPHA+QmFjayBhcyB7JHVzZXIuaWR9OiB7JHVzZXIubmFtZX0gJmx0O3skdXNlci5lbWFpbH0mZ3Q7e3BhZDppZiAkdXNlci5lbWFpbF92ZXJpZmllZH0sIHZlcmlmaWVkIGJ5IEdpdEh1YnsvcGFkOmlmfSwgdXNlcm5hbWUgeyR1c2VyLnVzZXJuYW1lfSAtIHRoZSByb3cgcGFkTG9naW4ga2VlcHMuPC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIEdpdEh1YiBpcyBub3QgYXNrZWQgaGVyZTogdGhlIHJlcXVlc3RzIGEgbG9naW4gbWFrZXMgLSB0aGUgY29kZSBmb3IgYSB0b2tlbiwgdGhlIHRva2VuXG4gIC8vIGZvciB0aGUgdXNlciBhbmQgZm9yIHRoZSBhZGRyZXNzZXMgR2l0SHViIHZlcmlmaWVkIC0gYXJlIGFuc3dlcmVkIGJ5IGZha2VzLCBhcyBhIHRlc3RcbiAgLy8gYW5zd2VycyB0aGVtLlxuXG4gIHBhZEN1cmxGYWtlICggW1xuICAgICdodHRwczovL2dpdGh1Yi5jb20vbG9naW4vb2F1dGgvYWNjZXNzX3Rva2VuJyA9PiBbICdkYXRhJyA9PiBbICdhY2Nlc3NfdG9rZW4nID0+ICdnaG9fZXhhbXBsZScsICd0b2tlbl90eXBlJyA9PiAnYmVhcmVyJyBdIF0sXG4gICAgJ2h0dHBzOi8vYXBpLmdpdGh1Yi5jb20vdXNlcicgICAgICAgICAgICAgICAgID0+IFsgJ2RhdGEnID0+IFsgJ2lkJyA9PiA1ODMyMzEsICdsb2dpbicgPT4gJ29jdG9jYXQnLCAnbmFtZScgPT4gJ1RoZSBPY3RvY2F0JyxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnZW1haWwnID0+ICdvY3RvY2F0QGV4YW1wbGUuY29tJywgJ2F2YXRhcl91cmwnID0+ICdodHRwczovL2V4YW1wbGUuY29tL29jdG9jYXQucG5nJyBdIF0sXG4gICAgJ2h0dHBzOi8vYXBpLmdpdGh1Yi5jb20vdXNlci9lbWFpbHMnICAgICAgICAgID0+IFsgJ2RhdGEnID0+IFsgWyAnZW1haWwnID0+ICdvY3RvY2F0QGV4YW1wbGUuY29tJywgJ3ZlcmlmaWVkJyA9PiBUUlVFLCAncHJpbWFyeScgPT4gVFJVRSBdIF0gXVxuICBdICk7XG5cbiAgLy8gSW4gYW4gYXBwbGljYXRpb24gdGhlc2UgdHdvIHN0YW5kIGluIC5lbnYgYXMgR0lUSFVCX0NMSUVOVF9JRCBhbmQgR0lUSFVCX0NMSUVOVF9TRUNSRVQuXG5cbiAgJG9wdGlvbnMgPSBbICdjbGllbnRfaWQnID0+ICdleGFtcGxlLWlkJywgJ2NsaWVudF9zZWNyZXQnID0+ICdleGFtcGxlLXNlY3JldCcsICdyZWRpcmVjdCcgPT4gJ2h0dHBzOi8vc2hvcC5leGFtcGxlL29hdXRoL2dpdGh1YicgXTtcblxuICAvLyAxLiBUaGUgc3RhcnQ6IHBhZE9BdXRoU3RhcnQgKCAnZ2l0aHViJyApIHNlbmRzIHRoZSB2aXNpdG9yIHRvIHRoaXMgYWRkcmVzcy5cblxuICAkc3RhcnQgPSBwYWRPQXV0aFVybCAoICdnaXRodWInLCAkb3B0aW9ucyApO1xuXG4gIHBhcnNlX3N0ciAoIHBhcnNlX3VybCAoICRzdGFydCwgUEhQX1VSTF9RVUVSWSApLCAkYXNrZWQgKTtcblxuICAvLyAyLiBHaXRIdWIgc2VuZHMgdGhlIHZpc2l0b3IgYmFjayB3aXRoIGEgY29kZSBhbmQgdGhlIHN0YXRlIC0gaGVyZSB3cml0dGVuIGludG8gJF9HRVQuXG5cbiAgJF9HRVQgWydjb2RlJ10gID0gJ2EtY29kZS1mcm9tLWdpdGh1Yic7XG4gICRfR0VUIFsnc3RhdGUnXSA9ICRhc2tlZCBbJ3N0YXRlJ107XG5cbiAgJHVzZXIgPSBwYWRPQXV0aFVzZXIgKCAnZ2l0aHViJywgJG9wdGlvbnMgKTtcblxuICBwYWRDdXJsRmFrZVN0b3AgKCk7XG5cbiAgJHBhZ2UgICA9IHN0cnRvayAoICRzdGFydCwgJz8nICk7XG4gICR2YWx1ZXMgPSBpbXBsb2RlICggJywgJywgYXJyYXlfa2V5cyAoICRhc2tlZCApICk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;Off to &lt;code&gt;<b>{<font color="green"><font color="red">$</font>page</font>}</b>&lt;/code&gt; with <b>{<font color="green"><font color="red">$</font>values</font>}</b>.&lt;/p&gt;<br>&lt;p&gt;Back as <b>{<font color="green"><font color="red">$</font>user.id</font>}</b>: <b>{<font color="green"><font color="red">$</font>user.name</font>}</b> &lt;<b>{<font color="green"><font color="red">$</font>user.email</font>}</b>&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red"><font color="red">$</font>user.email_verified</font>}</b>, verified by GitHub<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b>, username <b>{<font color="green"><font color="red">$</font>user.username</font>}</b> - the row padLogin keeps.&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/oauth_2.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// GitHub is not asked here: the requests a login makes - the code for a token, the token<br>  // for the user and for the addresses GitHub verified - are answered by fakes, as a test<br>  // answers them.<br><br>  </span><span style="color: #0000BB">padCurlFake </span><span style="color: #007700">( [<br>    </span><span style="color: #DD0000">'https://github.com/login/oauth/access_token' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'data' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'access_token' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'gho_example'</span><span style="color: #007700">, </span><span style="color: #DD0000">'token_type' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'bearer' </span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'https://api.github.com/user'                 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'data' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">583231</span><span style="color: #007700">, </span><span style="color: #DD0000">'login' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'octocat'</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The Octocat'</span><span style="color: #007700">,<br>                                                                   </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'octocat@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'avatar_url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://example.com/octocat.png' </span><span style="color: #007700">] ],<br>    </span><span style="color: #DD0000">'https://api.github.com/user/emails'          </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'data' </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'octocat@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'verified' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">, </span><span style="color: #DD0000">'primary' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">] ] ]<br>  ] );<br><br>  </span><span style="color: #FF8000">// In an application these two stand in .env as GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET.<br><br>  </span><span style="color: #0000BB">$options </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'client_id' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'example-id'</span><span style="color: #007700">, </span><span style="color: #DD0000">'client_secret' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'example-secret'</span><span style="color: #007700">, </span><span style="color: #DD0000">'redirect' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://shop.example/oauth/github' </span><span style="color: #007700">];<br><br>  </span><span style="color: #FF8000">// 1. The start: padOAuthStart ( 'github' ) sends the visitor to this address.<br><br>  </span><span style="color: #0000BB">$start </span><span style="color: #007700">= </span><span style="color: #0000BB">padOAuthUrl </span><span style="color: #007700">( </span><span style="color: #DD0000">'github'</span><span style="color: #007700">, </span><span style="color: #0000BB">$options </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">parse_str </span><span style="color: #007700">( </span><span style="color: #0000BB">parse_url </span><span style="color: #007700">( </span><span style="color: #0000BB">$start</span><span style="color: #007700">, </span><span style="color: #0000BB">PHP_URL_QUERY </span><span style="color: #007700">), </span><span style="color: #0000BB">$asked </span><span style="color: #007700">);<br><br>  </span><span style="color: #FF8000">// 2. GitHub sends the visitor back with a code and the state - here written into $_GET.<br><br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'code'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'a-code-from-github'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">'state'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$asked </span><span style="color: #007700">[</span><span style="color: #DD0000">'state'</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$user </span><span style="color: #007700">= </span><span style="color: #0000BB">padOAuthUser </span><span style="color: #007700">( </span><span style="color: #DD0000">'github'</span><span style="color: #007700">, </span><span style="color: #0000BB">$options </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padCurlFakeStop </span><span style="color: #007700">();<br><br>  </span><span style="color: #0000BB">$page   </span><span style="color: #007700">= </span><span style="color: #0000BB">strtok </span><span style="color: #007700">( </span><span style="color: #0000BB">$start</span><span style="color: #007700">, </span><span style="color: #DD0000">'?' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$values </span><span style="color: #007700">= </span><span style="color: #0000BB">implode </span><span style="color: #007700">( </span><span style="color: #DD0000">', '</span><span style="color: #007700">, </span><span style="color: #0000BB">array_keys </span><span style="color: #007700">( </span><span style="color: #0000BB">$asked </span><span style="color: #007700">) );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cD5PZmYgdG8gPGNvZGU+eyRwYWdlfTwvY29kZT4gd2l0aCB7JHZhbHVlc30uPC9wPlxuPHA+QmFjayBhcyB7JHVzZXIuaWR9OiB7JHVzZXIubmFtZX0gJmx0O3skdXNlci5lbWFpbH0mZ3Q7e3BhZDppZiAkdXNlci5lbWFpbF92ZXJpZmllZH0sIHZlcmlmaWVkIGJ5IEdpdEh1YnsvcGFkOmlmfSwgdXNlcm5hbWUgeyR1c2VyLnVzZXJuYW1lfSAtIHRoZSByb3cgcGFkTG9naW4ga2VlcHMuPC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIEdpdEh1YiBpcyBub3QgYXNrZWQgaGVyZTogdGhlIHJlcXVlc3RzIGEgbG9naW4gbWFrZXMgLSB0aGUgY29kZSBmb3IgYSB0b2tlbiwgdGhlIHRva2VuXG4gIC8vIGZvciB0aGUgdXNlciBhbmQgZm9yIHRoZSBhZGRyZXNzZXMgR2l0SHViIHZlcmlmaWVkIC0gYXJlIGFuc3dlcmVkIGJ5IGZha2VzLCBhcyBhIHRlc3RcbiAgLy8gYW5zd2VycyB0aGVtLlxuXG4gIHBhZEN1cmxGYWtlICggW1xuICAgICdodHRwczovL2dpdGh1Yi5jb20vbG9naW4vb2F1dGgvYWNjZXNzX3Rva2VuJyA9PiBbICdkYXRhJyA9PiBbICdhY2Nlc3NfdG9rZW4nID0+ICdnaG9fZXhhbXBsZScsICd0b2tlbl90eXBlJyA9PiAnYmVhcmVyJyBdIF0sXG4gICAgJ2h0dHBzOi8vYXBpLmdpdGh1Yi5jb20vdXNlcicgICAgICAgICAgICAgICAgID0+IFsgJ2RhdGEnID0+IFsgJ2lkJyA9PiA1ODMyMzEsICdsb2dpbicgPT4gJ29jdG9jYXQnLCAnbmFtZScgPT4gJ1RoZSBPY3RvY2F0JyxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnZW1haWwnID0+ICdvY3RvY2F0QGV4YW1wbGUuY29tJywgJ2F2YXRhcl91cmwnID0+ICdodHRwczovL2V4YW1wbGUuY29tL29jdG9jYXQucG5nJyBdIF0sXG4gICAgJ2h0dHBzOi8vYXBpLmdpdGh1Yi5jb20vdXNlci9lbWFpbHMnICAgICAgICAgID0+IFsgJ2RhdGEnID0+IFsgWyAnZW1haWwnID0+ICdvY3RvY2F0QGV4YW1wbGUuY29tJywgJ3ZlcmlmaWVkJyA9PiBUUlVFLCAncHJpbWFyeScgPT4gVFJVRSBdIF0gXVxuICBdICk7XG5cbiAgLy8gSW4gYW4gYXBwbGljYXRpb24gdGhlc2UgdHdvIHN0YW5kIGluIC5lbnYgYXMgR0lUSFVCX0NMSUVOVF9JRCBhbmQgR0lUSFVCX0NMSUVOVF9TRUNSRVQuXG5cbiAgJG9wdGlvbnMgPSBbICdjbGllbnRfaWQnID0+ICdleGFtcGxlLWlkJywgJ2NsaWVudF9zZWNyZXQnID0+ICdleGFtcGxlLXNlY3JldCcsICdyZWRpcmVjdCcgPT4gJ2h0dHBzOi8vc2hvcC5leGFtcGxlL29hdXRoL2dpdGh1YicgXTtcblxuICAvLyAxLiBUaGUgc3RhcnQ6IHBhZE9BdXRoU3RhcnQgKCAnZ2l0aHViJyApIHNlbmRzIHRoZSB2aXNpdG9yIHRvIHRoaXMgYWRkcmVzcy5cblxuICAkc3RhcnQgPSBwYWRPQXV0aFVybCAoICdnaXRodWInLCAkb3B0aW9ucyApO1xuXG4gIHBhcnNlX3N0ciAoIHBhcnNlX3VybCAoICRzdGFydCwgUEhQX1VSTF9RVUVSWSApLCAkYXNrZWQgKTtcblxuICAvLyAyLiBHaXRIdWIgc2VuZHMgdGhlIHZpc2l0b3IgYmFjayB3aXRoIGEgY29kZSBhbmQgdGhlIHN0YXRlIC0gaGVyZSB3cml0dGVuIGludG8gJF9HRVQuXG5cbiAgJF9HRVQgWydjb2RlJ10gID0gJ2EtY29kZS1mcm9tLWdpdGh1Yic7XG4gICRfR0VUIFsnc3RhdGUnXSA9ICRhc2tlZCBbJ3N0YXRlJ107XG5cbiAgJHVzZXIgPSBwYWRPQXV0aFVzZXIgKCAnZ2l0aHViJywgJG9wdGlvbnMgKTtcblxuICBwYWRDdXJsRmFrZVN0b3AgKCk7XG5cbiAgJHBhZ2UgICA9IHN0cnRvayAoICRzdGFydCwgJz8nICk7XG4gICR2YWx1ZXMgPSBpbXBsb2RlICggJywgJywgYXJyYXlfa2V5cyAoICRhc2tlZCApICk7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5PZmYgdG8gPGNvZGU+eyRwYWdlfTwvY29kZT4gd2l0aCB7JHZhbHVlc30uPC9wPlxuPHA+QmFjayBhcyB7JHVzZXIuaWR9OiB7JHVzZXIubmFtZX0gJmx0O3skdXNlci5lbWFpbH0mZ3Q7e3BhZDppZiAkdXNlci5lbWFpbF92ZXJpZmllZH0sIHZlcmlmaWVkIGJ5IEdpdEh1YnsvcGFkOmlmfSwgdXNlcm5hbWUgeyR1c2VyLnVzZXJuYW1lfSAtIHRoZSByb3cgcGFkTG9naW4ga2VlcHMuPC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIEdpdEh1YiBpcyBub3QgYXNrZWQgaGVyZTogdGhlIHJlcXVlc3RzIGEgbG9naW4gbWFrZXMgLSB0aGUgY29kZSBmb3IgYSB0b2tlbiwgdGhlIHRva2VuXG4gIC8vIGZvciB0aGUgdXNlciBhbmQgZm9yIHRoZSBhZGRyZXNzZXMgR2l0SHViIHZlcmlmaWVkIC0gYXJlIGFuc3dlcmVkIGJ5IGZha2VzLCBhcyBhIHRlc3RcbiAgLy8gYW5zd2VycyB0aGVtLlxuXG4gIHBhZEN1cmxGYWtlICggW1xuICAgICdodHRwczovL2dpdGh1Yi5jb20vbG9naW4vb2F1dGgvYWNjZXNzX3Rva2VuJyA9PiBbICdkYXRhJyA9PiBbICdhY2Nlc3NfdG9rZW4nID0+ICdnaG9fZXhhbXBsZScsICd0b2tlbl90eXBlJyA9PiAnYmVhcmVyJyBdIF0sXG4gICAgJ2h0dHBzOi8vYXBpLmdpdGh1Yi5jb20vdXNlcicgICAgICAgICAgICAgICAgID0+IFsgJ2RhdGEnID0+IFsgJ2lkJyA9PiA1ODMyMzEsICdsb2dpbicgPT4gJ29jdG9jYXQnLCAnbmFtZScgPT4gJ1RoZSBPY3RvY2F0JyxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnZW1haWwnID0+ICdvY3RvY2F0QGV4YW1wbGUuY29tJywgJ2F2YXRhcl91cmwnID0+ICdodHRwczovL2V4YW1wbGUuY29tL29jdG9jYXQucG5nJyBdIF0sXG4gICAgJ2h0dHBzOi8vYXBpLmdpdGh1Yi5jb20vdXNlci9lbWFpbHMnICAgICAgICAgID0+IFsgJ2RhdGEnID0+IFsgWyAnZW1haWwnID0+ICdvY3RvY2F0QGV4YW1wbGUuY29tJywgJ3ZlcmlmaWVkJyA9PiBUUlVFLCAncHJpbWFyeScgPT4gVFJVRSBdIF0gXVxuICBdICk7XG5cbiAgLy8gSW4gYW4gYXBwbGljYXRpb24gdGhlc2UgdHdvIHN0YW5kIGluIC5lbnYgYXMgR0lUSFVCX0NMSUVOVF9JRCBhbmQgR0lUSFVCX0NMSUVOVF9TRUNSRVQuXG5cbiAgJG9wdGlvbnMgPSBbICdjbGllbnRfaWQnID0+ICdleGFtcGxlLWlkJywgJ2NsaWVudF9zZWNyZXQnID0+ICdleGFtcGxlLXNlY3JldCcsICdyZWRpcmVjdCcgPT4gJ2h0dHBzOi8vc2hvcC5leGFtcGxlL29hdXRoL2dpdGh1YicgXTtcblxuICAvLyAxLiBUaGUgc3RhcnQ6IHBhZE9BdXRoU3RhcnQgKCAnZ2l0aHViJyApIHNlbmRzIHRoZSB2aXNpdG9yIHRvIHRoaXMgYWRkcmVzcy5cblxuICAkc3RhcnQgPSBwYWRPQXV0aFVybCAoICdnaXRodWInLCAkb3B0aW9ucyApO1xuXG4gIHBhcnNlX3N0ciAoIHBhcnNlX3VybCAoICRzdGFydCwgUEhQX1VSTF9RVUVSWSApLCAkYXNrZWQgKTtcblxuICAvLyAyLiBHaXRIdWIgc2VuZHMgdGhlIHZpc2l0b3IgYmFjayB3aXRoIGEgY29kZSBhbmQgdGhlIHN0YXRlIC0gaGVyZSB3cml0dGVuIGludG8gJF9HRVQuXG5cbiAgJF9HRVQgWydjb2RlJ10gID0gJ2EtY29kZS1mcm9tLWdpdGh1Yic7XG4gICRfR0VUIFsnc3RhdGUnXSA9ICRhc2tlZCBbJ3N0YXRlJ107XG5cbiAgJHVzZXIgPSBwYWRPQXV0aFVzZXIgKCAnZ2l0aHViJywgJG9wdGlvbnMgKTtcblxuICBwYWRDdXJsRmFrZVN0b3AgKCk7XG5cbiAgJHBhZ2UgICA9IHN0cnRvayAoICRzdGFydCwgJz8nICk7XG4gICR2YWx1ZXMgPSBpbXBsb2RlICggJywgJywgYXJyYXlfa2V5cyAoICRhc2tlZCApICk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;Off to &lt;code&gt;<b>{<font color="green"><font color="red">$</font>page</font>}</b>&lt;/code&gt; with <b>{<font color="green"><font color="red">$</font>values</font>}</b>.&lt;/p&gt;<br>&lt;p&gt;Back as <b>{<font color="green"><font color="red">$</font>user.id</font>}</b>: <b>{<font color="green"><font color="red">$</font>user.name</font>}</b> &lt;<b>{<font color="green"><font color="red">$</font>user.email</font>}</b>&gt;<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if </font><font color="red"><font color="red">$</font>user.email_verified</font>}</b>, verified by GitHub<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>if</font><font color="red"></font>}</b>, username <b>{<font color="green"><font color="red">$</font>user.username</font>}</b> - the row padLogin keeps.&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <p>Off to <code>https://github.com/login/oauth/authorize</code> with response_type, client_id, redirect_uri, scope, state, code_challenge, code_challenge_method.</p>
 <p>Back as github:583231: The Octocat &lt;octocat@example.com&gt;, verified by GitHub, username octocat - the row padLogin keeps.</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -84,45 +92,54 @@ name.</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/oauth_1.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2"></font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0Om9hdXRoICdnaXRodWInLCBocmVmPScjJy99XG57d2lkZ2V0Om9hdXRoICdnb29nbGUnLCBocmVmPScjJy99XG57d2lkZ2V0Om9hdXRoICdtaWNyb3NvZnQnLCBocmVmPScjJy99XG57d2lkZ2V0Om9hdXRoICdhcHBsZScsIGhyZWY9JyMnL31cbnt3aWRnZXQ6b2F1dGggJ29pZGMnLCBocmVmPScjJywgbGFiZWw9J0xvZyBpbiB3aXRoIHlvdXIgY29tcGFueSBhY2NvdW50Jy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0Om9hdXRoICdnaXRodWInLCBocmVmPScjJy99XG57d2lkZ2V0Om9hdXRoICdnb29nbGUnLCBocmVmPScjJy99XG57d2lkZ2V0Om9hdXRoICdtaWNyb3NvZnQnLCBocmVmPScjJy99XG57d2lkZ2V0Om9hdXRoICdhcHBsZScsIGhyZWY9JyMnL31cbnt3aWRnZXQ6b2F1dGggJ29pZGMnLCBocmVmPScjJywgbGFiZWw9J0xvZyBpbiB3aXRoIHlvdXIgY29tcGFueSBhY2NvdW50Jy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">widget</font><font color="black"><b>:</b></font>oauth </font><font color="red"><font color="black">'</font>github<font color="black">'</font><font color="black">,</font> href=<font color="black">'</font>#<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">widget</font><font color="black"><b>:</b></font>oauth </font><font color="red"><font color="black">'</font>google<font color="black">'</font><font color="black">,</font> href=<font color="black">'</font>#<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">widget</font><font color="black"><b>:</b></font>oauth </font><font color="red"><font color="black">'</font>microsoft<font color="black">'</font><font color="black">,</font> href=<font color="black">'</font>#<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">widget</font><font color="black"><b>:</b></font>oauth </font><font color="red"><font color="black">'</font>apple<font color="black">'</font><font color="black">,</font> href=<font color="black">'</font>#<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">widget</font><font color="black"><b>:</b></font>oauth </font><font color="red"><font color="black">'</font>oidc<font color="black">'</font><font color="black">,</font> href=<font color="black">'</font>#<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Log in with your company account<font color="black">'</font></font>/}</b></code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/oauth_1.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0Om9hdXRoICdnaXRodWInLCBocmVmPScjJy99XG57d2lkZ2V0Om9hdXRoICdnb29nbGUnLCBocmVmPScjJy99XG57d2lkZ2V0Om9hdXRoICdtaWNyb3NvZnQnLCBocmVmPScjJy99XG57d2lkZ2V0Om9hdXRoICdhcHBsZScsIGhyZWY9JyMnL31cbnt3aWRnZXQ6b2F1dGggJ29pZGMnLCBocmVmPScjJywgbGFiZWw9J0xvZyBpbiB3aXRoIHlvdXIgY29tcGFueSBhY2NvdW50Jy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0Om9hdXRoICdnaXRodWInLCBocmVmPScjJy99XG57d2lkZ2V0Om9hdXRoICdnb29nbGUnLCBocmVmPScjJy99XG57d2lkZ2V0Om9hdXRoICdtaWNyb3NvZnQnLCBocmVmPScjJy99XG57d2lkZ2V0Om9hdXRoICdhcHBsZScsIGhyZWY9JyMnL31cbnt3aWRnZXQ6b2F1dGggJ29pZGMnLCBocmVmPScjJywgbGFiZWw9J0xvZyBpbiB3aXRoIHlvdXIgY29tcGFueSBhY2NvdW50Jy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">widget</font><font color="black"><b>:</b></font>oauth </font><font color="red"><font color="black">'</font>github<font color="black">'</font><font color="black">,</font> href=<font color="black">'</font>#<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">widget</font><font color="black"><b>:</b></font>oauth </font><font color="red"><font color="black">'</font>google<font color="black">'</font><font color="black">,</font> href=<font color="black">'</font>#<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">widget</font><font color="black"><b>:</b></font>oauth </font><font color="red"><font color="black">'</font>microsoft<font color="black">'</font><font color="black">,</font> href=<font color="black">'</font>#<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">widget</font><font color="black"><b>:</b></font>oauth </font><font color="red"><font color="black">'</font>apple<font color="black">'</font><font color="black">,</font> href=<font color="black">'</font>#<font color="black">'</font></font>/}</b><br><b>{<font color="blue"><font color="purple">widget</font><font color="black"><b>:</b></font>oauth </font><font color="red"><font color="black">'</font>oidc<font color="black">'</font><font color="black">,</font> href=<font color="black">'</font>#<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>Log in with your company account<font color="black">'</font></font>/}</b></code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <style>:where(.pad-oauth){--pad-oauth-back:#ffffff;--pad-oauth-text:#1f2328;--pad-oauth-line:#c8ccd1;--pad-oauth-hover:#f3f4f6;--pad-oauth-focus:#2563eb;}@supports (color:light-dark(#000,#fff)){:where(.pad-oauth){--pad-oauth-back:light-dark(#ffffff,#1f2328);--pad-oauth-text:light-dark(#1f2328,#f0f3f6);--pad-oauth-line:light-dark(#c8ccd1,#4a5058);--pad-oauth-hover:light-dark(#f3f4f6,#2d333b);--pad-oauth-focus:light-dark(#2563eb,#7aa2f7);}}</style><link rel="stylesheet" href="/pad/assets/oauth/oauth.css?v=6209c3aa53"><a class="pad-oauth pad-oauth-github" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-log-in" aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 3.5H19a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1h-4.5M4 12h10M10 8l4 4-4 4"/></svg><span>Log in with GitHub</span></a>
 <a class="pad-oauth pad-oauth-google" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-log-in" aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 3.5H19a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1h-4.5M4 12h10M10 8l4 4-4 4"/></svg><span>Log in with Google</span></a>
 <a class="pad-oauth pad-oauth-microsoft" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-log-in" aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 3.5H19a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1h-4.5M4 12h10M10 8l4 4-4 4"/></svg><span>Log in with Microsoft</span></a>
@@ -131,15 +148,14 @@ name.</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 

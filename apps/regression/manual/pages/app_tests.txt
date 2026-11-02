@@ -1,5 +1,3 @@
-
-
 <p>An application keeps its own tests in <code>_tests/</code>. A test is a page there -
 <code>cart.pad</code>, with <code>cart.php</code> when it needs data - next to its answer,
 <code>cart.txt</code>. <code>pad test shop</code> renders every test page and compares:</p>
@@ -38,59 +36,67 @@ its PHP:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/app_tests_1.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/app_tests_1.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padAssert </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">42</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/app_tests_1.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmFzc2VydCAkdG90YWwgZXEgNDIsICd0aGUgY2FydCB0b3RhbCcvfVxuPHA+VG90YWwgeyR0b3RhbH08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHBhZEFzc2VydCA9IFRSVUU7XG5cbiAgJHRvdGFsID0gNDI7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmFzc2VydCAkdG90YWwgZXEgNDIsICd0aGUgY2FydCB0b3RhbCcvfVxuPHA+VG90YWwgeyR0b3RhbH08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHBhZEFzc2VydCA9IFRSVUU7XG5cbiAgJHRvdGFsID0gNDI7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>assert </font><font color="red"><font color="red">$</font>total eq 42<font color="black">,</font> <font color="black">'</font>the cart total<font color="black">'</font></font>/}</b><br>&lt;p&gt;Total <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/app_tests_1.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padAssert </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">42</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7cGFkOmFzc2VydCAkdG90YWwgZXEgNDIsICd0aGUgY2FydCB0b3RhbCcvfVxuPHA+VG90YWwgeyR0b3RhbH08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHBhZEFzc2VydCA9IFRSVUU7XG5cbiAgJHRvdGFsID0gNDI7XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7cGFkOmFzc2VydCAkdG90YWwgZXEgNDIsICd0aGUgY2FydCB0b3RhbCcvfVxuPHA+VG90YWwgeyR0b3RhbH08L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHBhZEFzc2VydCA9IFRSVUU7XG5cbiAgJHRvdGFsID0gNDI7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>assert </font><font color="red"><font color="red">$</font>total eq 42<font color="black">,</font> <font color="black">'</font>the cart total<font color="black">'</font></font>/}</b><br>&lt;p&gt;Total <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   
 <p>Total 42</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -107,4 +113,3 @@ include the page's own PHP and check the data it sets:</p>
 _tests/cart.pad    {pad:assert $total eq 42, 'the cart total'/}
                    &lt;p&gt;Total {$total}&lt;/p&gt;
 _tests/cart.txt    &lt;p&gt;Total 42&lt;/p&gt;</code></pre>
-

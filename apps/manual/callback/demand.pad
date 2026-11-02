@@ -1,14 +1,11 @@
 <table border=1>
-
   <tr>
     <th>Name</th>
     <th>Salary</th>
     <th>Bonus</th>
     <th>Total</th>
   </tr>
-  
   {local:staff callback='demand.php'}
-
     <tr align="right" 
         bgcolor="{pad:switch 'yellow', 'pink'/}">
       <td align="left">{$name | capitalize}</td>
@@ -16,7 +13,6 @@
       <td>{$bonus  | %.2f}</td>
       <td>{$total  | %.2f}</td>
     </tr>
-
   {/local:staff}
 
   <tr>
@@ -25,5 +21,4 @@
     <td>{$bonusTotal  | %.2f}</td>
     <td>{$totalTotal  | %.2f}</td>
   </tr>
- 
 </table>

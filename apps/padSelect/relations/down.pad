@@ -1,6 +1,10 @@
 {select:artists}
-<h3>{$name}</h3>
-<ul>
-  {select:albums}<li>{$title} ({$released})</li>@else@<li class="dim">no albums</li>{/select:albums}
-</ul>
+  <h3>{$name}</h3>
+  <ul>
+    {select:albums}
+      <li>{$title} ({$released})</li>
+    @else@
+      <li class="dim">no albums</li>
+    {/select:albums}
+  </ul>
 {/select:artists}

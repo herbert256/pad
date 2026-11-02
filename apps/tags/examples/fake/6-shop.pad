@@ -1,7 +1,15 @@
 {pad:meta title='Products of a shop', about='A product, a price and an EAN of the range a shop numbers its own goods in a row - the EAN drawn as the barcode it is, its check digit right.'/}
 <table>
-  <tr><th>Product</th><th>Price</th><th>EAN</th></tr>
+  <tr>
+    <th>Product</th>
+    <th>Price</th>
+    <th>EAN</th>
+  </tr>
   {fake:rows 'name:product, code:ean, price', from=5, to=60, rows=3, seed=2}
-  <tr><td>{$name}</td><td>{$price}</td><td>{barcode:ean13 $code, height=40/}</td></tr>
+    <tr>
+      <td>{$name}</td>
+      <td>{$price}</td>
+      <td>{barcode:ean13 $code, height=40/}</td>
+    </tr>
   {/fake:rows}
 </table>

@@ -106,16 +106,52 @@ on the account that is tried.</p>
 </ul>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>function</th><th>what it does</th></tr>
-  <tr><td><code>padEnv ( $key, $default = NULL )</code></td><td>the value of an environment key - the real environment, then the application's <code>.env</code>, then <code>_common</code>'s, then the PAD home's <code>.env</code>, else the default</td></tr>
-  <tr><td><code>padCacheGet ( $key, $default = NULL )</code></td><td>the value kept under the key, else the default</td></tr>
-  <tr><td><code>padCachePut ( $key, $value, $ttl = 3600 )</code></td><td>keeps the value for <code>$ttl</code> seconds - <code>NULL</code> for ever; TRUE when it is kept</td></tr>
-  <tr><td><code>padCacheHas ( $key )</code></td><td>whether the key holds a value that has not expired</td></tr>
-  <tr><td><code>padCacheForget ( $key )</code></td><td>removes the key; TRUE when it held a value</td></tr>
-  <tr><td><code>padCacheFlush ()</code></td><td>removes every entry of this application, rate limits included</td></tr>
-  <tr><td><code>padRemember ( $key, $ttl, $callback )</code></td><td>the kept value, or the callback's answer - kept for <code>$ttl</code> seconds</td></tr>
-  <tr><td><code>padRateLimit ( $key, $maxAttempts, $decaySeconds = 60 )</code></td><td>counts a hit: TRUE within the limit, FALSE over it</td></tr>
-  <tr><td><code>padRateLimitRemaining ( $key, $maxAttempts )</code></td><td>the hits left in the current window</td></tr>
-  <tr><td><code>padRateLimitAvailableIn ( $key )</code></td><td>the seconds until the current window ends</td></tr>
-  <tr><td><code>padRateLimitClear ( $key )</code></td><td>ends the window - the key starts from nothing</td></tr>
+  <tr>
+    <th>function</th>
+    <th>what it does</th>
+  </tr>
+  <tr>
+    <td><code>padEnv ( $key, $default = NULL )</code></td>
+    <td>the value of an environment key - the real environment, then the application's <code>.env</code>, then <code>_common</code>'s, then the PAD home's <code>.env</code>, else the default</td>
+  </tr>
+  <tr>
+    <td><code>padCacheGet ( $key, $default = NULL )</code></td>
+    <td>the value kept under the key, else the default</td>
+  </tr>
+  <tr>
+    <td><code>padCachePut ( $key, $value, $ttl = 3600 )</code></td>
+    <td>keeps the value for <code>$ttl</code> seconds - <code>NULL</code> for ever; TRUE when it is kept</td>
+  </tr>
+  <tr>
+    <td><code>padCacheHas ( $key )</code></td>
+    <td>whether the key holds a value that has not expired</td>
+  </tr>
+  <tr>
+    <td><code>padCacheForget ( $key )</code></td>
+    <td>removes the key; TRUE when it held a value</td>
+  </tr>
+  <tr>
+    <td><code>padCacheFlush ()</code></td>
+    <td>removes every entry of this application, rate limits included</td>
+  </tr>
+  <tr>
+    <td><code>padRemember ( $key, $ttl, $callback )</code></td>
+    <td>the kept value, or the callback's answer - kept for <code>$ttl</code> seconds</td>
+  </tr>
+  <tr>
+    <td><code>padRateLimit ( $key, $maxAttempts, $decaySeconds = 60 )</code></td>
+    <td>counts a hit: TRUE within the limit, FALSE over it</td>
+  </tr>
+  <tr>
+    <td><code>padRateLimitRemaining ( $key, $maxAttempts )</code></td>
+    <td>the hits left in the current window</td>
+  </tr>
+  <tr>
+    <td><code>padRateLimitAvailableIn ( $key )</code></td>
+    <td>the seconds until the current window ends</td>
+  </tr>
+  <tr>
+    <td><code>padRateLimitClear ( $key )</code></td>
+    <td>ends the window - the key starts from nothing</td>
+  </tr>
 </table>

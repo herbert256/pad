@@ -1,26 +1,24 @@
-<p>There are main 3 ways for randomizing, a sequence (random), an option (randomly) and an action (randomize)
+<p>
+  There are main 3 ways for randomizing, a sequence (random), an option (randomly) and an action (randomize)
+  <h3>The sequence 'random'</h3>
 
-<h3>The sequence 'random'</h3>
+  {common:table}
+    {common:demo} {sequence:random rows=25, minimal=10, maximal=50         } {$sequence} {/sequence:random} {/common:demo}
+    {common:demo} {sequence:random rows=25, minimal=10, maximal=50, unique } {$sequence} {/sequence:random} {/common:demo}
+  {/common:table}
 
-{common:table}
-{common:demo} {sequence:random rows=25, minimal=10, maximal=50         } {$sequence} {/sequence:random} {/common:demo}
-{common:demo} {sequence:random rows=25, minimal=10, maximal=50, unique } {$sequence} {/sequence:random} {/common:demo}
-{/common:table}
+  <h3>The sequence option 'randomly'</h3>
+  Here the loop index is randomly set before the sequence is executed.
+  {common:table}
+    {common:demo} {sequence:power 2, rows=10, randomly, from=8, to=16} {$sequence} {/sequence:power} {/common:demo}
+    {common:demo} {sequence:prime rows=10, randomly, to=1000      } {$sequence} {/sequence:prime} {/common:demo}
+  {/common:table}
 
-<h3>The sequence option 'randomly'</h3>
+  <h3>The sequence action 'randomize'</h3>
 
-Here the loop index is randomly set before the sequence is executed.
-
-{common:table}
-{common:demo} {sequence:power 2, rows=10, randomly, from=8, to=16} {$sequence} {/sequence:power} {/common:demo}
-{common:demo} {sequence:prime rows=10, randomly, to=1000      } {$sequence} {/sequence:prime} {/common:demo}
-{/common:table}
-
-<h3>The sequence action 'randomize'</h3>
-
-{common:table}
-{common:demo} {sequence:auto from=10, to=20, push='mySeq'/}{/common:demo} 
-{common:demo} {pull:mySeq}             {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize  } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=5} {$sequence} {/pull:mySeq} {/common:demo}
-{/common:table}
+  {common:table}
+    {common:demo} {sequence:auto from=10, to=20, push='mySeq'/}{/common:demo}
+    {common:demo} {pull:mySeq}             {$sequence} {/pull:mySeq} {/common:demo}
+    {common:demo} {pull:mySeq randomize  } {$sequence} {/pull:mySeq} {/common:demo}
+    {common:demo} {pull:mySeq randomize=5} {$sequence} {/pull:mySeq} {/common:demo}
+  {/common:table}

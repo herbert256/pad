@@ -1,8 +1,30 @@
 <table>
-  <tr><th>page=1</th><th>page=2</th><th>page=3</th></tr>
   <tr>
-    <td><ol>{select:tracks order="title", rows=5, page=1}<li>{$title}</li>{/select:tracks}</ol></td>
-    <td><ol start="6">{select:tracks order="title", rows=5, page=2}<li>{$title}</li>{/select:tracks}</ol></td>
-    <td><ol start="11">{select:tracks order="title", rows=5, page=3}<li>{$title}</li>{/select:tracks}</ol></td>
+    <th>page=1</th>
+    <th>page=2</th>
+    <th>page=3</th>
+  </tr>
+  <tr>
+    <td>
+      <ol>
+        {select:tracks order="title", rows=5, page=1}
+          <li>{$title}</li>
+        {/select:tracks}
+      </ol>
+    </td>
+    <td>
+      <ol start="6">
+        {select:tracks order="title", rows=5, page=2}
+          <li>{$title}</li>
+        {/select:tracks}
+      </ol>
+    </td>
+    <td>
+      <ol start="11">
+        {select:tracks order="title", rows=5, page=3}
+          <li>{$title}</li>
+        {/select:tracks}
+      </ol>
+    </td>
   </tr>
 </table>

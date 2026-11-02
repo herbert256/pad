@@ -10,19 +10,21 @@
            {$firstName}
            ({$employeeNumber})
       </td>
-      <td> {select:managers}
-             {$lastName},
+      <td>
+        {select:managers}
+          {$lastName},
              {$firstName}
              ({$employeeNumber})
-           {/select:managers}
+        {/select:managers}
       </td>
-      <td> {select:managers}
-             {select:bosses}
-               {$lastName},
+      <td>
+        {select:managers}
+          {select:bosses}
+            {$lastName},
                {$firstName}
                ({$employeeNumber})
-             {/select:bosses}
-           {/select:managers}
+          {/select:bosses}
+        {/select:managers}
       </td>
     </tr>
   {/select:employees}

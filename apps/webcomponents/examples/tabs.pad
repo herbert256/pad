@@ -1,6 +1,10 @@
 {app:tabs}
   {array:sections}<button slot="tab" role="tab" id="tab-{$key}" aria-controls="panel-{$key}" aria-selected="{property:first@sections ? 'true' : 'false'/}">{$label}</button>{/array:sections}
-  {array:sections}<section slot="panel" role="tabpanel" id="panel-{$key}" aria-labelledby="tab-{$key}"><p>{$text}</p></section>{/array:sections}
+  {array:sections}
+    <section slot="panel" role="tabpanel" id="panel-{$key}" aria-labelledby="tab-{$key}">
+      <p>{$text}</p>
+    </section>
+  {/array:sections}
 {/app:tabs}
 
 <script type="module" src="{$padRoot}webcomponents/elements/tabs.js"></script>

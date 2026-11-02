@@ -1,5 +1,7 @@
 <ul>
-  {select:customers rows=4, page=$pg ?? 1}<li>{$customerName}</li>{/select:customers}
+  {select:customers rows=4, page=$pg ?? 1}
+    <li>{$customerName}</li>
+  {/select:customers}
 </ul>
 
 {widget:pager 'customers', window=1/}

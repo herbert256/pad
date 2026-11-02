@@ -1,17 +1,15 @@
 <h3>The sequence action 'randomize'</h3>
 
 {common:table}
-
-{common:demo} {sequence:auto from=10, to=20, push='mySeq'/}{/common:demo} 
-{common:demo} {pull:mySeq}                                     {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize                          } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=5                        } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=5, duplicates            } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=5, orderly               } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=5, orderly, duplicates   } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=25                       } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=25, orderly              } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=25, atLeastOnce          } {$sequence} {/pull:mySeq} {/common:demo}
-{common:demo} {pull:mySeq randomize=25, atLeastOnce, orderly } {$sequence} {/pull:mySeq} {/common:demo}
-
+  {common:demo} {sequence:auto from=10, to=20, push='mySeq'/}{/common:demo}
+  {common:demo} {pull:mySeq}                                     {$sequence} {/pull:mySeq} {/common:demo}
+  {common:demo} {pull:mySeq randomize                          } {$sequence} {/pull:mySeq} {/common:demo}
+  {common:demo} {pull:mySeq randomize=5                        } {$sequence} {/pull:mySeq} {/common:demo}
+  {common:demo} {pull:mySeq randomize=5, duplicates            } {$sequence} {/pull:mySeq} {/common:demo}
+  {common:demo} {pull:mySeq randomize=5, orderly               } {$sequence} {/pull:mySeq} {/common:demo}
+  {common:demo} {pull:mySeq randomize=5, orderly, duplicates   } {$sequence} {/pull:mySeq} {/common:demo}
+  {common:demo} {pull:mySeq randomize=25                       } {$sequence} {/pull:mySeq} {/common:demo}
+  {common:demo} {pull:mySeq randomize=25, orderly              } {$sequence} {/pull:mySeq} {/common:demo}
+  {common:demo} {pull:mySeq randomize=25, atLeastOnce          } {$sequence} {/pull:mySeq} {/common:demo}
+  {common:demo} {pull:mySeq randomize=25, atLeastOnce, orderly } {$sequence} {/pull:mySeq} {/common:demo}
 {/common:table}

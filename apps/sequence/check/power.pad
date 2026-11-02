@@ -1,143 +1,143 @@
 {common:table}
-{common:demo} {sequence:loop from=8, rows=4, power=2       } {$sequence} {/sequence:loop}  {/common:demo}
-{common:demo} {sequence:loop from=8, rows=4, make='power|2' } {$sequence} {/sequence:loop}  {/common:demo}
-{common:demo} {sequence:power 2, from=8, rows=4, make       } {$sequence} {/sequence:power} {/common:demo}
-{common:demo} {sequence:power 2, from=8, rows=4             } {$sequence} {/sequence:power} {/common:demo}
-{common:demo} {make:power 2, from=8, rows=4        } {$sequence} {/make:power} {/common:demo}
-{common:demo} {make:power 2, from=8, rows=4        } {$sequence} {/make:power} {/common:demo}
-{common:demo} {make:power 2, from=8, rows=4        } {$sequence} {/make:power} {/common:demo}
+{common:demo} {sequence:loop from=8, rows=4, power=2} {$sequence} {/sequence:loop}  {/common:demo}
+{common:demo} {sequence:loop from=8, rows=4, make='power|2'} {$sequence} {/sequence:loop}  {/common:demo}
+{common:demo} {sequence:power 2, from=8, rows=4, make} {$sequence} {/sequence:power} {/common:demo}
+{common:demo} {sequence:power 2, from=8, rows=4} {$sequence} {/sequence:power} {/common:demo}
+{common:demo} {make:power 2, from=8, rows=4} {$sequence} {/make:power} {/common:demo}
+{common:demo} {make:power 2, from=8, rows=4} {$sequence} {/make:power} {/common:demo}
+{common:demo} {make:power 2, from=8, rows=4} {$sequence} {/make:power} {/common:demo}
 {/common:table}
 
 {common:table}
-{common:demo} {sequence:loop from=8, rows=4, keep='power|2' } {$sequence} {/sequence:loop}  {/common:demo}
-{common:demo} {sequence:power 2, from=8, rows=4, keep       } {$sequence} {/sequence:power} {/common:demo}
-{common:demo} {keep:power 2, from=8, rows=4       } {$sequence} {/keep:power} {/common:demo}
-{common:demo} {keep:power 2, from=8, rows=4       } {$sequence} {/keep:power} {/common:demo}
-{common:demo} {keep:power 2, from=8, rows=4       } {$sequence} {/keep:power} {/common:demo}
+{common:demo} {sequence:loop from=8, rows=4, keep='power|2'} {$sequence} {/sequence:loop}  {/common:demo}
+{common:demo} {sequence:power 2, from=8, rows=4, keep} {$sequence} {/sequence:power} {/common:demo}
+{common:demo} {keep:power 2, from=8, rows=4} {$sequence} {/keep:power} {/common:demo}
+{common:demo} {keep:power 2, from=8, rows=4} {$sequence} {/keep:power} {/common:demo}
+{common:demo} {keep:power 2, from=8, rows=4} {$sequence} {/keep:power} {/common:demo}
 {/common:table}
 
 {common:table}
-{common:demo} {sequence:loop from=6, rows=12, remove='power|2' } {$sequence} {/sequence:loop}  {/common:demo}
-{common:demo} {sequence:power 2, from=6, rows=12, remove       } {$sequence} {/sequence:power} {/common:demo}
-{common:demo} {remove:power 2, from=6, rows=12       } {$sequence} {/remove:power} {/common:demo}
-{common:demo} {remove:power 2, from=6, rows=12       } {$sequence} {/remove:power} {/common:demo}
-{common:demo} {remove:power 2, from=6, rows=12       } {$sequence} {/remove:power} {/common:demo}
+{common:demo} {sequence:loop from=6, rows=12, remove='power|2'} {$sequence} {/sequence:loop}  {/common:demo}
+{common:demo} {sequence:power 2, from=6, rows=12, remove} {$sequence} {/sequence:power} {/common:demo}
+{common:demo} {remove:power 2, from=6, rows=12} {$sequence} {/remove:power} {/common:demo}
+{common:demo} {remove:power 2, from=6, rows=12} {$sequence} {/remove:power} {/common:demo}
+{common:demo} {remove:power 2, from=6, rows=12} {$sequence} {/remove:power} {/common:demo}
 {/common:table}
 
 {common:table}
-{common:demo} {sequence:loop from=8, rows=4, flag='power|2' } {$sequence} {/sequence:loop}  {/common:demo}
-{common:demo} {sequence:power 2, from=8, rows=4, flag       } {$sequence} {/sequence:power} {/common:demo} 
-{common:demo} {pad:flag power=2, from=8, rows=4       } {$sequence} {/pad:flag} {/common:demo}
-{common:demo} {flag:power 2, from=8, rows=4       } {$sequence} {/flag:power} {/common:demo}
-{common:demo} {flag:power 2, from=8, rows=4       } {$sequence} {/flag:power} {/common:demo}
+{common:demo} {sequence:loop from=8, rows=4, flag='power|2'} {$sequence} {/sequence:loop}  {/common:demo}
+{common:demo} {sequence:power 2, from=8, rows=4, flag} {$sequence} {/sequence:power} {/common:demo} 
+{common:demo} {pad:flag power=2, from=8, rows=4} {$sequence} {/pad:flag} {/common:demo}
+{common:demo} {flag:power 2, from=8, rows=4} {$sequence} {/flag:power} {/common:demo}
+{common:demo} {flag:power 2, from=8, rows=4} {$sequence} {/flag:power} {/common:demo}
 {/common:table}
 
 {common:table}
-{common:demo} {sequence:loop from=4, rows=8              /} {/common:demo}
-{common:demo} {pad:pull power=2              } {$sequence} {/pad:pull}  {/common:demo}
-{common:demo} {pull:default power=2           } {$sequence} {/pull:default}  {/common:demo}
-{common:demo} {sequence:power 2, default          } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, pull             } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, default } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, default } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, pull    } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, pull    } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {pull:default power=2      } {$sequence} {/pull:default}  {/common:demo}
-{common:demo} {pull:default power=2      } {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {sequence:loop from=4, rows=8/} {/common:demo}
+{common:demo} {pad:pull power=2} {$sequence} {/pad:pull}  {/common:demo}
+{common:demo} {pull:default power=2} {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {sequence:power 2, default} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, pull} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, default} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, default} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, pull} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, pull} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {pull:default power=2} {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {pull:default power=2} {$sequence} {/pull:default}  {/common:demo}
 {/common:table}
 
 {common:table}
-{common:demo} {sequence:loop from=4, rows=8                 /} {/common:demo}
-{common:demo} {pad:pull make='power|2'            } {$sequence} {/pad:pull}  {/common:demo}
-{common:demo} {pad:pull make, power=2             } {$sequence} {/pad:pull}  {/common:demo}
-{common:demo} {pad:pull power=2, make             } {$sequence} {/pad:pull}  {/common:demo}
-{common:demo} {pull:default make='power|2'         } {$sequence} {/pull:default}  {/common:demo}
-{common:demo} {pull:default power=2, make          } {$sequence} {/pull:default}  {/common:demo}
-{common:demo} {pull:default make, power=2          } {$sequence} {/pull:default}  {/common:demo}
-{common:demo} {make:auto default, power=2          } {$sequence} {/make:auto}  {/common:demo}
-{common:demo} {make:power 2, default          } {$sequence} {/make:power}  {/common:demo}
-{common:demo} {make:auto pull, power=2             } {$sequence} {/make:auto}  {/common:demo}
-{common:demo} {make:power 2, pull             } {$sequence} {/make:power}  {/common:demo}
-{common:demo} {sequence:power 2,default, make          } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2,make, default          } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2,make, pull             } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2,pull, make             } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {make:default power=2           } {$sequence} {/make:default}  {/common:demo}
-{common:demo} {make:default power=2           } {$sequence} {/make:default}  {/common:demo}
-{common:demo} {sequence:power 2, default, make } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, default, make    } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, pull, make    } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, pull, make    } {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:loop from=4, rows=8/} {/common:demo}
+{common:demo} {pad:pull make='power|2'} {$sequence} {/pad:pull}  {/common:demo}
+{common:demo} {pad:pull make, power=2} {$sequence} {/pad:pull}  {/common:demo}
+{common:demo} {pad:pull power=2, make} {$sequence} {/pad:pull}  {/common:demo}
+{common:demo} {pull:default make='power|2'} {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {pull:default power=2, make} {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {pull:default make, power=2} {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {make:auto default, power=2} {$sequence} {/make:auto}  {/common:demo}
+{common:demo} {make:power 2, default} {$sequence} {/make:power}  {/common:demo}
+{common:demo} {make:auto pull, power=2} {$sequence} {/make:auto}  {/common:demo}
+{common:demo} {make:power 2, pull} {$sequence} {/make:power}  {/common:demo}
+{common:demo} {sequence:power 2,default, make} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2,make, default} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2,make, pull} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2,pull, make} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {make:default power=2} {$sequence} {/make:default}  {/common:demo}
+{common:demo} {make:default power=2} {$sequence} {/make:default}  {/common:demo}
+{common:demo} {sequence:power 2, default, make} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, default, make} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, pull, make} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, pull, make} {$sequence} {/sequence:power}  {/common:demo}
 {/common:table}
 
 {common:table}
-{common:demo} {sequence:loop from=4, rows=13                   /} {/common:demo}
-{common:demo} {pad:pull keep='power|2'            } {$sequence} {/pad:pull}  {/common:demo}
-{common:demo} {pad:pull keep, power=2             } {$sequence} {/pad:pull}  {/common:demo}
-{common:demo} {pad:pull power=2, keep             } {$sequence} {/pad:pull}  {/common:demo}
-{common:demo} {pull:default keep='power|2'         } {$sequence} {/pull:default}  {/common:demo}
-{common:demo} {pull:default power=2, keep          } {$sequence} {/pull:default}  {/common:demo}
-{common:demo} {pull:default keep, power=2          } {$sequence} {/pull:default}  {/common:demo}
-{common:demo} {keep:auto default, power=2          } {$sequence} {/keep:auto}  {/common:demo}
-{common:demo} {keep:power 2, default          } {$sequence} {/keep:power}  {/common:demo}
-{common:demo} {keep:auto pull, power=2             } {$sequence} {/keep:auto}  {/common:demo}
-{common:demo} {keep:power 2, pull             } {$sequence} {/keep:power}  {/common:demo}
-{common:demo} {sequence:power 2,default, keep          } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2,keep, default          } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2,keep, pull             } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2,pull, keep             } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {keep:default power=2           } {$sequence} {/keep:default}  {/common:demo}
-{common:demo} {keep:default power=2           } {$sequence} {/keep:default}  {/common:demo}
-{common:demo} {sequence:power 2, default, keep } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, default, keep    } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, pull, keep    } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, pull, keep    } {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:loop from=4, rows=13/} {/common:demo}
+{common:demo} {pad:pull keep='power|2'} {$sequence} {/pad:pull}  {/common:demo}
+{common:demo} {pad:pull keep, power=2} {$sequence} {/pad:pull}  {/common:demo}
+{common:demo} {pad:pull power=2, keep} {$sequence} {/pad:pull}  {/common:demo}
+{common:demo} {pull:default keep='power|2'} {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {pull:default power=2, keep} {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {pull:default keep, power=2} {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {keep:auto default, power=2} {$sequence} {/keep:auto}  {/common:demo}
+{common:demo} {keep:power 2, default} {$sequence} {/keep:power}  {/common:demo}
+{common:demo} {keep:auto pull, power=2} {$sequence} {/keep:auto}  {/common:demo}
+{common:demo} {keep:power 2, pull} {$sequence} {/keep:power}  {/common:demo}
+{common:demo} {sequence:power 2,default, keep} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2,keep, default} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2,keep, pull} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2,pull, keep} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {keep:default power=2} {$sequence} {/keep:default}  {/common:demo}
+{common:demo} {keep:default power=2} {$sequence} {/keep:default}  {/common:demo}
+{common:demo} {sequence:power 2, default, keep} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, default, keep} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, pull, keep} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, pull, keep} {$sequence} {/sequence:power}  {/common:demo}
 {/common:table}
 
 {common:table}
-{common:demo} {sequence:loop from=4, rows=13                     /} {/common:demo}
-{common:demo} {pad:pull remove='power|2'            } {$sequence} {/pad:pull}  {/common:demo}
-{common:demo} {pad:pull remove, power=2             } {$sequence} {/pad:pull}  {/common:demo}
-{common:demo} {pad:pull power=2, remove             } {$sequence} {/pad:pull}  {/common:demo}
-{common:demo} {pull:default remove='power|2'         } {$sequence} {/pull:default}  {/common:demo}
-{common:demo} {pull:default power=2, remove          } {$sequence} {/pull:default}  {/common:demo}
-{common:demo} {pull:default remove, power=2          } {$sequence} {/pull:default}  {/common:demo}
-{common:demo} {remove:auto default, power=2          } {$sequence} {/remove:auto}  {/common:demo}
-{common:demo} {remove:power 2, default          } {$sequence} {/remove:power}  {/common:demo}
-{common:demo} {remove:auto pull, power=2             } {$sequence} {/remove:auto}  {/common:demo}
-{common:demo} {remove:power 2, pull             } {$sequence} {/remove:power}  {/common:demo}
-{common:demo} {sequence:power 2,default, remove          } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2,remove, default          } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2,remove, pull             } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2,pull, remove             } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {remove:default power=2           } {$sequence} {/remove:default}  {/common:demo}
-{common:demo} {remove:default power=2           } {$sequence} {/remove:default}  {/common:demo}
-{common:demo} {sequence:power 2, default, remove } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, default, remove    } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, pull, remove    } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, pull, remove    } {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:loop from=4, rows=13/} {/common:demo}
+{common:demo} {pad:pull remove='power|2'} {$sequence} {/pad:pull}  {/common:demo}
+{common:demo} {pad:pull remove, power=2} {$sequence} {/pad:pull}  {/common:demo}
+{common:demo} {pad:pull power=2, remove} {$sequence} {/pad:pull}  {/common:demo}
+{common:demo} {pull:default remove='power|2'} {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {pull:default power=2, remove} {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {pull:default remove, power=2} {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {remove:auto default, power=2} {$sequence} {/remove:auto}  {/common:demo}
+{common:demo} {remove:power 2, default} {$sequence} {/remove:power}  {/common:demo}
+{common:demo} {remove:auto pull, power=2} {$sequence} {/remove:auto}  {/common:demo}
+{common:demo} {remove:power 2, pull} {$sequence} {/remove:power}  {/common:demo}
+{common:demo} {sequence:power 2,default, remove} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2,remove, default} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2,remove, pull} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2,pull, remove} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {remove:default power=2} {$sequence} {/remove:default}  {/common:demo}
+{common:demo} {remove:default power=2} {$sequence} {/remove:default}  {/common:demo}
+{common:demo} {sequence:power 2, default, remove} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, default, remove} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, pull, remove} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, pull, remove} {$sequence} {/sequence:power}  {/common:demo}
 {/common:table}
 
 {common:table}
-{common:demo} {sequence:loop from=4, rows=13                   /} {/common:demo}
-{common:demo} {pad:pull flag='power|2'            } {$sequence} {/pad:pull}  {/common:demo}
-{common:demo} {pad:pull flag, power=2             } {$sequence} {/pad:pull}  {/common:demo}
-{common:demo} {pad:pull power=2, flag             } {$sequence} {/pad:pull}  {/common:demo}
-{common:demo} {pull:default flag='power|2'         } {$sequence} {/pull:default}  {/common:demo}
-{common:demo} {pull:default power=2, flag          } {$sequence} {/pull:default}  {/common:demo}
-{common:demo} {pull:default flag, power=2          } {$sequence} {/pull:default}  {/common:demo}
-{common:demo} {pad:flag default, power=2          } {$sequence} {/pad:flag}  {/common:demo}
-{common:demo} {pad:flag power=2, default          } {$sequence} {/pad:flag}  {/common:demo}
-{common:demo} {pad:flag pull, power=2             } {$sequence} {/pad:flag}  {/common:demo}
-{common:demo} {pad:flag power=2, pull             } {$sequence} {/pad:flag}  {/common:demo}
-{common:demo} {sequence:power 2,default, flag          } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2,flag, default          } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2,flag, pull             } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2,pull, flag             } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {flag:default power=2           } {$sequence} {/flag:default}  {/common:demo}
-{common:demo} {flag:default power=2           } {$sequence} {/flag:default}  {/common:demo}
-{common:demo} {sequence:power 2, default, flag } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, default, flag    } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, pull, flag    } {$sequence} {/sequence:power}  {/common:demo}
-{common:demo} {sequence:power 2, pull, flag    } {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:loop from=4, rows=13/} {/common:demo}
+{common:demo} {pad:pull flag='power|2'} {$sequence} {/pad:pull}  {/common:demo}
+{common:demo} {pad:pull flag, power=2} {$sequence} {/pad:pull}  {/common:demo}
+{common:demo} {pad:pull power=2, flag} {$sequence} {/pad:pull}  {/common:demo}
+{common:demo} {pull:default flag='power|2'} {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {pull:default power=2, flag} {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {pull:default flag, power=2} {$sequence} {/pull:default}  {/common:demo}
+{common:demo} {pad:flag default, power=2} {$sequence} {/pad:flag}  {/common:demo}
+{common:demo} {pad:flag power=2, default} {$sequence} {/pad:flag}  {/common:demo}
+{common:demo} {pad:flag pull, power=2} {$sequence} {/pad:flag}  {/common:demo}
+{common:demo} {pad:flag power=2, pull} {$sequence} {/pad:flag}  {/common:demo}
+{common:demo} {sequence:power 2,default, flag} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2,flag, default} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2,flag, pull} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2,pull, flag} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {flag:default power=2} {$sequence} {/flag:default}  {/common:demo}
+{common:demo} {flag:default power=2} {$sequence} {/flag:default}  {/common:demo}
+{common:demo} {sequence:power 2, default, flag} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, default, flag} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, pull, flag} {$sequence} {/sequence:power}  {/common:demo}
+{common:demo} {sequence:power 2, pull, flag} {$sequence} {/sequence:power}  {/common:demo}
 {/common:table}

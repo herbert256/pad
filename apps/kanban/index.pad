@@ -1,28 +1,29 @@
 <div class="board" id="board" data-version="{$version}">
-
   <div class="columns" id="columns">
     {pad:fragment 'columns'}
-    {array:board}
-    <section class="column{pad:if $over} over{/pad:if}" data-column="{$id}" aria-labelledby="column-{$id}">
-      <h2 id="column-{$id}">{$name} <span class="count">{$count}{pad:if $wip gt 0} / {$wip}{/pad:if}</span></h2>
-      <div class="cards" data-drop="{$id}">
-        {level:cards}
-        <article class="card label-{$label}" draggable="true" data-card="{$id}" data-due="{$due}" tabindex="0">
-          <a class="title" href="{$padGo}card&id={$id}">{$title}</a>
-          {pad:if $excerpt}<p>{$excerpt}</p>{/pad:if}
-          <footer>
-            {pad:if $label}<span class="chip">{$labelName}</span>{/pad:if}
-            {pad:if $due}<time datetime="{$due}">{$dueShown}</time>{/pad:if}
-            <span class="moves">
-              {pad:if $left}<button type="button" data-move="{$left}" aria-label="Move {$title} to {$leftName}" title="To {$leftName}">←</button>{/pad:if}
-              {pad:if $right}<button type="button" data-move="{$right}" aria-label="Move {$title} to {$rightName}" title="To {$rightName}">→</button>{/pad:if}
-            </span>
-          </footer>
-        </article>
-        {/level:cards}
-      </div>
-    </section>
-    {/array:board}
+      {array:board}
+        <section class="column{pad:if $over} over{/pad:if}" data-column="{$id}" aria-labelledby="column-{$id}">
+          <h2 id="column-{$id}">{$name} <span class="count">{$count}{pad:if $wip gt 0} / {$wip}{/pad:if}</span></h2>
+          <div class="cards" data-drop="{$id}">
+            {level:cards}
+              <article class="card label-{$label}" draggable="true" data-card="{$id}" data-due="{$due}" tabindex="0">
+                <a class="title" href="{$padGo}card&id={$id}">{$title}</a>
+                {pad:if $excerpt}
+                  <p>{$excerpt}</p>
+                {/pad:if}
+                <footer>
+                  {pad:if $label}<span class="chip">{$labelName}</span>{/pad:if}
+                  {pad:if $due}<time datetime="{$due}">{$dueShown}</time>{/pad:if}
+                  <span class="moves">
+                    {pad:if $left}<button type="button" data-move="{$left}" aria-label="Move {$title} to {$leftName}" title="To {$leftName}">←</button>{/pad:if}
+                    {pad:if $right}<button type="button" data-move="{$right}" aria-label="Move {$title} to {$rightName}" title="To {$rightName}">→</button>{/pad:if}
+                  </span>
+                </footer>
+              </article>
+            {/level:cards}
+          </div>
+        </section>
+      {/array:board}
     {/pad:fragment}
   </div>
 
@@ -30,11 +31,12 @@
     <h2 id="feed-title">Activity</h2>
     <ol class="activity" id="activity">
       {pad:fragment 'activity'}
-      {array:activity}<li><time datetime="{$at}">{$when}</time>{$what}</li>{/array:activity}
+        {array:activity}
+          <li><time datetime="{$at}">{$when}</time>{$what}</li>
+        {/array:activity}
       {/pad:fragment}
     </ol>
   </aside>
-
 </div>
 
 <dialog id="new-card" aria-labelledby="new-card-title"{pad:if $cardFailed} open{/pad:if}>
@@ -43,7 +45,12 @@
     {input:field 'title', label='Title', rules='required|max:100', autofocus/}
     {input:textarea 'body', label='Details', rows=4, rules='max:2000'/}
     <label for="new-label">Label</label>
-    <select id="new-label" name="label"><option value="">None</option>{array:labelList}<option value="{$key}"{pad:if $chosen} selected{/pad:if}>{$name}</option>{/array:labelList}</select>
+    <select id="new-label" name="label">
+      <option value="">None</option>
+      {array:labelList}
+        <option value="{$key}"{pad:if $chosen} selected{/pad:if}>{$name}</option>
+      {/array:labelList}
+    </select>
     <div class="bar"><button class="button primary">Add to Backlog</button><button class="button" type="button" data-close>Cancel</button></div>
   {/input:form}
 </dialog>

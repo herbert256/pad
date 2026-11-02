@@ -2,5 +2,9 @@
 <p>Cities with a delivery today:</p>
 <ul>{pad:stack 'pushDelivery'/}</ul>
 {array:deliveries}
-  {pad:if $today}{pad:push 'pushDelivery'}<li>{$city}</li>{/pad:push}{/pad:if}
+  {pad:if $today}
+    {pad:push 'pushDelivery'}
+      <li>{$city}</li>
+    {/pad:push}
+  {/pad:if}
 {/array:deliveries}

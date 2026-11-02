@@ -1,4 +1,7 @@
-{pad:define 'gross'}{pad:parms net, vat=21/}{pad:echo #net * (1 + #vat / 100) | %.2f/}{/pad:define}
+{pad:define 'gross'}
+  {pad:parms net, vat=21/}
+  {pad:echo #net * (1 + #vat / 100) | %.2f/}
+{/pad:define}
 <p>{define:gross net=100/} and {define:gross net=100, vat=9/}</p>
 {format:auto 'steps'}["plan", "build", "ship"]{/format:auto}
 {data:steps}

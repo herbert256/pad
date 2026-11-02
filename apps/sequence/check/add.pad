@@ -1,63 +1,63 @@
 {common:table}
 
-{common:demo} {sequence:add 3, from=31, to=40                 } {$sequence} {/sequence:add}{/common:demo}
-{common:demo} {sequence:range '31..40', add=3              } {$sequence} {/sequence:range}{/common:demo}
-{common:demo} {sequence:range '31..40', make, add=3        } {$sequence} {/sequence:range}{/common:demo}
-{common:demo} {sequence:range '31..40', make='add|3'       } {$sequence} {/sequence:range}{/common:demo}
+{common:demo} {sequence:add 3, from=31, to=40} {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:range '31..40', add=3} {$sequence} {/sequence:range}{/common:demo}
+{common:demo} {sequence:range '31..40', make, add=3} {$sequence} {/sequence:range}{/common:demo}
+{common:demo} {sequence:range '31..40', make='add|3'} {$sequence} {/sequence:range}{/common:demo}
 
-{common:demo} {sequence:range '31..40', push='mySequence' /} {/common:demo}
+{common:demo} {sequence:range '31..40', push='mySequence'/} {/common:demo}
 
-{common:demo} {sequence:add mySequence, 3                   } {$sequence} {/sequence:add}{/common:demo}
-{common:demo} {sequence:add 3, mySequence                   } {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:add mySequence, 3} {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:add 3, mySequence} {$sequence} {/sequence:add}{/common:demo}
 
-{common:demo} {sequence:add mySequence, 3          } {$sequence} {/sequence:add}{/common:demo}
-{common:demo} {sequence:add 3, mySequence          } {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:add mySequence, 3} {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:add 3, mySequence} {$sequence} {/sequence:add}{/common:demo}
 
-{common:demo} {make:add pull='mySequence', 3                      } {$sequence} {/make:add}{/common:demo}
-{common:demo} {make:add pull='mySequence', 3                      } {$sequence} {/make:add}{/common:demo}
+{common:demo} {make:add pull='mySequence', 3} {$sequence} {/make:add}{/common:demo}
+{common:demo} {make:add pull='mySequence', 3} {$sequence} {/make:add}{/common:demo}
 
-{common:demo} {make:auto mySequence, add=3           } {$sequence} {/make:auto}{/common:demo}
-{common:demo} {make:auto add=3, mySequence, 3           } {$sequence} {/make:auto}{/common:demo}
+{common:demo} {make:auto mySequence, add=3} {$sequence} {/make:auto}{/common:demo}
+{common:demo} {make:auto add=3, mySequence, 3} {$sequence} {/make:auto}{/common:demo}
 
-{common:demo} {make:auto mySequence, add=3       } {$sequence} {/make:auto}{/common:demo}
-{common:demo} {make:auto add=3, mySequence, 3       } {$sequence} {/make:auto}{/common:demo}
+{common:demo} {make:auto mySequence, add=3} {$sequence} {/make:auto}{/common:demo}
+{common:demo} {make:auto add=3, mySequence, 3} {$sequence} {/make:auto}{/common:demo}
 
-{common:demo} {make:mySequence add=3              } {$sequence} {/make:mySequence}{/common:demo}
-{common:demo} {make:mySequence add=3              } {$sequence} {/make:mySequence}{/common:demo}
+{common:demo} {make:mySequence add=3} {$sequence} {/make:mySequence}{/common:demo}
+{common:demo} {make:mySequence add=3} {$sequence} {/make:mySequence}{/common:demo}
 
-{common:demo} {make:add mySequence, 3              } {$sequence} {/make:add}{/common:demo}
-{common:demo} {make:add mySequence, 3              } {$sequence} {/make:add}{/common:demo}
+{common:demo} {make:add mySequence, 3} {$sequence} {/make:add}{/common:demo}
+{common:demo} {make:add mySequence, 3} {$sequence} {/make:add}{/common:demo}
 
 {/common:table}
 
 
 {common:table}
 
-{common:demo} {sequence:add 3, from=31, to=40, even                } {$sequence} {/sequence:add}{/common:demo}
-{common:demo} {sequence:range '31..40', add=3, even             } {$sequence} {/sequence:range}{/common:demo}
-{common:demo} {sequence:range '31..40', make, add=3, even       } {$sequence} {/sequence:range}{/common:demo}
-{common:demo} {sequence:range '31..40', make='add|3', even      } {$sequence} {/sequence:range}{/common:demo}
-{common:demo} {sequence:range '31..40', push='mySequence'      /} {/common:demo}
+{common:demo} {sequence:add 3, from=31, to=40, even} {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:range '31..40', add=3, even} {$sequence} {/sequence:range}{/common:demo}
+{common:demo} {sequence:range '31..40', make, add=3, even} {$sequence} {/sequence:range}{/common:demo}
+{common:demo} {sequence:range '31..40', make='add|3', even} {$sequence} {/sequence:range}{/common:demo}
+{common:demo} {sequence:range '31..40', push='mySequence'/} {/common:demo}
 
-{common:demo} {sequence:add mySequence, 3, even                  } {$sequence} {/sequence:add}{/common:demo}
-{common:demo} {sequence:add 3, mySequence, even                  } {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:add mySequence, 3, even} {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:add 3, mySequence, even} {$sequence} {/sequence:add}{/common:demo}
 
-{common:demo} {sequence:add mySequence, 3, even         } {$sequence} {/sequence:add}{/common:demo}
-{common:demo} {sequence:add 3, mySequence, even         } {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:add mySequence, 3, even} {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:add 3, mySequence, even} {$sequence} {/sequence:add}{/common:demo}
 
-{common:demo} {make:add pull='mySequence', 3, even                     } {$sequence} {/make:add}{/common:demo}
-{common:demo} {make:add pull='mySequence', 3, even                     } {$sequence} {/make:add}{/common:demo}
+{common:demo} {make:add pull='mySequence', 3, even} {$sequence} {/make:add}{/common:demo}
+{common:demo} {make:add pull='mySequence', 3, even} {$sequence} {/make:add}{/common:demo}
 
-{common:demo} {make:auto mySequence, add=3, even          } {$sequence} {/make:auto}{/common:demo}
-{common:demo} {make:auto add=3, mySequence, 3, even          } {$sequence} {/make:auto}{/common:demo}
+{common:demo} {make:auto mySequence, add=3, even} {$sequence} {/make:auto}{/common:demo}
+{common:demo} {make:auto add=3, mySequence, 3, even} {$sequence} {/make:auto}{/common:demo}
 
-{common:demo} {make:auto mySequence, add=3, even      } {$sequence} {/make:auto}{/common:demo}
-{common:demo} {make:auto add=3, mySequence, 3, even      } {$sequence} {/make:auto}{/common:demo}
+{common:demo} {make:auto mySequence, add=3, even} {$sequence} {/make:auto}{/common:demo}
+{common:demo} {make:auto add=3, mySequence, 3, even} {$sequence} {/make:auto}{/common:demo}
 
-{common:demo} {make:mySequence add=3, even             } {$sequence} {/make:mySequence}{/common:demo}
-{common:demo} {make:mySequence add=3, even             } {$sequence} {/make:mySequence}{/common:demo}
+{common:demo} {make:mySequence add=3, even} {$sequence} {/make:mySequence}{/common:demo}
+{common:demo} {make:mySequence add=3, even} {$sequence} {/make:mySequence}{/common:demo}
 
-{common:demo} {make:add mySequence, 3, even             } {$sequence} {/make:add}{/common:demo}
-{common:demo} {make:add mySequence, 3, even             } {$sequence} {/make:add}{/common:demo}
+{common:demo} {make:add mySequence, 3, even} {$sequence} {/make:add}{/common:demo}
+{common:demo} {make:add mySequence, 3, even} {$sequence} {/make:add}{/common:demo}
 
 {/common:table}

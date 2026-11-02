@@ -1,30 +1,34 @@
 <form class="bar" method="get">
   <input type="hidden" name="files" value="">
-  <label>Application
+  <label>
+    Application
     <select name="app" onchange="this.form.submit()">
       <option value="">- choose -</option>
-      {array:appRows}<option value="{$name}" {pad:if $selected}selected{/pad:if}>{$name}</option>{/array:appRows}
+      {array:appRows}
+        <option value="{$name}" {pad:if $selected}selected{/pad:if}>{$name}</option>
+      {/array:appRows}
     </select>
   </label>
-  {pad:if $app ne ''}{pad:if $hasWww}
-    <label>Root
-      <select name="root" onchange="this.form.submit()">
-        <option value="app" {pad:if $root eq 'app'}selected{/pad:if}>apps/{$app}/</option>
-        <option value="www" {pad:if $root eq 'www'}selected{/pad:if}>www/{$app}/</option>
-      </select>
-    </label>
-  {/pad:if}{/pad:if}
+  {pad:if $app ne ''}
+    {pad:if $hasWww}
+      <label>
+        Root
+        <select name="root" onchange="this.form.submit()">
+          <option value="app" {pad:if $root eq 'app'}selected{/pad:if}>apps/{$app}/</option>
+          <option value="www" {pad:if $root eq 'www'}selected{/pad:if}>www/{$app}/</option>
+        </select>
+      </label>
+    {/pad:if}
+  {/pad:if}
   <noscript><button>Show</button></noscript>
 </form>
 
 {pad:if $app ne ''}
-
   <p class="crumbs">
     {array:crumbs}{property:notFirst@crumbs} / {/property:notFirst@crumbs}<a href="?files&amp;app={$app}&amp;root={$root}&amp;dir={$dir | url}">{$label}</a>{/array:crumbs}
   </p>
 
   <div class="browser">
-
     <nav class="card" aria-label="Files">
       <ul class="tree">
         {pad:if $hasParent}
@@ -58,12 +62,15 @@
           {/pad:if}
         </section>
       {pad:else}
-        <section class="card"><p class="dim">Choose a file on the left.</p></section>
+        <section class="card">
+          <p class="dim">Choose a file on the left.</p>
+        </section>
       {/pad:if}
     </div>
-
   </div>
 
 {pad:else}
-  <section class="card"><p class="dim">Choose an application.</p></section>
+  <section class="card">
+    <p class="dim">Choose an application.</p>
+  </section>
 {/pad:if}

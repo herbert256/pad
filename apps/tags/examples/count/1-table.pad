@@ -1,7 +1,14 @@
 {pad:meta title='A table only when there are rows', about='The heading and table render for a list with rows; an empty list gets the @else@ text.'/}
 {pad:count 'countOpen'}
   <h4>Open orders</h4>
-  <table>{array:countOpen}<tr><td>{$number}</td><td>{$customer}</td></tr>{/array:countOpen}</table>
+  <table>
+    {array:countOpen}
+      <tr>
+        <td>{$number}</td>
+        <td>{$customer}</td>
+      </tr>
+    {/array:countOpen}
+  </table>
 @else@
   <p>No open orders.</p>
 {/pad:count}

@@ -5,6 +5,8 @@
 {/format:auto}
 
 {data:orders sort='customer'}
-  {pad:ifchanged $customer}<h4>{$customer}</h4>{/pad:ifchanged}
+  {pad:ifchanged $customer}
+    <h4>{$customer}</h4>
+  {/pad:ifchanged}
   <p>Order {$number}</p>
 {/data:orders}

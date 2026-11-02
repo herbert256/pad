@@ -1,26 +1,23 @@
 {common:block}
-
-<p>
+  <p>
 PAD parses on the fly (on demand) it searches for the first <b>{pad:close/}</b>, then it takes the first <b>{pad:open/}</b> before it, and analyses it to see if it is a PAD tag or a PAD variable.
 </p>
 
-<p>
+  <p>
 In below example, the {app:source}{$myVar}{/app:source} part is parsed first and executed.
 </p>
 
-{common:example 'miscellaneous/parse/1', skipResult, skipPhp, skipHeader/}
+  {common:example 'miscellaneous/parse/1', skipResult, skipPhp, skipHeader/}
 
-<p>
+  <p>
 Lets assume {app:source}{$myVar}{/app:source} has the value ABC, then the result will be below, and now the {app:tag 'pad'/} tag will be processed.
 </p>
 
-{common:example 'miscellaneous/parse/2', skipResult, skipPhp, skipHeader/}
+  {common:example 'miscellaneous/parse/2', skipResult, skipPhp, skipHeader/}
 
-<p>
+  <p>
 Without quotes around {app:source}{$myVar}{/app:source} the result is the same while <code>$padProtectValues</code> is on, the default: a field written into a tag's parameters is spliced in as a quoted string (a plain number as the number), so its value stays the text ABC - with it off, the value is read as the bare word below. Only a bare word written in the template itself, as below, is read as the PHP constant of that name when one is defined, and as the text when not - a quoted value is always the text
 </p>
 
-{common:example 'miscellaneous/parse/3', skipResult, skipPhp, skipHeader/}
-
-
+  {common:example 'miscellaneous/parse/3', skipResult, skipPhp, skipHeader/}
 {/common:block}

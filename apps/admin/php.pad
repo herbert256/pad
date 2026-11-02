@@ -1,27 +1,45 @@
 <div class="grid2">
-
   <section class="card">
     <h2>{icon:code size=18/} PHP {$facts.0.value}</h2>
-    <table class="facts">{array:facts}<tr><th>{$label}</th><td>{$value}</td></tr>{/array:facts}</table>
+    <table class="facts">
+      {array:facts}
+        <tr>
+          <th>{$label}</th>
+          <td>{$value}</td>
+        </tr>
+      {/array:facts}
+    </table>
   </section>
 
   <section class="card">
     <h2>{icon:zap size=18/} OPcache</h2>
     {pad:if $hasOpcache}
-      <table class="facts">{array:opcacheRows}<tr><th>{$label}</th><td>{$value}</td></tr>{/array:opcacheRows}</table>
+      <table class="facts">
+        {array:opcacheRows}
+          <tr>
+            <th>{$label}</th>
+            <td>{$value}</td>
+          </tr>
+        {/array:opcacheRows}
+      </table>
     {pad:else}
       <p class="dim">OPcache does not run for this server API - every request compiles the scripts again.</p>
     {/pad:if}
   </section>
-
 </div>
 
 <div class="grid2">
-
   <section class="card scroll">
     <h2>{icon:settings size=18/} Settings</h2>
     <table class="list">
-      <tbody>{array:iniRows}<tr><td><code>{$name}</code></td><td>{$value}</td></tr>{/array:iniRows}</tbody>
+      <tbody>
+        {array:iniRows}
+          <tr>
+            <td><code>{$name}</code></td>
+            <td>{$value}</td>
+          </tr>
+        {/array:iniRows}
+      </tbody>
     </table>
   </section>
 
@@ -38,9 +56,11 @@
         {/array:extRows}
       </tbody>
     </table>
-    <details style="margin-top:10px"><summary>Every loaded extension</summary><p>{$allExtText}</p></details>
+    <details style="margin-top:10px">
+      <summary>Every loaded extension</summary>
+      <p>{$allExtText}</p>
+    </details>
   </section>
-
 </div>
 
 <section class="card">

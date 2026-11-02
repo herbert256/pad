@@ -1,20 +1,19 @@
 <table>
   <tr>
     <td>
-      
       <table border=1>
         {select:offices sort}
           {select:employees}
             <tr>
               <td> {$city} </td>
               <td> {$lastName}, {$firstName} </td>
-            </tr>          
+            </tr>
           {/select:employees}
         {/select:offices}
       </table>
-      
-    </td> <td> &nbsp; </td> <td>
-
+    </td>
+    <td> &nbsp; </td>
+    <td>
       <table border=1>
         {select:employees}
           {select:offices}
@@ -25,7 +24,6 @@
           {/select:offices}
         {/select:employees}
       </table>
-
     </td>
   </tr>
 </table>

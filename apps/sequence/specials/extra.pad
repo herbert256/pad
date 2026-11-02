@@ -1,5 +1,5 @@
 {common:table}
-{common:demo} {sequence:range '31..40', push='abc' /} {/common:demo}
+{common:demo} {sequence:range '31..40', push='abc'/} {/common:demo}
 {common:demo} {pull:abc add=2} {$abc} {$add} | {/pull:abc} {/common:demo}
 {/common:table}
 
@@ -8,9 +8,9 @@
 {/common:table}
 
 {common:table}
-{common:demo} {sequence:range '1..3',         push='abc' /} {/common:demo}
-{common:demo} {pull:abc add=10, subtract=1, push='klm' /} {/common:demo}
-{common:demo} {pull:klm multiply=10,         push='xyz' /} {/common:demo}
+{common:demo} {sequence:range '1..3',         push='abc'/} {/common:demo}
+{common:demo} {pull:abc add=10, subtract=1, push='klm'/} {/common:demo}
+{common:demo} {pull:klm multiply=10,         push='xyz'/} {/common:demo}
 {common:demo} {pull:xyz} {$abc} {$add} {$subtract} {$klm} {$multiply} {$xyz} | {/pull:xyz} {/common:demo}
 {/common:table} 
 

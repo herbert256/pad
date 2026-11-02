@@ -1,5 +1,3 @@
-
-
 <p>A page that exposes its data with <code>$padExpose</code> answers it as JSON and CSV
 (<a href="/pad/manual/?pages/data_answers">Data answers</a>) - and in every other format of <code>pad/subs/formats/</code> that
 writes: a calendar, a feed, a spreadsheet, a map. <code>$padFormatOptions</code> gives the
@@ -7,60 +5,72 @@ writer what the rows do not say, here the name of the calendar:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/feeds_and_exports_1.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/feeds_and_exports_1.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $talks </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Opening talk'</span><span style="color: #007700">, </span><span style="color: #DD0000">'start' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-11-06T09:00:00Z'</span><span style="color: #007700">, </span><span style="color: #DD0000">'end' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-11-06T10:00:00Z'</span><span style="color: #007700">,<br>               </span><span style="color: #DD0000">'location' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Hall A'</span><span style="color: #007700">, </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://example.com/talks/opening' </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Data in and out'</span><span style="color: #007700">, </span><span style="color: #DD0000">'start' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-11-06T11:00:00Z'</span><span style="color: #007700">, </span><span style="color: #DD0000">'end' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-11-06T12:00:00Z'</span><span style="color: #007700">,<br>               </span><span style="color: #DD0000">'location' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Hall B'</span><span style="color: #007700">, </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://example.com/talks/formats' </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$padExpose        </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'talks' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padFormatOptions </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Talks'</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Talks' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/feeds_and_exports_1.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHthcnJheTp0YWxrc308bGk+eyR0aXRsZX0gLSB7JGxvY2F0aW9ufTwvbGk+ey9hcnJheTp0YWxrc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHRhbGtzID0gWyBbICd0aXRsZScgPT4gJ09wZW5pbmcgdGFsaycsICdzdGFydCcgPT4gJzIwMjYtMTEtMDZUMDk6MDA6MDBaJywgJ2VuZCcgPT4gJzIwMjYtMTEtMDZUMTA6MDA6MDBaJyxcbiAgICAgICAgICAgICAgICdsb2NhdGlvbicgPT4gJ0hhbGwgQScsICdsaW5rJyA9PiAnaHR0cHM6Ly9leGFtcGxlLmNvbS90YWxrcy9vcGVuaW5nJyBdLFxuICAgICAgICAgICAgIFsgJ3RpdGxlJyA9PiAnRGF0YSBpbiBhbmQgb3V0JywgJ3N0YXJ0JyA9PiAnMjAyNi0xMS0wNlQxMTowMDowMFonLCAnZW5kJyA9PiAnMjAyNi0xMS0wNlQxMjowMDowMFonLFxuICAgICAgICAgICAgICAgJ2xvY2F0aW9uJyA9PiAnSGFsbCBCJywgJ2xpbmsnID0+ICdodHRwczovL2V4YW1wbGUuY29tL3RhbGtzL2Zvcm1hdHMnIF0gXTtcblxuICAkcGFkRXhwb3NlICAgICAgICA9IFsgJ3RhbGtzJyBdO1xuICAkcGFkRm9ybWF0T3B0aW9ucyA9IFsgJ3RpdGxlJyA9PiAnVGFsa3MnLCAnbmFtZScgPT4gJ1RhbGtzJyBdO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHthcnJheTp0YWxrc308bGk+eyR0aXRsZX0gLSB7JGxvY2F0aW9ufTwvbGk+ey9hcnJheTp0YWxrc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHRhbGtzID0gWyBbICd0aXRsZScgPT4gJ09wZW5pbmcgdGFsaycsICdzdGFydCcgPT4gJzIwMjYtMTEtMDZUMDk6MDA6MDBaJywgJ2VuZCcgPT4gJzIwMjYtMTEtMDZUMTA6MDA6MDBaJyxcbiAgICAgICAgICAgICAgICdsb2NhdGlvbicgPT4gJ0hhbGwgQScsICdsaW5rJyA9PiAnaHR0cHM6Ly9leGFtcGxlLmNvbS90YWxrcy9vcGVuaW5nJyBdLFxuICAgICAgICAgICAgIFsgJ3RpdGxlJyA9PiAnRGF0YSBpbiBhbmQgb3V0JywgJ3N0YXJ0JyA9PiAnMjAyNi0xMS0wNlQxMTowMDowMFonLCAnZW5kJyA9PiAnMjAyNi0xMS0wNlQxMjowMDowMFonLFxuICAgICAgICAgICAgICAgJ2xvY2F0aW9uJyA9PiAnSGFsbCBCJywgJ2xpbmsnID0+ICdodHRwczovL2V4YW1wbGUuY29tL3RhbGtzL2Zvcm1hdHMnIF0gXTtcblxuICAkcGFkRXhwb3NlICAgICAgICA9IFsgJ3RhbGtzJyBdO1xuICAkcGFkRm9ybWF0T3B0aW9ucyA9IFsgJ3RpdGxlJyA9PiAnVGFsa3MnLCAnbmFtZScgPT4gJ1RhbGtzJyBdO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>talks</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b> - <b>{<font color="green"><font color="red">$</font>location</font>}</b>&lt;/li&gt;<b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>talks</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/feeds_and_exports_1.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $talks </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Opening talk'</span><span style="color: #007700">, </span><span style="color: #DD0000">'start' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-11-06T09:00:00Z'</span><span style="color: #007700">, </span><span style="color: #DD0000">'end' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-11-06T10:00:00Z'</span><span style="color: #007700">,<br>               </span><span style="color: #DD0000">'location' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Hall A'</span><span style="color: #007700">, </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://example.com/talks/opening' </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Data in and out'</span><span style="color: #007700">, </span><span style="color: #DD0000">'start' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-11-06T11:00:00Z'</span><span style="color: #007700">, </span><span style="color: #DD0000">'end' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-11-06T12:00:00Z'</span><span style="color: #007700">,<br>               </span><span style="color: #DD0000">'location' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Hall B'</span><span style="color: #007700">, </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://example.com/talks/formats' </span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$padExpose        </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'talks' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padFormatOptions </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Talks'</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Talks' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHthcnJheTp0YWxrc31cbiAgICA8bGk+eyR0aXRsZX0gLSB7JGxvY2F0aW9ufTwvbGk+XG4gIHsvYXJyYXk6dGFsa3N9XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR0YWxrcyA9IFsgWyAndGl0bGUnID0+ICdPcGVuaW5nIHRhbGsnLCAnc3RhcnQnID0+ICcyMDI2LTExLTA2VDA5OjAwOjAwWicsICdlbmQnID0+ICcyMDI2LTExLTA2VDEwOjAwOjAwWicsXG4gICAgICAgICAgICAgICAnbG9jYXRpb24nID0+ICdIYWxsIEEnLCAnbGluaycgPT4gJ2h0dHBzOi8vZXhhbXBsZS5jb20vdGFsa3Mvb3BlbmluZycgXSxcbiAgICAgICAgICAgICBbICd0aXRsZScgPT4gJ0RhdGEgaW4gYW5kIG91dCcsICdzdGFydCcgPT4gJzIwMjYtMTEtMDZUMTE6MDA6MDBaJywgJ2VuZCcgPT4gJzIwMjYtMTEtMDZUMTI6MDA6MDBaJyxcbiAgICAgICAgICAgICAgICdsb2NhdGlvbicgPT4gJ0hhbGwgQicsICdsaW5rJyA9PiAnaHR0cHM6Ly9leGFtcGxlLmNvbS90YWxrcy9mb3JtYXRzJyBdIF07XG5cbiAgJHBhZEV4cG9zZSAgICAgICAgPSBbICd0YWxrcycgXTtcbiAgJHBhZEZvcm1hdE9wdGlvbnMgPSBbICd0aXRsZScgPT4gJ1RhbGtzJywgJ25hbWUnID0+ICdUYWxrcycgXTtcblxuPz5cbiJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHthcnJheTp0YWxrc31cbiAgICA8bGk+eyR0aXRsZX0gLSB7JGxvY2F0aW9ufTwvbGk+XG4gIHsvYXJyYXk6dGFsa3N9XG48L3VsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICR0YWxrcyA9IFsgWyAndGl0bGUnID0+ICdPcGVuaW5nIHRhbGsnLCAnc3RhcnQnID0+ICcyMDI2LTExLTA2VDA5OjAwOjAwWicsICdlbmQnID0+ICcyMDI2LTExLTA2VDEwOjAwOjAwWicsXG4gICAgICAgICAgICAgICAnbG9jYXRpb24nID0+ICdIYWxsIEEnLCAnbGluaycgPT4gJ2h0dHBzOi8vZXhhbXBsZS5jb20vdGFsa3Mvb3BlbmluZycgXSxcbiAgICAgICAgICAgICBbICd0aXRsZScgPT4gJ0RhdGEgaW4gYW5kIG91dCcsICdzdGFydCcgPT4gJzIwMjYtMTEtMDZUMTE6MDA6MDBaJywgJ2VuZCcgPT4gJzIwMjYtMTEtMDZUMTI6MDA6MDBaJyxcbiAgICAgICAgICAgICAgICdsb2NhdGlvbicgPT4gJ0hhbGwgQicsICdsaW5rJyA9PiAnaHR0cHM6Ly9leGFtcGxlLmNvbS90YWxrcy9mb3JtYXRzJyBdIF07XG5cbiAgJHBhZEV4cG9zZSAgICAgICAgPSBbICd0YWxrcycgXTtcbiAgJHBhZEZvcm1hdE9wdGlvbnMgPSBbICd0aXRsZScgPT4gJ1RhbGtzJywgJ25hbWUnID0+ICdUYWxrcycgXTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>talks</font><font color="red"></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b> - <b>{<font color="green"><font color="red">$</font>location</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>talks</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <ul>
-  <li>Opening talk - Hall A</li><li>Data in and out - Hall B</li>
+  
+    <li>Opening talk - Hall A</li>
+  
+    <li>Data in and out - Hall B</li>
+  
 </ul>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -72,45 +82,54 @@ writer what the rows do not say, here the name of the calendar:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/feeds_and_exports_2.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/feeds_and_exports_2.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $calendar </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padGoExt </span><span style="color: #007700">. </span><span style="color: #DD0000">'fragments/feeds_and_exports_1&amp;padFormat=ics' </span><span style="color: #007700">) [</span><span style="color: #DD0000">'data'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$markdown </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padGoExt </span><span style="color: #007700">. </span><span style="color: #DD0000">'fragments/feeds_and_exports_1&amp;padFormat=md'  </span><span style="color: #007700">) [</span><span style="color: #DD0000">'data'</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/feeds_and_exports_2.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cHJlPnskY2FsZW5kYXJ9PC9wcmU+XG48cHJlPnskbWFya2Rvd259PC9wcmU+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGNhbGVuZGFyID0gcGFkQ3VybCAoICRwYWRHb0V4dCAuICdmcmFnbWVudHMvZmVlZHNfYW5kX2V4cG9ydHNfMSZwYWRGb3JtYXQ9aWNzJyApIFsnZGF0YSddO1xuICAkbWFya2Rvd24gPSBwYWRDdXJsICggJHBhZEdvRXh0IC4gJ2ZyYWdtZW50cy9mZWVkc19hbmRfZXhwb3J0c18xJnBhZEZvcm1hdD1tZCcgICkgWydkYXRhJ107XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cHJlPnskY2FsZW5kYXJ9PC9wcmU+XG48cHJlPnskbWFya2Rvd259PC9wcmU+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGNhbGVuZGFyID0gcGFkQ3VybCAoICRwYWRHb0V4dCAuICdmcmFnbWVudHMvZmVlZHNfYW5kX2V4cG9ydHNfMSZwYWRGb3JtYXQ9aWNzJyApIFsnZGF0YSddO1xuICAkbWFya2Rvd24gPSBwYWRDdXJsICggJHBhZEdvRXh0IC4gJ2ZyYWdtZW50cy9mZWVkc19hbmRfZXhwb3J0c18xJnBhZEZvcm1hdD1tZCcgICkgWydkYXRhJ107XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>calendar</font>}</b><br><b>{<font color="green"><font color="red">$</font>markdown</font>}</b></code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/feeds_and_exports_2.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $calendar </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padGoExt </span><span style="color: #007700">. </span><span style="color: #DD0000">'fragments/feeds_and_exports_1&amp;padFormat=ics' </span><span style="color: #007700">) [</span><span style="color: #DD0000">'data'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$markdown </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( </span><span style="color: #0000BB">$padGoExt </span><span style="color: #007700">. </span><span style="color: #DD0000">'fragments/feeds_and_exports_1&amp;padFormat=md'  </span><span style="color: #007700">) [</span><span style="color: #DD0000">'data'</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cHJlPnskY2FsZW5kYXJ9PC9wcmU+XG48cHJlPnskbWFya2Rvd259PC9wcmU+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGNhbGVuZGFyID0gcGFkQ3VybCAoICRwYWRHb0V4dCAuICdmcmFnbWVudHMvZmVlZHNfYW5kX2V4cG9ydHNfMSZwYWRGb3JtYXQ9aWNzJyApIFsnZGF0YSddO1xuICAkbWFya2Rvd24gPSBwYWRDdXJsICggJHBhZEdvRXh0IC4gJ2ZyYWdtZW50cy9mZWVkc19hbmRfZXhwb3J0c18xJnBhZEZvcm1hdD1tZCcgICkgWydkYXRhJ107XG5cbj8+XG4ifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cHJlPnskY2FsZW5kYXJ9PC9wcmU+XG48cHJlPnskbWFya2Rvd259PC9wcmU+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJGNhbGVuZGFyID0gcGFkQ3VybCAoICRwYWRHb0V4dCAuICdmcmFnbWVudHMvZmVlZHNfYW5kX2V4cG9ydHNfMSZwYWRGb3JtYXQ9aWNzJyApIFsnZGF0YSddO1xuICAkbWFya2Rvd24gPSBwYWRDdXJsICggJHBhZEdvRXh0IC4gJ2ZyYWdtZW50cy9mZWVkc19hbmRfZXhwb3J0c18xJnBhZEZvcm1hdD1tZCcgICkgWydkYXRhJ107XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>calendar</font>}</b><br><b>{<font color="green"><font color="red">$</font>markdown</font>}</b></code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <pre>BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//PAD//PAD formats//EN
@@ -142,15 +161,14 @@ END:VCALENDAR</pre>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 
@@ -179,45 +197,54 @@ slug behind the feed's link is an entry's address:</p>
 
 
 
- 
 
 
 
-   
+
+  
     <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
 
-      
-          <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">fragments/feeds_and_exports_3.php</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">fragments/feeds_and_exports_3.pad</font>
-            </th>
-          
-          
-            <th bgcolor="#dddddd">
-              Result
-            </th>
-          
-        </tr>
-      
-
+    
       <tr>
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $atom </span><span style="color: #007700">= </span><span style="color: #0000BB">padFormatWrite </span><span style="color: #007700">( </span><span style="color: #DD0000">'atom'</span><span style="color: #007700">, </span><span style="color: #0000BB">padCollection </span><span style="color: #007700">( </span><span style="color: #DD0000">'news' </span><span style="color: #007700">),<br>                           [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'PAD news'</span><span style="color: #007700">, </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://example.com/news/'</span><span style="color: #007700">, </span><span style="color: #DD0000">'author' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The PAD team' </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+          <th bgcolor="#dddddd">
+            PHP
+            
+              <br>
+              <font size="-2">fragments/feeds_and_exports_3.php</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cHJlPnskYXRvbX08L3ByZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkYXRvbSA9IHBhZEZvcm1hdFdyaXRlICggJ2F0b20nLCBwYWRDb2xsZWN0aW9uICggJ25ld3MnICksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICBbICd0aXRsZScgPT4gJ1BBRCBuZXdzJywgJ2xpbmsnID0+ICdodHRwczovL2V4YW1wbGUuY29tL25ld3MvJywgJ2F1dGhvcicgPT4gJ1RoZSBQQUQgdGVhbScgXSApO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cHJlPnskYXRvbX08L3ByZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkYXRvbSA9IHBhZEZvcm1hdFdyaXRlICggJ2F0b20nLCBwYWRDb2xsZWN0aW9uICggJ25ld3MnICksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICBbICd0aXRsZScgPT4gJ1BBRCBuZXdzJywgJ2xpbmsnID0+ICdodHRwczovL2V4YW1wbGUuY29tL25ld3MvJywgJ2F1dGhvcicgPT4gJ1RoZSBQQUQgdGVhbScgXSApO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>atom</font>}</b></code></pre></td>
+          <th bgcolor="#dddddd">
+            HTML
+            
+              <br>
+              <font size="-2">fragments/feeds_and_exports_3.pad</font>
+            
+          </th>
         
         
-          <td style="vertical-align:top">
+          <th bgcolor="#dddddd">
+            Result
+            
+          </th>
+        
+      </tr>
+    
+
+    <tr>
+      
+        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $atom </span><span style="color: #007700">= </span><span style="color: #0000BB">padFormatWrite </span><span style="color: #007700">( </span><span style="color: #DD0000">'atom'</span><span style="color: #007700">, </span><span style="color: #0000BB">padCollection </span><span style="color: #007700">( </span><span style="color: #DD0000">'news' </span><span style="color: #007700">),<br>                           [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'PAD news'</span><span style="color: #007700">, </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://example.com/news/'</span><span style="color: #007700">, </span><span style="color: #DD0000">'author' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'The PAD team' </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+      
+      
+        <td style="vertical-align:top"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiI8cHJlPnskYXRvbX08L3ByZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkYXRvbSA9IHBhZEZvcm1hdFdyaXRlICggJ2F0b20nLCBwYWRDb2xsZWN0aW9uICggJ25ld3MnICksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICBbICd0aXRsZScgPT4gJ1BBRCBuZXdzJywgJ2xpbmsnID0+ICdodHRwczovL2V4YW1wbGUuY29tL25ld3MvJywgJ2F1dGhvcicgPT4gJ1RoZSBQQUQgdGVhbScgXSApO1xuXG4/PlxuIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cHJlPnskYXRvbX08L3ByZT5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAkYXRvbSA9IHBhZEZvcm1hdFdyaXRlICggJ2F0b20nLCBwYWRDb2xsZWN0aW9uICggJ25ld3MnICksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICBbICd0aXRsZScgPT4gJ1BBRCBuZXdzJywgJ2xpbmsnID0+ICdodHRwczovL2V4YW1wbGUuY29tL25ld3MvJywgJ2F1dGhvcicgPT4gJ1RoZSBQQUQgdGVhbScgXSApO1xuXG4/PlxuIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>atom</font>}</b></code></pre></td>
+      
+      
+        <td style="vertical-align:top">
   <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;feed xmlns=&quot;http://www.w3.org/2005/Atom&quot;&gt;
   &lt;title&gt;PAD news&lt;/title&gt;
@@ -256,15 +283,14 @@ slug behind the feed's link is an entry's address:</p>
 
 
 </td>
-        
-      </tr>
+      
+    </tr>
 
-    
+  
 
   
     </table>
   
-
 
 
 

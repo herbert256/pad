@@ -1,5 +1,4 @@
 <div class="todos" x-data="todos({^todos})">
-
   <form class="todo-add" @submit.prevent="add()">
     <input class="input" x-model="text" placeholder="Something to do ..." aria-label="A new todo" maxlength="80">
     <button>Add</button>
@@ -21,7 +20,9 @@
   <button class="btn-sm btn-ghost" @click="clear()" x-show="done() > 0" x-cloak>Clear the done ones</button>
 
   <ul class="todo-list" x-show="false">
-    {array:todos}<li>{$text}</li>{/array:todos}
+    {array:todos}
+      <li>{$text}</li>
+    {/array:todos}
   </ul>
 </div>
 

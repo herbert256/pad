@@ -1,6 +1,8 @@
 {pad:meta title='Striped rows', about='Each row takes the next background from the rotation.'/}
 <table>
-{sequence:range '1..5', name='row'}
-  <tr style="background: {pad:switch '#ffffff', '#e8eef7'/}"><td>Row {$row}</td></tr>
-{/sequence:range}
+  {sequence:range '1..5', name='row'}
+    <tr style="background: {pad:switch '#ffffff', '#e8eef7'/}">
+      <td>Row {$row}</td>
+    </tr>
+  {/sequence:range}
 </table>

@@ -1,33 +1,23 @@
 <blockquote>
+  {common:block}
+    {pad:pad data='reference'}
+      {sequence:range '1..{$lvl}'}
+        <blockquote>
+      {/sequence:range}
 
-{common:block}
+      <h3>{$type}</h3>
 
-  {pad:pad data='reference'}
-
-    {sequence:range '1..{$lvl}'}
       <blockquote>
-    {/sequence:range}
+        {php:getXref '{$dir}'}
+          <a href="?reference2{?dir}{?type}{?item}">{$item}</a>
 
-    <h3>{$type}</h3>
-
-    <blockquote>
-
-      {php:getXref '{$dir}'}
-
-        <a href="?reference2{?dir}{?type}{?item}">{$item}</a>
-
-        &nbsp; 
-        
-      {/php:getXref}
-            
-    </blockquote>
-
-    {sequence:range '1..{$lvl}'}
+        &nbsp;
+        {/php:getXref}
       </blockquote>
-    {/sequence:range}
 
-  {/pad:pad}
-
-{/common:block}
-
+      {sequence:range '1..{$lvl}'}
+        </blockquote>
+      {/sequence:range}
+    {/pad:pad}
+  {/common:block}
 </blockquote>

@@ -1,5 +1,4 @@
 {common:padFrame}
-
   {pad:slot 'head'}
     <meta name="theme-color" content="#d97706">
     <meta name="csrf-token" content="{pad:csrf token/}">
@@ -15,10 +14,11 @@
     </form>
     <a class="button primary" href="{$padGo}edit">New note</a>
   {/pad:slot}
-
 {/common:padFrame}
 
-{pad:flash}<p class="flash {$type}" role="status">{$message}</p>{/pad:flash}
+{pad:flash}
+  <p class="flash {$type}" role="status">{$message}</p>
+{/pad:flash}
 
 @page@
 

@@ -1,4 +1,9 @@
-{pad:if $brandOffline}{!brandStyle}{pad:elseif ! $brandFrame}<link rel="stylesheet" href="{$brandCss}"><script src="{$brandJs}" defer></script>{/pad:if}
+{pad:if $brandOffline}
+  {!brandStyle}
+{pad:elseif ! $brandFrame}
+  <link rel="stylesheet" href="{$brandCss}">
+  <script src="{$brandJs}" defer></script>
+{/pad:if}
 <div class="pad-brand{pad:if $brandFrame} pad-brand-frame{/pad:if}">
   {pad:if $brandOffline}
     <span class="pad-brand-logo" aria-hidden="true">&#123;&#125;</span>

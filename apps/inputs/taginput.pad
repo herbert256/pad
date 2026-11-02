@@ -2,7 +2,12 @@
 {include:about/}
 
 {input:form 'try', class='inputs-try', error}
-  {input:taginput 'topics', label='Topics', value='pad, forms', suggestions='pad, php, forms, htmx, charts, games', rules='required|max:80'/}
+  {input:taginput 'topics',
+    label='Topics',
+    value='pad, forms',
+    suggestions='pad, php, forms, htmx, charts, games',
+    rules='required|max:80'
+  /}
   {input:taginput 'guests', label='Guests', most=5/}
   <button class="inputs-send">Send</button>
 {/input:form}

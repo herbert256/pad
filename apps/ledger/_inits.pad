@@ -1,5 +1,4 @@
 {common:padFrame}
-
   {pad:slot 'head'}
     <meta name="theme-color" content="#0f766e">
     <meta name="csrf-token" content="{pad:csrf token/}">
@@ -13,16 +12,19 @@
       <input type="hidden" name="{$ledgerHere}" value="">
       <label for="month-pick" class="sr-only">Month</label>
       <select id="month-pick" name="month" onchange="this.form.submit()">
-        {array:monthList}<option value="{$value}"{pad:if $chosen} selected{/pad:if}>{$label}</option>{/array:monthList}
+        {array:monthList}
+          <option value="{$value}"{pad:if $chosen} selected{/pad:if}>{$label}</option>
+        {/array:monthList}
       </select>
       <noscript><button>Show</button></noscript>
     </form>
     <a class="button primary" href="{$padGo}add{?month}">+ Add</a>
   {/pad:slot}
-
 {/common:padFrame}
 
-{pad:flash}<p class="flash {$type}" role="status">{$message}</p>{/pad:flash}
+{pad:flash}
+  <p class="flash {$type}" role="status">{$message}</p>
+{/pad:flash}
 
 @page@
 

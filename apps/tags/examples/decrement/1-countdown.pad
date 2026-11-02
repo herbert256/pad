@@ -1,9 +1,12 @@
 {pad:meta title='Places left', about='Each booking takes one place off; when none are left the next guests go on the waiting list.'/}
 {pad:set $places = 3/}
 <ul>
-{array:bookings}
-  {pad:if $places eq 0}<li>{$guest}: waiting list</li>{pad:continue/}{/pad:if}
-  {pad:decrement $places/}
-  <li>{$guest}: booked, {$places} left</li>
-{/array:bookings}
+  {array:bookings}
+    {pad:if $places eq 0}
+      <li>{$guest}: waiting list</li>
+      {pad:continue/}
+    {/pad:if}
+    {pad:decrement $places/}
+    <li>{$guest}: booked, {$places} left</li>
+  {/array:bookings}
 </ul>

@@ -1,5 +1,12 @@
 {pad:meta title='Nothing in, nothing out', about='Inside, the variables of the page are missing; what the pass sets is gone afterwards.'/}
 {pad:set $city = 'Utrecht'/}
 <p>outside: {$city}</p>
-<p>inside: [{pad:sandbox}{pad:echo $city ?? 'not visible'/}{pad:set $inner = 'x'/}{/pad:sandbox}]</p>
+<p>
+  inside: [
+  {pad:sandbox}
+    {pad:echo $city ?? 'not visible'/}
+    {pad:set $inner = 'x'/}
+  {/pad:sandbox}
+  ]
+</p>
 <p>after: [{$inner | optional}]</p>

@@ -7,7 +7,7 @@ year,month,post
 2027,October,Next year
 {/format:auto}
 <ul>
-{data:ifchangedPosts}
-  <li>{pad:ifchanged $year, $month}<strong>{$month} {$year}</strong>@else@&mdash; same month{/pad:ifchanged}: {$post}</li>
-{/data:ifchangedPosts}
+  {data:ifchangedPosts}
+    <li>{pad:ifchanged $year, $month}<strong>{$month} {$year}</strong>@else@&mdash; same month{/pad:ifchanged}: {$post}</li>
+  {/data:ifchangedPosts}
 </ul>

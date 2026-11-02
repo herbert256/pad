@@ -1,5 +1,9 @@
 <form method="get" novalidate data-pad-rules="{&quot;address&quot;:{&quot;label&quot;:&quot;Address&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required_if&quot;,&quot;delivery,ship&quot;,&quot;:label is required when :n&quot;,&quot;Delivery is ship&quot;]],&quot;watch&quot;:[&quot;delivery&quot;]},&quot;end&quot;:{&quot;label&quot;:&quot;End&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;after&quot;,&quot;start&quot;,&quot;:label must be a date after :n&quot;,&quot;Start&quot;]],&quot;watch&quot;:[&quot;start&quot;]}}">
-  <label for="c-delivery">Delivery</label> <select name="delivery" id="c-delivery"><option>collect</option><option>ship</option></select>
+  <label for="c-delivery">Delivery</label>
+  <select name="delivery" id="c-delivery">
+    <option>collect</option>
+    <option>ship</option>
+  </select>
   <label for="c-address">Address</label> <input name="address" id="c-address">
   <label for="c-start">Start</label> <input name="start" id="c-start" type="date">
   <label for="c-end">End</label> <input name="end" id="c-end" type="date">

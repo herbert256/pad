@@ -1,5 +1,8 @@
 {select:customers where="country = $country and creditLimit > $minimum",
-           order="creditLimit desc", rows=3, fields="customerName, creditLimit"}
+  order="creditLimit desc",
+  rows=3,
+  fields="customerName, creditLimit"
+}
   <p>{$customerName}: {$creditLimit}</p>
 {/select:customers}
 

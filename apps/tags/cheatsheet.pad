@@ -3,15 +3,17 @@
 <p class="lead">The syntax of every tag and subsystem kind, by group.</p>
 
 {array:sheet}
-<section class="section" id="{$key}">
-  <div class="section-head"><h2>{$label}</h2></div>
-  <div class="cheat">
-    {array:tags}
-    <div class="cheat-item">
-      <a class="name" href="?{$link}">{$label}</a> <span class="about">{$about}</span>
-      <pre class="code"><code>{!syntaxHtml}</code></pre>
+  <section class="section" id="{$key}">
+    <div class="section-head">
+      <h2>{$label}</h2>
     </div>
-    {/array:tags}
-  </div>
-</section>
+    <div class="cheat">
+      {array:tags}
+        <div class="cheat-item">
+          <a class="name" href="?{$link}">{$label}</a> <span class="about">{$about}</span>
+          <pre class="code"><code>{!syntaxHtml}</code></pre>
+        </div>
+      {/array:tags}
+    </div>
+  </section>
 {/array:sheet}

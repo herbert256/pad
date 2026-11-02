@@ -1,60 +1,60 @@
 {common:table}
 
-{common:demo} {action:sum '31..40'                    } {$sum} {/action:sum}               {/common:demo}
-{common:demo} {action:sum from=31, to=40              } {$sum} {/action:sum}               {/common:demo}
+{common:demo} {action:sum '31..40'} {$sum} {/action:sum}               {/common:demo}
+{common:demo} {action:sum from=31, to=40} {$sum} {/action:sum}               {/common:demo}
 
-{common:demo} {action:sum '31..40'            } {$sum} {/action:sum}               {/common:demo}
-{common:demo} {action:sum '31..40'             } {$sum} {/action:sum}               {/common:demo}
+{common:demo} {action:sum '31..40'} {$sum} {/action:sum}               {/common:demo}
+{common:demo} {action:sum '31..40'} {$sum} {/action:sum}               {/common:demo}
 
-{common:demo} {sequence:range '31..40', sum          } {$sum} {/sequence:range}               {/common:demo}
-{common:demo} {sequence:sum '31..40'          } {$sum} {/sequence:sum}               {/common:demo}
-{common:demo} {sequence:range '31..40', action='sum' } {$sum} {/sequence:range}               {/common:demo}
+{common:demo} {sequence:range '31..40', sum} {$sum} {/sequence:range}               {/common:demo}
+{common:demo} {sequence:sum '31..40'} {$sum} {/sequence:sum}               {/common:demo}
+{common:demo} {sequence:range '31..40', action='sum'} {$sum} {/sequence:range}               {/common:demo}
 
 {common:demo} {sequence:range '31..40', push='mySequence'/}{/common:demo}
 
-{common:demo} {pull:mySequence sum             } {$sequence} {/pull:mySequence}        {/common:demo}
-{common:demo} {pull:mySequence action='sum'    } {$sequence} {/pull:mySequence}        {/common:demo}
-{common:demo} {action:sum pull='mySequence',             } {$sequence} {/action:sum}    {/common:demo}
+{common:demo} {pull:mySequence sum} {$sequence} {/pull:mySequence}        {/common:demo}
+{common:demo} {pull:mySequence action='sum'} {$sequence} {/pull:mySequence}        {/common:demo}
+{common:demo} {action:sum pull='mySequence',} {$sequence} {/action:sum}    {/common:demo}
 
-{common:demo} {action:sum mySequence             } {$sequence} {/action:sum}               {/common:demo}
-{common:demo} {action:sum pull='mySequence',             } {$sequence} {/action:sum}    {/common:demo}
+{common:demo} {action:sum mySequence} {$sequence} {/action:sum}               {/common:demo}
+{common:demo} {action:sum pull='mySequence',} {$sequence} {/action:sum}    {/common:demo}
 
-{common:demo} {action:auto mySequence, sum     } {$sequence} {/action:auto}            {/common:demo}
-{common:demo} {action:mySequence sum      } {$sequence} {/action:mySequence} {/common:demo}
+{common:demo} {action:auto mySequence, sum} {$sequence} {/action:auto}            {/common:demo}
+{common:demo} {action:mySequence sum} {$sequence} {/action:mySequence} {/common:demo}
 
-{common:demo} {action:sum mySequence     } {$sequence} {/action:sum}            {/common:demo}
-{common:demo} {action:sum mySequence      } {$sequence} {/action:sum}        {/common:demo}
+{common:demo} {action:sum mySequence} {$sequence} {/action:sum}            {/common:demo}
+{common:demo} {action:sum mySequence} {$sequence} {/action:sum}        {/common:demo}
 
 {/common:table}
 
 {common:table}
 
-{common:demo} {sequence:add 3, from=31, to=40, even, sum                } {$sequence} {/sequence:add}{/common:demo}
-{common:demo} {sequence:range '31..40', add=3, even, sum             } {$sequence} {/sequence:range}{/common:demo}
-{common:demo} {sequence:range '31..40', make, add=3, even, sum       } {$sequence} {/sequence:range}{/common:demo}
-{common:demo} {sequence:range '31..40', make='add|3', even, sum      } {$sequence} {/sequence:range}{/common:demo}
+{common:demo} {sequence:add 3, from=31, to=40, even, sum} {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:range '31..40', add=3, even, sum} {$sequence} {/sequence:range}{/common:demo}
+{common:demo} {sequence:range '31..40', make, add=3, even, sum} {$sequence} {/sequence:range}{/common:demo}
+{common:demo} {sequence:range '31..40', make='add|3', even, sum} {$sequence} {/sequence:range}{/common:demo}
 
-{common:demo} {sequence:range '31..40', push='mySequence'           /} {/common:demo}
+{common:demo} {sequence:range '31..40', push='mySequence'/} {/common:demo}
 
-{common:demo} {sequence:add mySequence, 3, even, sum                  } {$sequence} {/sequence:add}{/common:demo}
-{common:demo} {sequence:add 3, mySequence, even, sum                  } {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:add mySequence, 3, even, sum} {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:add 3, mySequence, even, sum} {$sequence} {/sequence:add}{/common:demo}
 
-{common:demo} {sequence:add mySequence, 3, even, sum         } {$sequence} {/sequence:add}{/common:demo}
-{common:demo} {sequence:add 3, mySequence, even, sum         } {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:add mySequence, 3, even, sum} {$sequence} {/sequence:add}{/common:demo}
+{common:demo} {sequence:add 3, mySequence, even, sum} {$sequence} {/sequence:add}{/common:demo}
 
-{common:demo} {make:add pull='mySequence', 3, even, sum                     } {$sequence} {/make:add}{/common:demo}
-{common:demo} {make:add pull='mySequence', 3, even, sum                     } {$sequence} {/make:add}{/common:demo}
+{common:demo} {make:add pull='mySequence', 3, even, sum} {$sequence} {/make:add}{/common:demo}
+{common:demo} {make:add pull='mySequence', 3, even, sum} {$sequence} {/make:add}{/common:demo}
 
-{common:demo} {make:auto mySequence, add=3, even, sum          } {$sequence} {/make:auto}{/common:demo}
-{common:demo} {make:auto add=3, mySequence, 3, even, sum          } {$sequence} {/make:auto}{/common:demo}
+{common:demo} {make:auto mySequence, add=3, even, sum} {$sequence} {/make:auto}{/common:demo}
+{common:demo} {make:auto add=3, mySequence, 3, even, sum} {$sequence} {/make:auto}{/common:demo}
 
-{common:demo} {make:auto mySequence, add=3, even, sum      } {$sequence} {/make:auto}{/common:demo}
-{common:demo} {make:auto add=3, mySequence, 3, even, sum      } {$sequence} {/make:auto}{/common:demo}
+{common:demo} {make:auto mySequence, add=3, even, sum} {$sequence} {/make:auto}{/common:demo}
+{common:demo} {make:auto add=3, mySequence, 3, even, sum} {$sequence} {/make:auto}{/common:demo}
 
-{common:demo} {make:mySequence add=3, even, sum             } {$sequence} {/make:mySequence}{/common:demo}
-{common:demo} {make:mySequence add=3, even, sum             } {$sequence} {/make:mySequence}{/common:demo}
+{common:demo} {make:mySequence add=3, even, sum} {$sequence} {/make:mySequence}{/common:demo}
+{common:demo} {make:mySequence add=3, even, sum} {$sequence} {/make:mySequence}{/common:demo}
 
-{common:demo} {make:add mySequence, 3, even, sum             } {$sequence} {/make:add}{/common:demo}
-{common:demo} {make:add mySequence, 3, even, sum             } {$sequence} {/make:add}{/common:demo}
+{common:demo} {make:add mySequence, 3, even, sum} {$sequence} {/make:add}{/common:demo}
+{common:demo} {make:add mySequence, 3, even, sum} {$sequence} {/make:add}{/common:demo}
 
 {/common:table}

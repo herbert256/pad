@@ -8,15 +8,42 @@ call - the functions Laravel knows as <code>blank()</code>, <code>filled()</code
 rest of <code>pad/lib/</code>.</p>
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
-  <tr><th>function</th><th>what it does</th></tr>
-  <tr><td><code>padBlank ( $value )</code></td><td>TRUE for NULL, <code>''</code> or only whitespace, an empty array, an empty Countable - FALSE for <code>0</code>, <code>'0'</code>, FALSE and every other value</td></tr>
-  <tr><td><code>padFilled ( $value )</code></td><td>the opposite of padBlank</td></tr>
-  <tr><td><code>padValue ( $value, ...$args )</code></td><td>a Closure called with the arguments, anything else answered as it is</td></tr>
-  <tr><td><code>padTransform ( $value, $callback, $default )</code></td><td>the callback's answer for a filled value, the default for a blank one</td></tr>
-  <tr><td><code>padTap ( $value, $callback )</code></td><td>hands the value to the callback and answers the value itself</td></tr>
-  <tr><td><code>padRetry ( $times, $callback, $sleepMilliseconds, $when )</code></td><td>calls the callback until it stops throwing, at most <code>$times</code> times</td></tr>
-  <tr><td><code>padRescue ( $callback, $rescue, $report )</code></td><td>the callback's answer, or the rescue value when it throws</td></tr>
-  <tr><td><code>padOnce ( $callback )</code></td><td>runs the callback once per request for the line that calls it</td></tr>
+  <tr>
+    <th>function</th>
+    <th>what it does</th>
+  </tr>
+  <tr>
+    <td><code>padBlank ( $value )</code></td>
+    <td>TRUE for NULL, <code>''</code> or only whitespace, an empty array, an empty Countable - FALSE for <code>0</code>, <code>'0'</code>, FALSE and every other value</td>
+  </tr>
+  <tr>
+    <td><code>padFilled ( $value )</code></td>
+    <td>the opposite of padBlank</td>
+  </tr>
+  <tr>
+    <td><code>padValue ( $value, ...$args )</code></td>
+    <td>a Closure called with the arguments, anything else answered as it is</td>
+  </tr>
+  <tr>
+    <td><code>padTransform ( $value, $callback, $default )</code></td>
+    <td>the callback's answer for a filled value, the default for a blank one</td>
+  </tr>
+  <tr>
+    <td><code>padTap ( $value, $callback )</code></td>
+    <td>hands the value to the callback and answers the value itself</td>
+  </tr>
+  <tr>
+    <td><code>padRetry ( $times, $callback, $sleepMilliseconds, $when )</code></td>
+    <td>calls the callback until it stops throwing, at most <code>$times</code> times</td>
+  </tr>
+  <tr>
+    <td><code>padRescue ( $callback, $rescue, $report )</code></td>
+    <td>the callback's answer, or the rescue value when it throws</td>
+  </tr>
+  <tr>
+    <td><code>padOnce ( $callback )</code></td>
+    <td>runs the callback once per request for the line that calls it</td>
+  </tr>
 </table>
 
 <h2>Blank and filled</h2>

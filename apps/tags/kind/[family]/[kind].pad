@@ -11,16 +11,28 @@
 
   <section class="block" aria-labelledby="example">
     <h2 id="example">Usage example</h2>
-    {pad:if $kindExample.about}<p>{$kindExample.about}</p>{/pad:if}
+    {pad:if $kindExample.about}
+      <p>{$kindExample.about}</p>
+    {/pad:if}
     <div class="example-grid{pad:if not $kindExample.run} is-static{/pad:if}">
-      <div class="cell"><div class="cell-head">{pad:if $kindExample.language eq 'php'}PHP{pad:else}Template{/pad:if}</div><pre class="code"><code>{!kindSourceHtml}</code></pre></div>
-      {pad:if $kindExample.run}<div class="cell"><div class="cell-head">Result</div><div class="result">{pad:echo $kindExample.source | code/}</div></div>{/pad:if}
+      <div class="cell">
+        <div class="cell-head">{pad:if $kindExample.language eq 'php'}PHP{pad:else}Template{/pad:if}</div>
+        <pre class="code"><code>{!kindSourceHtml}</code></pre>
+      </div>
+      {pad:if $kindExample.run}
+        <div class="cell">
+          <div class="cell-head">Result</div>
+          <div class="result">{pad:echo $kindExample.source | code/}</div>
+        </div>
+      {/pad:if}
     </div>
   </section>
 
   <section class="block prose" aria-labelledby="description">
     <h2 id="description">Description</h2>
-    {array:kindParagraphs}<p style="white-space:pre-wrap">{$text}</p>{/array:kindParagraphs}
+    {array:kindParagraphs}
+      <p style="white-space:pre-wrap">{$text}</p>
+    {/array:kindParagraphs}
   </section>
   <section class="block" aria-labelledby="related">
     <h2 id="related">{$familyLabel}</h2>

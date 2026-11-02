@@ -1,5 +1,4 @@
 <div class="narrow">
-
   <p class="lead">Transactions from a CSV file - a bank's export, or one this application wrote on the Transactions page.</p>
 
   {input:form 'import', class='entry'}
@@ -8,9 +7,14 @@
   {/input:form}
 
   {array:report}
-    {property:first@report}<h2>Rows not imported</h2><ul class="report">{/property:first@report}
+    {property:first@report}
+      <h2>Rows not imported</h2>
+      <ul class="report">
+    {/property:first@report}
     <li>Line {$line}: {$said}</li>
-    {property:last@report}</ul>{/property:last@report}
+    {property:last@report}
+      </ul>
+    {/property:last@report}
   {/array:report}
 
   <h2>The columns</h2>
@@ -20,5 +24,4 @@
   <pre>day,amount,category,account,note
 2026-10-02,-23.40,Groceries,Current account,Market
 2026-10-25,3200,Salary,Current account,Salary</pre>
-
 </div>

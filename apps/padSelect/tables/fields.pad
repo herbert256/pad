@@ -4,11 +4,13 @@
 <h3>Expressions with an alias</h3>
 <ul>
   {select:tracks fields="title, concat(seconds div 60, ':', lpad(seconds mod 60, 2, '0')) as length", $album_id=3}
-  <li>{$title} {$length}</li>
+    <li>{$title} {$length}</li>
   {/select:tracks}
 </ul>
 
 <h3>Declared as column => alias</h3>
 <ul>
-  {select:albumCards}<li>{$album}, {$year}</li>{/select:albumCards}
+  {select:albumCards}
+    <li>{$album}, {$year}</li>
+  {/select:albumCards}
 </ul>
