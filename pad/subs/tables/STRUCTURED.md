@@ -1,0 +1,5 @@
+# Structured table presentations
+
+`table:tree` takes `id=` (default id), `parent=` (default parent), stable scalar IDs and an empty/null parent for a root. It rejects duplicate IDs, missing parents, cycles, more than 10000 rows and chains deeper than 64. `sort=` sorts siblings only. `rows=` is the number of complete root branches per page, preserving ancestor context; it never splits a branch. `query=` prefixes the page request parameter. Rows use the existing column labels, formatting and escaping helpers and show explicit level text; no keyboard interaction is required because the view is static.
+
+`table:comparison` transposes selected input records (at most 20). `columns=` selects fields, `recordlabel=` selects the heading field (default name), and the existing `format=`, `labels=` and `caption=` conventions apply. Values are compared by strict PHP type/value against the first record; a changed value is explicitly marked “different” as well as emphasized, without implying a numeric improvement.

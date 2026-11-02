@@ -63,6 +63,25 @@
 
   }
 
+  // Suitability is an explicit rendering recommendation, not an accessibility certification.
+  function padPaletteMetadata($name){
+    $data=padPaletteData($name);if(!$data)return NULL;$type=$data['type'];$category=$type==='categorical'?count($data['colors']):NULL;
+    $samples=padPaletteColors($name,$type==='categorical'?$category:9);$suitability=[];
+    foreach(['light'=>'#ffffff','dark'=>'#111827'] as $scheme=>$background){$minimum=min(array_map(fn($hex)=>padPaletteContrast($hex,$background),$samples));$suitability[$scheme]=['minimumMarkContrast'=>round($minimum,2),'outlineRecommended'=>$minimum<3,'guidance'=>$minimum<3?'Use contrasting outlines and text labels.':'Use text labels; color is supplementary.'];}
+    return ['type'=>$type,'recommendedCategories'=>$category,'light'=>$suitability['light'],'dark'=>$suitability['dark'],'usage'=>match($type){'categorical'=>'Unordered distinct categories','sequential'=>'Ordered low-to-high magnitude','diverging'=>'Signed distance from a meaningful center','cyclic'=>'A wrapping periodic domain'}];
+  }
+  function padPaletteUsage($name,$type,$categories=0,$scheme='light'){
+    $meta=padPaletteMetadata($name);if(!$meta)return ['Unknown palette'];$issues=[];
+    if(!in_array($type,['categorical','sequential','diverging','cyclic'],TRUE))$issues[]='Unknown scale type';elseif($meta['type']!==$type)$issues[]='This '.$meta['type'].' palette does not represent a '.$type.' scale';
+    if(!is_int($categories)||$categories<0)$issues[]='Category count must be a nonnegative integer';elseif($type==='categorical'&&$meta['recommendedCategories']!==NULL&&$categories>$meta['recommendedCategories'])$issues[]='Category count exceeds the distinct palette colors';
+    if(!in_array($scheme,['light','dark'],TRUE))$issues[]='Scheme must be light or dark';
+    return $issues;
+  }
+  function padPaletteSelect($name,$type,$steps=NULL,$scheme='light'){
+    if($steps!==NULL&&(!is_int($steps)||$steps<1||$steps>256))throw new InvalidArgumentException('Palette steps must be 1 to 256');
+    $issues=padPaletteUsage($name,$type,$type==='categorical'?($steps??0):0,$scheme);if($issues)throw new InvalidArgumentException(implode('; ',$issues));return padPaletteColors($name,$steps);
+  }
+
   // The default number of steps of a palette.
 
   function padPaletteSteps ( $name ) {

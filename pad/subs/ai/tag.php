@@ -25,7 +25,7 @@
 
   $padAiOptions = [];
 
-  foreach ( [ 'provider', 'model', 'system', 'tokens', 'ttl', 'json', 'schema' ] as $padAiName )
+  foreach ( [ 'provider', 'model', 'system', 'tokens', 'ttl', 'json', 'schema', 'native' ] as $padAiName )
     if ( ( $padAiValue = padTagParm ( $padAiName, NULL ) ) !== NULL )
       $padAiOptions [$padAiName] = is_string ( $padAiValue ) ? padParmText ( $padAiValue ) : $padAiValue;
 

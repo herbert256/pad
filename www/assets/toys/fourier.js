@@ -1,0 +1,14 @@
+(function(){'use strict';var TAU=2*Math.PI,STEP=1/120;
+ function signal(kind,t){t=((t%1)+1)%1;return kind==='sine'?Math.sin(TAU*t):kind==='square'?(t<.5?1:-1):2*t-1;}
+ function spectrum(samples,max){var out=[];for(var f=0;f<=Math.min(max,Math.floor(samples.length/2));f++){var re=0,im=0;for(var n=0;n<samples.length;n++){var a=TAU*f*n/samples.length;re+=samples[n]*Math.cos(a);im-=samples[n]*Math.sin(a);}var factor=f===0||f===samples.length/2?1:2;out.push({f,re:factor*re/samples.length,im:factor*im/samples.length,amplitude:factor*Math.hypot(re,im)/samples.length});}return out;}
+ function reconstruct(coeff,t,count){return coeff.slice(0,count+1).reduce((sum,c)=>sum+c.re*Math.cos(TAU*c.f*t)-c.im*Math.sin(TAU*c.f*t),0);}
+ function rms(samples,coeff,count){return Math.sqrt(samples.reduce((sum,v,n)=>sum+Math.pow(v-reconstruct(coeff,n/samples.length,count),2),0)/samples.length);}
+ function advance(clock,dt){clock.acc+=Math.max(0,Math.min(.1,dt));while(clock.acc+1e-12>=STEP){clock.steps++;clock.acc-=STEP;}clock.acc=Math.max(0,clock.acc);return clock.steps*STEP;}
+ if(typeof module!=='undefined'&&module.exports)module.exports={signal,spectrum,reconstruct,rms,advance};if(typeof PadToys==='undefined')return;
+ PadToys.register('fourier',function(k,cfg){var ctx=k.canvas(640,380,'Signal, reconstruction and frequency spectrum'),kind=cfg.signal,count=cfg.harmonics,samples,coeff,clock={steps:0,acc:0},time=0;
+  function rebuild(){samples=Array.from({length:128},(_,i)=>signal(kind,i/128));coeff=spectrum(samples,32);k.info('128 samples/period · fundamental 1 Hz · '+count+' harmonics · RMS error '+rms(samples,coeff,count).toFixed(4));draw();}
+  function curve(fn,color){ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();for(var i=0;i<=560;i++){var x=40+i,y=115-65*fn(i/560+time/5);i?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.stroke();}
+  function draw(){ctx.fillStyle=k.color('canvas');ctx.fillRect(0,0,640,380);ctx.fillStyle=k.color('text');ctx.font='12px sans-serif';ctx.fillText('Signal and reconstruction · x: seconds · y: amplitude',40,22);ctx.strokeStyle=k.color('grid');ctx.beginPath();ctx.moveTo(40,115);ctx.lineTo(600,115);ctx.stroke();curve(t=>signal(kind,t),k.color('muted'));curve(t=>reconstruct(coeff,t,count),k.color('accent'));ctx.fillStyle=k.color('text');ctx.fillText('Spectrum · frequency (Hz), amplitude',40,225);for(var f=1;f<=32;f++){var h=coeff[f].amplitude*80;ctx.fillStyle=k.color(f<=count?'accent':'muted');ctx.fillRect(40+(f-1)*17,340-h,12,h);if(f===1||f%4===0){ctx.fillStyle=k.color('text');ctx.fillText(String(f),40+(f-1)*17,357);}}}
+  k.loop(dt=>{time=advance(clock,dt);draw();},draw);k.playButton();k.button('Reset time',()=>{clock={steps:0,acc:0};time=0;draw();});k.select('Signal',['sine','square','saw'],kind,v=>{kind=v;rebuild();});k.slider('Harmonics',1,32,1,count,v=>{count=v;rebuild();});k.theme(draw);rebuild();k.begin('Inspect the signal and its harmonics');
+ });
+})();

@@ -233,6 +233,9 @@ addRule('between', {
 });
 })();
 (function () {
+addRule('cidr',{check:function(value){var m=/^([^/]+)\/(0|[1-9][0-9]{0,2})$/.exec(value);return !!m&&((ipv4(m[1])&&+m[2]<=32)||(ipv6(m[1])&&+m[2]<=128));}});
+})();
+(function () {
 addRule('color', {
   check: function (value) { return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(value); }
 });
@@ -309,6 +312,9 @@ addRule('gt', {
 addRule('gte', {
   check: function (value, arg, values, number) { var two = compare(value, arg, values, number); return !two || two[0] >= two[1]; }
 });
+})();
+(function () {
+addRule('hostname',{check:function(value){if(typeof value!=='string'||value.length>254||value.endsWith('..'))return false;var host=value.replace(/\.$/,'');return host.length>0&&host.length<=253&&!ipv4(host)&&!ipv6(host)&&host.split('.').every(function(s){return /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$/.test(s);});}});
 })();
 (function () {
 addRule('iban', {
@@ -393,6 +399,9 @@ addRule('lt', {
 addRule('lte', {
   check: function (value, arg, values, number) { var two = compare(value, arg, values, number); return !two || two[0] <= two[1]; }
 });
+})();
+(function () {
+addRule('luhn',{check:function(value){if(typeof value!=='string'||value.length>64||!/^\d[\d -]*\d$/.test(value))return false;var d=value.replace(/[ -]/g,'');if(d.length<2||d.length>32)return false;var sum=0,dbl=false;for(var i=d.length-1;i>=0;i--){var n=+d[i];if(dbl){n*=2;if(n>9)n-=9;}sum+=n;dbl=!dbl;}return sum%10===0;}});
 })();
 (function () {
 addRule('max', {

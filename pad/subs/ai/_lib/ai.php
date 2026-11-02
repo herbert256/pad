@@ -26,6 +26,7 @@
   // fetch is padCurl's - a test answers it with padCurlFake - and waits two minutes at most.
 
   include_once PAD . 'subs/ai/_lib/json.php';
+  include_once PAD . 'subs/ai/_lib/capabilities.php';
 
   function padAiAsk ( $prompt, $options, $function ) {
 
@@ -67,6 +68,18 @@
       return is_array ( $answer ) ? $answer : [];
     } ) ( PAD . "subs/ai/types/$provider.php" );
 
+    $native = $options ['native'] ?? FALSE;
+    if ( ! is_bool ( $native ) && $native !== 0 && $native !== 1 )
+      return padAiAuthor ( "$function: native must be true or false" );
+    if ( $native ) {
+      if ( ! $json ) return padAiAuthor ( "$function: native requires json or schema" );
+      $capability = $schema ? 'nativeSchema' : 'nativeJson';
+      if ( ! padAiKindCapabilities ( $kind ) [$capability] )
+        return padAiAuthor ( "$function: $provider does not implement $capability" );
+      if ( $schema && ( $error = padAiNativeSchemaError ( $schema, $kind ['nativeProtocol'] ) ) !== '' )
+        return padAiAuthor ( "$function: $error" );
+    }
+
     $key = '';
 
     $names = array_values ( array_filter ( (array) ( $kind ['key'] ?? '' ), fn ( $name ) => is_string ( $name ) and $name !== '' ) );
@@ -101,7 +114,9 @@
       return padAiAuthor ( "$function: there is no prompt to send - the question, as text" );
 
     $ask = [ 'provider' => $provider, 'model' => $model, 'system' => trim ( (string) $system ), 'prompt' => trim ( (string) $prompt ),
-             'tokens'   => (int) $tokens, 'key' => trim ( $key ), 'json' => (bool) $json, 'schema' => $schema ];
+             'tokens'   => (int) $tokens, 'key' => trim ( $key ), 'json' => (bool) $json, 'schema' => $schema, 'native' => (bool) $native ];
+    if ( $native && ! $schema )
+      $ask ['system'] = trim ( $ask ['system'] . "\nReturn one JSON object, without prose or Markdown." );
 
     if ( ( $kind ['check'] ?? NULL ) instanceof Closure and ( $said = (string) ( $kind ['check'] ) ( $ask, $options ['url'] ?? NULL ) ) !== '' )
       return padAiAuthor ( "$function: $said" );
@@ -128,7 +143,7 @@
     }
 
     $out = padCurl ( [ 'url'     => $url,
-                       'post'    => json_encode ( ( $kind ['body'] ) ( $ask ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ),
+                       'post'    => json_encode ( padAiNativeBody ( ( $kind ['body'] ) ( $ask ), $ask, $kind ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ),
                        'headers' => ( $kind ['headers'] ) ( $ask ) + [ 'Content-Type' => 'application/json', 'Accept' => 'application/json' ],
                        'options' => [ 'USERAGENT' => 'PAD', 'TIMEOUT' => 120, 'FOLLOWLOCATION' => $kind ['follow'] ?? TRUE ] ] );
 
@@ -166,7 +181,9 @@
 
   function padAiCacheKey ( $ask, $url ) {
 
-    return 'pad-ai:' . hash ( 'sha256', json_encode ( [ $ask ['provider'], $ask ['model'], $ask ['system'], $ask ['prompt'], $ask ['tokens'], $url, $ask ['json'] ?? FALSE, $ask ['schema'] ?? [] ] ) );
+    $parts = [ $ask ['provider'], $ask ['model'], $ask ['system'], $ask ['prompt'], $ask ['tokens'], $url, $ask ['json'] ?? FALSE, $ask ['schema'] ?? [] ];
+    if ( ! empty ( $ask ['native'] ) ) $parts [] = 'native-v1';
+    return 'pad-ai:' . hash ( 'sha256', json_encode ( $parts ) );
 
   }
 

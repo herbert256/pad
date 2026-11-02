@@ -49,6 +49,19 @@
 
   }
 
+  // With no provider, return a map for all adapters. This does not make a request.
+  function padAiCapabilities ( $provider = NULL ) {
+    include_once PAD . 'subs/ai/_lib/capabilities.php';
+    if ( $provider === NULL ) {
+      $all = []; foreach ( padAiProviders () as $name ) $all [$name] = padAiCapabilities ( $name );
+      return $all;
+    }
+    if ( ! is_string ( $provider ) || ! padKind ( 'ai', $provider ) )
+      throw new InvalidArgumentException ( 'Unknown AI provider' );
+    $kind = ( function ( $file ) { return include $file; } ) ( PAD . "subs/ai/types/$provider.php" );
+    return padAiKindCapabilities ( $kind );
+  }
+
   function padAiStore ( $key, $value = NULL ) {
 
     static $store = [];

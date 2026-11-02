@@ -54,7 +54,9 @@
       }
     }
 
-    return padSheetExport ( padFormulaScalar ( padFormulaEval ( $tree, $env ), $env ) ?? 0.0 );
+    $result=padFormulaEval($tree,$env);
+    if(padFormulaIsRange($result)&&!empty($result['dynamic']))return array_map(fn($row)=>array_map('padSheetExport',$row),$result['range']);
+    return padSheetExport ( padFormulaScalar ( $result, $env ) ?? 0.0 );
 
   }
 
@@ -87,6 +89,13 @@
 
     }
 
+    $asRows=array_is_list($cells);
+    foreach($sheet['cells'] as $row=>$values)foreach($values as $column=>$cell)if(isset($cell['spill'])){
+      $value=padSheetExport($cell['value']);
+      if($asRows){$result[$row-1][$column-1]=$value;ksort($result[$row-1]);}
+      else $result[padFormulaCellName($column,$row)]=$value;
+    }
+    if($asRows)ksort($result);
     return $result;
 
   }

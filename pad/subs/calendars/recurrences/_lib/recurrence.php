@@ -49,6 +49,21 @@
     return array_unique ( $out );
   }
 
+  // Monthly weekday selection; yearly rules use this selection within explicit BYMONTHs.
+  function padRecurrenceMonthSelection ( $day, $byday, $positions ) {
+    $names = [ 'MO'=>1,'TU'=>2,'WE'=>3,'TH'=>4,'FR'=>5,'SA'=>6,'SU'=>7 ]; $selected=[];
+    $first=$day->modify('first day of this month'); $length=(int)$day->format('t');
+    foreach(padRecurrenceList($byday) as $token){
+      if(!is_string($token)||!preg_match('/^([+-]?[1-5])?(MO|TU|WE|TH|FR|SA|SU)$/D',$token,$m))throw new InvalidArgumentException('Monthly BYDAY needs weekday names with optional ordinal 1 to 5 or -1 to -5');
+      $days=[];for($n=1;$n<=$length;$n++)if((int)$first->modify('+'.($n-1).' days')->format('N')===$names[$m[2]])$days[]=$n;
+      if($m[1]!==''){$ordinal=(int)$m[1];$at=$ordinal>0?$ordinal-1:count($days)+$ordinal;if(isset($days[$at]))$selected[$days[$at]]=TRUE;}
+      else foreach($days as $n)$selected[$n]=TRUE;
+    }
+    $days=array_keys($selected);sort($days);
+    if($positions!==NULL){$selected=[];foreach(padRecurrenceList($positions) as $p){$p=padRecurrenceInteger($p,-31,31,'BYSETPOS');if(!$p)throw new InvalidArgumentException('BYSETPOS cannot be zero');$at=$p>0?$p-1:count($days)+$p;if(isset($days[$at]))$selected[$days[$at]]=TRUE;}}
+    return isset($selected[(int)$day->format('j')]);
+  }
+
   function padRecurrenceExpand ( $kind, $type, $rule, $from, $to ) {
     $allowed = array_merge ( [ 'start', 'timezone', 'interval', 'count', 'until', 'exclude', 'limit' ], $type ['fields'] );
     if ( array_diff ( array_keys ( $rule ), $allowed ) ) throw new InvalidArgumentException ( 'Unsupported recurrence option' );
@@ -65,7 +80,15 @@
     if ( isset ( $rule ['count'], $rule ['until'] ) ) throw new InvalidArgumentException ( 'COUNT and UNTIL are mutually exclusive' );
     $until = isset ( $rule ['until'] ) ? padRecurrenceDate ( $rule ['until'], $zone ) : NULL;
     if ( $until and $until < $start ) throw new InvalidArgumentException ( 'UNTIL precedes DTSTART' );
-    $weekdays = padRecurrenceDays ( $rule ['byday'] ?? [ (int) $start->format ( 'N' ) ] );
+    $monthWeekdays = in_array($kind,['monthly','yearly'],TRUE) && isset($rule['byday']);
+    if(isset($rule['setpos'])&&!$monthWeekdays)throw new InvalidArgumentException('BYSETPOS requires monthly/yearly BYDAY');
+    if($monthWeekdays&&isset($rule['monthday']))throw new InvalidArgumentException('Combining BYDAY and BYMONTHDAY is not supported');
+    if($kind==='yearly'&&$monthWeekdays&&!isset($rule['month']))throw new InvalidArgumentException('Yearly BYDAY requires explicit BYMONTH');
+    $weekdays = padRecurrenceDays ( $monthWeekdays ? [1] : ($rule ['byday'] ?? [ (int) $start->format ( 'N' ) ]) );
+    $weekend=$kind==='businessday' ? padRecurrenceDays($rule['weekend']??['SA','SU']) : [];
+    $holidays=[];
+    if($kind==='businessday'&&isset($rule['holidays'])&&(!is_array($rule['holidays'])||!array_is_list($rule['holidays'])||count($rule['holidays'])>10000))throw new InvalidArgumentException('Business holidays need a list of at most 10000 dates');
+    if($kind==='businessday')foreach($rule['holidays']??[] as $holiday){if(!is_string($holiday)||strlen($holiday)!==10)throw new InvalidArgumentException('Business holidays must be ISO dates');$holidays[padRecurrenceDate($holiday,$zone)->format('Y-m-d')]=TRUE;}
     $weekstart = padRecurrenceDays ( [ $rule ['weekstart'] ?? 'MO' ] ) [0];
     $monthdays = [];
     foreach ( padRecurrenceList ( $rule ['monthday'] ?? [ (int) $start->format ( 'j' ) ] ) as $v ) {
@@ -77,6 +100,7 @@
     foreach ( padRecurrenceList ( $rule ['month'] ?? [ (int) $start->format ( 'n' ) ] ) as $v ) $months [] = padRecurrenceInteger ( $v, 1, 12, 'month' );
     $months = array_values ( array_unique ( $months, SORT_NUMERIC ) );
     $monthdays = array_values ( array_unique ( $monthdays, SORT_NUMERIC ) );
+    if($kind==='yearly'&&isset($rule['setpos'])&&count($months)!==1)throw new InvalidArgumentException('Yearly BYSETPOS requires exactly one BYMONTH');
     if ( ! $months or ! $monthdays ) throw new InvalidArgumentException ( 'Empty recurrence month list' );
     $excluded = [];
     if ( isset ( $rule ['exclude'] ) and ! is_array ( $rule ['exclude'] ) ) throw new InvalidArgumentException ( 'Exclusions must be a list' );
@@ -93,17 +117,21 @@
     $span = (int) $day->diff ( $last )->days;
     if ( $span > 200000 ) throw new LengthException ( 'Recurrence scan exceeds 200000 days from DTSTART' );
     $origin = $day; $weekOffset = ( (int) $day->format ( 'N' ) - $weekstart + 7 ) % 7;
-    $out = []; $seen = 0;
+    $out = []; $seen = 0; $businessSeen=0;
     for ( $d = 0; $d <= $span; $d++, $day = $day->modify ( '+1 day' ) ) {
       $monthDelta = ( (int) $day->format ( 'Y' ) - (int) $origin->format ( 'Y' ) ) * 12 + (int) $day->format ( 'n' ) - (int) $origin->format ( 'n' );
       $monthDay = in_array ( (int) $day->format ( 'j' ), $monthdays, TRUE ) || in_array ( (int) $day->format ( 'j' ) - (int) $day->format ( 't' ) - 1, $monthdays, TRUE );
+      if($monthWeekdays)$monthDay=padRecurrenceMonthSelection($day,$rule['byday'],$rule['setpos']??NULL);
+      $businessStamp=$kind==='businessday'?padRecurrenceWall($day->format('Y-m-d').' '.$start->format('H:i:s'),$zone):NULL;
+      $business=$kind==='businessday'&&$businessStamp&&!isset($excluded[(string)$businessStamp->getTimestamp()])&&!in_array((int)$day->format('N'),$weekend,TRUE)&&!isset($holidays[$day->format('Y-m-d')])&&!isset($excluded[$day->format('Y-m-d')]);
       $matches = match ( $kind ) {
+        'businessday' => $business && $businessSeen++ % $interval === 0,
         'daily' => $d % $interval === 0,
         'weekly' => intdiv ( $d + $weekOffset, 7 ) % $interval === 0 and in_array ( (int) $day->format ( 'N' ), $weekdays, TRUE ),
         'monthly' => $monthDelta % $interval === 0 and $monthDay,
         'yearly' => ( (int) $day->format ( 'Y' ) - (int) $origin->format ( 'Y' ) ) % $interval === 0 and in_array ( (int) $day->format ( 'n' ), $months, TRUE ) and $monthDay,
       };
-      if ( $d === 0 and ! $matches ) throw new InvalidArgumentException ( 'DTSTART must match recurrence filters' );
+      if ( $d === 0 and ! $matches and $kind !== 'businessday' ) throw new InvalidArgumentException ( 'DTSTART must match recurrence filters' );
       if ( ! $matches ) continue;
       $occurrence = $d === 0 ? $start : padRecurrenceWall ( $day->format ( 'Y-m-d' ) . ' ' . $start->format ( 'H:i:s' ), $zone );
       if ( ! $occurrence ) continue;
@@ -124,12 +152,12 @@
       if ( ! preg_match ( '/^([A-Z]+)=([^;]+)$/D', $part, $m ) or isset ( $parts [$m [1]] ) ) throw new InvalidArgumentException ( 'Invalid or duplicate RRULE part' );
       $parts [$m [1]] = $m [2];
     }
-    if ( array_diff ( array_keys ( $parts ), [ 'FREQ', 'INTERVAL', 'COUNT', 'UNTIL', 'BYDAY', 'BYMONTHDAY', 'BYMONTH', 'WKST' ] ) ) throw new InvalidArgumentException ( 'Unsupported RRULE part' );
-    if ( isset ( $parts ['BYDAY'] ) and ! preg_match ( '/^(?:MO|TU|WE|TH|FR|SA|SU)(?:,(?:MO|TU|WE|TH|FR|SA|SU))*$/D', $parts ['BYDAY'] ) ) throw new InvalidArgumentException ( 'RRULE BYDAY requires weekday names' );
+    if ( array_diff ( array_keys ( $parts ), [ 'FREQ', 'INTERVAL', 'COUNT', 'UNTIL', 'BYDAY', 'BYMONTHDAY', 'BYMONTH', 'BYSETPOS', 'WKST' ] ) ) throw new InvalidArgumentException ( 'Unsupported RRULE part' );
+    if ( isset ( $parts ['BYDAY'] ) and ! preg_match ( '/^(?:[+-]?[1-5])?(?:MO|TU|WE|TH|FR|SA|SU)(?:,(?:[+-]?[1-5])?(?:MO|TU|WE|TH|FR|SA|SU))*$/D', $parts ['BYDAY'] ) ) throw new InvalidArgumentException ( 'RRULE BYDAY requires weekday names' );
     if ( isset ( $parts ['WKST'] ) and ! preg_match ( '/^(?:MO|TU|WE|TH|FR|SA|SU)$/D', $parts ['WKST'] ) ) throw new InvalidArgumentException ( 'RRULE WKST requires a weekday name' );
     $kind = strtolower ( $parts ['FREQ'] ?? '' );
     if ( ! in_array ( $kind, [ 'daily', 'weekly', 'monthly', 'yearly' ], TRUE ) ) throw new InvalidArgumentException ( 'Unsupported RRULE frequency' );
-    foreach ( [ 'INTERVAL' => 'interval', 'COUNT' => 'count', 'BYDAY' => 'byday', 'BYMONTHDAY' => 'monthday', 'BYMONTH' => 'month', 'WKST' => 'weekstart' ] as $key => $name )
+    foreach ( [ 'INTERVAL' => 'interval', 'COUNT' => 'count', 'BYDAY' => 'byday', 'BYMONTHDAY' => 'monthday', 'BYMONTH' => 'month', 'BYSETPOS' => 'setpos', 'WKST' => 'weekstart' ] as $key => $name )
       if ( isset ( $parts [$key] ) ) {
         if ( array_key_exists ( $name, $rule ) ) throw new InvalidArgumentException ( 'Conflicting recurrence options' );
         $rule [$name] = str_starts_with ( $key, 'BY' ) ? explode ( ',', $parts [$key] ) : $parts [$key];

@@ -21,6 +21,8 @@
 
   return [
     'name'    => 'Ollama',
+    'capabilities' => ['nativeJson'=>TRUE,'nativeSchema'=>TRUE],
+    'nativeProtocol' => 'ollama',
     'key'     => '',
     'model'   => 'llama3.2',
     'tokens'  => 4096,

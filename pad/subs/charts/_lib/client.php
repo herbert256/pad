@@ -22,6 +22,7 @@
   // The files of www/assets/charts/ a kind is drawn with, beside core.js.
 
   const padChartClientFiles = [
+    'ribbon'=>['compositions'], 'lollipop'=>['compositions'], 'ternary'=>['compositions'],
     'pareto'       => [ 'pareto' ],
     'slope' => [ 'slope' ],
     'bump' => [ 'bump' ],
@@ -94,8 +95,12 @@
     // A chart given palette= gets the class and the rules of each number of slots it may use
     // (_lib/palette.php) and www/assets/charts/palette.js, which puts the ones it uses on the svg.
 
-    if ( $palette !== '' )
+    if ( $palette !== '' ) {
       $spec ['palette'] = padChartPaletteStyles ( $palette );
+      $intent = padChartPaletteIntent ( $palette );
+      if ( $intent ['usage'] !== '' or $intent ['scheme'] !== 'light' )
+        $spec ['paletteUsage'] = $intent;
+    }
 
     $json = json_encode ( $spec, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE );
 

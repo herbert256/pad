@@ -131,6 +131,8 @@
           $date = [ 'day' => '2026-11-04', 'week' => '2026-11-02', 'timegrid' => '2026-11-02',
                     'resources' => '2026-11-02', 'year' => '2026', 'quarter' => '2026-Q4' ] [$kind] ?? '2026-11';
           $tail = " '$date', data='appointments'" . ( $kind === 'resources' ? ", resources=['room-a'=>'Room A']" : '' ) . '/}';
+          if ( $kind === 'availability' )
+            $tail = " data='appointments', windows=[['resource'=>'room-a','start'=>'2026-11-02T08:00:00Z','end'=>'2026-11-02T12:00:00Z']], timezone='UTC', minimum=30/}";
         }
 
         if ( $syntax === '' ) {
@@ -367,7 +369,8 @@
         $samples = [ 'auto' => '[{"name":"Ada","score":12}]', 'json' => '[{"name":"Ada","score":12}]',
           'csv' => "name,score\nAda,12", 'tsv' => "name\tscore\nAda\t12", 'psv' => "name|score\nAda|12",
           'toml' => "name = \"Ada\"\nscore = 12", 'yaml' => "name: Ada\nscore: 12", 'ini' => "name=Ada\nscore=12",
-          'ndjson' => '{"name":"Ada","score":12}' ];
+          'ndjson' => '{"name":"Ada","score":12}', 'jsonc' => '[/* example */ {"name":"Ada","score":12},]',
+          'dotenv' => "name=\"Ada\"\nscore=\"12\"" ];
         if ( isset ( $samples [$kind] ) )
           return $example ( 'Parse and store rows', 'The format creates a named store; data: reads its rows.',
             "{format:$kind 'parsed'}\n" . $samples [$kind] . "\n{/format:$kind}\n{data:parsed}<p>{\$name}: {\$score}</p>{/data:parsed}" );

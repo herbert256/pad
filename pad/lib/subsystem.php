@@ -71,6 +71,11 @@
     'geo' => 'maps/geospatial',
     'distribution' => 'fakes/distributions',
     'unit' => 'units',
+    'stats' => 'statistics',
+    'graph' => 'graphs',
+    'schema' => 'schemas',
+    'textanalysis' => 'textanalysis',
+    'solve' => 'constraints',
   ];
 
   // The kinds of the subsystem in pad/subs/<directory>/: the names of the files of its types/,
@@ -88,8 +93,8 @@
       foreach ( ( is_dir ( PAD . "subs/$directory/types" ) ? padDirList ( PAD . "subs/$directory/types" ) : [] ) ?: [] as $file )
         if ( $file [0] != '.' and ( $dot = strrpos ( $file, '.' ) ) )
           $names [ substr ( $file, 0, $dot ) ] = TRUE;
-      $names = array_keys ( $names );
-      sort ( $names );
+      $names = array_map ( 'strval', array_keys ( $names ) );
+      sort ( $names, SORT_STRING );
       $kinds [$directory] = $names;
     }
 

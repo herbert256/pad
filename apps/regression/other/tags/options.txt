@@ -211,7 +211,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">author</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of article (<code>author.name</code>), book (<code>author</code>), recipe (<code>author.name</code>), video (<code>author.name</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>author.name</code>), book (<code>author</code>), podcast (<code>author</code>), recipe (<code>author.name</code>), review (<code>author.name</code>, required), video (<code>author.name</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -300,6 +300,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">board</td>
       <td><a class="name" href="?tag/notation">{notation:*}</a></td>
       <td>draughts: <code>10</code> (international, the default) or <code>8</code> (English draughts and checkers).</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">body</td>
+      <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
+      <td>A field of review (<code>reviewBody</code>, required) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -769,7 +777,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">description</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of article (<code>description</code>), book (<code>description</code>), business (<code>description</code>), course (<code>description</code>, required), dataset (<code>description</code>, required), event (<code>description</code>), job (<code>description</code>, required), organization (<code>description</code>), person (<code>description</code>), product (<code>description</code>), profile (<code>mainEntity.description</code>), recipe (<code>description</code>), restaurant (<code>description</code>), service (<code>description</code>), software (<code>description</code>), video (<code>description</code>), website (<code>description</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>description</code>), book (<code>description</code>), business (<code>description</code>), course (<code>description</code>, required), dataset (<code>description</code>, required), event (<code>description</code>), job (<code>description</code>, required), organization (<code>description</code>), person (<code>description</code>), podcast (<code>description</code>), product (<code>description</code>), profile (<code>mainEntity.description</code>), recipe (<code>description</code>), restaurant (<code>description</code>), service (<code>description</code>), software (<code>description</code>), video (<code>description</code>), website (<code>description</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -943,6 +951,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">end</td>
+      <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
+      <td>A field of podcast (<code>endDate</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">ends</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
       <td>A field of event (<code>endDate</code>) - it wins over the field of the row.</td>
@@ -991,9 +1007,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">feed</td>
+      <td class="opt" rowspan="2">feed</td>
       <td><a class="name" href="?tag/toy">{toy:*}</a></td>
       <td>reactiondiffusion: the feed rate of the first chemical, 0 to 0.1 - a pattern's rates of your own, with <code>kill</code>.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
+      <td>A field of podcast (<code>webFeed</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -1475,7 +1497,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of article (<code>image</code>), book (<code>image</code>), business (<code>image</code>), course (<code>image</code>), event (<code>image</code>), person (<code>image</code>), product (<code>image</code>), profile (<code>mainEntity.image</code>), recipe (<code>image</code>, required), restaurant (<code>image</code>), software (<code>image</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>image</code>), book (<code>image</code>), business (<code>image</code>), course (<code>image</code>), event (<code>image</code>), person (<code>image</code>), podcast (<code>image</code>), product (<code>image</code>), profile (<code>mainEntity.image</code>), recipe (<code>image</code>, required), restaurant (<code>image</code>), software (<code>image</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -1540,6 +1562,22 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">isbn</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
       <td>A field of book (<code>isbn</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">item</td>
+      <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
+      <td>A field of review (<code>itemReviewed.name</code>, required) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">itemurl</td>
+      <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
+      <td>A field of review (<code>itemReviewed.url</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -1673,7 +1711,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">language</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of book (<code>inLanguage</code>) - it wins over the field of the row.</td>
+      <td>A field of book (<code>inLanguage</code>), podcast (<code>inLanguage</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -2051,7 +2089,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of book (<code>name</code>, required), business (<code>name</code>, required), course (<code>name</code>, required), dataset (<code>name</code>, required), event (<code>name</code>, required), itemlist (<code>name</code>), organization (<code>name</code>, required), person (<code>name</code>, required), product (<code>name</code>, required), profile (<code>mainEntity.name</code>, required), recipe (<code>name</code>, required), restaurant (<code>name</code>, required), service (<code>name</code>, required), software (<code>name</code>, required), video (<code>name</code>, required), website (<code>name</code>) - it wins over the field of the row.</td>
+      <td>A field of book (<code>name</code>, required), business (<code>name</code>, required), course (<code>name</code>, required), dataset (<code>name</code>, required), event (<code>name</code>, required), itemlist (<code>name</code>), organization (<code>name</code>, required), person (<code>name</code>, required), podcast (<code>name</code>, required), product (<code>name</code>, required), profile (<code>mainEntity.name</code>, required), recipe (<code>name</code>, required), restaurant (<code>name</code>, required), review (<code>name</code>, required), service (<code>name</code>, required), software (<code>name</code>, required), video (<code>name</code>, required), website (<code>name</code>) - it wins over the field of the row.</td>
     </tr>
     
     <tr>
@@ -2621,7 +2659,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">published</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of article (<code>datePublished</code>), book (<code>datePublished</code>), dataset (<code>datePublished</code>), recipe (<code>datePublished</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>datePublished</code>), book (<code>datePublished</code>), dataset (<code>datePublished</code>), recipe (<code>datePublished</code>), review (<code>datePublished</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -2629,7 +2667,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">publisher</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of article (<code>publisher.name</code>), book (<code>publisher.name</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>publisher.name</code>), book (<code>publisher.name</code>), podcast (<code>publisher.name</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -2693,7 +2731,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">rating</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of recipe (<code>aggregateRating.ratingValue</code>), software (<code>aggregateRating.ratingValue</code>) - it wins over the field of the row.</td>
+      <td>A field of recipe (<code>aggregateRating.ratingValue</code>), review (<code>reviewRating.ratingValue</code>), software (<code>aggregateRating.ratingValue</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -3239,6 +3277,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">start</td>
+      <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
+      <td>A field of podcast (<code>startDate</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">starts</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
       <td>A field of event (<code>startDate</code>, required) - it wins over the field of the row.</td>
@@ -3735,7 +3781,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">url</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of article (<code>url</code>), book (<code>url</code>), business (<code>url</code>), course (<code>url</code>), dataset (<code>url</code>), event (<code>url</code>), organization (<code>url</code>), person (<code>url</code>), product (<code>url</code>), restaurant (<code>url</code>), service (<code>url</code>), software (<code>url</code>), website (<code>url</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>url</code>), book (<code>url</code>), business (<code>url</code>), course (<code>url</code>), dataset (<code>url</code>), event (<code>url</code>), organization (<code>url</code>), person (<code>url</code>), podcast (<code>url</code>, required), product (<code>url</code>), restaurant (<code>url</code>), review (<code>url</code>), service (<code>url</code>), software (<code>url</code>), website (<code>url</code>) - it wins over the field of the row.</td>
     </tr>
     
   

@@ -19,6 +19,11 @@
       'formula'  => [ 'Spreadsheet functions', 'Functions inside the formulas of {sheet:grid} cells.', 'sheet:grid', 'sum' ],
       'theme'    => [ 'Themes', 'The name parameter of {widget:theme} selects page or box colours.', 'theme', 'paper' ],
       'unit' => [ 'Unit conversions', 'Dimension-checked numeric conversion through padConvert.', '', 'length' ],
+      'stats' => [ 'Statistics', 'Bounded descriptive statistics and regression through padStats.', '', 'describe' ],
+      'graph' => [ 'Graph algorithms', 'Dependency order, components, shortest and critical paths through padGraph.', '', 'toposort' ],
+      'schema' => [ 'Schema validation', 'Explicit contracts for JSON values, records and rowsets through padSchema.', '', 'jsonschema' ],
+      'textanalysis' => [ 'Text analysis', 'Unicode counts, n-grams and lexical similarity through padTextAnalysis.', '', 'counts' ],
+      'solve' => [ 'Constraint solvers', 'Bounded exact cover, bipartite matching and assignment through padSolve.', '', 'assignment' ],
       'highlighter' => [ 'Syntax languages', 'Languages selected by padHighlight and the highlight tag.', 'highlight', 'python' ],
       'diff' => [ 'Comparison kinds', 'Typed change records through padDiffCompare, and escaped HTML through padDiffRender.', 'diff', 'json' ],
       'recurrence' => [ 'Calendar recurrences', 'Bounded occurrences between explicit dates through padOccurrences.', '', 'weekly' ],
@@ -65,7 +70,8 @@
     switch ( $family ) {
       case 'unit':
         $language = 'php';
-        $pairs = [ 'length' => [ 'cm', 'm' ], 'area' => [ 'm2', 'ft2' ], 'volume' => [ 'L', 'mL' ], 'mass' => [ 'kg', 'g' ], 'temperature' => [ 'C', 'F' ], 'digital' => [ 'KiB', 'B' ] ];
+        $pairs = [ 'length' => [ 'cm', 'm' ], 'area' => [ 'm2', 'ft2' ], 'volume' => [ 'L', 'mL' ], 'mass' => [ 'kg', 'g' ], 'temperature' => [ 'C', 'F' ], 'digital' => [ 'KiB', 'B' ],
+          'duration'=>['min','h'], 'speed'=>['km/h','m/s'], 'pressure'=>['kPa','bar'], 'energy'=>['kJ','Wh'], 'power'=>['kW','W'], 'angle'=>['deg','rad'] ];
         [ $a, $b ] = $pairs [$kind];
         $source = "padConvert ( 100, '$a', '$b' );";
         break;
@@ -75,6 +81,42 @@
       case 'diff':
         $language = 'php'; $args = $kind === 'rows' ? ", [ 'key' => 'id' ]" : '';
         $source = "\$changes = padDiffCompare ( '$kind', \$before, \$after$args );\npadDiffRender ( \$changes, TRUE );";
+        if ( $kind === 'unified' ) $source = "include_once PAD . 'subs/diffs/_lib/unified.php';\n\$hunks = padDiffUnifiedHunks ( \$before, \$after, 3 );\necho padDiffUnified ( \$before, \$after, ['context'=>3] );";
+        break;
+      case 'stats':
+        $language = 'php';
+        $rows = $kind === 'regression' ? "[['x'=>1,'y'=>2],['x'=>2,'y'=>4],['x'=>3,'y'=>5]]" : '[1,2,2,3,5,8]';
+        $source = "padStats ( '$kind', $rows );";
+        $about = 'Returns plain data. A runnable table/chart consumer is in Showcase / analysis / statistics.';
+        break;
+      case 'graph':
+        $language = 'php';
+        $nodes = $kind === 'criticalpath' ? "[['id'=>'a','duration'=>2],['id'=>'b','duration'=>3],['id'=>'c','duration'=>1]]" : "['a','b','c']";
+        $options = $kind === 'shortestpath' ? ", ['source'=>'a','target'=>'c']" : '';
+        $source = "padGraph ( '$kind', $nodes, [['a','b'],['b','c']]$options );";
+        $about = 'Stable input-order ties; cycles are explicit results. See Showcase / analysis / dependencies.';
+        break;
+      case 'schema':
+        $language = 'php';
+        $value = [ 'jsonschema'=>"(object)['name'=>'Ada']", 'record'=>"['name'=>'Ada']", 'rowset'=>"[['name'=>'Ada'],['name'=>'Bo']]" ] [$kind];
+        $source = "\$schema = ['type'=>'object','properties'=>['name'=>['type'=>'string']],'required'=>['name'],'additionalProperties'=>false];\npadSchema ( '$kind', $value, \$schema );";
+        $about = 'A documented JSON Schema subset, without coercion or remote references. See Showcase / analysis / import-contract.';
+        break;
+      case 'textanalysis':
+        $language = 'php';
+        $value = $kind === 'similarity' ? "['a'=>'red blue','b'=>'blue green']" : "'Red blue, red green.'";
+        $source = "padTextAnalysis ( '$kind', $value );";
+        $about = 'NFC requires PHP intl; normalization=none is an explicit alternative. See Showcase / analysis / duplicates.';
+        break;
+      case 'solve':
+        $language = 'php';
+        $problem = [
+          'exactcover'=>"['columns'=>['a','b'],'rows'=>['both'=>['a','b'],'left'=>['a'],'right'=>['b']]]",
+          'matching'=>"['left'=>['Ada','Bo'],'right'=>['edit','test'],'edges'=>[['Ada','edit'],['Bo','test']]]",
+          'assignment'=>"['rows'=>['Ada','Bo'],'columns'=>['edit','test'],'costs'=>[[2,5],[4,1]]]"
+        ] [$kind];
+        $source = "padSolve ( '$kind', $problem, ['maxSteps'=>100000] );";
+        $about = 'Check status: solved, infeasible, limit or cancelled. Showcase / analysis contains allocation and exact-cover consumers.';
         break;
       case 'recurrence':
         $language = 'php'; $extra = $kind === 'rrule' ? ", 'rrule' => 'FREQ=WEEKLY;COUNT=4'" : ", 'count' => 4";
@@ -85,7 +127,8 @@
         break;
       case 'geo':
         $language = 'php';
-        $args = [ 'distance' => '[4.9,52.37], [2.35,48.86]', 'bearing' => '[4.9,52.37], [2.35,48.86]', 'bbox' => '[[179,10],[-179,20]]', 'contains' => "[1,1], ['type'=>'Polygon', 'coordinates'=>[[[0,0],[2,0],[2,2],[0,2],[0,0]]]]", 'geohash' => '[4.9,52.37]' ];
+        $args = [ 'distance' => '[4.9,52.37], [2.35,48.86]', 'bearing' => '[4.9,52.37], [2.35,48.86]', 'bbox' => '[[179,10],[-179,20]]', 'contains' => "[1,1], ['type'=>'Polygon', 'coordinates'=>[[[0,0],[2,0],[2,2],[0,2],[0,0]]]]", 'geohash' => '[4.9,52.37]',
+          'destination'=>"[4.9,52.37], 100, ['bearing'=>90,'unit'=>'km']", 'route-length'=>"[[4.9,52.37],[2.35,48.86]], NULL, ['unit'=>'km']", 'nearest'=>"[4.9,52.37], ['Paris'=>[2.35,48.86],'London'=>[-.12,51.5]]" ];
         $source = "padGeo ( '$kind', " . $args [$kind] . ' );';
         break;
       case 'map':
@@ -128,6 +171,12 @@
         $about = 'Supply the document bytes in $contents or the data in $rows. The description below explains the format\'s record shape; XLSX takes binary bytes.';
         break;
       case 'formula':
+        if ( is_file ( APPS . "tags/examples/formula/$kind.pad" ) ) {
+          $source = trim ( padFileGet ( APPS . "tags/examples/formula/$kind.pad" ) );
+          $run = TRUE;
+          $about = 'A complete computed example using the shared spreadsheet evaluator.';
+          break;
+        }
         $text = appSubsystemComment ( $family, $kind );
         if ( preg_match ( '/^  (=\S.*?)(?:[ \t]{2,}\S.*)?$/m', $text, $match ) ) {
           $formula = str_replace ( [ '\\', "'" ], [ '\\\\', "\\'" ], $match [1] );

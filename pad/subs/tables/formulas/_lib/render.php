@@ -26,7 +26,7 @@
     if ( $view ['caption'] !== '' )
       $html .= '<caption>' . padChartAttr ( $view ['caption'] ) . '</caption>';
 
-    if ( $view ['headers'] ) {
+    if ( empty($view['record']) && $view ['headers'] ) {
       $html .= '<thead><tr><td class="pad-sheet-corner"></td>';
       for ( $column = 1; $column <= $sheet ['width']; $column++ )
         $html .= '<th scope="col">' . padFormulaLetters ( $column ) . '</th>';
@@ -35,6 +35,14 @@
 
     $html .= '<tbody>';
 
+    if(!empty($view['record'])){
+      $labels=is_array($view['labels']??NULL)?$view['labels']:[];
+      foreach($sheet['cells'] as $row=>$cells)foreach($cells as $column=>$cell){
+        $cellName=padFormulaCellName($column,$row);$input=isset($inputs["$column:$row"])&&!isset($cell['spill']);
+        $label=$labels[$cellName]??$cellName;if(!is_scalar($label))$label=$cellName;
+        $html.='<tr><th scope="row">'.padChartAttr((string)$label).' <small>('.$cellName.', '.($input?'input':'output').')</small></th>'.padSheetCellHtml($sheet,$column,$row,$view,$input).'</tr>';
+      }
+    }else{
     for ( $row = 1; $row <= $sheet ['height']; $row++ ) {
 
       $html .= '<tr>' . ( $view ['headers'] ? "<th scope=\"row\">$row</th>" : '' );
@@ -43,6 +51,8 @@
         $html .= padSheetCellHtml ( $sheet, $column, $row, $view, isset ( $inputs ["$column:$row"] ) );
 
       $html .= '</tr>';
+
+    }
 
     }
 
@@ -86,6 +96,7 @@
   function padSheetCellHtml ( $sheet, $column, $row, $view, $input ) {
 
     $cell    = $sheet ['cells'] [$row] [$column] ?? NULL;
+    if(isset($cell['spill']))$input=FALSE;
     $formula = $cell ['formula'] ?? NULL;
     $value   = $cell ? ( $formula !== NULL ? $cell ['result'] : $cell ['value'] ) : NULL;
     $format  = padSheetFormatAt ( $view ['formats'], $column, $row ) ?? ( $cell ['format'] ?? NULL );
@@ -138,6 +149,14 @@
 
     if ( $row > 1 and is_string ( $down ) and trim ( $down ) !== '' )
       $label .= ', ' . $down;
+
+    // The record view's visible application label is also the input's accessible
+    // name. Keep the stable address as context; grid labels retain their old form.
+    if ( ! empty ( $view ['record'] ) ) {
+      $recordLabel = $view ['labels'] [$cellName] ?? NULL;
+      if ( is_scalar ( $recordLabel ) && trim ( (string) $recordLabel ) !== '' )
+        $label = (string) $recordLabel . ' (' . $cellName . ')';
+    }
 
     $field = '<input name="padSheet[' . padChartAttr ( $view ['name'] ) . '][' . $cellName . ']"'
            . ' value="' . padChartAttr ( $cell ['source'] ?? '' ) . '"'

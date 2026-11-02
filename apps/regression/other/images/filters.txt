@@ -190,6 +190,15 @@ what stands behind it while it loads is what you see.</p>
   <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">image:thumbnail</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;lqip&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
 </section>
 
+<section class="patterns-filter" id="median">
+  <h2>median</h2>
+  <p>3x3 channel median, edge coordinates clamped.</p>
+  <div class="patterns-play">
+    <img class="pad-img pad-img-pixels" src="/pad/images/_thumbs/7a6c81d2909f7754.jpg" width="360" height="240" alt="Rows of tulips running to a windmill" loading="lazy" decoding="async">
+  </div>
+  <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">image:thumbnail</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;median&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
+</section>
+
 <section class="patterns-filter" id="pixelate">
   <h2>pixelate</h2>
   <p>The picture in blocks of cell= pixels (8), each block the average of what it covers (GD&#039;s pixelate filter, its advanced form); made at 1x and shown with its pixels sharp, written as a PNG unless format= says otherwise.</p>

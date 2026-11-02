@@ -14,6 +14,8 @@
 
   var still = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
 
+  if(still&&still.addEventListener)still.addEventListener('change',function(){if(still.matches)document.querySelectorAll('[data-pad-decipher]').forEach(function(el){if(el.padDecipherStop)el.padDecipherStop();});});
+
   var signs = {
     symbols: '!<>-_/[]{}=+*^?#%&$@~',
     letters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
@@ -44,7 +46,7 @@
 
   function run(el) {
 
-    if (!el || el.padDecipherRunning || (still && still.matches)) return;
+    if (!el || !el.isConnected || el.padDecipherRunning || (still && still.matches)) return;
 
     var text = el.querySelector('.pe-text');
     if (!text) return;
@@ -61,7 +63,9 @@
     el.classList.add('pe-run');
     el.padDecipherRunning = true;
 
-    var start = null, shown = -1;
+    var start = null, shown = -1, raf = 0;
+    function stop(){if(raf)cancelAnimationFrame(raf);layer.remove();el.classList.remove('pe-run');el.padDecipherRunning=false;el.padDecipherStop=null;}
+    el.padDecipherStop=stop;
 
     function frame(now) {
 
@@ -69,10 +73,8 @@
 
       var t = (now - start) / time;
 
-      if (t >= 1 || (still && still.matches)) {
-        layer.remove();
-        el.classList.remove('pe-run');
-        el.padDecipherRunning = false;
+      if (t >= 1 || !el.isConnected || (still && still.matches)) {
+        stop();
         return;
       }
 
@@ -91,11 +93,11 @@
         layer.textContent = out;
       }
 
-      requestAnimationFrame(frame);
+      raf=requestAnimationFrame(frame);
 
     }
 
-    requestAnimationFrame(frame);
+    raf=requestAnimationFrame(frame);
 
   }
 
@@ -105,7 +107,7 @@
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) return;
       seen.unobserve(entry.target);
-      setTimeout(function () { run(entry.target); }, Math.max(0, Math.min(60, +config(entry.target).delay || 0)) * 1000);
+      entry.target.padDecipherTimer=setTimeout(function () { entry.target.padDecipherTimer=null;run(entry.target); }, Math.max(0, Math.min(60, +config(entry.target).delay || 0)) * 1000);
     });
   }, { threshold: .6 }) : null;
 
@@ -132,7 +134,10 @@
     watch(document);
     if (window.MutationObserver)
       new MutationObserver(function (changes) {
-        changes.forEach(function (change) { Array.prototype.forEach.call(change.addedNodes, function (node) { if (node.nodeType === 1) watch(node); }); });
+        changes.forEach(function(change){
+          Array.prototype.forEach.call(change.removedNodes,function(node){if(node.nodeType!==1)return;var list=Array.prototype.slice.call(node.querySelectorAll('[data-pad-decipher]'));if(node.matches('[data-pad-decipher]'))list.push(node);list.forEach(function(el){if(el.isConnected)return;if(seen)seen.unobserve(el);if(el.padDecipherStop)el.padDecipherStop();if(el.padDecipherTimer){clearTimeout(el.padDecipherTimer);el.padDecipherTimer=null;}el.padDecipherWatched=false;});});
+          Array.prototype.forEach.call(change.addedNodes,function(node){if(node.nodeType===1)watch(node);});
+        });
       }).observe(document.body, { childList: true, subtree: true });
   }
 

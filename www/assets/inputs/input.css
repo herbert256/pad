@@ -2,8 +2,8 @@
 .pad-input *,.pad-input *::before,.pad-input *::after{box-sizing:border-box}
 .pad-input>label,.pad-input>legend,.pad-input .pi-label{display:block;margin:0 0 .3em;font-weight:600}
 .pad-input [hidden]{display:none!important}
-.pad-input input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]),.pad-input textarea{font:inherit;color:var(--pad-input-ink);background:var(--pad-input-field);border:1px solid var(--pad-input-line);border-radius:6px;padding:.4em .55em;max-width:100%}
-.pad-input input:focus-visible,.pad-input textarea:focus-visible,.pad-input button:focus-visible,.pad-input [tabindex]:focus-visible{outline:2px solid var(--pad-input-accent);outline-offset:2px}
+.pad-input input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]),.pad-input textarea,.pad-input select{font:inherit;color:var(--pad-input-ink);background:var(--pad-input-field);border:1px solid var(--pad-input-line);border-radius:6px;padding:.4em .55em;max-width:100%}
+.pad-input input:focus-visible,.pad-input textarea:focus-visible,.pad-input select:focus-visible,.pad-input button:focus-visible,.pad-input [tabindex]:focus-visible{outline:2px solid var(--pad-input-accent);outline-offset:2px}
 .pad-input [aria-invalid=true]{border-color:var(--pad-input-bad)!important}
 .pad-input .pi-button{font:inherit;font-size:.92em;line-height:1.2;padding:.4em .7em;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);color:var(--pad-input-ink);cursor:pointer}
 .pad-input .pi-button:hover:not(:disabled){border-color:var(--pad-input-accent)}
@@ -14,3 +14,6 @@
 .pad-input .pi-popup{position:absolute;z-index:20;margin-top:4px;background:var(--pad-input-field);color:var(--pad-input-ink);border:1px solid var(--pad-input-line);border-radius:8px;box-shadow:0 6px 24px rgb(0 0 0 / .18);padding:.5em}
 .pad-input .pi-anchor{position:relative;display:inline-block;max-width:100%}
 .pad-input .pi-noscript{color:var(--pad-input-muted);margin:.3em 0}
+
+@media(forced-colors:active){.pad-input [aria-invalid=true]{border:2px solid Mark!important}.pad-input input:focus-visible,.pad-input textarea:focus-visible,.pad-input select:focus-visible,.pad-input button:focus-visible{outline-color:Highlight}}
+@media print{.pad-input .pi-button{box-shadow:none}.pad-input input,.pad-input select,.pad-input textarea{color:#000!important;background:#fff!important}}

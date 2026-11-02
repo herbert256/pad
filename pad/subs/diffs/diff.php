@@ -44,7 +44,7 @@
   }
   $padDiffFrom = padUnprotect ( (string) $padDiffFrom );
   $padDiffTo = padUnprotect ( (string) $padDiffTo );
-  if ( in_array ( $padDiffKind, [ 'words', 'lines', 'side' ], TRUE ) ) {
+  if ( in_array ( $padDiffKind, [ 'words', 'lines', 'side', 'unified' ], TRUE ) ) {
     if ( ( ! is_scalar ( $padDiffOld ) and $padDiffOld !== NULL ) or ( ! is_scalar ( $padDiffNew ) and $padDiffNew !== NULL ) ) {
       if ( $padCheckSyntax ) padError ( 'a text diff requires two scalar texts; use diff:json or diff:rows for structured values' );
       return FALSE;
@@ -57,7 +57,15 @@
   }
   if ( $padInfoXref ?? FALSE ) padInfoXref ( 'diff', $padDiffKind );
   $padDiffType = include PAD . "subs/diffs/types/$padDiffKind.php";
+  $padDiffContext = $padDiffKind === 'unified' ? padTagParm ( 'context', 3 ) : 3;
+  if ( $padDiffKind === 'unified' ) {
+    if ( ! is_numeric ( $padDiffContext ) or ! is_finite ( (float) $padDiffContext ) or (int) $padDiffContext != $padDiffContext or $padDiffContext < 0 or $padDiffContext > 100 ) {
+      if ( $padCheckSyntax ) padError ( 'unified diff context must be a whole number from 0 to 100' );
+      return FALSE;
+    }
+  }
   return $padDiffType ['render'] ( $padDiffOld, $padDiffNew, [
+    'context' => (int) $padDiffContext,
     'from' => $padDiffFrom, 'to' => $padDiffTo,
     'same' => (bool) padTagParm ( 'same', FALSE ), 'key' => padTagParm ( 'key' ),
     'lines' => (bool) padTagParm ( 'lines', FALSE ), 'side' => (bool) padTagParm ( 'side', FALSE ),

@@ -1,0 +1,154 @@
+{
+  "main": {
+    "shp": "ne_10m_admin_1_states_provinces_lakes.shp",
+    "filter": "adm0_a3==\"ESP\" && region_cod!=\"ES.CN\"",
+    "key": "iso_3166_2==\"ES-ML\" ? \"ES-ML\" : ({\"ES.NA\":\"ES-NC\",\"ES.MU\":\"ES-MC\",\"ES.LO\":\"ES-RI\",\"ES.PM\":\"ES-IB\"}[region_cod] || region_cod.replace(\".\",\"-\"))",
+    "proj": "+proj=laea +lat_0=40 +lon_0=-4 +ellps=GRS80 +units=m +no_defs",
+    "margin": 0.025,
+    "width": 1000,
+    "detail": "1200x1200",
+    "plain": "300x300",
+    "regions": {
+      "ES-AN": [
+        "AN",
+        "Andalusia",
+        [
+          "Andalucía"
+        ]
+      ],
+      "ES-AR": [
+        "AR",
+        "Aragon",
+        [
+          "Aragón"
+        ]
+      ],
+      "ES-AS": [
+        "AS",
+        "Asturias",
+        []
+      ],
+      "ES-IB": [
+        "IB",
+        "Balearic Islands",
+        [
+          "Illes Balears",
+          "Islas Baleares"
+        ]
+      ],
+      "ES-CB": [
+        "CB",
+        "Cantabria",
+        []
+      ],
+      "ES-CM": [
+        "CM",
+        "Castilla-La Mancha",
+        []
+      ],
+      "ES-CL": [
+        "CL",
+        "Castile and León",
+        [
+          "Castilla y León"
+        ]
+      ],
+      "ES-CT": [
+        "CT",
+        "Catalonia",
+        [
+          "Catalunya",
+          "Cataluña"
+        ]
+      ],
+      "ES-EX": [
+        "EX",
+        "Extremadura",
+        []
+      ],
+      "ES-GA": [
+        "GA",
+        "Galicia",
+        []
+      ],
+      "ES-MD": [
+        "MD",
+        "Madrid",
+        [
+          "Comunidad de Madrid"
+        ]
+      ],
+      "ES-MC": [
+        "MC",
+        "Murcia",
+        [
+          "Región de Murcia"
+        ]
+      ],
+      "ES-NC": [
+        "NC",
+        "Navarre",
+        [
+          "Navarra",
+          "Nafarroa"
+        ]
+      ],
+      "ES-PV": [
+        "PV",
+        "Basque Country",
+        [
+          "País Vasco",
+          "Euskadi"
+        ]
+      ],
+      "ES-RI": [
+        "RI",
+        "La Rioja",
+        []
+      ],
+      "ES-VC": [
+        "VC",
+        "Valencian Community",
+        [
+          "Comunitat Valenciana",
+          "Comunidad Valenciana"
+        ]
+      ],
+      "ES-CE": [
+        "CE",
+        "Ceuta",
+        []
+      ],
+      "ES-ML": [
+        "ML",
+        "Melilla",
+        []
+      ]
+    },
+    "source": "Natural Earth 1:10m admin-1 states and provinces, lakes excluded, version 5.1.1, public domain. https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/ . Topology-preserving weighted Visvalingam simplification with mapshaper 0.6.121 at 1200x1200 and 300x300, keep-shapes; projected to LAEA, longest side 1000, integer SVG coordinates.",
+    "projection": "Lambert azimuthal equal-area centered on 40 N, -4 E; projected coordinates, y down."
+  },
+  "insets": {
+    "Canary Islands": {
+      "shp": "ne_10m_admin_1_states_provinces_lakes.shp",
+      "filter": "adm0_a3==\"ESP\" && region_cod==\"ES.CN\"",
+      "key": "iso_3166_2==\"ES-ML\" ? \"ES-ML\" : ({\"ES.NA\":\"ES-NC\",\"ES.MU\":\"ES-MC\",\"ES.LO\":\"ES-RI\",\"ES.PM\":\"ES-IB\"}[region_cod] || region_cod.replace(\".\",\"-\"))",
+      "proj": "+proj=laea +lat_0=28.3 +lon_0=-15.5 +ellps=GRS80 +units=m +no_defs",
+      "margin": 0.025,
+      "width": 270,
+      "detail": "1200x1200",
+      "plain": "300x300",
+      "regions": {
+        "ES-CN": [
+          "CN",
+          "Canary Islands",
+          [
+            "Canarias"
+          ]
+        ]
+      },
+      "source": "Natural Earth 1:10m admin-1 states and provinces, lakes excluded, version 5.1.1, public domain. https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/ . Topology-preserving weighted Visvalingam simplification with mapshaper 0.6.121 at 1200x1200 and 300x300, keep-shapes; projected to LAEA, longest side 1000, integer SVG coordinates.",
+      "projection": "Lambert azimuthal equal-area centered on 28.3 N, -15.5 E; projected coordinates, y down."
+    }
+  }
+}

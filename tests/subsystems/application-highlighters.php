@@ -1,0 +1,6 @@
+<?php
+ define('PAD',dirname(__DIR__,2).'/pad/');function padDirList($p){return scandir($p);}function padUnprotectQuotes($v){return $v;}require PAD.'lib/subsystem.php';require PAD.'lib/highlight.php';
+ $samples=['toml'=>"x = \"# literal\" # comment\ny = \"\"\"multi\n# still string\"\"\"\n",'ini'=>"[service]\nx = \"; literal\"\n; comment\n",'dockerfile'=>"from php:8.4 as runtime\n# comment\nCMD [\"<unsafe>\"]\n"];
+ $all=[];foreach($samples as $kind=>$text){$html=padHighlightTokens($text,$kind);if(html_entity_decode(strip_tags($html),ENT_QUOTES|ENT_HTML5,'UTF-8')!==$text)throw new Exception('Highlight text changed '.$kind);if(!str_contains($html,'hl-com'))throw new Exception('Missing comment token');$all[$kind]=['definition'=>padHighlighter($kind),'text'=>$text,'html'=>$html];}
+ if(str_contains($all['toml']['html'],'hl-com"># literal')||str_contains($all['toml']['html'],'hl-com"># still'))throw new Exception('Comment inside string');if(!str_contains($all['dockerfile']['html'],'hl-kwd">from'))throw new Exception('Lowercase Docker instruction');
+ if(in_array('--json',$argv,TRUE))echo json_encode($all);else echo "Application highlighters: comments, multiline strings, aliases and escaped text passed\n";

@@ -410,6 +410,11 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?type/graph">Graph algorithms</a> <span class="about">Dependency order, components, shortest and critical paths through padGraph.</span>
+      <pre class="code"><code><span class="hl-fn">padGraph</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;toposort&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-str">&#039;a&#039;</span><span class="hl-pun">,</span><span class="hl-str">&#039;b&#039;</span><span class="hl-pun">,</span><span class="hl-str">&#039;c&#039;</span><span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-pun">[</span><span class="hl-str">&#039;a&#039;</span><span class="hl-pun">,</span><span class="hl-str">&#039;b&#039;</span><span class="hl-pun">]</span><span class="hl-pun">,</span><span class="hl-pun">[</span><span class="hl-str">&#039;b&#039;</span><span class="hl-pun">,</span><span class="hl-str">&#039;c&#039;</span><span class="hl-pun">]</span><span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?type/highlighter">Syntax languages</a> <span class="about">Languages selected by padHighlight and the highlight tag.</span>
       <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;python&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
@@ -432,6 +437,27 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
     <div class="cheat-item">
       <a class="name" href="?type/rule">Validation rules</a> <span class="about">Rules passed to padValidate or a form field&#039;s rules= option.</span>
       <pre class="code"><code><span class="hl-var">$errors</span> <span class="hl-pun">=</span> <span class="hl-fn">padValidate</span> <span class="hl-pun">(</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;value&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;required&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-var">$values</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?type/schema">Schema validation</a> <span class="about">Explicit contracts for JSON values, records and rowsets through padSchema.</span>
+      <pre class="code"><code><span class="hl-var">$schema</span> <span class="hl-pun">=</span> <span class="hl-pun">[</span><span class="hl-str">&#039;type&#039;</span><span class="hl-pun">=&gt;</span><span class="hl-str">&#039;object&#039;</span><span class="hl-pun">,</span><span class="hl-str">&#039;properties&#039;</span><span class="hl-pun">=&gt;</span><span class="hl-pun">[</span><span class="hl-str">&#039;name&#039;</span><span class="hl-pun">=&gt;</span><span class="hl-pun">[</span><span class="hl-str">&#039;type&#039;</span><span class="hl-pun">=&gt;</span><span class="hl-str">&#039;string&#039;</span><span class="hl-pun">]</span><span class="hl-pun">]</span><span class="hl-pun">,</span><span class="hl-str">&#039;required&#039;</span><span class="hl-pun">=&gt;</span><span class="hl-pun">[</span><span class="hl-str">&#039;name&#039;</span><span class="hl-pun">]</span><span class="hl-pun">,</span><span class="hl-str">&#039;additionalProperties&#039;</span><span class="hl-pun">=&gt;</span><span class="hl-lit">false</span><span class="hl-pun">]</span><span class="hl-pun">;</span>
+<span class="hl-fn">padSchema</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;jsonschema&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">(object)</span><span class="hl-pun">[</span><span class="hl-str">&#039;name&#039;</span><span class="hl-pun">=&gt;</span><span class="hl-str">&#039;Ada&#039;</span><span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-var">$schema</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?type/solve">Constraint solvers</a> <span class="about">Bounded exact cover, bipartite matching and assignment through padSolve.</span>
+      <pre class="code"><code><span class="hl-fn">padSolve</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;assignment&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-str">&#039;rows&#039;</span><span class="hl-pun">=&gt;</span><span class="hl-pun">[</span><span class="hl-str">&#039;Ada&#039;</span><span class="hl-pun">,</span><span class="hl-str">&#039;Bo&#039;</span><span class="hl-pun">]</span><span class="hl-pun">,</span><span class="hl-str">&#039;columns&#039;</span><span class="hl-pun">=&gt;</span><span class="hl-pun">[</span><span class="hl-str">&#039;edit&#039;</span><span class="hl-pun">,</span><span class="hl-str">&#039;test&#039;</span><span class="hl-pun">]</span><span class="hl-pun">,</span><span class="hl-str">&#039;costs&#039;</span><span class="hl-pun">=&gt;</span><span class="hl-pun">[</span><span class="hl-pun">[</span><span class="hl-num">2</span><span class="hl-pun">,</span><span class="hl-num">5</span><span class="hl-pun">]</span><span class="hl-pun">,</span><span class="hl-pun">[</span><span class="hl-num">4</span><span class="hl-pun">,</span><span class="hl-num">1</span><span class="hl-pun">]</span><span class="hl-pun">]</span><span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-str">&#039;maxSteps&#039;</span><span class="hl-pun">=&gt;</span><span class="hl-num">100000</span><span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?type/stats">Statistics</a> <span class="about">Bounded descriptive statistics and regression through padStats.</span>
+      <pre class="code"><code><span class="hl-fn">padStats</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;describe&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-num">1</span><span class="hl-pun">,</span><span class="hl-num">2</span><span class="hl-pun">,</span><span class="hl-num">2</span><span class="hl-pun">,</span><span class="hl-num">3</span><span class="hl-pun">,</span><span class="hl-num">5</span><span class="hl-pun">,</span><span class="hl-num">8</span><span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?type/textanalysis">Text analysis</a> <span class="about">Unicode counts, n-grams and lexical similarity through padTextAnalysis.</span>
+      <pre class="code"><code><span class="hl-fn">padTextAnalysis</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;counts&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;Red blue, red green.&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
     
     <div class="cheat-item">

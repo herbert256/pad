@@ -1,3 +1,3 @@
 <?php
-  return [ 'fields' => [ 'month', 'monthday' ] ];
+  return [ 'fields' => [ 'month', 'monthday', 'byday', 'setpos' ] ];
 ?>

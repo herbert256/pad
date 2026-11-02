@@ -1,4 +1,4 @@
-<p class="sheets-lead">The 131 functions a formula can call, each a file of
+<p class="sheets-lead">The 139 functions a formula can call, each a file of
 <code>pad/subs/tables/formulas/types/</code> in the engine - a function is added by adding its file, and
 this page lists what each file says of itself. Their names are written in any case. The examples
 read the sample sheet below as if they stood in its cell G1, and each shows what that cell
@@ -618,6 +618,12 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=CHOOSE(2, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;)</code> <samp>b</samp></li><li><code>=CHOOSE(4, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;)</code> <samp>#VALUE!</samp></li></ul></td>
     </tr>
   
+    <tr id="filter">
+      <th scope="row">FILTER</th>
+      <td>FILTER(array, include, [if_empty]) keeps rows or columns selected by a matching one-column or one-row Boolean mask. Comparison expressions can produce the mask. The dense result spills into empty cells; no matches gives if_empty or #CALC!. Examples below show the first result cell; other selected rows spill below it.</td>
+      <td><ul class="sheets-examples"><li><code>=FILTER(A2:A7,B2:B7&gt;10)</code> <samp>Cherries</samp></li><li><code>=FILTER(A2:A7,B2:B7&gt;100,&quot;none&quot;)</code> <samp>none</samp></li></ul></td>
+    </tr>
+  
     <tr id="hlookup">
       <th scope="row">HLOOKUP</th>
       <td>HLOOKUP(value, table, row, [approximate]) is VLOOKUP turned on its side: it finds a value in the first row of a table and answers the cell of that column in the row-th row.</td>
@@ -634,6 +640,18 @@ shows.</p>
       <th scope="row">MATCH</th>
       <td>MATCH(value, array, [type]) is the place of a value in a row or a column, from 1. Type 0 finds it exactly - a text in any case, * and ? as wildcards; 1 (the default) finds, in a list that rises, the last value not above it; -1, in a list that falls, the last value not below it. Not found is #N/A.</td>
       <td><ul class="sheets-examples"><li><code>=MATCH(&quot;Pears&quot;, A2:A7, 0)</code> <samp>2</samp></li><li><code>=MATCH(DATE(2024,6,1), D2:D7)</code> <samp>4</samp></li><li><code>=MATCH(&quot;Kiwis&quot;, A2:A7, 0)</code> <samp>#N/A</samp></li></ul></td>
+    </tr>
+  
+    <tr id="sort">
+      <th scope="row">SORT</th>
+      <td>SORT(array, [sort_index], [sort_order], [by_col]) orders rows by a one-based column (default 1), ascending (1) or descending (-1). TRUE for by_col orders columns by a row instead. Equal keys keep input order; results spill. Examples below show the first cell of the sorted column.</td>
+      <td><ul class="sheets-examples"><li><code>=SORT(B2:B7)</code> <samp>0</samp></li><li><code>=SORT(B2:B7,1,-1)</code> <samp>20</samp></li></ul></td>
+    </tr>
+  
+    <tr id="unique">
+      <th scope="row">UNIQUE</th>
+      <td>UNIQUE(array, [by_col], [exactly_once]) keeps distinct rows in input order, comparing text without case. TRUE for by_col compares columns; TRUE for exactly_once keeps only rows or columns seen once. The dense result spills. Examples below show the first result cell; remaining values spill below it.</td>
+      <td><ul class="sheets-examples"><li><code>=UNIQUE(A2:A7)</code> <samp>Apples</samp></li><li><code>=UNIQUE(A2:A7,FALSE,TRUE)</code> <samp>Pears</samp></li></ul></td>
     </tr>
   
     <tr id="vlookup">
@@ -862,6 +880,36 @@ shows.</p>
       <th scope="row">CORREL</th>
       <td>CORREL(array1, array2) returns the Pearson correlation of paired numbers. Text and blank cells are ignored as pairs; unequal sizes yield #N/A, a constant series or fewer than two numeric pairs yields #DIV/0!.</td>
       <td><ul class="sheets-examples"><li><code>=CORREL(B2:B7, B2:B7)</code> <samp>1</samp></li><li><code>=CORREL(1, 2)</code> <samp>#DIV/0!</samp></li></ul></td>
+    </tr>
+  
+    <tr id="covariance.p">
+      <th scope="row">COVARIANCE.P</th>
+      <td>COVARIANCE.P(array1, array2) is the population covariance of paired numeric observations. Ranges must have equal dimensions; pairs containing text or blanks are omitted together. A cell error propagates and no numeric pairs is #DIV/0!.</td>
+      <td><ul class="sheets-examples"><li><code>=COVARIANCE.P(B2:B3,B2:B3)</code> <samp>6.25</samp></li><li><code>=COVARIANCE.P(B2:B3,C2:C3)</code> <samp>0.5</samp></li></ul></td>
+    </tr>
+  
+    <tr id="covariance.s">
+      <th scope="row">COVARIANCE.S</th>
+      <td>COVARIANCE.S(array1, array2) is the sample covariance of paired numeric observations, divided by their count less one. Equal range dimensions are required; nonnumeric pairs are omitted and fewer than two pairs gives #DIV/0!.</td>
+      <td><ul class="sheets-examples"><li><code>=COVARIANCE.S(B2:B3,B2:B3)</code> <samp>12.5</samp></li><li><code>=COVARIANCE.S(B2:B3,C2:C3)</code> <samp>1</samp></li></ul></td>
+    </tr>
+  
+    <tr id="intercept">
+      <th scope="row">INTERCEPT</th>
+      <td>INTERCEPT(known_y, known_x) is the y intercept of the least-squares line through paired numeric observations. Equal range dimensions are required; nonnumeric pairs are omitted. Insufficient pairs or constant x gives #DIV/0!.</td>
+      <td><ul class="sheets-examples"><li><code>=INTERCEPT(B2:B4,B2:B4)</code> <samp>0</samp></li><li><code>=INTERCEPT(C2:C3,B2:B3)</code> <samp>0.4</samp></li></ul></td>
+    </tr>
+  
+    <tr id="rsq">
+      <th scope="row">RSQ</th>
+      <td>RSQ(known_y, known_x) is squared Pearson correlation, from 0 to 1. Equal range dimensions are required and nonnumeric pairs are omitted. Fewer than two pairs, constant x or constant y gives #DIV/0!; cell errors propagate.</td>
+      <td><ul class="sheets-examples"><li><code>=RSQ(B2:B4,B2:B4)</code> <samp>1</samp></li><li><code>=RSQ(C2:C3,B2:B3)</code> <samp>1</samp></li></ul></td>
+    </tr>
+  
+    <tr id="slope">
+      <th scope="row">SLOPE</th>
+      <td>SLOPE(known_y, known_x) is the least-squares slope of paired numeric observations. Equal range dimensions are required; nonnumeric pairs are omitted. Fewer than two numeric pairs or a constant x range gives #DIV/0!.</td>
+      <td><ul class="sheets-examples"><li><code>=SLOPE(B2:B4,B2:B4)</code> <samp>1</samp></li><li><code>=SLOPE(C2:C3,B2:B3)</code> <samp>0.08</samp></li></ul></td>
     </tr>
   
   </tbody>

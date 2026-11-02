@@ -154,6 +154,8 @@
   }
 
   return padSheetHtml ( $padSheetGrid, [
+    'record' => !empty($padSheetRecord),
+    'labels' => !empty($padSheetRecord)?padTagParm('labels',[]):[],
     'name'    => $padSheetName,
     'caption' => (string) padTagParm ( 'caption' ),
     'headers' => $padSheetHeaders,

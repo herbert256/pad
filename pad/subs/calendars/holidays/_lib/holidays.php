@@ -51,6 +51,8 @@
   //                 whether that is a holiday already or not (New Zealand's Anzac Day)
   //     type        'observance' for a day that is no day off; publicEvery = n makes it a
   //                 public holiday in the years that divide by n only (nl's 5 May)
+  //     startTime   for type 'partial', the local HH:MM when the holiday starts. Partial
+  //                 holidays are not whole-day closures in the workday helpers.
   //     in, not     the regions it is held in only, or the regions it is not held in
   //
   // A holiday is a row: date (YYYY-MM-DD), name (English), local (the name in the country's
@@ -395,7 +397,7 @@
           'type'       => $type,
           'region'     => isset ( $day ['in'] ) ? $region : '',
           'substitute' => FALSE
-        ], ( $type == 'public' ) ? ( $day ['substitute'] ?? FALSE ) : FALSE ];
+        ] + ( $type === 'partial' ? [ 'startTime' => $day ['startTime'] ] : [] ), ( $type == 'public' ) ? ( $day ['substitute'] ?? FALSE ) : FALSE ];
 
       }
 
@@ -559,7 +561,7 @@
              . '<td><time datetime="' . $row ['date'] . '">' . $h ( padCalendarWord ( $day, 'EEE d MMM', 'D j M' ) ) . '</time></td>'
              . '<td>' . $h ( $row ['name'] )
              . ( $row ['local'] !== $row ['name'] ? ' <span lang="' . $h ( $lang ) . '">' . $h ( $row ['local'] ) . '</span>' : '' )
-             . ( $row ['type'] != 'public' ? ' <small>(no day off)</small>' : '' )
+             . padHolidaysTypeLabel ( $row )
              . '</td></tr>';
 
     }
@@ -585,6 +587,13 @@
          . ':where(.pad-holidays tr.observance){opacity:.6}'
          . '</style>';
 
+  }
+
+  function padHolidaysTypeLabel ( $row ) {
+    if ( $row ['type'] === 'public' ) return '';
+    if ( $row ['type'] === 'partial' )
+      return ' <small>(holiday from ' . htmlspecialchars ( (string) $row ['startTime'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ) . ' local time)</small>';
+    return ' <small>(no day off)</small>';
   }
 
 ?>

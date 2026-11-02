@@ -1,0 +1,1 @@
+addRule('luhn',{check:function(value){if(typeof value!=='string'||value.length>64||!/^\d[\d -]*\d$/.test(value))return false;var d=value.replace(/[ -]/g,'');if(d.length<2||d.length>32)return false;var sum=0,dbl=false;for(var i=d.length-1;i>=0;i--){var n=+d[i];if(dbl){n*=2;if(n>9)n-=9;}sum+=n;dbl=!dbl;}return sum%10===0;}});

@@ -7,6 +7,7 @@
   // The first parameter names the sheet; the rest - formulas=, totals=, formats=, headers,
   // caption=, editable, seed= - is the body every sheet runs, subs/tables/formulas/spreadsheet.php.
 
+  $padSheetRecord = FALSE;
   $padSheetName = trim ( (string) ( is_string ( $padParm ) ? $padParm : '' ) );
 
   return include PAD . 'subs/tables/formulas/spreadsheet.php';

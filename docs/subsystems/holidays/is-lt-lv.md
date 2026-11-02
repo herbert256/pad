@@ -1,0 +1,11 @@
+# Iceland, Lithuania and Latvia
+
+These three country datasets deliberately cover **2024–2026**. Calls outside that interval fail through the existing known-year boundary. This is a national public-holiday dataset, not a complete employment schedule. No municipal, employer-specific or working-day transfer schedules are inferred.
+
+Iceland: the [1971 working-time law, article 6](https://www.althingi.is/lagas/nuna/1971088.html) and [1997 holiday law](https://www.althingi.is/lagas/nuna/1997032.html), cross-checked against the [Central Bank's published 2025/2026 dates](https://cb.is/about-the-bank/public-holidays-in-iceland). First summer day is Thursday on/after April 19; commerce day is the first Monday of August. Christmas Eve and New Year's Eve are **partial holidays from 13:00 local time** under the working-time law. Their rows carry `type='partial', startTime='13:00'`. Tables label the time explicitly; day-granularity workday helpers do not count them as whole-day closures. No weekend substitution.
+
+Lithuania: [Labour Code article 123](https://e-seimas.lrs.lt/portal/legalActPrint/lt?category=TAD&documentId=6eea48d294ea11eea70ce7cabd08f150&jfwid=-6ebzwmx6p) specifies the sixteen national dates, including Easter Sunday/Monday, first Sunday in May and June, and November 1 and 2. No weekend substitutions are added.
+
+Latvia: [official public-holiday law](https://likumi.lv/ta/en/en/id/72608-on-public-holidays-commemoration-days-and-celebration-days) lists the fifteen recurring dates. May 4 and November 18 move to the following working day when they fall on a weekend. The nationwide Song and Dance Celebration final day is an additional event-year holiday, but none occurs in the supported interval; this bounded dataset deliberately does not extrapolate to an event year. The [Bank of Latvia's 2026 schedule](https://www.bank.lv/en/about-us/useful/public-holidays-in-latvia) also shows government transfers of working days (January 2/17, June 22/27). Those transfers do not become statutory public holidays here. Consumers needing a particular employer's working calendar must supply those exceptions separately.
+
+`php tests/subsystems/holiday-is-lt-lv.php` checks nine complete year sets, substitutions, known-year bounds and partial-day semantics. Sources checked 2026-11-02. Extend years only after checking legislation and exceptional holidays.

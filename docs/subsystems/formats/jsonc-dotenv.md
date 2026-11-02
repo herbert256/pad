@@ -1,0 +1,7 @@
+# JSONC and dotenv
+
+`padFormatRead('jsonc', $bytes)` accepts JSON plus `//` and `/* ... */` comments and trailing commas. Comment markers inside strings are literal. Comments are replaced with whitespace; unclosed comments fail with a line number. `['trailing'=>false]` retains strict comma rules. Duplicate keys follow PHP JSON's last-value rule. Writes produce ordinary pretty JSON, without comments. Readers are limited to 1 MiB and JSON depth 64. This is a configuration syntax, not JavaScript: expressions, identifiers, NaN and undefined are rejected.
+
+`padFormatRead('dotenv', $bytes)` produces string-valued configuration data. Keys match `[A-Za-z_][A-Za-z0-9_]*`; optional `export` is ignored. Single quotes are literal, double quotes use JSON escapes, bare values trim outside whitespace and permit whitespace-prefixed `#` comments. A `#` within a bare word remains literal. Values do not span physical lines; double-quoted `\n` represents a newline. No interpolation, shell execution, `putenv` or secret-file lookup occurs. Duplicate keys fail unless `duplicates='last'`. UTF-8, no NUL, 1 MiB; writes accept at most 10000 named string values and use deterministic double quoting. This explicit dialect is a data parser, not a claim to execute every shell or dotenv dialect.
+
+Examples are available as `{format:jsonc}` and `{format:dotenv}` in the tag catalog. `php tests/subsystems/formats-jsonc-dotenv.php` checks comments, quoting, duplicate rules, literal expansion characters and round trips.

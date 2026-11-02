@@ -1007,6 +1007,9 @@
   // -------------------------------------------------------------------------------------
 
   C.types = {
+    ribbon: function () { return C.padChartComposition("ribbon",C.padChartGather(),...C.padChartSize(600,300)); },
+    lollipop: function () { return C.padChartComposition("lollipop",C.padChartGather(),...C.padChartSize(600,300)); },
+    ternary: function () { return C.padChartComposition("ternary",C.padChartGather(),...C.padChartSize(600,300)); },
     horizon: function () { return C.padChartHorizon(C.padChartGather(), ...C.padChartSize(600,300)); },
     bump: function () { return C.padChartBump(C.padChartGather(), ...C.padChartSize(600,300)); },
     slope: function () { return C.padChartSlope(C.padChartGather(), ...C.padChartSize(600,300)); },

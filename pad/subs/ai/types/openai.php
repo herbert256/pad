@@ -6,6 +6,8 @@
 
   return [
     'name'    => 'OpenAI',
+    'capabilities' => ['nativeJson'=>TRUE,'nativeSchema'=>TRUE],
+    'nativeProtocol' => 'openai',
     'key'     => 'OPENAI_API_KEY',
     'model'   => 'gpt-5',
     'tokens'  => 16000,

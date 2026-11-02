@@ -44,7 +44,7 @@
     include_once PAD . 'subs/themes/palettes/_lib/palette.php';
 
     if ( padPaletteType ( $name ) )
-      return $name;
+      return padChartPaletteValidate ( $name ) ? $name : '';
 
     if ( $padCheckSyntax )
       padError ( "the chart has no palette '" . padMakeSafe ( $name, 20 ) . "' - " . implode ( ', ', padPaletteTypes () ) );
@@ -53,15 +53,49 @@
 
   }
 
-  function padChartPaletteApply ( $svg, $name ) {
+  function padChartPaletteApply ( $svg, $name, $intent = NULL ) {
 
     if ( $name === '' or ! is_string ( $svg ) or $svg === '' )
       return $svg;
 
-    [ $class, $rules ] = padChartPaletteRule ( $name, padChartPaletteSlots ( $svg ) );
+    $slots = padChartPaletteSlots ( $svg );
+    if ( ! padChartPaletteValidate ( $name, $slots, $intent ) ) return '';
+    [ $class, $rules ] = padChartPaletteRule ( $name, $slots );
 
     return preg_replace_callback ( '/(<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" class="pad-chart [^"]*)("[^>]*>[\s\S]*?)(<\/style>)/',
                                    fn ( $m ) => $m [1] . " $class" . $m [2] . $rules . $m [3], $svg );
+
+  }
+
+  // Explicit intended scale. Omitted usage keeps the established palette sampling;
+  // scheme checks metadata's named context and never silently swaps colors.
+  function padChartPaletteIntent ( $name ) {
+
+    $usage = padTagParm ( 'usage', '' );
+    $scheme = padTagParm ( 'scheme', 'light' );
+    $meta = padPaletteMetadata ( $name );
+    return [ 'usage' => $usage, 'scheme' => $scheme,
+             'type' => $meta ['type'] ?? '',
+             'recommendedCategories' => $meta ['recommendedCategories'] ?? NULL ];
+
+  }
+
+  function padChartPaletteValidate ( $name, $categories = 0, $intent = NULL ) {
+
+    $intent ??= padChartPaletteIntent ( $name );
+    $usage = $intent ['usage'];
+    $scheme = $intent ['scheme'];
+    if ( $usage === '' ) {
+      $issues = in_array ( $scheme, [ 'light', 'dark' ], TRUE ) ? [] : [ 'Scheme must be light or dark' ];
+    } elseif ( ! is_string ( $usage ) or ! is_string ( $scheme ) ) {
+      $issues = [ 'usage and scheme must be text' ];
+    } else {
+      $issues = padPaletteUsage ( $name, $usage, $usage === 'categorical' ? $categories : 0, $scheme );
+    }
+    if ( ! $issues ) return TRUE;
+    if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
+      padError ( 'the chart palette: ' . implode ( '; ', $issues ) );
+    return FALSE;
 
   }
 

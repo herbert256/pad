@@ -174,7 +174,18 @@
   // countries, when it lists them, is the land around them, drawn without a value. A view of
   // regions is about every region of its file, and the land around them is the rest of it.
 
-  function padMap ( $view, $values, $title, $width, $height, $scale = 'linear', $markers = [] ) {
+  function padMap ( $view, $values, $title, $width, $height, $scale = 'linear', $markers = [], $palette = '', $scheme = 'light' ) {
+
+    if ( $palette !== '' ) {
+      include_once PAD . 'subs/themes/palettes/_lib/palette.php';
+      include_once PAD . 'subs/charts/_lib/palette.php';
+      if ( ! is_string ( $palette ) || ! is_string ( $scheme ) || $markers )
+        throw new InvalidArgumentException ( 'Map palettes require a choropleth, a palette name and a light/dark scheme' );
+      $palette = strtolower ( trim ( $palette ) );
+      // Existing linear/quantile maps encode ordered magnitude, without a diverging midpoint.
+      $issues = padPaletteUsage ( $palette, 'sequential', 0, $scheme );
+      if ( $issues ) throw new InvalidArgumentException ( 'Map palette: ' . implode ( '; ', $issues ) );
+    }
 
     list ( $countries, , $regions ) = padMapCountries ( $view );
     list ( $x0, $y0, $x1, $y1 ) = padMapBox ( $view );
@@ -283,7 +294,7 @@
     $svg .= '</svg>';
 
     if ( ! $inside )
-      return "$svg</svg>";
+      return $palette === '' ? "$svg</svg>" : padChartPaletteApply ( "$svg</svg>", $palette, [ 'usage' => 'sequential', 'scheme' => $scheme ] );
 
     // The scale: the lowest value, the seven steps, the highest, and the grey of no value.
 
@@ -303,7 +314,7 @@
     $svg  .= '<rect class="pm-empty" x="' . padChartXY ( $x ) . "\" y=\"$y\" width=\"18\" height=\"10\"/>"
            . '<text x="' . padChartXY ( $x + 24 ) . '" y="' . ( $y + 9 ) . '">no value</text>';
 
-    return "$svg</svg>";
+    return $palette === '' ? "$svg</svg>" : padChartPaletteApply ( "$svg</svg>", $palette, [ 'usage' => 'sequential', 'scheme' => $scheme ] );
 
   }
 

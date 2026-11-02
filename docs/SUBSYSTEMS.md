@@ -1,6 +1,6 @@
 # Subsystem ownership and rendering tags
 
-`pad/subs/` has 25 owners. A subsystem may contain several related kind registries.
+`pad/subs/` has 30 owners. A subsystem may contain several related kind registries.
 Each registry still has a `types/` directory; the files in it remain the source of
 truth. `pad/lib/subsystem.php` maps public namespaces and helper families to these
 directories. A namespace is an interface, not a requirement for a top-level folder.
@@ -14,12 +14,14 @@ directories. A namespace is an interface, not a requirement for a top-level fold
 | `channels` | channels | Notification delivery providers and the notification store. |
 | `charts` | charts, timelines | Numeric and dated data visualizations share row parsing and SVG support. Timeline views retain their date and span handling. |
 | `codes` | codes | Machine-readable encodings need symbology-specific validation. |
+| `constraints` | new | Bounded exact cover, matching and assignment return solutions and explicit completion status. |
 | `diagrams` | diagrams | Structured diagram layout differs from numeric chart rendering. |
 | `diffs` | diffs | Text and structured comparisons share change semantics, not merely markup. |
 | `embeds` | embeds | External media providers, local media and consent-based loading. |
 | `fakes` | fakes, distributions | Reproducible sample data and seeded statistical sampling; distribution parameter contracts remain separate. |
 | `formats` | formats | Data readers and writers, including feeds and binary spreadsheets. |
 | `games` | games, toys | Interactive boards, puzzles and simulations share browser asset and lifecycle infrastructure. |
+| `graphs` | new | Graph algorithms return dependency order, components, routes and critical paths; rendering remains in charts and diagrams. |
 | `icons` | icons | A named SVG asset registry, distinct from image generation and processing. |
 | `images` | images, avatars, filters, patterns | Image views, identity images, transformations and generated artwork. Filter recipes and pattern recipes keep their existing APIs. |
 | `inputs` | inputs, rules | Form controls and their server/browser validation rules. |
@@ -29,9 +31,12 @@ directories. A namespace is an interface, not a requirement for a top-level fold
 | `oauth` | oauth | Login provider protocols and token exchange remain separate from notification and AI providers. |
 | `printables` | printables | Paper dimensions, pagination and PDF layout differ from screen widgets. |
 | `search` | search | Indexing, query processing, stemming, ranking and excerpts. |
+| `schemas` | new | Shared JSON, record and rowset validation; the AI boundary delegates to this core. |
 | `sounds` | sounds | Synthesized audio recipes and WAV output. |
+| `statistics` | new | Descriptive statistics and regression return reusable plain data. |
 | `tables` | tables, sheets, formulas | Tabular presentation and computed grids; spreadsheet functions remain a function registry, not table views. |
 | `themes` | themes, palettes | Page colours and reusable colour scales. |
+| `textanalysis` | new | Unicode text counts, n-grams and lexical similarity; search ranking remains separate. |
 | `units` | units | Dimension-checked conversion tables and operations have no equivalent in the other owners. |
 | `widgets` | widgets, sections, effects, highlighters | Page components, larger page sections, visual effects and source-code presentation. Specialized rendering contracts remain separate. |
 

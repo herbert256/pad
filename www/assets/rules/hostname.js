@@ -1,0 +1,1 @@
+addRule('hostname',{check:function(value){if(typeof value!=='string'||value.length>254||value.endsWith('..'))return false;var host=value.replace(/\.$/,'');return host.length>0&&host.length<=253&&!ipv4(host)&&!ipv6(host)&&host.split('.').every(function(s){return /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$/.test(s);});}});

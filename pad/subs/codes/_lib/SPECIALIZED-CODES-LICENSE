@@ -1,0 +1,45 @@
+Native PHP rMQR and MaxiCode implementation
+
+Tables and layout/ECC procedures adapted from Zint (backend/qr.c, qr.h,
+maxicode.c, maxicode.h, vector.c, reedsol.c), commit
+9dd9791c43d6cde69d27e46f1c39874011aca4c3, https://github.com/zint/zint.
+Primary standards identified by that implementation: ISO/IEC 23941:2022 (rMQR)
+and ISO/IEC 16023:2000 (MaxiCode). Supported modes are documented separately;
+no claim of an exhaustive implementation of either specification.
+
+Copyright (C) 2009-2026 Robin Stuart <rstuart114@gmail.com> (qr.c, reedsol.c)
+Copyright (C) 2008-2026 Robin Stuart <rstuart114@gmail.com> (qr.h)
+Copyright (C) 2006 Kentaro Fukuchi <fukuchi@megaui.net> (qr.h)
+Copyright (C) 2010-2026 Robin Stuart <rstuart114@gmail.com> (maxicode.c)
+Copyright (C) 2008-2024 Robin Stuart <rstuart114@gmail.com> (maxicode.h)
+Copyright (C) 2018-2026 Robin Stuart <rstuart114@gmail.com> (vector.c)
+Copyright (C) 2004 Andrews & Arnold Ltd (Reed-Solomon), written by Cliff Hones.
+The Reed-Solomon code has also been relicensed under BSD-3-Clause:
+https://codeberg.org/RevK/Reedsol/src/branch/master/LICENSE
+
+Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions
+    are met:
+
+    1. Redistributions of source code must retain the above copyright
+       notice, this list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright
+       notice, this list of conditions and the following disclaimer in the
+       documentation and/or other materials provided with the distribution.
+    3. Neither the name of the project nor the names of its contributors
+       may be used to endorse or promote products derived from this software
+       without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+    FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+    OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+    HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+    OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+    SUCH DAMAGE.
+
+SPDX-License-Identifier: BSD-3-Clause

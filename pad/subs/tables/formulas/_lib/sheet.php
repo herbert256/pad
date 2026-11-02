@@ -415,6 +415,27 @@
   // cells of a circle of references it stands in. $seed seeds RAND.
 
   function padSheetCompute ( &$sheet, $seed = 0 ) {
+    $owners=[];$count=0;
+    foreach($sheet['cells'] as $r=>$row)foreach($row as $c=>$cell){
+      if(isset($cell['spill'])){if(isset($cell['spillOriginal']))$sheet['cells'][$r][$c]=$cell['spillOriginal'];else unset($sheet['cells'][$r][$c]);}
+      else {unset($sheet['cells'][$r][$c]['problem'],$sheet['cells'][$r][$c]['circle'],$sheet['cells'][$r][$c]['result'],$sheet['cells'][$r][$c]['tree']);if($cell['formula']!==NULL)$count++;}
+    }
+    // Remove prior output dimensions too, so a shorter result really shrinks on recomputation.
+    $sheet['width']=$sheet['height']=0;
+    foreach($sheet['cells'] as $r=>$row)foreach($row as $c=>$cell){$sheet['width']=max($sheet['width'],$c);$sheet['height']=max($sheet['height'],$r);}
+    $base=[$sheet['width'],$sheet['height']];
+    for($pass=0;$pass<min(128,$count+3);$pass++){
+      foreach($sheet['cells'] as $r=>$row)foreach($row as $c=>$cell)if(isset($cell['spill'])){if(isset($cell['spillOriginal']))$sheet['cells'][$r][$c]=$cell['spillOriginal'];else unset($sheet['cells'][$r][$c]);}
+      [$sheet['width'],$sheet['height']]=$base;
+      $next=padSheetComputePass($sheet,$seed,$owners);
+      if($next===$owners)return;
+      $owners=$next;
+    }
+    foreach($sheet['cells'] as $r=>$row)foreach($row as $c=>$cell){if(isset($cell['spill'])){if(isset($cell['spillOriginal']))$sheet['cells'][$r][$c]=$cell['spillOriginal'];else unset($sheet['cells'][$r][$c]);}elseif($cell['formula']!==NULL)$sheet['cells'][$r][$c]['result']=padFormulaError('#CALC!');}
+    [$sheet['width'],$sheet['height']]=$base;
+  }
+
+  function padSheetComputePass ( &$sheet, $seed, $spillOwners ) {
 
     $formulas = [];
     $trees    = [];
@@ -450,6 +471,8 @@
       $needs [$key] = [];
 
       foreach ( $refs as [ $c1, $r1, $c2, $r2 ] ) {
+        foreach($spillOwners as $place=>$owner){[$sc,$sr]=array_map('intval',explode(':',$place));if($sc>=$c1&&$sc<=$c2&&$sr>=$r1&&$sr<=$r2&&isset($formulas[$owner]))$needs[$key][$owner]=TRUE;}
+
 
         $c2 = min ( $c2, $sheet ['width'] );
         $r2 = min ( $r2, $sheet ['height'] );
@@ -475,16 +498,17 @@
 
     // The formulas in the order they need one another, a circle of them together.
 
-    $results = [];
+    $results = []; $newOwners=[];
 
     $env = [
       'width'  => $sheet ['width'],
       'height' => $sheet ['height'],
       'seed'   => $seed,
-      'value'  => function ( $column, $row ) use ( &$sheet, &$results ) {
+      'value'  => function ( $column, $row ) use ( &$sheet, &$results, $spillOwners ) {
         $key = "$column:$row";
         if ( array_key_exists ( $key, $results ) )
           return $results [$key];
+        if(isset($spillOwners[$key])&&isset($results[$spillOwners[$key]])&&padFormulaIsError($results[$spillOwners[$key]]))return $results[$spillOwners[$key]];
         return $sheet ['cells'] [$row] [$column] ['value'] ?? NULL;
       }
     ];
@@ -500,6 +524,7 @@
           $results [$key] = padFormulaError ( '#REF!' );
           $sheet ['cells'] [$row] [$column] ['circle'] = $path;
         }
+        foreach($spillOwners as $place=>$owner)if(in_array($owner,$group,TRUE))$newOwners[$place]=$owner;
         continue;
       }
 
@@ -509,7 +534,21 @@
       $env ['at']   = [ $column, $row ];
       $env ['rand'] = 0;
 
-      $value = padFormulaScalar ( padFormulaEval ( $trees [$key], $env ), $env );
+      $value = padFormulaEval($trees[$key],$env);
+      if(padFormulaIsRange($value)&&!empty($value['dynamic'])){
+        $w=$value['w'];$h=$value['h'];$blocked=$w*$h>10000||$column+$w-1>padFormulaMaxColumn||$row+$h-1>padFormulaMaxRow;
+        for($dy=0;$dy<$h&&!$blocked;$dy++)for($dx=0;$dx<$w;$dx++){
+          if(!$dx&&!$dy)continue;$cell=$sheet['cells'][$row+$dy][$column+$dx]??NULL;
+          if($cell&&($cell['formula']!==NULL||$cell['value']!==NULL||isset($cell['spill']))){$blocked=TRUE;break;}
+        }
+        if($blocked)$value=padFormulaError('#SPILL!');else{
+          for($dy=0;$dy<$h;$dy++)for($dx=0;$dx<$w;$dx++){
+            if(!$dx&&!$dy)continue;$v=padFormulaCell($value,$dy,$dx);$place=($column+$dx).':'.($row+$dy);$newOwners[$place]=$key;
+            padSheetPut($sheet,$column+$dx,$row+$dy,['source'=>'','value'=>$v,'formula'=>NULL,'format'=>$sheet['cells'][$row+$dy][$column+$dx]['format']??NULL,'spill'=>$key,'spillOriginal'=>$sheet['cells'][$row+$dy][$column+$dx]??NULL]);
+          }
+          $env['width']=$sheet['width'];$env['height']=$sheet['height'];$value=padFormulaCell($value,0,0);
+        }
+      }else $value=padFormulaScalar($value,$env);
 
       $results [$key] = $value === NULL ? 0.0 : $value;
 
@@ -521,6 +560,7 @@
       $sheet ['cells'] [$row] [$column] ['result'] = $results [$key];
       $sheet ['cells'] [$row] [$column] ['tree']   = $trees [$key];
     }
+    ksort($newOwners);return $newOwners;
 
   }
 

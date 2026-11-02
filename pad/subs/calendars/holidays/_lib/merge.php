@@ -51,7 +51,7 @@
       $html .= '<tr' . ( $row ['type'] === 'public' ? '' : ' class="observance"' ) . '><td><time datetime="' . $h ( $row ['date'] ) . '">' . $h ( $row ['date'] )
         . '</time></td><td>' . $h ( $place ) . '</td><td>' . $h ( $row ['name'] )
         . ( $row ['local'] === $row ['name'] ? '' : ' <span lang="' . $h ( $row ['language'] ) . '">' . $h ( $row ['local'] ) . '</span>' )
-        . ( $row ['type'] === 'public' ? '' : ' <small>(no day off)</small>' ) . '</td></tr>';
+        . padHolidaysTypeLabel ( $row ) . '</td></tr>';
     }
     return $html . '</tbody></table>';
 

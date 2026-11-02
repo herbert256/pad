@@ -9,3 +9,7 @@ Markers have a five-pixel radius. With a value field, bubble area is proportiona
 Coordinates must be finite latitude −90…90 and longitude −180…180. A map accepts at most 500 marker rows. State/province views use separately projected outlines and sometimes insets; geographic marker overlays are rejected for those views rather than placing points with an unrelated projection. Invalid data raises the normal PAD syntax error; the lenient renderer skips invalid rows.
 
 The template entrypoint can select marker/bubble mode while retaining the existing view, data, width, height and title options. The PHP functions support markers alongside choropleth values when both datasets are supplied programmatically.
+
+Choropleths can opt into `palette='viridis', scheme='light'` (or dark). The map checks palette metadata: its linear/quantile scales represent ordered magnitude and therefore require a sequential palette. Categorical, cyclic and diverging palettes are rejected; a diverging scale would also require an explicit meaningful midpoint. The PHP signature appends optional `$palette='', $scheme='light'` after `$markers`. Existing calls keep their colors. Palette metadata supplies contrast/outline guidance; colors alone are never the region labels. This option does not apply to marker/bubble maps.
+
+Spain (`es-regions`) and Italy (`it-regions`) provide 19 and 20 named regions respectively. Source and reproduction details are in `docs/subsystems/maps/`; Spain includes a labeled Canary Islands inset.

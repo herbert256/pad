@@ -12,6 +12,8 @@
 
   return [
     'name'    => 'Anthropic',
+    'capabilities' => ['nativeSchema'=>TRUE],
+    'nativeProtocol' => 'anthropic',
     'key'     => 'ANTHROPIC_API_KEY',
     'model'   => 'claude-opus-5-5',
     'tokens'  => 16000,

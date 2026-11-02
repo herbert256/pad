@@ -44,13 +44,18 @@
 
   }
 
+  $padPaletteUsage=(string)padTagParm('usage','');$padPaletteScheme=(string)padTagParm('scheme','light');
+  if($padPaletteUsage!==''){
+    $padPaletteIssues=padPaletteUsage($padPaletteName,$padPaletteUsage,$padPaletteUsage==='categorical'?($padPaletteSteps??0):0,$padPaletteScheme);
+    if($padPaletteIssues){padError(implode('; ',$padPaletteIssues));return '';}
+  }
   $padPaletteData   = padPaletteData ( $padPaletteName );
   $padPaletteColors = padPaletteColors ( $padPaletteName, $padPaletteSteps );
   $padPaletteTitle  = trim ( padParmText ( (string) padTagParm ( 'title', '' ) ) );
   $padPaletteCount  = count ( $padPaletteColors );
 
   if ( $padPaletteTitle === '' )
-    $padPaletteTitle = $padPaletteData ['name'] . ', ' . $padPaletteCount . ( $padPaletteCount == 1 ? ' colour' : ' colours' );
+    $padPaletteTitle = $padPaletteData ['name'] . ' (' . $padPaletteData ['type'] . '), ' . $padPaletteCount . ( $padPaletteCount == 1 ? ' colour' : ' colours' );
 
   // A swatch's colours are a class of its hex value - pp-c-440154 - whose rule, the colour and
   // its ink, is written once per page with the nonce: in a style attribute the style-src

@@ -54,6 +54,10 @@
   }
 
   if ( $padMapMode !== 'choropleth' ) {
+    if ( padTagParm ( 'palette', '' ) !== '' ) {
+      if ( $padCheckSyntax ) padError ( 'map palette selection currently requires mode=choropleth' );
+      return '';
+    }
     $padMapMarkerValue = padTagParm ( 'value', '' );
     if ( $padMapMode === 'bubbles' and $padMapMarkerValue === '' ) {
       if ( $padCheckSyntax ) padError ( 'a bubble map needs value= naming its numeric field' );
@@ -117,10 +121,15 @@
     $padMapScale = 'linear';
   }
 
-  return padMap ( $padMapView, $padMapValues,
+  try {
+    return padMap ( $padMapView, $padMapValues,
                   $padMapTitle,
                   max ( 100, (int) padTagParm ( 'width', 720 ) ),
                   (int) padTagParm ( 'height', 0 ),
-                  $padMapScale );
+                  $padMapScale, [], padTagParm ( 'palette', '' ), padTagParm ( 'scheme', 'light' ) );
+  } catch ( InvalidArgumentException $error ) {
+    if ( $padCheckSyntax ) padError ( $error->getMessage () );
+    return '';
+  }
 
 ?>

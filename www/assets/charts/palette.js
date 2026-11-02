@@ -19,9 +19,18 @@
     return n || 1;
   };
 
-  C.padChartPaletteApply = function (svg, styles) {
+  C.padChartPaletteApply = function (svg, styles, intent, check) {
     if (typeof svg !== 'string' || svg === '') return svg;
-    var rule = styles[C.padChartPaletteSlots(svg) - 1];
+    var slots = C.padChartPaletteSlots(svg);
+    if (intent) {
+      var issue = '';
+      if (!['light','dark'].includes(intent.scheme)) issue = 'Scheme must be light or dark';
+      else if (intent.usage !== '' && !['categorical','sequential','diverging','cyclic'].includes(intent.usage)) issue = 'Unknown scale type';
+      else if (intent.usage !== '' && intent.usage !== intent.type) issue = 'This ' + intent.type + ' palette does not represent a ' + intent.usage + ' scale';
+      else if (intent.usage === 'categorical' && intent.recommendedCategories !== null && slots > intent.recommendedCategories) issue = 'Category count exceeds the distinct palette colors';
+      if (issue) { if (check !== false) throw new Error('the chart palette: ' + issue); return ''; }
+    }
+    var rule = styles[slots - 1];
     return svg.replace(/(<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" class="pad-chart [^"]*)("[^>]*>[\s\S]*?)(<\/style>)/g,
                        function (whole, open, middle, close) { return open + ' ' + rule[0] + middle + rule[1] + close; });
   };
@@ -30,7 +39,7 @@
 
   C.render = function (spec) {
     var svg = render(spec);
-    return (spec && Array.isArray(spec.palette)) ? C.padChartPaletteApply(svg, spec.palette) : svg;
+    return (spec && Array.isArray(spec.palette)) ? C.padChartPaletteApply(svg, spec.palette, spec.paletteUsage, spec.check) : svg;
   };
 
 })(typeof window !== 'undefined' ? (window.PadChart = window.PadChart || {}) : (globalThis.PadChart = globalThis.PadChart || {}));

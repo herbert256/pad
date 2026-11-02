@@ -1,0 +1,6 @@
+{widget:highlight 'dockerfile', lines}
+FROM php:8.4-cli AS runtime
+WORKDIR /app
+COPY . /app
+CMD ["php", "index.php"]
+{/widget:highlight}

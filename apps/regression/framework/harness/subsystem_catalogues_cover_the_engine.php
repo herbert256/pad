@@ -59,8 +59,12 @@
   // that still looked for the old {chart ...} spelling chose an undefined rows store.
   foreach ( glob ( PAD . 'subs/charts/types/*.php' ) as $file ) {
     $example = tagsKindExample ( 'chart', basename ( $file, '.php' ) );
-    $catalogChecks ['chart examples'] &= $example ['app'] === 'charts'
-                                    && is_file ( APPS . 'charts/' . $example ['page'] . '.pad' );
+    $app = $example ['app'] ?: 'tags';
+    $exampleFile = APPS . $app . '/' . $example ['page'] . '.pad';
+    $kind = basename ( $file, '.php' );
+    $catalogChecks ['chart examples'] &= in_array ( $app, [ 'charts', 'tags' ], TRUE )
+                                    && $example ['run'] && is_file ( $exampleFile )
+                                    && preg_match ( '/\{chart:' . preg_quote ( $kind, '/' ) . '\\b/', (string) file_get_contents ( $exampleFile ) );
   }
 
   $catalogAnswer = implode ( '; ', array_map ( fn ( $name, $ok ) => "$name: " . ( $ok ? 'yes' : 'NO' ), array_keys ( $catalogChecks ), $catalogChecks ) );

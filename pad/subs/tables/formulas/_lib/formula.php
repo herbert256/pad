@@ -39,7 +39,7 @@
 
   class padFormulaNoArrays extends Exception {}
 
-  const padFormulaErrorCodes = [ '#NULL!', '#DIV/0!', '#VALUE!', '#REF!', '#NAME?', '#NUM!', '#N/A' ];
+  const padFormulaErrorCodes = [ '#NULL!', '#DIV/0!', '#VALUE!', '#REF!', '#NAME?', '#NUM!', '#N/A', '#SPILL!', '#CALC!' ];
 
   const padFormulaMaxColumn = 16384;      // XFD
   const padFormulaMaxRow    = 1048576;
@@ -60,6 +60,8 @@
     '#NAME?'  => 'a name that is no function or cell',
     '#NUM!'   => 'a number that cannot be computed',
     '#N/A'    => 'a value that is not available',
+    '#SPILL!' => 'the dynamic array overlaps occupied cells or exceeds its limits',
+    '#CALC!' => 'an empty dynamic array or unstable spill dependencies',
     '#ERROR!' => 'a formula that cannot be read'
   ];
 
@@ -656,22 +658,28 @@
       case 'r': return padFormulaRange ( $node [1], $node [2], $node [3], $node [4], $env );
 
       case 'u':
+        if(!empty($env['dynamic']))return padFormulaDynamicOperator($node[1]==='-'?'*':'+',padFormulaEval($node[2],$env),$node[1]==='-'?-1:0);
         $value = padFormulaNumber ( padFormulaScalar ( padFormulaEval ( $node [2], $env ), $env ) );
         if ( padFormulaIsError ( $value ) )
           return $value;
         return $node [1] == '-' ? -$value : $value;
 
       case '%':
+        if(!empty($env['dynamic']))return padFormulaDynamicOperator('/',padFormulaEval($node[1],$env),100);
         $value = padFormulaNumber ( padFormulaScalar ( padFormulaEval ( $node [1], $env ), $env ) );
         return padFormulaIsError ( $value ) ? $value : padFormulaKept ( $value / 100 );
 
       case 'o':
+        if(!empty($env['dynamic']))return padFormulaDynamicOperator($node[1],padFormulaEval($node[2],$env),padFormulaEval($node[3],$env));
         return padFormulaOperator ( $node [1], padFormulaScalar ( padFormulaEval ( $node [2], $env ), $env ),
                                                 padFormulaScalar ( padFormulaEval ( $node [3], $env ), $env ) );
 
       case 'f':
         $args = [];
-        if ( isset ( padFormulaType ( $node [1] ) ['arrays'] ) and empty ( $env ['arrays'] ) ) {
+        if(!empty(padFormulaType($node[1])['dynamic'])){
+          $before=$env['dynamic']??FALSE;$env['dynamic']=TRUE;
+          try{foreach($node[2] as $arg)$args[]=padFormulaEval($arg,$env);}finally{$env['dynamic']=$before;}
+        } elseif ( isset ( padFormulaType ( $node [1] ) ['arrays'] ) and empty ( $env ['arrays'] ) ) {
           $env ['arrays'] = TRUE;
           try {
             foreach ( $node [2] as $arg )

@@ -12,6 +12,9 @@
 
   var still = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
 
+  var active=new Set();
+  if(still&&still.addEventListener)still.addEventListener('change',function(){if(still.matches)Array.from(active).forEach(function(stop){stop();});});
+
   // mulberry32: a small seeded random number, the same numbers for the same seed.
 
   function seeded(seed) {
@@ -46,7 +49,7 @@
 
   function burst(el) {
 
-    if (!el || (still && still.matches)) return;
+    if (!el || !el.isConnected || (still && still.matches)) return;
 
     var cfg    = config(el);
     var random = seeded((cfg.seed >>> 0) || 1);
@@ -67,6 +70,7 @@
     document.body.appendChild(canvas);
 
     var ctx = canvas.getContext('2d');
+    if(!ctx){canvas.remove();return;}
     ctx.scale(ratio, ratio);
 
     var x0 = box.left + box.width / 2, y0 = box.top + box.height / 2, pieces = [];
@@ -85,9 +89,13 @@
       });
     }
 
-    var start = null, last = null, life = 3200;
+    var start = null, last = null, life = 3200, raf = 0;
+    if(!el.padConfettiBursts)el.padConfettiBursts=new Set();
+    function stop(){if(raf)cancelAnimationFrame(raf);canvas.remove();active.delete(stop);el.padConfettiBursts.delete(stop);}
+    active.add(stop);el.padConfettiBursts.add(stop);
 
     function frame(now) {
+      if(!el.isConnected || (still && still.matches)){stop();return;}
       if (start === null) start = last = now;
       var step = Math.min(3, (now - last) / 16.67), age = now - start;
       last = now;
@@ -110,11 +118,11 @@
         else ctx.fillRect(-p.w / 2, -p.h / 2 * Math.abs(Math.cos(p.wobble)), p.w, p.h * Math.abs(Math.cos(p.wobble)) + .5);
         ctx.restore();
       });
-      if (alive && age < life) requestAnimationFrame(frame);
-      else canvas.remove();
+      if (alive && age < life) raf=requestAnimationFrame(frame);
+      else stop();
     }
 
-    requestAnimationFrame(frame);
+    raf=requestAnimationFrame(frame);
 
   }
 
@@ -148,7 +156,10 @@
     watch(document);
     if (window.MutationObserver)
       new MutationObserver(function (changes) {
-        changes.forEach(function (change) { Array.prototype.forEach.call(change.addedNodes, function (node) { if (node.nodeType === 1) watch(node); }); });
+        changes.forEach(function(change){
+          Array.prototype.forEach.call(change.removedNodes,function(node){if(node.nodeType!==1)return;var list=Array.prototype.slice.call(node.querySelectorAll('[data-pad-confetti]'));if(node.matches('[data-pad-confetti]'))list.push(node);list.forEach(function(el){if(el.isConnected)return;if(seen)seen.unobserve(el);if(el.padConfettiBursts)Array.from(el.padConfettiBursts).forEach(function(stop){stop();});el.padConfettiWatched=false;});});
+          Array.prototype.forEach.call(change.addedNodes,function(node){if(node.nodeType===1)watch(node);});
+        });
       }).observe(document.body, { childList: true, subtree: true });
   }
 
