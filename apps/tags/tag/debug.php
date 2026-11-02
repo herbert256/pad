@@ -15,6 +15,6 @@ PAD;
 
   $tagOptions = [];
 
-  $tagSee     = [ 'dump', 'trace', 'jsonview' ];
+  $tagSee     = [ 'dump', 'trace', 'widget:jsonview' ];
 
 ?>

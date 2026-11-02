@@ -1,10 +1,10 @@
 <?php
 
-  // A JSON value, or a PHP array, as a tree to fold open and shut - the {pad:jsonview} tag.
+  // A JSON value, or a PHP array, as a tree to fold open and shut - the {widget:jsonview} tag.
   //
-  //   {pad:jsonview $response}                 a page array, a row, a JSON text
-  //   {pad:jsonview 'orders', open=1}          a {pad:data} store, a page array or a _data file
-  //   {pad:jsonview title='Answer'} {"id": 7, "tags": ["a", "b"]} {/pad:jsonview}
+  //   {widget:jsonview $response}                 a page array, a row, a JSON text
+  //   {widget:jsonview 'orders', open=1}          a {pad:data} store, a page array or a _data file
+  //   {widget:jsonview title='Answer'} {"id": 7, "tags": ["a", "b"]} {/widget:jsonview}
   //
   // Every object and list is a <details> with its key in the <summary>: the browser folds
   // it, without a script, and a keyboard opens it as any disclosure. Folded, the summary

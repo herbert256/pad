@@ -1,12 +1,12 @@
 <?php
 
-  // {pad:rating 4.5/} - a score as stars, inline SVG by tags/_lib/rating.php: the whole ones filled, a
+  // {widget:rating 4.5/} - a score as stars, inline SVG by subs/widgets/_lib/rating.php: the whole ones filled, a
   // half or any other part of one clipped to the score, and the score in words for a screen
   // reader - "4.5 out of 5", or label= instead. max= is the number of stars (default 5, at
   // most 20), size= their height in pixels (default 20) and icon= star (default) or heart.
   //
-  //   {pad:rating 4.5, max=5}
-  //   {array:reviews}{pad:rating $stars, size=16} {$text}{/array:reviews}
+  //   {widget:rating 4.5, max=5}
+  //   {array:reviews}{widget:rating $stars, size=16} {$text}{/array:reviews}
 
   $padRatingValue = trim ( (string) $padParm );
   $padRatingMax   = padTagParm ( 'max', 5 );
@@ -14,7 +14,7 @@
 
   if ( ! is_numeric ( $padRatingValue ) ) {
     if ( $padCheckSyntax )
-      padError ( "the rating has no number for its score: '" . padMakeSafe ( $padRatingValue, 20 ) . "' - {pad:rating 4.5/}" );
+      padError ( "the rating has no number for its score: '" . padMakeSafe ( $padRatingValue, 20 ) . "' - {widget:rating 4.5/}" );
     $padRatingValue = 0;
   }
 

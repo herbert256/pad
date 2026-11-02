@@ -36,7 +36,7 @@ PAD;
     'threshold'  => 'threshold: the luminance where ink becomes paper, in percent of white (50); solarize: where a channel turns into its negative (50).',
     'cutoff'     => 'autocontrast: the pixels let go at each end of the tones before they are stretched, in percent (1).' ];
 
-  $tagSee     = [ 'placeholder', 'asset', 'video' ];
+  $tagSee     = [ 'widget:placeholder', 'asset', 'video' ];
 
   $subsystemKindLinks = appSubsystemLinks ( 'filter' );
 

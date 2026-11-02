@@ -165,7 +165,7 @@ async function main() {
     // a single tag is written {function:tag/} - before a pipe too, {function:tag x /| pipe} - and opens no pair,
     // whatever its name; a tag without the slash opens one, {icon:star} as well as {array:items}
     const aloneUri = uri('orders.pad').replace('orders.pad', 'alone.pad');
-    notify('textDocument/didOpen', { textDocument: { uri: aloneUri, languageId: 'pad', version: 1, text: "{array:items}\n{pad:map 'europe', data='sales'/}{pad:jsonview $r /| trim}{pad:pager 'items'/}{chart:bar}{/chart:bar}\n{/" } });
+    notify('textDocument/didOpen', { textDocument: { uri: aloneUri, languageId: 'pad', version: 1, text: "{array:items}\n{pad:map 'europe', data='sales'/}{widget:jsonview $r /| trim}{pad:pager 'items'/}{chart:bar}{/chart:bar}\n{/" } });
     r = await request('textDocument/completion', { textDocument: { uri: aloneUri }, position: { line: 2, character: 2 } });
     const aloneClosers = (r.result || []).map((c) => c.label);
     expect('close-tag completion skips a tag written single, {function:tag/}', aloneClosers.join(',') === 'array:items', aloneClosers);

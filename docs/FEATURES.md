@@ -1953,9 +1953,9 @@ The `notations` application shows every kind with its examples.
 ```
 {pad:avatar 'Herbert Jebbink', size=48, shape='square'/}   # initials in a circle/square, colour from a hash of the name
 {pad:identicon $email, size=64/}                   # a symmetric 5x5 pattern from a sha256 hash, own colour
-{pad:placeholder '600x300', text='Hero image'/}    # grey SVG box with crossing lines; ratio='16:9', fluid
-{pad:progress 72, max=100, label='Upload'/}       # styled <progress> with label and %; steps for dots, color=, size=
-{pad:rating 4.5, max=5/}                           # stars as SVG, half stars clipped, aria '4.5 out of 5'; icon='heart'
+{widget:placeholder '600x300', text='Hero image'/}    # grey SVG box with crossing lines; ratio='16:9', fluid
+{widget:progress 72, max=100, label='Upload'/}       # styled <progress> with label and %; steps for dots, color=, size=
+{widget:rating 4.5, max=5/}                           # stars as SVG, half stars clipped, aria '4.5 out of 5'; icon='heart'
 {icon:arrow-right size=20, label='Next'/}   # line icon in currentColor, a file of subs/icons/types/; see Icons
 {pad:gravatar $email, size=64, default='identicon'/} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
 {notation:chess $fen, flip, highlight='e2,e4', arrow='e2-e4'/}   # a FEN as an SVG board, pieces described for a screen reader
@@ -1979,7 +1979,7 @@ The `notations` application shows every kind with its examples.
 {pad:timeago $created/}                           # <time datetime title>5 minutes ago</time> - the ago pipe's words
 {pad:emoji 'rocket'/}  {$text | emoji}             # role="img" aria-label="rocket" 🚀; the pipe replaces :shortcodes: in text
 {pad:country 'NL'/}  {pad:country 'NLD', name/}         # the flag (role="img", named Netherlands); name writes the name beside it
-{pad:jsonview $response, open=2/}                 # foldable <details> tree, typed colours, counts on folded nodes; pair: JSON content
+{widget:jsonview $response, open=2/}                 # foldable <details> tree, typed colours, counts on folded nodes; pair: JSON content
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 
@@ -2568,3 +2568,11 @@ Output: `Alice, Bob, Charlie`
 ```
 {pad:echo $email | after('@') | before('.')/}
 ```
+
+### Indicators and loading states
+
+`{widget:progressring 72, label='Upload'/}` draws circular progress.
+`widget:ratingdistribution` shows weighted rating counts and an average.
+`{widget:skeleton shape='card', lines=3, animate/}` reserves space while content loads,
+with an accessible label and reduced-motion support. The existing progress, rating,
+placeholder and JSON viewer are now `widget:` kinds.

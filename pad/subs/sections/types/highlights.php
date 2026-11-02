@@ -8,7 +8,7 @@
   // picture first. The highlights are the rows of data= - their fields title, eyebrow, text,
   // image, alt, link and button - or {section:item} pairs or single tags, the item's first
   // value the title and its content the text; a content that is a picture itself - an <img>,
-  // an <svg>, a {pad:placeholder} - is the picture, and text= its text, as in a gallery. link= is
+  // an <svg>, a {widget:placeholder} - is the picture, and text= its text, as in a gallery. link= is
   // where a highlight leads, its link button= ('Learn more'), named by the highlight's title
   // for a screen reader; without a link there is none. A picture without alt= decorates. The words come first in the page,
   // whichever side they are drawn on; flip starts the zigzag with the picture on the left.

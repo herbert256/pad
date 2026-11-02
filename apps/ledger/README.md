@@ -8,7 +8,7 @@ A household budget - six months as charts, budgets per category, the transaction
 
 | Page | What it does |
 |------|--------------|
-| `index` | The month: income, spending, what is left - `{chart:bar}` of six months, `{chart:donut}` of where it went, a `{pad:progress}` per budget, the accounts, the latest entries, and a quick entry that `ledger.js` posts as JSON |
+| `index` | The month: income, spending, what is left - `{chart:bar}` of six months, `{chart:donut}` of where it went, a `{widget:progress}` per budget, the accounts, the latest entries, and a quick entry that `ledger.js` posts as JSON |
 | `transactions` | The month's transactions as a `{pad:datatable}` - sorted and paged on the server - narrowed by category, account or a word; `?transactions&padFormat=csv` is the same rows as CSV (`$padExpose`) |
 | `add` | A transaction: `{pad:form}` with `rules=` (a date, an amount), its sign from its category |
 | `quick` | The quick entry: JSON in (`padRequest` reads a JSON body), the booking and the new totals out (`$padExpose`), with `X-CSRF-Token` |
