@@ -101,6 +101,9 @@
                       "{time:countdown '2026-12-31', live/}\n{time:relative '2026-11-01'/}\n{time:clock timezone='Europe/Amsterdam'/}\n{time:stopwatch/}" ],
       'timeline' => [ 'Event views from pad/subs/timelines/types/ - horizontal, vertical, roadmap and swimlane.', 'subsystems',
                       "{timeline:horizontal data='events'/}\n{timeline:roadmap data='events', lane='team'/}\n{timeline:swimlane data='events', lane='team'/}" ],
+
+      'avatar' => [ 'An identity picture: initials, identicons, Gravatar, geometric art or a photograph with a local fallback.', 'subsystems',
+                    "{avatar:initials 'Ada Lovelace'/}\n{avatar:geometric 'ada', style='rings'/}" ],
       'calendar' => [ 'A Gregorian calendar view from pad/subs/calendars/types/ - days, weeks, months, quarters, years and agendas.', 'subsystems',
                       "{calendar:month '2026-11'/}\n{calendar:week '2026-11-02'/}\n{calendar:year '2026'/}" ],
       'notation' => [ 'A notation, a file of pad/subs/notations/types/ - a formula, a tune, a word or a position drawn on the server.', 'subsystems',

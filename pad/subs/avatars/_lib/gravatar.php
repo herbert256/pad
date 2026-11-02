@@ -1,11 +1,11 @@
 <?php
 
-  // Gravatars - the {pad:gravatar} tag. The picture a person registered for an e-mail address at
+  // Gravatars - the {avatar:gravatar} tag. The picture a person registered for an e-mail address at
   // gravatar.com, as an <img>: the address is never written into the page, only its SHA-256
   // hash, the way Gravatar asks for it - trimmed and lower-cased first.
   //
-  //   {pad:gravatar $email, size=64}
-  //   {pad:gravatar $email, fallback='avatar', alt=$name}
+  //   {avatar:gravatar $email, size=64}
+  //   {avatar:gravatar $email, fallback='avatar', alt=$name}
   //
   // padGravatarUrl  the address of the picture: https://www.gravatar.com/avatar/<hash>?s=&d=
   // padGravatar     the <img>, with a twice as large one in srcset for a sharp screen,
@@ -13,8 +13,8 @@
   //                 page the visitor is on is not told to Gravatar either
   //
   // Showing the picture asks a third party for it, and with it the visitor's IP address.
-  // fallback='avatar' (or 'identicon') does not: it answers the {pad:avatar} (or {pad:identicon})
-  // SVG of tags/_lib/avatar.php instead, drawn on the server - for a page under a privacy policy
+  // fallback='avatar' (or 'identicon') does not: it answers the {avatar:initials} (or {avatar:identicon})
+  // SVG of subs/avatars/_lib/avatar.php instead, drawn on the server - for a page under a privacy policy
   // that allows no outside requests, or a test without network.
 
   const PAD_GRAVATAR_DEFAULTS = [ 'mp', 'identicon', 'monsterid', 'wavatar', 'retro', 'robohash', 'blank', '404' ];
@@ -35,13 +35,13 @@
     // address before its @, and the identicon of the address.
 
     if ( $fallback == 'avatar' ) {
-      include_once PAD . 'tags/_lib/avatar.php';
+      include_once PAD . 'subs/avatars/_lib/avatar.php';
       return padAvatar ( ( trim ( (string) $alt ) !== '' ) ? $alt : $email, $size, 'circle',
                          ( trim ( (string) $alt ) !== '' ) ? $alt : 'Avatar' );
     }
 
     if ( $fallback == 'identicon' ) {
-      include_once PAD . 'tags/_lib/identicon.php';
+      include_once PAD . 'subs/avatars/_lib/identicon.php';
       return padIdenticon ( $email, $size, ( trim ( (string) $alt ) !== '' ) ? $alt : 'Avatar' );
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-  // A field written inside the quoted text of {pad:avatar}, {pad:gravatar}, {pad:identicon} or {barcode:qr}
+  // A field written inside the quoted text of {avatar:initials}, {avatar:gravatar}, {avatar:identicon} or {barcode:qr}
   // gives what the field alone gives: the characters it holds - not the stand-ins it
   // travels with, nor the HTML its sanitize step made of it, which went into the initials,
   // the hash and the code, and into a label escaped once more.

@@ -1,4 +1,4 @@
 {pad:meta title='A wall of identicons', about='Ten user ids, ten patterns - title= names each for a screen reader.'/}
 <div style="display:flex; flex-wrap:wrap; gap:10px">
-  {sequence:range '1..10', name='id'}{pad:identicon 'user-' . $id, size=48, title='User ' . $id/}{/sequence:range}
+  {sequence:range '1..10', name='id'}{avatar:identicon 'user-' . $id, size=48, title='User ' . $id/}{/sequence:range}
 </div>

@@ -2021,14 +2021,14 @@ Tags that draw, format and interact - the showcase application has an example of
 
 ---
 
-### avatar
-An initials avatar as inline SVG - drawn on the server (`tags/_lib/avatar.php`), no image, no
+### avatar:initials
+An initials avatar as inline SVG - drawn on the server (`subs/avatars/_lib/avatar.php`), no image, no
 remote service: the same name is the same picture on every page and in every e-mail.
 
 ```html
-{pad:avatar 'Herbert Jebbink'/}
-{pad:avatar $name, size=32, shape='square'/}
-{array:users}{pad:avatar $email, size=40/} {$name}{/array:users}
+{avatar:initials 'Herbert Jebbink'/}
+{avatar:initials $name, size=32, shape='square'/}
+{array:users}{avatar:initials $email, size=40/} {$name}{/array:users}
 ```
 
 **Parameters:**
@@ -2050,13 +2050,13 @@ No name, or another shape, is an error under the strict check.
 
 ---
 
-### identicon
+### avatar:identicon
 A GitHub-style identicon as inline SVG - a symmetric 5 by 5 pattern and a colour from a SHA-256
-hash of the value (`tags/_lib/identicon.php`): every account its own picture, nothing sent anywhere.
+hash of the value (`subs/avatars/_lib/identicon.php`): every account its own picture, nothing sent anywhere.
 
 ```html
-{pad:identicon $email/}
-{pad:identicon $user.id, size=32, title='Your identicon'/}
+{avatar:identicon $email/}
+{avatar:identicon $user.id, size=32, title='Your identicon'/}
 ```
 
 **Parameters:**
@@ -2197,14 +2197,14 @@ error under the strict check, naming the icons close to it (`did you mean arrow-
 
 ---
 
-### gravatar
-The Gravatar picture of an e-mail address as an `<img>` (`tags/_lib/gravatar.php`) - only the
+### avatar:gravatar
+The Gravatar picture of an e-mail address as an `<img>` (`subs/avatars/_lib/gravatar.php`) - only the
 SHA-256 hash of the address leaves the page - or, with `fallback`, a local SVG drawn on the
 server and no request to a third party at all.
 
 ```html
-{pad:gravatar $email, size=64, default='identicon', alt=$name/}
-{pad:gravatar $email, fallback='avatar', alt=$name/}
+{avatar:gravatar $email, size=64, default='identicon', alt=$name/}
+{avatar:gravatar $email, fallback='avatar', alt=$name/}
 ```
 
 **Parameters:**
@@ -2215,7 +2215,7 @@ server and no request to a third party at all.
 | `size` | Width and height in pixels, default 64; `srcset` asks twice that for a sharp screen |
 | `default` | What Gravatar shows for an unknown address: `mp` (default), `identicon`, `monsterid`, `wavatar`, `retro`, `robohash`, `blank`, `404`, or an `https://` image address |
 | `alt` | The image text - the person's name - default `Avatar` |
-| `fallback` | `avatar` draws the `{pad:avatar}` initials of `alt` (or of the address) instead, `identicon` the `{pad:identicon}` of the address - no `<img>`, no outside request |
+| `fallback` | `avatar` draws the `{avatar:initials}` initials of `alt` (or of the address) instead, `identicon` the `{avatar:identicon}` of the address - no `<img>`, no outside request |
 
 **Behavior:** the image is `https://www.gravatar.com/avatar/<sha256>?s=<size>&d=<default>` with
 `width`/`height`, `loading="lazy"`, `decoding="async"` and `referrerpolicy="no-referrer"`, class

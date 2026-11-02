@@ -13,6 +13,8 @@
     'table' => [ 'tables', FALSE, 'table type' ],
     'time' => [ 'times', FALSE, 'time display' ],
     'timeline' => [ 'timelines', FALSE, 'timeline type' ],
+
+    'avatar' => [ 'avatars', FALSE, 'avatar type' ],
     'calendar' => [ 'calendars', FALSE, 'calendar type' ],
     'chart'   => [ 'charts',   TRUE,  'chart type'     ],
     'game'    => [ 'games',    TRUE,  'game'           ],

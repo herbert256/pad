@@ -267,7 +267,7 @@ Shows the named content when the tag answers NULL.
 **Example:**
 ```
 {pad:content 'noAvatar'}<img src="anonymous.png" alt="">{/pad:content}
-{pad:avatar null="noAvatar"}...{/pad:avatar}
+{avatar:initials null="noAvatar"}...{/avatar:initials}
 ```
 
 ### else

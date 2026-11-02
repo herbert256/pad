@@ -113,7 +113,7 @@
   // types/pad.php asks for every built-in tag it runs and includes the file the first time.
   // The answer is the file under its name on disk, whatever the case the tag was written in:
   // on a file system that ignores case {Tabs} is the tabs tag, and include_once of
-  // tags/_lib/Tabs.php after tab.php's tags/_lib/tabs.php - or {pad:avatar} and {Avatar} - ended
+  // tags/_lib/Tabs.php after tab.php's tags/_lib/tabs.php - or {avatar:initials} and {Avatar} - ended
   // the page on "Cannot redeclare function".
 
   function padTagLib ( $tag ) {

@@ -20,6 +20,8 @@
       'table' => [ 'Tables', 'Formatted, grouped and aggregated rows', 'both', " data='rows'/}", 'datatable' ],
       'time' => [ 'Time displays', 'Relative time, clocks and timers', 'single', '/}', 'time' ],
       'timeline' => [ 'Timelines', 'Events, milestones and lanes', 'both', " date='date', label='label'}...{/timeline:%s}", 'timeline' ],
+
+      'avatar' => [ 'Avatars', 'Identity pictures and private fallbacks', 'single', " 'Ada Lovelace'/}", 'avatar' ],
       'calendar' => [ 'Calendars', 'Gregorian dates, events and holidays', 'both', " '2026-11', data='appointments'/}", 'calendar' ],
       'chart'    => [ 'Chart types',       'inline SVG',                 'both',   " data='rows', label='field', value='field'/}", 'chart'   ],
       'game'     => [ 'Games',             'played in the browser',       'both',   '/}',                                           'game'    ],
@@ -257,6 +259,10 @@
       case 'timeline':
         $file = APPS . "tags/examples/timeline/$kind.pad";
         return $example ( "The $kind timeline", 'Events and spans from the same row format.', trim ( padFileGet ( $file ) ) );
+
+      case 'avatar':
+        $file = APPS . "tags/examples/avatar/$kind.pad";
+        return $example ( "A $kind avatar", 'An identity picture with accessible text.', trim ( padFileGet ( $file ) ) );
 
       case 'calendar':
         $file = APPS . "calendars/_examples/$kind.pad";

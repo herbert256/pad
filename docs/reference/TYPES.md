@@ -1100,3 +1100,7 @@ Event views from `pad/subs/timelines/types/`: `horizontal`, `vertical`, `auto`, 
 ### time:
 
 Time displays from `pad/subs/times/types/`: `countdown`, `relative`, `clock` and `stopwatch`. The date views share the engine's date parser; clocks support IANA timezones and live daylight-saving changes; stopwatches provide independent keyboard-accessible start, pause and reset. See `pad/subs/times/README.md` and `apps/tags/examples/time/`.
+
+### avatar
+
+The avatar subsystem provides `avatar:initials`, `avatar:identicon`, `avatar:gravatar`, `avatar:geometric` and `avatar:photo`. See [the subsystem reference](../../pad/subs/avatars/README.md) for examples and photo fallback behaviour.

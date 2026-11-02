@@ -2,8 +2,8 @@
 <div style="display:grid; gap:16px">
   {array:comments}
   <div style="display:flex; gap:12px; align-items:flex-start">
-    {pad:gravatar $email, size=40, fallback='avatar', alt=$name/}
-    {pad:gravatar $email, size=40, fallback='identicon', alt=$name/}
+    {avatar:gravatar $email, size=40, fallback='avatar', alt=$name/}
+    {avatar:gravatar $email, size=40, fallback='identicon', alt=$name/}
     <div><strong>{$name}</strong><br>{$text}</div>
   </div>
   {/array:comments}
