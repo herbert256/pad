@@ -1,0 +1,3 @@
+<?php
+require __DIR__.'/_visual_boot.php';require PAD.'subs/diagrams/_lib/block.php';
+$d=padDiagramBlockParse("a \"<long label>\" at 1,1 span 2,1\nb \"Store\" at 1,2\na -> b: request\nb -> a: reply\na -> a: retry");verify(is_array($d),'parse cycle');foreach(['a "x" at 0,1',"a \"x\" at 1,1\nb \"y\" at 1,1",'a -> missing'] as $s)verify(is_string(padDiagramBlockParse($s)),'invalid');$a=padDiagramBlockSvg($d,'TB','Grid');svgValid($a);verify(str_contains($a,'&lt;long label&gt;'),'escape');verify(visualNormalize($a)===visualNormalize(padDiagramBlockSvg($d,'TB','Grid')),'deterministic');foreach(['BT','LR','RL'] as $dir){$b=padDiagramBlockSvg($d,$dir,'Grid');svgValid($b);verify(visualNormalize($a)!==visualNormalize($b),'direction');}echo "diagram block: OK\n";
