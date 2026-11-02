@@ -2,7 +2,7 @@
   function padGraphNormalize ( $nodes, $edges, $options, $kind ) {
     if ( ! is_array ( $nodes ) || ! array_is_list ( $nodes ) || count ( $nodes ) > 1000 || ! is_array ( $edges ) || ! array_is_list ( $edges ) || count ( $edges ) > 10000 )
       throw new InvalidArgumentException ( 'expected lists of at most 1000 nodes and 10000 edges' );
-    $directed = $options ['directed'] ?? TRUE;
+    $directed = $options ['directed'] ?? ( $kind !== 'spanningtree' );
     if ( ! is_bool ( $directed ) || ( ! $directed && in_array ( $kind, [ 'toposort', 'criticalpath' ], TRUE ) ) )
       throw new InvalidArgumentException ( 'directed must be boolean; DAG operations require directed=true' );
     $ids = []; $index = []; $durations = [];
@@ -30,7 +30,7 @@
         throw new InvalidArgumentException ( 'edge endpoint must reference a known node ID' );
       if ( ( ! is_int ( $weight ) && ! is_float ( $weight ) ) || ! is_finite ( (float) $weight ) || $weight < 0 )
         throw new InvalidArgumentException ( 'edge weights must be finite nonnegative native numbers' );
-      if ( $kind !== 'shortestpath' && $weight != 1 ) throw new InvalidArgumentException ( 'weights apply only to shortestpath' );
+      if ( ! in_array ( $kind, [ 'shortestpath', 'spanningtree' ], TRUE ) && $weight != 1 ) throw new InvalidArgumentException ( 'weights apply only to shortestpath and spanningtree' );
       $a = $index ['#' . $from]; $b = $index ['#' . $to]; $key = $directed ? "$a:$b" : min ( $a, $b ) . ':' . max ( $a, $b );
       if ( isset ( $seen [$key] ) ) throw new InvalidArgumentException ( 'duplicate edge' );
       $seen [$key] = TRUE; $adj [$a] [] = [ $b, (float) $weight ]; $reverse [$b] [] = [ $a, (float) $weight ]; $normalized [] = [ $a, $b ];
