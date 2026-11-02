@@ -1042,17 +1042,17 @@ naming the variable to set.
 
 ## Patterns
 
-`pad/lib/pattern.php`, the subsystem in `pad/subs/images/patterns/`.
+`pad/lib/pattern.php`, the subsystem in `pad/subs/patterns/`.
 
 | Function | Answers |
 |----------|---------|
 | `padPattern ( $kind, $options = [] )` | The SVG of a pattern - `padPattern ( 'topography', [ 'seed' => 7, 'width' => 960 ] )` - or with `'as' => 'url'` its CSS `url(data:image/svg+xml,...)`: the bytes `{pattern:dots}` writes for the same options. The options are those of the tag (seed, colors as a list or a text, size, width, height, opacity, as, title and the kind's own); an unknown kind answers `''`, a wrong option is reported with `padError` and drawn as its default, a pattern past its budget (the shapes of its size on its picture, topography's grid times its levels) reported and answered `''` |
-| `padPatternKinds ()` | The patterns, the files of `pad/subs/images/patterns/types/`, sorted |
+| `padPatternKinds ()` | The patterns, the files of `pad/subs/patterns/types/`, sorted |
 
 ## Public holidays
 
-`pad/lib/holidays.php` - the entries of the holidays subsystem, `pad/subs/calendars/holidays/`. A country
-is its ISO 3166-1 alpha-2 code, a file of `pad/subs/calendars/holidays/types/` - at, be, br, ca, ch, cz, de, dk,
+`pad/lib/holidays.php` - the entries of the holidays subsystem, `pad/subs/holidays/`. A country
+is its ISO 3166-1 alpha-2 code, a file of `pad/subs/holidays/types/` - at, be, br, ca, ch, cz, de, dk,
 es, fi, fr, gb, hu, ie, it, jp, lu, mx, nl, no, nz, pl, pt, ro, se, sk, us, za - with a region after it as ISO 3166-2 writes it,
 `'de-by'`. A date is text, a timestamp or a date object, read in the application's zone
 (`padDateParse`); the years are 1583 to 9999. A wrong argument is a `padError` naming the
@@ -1108,7 +1108,7 @@ are 2010 to 2052, the last year of its Matariki schedule.
 ## Spreadsheet formulas
 
 `pad/lib/formulas.php` - the entries of the formulas subsystem, whose engine and functions stand
-in `pad/subs/tables/formulas/` and are loaded on the first call; `{sheet:grid}` is the tag. A formula
+in `pad/subs/formulas/` and are loaded on the first call; `{sheet:grid}` is the tag. A formula
 is spreadsheet syntax, never PHP and never a PAD expression - see
 [Spreadsheets](../FEATURES.md#spreadsheets).
 
@@ -1132,11 +1132,11 @@ values, and a formula that is no text, are reported with `padError`.
 
 ## Colours
 
-`pad/lib/palette.php` - the palettes subsystem, `pad/subs/themes/palettes/`, included when it runs.
+`pad/lib/palette.php` - the palettes subsystem, `pad/subs/palettes/`, included when it runs.
 
 | Function | Answers |
 |----------|---------|
-| `padPalette ( $name, $steps = NULL )` | The colours of a palette of `pad/subs/themes/palettes/types/`, `'#rrggbb'` each: a sequential or diverging one (viridis, blues, rdbu ...) sampled evenly from its first colour to its last in `$steps` steps, one step its middle; a cyclic one (romao) evenly round its circle, never its first colour twice, one step its first; a categorical one (okabe-ito, tol-bright ...) its colours in order, starting again past its last; without `$steps` a categorical palette's own colours, twelve of a cyclic one, nine of the others. The name is read in any case, as `{widget:palette}` and `palette=` read it - `romaO` is romao. A name that is no palette, or steps that are no whole number from 1 to 256, is reported and answers `[]` |
+| `padPalette ( $name, $steps = NULL )` | The colours of a palette of `pad/subs/palettes/types/`, `'#rrggbb'` each: a sequential or diverging one (viridis, blues, rdbu ...) sampled evenly from its first colour to its last in `$steps` steps, one step its middle; a cyclic one (romao) evenly round its circle, never its first colour twice, one step its first; a categorical one (okabe-ito, tol-bright ...) its colours in order, starting again past its last; without `$steps` a categorical palette's own colours, twelve of a cyclic one, nine of the others. The name is read in any case, as `{widget:palette}` and `palette=` read it - `romaO` is romao. A name that is no palette, or steps that are no whole number from 1 to 256, is reported and answers `[]` |
 
 ```php
 $colors = padPalette ( 'viridis', 5 );   // [ '#440154', '#3b528b', '#21918d', '#5dc863', '#fde725' ]

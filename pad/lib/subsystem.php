@@ -1,6 +1,7 @@
 <?php
 
-  // Registered subsystem namespaces. Each kind is a file of its types/ directory.
+  // Registered subsystem namespaces. Each directory is a direct child of pad/subs/;
+  // subsystems are never nested. Each kind is a file of its types/ directory.
   // Named template tags always require the prefix, for example {chart:pie/}.
   // The middle registry field retains expression-lookup compatibility; it does not
   // authorize unprefixed template tags. The final field names a missing kind in errors.
@@ -15,22 +16,22 @@
   const padSubsystems = [
     'diff' => [ 'diffs', FALSE, 'diff type' ],
     'table' => [ 'tables', FALSE, 'table type' ],
-    'time' => [ 'calendars/times', FALSE, 'time display' ],
-    'timeline' => [ 'charts/timelines', FALSE, 'timeline type' ],
+    'time' => [ 'times', FALSE, 'time display' ],
+    'timeline' => [ 'timelines', FALSE, 'timeline type' ],
 
     'image' => [ 'images', FALSE, 'image type' ],
-    'avatar' => [ 'images/avatars', FALSE, 'avatar type' ],
+    'avatar' => [ 'avatars', FALSE, 'avatar type' ],
 
     'map'      => [ 'maps', FALSE, 'map view' ],
-    'holidays' => [ 'calendars/holidays', FALSE, 'holiday country' ],
+    'holidays' => [ 'holidays', FALSE, 'holiday country' ],
     'search'   => [ 'search', FALSE, 'search language' ],
     'ai'       => [ 'ai', FALSE, 'AI provider' ],
     'format'   => [ 'formats', FALSE, 'data format' ],
-    'sheet'    => [ 'tables/sheets', FALSE, 'sheet view' ],
+    'sheet'    => [ 'sheets', FALSE, 'sheet view' ],
     'calendar' => [ 'calendars', FALSE, 'calendar type' ],
     'chart'   => [ 'charts',   TRUE,  'chart type'     ],
     'game'    => [ 'games',    TRUE,  'game'           ],
-    'toy'     => [ 'games/toys',     TRUE,  'toy'            ],
+    'toy'     => [ 'toys',     TRUE,  'toy'            ],
     'diagram' => [ 'diagrams', TRUE,  'diagram type'   ],
     'widget'  => [ 'widgets',  TRUE,  'widget'         ],
     'barcode' => [ 'codes',    TRUE,  'barcode type'   ],
@@ -38,12 +39,12 @@
     'input'   => [ 'inputs',   TRUE,  'input'          ],
     'icon'    => [ 'icons',    FALSE, 'icon'           ],
     'fake'    => [ 'fakes',    FALSE, 'fake kind'      ],
-    'pattern' => [ 'images/patterns', FALSE, 'pattern'        ],
+    'pattern' => [ 'patterns', FALSE, 'pattern'        ],
     'sound'   => [ 'sounds',   FALSE, 'sound'          ],
     'printable' => [ 'printables', FALSE, 'printable'  ],
     'notation' => [ 'notations', TRUE, 'notation'      ],
-    'section' => [ 'widgets/sections', FALSE, 'section'        ],
-    'effect'  => [ 'widgets/effects',  TRUE,  'effect'         ],
+    'section' => [ 'sections', FALSE, 'section'        ],
+    'effect'  => [ 'effects',  TRUE,  'effect'         ],
     'jsonld'  => [ 'jsonld',   FALSE, 'JSON-LD kind'   ],
   ];
 
@@ -54,22 +55,22 @@
 
   const padSubsystemKinds = [
     'map'      => 'maps',
-    'rule'     => 'inputs/rules',
+    'rule'     => 'rules',
     'oauth'    => 'oauth',
     'channel'  => 'channels',
     'ai'       => 'ai',
-    'filter'   => 'images/filters',
-    'holidays' => 'calendars/holidays',
+    'filter'   => 'filters',
+    'holidays' => 'holidays',
     'search'   => 'search',
     'format'   => 'formats',
-    'formula'  => 'tables/formulas',
+    'formula'  => 'formulas',
     'theme'    => 'themes',
-    'palette'  => 'themes/palettes',
-    'highlighter' => 'widgets/highlighters',
+    'palette'  => 'palettes',
+    'highlighter' => 'highlighters',
     'diff' => 'diffs',
-    'recurrence' => 'calendars/recurrences',
-    'geo' => 'maps/geospatial',
-    'distribution' => 'fakes/distributions',
+    'recurrence' => 'recurrences',
+    'geo' => 'geospatial',
+    'distribution' => 'distributions',
     'unit' => 'units',
     'stats' => 'statistics',
     'graph' => 'graphs',

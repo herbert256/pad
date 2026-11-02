@@ -1,8 +1,8 @@
 <?php
 
-include_once PAD . 'subs/images/avatars/_lib/avatar.php';
-include_once PAD . 'subs/images/avatars/_lib/identicon.php';
-include_once PAD . 'subs/images/avatars/_lib/views.php';
+include_once PAD . 'subs/avatars/_lib/avatar.php';
+include_once PAD . 'subs/avatars/_lib/identicon.php';
+include_once PAD . 'subs/avatars/_lib/views.php';
 $unsafe = [ 'javascript:alert(1)', '//example.org/a.png', 'https://user:pass@example.org/a.png', '../outside.jpg', '%2e%2e/outside.jpg', "https://example.org/\nfile.png", 'data:image/svg+xml,<svg/>' ];
 $ok = TRUE;
 foreach ( $unsafe as $src )

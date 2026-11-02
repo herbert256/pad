@@ -5,7 +5,7 @@
   // that title, whatever words= says; padFake ( 'title' ) is two to five words, words= of
   // them when said, a capital first and no full stop; the same seed the same text.
 
-  $rule = include PAD . 'subs/inputs/rules/types/slug.php';
+  $rule = include PAD . 'subs/rules/types/slug.php';
 
   padFakeSeed ( 8 );
 

@@ -1,6 +1,6 @@
 <?php
 
-  // palette= - a chart of any kind drawn in the colours of a palette of subs/themes/palettes/types/:
+  // palette= - a chart of any kind drawn in the colours of a palette of subs/palettes/types/:
   //
   //   {chart:bar data='sales', value='online, shop, phone', palette='okabe-ito'/}
   //   {chart:heatmap data='visits', x='hour', y='day', value='count', palette='viridis'/}
@@ -9,7 +9,7 @@
   // pc-c1 to pc-c8 and pc-l1 to pc-l8, and of the heatmap's ramp, pc-h0 to pc-h6 - and the svg
   // gets a class of the palette and the number of slots it uses, pc-pal-viridis-3, whose rule
   // in the chart's own <style> gives it the palette's colours for those as custom properties,
-  // which beat the defaults (subs/themes/palettes/_lib/palette.php, padPaletteChart): a categorical
+  // which beat the defaults (subs/palettes/_lib/palette.php, padPaletteChart): a categorical
   // palette its colours in its order, a sequential or diverging one spread over the slots the
   // chart uses - so three series of viridis are its purple, teal and green, not three
   // purples - and its whole length on the ramp. The slots a chart uses are read from what it
@@ -41,7 +41,7 @@
 
     $name = is_scalar ( $name ) ? strtolower ( trim ( padParmText ( (string) $name ) ) ) : '';
 
-    include_once PAD . 'subs/themes/palettes/_lib/palette.php';
+    include_once PAD . 'subs/palettes/_lib/palette.php';
 
     if ( padPaletteType ( $name ) )
       return padChartPaletteValidate ( $name ) ? $name : '';

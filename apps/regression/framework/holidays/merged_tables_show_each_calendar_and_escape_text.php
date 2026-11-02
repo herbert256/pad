@@ -1,6 +1,6 @@
 <?php
 
-include_once PAD . 'subs/calendars/holidays/_lib/holidays.php';
+include_once PAD . 'subs/holidays/_lib/holidays.php';
 $rows = padHolidaysMerge ( [ 'nl', 'de-by' ], padHolidaysDay ( 2026, 1, 1 ), padHolidaysDay ( 2026, 1, 1 ) );
 $rows [0] ['name'] = '<script>name</script>';
 $html = padHolidaysMergedTable ( $rows, '<Calendars>' );

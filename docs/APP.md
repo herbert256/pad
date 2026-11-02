@@ -863,7 +863,7 @@ message `padValidate` found for them:
 ```
 
 `padValidate($rules, $data = posted, $messages = [])` answers one message per failing field;
-the rules are the files of `pad/subs/inputs/rules/types/` - `required`, `email`, `url`, `numeric`,
+the rules are the files of `pad/subs/rules/types/` - `required`, `email`, `url`, `numeric`,
 `integer`, `min:n`, `max:n`, `between:a,b`, `in:a,b,c`, `regex:/.../`, `same:field`,
 `accepted`, `date`, `time`, `digits:n`, `alpha`, `alphanum`, `starts_with:x`, `ends_with:x`,
 `lowercase`, `uppercase`, `color`, `uuid`, `ip`, `slug`, `json`, `iban`, `not_in:a,b`,

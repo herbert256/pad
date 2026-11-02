@@ -1,8 +1,8 @@
 <?php
 
-  // The effects are the files of pad/subs/widgets/effects/types/, as the engine reads them (padKinds).
+  // The effects are the files of pad/subs/effects/types/, as the engine reads them (padKinds).
 
-  $tagAbout   = 'Motion and decoration on a text or a block, CSS first - ' . count ( padKinds ( 'widgets/effects' ) ) . ' of them, from a typewriter, a glitch and a marker stroke to a scroll reveal, a marquee, loaders and confetti.';
+  $tagAbout   = 'Motion and decoration on a text or a block, CSS first - ' . count ( padKinds ( 'effects' ) ) . ' of them, from a typewriter, a glitch and a marker stroke to a scroll reveal, a marquee, loaders and confetti.';
   $tagGroup   = 'widgets';
   $tagForm    = 'both';
 
@@ -32,8 +32,8 @@
 PAD;
 
   $tagParms   = [
-    'kind after colon'  => 'The effect, a file of <code>pad/subs/widgets/effects/types/</code>: '
-             . implode ( ', ', array_map ( fn ( $effect ) => "<code>$effect</code>", padKinds ( 'widgets/effects' ) ) )
+    'kind after colon'  => 'The effect, a file of <code>pad/subs/effects/types/</code>: '
+             . implode ( ', ', array_map ( fn ( $effect ) => "<code>$effect</code>", padKinds ( 'effects' ) ) )
              . '. The effect: prefix selects it - <code>{effect:typewriter}...{/effect:typewriter}</code>.',
     'first' => 'The effect\'s own first parameter, the second of <code>{effect:typewriter}</code>: the text of a single tag - <code>{effect:typewriter \'Hello\'/}</code> - or the number of a count-up, <code>{effect:countup 1250/}</code>.' ];
 

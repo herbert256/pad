@@ -7,6 +7,6 @@
   foreach ( sheetsExamples () as $sheetsName => [ $sheetsTitle, $sheetsLead ] )
     $sheets [] = [ 'page' => $sheetsName, 'name' => $sheetsTitle, 'line' => $sheetsLead ];
 
-  $functions = count ( padKinds ( 'tables/formulas' ) );
+  $functions = count ( padKinds ( 'formulas' ) );
 
 ?>

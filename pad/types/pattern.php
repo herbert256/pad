@@ -6,7 +6,7 @@
 
   $padPatternKind = $padTag [$pad];
 
-  $padTagGo = PAD . 'subs/images/patterns/pattern';
+  $padTagGo = PAD . 'subs/patterns/pattern';
 
   return include PAD . 'types/_go/tag.php';
 

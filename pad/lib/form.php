@@ -42,7 +42,7 @@
   const padFormName = 'padForm';
   const padFormAt   = 'padFormAt';
 
-  // The rules are the files of pad/subs/inputs/rules/types/ - <rule>.php the server's check, and
+  // The rules are the files of pad/subs/rules/types/ - <rule>.php the server's check, and
   // www/assets/rules/<rule>.js the browser's - so a rule is added by adding its files, and
   // padValidate, the browser's checker, the messages that list the rules and the pages that
   // document them all read the directory (padRuleTypes). A rule's file answers what the rule
@@ -73,7 +73,7 @@
 
   function padRuleTypes () {
 
-    return padKinds ( 'inputs/rules' );
+    return padKinds ( 'rules' );
 
   }
 
@@ -82,7 +82,7 @@
     static $rules = [];
 
     if ( ! array_key_exists ( $name, $rules ) )
-      $rules [$name] = padKind ( 'inputs/rules', $name ) ? include PAD . "subs/inputs/rules/types/$name.php" : NULL;
+      $rules [$name] = padKind ( 'rules', $name ) ? include PAD . "subs/rules/types/$name.php" : NULL;
 
     return $rules [$name];
 
@@ -1284,7 +1284,7 @@
   }
 
   // The checker's code: the runtime, www/assets/rules/validate.js, with the script of every rule
-  // of subs/inputs/rules/types/ that has one - www/assets/rules/<rule>.js - where its /*rules*/ stands, and
+  // of subs/rules/types/ that has one - www/assets/rules/<rule>.js - where its /*rules*/ stands, and
   // the rules that judge an empty field and those that look at other fields, read from their
   // PHP files, where /*empties*/ and /*lookers*/ do: what the browser does is what the
   // directory says, as padValidate's is. Each rule's script

@@ -1,18 +1,18 @@
 <?php
 
-  // padPalette ( 'viridis', 7 ) - the colours of a palette of pad/subs/themes/palettes/types/, '#rrggbb'
+  // padPalette ( 'viridis', 7 ) - the colours of a palette of pad/subs/palettes/types/, '#rrggbb'
   // each, for a page's PHP: a sequential or diverging palette sampled evenly in $steps steps,
   // a cyclic one evenly round its circle, a categorical one its colours in its order, starting
   // again past its last; without $steps a categorical palette's own colours, twelve of a cyclic
   // one, nine of the others. The name is read in any case, as {widget:palette} and palette= read
   // it - padPalette ( 'romaO' ) is romao. A name that is no palette, or a
   // number of steps that is no whole number from 1 to 256, is reported with padError and
-  // answers []. The palettes themselves are the subsystem in pad/subs/themes/palettes/, included when
+  // answers []. The palettes themselves are the subsystem in pad/subs/palettes/, included when
   // this runs.
 
   function padPalette ( $name, $steps = NULL ) {
 
-    include_once PAD . 'subs/themes/palettes/_lib/palette.php';
+    include_once PAD . 'subs/palettes/_lib/palette.php';
 
     if ( is_string ( $name ) )
       $name = strtolower ( trim ( $name ) );

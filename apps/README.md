@@ -20,7 +20,7 @@ This directory contains PAD applications and examples.
 | [develop](develop/README.md) | Standard | Development tools for PAD - the source trimmer, the harvest of the reference and the examples, the error listing |
 | [edit](edit/README.md) | Standard | A browser editor for every application, behind a login - file management, PAD and PHP colouring, completion and checks, preview, history, a terminal, a step debugger |
 | [games](games/README.md) | Standard | Every game and toy of the games subsystem to play - a card per game, a page per game with the template that plays it, read from `pad/subs/games/types/` |
-| [images](images/README.md) | Standard | Every pattern of the patterns subsystem - a card per pattern, a page per pattern beside its template with a seed to change by link, read from `pad/subs/images/patterns/types/` - and every image filter of `{image:thumbnail}` on one picture |
+| [images](images/README.md) | Standard | Every pattern of the patterns subsystem - a card per pattern, a page per pattern beside its template with a seed to change by link, read from `pad/subs/patterns/types/` - and every image filter of `{image:thumbnail}` on one picture |
 | [printables](printables/README.md) | Standard | Every kind of the printables subsystem on a page of its own - its template beside what it prints, sheets at their size, a link to the PDF, read from `pad/subs/printables/types/` |
 | [sounds](sounds/README.md) | Standard | A soundboard of the sounds subsystem - a card per sound with its button, its recipe and its WAV file, and the ways a page plays one, read from `pad/subs/sounds/types/` |
 | [widgets](widgets/README.md) | Standard | A landing page built from the sections and effects, the theme switcher in its bar, and a page per section, effect, theme and palette with every example's template beside its result, read from `pad/subs/widgets/` and `pad/subs/themes/` |
@@ -89,7 +89,7 @@ This directory contains PAD applications and examples.
 | [regression/errors](regression/errors/README.md) | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
 | [regression/common](regression/common/README.md) | Test | The pages of the suite that use _common - {common:example}, {common:demo}, {common:table} - fetched and compared the same way |
 | [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos - gallery, listen and guess pages |
-| [tables](tables/README.md) | Standard | Spreadsheets made with `{sheet:grid}` - budget, loan, grades, dates, an editable sheet - and every function of `pad/subs/tables/formulas/types/` with its examples |
+| [tables](tables/README.md) | Standard | Spreadsheets made with `{sheet:grid}` - budget, loan, grades, dates, an editable sheet - and every function of `pad/subs/formulas/types/` with its examples |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |
 | [test](test/README.md) | Minimal | A scratch application for trying things out, with `_common` switched off |
 | [webcomponents](webcomponents/README.md) | Standard | Web components: custom elements PAD renders with their shadow root (`{widget:shadow}`), upgraded by small modules - cards, tabs, a rating, a form-associated stepper, Lit |

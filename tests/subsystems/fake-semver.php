@@ -5,7 +5,7 @@
   require PAD . 'lib/subsystem.php';
   require PAD . 'lib/fake.php';
   function check ( $v ) { if ( ! $v ) throw new Exception ( 'fixture failed' ); }
-  $rule = include PAD . 'subs/inputs/rules/types/semver.php';
+  $rule = include PAD . 'subs/rules/types/semver.php';
   padFakeSeed ( 42 ); $one = padFake ( 'semver' );
   padFakeSeed ( 42 ); check ( $one === padFake ( 'semver' ) );
   for ( $i = 0; $i < 500; $i++ ) check ( $rule ['check'] ( padFake ( 'semver', [ 'prerelease' => 'beta.1', 'build' => 'build.00' ] ) ) );

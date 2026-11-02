@@ -19,7 +19,7 @@
       "category": "subsystem",
       "subsystem": "highlighters",
       "name": "highlighters",
-      "path": "pad/subs/widgets/highlighters/types/bash.php",
+      "path": "pad/subs/highlighters/types/bash.php",
       "commit": "6befe607b524af6b9ae5367570805e648167606f",
       "subject": "Add highlighters subsystem with language definitions",
       "documentation": "docs/subsystems/highlighters.md"
@@ -39,7 +39,7 @@
       "category": "subsystem",
       "subsystem": "recurrences",
       "name": "recurrences",
-      "path": "pad/subs/calendars/recurrences/types/daily.php",
+      "path": "pad/subs/recurrences/types/daily.php",
       "commit": "3a7c65bf6a4d07e0b5dd61aff192bda173c4621c",
       "subject": "Add bounded calendar recurrences subsystem",
       "documentation": "docs/subsystems/recurrences.md"
@@ -49,7 +49,7 @@
       "category": "subsystem",
       "subsystem": "geospatial",
       "name": "geospatial",
-      "path": "pad/subs/maps/geospatial/types/bbox.php",
+      "path": "pad/subs/geospatial/types/bbox.php",
       "commit": "fce7d4a2342d4682cf9b38024704d6b5895c3583",
       "subject": "Add bounded geospatial operations subsystem",
       "documentation": "docs/subsystems/geospatial/README.md"
@@ -59,7 +59,7 @@
       "category": "subsystem",
       "subsystem": "distributions",
       "name": "distributions",
-      "path": "pad/subs/fakes/distributions/types/bernoulli.php",
+      "path": "pad/subs/distributions/types/bernoulli.php",
       "commit": "59ad1fc271367cd3765ee9cbd0344cac53d53691",
       "subject": "Add seeded statistical distributions subsystem",
       "documentation": "docs/subsystems/distributions/README.md"
@@ -69,7 +69,7 @@
       "category": "subsystem",
       "subsystem": "avatars",
       "name": "avatars",
-      "path": "pad/subs/images/avatars/types/identicon.php",
+      "path": "pad/subs/avatars/types/identicon.php",
       "commit": "b7576ae4c74e6a0e93fa4e6e09ec4dc72ab50f42",
       "subject": "Add deterministic avatars subsystem with compatibility wrappers",
       "documentation": "docs/subsystems/avatars/index.md"
@@ -149,7 +149,7 @@
       "category": "type",
       "subsystem": "rules",
       "name": "ulid",
-      "path": "pad/subs/inputs/rules/types/ulid.php",
+      "path": "pad/subs/rules/types/ulid.php",
       "commit": "10e6671a3d5c79a5ee7a54ac8ce20deff536ff48",
       "subject": "Add ulid validation rule with browser parity",
       "documentation": "docs/subsystems/rules/ulid.md"
@@ -159,7 +159,7 @@
       "category": "type",
       "subsystem": "rules",
       "name": "isbn",
-      "path": "pad/subs/inputs/rules/types/isbn.php",
+      "path": "pad/subs/rules/types/isbn.php",
       "commit": "a71d9e42b82a351ff3e1a10268ebfb48203f7107",
       "subject": "Add isbn validation rule with browser parity",
       "documentation": "docs/subsystems/rules/isbn.md"
@@ -169,7 +169,7 @@
       "category": "type",
       "subsystem": "rules",
       "name": "semver",
-      "path": "pad/subs/inputs/rules/types/semver.php",
+      "path": "pad/subs/rules/types/semver.php",
       "commit": "bea8557a6d0efd02aa64edd438d9861db6b750b6",
       "subject": "Add semver validation rule with browser parity",
       "documentation": "docs/subsystems/rules/semver.md"
@@ -179,7 +179,7 @@
       "category": "type",
       "subsystem": "rules",
       "name": "timezone",
-      "path": "pad/subs/inputs/rules/types/timezone.php",
+      "path": "pad/subs/rules/types/timezone.php",
       "commit": "bce1412838a46e91d9e4ba12a8d771686da87035",
       "subject": "Add timezone validation rule with browser parity",
       "documentation": "docs/subsystems/rules/timezone.md"
@@ -219,7 +219,7 @@
       "category": "type",
       "subsystem": "formulas",
       "name": "xmatch",
-      "path": "pad/subs/tables/formulas/types/xmatch.php",
+      "path": "pad/subs/formulas/types/xmatch.php",
       "commit": "f5fda3792d2fee867fd5c1b2dab013fb30c7873a",
       "subject": "Add XMATCH position lookup formula",
       "documentation": "docs/subsystems/formulas/xmatch.md"
@@ -229,7 +229,7 @@
       "category": "type",
       "subsystem": "formulas",
       "name": "textbefore",
-      "path": "pad/subs/tables/formulas/types/textbefore.php",
+      "path": "pad/subs/formulas/types/textbefore.php",
       "commit": "082a6b70400d4b5a23a2c7cb3858b6fc3ab06c88",
       "subject": "Add TEXTBEFORE delimiter extraction formula",
       "documentation": "docs/subsystems/formulas/textbefore.md"
@@ -239,7 +239,7 @@
       "category": "type",
       "subsystem": "formulas",
       "name": "textafter",
-      "path": "pad/subs/tables/formulas/types/textafter.php",
+      "path": "pad/subs/formulas/types/textafter.php",
       "commit": "ad67618fe1c334cf3b8f6e6b317f0849bd940b36",
       "subject": "Add textafter spreadsheet formula",
       "documentation": "docs/subsystems/formulas/textafter.md"
@@ -249,7 +249,7 @@
       "category": "type",
       "subsystem": "formulas",
       "name": "isoweeknum",
-      "path": "pad/subs/tables/formulas/types/isoweeknum.php",
+      "path": "pad/subs/formulas/types/isoweeknum.php",
       "commit": "90f3b1f2650977351a6922f77d7e764d5caca91a",
       "subject": "Add isoweeknum spreadsheet formula",
       "documentation": "docs/subsystems/formulas/isoweeknum.md"
@@ -259,7 +259,7 @@
       "category": "type",
       "subsystem": "formulas",
       "name": "correl",
-      "path": "pad/subs/tables/formulas/types/correl.php",
+      "path": "pad/subs/formulas/types/correl.php",
       "commit": "cfb17af750f72235087a77b12db54544fb9faaca",
       "subject": "Add correl spreadsheet formula",
       "documentation": "docs/subsystems/formulas/correl.md"
@@ -419,7 +419,7 @@
       "category": "type",
       "subsystem": "filters",
       "name": "gamma",
-      "path": "pad/subs/images/filters/types/gamma.php",
+      "path": "pad/subs/filters/types/gamma.php",
       "commit": "f8b2ea17694e25278a7ac7dc7f1a85302e465482",
       "subject": "Add alpha-preserving gamma image filter",
       "documentation": "docs/subsystems/filters/gamma.md"
@@ -429,7 +429,7 @@
       "category": "type",
       "subsystem": "filters",
       "name": "emboss",
-      "path": "pad/subs/images/filters/types/emboss.php",
+      "path": "pad/subs/filters/types/emboss.php",
       "commit": "e47fe86f0e202e6430a1db419bfe53065159a79d",
       "subject": "Add density-aware emboss image filter",
       "documentation": "docs/subsystems/filters/emboss.md"
@@ -439,7 +439,7 @@
       "category": "type",
       "subsystem": "filters",
       "name": "colormatrix",
-      "path": "pad/subs/images/filters/types/colormatrix.php",
+      "path": "pad/subs/filters/types/colormatrix.php",
       "commit": "730572c3ea086d748a924455bfac213e0e291ee7",
       "subject": "Add bounded RGBA color matrix image filter",
       "documentation": "docs/subsystems/filters/colormatrix.md"
@@ -509,7 +509,7 @@
       "category": "type",
       "subsystem": "holidays",
       "name": "au",
-      "path": "pad/subs/calendars/holidays/types/au.php",
+      "path": "pad/subs/holidays/types/au.php",
       "commit": "862af1af5be27c8d7e3aed34914362032215a624",
       "subject": "Add Australian holidays with scoped regional calendars",
       "documentation": "docs/subsystems/holidays/au.md"
@@ -519,7 +519,7 @@
       "category": "type",
       "subsystem": "holidays",
       "name": "gr",
-      "path": "pad/subs/calendars/holidays/types/gr.php",
+      "path": "pad/subs/holidays/types/gr.php",
       "commit": "40c7145eeccbf851f4cba347db825acfe538be30",
       "subject": "Add Greek holidays with Orthodox dates and declared May Day transfers",
       "documentation": "docs/subsystems/holidays/gr.md"
@@ -529,7 +529,7 @@
       "category": "type",
       "subsystem": "holidays",
       "name": "ee",
-      "path": "pad/subs/calendars/holidays/types/ee.php",
+      "path": "pad/subs/holidays/types/ee.php",
       "commit": "c2512f7bbbb404dfe7b24f8a200dd47866369bac",
       "subject": "Add Estonian holidays with statutory dates and localized names",
       "documentation": "docs/subsystems/holidays/ee.md"
@@ -619,7 +619,7 @@
       "category": "type",
       "subsystem": "sections",
       "name": "casestudy",
-      "path": "pad/subs/widgets/sections/types/casestudy.php",
+      "path": "pad/subs/sections/types/casestudy.php",
       "commit": "cd80bf9250cd167f0415814d0f029161ec2f03e6",
       "subject": "Add case-study sections with problem approach and outcomes",
       "documentation": "docs/subsystems/sections/casestudy.md"
@@ -629,7 +629,7 @@
       "category": "type",
       "subsystem": "sections",
       "name": "careers",
-      "path": "pad/subs/widgets/sections/types/careers.php",
+      "path": "pad/subs/sections/types/careers.php",
       "commit": "c2fc9dd32140f461c37c33a5ca5123bb67cd8da4",
       "subject": "Add careers sections with explicit job metadata and links",
       "documentation": "docs/subsystems/sections/careers.md"
@@ -639,7 +639,7 @@
       "category": "type",
       "subsystem": "sections",
       "name": "roadmap",
-      "path": "pad/subs/widgets/sections/types/roadmap.php",
+      "path": "pad/subs/sections/types/roadmap.php",
       "commit": "6d75bddab1c7abc55657f11306a1a6c3e57e5200",
       "subject": "Add roadmap sections grouped by delivery status",
       "documentation": "docs/subsystems/sections/roadmap.md"
@@ -679,7 +679,7 @@
       "category": "type",
       "subsystem": "patterns",
       "name": "basketweave",
-      "path": "pad/subs/images/patterns/types/basketweave.php",
+      "path": "pad/subs/patterns/types/basketweave.php",
       "commit": "15899b78a63afdbb1c5eaf6b5085d91735446fdc",
       "subject": "Add seamless basketweave pattern with bounded strand geometry",
       "documentation": "docs/subsystems/patterns/basketweave.md"
@@ -689,7 +689,7 @@
       "category": "type",
       "subsystem": "patterns",
       "name": "crosshatch",
-      "path": "pad/subs/images/patterns/types/crosshatch.php",
+      "path": "pad/subs/patterns/types/crosshatch.php",
       "commit": "571a87730fba20600223b204d6f2691e95879834",
       "subject": "Add adjustable seamless crosshatch pattern",
       "documentation": "docs/subsystems/patterns/crosshatch.md"
@@ -699,7 +699,7 @@
       "category": "type",
       "subsystem": "patterns",
       "name": "squircle",
-      "path": "pad/subs/images/patterns/types/squircle.php",
+      "path": "pad/subs/patterns/types/squircle.php",
       "commit": "c023692bf81d20fefb019a279f7b3250f6838d0a",
       "subject": "Add bounded superellipse squircle pattern",
       "documentation": "docs/subsystems/patterns/squircle.md"
@@ -709,7 +709,7 @@
       "category": "type",
       "subsystem": "palettes",
       "name": "amber",
-      "path": "pad/subs/themes/palettes/types/amber.php",
+      "path": "pad/subs/palettes/types/amber.php",
       "commit": "c5bfe65de3e6fa08ba38384d91b1b414d6941bcc",
       "subject": "Add amber sequential palette with measured luminance order",
       "documentation": "docs/subsystems/palettes/amber.md"
@@ -719,7 +719,7 @@
       "category": "type",
       "subsystem": "palettes",
       "name": "blue-orange",
-      "path": "pad/subs/themes/palettes/types/blue-orange.php",
+      "path": "pad/subs/palettes/types/blue-orange.php",
       "commit": "2532a35b1d46fe9ddada38da476f12dd12901e37",
       "subject": "Add blue-orange diverging palette with balanced neutral midpoint",
       "documentation": "docs/subsystems/palettes/blue-orange.md"
@@ -729,7 +729,7 @@
       "category": "type",
       "subsystem": "palettes",
       "name": "phase",
-      "path": "pad/subs/themes/palettes/types/phase.php",
+      "path": "pad/subs/palettes/types/phase.php",
       "commit": "0d61744d9dd4adfdf3f83f9539c68f4e07ad73e5",
       "subject": "Add cyclic phase palette and wrap continuity checks",
       "documentation": "docs/subsystems/palettes/phase.md"
@@ -749,7 +749,7 @@
       "category": "type",
       "subsystem": "effects",
       "name": "flipnumber",
-      "path": "pad/subs/widgets/effects/types/flipnumber.php",
+      "path": "pad/subs/effects/types/flipnumber.php",
       "commit": "b01b1a835cfda2f1a70b05dde9d151c963b7812a",
       "subject": "Add flipnumber decoration with stable accessible numeric text",
       "documentation": "docs/subsystems/effects/flipnumber.md"
@@ -759,7 +759,7 @@
       "category": "type",
       "subsystem": "effects",
       "name": "ripple",
-      "path": "pad/subs/widgets/effects/types/ripple.php",
+      "path": "pad/subs/effects/types/ripple.php",
       "commit": "1b9139ab2b717994ca44cacd64b0a52fe6af794f",
       "subject": "Add bounded activation ripple preserving native control actions",
       "documentation": "docs/subsystems/effects/ripple.md"
@@ -829,7 +829,7 @@
       "category": "type",
       "subsystem": "toys",
       "name": "lorenz",
-      "path": "pad/subs/games/toys/types/lorenz.php",
+      "path": "pad/subs/toys/types/lorenz.php",
       "commit": "822221c59fc9947cfb8cf6d87e0e03763b5800b3",
       "subject": "Add Lorenz attractor with bounded RK4 integration and timestep controls",
       "documentation": "docs/subsystems/toys/lorenz.md"
@@ -839,7 +839,7 @@
       "category": "type",
       "subsystem": "toys",
       "name": "optics",
-      "path": "pad/subs/games/toys/types/optics.php",
+      "path": "pad/subs/toys/types/optics.php",
       "commit": "7d852db4e84f39c263814e1a3a065723ca54a919",
       "subject": "Add paraxial optics bench with lenses mirror and movable source",
       "documentation": "docs/subsystems/toys/optics.md"
@@ -849,7 +849,7 @@
       "category": "type",
       "subsystem": "toys",
       "name": "pathfinding",
-      "path": "pad/subs/games/toys/types/pathfinding.php",
+      "path": "pad/subs/toys/types/pathfinding.php",
       "commit": "fc50d923412180ccbb69b965ac70c33d53ea2696",
       "subject": "Add weighted pathfinding toy comparing BFS Dijkstra and A star",
       "documentation": "docs/subsystems/toys/pathfinding.md"

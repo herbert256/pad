@@ -57,7 +57,7 @@
     $padHighlightLang = 'text';
 
   if ( ! padHighlightKnown ( $padHighlightLang ) and $padCheckSyntax )
-    padError ( "there is no language '" . padMakeSafe ( $padHighlightLang, 20 ) . "' to highlight - " . implode ( ', ', padKinds ( 'widgets/highlighters' ) ) );
+    padError ( "there is no language '" . padMakeSafe ( $padHighlightLang, 20 ) . "' to highlight - " . implode ( ', ', padKinds ( 'highlighters' ) ) );
 
   return padHighlight ( $padHighlightText, $padHighlightLang, (bool) padTagParm ( 'lines', FALSE ), (string) padTagParm ( 'mark' ) );
 

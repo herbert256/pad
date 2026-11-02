@@ -240,7 +240,7 @@
               section:
             </h1>
             <p class="tag-about">
-              A section of a landing page, a file of pad/subs/widgets/sections/types/ - pure CSS, coloured by the theme, never bare.
+              A section of a landing page, a file of pad/subs/sections/types/ - pure CSS, coloured by the theme, never bare.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#subsystems">Subsystems</a> <a class="chip chip-form" href="index%EF%B9%96order.html#prefixed">Type prefix required</a>
@@ -258,14 +258,14 @@
               Description
             </h2>
             <p>
-              A block of a landing page - a hero, the features, the prices, the questions, a footer ... - of the kind selected after the colon: the sections subsystem in <code>PAD/subs/widgets/sections/</code> builds a hero with <code>{section:hero}</code>.
+              A block of a landing page - a hero, the features, the prices, the questions, a footer ... - of the kind selected after the colon: the sections subsystem in <code>PAD/subs/sections/</code> builds a hero with <code>{section:hero}</code>.
             </p>
             <pre><code>{section:hero title='Pages that drive themselves', button='Start', link='?start'}The text.{/section:hero}
 {section:pricing data='plans'/}
 {section:faq}{section:item 'Is it free?'}Yes.{/section:item}{/section:faq}
 </code></pre>
             <p>
-              <strong>Resolution:</strong> a PHP file <code>PAD/subs/widgets/sections/types/&lt;name&gt;.php</code> (<code>padKinds ( 'widgets/sections' )</code>, <code>PAD/lib/subsystem.php</code>), its style <code>www/assets/sections/&lt;name&gt;.css</code>: the files of <code>types/</code> are the sections, and a section is added by adding its files. Only ever written with its prefix.
+              <strong>Resolution:</strong> a PHP file <code>PAD/subs/sections/types/&lt;name&gt;.php</code> (<code>padKinds ( 'sections' )</code>, <code>PAD/lib/subsystem.php</code>), its style <code>www/assets/sections/&lt;name&gt;.css</code>: the files of <code>types/</code> are the sections, and a section is added by adding its files. Only ever written with its prefix.
             </p>
             <h3>
               The handler

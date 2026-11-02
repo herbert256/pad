@@ -1,51 +1,44 @@
-# Subsystem ownership and rendering tags
+# Subsystem layout and rendering tags
 
-`pad/subs/` has 30 owners. A subsystem may contain several related kind registries.
-Each registry still has a `types/` directory; the files in it remain the source of
-truth. `pad/lib/subsystem.php` maps public namespaces and helper families to these
-directories. A namespace is an interface, not a requirement for a top-level folder.
+All 47 subsystems live exactly one directory below `pad/subs/`. Each subsystem
+has its own `types/` registry; the files in it remain the source of truth.
+`pad/lib/subsystem.php` maps public namespaces and helper families to these
+single-directory names. Subsystems must not be nested inside other subsystems.
+Internal implementation directories such as `_lib/`, `types/` and `fonts/` remain
+inside their subsystem.
 
-## Review of all 42 former directories
+## Related subsystems
 
-| Owner | Former directories now owned together | Reason and retained boundaries |
-| --- | --- | --- |
-| `ai` | ai | Model providers and response validation have their own contract. |
-| `calendars` | calendars, times, holidays, recurrences | Date views, clocks, holiday data and repeated dates belong together. Holiday definitions and recurrence algorithms remain separate from rendering kinds. |
-| `channels` | channels | Notification delivery providers and the notification store. |
-| `charts` | charts, timelines | Numeric and dated data visualizations share row parsing and SVG support. Timeline views retain their date and span handling. |
-| `codes` | codes | Machine-readable encodings need symbology-specific validation. |
-| `constraints` | new | Bounded exact cover, matching and assignment return solutions and explicit completion status. |
-| `diagrams` | diagrams | Structured diagram layout differs from numeric chart rendering. |
-| `diffs` | diffs | Text and structured comparisons share change semantics, not merely markup. |
-| `embeds` | embeds | External media providers, local media and consent-based loading. |
-| `fakes` | fakes, distributions | Reproducible sample data and seeded statistical sampling; distribution parameter contracts remain separate. |
-| `formats` | formats | Data readers and writers, including feeds and binary spreadsheets. |
-| `games` | games, toys | Interactive boards, puzzles and simulations share browser asset and lifecycle infrastructure. |
-| `graphs` | new | Graph algorithms return dependency order, components, routes and critical paths; rendering remains in charts and diagrams. |
-| `icons` | icons | A named SVG asset registry, distinct from image generation and processing. |
-| `images` | images, avatars, filters, patterns | Image views, identity images, transformations and generated artwork. Filter recipes and pattern recipes keep their existing APIs. |
-| `inputs` | inputs, rules | Form controls and their server/browser validation rules. |
-| `jsonld` | jsonld | Structured page metadata, not a visual component or generic format codec. |
-| `maps` | maps, geospatial | Geographic views and geographic data operations. |
-| `notations` | notations | Domain-specific notation parsers and renderers, including music and board positions. |
-| `oauth` | oauth | Login provider protocols and token exchange remain separate from notification and AI providers. |
-| `printables` | printables | Paper dimensions, pagination and PDF layout differ from screen widgets. |
-| `search` | search | Indexing, query processing, stemming, ranking and excerpts. |
-| `schemas` | new | Shared JSON, record and rowset validation; the AI boundary delegates to this core. |
-| `sounds` | sounds | Synthesized audio recipes and WAV output. |
-| `statistics` | new | Descriptive statistics and regression return reusable plain data. |
-| `tables` | tables, sheets, formulas | Tabular presentation and computed grids; spreadsheet functions remain a function registry, not table views. |
-| `themes` | themes, palettes | Page colours and reusable colour scales. |
-| `textanalysis` | new | Unicode text counts, n-grams and lexical similarity; search ranking remains separate. |
-| `units` | units | Dimension-checked conversion tables and operations have no equivalent in the other owners. |
-| `widgets` | widgets, sections, effects, highlighters | Page components, larger page sections, visual effects and source-code presentation. Specialized rendering contracts remain separate. |
+Related families are siblings on disk. Applications may still combine their
+examples and galleries independently of the engine directory layout.
 
-The moved families use paths such as `pad/subs/images/avatars/`,
-`pad/subs/inputs/rules/` and `pad/subs/tables/formulas/`. Existing public family
-namespaces (`avatar:`, `time:`, `timeline:`, `sheet:`, `section:`, `effect:`,
-`pattern:` and `toy:`), PHP helper signatures and browser asset URLs are retained.
-Direct PHP includes must use the new paths. No duplicate forwarding directories
-are left at the old locations.
+| Area | Sibling directories directly under `pad/subs/` |
+| --- | --- |
+| Dates and time | `calendars`, `times`, `holidays`, `recurrences` |
+| Charts | `charts`, `timelines` |
+| Sample data | `fakes`, `distributions` |
+| Games and simulations | `games`, `toys` |
+| Images | `images`, `avatars`, `filters`, `patterns` |
+| Forms | `inputs`, `rules` |
+| Geography | `maps`, `geospatial` |
+| Tables and spreadsheets | `tables`, `sheets`, `formulas` |
+| Colour | `themes`, `palettes` |
+| Page components | `widgets`, `sections`, `effects`, `highlighters` |
+
+The other sibling subsystems are `ai`, `channels`, `codes`, `constraints`,
+`diagrams`, `diffs`, `embeds`, `formats`, `graphs`, `icons`, `jsonld`, `notations`,
+`oauth`, `printables`, `schemas`, `search`, `sounds`, `statistics`, `textanalysis`
+and `units`.
+
+Use paths such as `pad/subs/avatars/`, `pad/subs/rules/` and
+`pad/subs/formulas/`. Public family namespaces (`avatar:`, `time:`, `timeline:`,
+`sheet:`, `section:`, `effect:`, `pattern:` and `toy:`), PHP helper signatures and
+browser asset URLs are retained. Direct PHP includes and `padKinds()` calls use
+the flat paths and registry names. No forwarding directories or nested aliases
+are left at the former locations.
+
+`php tests/subsystems/layout.php` checks the registry and disk layout; it also
+runs in the subsystem test suite and `./ci.sh`.
 
 ## Rendering tags
 
@@ -120,7 +113,7 @@ when their files return different kinds of values.
 
 ## Showcase applications
 
-Showcases follow the subsystem owners instead of retaining separate apps for each family:
+Showcases keep their combined galleries even though the subsystem directories are flat:
 
 | Application | Combined galleries |
 | --- | --- |

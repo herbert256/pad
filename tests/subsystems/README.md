@@ -7,6 +7,9 @@ remain explicit commands because they require Chrome or optional external tools.
 Run PHP fixtures with `php tests/subsystems/<name>.php` and model fixtures with
 `node tests/subsystems/<name>.cjs`. These test behavior independently of rendering.
 
+`php tests/subsystems/layout.php` enforces the flat subsystem layout: every
+registered family lives directly under `pad/subs/`, with no nested registries.
+
 `node tests/subsystems/ui-browser.cjs` renders a combined PAD fixture with this
 checkout's engine, then starts an isolated headless Chrome profile. Override the
 macOS Chrome default with `PAD_CHROME=/path/to/chrome`. It checks normal and reduced

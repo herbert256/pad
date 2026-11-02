@@ -20,7 +20,7 @@
   // is not the first, but what it draws is. And the photo against its hash's picture: a blur
   // of it. A text of a length no components give decodes to nothing.
 
-  include_once PAD . 'subs/images/filters/_lib/blurhash.php';
+  include_once PAD . 'subs/filters/_lib/blurhash.php';
 
   $solid = imagecreatetruecolor ( 8, 8 );
   imagefill ( $solid, 0, 0, 0x3366cc );

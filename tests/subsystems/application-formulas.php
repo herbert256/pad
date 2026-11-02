@@ -1,6 +1,6 @@
 <?php
  define('PAD',dirname(__DIR__,2).'/pad/');function padDirList($p){return scandir($p);}require PAD.'lib/subsystem.php';
- foreach(['formula','collect','functions','dates','format','sheet'] as $lib)require PAD."subs/tables/formulas/_lib/$lib.php";
+ foreach(['formula','collect','functions','dates','format','sheet'] as $lib)require PAD."subs/formulas/_lib/$lib.php";
  function ck($ok,$why){if(!$ok)throw new Exception($why);}
  function make($cells){$s=padSheetNew();foreach($cells as $key=>$v){preg_match('/^([A-Z]+)([0-9]+)$/',$key,$m);padSheetPut($s,padFormulaColumn($m[1]),(int)$m[2],padSheetValue($v,TRUE));}padSheetCompute($s);return $s;}
  function val($s,$c,$r){$v=$s['cells'][$r][$c]??[];return $v['result']??$v['value']??NULL;}

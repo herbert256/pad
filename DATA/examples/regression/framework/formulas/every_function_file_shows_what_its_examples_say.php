@@ -1,6 +1,6 @@
 <?php
 
-  // Every file of pad/subs/tables/formulas/types/ starts with a comment that names the function,
+  // Every file of pad/subs/formulas/types/ starts with a comment that names the function,
   // gives its syntax and examples - a line each, the formula and after two spaces or more
   // what its cell shows on the sample sheet (_lib/formulas.php) - and returns its group, the
   // arguments it takes and its code. Each example is computed here and must show what its
@@ -8,7 +8,7 @@
 
   padFormulaLoad ();
 
-  $examplesKinds = padKinds ( 'tables/formulas' );
+  $examplesKinds = padKinds ( 'formulas' );
   $examplesCount = 0;
   $examplesWrong = [];
   $examplesShape = [];
@@ -16,7 +16,7 @@
 
   foreach ( $examplesKinds as $examplesKind ) {
 
-    $examplesFile = PAD . "subs/tables/formulas/types/$examplesKind.php";
+    $examplesFile = PAD . "subs/formulas/types/$examplesKind.php";
     $examplesType = include $examplesFile;
 
     if ( ! preg_match ( "/\A<\?php\s*\n  \/\/ $examplesKind - [A-Z]/", (string) file_get_contents ( $examplesFile ) )

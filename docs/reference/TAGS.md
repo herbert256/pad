@@ -803,7 +803,7 @@ The browser's checker of `padValidate`'s rules, for a form a component draws.
 {input:validator/}
 ```
 
-**Behavior:** Writes the checker - `www/assets/rules/validate.js` with the script of every rule of `pad/subs/inputs/rules/types/` - as one inline script - once a page, also when a
+**Behavior:** Writes the checker - `www/assets/rules/validate.js` with the script of every rule of `pad/subs/rules/types/` - as one inline script - once a page, also when a
 `{input:form ..., client}` brought it already - carrying the request's nonce when `$padCsp` asks
 for one. The script defines `padValidate.check(rules, values)` (the message of every field
 that broke a rule), `padValidate.field(spec, value, values)` and `padValidate.form(form)`;
@@ -1705,7 +1705,7 @@ field of that name - `{level:events}` reaches it then.
 ---
 
 ### holidays
-The public holidays of a country, from the rules of its file in `pad/subs/calendars/holidays/types/`.
+The public holidays of a country, from the rules of its file in `pad/subs/holidays/types/`.
 
 ```html
 {holidays:auto 'nl', year=2026}{$date} {$name} ({$local}){/holidays:auto}
@@ -2022,7 +2022,7 @@ Tags that draw, format and interact - the showcase application has an example of
 ---
 
 ### avatar:initials
-An initials avatar as inline SVG - drawn on the server (`subs/images/avatars/_lib/avatar.php`), no image, no
+An initials avatar as inline SVG - drawn on the server (`subs/avatars/_lib/avatar.php`), no image, no
 remote service: the same name is the same picture on every page and in every e-mail.
 
 ```html
@@ -2052,7 +2052,7 @@ No name, or another shape, is an error under the strict check.
 
 ### avatar:identicon
 A GitHub-style identicon as inline SVG - a symmetric 5 by 5 pattern and a colour from a SHA-256
-hash of the value (`subs/images/avatars/_lib/identicon.php`): every account its own picture, nothing sent anywhere.
+hash of the value (`subs/avatars/_lib/identicon.php`): every account its own picture, nothing sent anywhere.
 
 ```html
 {avatar:identicon $email/}
@@ -2198,7 +2198,7 @@ error under the strict check, naming the icons close to it (`did you mean arrow-
 ---
 
 ### avatar:gravatar
-The Gravatar picture of an e-mail address as an `<img>` (`subs/images/avatars/_lib/gravatar.php`) - only the
+The Gravatar picture of an e-mail address as an `<img>` (`subs/avatars/_lib/gravatar.php`) - only the
 SHA-256 hash of the address leaves the page - or, with `fallback`, a local SVG drawn on the
 server and no request to a third party at all.
 
@@ -2385,9 +2385,9 @@ down, on the smallest grid; a word that fits nowhere is left out and named under
 Subsystem syntax: `{toy:kind ...}`.
 A small live simulation or visual toy played in the browser: the server checks the options it is
 given and writes its frame, the toy's script - once per page, with the CSP nonce - runs it. Every
-toy is a file of `pad/subs/games/toys/types/`, its `.js` (and a `.css` when it needs one) in
+toy is a file of `pad/subs/toys/types/`, its `.js` (and a `.css` when it needs one) in
 `www/assets/toys/`, and the files of `types/` are the toys there are (`padToyTypes()`); the
-subsystem is `pad/subs/games/toys/`.
+subsystem is `pad/subs/toys/`.
 
 ```html
 {toy:life pattern='gun', wrap/}
@@ -3429,10 +3429,10 @@ sends it like any asset.
 | `format` | `jpeg`, `png` or `webp` - default the source's, a GIF becoming a PNG |
 | `quality` | 1 to 100 for JPEG and WebP, default 80 |
 | `alt` | Required - the text for whoever cannot see the picture; `alt=''` marks it as decoration |
-| `filter` | A comma list of filters of `pad/subs/images/filters/types/`, applied in the order written - see below |
+| `filter` | A comma list of filters of `pad/subs/filters/types/`, applied in the order written - see below |
 | `colors`, `levels`, `cell`, `radius`, `amount`, `columns`, `chars`, `components`, `threshold`, `cutoff` | The options of the filters, each read by the filters that take it |
 
-**Filters:** `filter=` runs the picture through the filter subsystem (`pad/subs/images/filters/`), the
+**Filters:** `filter=` runs the picture through the filter subsystem (`pad/subs/filters/`), the
 files of its `types/` the filters there are, written in the order they apply:
 
 ```html
@@ -3523,8 +3523,8 @@ written instead. The colour behind a picture still loading is `--pad-img-placeho
 ### pattern
 Subsystem syntax: `{pattern:kind ...}`.
 A seeded SVG background or piece of generative art, drawn on the server: every pattern is a
-file of `pad/subs/images/patterns/types/`, and the files there are the patterns there are
-(`padPatternKinds()`); the subsystem is `pad/subs/images/patterns/`.
+file of `pad/subs/patterns/types/`, and the files there are the patterns there are
+(`padPatternKinds()`); the subsystem is `pad/subs/patterns/`.
 
 ```html
 {pattern:topography seed=7, width=960, height=320/}
@@ -4018,7 +4018,7 @@ outlying areas, Bonaire, Saba and Sint Eustatius - is named as one it does not s
 ---
 
 ### timeline:*
-Events on a time axis as inline SVG (`subs/charts/timelines/_lib/timeline.php`) - cards above and below the axis,
+Events on a time axis as inline SVG (`subs/timelines/_lib/timeline.php`) - cards above and below the axis,
 spans as bars, or one under the other for a long list.
 
 ```html
@@ -4054,7 +4054,7 @@ the axis, their label inside or beside. The colours are the chart's categorical 
 timeline without events answers nothing and its `@else@` shows; rows of which none has a
 date are an error under the strict check.
 
-`timeline:roadmap` groups events by `period='month|quarter|year'` (default quarter), with `lane=` subgroups and `milestone=` badges. Spans appear in their starting period with their full date range. `timeline:swimlane` draws named lanes on one shared time axis, with bars and milestone diamonds. Both use the same event fields; point events are milestones by default. See `pad/subs/charts/timelines/README.md`.
+`timeline:roadmap` groups events by `period='month|quarter|year'` (default quarter), with `lane=` subgroups and `milestone=` badges. Spans appear in their starting period with their full date range. `timeline:swimlane` draws named lanes on one shared time axis, with bars and milestone diamonds. Both use the same event fields; point events are milestones by default. See `pad/subs/timelines/README.md`.
 
 ---
 
@@ -4104,8 +4104,8 @@ the columns and `rows` below 1 are strict errors.
 
 ### spreadsheet
 A grid of cells whose formulas are computed on the server, as an accessible table
-(`subs/tables/formulas/spreadsheet.php`) - the formula language is spreadsheet syntax with a parser of
-its own, its functions the files of `pad/subs/tables/formulas/types/` (SUM, IF, VLOOKUP, PMT ... 126 of
+(`subs/formulas/spreadsheet.php`) - the formula language is spreadsheet syntax with a parser of
+its own, its functions the files of `pad/subs/formulas/types/` (SUM, IF, VLOOKUP, PMT ... 126 of
 them), answering what Excel answers. See [Spreadsheets](../FEATURES.md#spreadsheets).
 
 ```html
@@ -4182,7 +4182,7 @@ No heading of those levels writes nothing. Colours are `--pad-toc-*` custom prop
 ---
 
 ### time:countdown
-The time left until a moment, in words, inside a `<time datetime>` (`subs/calendars/times/_lib/countdown.php`) -
+The time left until a moment, in words, inside a `<time datetime>` (`subs/times/_lib/countdown.php`) -
 optionally ticking every second in the browser.
 
 ```html
@@ -4211,7 +4211,7 @@ moment in milliseconds; the script counts the same way and carries this request'
 
 ### time:relative
 How long ago a moment was, in words, inside a `<time>` with the moment as its `datetime` and, in
-full, as its `title` (`subs/calendars/times/_lib/timeago.php`) - the `ago` pipe's words with the semantic element.
+full, as its `title` (`subs/times/_lib/timeago.php`) - the `ago` pipe's words with the semantic element.
 
 ```html
 {time:relative $created/}        <!-- <time datetime="2026-10-08T09:10:00+02:00" title="Thursday 8 October 2026, 09:10">5 minutes ago</time> -->
@@ -4317,9 +4317,9 @@ A block of a landing page - a hero, the features, the prices, what customers say
 call to action, the numbers, the steps, the team, the logos, a newsletter form, the contact details,
 a gallery, the footer, a comparison table, a changelog, the downloads, an agenda, the latest
 articles or highlights beside their pictures - in HTML and CSS alone. Every section is a file of
-`pad/subs/widgets/sections/types/`, its style in `www/assets/sections/` (`section.css`, shared, and a sheet
+`pad/subs/sections/types/`, its style in `www/assets/sections/` (`section.css`, shared, and a sheet
 per kind, each written once per page with the CSP nonce); the files of `types/` are the sections
-there are, and the subsystem is `pad/subs/widgets/sections/`.
+there are, and the subsystem is `pad/subs/sections/`.
 
 ```html
 {section:hero 'Pages that drive themselves', button='Start', link='?start', second='Read more', secondLink='?docs'}
@@ -4466,10 +4466,10 @@ theme sets them on `.pad-section`.
 ### effect
 Subsystem syntax: `{effect:kind ...}`.
 Motion and decoration on a text or a block, CSS first: every effect is a file of
-`pad/subs/widgets/effects/types/`, its look `www/assets/effects/<kind>.css`, written once per page with
+`pad/subs/effects/types/`, its look `www/assets/effects/<kind>.css`, written once per page with
 the CSP nonce after the base every effect shares (`effect.css`); confetti and decipher alone have a
 script, `confetti.js` and `decipher.js` beside them, written the same way. The files of `types/` are the effects there are; the
-subsystem is `pad/subs/widgets/effects/`.
+subsystem is `pad/subs/effects/`.
 
 ```html
 {effect:typewriter}Hello, world{/effect:typewriter}
@@ -4598,8 +4598,8 @@ as every form then does. Content is a strict error.
 
 ### palette
 The colours of a palette as a row of swatches, each with its hex value in black or white,
-whichever reads better. Every palette is a file of `pad/subs/themes/palettes/types/`; the files there are
-the palettes there are, and the subsystem is `pad/subs/themes/palettes/`.
+whichever reads better. Every palette is a file of `pad/subs/palettes/types/`; the files there are
+the palettes there are, and the subsystem is `pad/subs/palettes/`.
 
 ```html
 {widget:palette 'viridis', steps=7/}
@@ -5202,8 +5202,8 @@ nothing, and has nothing to do with `{pad:cease}`. See [sequences](../sequences/
 | `notation` | Output | A text in a notation drawn on the server - the files of `pad/subs/notations/types/`: AsciiMath, chemistry, ABC music, chords, piano, braille, morse, semaphore, signal flags, chess, go, draughts, tablature, Karnaugh maps, bridge deals, siteswaps, cube moves |
 | `chess` | Output | A chess position from FEN as inline SVG - the chess notation |
 | `game` | Output | A little game played in the browser - 22 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
-| `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/games/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
-| `pattern` | Output | A seeded SVG background or generative art, the files of `pad/subs/images/patterns/types/`: stripes, dots, contour lines, Voronoi, circle packing ...; `as='url'` for a style attribute |
+| `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
+| `pattern` | Output | A seeded SVG background or generative art, the files of `pad/subs/patterns/types/`: stripes, dots, contour lines, Voronoi, circle packing ...; `as='url'` for a style attribute |
 | `printable` | Output | Pages made for paper - the files of `pad/subs/printables/types/`: labels, badges, cards, tickets, a certificate, envelopes, letters, invoices ... - printed alone, the same from the PDF writer |
 | `sound` | Output | A short sound made from a recipe - the files of `pad/subs/sounds/types/`: chime, pop, coin, kick ... - a button, a binding or a WAV file |
 | `diff` | Output | The differences between two texts - words inline, or lines in one column or side by side |
@@ -5243,11 +5243,11 @@ nothing, and has nothing to do with `{pad:cease}`. See [sequences](../sequences/
 | `emoji` | Output | An emoji by its shortcode, labelled for screen readers; also an `emoji` pipe |
 | `country` | Output | A country's flag emoji and English name from an ISO 3166 code |
 | `jsonview` | Output | A JSON value or PHP array as a foldable, coloured tree of details elements |
-| `section` | Output | A block of a landing page - the files of `pad/subs/widgets/sections/types/`: hero, features, pricing, faq, cta, footer ... - pure CSS, coloured by the theme; `{section:item}` an item of a list section |
-| `effect` | Output | Motion and decoration, CSS first - the files of `pad/subs/widgets/effects/types/`: typewriter, highlighter, countup, reveal, marquee, spinner, confetti ... - still under reduced motion |
+| `section` | Output | A block of a landing page - the files of `pad/subs/sections/types/`: hero, features, pricing, faq, cta, footer ... - pure CSS, coloured by the theme; `{section:item}` an item of a list section |
+| `effect` | Output | Motion and decoration, CSS first - the files of `pad/subs/effects/types/`: typewriter, highlighter, countup, reveal, marquee, spinner, confetti ... - still under reduced motion |
 | `theme` | Output | The page in a theme of `pad/subs/themes/types/` - the frame's colours swapped; as a pair, its content alone |
 | `themes` | Output | A switcher of the themes, the visitor's choice kept in a cookie - applied when chosen |
-| `palette` | Output | The colours of a palette of `pad/subs/themes/palettes/types/` as swatches with their hex values; palette= colours a chart |
+| `palette` | Output | The colours of a palette of `pad/subs/palettes/types/` as swatches with their hex values; palette= colours a chart |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
@@ -5328,8 +5328,8 @@ Resolve naming conflicts with explicit prefixes:
 | `sequence:` | Sequence type | `{sequence:fibonacci}` |
 | `action:` | Sequence action | `{action:reverse}` |
 | `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
-| `section:` | Section kind | `{section:hero title='...'}...{/section:hero}`, as `{section:hero ...}` - a kind is a file of `pad/subs/widgets/sections/types/`; never bare |
-| `effect:` | Effect kind | `{effect:typewriter}Hi{/effect:typewriter}`, as `{effect:typewriter}` or `{effect:typewriter}` - a kind is a file of `pad/subs/widgets/effects/types/` |
+| `section:` | Section kind | `{section:hero title='...'}...{/section:hero}`, as `{section:hero ...}` - a kind is a file of `pad/subs/sections/types/`; never bare |
+| `effect:` | Effect kind | `{effect:typewriter}Hi{/effect:typewriter}`, as `{effect:typewriter}` or `{effect:typewriter}` - a kind is a file of `pad/subs/effects/types/` |
 | `jsonld:` | JSON-LD kind | `{jsonld:article headline=$title/}`, as `{jsonld:article data='post'/}` - a kind is a file of `pad/subs/jsonld/types/`; never bare |
 
 ---
@@ -5471,4 +5471,4 @@ such a field.
 
 ### time:clock and time:stopwatch
 
-`{time:clock timezone='Europe/Amsterdam'/}` shows a live clock with daylight-saving-aware local time. `live=0` and `now=` provide static, reproducible output. `{time:stopwatch 65, label='Practice'/}` provides independent Start, Pause and Reset controls; `autostart` begins immediately. Controllers share a nonce-aware script without inline handlers, and elapsed displays do not announce every tick. See `pad/subs/calendars/times/README.md` for formats, accessibility and examples.
+`{time:clock timezone='Europe/Amsterdam'/}` shows a live clock with daylight-saving-aware local time. `live=0` and `now=` provide static, reproducible output. `{time:stopwatch 65, label='Practice'/}` provides independent Start, Pause and Reset controls; `autostart` begins immediately. Controllers share a nonce-aware script without inline handlers, and elapsed displays do not announce every tick. See `pad/subs/times/README.md` for formats, accessibility and examples.

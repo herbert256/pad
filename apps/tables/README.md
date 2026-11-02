@@ -7,7 +7,7 @@ Data tables and computed spreadsheets share this gallery. The data-table example
 Spreadsheets in a page, made with the `{sheet:grid}` tag of the formulas subsystem: the cells
 are lines of text with a comma between them, or the rows of `data=`, and their formulas -
 spreadsheet syntax, read by a parser of the engine's own - are computed on the server with the
-functions of `pad/subs/tables/formulas/types/`, which answer what Excel answers. Each example page runs
+functions of `pad/subs/formulas/types/`, which answer what Excel answers. Each example page runs
 its template and shows it, with the WASM editor and live icons; the functions page lists every
 function as its file describes it, each example computed on a sample sheet - a function added to
 the engine is there without a change to this application.

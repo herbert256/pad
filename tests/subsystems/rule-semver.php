@@ -1,6 +1,6 @@
 <?php
   $root = dirname ( __DIR__, 2 );
-  $rule = require "$root/pad/subs/inputs/rules/types/semver.php";
+  $rule = require "$root/pad/subs/rules/types/semver.php";
   foreach ( json_decode ( file_get_contents ( __DIR__ . '/rule-semver.json' ), TRUE ) as $value => $want )
     if ( $rule ['check'] ( $value ) !== $want ) throw new Exception ( 'Failed: ' . $value );
   echo "rule:semver PHP fixtures passed\n";

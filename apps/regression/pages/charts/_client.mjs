@@ -53,10 +53,10 @@ let alike = 0, charts = 0, alikeParity = 0;
 const kinds = new Set();
 
 // A second pass draws every page again in a palette (palette=, pad/subs/charts/_lib/palette.php
-// and client/palette.js) - the palettes of pad/subs/themes/palettes/types/ in turn, a page each - so
+// and client/palette.js) - the palettes of pad/subs/palettes/types/ in turn, a page each - so
 // the colours the browser puts on a chart are the server's as well.
 
-const palettes  = readdirSync(join(HOME, 'pad/subs/themes/palettes/types')).filter(f => f.endsWith('.php')).map(f => f.slice(0, -4)).sort();
+const palettes  = readdirSync(join(HOME, 'pad/subs/palettes/types')).filter(f => f.endsWith('.php')).map(f => f.slice(0, -4)).sort();
 const paletteOf = (src, palette) => src.replace(tagRe, (m, name, params, slash) => '{' + name + ' ' + (params.trim() ? params.trimEnd() + ', ' : '') + "palette='" + palette + "'" + slash + '}');
 
 // A template of _parity/ is rendered as a page of the charts application that has no file,

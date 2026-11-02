@@ -117,7 +117,7 @@
 
       case 'isbn':
         $isbn = str_replace ( [ ' ', '-' ], '', $text );
-        $rule = include PAD . 'subs/inputs/rules/types/isbn.php';
+        $rule = include PAD . 'subs/rules/types/isbn.php';
         if ( $rule ['check'] ( $isbn ) ) return $isbn;
         return $no ( 'ISBN-10 or ISBN-13 with a valid checksum' );
 

@@ -236,7 +236,7 @@
               <span class="brace">{</span>avatar:gravatar<span class="brace">}</span>
             </h1>
             <p class="tag-about">
-              The Gravatar picture of an e-mail address as an &lt;img&gt;, by subs/images/avatars/_lib/gravatar.php.
+              The Gravatar picture of an e-mail address as an &lt;img&gt;, by subs/avatars/_lib/gravatar.php.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#kind-avatar">Avatars</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
@@ -256,7 +256,7 @@
               One of the 8 avatars of <a href="?tag/avatar"><code>avatar:*</code></a>, written <code>{avatar:gravatar $email/}</code>.
             </p>
             <p>
-              <code>{avatar:gravatar $email/}</code> - the Gravatar picture of an e-mail address as an &lt;img&gt;, by subs/images/avatars/_lib/gravatar.php: the address goes out only as its SHA-256 hash, lazily loaded and with no referrer. size= is the width and height in pixels (default 64), default= what Gravatar shows for an address it does not know - mp (default), identicon, monsterid, wavatar, retro, robohash, blank, 404 or an https:// image address - and alt= the text for the image, the person's name, else 'Avatar'.
+              <code>{avatar:gravatar $email/}</code> - the Gravatar picture of an e-mail address as an &lt;img&gt;, by subs/avatars/_lib/gravatar.php: the address goes out only as its SHA-256 hash, lazily loaded and with no referrer. size= is the width and height in pixels (default 64), default= what Gravatar shows for an address it does not know - mp (default), identicon, monsterid, wavatar, retro, robohash, blank, 404 or an https:// image address - and alt= the text for the image, the person's name, else 'Avatar'.
             </p>
             <p>
               fallback='avatar' asks no one: it draws the <code>{avatar:initials}</code> initials of alt= (or of the address) on the server instead, and fallback='identicon' the <code>{avatar:identicon}</code> of the address - for a page that may make no request to a third party.

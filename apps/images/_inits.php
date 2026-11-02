@@ -1,7 +1,7 @@
 <?php
 
   // The menu of the frame every PAD application shares (_common/_tags/padFrame.pad): the home
-  // page and a page per pattern - the patterns the engine has, pad/subs/images/patterns/types/. The
+  // page and a page per pattern - the patterns the engine has, pad/subs/patterns/types/. The
   // catalog is a list, not keyed by the patterns' names, as the toys' and the games' are.
 
   $patterns = patternsCatalog ();

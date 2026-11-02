@@ -1,8 +1,8 @@
 <?php
 
-  // Public holidays for a page's PHP - the entries of the holidays subsystem, subs/calendars/holidays/,
+  // Public holidays for a page's PHP - the entries of the holidays subsystem, subs/holidays/,
   // whose library is included the first time one is called. A country is its ISO 3166-1
-  // alpha-2 code, nl, de, gb ..., the file of subs/calendars/holidays/types/ of that name; a region is
+  // alpha-2 code, nl, de, gb ..., the file of subs/holidays/types/ of that name; a region is
   // written after it as ISO 3166-2 does, de-by for Bavaria, gb-sct for Scotland.
   //
   //   padHolidays ( 'nl', 2026 )                  the rows of a year - date, name, local,
@@ -21,7 +21,7 @@
 
   function padHolidaysLoad () {
 
-    include_once PAD . 'subs/calendars/holidays/_lib/holidays.php';
+    include_once PAD . 'subs/holidays/_lib/holidays.php';
 
   }
 

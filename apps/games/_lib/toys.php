@@ -1,6 +1,6 @@
 <?php
 
-  // The toys of the engine, as the engine reads them - the files of pad/subs/games/toys/types/
+  // The toys of the engine, as the engine reads them - the files of pad/subs/toys/types/
   // (padToyTypes) - each with what its own file says of it: the comment at its top, its name
   // the word before the dash, its line the first sentence after it.
 
@@ -12,7 +12,7 @@
 
       $comment = [];
 
-      foreach ( file ( PAD . "subs/games/toys/types/$toy.php", FILE_IGNORE_NEW_LINES ) as $line ) {
+      foreach ( file ( PAD . "subs/toys/types/$toy.php", FILE_IGNORE_NEW_LINES ) as $line ) {
         if ( preg_match ( '/^\s*\/\/\s?(.*)$/', $line, $match ) ) {
           if ( trim ( $match [1] ) === '' or str_starts_with ( ltrim ( $match [1] ), '{' ) )
             break;
@@ -53,7 +53,7 @@
 
   function toysName ( $toy ) {
 
-    $php = (string) @file_get_contents ( PAD . "subs/games/toys/types/$toy.php" );
+    $php = (string) @file_get_contents ( PAD . "subs/toys/types/$toy.php" );
 
     return preg_match ( "/padToy \( '$toy', (?:'([^']+)'|\"([^\"]+)\")/", $php, $match ) ? ( $match [2] ?? '' ) . $match [1] : ucfirst ( $toy );
 

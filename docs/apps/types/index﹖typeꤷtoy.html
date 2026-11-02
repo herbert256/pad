@@ -239,7 +239,7 @@
               toy:
             </h1>
             <p class="tag-about">
-              A toy, a file of pad/subs/games/toys/types/ - a live simulation in the browser.
+              A toy, a file of pad/subs/toys/types/ - a live simulation in the browser.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#subsystems">Subsystems</a> <a class="chip chip-form" href="index%EF%B9%96order.html#prefixed">Type prefix required</a>
@@ -258,14 +258,14 @@
               Description
             </h2>
             <p>
-              A small live simulation or visual toy played in the browser, of the kind the tag names - the toys subsystem in <code>PAD/subs/games/toys/</code> sets it up.
+              A small live simulation or visual toy played in the browser, of the kind the tag names - the toys subsystem in <code>PAD/subs/toys/</code> sets it up.
             </p>
             <pre><code>{toy:life pattern='gun'/}
 {toy:mandelbrot zoom=40, center='-0.745, 0.11'/}
 {toy:lsystem 'dragon', iterations=14/}
 </code></pre>
             <p>
-              <strong>Resolution:</strong> a PHP file <code>PAD/subs/games/toys/types/&lt;name&gt;.php</code> (<code>padToyType()</code> in <code>PAD/lib/toy.php</code>), its script <code>www/assets/toys/&lt;name&gt;.js</code> and its style, when it has one, <code>&lt;name&gt;.css</code> beside it: the files of <code>types/</code> are the toys, and a toy is added by adding its files. Every named tag requires its type prefix; other namespaces do not shadow it.
+              <strong>Resolution:</strong> a PHP file <code>PAD/subs/toys/types/&lt;name&gt;.php</code> (<code>padToyType()</code> in <code>PAD/lib/toy.php</code>), its script <code>www/assets/toys/&lt;name&gt;.js</code> and its style, when it has one, <code>&lt;name&gt;.css</code> beside it: the files of <code>types/</code> are the toys, and a toy is added by adding its files. Every named tag requires its type prefix; other namespaces do not shadow it.
             </p>
             <h3>
               The handler

@@ -1,6 +1,6 @@
 <?php
 $visualOptions=[];function padTagParm($name,$default=''){return $GLOBALS['visualOptions'][$name]??$default;}function padError($message){throw new InvalidArgumentException($message);}
-require __DIR__.'/_visual_boot.php';require PAD.'subs/themes/palettes/_lib/palette.php';$padCheckSyntax=TRUE;
+require __DIR__.'/_visual_boot.php';require PAD.'subs/palettes/_lib/palette.php';$padCheckSyntax=TRUE;
 function rejects($fn,$message){try{$fn();throw new RuntimeException($message);}catch(InvalidArgumentException $e){}}
 $visualOptions=['usage'=>'sequential','scheme'=>'dark'];verify(padChartPaletteValidate('viridis',7),'explicit sequential dark');
 $visualOptions=['usage'=>'categorical'];verify(padChartPaletteValidate('okabe-ito',8),'categorical supported count');rejects(fn()=>padChartPaletteValidate('okabe-ito',9),'category limit');rejects(fn()=>padChartPaletteValidate('viridis',3),'mismatched type');

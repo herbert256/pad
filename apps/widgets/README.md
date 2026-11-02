@@ -5,9 +5,9 @@ Page components and their examples share this gallery with landing-page sections
 ## Introduction
 
 The related page-design families of the engine, shown at work: the sections
-(`pad/subs/widgets/sections/`) - the blocks a landing page is built of -, the effects
-(`pad/subs/widgets/effects/`) - motion and decoration -, the themes (`pad/subs/themes/`) - the frame's
-colours swapped - and the palettes (`pad/subs/themes/palettes/`) - colour scales for charts and
+(`pad/subs/sections/`) - the blocks a landing page is built of -, the effects
+(`pad/subs/effects/`) - motion and decoration -, the themes (`pad/subs/themes/`) - the frame's
+colours swapped - and the palettes (`pad/subs/palettes/`) - colour scales for charts and
 anything else. The home page is a landing page built from sections and effects; the theme
 switcher, `{widget:themes/}`, stands in the bar of every page. A page per group shows every kind with
 its examples, a page per kind its examples alone - a theme's page with the contrast of each of

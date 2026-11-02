@@ -58,7 +58,7 @@
     $padCalMonths [] = [ $padCalDay->format ( 'Y-m' ), $padCalDay ];
   }
 
-  // The holidays of holidays=, as the holidays subsystem has them (subs/calendars/holidays/): a day of
+  // The holidays of holidays=, as the holidays subsystem has them (subs/holidays/): a day of
   // more than one gets their names together, and is public when one of them is. The names are
   // the local ones when the page's locale is in a language of the country - Koningsdag - as
   // {calendar:month} has them, else the English ones. A month year= or month= fixes in a year the
@@ -72,7 +72,7 @@
 
   if ( $padCalPlace !== '' ) {
 
-    include_once PAD . 'subs/calendars/holidays/_lib/holidays.php';
+    include_once PAD . 'subs/holidays/_lib/holidays.php';
 
     $padCalWhere = padHolidaysPlace ( $padCalPlace );
 

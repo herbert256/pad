@@ -99,7 +99,7 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
 
   foreach ( [ 'patterns', 'sheets', 'sections', 'toys' ] as $retired )
     pagesQueue ( "$retired/" );
-  foreach ( glob ( "$home/pad/subs/games/toys/types/*.php" ) ?: [] as $toy )
+  foreach ( glob ( "$home/pad/subs/toys/types/*.php" ) ?: [] as $toy )
     pagesQueue ( 'toys/?' . basename ( $toy, '.php' ) );
   foreach ( include "$www/showcase/_routes.php" as $route => $target )
     pagesQueue ( "showcase/?$route" );

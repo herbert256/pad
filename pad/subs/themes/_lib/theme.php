@@ -39,7 +39,7 @@
   //
   // Included on use: by {widget:theme}, {widget:themes} and exits/output.php when a theme is asked for.
 
-  include_once PAD . 'subs/themes/palettes/_lib/palette.php';
+  include_once PAD . 'subs/palettes/_lib/palette.php';
 
   function padThemeTypes () {
 

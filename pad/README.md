@@ -2,7 +2,7 @@
 
 PAD (PHP Application Driver) is an Inversion of Control PHP template engine. Instead of PHP code including templates, PAD templates drive the execution flow, orchestrating data access and output generation.
 
-See [subsystem ownership and tag migration](../docs/SUBSYSTEMS.md) for the full consolidation map.
+See [subsystem layout and tag migration](../docs/SUBSYSTEMS.md) for the flat directory layout and combined showcase apps.
 
 ## Directory Structure
 
@@ -35,32 +35,54 @@ pad/
 ├── select/        # Select subsystem (declared tables)
 ├── sequence/      # Sequence subsystem
 ├── start/         # Execution lifecycle
-├── subs/          # 25 owners; each family discovers its kinds from types/
-│   ├── ai/            # AI providers
-│   ├── calendars/     # Date views; holidays/, recurrences/, times/
-│   ├── channels/      # Notification delivery and storage
-│   ├── charts/        # Charts and timelines/
-│   ├── codes/         # Machine-readable symbologies
-│   ├── diagrams/      # Structured diagram layouts
-│   ├── diffs/         # Text and structured comparisons
-│   ├── embeds/        # External and local media providers
-│   ├── fakes/         # Sample data and distributions/
-│   ├── formats/       # Data readers and writers
-│   ├── games/         # Games and toys/
-│   ├── icons/         # Named SVG icons
-│   ├── images/        # Image views; avatars/, filters/, patterns/
-│   ├── inputs/        # Native and rich form controls; rules/
-│   ├── jsonld/        # Structured page metadata
-│   ├── maps/          # Map views and geospatial/ operations
-│   ├── notations/     # Music, mathematics and other notations
-│   ├── oauth/         # Login providers
-│   ├── printables/    # Paper and PDF layouts
-│   ├── search/        # Indexing, queries and languages
-│   ├── sounds/        # Audio synthesis
-│   ├── tables/        # Tables; sheets/ and formulas/
-│   ├── themes/        # Page themes and palettes/
-│   ├── units/         # Dimension-checked conversions
-│   └── widgets/       # Page components; sections/, effects/, highlighters/
+├── subs/          # 47 sibling subsystems, each with its own types/ registry
+│   ├── ai/              # AI providers
+│   ├── avatars/         # Identity images
+│   ├── calendars/       # Calendar views
+│   ├── channels/        # Notification delivery and storage
+│   ├── charts/          # Numeric charts
+│   ├── codes/           # Machine-readable symbologies
+│   ├── constraints/     # Bounded exact cover, matching and assignment
+│   ├── diagrams/        # Structured diagram layouts
+│   ├── diffs/           # Text and structured comparisons
+│   ├── distributions/   # Seeded statistical sampling
+│   ├── effects/         # Visual effects
+│   ├── embeds/          # External and local media providers
+│   ├── fakes/           # Sample data
+│   ├── filters/         # Image transformations
+│   ├── formats/         # Data readers and writers
+│   ├── formulas/        # Spreadsheet functions and evaluation
+│   ├── games/           # Interactive games
+│   ├── geospatial/      # Geographic data operations
+│   ├── graphs/          # Graph algorithms and dependency planning
+│   ├── highlighters/    # Source-code languages and highlighting
+│   ├── holidays/        # Holiday definitions
+│   ├── icons/           # Named SVG icons
+│   ├── images/          # Image views
+│   ├── inputs/          # Native and rich form controls
+│   ├── jsonld/          # Structured page metadata
+│   ├── maps/            # Map views
+│   ├── notations/       # Music, mathematics and other notations
+│   ├── oauth/           # Login providers
+│   ├── palettes/        # Reusable colour scales
+│   ├── patterns/        # Generated artwork
+│   ├── printables/      # Paper and PDF layouts
+│   ├── recurrences/     # Repeated-date algorithms
+│   ├── rules/           # Server and browser validation rules
+│   ├── schemas/         # JSON, record and rowset validation
+│   ├── search/          # Indexing, queries and languages
+│   ├── sections/        # Page sections
+│   ├── sheets/          # Computed spreadsheet views
+│   ├── sounds/          # Audio synthesis
+│   ├── statistics/      # Descriptive statistics and regression
+│   ├── tables/          # Tabular presentation
+│   ├── textanalysis/    # Unicode text analysis
+│   ├── themes/          # Page themes
+│   ├── timelines/       # Dated data visualizations
+│   ├── times/           # Clocks, relative times and countdowns
+│   ├── toys/            # Interactive simulations
+│   ├── units/           # Dimension-checked conversions
+│   └── widgets/         # Page components
 ├── tags/          # Core engine logic; rendering components live in subs/
 ├── try/           # Try/catch wrapper
 ├── types/         # Tag type handlers
@@ -116,10 +138,10 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | subs/maps/ | The map subsystem behind `{map:auto}`; a view is a file of `subs/maps/types/` - its box of longitude and latitude, for a region its countries, for the states or provinces of a country the outlines file of its own - the outlines and the drawing in `subs/maps/_lib/` |
 | subs/calendars/ | Gregorian month, mini, week, day, agenda, quarter and year views through `{calendar:kind}`. Shared event, holiday and locale handling; pair rows for custom markup. |
 | subs/notations/ | The notations subsystem - `{notation:math}` and the `notation:` type, written as `{notation:math}`, `{notation:braille}` ... - `{notation:chess}` draws the chess notation; a notation is a file of `subs/notations/types/`, its drawing in `subs/notations/_lib/<kind>.php`, its style in `www/assets/notations/<kind>.css`, `notation.php` the body every form runs |
-| subs/inputs/rules/ | The validation rules of `padValidate`, `rules=` and the browser's checker - a rule is a file of `subs/inputs/rules/types/` (its check, message and argument), its check in the browser `www/assets/rules/<rule>.js` beside the checker's runtime `www/assets/rules/validate.js` |
+| subs/rules/ | The validation rules of `padValidate`, `rules=` and the browser's checker - a rule is a file of `subs/rules/types/` (its check, message and argument), its check in the browser `www/assets/rules/<rule>.js` beside the checker's runtime `www/assets/rules/validate.js` |
 | subs/printables/ | The printables subsystem - `{printable:labels}` and the `printable:` type, never bare; a kind is a file of `subs/printables/types/` answering its plan - the paper, the places of the items, the boxes, rectangles and lines they draw - laid out by `subs/printables/_lib/printable.php` as mm-based CSS and the `data-pdf-*` attributes the PDF writer (`tags/_lib/pdf.php`) reads; `assets/printable.css` prints the sheets alone |
 | subs/sounds/ | The sounds subsystem - `{sound:chime}` and the `sound:` type, never bare; a sound is a recipe, a file of `subs/sounds/types/`, rendered by `subs/sounds/_lib/sound.php` (the WAV, `padSoundWav`) and by `www/assets/sounds/sound.js` in the browser with the same arithmetic |
-| subs/games/toys/ | The toys subsystem - `{toy:life}` and the `toy:` type; a toy is a file of `subs/games/toys/types/`, its `.js` and `.css` in `www/assets/toys/` beside the runtime's `toy.js` and `toy.css`, the frame and the option checks in `subs/games/toys/_lib/` |
+| subs/toys/ | The toys subsystem - `{toy:life}` and the `toy:` type; a toy is a file of `subs/toys/types/`, its `.js` and `.css` in `www/assets/toys/` beside the runtime's `toy.js` and `toy.css`, the frame and the option checks in `subs/toys/_lib/` |
 | subs/widgets/ | The widgets subsystem - `{widget:tabs}` and the `widget:` type, written as `{widget:tabs}`, `{widget:modal}` ...; a widget is a file of `subs/widgets/types/` (its tag code), its functions in `subs/widgets/_lib/`, its `.css` and `.js` in `www/assets/widgets/` |
 | tags/ | Template tags (if, while, data, set, echo, etc.) |
 | try/ | Try/catch exception handling wrapper |

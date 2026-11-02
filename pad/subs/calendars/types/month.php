@@ -7,7 +7,7 @@
   // text, else the first field that reads as a date and the first other text; link= names a
   // field with a link for the event. sunday starts the weeks on Sunday instead of Monday.
   // holidays= marks the public holidays of a country, 'nl' or with its region 'de-by' (the
-  // holidays subsystem, subs/calendars/holidays/): the day gets the class holiday - observance for a
+  // holidays subsystem, subs/holidays/): the day gets the class holiday - observance for a
   // day that is no day off - and the holiday's name under its number, in the language of
   // the request's locale when the country speaks it, else in English.
   //

@@ -1,8 +1,8 @@
 <?php
 
   // The Widgets application: the related families that dress a page - the
-  // sections (pad/subs/widgets/sections/), the effects (pad/subs/widgets/effects/), the themes
-  // (pad/subs/themes/) and the palettes (pad/subs/themes/palettes/) - each read as the engine reads
+  // sections (pad/subs/sections/), the effects (pad/subs/effects/), the themes
+  // (pad/subs/themes/) and the palettes (pad/subs/palettes/) - each read as the engine reads
   // it: its kinds are the files of its types/ (padKinds), and what a kind is the comment at
   // the top of its file. A kind added to the engine is here without a change to the
   // application.
@@ -16,10 +16,10 @@
   function sectionsGroups () {
 
     return [
-      'section' => [ 'Sections', 'widgets/sections', 'Blocks a landing page is built from - a hero, features, prices, questions, a footer - in pure CSS, coloured by the theme.', 'layout' ],
-      'effect'  => [ 'Effects',  'widgets/effects',  'Motion and decoration, CSS first - still for whoever asks for reduced motion, and read whole by a screen reader.', 'sparkle' ],
+      'section' => [ 'Sections', 'sections', 'Blocks a landing page is built from - a hero, features, prices, questions, a footer - in pure CSS, coloured by the theme.', 'layout' ],
+      'effect'  => [ 'Effects',  'effects',  'Motion and decoration, CSS first - still for whoever asks for reduced motion, and read whole by a screen reader.', 'sparkle' ],
       'theme'   => [ 'Themes',   'themes',   'The colours of the frame swapped for another set - for a page, an application or the visitor\'s own choice.', 'droplet' ],
-      'palette' => [ 'Palettes', 'themes/palettes', 'Colour scales for charts and anything else - perceptual, colour-blind safe, sequential, diverging and cyclic.', 'bar-chart' ],
+      'palette' => [ 'Palettes', 'palettes', 'Colour scales for charts and anything else - perceptual, colour-blind safe, sequential, diverging and cyclic.', 'bar-chart' ],
     ];
 
   }
@@ -177,7 +177,7 @@ PAD;
 
   function sectionsPaletteTemplates ( $palette ) {
 
-    include_once PAD . 'subs/themes/palettes/_lib/palette.php';
+    include_once PAD . 'subs/palettes/_lib/palette.php';
 
     $type = padPaletteData ( $palette ) ['type'];
 

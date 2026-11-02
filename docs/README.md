@@ -24,7 +24,7 @@ See [herbert256.github.io/pad/apps/](https://herbert256.github.io/pad/apps/) for
 | [FEATURES.md](FEATURES.md) | Every feature beyond the core language - emails, queues, auth, layouts, caching, charts, showcase tags, settings |
 | [GPL.md](GPL.md) | Full GNU General Public License v3.0 text |
 | [PAD.md](PAD.md) | Framework internals - execution flow, level system, configuration |
-| [SUBSYSTEMS.md](SUBSYSTEMS.md) | Subsystem ownership, consolidation decisions and rendering-tag migration |
+| [SUBSYSTEMS.md](SUBSYSTEMS.md) | Flat subsystem layout, combined showcase apps and rendering-tag migration |
 | [REACT.md](REACT.md) | React integration patterns - static/dynamic data, file organization |
 | [reference/](reference/README.md) | Reference documentation - tags, functions, options, properties |
 | [sequences/](sequences/README.md) | Sequence subsystem - 120+ mathematical sequences and transformations |

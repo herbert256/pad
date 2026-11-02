@@ -16,7 +16,7 @@
     if ( ! str_contains ( $html, 'class="hl-' ) or html_entity_decode ( strip_tags ( $html ), ENT_QUOTES, 'UTF-8' ) !== $source ) throw new Exception ( $kind );
   }
   if ( ! padHighlightKnown ( 'py' ) or padHighlightLanguage ( 'ts' ) !== 'typescript' or padHighlightKnown ( '../php' ) ) throw new Exception ( 'aliases' );
-  foreach ( padKinds ( 'widgets/highlighters' ) as $kind ) {
+  foreach ( padKinds ( 'highlighters' ) as $kind ) {
     foreach ( [ '<script>alert("x")</script>', '"' . str_repeat ( 'a', 30000 ) . '"', str_repeat ( '{-- ', 10000 ) ] as $source ) {
       $html = padHighlightTokens ( $source, $kind );
       if ( html_entity_decode ( strip_tags ( $html ), ENT_QUOTES, 'UTF-8' ) !== $source ) throw new Exception ( "Escaping $kind" );

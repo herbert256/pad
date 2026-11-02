@@ -1,4 +1,4 @@
-/* Confetti - the one effect of PAD with a script (pad/subs/widgets/effects/types/confetti.php). Written
+/* Confetti - the one effect of PAD with a script (pad/subs/effects/types/confetti.php). Written
    once per page with the CSP nonce. A {confetti/} bursts once when it scrolls into view, a
    {confetti}...{/confetti} pair every time something in it is clicked - its button; the ones a
    fragment or a live region brings later as well. The pieces fly on a canvas laid over the

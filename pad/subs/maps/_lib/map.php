@@ -177,7 +177,7 @@
   function padMap ( $view, $values, $title, $width, $height, $scale = 'linear', $markers = [], $palette = '', $scheme = 'light' ) {
 
     if ( $palette !== '' ) {
-      include_once PAD . 'subs/themes/palettes/_lib/palette.php';
+      include_once PAD . 'subs/palettes/_lib/palette.php';
       include_once PAD . 'subs/charts/_lib/palette.php';
       if ( ! is_string ( $palette ) || ! is_string ( $scheme ) || $markers )
         throw new InvalidArgumentException ( 'Map palettes require a choropleth, a palette name and a light/dark scheme' );

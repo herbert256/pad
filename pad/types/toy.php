@@ -6,7 +6,7 @@
 
   $padToyKind = $padTag [$pad];
 
-  $padTagGo = PAD . 'subs/games/toys/toy';
+  $padTagGo = PAD . 'subs/toys/toy';
 
   return include PAD . 'types/_go/tag.php';
 

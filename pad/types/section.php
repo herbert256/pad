@@ -6,7 +6,7 @@
 
   $padSectionKind = $padTag [$pad];
 
-  $padTagGo = PAD . 'subs/widgets/sections/section';
+  $padTagGo = PAD . 'subs/sections/section';
 
   return include PAD . 'types/_go/tag.php';
 

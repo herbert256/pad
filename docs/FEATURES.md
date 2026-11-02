@@ -771,7 +771,7 @@ page's own template (and its `_inits.pad`/`_exits.pad`) is read, literal rules o
 a snippet, custom tag, `{pad:page}` or layout, from a variable, in an `action=`/GET form or on a
 file field are errors.
 
-The rules are the files of `pad/subs/inputs/rules/types/` - `<rule>.php` answers its check, its message and
+The rules are the files of `pad/subs/rules/types/` - `<rule>.php` answers its check, its message and
 whether an empty field or a list is judged, `www/assets/rules/<rule>.js` is its check in the
 browser - and the files there are the rules there are: besides `required`, `email`, `url`,
 `numeric`, `integer`, `min:n`, `max:n`, `in:a,b`, `regex:/x/`, `same:field`, `accepted` and
@@ -1333,13 +1333,13 @@ rows, its relative references moving as a spreadsheet's fill moves them, `D2:D9=
 format code (`B:0.00, D:€ #,##0.00, E:0%, B5:B8:yyyy-mm-dd`). A cell typed as `12%`,
 `2024-01-15` or `$4.50` keeps that look, and a formula takes its first cell's.
 
-The formulas are spreadsheet syntax, read by a parser of their own (`pad/subs/tables/formulas/_lib/
+The formulas are spreadsheet syntax, read by a parser of their own (`pad/subs/formulas/_lib/
 formula.php` - not padEval): `=A1+B2*2`, ranges `A1:B3`, whole columns `A:A` and rows `2:5`,
 `$A$1`, texts `"x"` with `""` for a quote, `&`, `= <> < > <= >=`, `%` after a value, `^` - read
 from the left, `=2^3^2` is 64, and a minus binds tighter, `=-2^2` is 4 - TRUE and FALSE, and the
 error values `#DIV/0! #N/A #NAME? #NULL! #NUM! #REF! #VALUE!`, which travel as Excel's do; a text
 holds 32767 characters at most, as a cell of Excel does - a longer one is `#VALUE!`, never built. The
-functions are the files of `pad/subs/tables/formulas/types/` - a function is added by adding its file,
+functions are the files of `pad/subs/formulas/types/` - a function is added by adding its file,
 names are read in any case - and answer what Excel answers: SUM, AVERAGE, MIN, MAX, COUNT,
 COUNTA, COUNTBLANK, COUNTIF(S), SUMIF(S), AVERAGEIF(S), MINIFS, MAXIFS, PRODUCT, SUMPRODUCT
 (ranges of one shape multiplied place by place, what is no number 0), MEDIAN, STDEV, VAR (a
@@ -1432,7 +1432,7 @@ and Apple Podcasts, the `sandbox` of Apple's code: the frame may do only what th
   angle: 20
 {/toy:lsystem}
 ```
-The toys are the files of `pad/subs/games/toys/types/` - `<toy>.php` checks the options and hands them on;
+The toys are the files of `pad/subs/toys/types/` - `<toy>.php` checks the options and hands them on;
 `www/assets/toys/<toy>.js` runs it, `<toy>.css` there styles it when it needs to - and the files
 there are the toys there are (`padToyTypes()`): the Game of Life, Langton's ant, an elementary
 cellular automaton, the Mandelbrot set, sorting algorithms, a double pendulum, boids, fireworks,
@@ -1643,7 +1643,7 @@ padIsHoliday ( '2026-04-27', 'nl' );                // TRUE - King's Day; an obs
 padWorkdays ( '2026-04-01', '2026-04-30', 'nl' );   // 20 - weekdays that are no public holiday, both ends counted
 padAddWorkdays ( '2026-04-24', 1, 'nl' );           // '2026-04-28' - the Monday is King's Day; 0 is the date itself
 ```
-The countries are the files of `pad/subs/calendars/holidays/types/`, named by their ISO 3166-1 alpha-2
+The countries are the files of `pad/subs/holidays/types/`, named by their ISO 3166-1 alpha-2
 code - at, be, br, ca, ch, cz, de, dk, es, fi, fr, gb, hu, ie, it, jp, lu, mx, nl, no, nz, pl, pt, ro, se, sk, us, za -
 and a country is
 added by adding its file. Each holds its national public holidays as rules, not dates: a fixed
@@ -1659,7 +1659,7 @@ states (`de-by`), the United Kingdom's nations (`gb-sct`, `gb-nir`; England and 
 France's Alsace-Moselle and overseas departments (`fr-57`, `fr-974`); the header of every file
 says what it leaves out. A workday is a Monday to Friday that is no public holiday. The
 arithmetic is integer days, from 1583 to 9999 - no clock, no zone, no service. Code: the
-holidays subsystem in `pad/subs/calendars/holidays/` - `holidays.php` the body of `{holidays:auto}`,
+holidays subsystem in `pad/subs/holidays/` - `holidays.php` the body of `{holidays:auto}`,
 `_lib/holidays.php` the rules, `types/` the countries; `pad/lib/holidays.php` the helpers.
 
 A file may name the years its rules are known for, `years`: a year outside them is an error of
@@ -1840,13 +1840,13 @@ guilloche `lines=`. The same options give the same bytes on every request and ev
 machine - the random numbers are PAD's own seeded sequence (`padFake`'s, put back afterwards) and
 every number is written to a fixed precision - so stored answers hold a pattern; without `seed=`
 the seed is 1. A pattern is decoration (`aria-hidden`) unless `title=` names it, and draws no
-motion. The patterns are the files of `pad/subs/images/patterns/types/` - each answers its default size
+motion. The patterns are the files of `pad/subs/patterns/types/` - each answers its default size
 and colours, its own options and the function that draws it - and a pattern is added by adding
 its file; their names are never reached bare, as dots, grid and waves are names of fields and
 pages. A pattern is drawn on every request, so a kind that draws a shape per place, and topography
 its grid times its levels, has a budget for the size, the picture and the levels together - past
 it the pattern is not drawn. An unknown pattern, a colour that is none, a number outside its bounds
-and a pattern past its budget are errors under the strict check. Code: the pattern subsystem in `pad/subs/images/patterns/` - `pattern.php` the
+and a pattern past its budget are errors under the strict check. Code: the pattern subsystem in `pad/subs/patterns/` - `pattern.php` the
 body both forms run, `_lib/` the drawing and its helpers, `types/` the patterns;
 `pad/types/pattern.php` the pattern type, `pad/lib/pattern.php` `padPattern`. The `patterns`
 application shows every pattern with a seed to change by link.
@@ -1864,7 +1864,7 @@ application shows every pattern with a seed to change by link.
 {image:thumbnail 'photos/harbour.jpg', width=400, filter='solarize', threshold=40, alt='The harbour'/} # the highlights turned negative
 {image:thumbnail 'photos/misty.jpg', width=400, filter='autocontrast', cutoff=2, alt='The valley'/}   # its tones from black to white
 ```
-`filter=` on `{image:thumbnail}` runs the picture through the filter subsystem, `pad/subs/images/filters/`: a filter
+`filter=` on `{image:thumbnail}` runs the picture through the filter subsystem, `pad/subs/filters/`: a filter
 is a file of its `types/` - no tag of its own, a word of `filter=` as a validation rule is a word of
 `padValidate` - and the files there are the filters there are. grayscale, sepia (`amount=`),
 duotone (`colors=`, dark first), posterize (`levels=`), pixelate (`cell=`), blur (`radius=` CSS
@@ -1882,7 +1882,7 @@ placeholders too - the same picture and options the same bytes on every run. A f
 every pixel in PHP (sepia, duotone, posterize, vignette, the dithers, dominant) works on 2 megapixels
 at most, its 2x picture made only as far as those reach, and halftone draws 50,000 dots at most. An
 unknown filter, an option out of its bounds, a filter that cannot follow the one before and a filter
-past its budget are errors under the strict check, left out without it. Code: `pad/subs/images/filters/` - `_lib/filter.php` the chain and its options, `_lib/dither.php`,
+past its budget are errors under the strict check, left out without it. Code: `pad/subs/filters/` - `_lib/filter.php` the chain and its options, `_lib/dither.php`,
 `_lib/blurhash.php`, `types/` the filters - and `pad/subs/images/_lib/img.php`, which applies them. The
 `patterns` application shows every filter on the same picture.
 thumbhash is a placeholder as well: Evan Wallace's ThumbHash (`_lib/thumbhash.php`, the reference
@@ -2074,9 +2074,9 @@ without it, so a theme colours the sections without a word; `--pad-section-hero`
 `-max`, `-font` and `-heading-font` are the rest. `tone=` (plain, soft, accent) and `align=`
 (center, left) on every section, `level=` its heading's level (2), `id=` an anchor. A section is
 written `{section:hero}` or `{section:hero}` - never bare: hero, team, stats and footer are the
-names of fields and pages. The kinds are the files of `pad/subs/widgets/sections/types/`, the style
+names of fields and pages. The kinds are the files of `pad/subs/sections/types/`, the style
 `www/assets/sections/` - `section.css` shared and a sheet per kind, each written once per
-page with the CSP nonce; `pad/subs/widgets/sections/section.php` the body every form runs,
+page with the CSP nonce; `pad/subs/sections/section.php` the body every form runs,
 `_lib/section.php` the parts, items and forms; `pad/types/section.php` the section type. The
 `sections` application shows every one beside its template.
 
@@ -2119,7 +2119,7 @@ properties in a rule of a class of their own, written by the server from checked
 page with the nonce - never a style attribute, which a CSP nonce drops; the
 colours are `--pad-effect-accent`, `-accent2`, `-accent3`, `-text`, `-mark` and `-track` on
 `.pad-effect`, light and dark, falling back to the frame's `--accent`, `--text` and `--line`, so a
-theme colours them. The kinds are the files of `pad/subs/widgets/effects/types/` - typewriter, glitch,
+theme colours them. The kinds are the files of `pad/subs/effects/types/` - typewriter, glitch,
 shimmer, gradient, wave, highlighter, underline, strike, encircle, rotator, decipher, countup, marquee, reveal,
 scrollprogress, tilt, nudge, spotlight, spinner, skeleton, confetti -
 and an effect is added by adding its file. Each has two explicit forms:
@@ -2132,7 +2132,7 @@ The underline's, the strike's and the encircle's `scroll` too, and the scrollpro
 follows `scroll(root)` and is not there at all where a browser has none or less motion is asked for; their `hover` (not the strike's)
 draws the stroke while the pointer is on it or the focus in it, at once under reduced motion; on
 paper and in forced colours the underline and the strike are the text's own line. Code: the effects
-subsystem in `pad/subs/widgets/effects/` - `effect.php` the body every form runs, `_lib/effect.php` the
+subsystem in `pad/subs/effects/` - `effect.php` the body every form runs, `_lib/effect.php` the
 options and the markup, `types/` the kinds, `assets/` their looks; `pad/types/effect.php` the
 effect type, `pad/tags/effect.php` the tag.
 
@@ -2196,7 +2196,7 @@ session's token as every form then does. Code: `pad/subs/themes/` - `_lib/theme.
 $colors = padPalette ( 'viridis', 7 );           # [ '#440154', '#443a83', ... ] for the page's PHP
 ```
 Colour scales for charts and anything else. The palettes are the files of
-`pad/subs/themes/palettes/types/` - each its name, its type and its colours - and a palette is added by
+`pad/subs/palettes/types/` - each its name, its type and its colours - and a palette is added by
 adding its file. Sequential: viridis, magma, plasma, inferno and cividis, perceptually uniform,
 from matplotlib's published 256-colour tables (`_cm_listed.py`), and ColorBrewer's blues, greens,
 oranges and greys of nine classes and its multi-hue ylgnbu and ylorrd, and batlow, Fabio Crameri's, its lightness rising all the way,
@@ -2236,7 +2236,7 @@ in the browser (`client`) gets the same: the server hands it the class and the r
 number of slots and `www/assets/charts/palette.js` puts on the ones its
 drawing needs - the same SVG, character for character, which the `charts` line of `./ci.sh` holds
 by drawing every example of the charts application once more in a palette, the palettes in turn.
-Without `palette=` a chart is drawn as before, byte for byte. Code: `pad/subs/themes/palettes/`
+Without `palette=` a chart is drawn as before, byte for byte. Code: `pad/subs/palettes/`
 (`_lib/palette.php`, `palette.php` the body of `{widget:palette}`), `pad/lib/palette.php` (`padPalette`),
 `pad/subs/charts/_lib/palette.php` and `client/palette.js` for the charts.
 

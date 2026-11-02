@@ -1,6 +1,6 @@
 <?php
 
-  // The patterns are the files of pad/subs/images/patterns/types/, as the engine reads them (padPatternKinds).
+  // The patterns are the files of pad/subs/patterns/types/, as the engine reads them (padPatternKinds).
 
   $tagAbout   = 'Draws a seeded SVG background or a piece of generative art on the server - ' . count ( padPatternKinds () ) . ' kinds, from stripes and dots to contour lines and circle packing - the same bytes for the same options.';
   $tagGroup   = 'pictures';
@@ -15,7 +15,7 @@
 PAD;
 
   $tagParms   = [
-    'kind after colon' => 'The pattern, a file of <code>pad/subs/images/patterns/types/</code>: '
+    'kind after colon' => 'The pattern, a file of <code>pad/subs/patterns/types/</code>: '
             . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padPatternKinds () ) )
             . '. The pattern: prefix selects it - <code>{pattern:topography/}</code>; a pattern is never reached bare.' ];
 

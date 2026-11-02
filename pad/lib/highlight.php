@@ -11,9 +11,9 @@
   // padHighlightTokens  the coloured text alone, for a frame of the page's own
   //
   // Their workings - the languages, the patterns, PHP's tokenizer, the escaping - are
-  // subs/widgets/highlighters/, reached through the compatibility include in subs/widgets/_lib/highlight.php.
+  // subs/highlighters/, reached through the compatibility include in subs/widgets/_lib/highlight.php.
   //
-  // The languages are discovered from subs/widgets/highlighters/types/, including Python, Go, Rust,
+  // The languages are discovered from subs/highlighters/types/, including Python, Go, Rust,
   // TypeScript and diff alongside the existing PAD, PHP and web languages. The text is cut into tokens by one combined pattern per
   // language - PHP by PHP's own tokenizer - and every piece, coloured or not, is
   // HTML-escaped, so the result is safe to print raw. A token is a <span class="hl-...">:
@@ -24,7 +24,7 @@
 
     include_once PAD . 'subs/widgets/_lib/highlight.php';
 
-    return padKind ( 'widgets/highlighters', padHighlightLanguage ( $lang ) );
+    return padKind ( 'highlighters', padHighlightLanguage ( $lang ) );
 
   }
 
