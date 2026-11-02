@@ -7,7 +7,7 @@
     if ( $padCheckSyntax ) padError ( "there is no diff type named '" . padMakeSafe ( $padDiffKind, 20 ) . "' - " . implode ( ', ', padKinds ( 'diffs' ) ) );
     return FALSE;
   }
-  if ( in_array ( $padDiffKind, [ 'json', 'rows' ], TRUE ) ) {
+  if ( in_array ( $padDiffKind, [ 'json', 'rows', 'sequence' ], TRUE ) ) {
     $padDiffArguments = [];
     $padDiffOptions = [];
     foreach ( padAttrsItems () as [ $padDiffName, $padDiffExpression ] ) {
