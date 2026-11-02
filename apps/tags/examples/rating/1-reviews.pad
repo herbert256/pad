@@ -1,6 +1,6 @@
 {pad:meta title='Scores in a table', about='Each product\'s average as stars, a part of a star filled as far as the score goes.'/}
 <table>
   {array:products}
-  <tr><td>{$product}</td><td>{pad:rating $score, size=16/}</td><td>{$score}</td></tr>
+  <tr><td>{$product}</td><td>{widget:rating $score, size=16/}</td><td>{$score}</td></tr>
   {/array:products}
 </table>

@@ -11,7 +11,7 @@
 
   // Whether the tag on this level takes its items raw - the built-in {pad:attrs}, {pad:classes},
   // {pad:trans}, {pad:debug}, {pad:parms}, {pad:assert}, the form tags {pad:form}, {pad:input} and {pad:textarea},
-  // {pad:can} and {pad:cannot}, and {pad:jsonview}, whose values may be arrays - a row, an answer of an
+  // {pad:can} and {pad:cannot}, and {widget:jsonview}, whose values may be arrays - a row, an answer of an
   // API - that an expression cannot hold. So does every rich form field of pad/subs/inputs/, the
   // input: type: its items are the field's, as {pad:input}'s are - min= of a slider, rows= of a
   // markdown editor are no handling options.
@@ -23,10 +23,11 @@
     if ( ( $padType [$pad] ?? '' ) === 'diff' and in_array ( $padTag [$pad] ?? '', [ 'json', 'rows' ], TRUE ) )
       return TRUE;
 
-    if ( ( $padType [$pad] ?? '' ) == 'input' )
+    if ( ( $padType [$pad] ?? '' ) == 'input'
+         or ( ( $padType [$pad] ?? '' ) == 'widget' and ( $padTag [$pad] ?? '' ) == 'jsonview' ) )
       return TRUE;
 
-    return in_array ( $padTag [$pad] ?? '', [ 'attrs', 'classes', 'trans', 'debug', 'parms', 'form', 'input', 'textarea', 'assert', 'can', 'cannot', 'jsonview' ] ) and ( $padType [$pad] ?? '' ) == 'pad';
+    return in_array ( $padTag [$pad] ?? '', [ 'attrs', 'classes', 'trans', 'debug', 'parms', 'form', 'input', 'textarea', 'assert', 'can', 'cannot' ] ) and ( $padType [$pad] ?? '' ) == 'pad';
 
   }
 

@@ -1,0 +1,11 @@
+/* Loading shapes inherit the page's foreground and respect reduced motion. */
+:where(.pad-skeleton){width:100%;max-width:32rem;box-sizing:border-box}
+.pad-skeleton .sk-row{display:flex;gap:.75rem;margin:.7rem 0}
+.pad-skeleton .sk-line,.pad-skeleton .sk-image,.pad-skeleton .sk-avatar{display:block;background:currentColor;opacity:.13;border-radius:.3rem}
+.pad-skeleton .sk-line{height:.85rem;flex:1}
+.pad-skeleton.sk-text .sk-row:last-child{width:65%}
+.pad-skeleton .sk-image{height:10rem;margin-bottom:1rem}
+.pad-skeleton .sk-avatar{width:4rem;height:4rem;border-radius:50%}
+.pad-skeleton.sk-card{padding:1rem;border:1px solid color-mix(in srgb,currentColor 15%,transparent);border-radius:.75rem}
+@media(prefers-reduced-motion:no-preference){.pad-skeleton.sk-animate{animation:pad-skeleton-pulse 1.5s ease-in-out infinite alternate}}
+@keyframes pad-skeleton-pulse{to{opacity:.45}}

@@ -2077,13 +2077,13 @@ on the light square behind it, `--pad-identicon-background` (`light-dark()` on
 
 ### placeholder
 A grey image placeholder as inline SVG - crossing lines and the size or a text in the middle
-(`tags/_lib/placeholder.php`): wireframes and layouts that wait for their pictures, no placeholder
+(`subs/widgets/_lib/placeholder.php`): wireframes and layouts that wait for their pictures, no placeholder
 service.
 
 ```html
-{pad:placeholder '600x300', text='Hero image'/}
-{pad:placeholder ratio='16:9', fluid/}
-{pad:placeholder ratio='4:3', width=320/}
+{widget:placeholder '600x300', text='Hero image'/}
+{widget:placeholder ratio='16:9', fluid/}
+{widget:placeholder ratio='4:3', width=320/}
 ```
 
 **Parameters:**
@@ -2106,13 +2106,13 @@ under the strict check.
 
 ### progress
 An accessible progress bar - the native `<progress>` element, styled on the server, under a
-line with its label and percentage (`tags/_lib/progress.php`); with `steps` a row of step dots. No
+line with its label and percentage (`subs/widgets/_lib/progress.php`); with `steps` a row of step dots. No
 script, it prints.
 
 ```html
-{pad:progress 72, max=100, label='Upload'/}
-{pad:progress $done, label=$file, color='success', size='small'/}
-{pad:progress 3, max=5, steps, label='Checkout'/}
+{widget:progress 72, max=100, label='Upload'/}
+{widget:progress $done, label=$file, color='success', size='small'/}
+{widget:progress 3, max=5, steps, label='Checkout'/}
 ```
 
 **Parameters:**
@@ -2137,12 +2137,12 @@ an unknown colour or size is an error under the strict check.
 
 ### rating
 A score as stars (or hearts) in inline SVG - whole ones filled, a part of one clipped to the
-score, the score said in words (`tags/_lib/rating.php`).
+score, the score said in words (`subs/widgets/_lib/rating.php`).
 
 ```html
-{pad:rating 4.5, max=5/}
-{data:products}{$product} {pad:rating $score, size=16/}{/data:products}
-{pad:rating 3.75, icon='heart'/}
+{widget:rating 4.5, max=5/}
+{data:products}{$product} {widget:rating $score, size=16/}{/data:products}
+{widget:rating 3.75, icon='heart'/}
 ```
 
 **Parameters:**
@@ -4282,15 +4282,15 @@ strict error that names the nearest country when the text is close to a name.
 ---
 
 ### jsonview
-A JSON value or a PHP array as a tree to fold open and shut (`tags/_lib/jsonview.php`) - each object and
+A JSON value or a PHP array as a tree to fold open and shut (`subs/widgets/_lib/jsonview.php`) - each object and
 list a `<details>`, no script.
 
 ```html
-{pad:jsonview $response, open=1, title='GET /orders/42'/}
-{pad:jsonview data='settings'/}
-{pad:jsonview}
+{widget:jsonview $response, open=1, title='GET /orders/42'/}
+{widget:jsonview data='settings'/}
+{widget:jsonview}
   {"id": 42, "paid": true, "lines": [ ... ]}
-{/pad:jsonview}
+{/widget:jsonview}
 ```
 
 **Parameters:**
@@ -4325,7 +4325,7 @@ there are, and the subsystem is `pad/subs/sections/`.
 {section:hero 'Pages that drive themselves', button='Start', link='?start', second='Read more', secondLink='?docs'}
   Write the page, and the page renders itself.
   {pad:slot 'eyebrow'}New in PAD{/pad:slot}
-  {pad:slot 'image'}{pad:placeholder ratio='4:3', fluid/}{/pad:slot}
+  {pad:slot 'image'}{widget:placeholder ratio='4:3', fluid/}{/pad:slot}
 {/section:hero}
 {section:features title='Why PAD', columns=3}
   {section:item 'Fast', icon='zap'}Pages render in milliseconds.{/section:item}
