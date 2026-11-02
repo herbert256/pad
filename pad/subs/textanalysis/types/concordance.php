@@ -1,4 +1,9 @@
 <?php
+
+  // concordance - Query is a normalized token/phrase (default token mode, 1..32 tokens) or literal substring. Reuses existing normalization and case folding. Returns original UTF-8 byteOffset/byteLength and unchanged matched text; context is bounded in extended grapheme clusters (0..200). Substring matches must begin/end at normalized grapheme boundaries, so case-fold expansion never splits an original grapheme. ≤1 MiB input, 100000 graphemes/tokens, 1024 query bytes and 1000 results; truncated signals further matches. Results are data: consuming HTML widgets must escape left/text/right before highlighting.
+  //
+  // Runnable example: `apps/tags/examples/textanalysis/concordance.pad`. Independent fixture: `php tests/subsystems/expansion-textanalysis-concordance.php`.
+
 return ['options'=>['normalization','caseFold','locale','query','mode','context','limit'],'call'=>function($text,$options){
  [, $unused]=padTextAnalysisTokens($text,$options);$query=$options['query']??NULL;$mode=$options['mode']??'token';$context=$options['context']??30;$limit=$options['limit']??100;if(!is_string($query)||$query===''||strlen($query)>1024||!mb_check_encoding($query,'UTF-8')||!in_array($mode,['token','substring'],TRUE)||!is_int($context)||$context<0||$context>200||!is_int($limit)||$limit<1||$limit>1000)throw new InvalidArgumentException('query requires 1..1024 UTF-8 bytes, mode token/substring, context 0..200 graphemes, limit 1..1000');
  $normal=function($s)use($options){if(($options['normalization']??'nfc')==='nfc')$s=Normalizer::normalize($s,Normalizer::FORM_C);return ($options['caseFold']??TRUE)?mb_convert_case($s,MB_CASE_FOLD,'UTF-8'):$s;};

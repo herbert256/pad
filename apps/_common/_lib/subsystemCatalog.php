@@ -29,6 +29,12 @@
       'recurrence' => [ 'Calendar recurrences', 'Bounded occurrences between explicit dates through padOccurrences.', '', 'weekly' ],
       'geo' => [ 'Geographic operations', 'Plain data operations through padGeo, with longitude before latitude.', '', 'distance' ],
       'distribution' => [ 'Sampling distributions', 'Seeded samples through padSample.', '', 'normal' ],
+      'interval' => [ 'Interval operations', 'Half-open numeric or instant interval sets through padIntervals.', '', 'subtract' ],
+      'color' => [ 'Color computation', 'Explicit color conversion, mixing, contrast and gamut through padColor.', '', 'contrast' ],
+      'timeseries' => [ 'Time series', 'Timestamped resampling, windows, smoothing and differences through padTimeSeries.', '', 'resample' ],
+      'geometry' => [ 'Planar geometry', 'Convex hulls, simple-ring metrics and rectangle clipping through padGeometry.', '', 'hull' ],
+      'numeric' => [ 'Numerical methods', 'Bounded interpolation, integration, roots and linear systems through padNumeric.', '', 'integrate' ],
+      'signal' => [ 'Signal analysis', 'Offline spectrum, convolution, correlation and windows through padSignal.', '', 'spectrum' ],
       'palette'  => [ 'Colour palettes', 'The name parameter of {widget:palette}, or palette= on a chart.', 'palette', 'viridis' ],
     ];
 
@@ -66,6 +72,113 @@
     $language = 'pad';
     $run = FALSE;
     $about = '';
+
+    // Literal helper examples for kinds with distinct argument shapes. Rendering
+    // families retain their runnable PAD templates below.
+    static $examples = [
+      'color' => [
+        'contrast' => 'padColor ( \'contrast\', \'#183347\', \'#fff\' );',
+        'convert' => 'padColor ( \'convert\', \'#336699\', NULL, [\'to\'=>\'hsl\'] );',
+        'gamut' => 'padColor ( \'gamut\', [\'channels\'=>[1.1,0,-.1]], NULL, [\'method\'=>\'clip\'] );',
+        'mix' => 'padColor ( \'mix\', \'#f00\', \'#00f\', [\'space\'=>\'linear-srgb\'] );',
+      ],
+      'diff' => [
+        'binary' => 'padDiffCompare(\'binary\',hex2bin(\'004142ff\'),hex2bin(\'004342ff78\'));',
+        'sequence' => 'padDiffCompare(\'sequence\',[\'a\',\'b\',\'c\'],[\'b\',\'a\',\'d\']);',
+      ],
+      'distribution' => [
+        'gamma' => 'padSample(\'gamma\',8,[\'shape\'=>2,\'scale\'=>3,\'seed\'=>42]);',
+        'geometric' => 'padSample(\'geometric\',8,[\'p\'=>.25,\'seed\'=>42]);',
+        'hypergeometric' => 'padSample(\'hypergeometric\',8,[\'population\'=>20,\'successes\'=>7,\'draws\'=>5,\'seed\'=>42]);',
+        'weibull' => 'padSample(\'weibull\',8,[\'shape\'=>2,\'scale\'=>3,\'seed\'=>42]);',
+      ],
+      'format' => [
+        'htmltable' => 'padFormatRead(\'htmltable\',\'<table id="sales"><tr><th>Name</th><th>Total</th></tr><tr><td>Ada</td><td>42</td></tr></table>\',[\'table\'=>\'#sales\']);',
+        'ods' => 'padFormatRead(\'ods\',padFormatWrite(\'ods\',[[\'Name\'=>\'Ada\',\'Score\'=>42],[\'Name\'=>\'Bo\',\'Score\'=>7]],[\'sheet\'=>\'Scores\']),[\'sheet\'=>\'Scores\']);',
+      ],
+      'formula' => [
+        'choosecols' => 'padFormula(\'=CHOOSECOLS(A1:B2,-1,1)\',[\'A1\'=>1,\'B1\'=>2,\'A2\'=>3,\'B2\'=>4]);',
+        'chooserows' => 'padFormula(\'=CHOOSEROWS(A1:B2,-1,1)\',[\'A1\'=>1,\'B1\'=>2,\'A2\'=>3,\'B2\'=>4]);',
+        'drop' => 'padFormula(\'=DROP(A1:B2,-1,1)\',[\'A1\'=>1,\'B1\'=>2,\'A2\'=>3,\'B2\'=>4]);',
+        'hstack' => 'padFormula(\'=HSTACK(A1:B2,9)\',[\'A1\'=>1,\'B1\'=>2,\'A2\'=>3,\'B2\'=>4]);',
+        'sequence' => 'padFormula(\'=SEQUENCE(2,3,10,-2)\',[\'A1\'=>1,\'B1\'=>2,\'A2\'=>3,\'B2\'=>4]);',
+        'take' => 'padFormula(\'=TAKE(A1:B2,-1,1)\',[\'A1\'=>1,\'B1\'=>2,\'A2\'=>3,\'B2\'=>4]);',
+        'transpose' => 'padFormula(\'=TRANSPOSE(A1:B2)\',[\'A1\'=>1,\'B1\'=>2,\'A2\'=>3,\'B2\'=>4]);',
+        'vstack' => 'padFormula(\'=VSTACK(A1:B2,9)\',[\'A1\'=>1,\'B1\'=>2,\'A2\'=>3,\'B2\'=>4]);',
+      ],
+      'geo' => [
+        'polygon-area' => 'padGeo(\'polygon-area\',[\'type\'=>\'Polygon\',\'coordinates\'=>[[[4,51],[5,51],[5,52],[4,52],[4,51]]]],NULL,[\'unit\'=>\'km2\']);',
+        'simplify' => 'padGeo(\'simplify\',[\'type\'=>\'LineString\',\'coordinates\'=>[[4,52],[4.01,52.001],[4.02,52]]],NULL,[\'tolerance\'=>200]);',
+      ],
+      'geometry' => [
+        'area' => 'padGeometry ( \'area\', [[0,0],[4,0],[4,4],[0,4]] );',
+        'centroid' => 'padGeometry ( \'centroid\', [[0,0],[4,0],[4,4],[0,4]] );',
+        'clip' => 'padGeometry ( \'clip\', [[0,0],[4,0],[4,4],[0,4]], [\'box\'=>[1,1,3,3]] );',
+        'hull' => 'padGeometry ( \'hull\', [[0,0],[4,0],[4,4],[0,4]] );',
+      ],
+      'graph' => [
+        'spanningtree' => 'padGraph(\'spanningtree\',[\'a\',\'b\',\'c\'],[[\'a\',\'b\',5],[\'a\',\'c\',2],[\'b\',\'c\',1]]);',
+        'strongcomponents' => 'padGraph(\'strongcomponents\',[\'a\',\'b\',\'c\'],[[\'a\',\'b\'],[\'b\',\'a\'],[\'b\',\'c\']]);',
+      ],
+      'interval' => [
+        'intersection' => 'padIntervals ( \'intersection\', [[\'start\'=>0,\'end\'=>5]], [[\'start\'=>2,\'end\'=>3]] );',
+        'overlaps' => 'padIntervals ( \'overlaps\', [[\'start\'=>0,\'end\'=>5]], [[\'start\'=>2,\'end\'=>3]] );',
+        'subtract' => 'padIntervals ( \'subtract\', [[\'start\'=>0,\'end\'=>5]], [[\'start\'=>2,\'end\'=>3]] );',
+        'union' => 'padIntervals ( \'union\', [[\'start\'=>0,\'end\'=>5]], [[\'start\'=>2,\'end\'=>3]] );',
+      ],
+      'numeric' => [
+        'integrate' => 'padNumeric(\'integrate\',[[0,0],[1,2],[2,4]],[\'method\'=>\'trapezoid\']);',
+        'interpolate' => 'padNumeric(\'interpolate\',[[0,0],[2,4],[5,10]],[\'at\'=>[1,3]]);',
+        'linear-system' => 'padNumeric(\'linear-system\',[\'matrix\'=>[[2,1],[1,3]],\'rhs\'=>[5,7]]);',
+        'root' => 'padNumeric(\'root\',[\'function\'=>fn($x)=>$x*$x-2,\'lower\'=>0,\'upper\'=>2],[\'tolerance\'=>1e-10]);',
+      ],
+      'recurrence' => [
+        'dates' => 'padOccurrences(\'dates\',[\'mode\'=>\'date\',\'dates\'=>[\'2026-11-10\',\'2026-11-02\',\'2026-11-10\']],\'2026-11-01\',\'2026-12-01\');',
+        'hourly' => 'padOccurrences(\'hourly\',[\'start\'=>\'2026-10-25T00:30:00+02:00\',\'timezone\'=>\'Europe/Amsterdam\',\'step\'=>\'elapsed\'],\'2026-10-25\',\'2026-10-25T05:00\');',
+      ],
+      'rule' => [
+        'dateformat' => 'padValidate ( [\'value\'=>\'dateformat:Y-m-d\'], [\'value\'=>\'2026-11-02\'] );',
+        'prohibited_if' => 'padValidate ( [\'value\'=>\'prohibited_if:status,closed\'], [\'status\'=>\'closed\'] );',
+        'required_if_any' => 'padValidate ( [\'value\'=>\'required_if_any:status,ready;priority,high\'], [\'value\'=>\'Confirmed\',\'status\'=>\'ready\'] );',
+      ],
+      'schema' => [
+        'relation' => 'padSchema(\'relation\',[\'people\'=>[[\'id\'=>1]],\'orders\'=>[[\'person\'=>1]]],[\'primary\'=>[[\'table\'=>\'people\',\'fields\'=>[\'id\']]],\'foreign\'=>[[\'table\'=>\'orders\',\'fields\'=>[\'person\'],\'references\'=>[\'table\'=>\'people\',\'fields\'=>[\'id\']]]]]);',
+      ],
+      'signal' => [
+        'convolve' => 'padSignal(\'convolve\',[\'signal\'=>[1,2,3],\'kernel\'=>[.5,.5]],[\'mode\'=>\'full\']);',
+        'correlate' => 'padSignal(\'correlate\',[\'a\'=>[1,0,0],\'b\'=>[0,0,1]],[\'sampleRate\'=>10,\'normalization\'=>\'none\']);',
+        'spectrum' => 'padSignal(\'spectrum\',[0,1,0,-1,0,1,0,-1],[\'sampleRate\'=>8,\'window\'=>\'rectangular\',\'scaling\'=>\'amplitude\']);',
+        'window' => 'padSignal(\'window\',[1,1,1,1,1],[\'window\'=>\'hann\']);',
+      ],
+      'solve' => [
+        'coloring' => 'padSolve(\'coloring\',[\'nodes\'=>[\'a\',\'b\',\'c\'],\'edges\'=>[[\'a\',\'b\'],[\'b\',\'c\']],\'colors\'=>2]);',
+        'knapsack' => 'padSolve(\'knapsack\',[\'items\'=>[[\'id\'=>\'A\',\'weight\'=>3,\'value\'=>5],[\'id\'=>\'B\',\'weight\'=>4,\'value\'=>8]],\'capacity\'=>5]);',
+      ],
+      'stats' => [
+        'bootstrap' => 'padStats(\'bootstrap\',[1,2,3,4,5],[\'seed\'=>42,\'resamples\'=>500,\'interval\'=>\'percentile\']);',
+        'correlation' => 'padStats(\'correlation\',[[\'x\'=>1,\'y\'=>2],[\'x\'=>2,\'y\'=>5],[\'x\'=>3,\'y\'=>6]],[\'method\'=>\'pearson\']);',
+        'weighted' => 'padStats(\'weighted\',[[\'value\'=>1,\'weight\'=>2],[\'value\'=>4,\'weight\'=>1]],[\'semantics\'=>\'frequency\']);',
+      ],
+      'textanalysis' => [
+        'concordance' => 'padTextAnalysis(\'concordance\',\'PAD pages use PAD templates.\',[\'normalization\'=>\'none\',\'query\'=>\'pad\',\'context\'=>12]);',
+        'keywords' => 'padTextAnalysis(\'keywords\',[\'first\'=>\'PAD templates produce pages\',\'second\'=>\'PAD pages contain data\'],[\'normalization\'=>\'none\',\'method\'=>\'tfidf\']);',
+      ],
+      'timeseries' => [
+        'difference' => 'padTimeSeries ( \'difference\', [[\'time\'=>0,\'value\'=>2],[\'time\'=>1,\'value\'=>4],[\'time\'=>4,\'value\'=>8]], [\'lag\'=>1] );',
+        'ewma' => 'padTimeSeries ( \'ewma\', [[\'time\'=>0,\'value\'=>2],[\'time\'=>1,\'value\'=>4],[\'time\'=>4,\'value\'=>8]], [\'alpha\'=>0.5] );',
+        'resample' => 'padTimeSeries ( \'resample\', [[\'time\'=>0,\'value\'=>2],[\'time\'=>1,\'value\'=>4],[\'time\'=>4,\'value\'=>8]], [\'stepSeconds\'=>2] );',
+        'rolling' => 'padTimeSeries ( \'rolling\', [[\'time\'=>0,\'value\'=>2],[\'time\'=>1,\'value\'=>4],[\'time\'=>4,\'value\'=>8]], [\'window\'=>2] );',
+      ],
+      'unit' => [
+        'acceleration' => 'padConvert(1,\'g0\',\'m/s2\');',
+        'density' => 'padConvert(1,\'lb/ft3\',\'kg/m3\');',
+        'force' => 'padConvert(1,\'kgf\',\'N\');',
+        'frequency' => 'padConvert(1,\'rpm\',\'Hz\');',
+        'torque' => 'padConvert(1,\'lbf*in\',\'N*m\');',
+      ],
+    ];
+    if ( isset ( $examples [$family] [$kind] ) ) return [ 'source' => $examples [$family] [$kind], 'language' => 'php',
+      'run' => FALSE, 'about' => 'A complete helper call. See the subsystem documentation for limits and result fields.' ];
 
     switch ( $family ) {
       case 'unit':

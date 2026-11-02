@@ -4,8 +4,18 @@
 
 ## Example
 
+The paired PHP page supplies the application data:
+
+```php
+<?php
+$cropImage=['id'=>'pad-logo','width'=>240,'height'=>240,'orientation'=>1];
+$cropSrc=$padRoot.'showcase/photos/logo.jpg';
+```
+
+The PAD template renders it:
+
 ```pad
-{input:form}{input:imagecrop 'crop', image=$cropImage, src='/assets/icons/icon-192.png', label='Crop image'/}<button type='submit'>Apply</button><button type='reset'>Reset</button>{/input:form}
+{input:form 'imagecrop'}{input:imagecrop 'crop', image=$cropImage, src=$cropSrc, label='Crop image'/}<button type='submit'>Apply</button><button type='reset'>Reset</button>{/input:form}
 ```
 
 Run the focused fixture with `php tests/subsystems/input-imagecrop.php`.

@@ -21,7 +21,7 @@
   include_once PAD . 'subs/diffs/_lib/text.php';
   set_error_handler ( function ( $n, $s ) { throw new Exception ( $s ); } );
 
-  check ( padKinds ( 'diffs' ) === [ 'json', 'lines', 'rows', 'side', 'unified', 'words' ] );
+  check ( padKinds ( 'diffs' ) === [ 'binary', 'json', 'lines', 'rows', 'sequence', 'side', 'unified', 'words' ] );
   $types = [];
   foreach ( padKinds ( 'diffs' ) as $kind ) $types [$kind] = include PAD . "subs/diffs/types/$kind.php";
   $options = [ 'from' => '<old>', 'to' => '<new>', 'same' => FALSE, 'key' => 'id', 'lines' => FALSE, 'side' => FALSE ];
@@ -62,5 +62,5 @@
   $cycle = new stdClass; $cycle->self = $cycle;
   try { padDiffCompare ( 'json', $cycle, new stdClass ); throw new Exception ( 'Native recursion must be bounded' ); } catch ( LengthException $e ) {}
   check ( ! is_file ( PAD . 'tags/diff.php' ) );
-  echo 'Merged diffs: both contracts, six tag layouts, helper limits and ' . ( $argv [1] ?? 'tags' ) . "-first load order passed\n";
+  echo 'Merged diffs: both contracts, eight tag layouts, helper limits and ' . ( $argv [1] ?? 'tags' ) . "-first load order passed\n";
 ?>

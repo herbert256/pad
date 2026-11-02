@@ -1,6 +1,6 @@
 # Subsystem layout and rendering tags
 
-All 47 subsystems live exactly one directory below `pad/subs/`. Each subsystem
+All 53 subsystems live exactly one directory below `pad/subs/`. Each subsystem
 has its own `types/` registry; the files in it remain the source of truth.
 `pad/lib/subsystem.php` maps public namespaces and helper families to these
 single-directory names. Subsystems must not be nested inside other subsystems.
@@ -14,15 +14,15 @@ examples and galleries independently of the engine directory layout.
 
 | Area | Sibling directories directly under `pad/subs/` |
 | --- | --- |
-| Dates and time | `calendars`, `times`, `holidays`, `recurrences` |
+| Dates and time | `calendars`, `times`, `holidays`, `recurrences`, `intervals`, `timeseries` |
 | Charts | `charts`, `timelines` |
-| Sample data | `fakes`, `distributions` |
+| Sample data and numeric analysis | `fakes`, `distributions`, `numerics`, `signals` |
 | Games and simulations | `games`, `toys` |
 | Images | `images`, `avatars`, `filters`, `patterns` |
 | Forms | `inputs`, `rules` |
-| Geography | `maps`, `geospatial` |
+| Geography and planar geometry | `maps`, `geospatial`, `geometry` |
 | Tables and spreadsheets | `tables`, `sheets`, `formulas` |
-| Colour | `themes`, `palettes` |
+| Colour | `themes`, `palettes`, `colors` |
 | Page components | `widgets`, `sections`, `effects`, `highlighters` |
 
 The other sibling subsystems are `ai`, `channels`, `codes`, `constraints`,
@@ -39,6 +39,27 @@ are left at the former locations.
 
 `php tests/subsystems/layout.php` checks the registry and disk layout; it also
 runs in the subsystem test suite and `./ci.sh`.
+
+## Computational helpers
+
+These six families return bounded plain data. They do not introduce template tag
+namespaces. Their four kinds each are discovered through `padKinds()` and the
+helper catalog, just like statistics, units and graph algorithms.
+
+| Directory | Public helper | Kinds | Contract |
+| --- | --- | --- | --- |
+| `intervals` | `padIntervals` | `union`, `intersection`, `subtract`, `overlaps` | Half-open numeric or instant intervals; typed groups; source indices on overlap pairs |
+| `colors` | `padColor` | `convert`, `mix`, `contrast`, `gamut` | Explicit sRGB, linear sRGB and HSL; alpha compositing and clipping policy |
+| `timeseries` | `padTimeSeries` | `resample`, `rolling`, `ewma`, `difference` | Fixed-duration buckets, count windows, duplicate and missing-value policies |
+| `geometry` | `padGeometry` | `hull`, `area`, `centroid`, `clip` | Planar finite coordinates; simple rings; convex rectangle clipping |
+| `numerics` | `padNumeric` | `interpolate`, `integrate`, `root`, `linear-system` | Bounded methods with convergence and residual metadata |
+| `signals` | `padSignal` | `spectrum`, `convolve`, `correlate`, `window` | Offline finite samples with explicit scaling, sample rate and edge conventions |
+
+Read each family's `pad/subs/<directory>/README.md` for inputs, limits and numerical
+assumptions. Runnable examples live under `apps/tags/examples/` using public family
+keys `interval`, `color`, `timeseries`, `geometry`, `numeric` and `signal`.
+Calendar availability delegates interval merging/subtraction to the interval core.
+Palette and avatar luminance share the color core, retaining their previous output.
 
 ## Rendering tags
 

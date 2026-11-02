@@ -1,4 +1,9 @@
 <?php
+
+  // spanningtree - Minimum spanning forest using Kruskal. Defaults to undirected; directed=true is rejected. Finite nonnegative weights are supported, self-loops ignored, parallel edges rejected by normal graph validation. Equal weights use original node-order endpoint ties. Disconnected components and connected flag are explicit. Weight overflow fails.
+  //
+  // Runnable example: `apps/tags/examples/graph/spanningtree.pad`. Independent fixture: `php tests/subsystems/expansion-graphs-spanningtree.php`.
+
 return ['options'=>['directed'],'call'=>function($g,$options){
  if($g['directed'])throw new InvalidArgumentException('spanningtree requires directed=false');$parent=array_keys($g['ids']);$find=function($v)use(&$find,&$parent){return $parent[$v]===$v?$v:($parent[$v]=$find($parent[$v]));};$edges=[];
  foreach($g['adj'] as $a=>$neighbors)foreach($neighbors as [$b,$weight])if($a<$b)$edges[]=[$a,$b,$weight];usort($edges,fn($a,$b)=>($a[2]<=>$b[2])?:($a[0]<=>$b[0])?:($a[1]<=>$b[1]));

@@ -4,6 +4,15 @@ Consumes the latest `padSearchInfo()` after a search with facets enabled. `selec
 
 ## Example
 
+The paired PHP page supplies the application data:
+
+```php
+<?php
+include_once PAD.'subs/search/_lib/facets.php';padSearchInfo(['total'=>4,'facets'=>['status'=>[['value'=>'ready','count'=>3],['value'=>'waiting','count'=>1]]]]);
+```
+
+The PAD template renders it:
+
 ```pad
 {widget:facets/}
 ```

@@ -1,4 +1,4 @@
-<p class="sheets-lead">The 139 functions a formula can call, each a file of
+<p class="sheets-lead">The 147 functions a formula can call, each a file of
 <code>pad/subs/formulas/types/</code> in the engine - a function is added by adding its file, and
 this page lists what each file says of itself. Their names are written in any case. The examples
 read the sample sheet below as if they stood in its cell G1, and each shows what that cell
@@ -618,6 +618,24 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=CHOOSE(2, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;)</code> <samp>b</samp></li><li><code>=CHOOSE(4, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;)</code> <samp>#VALUE!</samp></li></ul></td>
     </tr>
   
+    <tr id="choosecols">
+      <th scope="row">CHOOSECOLS</th>
+      <td>CHOOSECOLS(array,index,...) uses one-based indices; negatives count from the end. Zero, noninteger and out-of-range indices return #VALUE!. Repeated indices duplicate the selected column.</td>
+      <td><ul class="sheets-examples"><li><code>=CHOOSECOLS(A2:B3,2)</code> <samp>10</samp></li></ul></td>
+    </tr>
+  
+    <tr id="chooserows">
+      <th scope="row">CHOOSEROWS</th>
+      <td>CHOOSEROWS(array,index,...) uses one-based indices; negatives count from the end. Zero, noninteger and out-of-range indices return #VALUE!. Repeated indices duplicate the selected row.</td>
+      <td><ul class="sheets-examples"><li><code>=CHOOSEROWS(A2:B3,2)</code> <samp>Pears</samp></li></ul></td>
+    </tr>
+  
+    <tr id="drop">
+      <th scope="row">DROP</th>
+      <td>DROP(array,rows,[columns]) selects everything after dropping the requested count. Negative counts operate from the end; oversized counts clamp to the dimension. Empty output returns #CALC!. DROP zero leaves that dimension unchanged; TAKE zero is empty.</td>
+      <td><ul class="sheets-examples"><li><code>=DROP(B2:B3,1)</code> <samp>5</samp></li></ul></td>
+    </tr>
+  
     <tr id="filter">
       <th scope="row">FILTER</th>
       <td>FILTER(array, include, [if_empty]) keeps rows or columns selected by a matching one-column or one-row Boolean mask. Comparison expressions can produce the mask. The dense result spills into empty cells; no matches gives if_empty or #CALC!. Examples below show the first result cell; other selected rows spill below it.</td>
@@ -628,6 +646,12 @@ shows.</p>
       <th scope="row">HLOOKUP</th>
       <td>HLOOKUP(value, table, row, [approximate]) is VLOOKUP turned on its side: it finds a value in the first row of a table and answers the cell of that column in the row-th row.</td>
       <td><ul class="sheets-examples"><li><code>=HLOOKUP(&quot;Price&quot;, A1:E7, 3, FALSE)</code> <samp>0.8</samp></li><li><code>=HLOOKUP(&quot;Size&quot;, A1:E7, 2, FALSE)</code> <samp>#N/A</samp></li></ul></td>
+    </tr>
+  
+    <tr id="hstack">
+      <th scope="row">HSTACK</th>
+      <td>HSTACK(array,...) combines 1..255 scalar or matrix arguments horizontally. Short dimensions are padded with #N/A cell errors. Input errors are preserved; output dimensions are checked before allocation.</td>
+      <td><ul class="sheets-examples"><li><code>=HSTACK(1,2)</code> <samp>1</samp></li></ul></td>
     </tr>
   
     <tr id="index">
@@ -642,10 +666,28 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=MATCH(&quot;Pears&quot;, A2:A7, 0)</code> <samp>2</samp></li><li><code>=MATCH(DATE(2024,6,1), D2:D7)</code> <samp>4</samp></li><li><code>=MATCH(&quot;Kiwis&quot;, A2:A7, 0)</code> <samp>#N/A</samp></li></ul></td>
     </tr>
   
+    <tr id="sequence">
+      <th scope="row">SEQUENCE</th>
+      <td>SEQUENCE(rows,[columns=1],[start=1],[step=1]) fills row-major. Dimensions must be integers; nonpositive dimensions return #CALC!, more than 10000 cells returns #NUM!, arithmetic overflow returns #NUM!. Negative and zero steps are allowed.</td>
+      <td><ul class="sheets-examples"><li><code>=SEQUENCE(2,3,10,-2)</code> <samp>10</samp></li></ul></td>
+    </tr>
+  
     <tr id="sort">
       <th scope="row">SORT</th>
       <td>SORT(array, [sort_index], [sort_order], [by_col]) orders rows by a one-based column (default 1), ascending (1) or descending (-1). TRUE for by_col orders columns by a row instead. Equal keys keep input order; results spill. Examples below show the first cell of the sorted column.</td>
       <td><ul class="sheets-examples"><li><code>=SORT(B2:B7)</code> <samp>0</samp></li><li><code>=SORT(B2:B7,1,-1)</code> <samp>20</samp></li></ul></td>
+    </tr>
+  
+    <tr id="take">
+      <th scope="row">TAKE</th>
+      <td>TAKE(array,rows,[columns]) selects up to the requested count. Negative counts operate from the end; oversized counts clamp to the dimension. Empty output returns #CALC!. DROP zero leaves that dimension unchanged; TAKE zero is empty.</td>
+      <td><ul class="sheets-examples"><li><code>=TAKE(B2:B3,1)</code> <samp>10</samp></li></ul></td>
+    </tr>
+  
+    <tr id="transpose">
+      <th scope="row">TRANSPOSE</th>
+      <td>TRANSPOSE(array) swaps rows and columns. Scalars produce a 1&times;1 matrix. Cell errors retain their positions after transposition.</td>
+      <td><ul class="sheets-examples"><li><code>=TRANSPOSE(B2:B3)</code> <samp>10</samp></li></ul></td>
     </tr>
   
     <tr id="unique">
@@ -658,6 +700,12 @@ shows.</p>
       <th scope="row">VLOOKUP</th>
       <td>VLOOKUP(value, table, column, [approximate]) finds a value in the first column of a table and answers the cell of that row in the column-th column. Exact with approximate FALSE - a text in any case, * and ? as wildcards; else, in a first column that rises, the last value not above the one looked for. Not found is #N/A, a column below 1 #VALUE!, past the table #REF!.</td>
       <td><ul class="sheets-examples"><li><code>=VLOOKUP(&quot;Cherries&quot;, A2:C7, 3, FALSE)</code> <samp>3.5</samp></li><li><code>=VLOOKUP(&quot;pea*&quot;, A2:C7, 2, FALSE)</code> <samp>5</samp></li><li><code>=VLOOKUP(&quot;Kiwis&quot;, A2:C7, 2, FALSE)</code> <samp>#N/A</samp></li></ul></td>
+    </tr>
+  
+    <tr id="vstack">
+      <th scope="row">VSTACK</th>
+      <td>VSTACK(array,...) combines 1..255 scalar or matrix arguments vertically. Short dimensions are padded with #N/A cell errors. Input errors are preserved; output dimensions are checked before allocation.</td>
+      <td><ul class="sheets-examples"><li><code>=VSTACK(1,2)</code> <samp>1</samp></li></ul></td>
     </tr>
   
     <tr id="xlookup">

@@ -8,6 +8,6 @@ foreach ( padKinds ( 'times' ) as $kind ) {
   $syntax = tagsKinds () ["time:$kind"] ['syntax'];
   $ok = $ok && trim ( timeViewOutput ( $example ['source'] ) ) !== '' && trim ( timeViewOutput ( $syntax ) ) !== '';
 }
-$answer = $ok ? 'four time kinds render without the old PAD tags' : 'FAIL';
+$answer = $ok ? 'six time kinds render without the old PAD tags' : 'FAIL';
 
 ?>

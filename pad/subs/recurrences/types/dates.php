@@ -1,4 +1,9 @@
 <?php
+
+  // dates - Explicit occurrence set, with required mode=date or instant. Date mode accepts only ISO dates (including bounds/exclusions); instant mode requires whole-second datetimes or DateTimeInterface values. Values are normalized to the IANA timezone (UTC default), sorted and deduplicated by date or timestamp. Exclusions take precedence after deduplication; instant mode also permits local whole-day exclusions. Bounds [from,to). ≤10000 input dates and exclusions, output limit defaults 1000 (≤10000). No manufactured recurrence pattern or count/interval options.
+  //
+  // Runnable example: `apps/tags/examples/recurrence/dates.pad`. Independent fixture: `php tests/subsystems/expansion-recurrences-dates.php`.
+
 include_once PAD.'subs/recurrences/_lib/explicit.php';
 return ['fields'=>['dates','mode'],'expand'=>function($rule,$from,$to){
  if(array_diff(array_keys($rule),['dates','mode','timezone','exclude','limit']))throw new InvalidArgumentException('dates supports dates, mode, timezone, exclude and limit');$mode=$rule['mode']??NULL;$values=$rule['dates']??NULL;if(!in_array($mode,['date','instant'],TRUE)||!is_array($values)||!array_is_list($values)||count($values)>10000)throw new InvalidArgumentException('dates requires explicit mode=date/instant and a list of at most 10000 values');if($mode==='date'){foreach([$from,$to] as $value)if(!is_string($value)||strlen($value)!==10)throw new InvalidArgumentException('date mode bounds must be ISO dates');foreach($rule['exclude']??[] as $value)if(!is_string($value)||strlen($value)!==10)throw new InvalidArgumentException('date mode exclusions must be ISO dates');}

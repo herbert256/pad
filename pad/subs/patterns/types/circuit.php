@@ -1,4 +1,11 @@
 <?php
+
+  // circuit - Seamless square tiles with two orthogonal traces and junction pads. Eight segments and two pads per tile definition, independent of output size; endpoints meet on each edge. `weight` .5..6 and `size` 16..400.
+  //
+  // {pattern:circuit seed=17, width=240, height=160, title="circuit"/}
+  //
+  // `{pattern:circuit seed=17, width=240, height=160/}` uses the shared deterministic seed, escaped colours, theme integration and optional accessible `title`.
+
 // Orthogonal traces inside a seamless square tile. Endpoints join at each tile edge.
 return ['size'=>[80,16,400],'colors'=>['#0f2626','#6bd5c8'],'options'=>['weight'=>[1.5,.5,6]],
  'count'=>['trace segments',10000,fn($p)=>8,'a smaller output'],

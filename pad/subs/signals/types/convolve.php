@@ -1,2 +1,7 @@
 <?php
+
+  // convolve - Input `{signal:[...],kernel:[...]}`. Linear convolution with zero padding outside inputs and kernel origin zero. full returns N+M−1 values. same extracts N values starting at floor((M−1)/2); valid requires N≥M and extracts N−M+1 values starting at M−1. firstIndex identifies the slice. sampleRate is optional metadata.
+  //
+  // `padSignal('convolve',['signal'=>[1,2,3],'kernel'=>[.5,.5]],['mode'=>'full'])`
+
 return ['options'=>['mode','sampleRate'],'call'=>function($input,$options,&$state){if(!is_array($input)||array_diff(array_keys($input),['signal','kernel']))throw new InvalidArgumentException('convolve input needs signal and kernel');$a=padSignalSamples($input['signal']??NULL,$state);$b=padSignalSamples($input['kernel']??NULL,$state);$n=count($a);$m=count($b);$mode=$options['mode']??'full';$rate=padSignalRate($options);if(!in_array($mode,['full','same','valid'],TRUE)||($mode==='valid'&&$n<$m))throw new InvalidArgumentException('mode is full/same/valid; valid requires signal length >= kernel length');$from=$mode==='full'?0:($mode==='same'?intdiv($m-1,2):$m-1);$length=$mode==='full'?$n+$m-1:($mode==='same'?$n:$n-$m+1);$out=[];for($k=$from;$k<$from+$length;$k++){$sum=$c=0.0;for($i=max(0,$k-$m+1);$i<=min($k,$n-1);$i++){padSignalTick($state);padSignalAccumulate($sum,$c,$a[$i]*$b[$k-$i]);}$out[]=$sum;}return ['status'=>'ok','values'=>$out,'mode'=>$mode,'firstIndex'=>$from,'padding'=>'zero outside input arrays','kernelOrigin'=>0,'sampleRate'=>$rate];}];

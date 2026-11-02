@@ -1,4 +1,9 @@
 <?php
+
+  // weighted - Weighted mean and sample variance with explicit semantics=frequency (integral counts) or reliability (nonnegative real weights). Defaults fields value/weight; paired missing=omit/error. Zero weights do not affect moments. Frequency denominator W−1; reliability denominator W−sum(w²)/W. Reports effectiveCount=W²/sum(w²), weightSum, positiveWeights and zeroWeights. Empty or zero-weight inputs yield null moments; insufficient denominator yields null variance. Uses shifted compensated accumulation with normalized weights.
+  //
+  // Runnable example: `apps/tags/examples/stats/weighted.pad`. Independent fixture: `php tests/subsystems/expansion-statistics-weighted.php`.
+
 return ['options'=>['field','weight','missing','semantics'],'call'=>function($rows,$options){
  $sem=$options['semantics']??'frequency';if(!in_array($sem,['frequency','reliability'],TRUE))throw new InvalidArgumentException('semantics is frequency or reliability');
  [$pairs,,$meta]=padStatsRows($rows,['x'=>$options['field']??'value','y'=>$options['weight']??'weight','missing'=>$options['missing']??'omit'],TRUE);$values=[];$weights=[];$zero=0;

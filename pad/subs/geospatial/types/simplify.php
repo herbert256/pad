@@ -1,4 +1,9 @@
 <?php
+
+  // simplify - Douglas–Peucker on a sphere of radius 6371008.8 m, using minimum surface distance from each input vertex to the minor great-circle arc between retained endpoints. Tolerance is explicit metres (0..20000000). Preserves endpoint coordinates; handles antimeridian/poles in 3-D and rejects ambiguous antipodal candidate arcs. Does not preserve topology or bound every point of an interpolated original curve. Input LineString 2..5000 vertices; maxWork defaults 2000000 (≤5000000 distance evaluations), exceeding it fails rather than returning a partial geometry.
+  //
+  // Runnable example: `apps/tags/examples/geo/simplify.pad`. Independent fixture: `php tests/subsystems/expansion-geospatial-simplify.php`.
+
 return ['options'=>['tolerance','maxWork'],'call'=>function($a,$b,$options){
  if($b!==NULL||!is_array($a)||($a['type']??NULL)!=='LineString'||!is_array($a['coordinates']??NULL)||!array_is_list($a['coordinates'])||count($a['coordinates'])<2||count($a['coordinates'])>5000)throw new InvalidArgumentException('simplify requires a LineString of 2..5000 vertices');$t=$options['tolerance']??NULL;$max=$options['maxWork']??2000000;if((!is_int($t)&&!is_float($t))||!is_finite((float)$t)||$t<0||$t>20000000||!is_int($max)||$max<1||$max>5000000)throw new InvalidArgumentException('tolerance is 0..20000000 metres; maxWork is 1..5000000');
  $points=array_map('padGeoPoint',$a['coordinates']);$vectors=array_map(function($p){[$lon,$lat]=array_map('deg2rad',$p);return [cos($lat)*cos($lon),cos($lat)*sin($lon),sin($lat)];},$points);

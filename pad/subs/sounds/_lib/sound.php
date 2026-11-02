@@ -479,11 +479,12 @@
   // WAV stands in its place, which the browser plays in a player of its own - a link, as an
   // <audio> inside the inline span is taken apart by tidy.
 
-  function padSoundTag ( $kind ) {
+  function padSoundTag ( $kind, $recipe = NULL, $url = NULL, $playKind = NULL ) {
 
     global $padCheckSyntax;
 
-    $recipe = padSoundRecipe ( $kind );
+    $recipe ??= padSoundRecipe ( $kind );
+    $playKind ??= $kind;
     $target = padSoundText ( 'target' );
     $button = padTagParm ( 'button', NULL );
     $on     = padSoundChoice ( 'on', 'click', array_keys ( PAD_SOUND_EVENTS ) );
@@ -503,10 +504,10 @@
     $file   = padTagParm ( 'download', FALSE );
     $html   = '';
     $more   = ( $volume < 100 ) ? ' data-pad-sound-volume="' . ( $volume / 100 ) . '"' : '';
-    $url    = padSoundUrl ( $kind );
+    $url  ??= padSoundUrl ( $kind );
 
     if ( $target !== '' )
-      $html .= '<span class="pad-sound-bind" hidden data-pad-sound-bind="' . $kind . '" data-pad-sound-on="' . $on
+      $html .= '<span class="pad-sound-bind" hidden data-pad-sound-bind="' . $playKind . '" data-pad-sound-on="' . $on
              . '" data-pad-sound-target="' . padWidgetAttr ( $target ) . "\"$more></span>";
 
     if ( $target === '' or $button !== NULL ) {
@@ -514,7 +515,7 @@
       $label = is_scalar ( $button ) ? trim ( padParmText ( (string) $button ) ) : '';
       $label = ( $label !== '' and $button !== TRUE ) ? $label : $recipe ['title'];
 
-      $html .= '<button type="button" class="pad-sound-button" data-pad-sound="' . $kind . '"'
+      $html .= '<button type="button" class="pad-sound-button" data-pad-sound="' . $playKind . '"'
              . ( ( $target === '' and $on != 'click' ) ? " data-pad-sound-on=\"$on\"" : '' ) . "$more>"
              . '<svg class="pad-sound-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/>'
              . '<path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none"/></svg>'
@@ -535,7 +536,12 @@
     if ( str_contains ( $html, "href=\"$url\"" ) )
       padFragmentKeepNot ();
 
-    return padSoundStyle () . padProtect ( "<span class=\"pad-sound pad-sound-$kind\">$html</span>" ) . padSoundScript ();
+    $script = padSoundScript ();
+    if ( $playKind !== $kind ) {
+      $json = json_encode ( [ $playKind => $recipe ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_PRESERVE_ZERO_FRACTION );
+      $script .= padWidgetScript ( 'sound-' . $playKind, "PadSound.add($json, {});" );
+    }
+    return padSoundStyle () . padProtect ( "<span class=\"pad-sound pad-sound-$kind\">$html</span>" ) . $script;
 
   }
 

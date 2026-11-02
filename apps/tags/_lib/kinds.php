@@ -124,6 +124,10 @@
           $tail = " data='rows'" . ( [ 'grouped' => ", group='region', totals='amount'", 'pivot' => ", row='region', column='quarter', value='amount'", 'matrix' => ", row='region', column='quarter'" ] [$kind] ?? '' ) . '/}';
         if ( $type === 'time' && in_array ( $kind, [ 'countdown', 'relative' ], TRUE ) )
           $tail = " '2026-12-31 00:00'/}";
+        if ( $type === 'time' && $kind === 'duration' )
+          $tail = " 3661, units=3/}";
+        if ( $type === 'time' && $kind === 'zonecompare' )
+          $tail = " '2026-07-01T12:00:00Z', zones=['UTC','Europe/Amsterdam']/}";
         if ( $type === 'image' and $kind === 'contactsheet' )
           $tail = " data='photos', src='src', caption='caption'/}";
 
@@ -133,6 +137,10 @@
           $tail = " '$date', data='appointments'" . ( $kind === 'resources' ? ", resources=['room-a'=>'Room A']" : '' ) . '/}';
           if ( $kind === 'availability' )
             $tail = " data='appointments', windows=[['resource'=>'room-a','start'=>'2026-11-02T08:00:00Z','end'=>'2026-11-02T12:00:00Z']], timezone='UTC', minimum=30/}";
+          if ( $kind === 'capacity' )
+            $tail = " data='appointments', windows=[['resource'=>'room-a','start'=>'2026-11-02T08:00:00Z','end'=>'2026-11-02T12:00:00Z','capacity'=>2]], timezone='UTC', mode='count'/}";
+          if ( $kind === 'fiscal' )
+            $tail = " periods=[['label'=>'Review','start'=>'2026-04-01','end'=>'2026-07-01']], from='2026-04-01', to='2026-07-01'/}";
         }
 
         if ( $syntax === '' ) {

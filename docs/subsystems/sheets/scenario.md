@@ -4,6 +4,15 @@
 
 ## Example
 
+The paired PHP page supplies the application data:
+
+```php
+<?php
+$scenarioModel=['A1'=>10,'B1'=>3,'C1'=>'=A1*B1'];$scenarioCases=['Low'=>['A1'=>5],'Base'=>[],'High'=>['A1'=>20]];$scenarioInputs=['A1'];$scenarioOutputs=['C1'];
+```
+
+The PAD template renders it:
+
 ```pad
 {sheet:scenario model='scenarioModel', scenarios='scenarioCases', inputs='scenarioInputs', outputs='scenarioOutputs'/}
 ```

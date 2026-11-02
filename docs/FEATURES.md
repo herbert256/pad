@@ -76,6 +76,7 @@ applications show them working.
   - [Effects](#effects)
   - [Themes](#themes)
   - [Palettes](#palettes)
+- [Computational helpers](#computational-helpers)
 - [Development](#development)
   - [Configuration settings](#configuration-settings)
   - [Designer preview with sample data](#designer-preview-with-sample-data)
@@ -2239,6 +2240,30 @@ by drawing every example of the charts application once more in a palette, the p
 Without `palette=` a chart is drawn as before, byte for byte. Code: `pad/subs/palettes/`
 (`_lib/palette.php`, `palette.php` the body of `{widget:palette}`), `pad/lib/palette.php` (`padPalette`),
 `pad/subs/charts/_lib/palette.php` and `client/palette.js` for the charts.
+
+## Computational helpers
+
+Six helper families provide bounded numeric results that applications can pass to
+ordinary charts, tables or templates:
+
+```php
+$free = padIntervals('subtract', [['start'=>0,'end'=>8]], [['start'=>2,'end'=>5]]);
+$contrast = padColor('contrast', '#183347', '#ffffff');
+$buckets = padTimeSeries('resample', [['time'=>0,'value'=>2],['time'=>60,'value'=>4]], ['stepSeconds'=>60]);
+$hull = padGeometry('hull', [[0,0],[4,0],[2,1],[0,3]]);
+$area = padNumeric('integrate', [[0,0],[1,1],[2,4]]);
+$spectrum = padSignal('spectrum', [0,1,0,-1,0,1,0,-1], ['sampleRate'=>8]);
+```
+
+The families also cover interval unions/intersections/overlaps; color conversion,
+alpha-aware mixing and gamut checks; rolling windows, EWMA and lag differences;
+planar area, centroid and rectangle clipping; interpolation, bracketed roots and
+dense linear systems; convolution, correlation and signal windows.
+
+Inputs and work are bounded. Missing measurements stay explicit; floating-point
+methods expose their assumptions and numerical status. Geometry is planar, and
+signal samples are supplied by the caller. Consult [Subsystems](SUBSYSTEMS.md#computational-helpers)
+and each family's README for the exact contracts and runnable examples.
 
 ## Development
 

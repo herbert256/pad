@@ -1,4 +1,9 @@
 <?php
+
+  // gamma - Shape/scale convention: mean shape × scale, variance shape × scale². shape 0.01..10000 and scale 1e-150..1e150. Marsaglia–Tsang rejection is limited to 128 attempts; every uniform draw consumes the shared ten-million-work budget. Underflow may yield zero; nonfinite output fails. The supplied seed restores the prior fake stream.
+  //
+  // Runnable example: `apps/tags/examples/distribution/gamma.pad`. Independent fixture: `php tests/subsystems/expansion-distributions-gamma.php`.
+
 return ['parameters'=>['shape'=>[1,.01,10000,FALSE],'scale'=>[1,1e-150,1e150,FALSE]],'support'=>'nonnegative real (zero is possible after floating underflow)','work'=>fn($p)=>385,
 'sample'=>function($p,$random){
  $shape=$p['shape'];$d=($shape<1?$shape+1:$shape)-1/3;$c=1/sqrt(9*$d);

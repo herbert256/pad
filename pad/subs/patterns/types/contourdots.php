@@ -1,4 +1,11 @@
 <?php
+
+  // contourdots - Stippled topographic contours reuse the exact topography noise and marching-squares engine. `levels` 2..60, `spacing` 2..30 pixels. This is a finite field, not a seamless tile. The conservative 100,000-dot budget includes cell diagonal length; zero-length round dashes render dots without expanding point markup.
+  //
+  // {pattern:contourdots seed=17, width=240, height=160, title="contourdots"/}
+  //
+  // `{pattern:contourdots seed=17, width=240, height=160/}` uses the shared deterministic seed, escaped colours, theme integration and optional accessible `title`.
+
 // Reuse topography's seeded field and marching-squares paths. Round zero-length dashes
 // make stippled contours; the conservative bound counts dots even at cell diagonals.
 $spec=include __DIR__.'/topography.php';$draw=$spec['draw'];

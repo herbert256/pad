@@ -377,6 +377,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">caption</td>
+      <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
+      <td>A field of imageobject (<code>caption</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">card</td>
       <td><a class="name" href="?tag/printable">{printable:*}</a></td>
       <td>indexcards: 5x3, 6x4, a6 or a7.</td>
@@ -681,6 +689,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">credit</td>
+      <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
+      <td>A field of imageobject (<code>creditText</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">css</td>
       <td><a class="name" href="?tag/widget/shadow">{widget:shadow}</a></td>
       <td>Stylesheets inlined as one <code>&lt;style&gt;</code> at the start of the root, separated by commas: a <code>.css</code> file of the application, or <code>www:</code> one of its <code>www/</code> directory.</td>
@@ -777,7 +793,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">description</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of article (<code>description</code>), book (<code>description</code>), business (<code>description</code>), course (<code>description</code>, required), dataset (<code>description</code>, required), event (<code>description</code>), job (<code>description</code>, required), organization (<code>description</code>), person (<code>description</code>), podcast (<code>description</code>), product (<code>description</code>), profile (<code>mainEntity.description</code>), recipe (<code>description</code>), restaurant (<code>description</code>), service (<code>description</code>), software (<code>description</code>), video (<code>description</code>), website (<code>description</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>description</code>), book (<code>description</code>), business (<code>description</code>), collectionpage (<code>description</code>), course (<code>description</code>, required), dataset (<code>description</code>, required), event (<code>description</code>), imageobject (<code>description</code>), job (<code>description</code>, required), organization (<code>description</code>), person (<code>description</code>), podcast (<code>description</code>), product (<code>description</code>), profile (<code>mainEntity.description</code>), recipe (<code>description</code>), restaurant (<code>description</code>), service (<code>description</code>), software (<code>description</code>), video (<code>description</code>), website (<code>description</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -1295,7 +1311,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="6">height</td>
+      <td class="opt" rowspan="7">height</td>
       <td><a class="name" href="?tag/chart">{chart:*}</a></td>
       <td>The height in pixels, default 300 (round kinds 280, the tall kinds 400, gauge 200, calendar 150).</td>
     </tr>
@@ -1328,6 +1344,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/effect">{effect:*}</a></td>
       <td>wave: how far a letter rises, in em (0.25); skeleton: the picture of a block or a card, in pixels (160).</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
+      <td>A field of imageobject (<code>height.value</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -1497,7 +1519,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of article (<code>image</code>), book (<code>image</code>), business (<code>image</code>), course (<code>image</code>), event (<code>image</code>), person (<code>image</code>), podcast (<code>image</code>), product (<code>image</code>), profile (<code>mainEntity.image</code>), recipe (<code>image</code>, required), restaurant (<code>image</code>), software (<code>image</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>image</code>), book (<code>image</code>), business (<code>image</code>), collectionpage (<code>primaryImageOfPage.contentUrl</code>), course (<code>image</code>), event (<code>image</code>), person (<code>image</code>), podcast (<code>image</code>), product (<code>image</code>), profile (<code>mainEntity.image</code>), recipe (<code>image</code>, required), restaurant (<code>image</code>), software (<code>image</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -1711,7 +1733,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">language</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of book (<code>inLanguage</code>), podcast (<code>inLanguage</code>) - it wins over the field of the row.</td>
+      <td>A field of book (<code>inLanguage</code>), collectionpage (<code>inLanguage</code>), podcast (<code>inLanguage</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -1803,7 +1825,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">license</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of dataset (<code>license</code>) - it wins over the field of the row.</td>
+      <td>A field of dataset (<code>license</code>), imageobject (<code>license</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -2001,7 +2023,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">modified</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of article (<code>dateModified</code>), dataset (<code>dateModified</code>), profile (<code>dateModified</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>dateModified</code>), collectionpage (<code>dateModified</code>), dataset (<code>dateModified</code>), profile (<code>dateModified</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -2089,7 +2111,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of book (<code>name</code>, required), business (<code>name</code>, required), course (<code>name</code>, required), dataset (<code>name</code>, required), event (<code>name</code>, required), itemlist (<code>name</code>), organization (<code>name</code>, required), person (<code>name</code>, required), podcast (<code>name</code>, required), product (<code>name</code>, required), profile (<code>mainEntity.name</code>, required), recipe (<code>name</code>, required), restaurant (<code>name</code>, required), review (<code>name</code>, required), service (<code>name</code>, required), software (<code>name</code>, required), video (<code>name</code>, required), website (<code>name</code>) - it wins over the field of the row.</td>
+      <td>A field of book (<code>name</code>, required), business (<code>name</code>, required), collectionpage (<code>name</code>, required), course (<code>name</code>, required), dataset (<code>name</code>, required), event (<code>name</code>, required), imageobject (<code>name</code>, required), itemlist (<code>name</code>), organization (<code>name</code>, required), person (<code>name</code>, required), podcast (<code>name</code>, required), product (<code>name</code>, required), profile (<code>mainEntity.name</code>, required), recipe (<code>name</code>, required), restaurant (<code>name</code>, required), review (<code>name</code>, required), service (<code>name</code>, required), software (<code>name</code>, required), video (<code>name</code>, required), website (<code>name</code>) - it wins over the field of the row.</td>
     </tr>
     
     <tr>
@@ -2363,9 +2385,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">parent</td>
+      <td class="opt" rowspan="2">parent</td>
       <td><a class="name" href="?tag/chart">{chart:*}</a></td>
       <td>Orgchart: the field with the id of the row above.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
+      <td>A field of collectionpage (<code>isPartOf.url</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -2659,7 +2687,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">published</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of article (<code>datePublished</code>), book (<code>datePublished</code>), dataset (<code>datePublished</code>), recipe (<code>datePublished</code>), review (<code>datePublished</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>datePublished</code>), book (<code>datePublished</code>), collectionpage (<code>datePublished</code>), dataset (<code>datePublished</code>), imageobject (<code>uploadDate</code>), recipe (<code>datePublished</code>), review (<code>datePublished</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -3781,7 +3809,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">url</td>
       <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
-      <td>A field of article (<code>url</code>), book (<code>url</code>), business (<code>url</code>), course (<code>url</code>), dataset (<code>url</code>), event (<code>url</code>), organization (<code>url</code>), person (<code>url</code>), podcast (<code>url</code>, required), product (<code>url</code>), restaurant (<code>url</code>), review (<code>url</code>), service (<code>url</code>), software (<code>url</code>), website (<code>url</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>url</code>), book (<code>url</code>), business (<code>url</code>), collectionpage (<code>url</code>, required), course (<code>url</code>), dataset (<code>url</code>), event (<code>url</code>), imageobject (<code>contentUrl</code>, required), organization (<code>url</code>), person (<code>url</code>), podcast (<code>url</code>, required), product (<code>url</code>), restaurant (<code>url</code>), review (<code>url</code>), service (<code>url</code>), software (<code>url</code>), website (<code>url</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -3899,7 +3927,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="5">width</td>
+      <td class="opt" rowspan="6">width</td>
       <td><a class="name" href="?tag/chart">{chart:*}</a></td>
       <td>The width in pixels, default 600 (round kinds 480, gauge 320, calendar 720).</td>
     </tr>
@@ -3926,6 +3954,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/notation">{notation:*}</a></td>
       <td>abc: the lines spread over that many pixels; without it each line takes its natural width.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/jsonld">{jsonld:*}</a></td>
+      <td>A field of imageobject (<code>width.value</code>) - it wins over the field of the row.</td>
     </tr>
     
   

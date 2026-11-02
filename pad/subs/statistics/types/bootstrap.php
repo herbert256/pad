@@ -1,4 +1,9 @@
 <?php
+
+  // bootstrap - Requires explicit seed, resamples (1..10000) and interval=percentile. Estimator is mean or median; confidence defaults .95. IID observations are resampled with replacement using a local deterministic SHA-256 counter stream and rejection to remove index modulo bias. No global RNG state changes. Type-7 quantiles form percentile bounds. maxWork defaults 2000000 and cannot exceed 10000000; sample/median sorting work and random draws are bounded. Does not claim automatic significance or support arbitrary callbacks.
+  //
+  // Runnable example: `apps/tags/examples/stats/bootstrap.pad`. Independent fixture: `php tests/subsystems/expansion-statistics-bootstrap.php`.
+
 return ['options'=>['field','missing','seed','resamples','interval','estimator','confidence','maxWork'],'call'=>function($rows,$options){
  foreach(['seed','resamples','interval'] as $required)if(!array_key_exists($required,$options))throw new InvalidArgumentException('bootstrap requires seed, resamples and interval');$seed=$options['seed'];$b=$options['resamples'];$est=$options['estimator']??'mean';$confidence=$options['confidence']??.95;$max=$options['maxWork']??2000000;
  if((!is_string($seed)&&!is_int($seed))||strlen((string)$seed)>256||!is_int($b)||$b<1||$b>10000||$options['interval']!=='percentile'||!in_array($est,['mean','median'],TRUE)||(!is_int($confidence)&&!is_float($confidence))||!is_finite((float)$confidence)||$confidence<=0||$confidence>=1||!is_int($max)||$max<1||$max>10000000)throw new InvalidArgumentException('invalid bootstrap parameters');

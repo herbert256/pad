@@ -1,4 +1,9 @@
 <?php
+
+  // linear-system - Dense 1..128 square system solved using scaled partial pivoting and checked against original coefficients. Zero pivot reports singular; relative pivot below tolerance reports ill-conditioned, with no solution. This is a pivot heuristic, not a condition-number estimate. Returns absolute infinity-norm residual, normalized residual and minimumScaledPivot; excessive residual reports not-converged. tolerance defaults 1e-12. Nonfinite intermediate arithmetic is rejected.
+  //
+  // `padNumeric('linear-system',['matrix'=>[[2,1],[1,3]],'rhs'=>[5,7]])`
+
 return ['options'=>['tolerance'],'call'=>function($input,$options,&$state){
  if(!is_array($input)||array_diff(array_keys($input),['matrix','rhs']))throw new InvalidArgumentException('linear-system requires matrix and rhs');$a=$input['matrix']??NULL;$b=$input['rhs']??NULL;if(!is_array($a)||!array_is_list($a)||count($a)<1||count($a)>128||!is_array($b)||!array_is_list($b)||count($b)!==count($a))throw new InvalidArgumentException('dense system requires 1..128 square rows and matching rhs');$n=count($a);$tol=padNumericTolerance($options);$scale=[];
  foreach($a as $i=>$row){if(!is_array($row)||!array_is_list($row)||count($row)!==$n)throw new InvalidArgumentException('matrix must be square');foreach($row as $j=>$v){padNumericTick($state);$a[$i][$j]=padNumericFinite($v,'matrix entry');}$b[$i]=padNumericFinite($b[$i],'rhs');$scale[$i]=max(array_map('abs',$a[$i]));}$original=$a;$rhs=$b;$minPivot=1.0;

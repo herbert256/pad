@@ -1,4 +1,9 @@
 <?php
+
+  // knapsack - Exact 0/1 integer knapsack accepts items `{id,weight,value}` and integer capacity. IDs are unique strings. Weights/values are nonnegative integers; zero weight is permitted. Capacity ≤10000, items ≤1000, DP cells ≤250000; values are bounded to prevent integer overflow. Returns chosen IDs, objective value, weight and solved/limit/cancelled status. A stopped run never claims infeasibility; ties prefer earlier items.
+  //
+  // Runnable example: `apps/tags/examples/solve/knapsack.pad`. Independent fixture: `php tests/subsystems/expansion-constraints-knapsack.php`.
+
 return ['options'=>['maxSteps','cancel'],'call'=>function($problem,$options,&$state){
  padSolveProblemKeys($problem,['items','capacity']);$items=$problem['items'];$capacity=$problem['capacity'];
  if(!is_array($items)||!array_is_list($items)||count($items)>1000||!is_int($capacity)||$capacity<0||$capacity>10000||(count($items)+1)*($capacity+1)>250000)throw new InvalidArgumentException('knapsack requires at most 1000 items, capacity 0..10000 and 250000 DP cells');

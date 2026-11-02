@@ -4,8 +4,17 @@
 
 ## Example
 
+The paired PHP page supplies the application data:
+
+```php
+<?php
+$memberChoices=['ada'=>'Ada','bo'=>'Bo','cy'=>'Cy'];$chosenMembers=['bo'];
+```
+
+The PAD template renders it:
+
 ```pad
-{input:form}{input:transferlist 'members', choices=$memberChoices, value=$chosenMembers, ordered=1, label='Members'/}<button type='submit'>Save</button><button type='reset'>Reset</button>{/input:form}
+{input:form 'transferlist'}{input:transferlist 'members', choices=$memberChoices, value=$chosenMembers, ordered=1, label='Members'/}<button type='submit'>Save</button><button type='reset'>Reset</button>{/input:form}
 ```
 
 Run the focused fixture with `php tests/subsystems/input-transferlist.php`.

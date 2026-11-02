@@ -145,6 +145,15 @@ what stands behind it while it loads is what you see.</p>
   <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">image:thumbnail</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;emboss&#039;</span>, <span class="hl-opt">strength</span>=<span class="hl-num">1.5</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
 </section>
 
+<section class="patterns-filter" id="exposure">
+  <h2>exposure</h2>
+  <p>`stops` -8..8 (default 0) multiplies linear-light sRGB intensity by 2^stops, then encodes sRGB and clips.</p>
+  <div class="patterns-play">
+    <img class="pad-img" src="/pad/images/_thumbs/7ed46baeb371a211.jpg" srcset="/pad/images/_thumbs/7ed46baeb371a211.jpg 1x, /pad/images/_thumbs/1d575a7a4f610f69.jpg 2x" width="360" height="240" alt="Harbour" loading="lazy" decoding="async">
+  </div>
+  <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">image:thumbnail</span> <span class="hl-str">&quot;photos/harbour.jpg&quot;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&quot;exposure&quot;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&quot;Harbour&quot;</span><span class="hl-brc">/}</span></code></pre>
+</section>
+
 <section class="patterns-filter" id="gamma">
   <h2>gamma</h2>
   <p>Adjust the midtones in encoded sRGB channel space.</p>
@@ -217,6 +226,15 @@ what stands behind it while it loads is what you see.</p>
   <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">image:thumbnail</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;posterize&#039;</span>, <span class="hl-opt">levels</span>=<span class="hl-num">3</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
 </section>
 
+<section class="patterns-filter" id="saturation">
+  <h2>saturation</h2>
+  <p>`amount` 0..4 (default 1) interpolates encoded sRGB channels around Rec.709 luma (0.2126R + 0.7152G + 0.0722B).</p>
+  <div class="patterns-play">
+    <img class="pad-img" src="/pad/images/_thumbs/4515df71cfa93f8a.jpg" srcset="/pad/images/_thumbs/4515df71cfa93f8a.jpg 1x, /pad/images/_thumbs/c233347886269dfa.jpg 2x" width="360" height="240" alt="Harbour" loading="lazy" decoding="async">
+  </div>
+  <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">image:thumbnail</span> <span class="hl-str">&quot;photos/harbour.jpg&quot;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&quot;saturation&quot;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&quot;Harbour&quot;</span><span class="hl-brc">/}</span></code></pre>
+</section>
+
 <section class="patterns-filter" id="sepia">
   <h2>sepia</h2>
   <p>The brown of an old photograph: every pixel through the classic sepia matrix, amount= percent of the way from the picture to it (100).</p>
@@ -260,6 +278,15 @@ what stands behind it while it loads is what you see.</p>
     <img class="pad-img" src="/pad/images/_thumbs/a2db89be5a7a3a94.jpg" srcset="/pad/images/_thumbs/a2db89be5a7a3a94.jpg 1x, /pad/images/_thumbs/be52d76d145f7891.jpg 2x" width="360" height="240" alt="Rows of tulips running to a windmill" data-thumbhash="aEgKTZaYd4ePhXd3eGiYc6aQdQaI" style="background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAXCAIAAADlZ9q2AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEAklEQVRIx1WVUc5lxQ2Eq8ruMwESBXaYbWYt2UCQECIwCfd02648nDv/gFSv1uey3dX8xz//BVAIOuWlWeqFTpyYrb7Zt+t2H7gBg6RCkdQCchDtOKM92s5Ctq6Ji7EYixLz0xWECMnxVgc7rTDVQAFNtOwGTAoKREIJZCAwMaMYpcNIa1ELcTGSCubfvl0EiRAyvORLs1iJgjf6Ql/ojT50AcafAUDEiE2MPGEEuEYXYkFJifn9Xx8HEUh5hVPOp3NvzEZv9MZ8HREUUEIJBhwYqZnNbg3CSGhZC0pQyL9/AwAC4i3GQAMUcGEO5kZvTP0JEAl+ATTRZBNNTwximKM0AxTz27wJCRGcgNMOQ5MSIAwxwOgPDoSItwkkLAynuAu7eY+2oxAPwCTy6l8JiRHIwJX4FL7Dl7wwYWvMsccwQIBmmAIEE21U8268Cq/Ca3zPFNjsIUA6+ftPBMkAFnEBF31xLs7CCRzxkNv6MiIJCkZSaWY7irzJF/ACX8N7dBANzdtB//ZvQkYYSawH4LnUCxXYnMPZnrIbNEwgiYQXlI0oa5sv8EW+wE0dqxhDGUL2f34kaISdwLKXfWmWKlHhzdmY4znjBm2RkYhkLMcaZDnO8B69zBu6ocNoPBdFJH/7CZAtO+wcL85yr6nAkQ/ndu+ZY/fQIJGBWfSyLzMLeawN3dDNOIjD6K8O1uszTJp0aFKT6mTF0z42fNt7vNs1tkVMQAu+4MtczSzmZmzFRhxk8bnUAOj8rg4MWphmFzvYwQpveXNu6x7d3bunGmPREYiFuJCX42qtZh7kQW5mcZo5sjWgkN9TAGDCgIExelBwjQt93Kdrd++a05ghJgLZWOMchyfcdAmHLKo1HbZggQTyh7hgGIDpIUhANm3MoMfdqHG3p+0H4Ali0SlnTGhCrRiNZQcQZJChx4EuDCx4YNB+BL/fF8uocc/MjPvhM+kUspzhDEcjBk/WJRVEiiEqkN91wpiGP1R0wcUpT6Hb1eqO6XEPTMkJvBmBlFOOQAajuYZpwAQEI/NlDKbtwhz4AJs+9LZvzO24HRu9/RFHkqMnZ9KPOtGJSUzyiRFCAAEh+9ftsRsufwBwiENvYBv38G7tRrWr4ZJaMVzNGtaw+q02n8wyMUIJwfz9588fDvwAjljEEQ6w4e3Z7VNzyl10W41oZvfVvIa7H+nYZRbxlC8hmP/9+bPHbvvABR+y9NYhD33sMz7lanTBJfZET3Ze7avn7vnU85f2GRSuIkpfAf/75bMNl11wAfUAQm8MWfAZn0a1p+giO9Szek7N6TztanejjTGG1wgtXEIw9+tjB3ABh2ypQv0wHoDfC/gCQDwFTTRQYENDjQId7FA8X0bw/18KrALXDnrYAAAAAElFTkSuQmCC);background-size:cover" loading="lazy" decoding="async">
   </div>
   <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">image:thumbnail</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;thumbhash&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
+</section>
+
+<section class="patterns-filter" id="unsharp">
+  <h2>unsharp</h2>
+  <p>`radius` 1..50 CSS pixels (default 2), `amount` 0..4 (default 1), and `threshold` 0..255 channel units (default 0).</p>
+  <div class="patterns-play">
+    <img class="pad-img" src="/pad/images/_thumbs/143ba0454d8d132e.jpg" srcset="/pad/images/_thumbs/143ba0454d8d132e.jpg 1x, /pad/images/_thumbs/8cba3772ff888e75.jpg 2x" width="360" height="240" alt="Harbour" loading="lazy" decoding="async">
+  </div>
+  <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">image:thumbnail</span> <span class="hl-str">&quot;photos/harbour.jpg&quot;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&quot;unsharp&quot;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&quot;Harbour&quot;</span><span class="hl-brc">/}</span></code></pre>
 </section>
 
 <section class="patterns-filter" id="vignette">

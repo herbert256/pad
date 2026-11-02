@@ -5,7 +5,10 @@
 ## Example
 
 ```pad
+{input:form 'prohibited_if'}
 {input:field type='text', 'address', label='Address', rules='prohibited_if:method,pickup'/}
+<button type='submit'>Validate</button>
+{/input:form}
 ```
 
 Run the focused fixture with `php tests/subsystems/rule-prohibited_if.php`.

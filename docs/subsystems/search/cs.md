@@ -4,8 +4,17 @@ Czech uses the named Dolamic–Savoy light stemmer, ported from [Apache Lucene](
 
 ## Example
 
+The paired PHP page supplies the application data:
+
+```php
+<?php
+$catalog=[['name'=>'PAD-42 identifier','link'=>'/tags/'],['name'=>'Města a městům','link'=>'/tags/']];
+```
+
+The PAD template renders it:
+
 ```pad
-{search:cs 'catalog', q='města', fields='name'}{$name}{/search:cs}
+{search:cs 'catalog', q='města', fields='name'}<p>{$name}</p>{/search:cs}
 ```
 
 Run the focused fixture with `php tests/subsystems/search-cs.php`.

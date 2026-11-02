@@ -13,5 +13,8 @@ function padSoundMetronomeTag(){
  $key=substr(hash('sha256',serialize($args)),0,16);
  if(($_GET['padMetronome']??'')===$key&&($_SERVER['REQUEST_METHOD']??'GET')==='GET')return padSoundAnswer('metronome',FALSE,$recipe);
  $url=htmlspecialchars_decode(padSoundUrl('metronome'),ENT_QUOTES);$url=preg_replace('/([?&])padSound=metronome/','$1padMetronome='.$key,$url);padFragmentKeepNot();
- return '<figure class="pad-sound-metronome"><figcaption>'.padWidgetAttr($recipe['title']).'</figcaption><audio controls preload="none" aria-label="'.padWidgetAttr($recipe['title']).'" src="'.padWidgetAttr($url).'"></audio></figure>';
+ // Shared button, binding, event, volume and download semantics; the per-recipe key
+ // prevents two differently configured metronomes from sharing the runtime buffer.
+ $controls=padSoundTag('metronome',$recipe,padWidgetAttr($url),'metronome-'.$key);
+ return $controls.'<figure class="pad-sound-metronome"><figcaption>'.padWidgetAttr($recipe['title']).'</figcaption><audio controls preload="none" aria-label="'.padWidgetAttr($recipe['title']).'" src="'.padWidgetAttr($url).'"></audio></figure>';
 }

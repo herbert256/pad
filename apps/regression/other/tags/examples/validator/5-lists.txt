@@ -20,8 +20,8 @@
   'use strict';
   if (window.padValidate) return;
   var rules = {};
-  var empties = {"accepted":true,"required":true,"required_if":true,"required_unless":true,"required_with":true,"required_without":true};
-  var lookers = {"after":true,"after_or_equal":true,"before":true,"before_or_equal":true,"different":true,"gt":true,"gte":true,"lt":true,"lte":true,"required_if":true,"required_unless":true,"required_with":true,"required_without":true,"same":true};
+  var empties = {"accepted":true,"prohibited_if":true,"required":true,"required_if":true,"required_if_any":true,"required_unless":true,"required_with":true,"required_without":true};
+  var lookers = {"after":true,"after_or_equal":true,"before":true,"before_or_equal":true,"different":true,"gt":true,"gte":true,"lt":true,"lte":true,"prohibited_if":true,"required_if":true,"required_if_any":true,"required_unless":true,"required_with":true,"required_without":true,"same":true};
   function addRule(name, spec) {
     rules[name] = spec;
   }
@@ -270,6 +270,9 @@ addRule('date', {
 });
 })();
 (function () {
+addRule('dateformat',{check:function(v,a){var m,y,mo,d,h=0,mi=0;if(a==='Y-m-d'||a==='Y-m-dTH:i'){m=v.match(a==='Y-m-d'?/^(\d{4})-(\d{2})-(\d{2})$/:/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/);if(!m)return false;y=+m[1];mo=+m[2];d=+m[3];h=+(m[4]||0);mi=+(m[5]||0);}else {m=v.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);if(!m||!['d/m/Y','m/d/Y'].includes(a))return false;y=+m[3];mo=+m[a==='d/m/Y'?2:1];d=+m[a==='d/m/Y'?1:2];}return y>0&&mo>=1&&mo<=12&&d>=1&&d<=[31,(y%4===0&&(y%100!==0||y%400===0))?29:28,31,30,31,30,31,31,30,31,30,31][mo-1]&&h<24&&mi<60;}});
+})();
+(function () {
 addRule('different', {
   check: function (value, arg, values) {
     var other = find(values, arg)[1];
@@ -483,6 +486,9 @@ addRule('numeric', {
 });
 })();
 (function () {
+addRule('prohibited_if',{check:function(v,a,d){return !siblingIs(d,a)||!filled(v);},list:function(v,a,d){return !siblingIs(d,a)||!filled(v);}});
+})();
+(function () {
 function pattern(text) {
   var open = text.charAt(0);
   var close = { '(': ')', '{': '}', '[': ']', '<': '>' }[open] || open;
@@ -552,6 +558,9 @@ addRule('required_if', {
   check: function (value, arg, values) { return !siblingIs(values, arg) || filled(value); },
   list: function (list, arg, values) { return !siblingIs(values, arg) || filled(list); }
 });
+})();
+(function () {
+addRule('required_if_any',{check:function(v,a,d){return filled(v)||!a.split(';').some(function(p){return siblingIs(d,p);});},list:function(v,a,d){return filled(v)||!a.split(';').some(function(p){return siblingIs(d,p);});}});
 })();
 (function () {
 addRule('required_unless', {

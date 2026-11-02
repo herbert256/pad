@@ -4,6 +4,15 @@ Records: timestamp, actor, action, target and optional scalar detail. Timestamp 
 
 ## Example
 
+The paired PHP page supplies the application data:
+
+```php
+<?php
+$auditRecords=[['timestamp'=>'2026-11-02T09:00:00Z','actor'=>'Ada','action'=>'updated','target'=>'Report','detail'=>'Changed title'],['timestamp'=>'2026-11-02T09:00:00Z','actor'=>'Bo','action'=>'reviewed','target'=>'Report']];
+```
+
+The PAD template renders it:
+
 ```pad
 {timeline:audit data='auditRecords', timezone='Europe/Amsterdam'/}
 ```
