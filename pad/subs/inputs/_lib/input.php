@@ -97,7 +97,7 @@
         continue;
       }
 
-      $items [ strtolower ( $key ) ] = [ $key, padEval ( $expr ) ];
+      $items [ strtolower ( $key ) ] = [ $key, in_array ( $kind, [ 'recurrencepicker', 'transferlist', 'imagecrop' ], TRUE ) ? padAttrsValue ( $expr ) : padEval ( $expr ) ];
 
     }
 
