@@ -1,4 +1,5 @@
 <?php
+const PAD=__DIR__.'/../../pad/';
 require __DIR__.'/../../pad/subs/calendars/_lib/timegrid.php';
 function check($ok,$why){if(!$ok)throw new Exception($why);}
 $tz=new DateTimeZone('Europe/Amsterdam');

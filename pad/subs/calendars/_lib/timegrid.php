@@ -1,4 +1,5 @@
 <?php
+include_once PAD . 'subs/widgets/_lib/widget.php';
 // Timed events are absolute instants with explicit offsets; all-day dates have exclusive ends.
 function padCalendarInstant($value){
  if(!is_string($value)||!preg_match('/^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})(?::(\d{2}))?(Z|[+-]\d{2}:\d{2})$/D',$value,$m))throw new InvalidArgumentException('Timed events need an ISO timestamp with an explicit offset');
@@ -51,13 +52,13 @@ function padCalendarTimeColumns($events,$columns,$zone,$label){
  return padWidgetSheet(padWidgetFile('calendars/timegrid.css','raw')).padProtect('<style'.padStyleNonce().'>'.$css.'</style>').$html.'</div></section>';
 }
 function padCalendarTimegridTag($resources=NULL){
- global $pad,$padData,$padParm;
+ global $pad,$padData,$padParm,$padPrm;
  try{
   $zone=new DateTimeZone((string)padTagParm('timezone','UTC'));
   $date=trim((string)$padParm);if($date==='')$date=padNow('Y-m-d');$first=padCalendarCivil($date,$zone);
   $days=(int)padTagParm('days',$resources===NULL?7:1);if(!in_array($days,[1,7],TRUE))throw new InvalidArgumentException('Time grid days must be 1 or 7');
   $sunday=(bool)padTagParm('sunday',FALSE);if($days===7)$first=$first->modify('-'.($sunday?(int)$first->format('w'):(int)$first->format('N')-1).' days');
-  $rows=padChartRows('','calendar');$events=padCalendarIntervals((array)$rows,$zone);$columns=[];
+  $rows=isset($padPrm[$pad]['data'])?padChartRows('','calendar'):[];$events=padCalendarIntervals((array)$rows,$zone);$columns=[];
   if($resources!==NULL){if(!is_array($resources)||count($resources)<1||count($resources)>20)throw new InvalidArgumentException('Resources must map 1 to 20 IDs to labels');foreach($resources as $key=>$text)if(!is_scalar($text))throw new InvalidArgumentException('Resource labels must be scalar');foreach($events as $e)if(!array_key_exists($e['resource'],$resources))throw new InvalidArgumentException('Event names an unknown resource');}
   for($i=0;$i<$days;$i++){$day=$first->modify('+'.$i.' days');if($resources===NULL)$columns[]=['day'=>$day,'label'=>$day->format('D j M Y'),'events'=>$events];else foreach($resources as $key=>$name)$columns[]=['day'=>$day,'label'=>$name.' · '.$day->format('D j M'),'events'=>array_values(array_filter($events,fn($e)=>$e['resource']===(string)$key))];}
   $padData[$pad]=padDefaultData();return padCalendarTimeColumns($events,$columns,$zone,(string)padTagParm('label',$resources===NULL?'Time grid':'Resource planning'));
