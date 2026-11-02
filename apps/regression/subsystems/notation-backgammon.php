@@ -1,0 +1,4 @@
+<?php
+define('PAD',dirname(__DIR__,3).'/pad/');require PAD.'lib/encoding.php';require PAD.'subs/notations/_lib/notation.php';require PAD.'subs/notations/_lib/backgammon.php';
+function verify($ok,$why){if(!$ok)throw new RuntimeException($why);}
+$p=padBackgammonParse('start');verify(is_array($p)&&count($p[0])===8,'start');foreach(['1:W15 1:B15','1:W16 2:B15','1:W15 2:B15; cube:3,C','1:W1 2:B1','<script>'] as $v)verify(is_string(padBackgammonParse($v)),'invalid');$bar=padBackgammonParse('1:W10 24:B12; bar:W3,B2; off:W2,B1; cube:4,W');verify(is_array($bar),'bar/off accounting');$a=padBackgammonSvg($bar,FALSE,640,'<board>');verify(str_contains($a,'Bar W3 B2; Off W2 B1; Cube 4 owner W'),'description');verify($a!==padBackgammonSvg($bar,TRUE,640,'<board>'),'flip');$xml=new DOMDocument();verify($xml->loadXML($a),'SVG');verify(!str_contains($a,'<board>'),'escape');echo "notation backgammon: OK\n";
