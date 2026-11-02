@@ -1,6 +1,6 @@
 <?php
 
-  // The body of {pad:themes/} - a switcher of the themes of subs/themes/types/: a form that posts the
+  // The body of {widget:themes/} - a switcher of the themes of subs/themes/types/: a form that posts the
   // choice back to the page. The post is taken before the application runs (inits/themes.php):
   // the choice kept in the padTheme cookie of the PAD applications (padThemeSwitch,
   // _lib/theme.php) and the visitor sent back to the page as a GET - the pages built on the
@@ -17,7 +17,7 @@
   include_once PAD . 'subs/themes/_lib/theme.php';
 
   if ( $padPair [$pad] and $padCheckSyntax )
-    padError ( "the {pad:themes} takes no content - it is written single, {pad:themes/}" );
+    padError ( "the {widget:themes} takes no content - it is written single, {widget:themes/}" );
 
   $padThemesLabel  = trim ( padParmText ( (string) padTagParm ( 'label', 'Theme' ) ) );
   $padThemesButton = trim ( padParmText ( (string) padTagParm ( 'button', 'Apply' ) ) );

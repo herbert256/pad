@@ -313,7 +313,7 @@
 
   }
 
-  // The page links, from the rows padPagerItems makes for the {pad:pager} tag - its own markup
+  // The page links, from the rows padPagerItems makes for the {widget:pager} tag - its own markup
   // and class, so a page's .pager style is not the table's.
 
   function padDatatablePager ( $items, $catalog ) {

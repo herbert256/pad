@@ -1,13 +1,13 @@
 <?php
 
-  // An accordion without JavaScript - the accordion widget: every {pad:tab} an HTML <details>
+  // An accordion without JavaScript - the accordion widget: every {widget:tab} an HTML <details>
   // with its label as the <summary>, so the browser opens and closes it, from the keyboard
   // too, and a reader hears 'collapsed' or 'expanded'. A find in the page opens the item it
   // finds in, and printed what is open shows.
   //
   //   {widget:accordion single, open=1}
-  //     {pad:tab 'Can I return it?'}Within 30 days ...{/pad:tab}
-  //     {pad:tab 'Is there a warranty?'}Two years ...{/pad:tab}
+  //     {widget:tab 'Can I return it?'}Within 30 days ...{/widget:tab}
+  //     {widget:tab 'Is there a warranty?'}Two years ...{/widget:tab}
   //   {/widget:accordion}
   //
   // single gives the items one name - the HTML exclusive accordion: opening one closes the

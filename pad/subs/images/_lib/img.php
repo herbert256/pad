@@ -35,7 +35,7 @@
   // says the density it really has, 1.5x for one. The format is the source's (a GIF becomes
   // a PNG), or format= jpeg, png or webp; quality= 1 to 100 (80) for JPEG and WebP.
   //
-  // filter= - a comma list of the filters of the filter subsystem (subs/filters/), applied in
+  // filter= - a comma list of the filters of the filter subsystem (subs/images/filters/), applied in
   // the order written: those that change the picture work on each thumbnail after it was
   // resized and are part of its name; halftone and ascii write the picture as SVG dots or as
   // text in place of the <img>; the placeholders - blurhash, thumbhash, dominant, lqip - stand behind
@@ -97,7 +97,7 @@
     }
 
     if ( trim ( (string) $filter ) !== '' ) {
-      include_once PAD . 'subs/filters/_lib/filter.php';
+      include_once PAD . 'subs/images/filters/_lib/filter.php';
       $chain = padFilterBudget ( padFilterChain ( $filter ), $w1, $h1 );
     }
 

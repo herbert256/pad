@@ -168,7 +168,7 @@
 
   // The HTML the document is made of: the whole page, or the parts of the {pad:pdf} pairs with
   // their tables of contents filled from their own headings - the page's are filled when
-  // the page is written out, after the parts were taken, and a {pad:toc} in a document was its
+  // the page is written out, after the parts were taken, and a {widget:toc} in a document was its
   // raw marker in the PDF.
 
   function padPdfHtml ( $page ) {

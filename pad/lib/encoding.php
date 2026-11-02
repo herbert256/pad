@@ -14,7 +14,7 @@
   // parameters would come back to life there.
   //
   // The rest are small utilities: padJsonForHtmlAttr (JSON safe inside an HTML attribute,
-  // for {select} and {pad:reactData}), padMD5 with its helpers padPack, padUnpack, padBase64
+  // for {select} and {widget:reactData}), padMD5 with its helpers padPack, padUnpack, padBase64
   // and padUnbase64 (a 22-character URL-safe digest used for etags and cache keys, with
   // padMD5Unpack giving the hex form back), padRandomString (session and request ids,
   // temporary file names), and padZip / padUnzip (gzip for cached output).
@@ -139,7 +139,7 @@
 
   }
 
-  // The seal of a marker the engine writes into the page to fill in later - {pad:toc}, {pad:stack} -
+  // The seal of a marker the engine writes into the page to fill in later - {widget:toc}, {pad:stack} -
   // so text that came in with a value is never taken for one: a keyed hash of what the
   // marker holds, 16 decimal digits - a pipe on the tag, {pad:stack 'css' | upper}, changes no
   // digit. The key is this installation's (DATA/keys/markers.key),

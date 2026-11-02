@@ -90,7 +90,7 @@
   }
 
   // The text an @else@ is looked for in: padMarkerText, with the content of its text pairs -
-  // what an {pad:ignore} or a {pad:highlight} sample shows - written over with spaces as well
+  // what an {pad:ignore} or a {widget:highlight} sample shows - written over with spaces as well
   // (padTextFree, lib/template.php), the same length. A sample is text: the marker in one is
   // no marker, and neither is an opener or closer it shows - but those were counted, a
   // {/pad:echo} in a sample put echo among the pairs to balance and threw its count off, so
@@ -330,7 +330,7 @@
 
   // Whether an @content@ at this place is the text's own: not inside a {pad:content} or {pad:slot}
   // pair, whose frame it is, nor inside a {pad:define} or {pad:macro} written in the template - that
-  // tag's own marker, filled where it is used - nor inside an {pad:ignore} or {pad:highlight} sample,
+  // tag's own marker, filled where it is used - nor inside an {pad:ignore} or {widget:highlight} sample,
   // where it is text to show. Loops and conditions stay transparent: the content goes in
   // where the template puts it. A nested define's marker took the caller's content, and a
   // sample explaining @content@ printed the caller's template as its source.
@@ -347,7 +347,7 @@
 
   // Where those pairs stand in the text: a closing tag pairs with the nearest opening tag
   // before it that has none yet, as the engine pairs them, and an opening tag left over is a
-  // single tag that opens nothing - {pad:highlight file='orders.pad'}, a {pad:slot 'title'} with no
+  // single tag that opens nothing - {widget:highlight file='orders.pad'}, a {pad:slot 'title'} with no
   // default. Counted as openers in front of the marker, as the balance of the pairs counts
   // them, they took the template's own @content@ for one inside a sample or a slot, and the
   // tag failed "an @content@ stands where nothing merges content into it".

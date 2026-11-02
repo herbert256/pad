@@ -68,13 +68,13 @@
   // With $padCsrf on, each form of the page that posts back here carries the session's
   // token without the template having to ask (lib/csrf.php) - the forms an application
   // already had are protected by the one setting. A token that went into the page with
-  // $padCsrf off - a {pad:form} writes one - is taken out of a form whose button sends it to
+  // $padCsrf off - a {input:form} writes one - is taken out of a form whose button sends it to
   // another site, or by GET.
 
   if ( ( $padCsrf or isset ( $padCsrfIssued ) ) and $padOutputType == 'web' )
     $padOutput = padCsrfForms ( $padOutput, $padCsrf );
 
-  // A {pad:toc} is filled in once every heading of the page is written, the answer of a live
+  // A {widget:toc} is filled in once every heading of the page is written, the answer of a live
   // request included - lib/toc.php.
 
   $padOutput = padTocFill ( $padOutput );

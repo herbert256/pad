@@ -81,7 +81,7 @@
 
     $chunk = substr ( $raw, strlen ( $padFlushRaw ?? '' ) );
 
-    // A {pad:toc} lists the headings of the whole page, so its marker is filled in once the page
+    // A {widget:toc} lists the headings of the whole page, so its marker is filled in once the page
     // is done (lib/toc.php): a part holding one is not sent - this flush sends nothing, nor
     // does any after it, and the headings around the toc go with the rest of the page, which
     // the toc is filled from. Sent, the raw marker went to the browser - private-use
@@ -108,7 +108,7 @@
       // session already: on every flushed page it gave each visitor - each bot - a session
       // and a cookie, which also kept that visitor out of the page cache from then on.
 
-      if ( $padCsrf and ( isset ( $_COOKIE [ session_name () ] ) or preg_match ( '/<form\b|\{pad:form\b/i', $padOut [0] ) ) )
+      if ( $padCsrf and ( isset ( $_COOKIE [ session_name () ] ) or preg_match ( '/<form\b|\{input:form\b/i', $padOut [0] ) ) )
         padCsrfToken ();
 
       // A visitor who brought a session has it opened now, while it still can be: below the

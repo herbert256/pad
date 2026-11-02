@@ -3,7 +3,7 @@
   // {widget:toast 'Saved'}Your changes are kept.{/widget:toast} or {widget:toast 'Saved'/} - a notice the visitor
   // dismisses: a <dialog> shown from the start, its title, its text, and a close button the
   // browser makes close it (invoker commands), a small script (CSP nonce) where it does not -
-  // no form of its own, so a toast stands inside a {pad:form} too. tone= colours it - info,
+  // no form of its own, so a toast stands inside a {input:form} too. tone= colours it - info,
   // success, warning or error; place= puts it in a corner of the window, top or bottom,
   // instead of in the flow; timeout= closes it after so many seconds, which the script
   // does, held while the pointer or the focus is on it; sound= plays a sound of the sounds

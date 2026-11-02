@@ -175,7 +175,7 @@
 
     $_SELECT [] = $sql;
 
-    // A page cut by the limit: the statement that counts every row is kept for a {pad:pager},
+    // A page cut by the limit: the statement that counts every row is kept for a {widget:pager},
     // which runs it only when it is asked - lib/pager.php. The rows are counted over the
     // FROM, the joins and the where alone, unless distinct, a group, a having or a union
     // makes the select list decide what a row is: a derived table may not hold two columns
@@ -186,7 +186,7 @@
     // a pager over its one row.
     //
     // The limit is the one folded into $tail: building the union members sets the global
-    // again, to theirs, so a paged select with union= booked no count and its {pad:pager} showed
+    // again, to theirs, so a paged select with union= booked no count and its {widget:pager} showed
     // no links - or, read from a select before it on the same level, that one's pages. A
     // select that books none takes the count of the one before away for the same reason.
     // The join is this select's own the same way: the last member's was read, and a joined
@@ -410,7 +410,7 @@
   // guard read $padDone ['page'], a key the per-level book never has, so the pager ran
   // again on the rows the limit had already cut - page 2 and on came out empty.
   //
-  // $rows and $page come back as the numbers the limit was made of: the {pad:pager} counts its
+  // $rows and $page come back as the numbers the limit was made of: the {widget:pager} counts its
   // pages by those rows (lib/pager.php), which may be the table's declared rows= - it took
   // the tag's rows= or 10, and a table declared with 'rows' => 5 had its pager count pages
   // of 10.

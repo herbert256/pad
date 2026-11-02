@@ -11,7 +11,7 @@
   // A provider is a file of subs/embeds/types/: the files there are the providers there are
   // (padEmbedProviders), the {embed:auto} tag picks the one that knows the address it is given,
   // the embed: type names one - {embed:youtube 'id'}, or bare, {embed:youtube 'id'}, when nothing
-  // else has the name - and {pad:video} is the video form of the same providers, its markup kept
+  // else has the name - and {widget:video} is the video form of the same providers, its markup kept
   // as it was (subs/embeds/_lib/video.php). A provider's file answers an array:
   //
   //   name      the provider as the visitor reads it - YouTube

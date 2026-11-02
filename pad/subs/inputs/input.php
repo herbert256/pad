@@ -23,6 +23,11 @@
   if ( $padInfoXref ?? FALSE )
     padInfoXref ( 'input', $padInputKind );
 
+  // Native controls and the form container run in the tag's level scope. In particular,
+  // a form must keep its body for the end walk; rich fields take their body as raw text.
+  if ( in_array ( $padInputKind, [ 'form', 'field', 'textarea', 'validator' ], TRUE ) )
+    return include PAD . "subs/inputs/types/$padInputKind.php";
+
   $padInputSource = $padContent;
   $padContent     = '';
 

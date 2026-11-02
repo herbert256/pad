@@ -34,7 +34,7 @@
   if ( $padStrBox or $padStrCln or $padStrRes )
     $padOut [$pad+1] = padStackFill ( $padOut [$pad+1] );
 
-  // A {pad:toc} lists the headings of the page that holds it: a page a {pad:page} renders fills its
+  // A {widget:toc} lists the headings of the page that holds it: a page a {pad:page} renders fills its
   // own here, before the page around it sees it - lib/toc.php.
 
   if ( $padStrBld == 'page' )

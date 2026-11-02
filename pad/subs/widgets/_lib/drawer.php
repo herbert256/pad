@@ -4,7 +4,7 @@
   // of the window and the button that opens it.
   //
   //   {widget:drawer 'filters', title='Filters', button='Show filters', side='left'}
-  //     {pad:form 'filter'}...{/pad:form}
+  //     {input:form 'filter'}...{/input:form}
   //   {/widget:drawer}
   //
   // It is opened the way {widget:modal} opens its dialog (subs/widgets/_lib/modal.php): the button's

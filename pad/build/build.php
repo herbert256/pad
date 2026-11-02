@@ -76,8 +76,8 @@
   // Strict mode reads the assembled source for construct typos: an @word@ that names no
   // file in pad/constructs/ renders as nothing anywhere, silently. What sits between
   // {pad:ignore} tags is the author saying hands off, so it stays out of the scan - written with
-  // whitespace control too, {~pad:ignore~}, and so does a {pad:highlight} sample, code shown as it
-  // stands, and the content of a pair carrying the ignore option, {pad:markdown ignore}: only
+  // whitespace control too, {~pad:ignore~}, and so does a {widget:highlight} sample, code shown as it
+  // stands, and the content of a pair carrying the ignore option, {widget:markdown ignore}: only
   // the plain {pad:ignore} was skipped, and a sample showing a placeholder, "Hello @name@",
   // failed as "there is no @name@ construct".
   //
@@ -89,7 +89,7 @@
   // The samples are the text pairs the render reads as text (padTextSpans, lib/template.php),
   // written over with spaces as well, and the place reported is the @word@ the scan found: a
   // pattern of its own paired them, which read no pad: prefix - {pad:ignore}Hello
-  // @name@{/pad:ignore} failed - and ended a {pad:highlight} sample at the closer of a sample it
+  // @name@{/pad:ignore} failed - and ended a {widget:highlight} sample at the closer of a sample it
   // shows; and the place was the first @word@ of the text, a sample's too, so a typo on line 3
   // was pointed at in a sample on line 1.
 

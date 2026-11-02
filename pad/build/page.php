@@ -8,7 +8,7 @@
   // _lib and _inits.pad. Whatever those files echo is kept as content; the page's return
   // value decides the rest - an array becomes the page data ($padBuild), a scalar is
   // appended as content, NULL drops the page's content and template (the _exits.php chain
-  // still runs), FALSE selects the @else@ half. Ahead of all of it a post of a {pad:form} is
+  // still runs), FALSE selects the @else@ half. Ahead of all of it a post of a {input:form} is
   // checked against the rules= its fields carry in the page's template (lib/form.php), so
   // padPosted tells the PHP whether the post passed.
   //

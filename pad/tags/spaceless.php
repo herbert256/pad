@@ -15,7 +15,7 @@
   }
 
   // What a <pre>, <textarea>, <script> or <style> holds is text as it stands: the white
-  // space between two tags in a <pre> is part of what it shows - a {pad:highlight} sample came
+  // space between two tags in a <pre> is part of what it shows - a {widget:highlight} sample came
   // out on one line with its tokens glued together, $a=1;echo$a; - and a textarea of
   // blanks lost its value. Such an element is matched whole up to the > of its close, which
   // is left for the white space after it.

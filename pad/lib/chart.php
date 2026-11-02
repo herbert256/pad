@@ -3,9 +3,9 @@
   // The pieces of the chart code needed where no chart is drawn: padChartTypes and
   // padChartType, the kinds a chart has - the files of subs/charts/types/, the chart subsystem's
   // kinds (lib/subsystem.php); padChartAttr, the text of an
-  // attribute or an SVG element escaped - {pad:emoji}, {pad:country}, {time:countdown}, {time:relative},
-  // {widget:jsonview}, {pad:toc} - and padChartDedent, the content of a pair with its shared indent
-  // taken off - {widget:copy}, {diagram:auto}, {pad:highlight}. The rest of the charts is the subsystem in
+  // attribute or an SVG element escaped - {image:emoji}, {image:country}, {time:countdown}, {time:relative},
+  // {widget:jsonview}, {widget:toc} - and padChartDedent, the content of a pair with its shared indent
+  // taken off - {widget:copy}, {diagram:auto}, {widget:highlight}. The rest of the charts is the subsystem in
   // subs/charts/, its library subs/charts/_lib/ loaded when a page draws one.
 
   // The kinds of chart: the files of subs/charts/types/ (padKinds, lib/subsystem.php) - a kind is

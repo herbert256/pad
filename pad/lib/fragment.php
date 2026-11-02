@@ -25,7 +25,7 @@
   // A {pad:push} made while a section renders is part of what the section does, so it is kept
   // with the rendering ('stacks') and made again on a hit - lib/stack.php records it. So is
   // the page booking of a paged tag in it ('pagers', padPagerKeep in lib/pager.php): a
-  // {pad:pager} after the section found no paged tag on a hit, or one with a single page.
+  // {widget:pager} after the section found no paged tag on a hit, or one with a single page.
   //
   // A {pad:nocache} part of the section renders on a hit too: kept as its source ('nocache'),
   // the stored rendering is then made a template again and rendered - lib/nocache.php.
@@ -169,7 +169,7 @@
 
   // A rendering that holds something of this visitor's or of this request's is not kept,
   // as the page cache keeps no such page (padCacheStorable): the session's CSRF token - a
-  // {pad:form}, {pad:csrf}, a live region - went to every later visitor of the section, who could
+  // {input:form}, {pad:csrf}, a live region - went to every later visitor of the section, who could
   // post with it on the first one's behalf, and a CSP nonce left in it is one no later
   // header names (padFragmentNonce keeps the response's as a marker). Neither are the
   // visitor's own ids.

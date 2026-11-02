@@ -674,8 +674,8 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
-  // The content of a text pair - a {pad:highlight} sample, what {pad:ignore} wraps, a pair carrying
-  // the ignore option such as {pad:markdown ignore} - is shown as it stands: a sample of the ~
+  // The content of a text pair - a {widget:highlight} sample, what {pad:ignore} wraps, a pair carrying
+  // the ignore option such as {widget:markdown ignore} - is shown as it stands: a sample of the ~
   // syntax lost every ~ and the line breaks beside them, {pad:ignore}{~items~}{/pad:ignore} printed
   // {items}. It is set aside while the rest is stripped; the pair's own tags keep their ~.
   // The pairs are read as the {pad:else} scans read them (padTextSpans, lib/template.php).

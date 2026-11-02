@@ -92,7 +92,7 @@
   // A button belongs to the form its form= names, wherever it stands, and sends that form
   // where its formaction= says; a relative action is resolved against the page's <base
   // href>. A form one of whose buttons posts to another site gets no token - and loses the
-  // one a {pad:form} wrote: exits.php runs this pass, adding nothing, also with $padCsrf off
+  // one a {input:form} wrote: exits.php runs this pass, adding nothing, also with $padCsrf off
   // when a token went into the page. A button that sends the form by GET - formmethod=, in
   // any spelling a browser reads as GET - to this site leaves the token: it reaches this
   // site's own logs and history only, and a form with a Save and a Preview button could
@@ -173,7 +173,7 @@
 
       } elseif ( $form ['token'] and isset ( $GLOBALS ['padCsrfIssued'] ) ) {
 
-        // Only the token a {pad:form} wrote goes (lib/form.php keeps its opening text), never a
+        // Only the token a {input:form} wrote goes (lib/form.php keeps its opening text), never a
         // {pad:csrf} the template wrote itself: that one was put there on purpose.
 
         $field = '<input type="hidden" name="' . padCsrfName . '" value="' . $GLOBALS ['padCsrfIssued'] . '">';
@@ -307,7 +307,7 @@
 
   }
 
-  // The opening tag of a form - {pad:form} asks too (lib/form.php) - and whether it posts here.
+  // The opening tag of a form - {input:form} asks too (lib/form.php) - and whether it posts here.
 
   function padCsrfFormPosts ( $open ) {
 

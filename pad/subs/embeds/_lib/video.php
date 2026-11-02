@@ -1,6 +1,6 @@
 <?php
 
-  // Video embeds - the {pad:video} tag, the video form of the embed subsystem: the addresses it
+  // Video embeds - the {widget:video} tag, the video form of the embed subsystem: the addresses it
   // knows are those the youtube and vimeo providers of subs/embeds/types/ read, and the player's
   // address, the video's own and its thumbnail are those the providers write, so a new form
   // of a YouTube address is learnt in one place; the markup is the tag's own, as it was
@@ -10,9 +10,9 @@
   // videos stays as light as one with ten pictures. The player that comes is
   // youtube-nocookie.com's or Vimeo's with dnt=1.
   //
-  //   {pad:video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'}
-  //   {pad:video 'https://vimeo.com/76979871', title='The new Vimeo player', poster='photos/still.jpg'}
-  //   {pad:video 'clips/sunrise.webm', title='Sunrise', poster='photos/sunrise.jpg'}
+  //   {widget:video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'}
+  //   {widget:video 'https://vimeo.com/76979871', title='The new Vimeo player', poster='photos/still.jpg'}
+  //   {widget:video 'clips/sunrise.webm', title='Sunrise', poster='photos/sunrise.jpg'}
   //
   // padVideo        the HTML of a video, '' when the address is no video it knows
   // padVideoParse   a YouTube or Vimeo address as [ site, id, start, short ], NULL when not

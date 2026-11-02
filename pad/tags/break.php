@@ -23,9 +23,9 @@
     $padStartData [$padNextPadLevel] = [];
 
   // Only a {pad:while}/{pad:until}, which loops while its walk is 'next', needs the walk cleared.
-  // A two-pass tag - {pad:markdown}, {pad:tidy}, {pad:form}, toData and the rest - carries 'end' for the
+  // A two-pass tag - {widget:markdown}, {pad:tidy}, {input:form}, toData and the rest - carries 'end' for the
   // pass that post-processes its result, and clearing that dropped the pass: {pad:cease} inside
-  // a {pad:markdown} left the Markdown unrendered, a toData loop stored nothing.
+  // a {widget:markdown} left the Markdown unrendered, a toData loop stored nothing.
 
   if ( $padWalk [$padNextPadLevel] == 'next' )
     $padWalk [$padNextPadLevel] = '';

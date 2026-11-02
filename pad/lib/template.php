@@ -216,16 +216,16 @@
 
   }
 
-  // The pairs whose content is text, not template: what {pad:ignore} wraps, a {pad:highlight}
-  // sample, and the content of any pair whose opener carries the ignore option - {pad:markdown
+  // The pairs whose content is text, not template: what {pad:ignore} wraps, a {widget:highlight}
+  // sample, and the content of any pair whose opener carries the ignore option - {widget:markdown
   // ignore}, {format:auto 'd' ignore} - which level/split.php reads as text as it reads the other
   // two. A branch marker inside one - {pad:ignore}{pad:else}{/pad:ignore}, a {pad:when} in a sample - is
   // that text, and belongs to no tag: it was taken by the {pad:if}, {pad:case} or condition tag
   // around it, which cut its content there and left "the pair {pad:ignore} never closes" - and
-  // so it still was inside a {pad:markdown ignore} sample. The @else@ split already looks past
+  // so it still was inside a {widget:markdown ignore} sample. The @else@ split already looks past
   // them (padOpenCloseList balances every pair).
 
-  const padTextPairs = [ 'pad:ignore', 'pad:highlight' ];
+  const padTextPairs = [ 'pad:ignore', 'widget:highlight' ];
 
   // The part in front of a branch marker - $string, which starts where $full does - is
   // counted with its text pairs written over with spaces (padTextBlank), and is FALSE when a
@@ -255,11 +255,11 @@
   }
 
   // The text pairs of $string, read in order, each paired with its closer as the engine
-  // pairs it (level/tag.php): the first closer of the opener's own spelling - {/pad:markdown}
-  // for {pad:markdown ...}, never {/markdowns} - in front of which the openers and closers of
+  // pairs it (level/tag.php): the first closer of the opener's own spelling - {/widget:markdown}
+  // for {widget:markdown ...}, never {/markdowns} - in front of which the openers and closers of
   // that spelling balance, a nested one closing first; nothing else opens inside, its content
   // is text. An opener with no such closer is a single tag and holds no text: the single form
-  // {pad:highlight file='orders.php'}, which colours a file, a self-closing {function:tag .../}, any tag
+  // {widget:highlight file='orders.php'}, which colours a file, a self-closing {function:tag .../}, any tag
   // that merely carries the ignore option - {pad:echo 'ab' ignore} - and a sample's opener whose
   // closer a nested opener of its name takes. The closer is looked for in $string, and on in
   // $full behind $offset - where $string ends - when $string is the part in front of a
@@ -268,9 +268,9 @@
   // Any closer of the name later in the text made a tag carrying the ignore option an open
   // text pair: {pad:echo 'x' ignore} inside a loop, with an {pad:echo}y{/pad:echo} further down the page,
   // took the loop's {/sequence:auto} for its text. The name was read without its pad: prefix, so
-  // {pad:markdown ignore} found no {/pad:markdown} and was no text pair - an {pad:else} in its sample
+  // {widget:markdown ignore} found no {/widget:markdown} and was no text pair - an {pad:else} in its sample
   // was the {pad:if}'s - and inside an open sample every opener of the name counted, the single
-  // {pad:highlight file=...} too, so a sample showing one never closed.
+  // {widget:highlight file=...} too, so a sample showing one never closed.
   //
   // 'open' says whether a text pair is still open at the end of $string; 'spans' are the
   // contents of the text pairs that closed.
@@ -371,7 +371,7 @@
       $parms = substr ( $text, $after, $end - $after );
 
       if ( in_array ( $tag, padTextPairs, TRUE ) ) {
-        if ( $tag == 'pad:highlight' and preg_match ( '/[\s,]file\s*=/', $parms ) )
+        if ( $tag == 'widget:highlight' and preg_match ( '/[\s,]file\s*=/', $parms ) )
           continue;
       } elseif ( ! padTextOption ( $parms ) )
         continue;
@@ -614,7 +614,7 @@
   // {pad:else} - {pad:if}, {pad:case} and the condition tags (padElseCut) - look for its exact text, so
   // the branch was lost in silence when the condition failed, and "there is no tag named
   // 'else'" ended the page when it held. Written as {pad:else} where a level's text is set out
-  // for an occurrence (occurrence/init.php), what a {pad:highlight} shows kept as written, as
+  // for an occurrence (occurrence/init.php), what a {widget:highlight} shows kept as written, as
   // padTildeStrip keeps it.
 
   function padElseSpace ( $text ) {

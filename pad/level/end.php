@@ -82,7 +82,7 @@
   include PAD . 'options/_go/end.php';
 
   // A fragment-cache hit never ran the tag's handler, so the options only the handler reads
-  // - children= of a {pad:tree}, window= of a {pad:pager} - stand unread on it; the miss that stored
+  // - children= of a {pad:tree}, window= of a {widget:pager} - stand unread on it; the miss that stored
   // the rendering was swept with the same options.
 
   if ( $padCheckSyntax and ! ( $padFragment [$pad] ['hit'] ?? FALSE ) )

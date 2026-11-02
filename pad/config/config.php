@@ -335,10 +335,10 @@
   // The theme of every web page (subs/themes/): the name of a file of pad/subs/themes/types/ -
   // 'paper', 'dark', 'terminal' ... - whose colours replace the frame's, a <style> put in the
   // page's <head> on the way out (subs/themes/_lib/theme.php). '' is none. A visitor's choice
-  // from a {pad:themes/} switcher, kept in a cookie of the application, wins over the setting -
+  // from a {widget:themes/} switcher, kept in a cookie of the application, wins over the setting -
   // on every page when the application sets one, else on the pages built on the frame
   // (www/_common/pad.css); FALSE turns themes off for the application, the visitor's choice
-  // too. {pad:theme 'paper'/} in a template writes a theme into that page alone.
+  // too. {widget:theme 'paper'/} in a template writes a theme into that page alone.
 
   $padTheme = '';
 

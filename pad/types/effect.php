@@ -6,7 +6,7 @@
 
   $padEffectKind = $padTag [$pad];
 
-  $padTagGo = PAD . 'subs/effects/effect';
+  $padTagGo = PAD . 'subs/widgets/effects/effect';
 
   return include PAD . 'types/_go/tag.php';
 

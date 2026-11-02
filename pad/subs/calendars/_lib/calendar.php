@@ -197,7 +197,7 @@
     if ( trim ( $place ) === '' )
       return NULL;
 
-    include_once PAD . 'subs/holidays/_lib/holidays.php';
+    include_once PAD . 'subs/calendars/holidays/_lib/holidays.php';
 
     $where = padHolidaysPlace ( $place );
 

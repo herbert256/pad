@@ -73,7 +73,7 @@
     $query = padReplayQuery ( $_SERVER ['QUERY_STRING'] ?? '' );
     $body  = ( $padCacheStop == 200 and $padCacheServerGzip ) ? padUnzip ( $padOutput ) : $padOutput;
 
-    // An answer holding a token its request made - the session's CSRF token every {pad:form}
+    // An answer holding a token its request made - the session's CSRF token every {input:form}
     // writes, the CSP nonce, PAD's session or request id - cannot be replayed faithfully
     // either: the replay gets a new one, and the case was reported changed on every replay,
     // an accepted answer too, while the store kept the visitor's token on disk. It is not

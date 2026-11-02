@@ -43,7 +43,7 @@
   //
   // The pairs are looked for with the content of the text pairs written over with spaces -
   // the same length, so the places found are the content's (padTextSpans, lib/template.php):
-  // what an {pad:ignore} wraps, a {pad:highlight} sample or a {pad:markdown ignore} is text, as the
+  // what an {pad:ignore} wraps, a {widget:highlight} sample or a {widget:markdown ignore} is text, as the
   // closer search of the tag and the bodies of {pad:define} and {pad:macro} read it. A {/pad:slot} shown
   // in a sample of a fill closed the fill there, and the sample's {pad:ignore} never closed:
   // {card}{pad:slot 'f'}{pad:ignore}{/pad:slot}{/pad:ignore}{/pad:slot}{/card} failed with "the pair {pad:ignore}

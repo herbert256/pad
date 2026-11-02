@@ -6,7 +6,7 @@
   // typed. Ctrl or Cmd with B, I and K make bold, italic and a link of the selection. The
   // preview is the script's own reading of the common Markdown - headings, emphasis, code,
   // links, lists, quotes, rules - with every tag of the text written as text and a link only
-  // to http, https, mailto or the site itself; {pad:markdown} renders the stored text on the
+  // to http, https, mailto or the site itself; {widget:markdown} renders the stored text on the
   // server. rows= the textarea's height, 8 unless given; the text before a post is value= or
   // the content between the tags, as written.
 
@@ -21,7 +21,7 @@
     $own  = padInputEscape ( $id );
     $mine = padInputOwn ( $rest, [ 'spellcheck' => 'true' ] );
 
-    // A line break follows the opening tag, as {pad:textarea} writes it: the HTML parser drops
+    // A line break follows the opening tag, as {input:textarea} writes it: the HTML parser drops
     // one right after <textarea>, and a text that began with a blank line lost it.
 
     return padInputFrame ( 'mdeditor', $worded,

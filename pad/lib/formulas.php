@@ -1,7 +1,7 @@
 <?php
 
   // Spreadsheet formulas for a page's PHP - the entries of the formulas subsystem, whose
-  // engine stands in pad/subs/formulas/ and is included the first time one is called:
+  // engine stands in pad/subs/tables/formulas/ and is included the first time one is called:
   //
   //   padFormula ( '=SUM(1,2)' )                              3
   //   padFormula ( '=B1*2', [ 'B1' => 21 ] )                  42
@@ -13,12 +13,12 @@
   // an error as its code - '#DIV/0!', '#N/A', '#REF!' for a circle of references, '#ERROR!'
   // for a formula that cannot be read; an empty result is 0, as a spreadsheet shows it. RAND
   // gives the same numbers for the same $seed. A formula is never PHP and never a PAD
-  // expression: it runs the functions of pad/subs/formulas/types/ and nothing else.
+  // expression: it runs the functions of pad/subs/tables/formulas/types/ and nothing else.
 
   function padFormulaLoad () {
 
     foreach ( [ 'formula', 'dates', 'format', 'collect', 'functions', 'sheet' ] as $part )
-      include_once PAD . "subs/formulas/_lib/$part.php";
+      include_once PAD . "subs/tables/formulas/_lib/$part.php";
 
   }
 

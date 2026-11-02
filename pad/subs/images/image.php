@@ -9,6 +9,8 @@
   }
   if ( $padInfoXref ?? FALSE )
     padInfoXref ( 'image', $padImageKind );
+  if ( padFileExists ( PAD . "subs/images/_lib/$padImageKind.php" ) )
+    include_once PAD . "subs/images/_lib/$padImageKind.php";
   return include PAD . "subs/images/types/$padImageKind.php";
 
 ?>

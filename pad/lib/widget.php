@@ -2,7 +2,7 @@
 
   // What the widgets share - {widget:tabs}, {widget:accordion}, {widget:modal}, {widget:copy} and the rest of the widgets
   // subsystem in subs/widgets/ - with the other tags that draw and play, the charts, the games,
-  // {pad:video} and {notation:chess} among them: an id of their own on the page, their colours as custom
+  // {widget:video} and {notation:chess} among them: an id of their own on the page, their colours as custom
   // properties, their CSS and script written once, the script with this request's CSP nonce.
   //
   // padWidgetTypes   the widgets: the files of subs/widgets/types/ (padKinds, lib/subsystem.php) -
@@ -119,8 +119,8 @@
 
   // Once per output: the page, a {pad:cache} section that is being kept - it comes back on
   // other pages, where nothing else wrote its CSS and script - a mail rendered during the
-  // request ($padOnceScope, lib/mail.php) and, for a style, a {pad:shadow} root ($padShadowScope,
-  // tags/shadow.php). Remembered for the PHP process, a section
+  // request ($padOnceScope, lib/mail.php) and, for a style, a {widget:shadow} root ($padShadowScope,
+  // subs/widgets/types/shadow.php). Remembered for the PHP process, a section
   // was kept without the style or the script an earlier widget of its page had written -
   // a video's play button did nothing elsewhere - and a mail took the page's style.
 
@@ -132,7 +132,7 @@
 
     $scope = (string) ( $padOnceScope ?? '' );
 
-    // A {pad:shadow} root takes no style from the page: what a widget writes once - its style,
+    // A {widget:shadow} root takes no style from the page: what a widget writes once - its style,
     // the rules of its slots - is written once in every shadow root as well; a script runs
     // for the whole document and stays once a page.
 
@@ -427,7 +427,7 @@
   // ended it under tidy, and one in the inline <svg> an effect keeps its style in was never
   // loaded. A whole page without a <head> of its own - a bare template, which tidy makes a
   // document of - has them at its start, where tidy puts them into the head it makes and a
-  // browser into the one it implies. A link inside a <template shadowrootmode> - a {pad:shadow}
+  // browser into the one it implies. A link inside a <template shadowrootmode> - a {widget:shadow}
   // root, whose style the page around it does not reach - stays.
 
   function padWidgetHead ( $html ) {

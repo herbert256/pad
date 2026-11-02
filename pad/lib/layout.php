@@ -27,7 +27,7 @@
   // It all happens in the text, so it costs nothing at render time and the tags are gone
   // before the page renders: {pad:block 'name'} needs its name quoted, which also keeps the
   // {pad:block} snippet of the _common application - no name - what it was. What stands
-  // between {pad:ignore} tags is left alone, and so is a {pad:highlight} sample and the content of a
+  // between {pad:ignore} tags is left alone, and so is a {widget:highlight} sample and the content of a
   // pair carrying the ignore option.
 
   function padLayout ( &$template, &$frame ) {
@@ -349,7 +349,7 @@
   // the page still gets when it renders). Looked for as {pad:block, {~pad:block was no block: the
   // page's override landed in the body and the wrapper kept its default, and
   // {pad:extends 'x'~} and {pad:meta title='x'~} ended in "'~' is no operator or value". The
-  // content of a {pad:highlight} pair is code shown as it stands (padTildeKeep), and so is
+  // content of a {widget:highlight} pair is code shown as it stands (padTildeKeep), and so is
   // what an {pad:ignore} holds, its pairs found with the comments out of the way: a comment that
   // named the tag - {# a note on {pad:ignore} #} - left the real pair after it unclosed, one
   // that wrote {/pad:ignore} closed it early, and {~pad:block 'x'~} in the sample printed
@@ -570,9 +570,9 @@
   //
   // The text pairs are found as the render finds them (padTextSpans, lib/template.php) and
   // their content set aside: the {pad:ignore} written with whitespace control, {~pad:ignore~}, a
-  // {pad:highlight} sample and a pair carrying the ignore option, {pad:markdown ignore}, as well as
+  // {widget:highlight} sample and a pair carrying the ignore option, {widget:markdown ignore}, as well as
   // the plain {pad:ignore} - only that one was, and {~pad:ignore~}{pad:block 'title'}X{/pad:block}{~/pad:ignore~}
-  // overrode the title, a {pad:highlight 'pad'} sample of {pad:block 'x'}X{/pad:block} showed X.
+  // overrode the title, a {widget:highlight 'pad'} sample of {pad:block 'x'}X{/pad:block} showed X.
 
   function padLayoutMask ( $text, &$masks ) {
 
@@ -654,7 +654,7 @@
 
   // A wrapper file's text as build/base.php frames the page with it, and in $pieces its
   // source-map pieces: its @page@ in a comment noted (padLayoutNoted), and one inside a text
-  // pair - {pad:ignore}write @page@ here{/pad:ignore}, a {pad:highlight} sample - as text the frame's
+  // pair - {pad:ignore}write @page@ here{/pad:ignore}, a {widget:highlight} sample - as text the frame's
   // @page@ is not, the @ as its stand-in, which the page's exit turns back. Counted as a
   // marker, it refused the wrapper under the strict check - "one @page@ to a wrapper" - and
   // without it the page went into the sample as well. The stand-in is longer than the file's

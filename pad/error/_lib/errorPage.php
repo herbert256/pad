@@ -158,7 +158,7 @@
     }
 
     // A {pad:stack} of the page or its frame is filled from what the page pushed - not from the
-    // pushes of the page that ended - and a {pad:toc} from its own headings, as the page's own
+    // pushes of the page that ended - and a {widget:toc} from its own headings, as the page's own
     // answer is (exits/exits.php): written out as it was, the marker of a stack stood in
     // the answer and what the page had pushed was lost.
 

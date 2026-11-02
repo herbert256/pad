@@ -3,34 +3,34 @@
   // Form helpers: validation in the page's PHP, and form fields in the template that refill
   // themselves from what was posted and show the error that validation found for them.
   //
-  // padPosted      whether this request posted - and, given a name, posted the {pad:form} of
+  // padPosted      whether this request posted - and, given a name, posted the {input:form} of
   //                that name, so a page with two forms knows which one came back - and
   //                passed the rules its template gives the form's fields
   // padFormFailed  whether the post came back and broke those rules
   // padValidate    checks the posted values against rules ('required|email|max:2000') and
-  //                answers the errors, one message per field; {pad:input} and {pad:textarea} show
+  //                answers the errors, one message per field; {input:field} and {input:textarea} show
   //                them beside their field
   // padFormValue   what a field shows: the posted value when its form came back, else
   //                the default the template gave
   // padFormError   the message padValidate left for a field, when its form came back
   // padValidateClient  rules as the browser's checker reads them - each with the message
-  //                padValidate would give - for {pad:form ..., client} and for a component that
+  //                padValidate would give - for {input:form ..., client} and for a component that
   //                checks with the same rules the page's PHP checks with (www/assets/rules/)
   // padFormRules   the rules the page's template gives the fields of its named forms, or
   //                of one of them
   //
-  // The tags - {pad:form}, {pad:input}, {pad:textarea} - are pad/tags/form.php, input.php and
+  // The tags - {input:form}, {input:field}, {input:textarea} - are pad/subs/inputs/types/form.php, field.php and
   // textarea.php, built on padFormOpen, padFormInput and padFormTextarea below.
   //
-  // Rules in the template. A field can carry its own rules - {pad:input 'email', rules=
+  // Rules in the template. A field can carry its own rules - {input:field 'email', rules=
   // 'required|email'} - and the template then says what the page's PHP said with
   // padValidate. The template renders after the PHP, so the rules are not checked while it
   // renders: build/page.php reads them from the page's text before any _inits.php runs
   // (padFormRulesOf, literal values only, the way {pad:meta} is read) and a post of a named
-  // {pad:form} is validated there (padFormPost). The page's PHP finds it done: padPosted
+  // {input:form} is validated there (padFormPost). The page's PHP finds it done: padPosted
   // ( 'contact' ) is TRUE only for a post that passed, so the PHP that stores and redirects
   // runs for a good post alone, and a post that failed renders the form again, refilled,
-  // with the messages beside the fields and the error= of the {pad:form} above them. Only the
+  // with the messages beside the fields and the error= of the {input:form} above them. Only the
   // page's own text is read - with its _inits.pad and _exits.pad - so a field with rules
   // in a snippet, a custom tag, a {pad:page} or a layout is an error (padFormRulesCheck), as is
   // one in a form that posts elsewhere (action=), by GET, or a file field.
@@ -42,7 +42,7 @@
   const padFormName = 'padForm';
   const padFormAt   = 'padFormAt';
 
-  // The rules are the files of pad/subs/rules/types/ - <rule>.php the server's check, and
+  // The rules are the files of pad/subs/inputs/rules/types/ - <rule>.php the server's check, and
   // www/assets/rules/<rule>.js the browser's - so a rule is added by adding its files, and
   // padValidate, the browser's checker, the messages that list the rules and the pages that
   // document them all read the directory (padRuleTypes). A rule's file answers what the rule
@@ -73,7 +73,7 @@
 
   function padRuleTypes () {
 
-    return padKinds ( 'rules' );
+    return padKinds ( 'inputs/rules' );
 
   }
 
@@ -82,7 +82,7 @@
     static $rules = [];
 
     if ( ! array_key_exists ( $name, $rules ) )
-      $rules [$name] = padKind ( 'rules', $name ) ? include PAD . "subs/rules/types/$name.php" : NULL;
+      $rules [$name] = padKind ( 'inputs/rules', $name ) ? include PAD . "subs/inputs/rules/types/$name.php" : NULL;
 
     return $rules [$name];
 
@@ -603,7 +603,7 @@
 
   }
 
-  // The form a field stands in: the innermost {pad:form} being rendered, '' outside one.
+  // The form a field stands in: the innermost {input:form} being rendered, '' outside one.
 
   function padFormCurrent () {
 
@@ -614,9 +614,9 @@
   }
 
   // Where a field's value comes back from, or NULL when its form did not come back: the
-  // post when this request posted - the field's own {pad:form}, when it stands in a named one,
+  // post when this request posted - the field's own {input:form}, when it stands in a named one,
   // and of the forms of that name the one that was sent -
-  // and for a {pad:form method='get'} the query string once it holds more than the page's
+  // and for a {input:form method='get'} the query string once it holds more than the page's
   // name and the engine's own switches: a search box keeps what was asked. The page's name
   // is the query string's first name only when the query string names the page: on a clean
   // URL, /shop/search?q=pad, the path does, and the first name is the field
@@ -771,7 +771,7 @@
 
   }
 
-  // The items of {pad:form}, {pad:input} and {pad:textarea}, read raw as {pad:attrs} reads them: the first
+  // The items of {input:form}, {input:field} and {input:textarea}, read raw as {pad:attrs} reads them: the first
   // item without a name that is not a bare word is the name; the names in $special are
   // taken out, evaluated, for the tag to use; everything else is an HTML attribute,
   // written the way {pad:attrs} writes it - a bare word is a bare attribute, required.
@@ -822,7 +822,7 @@
     }
 
     if ( $tag != 'form' and ( $name === NULL or $name === '' ) and $padCheckSyntax )
-      padError ( "the {pad:" . $tag . "} needs a field name - {pad:" . $tag . " 'email'}" );
+      padError ( "the {input:" . ( $tag === 'input' ? 'field' : $tag ) . "} needs a field name - {input:" . ( $tag === 'input' ? 'field' : $tag ) . " 'email'}" );
 
     return [ (string) $name, $take, $attrs ];
 
@@ -845,7 +845,7 @@
   // A checkbox or radio - $box its own value - shares its name with the rest of its group.
   // The first box of a name in its form keeps the id of the name, every later one without
   // an id= of its own gets the name with its value, size-L, so its label points at it: every
-  // box of {pad:input 'size', type='radio', value='L', label='Large'} had the id size, and the
+  // box of {input:field 'size', type='radio', value='L', label='Large'} had the id size, and the
   // label Large checked Small. The group's error is written once, after its first box and
   // under that box's id, the later boxes pointing at it, and is worded with the field's name
   // as the browser's checker words it - a box's label names one choice, and a group posted
@@ -878,7 +878,7 @@
   }
 
   // The id of the first box of a name in the form being rendered - NULL when this box is the
-  // first, whose id is kept for the boxes after it. Outside a {pad:form} the page is one group.
+  // first, whose id is kept for the boxes after it. Outside a {input:form} the page is one group.
 
   function padFormBoxFirst ( $name, $id ) {
 
@@ -899,14 +899,14 @@
 
   }
 
-  // {pad:input 'email', type='email', label='E-mail', required}. A checkbox or radio is checked
+  // {input:field 'email', type='email', label='E-mail', required}. A checkbox or radio is checked
   // when the posted value is its own value - before a post, when checked is given - and has
   // its label after it. A password or file field is never refilled: the one would put a
   // password into the page, the other cannot be. A button has no label and no error.
   //
   // A box of a group named for a list - tags[] - is checked when the posted list holds its
   // value: padFormValue answers a text only, and a failed post brought every box of
-  // {pad:input 'tags[]', type='checkbox'} back unticked.
+  // {input:field 'tags[]', type='checkbox'} back unticked.
 
   function padFormInput () {
 
@@ -954,7 +954,7 @@
 
   }
 
-  // {pad:textarea 'message', label='Message', rows=6, required}. A line break follows the
+  // {input:textarea 'message', label='Message', rows=6, required}. A line break follows the
   // opening tag: the HTML parser drops one right after <textarea>, and a value that began
   // with a blank line lost it on every round trip - a refill after a failed post, a stored
   // note edited and saved again.
@@ -975,7 +975,7 @@
 
   }
 
-  // {pad:form 'contact'} ... {/pad:form}: the opening tag, posting by default, and for a post the
+  // {input:form 'contact'} ... {/input:form}: the opening tag, posting by default, and for a post the
   // session's CSRF token and the form's name, which padPosted ( 'contact' ) reads back. The
   // form is kept on a stack while its content renders, so a field knows which form it is
   // in and refills only when that one came back; padFormClose takes it off again and puts
@@ -998,7 +998,7 @@
     $open   = '<form method="' . padFormEscape ( $method ) . '"' . ( $attrs ? ' ' . implode ( ' ', $attrs ) : '' ) . $client . '>';
 
     // The token only goes along to this site, as padCsrfForms decides (lib/csrf.php): a
-    // {pad:form} with an action= on another site handed the session's token to that site, which
+    // {input:form} with an action= on another site handed the session's token to that site, which
     // could then post as the visitor here.
 
     // A form of a name met before in this page - one per row of a list - carries which of
@@ -1070,7 +1070,7 @@
     if ( ! padCsrfControlsHere ( padUnprotect ( $content ) ) )
       $open = str_replace ( padCsrfField (), '', $open );
 
-    // The opening text of a {pad:form} holding the token it wrote: the page pass may take that
+    // The opening text of a {input:form} holding the token it wrote: the page pass may take that
     // token out again - a button elsewhere in the page, a <base> - and only that one.
 
     if ( isset ( $GLOBALS ['padCsrfIssued'] ) and str_contains ( $open, padCsrfField () ) )
@@ -1101,15 +1101,15 @@
 
     foreach ( $sends as $send )
       if ( strtolower ( $send [2] ) != 'post' )
-        return padError ( "the rules of {pad:form '$name'} are never checked - only a form that posts is validated ($send[1]=)" );
+        return padError ( "the rules of {input:form '$name'} are never checked - only a form that posts is validated ($send[1]=)" );
       elseif ( ! padFormRulesHere ( $send [3] ) )
-        return padError ( "the rules of {pad:form '$name'} are never checked - the form posts to another page ($send[1]=)" );
+        return padError ( "the rules of {input:form '$name'} are never checked - the form posts to another page ($send[1]=)" );
 
     preg_match_all ( '/<(?:button|input)\b[^>]*?\sformaction\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s>]+))/i', $content, $buttons, PREG_SET_ORDER );
 
     foreach ( $buttons as $button )
       if ( ! padFormRulesHere ( ( $button [1] ?? '' ) . ( $button [2] ?? '' ) . ( $button [3] ?? '' ) ) )
-        return padError ( "the rules of {pad:form '$name'} are never checked - a button in it sends the form to another page (formaction=)" );
+        return padError ( "the rules of {input:form '$name'} are never checked - a button in it sends the form to another page (formaction=)" );
 
   }
 
@@ -1171,7 +1171,7 @@
 
   }
 
-  // client on a {pad:form}: the rules its template gives its fields, as the browser's checker
+  // client on a {input:form}: the rules its template gives its fields, as the browser's checker
   // reads them, in data-pad-rules - and the error= text in data-pad-error, for the checker
   // to show above the fields when a send fails. Only a named form with rules has any. The
   // form gets novalidate: the browser's own checks of type="email" and required stopped the
@@ -1186,7 +1186,7 @@
     $rules = padFormRules ( $name );
 
     if ( $name === '' or ! $rules ) {
-      padError ( "client on {pad:form" . ( $name !== '' ? " '$name'" : '' ) . "} checks the rules= of its fields in the browser, and " . ( $name === '' ? 'the form has no name' : 'none of its fields has rules=' ) );
+      padError ( "client on {input:form" . ( $name !== '' ? " '$name'" : '' ) . "} checks the rules= of its fields in the browser, and " . ( $name === '' ? 'the form has no name' : 'none of its fields has rules=' ) );
       return '';
     }
 
@@ -1264,8 +1264,8 @@
 
   }
 
-  // The checker itself as one inline script - once a page, behind the first {pad:form ...,
-  // client} or where {pad:validator} stands. It is the engine's own script, so it carries this
+  // The checker itself as one inline script - once a page, behind the first {input:form ...,
+  // client} or where {input:validator} stands. It is the engine's own script, so it carries this
   // request's nonce when the Content-Security-Policy asks for one. Its files stand in
   // www/assets/rules/ with the other subsystems', but it is no file a page could link: it is
   // made of them and of the rules' PHP files, below, so it is written in.
@@ -1284,7 +1284,7 @@
   }
 
   // The checker's code: the runtime, www/assets/rules/validate.js, with the script of every rule
-  // of subs/rules/types/ that has one - www/assets/rules/<rule>.js - where its /*rules*/ stands, and
+  // of subs/inputs/rules/types/ that has one - www/assets/rules/<rule>.js - where its /*rules*/ stands, and
   // the rules that judge an empty field and those that look at other fields, read from their
   // PHP files, where /*empties*/ and /*lookers*/ do: what the browser does is what the
   // directory says, as padValidate's is. Each rule's script
@@ -1342,11 +1342,11 @@
     $forms  = [];
     $offset = 0;
 
-    // The rich fields of pad/subs/inputs/ carry rules= as {pad:input} does: {input:slider 'volume'} and
+    // The rich fields of pad/subs/inputs/ carry rules= as {input:field} does: {input:slider 'volume'} and
     // the bare {input:slider 'volume'}, each kind a file of subs/inputs/types/.
 
     $kinds = implode ( '|', array_map ( fn ( $kind ) => preg_quote ( $kind, '/' ), padKinds ( 'inputs' ) ) );
-    $tags  = 'pad:(form|input|textarea)' . ( $kinds !== '' ? "|(input:(?:$kinds))" : '' );
+    $tags  = 'input:(form|field|textarea)' . ( $kinds !== '' ? "|(input:(?:$kinds))" : '' );
 
     preg_match_all ( '/\{(\/?)(?:' . $tags . ')(?=[ }\/\n\t\r])/', $text, $found, PREG_OFFSET_CAPTURE | PREG_SET_ORDER );
 
@@ -1355,6 +1355,9 @@
       $pos  = $one [0] [1];
       $open = $one [0] [0];
       $tag  = $one [1] [0] . ( ( $one [2] [1] ?? -1 ) >= 0 ? $one [2] [0] : $one [3] [0] );
+
+      // The native field keeps the same validation contract as padFormInput().
+      if ( $tag === 'field' ) $tag = 'input';
 
       if ( $pos < $offset or ( $tag [0] == '/' and $tag != '/form' ) )
         continue;
@@ -1377,7 +1380,7 @@
       // The content of a rich field written as a pair - the text a markdown editor starts
       // with, the choices of a combobox - is taken as written and never rendered (subs/inputs/
       // input.php), so a field written in it is text, as in {pad:ignore}: the reading goes on
-      // after its closing tag. {input:mdeditor 'body'}Write {pad:input 'email', rules='required'/}
+      // after its closing tag. {input:mdeditor 'body'}Write {input:field 'email', rules='required'/}
       // ...{/input:mdeditor} gave the form the rules of an email field it does not have, and no
       // post of it could pass.
 
@@ -1475,7 +1478,7 @@
 
     $name  = padFormRulesLiteral ( $items ['name'] );
     $list  = padFormRulesLiteral ( $items ['take'] ['rules'] );
-    $field = '{' . ( str_contains ( $tag, ':' ) ? $tag : 'pad:' . $tag ) . ( $name !== NULL ? " '$name'" : '' ) . '}';
+    $field = '{' . ( str_contains ( $tag, ':' ) ? $tag : 'input:' . ( $tag === 'input' ? 'field' : $tag ) ) . ( $name !== NULL ? " '$name'" : '' ) . '}';
 
     if ( $name === NULL or $name === '' )
       return padError ( "the rules of $field need its field name written out - {" . $tag . " 'email', rules='required|email'}" );
@@ -1486,9 +1489,9 @@
     $named = $form ? padFormRulesLiteral ( $form ['name'] ) : NULL;
 
     if ( $named === NULL or $named === '' )
-      return padError ( "the rules of $field need a {pad:form} with its name written out around it - {pad:form 'contact'}" );
+      return padError ( "the rules of $field need a {input:form} with its name written out around it - {input:form 'contact'}" );
 
-    $where = "$field in {pad:form '$named'}";
+    $where = "$field in {input:form '$named'}";
 
     if ( isset ( $form ['take'] ['action'] ) )
       return padError ( "the rules of $where are never checked - the form posts to another page (action=)" );
@@ -1584,13 +1587,13 @@
 
     $known = padFormRules ();
     $form  = padFormCurrent ();
-    $field = '{' . ( str_contains ( $tag, ':' ) ? $tag : 'pad:' . $tag ) . " '$name'}";
+    $field = '{' . ( str_contains ( $tag, ':' ) ? $tag : 'input:' . ( $tag === 'input' ? 'field' : $tag ) ) . " '$name'}";
 
     if ( $form === '' )
-      return padError ( "the rules of $field need a {pad:form} with a name around it - {pad:form 'contact'}" );
+      return padError ( "the rules of $field need a {input:form} with a name around it - {input:form 'contact'}" );
 
     if ( ( $known [$form] [$name] ?? NULL ) !== padFormRulesText ( $take ['rules'] ) )
-      padError ( "the rules of $field in {pad:form '$form'} are never checked - rules= is read from the page's own template before its PHP runs, and this field stands in a snippet, a custom tag, a {pad:page} or a layout, or its rules are made while the page renders" );
+      padError ( "the rules of $field in {input:form '$form'} are never checked - rules= is read from the page's own template before its PHP runs, and this field stands in a snippet, a custom tag, a {pad:page} or a layout, or its rules are made while the page renders" );
 
     // The rules a field shows go on the xref record as padValidate's do: a page that writes
     // rules='required|email' uses the two, where only a post's padValidate filed them, and a

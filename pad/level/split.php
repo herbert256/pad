@@ -17,10 +17,10 @@
   // What {pad:ignore} wraps is text, and so is the content of a level carrying the ignore option
   // - the engine stops seeing PAD markup in it - and the content of {format:auto}, which is read as
   // data: an @else@ there is part of that text, not a branch of the tag. Cut off, it was
-  // gone - {pad:ignore}a@else@b{/pad:ignore} printed a, {pad:markdown ignore} lost the rest of a sentence
-  // that showed the marker, and {format:auto 'd'}["a@else@b"]{/format:auto} failed as JSON. A {pad:highlight}
+  // gone - {pad:ignore}a@else@b{/pad:ignore} printed a, {widget:markdown ignore} lost the rest of a sentence
+  // that showed the marker, and {format:auto 'd'}["a@else@b"]{/format:auto} failed as JSON. A {widget:highlight}
   // sample is code shown as it stands, left whole here too - it was put back together by
-  // tags/highlight.php, and a second @else@ in it would read as one too many.
+  // subs/widgets/types/highlight.php, and a second @else@ in it would read as one too many.
 
   if ( ( $padType [$pad] == 'pad' and in_array ( $padTag [$pad], [ 'ignore', 'highlight' ] ) )
        or $padType [$pad] === 'format'
@@ -29,7 +29,7 @@
 
   // The marker is looked for in padElseText (lib/content.php), where one written inside the
   // braces of a tag - a quoted parameter, {pad:echo 'x@else@y'} - is no marker of the level, and
-  // what an {pad:ignore} or a {pad:highlight} sample shows is counted as the text it is.
+  // what an {pad:ignore} or a {widget:highlight} sample shows is counted as the text it is.
 
   $padSplitText = padElseText ( $padBase [$pad] );
 

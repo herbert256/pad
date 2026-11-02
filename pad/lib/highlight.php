@@ -1,9 +1,9 @@
 <?php
 
-  // Syntax colouring on the server - the {pad:highlight} tag and the highlight pipe.
+  // Syntax colouring on the server - the {widget:highlight} tag and the highlight pipe.
   //
-  //   {pad:highlight 'php'} echo $hello; {/pad:highlight}
-  //   {pad:highlight 'json', file='_data/products.json', lines}
+  //   {widget:highlight 'php'} echo $hello; {/widget:highlight}
+  //   {widget:highlight 'json', file='_data/products.json', lines}
   //   {pad:echo $snippet | highlight('sql')}
   //
   // padHighlight        a block: <pre class="pad-highlight"><code> with the colours, a light
@@ -11,9 +11,9 @@
   // padHighlightTokens  the coloured text alone, for a frame of the page's own
   //
   // Their workings - the languages, the patterns, PHP's tokenizer, the escaping - are
-  // subs/highlighters/, reached through the compatibility include in tags/_lib/highlight.php.
+  // subs/widgets/highlighters/, reached through the compatibility include in subs/widgets/_lib/highlight.php.
   //
-  // The languages are discovered from subs/highlighters/types/, including Python, Go, Rust,
+  // The languages are discovered from subs/widgets/highlighters/types/, including Python, Go, Rust,
   // TypeScript and diff alongside the existing PAD, PHP and web languages. The text is cut into tokens by one combined pattern per
   // language - PHP by PHP's own tokenizer - and every piece, coloured or not, is
   // HTML-escaped, so the result is safe to print raw. A token is a <span class="hl-...">:
@@ -22,15 +22,15 @@
 
   function padHighlightKnown ( $lang ) {
 
-    include_once PAD . 'tags/_lib/highlight.php';
+    include_once PAD . 'subs/widgets/_lib/highlight.php';
 
-    return padKind ( 'highlighters', padHighlightLanguage ( $lang ) );
+    return padKind ( 'widgets/highlighters', padHighlightLanguage ( $lang ) );
 
   }
 
   function padHighlightTokens ( $text, $lang ) {
 
-    include_once PAD . 'tags/_lib/highlight.php';
+    include_once PAD . 'subs/widgets/_lib/highlight.php';
 
     $text = (string) $text;
     $lang = padHighlightLanguage ( $lang );
@@ -98,7 +98,7 @@
 
   function padHighlight ( $text, $lang, $lines = FALSE, $mark = '' ) {
 
-    include_once PAD . 'tags/_lib/highlight.php';
+    include_once PAD . 'subs/widgets/_lib/highlight.php';
 
     $text   = rtrim ( padChartDedent ( str_replace ( "\r\n", "\n", (string) $text ) ) );
     $text   = ltrim ( $text, "\n" );

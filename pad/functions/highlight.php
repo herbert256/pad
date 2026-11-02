@@ -5,7 +5,7 @@
   // lib/highlight.php; every piece of the value is escaped, so a field whose last pipe is
   // highlight skips the sanitize chain (level/var.php), as one ending in markdown does.
 
-  // A language it does not know is named as the {pad:highlight} tag names it - the pipe wrote
+  // A language it does not know is named as the {widget:highlight} tag names it - the pipe wrote
   // plain text marked data-lang="phpp" in silence.
 
   // An empty one - a language column left empty, highlight($lang) with $lang '' - is plain
@@ -17,7 +17,7 @@
     $padHighlightLang = 'text';
 
   if ( ! padHighlightKnown ( $padHighlightLang ) and $GLOBALS ['padCheckSyntax'] )
-    padError ( "there is no language '" . padMakeSafe ( $padHighlightLang, 20 ) . "' to highlight - " . implode ( ', ', padKinds ( 'highlighters' ) ) );
+    padError ( "there is no language '" . padMakeSafe ( $padHighlightLang, 20 ) . "' to highlight - " . implode ( ', ', padKinds ( 'widgets/highlighters' ) ) );
 
   return padHighlight ( $value, $padHighlightLang );
 

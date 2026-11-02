@@ -55,10 +55,10 @@
   // page= pages through the terms as the page option pages through the rows of a data tag
   // (handling/types/page.php): rows= is the page's size, 10 when it is not given, and a page
   // below 1, or one that is no number, is page 1. exits/page.php takes the terms of the other
-  // pages off again and books the page for a {pad:pager} with the number of terms there are. Rows
+  // pages off again and books the page for a {widget:pager} with the number of terms there are. Rows
   // were every term of a run with an end of its own, {sequence:range '1..30', page=2} showed all
   // thirty, page=0 and page='x' ended the page under the strict check where they are a data
-  // tag's first page, and {pad:pager 'sequence'} found no paged tag.
+  // tag's first page, and {widget:pager 'sequence'} found no paged tag.
   //
   // A range, a list, a store or a type made in one go, where nothing can turn a term down - no
   // play, unique, min=, max=, stop=, try=, randomly= or random increment, no parameter drawn or

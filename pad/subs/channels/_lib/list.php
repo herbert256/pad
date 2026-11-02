@@ -1,6 +1,6 @@
 <?php
 
-  // The single form of {pad:notifications/}: the rows as a list - the title, the text when it says
+  // The single form of {widget:notifications/}: the rows as a list - the title, the text when it says
   // more than the title, the time, the mark-read link - in a section a screen reader hears as
   // Notifications; "No new notifications." when there are none. Its style is
   // www/assets/channels/notifications.css, written once per page, the colours

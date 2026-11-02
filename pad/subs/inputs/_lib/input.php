@@ -15,11 +15,11 @@
   // style, <kind>.css, beside the runtime's input.js and input.css. subs/inputs/input.php is the
   // body the input: type runs (types/input.php); a kind's file runs in padInputTag.
   //
-  // Every kind is a field of a {pad:form} as {pad:input} is one (lib/form.php): named by its first
+  // Every kind is a field of a {input:form} as {input:field} is one (lib/form.php): named by its first
   // parameter, labelled by label=, refilled from the post when its own form came back
   // (padFormValue), with the message padValidate - or the rules= of the template, checked
   // before the page's PHP - left for it (padFormError), tied to it by aria-invalid and
-  // aria-describedby. Its rules= are read with {pad:input}'s before the page's PHP runs
+  // aria-describedby. Its rules= are read with {input:field}'s before the page's PHP runs
   // (padFormRulesOf), so a post that breaks them comes back refilled, the message beside the
   // field. The message stands after the field's frame, worded with its label - the frame
   // carries the label in data-pad-label, where the browser's checker reads it.
@@ -34,7 +34,7 @@
   // once per page with the CSP nonce, as the interactive tags write theirs (lib/widget.php);
   // a field a fragment or a live region brings later is enhanced too.
   //
-  // The items of the tag are read raw, as {pad:input}'s are (padParmsRaw): the first without a
+  // The items of the tag are read raw, as {input:field}'s are (padParmsRaw): the first without a
   // name is the field's name, a kind takes the options it knows (padInputTake), and every
   // other item is an attribute of its main control - required, placeholder=, autocomplete=
   // - written the way {pad:attrs} writes it.
@@ -61,7 +61,7 @@
 
   }
 
-  // The items of the tag, as padFormItems reads {pad:input}'s: the first item without a name that
+  // The items of the tag, as padFormItems reads {input:field}'s: the first item without a name that
   // is not a bare word is the field's name, a bare word is TRUE, an array without a name adds
   // its keys as attributes - judged as {pad:attrs} judges them - and every named item is kept,
   // evaluated, under its name in lower case, for the kind to take or to write as an attribute.
@@ -424,8 +424,8 @@
 
   }
 
-  // The field: the label, the message and the aria attributes of {pad:input} (padFormField), the
-  // rules= checked as {pad:input}'s are (padFormRulesCheck), and the items the kind did not take
+  // The field: the label, the message and the aria attributes of {input:field} (padFormField), the
+  // rules= checked as {input:field}'s are (padFormRulesCheck), and the items the kind did not take
   // as attributes of its main control. $control ( $head, $rest, $label, $error, $id ) writes
   // the control - $head is its name and id, $rest its attributes - and answers its markup;
   // padInputFrame puts the frame round it.

@@ -1,14 +1,14 @@
 <?php
 
-  // A wizard without JavaScript - the wizard widget: every {pad:tab} a step, one shown at a time.
+  // A wizard without JavaScript - the wizard widget: every {widget:tab} a step, one shown at a time.
   //
-  //   {pad:form 'order'}
+  //   {input:form 'order'}
   //     {widget:wizard}
-  //       {pad:tab 'Address'}{pad:input 'street', label='Street'/}...{/pad:tab}
-  //       {pad:tab 'Delivery'}...{/pad:tab}
-  //       {pad:tab 'Payment'}...<button>Order</button>{/pad:tab}
+  //       {widget:tab 'Address'}{input:field 'street', label='Street'/}...{/widget:tab}
+  //       {widget:tab 'Delivery'}...{/widget:tab}
+  //       {widget:tab 'Payment'}...<button>Order</button>{/widget:tab}
   //     {/widget:wizard}
-  //   {/pad:form}
+  //   {/input:form}
   //
   // Built as {widget:tabs} is: a radio button and a label per step, the panels behind them, the CSS
   // showing the panel whose radio is checked. The labels are the row of steps above the

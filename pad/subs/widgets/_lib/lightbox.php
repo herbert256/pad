@@ -3,11 +3,11 @@
   // A gallery whose pictures open large over the page - the lightbox widget.
   //
   //   {widget:lightbox label='The harbour'}
-  //     {pad:tab 'At dawn'}<img src="harbour/dawn.jpg" alt="Boats in the morning mist">{/pad:tab}
-  //     {pad:tab 'At noon'}<img src="harbour/noon.jpg" alt="The quay in bright sun">{/pad:tab}
+  //     {widget:tab 'At dawn'}<img src="harbour/dawn.jpg" alt="Boats in the morning mist">{/widget:tab}
+  //     {widget:tab 'At noon'}<img src="harbour/noon.jpg" alt="The quay in bright sun">{/widget:tab}
   //   {/widget:lightbox}
   //
-  // Every {pad:tab} is a thumbnail in a grid: a link to the view of its picture, an element of
+  // Every {widget:tab} is a thumbnail in a grid: a link to the view of its picture, an element of
   // its own id that the CSS shows over the whole window when the address names it (:target)
   // - the picture as large as the window allows, its caption with 'n / count' under it, a
   // link to the picture before and after it and a close link back to the thumbnail. So it

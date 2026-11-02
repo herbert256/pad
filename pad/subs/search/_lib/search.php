@@ -34,14 +34,14 @@
   // padSearchQuery     a query as its words, prefixes, phrases and exclusions
   // padSearchScores    the documents a query finds, with their scores, best first
   // padSearchRun       all of it: a source and a query to the rows found, each with its score
-  //                    and an excerpt with the matches marked (padExcerpt, tags/_lib/excerpt.php)
+  //                    and an excerpt with the matches marked (padExcerpt, subs/widgets/_lib/excerpt.php)
   // padSearchSource    the source {search:auto 'name'} names; padSearchSign the sign of rows,
   //                    padSearchStamp the sign of the code that makes an index
   // padSearchList      the hits as the list the single {search:auto/} writes
 
   include_once PAD . 'subs/search/_lib/snowball.php';
   include_once PAD . 'subs/search/_lib/facets.php';
-  include_once PAD . 'tags/_lib/excerpt.php';
+  include_once PAD . 'subs/widgets/_lib/excerpt.php';
 
   // Raised when the index's form changes: every kept index is then made again.
 
@@ -1118,7 +1118,7 @@
   // padExcerpt writes the style of the marks in front of the first excerpt of a page, and
   // that once is spent whether the excerpt is printed or not: made for the first row found
   // and dropped by first= after a sort, or never printed, it took the style with it - and
-  // from every later {pad:excerpt} of the page. The excerpts of a search are made in a scope of
+  // from every later {widget:excerpt} of the page. The excerpts of a search are made in a scope of
   // their own (padSearchQuiet), where the style was written already, so they carry none
   // and spend nothing; what prints them prints the style (padSearchExcerptStyle, made in a
   // scope of its own as well): the {search:auto} pair before its first row, the single tag
@@ -1225,12 +1225,12 @@
 
     if ( ! isset ( $stamps [$key] ) ) {
 
-      $files = [ 'subs/search/_lib/search.php', 'subs/search/_lib/snowball.php', 'subs/search/types/' . $language ['code'] . '.php', 'tags/_lib/excerpt.php' ];
+      $files = [ 'subs/search/_lib/search.php', 'subs/search/_lib/snowball.php', 'subs/search/types/' . $language ['code'] . '.php', 'subs/widgets/_lib/excerpt.php' ];
 
       $files = array_merge ( $files, $language ['files'] ?? [] );
 
       if ( $collection )
-        array_push ( $files, 'lib/collection.php', 'lib/markdown.php', 'tags/_lib/markdown.php' );
+        array_push ( $files, 'lib/collection.php', 'lib/markdown.php', 'subs/widgets/_lib/markdown.php' );
 
       $stamps [$key] = md5 ( padSearchForm . implode ( '', array_map ( fn ( $file ) => (string) @md5_file ( PAD . $file ), $files ) ) );
 

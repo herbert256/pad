@@ -1,17 +1,17 @@
 <?php
 
-  // {widget:splitpane size=30}{pad:tab 'Folders'}...{/pad:tab}{pad:tab 'Message'}...{/pad:tab}{/widget:splitpane} - two
+  // {widget:splitpane size=30}{widget:tab 'Folders'}...{/widget:tab}{widget:tab 'Message'}...{/widget:tab}{/widget:splitpane} - two
   // panes side by side, or stacked, with a bar between them that resizes them: the bar is a
   // separator of the WAI-ARIA window splitter pattern, moved by a drag and by the arrow keys,
-  // Home and End. The two {pad:tab}s are the panes, their labels name them. size= is the first
+  // Home and End. The two {widget:tab}s are the panes, their labels name them. size= is the first
   // pane's share in percent (50), min= and max= its limits (10 and 90); stacked puts the
   // panes one above the other, height= gives the panes their height (a CSS length - 20rem
   // when stacked), collapse lets Enter and a double click fold the first pane away and back.
   // Without scripting the first pane has the browser's own resize grip in its corner. A
-  // small script (CSP nonce) moves the bar. subs/widgets/_lib/splitpane.php; the {pad:tab}s are
+  // small script (CSP nonce) moves the bar. subs/widgets/_lib/splitpane.php; the {widget:tab}s are
   // collected as {widget:tabs} collects them, subs/widgets/_lib/tabs.php.
   //
-  // Like {pad:live} it runs twice: first it opens the collection its {pad:tab}s hand their content
+  // Like {pad:live} it runs twice: first it opens the collection its {widget:tab}s hand their content
   // to and asks for the end walk, then it builds the panes from what they handed over.
 
   if ( $padWalk [$pad] == 'start' ) {
@@ -47,7 +47,7 @@
   if ( $padSplitItems and count ( $padSplitItems ) != 2 ) {
 
     if ( $padCheckSyntax )
-      padError ( "the {widget:splitpane} takes two {pad:tab}s, the panes on either side of its bar - it has " . count ( $padSplitItems ) );
+      padError ( "the {widget:splitpane} takes two {widget:tab}s, the panes on either side of its bar - it has " . count ( $padSplitItems ) );
 
     // The lenient walk keeps every pane's content: what came after the second goes into it.
 

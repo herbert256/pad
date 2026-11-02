@@ -1,10 +1,10 @@
 <?php
 
-  // {widget:accordion}{pad:tab 'Question'}...{/pad:tab}{/widget:accordion} - every {pad:tab} a <details> with its label
+  // {widget:accordion}{widget:tab 'Question'}...{/widget:tab}{/widget:accordion} - every {widget:tab} a <details> with its label
   // as the <summary>: opened and closed by the browser, no JavaScript. single lets one item
   // be open at a time (the exclusive accordion of HTML, a shared name); open= names the item
   // open at first - its number from 1 or its label - and open alone opens them all.
-  // subs/widgets/_lib/accordion.php; the {pad:tab}s are collected as {widget:tabs} collects them,
+  // subs/widgets/_lib/accordion.php; the {widget:tab}s are collected as {widget:tabs} collects them,
   // subs/widgets/_lib/tabs.php.
 
   if ( $padWalk [$pad] == 'start' ) {

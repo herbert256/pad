@@ -119,7 +119,7 @@
             $padNoLike = padIconSimilar ( $padNoName );
             $padNoHint = $padNoLike ? ' - did you mean ' . implode ( ', ', $padNoLike ) . '?' : $padNoHint;
           } elseif ( $padNoPrefix == 'pattern' ) {
-            include_once PAD . 'subs/patterns/_lib/pattern.php';
+            include_once PAD . 'subs/images/patterns/_lib/pattern.php';
             $padNoLike = padPatternSimilar ( $padNoName );
             $padNoHint = ' - ' . ( $padNoLike ? 'did you mean ' . implode ( ', ', $padNoLike ) . '? ' : '' )
                        . 'the patterns are ' . implode ( ', ', padPatternKinds () );

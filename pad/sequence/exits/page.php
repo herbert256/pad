@@ -5,7 +5,7 @@
   // its place in a pulled store - so the columns of a row stay those of its term.
   // inits/limits.php made the run that much longer, or whole.
   //
-  // The page, its size and the number of terms the run made are booked for a {pad:pager} after
+  // The page, its size and the number of terms the run made are booked for a {widget:pager} after
   // the tag, as the page option books a data tag's (padPagerKeep in lib/pager.php), under the
   // names the rows answer to - the name= given, else sequence, the name of the type or the
   // store and the tag's own - and not for {pad:resume}, which shows nothing.
@@ -86,8 +86,8 @@
 
   // The tag's own name is one of them, as the pager's docs have it, and the prefix it is
   // written with - other than pad:, which only says the tag is the engine's: {keep:range '1..30',
-  // even, page=2} was booked as sequence and range only, and {pad:pager 'keep'} after it, {pad:pager
-  // 'pull'} after {pad:pull 's', page=2} and {pad:pager 'make'} after {make:square page=2} found no
+  // even, page=2} was booked as sequence and range only, and {widget:pager 'keep'} after it, {widget:pager
+  // 'pull'} after {pad:pull 's', page=2} and {widget:pager 'make'} after {make:square page=2} found no
   // paged tag.
 
   $pqPageName  = $padName [$pad];

@@ -63,7 +63,7 @@
   $padChartClient = padTagParm ( 'client', FALSE );
   $padChartClient = ( $padChartClient !== FALSE and $padChartClient !== '' and $padChartClient !== 0 and $padChartClient !== '0' );
 
-  // palette= draws the chart in the colours of a palette of subs/palettes/types/
+  // palette= draws the chart in the colours of a palette of subs/themes/palettes/types/
   // (_lib/palette.php) - on the server here, in the browser from what client.php hands over.
 
   $padChartPalette = padChartPaletteName ();

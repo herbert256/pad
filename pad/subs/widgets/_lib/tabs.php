@@ -1,11 +1,11 @@
 <?php
 
-  // Tabs without JavaScript - the tabs widget, and the {pad:tab} items that {widget:accordion},
+  // Tabs without JavaScript - the tabs widget, and the {widget:tab} items that {widget:accordion},
   // {widget:carousel}, {widget:wizard} and {widget:lightbox} take as well.
   //
   //   {widget:tabs active='Specs'}
-  //     {pad:tab 'Overview'}<p>A kettle that ...</p>{/pad:tab}
-  //     {pad:tab 'Specs'}<table>...</table>{/pad:tab}
+  //     {widget:tab 'Overview'}<p>A kettle that ...</p>{/widget:tab}
+  //     {widget:tab 'Specs'}<table>...</table>{/widget:tab}
   //   {/widget:tabs}
   //
   // A tab is a radio button and its label, the panels behind them: the CSS shows the panel
@@ -16,13 +16,13 @@
   // shows.
   //
   // The items are collected while the content renders: {widget:tabs} (and the other owners) asks
-  // for the end walk, opens a collection under its level, and every {pad:tab} below it -
-  // also one made in a loop, {specs}{pad:tab $name}...{/pad:tab}{/specs} - renders its content and
+  // for the end walk, opens a collection under its level, and every {widget:tab} below it -
+  // also one made in a loop, {specs}{widget:tab $name}...{/widget:tab}{/specs} - renders its content and
   // hands it over instead of printing it. At the end walk the owner builds its markup from
   // what was handed over.
   //
   // padTabsOpen    opens the collection of an owner's level
-  // padTabsOwner   the level of the nearest owner below a {pad:tab}, FALSE outside one
+  // padTabsOwner   the level of the nearest owner below a {widget:tab}, FALSE outside one
   // padTabsAdd     an item handed to its owner
   // padTabsTake    the owner's items, the collection closed
   // padTabsItems   the items checked: a label where the owner needs one, nothing else in
@@ -110,10 +110,10 @@
       return [];
 
     if ( $padCheckSyntax and trim ( $rest ) !== '' )
-      padError ( "what stands between the {pad:tab}s of a {" . "widget:$kind" . "} never renders - put it inside a {pad:tab}" );
+      padError ( "what stands between the {widget:tab}s of a {" . "widget:$kind" . "} never renders - put it inside a {widget:tab}" );
 
     if ( ! $items and $padCheckSyntax )
-      padError ( "the {" . "widget:$kind" . "} has no {pad:tab} - {" . "widget:$kind" . "}{pad:tab 'One'}...{/pad:tab}{/" . "widget:$kind" . "}" );
+      padError ( "the {" . "widget:$kind" . "} has no {widget:tab} - {" . "widget:$kind" . "}{widget:tab 'One'}...{/widget:tab}{/" . "widget:$kind" . "}" );
 
     return $items;
 
@@ -128,7 +128,7 @@
     if ( $pick === '' or $pick === NULL )
       return 0;
 
-    // A label is read as the characters it holds, as the {pad:tab} reads its own: a field
+    // A label is read as the characters it holds, as the {widget:tab} reads its own: a field
     // inside the quoted active= or open= meets the tab named by the same field.
 
     if ( is_string ( $pick ) )

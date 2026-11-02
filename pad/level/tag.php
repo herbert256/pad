@@ -69,7 +69,7 @@
   // made a closer, and the pair fell apart: the opener was taken single and the closer was
   // left in the page.
 
-  // What an {pad:ignore} wraps and a {pad:highlight} sample - a text pair, padTextBlank in
+  // What an {pad:ignore} wraps and a {widget:highlight} sample - a text pair, padTextBlank in
   // lib/template.php - is text: a closer of the pair's name inside one is no closer, and an
   // opener or closer of its name there is not counted. {xs}... {pad:ignore}{/xs}{/pad:ignore} ...{/xs}
   // closed the loop at the sample, and {pad:if $a}... {pad:ignore}{pad:if $x}{/pad:ignore} ...{/pad:if} never

@@ -1,11 +1,11 @@
 <?php
 
-  // {widget:tabs}{pad:tab 'Overview'}...{/pad:tab}{pad:tab 'Specs'}...{/pad:tab}{/widget:tabs} - tabs without JavaScript:
+  // {widget:tabs}{widget:tab 'Overview'}...{/widget:tab}{widget:tab 'Specs'}...{/widget:tab}{/widget:tabs} - tabs without JavaScript:
   // a radio button and a label per tab, the CSS shows the panel of the checked one, the
   // arrow keys move between them as in any radio group. active= names the tab shown first,
   // by its number from 1 or its label; the first one otherwise. subs/widgets/_lib/tabs.php.
   //
-  // Like {pad:live} it runs twice: first it opens the collection its {pad:tab}s hand their content
+  // Like {pad:live} it runs twice: first it opens the collection its {widget:tab}s hand their content
   // to and asks for the end walk, then it builds the tab set from what they handed over.
 
   if ( $padWalk [$pad] == 'start' ) {

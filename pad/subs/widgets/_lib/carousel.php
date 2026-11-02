@@ -1,14 +1,14 @@
 <?php
 
-  // A carousel without JavaScript - the carousel widget: every {pad:tab} a slide of a row that
+  // A carousel without JavaScript - the carousel widget: every {widget:tab} a slide of a row that
   // scrolls sideways and snaps to a slide (CSS scroll snap), so a finger, a trackpad or the
   // arrow keys on the focused row move it. Each slide carries a link to the slide before and
   // after it, and below the row a dot links to every slide: links to the slides' ids, which
   // the browser scrolls into view - no script, and the address names the slide shown.
   //
   //   {widget:carousel label='Our kettles'}
-  //     {pad:tab 'Sunrise'}<svg ...>...</svg>{/pad:tab}
-  //     {pad:tab 'Ocean'}<img src="ocean.jpg" alt="...">{/pad:tab}
+  //     {widget:tab 'Sunrise'}<svg ...>...</svg>{/widget:tab}
+  //     {widget:tab 'Ocean'}<img src="ocean.jpg" alt="...">{/widget:tab}
   //   {/widget:carousel}
   //
   // The markup follows the WAI-ARIA carousel pattern: the region says it is a carousel and

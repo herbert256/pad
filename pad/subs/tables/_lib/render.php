@@ -189,7 +189,7 @@
       foreach ( $padTableHeatRow as $padTableHeatField => $padTableHeatValue )
         if ( $padTableHeatField !== 'row_label' and is_numeric ( $padTableHeatValue ) ) $padTableHeat [] = $padTableHeatValue;
 
-  // One page of the rows, and the links to the others - the {pad:pager}'s items.
+  // One page of the rows, and the links to the others - the {widget:pager}'s items.
 
   $padDatatablePager = [];
 

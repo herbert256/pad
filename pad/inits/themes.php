@@ -1,6 +1,6 @@
 <?php
 
-  // The post of a {pad:themes/} switcher - the frame's bar holds one on every page - is taken
+  // The post of a {widget:themes/} switcher - the frame's bar holds one on every page - is taken
   // here, before any of the application runs: the choice is kept in the session
   // (padThemeSwitch, subs/themes/_lib/theme.php) and the visitor sent back to the address the
   // form was posted to, as a GET (303). A page's own PHP never sees the post, so a page that

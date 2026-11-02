@@ -3,7 +3,7 @@
   // The widgets subsystem: interactive parts of a page that work without JavaScript and get
   // better with it - tabs, an accordion, a carousel, a modal, a copy box, a poll ...
   //
-  //   {widget:tabs}{pad:tab 'Overview'}...{/pad:tab}{pad:tab 'Specs'}...{/pad:tab}{/widget:tabs}
+  //   {widget:tabs}{widget:tab 'Overview'}...{/widget:tab}{widget:tab 'Specs'}...{/widget:tab}{/widget:tabs}
   //   {widget:modal 'terms', title='Terms of sale'}...{/widget:modal}
   //   {widget:toast 'Saved', tone='success'/}
   //

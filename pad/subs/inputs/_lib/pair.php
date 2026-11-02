@@ -3,7 +3,7 @@
   // A rich field of two fields - the two ends of a range: the lower and the upper number of a
   // rangeslider, the first and the last day of a daterange. Each end is a field of the form
   // of its own, named, refilled from the post of its form and given the message padValidate
-  // left for it as {pad:input} is one, the two under one legend - the field's label=, or its
+  // left for it as {input:field} is one, the two under one legend - the field's label=, or its
   // name made readable.
   //
   //   names=   the two names, the field's name with _from and _to unless given -

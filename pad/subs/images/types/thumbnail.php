@@ -11,7 +11,7 @@
   // alt= is required: a picture without one is read out by its file name. alt='' says the
   // picture is decoration, and a screen reader passes it by.
   //
-  // filter= is a comma list of the filters of subs/filters/types/, applied in the order
+  // filter= is a comma list of the filters of subs/images/filters/types/, applied in the order
   // written, each reading its own options from the tag - colors=, levels=, cell=, radius=,
   // amount=, columns=, chars=, components=:
   //

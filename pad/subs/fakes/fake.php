@@ -15,7 +15,7 @@
   // same until its template changes. seed= gives a tag values of its own, the ones
   // padFakeRows gives for that seed - {fake:rows 'name, email', rows=5, seed=7/} is
   // padFakeRows ( 'name, email', 5, 7 ). Either way the page's own padFake sequence - its
-  // padFakeSeed and what it made with it - is put back afterwards, as {pad:lorem} puts it back.
+  // padFakeSeed and what it made with it - is put back afterwards, as {widget:lorem} puts it back.
 
   if ( $padFakeSpec === 'rows' )
     $padFakeSpec = $padParm;

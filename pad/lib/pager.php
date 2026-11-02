@@ -5,7 +5,7 @@
   // padPagerKeep   called by the handling walk for every level written with a page option,
   //                once its other handling options have run up to the page: it books the
   //                page, the rows per page and the number of rows to page through under the
-  //                level's name, in $padPager, where {pad:pager 'name'} finds it later in the
+  //                level's name, in $padPager, where {widget:pager 'name'} finds it later in the
   //                page. A Select table has had its page cut by the SQL limit, so the total
   //                is not in the rows: its count statement is booked instead and run only
   //                when a pager asks. The request value the links set is the one the page
@@ -62,7 +62,7 @@
 
   // Books a level's page under its name. Every fragment-cache section rendering round it
   // keeps the booking with its rendering, as it keeps a {pad:push}, so a hit - which runs no tag
-  // inside it - books it again (lib/fragment.php); a {pad:pager} after the section found no
+  // inside it - books it again (lib/fragment.php); a {widget:pager} after the section found no
   // paged tag on a hit, or a single page.
 
   function padPagerBook ( $name, $booking ) {

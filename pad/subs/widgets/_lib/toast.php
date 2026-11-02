@@ -9,7 +9,7 @@
   // the page stays usable - and closed by its button, whose commandfor and command="close"
   // attributes (HTML invoker commands) have the browser close the dialog without a script;
   // a browser without them has the toast's script do it. The button is no form of its own:
-  // it closed the dialog by submitting a form of method dialog, which inside a {pad:form} the
+  // it closed the dialog by submitting a form of method dialog, which inside a {input:form} the
   // HTML parser dropped - the button then submitted the page's form, and the inner </form>
   // closed the outer one, every field after the toast falling out of it. Its text is a
   // status region, an alert for a warning or an error, so a toast a fragment or a live

@@ -1,8 +1,8 @@
 <?php
 
-  // The patterns: the files of subs/patterns/types/ (padKinds, lib/subsystem.php) - a kind is
-  // added by adding its file there. The rest is the subsystem in subs/patterns/, its library
-  // subs/patterns/_lib/ loaded when a page draws one.
+  // The patterns: the files of subs/images/patterns/types/ (padKinds, lib/subsystem.php) - a kind is
+  // added by adding its file there. The rest is the subsystem in subs/images/patterns/, its library
+  // subs/images/patterns/_lib/ loaded when a page draws one.
   //
   //   $hero = padPattern ( 'topography', [ 'seed' => 7, 'width' => 960, 'height' => 320 ] );
   //   $css  = padPattern ( 'dots', [ 'as' => 'url', 'colors' => [ '#fff', '#c9d6e3' ] ] );
@@ -14,17 +14,17 @@
 
   function padPatternKinds () {
 
-    return padKinds ( 'patterns' );
+    return padKinds ( 'images/patterns' );
 
   }
 
   function padPattern ( $kind, $options = [] ) {
 
-    include_once PAD . 'subs/patterns/_lib/pattern.php';
+    include_once PAD . 'subs/images/patterns/_lib/pattern.php';
 
     $kind = strtolower ( trim ( (string) $kind ) );
 
-    if ( ! padKind ( 'patterns', $kind ) ) {
+    if ( ! padKind ( 'images/patterns', $kind ) ) {
       padError ( "padPattern: there is no pattern named '" . padMakeSafe ( $kind, 20 ) . "' - " . implode ( ', ', padPatternKinds () ) );
       return '';
     }
