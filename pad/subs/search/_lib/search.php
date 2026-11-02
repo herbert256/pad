@@ -160,12 +160,15 @@
   // The words of a text in lower case, with their positions: a stop word keeps its place, so
   // a phrase is found across one - "king of the hill".
 
-  function padSearchWords ( $text ) {
+  function padSearchWords ( $text, $language = [] ) {
 
     $text = mb_scrub ( (string) $text, 'UTF-8' );
 
     if ( class_exists ( 'Normalizer' ) )
       $text = Normalizer::normalize ( $text, Normalizer::FORM_C ) ?: $text;
+
+    if ( isset ( $language ['normalize'] ) )
+      $text = $language ['normalize'] ( $text );
 
     preg_match_all ( "/[\\p{L}\\p{N}\\p{M}]+(?:['’][\\p{L}\\p{N}\\p{M}]+)*/u", $text, $m );
 
@@ -283,7 +286,7 @@
         $at = [];
         $len [$f] = 0;
 
-        foreach ( padSearchWords ( padSearchText ( padArrGet ( $row, $name, '' ) ) ) as $place => $word ) {
+        foreach ( padSearchWords ( padSearchText ( padArrGet ( $row, $name, '' ) ), $language ) as $place => $word ) {
           $terms = padSearchTerms ( $word, $language );
           if ( ! $terms )
             continue;
@@ -580,7 +583,7 @@
         $phrase = [];
         $first  = NULL;
 
-        foreach ( padSearchWords ( $part [2] ) as $at => $word ) {
+        foreach ( padSearchWords ( $part [2], $language ) as $at => $word ) {
           $terms = padSearchTerms ( $word, $language );
           if ( ! $terms )
             continue;
@@ -593,7 +596,7 @@
 
       } elseif ( preg_match ( '/^(.*?)\*+$/u', $part [3], $star ) ) {
 
-        foreach ( padSearchWords ( $star [1] ) as $word )
+        foreach ( padSearchWords ( $star [1], $language ) as $word )
           if ( mb_strlen ( $word ) >= 1 ) {
             $prefix = padSearchFold ( $word );
             $to ['prefixes'] [$prefix] = padSearchExpand ( $prefix, $index );
@@ -601,7 +604,7 @@
 
       } else
 
-        foreach ( padSearchWords ( $part [3] ) as $word )
+        foreach ( padSearchWords ( $part [3], $language ) as $word )
           if ( $terms = padSearchTerms ( $word, $language ) )
             $to ['words'] [ implode ( ' ', $terms ) ] = $terms;
 
@@ -875,7 +878,7 @@
 
     $words = [];
 
-    foreach ( padSearchWords ( $text ) as $word )
+    foreach ( padSearchWords ( $text, $language ) as $word )
       if ( array_intersect_key ( array_flip ( padSearchTerms ( $word, $language ) ), $terms ) ) {
         $parts = explode ( "'", $word );
         usort ( $parts, fn ( $a, $b ) => mb_strlen ( $b ) <=> mb_strlen ( $a ) );
