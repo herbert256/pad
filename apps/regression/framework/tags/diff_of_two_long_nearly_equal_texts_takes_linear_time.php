@@ -4,7 +4,7 @@
   // were taken off one word at a time with array_shift and array_unshift, each moving the
   // whole rest - eleven seconds, where a few hundredths of one do.
 
-  include_once PAD . 'tags/_lib/diff.php';
+  include_once PAD . 'subs/diffs/_lib/diff.php';
 
   $words = [];
   for ( $i = 0; $i < 50000; $i++ )

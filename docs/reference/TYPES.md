@@ -1089,3 +1089,7 @@ types/
 ### table
 
 `table:standard`, `table:grouped`, `table:pivot` and `table:matrix` render data as formatted tables. Grouped tables add group headers and subtotals; pivots and matrices aggregate row/column intersections using sum, count, avg, min or max. All kinds support column filters, sorting and paging. See [Tables](../../pad/subs/tables/README.md) for options and examples.
+
+### diff
+
+`diff:words`, `diff:lines` and `diff:side` compare texts. `diff:json` compares JSON structures by path, preserving types and distinguishing absent fields from null. `diff:rows` matches records by a unique `key` before comparing their fields. See [Diffs](../../pad/subs/diffs/README.md).

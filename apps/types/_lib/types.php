@@ -93,6 +93,8 @@
                       "{sound:chime/}\n{sound:chime/}\n{sound:pop on='click', target='#save'/}" ],
       'printable' => [ 'A printable, a file of pad/subs/printables/types/ - pages made for paper, the same on the screen, printed and as a PDF, never bare.', 'subsystems',
                       "{printable:labels data='rows', sheet='a4-3x8'}...{/printable:labels}\n{printable:labels data='rows'}...{/printable:labels}" ],
+      'diff' => [ 'A comparison of texts, JSON or keyed records from pad/subs/diffs/types/.', 'subsystems',
+                  "{diff:words \$old, \$new/}\n{diff:json \$old, \$new/}\n{diff:rows \$old, \$new, key='id'/}" ],
       'table' => [ 'A table of rows, grouped records, a pivot or a matrix from pad/subs/tables/types/.', 'subsystems',
                    "{table:standard data='orders', sortable/}\n{table:grouped data='orders', group='region', totals='amount'/}" ],
       'calendar' => [ 'A Gregorian calendar view from pad/subs/calendars/types/ - days, weeks, months, quarters, years and agendas.', 'subsystems',

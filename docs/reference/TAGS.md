@@ -2588,14 +2588,14 @@ under the strict check.
 
 ---
 
-### diff
+### diff:words, diff:lines, diff:side
 What changed between two texts - word by word in the flow of the text, or line by line in
-one column or side by side - with `<del>` and `<ins>` marked and styled (`tags/_lib/diff.php`).
+one column or side by side - with `<del>` and `<ins>` marked and styled (`subs/diffs/_lib/diff.php`).
 
 ```html
-{pad:diff $draft, $final/}
-{pad:diff $old, $new, lines, from='Monday', to='Friday'/}
-{pad:diff $before, $after, side, from='before', to='after'/}
+{diff:words $draft, $final/}
+{diff:lines $old, $new, from='Monday', to='Friday'/}
+{diff:side $before, $after, from='before', to='after'/}
 ```
 
 **Parameters:**

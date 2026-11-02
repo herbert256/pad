@@ -16,6 +16,7 @@
   function tagsKindTypes () {
 
     return [
+      'diff' => [ 'Diffs', 'Text and structured changes', 'single', " \$old, \$new/}", 'diff' ],
       'table' => [ 'Tables', 'Formatted, grouped and aggregated rows', 'both', " data='rows'/}", 'datatable' ],
       'calendar' => [ 'Calendars', 'Gregorian dates, events and holidays', 'both', " '2026-11', data='appointments'/}", 'calendar' ],
       'chart'    => [ 'Chart types',       'inline SVG',                 'both',   " data='rows', label='field', value='field'/}", 'chart'   ],
@@ -72,6 +73,8 @@
         $form = ( $type == 'sequence' and in_array ( $kind, tagsKindParameterized () ) ) ? 'both' : $form;
 
         $tail = ( $type == 'sequence' ) ? tagsKindSequenceParm ( $kind ) . $after : $after;
+
+        if ( $type === 'diff' and $kind === 'rows' ) $tail = " \$old, \$new, key='id'/}";
 
         if ( $type === 'table' )
           $tail = " data='rows'" . ( [ 'grouped' => ", group='region', totals='amount'", 'pivot' => ", row='region', column='quarter', value='amount'", 'matrix' => ", row='region', column='quarter'" ] [$kind] ?? '' ) . '/}';
@@ -235,6 +238,10 @@
     }
 
     switch ( $type ) {
+
+      case 'diff':
+        $file = APPS . "tags/examples/diff/$kind.pad";
+        return $example ( "A $kind comparison", 'Two versions compared on the server.', trim ( padFileGet ( $file ) ) );
 
       case 'table':
         $file = APPS . "tags/examples/table/$kind.pad";

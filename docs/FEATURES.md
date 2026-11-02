@@ -1960,7 +1960,7 @@ The `notations` application shows every kind with its examples.
 {pad:gravatar $email, size=64, default='identicon'/} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
 {notation:chess $fen, flip, highlight='e2,e4', arrow='e2-e4'/}   # a FEN as an SVG board, pieces described for a screen reader
 {game:sudoku '53..7....6..195...'/}                   # a game - played in the page; see Games
-{pad:diff $old, $new/}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
+{diff:words $old, $new/}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
 {pad:excerpt $body, words=24, highlight=$q/}         # whole words around the first match, <mark>ed, escaped; html
 {pad:lorem paragraphs=3, seed=7/}                    # placeholder text, classic start, reproducible; words=, sentences=, varied
 {widget:tabs}...{/widget:tabs}  {widget:modal 'x'}...{/widget:modal}         # the widgets - see Widgets
