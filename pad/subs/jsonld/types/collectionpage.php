@@ -1,0 +1,2 @@
+<?php
+return ['type'=>'CollectionPage','fields'=>['name'=>['name','text',TRUE], 'url'=>['url','url',TRUE], 'description'=>['description','text'], 'published'=>['datePublished','date'], 'modified'=>['dateModified','date'], 'language'=>['inLanguage','text'], 'image'=>['primaryImageOfPage.contentUrl','url'], 'parent'=>['isPartOf.url','url']],'objects'=>['primaryImageOfPage'=>'ImageObject','isPartOf'=>'WebSite']];
