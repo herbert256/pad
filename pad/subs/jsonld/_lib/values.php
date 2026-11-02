@@ -115,6 +115,12 @@
 
     switch ( $how ) {
 
+      case 'isbn':
+        $isbn = str_replace ( [ ' ', '-' ], '', $text );
+        $rule = include PAD . 'subs/rules/types/isbn.php';
+        if ( $rule ['check'] ( $isbn ) ) return $isbn;
+        return $no ( 'ISBN-10 or ISBN-13 with a valid checksum' );
+
       case 'number':
         if ( ! preg_match ( '/^-?[0-9]+(\.[0-9]+)?$/D', $text ) )
           return $no ( 'number', 'write 4.5, with a dot' );
