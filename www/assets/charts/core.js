@@ -1007,6 +1007,7 @@
   // -------------------------------------------------------------------------------------
 
   C.types = {
+    slope: function () { return C.padChartSlope(C.padChartGather(), ...C.padChartSize(600,300)); },
     pareto: function () { return C.padChartPareto(C.padChartGather(), ...C.padChartSize(600,300)); },
     arc:          function () { return C.padChartArcDiagram(C.padChartGather(), ...C.padChartSize(600, 300)); },
     area:         function () { return C.padChartArea('area', C.padChartGather(), ...C.padChartSize(600, 300)); },
