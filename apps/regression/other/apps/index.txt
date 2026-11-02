@@ -66,7 +66,9 @@
                   <div class="pad-brand-group">
                     <div class="pad-brand-head">
                       Showcases
-                    </div><a href="/pad/charts/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    </div><a href="/pad/calendars/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-calendar" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3.5" y="5" width="17" height="15" rx="2"></rect>
+                    <path d="M3.5 10h17M8 3v4M16 3v4"></path></svg><span><b>calendars</b><small>Day, week, month, quarter, year and agenda views</small></span></a><a href="/pad/charts/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
                     <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="/pad/showcase/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="/pad/games/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -222,7 +224,7 @@
       </header>
       <div class="frame-body">
         <p>
-          41 applications
+          42 applications
         </p>
         <table class="apps-list">
           <tr>
@@ -267,6 +269,17 @@
             </td>
             <td>
               <a href="/pad/edit/?index&amp;app=alpine">edit</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="/pad/calendars/">calendars</a>
+            </td>
+            <td>
+              Seven Gregorian calendar views from `pad/subs/calendars/types/`: month, mini, week, day, agenda, quarter and year. The home page is a browsable month; each view has a rendered example and its complete template and event data, with links to the live and WASM editors. Run at `/pad/calendars/`. The menu and view catalog follow the files in the subsystem. `calendar:kind` selects a view; `calendar:month` shows the month grid. See [the subsystem](../../pad/subs/calendars/README.md) for parameters and pair row shapes.
+            </td>
+            <td>
+              <a href="/pad/edit/?index&amp;app=calendars">edit</a>
             </td>
           </tr>
           <tr>

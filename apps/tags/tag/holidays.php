@@ -20,7 +20,7 @@ PAD;
     'to'     => 'The last date of <code>from</code>; one of the two alone is a year from it (or from today).',
     'lang'   => 'The language of <code>local</code> for a country of more than one: be <code>nl fr de</code>, lu <code>lb fr de</code>, ch <code>de fr it</code>, ca <code>en fr</code>, fi <code>fi sv</code>.' ];
 
-  $tagSee     = [ 'calendar', 'countdown', 'timeline' ];
+  $tagSee     = [ 'calendar:month', 'countdown', 'timeline' ];
 
   $subsystemKindLinks = appSubsystemLinks ( 'holidays' );
 

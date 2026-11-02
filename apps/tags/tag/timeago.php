@@ -16,6 +16,6 @@ PAD;
     'now'    => 'Count from this moment instead of now.',
     'format' => 'The PHP date format of the full moment in the <code>title</code>, default <code>l j F Y, H:i</code>.' ];
 
-  $tagSee     = [ 'countdown', 'calendar', 'echo' ];
+  $tagSee     = [ 'countdown', 'calendar:month', 'echo' ];
 
 ?>

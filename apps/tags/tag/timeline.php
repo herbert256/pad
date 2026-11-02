@@ -26,6 +26,6 @@ PAD;
     'height'   => 'The height in pixels; by default it follows from the cards (not in the vertical form).',
     'title'    => 'The accessible name, default <code>Timeline</code>.' ];
 
-  $tagSee     = [ 'chart:bar', 'calendar', 'diagram:auto' ];
+  $tagSee     = [ 'chart:bar', 'calendar:month', 'diagram:auto' ];
 
 ?>

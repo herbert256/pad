@@ -20,6 +20,6 @@ PAD;
     'now'    => 'Count from this moment instead of now.',
     'format' => 'The PHP date format of the full moment in the <code>title</code>, default <code>l j F Y, H:i</code>.' ];
 
-  $tagSee     = [ 'timeago', 'calendar' ];
+  $tagSee     = [ 'timeago', 'calendar:month' ];
 
 ?>

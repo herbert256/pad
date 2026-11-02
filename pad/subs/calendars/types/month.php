@@ -1,6 +1,6 @@
 <?php
 
-  // {pad:calendar} - a month as a calendar, tags/_lib/calendar.php. The month is the first parameter
+  // month - a month with events, holidays and links to its neighbours. The month is the first parameter
   // ('2026-10'), else the request value named by query= ('month') - the links to the months
   // around it set that value - else this month. data= gives events - a {pad:data} store, a page
   // array or a _data file, as for {chart:bar} - date= names their date field and title= their
@@ -20,45 +20,25 @@
 
   $padCalendarQuery = trim ( (string) padTagParm ( 'query', 'month' ) );
   $padCalendarAsked = padCalendarMonth ( $_GET [$padCalendarQuery] ?? '' );
-  $padCalendarMonth = trim ( (string) $padParm ) !== '' ? padCalendarMonth ( $padParm ) : ( $padCalendarAsked ?? padNow ( 'Y-m' ) );
+  $padCalendarGiven = ! is_scalar ( $padParm ) || trim ( (string) $padParm ) !== '';
+  $padCalendarMonth = $padCalendarGiven ? padCalendarMonth ( $padParm ) : ( $padCalendarAsked ?? padNow ( 'Y-m' ) );
 
   if ( $padCalendarMonth === NULL ) {
     if ( $padCheckSyntax )
-      padError ( "the calendar has no month '" . padMakeSafe ( $padParm, 20 ) . "' - write it as 2026-10" );
+      padError ( "the calendar has no month '" . padMakeSafe ( is_scalar ( $padParm ) ? $padParm : 'list', 20 ) . "' - write it as 2026-10" );
     $padCalendarMonth = padNow ( 'Y-m' );
   }
 
   $padCalendarRows = isset ( $padPrm [$pad] ['data'] ) ? padChartRows ( '', 'calendar' ) : [];
   $padData [$pad]  = padDefaultData ();
 
-  list ( $padCalendarNumbers, $padCalendarNames ) = padChartGuess ( $padCalendarRows );
-
-  $padCalendarDates = $padCalendarTexts = [];
-
-  // A date object of the page's PHP is a date field too, in its place among the fields: the
-  // guess took text fields only, and a calendar of such rows without date= showed no event
-  // at all, the text dates of the other rows neither.
-
-  foreach ( padChartRow ( reset ( $padCalendarRows ) ?: [] ) as $padCalendarName => $padCalendarField )
-    if ( $padCalendarField instanceof DateTimeInterface )
-      $padCalendarDates [] = (string) $padCalendarName;
-    elseif ( ! in_array ( (string) $padCalendarName, $padCalendarNames, TRUE ) )
-      continue;
-    elseif ( padChartStamp ( $padCalendarField ) !== FALSE )
-      $padCalendarDates [] = (string) $padCalendarName;
-    else
-      $padCalendarTexts [] = (string) $padCalendarName;
-
-  $padCalendarUsed  = [];
-  $padCalendarDate  = padChartPick ( 'date',  $padCalendarDates, $padCalendarUsed );
-  $padCalendarTitle = padChartPick ( 'title', $padCalendarTexts, $padCalendarUsed );
-  $padCalendarLink  = (string) padTagParm ( 'link' );
+  [ $padCalendarDate, $padCalendarTitle, $padCalendarLink ] = padCalendarFields ( $padCalendarRows );
 
   // A month no parameter fixes, or one that holds the month the request asked for, is the
   // visitor's: the links stay for it, and holidays= marks only the days its country's file
   // knows instead of reporting the year.
 
-  $padCalendarAskedFor = trim ( (string) $padParm ) === '' || $padCalendarMonth === $padCalendarAsked;
+  $padCalendarAskedFor = ! $padCalendarGiven || $padCalendarMonth === $padCalendarAsked;
 
   $padCalendarHolidays = padCalendarHolidays ( padUnprotect ( (string) padTagParm ( 'holidays' ) ), $padCalendarMonth, $padCalendarAskedFor );
 
@@ -67,7 +47,7 @@
   if ( $padPair [$pad] )
     return $padCalendarWeeks;
 
-  // The links stay for a parameter that holds the month the request asked for - {pad:calendar
+  // The links stay for a parameter that holds the month the request asked for - {calendar:month
   // $month}, the request value the links set - as following them changes it: dropped for
   // every parameter, such a calendar could no longer leave the month it showed.
 

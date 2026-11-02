@@ -1667,15 +1667,17 @@ its check digit, `(01)` in front or not, as the GTIN-14 in 96 modules, its check
 
 ---
 
-### calendar
-A month as a calendar, with its events (`tags/_lib/calendar.php`).
+### calendar:month
+A month as a calendar, with its events (`subs/calendars/_lib/calendar.php`).
+The [calendar subsystem](../../pad/subs/calendars/README.md)
+also provides `mini`, `week`, `day`, `agenda`, `quarter` and `year` views; see [the calendar type](TYPES.md#calendar).
 
 ```html
-{pad:calendar}                                                   <!-- this month -->
-{pad:calendar '2026-10', data='agenda', date='when', title='what', link='url'/}
-{pad:calendar data='agenda'}
+{calendar:month}                                                   <!-- this month -->
+{calendar:month '2026-10', data='agenda', date='when', title='what', link='url'/}
+{calendar:month data='agenda'}
   <tr>{data:days}<td class="{$class}">{$day}{array:events}<b>{$what}</b>{/array:events}</td>{/data:days}</tr>
-{/pad:calendar}
+{/calendar:month}
 ```
 
 | Option | Description |
@@ -1691,7 +1693,7 @@ A month as a calendar, with its events (`tags/_lib/calendar.php`).
 
 **Behavior:** as a single tag it answers a table - the month in its caption between links to
 the month before and after (keeping the other request values, as `{pad:pager}` does; none when the
-first parameter fixes the month, unless it holds the month the request asked for - `{pad:calendar $month}`), a column
+first parameter fixes the month, unless it holds the month the request asked for - `{calendar:month $month}`), a column
 per weekday, a cell per day with its `<time>` and its events as a list; today has
 `aria-current="date"`. A small default look rides along under `:where()`, so the page's CSS
 wins. As a pair it hands over the weeks as rows - `$week` (ISO number) and `days` - and

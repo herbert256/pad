@@ -1,9 +1,9 @@
-<p>The <code>{pad:ignore}{pad:calendar}{/pad:ignore}</code> tag draws a month with its events - from a <code>{pad:ignore}{pad:data}{/pad:ignore}</code>
+<p>The <code>{pad:ignore}{calendar:month}{/pad:ignore}</code> tag draws a month with its events - from a <code>{pad:ignore}{pad:data}{/pad:ignore}</code>
 block, a page array or a <code>_data</code> file. The arrows move a month; today is marked.</p>
 
-{pad:calendar data='agenda', title='what'/}
+{calendar:month data='agenda', title='what'/}
 
-<p><code>{pad:ignore}{pad:calendar data='agenda', title='what'}{/pad:ignore}</code></p>
+<p><code>{pad:ignore}{calendar:month data='agenda', title='what'}{/pad:ignore}</code></p>
 
 <h2>Your own markup</h2>
 
@@ -13,15 +13,15 @@ mini calendar with a dot per busy day is a few lines:</p>
 
 <table class="mini">
   <tr><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th><th>Su</th></tr>
-  {pad:calendar data='agenda'}
+  {calendar:month data='agenda'}
   <tr>
     {array:days}<td class="{$class}" title="{$date}">{$day}{pad:if $count gt 0}<i></i>{/pad:if}</td>{/array:days}
   </tr>
-  {/pad:calendar}
+  {/calendar:month}
 </table>
 
-<pre>{pad:ignore}{pad:calendar data='agenda'}
+<pre>{pad:ignore}{calendar:month data='agenda'}
   &lt;tr&gt;
     {array:days}&lt;td class="{$class}"&gt;{$day}{pad:if $count gt 0}&lt;i&gt;&lt;/i&gt;{/pad:if}&lt;/td&gt;{/array:days}
   &lt;/tr&gt;
-{/pad:calendar}{/pad:ignore}</pre>
+{/calendar:month}{/pad:ignore}</pre>

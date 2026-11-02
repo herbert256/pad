@@ -1,10 +1,10 @@
 <?php
 
-  // A month as a calendar - the {pad:calendar} tag.
+  // Shared Gregorian grids, events, holidays and localization of the calendar subsystem.
   //
-  //   {pad:calendar}                                            this month, a table
-  //   {pad:calendar '2026-10', data='events', date='when', title='what'}
-  //   {pad:calendar data='events'} <tr>{array:days}<td>{$day}</td>{/array:days}</tr> {/pad:calendar}
+  //   {calendar:month}                                            this month, a table
+  //   {calendar:month '2026-10', data='events', date='when', title='what'}
+  //   {calendar:month data='events'} <tr>{array:days}<td>{$day}</td>{/array:days}</tr> {/calendar:month}
   //
   // padCalendarWeeks   the weeks of a month as rows - week and days - each day a row of its
   //                    own: date, day, weekday, month, other, today, weekend, count, events
@@ -119,7 +119,7 @@
   // Nor is there a link past the months it can show - 10000-01, -0001-12 - which it refused
   // and showed this month instead.
 
-  function padCalendarHtml ( $month, $weeks, $tField, $lField, $query, $links = TRUE ) {
+  function padCalendarHtml ( $month, $weeks, $tField, $lField, $query, $links = TRUE, $style = TRUE ) {
 
     $catalog = padTransCatalog ();
     $h       = fn ( $t ) => htmlspecialchars ( padUnprotectQuotes ( (string) $t ), ENT_QUOTES, 'UTF-8' );
@@ -133,7 +133,7 @@
       foreach ( $week ['days'] as $day )
         $marks = $marks || ( $day ['holiday'] ?? '' ) !== '';
 
-    $html = padCalendarStyle () . ( $marks ? padCalendarHolidayStyle () : '' ) . '<table class="pad-calendar">'
+    $html = ( $style ? padCalendarStyle () : '' ) . ( $marks ? padCalendarHolidayStyle () : '' ) . '<table class="pad-calendar">'
           . '<caption>'
           . ( ( $links and padCalendarMonth ( $prev ) !== NULL ) ? '<a class="pad-calendar-prev" href="' . $h ( padPagerHref ( $query, $prev ) ) . '" rel="prev" aria-label="' . $h ( $catalog ['calendar.previous'] ?? 'Previous month' ) . '">‹</a> ' : '' )
           . '<span>' . $h ( padCalendarWord ( $first, 'LLLL uuuu', 'F Y' ) ) . '</span>'

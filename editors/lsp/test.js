@@ -134,7 +134,8 @@ async function main() {
     expect('completion qualifies every subsystem kind even when names collide',
            r.result.some((c) => c.label === 'chart:pie')
            && r.result.some((c) => c.label === 'chart:pack')
-           && r.result.some((c) => c.label === 'pad:calendar'), r.result.length);
+           && r.result.some((c) => c.label === 'calendar:month'), r.result.length);
+    expect('completion omits the removed calendar tag', !r.result.some((c) => c.label === 'pad:calendar'), r.result.length);
     r = await request('textDocument/completion', { textDocument: { uri: uri('orders.pad') }, position: at('orders.pad', '{/array:orders}', 2) });
     expect('completion closes the open tag', r.result.length && r.result[0].label === 'array:orders', r.result);
 

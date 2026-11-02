@@ -1,0 +1,13 @@
+{pad:meta title='Calendars'/}
+<p class="cal-lead">One set of events, seven ways to see your time. Browse a month below, or choose a view
+for its template, events and result.</p>
+<div class="cal-overview">
+  <div class="cal-preview">{calendar:month data='calendarDemo', date='when', title='what'/}</div>
+  <nav class="cal-views" aria-label="Calendar views">
+    {array:calendarViews}
+    <a href="?{$kind}"><strong>{$name}</strong><code>{$tag}</code></a>
+    {/array:calendarViews}
+  </nav>
+</div>
+<p class="cal-note">Events, public holidays and localized day names work across the views.
+Use <code>{pad:open/}calendar:month/{pad:close/}</code> for a month grid.</p>
