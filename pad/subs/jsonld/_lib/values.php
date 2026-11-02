@@ -64,6 +64,10 @@
 
     switch ( $how ) {
 
+      case 'downloads':
+        include_once PAD . 'subs/jsonld/_lib/downloads.php';
+        return padJsonLdDownloads ( $value, $name, $what, $report );
+
       case 'texts':
         return $list ?: NULL;
 
