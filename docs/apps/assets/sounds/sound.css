@@ -1,0 +1,14 @@
+.pad-sound{display:inline-flex;align-items:center;gap:.5em;flex-wrap:wrap}
+.pad-sound-button{display:inline-flex;align-items:center;gap:.4em;padding:.35em .8em;border:1px solid var(--pad-sound-line);border-radius:999px;background:var(--pad-sound-face);color:var(--pad-sound-text);font:inherit;line-height:1.2;cursor:pointer}
+.pad-sound-button:hover{border-color:var(--pad-sound-accent)}
+.pad-sound-button:focus-visible{outline:2px solid var(--pad-sound-accent);outline-offset:2px}
+.pad-sound-button:active{transform:translateY(1px)}
+.pad-sound-icon{flex:none;fill:currentColor;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pad-sound-icon path+path{fill:none;color:var(--pad-sound-accent)}
+.pad-sound-download{font-size:.9em}
+@media (scripting:none){
+  .pad-sound-button{display:none}
+}
+@media print{
+  .pad-sound-button,.pad-sound-link{display:none}
+}

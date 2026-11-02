@@ -1,0 +1,338 @@
+PadGames.register('morris', function (k, cfg) {
+  // The 24 points, row by row on a grid of seven by seven, their neighbours along the lines and
+  // the sixteen lines of three that make a mill. White (1) begins, black (2) answers.
+  var AT = [[0, 0], [0, 3], [0, 6], [1, 1], [1, 3], [1, 5], [2, 2], [2, 3], [2, 4], [3, 0], [3, 1], [3, 2],
+            [3, 4], [3, 5], [3, 6], [4, 2], [4, 3], [4, 4], [5, 1], [5, 3], [5, 5], [6, 0], [6, 3], [6, 6]];
+  var ADJ = [[1, 9], [0, 2, 4], [1, 14], [4, 10], [1, 3, 5, 7], [4, 13], [7, 11], [4, 6, 8], [7, 12], [0, 10, 21],
+             [3, 9, 11, 18], [6, 10, 15], [8, 13, 17], [5, 12, 14, 20], [2, 13, 23], [11, 16], [15, 17, 19],
+             [12, 16], [10, 19], [16, 18, 20, 22], [13, 19], [9, 22], [19, 21, 23], [14, 22]];
+  var MILLS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11], [12, 13, 14], [15, 16, 17], [18, 19, 20], [21, 22, 23],
+               [0, 9, 21], [3, 10, 18], [6, 11, 15], [1, 4, 7], [16, 19, 22], [8, 12, 17], [5, 13, 20], [2, 14, 23]];
+  var LINES = AT.map(function (_, x) { return MILLS.filter(function (m) { return m.indexOf(x) >= 0; }); });
+  var DEPTH = { easy: 1, normal: 3, hard: 6 }[cfg.level] || 3;
+  var QUIET = 100, NS = 'http://www.w3.org/2000/svg';
+  var st, turn, human, points, chosen, taking, seen, busy, focus, last, hands;
+
+  function name(x) { return 'abcdefg'[AT[x][1]] + (7 - AT[x][0]); }
+  function count(b, p) { var n = 0; for (var i = 0; i < 24; i++) if (b[i] === p) n++; return n; }
+  function inMill(b, x) { return b[x] && LINES[x].some(function (m) { return b[m[0]] === b[x] && b[m[1]] === b[x] && b[m[2]] === b[x]; }); }
+
+  // The pieces of the other player a mill may take: the ones in no mill, else any.
+  function takeable(b, p) {
+    var all = [], free = [];
+    for (var i = 0; i < 24; i++) if (b[i] === 3 - p) { all.push(i); if (!inMill(b, i)) free.push(i); }
+    return free.length ? free : all;
+  }
+
+  // The moves of p: [from, to] - from -1 while pieces are to be placed - each with the piece a
+  // mill it closes takes, or -1.
+  function steps(s, p) {
+    var list = [], b = s.board;
+    if (s.hand[p]) { for (var to = 0; to < 24; to++) if (!b[to]) list.push([-1, to]); return list; }
+    var fly = count(b, p) === 3;
+    for (var from = 0; from < 24; from++) {
+      if (b[from] !== p) continue;
+      if (fly) { for (to = 0; to < 24; to++) if (!b[to]) list.push([from, to]); }
+      else ADJ[from].forEach(function (t) { if (!b[t]) list.push([from, t]); });
+    }
+    return list;
+  }
+
+  function moves(s, p) {
+    var out = [];
+    steps(s, p).forEach(function (m) {
+      var b = s.board.slice();
+      if (m[0] >= 0) b[m[0]] = 0;
+      b[m[1]] = p;
+      if (inMill(b, m[1])) takeable(b, p).forEach(function (r) { out.push([m[0], m[1], r]); });
+      else out.push([m[0], m[1], -1]);
+    });
+    return out;
+  }
+
+  function apply(s, m, p) {
+    var t = { board: s.board.slice(), hand: s.hand.slice(), quiet: s.quiet + 1 };
+    if (m[0] < 0) t.hand[p]--; else t.board[m[0]] = 0;
+    t.board[m[1]] = p;
+    if (m[2] >= 0) { t.board[m[2]] = 0; t.quiet = 0; }
+    if (t.hand[1] || t.hand[2]) t.quiet = 0;
+    return t;
+  }
+
+  function pieces(s, p) { return count(s.board, p) + s.hand[p]; }
+
+  // The worth of a position to p: pieces, mills and lines of two that wait for a third, and
+  // room to move once every piece is placed.
+  function worth(s, p) {
+    var q = 3 - p, v = 10 * (pieces(s, p) - pieces(s, q)), b = s.board;
+    for (var i = 0; i < MILLS.length; i++) {
+      var a = 0, z = 0, e = 0;
+      for (var j = 0; j < 3; j++) { var x = b[MILLS[i][j]]; if (x === p) a++; else if (x === q) z++; else e++; }
+      if (e === 1) v += (a === 2 ? 2 : 0) - (z === 2 ? 2 : 0);
+      if (a === 3) v += 1;
+      if (z === 3) v -= 1;
+    }
+    if (!s.hand[1] && !s.hand[2]) v += (steps(s, p).length - steps(s, q).length) * 0.5;
+    return v;
+  }
+
+  var nodes, deadline, STOP = {};
+
+  function search(s, p, depth, alpha, beta) {
+    if (++nodes % 512 === 0 && Date.now() > deadline) throw STOP;
+    if (pieces(s, p) < 3) return -1000 - depth;
+    var list = moves(s, p);
+    if (!list.length) return -1000 - depth;
+    if (s.quiet >= QUIET) return 0;
+    if (!depth) return worth(s, p);
+    list.sort(function (a, b) { return (b[2] >= 0) - (a[2] >= 0); });
+    var best = -Infinity;
+    for (var i = 0; i < list.length; i++) {
+      var v = -search(apply(s, list[i], p), 3 - p, depth - 1, -beta, -alpha);
+      if (v > best) best = v;
+      if (v > alpha) alpha = v;
+      if (alpha >= beta) break;
+    }
+    return best;
+  }
+
+  // The computer's move: deeper and deeper while there is time, the best of the last search
+  // that finished, one of the equal ones at random.
+  function choose() {
+    var list = moves(st, turn), pick = [list[0]];
+    nodes = 0;
+    deadline = Date.now() + 900;
+    for (var d = 1; d <= DEPTH; d++) {
+      try {
+        var best = -Infinity, choices = [];
+        for (var i = 0; i < list.length; i++) {
+          var v = -search(apply(st, list[i], turn), 3 - turn, d - 1, -Infinity, Infinity);
+          if (v > best) { best = v; choices = [list[i]]; } else if (v === best) choices.push(list[i]);
+        }
+        pick = choices;
+        if (best >= 900) break;
+      } catch (e) { if (e !== STOP) throw e; break; }
+    }
+    return k.pick(pick);
+  }
+
+  function who(p) {
+    if (cfg.two) return p === 1 ? 'White' : 'Black';
+    return p === human ? 'You' : 'The computer';
+  }
+
+  function color(p) { return p === 1 ? 'white' : 'black'; }
+
+  function whose(p) {
+    if (cfg.two) return color(p);
+    return p === human ? 'your' : 'the computer\'s';
+  }
+
+  function mine() { return cfg.two || turn === human; }
+
+  // What may be clicked now: a piece to take, a point to place on, a piece to move or a point
+  // the chosen piece moves to.
+  function targets() {
+    if (busy || k.over() || !mine()) return [];
+    if (taking) return takeable(st.board, turn);
+    var list = steps(st, turn);
+    if (st.hand[turn]) return list.map(function (m) { return m[1]; });
+    if (chosen !== null) return list.filter(function (m) { return m[0] === chosen; }).map(function (m) { return m[1]; });
+    return [];
+  }
+
+  function draw() {
+    var can = targets(), own = (!busy && !k.over() && mine() && !taking && !st.hand[turn])
+      ? steps(st, turn).map(function (m) { return m[0]; }) : [];
+    points.forEach(function (b, x) {
+      var p = st.board[x];
+      b.classList.toggle('is-white', p === 1);
+      b.classList.toggle('is-black', p === 2);
+      b.classList.toggle('is-chosen', chosen === x);
+      b.classList.toggle('is-target', !taking && can.indexOf(x) >= 0);
+      b.classList.toggle('is-takeable', taking && can.indexOf(x) >= 0);
+      b.classList.toggle('is-movable', own.indexOf(x) >= 0 && chosen !== x);
+      b.classList.toggle('is-last', last.indexOf(x) >= 0);
+      b.setAttribute('aria-label', name(x) + ', ' + (p ? color(p) : 'free') + (taking && can.indexOf(x) >= 0 ? ', can be taken'
+        : can.indexOf(x) >= 0 ? (chosen !== null ? ', a move' : '') : own.indexOf(x) >= 0 ? ', can move' : ''));
+      b.setAttribute('aria-disabled', can.indexOf(x) >= 0 || own.indexOf(x) >= 0 ? 'false' : 'true');
+    });
+    [1, 2].forEach(function (p) {
+      var h = hands[p], row = h.querySelector('.mrs-left');
+      row.textContent = '';
+      for (var i = 0; i < st.hand[p]; i++) row.appendChild(k.el('span', 'mrs-piece is-' + color(p)));
+      h.querySelector('.mrs-count').textContent = who(p) + (cfg.two ? '' : ' (' + color(p) + ')') + ': '
+        + (st.hand[p] ? st.hand[p] + ' to place, ' : '') + count(st.board, p) + ' on the board';
+    });
+  }
+
+  function key() { return st.board.join('') + turn + st.hand[1] + st.hand[2]; }
+
+  // The turn is over: the other player's, unless that one has lost or the game is drawn.
+  function next(said) {
+    turn = 3 - turn;
+    chosen = null;
+    taking = false;
+    var r = key();
+    seen[r] = (seen[r] || 0) + 1;
+    if (pieces(st, turn) < 3) return end(3 - turn, said + ' ' + who(turn) + (cfg.two || turn !== human ? ' has' : ' have') + ' only two pieces left.');
+    if (!moves(st, turn).length) return end(3 - turn, said + ' ' + who(turn) + ' cannot move.');
+    if (st.quiet >= QUIET) return end(0, said + ' Fifty moves without a piece taken - a draw.');
+    if (seen[r] >= 3 && !st.hand[1] && !st.hand[2]) return end(0, said + ' The same position a third time - a draw.');
+    draw();
+    if (mine()) return k.status(said + ' ' + (cfg.two ? who(turn) + ' to ' : 'Your turn - ') + (st.hand[turn] ? 'place a piece.' : 'move a piece' + (count(st.board, turn) === 3 ? ' - with three left it may jump anywhere.' : '.')));
+    k.status(said + ' The computer thinks...');
+    busy = true;
+    draw();
+    k.later(computer, 350);
+  }
+
+  function end(winner, said) {
+    busy = false;
+    draw();
+    if (!winner) return k.won(said);
+    if (cfg.two || winner === human) return k.won(said + ' ' + (cfg.two ? who(winner) + ' wins!' : 'You win!'));
+    k.lost(said + ' The computer wins.');
+  }
+
+  function words(p, m) {
+    return (m[0] < 0 ? 'placed on ' + name(m[1]) : 'moved from ' + name(m[0]) + ' to ' + name(m[1]))
+         + (m[2] >= 0 ? ', closed a mill and took ' + (cfg.two ? 'a ' + color(3 - p) : whose(3 - p)) + ' piece on ' + name(m[2]) : '') + '.';
+  }
+
+  function computer() {
+    var m = choose(), p = turn;
+    st = apply(st, m, p);
+    last = m[0] >= 0 ? [m[0], m[1]] : [m[1]];
+    busy = false;
+    next(who(p) + ' ' + words(p, m));
+  }
+
+  function play(m) {
+    var p = turn;
+    st = apply(st, m, p);
+    last = m[0] >= 0 ? [m[0], m[1]] : [m[1]];
+    next(who(p) + ' ' + words(p, m));
+  }
+
+  var pending = null;
+
+  function click(x) {
+    if (busy || k.over() || !mine()) return;
+    if (taking) {
+      if (takeable(st.board, turn).indexOf(x) < 0) return k.status('Take one of the marked pieces.');
+      var was = pending;
+      pending = null;
+      st = was.before;
+      return play([was.move[0], was.move[1], x]);
+    }
+    if (st.hand[turn]) {
+      if (st.board[x]) return;
+      return go([-1, x]);
+    }
+    if (st.board[x] === turn) {
+      chosen = (chosen === x) ? null : x;
+      draw();
+      if (chosen !== null && !targets().length) { chosen = null; draw(); return k.status('That piece cannot move.'); }
+      return k.status(chosen === null ? 'Choose a piece to move.' : 'Now the point it goes to.');
+    }
+    if (chosen !== null && targets().indexOf(x) >= 0) go([chosen, x]);
+  }
+
+  // A piece placed or moved: when it closes a mill, it stands there while a piece of the other
+  // player is chosen to take, and the move is made with that piece.
+  function go(m) {
+    var b = st.board.slice();
+    if (m[0] >= 0) b[m[0]] = 0;
+    b[m[1]] = turn;
+    if (!inMill(b, m[1])) return play([m[0], m[1], -1]);
+    pending = { before: st, move: m };
+    st = { board: b, hand: st.hand.slice(), quiet: st.quiet };
+    if (m[0] < 0) st.hand[turn]--;
+    taking = true;
+    chosen = null;
+    last = m[0] >= 0 ? [m[0], m[1]] : [m[1]];
+    draw();
+    k.status('A mill! Take one of the marked pieces of ' + (cfg.two ? who(3 - turn) : 'the computer') + '.');
+  }
+
+  // Arrow keys: to the next point along the row or the column of the grid.
+  function moveFocus(x, keyName) {
+    var r = AT[x][0], c = AT[x][1], best = -1, gap = 99;
+    AT.forEach(function (rc, y) {
+      var d = keyName === 'ArrowRight' ? (rc[0] === r && rc[1] > c ? rc[1] - c : 99)
+            : keyName === 'ArrowLeft' ? (rc[0] === r && rc[1] < c ? c - rc[1] : 99)
+            : keyName === 'ArrowDown' ? (rc[1] === c && rc[0] > r ? rc[0] - r : 99)
+            : (rc[1] === c && rc[0] < r ? r - rc[0] : 99);
+      if (d < gap) { gap = d; best = y; }
+    });
+    if (best < 0) return;
+    points[focus].tabIndex = -1;
+    focus = best;
+    points[best].tabIndex = 0;
+    points[best].focus();
+  }
+
+  function svg(tag, attrs) {
+    var e = document.createElementNS(NS, tag);
+    for (var a in attrs) e.setAttribute(a, attrs[a]);
+    return e;
+  }
+
+  function newGame() {
+    k.fresh();
+    st = { board: new Array(24).fill(0), hand: [0, 9, 9], quiet: 0 };
+    turn = 1;
+    human = (!cfg.two && cfg.opens === 'computer') ? 2 : 1;
+    chosen = null;
+    taking = false;
+    pending = null;
+    busy = false;
+    last = [];
+    seen = {};
+    hands = {};
+    var board = k.el('div', 'mrs-board'), lines = svg('svg', { viewBox: '0 0 6 6', 'class': 'mrs-lines', 'aria-hidden': 'true', focusable: 'false' });
+    [0, 1, 2].forEach(function (i) { lines.appendChild(svg('rect', { x: i, y: i, width: 6 - 2 * i, height: 6 - 2 * i })); });
+    lines.appendChild(svg('path', { d: 'M3,0V2M3,4V6M0,3H2M4,3H6' }));
+    board.appendChild(lines);
+    board.setAttribute('role', 'group');
+    board.setAttribute('aria-label', 'The board: 24 points on three squares, a1 to g7');
+    points = AT.map(function (rc, x) {
+      var b = k.el('button', 'mrs-point');
+      b.type = 'button';
+      b.tabIndex = -1;
+      b.style.gridRow = String(rc[0] + 1);
+      b.style.gridColumn = String(rc[1] + 1);
+      b.addEventListener('click', function () {
+        if (focus !== x) { points[focus].tabIndex = -1; focus = x; b.tabIndex = 0; }
+        click(x);
+      });
+      b.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || !/^Arrow/.test(e.key)) return;
+        e.preventDefault();
+        moveFocus(x, e.key);
+      });
+      board.appendChild(b);
+      return b;
+    });
+    focus = 0;
+    points[0].tabIndex = 0;
+    [3 - human, human].forEach(function (p, i) {
+      var h = k.el('div', 'mrs-hand mrs-hand-' + color(p));
+      h.appendChild(k.el('span', 'mrs-count'));
+      h.appendChild(k.el('span', 'mrs-left'));
+      h.lastChild.setAttribute('aria-hidden', 'true');
+      hands[p] = h;
+      if (i === 0) k.board.appendChild(h);
+    });
+    k.board.appendChild(board);
+    k.board.appendChild(hands[human]);
+    seen[key()] = 1;
+    draw();
+    if (!cfg.two && human === 2) { busy = true; draw(); k.status('The computer begins...'); k.later(computer, 350); }
+    else k.status(cfg.two ? 'White to place a piece - nine each, then they move' : 'Your turn - place a piece; you play white, nine each, then they move');
+  }
+
+  k.button('New game', newGame);
+  newGame();
+});

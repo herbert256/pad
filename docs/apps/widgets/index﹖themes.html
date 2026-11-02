@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Themes · PAD widgets
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/showcase-examples.css">
+    <script src="../_common/showcase-examples.js" defer></script>
+    <link rel="stylesheet" href="sections.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+    <style data-pad-theme="blueprint">
+    .pad-theme-blueprint{--frame-bg:#133f6e;--frame-panel:#174878;--frame-text:#f4f8fd;--frame-dim:#b4cde8;--frame-line:#4f7cab;--frame-accent:#ffd866;--frame-accent-text:#0d2f52;--frame-side:#0d3157;--frame-side-text:#dce9f7;--frame-side-dim:#a8c6e6;--frame-side-hover:#184a7a;--frame-side-line:#285785;--frame-side-strong:#ffffff;--frame-menu:#133f6e;--frame-menu-shadow:0 18px 40px -12px rgba(0,0,0,.6);--bg:#133f6e;--panel:#174878;--text:#f4f8fd;--soft:#d8e6f5;--dim:#b4cde8;--line:#4f7cab;--accent:#ffd866;--accent-text:#0d2f52;--accent-soft:#0d3459;--head:#1d5288;--code:#0e3560;--ok:#9be8b9;--ok-bg:#124a4c;--warn:#ffd866;--warn-bg:#3d4532;--bad:#ffbcb2;--bad-bg:#57304d;--shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -16px rgba(0,0,0,.7);color-scheme:dark;background-color:var(--bg);color:var(--text);background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:100px 100px,100px 100px,20px 20px,20px 20px;padding:16px 20px;border-radius:10px}.pad-theme-blueprint .pad-section{--pad-section-hero:#174878}.pad-theme-blueprint h2,.pad-theme-blueprint h3,.pad-theme-blueprint .frame-top h1{text-transform:uppercase;letter-spacing:.06em}
+    </style>
+    <style data-pad-theme="contrast">
+    .pad-theme-contrast{--frame-bg:#ffffff;--frame-panel:#ffffff;--frame-text:#000000;--frame-dim:#3b3b3b;--frame-line:#595959;--frame-accent:#0000b8;--frame-accent-text:#ffffff;--frame-side:#ffffff;--frame-side-text:#000000;--frame-side-dim:#3b3b3b;--frame-side-hover:#e8e8e8;--frame-side-line:#000000;--frame-side-strong:#000000;--frame-menu:#ffffff;--frame-menu-shadow:0 16px 36px -12px rgba(20,30,50,.28);--bg:#ffffff;--panel:#ffffff;--text:#000000;--soft:#1a1a1a;--dim:#3b3b3b;--line:#595959;--accent:#0000b8;--accent-text:#ffffff;--accent-soft:#e8e8ff;--head:#f0f0f0;--code:#f0f0f0;--ok:#0b5a1c;--ok-bg:#e6f4e9;--warn:#6b3d00;--warn-bg:#fff3d6;--bad:#9a0000;--bad-bg:#fde8e8;--shadow:0 1px 2px rgba(20,22,31,.05),0 8px 24px -12px rgba(30,40,90,.18);color-scheme:light;background-color:var(--bg);color:var(--text);padding:16px 20px;border-radius:10px}.pad-theme-contrast .pad-section{--pad-section-hero:#ffffff}.pad-theme-contrast a{text-decoration:underline}.pad-theme-contrast :focus-visible{outline:3px solid #0000b8;outline-offset:2px}.pad-theme-contrast .pad-section{--pad-section-line:#595959}
+    </style>
+    <style data-pad-theme="contrast-dark">
+    .pad-theme-contrast-dark{--frame-bg:#000000;--frame-panel:#0d0d0d;--frame-text:#ffffff;--frame-dim:#c7c7c7;--frame-line:#9e9e9e;--frame-accent:#ffe14d;--frame-accent-text:#000000;--frame-side:#000000;--frame-side-text:#ffffff;--frame-side-dim:#c7c7c7;--frame-side-hover:#262626;--frame-side-line:#ffffff;--frame-side-strong:#ffffff;--frame-menu:#0d0d0d;--frame-menu-shadow:0 18px 40px -12px rgba(0,0,0,.6);--bg:#000000;--panel:#0d0d0d;--text:#ffffff;--soft:#ebebeb;--dim:#c7c7c7;--line:#9e9e9e;--accent:#ffe14d;--accent-text:#000000;--accent-soft:#2b2600;--head:#1f1f1f;--code:#171717;--ok:#7cf29a;--ok-bg:#00290f;--warn:#ffd23f;--warn-bg:#2e2300;--bad:#ff9c9c;--bad-bg:#380000;--shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -16px rgba(0,0,0,.7);color-scheme:dark;background-color:var(--bg);color:var(--text);padding:16px 20px;border-radius:10px}.pad-theme-contrast-dark .pad-section{--pad-section-hero:#000000}.pad-theme-contrast-dark a{text-decoration:underline}.pad-theme-contrast-dark :focus-visible{outline:3px solid #ffe14d;outline-offset:2px}.pad-theme-contrast-dark .pad-section{--pad-section-line:#9e9e9e}
+    </style>
+    <style data-pad-theme="dark">
+    .pad-theme-dark{--frame-bg:#0f1218;--frame-panel:#171b23;--frame-text:#e5e7eb;--frame-dim:#9ca3af;--frame-line:#2a303b;--frame-accent:#60a5fa;--frame-accent-text:#0b1020;--frame-side:#0a0d12;--frame-side-text:#cbd5e1;--frame-side-dim:#8593a8;--frame-side-hover:#1a202b;--frame-side-line:#1a202b;--frame-side-strong:#ffffff;--frame-menu:#151b26;--frame-menu-shadow:0 18px 40px -12px rgba(0,0,0,.6);--bg:#0f1218;--panel:#171b23;--text:#e5e7eb;--soft:#c0c6d0;--dim:#9ca3af;--line:#2a303b;--accent:#60a5fa;--accent-text:#0b1020;--accent-soft:#172235;--head:#1d222b;--code:#11151c;--ok:#4ade80;--ok-bg:#12301f;--warn:#fbbf24;--warn-bg:#33270b;--bad:#f87171;--bad-bg:#3a1414;--shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -16px rgba(0,0,0,.7);color-scheme:dark;background-color:var(--bg);color:var(--text);padding:16px 20px;border-radius:10px}
+    </style>
+    <style data-pad-theme="forest">
+    .pad-theme-forest{--frame-bg:#f2f5ef;--frame-panel:#fbfcf9;--frame-text:#1e2a1f;--frame-dim:#536453;--frame-line:#d5dfd2;--frame-accent:#2e6b3a;--frame-accent-text:#ffffff;--frame-side:#1f3a26;--frame-side-text:#d8e8d6;--frame-side-dim:#a3c2a3;--frame-side-hover:#2a4a32;--frame-side-line:#2f4f36;--frame-side-strong:#ffffff;--frame-menu:#1f3a26;--frame-menu-shadow:0 16px 36px -12px rgba(20,30,50,.28);--bg:#f2f5ef;--panel:#fbfcf9;--text:#1e2a1f;--soft:#3d4e3e;--dim:#536453;--line:#d5dfd2;--accent:#2e6b3a;--accent-text:#ffffff;--accent-soft:#dcebdc;--head:#e6ede3;--code:#eaf0e7;--ok:#2e6b3a;--ok-bg:#e0eedb;--warn:#7a5200;--warn-bg:#f3e6c4;--bad:#a33a2a;--bad-bg:#f6e0da;--shadow:0 1px 2px rgba(20,22,31,.05),0 8px 24px -12px rgba(30,40,90,.18);color-scheme:light;background-color:var(--bg);color:var(--text);padding:16px 20px;border-radius:10px}.pad-theme-forest .pad-section{--pad-section-hero:linear-gradient(180deg, #dbe9d6, #f2f5ef)}
+    </style>
+    <style data-pad-theme="light">
+    .pad-theme-light{--frame-bg:#f5f6f8;--frame-panel:#ffffff;--frame-text:#1d2330;--frame-dim:#5f6672;--frame-line:#e3e6eb;--frame-accent:#2563eb;--frame-accent-text:#ffffff;--frame-side:#ffffff;--frame-side-text:#374151;--frame-side-dim:#646c79;--frame-side-hover:#f1f3f6;--frame-side-line:#e3e6eb;--frame-side-strong:#111827;--frame-menu:#ffffff;--frame-menu-shadow:0 16px 36px -12px rgba(20,30,50,.28);--bg:#f5f6f8;--panel:#ffffff;--text:#1d2330;--soft:#4b5563;--dim:#5f6672;--line:#e3e6eb;--accent:#2563eb;--accent-text:#ffffff;--accent-soft:#edf2fe;--head:#eef0f3;--code:#f3f4f6;--ok:#15803d;--ok-bg:#dcfce7;--warn:#a14a07;--warn-bg:#fef3c7;--bad:#b91c1c;--bad-bg:#fee2e2;--shadow:0 1px 2px rgba(20,22,31,.05),0 8px 24px -12px rgba(30,40,90,.18);color-scheme:light;background-color:var(--bg);color:var(--text);padding:16px 20px;border-radius:10px}
+    </style>
+    <style data-pad-theme="mono">
+    .pad-theme-mono{--frame-bg:#f6f6f6;--frame-panel:#ffffff;--frame-text:#111111;--frame-dim:#5e5e5e;--frame-line:#dddddd;--frame-accent:#111111;--frame-accent-text:#ffffff;--frame-side:#ffffff;--frame-side-text:#2b2b2b;--frame-side-dim:#5e5e5e;--frame-side-hover:#f0f0f0;--frame-side-line:#e0e0e0;--frame-side-strong:#000000;--frame-menu:#ffffff;--frame-menu-shadow:0 16px 36px -12px rgba(20,30,50,.28);--bg:#f6f6f6;--panel:#ffffff;--text:#111111;--soft:#3a3a3a;--dim:#5e5e5e;--line:#dddddd;--accent:#111111;--accent-text:#ffffff;--accent-soft:#e9e9e9;--head:#efefef;--code:#f0f0f0;--ok:#1f1f1f;--ok-bg:#e6e6e6;--warn:#1f1f1f;--warn-bg:#eeeeee;--bad:#1f1f1f;--bad-bg:#dcdcdc;--shadow:0 1px 2px rgba(20,22,31,.05),0 8px 24px -12px rgba(30,40,90,.18);color-scheme:light;background-color:var(--bg);color:var(--text);padding:16px 20px;border-radius:10px}.pad-theme-mono .pad-section{--pad-section-hero:#ececec}.pad-theme-mono a{text-decoration:underline}
+    </style>
+    <style data-pad-theme="newspaper">
+    .pad-theme-newspaper{--frame-bg:#f7f5ef;--frame-panel:#fbfaf6;--frame-text:#111111;--frame-dim:#555555;--frame-line:#cfcac0;--frame-accent:#a4161a;--frame-accent-text:#ffffff;--frame-side:#f7f5ef;--frame-side-text:#222222;--frame-side-dim:#5c5c5c;--frame-side-hover:#ebe7dd;--frame-side-line:#cfcac0;--frame-side-strong:#000000;--frame-menu:#fbfaf6;--frame-menu-shadow:0 16px 36px -12px rgba(20,30,50,.28);--bg:#f7f5ef;--panel:#fbfaf6;--text:#111111;--soft:#333333;--dim:#555555;--line:#cfcac0;--accent:#a4161a;--accent-text:#ffffff;--accent-soft:#f3e3df;--head:#ece8df;--code:#efece4;--ok:#1e5e2a;--ok-bg:#e2eedd;--warn:#7a4d00;--warn-bg:#f4e8cc;--bad:#a4161a;--bad-bg:#f6e0dc;--shadow:0 1px 2px rgba(20,22,31,.05),0 8px 24px -12px rgba(30,40,90,.18);--sans:Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, "Times New Roman", serif;color-scheme:light;background-color:var(--bg);color:var(--text);font-family:var(--sans);padding:16px 20px;border-radius:10px}.pad-theme-newspaper .pad-section{--pad-section-hero:#ece8df}.pad-theme-newspaper h1,.pad-theme-newspaper h2,.pad-theme-newspaper h3,.pad-theme-newspaper .frame-top h1{letter-spacing:-.01em;font-weight:700}.pad-theme-newspaper h2{border-bottom:3px double var(--line);padding-bottom:4px}
+    </style>
+    <style data-pad-theme="night">
+    .pad-theme-night{--frame-bg:#17120e;--frame-panel:#201914;--frame-text:#f2dfc4;--frame-dim:#bfa07c;--frame-line:#3b2e23;--frame-accent:#ffaa5c;--frame-accent-text:#17120e;--frame-side:#120e0b;--frame-side-text:#e6cfb0;--frame-side-dim:#b8996f;--frame-side-hover:#2a2019;--frame-side-line:#2a2019;--frame-side-strong:#fff0dc;--frame-menu:#201914;--frame-menu-shadow:0 18px 40px -12px rgba(0,0,0,.6);--bg:#17120e;--panel:#201914;--text:#f2dfc4;--soft:#dcc4a3;--dim:#bfa07c;--line:#3b2e23;--accent:#ffaa5c;--accent-text:#17120e;--accent-soft:#3a2614;--head:#2a2019;--code:#120e0b;--ok:#c2cf6a;--ok-bg:#26290f;--warn:#ffc96b;--warn-bg:#36280b;--bad:#ff9a7a;--bad-bg:#3d1a10;--shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -16px rgba(0,0,0,.7);color-scheme:dark;background-color:var(--bg);color:var(--text);padding:16px 20px;border-radius:10px}.pad-theme-night .pad-section{--pad-section-hero:linear-gradient(180deg, #2a1d13, #17120e)}
+    </style>
+    <style data-pad-theme="ocean">
+    .pad-theme-ocean{--frame-bg:#071a2b;--frame-panel:#0b2338;--frame-text:#e3f2fd;--frame-dim:#8fb3cf;--frame-line:#183a55;--frame-accent:#4fd1e8;--frame-accent-text:#04131f;--frame-side:#05141f;--frame-side-text:#c9e3f5;--frame-side-dim:#7fa6c4;--frame-side-hover:#0d2a40;--frame-side-line:#0f2c44;--frame-side-strong:#ffffff;--frame-menu:#0b2338;--frame-menu-shadow:0 18px 40px -12px rgba(0,0,0,.6);--bg:#071a2b;--panel:#0b2338;--text:#e3f2fd;--soft:#b8d4ea;--dim:#8fb3cf;--line:#183a55;--accent:#4fd1e8;--accent-text:#04131f;--accent-soft:#0d3047;--head:#0e2a42;--code:#051522;--ok:#5ee6a8;--ok-bg:#0b3326;--warn:#ffd166;--warn-bg:#3a2e0b;--bad:#ff8a8a;--bad-bg:#3d1515;--shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -16px rgba(0,0,0,.7);color-scheme:dark;background-color:var(--bg);color:var(--text);padding:16px 20px;border-radius:10px}.pad-theme-ocean .pad-section{--pad-section-hero:linear-gradient(180deg, #0d3150, #071a2b)}
+    </style>
+    <style data-pad-theme="paper">
+    .pad-theme-paper{--frame-bg:#f4f1ea;--frame-panel:#fbf9f4;--frame-text:#2b2a26;--frame-dim:#665f52;--frame-line:#ddd6c8;--frame-accent:#2f4f8f;--frame-accent-text:#fbf9f4;--frame-side:#efeadf;--frame-side-text:#3d3a33;--frame-side-dim:#625b4f;--frame-side-hover:#e5dfd1;--frame-side-line:#ddd6c8;--frame-side-strong:#1f1e1b;--frame-menu:#fbf9f4;--frame-menu-shadow:0 16px 36px -12px rgba(20,30,50,.28);--bg:#f4f1ea;--panel:#fbf9f4;--text:#2b2a26;--soft:#4f4a40;--dim:#665f52;--line:#ddd6c8;--accent:#2f4f8f;--accent-text:#fbf9f4;--accent-soft:#e4e6ee;--head:#ebe6da;--code:#efeadf;--ok:#2f6b2f;--ok-bg:#e3eed9;--warn:#7d5200;--warn-bg:#f6ead0;--bad:#9b2c2c;--bad-bg:#f5e1dc;--shadow:0 1px 2px rgba(20,22,31,.05),0 8px 24px -12px rgba(30,40,90,.18);--sans:"Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;color-scheme:light;background-color:var(--bg);color:var(--text);font-family:var(--sans);padding:16px 20px;border-radius:10px}.pad-theme-paper .pad-section{--pad-section-hero:linear-gradient(180deg, #ebe4d4, #f4f1ea)}
+    </style>
+    <style data-pad-theme="projection">
+    .pad-theme-projection{--frame-bg:#ffffff;--frame-panel:#ffffff;--frame-text:#000000;--frame-dim:#3b3b3b;--frame-line:#595959;--frame-accent:#0000b8;--frame-accent-text:#ffffff;--frame-side:#ffffff;--frame-side-text:#000000;--frame-side-dim:#3b3b3b;--frame-side-hover:#e8e8e8;--frame-side-line:#000000;--frame-side-strong:#000000;--frame-menu:#ffffff;--frame-menu-shadow:0 16px 36px -12px rgba(20,30,50,.28);--bg:#ffffff;--panel:#ffffff;--text:#000000;--soft:#1a1a1a;--dim:#3b3b3b;--line:#595959;--accent:#0000b8;--accent-text:#ffffff;--accent-soft:#e8e8ff;--head:#f0f0f0;--code:#f0f0f0;--ok:#0b5a1c;--ok-bg:#e6f4e9;--warn:#6b3d00;--warn-bg:#fff3d6;--bad:#9a0000;--bad-bg:#fde8e8;--shadow:0 1px 2px rgba(20,22,31,.05),0 8px 24px -12px rgba(30,40,90,.18);--sans:Verdana, Arial, sans-serif;color-scheme:light;background-color:var(--bg);color:var(--text);font-family:var(--sans);font-size:20px;line-height:1.65;padding:16px 20px;border-radius:10px}.pad-theme-projection .pad-section{--pad-section-hero:#ffffff}.pad-theme-projection a{text-decoration:underline}.pad-theme-projection :focus-visible{outline:3px solid #0000b8;outline-offset:2px}.pad-theme-projection .pad-section{--pad-section-line:#595959}.pad-theme-projection h1{letter-spacing:normal}.pad-theme-projection p{max-width:65ch}.pad-theme-projection button,.pad-theme-projection input,.pad-theme-projection select{font-size:inherit}.pad-theme-projection :focus-visible{outline-width:4px}
+    </style>
+    <style data-pad-theme="readable">
+    .pad-theme-readable{--frame-bg:#f7f3e8;--frame-panel:#fcfaf3;--frame-text:#24221f;--frame-dim:#57534b;--frame-line:#ddd6c6;--frame-accent:#1f4f99;--frame-accent-text:#fcfaf3;--frame-side:#f1ecdf;--frame-side-text:#2e2b26;--frame-side-dim:#5a554c;--frame-side-hover:#e6dfcf;--frame-side-line:#ddd6c6;--frame-side-strong:#1a1814;--frame-menu:#fcfaf3;--frame-menu-shadow:0 16px 36px -12px rgba(20,30,50,.28);--bg:#f7f3e8;--panel:#fcfaf3;--text:#24221f;--soft:#3d3a35;--dim:#57534b;--line:#ddd6c6;--accent:#1f4f99;--accent-text:#fcfaf3;--accent-soft:#e2e6ee;--head:#ece6d6;--code:#eee9dc;--ok:#005a8c;--ok-bg:#deebf3;--warn:#7a5000;--warn-bg:#f6e8c8;--bad:#a43c00;--bad-bg:#f8e3d6;--shadow:0 1px 2px rgba(20,22,31,.05),0 8px 24px -12px rgba(30,40,90,.18);--sans:"Atkinson Hyperlegible", Verdana, Tahoma, "Trebuchet MS", Arial, sans-serif;color-scheme:light;background-color:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;letter-spacing:.06em;word-spacing:.16em;padding:16px 20px;border-radius:10px}.pad-theme-readable .pad-section{--pad-section-hero:linear-gradient(180deg, #efe8d6, #f7f3e8)}.pad-theme-readable pre,.pad-theme-readable code,.pad-theme-readable kbd,.pad-theme-readable samp,.pad-theme-readable svg{letter-spacing:normal;word-spacing:normal}.pad-theme-readable em,.pad-theme-readable i{font-style:normal;font-weight:700}.pad-theme-readable p{max-width:70ch}.pad-theme-readable .frame-head{text-transform:none}
+    </style>
+    <style data-pad-theme="sepia">
+    .pad-theme-sepia{--frame-bg:#f1e7d0;--frame-panel:#f8f0dc;--frame-text:#3b2f20;--frame-dim:#68553f;--frame-line:#d9c9a8;--frame-accent:#8b4513;--frame-accent-text:#fff8e7;--frame-side:#ebdfc4;--frame-side-text:#3b2f20;--frame-side-dim:#64513c;--frame-side-hover:#e2d3b2;--frame-side-line:#d9c9a8;--frame-side-strong:#24190d;--frame-menu:#f8f0dc;--frame-menu-shadow:0 16px 36px -12px rgba(20,30,50,.28);--bg:#f1e7d0;--panel:#f8f0dc;--text:#3b2f20;--soft:#54412d;--dim:#68553f;--line:#d9c9a8;--accent:#8b4513;--accent-text:#fff8e7;--accent-soft:#ead9b6;--head:#eadcbc;--code:#ece0c4;--ok:#3d6b21;--ok-bg:#e3e8c9;--warn:#7a4a00;--warn-bg:#f0dcb2;--bad:#8f2a1c;--bad-bg:#f0d6c8;--shadow:0 1px 2px rgba(20,22,31,.05),0 8px 24px -12px rgba(30,40,90,.18);color-scheme:light;background-color:var(--bg);color:var(--text);padding:16px 20px;border-radius:10px}.pad-theme-sepia .pad-section{--pad-section-hero:linear-gradient(180deg, #e7d8b6, #f1e7d0)}
+    </style>
+    <style data-pad-theme="solarized-dark">
+    .pad-theme-solarized-dark{--frame-bg:#002b36;--frame-panel:#073642;--frame-text:#eee8d5;--frame-dim:#93a1a1;--frame-line:#164b58;--frame-accent:#5eabe1;--frame-accent-text:#002b36;--frame-side:#00212b;--frame-side-text:#c1c4bb;--frame-side-dim:#93a1a1;--frame-side-hover:#073642;--frame-side-line:#073642;--frame-side-strong:#fdf6e3;--frame-menu:#073642;--frame-menu-shadow:0 18px 40px -12px rgba(0,0,0,.6);--bg:#002b36;--panel:#073642;--text:#eee8d5;--soft:#c1c4bb;--dim:#93a1a1;--line:#164b58;--accent:#5eabe1;--accent-text:#002b36;--accent-soft:#05344a;--head:#0a3a47;--code:#00212b;--ok:#a5b52e;--ok-bg:#173d24;--warn:#cfa42e;--warn-bg:#3b3313;--bad:#f0756f;--bad-bg:#3d1f22;--shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -16px rgba(0,0,0,.7);color-scheme:dark;background-color:var(--bg);color:var(--text);padding:16px 20px;border-radius:10px}.pad-theme-solarized-dark .pad-section{--pad-section-hero:linear-gradient(180deg, #073642, #002b36)}
+    </style>
+    <style data-pad-theme="solarized-light">
+    .pad-theme-solarized-light{--frame-bg:#fdf6e3;--frame-panel:#fffbf0;--frame-text:#073642;--frame-dim:#546a70;--frame-line:#e6dfca;--frame-accent:#1c6aa0;--frame-accent-text:#fdf6e3;--frame-side:#eee8d5;--frame-side-text:#073642;--frame-side-dim:#4f6369;--frame-side-hover:#e4ddc6;--frame-side-line:#ddd6c1;--frame-side-strong:#002b36;--frame-menu:#fdf6e3;--frame-menu-shadow:0 16px 36px -12px rgba(20,30,50,.28);--bg:#fdf6e3;--panel:#fffbf0;--text:#073642;--soft:#30525b;--dim:#546a70;--line:#e6dfca;--accent:#1c6aa0;--accent-text:#fdf6e3;--accent-soft:#e3e9e1;--head:#eee8d5;--code:#eee8d5;--ok:#566300;--ok-bg:#ebe8c1;--warn:#795b00;--warn-bg:#f2e6c1;--bad:#b02926;--bad-bg:#f9dece;--shadow:0 1px 2px rgba(20,22,31,.05),0 8px 24px -12px rgba(30,40,90,.18);color-scheme:light;background-color:var(--bg);color:var(--text);padding:16px 20px;border-radius:10px}.pad-theme-solarized-light .pad-section{--pad-section-hero:linear-gradient(180deg, #eee8d5, #fdf6e3)}
+    </style>
+    <style data-pad-theme="terminal">
+    .pad-theme-terminal{--frame-bg:#0b0f0b;--frame-panel:#0f150f;--frame-text:#33ff66;--frame-dim:#22b048;--frame-line:#1c3a22;--frame-accent:#ffb000;--frame-accent-text:#0b0f0b;--frame-side:#070a07;--frame-side-text:#33ff66;--frame-side-dim:#22b048;--frame-side-hover:#112611;--frame-side-line:#1c3a22;--frame-side-strong:#b3ffc6;--frame-menu:#0f150f;--frame-menu-shadow:0 18px 40px -12px rgba(0,0,0,.6);--bg:#0b0f0b;--panel:#0f150f;--text:#33ff66;--soft:#2bd957;--dim:#22b048;--line:#1c3a22;--accent:#ffb000;--accent-text:#0b0f0b;--accent-soft:#241c05;--head:#102010;--code:#070a07;--ok:#33ff66;--ok-bg:#0f2a14;--warn:#ffb000;--warn-bg:#2a2005;--bad:#ff5f5f;--bad-bg:#2a0f0f;--shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -16px rgba(0,0,0,.7);--sans:ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;color-scheme:dark;background-color:var(--bg);color:var(--text);font-family:var(--sans);padding:16px 20px;border-radius:10px}.pad-theme-terminal .pad-section{--pad-section-hero:#0f1a10}.pad-theme-terminal h1,.pad-theme-terminal h2,.pad-theme-terminal .frame-top h1{text-shadow:0 0 6px rgba(51,255,102,.35)}
+    </style>
+  </head>
+  <body class="frame app-widgets">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>widgets</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../calendars/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-calendar" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3.5" y="5" width="17" height="15" rx="2"></rect>
+                    <path d="M3.5 10h17M8 3v4M16 3v4"></path></svg><span><b>calendars</b><small>Date views, clocks and countdowns</small></span></a><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Charts and timelines, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games, puzzles and live simulations</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="../notations/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="../images/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-image" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <circle cx="8.5" cy="9.5" r="1.5"></circle>
+                    <path d="M4 18l5-5 4 4 2.5-2.5L20 18"></path></svg><span><b>images</b><small>Pictures, avatars, patterns and filters</small></span></a><a href="../tables/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>tables</b><small>Data tables, spreadsheets and formulas</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>widgets</b><small>Page components, sections, effects and colours</small></span></a><a href="../printables/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="../sounds/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="widgets">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Landing page</a>
+        <div class="frame-head">
+          Sections
+        </div><a href="index%EF%B9%96sections.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+        <path d="M3 9h18M9 9v11"></path></svg> All sections</a> <a href="index%EF%B9%96section%EA%A4%B7agenda.html">Agenda</a> <a href="index%EF%B9%96section%EA%A4%B7blog.html">Blog</a> <a href="index%EF%B9%96section%EA%A4%B7careers.html">Careers</a> <a href="index%EF%B9%96section%EA%A4%B7casestudy.html">Casestudy</a> <a href="index%EF%B9%96section%EA%A4%B7changelog.html">Changelog</a> <a href="index%EF%B9%96section%EA%A4%B7comparison.html">Comparison</a> <a href="index%EF%B9%96section%EA%A4%B7contact.html">Contact</a> <a href="index%EF%B9%96section%EA%A4%B7cta.html">Cta</a> <a href="index%EF%B9%96section%EA%A4%B7downloads.html">Downloads</a> <a href="index%EF%B9%96section%EA%A4%B7faq.html">Faq</a> <a href="index%EF%B9%96section%EA%A4%B7features.html">Features</a> <a href="index%EF%B9%96section%EA%A4%B7footer.html">Footer</a> <a href="index%EF%B9%96section%EA%A4%B7gallery.html">Gallery</a> <a href="index%EF%B9%96section%EA%A4%B7hero.html">Hero</a> <a href="index%EF%B9%96section%EA%A4%B7highlights.html">Highlights</a> <a href="index%EF%B9%96section%EA%A4%B7item.html">Item</a> <a href="index%EF%B9%96section%EA%A4%B7logos.html">Logos</a> <a href="index%EF%B9%96section%EA%A4%B7newsletter.html">Newsletter</a> <a href="index%EF%B9%96section%EA%A4%B7pricing.html">Pricing</a> <a href="index%EF%B9%96section%EA%A4%B7roadmap.html">Roadmap</a> <a href="index%EF%B9%96section%EA%A4%B7stats.html">Stats</a> <a href="index%EF%B9%96section%EA%A4%B7steps.html">Steps</a> <a href="index%EF%B9%96section%EA%A4%B7team.html">Team</a> <a href="index%EF%B9%96section%EA%A4%B7testimonials.html">Testimonials</a>
+        <div class="frame-head">
+          Effects
+        </div><a href="index%EF%B9%96effects.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg> All effects</a> <a href="index%EF%B9%96effect%EA%A4%B7confetti.html">Confetti</a> <a href="index%EF%B9%96effect%EA%A4%B7countup.html">Countup</a> <a href="index%EF%B9%96effect%EA%A4%B7decipher.html">Decipher</a> <a href="index%EF%B9%96effect%EA%A4%B7encircle.html">Encircle</a> <a href="index%EF%B9%96effect%EA%A4%B7flipnumber.html">Flipnumber</a> <a href="index%EF%B9%96effect%EA%A4%B7glitch.html">Glitch</a> <a href="index%EF%B9%96effect%EA%A4%B7gradient.html">Gradient</a> <a href="index%EF%B9%96effect%EA%A4%B7highlighter.html">Highlighter</a> <a href="index%EF%B9%96effect%EA%A4%B7marquee.html">Marquee</a> <a href="index%EF%B9%96effect%EA%A4%B7nudge.html">Nudge</a> <a href="index%EF%B9%96effect%EA%A4%B7reveal.html">Reveal</a> <a href="index%EF%B9%96effect%EA%A4%B7ripple.html">Ripple</a> <a href="index%EF%B9%96effect%EA%A4%B7rotator.html">Rotator</a> <a href="index%EF%B9%96effect%EA%A4%B7scrollprogress.html">Scrollprogress</a> <a href="index%EF%B9%96effect%EA%A4%B7shimmer.html">Shimmer</a> <a href="index%EF%B9%96effect%EA%A4%B7skeleton.html">Skeleton</a> <a href="index%EF%B9%96effect%EA%A4%B7spinner.html">Spinner</a> <a href="index%EF%B9%96effect%EA%A4%B7spotlight.html">Spotlight</a> <a href="index%EF%B9%96effect%EA%A4%B7strike.html">Strike</a> <a href="index%EF%B9%96effect%EA%A4%B7tilt.html">Tilt</a> <a href="index%EF%B9%96effect%EA%A4%B7typewriter.html">Typewriter</a> <a href="index%EF%B9%96effect%EA%A4%B7underline.html">Underline</a> <a href="index%EF%B9%96effect%EA%A4%B7wave.html">Wave</a>
+        <div class="frame-head">
+          Themes
+        </div><a href="index%EF%B9%96themes.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-droplet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3.5s6.5 7 6.5 11a6.5 6.5 0 0 1-13 0c0-4 6.5-11 6.5-11Z"></path></svg> All themes</a> <a href="index%EF%B9%96theme%EA%A4%B7blueprint.html">Blueprint</a> <a href="index%EF%B9%96theme%EA%A4%B7contrast.html">Contrast</a> <a href="index%EF%B9%96theme%EA%A4%B7contrast-dark.html">Contrast Dark</a> <a href="index%EF%B9%96theme%EA%A4%B7dark.html">Dark</a> <a href="index%EF%B9%96theme%EA%A4%B7forest.html">Forest</a> <a href="index%EF%B9%96theme%EA%A4%B7light.html">Light</a> <a href="index%EF%B9%96theme%EA%A4%B7mono.html">Mono</a> <a href="index%EF%B9%96theme%EA%A4%B7newspaper.html">Newspaper</a> <a href="index%EF%B9%96theme%EA%A4%B7night.html">Night</a> <a href="index%EF%B9%96theme%EA%A4%B7ocean.html">Ocean</a> <a href="index%EF%B9%96theme%EA%A4%B7paper.html">Paper</a> <a href="index%EF%B9%96theme%EA%A4%B7projection.html">Projection</a> <a href="index%EF%B9%96theme%EA%A4%B7readable.html">Readable</a> <a href="index%EF%B9%96theme%EA%A4%B7sepia.html">Sepia</a> <a href="index%EF%B9%96theme%EA%A4%B7solarized-dark.html">Solarized Dark</a> <a href="index%EF%B9%96theme%EA%A4%B7solarized-light.html">Solarized Light</a> <a href="index%EF%B9%96theme%EA%A4%B7terminal.html">Terminal</a>
+        <div class="frame-head">
+          Palettes
+        </div><a href="index%EF%B9%96palettes.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> All palettes</a> <a href="index%EF%B9%96palette%EA%A4%B7amber.html">Amber</a> <a href="index%EF%B9%96palette%EA%A4%B7batlow.html">batlow</a> <a href="index%EF%B9%96palette%EA%A4%B7blue-orange.html">Blue-Orange</a> <a href="index%EF%B9%96palette%EA%A4%B7blues.html">Blues</a> <a href="index%EF%B9%96palette%EA%A4%B7brbg.html">BrBG</a> <a href="index%EF%B9%96palette%EA%A4%B7cividis.html">Cividis</a> <a href="index%EF%B9%96palette%EA%A4%B7dark2.html">Dark2</a> <a href="index%EF%B9%96palette%EA%A4%B7earth.html">Earth</a> <a href="index%EF%B9%96palette%EA%A4%B7glasbey.html">Glasbey</a> <a href="index%EF%B9%96palette%EA%A4%B7greens.html">Greens</a> <a href="index%EF%B9%96palette%EA%A4%B7greys.html">Greys</a> <a href="index%EF%B9%96palette%EA%A4%B7inferno.html">Inferno</a> <a href="index%EF%B9%96palette%EA%A4%B7magma.html">Magma</a> <a href="index%EF%B9%96palette%EA%A4%B7okabe-ito.html">Okabe-Ito</a> <a href="index%EF%B9%96palette%EA%A4%B7oranges.html">Oranges</a> <a href="index%EF%B9%96palette%EA%A4%B7paired.html">Paired</a> <a href="index%EF%B9%96palette%EA%A4%B7pastel.html">Pastel</a> <a href="index%EF%B9%96palette%EA%A4%B7phase.html">Phase</a> <a href="index%EF%B9%96palette%EA%A4%B7piyg.html">PiYG</a> <a href="index%EF%B9%96palette%EA%A4%B7plasma.html">Plasma</a> <a href="index%EF%B9%96palette%EA%A4%B7puor.html">PuOr</a> <a href="index%EF%B9%96palette%EA%A4%B7rdbu.html">RdBu</a> <a href="index%EF%B9%96palette%EA%A4%B7rdylbu.html">RdYlBu</a> <a href="index%EF%B9%96palette%EA%A4%B7romao.html">romaO</a> <a href="index%EF%B9%96palette%EA%A4%B7tol-bright.html">Tol bright</a> <a href="index%EF%B9%96palette%EA%A4%B7tol-muted.html">Tol muted</a> <a href="index%EF%B9%96palette%EA%A4%B7tol-vibrant.html">Tol vibrant</a> <a href="index%EF%B9%96palette%EA%A4%B7turbo.html">Turbo</a> <a href="index%EF%B9%96palette%EA%A4%B7vik.html">vik</a> <a href="index%EF%B9%96palette%EA%A4%B7viridis.html">Viridis</a> <a href="index%EF%B9%96palette%EA%A4%B7ylgnbu.html">YlGnBu</a> <a href="index%EF%B9%96palette%EA%A4%B7ylorrd.html">YlOrRd</a>
+        <div class="frame-head">
+          Accordion
+        </div><a href="index%EF%B9%96examples%EA%A4%B7accordion%EA%A4%B7faq.html">Frequently asked questions</a>
+        <div class="frame-head">
+          Breadcrumb
+        </div><a href="index%EF%B9%96examples%EA%A4%B7breadcrumb%EA%A4%B7shop_trail.html">A trail through a shop</a>
+        <div class="frame-head">
+          Carousel
+        </div><a href="index%EF%B9%96examples%EA%A4%B7carousel%EA%A4%B7landscapes.html">Four landscapes</a>
+        <div class="frame-head">
+          Command palette
+        </div><a href="index%EF%B9%96examples%EA%A4%B7commandpalette%EA%A4%B7shop_admin.html">Go anywhere in a shop</a>
+        <div class="frame-head">
+          Context menu
+        </div><a href="index%EF%B9%96examples%EA%A4%B7contextmenu%EA%A4%B7files.html">Files and orders</a>
+        <div class="frame-head">
+          Copy
+        </div><a href="index%EF%B9%96examples%EA%A4%B7copy%EA%A4%B7config_snippet.html">A snippet as content</a> <a href="index%EF%B9%96examples%EA%A4%B7copy%EA%A4%B7install_command.html">Install command</a>
+        <div class="frame-head">
+          Drawer
+        </div><a href="index%EF%B9%96examples%EA%A4%B7drawer%EA%A4%B7shop_filters.html">Filters of a shop</a>
+        <div class="frame-head">
+          Dropdown
+        </div><a href="index%EF%B9%96examples%EA%A4%B7dropdown%EA%A4%B7account_menu.html">An account menu</a>
+        <div class="frame-head">
+          Excerpt
+        </div><a href="index%EF%B9%96examples%EA%A4%B7excerpt%EA%A4%B7search.html">Search results</a> <a href="index%EF%B9%96examples%EA%A4%B7excerpt%EA%A4%B7teaser.html">Teasers from HTML</a>
+        <div class="frame-head">
+          JSON viewer
+        </div><a href="index%EF%B9%96examples%EA%A4%B7jsonview%EA%A4%B7api.html">An API response</a> <a href="index%EF%B9%96examples%EA%A4%B7jsonview%EA%A4%B7config.html">A PHP array</a>
+        <div class="frame-head">
+          Lightbox
+        </div><a href="index%EF%B9%96examples%EA%A4%B7lightbox%EA%A4%B7skies.html">Skies of a day</a>
+        <div class="frame-head">
+          Lorem ipsum
+        </div><a href="index%EF%B9%96examples%EA%A4%B7lorem%EA%A4%B7article.html">A page before its copy</a> <a href="index%EF%B9%96examples%EA%A4%B7lorem%EA%A4%B7cards.html">A seed per card</a>
+        <div class="frame-head">
+          Modal
+        </div><a href="index%EF%B9%96examples%EA%A4%B7modal%EA%A4%B7terms.html">Terms at checkout</a>
+        <div class="frame-head">
+          Poll
+        </div><a href="index%EF%B9%96examples%EA%A4%B7poll%EA%A4%B7favorite_language.html">Favourite language</a>
+        <div class="frame-head">
+          Progress
+        </div><a href="index%EF%B9%96examples%EA%A4%B7progress%EA%A4%B7steps.html">Steps and sizes</a> <a href="index%EF%B9%96examples%EA%A4%B7progress%EA%A4%B7uploads.html">Uploads in progress</a>
+        <div class="frame-head">
+          Rating
+        </div><a href="index%EF%B9%96examples%EA%A4%B7rating%EA%A4%B7hearts.html">Hearts and parts</a> <a href="index%EF%B9%96examples%EA%A4%B7rating%EA%A4%B7reviews.html">Product reviews</a>
+        <div class="frame-head">
+          Sortable
+        </div><a href="index%EF%B9%96examples%EA%A4%B7sortable%EA%A4%B7tasks.html">Tasks in order</a>
+        <div class="frame-head">
+          Split pane
+        </div><a href="index%EF%B9%96examples%EA%A4%B7splitpane%EA%A4%B7mail_reader.html">A mail reader</a>
+        <div class="frame-head">
+          Tabs
+        </div><a href="index%EF%B9%96examples%EA%A4%B7tabs%EA%A4%B7plans_from_data.html">A tab per row</a> <a href="index%EF%B9%96examples%EA%A4%B7tabs%EA%A4%B7product_page.html">Product page</a>
+        <div class="frame-head">
+          Toast
+        </div><a href="index%EF%B9%96examples%EA%A4%B7toast%EA%A4%B7order_saved.html">An order saved</a>
+        <div class="frame-head">
+          Table of contents
+        </div><a href="index%EF%B9%96examples%EA%A4%B7toc%EA%A4%B7article.html">A long article</a> <a href="index%EF%B9%96examples%EA%A4%B7toc%EA%A4%B7sidebar.html">Contents in a sidebar</a>
+        <div class="frame-head">
+          Tooltip
+        </div><a href="index%EF%B9%96examples%EA%A4%B7tooltip%EA%A4%B7plan_terms.html">Plan terms</a>
+        <div class="frame-head">
+          Video embeds
+        </div><a href="index%EF%B9%96examples%EA%A4%B7video%EA%A4%B7clip.html">A clip of your own</a> <a href="index%EF%B9%96examples%EA%A4%B7video%EA%A4%B7vimeo.html">Vimeo with a poster of your own</a> <a href="index%EF%B9%96examples%EA%A4%B7video%EA%A4%B7youtube.html">YouTube without tracking</a>
+        <div class="frame-head">
+          Wizard
+        </div><a href="index%EF%B9%96examples%EA%A4%B7wizard%EA%A4%B7checkout.html">A checkout in steps</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Themes
+        </h1>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="projection">
+                Projection
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <p class="sx-lead">
+          The colours of the frame swapped for another set - for a page, an application or the visitor's own choice.
+        </p>
+        <ul class="sx-index">
+          <li>
+            <a href="#blueprint">Blueprint</a>
+          </li>
+          <li>
+            <a href="#contrast">Contrast</a>
+          </li>
+          <li>
+            <a href="#contrast-dark">Contrast Dark</a>
+          </li>
+          <li>
+            <a href="#dark">Dark</a>
+          </li>
+          <li>
+            <a href="#forest">Forest</a>
+          </li>
+          <li>
+            <a href="#light">Light</a>
+          </li>
+          <li>
+            <a href="#mono">Mono</a>
+          </li>
+          <li>
+            <a href="#newspaper">Newspaper</a>
+          </li>
+          <li>
+            <a href="#night">Night</a>
+          </li>
+          <li>
+            <a href="#ocean">Ocean</a>
+          </li>
+          <li>
+            <a href="#paper">Paper</a>
+          </li>
+          <li>
+            <a href="#projection">Projection</a>
+          </li>
+          <li>
+            <a href="#readable">Readable</a>
+          </li>
+          <li>
+            <a href="#sepia">Sepia</a>
+          </li>
+          <li>
+            <a href="#solarized-dark">Solarized Dark</a>
+          </li>
+          <li>
+            <a href="#solarized-light">Solarized Light</a>
+          </li>
+          <li>
+            <a href="#terminal">Terminal</a>
+          </li>
+        </ul>
+        <section class="sx-kind" id="blueprint">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7blueprint.html">Blueprint</a>
+          </h2>
+          <p>
+            White lines on the deep blue of a cyanotype drawing: a faint grid on the page, a fine one every 20 pixels and a stronger one every 100 as on drawing paper, the headings lettered in capitals as a title block is, the links the yellow of an engineer's marking pencil - for technical pages, demos and diagrams. The grid is light enough that the dim text still reads at 4.71 to 1 where two of its lines cross.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-blueprint">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <link rel="stylesheet" href="../_common/play.css"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdibHVlcHJpbnQnfVxuICA8aDM+U3ByaW5nIGNhdGFsb2d1ZTwvaDM+XG4gIDxwPk91ciBuZXcgcmFuZ2UgaXMgaW4uIFJlYWQgdGhlIDxhIGhyZWY9XCIjbm90ZXNcIj5yZWxlYXNlIG5vdGVzPC9hPiBvciBicm93c2VcbiAgICAgdGhlIDxjb2RlPjIwMjY8L2NvZGU+IGNvbGxlY3Rpb24gYmVsb3cuPC9wPlxuICA8dGFibGUgY2xhc3M9XCJzeC10YWJsZVwiPlxuICAgIDx0cj48dGg+SXRlbTwvdGg+PHRoPlN0b2NrPC90aD48L3RyPlxuICAgIDx0cj48dGQ+TGluZW4gc2hpcnQ8L3RkPjx0ZD4xMjQ8L3RkPjwvdHI+XG4gICAgPHRyPjx0ZD5DYW52YXMgYmFnPC90ZD48dGQ+NTg8L3RkPjwvdHI+XG4gIDwvdGFibGU+XG4gIDxwIGNsYXNzPVwic3gtbm90ZVwiPkZyZWUgZGVsaXZlcnkgb24gb3JkZXJzIG92ZXIgNTAuPC9wPlxuICA8YnV0dG9uIHR5cGU9XCJidXR0b25cIiBjbGFzcz1cInN4LWJ1dHRvblwiPlNob3Agbm93PC9idXR0b24+XG57L3dpZGdldDp0aGVtZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdibHVlcHJpbnQnfVxuICA8aDM+U3ByaW5nIGNhdGFsb2d1ZTwvaDM+XG4gIDxwPk91ciBuZXcgcmFuZ2UgaXMgaW4uIFJlYWQgdGhlIDxhIGhyZWY9XCIjbm90ZXNcIj5yZWxlYXNlIG5vdGVzPC9hPiBvciBicm93c2VcbiAgICAgdGhlIDxjb2RlPjIwMjY8L2NvZGU+IGNvbGxlY3Rpb24gYmVsb3cuPC9wPlxuICA8dGFibGUgY2xhc3M9XCJzeC10YWJsZVwiPlxuICAgIDx0cj48dGg+SXRlbTwvdGg+PHRoPlN0b2NrPC90aD48L3RyPlxuICAgIDx0cj48dGQ+TGluZW4gc2hpcnQ8L3RkPjx0ZD4xMjQ8L3RkPjwvdHI+XG4gICAgPHRyPjx0ZD5DYW52YXMgYmFnPC90ZD48dGQ+NTg8L3RkPjwvdHI+XG4gIDwvdGFibGU+XG4gIDxwIGNsYXNzPVwic3gtbm90ZVwiPkZyZWUgZGVsaXZlcnkgb24gb3JkZXJzIG92ZXIgNTAuPC9wPlxuICA8YnV0dG9uIHR5cGU9XCJidXR0b25cIiBjbGFzcz1cInN4LWJ1dHRvblwiPlNob3Agbm93PC9idXR0b24+XG57L3dpZGdldDp0aGVtZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'blueprint'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="contrast">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7contrast.html">Contrast</a>
+          </h2>
+          <p>
+            Black on white, a dark blue for the links: every text of the frame at 7 to 1 or more, WCAG AAA, the links underlined and the focus ringed thick, so colour is never all that tells them apart.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-contrast">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdjb250cmFzdCd9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdjb250cmFzdCd9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'contrast'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="contrast-dark">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7contrast-dark.html">Contrast Dark</a>
+          </h2>
+          <p>
+            White on black, yellow for the links, as the high-contrast black scheme of an operating system has them: the dark counterpart of contrast, every text of the frame at 7 to 1 or more, WCAG AAA, the links underlined, the focus ringed thick in yellow and the lines light enough to be seen.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-contrast-dark">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdjb250cmFzdC1kYXJrJ31cbiAgPGgzPlNwcmluZyBjYXRhbG9ndWU8L2gzPlxuICA8cD5PdXIgbmV3IHJhbmdlIGlzIGluLiBSZWFkIHRoZSA8YSBocmVmPVwiI25vdGVzXCI+cmVsZWFzZSBub3RlczwvYT4gb3IgYnJvd3NlXG4gICAgIHRoZSA8Y29kZT4yMDI2PC9jb2RlPiBjb2xsZWN0aW9uIGJlbG93LjwvcD5cbiAgPHRhYmxlIGNsYXNzPVwic3gtdGFibGVcIj5cbiAgICA8dHI+PHRoPkl0ZW08L3RoPjx0aD5TdG9jazwvdGg+PC90cj5cbiAgICA8dHI+PHRkPkxpbmVuIHNoaXJ0PC90ZD48dGQ+MTI0PC90ZD48L3RyPlxuICAgIDx0cj48dGQ+Q2FudmFzIGJhZzwvdGQ+PHRkPjU4PC90ZD48L3RyPlxuICA8L3RhYmxlPlxuICA8cCBjbGFzcz1cInN4LW5vdGVcIj5GcmVlIGRlbGl2ZXJ5IG9uIG9yZGVycyBvdmVyIDUwLjwvcD5cbiAgPGJ1dHRvbiB0eXBlPVwiYnV0dG9uXCIgY2xhc3M9XCJzeC1idXR0b25cIj5TaG9wIG5vdzwvYnV0dG9uPlxuey93aWRnZXQ6dGhlbWV9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdjb250cmFzdC1kYXJrJ31cbiAgPGgzPlNwcmluZyBjYXRhbG9ndWU8L2gzPlxuICA8cD5PdXIgbmV3IHJhbmdlIGlzIGluLiBSZWFkIHRoZSA8YSBocmVmPVwiI25vdGVzXCI+cmVsZWFzZSBub3RlczwvYT4gb3IgYnJvd3NlXG4gICAgIHRoZSA8Y29kZT4yMDI2PC9jb2RlPiBjb2xsZWN0aW9uIGJlbG93LjwvcD5cbiAgPHRhYmxlIGNsYXNzPVwic3gtdGFibGVcIj5cbiAgICA8dHI+PHRoPkl0ZW08L3RoPjx0aD5TdG9jazwvdGg+PC90cj5cbiAgICA8dHI+PHRkPkxpbmVuIHNoaXJ0PC90ZD48dGQ+MTI0PC90ZD48L3RyPlxuICAgIDx0cj48dGQ+Q2FudmFzIGJhZzwvdGQ+PHRkPjU4PC90ZD48L3RyPlxuICA8L3RhYmxlPlxuICA8cCBjbGFzcz1cInN4LW5vdGVcIj5GcmVlIGRlbGl2ZXJ5IG9uIG9yZGVycyBvdmVyIDUwLjwvcD5cbiAgPGJ1dHRvbiB0eXBlPVwiYnV0dG9uXCIgY2xhc3M9XCJzeC1idXR0b25cIj5TaG9wIG5vdzwvYnV0dG9uPlxuey93aWRnZXQ6dGhlbWV9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'contrast-dark'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="dark">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7dark.html">Dark</a>
+          </h2>
+          <p>
+            The frame's own dark colours, kept dark whatever the system or the frame's switch says, the side's headings lightened to WCAG AA.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-dark">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdkYXJrJ31cbiAgPGgzPlNwcmluZyBjYXRhbG9ndWU8L2gzPlxuICA8cD5PdXIgbmV3IHJhbmdlIGlzIGluLiBSZWFkIHRoZSA8YSBocmVmPVwiI25vdGVzXCI+cmVsZWFzZSBub3RlczwvYT4gb3IgYnJvd3NlXG4gICAgIHRoZSA8Y29kZT4yMDI2PC9jb2RlPiBjb2xsZWN0aW9uIGJlbG93LjwvcD5cbiAgPHRhYmxlIGNsYXNzPVwic3gtdGFibGVcIj5cbiAgICA8dHI+PHRoPkl0ZW08L3RoPjx0aD5TdG9jazwvdGg+PC90cj5cbiAgICA8dHI+PHRkPkxpbmVuIHNoaXJ0PC90ZD48dGQ+MTI0PC90ZD48L3RyPlxuICAgIDx0cj48dGQ+Q2FudmFzIGJhZzwvdGQ+PHRkPjU4PC90ZD48L3RyPlxuICA8L3RhYmxlPlxuICA8cCBjbGFzcz1cInN4LW5vdGVcIj5GcmVlIGRlbGl2ZXJ5IG9uIG9yZGVycyBvdmVyIDUwLjwvcD5cbiAgPGJ1dHRvbiB0eXBlPVwiYnV0dG9uXCIgY2xhc3M9XCJzeC1idXR0b25cIj5TaG9wIG5vdzwvYnV0dG9uPlxuey93aWRnZXQ6dGhlbWV9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdkYXJrJ31cbiAgPGgzPlNwcmluZyBjYXRhbG9ndWU8L2gzPlxuICA8cD5PdXIgbmV3IHJhbmdlIGlzIGluLiBSZWFkIHRoZSA8YSBocmVmPVwiI25vdGVzXCI+cmVsZWFzZSBub3RlczwvYT4gb3IgYnJvd3NlXG4gICAgIHRoZSA8Y29kZT4yMDI2PC9jb2RlPiBjb2xsZWN0aW9uIGJlbG93LjwvcD5cbiAgPHRhYmxlIGNsYXNzPVwic3gtdGFibGVcIj5cbiAgICA8dHI+PHRoPkl0ZW08L3RoPjx0aD5TdG9jazwvdGg+PC90cj5cbiAgICA8dHI+PHRkPkxpbmVuIHNoaXJ0PC90ZD48dGQ+MTI0PC90ZD48L3RyPlxuICAgIDx0cj48dGQ+Q2FudmFzIGJhZzwvdGQ+PHRkPjU4PC90ZD48L3RyPlxuICA8L3RhYmxlPlxuICA8cCBjbGFzcz1cInN4LW5vdGVcIj5GcmVlIGRlbGl2ZXJ5IG9uIG9yZGVycyBvdmVyIDUwLjwvcD5cbiAgPGJ1dHRvbiB0eXBlPVwiYnV0dG9uXCIgY2xhc3M9XCJzeC1idXR0b25cIj5TaG9wIG5vdzwvYnV0dG9uPlxuey93aWRnZXQ6dGhlbWV9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'dark'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="forest">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7forest.html">Forest</a>
+          </h2>
+          <p>
+            A light page in the greens of leaves, a deep forest-green side and accent.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-forest">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdmb3Jlc3QnfVxuICA8aDM+U3ByaW5nIGNhdGFsb2d1ZTwvaDM+XG4gIDxwPk91ciBuZXcgcmFuZ2UgaXMgaW4uIFJlYWQgdGhlIDxhIGhyZWY9XCIjbm90ZXNcIj5yZWxlYXNlIG5vdGVzPC9hPiBvciBicm93c2VcbiAgICAgdGhlIDxjb2RlPjIwMjY8L2NvZGU+IGNvbGxlY3Rpb24gYmVsb3cuPC9wPlxuICA8dGFibGUgY2xhc3M9XCJzeC10YWJsZVwiPlxuICAgIDx0cj48dGg+SXRlbTwvdGg+PHRoPlN0b2NrPC90aD48L3RyPlxuICAgIDx0cj48dGQ+TGluZW4gc2hpcnQ8L3RkPjx0ZD4xMjQ8L3RkPjwvdHI+XG4gICAgPHRyPjx0ZD5DYW52YXMgYmFnPC90ZD48dGQ+NTg8L3RkPjwvdHI+XG4gIDwvdGFibGU+XG4gIDxwIGNsYXNzPVwic3gtbm90ZVwiPkZyZWUgZGVsaXZlcnkgb24gb3JkZXJzIG92ZXIgNTAuPC9wPlxuICA8YnV0dG9uIHR5cGU9XCJidXR0b25cIiBjbGFzcz1cInN4LWJ1dHRvblwiPlNob3Agbm93PC9idXR0b24+XG57L3dpZGdldDp0aGVtZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdmb3Jlc3QnfVxuICA8aDM+U3ByaW5nIGNhdGFsb2d1ZTwvaDM+XG4gIDxwPk91ciBuZXcgcmFuZ2UgaXMgaW4uIFJlYWQgdGhlIDxhIGhyZWY9XCIjbm90ZXNcIj5yZWxlYXNlIG5vdGVzPC9hPiBvciBicm93c2VcbiAgICAgdGhlIDxjb2RlPjIwMjY8L2NvZGU+IGNvbGxlY3Rpb24gYmVsb3cuPC9wPlxuICA8dGFibGUgY2xhc3M9XCJzeC10YWJsZVwiPlxuICAgIDx0cj48dGg+SXRlbTwvdGg+PHRoPlN0b2NrPC90aD48L3RyPlxuICAgIDx0cj48dGQ+TGluZW4gc2hpcnQ8L3RkPjx0ZD4xMjQ8L3RkPjwvdHI+XG4gICAgPHRyPjx0ZD5DYW52YXMgYmFnPC90ZD48dGQ+NTg8L3RkPjwvdHI+XG4gIDwvdGFibGU+XG4gIDxwIGNsYXNzPVwic3gtbm90ZVwiPkZyZWUgZGVsaXZlcnkgb24gb3JkZXJzIG92ZXIgNTAuPC9wPlxuICA8YnV0dG9uIHR5cGU9XCJidXR0b25cIiBjbGFzcz1cInN4LWJ1dHRvblwiPlNob3Agbm93PC9idXR0b24+XG57L3dpZGdldDp0aGVtZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'forest'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="light">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7light.html">Light</a>
+          </h2>
+          <p>
+            The frame's own light colours, kept light whatever the system or the frame's switch says, with the two greys and the soft accent the frame's set has below WCAG AA - its dim text, the side's headings, a link on the accent's tint - darkened to it.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-light">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdsaWdodCd9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdsaWdodCd9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'light'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="mono">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7mono.html">Mono</a>
+          </h2>
+          <p>
+            Greys only, black links underlined and black buttons: a page whose colour is all in its pictures and charts.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-mono">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdtb25vJ31cbiAgPGgzPlNwcmluZyBjYXRhbG9ndWU8L2gzPlxuICA8cD5PdXIgbmV3IHJhbmdlIGlzIGluLiBSZWFkIHRoZSA8YSBocmVmPVwiI25vdGVzXCI+cmVsZWFzZSBub3RlczwvYT4gb3IgYnJvd3NlXG4gICAgIHRoZSA8Y29kZT4yMDI2PC9jb2RlPiBjb2xsZWN0aW9uIGJlbG93LjwvcD5cbiAgPHRhYmxlIGNsYXNzPVwic3gtdGFibGVcIj5cbiAgICA8dHI+PHRoPkl0ZW08L3RoPjx0aD5TdG9jazwvdGg+PC90cj5cbiAgICA8dHI+PHRkPkxpbmVuIHNoaXJ0PC90ZD48dGQ+MTI0PC90ZD48L3RyPlxuICAgIDx0cj48dGQ+Q2FudmFzIGJhZzwvdGQ+PHRkPjU4PC90ZD48L3RyPlxuICA8L3RhYmxlPlxuICA8cCBjbGFzcz1cInN4LW5vdGVcIj5GcmVlIGRlbGl2ZXJ5IG9uIG9yZGVycyBvdmVyIDUwLjwvcD5cbiAgPGJ1dHRvbiB0eXBlPVwiYnV0dG9uXCIgY2xhc3M9XCJzeC1idXR0b25cIj5TaG9wIG5vdzwvYnV0dG9uPlxuey93aWRnZXQ6dGhlbWV9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdtb25vJ31cbiAgPGgzPlNwcmluZyBjYXRhbG9ndWU8L2gzPlxuICA8cD5PdXIgbmV3IHJhbmdlIGlzIGluLiBSZWFkIHRoZSA8YSBocmVmPVwiI25vdGVzXCI+cmVsZWFzZSBub3RlczwvYT4gb3IgYnJvd3NlXG4gICAgIHRoZSA8Y29kZT4yMDI2PC9jb2RlPiBjb2xsZWN0aW9uIGJlbG93LjwvcD5cbiAgPHRhYmxlIGNsYXNzPVwic3gtdGFibGVcIj5cbiAgICA8dHI+PHRoPkl0ZW08L3RoPjx0aD5TdG9jazwvdGg+PC90cj5cbiAgICA8dHI+PHRkPkxpbmVuIHNoaXJ0PC90ZD48dGQ+MTI0PC90ZD48L3RyPlxuICAgIDx0cj48dGQ+Q2FudmFzIGJhZzwvdGQ+PHRkPjU4PC90ZD48L3RyPlxuICA8L3RhYmxlPlxuICA8cCBjbGFzcz1cInN4LW5vdGVcIj5GcmVlIGRlbGl2ZXJ5IG9uIG9yZGVycyBvdmVyIDUwLjwvcD5cbiAgPGJ1dHRvbiB0eXBlPVwiYnV0dG9uXCIgY2xhc3M9XCJzeC1idXR0b25cIj5TaG9wIG5vdzwvYnV0dG9uPlxuey93aWRnZXQ6dGhlbWV9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'mono'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="newspaper">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7newspaper.html">Newspaper</a>
+          </h2>
+          <p>
+            Black on newsprint, a deep red for the links and a serif for every line, the headings set tight as a paper's are.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-newspaper">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICduZXdzcGFwZXInfVxuICA8aDM+U3ByaW5nIGNhdGFsb2d1ZTwvaDM+XG4gIDxwPk91ciBuZXcgcmFuZ2UgaXMgaW4uIFJlYWQgdGhlIDxhIGhyZWY9XCIjbm90ZXNcIj5yZWxlYXNlIG5vdGVzPC9hPiBvciBicm93c2VcbiAgICAgdGhlIDxjb2RlPjIwMjY8L2NvZGU+IGNvbGxlY3Rpb24gYmVsb3cuPC9wPlxuICA8dGFibGUgY2xhc3M9XCJzeC10YWJsZVwiPlxuICAgIDx0cj48dGg+SXRlbTwvdGg+PHRoPlN0b2NrPC90aD48L3RyPlxuICAgIDx0cj48dGQ+TGluZW4gc2hpcnQ8L3RkPjx0ZD4xMjQ8L3RkPjwvdHI+XG4gICAgPHRyPjx0ZD5DYW52YXMgYmFnPC90ZD48dGQ+NTg8L3RkPjwvdHI+XG4gIDwvdGFibGU+XG4gIDxwIGNsYXNzPVwic3gtbm90ZVwiPkZyZWUgZGVsaXZlcnkgb24gb3JkZXJzIG92ZXIgNTAuPC9wPlxuICA8YnV0dG9uIHR5cGU9XCJidXR0b25cIiBjbGFzcz1cInN4LWJ1dHRvblwiPlNob3Agbm93PC9idXR0b24+XG57L3dpZGdldDp0aGVtZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICduZXdzcGFwZXInfVxuICA8aDM+U3ByaW5nIGNhdGFsb2d1ZTwvaDM+XG4gIDxwPk91ciBuZXcgcmFuZ2UgaXMgaW4uIFJlYWQgdGhlIDxhIGhyZWY9XCIjbm90ZXNcIj5yZWxlYXNlIG5vdGVzPC9hPiBvciBicm93c2VcbiAgICAgdGhlIDxjb2RlPjIwMjY8L2NvZGU+IGNvbGxlY3Rpb24gYmVsb3cuPC9wPlxuICA8dGFibGUgY2xhc3M9XCJzeC10YWJsZVwiPlxuICAgIDx0cj48dGg+SXRlbTwvdGg+PHRoPlN0b2NrPC90aD48L3RyPlxuICAgIDx0cj48dGQ+TGluZW4gc2hpcnQ8L3RkPjx0ZD4xMjQ8L3RkPjwvdHI+XG4gICAgPHRyPjx0ZD5DYW52YXMgYmFnPC90ZD48dGQ+NTg8L3RkPjwvdHI+XG4gIDwvdGFibGU+XG4gIDxwIGNsYXNzPVwic3gtbm90ZVwiPkZyZWUgZGVsaXZlcnkgb24gb3JkZXJzIG92ZXIgNTAuPC9wPlxuICA8YnV0dG9uIHR5cGU9XCJidXR0b25cIiBjbGFzcz1cInN4LWJ1dHRvblwiPlNob3Agbm93PC9idXR0b24+XG57L3dpZGdldDp0aGVtZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'newspaper'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="night">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7night.html">Night</a>
+          </h2>
+          <p>
+            A dark page for reading late, in warm colours alone: parchment text on a brown-black ground, an amber accent, the messages in olive, gold and coral - every colour's blue below its red and its green, as a screen's night mode shifts away from blue light.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-night">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICduaWdodCd9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICduaWdodCd9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'night'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="ocean">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7ocean.html">Ocean</a>
+          </h2>
+          <p>
+            Deep navy water under a pale blue text, the links the cyan of a shallow lagoon.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-ocean">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdvY2Vhbid9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdvY2Vhbid9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'ocean'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="paper">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7paper.html">Paper</a>
+          </h2>
+          <p>
+            Warm off-white paper and soft black ink, a blue-black accent like a fountain pen's, the type a book face: quiet pages for reading.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-paper">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdwYXBlcid9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdwYXBlcid9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'paper'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="projection">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7projection.html">Projection</a>
+          </h2>
+          <p>
+            Large readable type and strong focus/state boundaries for projected pages. Uses contrast's tested color pairs; print sizing remains the page's print stylesheet.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-projection">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdwcm9qZWN0aW9uJ31cbiAgPGgzPlNwcmluZyBjYXRhbG9ndWU8L2gzPlxuICA8cD5PdXIgbmV3IHJhbmdlIGlzIGluLiBSZWFkIHRoZSA8YSBocmVmPVwiI25vdGVzXCI+cmVsZWFzZSBub3RlczwvYT4gb3IgYnJvd3NlXG4gICAgIHRoZSA8Y29kZT4yMDI2PC9jb2RlPiBjb2xsZWN0aW9uIGJlbG93LjwvcD5cbiAgPHRhYmxlIGNsYXNzPVwic3gtdGFibGVcIj5cbiAgICA8dHI+PHRoPkl0ZW08L3RoPjx0aD5TdG9jazwvdGg+PC90cj5cbiAgICA8dHI+PHRkPkxpbmVuIHNoaXJ0PC90ZD48dGQ+MTI0PC90ZD48L3RyPlxuICAgIDx0cj48dGQ+Q2FudmFzIGJhZzwvdGQ+PHRkPjU4PC90ZD48L3RyPlxuICA8L3RhYmxlPlxuICA8cCBjbGFzcz1cInN4LW5vdGVcIj5GcmVlIGRlbGl2ZXJ5IG9uIG9yZGVycyBvdmVyIDUwLjwvcD5cbiAgPGJ1dHRvbiB0eXBlPVwiYnV0dG9uXCIgY2xhc3M9XCJzeC1idXR0b25cIj5TaG9wIG5vdzwvYnV0dG9uPlxuey93aWRnZXQ6dGhlbWV9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdwcm9qZWN0aW9uJ31cbiAgPGgzPlNwcmluZyBjYXRhbG9ndWU8L2gzPlxuICA8cD5PdXIgbmV3IHJhbmdlIGlzIGluLiBSZWFkIHRoZSA8YSBocmVmPVwiI25vdGVzXCI+cmVsZWFzZSBub3RlczwvYT4gb3IgYnJvd3NlXG4gICAgIHRoZSA8Y29kZT4yMDI2PC9jb2RlPiBjb2xsZWN0aW9uIGJlbG93LjwvcD5cbiAgPHRhYmxlIGNsYXNzPVwic3gtdGFibGVcIj5cbiAgICA8dHI+PHRoPkl0ZW08L3RoPjx0aD5TdG9jazwvdGg+PC90cj5cbiAgICA8dHI+PHRkPkxpbmVuIHNoaXJ0PC90ZD48dGQ+MTI0PC90ZD48L3RyPlxuICAgIDx0cj48dGQ+Q2FudmFzIGJhZzwvdGQ+PHRkPjU4PC90ZD48L3RyPlxuICA8L3RhYmxlPlxuICA8cCBjbGFzcz1cInN4LW5vdGVcIj5GcmVlIGRlbGl2ZXJ5IG9uIG9yZGVycyBvdmVyIDUwLjwvcD5cbiAgPGJ1dHRvbiB0eXBlPVwiYnV0dG9uXCIgY2xhc3M9XCJzeC1idXR0b25cIj5TaG9wIG5vdzwvYnV0dG9uPlxuey93aWRnZXQ6dGhlbWV9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'projection'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="readable">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7readable.html">Readable</a>
+          </h2>
+          <p>
+            A page set for readers with dyslexia, after the British Dyslexia Association's Dyslexia Style Guide: dark text on cream rather than black on white, a plain, evenly spaced sans-serif (Atkinson Hyperlegible where it is installed, else the guide's Verdana, Tahoma or Trebuchet), 16 pixels, the lines 1.6 apart, the letters .06em and the words .16em further apart - within what WCAG 1.4.12 asks a page to bear - paragraphs no wider than 70 characters, bold instead of italics, no block capitals in the side's headings, and the messages in Okabe and Ito's blue, orange and vermilion, darkened to AA: no green and no red, which the guide asks to avoid for colour-blind readers.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-readable">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdyZWFkYWJsZSd9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdyZWFkYWJsZSd9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'readable'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="sepia">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7sepia.html">Sepia</a>
+          </h2>
+          <p>
+            The browns of an old photograph, dark umber on a parchment page and a saddle-brown accent: easy on the eyes for a long read.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-sepia">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdzZXBpYSd9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdzZXBpYSd9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'sepia'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="solarized-dark">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7solarized-dark.html">Solarized Dark</a>
+          </h2>
+          <p>
+            The deep blue-green and cream of Solarized's dark mode: its base tones for the page, the panels, the side and the code, its blue for the links, its green, yellow and red for the messages. Solarized is Ethan Schoonover's palette (https://ethanschoonover.com/solarized/, (c) 2011 Ethan Schoonover, MIT licence); its values are kept where they reach WCAG AA here and lightened where they do not - the body text is base2, not the base0 that reads at 4.11 to 1 on base02, and the blue, the green, the yellow and the red are lighter than the palette's - so this is a theme after Solarized, not the palette itself.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-solarized-dark">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdzb2xhcml6ZWQtZGFyayd9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdzb2xhcml6ZWQtZGFyayd9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'solarized-dark'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="solarized-light">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7solarized-light.html">Solarized Light</a>
+          </h2>
+          <p>
+            The cream and blue-green of Solarized's light mode: its base tones for the page, the side and the code, its blue for the links, its green, yellow and red for the messages. Solarized is Ethan Schoonover's palette (https://ethanschoonover.com/solarized/, (c) 2011 Ethan Schoonover, MIT licence); its values are kept where they reach WCAG AA here and darkened where they do not - the body text is base02, not the base00 that reads at 4.13 to 1 on base3, and the blue, the green, the yellow and the red are darker than the palette's - so this is a theme after Solarized, not the palette itself.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-solarized-light">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdzb2xhcml6ZWQtbGlnaHQnfVxuICA8aDM+U3ByaW5nIGNhdGFsb2d1ZTwvaDM+XG4gIDxwPk91ciBuZXcgcmFuZ2UgaXMgaW4uIFJlYWQgdGhlIDxhIGhyZWY9XCIjbm90ZXNcIj5yZWxlYXNlIG5vdGVzPC9hPiBvciBicm93c2VcbiAgICAgdGhlIDxjb2RlPjIwMjY8L2NvZGU+IGNvbGxlY3Rpb24gYmVsb3cuPC9wPlxuICA8dGFibGUgY2xhc3M9XCJzeC10YWJsZVwiPlxuICAgIDx0cj48dGg+SXRlbTwvdGg+PHRoPlN0b2NrPC90aD48L3RyPlxuICAgIDx0cj48dGQ+TGluZW4gc2hpcnQ8L3RkPjx0ZD4xMjQ8L3RkPjwvdHI+XG4gICAgPHRyPjx0ZD5DYW52YXMgYmFnPC90ZD48dGQ+NTg8L3RkPjwvdHI+XG4gIDwvdGFibGU+XG4gIDxwIGNsYXNzPVwic3gtbm90ZVwiPkZyZWUgZGVsaXZlcnkgb24gb3JkZXJzIG92ZXIgNTAuPC9wPlxuICA8YnV0dG9uIHR5cGU9XCJidXR0b25cIiBjbGFzcz1cInN4LWJ1dHRvblwiPlNob3Agbm93PC9idXR0b24+XG57L3dpZGdldDp0aGVtZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICdzb2xhcml6ZWQtbGlnaHQnfVxuICA8aDM+U3ByaW5nIGNhdGFsb2d1ZTwvaDM+XG4gIDxwPk91ciBuZXcgcmFuZ2UgaXMgaW4uIFJlYWQgdGhlIDxhIGhyZWY9XCIjbm90ZXNcIj5yZWxlYXNlIG5vdGVzPC9hPiBvciBicm93c2VcbiAgICAgdGhlIDxjb2RlPjIwMjY8L2NvZGU+IGNvbGxlY3Rpb24gYmVsb3cuPC9wPlxuICA8dGFibGUgY2xhc3M9XCJzeC10YWJsZVwiPlxuICAgIDx0cj48dGg+SXRlbTwvdGg+PHRoPlN0b2NrPC90aD48L3RyPlxuICAgIDx0cj48dGQ+TGluZW4gc2hpcnQ8L3RkPjx0ZD4xMjQ8L3RkPjwvdHI+XG4gICAgPHRyPjx0ZD5DYW52YXMgYmFnPC90ZD48dGQ+NTg8L3RkPjwvdHI+XG4gIDwvdGFibGU+XG4gIDxwIGNsYXNzPVwic3gtbm90ZVwiPkZyZWUgZGVsaXZlcnkgb24gb3JkZXJzIG92ZXIgNTAuPC9wPlxuICA8YnV0dG9uIHR5cGU9XCJidXR0b25cIiBjbGFzcz1cInN4LWJ1dHRvblwiPlNob3Agbm93PC9idXR0b24+XG57L3dpZGdldDp0aGVtZX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'solarized-light'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="sx-kind" id="terminal">
+          <h2>
+            <a href="index%EF%B9%96theme%EA%A4%B7terminal.html">Terminal</a>
+          </h2>
+          <p>
+            Green phosphor on black with an amber accent, every letter monospaced, as an old video terminal showed it.
+          </p>
+          <div class="sx-example">
+            <div class="sx-result">
+              <div class="pad-theme pad-theme-terminal">
+                <h3>
+                  Spring catalogue
+                </h3>
+                <p>
+                  Our new range is in. Read the <a href="#notes">release notes</a> or browse the <code>2026</code> collection below.
+                </p>
+                <table class="sx-table">
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th>
+                      Stock
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      Linen shirt
+                    </td>
+                    <td>
+                      124
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Canvas bag
+                    </td>
+                    <td>
+                      58
+                    </td>
+                  </tr>
+                </table>
+                <p class="sx-note">
+                  Free delivery on orders over 50.
+                </p><button type="button" class="sx-button">Shop now</button>
+              </div>
+            </div>
+            <div class="pad-play-box sx-source">
+              <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICd0ZXJtaW5hbCd9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnRoZW1lICd0ZXJtaW5hbCd9XG4gIDxoMz5TcHJpbmcgY2F0YWxvZ3VlPC9oMz5cbiAgPHA+T3VyIG5ldyByYW5nZSBpcyBpbi4gUmVhZCB0aGUgPGEgaHJlZj1cIiNub3Rlc1wiPnJlbGVhc2Ugbm90ZXM8L2E+IG9yIGJyb3dzZVxuICAgICB0aGUgPGNvZGU+MjAyNjwvY29kZT4gY29sbGVjdGlvbiBiZWxvdy48L3A+XG4gIDx0YWJsZSBjbGFzcz1cInN4LXRhYmxlXCI+XG4gICAgPHRyPjx0aD5JdGVtPC90aD48dGg+U3RvY2s8L3RoPjwvdHI+XG4gICAgPHRyPjx0ZD5MaW5lbiBzaGlydDwvdGQ+PHRkPjEyNDwvdGQ+PC90cj5cbiAgICA8dHI+PHRkPkNhbnZhcyBiYWc8L3RkPjx0ZD41ODwvdGQ+PC90cj5cbiAgPC90YWJsZT5cbiAgPHAgY2xhc3M9XCJzeC1ub3RlXCI+RnJlZSBkZWxpdmVyeSBvbiBvcmRlcnMgb3ZlciA1MC48L3A+XG4gIDxidXR0b24gdHlwZT1cImJ1dHRvblwiIGNsYXNzPVwic3gtYnV0dG9uXCI+U2hvcCBub3c8L2J1dHRvbj5cbnsvd2lkZ2V0OnRoZW1lfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">'terminal'</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span>Spring catalogue<span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Our new range is in. Read the <span class="hl-htm">&lt;a</span> <span class="hl-opt">href</span>=<span class="hl-str">"#notes"</span><span class="hl-htm">&gt;</span>release notes<span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span> or browse
+     the <span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-num">2026</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span> collection below.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;table</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-table"</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Item<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;th</span><span class="hl-htm">&gt;</span>Stock<span class="hl-htm">&lt;/th</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Linen shirt<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">124</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Canvas bag<span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-num">58</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-note"</span><span class="hl-htm">&gt;</span>Free delivery on orders over <span class="hl-num">50</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span> <span class="hl-opt">class</span>=<span class="hl-str">"sx-button"</span><span class="hl-htm">&gt;</span>Shop now<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

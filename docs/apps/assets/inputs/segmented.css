@@ -1,0 +1,13 @@
+fieldset.pad-input-segmented{border:0;padding:0;min-width:0}
+.pad-input-segmented legend{padding:0;margin:0 0 .3em;font-weight:600}
+.pad-input-segmented .pi-segs{display:inline-flex;flex-wrap:wrap;max-width:100%;border:1px solid var(--pad-input-line);border-radius:8px;background:var(--pad-input-field);overflow:hidden}
+.pad-input-segmented .pi-seg-input{position:absolute;width:1px;height:1px;margin:0;opacity:0;pointer-events:none}
+.pad-input-segmented .pi-seg{flex:1 0 auto;padding:.4em .9em;text-align:center;cursor:pointer;color:var(--pad-input-ink);border-left:1px solid var(--pad-input-line);transition:background .12s,color .12s;user-select:none}
+.pad-input-segmented .pi-seg-input:first-child+.pi-seg{border-left:0}
+.pad-input-segmented .pi-seg:hover{background:var(--pad-input-shade)}
+.pad-input-segmented .pi-seg-input:checked+.pi-seg{background:var(--pad-input-accent);color:var(--pad-input-on)}
+.pad-input-segmented .pi-seg-input:focus-visible+.pi-seg{outline:2px solid var(--pad-input-accent);outline-offset:-4px;box-shadow:inset 0 0 0 2px var(--pad-input-field)}
+.pad-input-segmented .pi-seg-input:disabled+.pi-seg{cursor:default;opacity:.5}
+.pad-input-segmented .pi-segs:has([aria-invalid=true]){border-color:var(--pad-input-bad)}
+@media (forced-colors:active){.pad-input-segmented .pi-seg-input:checked+.pi-seg{background:Highlight;color:HighlightText;forced-color-adjust:none}.pad-input-segmented .pi-seg-input:focus-visible+.pi-seg{outline-color:CanvasText}}
+@media (prefers-reduced-motion:reduce){.pad-input-segmented .pi-seg{transition:none}}

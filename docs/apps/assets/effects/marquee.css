@@ -1,0 +1,20 @@
+.pad-effect-marquee{--pad-effect-gap:48px;display:flex;align-items:center;gap:8px;container-type:inline-size}
+.pad-effect-marquee .pe-view{flex:1 1 auto;min-width:0;overflow:hidden}
+.pad-effect-marquee .pe-track{display:flex;flex-wrap:wrap;align-items:center}
+.pad-effect-marquee .pe-run{display:flex;flex-wrap:wrap;align-items:center;gap:var(--pad-effect-gap)}
+.pad-effect-marquee .pe-copy,.pad-effect-marquee .pe-pause,.pad-effect-marquee .pe-pause-button{display:none}
+@media (prefers-reduced-motion:no-preference){
+.pad-effect-marquee .pe-pause{display:block;position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);appearance:none}
+.pad-effect-marquee .pe-view{-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.pad-effect-marquee .pe-track{flex-wrap:nowrap;width:max-content;animation:pad-effect-marquee var(--pad-effect-duration) linear infinite}
+.pad-effect-marquee .pe-run{flex:none;flex-wrap:nowrap;min-width:100cqw;justify-content:space-around;padding-right:var(--pad-effect-gap);box-sizing:border-box}
+.pad-effect-marquee .pe-copy{display:flex}
+.pad-effect-marquee.pe-right .pe-track{animation-direction:reverse}
+.pad-effect-marquee:hover .pe-track,.pad-effect-marquee:focus-within .pe-track,.pad-effect-marquee .pe-pause:checked~.pe-view .pe-track{animation-play-state:paused}
+.pad-effect-marquee .pe-pause-button{order:2;display:grid;place-items:center;flex:none;width:28px;height:28px;box-sizing:border-box;border:1px solid var(--pad-effect-track);border-radius:50%;color:var(--pad-effect-text);cursor:pointer}
+.pad-effect-marquee .pe-pause-button::before{content:"";width:8px;height:10px;border-left:3px solid currentColor;border-right:3px solid currentColor;box-sizing:border-box}
+.pad-effect-marquee .pe-pause:checked+.pe-pause-button::before{width:0;height:0;border:solid transparent;border-width:6px 0 6px 10px;border-left-color:currentColor;margin-left:3px}
+.pad-effect-marquee .pe-pause:focus-visible+.pe-pause-button{outline:2px solid var(--pad-effect-accent);outline-offset:2px}
+.pad-effect-marquee .pe-pause-button:hover{border-color:var(--pad-effect-accent)}
+}
+@keyframes pad-effect-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}

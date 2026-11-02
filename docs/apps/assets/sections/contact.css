@@ -1,0 +1,9 @@
+/* contact - the details as a list, the message form beside them when there is room. */
+.pad-section-contact .ps-contact{display:grid;gap:32px}
+.pad-section-contact .ps-contact-details{display:grid;gap:0;margin:0;align-content:start}
+.pad-section-contact .ps-contact-details dt:not(:first-child){margin-top:18px}
+.pad-section-contact .ps-contact-details dt{font-size:13px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--ps-ink-dim)}
+.pad-section-contact .ps-contact-details dd{margin:2px 0 0;font-size:17px}
+.pad-section-contact .ps-contact-form{padding:24px;border:1px solid var(--pad-section-line);border-radius:var(--pad-section-radius);background:var(--pad-section-panel)}
+.pad-section-contact.ps-tone-accent .ps-contact-details dt{color:inherit}
+@container pad-section (min-width:760px){.pad-section-contact .ps-contact-with-form{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:48px}}

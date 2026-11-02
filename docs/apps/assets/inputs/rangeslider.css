@@ -1,0 +1,29 @@
+fieldset.pad-input-rangeslider{border:0;padding:0;min-width:0;max-width:28em}
+.pad-input-rangeslider legend{padding:0;margin:0 0 .3em;font-weight:600}
+.pad-input-rangeslider .pi-range-end{display:flex;align-items:center;gap:.6em;margin:.2em 0}
+.pad-input-rangeslider .pi-range-end>label{min-width:3em;font-weight:400}
+.pad-input-rangeslider input[type=range]{flex:1;min-width:8em;accent-color:var(--pad-input-accent);margin:0}
+.pad-input-rangeslider .pi-range-out{min-width:3.5em;font-variant-numeric:tabular-nums;font-weight:600}
+.pad-input-rangeslider .pi-range-ends{display:flex;justify-content:space-between;margin-top:.15em}
+.pad-input-rangeslider:not(.is-ready) .pi-range-ends{display:none}
+.pad-input-rangeslider .pi-range-said{font-weight:600;font-variant-numeric:tabular-nums;margin:0 0 .2em}
+.pad-input-rangeslider.is-ready .pi-range-track{position:relative;height:1.8em;--pi-thumb:1.2em}
+.pad-input-rangeslider.is-ready .pi-range-end{display:block;margin:0}
+.pad-input-rangeslider.is-ready .pi-range-end>label,.pad-input-rangeslider.is-ready .pi-range-out{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;min-width:0}
+.pad-input-rangeslider .pi-range-rail{position:absolute;top:0;bottom:0;left:calc(var(--pi-thumb) / 2);right:calc(var(--pi-thumb) / 2);cursor:pointer;touch-action:none}
+.pad-input-rangeslider .pi-range-rail::before{content:"";position:absolute;left:0;right:0;top:50%;height:.36em;margin-top:-.18em;border-radius:.2em;background:var(--pad-input-line)}
+.pad-input-rangeslider .pi-range-fill{position:absolute;top:50%;height:.36em;margin-top:-.18em;border-radius:.2em;background:var(--pad-input-accent);left:calc(var(--pi-lo,0) * 100%);right:calc((1 - var(--pi-hi,1)) * 100%)}
+.pad-input-rangeslider.is-ready input[type=range]{-webkit-appearance:none;appearance:none;position:absolute;left:0;top:0;width:100%;height:100%;min-width:0;background:none;pointer-events:none;z-index:2}
+.pad-input-rangeslider.is-ready input[type=range].is-top{z-index:3}
+.pad-input-rangeslider.is-ready input[type=range]::-webkit-slider-runnable-track{background:none;border:0;height:100%}
+.pad-input-rangeslider.is-ready input[type=range]::-moz-range-track{background:none;border:0}
+.pad-input-rangeslider.is-ready input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;pointer-events:auto;cursor:grab;width:var(--pi-thumb);height:var(--pi-thumb);margin-top:calc((1.8em - var(--pi-thumb)) / 2);border-radius:50%;background:var(--pad-input-knob);border:2px solid var(--pad-input-accent);box-shadow:0 1px 3px rgb(0 0 0 / .3)}
+.pad-input-rangeslider.is-ready input[type=range]::-moz-range-thumb{pointer-events:auto;cursor:grab;width:var(--pi-thumb);height:var(--pi-thumb);box-sizing:border-box;border-radius:50%;background:var(--pad-input-knob);border:2px solid var(--pad-input-accent);box-shadow:0 1px 3px rgb(0 0 0 / .3)}
+.pad-input-rangeslider.is-ready input[type=range]:focus-visible{outline:none}
+.pad-input-rangeslider.is-ready input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--pad-input-accent);outline-offset:2px}
+.pad-input-rangeslider.is-ready input[type=range]:focus-visible::-moz-range-thumb{outline:2px solid var(--pad-input-accent);outline-offset:2px}
+.pad-input-rangeslider.is-ready input[type=range]:disabled::-webkit-slider-thumb{cursor:default;border-color:var(--pad-input-muted)}
+.pad-input-rangeslider.is-ready input[type=range]:disabled::-moz-range-thumb{cursor:default;border-color:var(--pad-input-muted)}
+.pad-input-rangeslider.is-ready input[type=range][aria-invalid=true]::-webkit-slider-thumb{border-color:var(--pad-input-bad)}
+.pad-input-rangeslider.is-ready input[type=range][aria-invalid=true]::-moz-range-thumb{border-color:var(--pad-input-bad)}
+@media (forced-colors:active){.pad-input-rangeslider .pi-range-rail::before{background:GrayText}.pad-input-rangeslider .pi-range-fill{background:Highlight}.pad-input-rangeslider.is-ready input[type=range]::-webkit-slider-thumb{background:Canvas;border-color:ButtonText}.pad-input-rangeslider.is-ready input[type=range]::-moz-range-thumb{background:Canvas;border-color:ButtonText}}

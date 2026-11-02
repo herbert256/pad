@@ -3,7 +3,7 @@
 <div id="signup">
 
   
-    <form method="post" hx-post="?examples/form" hx-target="#signup" class="stack" novalidate data-pad-rules="{&quot;name&quot;:{&quot;label&quot;:&quot;Name&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;max&quot;,&quot;40&quot;,&quot;:label must be at most :n characters&quot;,&quot;40&quot;]]},&quot;email&quot;:{&quot;label&quot;:&quot;Email&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;email&quot;,&quot;&quot;,&quot;:label must be a valid e-mail address&quot;,&quot;&quot;]]},&quot;age&quot;:{&quot;label&quot;:&quot;Age&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;integer&quot;,&quot;&quot;,&quot;:label must be a whole number&quot;,&quot;&quot;],[&quot;min&quot;,&quot;18&quot;,&quot;:label must be at least :n&quot;,&quot;18&quot;]]}}" data-pad-error="Please correct the errors below."><input type="hidden" name="padCsrfToken" value="eeb1362db7d80769e06d9d74b49ac84c57ad45c583a6ef49a6c7a874cf25839e"><input type="hidden" name="padForm" value="signup">
+    <form method="post" hx-post="?examples/form" hx-target="#signup" class="stack" novalidate data-pad-rules="{&quot;name&quot;:{&quot;label&quot;:&quot;Name&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;max&quot;,&quot;40&quot;,&quot;:label must be at most :n characters&quot;,&quot;40&quot;]]},&quot;email&quot;:{&quot;label&quot;:&quot;Email&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;email&quot;,&quot;&quot;,&quot;:label must be a valid e-mail address&quot;,&quot;&quot;]]},&quot;age&quot;:{&quot;label&quot;:&quot;Age&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;integer&quot;,&quot;&quot;,&quot;:label must be a whole number&quot;,&quot;&quot;],[&quot;min&quot;,&quot;18&quot;,&quot;:label must be at least :n&quot;,&quot;18&quot;]]}}" data-pad-error="Please correct the errors below."><input type="hidden" name="padCsrfToken" value="1976300e9394395f9d7eccb712b056ebd1894b90047dbf32962d812a2dd36c46"><input type="hidden" name="padForm" value="signup">
       <label for="name">Name</label><input type="text" name="name" id="name" value="" class="input">
       <label for="email">E-mail</label><input type="email" name="email" id="email" value="" class="input">
       <label for="age">Age</label><input type="text" name="age" id="age" value="" class="input">
@@ -352,6 +352,19 @@ addRule('ip', {
 });
 })();
 (function () {
+addRule('isbn', { check: function(value) {
+  value = value.replace(/[ -]/g, '');
+  var sum = 0, i;
+  if (/^[0-9]{9}[0-9X]$(?![\s\S])/.test(value)) {
+    for (i = 0; i < 10; i++) sum += (10 - i) * (value[i] === 'X' ? 10 : +value[i]);
+    return sum % 11 === 0;
+  }
+  if (!/^97[89][0-9]{10}$(?![\s\S])/.test(value)) return false;
+  for (i = 0; i < 13; i++) sum += +value[i] * (i % 2 ? 3 : 1);
+  return sum % 10 === 0;
+}});
+})();
+(function () {
 function whole(text) {
   return !/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]/.test(text);
 }
@@ -551,6 +564,9 @@ addRule('same', {
 });
 })();
 (function () {
+addRule('semver', { check: function(value) { return /^(?:(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(?:-(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*))*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)$(?![\s\S])/.test(value); } });
+})();
+(function () {
 addRule('slug', {
   check: function (value) { return /^[a-z0-9]+(-[a-z0-9]+)*$/.test(value); }
 });
@@ -566,6 +582,12 @@ addRule('starts_with', {
 addRule('time', {
   check: function (value) { return /^([01]?\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/.test(value); }
 });
+})();
+(function () {
+addRule('timezone', { check: function(value, argument) { try { return JSON.parse(argument).indexOf(value) !== -1; } catch (e) { return false; } } });
+})();
+(function () {
+addRule('ulid', { check: function(value) { return /^(?:[0-7][0-9A-HJKMNP-TV-Z]{25})$(?![\s\S])/.test(value); } });
 })();
 (function () {
 addRule('uppercase', {

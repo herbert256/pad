@@ -1,0 +1,14 @@
+/* footer - the name and its line, the columns of links beside them, the small print under. */
+.pad-section-footer{border-top:1px solid var(--pad-section-line)}
+.pad-section-footer .ps-inner{padding-top:48px;padding-bottom:32px}
+.pad-section-footer .ps-footer{display:grid;gap:32px}
+.pad-section-footer .ps-footer-brand{margin:0;font-size:20px;font-weight:750;letter-spacing:-.02em}
+.pad-section-footer .ps-footer-text{margin:8px 0 0;max-width:320px;font-size:15px;color:var(--pad-section-soft)}
+.pad-section-footer .ps-footer-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.pad-section-footer .ps-footer-head{margin:0 0 10px;font-size:13px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--ps-ink-dim)}
+.pad-section-footer .ps-footer-column ul{display:grid;gap:8px;margin:0;padding:0;list-style:none;font-size:15px}
+.pad-section-footer .ps-footer-column a{color:var(--pad-section-text);text-decoration:none}
+.pad-section-footer .ps-footer-column a:hover{color:var(--pad-section-accent);text-decoration:underline}
+.pad-section-footer .ps-footer-note{margin:40px 0 0;padding-top:20px;border-top:1px solid var(--pad-section-line);font-size:14px;color:var(--ps-ink-dim)}
+.pad-section-footer.ps-tone-accent .ps-footer-text,.pad-section-footer.ps-tone-accent .ps-footer-head,.pad-section-footer.ps-tone-accent .ps-footer-note,.pad-section-footer.ps-tone-accent .ps-footer-column a{color:inherit}
+@container pad-section (min-width:760px){.pad-section-footer .ps-footer{grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:48px}.pad-section-footer .ps-footer-nav{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}}

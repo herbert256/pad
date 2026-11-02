@@ -1,0 +1,14 @@
+.pad-game-nonogram .ngm-table{border-collapse:collapse}
+.pad-game-nonogram .ngm-table th{font:600 13px/1.15 system-ui,sans-serif;color:var(--pad-game-muted);padding:2px 4px}
+.pad-game-nonogram .ngm-col{vertical-align:bottom}
+.pad-game-nonogram .ngm-col span{display:block}
+.pad-game-nonogram .ngm-row{text-align:right;white-space:nowrap;padding-right:8px}
+.pad-game-nonogram th.is-done{color:var(--pad-game-good)}
+.pad-game-nonogram td{padding:0;border:1px solid var(--pad-game-line)}
+.pad-game-nonogram tr:nth-child(5n+1) td{border-bottom:2px solid var(--pad-game-ink)}
+.pad-game-nonogram td:nth-child(5n+1){border-right:2px solid var(--pad-game-ink)}
+.pad-game-nonogram .ngm-cell{display:block;width:28px;height:28px;border:0;padding:0;background:var(--pad-game-cell);cursor:pointer;position:relative}
+.pad-game-nonogram .ngm-cell:hover:not(:disabled){background:var(--pad-game-mark)}
+.pad-game-nonogram .ngm-cell.is-filled{background:var(--pad-game-ink)}
+.pad-game-nonogram .ngm-cell.is-marked::after{content:"\00d7";position:absolute;inset:0;display:grid;place-items:center;color:var(--pad-game-muted);font-size:18px}
+.pad-game-nonogram .ngm-cell:disabled{cursor:default}

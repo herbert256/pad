@@ -1,0 +1,12 @@
+.pad-toy .pts-mats{display:flex;flex-wrap:wrap;gap:6px}
+.pad-toy .pts-mat{display:inline-flex;align-items:center;gap:6px}
+.pad-toy .pts-mat::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--pts-swatch,currentColor)}
+.pad-toy .pts-sand{--pts-swatch:#e0be76}
+.pad-toy .pts-water{--pts-swatch:#3478dc}
+.pad-toy .pts-wall{--pts-swatch:var(--pad-toy-muted)}
+.pad-toy .pts-wood{--pts-swatch:#80522e}
+.pad-toy .pts-fire{--pts-swatch:#ff8c1e}
+.pad-toy .pts-plant{--pts-swatch:#38a852}
+.pad-toy .pts-erase{--pts-swatch:transparent}
+.pad-toy .pts-erase::before{border:1px dashed var(--pad-toy-muted)}
+.pad-toy .pts-mat[aria-pressed="true"]{border-color:var(--pad-toy-accent);box-shadow:inset 0 0 0 1px var(--pad-toy-accent)}

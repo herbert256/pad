@@ -11,21 +11,25 @@
     <script src="../_common/pad.js"></script>
     <script src="../_common/brand.js" defer></script>
     <link rel="stylesheet" href="tags.css">
-    <link rel="stylesheet" href="/pad/assets/widgets/toast.css?v=a648bb0aa0">
-    <link rel="stylesheet" href="/pad/assets/widgets/accordion.css?v=ab9939837f">
-    <link rel="stylesheet" href="/pad/assets/widgets/breadcrumb.css?v=ca3a2c00ae">
-    <link rel="stylesheet" href="/pad/assets/widgets/carousel.css?v=12be6d89f8">
-    <link rel="stylesheet" href="/pad/assets/widgets/commandpalette.css?v=5a1cdf63e9">
-    <link rel="stylesheet" href="/pad/assets/widgets/contextmenu.css?v=8916aa2dff">
-    <link rel="stylesheet" href="/pad/assets/widgets/drawer.css?v=626a068f07">
-    <link rel="stylesheet" href="/pad/assets/widgets/dropdown.css?v=b9bd885318">
-    <link rel="stylesheet" href="/pad/assets/widgets/lightbox.css?v=01cafad2ac">
-    <link rel="stylesheet" href="/pad/assets/widgets/modal.css?v=63f7f1b3e3">
-    <link rel="stylesheet" href="/pad/assets/widgets/sortable.css?v=1475b5b73c">
-    <link rel="stylesheet" href="/pad/assets/widgets/splitpane.css?v=d514e61684">
-    <link rel="stylesheet" href="/pad/assets/widgets/tabs.css?v=327c07ee7a">
-    <link rel="stylesheet" href="/pad/assets/widgets/tooltip.css?v=8d9323eebc">
-    <link rel="stylesheet" href="/pad/assets/widgets/wizard.css?v=f8500a1830">
+    <link rel="stylesheet" href="../assets/widgets/toast.css">
+    <link rel="stylesheet" href="../assets/widgets/accordion.css">
+    <link rel="stylesheet" href="../assets/widgets/breadcrumb.css">
+    <link rel="stylesheet" href="../assets/widgets/carousel.css">
+    <link rel="stylesheet" href="../assets/widgets/commandpalette.css">
+    <link rel="stylesheet" href="../assets/widgets/contextmenu.css">
+    <link rel="stylesheet" href="../assets/widgets/drawer.css">
+    <link rel="stylesheet" href="../assets/widgets/dropdown.css">
+    <link rel="stylesheet" href="../assets/widgets/imagecompare.css">
+    <link rel="stylesheet" href="../assets/widgets/kanban.css">
+    <link rel="stylesheet" href="../assets/widgets/lightbox.css">
+    <link rel="stylesheet" href="../assets/widgets/modal.css">
+    <link rel="stylesheet" href="../assets/widgets/skeleton.css">
+    <link rel="stylesheet" href="../assets/widgets/sortable.css">
+    <link rel="stylesheet" href="../assets/widgets/splitpane.css">
+    <link rel="stylesheet" href="../assets/widgets/tabs.css">
+    <link rel="stylesheet" href="../assets/widgets/tooltip.css">
+    <link rel="stylesheet" href="../assets/widgets/treeview.css">
+    <link rel="stylesheet" href="../assets/widgets/wizard.css">
     <style>
     .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
     </style>
@@ -54,10 +58,25 @@
     :where(.pad-dropdown){--pad-dropdown-accent:#2a78d6;--pad-dropdown-text:#1f1f1d;--pad-dropdown-muted:#62615c;--pad-dropdown-line:#e4e3df;--pad-dropdown-surface:#ffffff;--pad-dropdown-hover:#f1f0ec;}@supports (color:light-dark(#000,#fff)){:where(.pad-dropdown){--pad-dropdown-accent:light-dark(#2a78d6,#5598e7);--pad-dropdown-text:light-dark(#1f1f1d,#ecebe6);--pad-dropdown-muted:light-dark(#62615c,#a9a8a0);--pad-dropdown-line:light-dark(#e4e3df,#3a3a37);--pad-dropdown-surface:light-dark(#ffffff,#242422);--pad-dropdown-hover:light-dark(#f1f0ec,#30302d);}}
     </style>
     <style>
+    :where(.pad-jsonview){--pad-jsonview-key:#7a3e9d;--pad-jsonview-string:#1a7f4b;--pad-jsonview-number:#1f5fbf;--pad-jsonview-boolean:#b35900;--pad-jsonview-null:#8a3b3b;--pad-jsonview-muted:#77756f;--pad-jsonview-line:#e4e3df;--pad-jsonview-surface:#fbfbfa;}@supports (color:light-dark(#000,#fff)){:where(.pad-jsonview){--pad-jsonview-key:light-dark(#7a3e9d,#c8a2f0);--pad-jsonview-string:light-dark(#1a7f4b,#7fd4a0);--pad-jsonview-number:light-dark(#1f5fbf,#79b0f2);--pad-jsonview-boolean:light-dark(#b35900,#f0a860);--pad-jsonview-null:light-dark(#8a3b3b,#e08a8a);--pad-jsonview-muted:light-dark(#77756f,#96958d);--pad-jsonview-line:light-dark(#e4e3df,#3a3a37);--pad-jsonview-surface:light-dark(#fbfbfa,#1b1b1a);}}.pad-jsonview{font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--pad-jsonview-surface);border:1px solid var(--pad-jsonview-line);border-radius:8px;padding:10px 14px;overflow-x:auto}.pad-jsonview ul{list-style:none;margin:0;padding:0 0 0 1.1em;border-left:1px dotted var(--pad-jsonview-line);margin-left:.3em}.pad-jsonview li{padding-left:1em;white-space:nowrap}.pad-jsonview li:has(>details){padding-left:0}.pad-jsonview summary{cursor:pointer;list-style:none;border-radius:4px}.pad-jsonview summary::-webkit-details-marker{display:none}.pad-jsonview summary::before{content:"▸";display:inline-block;width:1em;color:var(--pad-jsonview-muted);transition:transform .15s}.pad-jsonview details[open]>summary::before{transform:rotate(90deg)}.pad-jsonview summary:focus-visible{outline:2px solid var(--pad-jsonview-number);outline-offset:1px}.pad-jsonview details>.pad-jsonview-brace{padding-left:1em}.pad-jsonview details[open]>summary .pad-jsonview-fold,.pad-jsonview details[open]>summary .pad-jsonview-count{display:none}.pad-jsonview-key{color:var(--pad-jsonview-key)}.pad-jsonview-string{color:var(--pad-jsonview-string);white-space:pre-wrap}.pad-jsonview-number{color:var(--pad-jsonview-number)}.pad-jsonview-boolean{color:var(--pad-jsonview-boolean);font-weight:600}.pad-jsonview-null{color:var(--pad-jsonview-null);font-style:italic}.pad-jsonview-index,.pad-jsonview-colon,.pad-jsonview-brace,.pad-jsonview-fold{color:var(--pad-jsonview-muted)}.pad-jsonview-title{font-weight:600}.pad-jsonview-count{color:var(--pad-jsonview-muted);font-size:.85em;font-style:italic}.pad-jsonview-cut{color:var(--pad-jsonview-muted);font-style:italic}
+    </style>
+    <style>
     :where(.pad-lightbox){--pad-lightbox-accent:#2a78d6;--pad-lightbox-shade:#efeeea;--pad-lightbox-backdrop:rgba(12,12,11,.9);--pad-lightbox-button:rgba(255,255,255,.14);--pad-lightbox-caption:#f4f3ee;}@supports (color:light-dark(#000,#fff)){:where(.pad-lightbox){--pad-lightbox-accent:light-dark(#2a78d6,#5598e7);--pad-lightbox-shade:light-dark(#efeeea,#2a2a28);--pad-lightbox-backdrop:light-dark(rgba(12,12,11,.9),rgba(0,0,0,.92));--pad-lightbox-button:light-dark(rgba(255,255,255,.14),rgba(255,255,255,.12));--pad-lightbox-caption:light-dark(#f4f3ee,#ecebe6);}}
     </style>
     <style>
     :where(.pad-modal){--pad-modal-accent:#2a78d6;--pad-modal-on:#ffffff;--pad-modal-text:#1f1f1d;--pad-modal-muted:#62615c;--pad-modal-line:#e4e3df;--pad-modal-surface:#ffffff;--pad-modal-backdrop:rgba(20,20,18,.45);}@supports (color:light-dark(#000,#fff)){:where(.pad-modal){--pad-modal-accent:light-dark(#2a78d6,#5598e7);--pad-modal-on:light-dark(#ffffff,#0d1b2e);--pad-modal-text:light-dark(#1f1f1d,#ecebe6);--pad-modal-muted:light-dark(#62615c,#a9a8a0);--pad-modal-line:light-dark(#e4e3df,#3a3a37);--pad-modal-surface:light-dark(#ffffff,#1f1f1d);--pad-modal-backdrop:light-dark(rgba(20,20,18,.45),rgba(0,0,0,.65));}}
+    </style>
+    <style>
+    :where(.pad-placeholder){--pad-placeholder-surface:#e4e3df;--pad-placeholder-line:#c3c2bc;--pad-placeholder-text:#6b6a65;}@supports (color:light-dark(#000,#fff)){:where(.pad-placeholder){--pad-placeholder-surface:light-dark(#e4e3df,#2c2c2a);--pad-placeholder-line:light-dark(#c3c2bc,#454542);--pad-placeholder-text:light-dark(#6b6a65,#a3a29b);}}.pad-placeholder{display:block;max-width:100%;height:auto}.pad-placeholder .ph-surface{fill:var(--pad-placeholder-surface)}.pad-placeholder .ph-line{stroke:var(--pad-placeholder-line)}.pad-placeholder .ph-text{fill:var(--pad-placeholder-text)}
+    </style>
+    <style>
+    :where(.pad-progress){--pad-progress-track:#e4e3df;--pad-progress-text:#52514e;--pad-progress-accent:#2a78d6;--pad-progress-success:#158a60;--pad-progress-warning:#c98500;--pad-progress-danger:#d03b3a;--pad-progress-neutral:#7a7974;}@supports (color:light-dark(#000,#fff)){:where(.pad-progress){--pad-progress-track:light-dark(#e4e3df,#3a3a37);--pad-progress-text:light-dark(#52514e,#c3c2b7);--pad-progress-accent:light-dark(#2a78d6,#3987e5);--pad-progress-success:light-dark(#158a60,#1baf7a);--pad-progress-warning:light-dark(#c98500,#eda100);--pad-progress-danger:light-dark(#d03b3a,#e66767);--pad-progress-neutral:light-dark(#7a7974,#898781);}}.pad-progress.pg-accent{--pad-progress-bar:var(--pad-progress-accent)}.pad-progress.pg-success{--pad-progress-bar:var(--pad-progress-success)}.pad-progress.pg-warning{--pad-progress-bar:var(--pad-progress-warning)}.pad-progress.pg-danger{--pad-progress-bar:var(--pad-progress-danger)}.pad-progress.pg-neutral{--pad-progress-bar:var(--pad-progress-neutral)}.pad-progress{--pg-h:8px;display:grid;gap:6px;min-width:8em;color:var(--pad-progress-text);font:500 13px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif}.pad-progress.pg-small{--pg-h:4px;font-size:12px}.pad-progress.pg-large{--pg-h:14px;font-size:14px}.pad-progress .pg-head{display:flex;justify-content:space-between;gap:1em}.pad-progress .pg-value{margin-left:auto;font-variant-numeric:tabular-nums}.pad-progress progress{-webkit-appearance:none;appearance:none;display:block;width:100%;height:var(--pg-h);margin:0;border:0;border-radius:999px;background:var(--pad-progress-track);color:var(--pad-progress-bar);overflow:hidden}.pad-progress progress::-webkit-progress-bar{background:var(--pad-progress-track);border-radius:999px}.pad-progress progress::-webkit-progress-value{background:var(--pad-progress-bar);border-radius:999px}.pad-progress progress::-moz-progress-bar{background:var(--pad-progress-bar);border-radius:999px}.pad-progress .pg-dots{display:flex;align-items:center}.pad-progress .pg-dot{flex:none;width:calc(var(--pg-h) + 6px);height:calc(var(--pg-h) + 6px);border-radius:50%;background:var(--pad-progress-track);box-sizing:border-box}.pad-progress .pg-link{flex:1;height:max(2px,calc(var(--pg-h) / 3));background:var(--pad-progress-track)}.pad-progress .pg-done{background:var(--pad-progress-bar)}.pad-progress .pg-now{box-shadow:0 0 0 3px color-mix(in srgb,var(--pad-progress-bar) 30%,transparent)}
+    </style>
+    <style>
+    :where(.pad-rating){--pad-rating-star:#e09a00;--pad-rating-heart:#d93b5a;--pad-rating-empty:#dddcd7;}@supports (color:light-dark(#000,#fff)){:where(.pad-rating){--pad-rating-star:light-dark(#e09a00,#f5b82e);--pad-rating-heart:light-dark(#d93b5a,#f0627d);--pad-rating-empty:light-dark(#dddcd7,#3d3d3a);}}.pad-rating{vertical-align:middle;flex:none}.pad-rating .rt-star{fill:var(--pad-rating-star)}.pad-rating .rt-heart{fill:var(--pad-rating-heart)}.pad-rating .rt-empty{fill:var(--pad-rating-empty)}.pad-rating path{stroke-linejoin:round}
+    </style>
+    <style>
+    :where(.pad-skeleton){}@supports (color:light-dark(#000,#fff)){:where(.pad-skeleton){}}
     </style>
     <style>
     :where(.pad-sortable){--pad-sortable-accent:var(--accent,#2a78d6);--pad-sortable-text:var(--text,#1f1f1d);--pad-sortable-muted:var(--dim,#62615c);--pad-sortable-line:var(--line,#e4e3df);--pad-sortable-surface:var(--panel,#ffffff);--pad-sortable-hover:var(--accent-soft,#eef3fb);}@supports (color:light-dark(#000,#fff)){:where(.pad-sortable){--pad-sortable-accent:light-dark(var(--accent,#2a78d6),var(--accent,#5598e7));--pad-sortable-text:light-dark(var(--text,#1f1f1d),var(--text,#ecebe6));--pad-sortable-muted:light-dark(var(--dim,#62615c),var(--dim,#a9a8a0));--pad-sortable-line:light-dark(var(--line,#e4e3df),var(--line,#3a3a37));--pad-sortable-surface:light-dark(var(--panel,#ffffff),var(--panel,#1f1f1d));--pad-sortable-hover:light-dark(var(--accent-soft,#eef3fb),var(--accent-soft,#22303f));}}
@@ -123,28 +142,28 @@
                   <div class="pad-brand-group">
                     <div class="pad-brand-head">
                       Showcases
-                    </div><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    </div><a href="../calendars/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-calendar" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3.5" y="5" width="17" height="15" rx="2"></rect>
+                    <path d="M3.5 10h17M8 3v4M16 3v4"></path></svg><span><b>calendars</b><small>Date views, clocks and countdowns</small></span></a><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Charts and timelines, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games, puzzles and live simulations</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="../notations/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M9 18V5.5l11-2V16"></path>
                     <circle cx="6.5" cy="18" r="2.5"></circle>
-                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="../images/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-image" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <circle cx="8.5" cy="9.5" r="1.5"></circle>
+                    <path d="M4 18l5-5 4 4 2.5-2.5L20 18"></path></svg><span><b>images</b><small>Pictures, avatars, patterns and filters</small></span></a><a href="../tables/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>tables</b><small>Data tables, spreadsheets and formulas</small></span></a><a href="../widgets/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>widgets</b><small>Page components, sections, effects and colours</small></span></a><a href="../printables/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
-                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="../sounds/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
                     <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
                   </div>
@@ -220,7 +239,7 @@
     <main class="frame-main">
       <header class="frame-top">
         <form class="search" action="" method="get" role="search">
-          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags and kinds</label> <input type="search" id="q" name="q" value="" placeholder="Search 1220 entries" autocomplete="off">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags and kinds</label> <input type="search" id="q" name="q" value="" placeholder="Search 1373 entries" autocomplete="off">
         </form>
         <div class="frame-tools">
           <form method="post" class="pad-themes">
@@ -261,6 +280,9 @@
               <option value="paper">
                 Paper
               </option>
+              <option value="projection">
+                Projection
+              </option>
               <option value="readable">
                 Readable
               </option>
@@ -293,7 +315,7 @@
               <span class="brace">{</span>widget:*<span class="brace">}</span>
             </h1>
             <p class="tag-about">
-              An interactive part of the page that works without JavaScript - 17 of them, from tabs, a modal and a carousel to a toast, a dropdown and a wizard.
+              An interactive part of the page that works without JavaScript - 43 of them, from tabs, a modal and a carousel to a toast, a dropdown and a wizard.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#widgets">Widgets</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
@@ -329,7 +351,7 @@
                 <code>kind after colon</code>
               </dt>
               <dd>
-                The widget, a file of <code>pad/subs/widgets/types/</code>: <code>accordion</code>, <code>breadcrumb</code>, <code>carousel</code>, <code>commandpalette</code>, <code>contextmenu</code>, <code>copy</code>, <code>drawer</code>, <code>dropdown</code>, <code>lightbox</code>, <code>modal</code>, <code>poll</code>, <code>sortable</code>, <code>splitpane</code>, <code>tabs</code>, <code>toast</code>, <code>tooltip</code>, <code>wizard</code>. The widget: prefix selects it - <code>{widget:modal 'terms'}</code>.
+                The widget, a file of <code>pad/subs/widgets/types/</code>: <code>accordion</code>, <code>breadcrumb</code>, <code>carousel</code>, <code>commandpalette</code>, <code>contextmenu</code>, <code>copy</code>, <code>drawer</code>, <code>dropdown</code>, <code>excerpt</code>, <code>highlight</code>, <code>imagecompare</code>, <code>jsonview</code>, <code>kanban</code>, <code>lightbox</code>, <code>lorem</code>, <code>markdown</code>, <code>modal</code>, <code>notifications</code>, <code>oauth</code>, <code>pager</code>, <code>palette</code>, <code>placeholder</code>, <code>poll</code>, <code>progress</code>, <code>progressring</code>, <code>rating</code>, <code>ratingdistribution</code>, <code>reactData</code>, <code>shadow</code>, <code>skeleton</code>, <code>sortable</code>, <code>source</code>, <code>splitpane</code>, <code>tab</code>, <code>tabs</code>, <code>theme</code>, <code>themes</code>, <code>toast</code>, <code>toc</code>, <code>tooltip</code>, <code>treeview</code>, <code>video</code>, <code>wizard</code>. The widget: prefix selects it - <code>{widget:modal 'terms'}</code>.
               </dd>
               <dt>
                 <code>first</code>
@@ -571,7 +593,7 @@
                         </div>
                       </div><button type="button" class="pad-toast-close" commandfor="pad-toast-7d83f1cd" command="close" aria-label="Dismiss"><span aria-hidden="true">×</span></button>
                     </dialog>
-                    <script src="/pad/assets/widgets/toast.js?v=851f957703"></script>
+                    <script src="../assets/widgets/toast.js"></script>
                     <dialog open class="pad-toast pad-toast-info" id="pad-toast-f2514fc6" aria-labelledby="pad-toast-f2514fc6-title">
                       <div class="pad-toast-body" role="status">
                         <p class="pad-toast-title" id="pad-toast-f2514fc6-title">
@@ -846,7 +868,7 @@
                         <a class="pad-carousel-dot" href="#pad-carousel-b005aeab-1" aria-label="Slide 1 of 3: Morning"></a><a class="pad-carousel-dot" href="#pad-carousel-b005aeab-2" aria-label="Slide 2 of 3: Noon"></a><a class="pad-carousel-dot" href="#pad-carousel-b005aeab-3" aria-label="Slide 3 of 3: Night"></a>
                       </nav>
                     </section>
-                    <script src="/pad/assets/widgets/carousel.js?v=025b1e7431"></script>
+                    <script src="../assets/widgets/carousel.js"></script>
                   </div>
                 </div>
               </div>
@@ -981,7 +1003,7 @@
                         </p>
                       </dialog>
                     </div>
-                    <script src="/pad/assets/widgets/commandpalette.js?v=6512025e20"></script>
+                    <script src="../assets/widgets/commandpalette.js"></script>
                   </div>
                 </div>
               </div>
@@ -1026,7 +1048,7 @@
                             <button type="button" disabled>Delete</button>
                           </div>
                         </div>
-                        <script src="/pad/assets/widgets/contextmenu.js?v=fee98dec8d"></script>
+                        <script src="../assets/widgets/contextmenu.js"></script>
                       </li>
                     </ul>
                   </div>
@@ -1079,7 +1101,7 @@
                         </div>
                       </dialog>
                     </div>
-                    <script src="/pad/assets/widgets/drawer.js?v=7b2b8ed79a"></script>
+                    <script src="../assets/widgets/drawer.js"></script>
                   </div>
                 </div>
               </div>
@@ -1121,12 +1143,192 @@
                         <a href="index%EF%B9%96names.html">Log out</a>
                       </div>
                     </div>
-                    <script src="/pad/assets/widgets/dropdown.js?v=6e24830082"></script>
+                    <script src="../assets/widgets/dropdown.js"></script>
                   </div>
                 </div>
               </div>
             </div>
             <div class="example" id="example-11">
+              <h3>
+                imagecompare.pad
+              </h3>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/widget/imagecompare.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:imagecompare</span> <span class="hl-opt">before</span>=<span class="hl-str">'{$padRoot}assets/widgets/imagecompare-before.svg'</span>, <span class="hl-opt">after</span>=<span class="hl-str">'{$padRoot}assets/widgets/imagecompare-after.svg'</span>, <span class="hl-opt">beforelabel</span>=<span class="hl-str">'Day'</span>, <span class="hl-opt">afterlabel</span>=<span class="hl-str">'Night'</span><span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7imagecompare.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OmltYWdlY29tcGFyZSBiZWZvcmU9J3skcGFkUm9vdH1hc3NldHMvd2lkZ2V0cy9pbWFnZWNvbXBhcmUtYmVmb3JlLnN2ZycsIGFmdGVyPSd7JHBhZFJvb3R9YXNzZXRzL3dpZGdldHMvaW1hZ2Vjb21wYXJlLWFmdGVyLnN2ZycsIGJlZm9yZWxhYmVsPSdEYXknLCBhZnRlcmxhYmVsPSdOaWdodCcvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OmltYWdlY29tcGFyZSBiZWZvcmU9J3skcGFkUm9vdH1hc3NldHMvd2lkZ2V0cy9pbWFnZWNvbXBhcmUtYmVmb3JlLnN2ZycsIGFmdGVyPSd7JHBhZFJvb3R9YXNzZXRzL3dpZGdldHMvaW1hZ2Vjb21wYXJlLWFmdGVyLnN2ZycsIGJlZm9yZWxhYmVsPSdEYXknLCBhZnRlcmxhYmVsPSdOaWdodCcvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <figure class="pad-imagecompare">
+                      <div class="pic-images">
+                        <figure>
+                          <img src="../assets/widgets/imagecompare-before.svg" alt="Day">
+                          <figcaption>
+                            Day
+                          </figcaption>
+                        </figure>
+                        <figure>
+                          <img src="../assets/widgets/imagecompare-after.svg" alt="Night">
+                          <figcaption>
+                            Night
+                          </figcaption>
+                        </figure>
+                      </div><label hidden="">Comparison divider <input type="range" min="0" max="100" value="50" aria-label="Comparison divider"></label>
+                    </figure>
+                    <script src="../assets/widgets/imagecompare.js"></script>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-12">
+              <h3>
+                Jsonview
+              </h3>
+              <p class="example-about">
+                A widget rendered by its subsystem.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/widget/jsonview-1.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:jsonview</span> <span class="hl-opt">title</span>=<span class="hl-str">'Order'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-str">"id"</span>:<span class="hl-num">42</span>,<span class="hl-str">"paid"</span>:true,<span class="hl-str">"lines"</span>:[<span class="hl-brc">{</span><span class="hl-str">"item"</span>:<span class="hl-str">"Book"</span>,<span class="hl-str">"quantity"</span>:<span class="hl-num">2</span><span class="hl-brc">}</span>]<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/widget:jsonview</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7jsonview-1.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0Ompzb252aWV3IHRpdGxlPSdPcmRlcid9e1wiaWRcIjo0MixcInBhaWRcIjp0cnVlLFwibGluZXNcIjpbe1wiaXRlbVwiOlwiQm9va1wiLFwicXVhbnRpdHlcIjoyfV19ey93aWRnZXQ6anNvbnZpZXd9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0Ompzb252aWV3IHRpdGxlPSdPcmRlcid9e1wiaWRcIjo0MixcInBhaWRcIjp0cnVlLFwibGluZXNcIjpbe1wiaXRlbVwiOlwiQm9va1wiLFwicXVhbnRpdHlcIjoyfV19ey93aWRnZXQ6anNvbnZpZXd9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <div class="pad-jsonview">
+                      <details open>
+                        <summary>
+                          <span class="pad-jsonview-title">Order</span> <span class="pad-jsonview-brace">{</span><span class="pad-jsonview-fold">…}</span> <span class="pad-jsonview-count">3 keys</span>
+                        </summary>
+                        <ul>
+                          <li>
+                            <span class="pad-jsonview-key">"id"</span><span class="pad-jsonview-colon">:</span> <span class="pad-jsonview-number">42</span>
+                          </li>
+                          <li>
+                            <span class="pad-jsonview-key">"paid"</span><span class="pad-jsonview-colon">:</span> <span class="pad-jsonview-boolean">true</span>
+                          </li>
+                          <li>
+                            <details open>
+                              <summary>
+                                <span class="pad-jsonview-key">"lines"</span><span class="pad-jsonview-colon">:</span> <span class="pad-jsonview-brace">[</span><span class="pad-jsonview-fold">…]</span> <span class="pad-jsonview-count">1 item</span>
+                              </summary>
+                              <ul>
+                                <li>
+                                  <details>
+                                    <summary>
+                                      <span class="pad-jsonview-index">0</span><span class="pad-jsonview-colon">:</span> <span class="pad-jsonview-brace">{</span><span class="pad-jsonview-fold">…}</span> <span class="pad-jsonview-count">2 keys</span>
+                                    </summary>
+                                    <ul>
+                                      <li>
+                                        <span class="pad-jsonview-key">"item"</span><span class="pad-jsonview-colon">:</span> <span class="pad-jsonview-string">"Book"</span>
+                                      </li>
+                                      <li>
+                                        <span class="pad-jsonview-key">"quantity"</span><span class="pad-jsonview-colon">:</span> <span class="pad-jsonview-number">2</span>
+                                      </li>
+                                    </ul><span class="pad-jsonview-brace">}</span>
+                                  </details>
+                                </li>
+                              </ul><span class="pad-jsonview-brace">]</span>
+                            </details>
+                          </li>
+                        </ul><span class="pad-jsonview-brace">}</span>
+                      </details>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-13">
+              <h3>
+                kanban.pad
+              </h3>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/widget/kanban.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">format:auto</span> <span class="hl-str">'uiCards'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'json'</span><span class="hl-brc">}</span>[<span class="hl-brc">{</span><span class="hl-str">"id"</span>:<span class="hl-str">"1"</span>,<span class="hl-str">"title"</span>:<span class="hl-str">"Write release notes"</span>,<span class="hl-str">"status"</span>:<span class="hl-str">"todo"</span><span class="hl-brc">}</span>,<span class="hl-brc">{</span><span class="hl-str">"id"</span>:<span class="hl-str">"2"</span>,<span class="hl-str">"title"</span>:<span class="hl-str">"Check accessibility"</span>,<span class="hl-str">"status"</span>:<span class="hl-str">"doing"</span><span class="hl-brc">}</span>]<span class="hl-brc">{</span><span class="hl-tag">/format:auto</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:kanban</span> <span class="hl-opt">data</span>=<span class="hl-str">'uiCards'</span><span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7kanban.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ3VpQ2FyZHMnLCB0eXBlPSdqc29uJ31be1wiaWRcIjpcIjFcIixcInRpdGxlXCI6XCJXcml0ZSByZWxlYXNlIG5vdGVzXCIsXCJzdGF0dXNcIjpcInRvZG9cIn0se1wiaWRcIjpcIjJcIixcInRpdGxlXCI6XCJDaGVjayBhY2Nlc3NpYmlsaXR5XCIsXCJzdGF0dXNcIjpcImRvaW5nXCJ9XXsvZm9ybWF0OmF1dG99XG57d2lkZ2V0OmthbmJhbiBkYXRhPSd1aUNhcmRzJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ3VpQ2FyZHMnLCB0eXBlPSdqc29uJ31be1wiaWRcIjpcIjFcIixcInRpdGxlXCI6XCJXcml0ZSByZWxlYXNlIG5vdGVzXCIsXCJzdGF0dXNcIjpcInRvZG9cIn0se1wiaWRcIjpcIjJcIixcInRpdGxlXCI6XCJDaGVjayBhY2Nlc3NpYmlsaXR5XCIsXCJzdGF0dXNcIjpcImRvaW5nXCJ9XXsvZm9ybWF0OmF1dG99XG57d2lkZ2V0OmthbmJhbiBkYXRhPSd1aUNhcmRzJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <div class="pad-kanban" role="region" aria-label="Board">
+                      <div class="pk-columns">
+                        <section data-column="todo">
+                          <h3>
+                            To do
+                          </h3>
+                          <ul>
+                            <li data-card="1">
+                              <strong>Write release notes</strong>
+                              <p></p><label hidden="">Move to <select aria-label="Move Write release notes">
+                                <option value="todo" selected>
+                                  To do
+                                </option>
+                                <option value="doing">
+                                  In progress
+                                </option>
+                                <option value="done">
+                                  Done
+                                </option>
+                              </select></label>
+                            </li>
+                          </ul>
+                        </section>
+                        <section data-column="doing">
+                          <h3>
+                            In progress
+                          </h3>
+                          <ul>
+                            <li data-card="2">
+                              <strong>Check accessibility</strong>
+                              <p></p><label hidden="">Move to <select aria-label="Move Check accessibility">
+                                <option value="todo">
+                                  To do
+                                </option>
+                                <option value="doing" selected>
+                                  In progress
+                                </option>
+                                <option value="done">
+                                  Done
+                                </option>
+                              </select></label>
+                            </li>
+                          </ul>
+                        </section>
+                        <section data-column="done">
+                          <h3>
+                            Done
+                          </h3>
+                          <ul></ul>
+                        </section>
+                      </div>
+                      <p role="status"></p>
+                    </div>
+                    <script src="../assets/widgets/kanban.js"></script>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-14">
               <h3>
                 A gallery
               </h3>
@@ -1203,12 +1405,12 @@
                         </figure><a class="pad-lightbox-close" href="#pad-lightbox-c61441f1-3-thumb" aria-label="Close"><span aria-hidden="true">×</span></a><a class="pad-lightbox-prev" href="#pad-lightbox-c61441f1-2" aria-label="Previous picture"><span aria-hidden="true">‹</span></a><a class="pad-lightbox-next" href="#pad-lightbox-c61441f1-1" aria-label="Next picture"><span aria-hidden="true">›</span></a>
                       </div>
                     </div>
-                    <script src="/pad/assets/widgets/lightbox.js?v=e92adde8f6"></script>
+                    <script src="../assets/widgets/lightbox.js"></script>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="example" id="example-12">
+            <div class="example" id="example-15">
               <h3>
                 Terms in a dialog
               </h3>
@@ -1255,12 +1457,12 @@
                         </div>
                       </div>
                     </dialog>
-                    <script src="/pad/assets/widgets/modal.js?v=ae5513063e"></script>
+                    <script src="../assets/widgets/modal.js"></script>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="example" id="example-13">
+            <div class="example" id="example-16">
               <h3>
                 Rendered content
               </h3>
@@ -1338,7 +1540,42 @@
                 </div>
               </div>
             </div>
-            <div class="example" id="example-14">
+            <div class="example" id="example-17">
+              <h3>
+                Placeholder
+              </h3>
+              <p class="example-about">
+                A widget rendered by its subsystem.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/widget/placeholder-1.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:placeholder</span> <span class="hl-str">'600x240'</span>, <span class="hl-opt">text</span>=<span class="hl-str">'Photo coming soon'</span>, fluid<span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7placeholder-1.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnBsYWNlaG9sZGVyICc2MDB4MjQwJywgdGV4dD0nUGhvdG8gY29taW5nIHNvb24nLCBmbHVpZC99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnBsYWNlaG9sZGVyICc2MDB4MjQwJywgdGV4dD0nUGhvdG8gY29taW5nIHNvb24nLCBmbHVpZC99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-placeholder" role="img" aria-label="Photo coming soon" width="100%" viewbox="0 0 600 240" preserveaspectratio="xMidYMid meet">
+                    <title>
+                      Photo coming soon
+                    </title>
+                    <rect class="ph-surface" width="600" height="240" fill="#e4e3df"></rect>
+                    <path class="ph-line" d="M0,0L600,240M600,0L0,240" stroke="#c3c2bc" stroke-width="1" vector-effect="non-scaling-stroke" fill="none"></path>
+                    <rect class="ph-surface" x="75" y="82" width="450" height="76" rx="38" fill="#e4e3df"></rect>
+                    <text class="ph-text" x="300" y="120" dy=".35em" text-anchor="middle" fill="#6b6a65" font-family="system-ui,-apple-system,'Segoe UI',sans-serif" font-size="40" font-weight="500">
+                      Photo coming soon
+                    </text></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-18">
               <h3>
                 A question
               </h3>
@@ -1355,7 +1592,7 @@
                 </div>
               </div>
             </div>
-            <div class="example" id="example-15">
+            <div class="example" id="example-19">
               <h3>
                 A results page
               </h3>
@@ -1373,7 +1610,248 @@
                 </div>
               </div>
             </div>
-            <div class="example" id="example-16">
+            <div class="example" id="example-20">
+              <h3>
+                Progress
+              </h3>
+              <p class="example-about">
+                A widget rendered by its subsystem.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/widget/progress-1.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:progress</span> <span class="hl-num">72</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Upload'</span><span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7progress-1.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnByb2dyZXNzIDcyLCBsYWJlbD0nVXBsb2FkJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnByb2dyZXNzIDcyLCBsYWJlbD0nVXBsb2FkJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <div class="pad-progress pg-accent pg-medium">
+                      <span class="pg-head" aria-hidden="true"><span class="pg-label">Upload</span><span class="pg-value">72%</span></span><progress aria-label="Upload" value="72" max="100">72%</progress>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-21">
+              <h3>
+                Progressring
+              </h3>
+              <p class="example-about">
+                A widget rendered by its subsystem.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/widget/progressring-1.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:progressring</span> <span class="hl-num">72</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Upload'</span>, <span class="hl-opt">color</span>=<span class="hl-str">'success'</span><span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7progressring-1.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnByb2dyZXNzcmluZyA3MiwgbGFiZWw9J1VwbG9hZCcsIGNvbG9yPSdzdWNjZXNzJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnByb2dyZXNzcmluZyA3MiwgbGFiZWw9J1VwbG9hZCcsIGNvbG9yPSdzdWNjZXNzJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-progress-ring" role="progressbar" aria-label="Upload" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72" width="96" height="96" viewbox="0 0 100 100">
+                    <title>
+                      Upload: 72%
+                    </title>
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" opacity=".15" stroke-width="8"></circle>
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#208545" stroke-width="8" pathlength="100" stroke-dasharray="72 100" transform="rotate(-90 50 50)"></circle>
+                    <text x="50" y="50" dy=".35em" text-anchor="middle" fill="currentColor" font-size="20" font-family="system-ui">
+                      72%
+                    </text></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-22">
+              <h3>
+                Rating
+              </h3>
+              <p class="example-about">
+                A widget rendered by its subsystem.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/widget/rating-1.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:rating</span> <span class="hl-num">4.5</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Customer rating'</span><span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7rating-1.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnJhdGluZyA0LjUsIGxhYmVsPSdDdXN0b21lciByYXRpbmcnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnJhdGluZyA0LjUsIGxhYmVsPSdDdXN0b21lciByYXRpbmcnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-rating" role="img" aria-label="Customer rating" width="113.33" height="20" viewbox="0 0 136 24">
+                    <title>
+                      Customer rating
+                    </title>
+                    <path class="rt-star" transform="translate(0)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(28)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(56)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-star" transform="translate(84)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path>
+                    <path class="rt-empty" transform="translate(112)" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#dddcd7"></path><svg x="112" width="12" height="24" viewbox="0 0 12 24">
+                    <path class="rt-star" d="M12 2.3L14.62 9.3L22.08 9.62L16.23 14.28L18.23 21.48L12 17.35L5.77 21.48L7.77 14.28L1.92 9.62L9.38 9.3Z" fill="#e09a00"></path></svg></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-23">
+              <h3>
+                Ratingdistribution
+              </h3>
+              <p class="example-about">
+                A widget rendered by its subsystem.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/widget/ratingdistribution-1.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:ratingdistribution</span> <span class="hl-opt">score</span>=<span class="hl-str">'stars'</span>, <span class="hl-opt">count</span>=<span class="hl-str">'votes'</span><span class="hl-brc">}</span>stars,votes
+<span class="hl-num">5</span>,<span class="hl-num">24</span>
+<span class="hl-num">4</span>,<span class="hl-num">12</span>
+<span class="hl-num">3</span>,<span class="hl-num">3</span>
+<span class="hl-num">2</span>,<span class="hl-num">1</span>
+<span class="hl-num">1</span>,<span class="hl-num">0</span><span class="hl-brc">{</span><span class="hl-tag">/widget:ratingdistribution</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7ratingdistribution-1.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnJhdGluZ2Rpc3RyaWJ1dGlvbiBzY29yZT0nc3RhcnMnLCBjb3VudD0ndm90ZXMnfXN0YXJzLHZvdGVzXG41LDI0XG40LDEyXG4zLDNcbjIsMVxuMSwwey93aWRnZXQ6cmF0aW5nZGlzdHJpYnV0aW9ufVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnJhdGluZ2Rpc3RyaWJ1dGlvbiBzY29yZT0nc3RhcnMnLCBjb3VudD0ndm90ZXMnfXN0YXJzLHZvdGVzXG41LDI0XG40LDEyXG4zLDNcbjIsMVxuMSwwey93aWRnZXQ6cmF0aW5nZGlzdHJpYnV0aW9ufVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <table class="pad-rating-distribution">
+                      <caption>
+                        Ratings — 40 votes, average 4.48 / 5
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">
+                            Score
+                          </th>
+                          <th scope="col">
+                            Distribution
+                          </th>
+                          <th scope="col">
+                            Votes
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">
+                            5
+                          </th>
+                          <td>
+                            <meter min="0" max="40" value="24" aria-label="5 stars: 60%">60%</meter>
+                          </td>
+                          <td>
+                            24
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            4
+                          </th>
+                          <td>
+                            <meter min="0" max="40" value="12" aria-label="4 stars: 30%">30%</meter>
+                          </td>
+                          <td>
+                            12
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            3
+                          </th>
+                          <td>
+                            <meter min="0" max="40" value="3" aria-label="3 stars: 7.5%">7.5%</meter>
+                          </td>
+                          <td>
+                            3
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            2
+                          </th>
+                          <td>
+                            <meter min="0" max="40" value="1" aria-label="2 stars: 2.5%">2.5%</meter>
+                          </td>
+                          <td>
+                            1
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            1
+                          </th>
+                          <td>
+                            <meter min="0" max="40" value="0" aria-label="1 stars: 0%">0%</meter>
+                          </td>
+                          <td>
+                            0
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-24">
+              <h3>
+                Skeleton
+              </h3>
+              <p class="example-about">
+                A widget rendered by its subsystem.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/widget/skeleton-1.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:skeleton</span> <span class="hl-opt">shape</span>=<span class="hl-str">'card'</span>, <span class="hl-opt">lines</span>=<span class="hl-num">3</span>, animate, <span class="hl-opt">label</span>=<span class="hl-str">'Loading article'</span><span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7skeleton-1.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnNrZWxldG9uIHNoYXBlPSdjYXJkJywgbGluZXM9MywgYW5pbWF0ZSwgbGFiZWw9J0xvYWRpbmcgYXJ0aWNsZScvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7d2lkZ2V0OnNrZWxldG9uIHNoYXBlPSdjYXJkJywgbGluZXM9MywgYW5pbWF0ZSwgbGFiZWw9J0xvYWRpbmcgYXJ0aWNsZScvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <div class="pad-skeleton sk-card sk-animate" role="status" aria-label="Loading article" aria-busy="true">
+                      <div aria-hidden="true">
+                        <span class="sk-image"></span>
+                        <div class="sk-row">
+                          <span class="sk-line"></span>
+                        </div>
+                        <div class="sk-row">
+                          <span class="sk-line"></span>
+                        </div>
+                        <div class="sk-row">
+                          <span class="sk-line"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-25">
               <h3>
                 Steps in order
               </h3>
@@ -1424,12 +1902,12 @@
                       </ol>
                       <div class="pad-sortable-live" aria-live="assertive"></div>
                     </div>
-                    <script src="/pad/assets/widgets/sortable.js?v=a7a67bfec8"></script>
+                    <script src="../assets/widgets/sortable.js"></script>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="example" id="example-17">
+            <div class="example" id="example-26">
               <h3>
                 An editor beside its preview
               </h3>
@@ -1478,12 +1956,12 @@ Twelve kettles, from € 29.</pre>
                         </div>
                       </div>
                     </div>
-                    <script src="/pad/assets/widgets/splitpane.js?v=1a73648879"></script>
+                    <script src="../assets/widgets/splitpane.js"></script>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="example" id="example-18">
+            <div class="example" id="example-27">
               <h3>
                 Three tabs
               </h3>
@@ -1554,7 +2032,7 @@ Twelve kettles, from € 29.</pre>
                 </div>
               </div>
             </div>
-            <div class="example" id="example-19">
+            <div class="example" id="example-28">
               <h3>
                 A tab per row
               </h3>
@@ -1614,7 +2092,7 @@ Twelve kettles, from € 29.</pre>
                 </div>
               </div>
             </div>
-            <div class="example" id="example-20">
+            <div class="example" id="example-29">
               <h3>
                 Notices
               </h3>
@@ -1679,7 +2157,7 @@ Twelve kettles, from € 29.</pre>
                 </div>
               </div>
             </div>
-            <div class="example" id="example-21">
+            <div class="example" id="example-30">
               <h3>
                 Tips
               </h3>
@@ -1703,13 +2181,49 @@ VAT <span class="hl-brc">{</span><span class="hl-tag">widget:tooltip</span> <spa
                   <div class="result">
                     <div>
                       The <span class="pad-tooltip pad-tooltip-top"><span class="pad-tooltip-trigger" tabindex="0" aria-describedby="pad-tooltip-fadd3c9b">Starter plan</span><span class="pad-tooltip-tip" role="tooltip" id="pad-tooltip-fadd3c9b">Billed every month, cancel any time</span></span>
-                      <script src="/pad/assets/widgets/tooltip.js?v=04d7568f06"></script> costs € 9 a month, VAT <span class="pad-tooltip pad-tooltip-top"><button type="button" class="pad-tooltip-trigger pad-tooltip-info" aria-describedby="pad-tooltip-2c8780d0" aria-label="More information"><span aria-hidden="true">i</span></button><span class="pad-tooltip-tip" role="tooltip" id="pad-tooltip-2c8780d0">Value added tax: 21% on most goods</span></span> included.
+                      <script src="../assets/widgets/tooltip.js"></script> costs € 9 a month, VAT <span class="pad-tooltip pad-tooltip-top"><button type="button" class="pad-tooltip-trigger pad-tooltip-info" aria-describedby="pad-tooltip-2c8780d0" aria-label="More information"><span aria-hidden="true">i</span></button><span class="pad-tooltip-tip" role="tooltip" id="pad-tooltip-2c8780d0">Value added tax: 21% on most goods</span></span> included.
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="example" id="example-22">
+            <div class="example" id="example-31">
+              <h3>
+                treeview.pad
+              </h3>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span><span class="cell-file">examples/widget/treeview.pad</span></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">format:auto</span> <span class="hl-str">'uiTree'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'json'</span><span class="hl-brc">}</span>[<span class="hl-brc">{</span><span class="hl-str">"id"</span>:<span class="hl-str">"docs"</span>,<span class="hl-str">"label"</span>:<span class="hl-str">"Documentation"</span>,<span class="hl-str">"href"</span>:<span class="hl-str">"#docs"</span><span class="hl-brc">}</span>,<span class="hl-brc">{</span><span class="hl-str">"id"</span>:<span class="hl-str">"start"</span>,<span class="hl-str">"parent"</span>:<span class="hl-str">"docs"</span>,<span class="hl-str">"label"</span>:<span class="hl-str">"Getting started"</span>,<span class="hl-str">"href"</span>:<span class="hl-str">"#start"</span><span class="hl-brc">}</span>]<span class="hl-brc">{</span><span class="hl-tag">/format:auto</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">widget:treeview</span> <span class="hl-opt">data</span>=<span class="hl-str">'uiTree'</span><span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7widget%EA%A4%B7treeview.html">open alone</a><a class="pad-play pad-play-inline" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ3VpVHJlZScsIHR5cGU9J2pzb24nfVt7XCJpZFwiOlwiZG9jc1wiLFwibGFiZWxcIjpcIkRvY3VtZW50YXRpb25cIixcImhyZWZcIjpcIiNkb2NzXCJ9LHtcImlkXCI6XCJzdGFydFwiLFwicGFyZW50XCI6XCJkb2NzXCIsXCJsYWJlbFwiOlwiR2V0dGluZyBzdGFydGVkXCIsXCJocmVmXCI6XCIjc3RhcnRcIn1dey9mb3JtYXQ6YXV0b31cbnt3aWRnZXQ6dHJlZXZpZXcgZGF0YT0ndWlUcmVlJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live pad-play-inline" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ3VpVHJlZScsIHR5cGU9J2pzb24nfVt7XCJpZFwiOlwiZG9jc1wiLFwibGFiZWxcIjpcIkRvY3VtZW50YXRpb25cIixcImhyZWZcIjpcIiNkb2NzXCJ9LHtcImlkXCI6XCJzdGFydFwiLFwicGFyZW50XCI6XCJkb2NzXCIsXCJsYWJlbFwiOlwiR2V0dGluZyBzdGFydGVkXCIsXCJocmVmXCI6XCIjc3RhcnRcIn1dey9mb3JtYXQ6YXV0b31cbnt3aWRnZXQ6dHJlZXZpZXcgZGF0YT0ndWlUcmVlJy99XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a></span>
+                  </div>
+                  <div class="result">
+                    <nav class="pad-treeview" aria-label="Navigation">
+                      <ul>
+                        <li>
+                          <a href="#docs" data-tree-id="docs">Documentation</a>
+                          <ul>
+                            <li>
+                              <a href="#start" data-tree-id="start">Getting started</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </nav>
+                    <script src="../assets/widgets/treeview.js"></script>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="example" id="example-32">
               <h3>
                 An order in steps
               </h3>
@@ -1761,7 +2275,7 @@ VAT <span class="hl-brc">{</span><span class="hl-tag">widget:tooltip</span> <spa
                         </div>
                       </div>
                     </div>
-                    <script src="/pad/assets/widgets/wizard.js?v=b862eb6c5e"></script>
+                    <script src="../assets/widgets/wizard.js"></script>
                   </div>
                 </div>
               </div>
@@ -1773,7 +2287,7 @@ VAT <span class="hl-brc">{</span><span class="hl-tag">widget:tooltip</span> <spa
             </h2>
             <ul class="list">
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7tab.html">{widget:tab}</a> <span class="about">One item of a tabs, accordion, carousel, wizard, lightbox, splitpane or sortable widget: its label and its content, handed to that owner.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7tab.html">{widget:tab}</a> <span class="about">One item of a tabs, accordion, carousel, wizard, lightbox, splitpane or sortable widget: its label and its content, handed to that owner.</span>
               </li>
               <li>
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7copy.html">{widget:copy}</a> <span class="about">The text in a &lt;pre&gt;&lt;code&gt; that selects as a whole with a click, and a button that puts it on the clipboard.</span>
@@ -1782,17 +2296,17 @@ VAT <span class="hl-brc">{</span><span class="hl-tag">widget:tooltip</span> <spa
                 <a class="name" href="index%EF%B9%96tag%EA%A4%B7live.html">{pad:live}</a> <span class="about">A region of the page that re-renders on the server when something in it is clicked, submitted or changed, and swaps itself in.</span>
               </li>
               <li>
-                <a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{input:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7form.html">{input:form}</a> <span class="about">A form that posts back to the page, carrying the session's CSRF token and its own name, its fields refilling when it came back.</span>
               </li>
             </ul>
           </section>
           <nav class="prevnext" aria-label="Other tags">
-            <a href="index%EF%B9%96kind%EA%A4%B7palette%EA%A4%B7ylorrd.html">← palette / ylorrd</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7ajax.html">{pad:ajax} →</a>
+            <a href="index%EF%B9%96kind%EA%A4%B7unit%EA%A4%B7volume.html">← unit / volume</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7array.html">{pad:array} →</a>
           </nav>
         </article>
         <footer class="foot">
           <p>
-            1220 tags and kinds of PAD, with syntax and usage examples. Safe, self-contained examples run here; examples requiring credentials, delivery or application files are shown as source.
+            1373 tags and kinds of PAD, with syntax and usage examples. Safe, self-contained examples run here; examples requiring credentials, delivery or application files are shown as source.
           </p>
         </footer>
       </div>

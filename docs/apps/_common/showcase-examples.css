@@ -1,0 +1,26 @@
+.demo-catalog { margin-block: 2rem; }
+.demo-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:1rem; padding:0; list-style:none; }
+.demo-cards a { display:flex; flex-direction:column; gap:.5rem; height:100%; padding:1rem; border:1px solid var(--line); border-radius:12px; background:var(--panel); color:var(--text); text-decoration:none; }
+.demo-cards a:hover { border-color:var(--accent); }
+.demo-cards span, .demo-example > p { color:var(--soft); }
+.demo-stage { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:1rem; }
+.demo-sources { display:grid; gap:1rem; min-width:0; }
+.demo-cell { min-width:0; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--panel); }
+.demo-heading { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin:0; padding:.75rem 1rem; border-bottom:1px solid var(--line); font-size:1rem; }
+.demo-cell button { font:inherit; cursor:pointer; }
+.demo-cell pre { margin:0; padding:1rem; overflow:auto; background:var(--code); font-size:.85rem; }
+.demo-canvas { padding:1rem; overflow:auto; }
+.demo-pager { display:flex; justify-content:space-between; gap:1rem; margin-block:1.5rem; }
+@media(max-width:900px) { .demo-stage { grid-template-columns:minmax(0,1fr); } }
+.demo-cell .hl-key, .demo-cell .hl-opt, .demo-cell .hl-att { color: light-dark(#1565c0, #7db8ff); }
+.demo-cell .hl-str { color: light-dark(#0a7d32, #a8e07a); }
+.demo-cell .hl-num, .demo-cell .hl-lit { color: light-dark(#b35900, #ffb86b); }
+.demo-cell .hl-pun, .demo-cell .hl-brc { color: light-dark(#6a737d, #8b90a6); }
+.demo-cell .hl-com { color: light-dark(#6a737d, #6c7290); font-style: italic; }
+.demo-cell .hl-tag, .demo-cell .hl-kwd { color: light-dark(#c2185b, #ff7ab2); font-weight: 500; }
+.demo-cell .hl-htm { color: light-dark(#00796b, #5fd4c4); }
+.demo-cell .hl-var { color: light-dark(#8a5a00, #e6c07b); }
+.demo-cell .hl-fn { color: light-dark(#6f42c1, #c3a6ff); }
+.demo-cell .hl-def { color: var(--text); }
+.demo-cell button { border:1px solid var(--line); border-radius:6px; padding:.2rem .65rem; background:var(--code); color:var(--text); }
+.demo-cell button:hover { border-color:var(--accent); }

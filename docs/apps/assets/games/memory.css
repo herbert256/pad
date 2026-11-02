@@ -1,0 +1,6 @@
+.pad-game-memory .mem-grid{--mem-size:72px;display:grid;gap:8px;width:max-content}
+.pad-game-memory .mem-card{width:var(--mem-size);height:var(--mem-size);border:0;border-radius:10px;padding:2px;cursor:pointer;background:repeating-linear-gradient(45deg,var(--pad-game-accent) 0 8px,#3d89e3 8px 16px);color:var(--pad-game-ink);font:600 15px/1.1 system-ui,sans-serif;overflow:hidden;word-break:break-word}
+.pad-game-memory .mem-card .mem-face{font-size:34px}
+.pad-game-memory .mem-card.is-open{background:var(--pad-game-cell);box-shadow:inset 0 0 0 2px var(--pad-game-line)}
+.pad-game-memory .mem-card.is-found{background:var(--pad-game-mark);box-shadow:inset 0 0 0 2px var(--pad-game-good);cursor:default}
+@media (max-width:520px){.pad-game-memory .mem-grid{--mem-size:56px}}

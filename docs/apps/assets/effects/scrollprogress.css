@@ -1,0 +1,10 @@
+.pad-effect-scrollprogress{--pad-effect-size:3px;--pad-effect-ink:var(--pad-effect-accent)}
+.pad-effect-scrollprogress .pe-bar{display:none}
+@media (prefers-reduced-motion:no-preference){
+@supports (animation-timeline:scroll()){
+.pad-effect-scrollprogress .pe-bar{display:block;position:fixed;left:0;right:0;top:0;height:var(--pad-effect-size);background:var(--pad-effect-ink);transform:scaleX(0);transform-origin:0 50%;z-index:2147482000;pointer-events:none;animation:pad-effect-progress linear both;animation-timeline:scroll(root block)}
+.pad-effect-scrollprogress.pe-bottom .pe-bar{top:auto;bottom:0}
+}
+}
+@keyframes pad-effect-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (forced-colors:active){.pad-effect-scrollprogress .pe-bar{background:Highlight}}

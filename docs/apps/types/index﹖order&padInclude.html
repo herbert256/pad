@@ -10,7 +10,7 @@ Variable and expression forms such as <code>&#123;$name&#125;</code> and
 <p>Subsystem kinds selected by options or helpers are listed under
 <a href="index%EF%B9%96groups.html#kinds">Options and helpers</a>.</p>
 <section class="section" id="prefixed">
-  <div class="section-head"><h2>Tag namespaces</h2><span>44 types</span></div>
+  <div class="section-head"><h2>Tag namespaces</h2><span>57 types</span></div>
   <ul class="list">
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7app.html">app:</a> <span class="about">A tag of the application, a file of a _tags/ directory from the page up to the root.</span></li>
@@ -35,7 +35,7 @@ Variable and expression forms such as <code>&#123;$name&#125;</code> and
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7content.html">content:</a> <span class="about">A content store - a piece of template kept by {pad:content} to be shown elsewhere.</span></li>
     
-    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7data.html">data:</a> <span class="about">A data store - rows kept by {pad:data} or a file of _data/ read through the format registry.</span></li>
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7data.html">data:</a> <span class="about">A data store - rows kept by {format:auto} or a file of _data/ read through the format registry.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7local.html">local:</a> <span class="about">A data file of a _data/ directory, read by its file name.</span></li>
     
@@ -67,11 +67,19 @@ Variable and expression forms such as <code>&#123;$name&#125;</code> and
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7sequence.html">sequence:</a> <span class="about">A sequence type of the sequence subsystem, its terms the rows of the tag.</span></li>
     
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7ai.html">ai:</a> <span class="about">Text and validated JSON responses.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7avatar.html">avatar:</a> <span class="about">An identity picture: initials, identicons, rings, mosaic, pixelbot, Gravatar, geometric art or a photograph with a local fallback.</span></li>
+    
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7barcode.html">barcode:</a> <span class="about">A barcode symbology, a file of pad/subs/codes/types/, encoded on the server.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7calendar.html">calendar:</a> <span class="about">A Gregorian calendar view from pad/subs/calendars/types/ - days, weeks, months, quarters, years and agendas.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7chart.html">chart:</a> <span class="about">A chart type, a file of pad/subs/charts/types/, drawn as inline SVG.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7diagram.html">diagram:</a> <span class="about">A diagram type, a file of pad/subs/diagrams/types/, laid out on the server.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7diff.html">diff:</a> <span class="about">A comparison of texts, JSON or keyed records from pad/subs/diffs/types/.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7effect.html">effect:</a> <span class="about">An effect, a file of pad/subs/widgets/effects/types/ - motion and decoration, CSS first, still under reduced motion.</span></li>
     
@@ -79,13 +87,21 @@ Variable and expression forms such as <code>&#123;$name&#125;</code> and
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7fake.html">fake:</a> <span class="about">A fake kind, a file of pad/subs/fakes/types/ - the same values for the same seed, never bare.</span></li>
     
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7format.html">format:</a> <span class="about">Read documents into named data stores.</span></li>
+    
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7game.html">game:</a> <span class="about">A game, a file of pad/subs/games/types/, played in the browser.</span></li>
     
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7holidays.html">holidays:</a> <span class="about">Country and regional public holidays.</span></li>
+    
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7icon.html">icon:</a> <span class="about">An icon, a file of pad/subs/icons/types/, drawn as inline SVG - never bare.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7image.html">image:</a> <span class="about">Local images as thumbnails, responsive pictures, captioned figures or contact sheets.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7input.html">input:</a> <span class="about">A rich form field, a file of pad/subs/inputs/types/, posted by any form.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7jsonld.html">jsonld:</a> <span class="about">A JSON-LD kind, a file of pad/subs/jsonld/types/ - the structured data of a page as a Schema.org object, never bare.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7map.html">map:</a> <span class="about">Choropleths, markers and proportional bubbles.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7notation.html">notation:</a> <span class="about">A notation, a file of pad/subs/notations/types/ - a formula, a tune, a word or a position drawn on the server.</span></li>
     
@@ -93,9 +109,19 @@ Variable and expression forms such as <code>&#123;$name&#125;</code> and
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7printable.html">printable:</a> <span class="about">A printable, a file of pad/subs/printables/types/ - pages made for paper, the same on the screen, printed and as a PDF, never bare.</span></li>
     
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7search.html">search:</a> <span class="about">Ranked search, exact filters and facets.</span></li>
+    
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7section.html">section:</a> <span class="about">A section of a landing page, a file of pad/subs/widgets/sections/types/ - pure CSS, coloured by the theme, never bare.</span></li>
     
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7sheet.html">sheet:</a> <span class="about">Formula grids computed on the server.</span></li>
+    
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7sound.html">sound:</a> <span class="about">A sound, a file of pad/subs/sounds/types/ - a recipe the browser plays and the server writes as a WAV, never bare.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7table.html">table:</a> <span class="about">A table of rows, grouped records, a pivot or a matrix from pad/subs/tables/types/.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7time.html">time:</a> <span class="about">Time displays from pad/subs/calendars/times/types/ - countdown, relative time, world clocks and stopwatches.</span></li>
+    
+    <li><a class="name" href="index%EF%B9%96type%EA%A4%B7timeline.html">timeline:</a> <span class="about">Event views from pad/subs/charts/timelines/types/ - horizontal, vertical, roadmap and swimlane.</span></li>
     
     <li><a class="name" href="index%EF%B9%96type%EA%A4%B7toy.html">toy:</a> <span class="about">A toy, a file of pad/subs/games/toys/types/ - a live simulation in the browser.</span></li>
     

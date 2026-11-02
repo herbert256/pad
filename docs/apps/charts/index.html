@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../_common/brand.css">
     <script src="../_common/pad.js"></script>
     <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/showcase-examples.css">
+    <script src="../_common/showcase-examples.js" defer></script>
     <link rel="stylesheet" href="charts.css">
     <script src="charts.js" defer></script>
     <style>
@@ -26,6 +28,15 @@
     </style>
     <style>
     :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
     </style>
     <style>
     :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
@@ -65,6 +76,9 @@
     </style>
     <style>
     :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}.pc-lk5{--pad-chart-series:#eb6834;--pad-chart-2:#f5c1ab;--pad-chart-3:#c8c7c4;--pad-chart-4:#a8c7ec;--pad-chart-5:#2a78d6;}@supports (color:light-dark(#000,#fff)){.pc-lk5{--pad-chart-series:light-dark(#eb6834,#d95926);--pad-chart-2:light-dark(#f5c1ab,#66331e);--pad-chart-3:light-dark(#c8c7c4,#4c4b48);--pad-chart-4:light-dark(#a8c7ec,#26466b);--pad-chart-5:light-dark(#2a78d6,#3987e5);}}
+    </style>
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
     </style>
     <style>
     :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
@@ -307,28 +321,28 @@
                   <div class="pad-brand-group">
                     <div class="pad-brand-head">
                       Showcases
-                    </div><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    </div><a href="../calendars/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-calendar" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3.5" y="5" width="17" height="15" rx="2"></rect>
+                    <path d="M3.5 10h17M8 3v4M16 3v4"></path></svg><span><b>calendars</b><small>Date views, clocks and countdowns</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
-                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Charts and timelines, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
-                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games played in the browser</small></span></a><a href="../toys/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg><span><b>toys</b><small>Live simulations to play with</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games, puzzles and live simulations</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
-                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="/pad/notations/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="../notations/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M9 18V5.5l11-2V16"></path>
                     <circle cx="6.5" cy="18" r="2.5"></circle>
-                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="/pad/patterns/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
-                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
-                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
-                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>patterns</b><small>Seeded SVG patterns and image filters</small></span></a><a href="/pad/sheets/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="../images/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-image" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <circle cx="8.5" cy="9.5" r="1.5"></circle>
+                    <path d="M4 18l5-5 4 4 2.5-2.5L20 18"></path></svg><span><b>images</b><small>Pictures, avatars, patterns and filters</small></span></a><a href="../tables/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>sheets</b><small>Spreadsheets computed on the server</small></span></a><a href="/pad/sections/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>tables</b><small>Data tables, spreadsheets and formulas</small></span></a><a href="../widgets/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                    <path d="M3 9h18M9 9v11"></path></svg><span><b>sections</b><small>Landing-page sections, effects, themes, palettes</small></span></a><a href="/pad/printables/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>widgets</b><small>Page components, sections, effects and colours</small></span></a><a href="../printables/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
-                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="/pad/sounds/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="../sounds/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
                     <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
                   </div>
@@ -392,13 +406,13 @@
         <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> All charts</a>
         <div class="frame-head">
           Line
-        </div><a href="index%EF%B9%96line%EA%A4%B7visits.html">Website visits</a> <a href="index%EF%B9%96line%EA%A4%B7temperatures.html">Temperatures in three cities</a> <a href="index%EF%B9%96line%EA%A4%B7shares.html">A share price over a year</a>
+        </div><a href="index%EF%B9%96line%EA%A4%B7visits.html">Website visits</a> <a href="index%EF%B9%96line%EA%A4%B7temperatures.html">Temperatures in three cities</a> <a href="index%EF%B9%96line%EA%A4%B7shares.html">A share price over a year</a> <a href="index%EF%B9%96slope%EA%A4%B7periods.html">Two periods compared</a> <a href="index%EF%B9%96bump%EA%A4%B7seasons.html">Ranks through the seasons</a>
         <div class="frame-head">
           Area & stream
-        </div><a href="index%EF%B9%96area%EA%A4%B7energy.html">Electricity by source</a> <a href="index%EF%B9%96area%EA%A4%B7devices.html">Visits by device</a> <a href="index%EF%B9%96area%EA%A4%B7music.html">Two years of listening</a> <a href="index%EF%B9%96area%EA%A4%B7cities.html">Temperatures in nine cities</a>
+        </div><a href="index%EF%B9%96area%EA%A4%B7energy.html">Electricity by source</a> <a href="index%EF%B9%96area%EA%A4%B7devices.html">Visits by device</a> <a href="index%EF%B9%96area%EA%A4%B7music.html">Two years of listening</a> <a href="index%EF%B9%96area%EA%A4%B7cities.html">Temperatures in nine cities</a> <a href="index%EF%B9%96horizon%EA%A4%B7deviations.html">Positive and negative departures</a>
         <div class="frame-head">
           Bars
-        </div><a href="index%EF%B9%96bars%EA%A4%B7sales.html">Sales per month</a> <a href="index%EF%B9%96bars%EA%A4%B7channels.html">Online against the shop</a> <a href="index%EF%B9%96bars%EA%A4%B7energy.html">The energy mix per year</a> <a href="index%EF%B9%96bars%EA%A4%B7profit.html">Profit and loss</a> <a href="index%EF%B9%96bars%EA%A4%B7languages.html">The most spoken languages</a> <a href="index%EF%B9%96bars%EA%A4%B7survey.html">A survey, answer by answer</a> <a href="index%EF%B9%96bars%EA%A4%B7waterfall.html">From revenue to profit</a> <a href="index%EF%B9%96bars%EA%A4%B7promoters.html">Net promoter score, a year apart</a> <a href="index%EF%B9%96bars%EA%A4%B7course.html">A course, rated by its students</a>
+        </div><a href="index%EF%B9%96bars%EA%A4%B7sales.html">Sales per month</a> <a href="index%EF%B9%96bars%EA%A4%B7channels.html">Online against the shop</a> <a href="index%EF%B9%96bars%EA%A4%B7energy.html">The energy mix per year</a> <a href="index%EF%B9%96bars%EA%A4%B7profit.html">Profit and loss</a> <a href="index%EF%B9%96bars%EA%A4%B7languages.html">The most spoken languages</a> <a href="index%EF%B9%96bars%EA%A4%B7survey.html">A survey, answer by answer</a> <a href="index%EF%B9%96bars%EA%A4%B7waterfall.html">From revenue to profit</a> <a href="index%EF%B9%96bars%EA%A4%B7promoters.html">Net promoter score, a year apart</a> <a href="index%EF%B9%96bars%EA%A4%B7course.html">A course, rated by its students</a> <a href="index%EF%B9%96pareto%EA%A4%B7contributions.html">The causes behind the total</a>
         <div class="frame-head">
           Funnel & pyramid
         </div><a href="index%EF%B9%96funnel%EA%A4%B7shop.html">A web shop funnel</a> <a href="index%EF%B9%96funnel%EA%A4%B7population.html">A population pyramid</a> <a href="index%EF%B9%96funnel%EA%A4%B7food.html">A food pyramid</a>
@@ -450,6 +464,9 @@
         <div class="frame-head">
           Sparkline
         </div><a href="index%EF%B9%96sparkline%EA%A4%B7stocks.html">Shares in a table</a>
+        <div class="frame-head">
+          Timeline
+        </div><a href="index%EF%B9%96examples%EA%A4%B7timeline%EA%A4%B7php.html">Twenty years of PHP</a> <a href="index%EF%B9%96examples%EA%A4%B7timeline%EA%A4%B7project.html">A project plan</a> <a href="index%EF%B9%96examples%EA%A4%B7timeline%EA%A4%B7space.html">The space age</a>
       </nav>
     </aside>
     <main class="frame-main">
@@ -496,6 +513,9 @@
               <option value="paper">
                 Paper
               </option>
+              <option value="projection">
+                Projection
+              </option>
               <option value="readable">
                 Readable
               </option>
@@ -528,10 +548,10 @@
               </p>
               <ul class="stats">
                 <li>
-                  <b>51</b> kinds
+                  <b>55</b> kinds
                 </li>
                 <li>
-                  <b>75</b> examples
+                  <b>79</b> examples
                 </li>
                 <li>
                   <b>0</b> lines of JavaScript
@@ -1189,7 +1209,188 @@
                   Dec: 261.8
                 </title>
               </circle>
-              <line class="pc-axis" x1="30" x2="630" y1="316" y2="316"></line></svg></span> <span class="card-body"><span class="card-title">A share price over a year</span> <span class="card-text">Twelve months of a stock, from a YAML file.</span></span></a>
+              <line class="pc-axis" x1="30" x2="630" y1="316" y2="316"></line></svg></span> <span class="card-body"><span class="card-title">A share price over a year</span> <span class="card-text">Twelve months of a stock, from a YAML file.</span></span></a> <a class="card" href="index%EF%B9%96slope%EA%A4%B7periods.html"><span class="card-chart"><svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-slope" role="img" aria-labelledby="pad-chart-dc23c345-title pad-chart-dc23c345-desc" width="600" height="300" viewbox="0 0 600 300">
+              <title id="pad-chart-dc23c345-title">
+                Slope comparison
+              </title>
+              <desc id="pad-chart-dc23c345-desc">
+                North: before 40, after 70; South: before 70, after 48; West: before 40, after 42; East: before missing, after 55
+              </desc>
+              <text x="150" y="16" text-anchor="middle">
+                before
+              </text>
+              <line class="pc-axis" x1="150" x2="150" y1="30" y2="275"></line>
+              <text x="450" y="16" text-anchor="middle">
+                after
+              </text>
+              <line class="pc-axis" x1="450" x2="450" y1="30" y2="275"></line>
+              <path class="pc-l1" fill="none" stroke-width="2" d="M150,275L450,30">
+                <title>
+                  North: before 40, after 70
+                </title>
+              </path>
+              <circle class="pc-c1" cx="150" cy="275" r="3"></circle>
+              <line class="pc-l1" x1="150" y1="275" x2="142" y2="257"></line>
+              <text x="142" y="261" text-anchor="end">
+                North 40
+                <title>
+                  North 40
+                </title>
+              </text>
+              <circle class="pc-c1" cx="450" cy="30" r="3"></circle>
+              <line class="pc-l1" x1="450" y1="30" x2="458" y2="30"></line>
+              <text x="458" y="34" text-anchor="start">
+                North 70
+                <title>
+                  North 70
+                </title>
+              </text>
+              <path class="pc-l2" fill="none" stroke-width="2" d="M150,30L450,209.7">
+                <title>
+                  South: before 70, after 48
+                </title>
+              </path>
+              <circle class="pc-c2" cx="150" cy="30" r="3"></circle>
+              <line class="pc-l2" x1="150" y1="30" x2="142" y2="30"></line>
+              <text x="142" y="34" text-anchor="end">
+                South 70
+                <title>
+                  South 70
+                </title>
+              </text>
+              <circle class="pc-c2" cx="450" cy="209.7" r="3"></circle>
+              <line class="pc-l2" x1="450" y1="209.7" x2="458" y2="209.7"></line>
+              <text x="458" y="213.7" text-anchor="start">
+                South 48
+                <title>
+                  South 48
+                </title>
+              </text>
+              <path class="pc-l3" fill="none" stroke-width="2" d="M150,275L450,258.7">
+                <title>
+                  West: before 40, after 42
+                </title>
+              </path>
+              <circle class="pc-c3" cx="150" cy="275" r="3"></circle>
+              <line class="pc-l3" x1="150" y1="275" x2="142" y2="275"></line>
+              <text x="142" y="279" text-anchor="end">
+                West 40
+                <title>
+                  West 40
+                </title>
+              </text>
+              <circle class="pc-c3" cx="450" cy="258.7" r="3"></circle>
+              <line class="pc-l3" x1="450" y1="258.7" x2="458" y2="258.7"></line>
+              <text x="458" y="262.7" text-anchor="start">
+                West 42
+                <title>
+                  West 42
+                </title>
+              </text>
+              <circle class="pc-c4" cx="450" cy="152.5" r="3"></circle>
+              <line class="pc-l4" x1="450" y1="152.5" x2="458" y2="152.5"></line>
+              <text x="458" y="156.5" text-anchor="start">
+                East 55
+                <title>
+                  East 55
+                </title>
+              </text></svg></span> <span class="card-body"><span class="card-title">Two periods compared</span> <span class="card-text">slope: endpoint values with labels kept apart; an unpaired value remains a dot.</span></span></a> <a class="card" href="index%EF%B9%96bump%EA%A4%B7seasons.html"><span class="card-chart"><svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-bump" role="img" aria-labelledby="pad-chart-1a2b71a4-title pad-chart-1a2b71a4-desc" width="600" height="300" viewbox="0 0 600 300">
+              <title id="pad-chart-1a2b71a4-title">
+                Rank changes
+              </title>
+              <desc id="pad-chart-1a2b71a4-desc">
+                North: spring: rank 1 (34), summer: rank 2 (20), autumn: rank 2 (41); South: spring: rank 1 (34), summer: rank 1 (32), autumn: rank 3 (39); West: spring: rank 3 (21), summer: missing, autumn: rank 1 (42)
+              </desc>
+              <g class="pc-key">
+                <rect class="pc-c1" x="12" y="6" width="10" height="10" rx="2"></rect>
+                <text x="26" y="15">
+                  North
+                </text>
+                <rect class="pc-c2" x="70.5" y="6" width="10" height="10" rx="2"></rect>
+                <text x="84.5" y="15">
+                  South
+                </text>
+                <rect class="pc-c3" x="129" y="6" width="10" height="10" rx="2"></rect>
+                <text x="143" y="15">
+                  West
+                </text>
+              </g>
+              <line class="pc-grid" x1="35" x2="575" y1="41" y2="41"></line>
+              <text x="28" y="45" text-anchor="end">
+                1
+              </text>
+              <line class="pc-grid" x1="35" x2="575" y1="156.5" y2="156.5"></line>
+              <text x="28" y="160.5" text-anchor="end">
+                2
+              </text>
+              <line class="pc-grid" x1="35" x2="575" y1="272" y2="272"></line>
+              <text x="28" y="276" text-anchor="end">
+                3
+              </text>
+              <text x="35" y="292" text-anchor="middle">
+                spring
+              </text>
+              <text x="305" y="292" text-anchor="middle">
+                summer
+              </text>
+              <text x="575" y="292" text-anchor="middle">
+                autumn
+              </text>
+              <path class="pc-l1" fill="none" stroke-width="2" d="M35,41L305,156.5L575,156.5">
+                <title>
+                  North: spring: rank 1 (34), summer: rank 2 (20), autumn: rank 2 (41)
+                </title>
+              </path>
+              <circle class="pc-c1" cx="35" cy="41" r="3">
+                <title>
+                  North, spring: rank 1, value 34
+                </title>
+              </circle>
+              <circle class="pc-c1" cx="305" cy="156.5" r="3">
+                <title>
+                  North, summer: rank 2, value 20
+                </title>
+              </circle>
+              <circle class="pc-c1" cx="575" cy="156.5" r="3">
+                <title>
+                  North, autumn: rank 2, value 41
+                </title>
+              </circle>
+              <path class="pc-l2" fill="none" stroke-width="2" d="M35,41L305,41L575,272">
+                <title>
+                  South: spring: rank 1 (34), summer: rank 1 (32), autumn: rank 3 (39)
+                </title>
+              </path>
+              <circle class="pc-c2" cx="35" cy="41" r="3">
+                <title>
+                  South, spring: rank 1, value 34
+                </title>
+              </circle>
+              <circle class="pc-c2" cx="305" cy="41" r="3">
+                <title>
+                  South, summer: rank 1, value 32
+                </title>
+              </circle>
+              <circle class="pc-c2" cx="575" cy="272" r="3">
+                <title>
+                  South, autumn: rank 3, value 39
+                </title>
+              </circle>
+              <path class="pc-l3" fill="none" stroke-width="2" d="M35,272M575,41">
+                <title>
+                  West: spring: rank 3 (21), summer: missing, autumn: rank 1 (42)
+                </title>
+              </path>
+              <circle class="pc-c3" cx="35" cy="272" r="3">
+                <title>
+                  West, spring: rank 3, value 21
+                </title>
+              </circle>
+              <circle class="pc-c3" cx="575" cy="41" r="3">
+                <title>
+                  West, autumn: rank 1, value 42
+                </title>
+              </circle></svg></span> <span class="card-body"><span class="card-title">Ranks through the seasons</span> <span class="card-text">bump: competition ranks preserve ties, and missing values break the line.</span></span></a>
             </div>
           </section>
           <section class="family" id="area">
@@ -2476,7 +2677,42 @@
                 <title>
                   Cape Town · Dec: 21
                 </title>
-              </circle></svg></span> <span class="card-body"><span class="card-title">Temperatures in nine cities</span> <span class="card-text">multiples: a small chart per city, all on one scale, in a grid.</span></span></a>
+              </circle></svg></span> <span class="card-body"><span class="card-title">Temperatures in nine cities</span> <span class="card-text">multiples: a small chart per city, all on one scale, in a grid.</span></span></a> <a class="card" href="index%EF%B9%96horizon%EA%A4%B7deviations.html"><span class="card-chart"><svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-horizon" role="img" aria-labelledby="pad-chart-77cad963-title pad-chart-77cad963-desc" width="600" height="300" viewbox="0 0 600 300">
+              <title id="pad-chart-77cad963-title">
+                Horizon series
+              </title>
+              <desc id="pad-chart-77cad963-desc">
+                Band width 10; 3 bands; positive color 1, negative color 2; values above range clipped; Mon: north 4, south -16; Tue: north 24, south -8; Wed: north -13, south 9; Thu: north -28, south 19; Fri: north 8, south 27
+              </desc>
+              <text x="8" y="15">
+                Each band: 10; color 1 + / color 2 −
+              </text>
+              <text x="79" y="91.3" text-anchor="end">
+                north
+              </text>
+              <line class="pc-grid" x1="85" x2="585" y1="147.5" y2="147.5"></line>
+              <path class="pc-c1" opacity="0.5" d="M85,147.5L85,102.5L122.5,35L210,35L257.3,35L291.1,147.5L335,147.5L460,147.5L557.2,147.5L585,57.5L585,147.5Z"></path>
+              <path class="pc-c1" opacity="0.8" d="M85,147.5L85,147.5L122.5,147.5L185,35L210,35L223.5,35L257.3,147.5L335,147.5L460,147.5L585,147.5L585,147.5Z"></path>
+              <path class="pc-c1" opacity="1" d="M85,147.5L85,147.5L185,147.5L210,102.5L223.5,147.5L335,147.5L460,147.5L585,147.5L585,147.5Z"></path>
+              <path class="pc-c2" opacity="0.5" d="M85,147.5L85,147.5L210,147.5L291.1,147.5L324.9,35L335,35L460,35L522.5,35L557.2,147.5L585,147.5L585,147.5Z"></path>
+              <path class="pc-c2" opacity="0.8" d="M85,147.5L85,147.5L210,147.5L324.9,147.5L335,113.8L393.3,35L460,35L487.8,35L522.5,147.5L585,147.5L585,147.5Z"></path>
+              <path class="pc-c2" opacity="1" d="M85,147.5L85,147.5L210,147.5L335,147.5L393.3,147.5L460,57.5L487.8,147.5L585,147.5L585,147.5Z"></path>
+              <text x="79" y="213.8" text-anchor="end">
+                south
+              </text>
+              <line class="pc-grid" x1="85" x2="585" y1="270" y2="270"></line>
+              <path class="pc-c1" opacity="0.5" d="M85,270L85,270L210,270L268.8,270L335,168.8L347.5,157.5L460,157.5L585,157.5L585,270Z"></path>
+              <path class="pc-c1" opacity="0.8" d="M85,270L85,270L210,270L335,270L347.5,270L460,168.8L475.6,157.5L585,157.5L585,270Z"></path>
+              <path class="pc-c1" opacity="1" d="M85,270L85,270L210,270L335,270L460,270L475.6,270L585,191.3L585,270Z"></path>
+              <path class="pc-c2" opacity="0.5" d="M85,270L85,157.5L178.8,157.5L210,180L268.8,270L335,270L460,270L585,270L585,270Z"></path>
+              <path class="pc-c2" opacity="0.8" d="M85,270L85,202.5L178.8,270L210,270L335,270L460,270L585,270L585,270Z"></path>
+              <path class="pc-c2" opacity="1" d="M85,270L85,270L210,270L335,270L460,270L585,270L585,270Z"></path>
+              <text x="85" y="295" text-anchor="start">
+                Mon
+              </text>
+              <text x="585" y="295" text-anchor="end">
+                Fri
+              </text></svg></span> <span class="card-body"><span class="card-title">Positive and negative departures</span> <span class="card-text">horizon: signed values fold into three colour bands, one compact row per series.</span></span></a>
             </div>
           </section>
           <section class="family" id="bars">
@@ -3702,7 +3938,84 @@
                 <title>
                   The reading was useful · Strongly agree: 9 of 117, 7.7%
                 </title>
-              </rect></svg></span> <span class="card-body"><span class="card-title">A course, rated by its students</span> <span class="card-text">likert: five answers from strongly disagree to strongly agree, centred on neutral and ranked by agreement - no answer left out.</span></span></a>
+              </rect></svg></span> <span class="card-body"><span class="card-title">A course, rated by its students</span> <span class="card-text">likert: five answers from strongly disagree to strongly agree, centred on neutral and ranked by agreement - no answer left out.</span></span></a> <a class="card" href="index%EF%B9%96pareto%EA%A4%B7contributions.html"><span class="card-chart"><svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-pareto" role="img" aria-labelledby="pad-chart-f8da2bfd-title pad-chart-f8da2bfd-desc" width="600" height="300" viewbox="0 0 600 300">
+              <title id="pad-chart-f8da2bfd-title">
+                Pareto contributions
+              </title>
+              <desc id="pad-chart-f8da2bfd-desc">
+                Negative and missing contributions omitted: 0; Delivery: 48, cumulative 48%; Payment: 24, cumulative 72%; Stock: 24, cumulative 96%; Other: 4, cumulative 100%
+              </desc>
+              <line class="pc-grid" x1="55" x2="555" y1="254" y2="254"></line>
+              <text x="50" y="258" text-anchor="end">
+                0
+              </text>
+              <text x="560" y="258">
+                0%
+              </text>
+              <line class="pc-grid" x1="55" x2="555" y1="196.5" y2="196.5"></line>
+              <text x="50" y="200.5" text-anchor="end">
+                12
+              </text>
+              <text x="560" y="200.5">
+                25%
+              </text>
+              <line class="pc-grid" x1="55" x2="555" y1="139" y2="139"></line>
+              <text x="50" y="143" text-anchor="end">
+                24
+              </text>
+              <text x="560" y="143">
+                50%
+              </text>
+              <line class="pc-grid" x1="55" x2="555" y1="81.5" y2="81.5"></line>
+              <text x="50" y="85.5" text-anchor="end">
+                36
+              </text>
+              <text x="560" y="85.5">
+                75%
+              </text>
+              <line class="pc-grid" x1="55" x2="555" y1="24" y2="24"></line>
+              <text x="50" y="28" text-anchor="end">
+                48
+              </text>
+              <text x="560" y="28">
+                100%
+              </text>
+              <rect class="pc-c1" x="56" y="24" width="123" height="230">
+                <title>
+                  Delivery: 48, cumulative 48%
+                </title>
+              </rect>
+              <text x="117.5" y="270" text-anchor="middle">
+                Delivery
+              </text>
+              <rect class="pc-c1" x="181" y="139" width="123" height="115">
+                <title>
+                  Payment: 24, cumulative 72%
+                </title>
+              </rect>
+              <text x="242.5" y="270" text-anchor="middle">
+                Payment
+              </text>
+              <rect class="pc-c1" x="306" y="139" width="123" height="115">
+                <title>
+                  Stock: 24, cumulative 96%
+                </title>
+              </rect>
+              <text x="367.5" y="270" text-anchor="middle">
+                Stock
+              </text>
+              <rect class="pc-c1" x="431" y="234.8" width="123" height="19.2">
+                <title>
+                  Other: 4, cumulative 100%
+                </title>
+              </rect>
+              <text x="492.5" y="270" text-anchor="middle">
+                Other
+              </text>
+              <path class="pc-l2" d="M117.5,143.6L242.5,88.4L367.5,33.2L492.5,24" fill="none" stroke-width="2"></path>
+              <text x="55" y="295">
+                Contribution / cumulative percentage
+              </text></svg></span> <span class="card-body"><span class="card-title">The causes behind the total</span> <span class="card-text">pareto: bars sorted by contribution, with a cumulative share reaching 100 percent.</span></span></a>
             </div>
           </section>
           <section class="family" id="funnel">
@@ -16667,6 +16980,25 @@
             </div>
           </section>
         </div>
+        <section class="demo-catalog" aria-label="Examples">
+          <h2>
+            Timeline
+          </h2>
+          <p>
+            Events on a time axis - cards above and below, spans as bars, or a column for long lists
+          </p>
+          <ul class="demo-cards">
+            <li>
+              <a href="index%EF%B9%96examples%EA%A4%B7timeline%EA%A4%B7php.html"><strong>Twenty years of PHP</strong><span>The vertical form for a long list - dates on the left, cards on the right - the rows as JSON between the tags.</span></a>
+            </li>
+            <li>
+              <a href="index%EF%B9%96examples%EA%A4%B7timeline%EA%A4%B7project.html"><strong>A project plan</strong><span>Spans from= and to= drawn as bars under a month axis, milestones as cards, coloured by kind with a legend - the rows from the page's PHP.</span></a>
+            </li>
+            <li>
+              <a href="index%EF%B9%96examples%EA%A4%B7timeline%EA%A4%B7space.html"><strong>The space age</strong><span>Ten moments on a time axis with round year ticks - the cards alternate above and below and step outward where they would collide.</span></a>
+            </li>
+          </ul>
+        </section>
       </div>
     </main>
   </body>

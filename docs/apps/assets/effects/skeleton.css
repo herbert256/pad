@@ -1,0 +1,19 @@
+.pad-effect-skeleton{--pad-effect-height:160px;--pad-effect-size:48px;--pad-effect-bone:color-mix(in srgb,var(--pad-effect-text) 11%,transparent);--pad-effect-sheen:color-mix(in srgb,var(--pad-effect-text) 4%,transparent);display:block}
+.pad-effect-skeleton .pe-bones,.pad-effect-skeleton .pe-lines{display:flex;flex-direction:column;gap:.65em}
+.pad-effect-skeleton .pe-bone{display:block;flex:none;border-radius:.3em;background:var(--pad-effect-bone)}
+.pad-effect-skeleton .pe-line{height:.8em;width:100%}
+.pad-effect-skeleton .pe-line:nth-child(4n+2){width:94%}
+.pad-effect-skeleton .pe-line:nth-child(4n+3){width:97%}
+.pad-effect-skeleton .pe-line:nth-child(4n){width:89%}
+.pad-effect-skeleton .pe-line:last-child:not(:first-child){width:62%}
+.pad-effect-skeleton .pe-title{height:1.15em;width:55%}
+.pad-effect-skeleton .pe-picture{width:100%;height:var(--pad-effect-height);border-radius:.5em}
+.pad-effect-skeleton .pe-circle{width:var(--pad-effect-size);height:var(--pad-effect-size);border-radius:50%}
+.pad-effect-skeleton.pe-avatar .pe-bones{display:block}
+.pad-effect-skeleton.pe-media .pe-bones{flex-direction:row;align-items:flex-start;gap:.9em}
+.pad-effect-skeleton.pe-media .pe-lines{flex:1 1 auto;min-width:0;padding-top:.15em}
+@media (prefers-reduced-motion:no-preference){
+.pad-effect-skeleton .pe-bone{background:linear-gradient(90deg,var(--pad-effect-bone) 0 35%,var(--pad-effect-sheen) 50%,var(--pad-effect-bone) 65% 100%) 100% 0/300% 100% no-repeat;animation:pad-effect-bones 1.6s ease-in-out infinite}
+}
+@keyframes pad-effect-bones{to{background-position:0 0}}
+@media (forced-colors:active){.pad-effect-skeleton .pe-bone{background:none;border:1px solid GrayText}}

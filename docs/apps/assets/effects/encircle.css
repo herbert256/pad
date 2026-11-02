@@ -1,0 +1,15 @@
+@property --pad-effect-sweep{syntax:'\3c angle\3e ';inherits:false;initial-value:400deg}
+.pad-effect-encircle{--pad-effect-ink:var(--pad-effect-accent2);--pad-effect-thick:2px;--pad-effect-from:225deg;position:relative;display:inline-block;margin:0 .12em}
+.pad-effect-encircle.pe-box{--pad-effect-from:300deg}
+.pad-effect-encircle .pe-ring{position:absolute;left:calc(-7% - .35em);top:-.4em;width:calc(114% + .7em);height:calc(100% + .8em);overflow:visible;pointer-events:none;fill:none;stroke:var(--pad-effect-ink);stroke-width:var(--pad-effect-thick);stroke-linecap:round;stroke-linejoin:round;-webkit-mask-image:conic-gradient(from var(--pad-effect-from),#000 var(--pad-effect-sweep),transparent 0);mask-image:conic-gradient(from var(--pad-effect-from),#000 var(--pad-effect-sweep),transparent 0)}
+.pad-effect-encircle.pe-box .pe-ring{left:-.3em;top:-.15em;width:calc(100% + .6em);height:calc(100% + .3em)}
+.pad-effect-encircle .pe-ring path{vector-effect:non-scaling-stroke}
+.pad-effect-encircle.pe-hover .pe-ring{--pad-effect-sweep:0deg}
+.pad-effect-encircle.pe-hover:hover .pe-ring,.pad-effect-encircle.pe-hover:focus-within .pe-ring{--pad-effect-sweep:400deg}
+@media (prefers-reduced-motion:no-preference){
+.pad-effect-encircle .pe-ring{animation:pad-effect-ring var(--pad-effect-duration) cubic-bezier(.45,.1,.35,1) var(--pad-effect-delay) both}
+@supports (animation-timeline:view()){.pad-effect-encircle.pe-scroll .pe-ring{animation:pad-effect-ring linear both;animation-timeline:view();animation-range:entry 0% entry 100%}}
+.pad-effect-encircle.pe-hover .pe-ring{animation:none;transition:--pad-effect-sweep var(--pad-effect-duration) cubic-bezier(.45,.1,.35,1)}
+}
+@keyframes pad-effect-ring{from{--pad-effect-sweep:0deg}to{--pad-effect-sweep:400deg}}
+@media (forced-colors:active){.pad-effect-encircle .pe-ring{stroke:CanvasText}}

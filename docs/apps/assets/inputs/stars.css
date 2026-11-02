@@ -1,0 +1,14 @@
+fieldset.pad-input-stars{border:0;padding:0;min-width:0}
+.pad-input-stars legend{padding:0;margin:0 0 .3em;font-weight:600}
+.pad-input-stars .pi-stars{display:inline-flex;align-items:center;vertical-align:middle;margin-right:.5em}
+.pad-input-stars .pi-star-input{position:absolute;width:1px;height:1px;margin:0;opacity:0;pointer-events:none}
+.pad-input-stars .pi-star{cursor:pointer;padding:0 .08em;font-size:1.7em;line-height:1;color:var(--pad-input-line)}
+.pad-input-stars .pi-star::before{content:"\2605"}
+.pad-input-stars .pi-stars:has(:checked) .pi-star{color:var(--pad-input-star)}
+.pad-input-stars .pi-star-input:checked+.pi-star~.pi-star{color:var(--pad-input-line)}
+.pad-input-stars .pi-stars:hover .pi-star.pi-star{color:var(--pad-input-star)}
+.pad-input-stars .pi-stars .pi-star:hover~.pi-star.pi-star{color:var(--pad-input-line)}
+.pad-input-stars .pi-star-input:focus-visible+.pi-star{outline:2px solid var(--pad-input-accent);outline-offset:1px;border-radius:4px}
+.pad-input-stars .pi-star-input:disabled+.pi-star{cursor:default;opacity:.5}
+.pad-input-stars .pi-star-input[aria-invalid=true]+.pi-star{text-shadow:0 0 0 var(--pad-input-bad)}
+@media (forced-colors:active){.pad-input-stars .pi-star{color:CanvasText}.pad-input-stars .pi-star-input:checked+.pi-star{color:Highlight}}

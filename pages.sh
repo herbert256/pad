@@ -53,14 +53,13 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
   $origin = $parts ['scheme'] . '://' . $parts ['host'] . ( isset ( $parts ['port'] ) ? ':' . $parts ['port'] : '' );
   $root   = $parts ['path'] ?? '/';
 
-  // The applications whose pages and files are copied - and _common, which has no pages:
-  // the stylesheets and scripts of the frame and of the brand every application shows top
-  // left (www/_common/), which stayed links to the server, so on the copy no frame and no
-  // brand had its styles.
+  // The applications whose pages and files are copied, plus the shared frame assets
+  // in _common and the subsystem scripts and styles in assets. Both must be local
+  // files in the static copy for the combined showcases to render and run.
 
-  $apps = [ '_common', 'pad', 'manual', 'reference', 'sequence', 'examples', 'apps', 'demo', 'hello',
+  $apps = [ '_common', 'assets', 'pad', 'manual', 'reference', 'sequence', 'examples', 'apps', 'demo', 'hello',
             'nono', 'react', 'structure', 'cli', 'classicModels', 'padSelect', 'regression/main', 'develop',
-            'tags', 'types', 'charts', 'games', 'toys', 'inputs', 'showcase', 'alpine', 'htmx', 'islands', 'webcomponents',
+            'tags', 'types', 'charts', 'games', 'images', 'tables', 'widgets', 'calendars', 'notations', 'printables', 'sounds', 'inputs', 'showcase', 'alpine', 'htmx', 'islands', 'webcomponents',
             'notes', 'ledger', 'kanban' ];
 
   // The pages of those that act when they are fetched, by their query string: the suites'
@@ -68,7 +67,9 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
   // develop but its index, which only lists its tools. The calendar's months are left out
   // too: each links to the next, ten thousand years of them.
 
-  $skip = [ 'develop'         => '/./',
+  $skip = [ 'images' => '/(^|&)seed=/',
+            'calendars' => '/(^|&)(month|date|year|week)=/',
+            'develop'         => '/./',
             'regression/main' => '/^(build|record)(&|$)|(^|&)test(&|=|$)/',
             'reference'       => '/^build(&|$)/',
             'examples'        => '/^build(&|$)/',
@@ -95,6 +96,13 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
   $left   = [];
 
   pagesQueue ( 'pad/' );
+
+  foreach ( [ 'patterns', 'sheets', 'sections', 'toys' ] as $retired )
+    pagesQueue ( "$retired/" );
+  foreach ( glob ( "$home/pad/subs/games/toys/types/*.php" ) ?: [] as $toy )
+    pagesQueue ( 'toys/?' . basename ( $toy, '.php' ) );
+  foreach ( include "$www/showcase/_routes.php" as $route => $target )
+    pagesQueue ( "showcase/?$route" );
 
   while ( $queue ) {
 
@@ -161,6 +169,17 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
 
     file_put_contents ( $file, $one ['html'] ? pagesRewrite ( $one ['body'], $rel, $dir ) : $one ['body'] );
 
+  }
+
+  // Redirect pages retain published bookmarks without duplicating a gallery.
+  foreach ( $alias as $from => $to ) {
+    for ( $hop = 0; isset ( $alias [$to] ) && $hop < 10; $hop++ ) $to = $alias [$to];
+    if ( ! isset ( $names [$to] ) || ! $saved [$to] ['html'] ) continue;
+    $name = pagesName ( $from, TRUE );
+    if ( is_file ( $out . $name ) ) continue;
+    $url = htmlspecialchars ( pagesPath ( dirname ( $name ), $names [$to] ), ENT_QUOTES );
+    if ( ! is_dir ( dirname ( $out . $name ) ) ) mkdir ( dirname ( $out . $name ), 0755, TRUE );
+    file_put_contents ( $out . $name, "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><title>Page moved</title><meta http-equiv=\"refresh\" content=\"0;url=$url\"><link rel=\"canonical\" href=\"$url\"><a href=\"$url\">Open the combined showcase</a></html>" );
   }
 
   if ( isset ( $saved ['pad/'] ) )

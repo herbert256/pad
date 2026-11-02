@@ -1,0 +1,19 @@
+/* highlights - a row each, the picture and the words side by side, the picture changing sides
+   from row to row; above the words when the section is narrow. */
+.pad-section-highlights .ps-highlights{display:grid;gap:56px;margin:0;padding:0;list-style:none}
+.pad-section-highlights .ps-highlight{display:grid;gap:24px;align-items:center;text-align:left}
+.pad-section-highlights .ps-highlight-image{order:-1;overflow:hidden;border-radius:calc(var(--pad-section-radius) + 4px);background:var(--pad-section-accent-soft);box-shadow:0 24px 48px -28px rgba(15,23,42,.35)}
+.pad-section-highlights .ps-highlight-image img,.pad-section-highlights .ps-highlight-image svg{display:block;width:100%;height:auto}
+.pad-section-highlights .ps-highlight-copy{max-width:520px}
+.pad-section-highlights .ps-highlight-title{margin:0 0 10px;font-family:var(--pad-section-heading-font);font-size:clamp(22px,3cqi,28px);line-height:1.2;font-weight:700;letter-spacing:-.015em;color:inherit;text-wrap:balance}
+.pad-section-highlights .ps-highlight .ps-item-text{font-size:17px}
+.pad-section-highlights .ps-highlight-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-weight:600;text-decoration:none}
+.pad-section-highlights .ps-highlight-link::after{content:"→";content:"→"/"";transition:transform .15s}
+.pad-section-highlights .ps-highlight-link:hover{text-decoration:underline}
+.pad-section-highlights .ps-highlight-link:hover::after{transform:translateX(3px)}
+.pad-section-highlights .ps-highlight-link:focus-visible{outline:2px solid var(--pad-section-accent);outline-offset:3px;border-radius:4px}
+@container pad-section (min-width:760px){.pad-section-highlights .ps-highlights{gap:80px}.pad-section-highlights .ps-highlight{grid-template-columns:repeat(2,minmax(0,1fr));gap:56px}.pad-section-highlights .ps-highlight-image{order:0}.pad-section-highlights .ps-highlight:nth-child(even) .ps-highlight-image,.pad-section-highlights .ps-highlights-flip .ps-highlight:nth-child(odd) .ps-highlight-image{order:-1}.pad-section-highlights .ps-highlights-flip .ps-highlight:nth-child(even) .ps-highlight-image{order:0}.pad-section-highlights .ps-highlight-bare{grid-template-columns:minmax(0,1fr)}}
+.pad-section-highlights.ps-align-center .ps-highlight-bare{text-align:center}
+.pad-section-highlights.ps-align-center .ps-highlight-bare .ps-highlight-copy{margin:0 auto}
+.pad-section-highlights.ps-tone-accent .ps-highlight-link{color:inherit}
+@media (prefers-reduced-motion:reduce){.pad-section-highlights .ps-highlight-link::after{transition:none}}

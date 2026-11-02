@@ -1,0 +1,237 @@
+/* treepicker - the radio buttons of a hierarchy made the WAI-ARIA tree view in a popup under a
+   button that shows the path of the choice. The radios stay what the form posts: choosing an
+   item checks its radio, which says it changed. The tree is one tab stop with the focus on
+   one item at a time: ArrowDown and ArrowUp move along the open items, ArrowRight opens an
+   item or goes to its first child, ArrowLeft closes it or goes to its parent, Home and End go
+   to the first and the last, a letter goes to the next item starting with it, * opens every
+   item beside the focused one, Enter or Space chooses an item - one that can be chosen - and
+   closes the popup, the focus back on the button, Escape closes it. A click on an item's
+   arrow opens or closes it, on its text chooses it. The button takes the field's id, so the
+   messages of the rules and the browser's checker are its; a required tree left without a
+   choice says so under the button. A reset of the form shows the choice it started with. */
+PadInputs.register('treepicker', function (frame, cfg, kit) {
+  var list = frame.querySelector('.pi-tree-list');
+  var opener = frame.querySelector('.pi-tree-open');
+  var anchor = frame.querySelector('.pi-anchor');
+  var legend = frame.querySelector('legend');
+  if (!list || !opener || !anchor) return;
+
+  var radios = Array.prototype.slice.call(list.querySelectorAll('input[type=radio]'));
+  var pathText = opener.querySelector('.pi-tree-path');
+  var choose = cfg.choose || 'Choose';
+  var ids = 0;
+
+  // The button is the field now: the first radio's id, its message and its state are its.
+  var first = radios[0];
+  if (first && first.id) {
+    var fieldId = first.id;
+    var firstLabel = list.querySelector('label[for="' + (window.CSS && CSS.escape ? CSS.escape(fieldId) : fieldId) + '"]');
+    first.id = fieldId + '-1';
+    if (firstLabel) firstLabel.htmlFor = first.id;
+    opener.id = fieldId;
+    if (first.getAttribute('aria-invalid')) opener.setAttribute('aria-invalid', first.getAttribute('aria-invalid'));
+    if (first.getAttribute('aria-describedby')) opener.setAttribute('aria-describedby', first.getAttribute('aria-describedby'));
+  } else opener.id = kit.id('tree');
+  if (legend) {
+    if (!legend.id) legend.id = kit.id('tree-legend');
+    opener.setAttribute('aria-labelledby', legend.id + ' ' + opener.id);
+  }
+  radios.forEach(function (radio) {
+    radio.setAttribute('data-pad-shows', opener.id);
+    radio.tabIndex = -1;
+  });
+
+  var said = kit.el('span', 'pi-tree-said error');
+  said.setAttribute('role', 'alert');
+  said.hidden = true;
+  anchor.appendChild(said);
+
+  // The popup and its tree, built from the nested lists the server wrote.
+  var popup = kit.el('div', 'pi-popup pi-tree-popup');
+  popup.hidden = true;
+  var tree = kit.el('ul', 'pi-tree');
+  tree.setAttribute('role', 'tree');
+  tree.id = kit.id(opener.id + '-tree');
+  if (legend) tree.setAttribute('aria-labelledby', legend.id);
+  popup.appendChild(tree);
+  anchor.appendChild(popup);
+  opener.setAttribute('aria-controls', tree.id);
+
+  var items = [];
+
+  function build(from, into, level) {
+    var lis = Array.prototype.filter.call(from.children, function (one) { return one.tagName === 'LI'; });
+    lis.forEach(function (li, at) {
+      var radio = li.querySelector(':scope > input[type=radio]');
+      var textEl = li.querySelector(':scope > label, :scope > .pi-tree-text');
+      var sub = li.querySelector(':scope > ul');
+      var item = kit.el('li', 'pi-tree-item');
+      item.setAttribute('role', 'treeitem');
+      item.setAttribute('aria-level', String(level));
+      item.setAttribute('aria-setsize', String(lis.length));
+      item.setAttribute('aria-posinset', String(at + 1));
+      item.tabIndex = -1;
+      item.id = kit.id(tree.id + '-item');
+      var row = kit.el('span', 'pi-tree-row');
+      var twisty = kit.el('span', 'pi-tree-twisty');
+      twisty.setAttribute('aria-hidden', 'true');
+      row.appendChild(twisty);
+      // An item is named by its own text alone, not by the items of its group as well.
+      var name = kit.el('span', 'pi-tree-name', textEl ? textEl.textContent : '');
+      name.id = item.id + '-name';
+      item.setAttribute('aria-labelledby', name.id);
+      row.appendChild(name);
+      item.appendChild(row);
+      var node = { item: item, radio: radio, text: textEl ? textEl.textContent : '', parent: null, kids: [], level: level };
+      item.padNode = node;
+      if (radio) item.setAttribute('aria-selected', radio.checked ? 'true' : 'false');
+      else item.classList.add('is-group');
+      into.appendChild(item);
+      items.push(node);
+      if (sub) {
+        item.setAttribute('aria-expanded', 'false');
+        var group = kit.el('ul', 'pi-tree-group');
+        group.setAttribute('role', 'group');
+        item.appendChild(group);
+        var start = items.length;
+        build(sub, group, level + 1);
+        items.slice(start).forEach(function (kid) { if (kid.level === level + 1) { kid.parent = node; node.kids.push(kid); } });
+      }
+    });
+  }
+  build(list, tree, 1);
+  list.classList.add('pi-hide');
+  list.setAttribute('aria-hidden', 'true');
+  opener.hidden = false;
+
+  var focused = null;
+
+  function open(node, yes) {
+    if (!node.kids.length) return;
+    node.item.setAttribute('aria-expanded', yes ? 'true' : 'false');
+  }
+  function isOpen(node) { return node.item.getAttribute('aria-expanded') === 'true'; }
+  function visible(node) {
+    for (var up = node.parent; up; up = up.parent) if (!isOpen(up)) return false;
+    return true;
+  }
+  function shown() { return items.filter(visible); }
+
+  function focusOn(node) {
+    if (!node) return;
+    if (focused) focused.item.tabIndex = -1;
+    focused = node;
+    node.item.tabIndex = 0;
+    node.item.focus();
+  }
+
+  function chosen() {
+    for (var i = 0; i < items.length; i++) if (items[i].radio && items[i].radio.checked) return items[i];
+    return null;
+  }
+
+  function path(node) {
+    var parts = [];
+    for (var up = node; up; up = up.parent) parts.unshift(up.text);
+    return parts.join(' › ');
+  }
+
+  function sync() {
+    var now = chosen();
+    items.forEach(function (node) { if (node.radio) node.item.setAttribute('aria-selected', node === now ? 'true' : 'false'); });
+    pathText.textContent = now ? path(now) : choose;
+    opener.classList.toggle('is-empty', !now);
+    if (now) said.hidden = true;
+  }
+
+  function show() {
+    var now = chosen();
+    items.forEach(function (node) { open(node, false); });
+    for (var up = now && now.parent; up; up = up.parent) open(up, true);
+    popup.hidden = false;
+    opener.setAttribute('aria-expanded', 'true');
+    focusOn(now || items[0]);
+  }
+
+  function hide(giveBack) {
+    if (popup.hidden) return;
+    popup.hidden = true;
+    opener.setAttribute('aria-expanded', 'false');
+    if (giveBack) opener.focus();
+  }
+
+  function take(node) {
+    if (!node.radio || node.radio.disabled) {
+      open(node, !isOpen(node));
+      return;
+    }
+    if (!node.radio.checked) {
+      node.radio.checked = true;
+      kit.changed(node.radio);
+    }
+    sync();
+    hide(true);
+  }
+
+  opener.addEventListener('click', function () { if (popup.hidden) show(); else hide(true); });
+  opener.addEventListener('keydown', function (event) {
+    if ((event.key === 'ArrowDown' || event.key === 'ArrowUp') && popup.hidden) { event.preventDefault(); show(); }
+  });
+
+  tree.addEventListener('click', function (event) {
+    var item = event.target.closest('.pi-tree-item');
+    if (!item) return;
+    var node = item.padNode;
+    if (event.target.closest('.pi-tree-twisty') || !node.radio) { open(node, !isOpen(node)); focusOn(node); return; }
+    take(node);
+  });
+
+  var typed = '', typedAt = 0;
+
+  tree.addEventListener('keydown', function (event) {
+    var node = focused;
+    if (!node) return;
+    var all = shown(), at = all.indexOf(node), key = event.key;
+    if (key === 'ArrowDown') focusOn(all[at + 1]);
+    else if (key === 'ArrowUp') focusOn(all[at - 1]);
+    else if (key === 'ArrowRight') {
+      if (node.kids.length && !isOpen(node)) open(node, true);
+      else if (node.kids.length) focusOn(node.kids[0]);
+    } else if (key === 'ArrowLeft') {
+      if (node.kids.length && isOpen(node)) open(node, false);
+      else if (node.parent) focusOn(node.parent);
+    } else if (key === 'Home') focusOn(all[0]);
+    else if (key === 'End') focusOn(all[all.length - 1]);
+    else if (key === 'Enter' || key === ' ') take(node);
+    else if (key === 'Escape') { event.stopPropagation(); hide(true); }
+    else if (key === '*') {
+      (node.parent ? node.parent.kids : items.filter(function (one) { return !one.parent; })).forEach(function (one) { open(one, true); });
+    } else if (key.length === 1 && /\S/.test(key) && !event.ctrlKey && !event.metaKey && !event.altKey) {
+      var now = Date.now();
+      typed = (now - typedAt < 600 ? typed : '') + key.toLowerCase();
+      typedAt = now;
+      var order = all.slice(at + (typed.length === 1 ? 1 : 0)).concat(all.slice(0, at + (typed.length === 1 ? 1 : 0)));
+      for (var i = 0; i < order.length; i++)
+        if (order[i].text.toLowerCase().indexOf(typed) === 0) { focusOn(order[i]); break; }
+    } else return;
+    event.preventDefault();
+  });
+
+  // A required tree left without a choice: the browser's own message, under the button.
+  radios.forEach(function (radio) {
+    radio.addEventListener('invalid', function (event) {
+      event.preventDefault();
+      if (radio !== radios[0]) return;
+      said.textContent = radio.validationMessage;
+      said.hidden = false;
+      opener.focus();
+    });
+  });
+
+  frame.addEventListener('change', sync);
+  if (opener.form) opener.form.addEventListener('reset', function () { setTimeout(sync, 0); });
+
+  kit.outside(anchor, function () { hide(false); });
+
+  sync();
+});

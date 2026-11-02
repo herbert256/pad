@@ -1,0 +1,20 @@
+/* blog - an article a card: its picture drawn on top, edge to edge, though it comes last in
+   the page; the title the one link, stretched over the whole card for the pointer; the tag a
+   label, the date and the author quiet. */
+.pad-section-blog .ps-post{position:relative;display:flex;flex-direction:column;gap:8px;overflow:hidden;transition:border-color .15s,box-shadow .15s}
+.pad-section-blog .ps-post-image{order:-1;margin:-24px -24px 8px;aspect-ratio:16/9;overflow:hidden;background:var(--pad-section-accent-soft)}
+.pad-section-blog .ps-post-image img{width:100%;height:100%;object-fit:cover}
+.pad-section-blog .ps-post .ps-item-title{margin:0;font-size:19px;line-height:1.3;text-wrap:balance}
+.pad-section-blog .ps-post-link{text-decoration:none}
+.pad-section-blog .ps-post-link::after{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit}
+.pad-section-blog .ps-post-link:focus-visible{outline:none}
+.pad-section-blog .ps-post:has(.ps-post-link:focus-visible){outline:3px solid var(--pad-section-accent);outline-offset:3px}
+.pad-section-blog .ps-post:has(.ps-post-link):hover{border-color:var(--pad-section-accent);box-shadow:0 14px 32px -22px color-mix(in srgb,var(--pad-section-accent) 70%,transparent)}
+.pad-section-blog .ps-post:has(.ps-post-link):hover .ps-post-link{text-decoration:underline}
+.pad-section-blog .ps-post-meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;margin:0;font-size:14px;color:var(--ps-ink-dim)}
+.pad-section-blog .ps-post-tag{padding:0 10px;border-radius:999px;background:var(--pad-section-accent-soft);color:var(--ps-ink-accent);font-size:12px;font-weight:650;line-height:1.8}
+.pad-section-blog .ps-post-date{font-variant-numeric:tabular-nums}
+.pad-section-blog .ps-post .ps-item-text{font-size:15px}
+.pad-section-blog .ps-post-author{margin:auto 0 0;padding-top:8px;font-size:14px;font-weight:600;color:var(--pad-section-soft)}
+.pad-section-blog.ps-align-center .ps-posts{text-align:left}
+@media (prefers-reduced-motion:reduce){.pad-section-blog .ps-post{transition:none}}

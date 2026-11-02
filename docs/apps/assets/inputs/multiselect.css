@@ -1,0 +1,21 @@
+.pad-input-multiselect select[multiple]{min-width:14em;max-width:100%;font:inherit;color:var(--pad-input-ink);background:var(--pad-input-field);border:1px solid var(--pad-input-line);border-radius:6px;padding:.25em}
+.pad-input-multiselect select[multiple] option{padding:.2em .45em;border-radius:4px}
+.pad-input-multiselect .pi-ms-anchor{display:block;max-width:32em}
+.pad-input-multiselect .pi-ms{display:flex;flex-wrap:wrap;align-items:center;gap:.3em;padding:.3em;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);cursor:text}
+.pad-input-multiselect .pi-ms:focus-within{outline:2px solid var(--pad-input-accent);outline-offset:2px}
+.pad-input-multiselect .pi-ms:has([aria-invalid=true]){border-color:var(--pad-input-bad)}
+.pad-input-multiselect .pi-ms input.pi-ms-filter{flex:1 1 8em;min-width:6em;border:0!important;padding:.2em .3em;outline:none;background:transparent}
+.pad-input-multiselect .pi-chips{display:contents;list-style:none;margin:0;padding:0}
+.pad-input-multiselect .pi-chip{display:inline-flex;align-items:center;gap:.15em;padding:.1em .2em .1em .55em;border-radius:1em;background:var(--pad-input-shade);border:1px solid var(--pad-input-line);font-size:.92em}
+.pad-input-multiselect .pi-chip-x{border:0;background:none;color:var(--pad-input-muted);font:inherit;font-size:1.1em;line-height:1;width:1.4em;height:1.4em;border-radius:50%;cursor:pointer;padding:0}
+.pad-input-multiselect .pi-chip-x:hover:not(:disabled){color:var(--pad-input-bad);background:var(--pad-input-field)}
+.pad-input-multiselect .pi-ms-list{left:0;right:0;top:100%;list-style:none;margin:4px 0 0;padding:.25em;max-height:16em;overflow-y:auto}
+.pad-input-multiselect .pi-ms-option{display:flex;align-items:center;gap:.55em;padding:.35em .6em;border-radius:5px;cursor:pointer}
+.pad-input-multiselect .pi-ms-option:hover{background:var(--pad-input-shade)}
+.pad-input-multiselect .pi-ms-option.is-active{background:var(--pad-input-shade);outline:2px solid var(--pad-input-accent);outline-offset:-2px}
+.pad-input-multiselect .pi-ms-option[aria-disabled=true]{color:var(--pad-input-muted);cursor:default}
+.pad-input-multiselect .pi-ms-check{flex:none;display:inline-flex;align-items:center;justify-content:center;width:1.1em;height:1.1em;border:1px solid var(--pad-input-line);border-radius:3px;background:var(--pad-input-field);font-size:.85em;line-height:1}
+.pad-input-multiselect .pi-ms-option[aria-selected=true] .pi-ms-check{background:var(--pad-input-accent);border-color:var(--pad-input-accent);color:var(--pad-input-on)}
+.pad-input-multiselect .pi-ms-option[aria-selected=true] .pi-ms-check::before{content:"\2713"}
+@media (prefers-reduced-motion:reduce){.pad-input-multiselect .pi-ms-list{scroll-behavior:auto}}
+@media (forced-colors:active){.pad-input-multiselect .pi-ms-option.is-active{outline-color:Highlight}.pad-input-multiselect .pi-ms-option[aria-selected=true] .pi-ms-check{border-color:Highlight}}

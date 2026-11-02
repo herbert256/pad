@@ -1,0 +1,9 @@
+.pad-effect-rotator .pe-again{display:none}
+@media (prefers-reduced-motion:no-preference){
+@supports (height:1lh){
+.pad-effect-rotator{display:inline-block;vertical-align:top;height:calc(1lh + .2em);margin-block:-.1em;overflow:hidden}
+.pad-effect-rotator .pe-track{display:flex;flex-direction:column;animation:var(--pad-effect-name) var(--pad-effect-duration) cubic-bezier(.65,0,.35,1) var(--pad-effect-delay) var(--pad-effect-repeat) both}
+.pad-effect-rotator .pe-item{display:block;padding-block:.1em;white-space:nowrap}
+.pad-effect-rotator .pe-sep{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+}
+}

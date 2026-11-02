@@ -1,0 +1,15 @@
+@property --pad-effect-reach{syntax:'\3c percentage\3e ';inherits:false;initial-value:100%}
+.pad-effect-underline{--pad-effect-ink:var(--pad-effect-accent);--pad-effect-thick:max(1px,.09em);--pad-effect-line:linear-gradient(var(--pad-effect-ink),var(--pad-effect-ink));background-image:var(--pad-effect-line);background-repeat:no-repeat;background-position:0 100%;background-size:var(--pad-effect-reach) var(--pad-effect-thick);padding-bottom:.08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.pad-effect-underline.pe-double{background-image:var(--pad-effect-line),var(--pad-effect-line);background-position:0 100%,0 calc(100% - var(--pad-effect-thick) * 2.4);background-size:var(--pad-effect-reach) var(--pad-effect-thick),var(--pad-effect-reach) var(--pad-effect-thick);padding-bottom:.12em}
+.pad-effect-underline.pe-dashed{--pad-effect-line:repeating-linear-gradient(90deg,var(--pad-effect-ink) 0 .42em,transparent .42em .66em)}
+.pad-effect-underline.pe-dotted{--pad-effect-line:repeating-linear-gradient(90deg,var(--pad-effect-ink) 0 var(--pad-effect-thick),transparent var(--pad-effect-thick) calc(var(--pad-effect-thick) * 2.6))}
+.pad-effect-underline.pe-hover{--pad-effect-reach:0%}
+.pad-effect-underline.pe-hover:hover,.pad-effect-underline.pe-hover:focus-within{--pad-effect-reach:100%}
+@media (prefers-reduced-motion:no-preference){
+.pad-effect-underline{animation:pad-effect-reach var(--pad-effect-duration) cubic-bezier(.3,.7,.3,1) var(--pad-effect-delay) both}
+@supports (animation-timeline:view()){.pad-effect-underline.pe-scroll{animation:pad-effect-reach linear both;animation-timeline:view();animation-range:entry 0% entry 100%}}
+.pad-effect-underline.pe-hover{animation:none;transition:--pad-effect-reach var(--pad-effect-duration) cubic-bezier(.3,.7,.3,1)}
+}
+@keyframes pad-effect-reach{from{--pad-effect-reach:0%}to{--pad-effect-reach:100%}}
+@media (forced-colors:active){.pad-effect-underline{background:none!important;text-decoration:underline}.pad-effect-underline.pe-double{text-decoration-style:double}.pad-effect-underline.pe-dashed{text-decoration-style:dashed}.pad-effect-underline.pe-dotted{text-decoration-style:dotted}}
+@media print{.pad-effect-underline{background:none!important;text-decoration:underline}.pad-effect-underline.pe-double{text-decoration-style:double}.pad-effect-underline.pe-dashed{text-decoration-style:dashed}.pad-effect-underline.pe-dotted{text-decoration-style:dotted}}

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Changelog section · PAD widgets
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="../_common/showcase-examples.css">
+    <script src="../_common/showcase-examples.js" defer></script>
+    <link rel="stylesheet" href="sections.css">
+    <link rel="stylesheet" href="../assets/sections/section.css">
+    <link rel="stylesheet" href="../assets/sections/changelog.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+    <style>
+    :where(.pad-section){--pad-section-bg:var(--bg,#ffffff);--pad-section-panel:var(--panel,#ffffff);--pad-section-text:var(--text,#1d2330);--pad-section-soft:var(--soft,#4b5563);--pad-section-dim:var(--dim,#6b7280);--pad-section-line:var(--line,#e3e6eb);--pad-section-accent:var(--accent,#2563eb);--pad-section-accent-text:var(--accent-text,#ffffff);--pad-section-accent-soft:var(--accent-soft,#e8effd);--pad-section-bad:var(--bad,#b91c1c);}@supports (color:light-dark(#000,#fff)){:where(.pad-section){--pad-section-bg:light-dark(var(--bg,#ffffff),var(--bg,#111318));--pad-section-panel:light-dark(var(--panel,#ffffff),var(--panel,#1a1d24));--pad-section-text:light-dark(var(--text,#1d2330),var(--text,#e5e7eb));--pad-section-soft:light-dark(var(--soft,#4b5563),var(--soft,#c0c6d0));--pad-section-dim:light-dark(var(--dim,#6b7280),var(--dim,#9ca3af));--pad-section-line:light-dark(var(--line,#e3e6eb),var(--line,#2a303b));--pad-section-accent:light-dark(var(--accent,#2563eb),var(--accent,#60a5fa));--pad-section-accent-text:light-dark(var(--accent-text,#ffffff),var(--accent-text,#0b1020));--pad-section-accent-soft:light-dark(var(--accent-soft,#e8effd),var(--accent-soft,#172235));--pad-section-bad:light-dark(var(--bad,#b91c1c),var(--bad,#f87171));}}
+    </style>
+  </head>
+  <body class="frame app-widgets">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>widgets</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../calendars/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-calendar" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3.5" y="5" width="17" height="15" rx="2"></rect>
+                    <path d="M3.5 10h17M8 3v4M16 3v4"></path></svg><span><b>calendars</b><small>Date views, clocks and countdowns</small></span></a><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Charts and timelines, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games, puzzles and live simulations</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="../notations/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="../images/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-image" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <circle cx="8.5" cy="9.5" r="1.5"></circle>
+                    <path d="M4 18l5-5 4 4 2.5-2.5L20 18"></path></svg><span><b>images</b><small>Pictures, avatars, patterns and filters</small></span></a><a href="../tables/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>tables</b><small>Data tables, spreadsheets and formulas</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>widgets</b><small>Page components, sections, effects and colours</small></span></a><a href="../printables/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="../sounds/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="widgets">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Landing page</a>
+        <div class="frame-head">
+          Sections
+        </div><a href="index%EF%B9%96sections.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+        <path d="M3 9h18M9 9v11"></path></svg> All sections</a> <a href="index%EF%B9%96section%EA%A4%B7agenda.html">Agenda</a> <a href="index%EF%B9%96section%EA%A4%B7blog.html">Blog</a> <a href="index%EF%B9%96section%EA%A4%B7careers.html">Careers</a> <a href="index%EF%B9%96section%EA%A4%B7casestudy.html">Casestudy</a> <a href="index%EF%B9%96section%EA%A4%B7changelog.html" aria-current="page">Changelog</a> <a href="index%EF%B9%96section%EA%A4%B7comparison.html">Comparison</a> <a href="index%EF%B9%96section%EA%A4%B7contact.html">Contact</a> <a href="index%EF%B9%96section%EA%A4%B7cta.html">Cta</a> <a href="index%EF%B9%96section%EA%A4%B7downloads.html">Downloads</a> <a href="index%EF%B9%96section%EA%A4%B7faq.html">Faq</a> <a href="index%EF%B9%96section%EA%A4%B7features.html">Features</a> <a href="index%EF%B9%96section%EA%A4%B7footer.html">Footer</a> <a href="index%EF%B9%96section%EA%A4%B7gallery.html">Gallery</a> <a href="index%EF%B9%96section%EA%A4%B7hero.html">Hero</a> <a href="index%EF%B9%96section%EA%A4%B7highlights.html">Highlights</a> <a href="index%EF%B9%96section%EA%A4%B7item.html">Item</a> <a href="index%EF%B9%96section%EA%A4%B7logos.html">Logos</a> <a href="index%EF%B9%96section%EA%A4%B7newsletter.html">Newsletter</a> <a href="index%EF%B9%96section%EA%A4%B7pricing.html">Pricing</a> <a href="index%EF%B9%96section%EA%A4%B7roadmap.html">Roadmap</a> <a href="index%EF%B9%96section%EA%A4%B7stats.html">Stats</a> <a href="index%EF%B9%96section%EA%A4%B7steps.html">Steps</a> <a href="index%EF%B9%96section%EA%A4%B7team.html">Team</a> <a href="index%EF%B9%96section%EA%A4%B7testimonials.html">Testimonials</a>
+        <div class="frame-head">
+          Effects
+        </div><a href="index%EF%B9%96effects.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sparkle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3.5c.6 5.1 3.4 7.9 8.5 8.5-5.1.6-7.9 3.4-8.5 8.5-.6-5.1-3.4-7.9-8.5-8.5 5.1-.6 7.9-3.4 8.5-8.5Z"></path></svg> All effects</a> <a href="index%EF%B9%96effect%EA%A4%B7confetti.html">Confetti</a> <a href="index%EF%B9%96effect%EA%A4%B7countup.html">Countup</a> <a href="index%EF%B9%96effect%EA%A4%B7decipher.html">Decipher</a> <a href="index%EF%B9%96effect%EA%A4%B7encircle.html">Encircle</a> <a href="index%EF%B9%96effect%EA%A4%B7flipnumber.html">Flipnumber</a> <a href="index%EF%B9%96effect%EA%A4%B7glitch.html">Glitch</a> <a href="index%EF%B9%96effect%EA%A4%B7gradient.html">Gradient</a> <a href="index%EF%B9%96effect%EA%A4%B7highlighter.html">Highlighter</a> <a href="index%EF%B9%96effect%EA%A4%B7marquee.html">Marquee</a> <a href="index%EF%B9%96effect%EA%A4%B7nudge.html">Nudge</a> <a href="index%EF%B9%96effect%EA%A4%B7reveal.html">Reveal</a> <a href="index%EF%B9%96effect%EA%A4%B7ripple.html">Ripple</a> <a href="index%EF%B9%96effect%EA%A4%B7rotator.html">Rotator</a> <a href="index%EF%B9%96effect%EA%A4%B7scrollprogress.html">Scrollprogress</a> <a href="index%EF%B9%96effect%EA%A4%B7shimmer.html">Shimmer</a> <a href="index%EF%B9%96effect%EA%A4%B7skeleton.html">Skeleton</a> <a href="index%EF%B9%96effect%EA%A4%B7spinner.html">Spinner</a> <a href="index%EF%B9%96effect%EA%A4%B7spotlight.html">Spotlight</a> <a href="index%EF%B9%96effect%EA%A4%B7strike.html">Strike</a> <a href="index%EF%B9%96effect%EA%A4%B7tilt.html">Tilt</a> <a href="index%EF%B9%96effect%EA%A4%B7typewriter.html">Typewriter</a> <a href="index%EF%B9%96effect%EA%A4%B7underline.html">Underline</a> <a href="index%EF%B9%96effect%EA%A4%B7wave.html">Wave</a>
+        <div class="frame-head">
+          Themes
+        </div><a href="index%EF%B9%96themes.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-droplet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3.5s6.5 7 6.5 11a6.5 6.5 0 0 1-13 0c0-4 6.5-11 6.5-11Z"></path></svg> All themes</a> <a href="index%EF%B9%96theme%EA%A4%B7blueprint.html">Blueprint</a> <a href="index%EF%B9%96theme%EA%A4%B7contrast.html">Contrast</a> <a href="index%EF%B9%96theme%EA%A4%B7contrast-dark.html">Contrast Dark</a> <a href="index%EF%B9%96theme%EA%A4%B7dark.html">Dark</a> <a href="index%EF%B9%96theme%EA%A4%B7forest.html">Forest</a> <a href="index%EF%B9%96theme%EA%A4%B7light.html">Light</a> <a href="index%EF%B9%96theme%EA%A4%B7mono.html">Mono</a> <a href="index%EF%B9%96theme%EA%A4%B7newspaper.html">Newspaper</a> <a href="index%EF%B9%96theme%EA%A4%B7night.html">Night</a> <a href="index%EF%B9%96theme%EA%A4%B7ocean.html">Ocean</a> <a href="index%EF%B9%96theme%EA%A4%B7paper.html">Paper</a> <a href="index%EF%B9%96theme%EA%A4%B7projection.html">Projection</a> <a href="index%EF%B9%96theme%EA%A4%B7readable.html">Readable</a> <a href="index%EF%B9%96theme%EA%A4%B7sepia.html">Sepia</a> <a href="index%EF%B9%96theme%EA%A4%B7solarized-dark.html">Solarized Dark</a> <a href="index%EF%B9%96theme%EA%A4%B7solarized-light.html">Solarized Light</a> <a href="index%EF%B9%96theme%EA%A4%B7terminal.html">Terminal</a>
+        <div class="frame-head">
+          Palettes
+        </div><a href="index%EF%B9%96palettes.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> All palettes</a> <a href="index%EF%B9%96palette%EA%A4%B7amber.html">Amber</a> <a href="index%EF%B9%96palette%EA%A4%B7batlow.html">batlow</a> <a href="index%EF%B9%96palette%EA%A4%B7blue-orange.html">Blue-Orange</a> <a href="index%EF%B9%96palette%EA%A4%B7blues.html">Blues</a> <a href="index%EF%B9%96palette%EA%A4%B7brbg.html">BrBG</a> <a href="index%EF%B9%96palette%EA%A4%B7cividis.html">Cividis</a> <a href="index%EF%B9%96palette%EA%A4%B7dark2.html">Dark2</a> <a href="index%EF%B9%96palette%EA%A4%B7earth.html">Earth</a> <a href="index%EF%B9%96palette%EA%A4%B7glasbey.html">Glasbey</a> <a href="index%EF%B9%96palette%EA%A4%B7greens.html">Greens</a> <a href="index%EF%B9%96palette%EA%A4%B7greys.html">Greys</a> <a href="index%EF%B9%96palette%EA%A4%B7inferno.html">Inferno</a> <a href="index%EF%B9%96palette%EA%A4%B7magma.html">Magma</a> <a href="index%EF%B9%96palette%EA%A4%B7okabe-ito.html">Okabe-Ito</a> <a href="index%EF%B9%96palette%EA%A4%B7oranges.html">Oranges</a> <a href="index%EF%B9%96palette%EA%A4%B7paired.html">Paired</a> <a href="index%EF%B9%96palette%EA%A4%B7pastel.html">Pastel</a> <a href="index%EF%B9%96palette%EA%A4%B7phase.html">Phase</a> <a href="index%EF%B9%96palette%EA%A4%B7piyg.html">PiYG</a> <a href="index%EF%B9%96palette%EA%A4%B7plasma.html">Plasma</a> <a href="index%EF%B9%96palette%EA%A4%B7puor.html">PuOr</a> <a href="index%EF%B9%96palette%EA%A4%B7rdbu.html">RdBu</a> <a href="index%EF%B9%96palette%EA%A4%B7rdylbu.html">RdYlBu</a> <a href="index%EF%B9%96palette%EA%A4%B7romao.html">romaO</a> <a href="index%EF%B9%96palette%EA%A4%B7tol-bright.html">Tol bright</a> <a href="index%EF%B9%96palette%EA%A4%B7tol-muted.html">Tol muted</a> <a href="index%EF%B9%96palette%EA%A4%B7tol-vibrant.html">Tol vibrant</a> <a href="index%EF%B9%96palette%EA%A4%B7turbo.html">Turbo</a> <a href="index%EF%B9%96palette%EA%A4%B7vik.html">vik</a> <a href="index%EF%B9%96palette%EA%A4%B7viridis.html">Viridis</a> <a href="index%EF%B9%96palette%EA%A4%B7ylgnbu.html">YlGnBu</a> <a href="index%EF%B9%96palette%EA%A4%B7ylorrd.html">YlOrRd</a>
+        <div class="frame-head">
+          Accordion
+        </div><a href="index%EF%B9%96examples%EA%A4%B7accordion%EA%A4%B7faq.html">Frequently asked questions</a>
+        <div class="frame-head">
+          Breadcrumb
+        </div><a href="index%EF%B9%96examples%EA%A4%B7breadcrumb%EA%A4%B7shop_trail.html">A trail through a shop</a>
+        <div class="frame-head">
+          Carousel
+        </div><a href="index%EF%B9%96examples%EA%A4%B7carousel%EA%A4%B7landscapes.html">Four landscapes</a>
+        <div class="frame-head">
+          Command palette
+        </div><a href="index%EF%B9%96examples%EA%A4%B7commandpalette%EA%A4%B7shop_admin.html">Go anywhere in a shop</a>
+        <div class="frame-head">
+          Context menu
+        </div><a href="index%EF%B9%96examples%EA%A4%B7contextmenu%EA%A4%B7files.html">Files and orders</a>
+        <div class="frame-head">
+          Copy
+        </div><a href="index%EF%B9%96examples%EA%A4%B7copy%EA%A4%B7config_snippet.html">A snippet as content</a> <a href="index%EF%B9%96examples%EA%A4%B7copy%EA%A4%B7install_command.html">Install command</a>
+        <div class="frame-head">
+          Drawer
+        </div><a href="index%EF%B9%96examples%EA%A4%B7drawer%EA%A4%B7shop_filters.html">Filters of a shop</a>
+        <div class="frame-head">
+          Dropdown
+        </div><a href="index%EF%B9%96examples%EA%A4%B7dropdown%EA%A4%B7account_menu.html">An account menu</a>
+        <div class="frame-head">
+          Excerpt
+        </div><a href="index%EF%B9%96examples%EA%A4%B7excerpt%EA%A4%B7search.html">Search results</a> <a href="index%EF%B9%96examples%EA%A4%B7excerpt%EA%A4%B7teaser.html">Teasers from HTML</a>
+        <div class="frame-head">
+          JSON viewer
+        </div><a href="index%EF%B9%96examples%EA%A4%B7jsonview%EA%A4%B7api.html">An API response</a> <a href="index%EF%B9%96examples%EA%A4%B7jsonview%EA%A4%B7config.html">A PHP array</a>
+        <div class="frame-head">
+          Lightbox
+        </div><a href="index%EF%B9%96examples%EA%A4%B7lightbox%EA%A4%B7skies.html">Skies of a day</a>
+        <div class="frame-head">
+          Lorem ipsum
+        </div><a href="index%EF%B9%96examples%EA%A4%B7lorem%EA%A4%B7article.html">A page before its copy</a> <a href="index%EF%B9%96examples%EA%A4%B7lorem%EA%A4%B7cards.html">A seed per card</a>
+        <div class="frame-head">
+          Modal
+        </div><a href="index%EF%B9%96examples%EA%A4%B7modal%EA%A4%B7terms.html">Terms at checkout</a>
+        <div class="frame-head">
+          Poll
+        </div><a href="index%EF%B9%96examples%EA%A4%B7poll%EA%A4%B7favorite_language.html">Favourite language</a>
+        <div class="frame-head">
+          Progress
+        </div><a href="index%EF%B9%96examples%EA%A4%B7progress%EA%A4%B7steps.html">Steps and sizes</a> <a href="index%EF%B9%96examples%EA%A4%B7progress%EA%A4%B7uploads.html">Uploads in progress</a>
+        <div class="frame-head">
+          Rating
+        </div><a href="index%EF%B9%96examples%EA%A4%B7rating%EA%A4%B7hearts.html">Hearts and parts</a> <a href="index%EF%B9%96examples%EA%A4%B7rating%EA%A4%B7reviews.html">Product reviews</a>
+        <div class="frame-head">
+          Sortable
+        </div><a href="index%EF%B9%96examples%EA%A4%B7sortable%EA%A4%B7tasks.html">Tasks in order</a>
+        <div class="frame-head">
+          Split pane
+        </div><a href="index%EF%B9%96examples%EA%A4%B7splitpane%EA%A4%B7mail_reader.html">A mail reader</a>
+        <div class="frame-head">
+          Tabs
+        </div><a href="index%EF%B9%96examples%EA%A4%B7tabs%EA%A4%B7plans_from_data.html">A tab per row</a> <a href="index%EF%B9%96examples%EA%A4%B7tabs%EA%A4%B7product_page.html">Product page</a>
+        <div class="frame-head">
+          Toast
+        </div><a href="index%EF%B9%96examples%EA%A4%B7toast%EA%A4%B7order_saved.html">An order saved</a>
+        <div class="frame-head">
+          Table of contents
+        </div><a href="index%EF%B9%96examples%EA%A4%B7toc%EA%A4%B7article.html">A long article</a> <a href="index%EF%B9%96examples%EA%A4%B7toc%EA%A4%B7sidebar.html">Contents in a sidebar</a>
+        <div class="frame-head">
+          Tooltip
+        </div><a href="index%EF%B9%96examples%EA%A4%B7tooltip%EA%A4%B7plan_terms.html">Plan terms</a>
+        <div class="frame-head">
+          Video embeds
+        </div><a href="index%EF%B9%96examples%EA%A4%B7video%EA%A4%B7clip.html">A clip of your own</a> <a href="index%EF%B9%96examples%EA%A4%B7video%EA%A4%B7vimeo.html">Vimeo with a poster of your own</a> <a href="index%EF%B9%96examples%EA%A4%B7video%EA%A4%B7youtube.html">YouTube without tracking</a>
+        <div class="frame-head">
+          Wizard
+        </div><a href="index%EF%B9%96examples%EA%A4%B7wizard%EA%A4%B7checkout.html">A checkout in steps</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Changelog section
+        </h1>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="projection">
+                Projection
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <p class="sx-lead">
+          The releases, in the order they are written - newest first, as a changelog keeps them; never sorted by their version, whose order a sort cannot know - each with its version, its date and its changes in the groups of Keep a Changelog: Added, Changed, Deprecated, Removed, Fixed and Security, each a list. The releases are the rows of data= - their fields version, date, title, text, the six groups (a list, or a text with a line or a ; between them), link and badge - or {section:item} pairs or single tags, the item's first value the version and its content the text. A release's date is written 2026-10-30, as Keep a Changelog writes it; its title is a name beside the version, link= where the version leads (a release page, a comparison), badge= a word beside it - Latest, Yanked. Every release is an anchor named by its version alone, so a link to it stays when releases are added: #v2.1.0, #Unreleased - the section's id= before it when given; a version given twice is reported.
+        </p>
+        <div class="sx-example sx-wide">
+          <div class="sx-result">
+            <section class="pad-section pad-section-changelog ps-tone-plain ps-align-left" id="changes" aria-labelledby="changes-title">
+              <div class="ps-inner">
+                <div class="ps-head">
+                  <h2 class="ps-title" id="changes-title">
+                    What changed
+                  </h2>
+                </div>
+                <ol class="ps-releases">
+                  <li class="ps-release" id="changes-Unreleased">
+                    <div class="ps-release-meta">
+                      <h3 class="ps-release-version">
+                        <a href="#changes-Unreleased">Unreleased</a>
+                      </h3>
+                    </div>
+                    <div class="ps-release-body">
+                      <h4 class="ps-release-group ps-release-changed">
+                        Changed
+                      </h4>
+                      <ul>
+                        <li>The footer stacks its columns on a phone
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ps-release" id="changes-v2.1.0">
+                    <div class="ps-release-meta">
+                      <h3 class="ps-release-version">
+                        <a href="#changes-v2.1.0">2.1.0</a>
+                      </h3><time datetime="2026-10-30">2026-10-30</time><span class="ps-release-badge">Latest</span>
+                    </div>
+                    <div class="ps-release-body">
+                      <p class="ps-release-name">
+                        The sections release
+                      </p>
+                      <p class="ps-item-text">
+                        Six new blocks for a landing page, all in CSS.
+                      </p>
+                      <h4 class="ps-release-group ps-release-added">
+                        Added
+                      </h4>
+                      <ul>
+                        <li>A comparison table
+                        </li>
+                        <li>An agenda
+                        </li>
+                        <li>A changelog
+                        </li>
+                      </ul>
+                      <h4 class="ps-release-group ps-release-fixed">
+                        Fixed
+                      </h4>
+                      <ul>
+                        <li>A plan without a link showed an empty button
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ps-release" id="changes-v2.0.1">
+                    <div class="ps-release-meta">
+                      <h3 class="ps-release-version">
+                        <a href="#changes-v2.0.1">2.0.1</a>
+                      </h3><time datetime="2026-09-12">2026-09-12</time>
+                    </div>
+                    <div class="ps-release-body">
+                      <h4 class="ps-release-group ps-release-fixed">
+                        Fixed
+                      </h4>
+                      <ul>
+                        <li>Two newsletters on a page thanked both
+                        </li>
+                      </ul>
+                      <h4 class="ps-release-group ps-release-security">
+                        Security
+                      </h4>
+                      <ul>
+                        <li>A link of the javascript: scheme is refused
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ps-release" id="changes-v2.0.0">
+                    <div class="ps-release-meta">
+                      <h3 class="ps-release-version">
+                        <a href="#changes-v2.0.0">2.0.0</a>
+                      </h3><time datetime="2026-08-01">2026-08-01</time>
+                    </div>
+                    <div class="ps-release-body">
+                      <h4 class="ps-release-group ps-release-deprecated">
+                        Deprecated
+                      </h4>
+                      <ul>
+                        <li>The old wrapper tags
+                        </li>
+                      </ul>
+                      <h4 class="ps-release-group ps-release-removed">
+                        Removed
+                      </h4>
+                      <ul>
+                        <li>The light/dark switch - the Dark theme takes its place
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </section>
+          </div>
+          <div class="pad-play-box sx-source">
+            <link rel="stylesheet" href="../_common/play.css"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7c2VjdGlvbjpjaGFuZ2Vsb2cgdGl0bGU9J1doYXQgY2hhbmdlZCcsIGlkPSdjaGFuZ2VzJ31cbiAge3NlY3Rpb246aXRlbSAnVW5yZWxlYXNlZCcsIGNoYW5nZWQ9J1RoZSBmb290ZXIgc3RhY2tzIGl0cyBjb2x1bW5zIG9uIGEgcGhvbmUnL31cbiAge3NlY3Rpb246aXRlbSAnMi4xLjAnLCBkYXRlPScyMDI2LTEwLTMwJywgdGl0bGU9J1RoZSBzZWN0aW9ucyByZWxlYXNlJywgYmFkZ2U9J0xhdGVzdCcsXG4gICAgICAgICAgICAgICAgYWRkZWQ9J0EgY29tcGFyaXNvbiB0YWJsZTsgQW4gYWdlbmRhOyBBIGNoYW5nZWxvZycsIGZpeGVkPSdBIHBsYW4gd2l0aG91dCBhIGxpbmsgc2hvd2VkIGFuIGVtcHR5IGJ1dHRvbid9XG4gICAgU2l4IG5ldyBibG9ja3MgZm9yIGEgbGFuZGluZyBwYWdlLCBhbGwgaW4gQ1NTLlxuICB7L3NlY3Rpb246aXRlbX1cbiAge3NlY3Rpb246aXRlbSAnMi4wLjEnLCBkYXRlPScyMDI2LTA5LTEyJywgZml4ZWQ9J1R3byBuZXdzbGV0dGVycyBvbiBhIHBhZ2UgdGhhbmtlZCBib3RoJywgc2VjdXJpdHk9J0EgbGluayBvZiB0aGUgamF2YXNjcmlwdDogc2NoZW1lIGlzIHJlZnVzZWQnL31cbiAge3NlY3Rpb246aXRlbSAnMi4wLjAnLCBkYXRlPScyMDI2LTA4LTAxJywgcmVtb3ZlZD0nVGhlIGxpZ2h0L2Rhcmsgc3dpdGNoIC0gdGhlIERhcmsgdGhlbWUgdGFrZXMgaXRzIHBsYWNlJywgZGVwcmVjYXRlZD0nVGhlIG9sZCB3cmFwcGVyIHRhZ3MnL31cbnsvc2VjdGlvbjpjaGFuZ2Vsb2d9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7c2VjdGlvbjpjaGFuZ2Vsb2cgdGl0bGU9J1doYXQgY2hhbmdlZCcsIGlkPSdjaGFuZ2VzJ31cbiAge3NlY3Rpb246aXRlbSAnVW5yZWxlYXNlZCcsIGNoYW5nZWQ9J1RoZSBmb290ZXIgc3RhY2tzIGl0cyBjb2x1bW5zIG9uIGEgcGhvbmUnL31cbiAge3NlY3Rpb246aXRlbSAnMi4xLjAnLCBkYXRlPScyMDI2LTEwLTMwJywgdGl0bGU9J1RoZSBzZWN0aW9ucyByZWxlYXNlJywgYmFkZ2U9J0xhdGVzdCcsXG4gICAgICAgICAgICAgICAgYWRkZWQ9J0EgY29tcGFyaXNvbiB0YWJsZTsgQW4gYWdlbmRhOyBBIGNoYW5nZWxvZycsIGZpeGVkPSdBIHBsYW4gd2l0aG91dCBhIGxpbmsgc2hvd2VkIGFuIGVtcHR5IGJ1dHRvbid9XG4gICAgU2l4IG5ldyBibG9ja3MgZm9yIGEgbGFuZGluZyBwYWdlLCBhbGwgaW4gQ1NTLlxuICB7L3NlY3Rpb246aXRlbX1cbiAge3NlY3Rpb246aXRlbSAnMi4wLjEnLCBkYXRlPScyMDI2LTA5LTEyJywgZml4ZWQ9J1R3byBuZXdzbGV0dGVycyBvbiBhIHBhZ2UgdGhhbmtlZCBib3RoJywgc2VjdXJpdHk9J0EgbGluayBvZiB0aGUgamF2YXNjcmlwdDogc2NoZW1lIGlzIHJlZnVzZWQnL31cbiAge3NlY3Rpb246aXRlbSAnMi4wLjAnLCBkYXRlPScyMDI2LTA4LTAxJywgcmVtb3ZlZD0nVGhlIGxpZ2h0L2Rhcmsgc3dpdGNoIC0gdGhlIERhcmsgdGhlbWUgdGFrZXMgaXRzIHBsYWNlJywgZGVwcmVjYXRlZD0nVGhlIG9sZCB3cmFwcGVyIHRhZ3MnL31cbnsvc2VjdGlvbjpjaGFuZ2Vsb2d9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+            <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">section:changelog</span> <span class="hl-opt">title</span>=<span class="hl-str">'What changed'</span>, <span class="hl-opt">id</span>=<span class="hl-str">'changes'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">section:item</span> <span class="hl-str">'Unreleased'</span>, <span class="hl-opt">changed</span>=<span class="hl-str">'The footer stacks its columns on a phone'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">section:item</span> <span class="hl-str">'2.1.0'</span>, <span class="hl-opt">date</span>=<span class="hl-str">'2026-10-30'</span>, <span class="hl-opt">title</span>=<span class="hl-str">'The sections release'</span>, <span class="hl-opt">badge</span>=<span class="hl-str">'Latest'</span>,
+                <span class="hl-opt">added</span>=<span class="hl-str">'A comparison table; An agenda; A changelog'</span>, <span class="hl-opt">fixed</span>=<span class="hl-str">'A plan without a link showed an empty button'</span><span class="hl-brc">}</span>
+    Six new blocks for a landing page, all in CSS.
+  <span class="hl-brc">{</span><span class="hl-tag">/section:item</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">section:item</span> <span class="hl-str">'2.0.1'</span>, <span class="hl-opt">date</span>=<span class="hl-str">'2026-09-12'</span>, <span class="hl-opt">fixed</span>=<span class="hl-str">'Two newsletters on a page thanked both'</span>, <span class="hl-opt">security</span>=<span class="hl-str">'A link of the javascript: scheme is refused'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">section:item</span> <span class="hl-str">'2.0.0'</span>, <span class="hl-opt">date</span>=<span class="hl-str">'2026-08-01'</span>, <span class="hl-opt">removed</span>=<span class="hl-str">'The light/dark switch - the Dark theme takes its place'</span>, <span class="hl-opt">deprecated</span>=<span class="hl-str">'The old wrapper tags'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/section:changelog</span><span class="hl-brc">}</span></code></pre>
+          </div>
+        </div>
+        <div class="sx-example sx-wide">
+          <div class="sx-result">
+            <section class="pad-section pad-section-changelog ps-tone-soft ps-align-left" aria-labelledby="pad-section-changelog-fc78edab-title">
+              <div class="ps-inner">
+                <div class="ps-head">
+                  <h2 class="ps-title" id="pad-section-changelog-fc78edab-title">
+                    Release notes
+                  </h2>
+                </div>
+                <ol class="ps-releases">
+                  <li class="ps-release" id="v1.4.0">
+                    <div class="ps-release-meta">
+                      <h3 class="ps-release-version">
+                        <a href="#v1.4.0">1.4.0</a>
+                      </h3><time datetime="2026-06-02">2026-06-02</time>
+                    </div>
+                    <div class="ps-release-body">
+                      <h4 class="ps-release-group ps-release-added">
+                        Added
+                      </h4>
+                      <ul>
+                        <li>Export to CSV
+                        </li>
+                        <li>A dark theme
+                        </li>
+                      </ul>
+                      <h4 class="ps-release-group ps-release-fixed">
+                        Fixed
+                      </h4>
+                      <ul>
+                        <li>Sorting by date
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ps-release" id="v1.3.2">
+                    <div class="ps-release-meta">
+                      <h3 class="ps-release-version">
+                        <a href="#v1.3.2">1.3.2</a>
+                      </h3><time datetime="2026-05-11">2026-05-11</time><span class="ps-release-badge">Yanked</span>
+                    </div>
+                    <div class="ps-release-body">
+                      <h4 class="ps-release-group ps-release-fixed">
+                        Fixed
+                      </h4>
+                      <ul>
+                        <li>The search lost its place
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ps-release" id="v1.3.1">
+                    <div class="ps-release-meta">
+                      <h3 class="ps-release-version">
+                        <a href="#v1.3.1">1.3.1</a>
+                      </h3><time datetime="2026-05-10">2026-05-10</time>
+                    </div>
+                    <div class="ps-release-body">
+                      <h4 class="ps-release-group ps-release-security">
+                        Security
+                      </h4>
+                      <ul>
+                        <li>Sessions end on a password change
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </section>
+          </div>
+          <div class="pad-play-box sx-source">
+            <a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ3JlbGVhc2VzJ31cbltcbiAgeyBcInZlcnNpb25cIjogXCIxLjQuMFwiLCBcImRhdGVcIjogXCIyMDI2LTA2LTAyXCIsIFwiYWRkZWRcIjogWyBcIkV4cG9ydCB0byBDU1ZcIiwgXCJBIGRhcmsgdGhlbWVcIiBdLCBcImZpeGVkXCI6IFsgXCJTb3J0aW5nIGJ5IGRhdGVcIiBdIH0sXG4gIHsgXCJ2ZXJzaW9uXCI6IFwiMS4zLjJcIiwgXCJkYXRlXCI6IFwiMjAyNi0wNS0xMVwiLCBcImZpeGVkXCI6IFsgXCJUaGUgc2VhcmNoIGxvc3QgaXRzIHBsYWNlXCIgXSwgXCJiYWRnZVwiOiBcIllhbmtlZFwiIH0sXG4gIHsgXCJ2ZXJzaW9uXCI6IFwiMS4zLjFcIiwgXCJkYXRlXCI6IFwiMjAyNi0wNS0xMFwiLCBcInNlY3VyaXR5XCI6IFsgXCJTZXNzaW9ucyBlbmQgb24gYSBwYXNzd29yZCBjaGFuZ2VcIiBdIH1cbl1cbnsvZm9ybWF0OmF1dG99XG57c2VjdGlvbjpjaGFuZ2Vsb2cgdGl0bGU9J1JlbGVhc2Ugbm90ZXMnLCBkYXRhPSdyZWxlYXNlcycsIHRvbmU9J3NvZnQnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7Zm9ybWF0OmF1dG8gJ3JlbGVhc2VzJ31cbltcbiAgeyBcInZlcnNpb25cIjogXCIxLjQuMFwiLCBcImRhdGVcIjogXCIyMDI2LTA2LTAyXCIsIFwiYWRkZWRcIjogWyBcIkV4cG9ydCB0byBDU1ZcIiwgXCJBIGRhcmsgdGhlbWVcIiBdLCBcImZpeGVkXCI6IFsgXCJTb3J0aW5nIGJ5IGRhdGVcIiBdIH0sXG4gIHsgXCJ2ZXJzaW9uXCI6IFwiMS4zLjJcIiwgXCJkYXRlXCI6IFwiMjAyNi0wNS0xMVwiLCBcImZpeGVkXCI6IFsgXCJUaGUgc2VhcmNoIGxvc3QgaXRzIHBsYWNlXCIgXSwgXCJiYWRnZVwiOiBcIllhbmtlZFwiIH0sXG4gIHsgXCJ2ZXJzaW9uXCI6IFwiMS4zLjFcIiwgXCJkYXRlXCI6IFwiMjAyNi0wNS0xMFwiLCBcInNlY3VyaXR5XCI6IFsgXCJTZXNzaW9ucyBlbmQgb24gYSBwYXNzd29yZCBjaGFuZ2VcIiBdIH1cbl1cbnsvZm9ybWF0OmF1dG99XG57c2VjdGlvbjpjaGFuZ2Vsb2cgdGl0bGU9J1JlbGVhc2Ugbm90ZXMnLCBkYXRhPSdyZWxlYXNlcycsIHRvbmU9J3NvZnQnL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+            <pre class="sx-code"><code><span class="hl-brc">{</span><span class="hl-tag">format:auto</span> <span class="hl-str">'releases'</span><span class="hl-brc">}</span>
+[
+  <span class="hl-brc">{</span> <span class="hl-str">"version"</span>: <span class="hl-str">"1.4.0"</span>, <span class="hl-str">"date"</span>: <span class="hl-str">"2026-06-02"</span>, <span class="hl-str">"added"</span>: [ <span class="hl-str">"Export to CSV"</span>, <span class="hl-str">"A dark theme"</span> ], <span class="hl-str">"fixed"</span>: [ <span class="hl-str">"Sorting by date"</span> ] <span class="hl-brc">}</span>,
+  <span class="hl-brc">{</span> <span class="hl-str">"version"</span>: <span class="hl-str">"1.3.2"</span>, <span class="hl-str">"date"</span>: <span class="hl-str">"2026-05-11"</span>, <span class="hl-str">"fixed"</span>: [ <span class="hl-str">"The search lost its place"</span> ], <span class="hl-str">"badge"</span>: <span class="hl-str">"Yanked"</span> <span class="hl-brc">}</span>,
+  <span class="hl-brc">{</span> <span class="hl-str">"version"</span>: <span class="hl-str">"1.3.1"</span>, <span class="hl-str">"date"</span>: <span class="hl-str">"2026-05-10"</span>, <span class="hl-str">"security"</span>: [ <span class="hl-str">"Sessions end on a password change"</span> ] <span class="hl-brc">}</span>
+]
+<span class="hl-brc">{</span><span class="hl-tag">/format:auto</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">section:changelog</span> <span class="hl-opt">title</span>=<span class="hl-str">'Release notes'</span>, <span class="hl-opt">data</span>=<span class="hl-str">'releases'</span>, <span class="hl-opt">tone</span>=<span class="hl-str">'soft'</span><span class="hl-brc">/}</span></code></pre>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

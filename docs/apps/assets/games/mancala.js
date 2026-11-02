@@ -1,0 +1,258 @@
+PadGames.register('mancala', function (k, cfg) {
+  // Houses 0 to 5 are South's, left to right along the bottom row; 6 to 11 North's, right to
+  // left along the top - so the seeds go round counter-clockwise by counting up. Against the
+  // computer you are South, and the computer North, whoever begins.
+  var SEEDS = cfg.seeds || 4, ALL = 12 * SEEDS, HALF = ALL / 2;
+  var DEPTH = { easy: 1, normal: 4, hard: 8 }[cfg.level] || 4;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pits, store, turn, houses, stores, seen, busy, focus;
+
+  function side(h) { return h < 6 ? 0 : 1; }
+  function seedsOf(s, p) { var n = 0; for (var h = p * 6; h < p * 6 + 6; h++) n += s.pits[h]; return n; }
+
+  // The houses p may sow from: every one with seeds - but when the other side has none, only
+  // the ones whose seeds reach it.
+  function legal(s, p) {
+    var hungry = seedsOf(s, 1 - p) === 0, list = [];
+    for (var h = p * 6; h < p * 6 + 6; h++)
+      if (s.pits[h] && (!hungry || s.pits[h] >= p * 6 + 6 - h)) list.push(h);
+    return list;
+  }
+
+  // A move: the seeds sown, the houses they end in, and what is captured.
+  function sow(s, h) {
+    var t = { pits: s.pits.slice(), store: s.store.slice() }, p = side(h), n = t.pits[h], i = h, path = [];
+    t.pits[h] = 0;
+    while (n) {
+      i = (i + 1) % 12;
+      if (i === h) continue;
+      t.pits[i]++;
+      path.push(i);
+      n--;
+    }
+    var taken = [], got = 0;
+    for (var j = i; side(j) !== p && (t.pits[j] === 2 || t.pits[j] === 3); j = (j + 11) % 12) { taken.push(j); got += t.pits[j]; }
+    // The grand slam: a capture that would leave the other side without a seed takes nothing.
+    if (got && got === seedsOf(t, 1 - p)) { taken = []; got = 0; }
+    taken.forEach(function (x) { t.pits[x] = 0; });
+    t.store[p] += got;
+    return { state: t, path: path, taken: taken, got: got };
+  }
+
+  // The end, when p is to move: more than half captured, or no move - then p, or the side
+  // that has seeds, takes what is on its own side.
+  function ended(s, p) {
+    if (s.store[0] > HALF || s.store[1] > HALF || (s.store[0] === HALF && s.store[1] === HALF)) return s;
+    if (legal(s, p).length) return null;
+    var t = { pits: s.pits.slice(), store: s.store.slice() };
+    for (var h = 0; h < 12; h++) { t.store[side(h)] += t.pits[h]; t.pits[h] = 0; }
+    return t;
+  }
+
+  // Look ahead: the captured seeds of me less the other side's, the end worth more than any.
+  function search(s, p, depth, alpha, beta, me) {
+    var end = ended(s, p);
+    if (end) {
+      var d = end.store[me] - end.store[1 - me];
+      return d > 0 ? 1000 + d : d < 0 ? -1000 + d : 0;
+    }
+    if (!depth) return s.store[me] - s.store[1 - me];
+    var list = legal(s, p), best = p === me ? -Infinity : Infinity;
+    for (var i = 0; i < list.length; i++) {
+      var v = search(sow(s, list[i]).state, 1 - p, depth - 1, alpha, beta, me);
+      if (p === me) { if (v > best) best = v; if (best > alpha) alpha = best; }
+      else { if (v < best) best = v; if (best < beta) beta = best; }
+      if (alpha >= beta) break;
+    }
+    return best;
+  }
+
+  function choose() {
+    var s = { pits: pits, store: store }, list = legal(s, turn), best = -Infinity, choices = [];
+    list.forEach(function (h) {
+      var v = search(sow(s, h).state, 1 - turn, DEPTH - 1, -Infinity, Infinity, turn);
+      if (v > best) { best = v; choices = [h]; } else if (v === best) choices.push(h);
+    });
+    return k.pick(choices);
+  }
+
+  function who(p) {
+    if (cfg.two) return p ? 'North' : 'South';
+    return p ? 'The computer' : 'You';
+  }
+
+  function whose(p) {
+    if (cfg.two) return p ? 'North\'s' : 'South\'s';
+    return p ? 'The computer\'s' : 'Your';
+  }
+
+  function number(h) { return h % 6 + 1; }
+
+  function plural(n, one) { return n + ' ' + one + (n === 1 ? '' : 's'); }
+
+  function drawHouse(h, count) {
+    var b = houses[h], heap = b.querySelector('.mcl-seeds'), mine = cfg.two ? side(h) === turn : side(h) === 0;
+    b.querySelector('.mcl-count').textContent = count;
+    heap.textContent = '';
+    for (var i = 0; i < Math.min(count, 15); i++) heap.appendChild(k.el('span', 'mcl-seed'));
+    b.setAttribute('aria-label', whose(side(h)) + ' house ' + number(h) + ', ' + plural(count, 'seed'));
+    var playable = !busy && !k.over() && mine && legal({ pits: pits, store: store }, turn).indexOf(h) >= 0;
+    b.setAttribute('aria-disabled', playable ? 'false' : 'true');
+    b.classList.toggle('is-playable', playable);
+  }
+
+  function drawStores() {
+    [0, 1].forEach(function (p) {
+      stores[p].querySelector('b').textContent = store[p];
+      stores[p].setAttribute('aria-label', who(p) + ': ' + plural(store[p], 'seed') + ' captured');
+    });
+  }
+
+  function draw() {
+    for (var h = 0; h < 12; h++) drawHouse(h, pits[h]);
+    drawStores();
+  }
+
+  function key() { return pits.join(',') + '/' + turn; }
+
+  function finish(s, round) {
+    pits = s.pits;
+    store = s.store;
+    draw();
+    var a = store[0], z = store[1], why = round ? 'The seeds only go round - each side takes what is on its own. ' : '';
+    if (cfg.two) return k.won(why + (a === z ? 'A draw, ' + a + ' each.' : (a > z ? 'South' : 'North') + ' wins, ' + Math.max(a, z) + ' to ' + Math.min(a, z) + '.'));
+    var mine = store[0], theirs = store[1];
+    if (mine > theirs) k.won(why + 'You win, ' + mine + ' seeds to ' + theirs + '!');
+    else if (mine < theirs) k.lost(why + 'The computer wins, ' + theirs + ' seeds to ' + mine + '.');
+    else k.won(why + 'A draw, ' + mine + ' seeds each.');
+  }
+
+  // A turn: the seeds sown one house at a time - at once under reduced motion - then the
+  // capture, then the next player, or the end.
+  function play(h, then) {
+    var p = turn, n = pits[h], move = sow({ pits: pits, store: store }, h), shown = pits.slice(), step = 0;
+    busy = true;
+    draw();
+    houses.forEach(function (b) { b.classList.remove('is-from', 'is-last', 'is-taken'); });
+    houses[h].classList.add('is-from');
+    shown[h] = 0;
+    drawHouse(h, 0);
+    function next() {
+      if (step < move.path.length && !reduced) {
+        var x = move.path[step++];
+        shown[x]++;
+        drawHouse(x, shown[x]);
+        return k.later(next, 140);
+      }
+      houses[move.path[move.path.length - 1]].classList.add('is-last');
+      move.taken.forEach(function (x) { houses[x].classList.add('is-taken'); });
+      pits = move.state.pits;
+      store = move.state.store;
+      turn = 1 - p;
+      busy = false;
+      draw();
+      var said = who(p) + ' sowed ' + plural(n, 'seed') + ' from ' + (!cfg.two && p ? 'its ' : '') + 'house ' + number(h)
+               + (move.got ? ' and captured ' + move.got : '') + '.';
+      var end = ended({ pits: pits, store: store }, turn);
+      if (end) return finish(end, false);
+      if (seen[key()]) return finish(roundEnd(), true);
+      seen[key()] = true;
+      then(said);
+    }
+    k.later(next, reduced ? 0 : 140);
+  }
+
+  function roundEnd() {
+    var t = { pits: pits.slice(), store: store.slice() };
+    for (var h = 0; h < 12; h++) { t.store[side(h)] += t.pits[h]; t.pits[h] = 0; }
+    return t;
+  }
+
+  function after(said) {
+    if (cfg.two) return k.status(said + ' ' + who(turn) + ' to play.');
+    if (turn === 0) return k.status(said + ' Your turn.');
+    k.status(said + ' The computer thinks...');
+    k.later(function () { play(choose(), after); }, 450);
+  }
+
+  function click(h) {
+    if (busy || k.over()) return;
+    if ((!cfg.two && turn !== 0) || side(h) !== turn || !pits[h]) return;
+    if (legal({ pits: pits, store: store }, turn).indexOf(h) < 0)
+      return k.status(who(1 - turn) + ' has no seeds - sow from a house whose seeds reach ' + (cfg.two ? 'that side.' : 'its side.'));
+    play(h, after);
+  }
+
+  // The arrow keys move between the houses of a row, up and down to the other row.
+  function aim(h) {
+    houses[focus].tabIndex = -1;
+    focus = h;
+    houses[h].tabIndex = 0;
+    houses[h].focus();
+  }
+
+  function moveFocus(h, key) {
+    var top = side(h) === 1, col = top ? 11 - h : h;
+    if (key === 'ArrowLeft' || key === 'ArrowRight') {
+      col += key === 'ArrowLeft' ? -1 : 1;
+      if (col < 0 || col > 5) return;
+      aim(top ? 11 - col : col);
+    } else if ((key === 'ArrowUp' && !top) || (key === 'ArrowDown' && top)) aim(top ? col : 11 - col);
+  }
+
+  function newGame() {
+    k.fresh();
+    pits = new Array(12).fill(SEEDS);
+    store = [0, 0];
+    turn = (!cfg.two && cfg.opens === 'computer') ? 1 : 0;
+    busy = false;
+    seen = {};
+    seen[key()] = true;
+    var wrap = k.el('div', 'mcl-board'), rows = [k.el('div', 'mcl-row mcl-south'), k.el('div', 'mcl-row mcl-north')];
+    stores = [0, 1].map(function (p) {
+      var s = k.el('div', 'mcl-store mcl-store-' + p);
+      s.appendChild(k.el('span', 'mcl-who', who(p)));
+      s.appendChild(k.el('b', null, '0'));
+      s.setAttribute('role', 'img');
+      return s;
+    });
+    houses = [];
+    for (var h = 0; h < 12; h++) (function (h) {
+      var b = k.el('button', 'mcl-house mcl-side-' + side(h));
+      b.type = 'button';
+      b.tabIndex = -1;
+      b.appendChild(k.el('span', 'mcl-seeds'));
+      b.appendChild(k.el('span', 'mcl-count'));
+      b.querySelector('.mcl-seeds').setAttribute('aria-hidden', 'true');
+      b.addEventListener('click', function () { if (focus !== h) aim(h); click(h); });
+      b.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || !/^Arrow/.test(e.key)) return;
+        e.preventDefault();
+        moveFocus(h, e.key);
+      });
+      houses[h] = b;
+    })(h);
+    // North's row first, from house 11 on the left to house 6 on the right; South's under it.
+    for (h = 11; h >= 6; h--) rows[1].appendChild(houses[h]);
+    for (h = 0; h < 6; h++) rows[0].appendChild(houses[h]);
+    rows[1].setAttribute('role', 'group');
+    rows[1].setAttribute('aria-label', whose(1) + ' houses');
+    rows[0].setAttribute('role', 'group');
+    rows[0].setAttribute('aria-label', whose(0) + ' houses');
+    wrap.appendChild(stores[1]);
+    var middle = k.el('div', 'mcl-rows');
+    middle.appendChild(rows[1]);
+    middle.appendChild(rows[0]);
+    wrap.appendChild(middle);
+    wrap.appendChild(stores[0]);
+    k.board.appendChild(wrap);
+    focus = 0;
+    houses[focus].tabIndex = 0;
+    draw();
+    if (turn === 1) { k.status('The computer begins...'); k.later(function () { play(choose(), after); }, 450); }
+    else k.status(cfg.two ? 'South to play - sow the seeds of a house in the bottom row' : 'Your turn - sow the seeds of one of your houses, the bottom row');
+  }
+
+  k.button('New game', newGame);
+  newGame();
+});

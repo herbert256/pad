@@ -1,0 +1,20 @@
+.pad-contextmenu{display:contents}
+.pad-contextmenu-button{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:2em;height:2em;margin:0 .15em;padding:0;border:1px solid transparent;border-radius:6px;background:transparent;color:var(--pad-contextmenu-muted);font:inherit;font-size:1em;font-weight:700;line-height:1;vertical-align:middle;cursor:pointer}
+.pad-contextmenu-button:hover,.pad-contextmenu-button:has(+.pad-contextmenu-menu:popover-open){border-color:var(--pad-contextmenu-line);background:var(--pad-contextmenu-hover);color:var(--pad-contextmenu-text)}
+.pad-contextmenu-button:focus-visible{outline:2px solid var(--pad-contextmenu-accent);outline-offset:1px}
+.pad-contextmenu-menu{box-sizing:border-box;min-width:11rem;max-width:min(22rem,calc(100vw - 2rem));padding:.35em;border:1px solid var(--pad-contextmenu-line);border-radius:10px;background:var(--pad-contextmenu-surface);color:var(--pad-contextmenu-text);font-weight:400;text-align:start;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+@supports (position-area:bottom){
+  .pad-contextmenu-menu{inset:auto;margin:.35em 0;position-area:bottom span-left;position-try-fallbacks:flip-block,flip-inline}
+  .pad-contextmenu-menu.pad-contextmenu-at{margin:0;position-area:none}
+}
+.pad-contextmenu-menu a,.pad-contextmenu-menu button{display:block;box-sizing:border-box;width:100%;padding:.45em .75em;border:0;border-radius:6px;background:none;color:inherit;font:inherit;text-align:start;text-decoration:none;cursor:pointer}
+.pad-contextmenu-menu a:hover,.pad-contextmenu-menu button:hover{background:var(--pad-contextmenu-hover)}
+.pad-contextmenu-menu a:focus-visible,.pad-contextmenu-menu button:focus-visible{outline:none;background:var(--pad-contextmenu-hover);box-shadow:inset 0 0 0 2px var(--pad-contextmenu-accent)}
+.pad-contextmenu-menu [disabled],.pad-contextmenu-menu [aria-disabled="true"]{opacity:.55;cursor:default}
+.pad-contextmenu-menu [disabled]:hover,.pad-contextmenu-menu [aria-disabled="true"]:hover{background:none}
+.pad-contextmenu-menu form{display:block;margin:0}
+.pad-contextmenu-menu>hr{margin:.35em .25em;border:0;border-top:1px solid var(--pad-contextmenu-line)}
+.pad-contextmenu-menu>p{margin:.4em .75em;color:var(--pad-contextmenu-muted);font-size:.85em}
+@media print{
+  .pad-contextmenu-button,.pad-contextmenu-menu{display:none}
+}

@@ -1,0 +1,8 @@
+/* steps - numbered by the list, the number in a circle in the accent. */
+.pad-section-steps .ps-steps{counter-reset:ps-step}
+.pad-section-steps .ps-step{position:relative;padding-top:56px;counter-increment:ps-step}
+.pad-section-steps .ps-step::before{content:counter(ps-step);position:absolute;top:0;left:0;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--pad-section-accent);color:var(--pad-section-accent-text);font-weight:700}
+.pad-section-steps.ps-align-center .ps-step{text-align:center}
+.pad-section-steps.ps-align-center .ps-step::before{left:50%;transform:translateX(-50%)}
+.pad-section-steps.ps-tone-accent .ps-step::before{background:var(--pad-section-accent-text);color:var(--pad-section-accent)}
+.pad-section-steps.ps-tone-accent .ps-item-text{color:inherit}

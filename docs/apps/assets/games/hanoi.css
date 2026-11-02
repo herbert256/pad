@@ -1,0 +1,9 @@
+.pad-game-hanoi .hno-row{display:flex;gap:10px}
+.pad-game-hanoi .hno-peg{position:relative;width:170px;height:190px;border:0;border-bottom:8px solid #8a6a3a;border-radius:6px;background:var(--pad-game-shade);cursor:pointer;display:flex;flex-direction:column-reverse;align-items:center;padding:0 0 2px}
+.pad-game-hanoi .hno-peg.is-from{background:var(--pad-game-mark)}
+.pad-game-hanoi .hno-rod{position:absolute;bottom:0;left:50%;width:8px;height:160px;margin-left:-4px;background:#a8834a;border-radius:4px 4px 0 0}
+.pad-game-hanoi .hno-disc{position:relative;height:18px;margin-top:2px;border-radius:9px;background:hsl(calc(var(--h,200)*1deg) 65% 52%)}
+.pad-game-hanoi .hno-disc.is-lifted{transform:translateY(-14px);box-shadow:0 4px 8px rgba(0,0,0,.25)}
+.pad-game-hanoi .hno-d1{--h:5}.pad-game-hanoi .hno-d2{--h:35}.pad-game-hanoi .hno-d3{--h:55}.pad-game-hanoi .hno-d4{--h:140}
+.pad-game-hanoi .hno-d5{--h:190}.pad-game-hanoi .hno-d6{--h:220}.pad-game-hanoi .hno-d7{--h:270}.pad-game-hanoi .hno-d8{--h:320}
+@media (max-width:560px){.pad-game-hanoi .hno-peg{width:31vw}}

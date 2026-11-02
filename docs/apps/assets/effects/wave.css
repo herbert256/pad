@@ -1,0 +1,7 @@
+.pad-effect-wave{--pad-effect-height:.25em}
+.pad-effect-wave .pe-wave>span{display:inline-block}
+.pad-effect-wave .pe-wave>.pe-gap{display:inline;white-space:pre-wrap}
+@media (prefers-reduced-motion:no-preference){
+.pad-effect-wave .pe-wave>span{animation:pad-effect-wave var(--pad-effect-duration) ease-in-out calc(var(--pad-effect-delay) + var(--pad-effect-i) * .055s) var(--pad-effect-repeat) both}
+}
+@keyframes pad-effect-wave{0%,45%,100%{transform:none}22%{transform:translateY(calc(var(--pad-effect-height) * -1))}}

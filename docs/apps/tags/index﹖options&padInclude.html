@@ -101,22 +101,8 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">all</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7notifications.html">{widget:notifications}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7notifications.html">{widget:notifications}</a></td>
       <td>The read notifications too.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="2">alt</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7gravatar.html">{pad:gravatar}</a></td>
-      <td>The image text - the person's name - default <code>Avatar</code>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>Required: the text for whoever cannot see the picture. <code>alt=''</code> marks it as decoration.</td>
     </tr>
     
   
@@ -125,14 +111,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">alttext</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7notation.html">{notation:*}</a></td>
       <td>math, chem: the text a screen reader without MathML says - the formula as written unless given.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">amount</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>sepia (100), sharpen (50), vignette (50) and edges (100), in percent.</td>
     </tr>
     
   
@@ -174,9 +152,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">area</td>
+      <td class="opt" rowspan="2">area</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget.html">{widget:*}</a></td>
       <td>contextmenu: the part a right click opens the menu on - the nearest element around it of a tag name or a class, <code>tr</code>, <code>.card</code>; the element it stands in when not given.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
+      <td>A field of service (<code>areaServed</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -207,7 +191,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="3">at</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7video.html">{widget:video}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7video.html">{widget:video}</a></td>
       <td>The moment to start at - <code>90</code>, <code>1m30s</code> or <code>1:30</code>; a <code>t=</code>, <code>start=</code> or <code>#t=</code> in the address says it too.</td>
     </tr>
     
@@ -228,7 +212,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">author</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
-      <td>A field of article (<code>author.name</code>), recipe (<code>author.name</code>), video (<code>author.name</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>author.name</code>), book (<code>author</code>), recipe (<code>author.name</code>), video (<code>author.name</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -337,7 +321,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="4">button</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7themes.html">{widget:themes}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7themes.html">{widget:themes}</a></td>
       <td>The text of the button that applies the choice without JavaScript (<code>Apply</code>).</td>
     </tr>
     
@@ -386,20 +370,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">caption</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7datatable.html">{pad:datatable}</a></td>
-      <td>The table's <code>&lt;caption&gt;</code>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7spreadsheet.html">{pad:spreadsheet}</a></td>
-      <td>The table's <code>&lt;caption&gt;</code>.</td>
-    </tr>
-    
-  
-    
-    <tr>
       <td class="opt" rowspan="1">card</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7printable.html">{printable:*}</a></td>
       <td>indexcards: 5x3, 6x4, a6 or a7.</td>
@@ -440,14 +410,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">cell</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>pixelate: the block in pixels (8); halftone: the distance of the dots (8).</td>
-    </tr>
-    
-  
-    
-    <tr>
       <td class="opt" rowspan="2">cells</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart:*}</a></td>
       <td>Waffle: the number of squares (100).</td>
@@ -470,14 +432,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">chars</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>ascii: the characters from light to dark (<code>' .:-=+*#%@'</code>).</td>
-    </tr>
-    
-  
-    
-    <tr>
       <td class="opt" rowspan="1">check</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7barcode.html">{barcode:*}</a></td>
       <td>Bare option, <code>code39</code>: the check symbol of modulo 43; <code>itf</code>: the check digit of weights 3 and 1. For <code>msi</code> it names the check digits: <code>mod10</code> (default), <code>mod1010</code> or <code>none</code>.</td>
@@ -487,7 +441,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">checked</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{input:field}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7field.html">{input:field}</a></td>
       <td>Bare option: a checkbox or radio is checked before a post.</td>
     </tr>
     
@@ -533,7 +487,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">client</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{input:form}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7form.html">{input:form}</a></td>
       <td>Bare option: check the <code>rules=</code> of the fields in the browser too, with the same messages - the form gets <code>novalidate</code>, <code>data-pad-rules</code> and the checker script.</td>
     </tr>
     
@@ -556,19 +510,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="6">color</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7progress.html">{pad:progress}</a></td>
-      <td>A colour slot: <code>accent</code> (default), <code>success</code>, <code>warning</code>, <code>danger</code> or <code>neutral</code>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{pad:timeline}</a></td>
-      <td>A field that groups the events: a colour each and a legend.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="4">color</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart:*}</a></td>
       <td>Scatter, bubble, gantt, parallel: a field whose values colour the marks, with a legend.</td>
     </tr>
@@ -594,13 +536,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="3">colors</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>duotone, dither, atkinson, bayer, halftone, threshold: two hex colours, the dark one first - <code>colors='#123, #fc6'</code>; edges: the ground, then the lines.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="2">colors</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7pattern.html">{pattern:*}</a></td>
       <td>A list of colours, the background first and the inks after it: <code>colors='#fff, #1d3557, #e63946'</code> - hex, a name, or <code>rgb()</code>, <code>hsl()</code> and their like; <code>none</code> leaves the background out. Each kind has its own palette.</td>
     </tr>
@@ -622,19 +558,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="5">columns</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7datatable.html">{pad:datatable}</a></td>
-      <td>The fields shown, in their order. Every field of the first row when not given.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>ascii: the characters across (64).</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="3">columns</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart:*}</a></td>
       <td>Multiples: the number of small charts side by side.</td>
     </tr>
@@ -665,14 +589,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">companyurl</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
       <td>A field of job (<code>hiringOrganization.sameAs</code>) - it wins over the field of the row.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">components</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>blurhash: the terms across and down, <code>'4,3'</code>.</td>
     </tr>
     
   
@@ -742,8 +658,24 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">creator</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
+      <td>A field of dataset (<code>creator.name</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">creatorurl</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
+      <td>A field of dataset (<code>creator.url</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">css</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7shadow.html">{widget:shadow}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7shadow.html">{widget:shadow}</a></td>
       <td>Stylesheets inlined as one <code>&lt;style&gt;</code> at the start of the root, separated by commas: a <code>.css</code> file of the application, or <code>www:</code> one of its <code>www/</code> directory.</td>
     </tr>
     
@@ -760,65 +692,21 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">currency</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
-      <td>A field of event (<code>offers.priceCurrency</code>), job (<code>baseSalary.currency</code>), product (<code>offers.priceCurrency</code>), software (<code>offers.priceCurrency</code>) - it wins over the field of the row.</td>
+      <td>A field of event (<code>offers.priceCurrency</code>), job (<code>baseSalary.currency</code>), product (<code>offers.priceCurrency</code>), service (<code>offers.priceCurrency</code>), software (<code>offers.priceCurrency</code>) - it wins over the field of the row.</td>
     </tr>
     
   
     
     <tr>
-      <td class="opt" rowspan="1">cutoff</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>autocontrast: the pixels let go at each end of the tones before they are stretched, in percent (1).</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="11">data</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7calendar.html">{pad:calendar}</a></td>
-      <td>The events: a <code>{pad:data}</code> store, a page array or a <code>_data</code> file, as for <code>{chart:bar}</code>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7datatable.html">{pad:datatable}</a></td>
-      <td>The rows: a <code>{pad:data}</code> store, a page array or a <code>_data</code> file. As a pair the content is the rows instead - JSON, YAML, XML or CSV, told apart on sight.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonview.html">{pad:jsonview}</a></td>
-      <td>Names the value instead: a <code>{pad:data}</code> store, a page array or a <code>_data</code> file.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7map.html">{pad:map}</a></td>
-      <td>The rows: a <code>{pad:data}</code> store, a page array or a <code>_data</code> file, as for <code>{chart:bar}</code>. As a pair the content is the rows - JSON, YAML, XML or CSV.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7spreadsheet.html">{pad:spreadsheet}</a></td>
-      <td>The cells: records under a first row of their field names - their values are never formulas - a list of rows of values, or cells by name. As a pair the content is the cells, a line a row, a comma between cells.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{pad:timeline}</a></td>
-      <td>The rows: a <code>{pad:data}</code> store, a page array or a <code>_data</code> file, as for <code>{chart:bar}</code>. As a pair the content is the rows - JSON, YAML, XML or CSV.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="5">data</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart:*}</a></td>
-      <td>The rows: a <code>{pad:data}</code> store, a sequence store, the page's array or a <code>_data</code> file of that name, or a literal (<code>data='[3,1,4]'</code>). Left out on a pair, the content is the data.</td>
+      <td>The rows: a <code>{format:auto}</code> store, a sequence store, the page's array or a <code>_data</code> file of that name, or a literal (<code>data='[3,1,4]'</code>). Left out on a pair, the content is the data.</td>
     </tr>
     
     <tr>
       
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7game.html">{game:*}</a></td>
-      <td>The words, the symbols or the questions of a game that takes them, from a <code>{pad:data}</code> store, the page's array or a <code>_data</code> file - else they stand between the tags, one a line.</td>
+      <td>The words, the symbols or the questions of a game that takes them, from a <code>{format:auto}</code> store, the page's array or a <code>_data</code> file - else they stand between the tags, one a line.</td>
     </tr>
     
     <tr>
@@ -836,27 +724,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
-      <td>The row or rows of the fields: a {pad:data} store, the page's array, a field holding a list or a _data file - one row of fields, or rows, which a kind of one object writes as a <code>@graph</code> and faq, breadcrumb and itemlist as their items. The handling options work on them.</td>
+      <td>The row or rows of the fields: a {format:auto} store, the page's array, a field holding a list or a _data file - one row of fields, or rows, which a kind of one object writes as a <code>@graph</code> and faq, breadcrumb and itemlist as their items. The handling options work on them.</td>
     </tr>
     
   
     
     <tr>
-      <td class="opt" rowspan="4">date</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7calendar.html">{pad:calendar}</a></td>
-      <td>The field with an event's date - by default the first field that reads as one.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="2">date</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7file.html">{pad:file}</a></td>
       <td>Bare option: <code>_Y-m-d</code> of today added to the name.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{pad:timeline}</a></td>
-      <td>The field of a moment: a year (<code>1969</code>), a month (<code>2026-10</code>) or anything <code>strtotime</code> reads - else the first field that reads as one.</td>
     </tr>
     
     <tr>
@@ -884,14 +760,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">default</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7gravatar.html">{pad:gravatar}</a></td>
-      <td>What Gravatar shows for an address it does not know: <code>mp</code> (default), <code>identicon</code>, <code>monsterid</code>, <code>wavatar</code>, <code>retro</code>, <code>robohash</code>, <code>blank</code>, <code>404</code>, or an <code>https://</code> image address.</td>
-    </tr>
-    
-  
-    
-    <tr>
       <td class="opt" rowspan="1">delay</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7effect.html">{effect:*}</a></td>
       <td>Seconds before it starts.</td>
@@ -902,7 +770,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">description</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
-      <td>A field of article (<code>description</code>), business (<code>description</code>), course (<code>description</code>, required), event (<code>description</code>), job (<code>description</code>, required), organization (<code>description</code>), person (<code>description</code>), product (<code>description</code>), profile (<code>mainEntity.description</code>), recipe (<code>description</code>), restaurant (<code>description</code>), software (<code>description</code>), video (<code>description</code>), website (<code>description</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>description</code>), book (<code>description</code>), business (<code>description</code>), course (<code>description</code>, required), dataset (<code>description</code>, required), event (<code>description</code>), job (<code>description</code>, required), organization (<code>description</code>), person (<code>description</code>), product (<code>description</code>), profile (<code>mainEntity.description</code>), recipe (<code>description</code>), restaurant (<code>description</code>), service (<code>description</code>), software (<code>description</code>), video (<code>description</code>), website (<code>description</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -949,6 +817,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">display</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7notation.html">{notation:*}</a></td>
       <td>math, chem: <code>inline</code> (the default) or <code>block</code> - the formula on a line of its own, centred.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">distribution</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
+      <td>A field of dataset (<code>distribution</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -1028,16 +904,16 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">editable</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7spreadsheet.html">{pad:spreadsheet}</a></td>
-      <td>Cells to edit: bare, every number, date and logical value; or the cells and ranges named. An edit posts back and the sheet is computed again.</td>
+      <td class="opt" rowspan="1">edition</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
+      <td>A field of book (<code>bookEdition</code>) - it wins over the field of the row.</td>
     </tr>
     
   
     
     <tr>
       <td class="opt" rowspan="1">ellipsis</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7excerpt.html">{widget:excerpt}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7excerpt.html">{widget:excerpt}</a></td>
       <td>What stands for the text that was cut off, default <code>…</code>.</td>
     </tr>
     
@@ -1077,16 +953,8 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">error</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{input:form}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7form.html">{input:form}</a></td>
       <td>The message shown above the fields, in <code>&lt;div class="error" role="alert"&gt;</code>, when the form came back with errors. Bare option: <em>Please correct the errors below.</em></td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">excerpt</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7search.html">{pad:search}</a></td>
-      <td>The field the excerpt is cut from, default the last of <code>fields</code>.</td>
     </tr>
     
   
@@ -1124,14 +992,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">fallback</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7gravatar.html">{pad:gravatar}</a></td>
-      <td><code>avatar</code> draws the <code>{pad:avatar}</code> initials of <code>alt</code> (or of the address) instead, <code>identicon</code> the <code>{pad:identicon}</code> of the address - no <code>&lt;img&gt;</code>, no outside request.</td>
-    </tr>
-    
-  
-    
-    <tr>
       <td class="opt" rowspan="1">feed</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7toy.html">{toy:*}</a></td>
       <td>reactiondiffusion: the feed rate of the first chemical, 0 to 0.1 - a pattern's rates of your own, with <code>kill</code>.</td>
@@ -1148,23 +1008,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">fields</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7search.html">{pad:search}</a></td>
-      <td>The fields searched with their boosts, <code>'title^2, body'</code> - a collection's default; other rows every field that holds text in any row.</td>
-    </tr>
-    
-  
-    
-    <tr>
       <td class="opt" rowspan="4">file</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7highlight.html">{widget:highlight}</a></td>
-      <td>A file of the application to show instead of the content - never one outside it, under <code>_config/</code> or a dotfile.</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7pdf.html">{pad:pdf}</a></td>
+      <td>The file name of the document, default the page's name (<code>.pdf</code> is added).</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7pdf.html">{pad:pdf}</a></td>
-      <td>The file name of the document, default the page's name (<code>.pdf</code> is added).</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7highlight.html">{widget:highlight}</a></td>
+      <td>A file of the application to show instead of the content - never one outside it, under <code>_config/</code> or a dotfile.</td>
     </tr>
     
     <tr>
@@ -1183,24 +1035,8 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">files</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7source.html">{widget:source}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7source.html">{widget:source}</a></td>
       <td>Files after the page's, a text with commas: a file of the application, or <code>www:</code> one in its <code>www/</code> directory.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">filter</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>A comma list of the filters of <code>pad/subs/images/filters/types/</code>, applied in the order written: <code>ascii</code>, <code>atkinson</code>, <code>autocontrast</code>, <code>bayer</code>, <code>blur</code>, <code>blurhash</code>, <code>dither</code>, <code>dominant</code>, <code>duotone</code>, <code>edges</code>, <code>grayscale</code>, <code>halftone</code>, <code>invert</code>, <code>lqip</code>, <code>pixelate</code>, <code>posterize</code>, <code>sepia</code>, <code>sharpen</code>, <code>solarize</code>, <code>threshold</code>, <code>thumbhash</code>, <code>vignette</code>. halftone and ascii write the picture as SVG dots or text; blurhash, thumbhash, dominant and lqip are placeholders behind the picture while it loads.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">fit</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td><code>cover</code> (default: fill the box, cut around the centre) or <code>contain</code> (all of the picture inside the box).</td>
     </tr>
     
   
@@ -1214,16 +1050,8 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">fluid</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7placeholder.html">{pad:placeholder}</a></td>
-      <td>Bare option: as wide as the container (<code>width="100%"</code>), the height following from the proportions.</td>
-    </tr>
-    
-  
-    
-    <tr>
       <td class="opt" rowspan="1">focus</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7shadow.html">{widget:shadow}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7shadow.html">{widget:shadow}</a></td>
       <td>Bare option: adds <code>shadowrootdelegatesfocus</code>.</td>
     </tr>
     
@@ -1255,7 +1083,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">for</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7notifications.html">{widget:notifications}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7notifications.html">{widget:notifications}</a></td>
       <td>The recipient - an id or an e-mail address - instead of the user logged in.</td>
     </tr>
     
@@ -1276,61 +1104,9 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="7">format</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7countdown.html">{pad:countdown}</a></td>
-      <td>The PHP date format of the full moment in the <code>title</code>, default <code>l j F Y, H:i</code>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7data.html">{pad:data}</a></td>
-      <td>The format to read, also accepted as <code>type=</code>: <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7atom.html"><code>atom</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7csv.html"><code>csv</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7geojson.html"><code>geojson</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7gpx.html"><code>gpx</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7ics.html"><code>ics</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7ini.html"><code>ini</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7json.html"><code>json</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7jsonfeed.html"><code>jsonfeed</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7jsonseq.html"><code>jsonseq</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7kml.html"><code>kml</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7markdown.html"><code>markdown</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7ndjson.html"><code>ndjson</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7rss.html"><code>rss</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7srt.html"><code>srt</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7toml.html"><code>toml</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7tsv.html"><code>tsv</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7vcf.html"><code>vcf</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7vtt.html"><code>vtt</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7xlsx.html"><code>xlsx</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7xml.html"><code>xml</code></a>, <a href="index%EF%B9%96kind%EA%A4%B7format%EA%A4%B7yaml.html"><code>yaml</code></a>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7datatable.html">{pad:datatable}</a></td>
-      <td>A pipe per column, <code>column:pipe</code> separated by commas - <code>total:money, date:date('j M')</code>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td><code>jpeg</code>, <code>png</code> or <code>webp</code> - default the source's, a GIF becoming a PNG.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7timeago.html">{pad:timeago}</a></td>
-      <td>The PHP date format of the full moment in the <code>title</code>, default <code>l j F Y, H:i</code>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{pad:timeline}</a></td>
-      <td>A PHP date format for the dates written - else by the date's precision (<code>1969</code>, <code>Oct 2026</code>, <code>Oct 8, 2026</code>).</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="1">format</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7fake.html">{fake:*}</a></td>
       <td>date: the format of the moment, <code>Y-m-d</code>.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">formats</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7spreadsheet.html">{pad:spreadsheet}</a></td>
-      <td>A format code per column, cell or range: <code>B:0.00, total:€ #,##0.00, B5:B8:0.0%</code>, as TEXT writes them.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">formulas</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7spreadsheet.html">{pad:spreadsheet}</a></td>
-      <td>Formulas put in: <code>total=B2*C2</code> fills a column down every row below the first, <code>D2:D9=B2*C2</code> a range, <code>F1=SUM(D:D)</code> one cell.</td>
     </tr>
     
   
@@ -1352,27 +1128,9 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="9">from</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7diff.html">{pad:diff}</a></td>
-      <td>The name of the old version - a column head side by side, a caption in one column.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7holidays.html">{pad:holidays}</a></td>
-      <td>With <code>to</code>: the days between two dates instead of a year - <code>today</code>, <code>2026-03-01</code>, <code>+3 months</code>.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="6">from</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7mail.html">{pad:mail}</a></td>
       <td>The sender, <code>$padMailFrom</code> by default.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{pad:timeline}</a></td>
-      <td>The field with the start of a span, drawn as a bar (with <code>to</code>).</td>
     </tr>
     
     <tr>
@@ -1492,15 +1250,9 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">headers</td>
+      <td class="opt" rowspan="1">headers</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7curl.html">{pad:curl}</a></td>
       <td>An array of request headers.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7spreadsheet.html">{pad:spreadsheet}</a></td>
-      <td>The column letters and the row numbers; <code>headers=FALSE</code> leaves them out.</td>
     </tr>
     
   
@@ -1522,25 +1274,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="9">height</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>The height of the box in CSS pixels.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7map.html">{pad:map}</a></td>
-      <td>The height in pixels; by default it follows from the view.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{pad:timeline}</a></td>
-      <td>The height in pixels; by default it follows from the cards (not in the vertical form).</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="6">height</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart:*}</a></td>
       <td>The height in pixels, default 300 (round kinds 280, the tall kinds 400, gauge 200, calendar 150).</td>
     </tr>
@@ -1587,7 +1321,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">highlight</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7excerpt.html">{widget:excerpt}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7excerpt.html">{widget:excerpt}</a></td>
       <td>Search words - a query, split at everything that is no letter or digit. The cut is centred on the first match and every match is put in a <code>&lt;mark&gt;</code>.</td>
     </tr>
     
@@ -1608,13 +1342,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">holidays</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7calendar.html">{pad:calendar}</a></td>
-      <td>A country's public holidays marked and named in the month - <code>'nl'</code>, or with its region <code>'de-by'</code>; see <code>{pad:holidays}</code>.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="1">holidays</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7printable.html">{printable:*}</a></td>
       <td>calendar: the public holidays of a country of the holidays subsystem marked, <code>nl</code>, <code>de-by</code>.</td>
     </tr>
@@ -1653,7 +1381,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">href</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7oauth.html">{widget:oauth}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7oauth.html">{widget:oauth}</a></td>
       <td>Where it links - <code>oauth/&lt;provider&gt;</code> of the application by default, the page that calls <code>padOAuthStart</code> and <code>padOAuthUser</code>.</td>
     </tr>
     
@@ -1667,22 +1395,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7excerpt.html">{widget:excerpt}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7excerpt.html">{widget:excerpt}</a></td>
       <td>Bare option: the text is HTML - its tags (and the content of <code>script</code> and <code>style</code>) are dropped and its entities read before it is cut.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7markdown.html">{widget:markdown}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7markdown.html">{widget:markdown}</a></td>
       <td>Bare option: let the author's own raw HTML through - inline tags, and a block-level element or comment at the start of a line up to the next blank line. Without it raw HTML is escaped.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">icon</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7rating.html">{pad:rating}</a></td>
-      <td><code>star</code> (default) or <code>heart</code>.</td>
     </tr>
     
   
@@ -1695,19 +1415,19 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{input:field}</a></td>
-      <td>The id, by default the name.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7reactData.html">{widget:reactData}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7reactData.html">{widget:reactData}</a></td>
       <td>The id of the <code>&lt;div&gt;</code>, and the key the result is kept under in <code>$padProviders</code> - default <code>myReactId</code>.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7textarea.html">{input:textarea}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7field.html">{input:field}</a></td>
+      <td>The id, by default the name.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7textarea.html">{input:textarea}</a></td>
       <td>The id, by default the name.</td>
     </tr>
     
@@ -1741,7 +1461,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">ignore</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7markdown.html">{widget:markdown}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7markdown.html">{widget:markdown}</a></td>
       <td>Bare option: the braces in the content are text, not tags - for code samples in the Markdown.</td>
     </tr>
     
@@ -1756,7 +1476,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
-      <td>A field of article (<code>image</code>), business (<code>image</code>), course (<code>image</code>), event (<code>image</code>), person (<code>image</code>), product (<code>image</code>), profile (<code>mainEntity.image</code>), recipe (<code>image</code>, required), restaurant (<code>image</code>), software (<code>image</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>image</code>), book (<code>image</code>), business (<code>image</code>), course (<code>image</code>), event (<code>image</code>), person (<code>image</code>), product (<code>image</code>), profile (<code>mainEntity.image</code>), recipe (<code>image</code>, required), restaurant (<code>image</code>), software (<code>image</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -1818,6 +1538,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">isbn</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
+      <td>A field of book (<code>isbn</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">iterations</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7toy.html">{toy:*}</a></td>
       <td>mandelbrot: how long a point is followed (300); lsystem: how often the word is rewritten.</td>
@@ -1856,13 +1584,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">key</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7map.html">{pad:map}</a></td>
-      <td>The field with the country: its ISO 3166 alpha-2 or alpha-3 code or its English name, in any case - on a view of a country's regions the region: its ISO 3166-2 code with or without the country (<code>US-CA</code>, <code>CA</code>) or its name - else the first field that is no number.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="1">key</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget.html">{widget:*}</a></td>
       <td>commandpalette: the letter of the shortcut with Ctrl or &#8984; (<code>k</code>).</td>
     </tr>
@@ -1872,7 +1594,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">keywords</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
-      <td>A field of recipe (<code>keywords</code>) - it wins over the field of the row.</td>
+      <td>A field of dataset (<code>keywords</code>), recipe (<code>keywords</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -1886,57 +1608,33 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="13">label</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7avatar.html">{pad:avatar}</a></td>
-      <td>The accessible name (<code>aria-label</code> and <code>&lt;title&gt;</code>), by default the name.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7emoji.html">{image:emoji}</a></td>
+      <td class="opt" rowspan="9">label</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7image%EA%A4%B7emoji.html">{image:emoji}</a></td>
       <td>The name a screen reader says, default the emoji's own name.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{input:field}</a></td>
-      <td>A <code>&lt;label for&gt;</code> before the field - after a checkbox or radio - and the word its error message uses.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7oauth.html">{widget:oauth}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7oauth.html">{widget:oauth}</a></td>
       <td>Its text, <code>Log in with &lt;name&gt;</code> by default.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7progress.html">{pad:progress}</a></td>
-      <td>Shown above the bar and the accessible name; default <code>Progress</code> (not shown).</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7rating.html">{pad:rating}</a></td>
-      <td>The accessible name, default <code>4.5 out of 5</code>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7textarea.html">{input:textarea}</a></td>
-      <td>A <code>&lt;label for&gt;</code> before the text area, and the word its error message uses.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7themes.html">{widget:themes}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7themes.html">{widget:themes}</a></td>
       <td>The label of the list of themes (<code>Theme</code>), for a screen reader - it is not shown.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{pad:timeline}</a></td>
-      <td>The field with an event's title - else the first other text field.</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7field.html">{input:field}</a></td>
+      <td>A <code>&lt;label for&gt;</code> before the field - after a checkbox or radio - and the word its error message uses.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7textarea.html">{input:textarea}</a></td>
+      <td>A <code>&lt;label for&gt;</code> before the text area, and the word its error message uses.</td>
     </tr>
     
     <tr>
@@ -1966,14 +1664,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">labels</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7datatable.html">{pad:datatable}</a></td>
-      <td>The header of each column, in the order of <code>columns</code>. The field name as a headline when not given (<code>order_date</code> is Order Date).</td>
-    </tr>
-    
-  
-    
-    <tr>
       <td class="opt" rowspan="1">landscape</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7pdf.html">{pad:pdf}</a></td>
       <td>Bare option: the page turned.</td>
@@ -1982,15 +1672,9 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">lang</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7holidays.html">{pad:holidays}</a></td>
-      <td>The language of <code>local</code> for a country of more than one: be <code>nl fr de</code>, lu <code>lb fr de</code>, ch <code>de fr it</code>, ca <code>en fr</code>, fi <code>fi sv</code>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7search.html">{pad:search}</a></td>
-      <td>The language of the stop words and the stemmer: <code>en</code>, <code>nl</code>, <code>de</code>, <code>fr</code>, <code>es</code>, <code>it</code>, <code>pt</code>, <code>sv</code>, <code>da</code>, <code>no</code> (<code>nb</code> and <code>nn</code> are <code>no</code>), <code>ru</code> - the locale's, else English.</td>
+      <td class="opt" rowspan="1">language</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
+      <td>A field of book (<code>inLanguage</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -2054,14 +1738,8 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="5">levels</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>posterize: the steps of a channel (4); dither, atkinson, bayer: the greys (2).</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7toc.html">{widget:toc}</a></td>
+      <td class="opt" rowspan="4">levels</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7toc.html">{widget:toc}</a></td>
       <td>The heading levels listed - a list or a range, <code>'2,3'</code> by default, <code>'2-4'</code>.</td>
     </tr>
     
@@ -2086,6 +1764,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">license</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
+      <td>A field of dataset (<code>license</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">line</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart:*}</a></td>
       <td>Dual: the field drawn as a line on the right axis, beside the bars of <code>value</code>.</td>
@@ -2094,14 +1780,8 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="4">lines</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7diff.html">{pad:diff}</a></td>
-      <td>Bare option: compare line by line - a table with the old and the new line number, a sign and the line.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7highlight.html">{widget:highlight}</a></td>
+      <td class="opt" rowspan="3">lines</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7highlight.html">{widget:highlight}</a></td>
       <td>Bare option: number the lines.</td>
     </tr>
     
@@ -2120,22 +1800,8 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">link</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7calendar.html">{pad:calendar}</a></td>
-      <td>A field with a link for the event - http(s), a page or an anchor; never <code>javascript:</code> or <code>data:</code>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7search.html">{pad:search}</a></td>
-      <td>The single tag's list: a field with the link of a hit - http(s), a page or an anchor.</td>
-    </tr>
-    
-  
-    
-    <tr>
       <td class="opt" rowspan="2">list</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7toc.html">{widget:toc}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7toc.html">{widget:toc}</a></td>
       <td><code>ol</code> (numbered, the default) or <code>ul</code>.</td>
     </tr>
     
@@ -2143,14 +1809,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence:*}</a></td>
       <td>An explicit list of values, separated by <code>;</code>: <code>list='3;1;2'</code>.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">live</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7countdown.html">{pad:countdown}</a></td>
-      <td>Bare option: a small script, once per page, counts down every second from the browser's clock.</td>
     </tr>
     
   
@@ -2213,7 +1871,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">mark</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7highlight.html">{widget:highlight}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7highlight.html">{widget:highlight}</a></td>
       <td>Lines to set apart: <code>'4'</code>, <code>'3, 5-7'</code>.</td>
     </tr>
     
@@ -2234,19 +1892,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="3">max</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7progress.html">{pad:progress}</a></td>
-      <td>What the value counts to, default 100. With <code>steps</code> the number of steps, a whole number up to 50.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7rating.html">{pad:rating}</a></td>
-      <td>The number of icons, a whole number from 1 to 20, default 5.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="1">max</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget.html">{widget:*}</a></td>
       <td>splitpane: the largest share of the first pane, in percent (<code>90</code>).</td>
     </tr>
@@ -2271,7 +1917,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">method</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7form.html">{input:form}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7form.html">{input:form}</a></td>
       <td><code>post</code> (the default) or <code>get</code>. A GET form gets no token and no name field, and its fields refill from the query string.</td>
     </tr>
     
@@ -2303,7 +1949,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">mode</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7shadow.html">{widget:shadow}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7shadow.html">{widget:shadow}</a></td>
       <td><code>open</code> (the default) or <code>closed</code>.</td>
     </tr>
     
@@ -2316,17 +1962,9 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">model</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7ai.html">{pad:ai}</a></td>
-      <td>The model - the provider's own default unless given.</td>
-    </tr>
-    
-  
-    
-    <tr>
       <td class="opt" rowspan="1">modified</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
-      <td>A field of article (<code>dateModified</code>), profile (<code>dateModified</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>dateModified</code>), dataset (<code>dateModified</code>), profile (<code>dateModified</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -2377,12 +2015,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7country.html">{image:country}</a></td>
-      <td>Bare option: writes the English name beside the flag; the flag is then decoration (<code>aria-hidden</code>).</td>
-    </tr>
-    
-    <tr>
-      
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7field.html">{pad:field}</a></td>
       <td>In the designer preview (<code>&amp;padSample</code>) the value of that name in the page's sample answers instead of the database; <code>&amp;padSample=capture</code> records the database's answer under it.</td>
     </tr>
@@ -2407,6 +2039,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7image%EA%A4%B7country.html">{image:country}</a></td>
+      <td>Bare option: writes the English name beside the flag; the flag is then decoration (<code>aria-hidden</code>).</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7fake.html">{fake:*}</a></td>
       <td>email: the name the address is made from.</td>
     </tr>
@@ -2414,7 +2052,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
-      <td>A field of business (<code>name</code>, required), course (<code>name</code>, required), event (<code>name</code>, required), itemlist (<code>name</code>), organization (<code>name</code>, required), person (<code>name</code>, required), product (<code>name</code>, required), profile (<code>mainEntity.name</code>, required), recipe (<code>name</code>, required), restaurant (<code>name</code>, required), software (<code>name</code>, required), video (<code>name</code>, required), website (<code>name</code>) - it wins over the field of the row.</td>
+      <td>A field of book (<code>name</code>, required), business (<code>name</code>, required), course (<code>name</code>, required), dataset (<code>name</code>, required), event (<code>name</code>, required), itemlist (<code>name</code>), organization (<code>name</code>, required), person (<code>name</code>, required), product (<code>name</code>, required), profile (<code>mainEntity.name</code>, required), recipe (<code>name</code>, required), restaurant (<code>name</code>, required), service (<code>name</code>, required), software (<code>name</code>, required), video (<code>name</code>, required), website (<code>name</code>) - it wins over the field of the row.</td>
     </tr>
     
     <tr>
@@ -2474,20 +2112,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">now</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7countdown.html">{pad:countdown}</a></td>
-      <td>Count from this moment instead of now.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7timeago.html">{pad:timeago}</a></td>
-      <td>Count from this moment instead of now.</td>
-    </tr>
-    
-  
-    
-    <tr>
       <td class="opt" rowspan="1">number</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7printable.html">{printable:*}</a></td>
       <td>tickets: the number of the first ticket, on a stub without an aside.</td>
@@ -2499,6 +2123,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">numbers</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7notation.html">{notation:*}</a></td>
       <td>Bare option. go: the move number on every stone a move put there; draughts: the number of every playing square; karnaugh: the number of every cell.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">offerurl</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
+      <td>A field of service (<code>offers.url</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -2529,7 +2161,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">only</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7source.html">{widget:source}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7source.html">{widget:source}</a></td>
       <td>Those files alone, without the page's - the same kind of list as <code>files=</code>.</td>
     </tr>
     
@@ -2560,13 +2192,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="4">open</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonview.html">{pad:jsonview}</a></td>
-      <td>The number of levels shown unfolded, 2 when not given; 0 folds everything.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="3">open</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart:*}</a></td>
       <td>Candlestick: the field of the opening price (also <code>high</code>, <code>low</code> and <code>close</code>, each defaulting to its own name).</td>
     </tr>
@@ -2654,6 +2280,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">pages</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
+      <td>A field of book (<code>numberOfPages</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">pairs</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7game.html">{game:*}</a></td>
       <td>memory: how many pairs (8).</td>
@@ -2685,7 +2319,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">paragraphs</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7lorem.html">{widget:lorem}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7lorem.html">{widget:lorem}</a></td>
       <td>So many <code>&lt;p&gt;</code> paragraphs, of four to seven sentences unless <code>sentences</code> says.</td>
     </tr>
     
@@ -2703,14 +2337,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">password</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7curl.html">{pad:curl}</a></td>
       <td>The password of basic authentication.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">past</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7countdown.html">{pad:countdown}</a></td>
-      <td>The text once the moment has gone, default <code>ended</code>.</td>
     </tr>
     
   
@@ -2887,7 +2513,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">poster</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7video.html">{widget:video}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7video.html">{widget:video}</a></td>
       <td>A picture of <code>www/&lt;application&gt;/</code> (versioned as <code>{pad:asset}</code>) in place of the site's thumbnail.</td>
     </tr>
     
@@ -2934,7 +2560,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">price</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
-      <td>A field of event (<code>offers.price</code>), product (<code>offers.price</code>), software (<code>offers.price</code>, required) - it wins over the field of the row.</td>
+      <td>A field of event (<code>offers.price</code>), product (<code>offers.price</code>), service (<code>offers.price</code>), software (<code>offers.price</code>, required) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -2972,21 +2598,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="3">provider</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7ai.html">{pad:ai}</a></td>
-      <td>A file of <code>pad/subs/ai/types/</code>: <code>anthropic</code>, <code>bedrock</code>, <code>cloudflare</code>, <code>cohere</code>, <code>gemini</code>, <code>lmstudio</code>, <code>mistral</code>, <code>ollama</code>, <code>openai</code> - <code>PAD_AI_PROVIDER</code>, else <code>anthropic</code>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7reactData.html">{widget:reactData}</a></td>
+      <td class="opt" rowspan="2">provider</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7reactData.html">{widget:reactData}</a></td>
       <td>The file <code>_providers/&lt;name&gt;.php</code> that answers the data - default the id. A plain name only.</td>
     </tr>
     
     <tr>
       
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
-      <td>A field of course (<code>provider.name</code>) - it wins over the field of the row.</td>
+      <td>A field of course (<code>provider.name</code>), service (<code>provider.name</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -2994,7 +2614,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">providerurl</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
-      <td>A field of course (<code>provider.sameAs</code>) - it wins over the field of the row.</td>
+      <td>A field of course (<code>provider.sameAs</code>), service (<code>provider.url</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -3002,7 +2622,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">published</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
-      <td>A field of article (<code>datePublished</code>), recipe (<code>datePublished</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>datePublished</code>), book (<code>datePublished</code>), dataset (<code>datePublished</code>), recipe (<code>datePublished</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -3010,7 +2630,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">publisher</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
-      <td>A field of article (<code>publisher.name</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>publisher.name</code>), book (<code>publisher.name</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -3032,45 +2652,9 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">q</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7search.html">{pad:search}</a></td>
-      <td>The query: words (any of them), <code>"a phrase"</code> (required, in order), <code>prefix*</code>, <code>-word</code> and <code>-"a phrase"</code> (left out).</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">quality</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>1 to 100 for JPEG and WebP, default 80.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="3">query</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7calendar.html">{pad:calendar}</a></td>
-      <td>The request value the links to the months around set, and that picks the month when no parameter is given; default <code>month</code>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7datatable.html">{pad:datatable}</a></td>
-      <td>A prefix for the request names <code>sort</code>, <code>dir</code> and <code>page</code> - for two tables on one page.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7pager.html">{widget:pager}</a></td>
+      <td class="opt" rowspan="1">query</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7pager.html">{widget:pager}</a></td>
       <td>The request value the links set. By default the variable <code>page=</code> was written with - <code>page=$pg</code> makes the links set <code>pg</code> - else <code>page</code>.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">radius</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>blur: in CSS pixels (6).</td>
     </tr>
     
   
@@ -3124,14 +2708,8 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="4">ratio</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7placeholder.html">{pad:placeholder}</a></td>
-      <td>Proportions instead of a size (<code>'16:9'</code>), drawn <code>width</code> pixels wide.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7video.html">{widget:video}</a></td>
+      <td class="opt" rowspan="3">ratio</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7video.html">{widget:video}</a></td>
       <td>The proportion, default <code>16:9</code>; a short is <code>9:16</code> and kept to a phone's width.</td>
     </tr>
     
@@ -3166,13 +2744,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">region</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7holidays.html">{pad:holidays}</a></td>
-      <td>The region apart - <code>region='by'</code>: Germany's states, the United Kingdom's nations (<code>sct</code>, <code>nir</code>), France's Alsace-Moselle and overseas departments, Finland's Åland (<code>01</code>), Portugal's Azores and Madeira (<code>20</code>, <code>30</code>), New Zealand's provinces (<code>auk</code>, <code>can</code> ...).</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="1">region</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
       <td>A field of business (<code>address.addressRegion</code>), job (<code>jobLocation.address.addressRegion</code>), restaurant (<code>address.addressRegion</code>) - it wins over the field of the row.</td>
     </tr>
@@ -3242,13 +2814,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="3">rows</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7datatable.html">{pad:datatable}</a></td>
-      <td>Rows per page, with page links below (<code>?page=2</code>).</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="2">rows</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7fake.html">{fake:*}</a></td>
       <td>So many rows of the kinds - the level's data, for the content of the pair or for <code>toData</code>.</td>
     </tr>
@@ -3271,13 +2837,13 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">rules</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{input:field}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7field.html">{input:field}</a></td>
       <td>The field's rules - <code>required|email|max:80</code> - read from the page's own template and checked before its PHP runs. Only in a named <code>{input:form}</code> of the page itself.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7textarea.html">{input:textarea}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7textarea.html">{input:textarea}</a></td>
       <td>The field's rules - <code>required|max:2000</code> - read from the page's own template and checked before its PHP runs. Only in a named <code>{input:form}</code> of the page itself.</td>
     </tr>
     
@@ -3306,13 +2872,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="3">scale</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7map.html">{pad:map}</a></td>
-      <td><code>linear</code> (default: seven equal steps from the lowest value to the highest) or <code>quantile</code> (seven steps by rank).</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="2">scale</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7barcode.html">{barcode:*}</a></td>
       <td>The width of one module - the thinnest bar - in pixels, default 2 (1 to 10).</td>
     </tr>
@@ -3350,15 +2910,9 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="6">seed</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7lorem.html">{widget:lorem}</a></td>
+      <td class="opt" rowspan="5">seed</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7lorem.html">{widget:lorem}</a></td>
       <td>Another text, the same again for the same seed - default 0.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7spreadsheet.html">{pad:spreadsheet}</a></td>
-      <td>The seed of RAND, 0 when not given: the same numbers on every request.</td>
     </tr>
     
     <tr>
@@ -3405,7 +2959,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">sentences</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7lorem.html">{widget:lorem}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7lorem.html">{widget:lorem}</a></td>
       <td>So many sentences of six to fourteen words; with <code>paragraphs</code>, the sentences of each paragraph.</td>
     </tr>
     
@@ -3421,6 +2975,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">sequence</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart:*}</a></td>
       <td>Plot the first <code>rows</code> terms (default 10) of a sequence type instead of rows.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">service</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
+      <td>A field of service (<code>serviceType</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -3442,13 +3004,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="3">shape</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7avatar.html">{pad:avatar}</a></td>
-      <td><code>circle</code> (default) or <code>square</code> - with rounded corners.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="2">shape</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7toy.html">{toy:*}</a></td>
       <td>epicycles: heart, star, square or trefoil - or the x,y points of a drawing of your own between the tags.</td>
     </tr>
@@ -3478,13 +3034,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">side</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7diff.html">{pad:diff}</a></td>
-      <td>Bare option: the lines side by side, a changed line beside its counterpart, line numbers on both sides.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="1">side</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget.html">{widget:*}</a></td>
       <td>drawer: <code>right</code> (the default), <code>left</code> or <code>bottom</code>.</td>
     </tr>
@@ -3516,39 +3066,9 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="15">size</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7avatar.html">{pad:avatar}</a></td>
-      <td>Width and height in pixels, default 48.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7gravatar.html">{pad:gravatar}</a></td>
-      <td>Width and height in pixels, default 64; the <code>srcset</code> asks twice that for a sharp screen.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7identicon.html">{pad:identicon}</a></td>
-      <td>Width and height in pixels, default 64.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="10">size</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7pdf.html">{pad:pdf}</a></td>
       <td><code>A4</code> (default), <code>Letter</code>, <code>A5</code> or <code>Legal</code>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7progress.html">{pad:progress}</a></td>
-      <td><code>small</code>, <code>medium</code> (default) or <code>large</code> - the height of the bar or the dots.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7rating.html">{pad:rating}</a></td>
-      <td>The height in pixels, default 20.</td>
     </tr>
     
     <tr>
@@ -3646,14 +3166,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">sortable</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7datatable.html">{pad:datatable}</a></td>
-      <td>Bare option: every header is a link that sorts on the server, <code>?sort=total&amp;dir=desc</code>.</td>
-    </tr>
-    
-  
-    
-    <tr>
       <td class="opt" rowspan="1">source</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart:*}</a></td>
       <td>Sankey, network, chord, arc: the field of where a link starts.</td>
@@ -3744,15 +3256,9 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="3">steps</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7palette.html">{widget:palette}</a></td>
+      <td class="opt" rowspan="2">steps</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7palette.html">{widget:palette}</a></td>
       <td>How many colours, 1 to 256: a sequential or diverging palette sampled evenly from its first colour to its last, a cyclic one evenly round its circle, never its first colour twice, a categorical one its colours in order, starting again past its last. Without it a categorical palette shows its own, a cyclic one twelve, the others nine.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7progress.html">{pad:progress}</a></td>
-      <td>Bare option: a dot per step joined by a line, the steps up to the value filled and the current one ringed.</td>
     </tr>
     
     <tr>
@@ -3775,14 +3281,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">street</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
       <td>A field of business (<code>address.streetAddress</code>), job (<code>jobLocation.address.streetAddress</code>), restaurant (<code>address.streetAddress</code>) - it wins over the field of the row.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">striped</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7datatable.html">{pad:datatable}</a></td>
-      <td>Bare option: every other row shaded.</td>
     </tr>
     
   
@@ -3820,13 +3318,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">sunday</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7calendar.html">{pad:calendar}</a></td>
-      <td>Bare option: the weeks start on Sunday instead of Monday.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="1">sunday</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7printable.html">{printable:*}</a></td>
       <td>calendar: bare option, the weeks from Sunday instead of Monday; <code>weeks</code> their ISO 8601 numbers before them.</td>
     </tr>
@@ -3834,13 +3326,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">system</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7ai.html">{pad:ai}</a></td>
-      <td>The system prompt.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="1">system</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7toy.html">{toy:*}</a></td>
       <td>orbits: solar, binary, eight or swarm. An lsystem names its system as its first value: plant, dragon, koch, hilbert ...</td>
     </tr>
@@ -3894,19 +3380,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="3">text</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7placeholder.html">{pad:placeholder}</a></td>
-      <td>Written in the middle and the accessible name; by default the size (<code>600 × 300</code>) or the ratio.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{pad:timeline}</a></td>
-      <td>The field with the line under the title - else the next text field.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="1">text</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7section.html">{section:*}</a></td>
       <td>The line under the heading - the content between the tags wins over it, and a <code>{pad:slot 'text'}</code> over both.</td>
     </tr>
@@ -3925,14 +3399,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">thickness</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7effect.html">{effect:*}</a></td>
       <td>underline, strike, encircle: the stroke in pixels, 1 to 12.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">threshold</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>threshold: the luminance where ink becomes paper, in percent of white (50); solarize: where a channel turns into its negative (50).</td>
     </tr>
     
   
@@ -3976,39 +3442,9 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="22">title</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7calendar.html">{pad:calendar}</a></td>
-      <td>The field with an event's text - by default the first other text field.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7identicon.html">{pad:identicon}</a></td>
-      <td>The accessible name, default <code>Identicon</code> - the value itself is not written into the page.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonview.html">{pad:jsonview}</a></td>
-      <td>A label for the outermost level.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7map.html">{pad:map}</a></td>
-      <td>The accessible name, default <code>&lt;Value&gt; by country</code> - <code>by state</code>, <code>by province</code> on a view of a country's regions.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="17">title</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7meta.html">{pad:meta}</a></td>
       <td>Like any other name: becomes the variable <code>$title</code>, which a wrapper's <code>&lt;title&gt;</code> shows.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7palette.html">{widget:palette}</a></td>
-      <td>The name of the row for a screen reader, else the palette's name and the count.</td>
     </tr>
     
     <tr>
@@ -4019,19 +3455,19 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{pad:timeline}</a></td>
-      <td>The accessible name, default <code>Timeline</code>.</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7palette.html">{widget:palette}</a></td>
+      <td>The name of the row for a screen reader, else the palette's name and the count.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7toc.html">{widget:toc}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7toc.html">{widget:toc}</a></td>
       <td>The label above the list, <code>Contents</code> by default; <code>''</code> for none.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7video.html">{widget:video}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7video.html">{widget:video}</a></td>
       <td>Required: the play button's text, the iframe's title, the video element's name.</td>
     </tr>
     
@@ -4110,27 +3546,9 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="8">to</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7diff.html">{pad:diff}</a></td>
-      <td>The name of the new version.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7holidays.html">{pad:holidays}</a></td>
-      <td>The last date of <code>from</code>; one of the two alone is a year from it (or from today).</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="5">to</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7mail.html">{pad:mail}</a></td>
       <td>The address or addresses - <code>ann@example.com</code>, <code>Ann &lt;ann@example.com&gt;</code>, several separated by commas.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{pad:timeline}</a></td>
-      <td>The field with the end of a span.</td>
     </tr>
     
     <tr>
@@ -4176,14 +3594,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">tokens</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7ai.html">{pad:ai}</a></td>
-      <td>The most the answer may take.</td>
-    </tr>
-    
-  
-    
-    <tr>
       <td class="opt" rowspan="2">tone</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget.html">{widget:*}</a></td>
       <td>toast: <code>info</code>, <code>success</code>, <code>warning</code> or <code>error</code>.</td>
@@ -4207,20 +3617,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
       <td>A field of recipe (<code>totalTime</code>) - it wins over the field of the row.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="2">totals</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7datatable.html">{pad:datatable}</a></td>
-      <td>Columns summed in a totals row - over every row, not only the page shown.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7spreadsheet.html">{pad:spreadsheet}</a></td>
-      <td>A row below the last with the SUM of each column named - its letters or the name in its first row.</td>
     </tr>
     
   
@@ -4250,13 +3646,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="3">ttl</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7ai.html">{pad:ai}</a></td>
-      <td>The seconds an answer is kept - 3600 unless given, 0 keeps nothing.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="2">ttl</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7cache.html">{pad:cache}</a></td>
       <td>The seconds the rendering is kept, 300 when not given.</td>
     </tr>
@@ -4294,21 +3684,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="5">type</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7data.html">{pad:data}</a></td>
-      <td>The reader to use explicitly: a data format, <code>list</code> or <code>range</code>.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{input:field}</a></td>
-      <td>The input type, <code>text</code> by default: <code>email</code>, <code>number</code>, <code>checkbox</code>, <code>radio</code>, <code>hidden</code>, <code>password</code>, <code>file</code>, <code>submit</code> ...</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7reactData.html">{widget:reactData}</a></td>
+      <td class="opt" rowspan="4">type</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7reactData.html">{widget:reactData}</a></td>
       <td><code>check</code> turns the result into 1 or 0; otherwise (<code>record</code>, the default, or <code>array</code>) it is passed as the provider returned it.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7field.html">{input:field}</a></td>
+      <td>The input type, <code>text</code> by default: <code>email</code>, <code>number</code>, <code>checkbox</code>, <code>radio</code>, <code>hidden</code>, <code>password</code>, <code>file</code>, <code>submit</code> ...</td>
     </tr>
     
     <tr>
@@ -4342,14 +3726,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">units</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7countdown.html">{pad:countdown}</a></td>
-      <td>How many units are shown, 1 to 4 (days, hours, minutes, seconds), default 2.</td>
-    </tr>
-    
-  
-    
-    <tr>
       <td class="opt" rowspan="1">uploaded</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
       <td>A field of video (<code>uploadDate</code>, required) - it wins over the field of the row.</td>
@@ -4360,7 +3736,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">url</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
-      <td>A field of article (<code>url</code>), business (<code>url</code>), course (<code>url</code>), event (<code>url</code>), organization (<code>url</code>), person (<code>url</code>), product (<code>url</code>), restaurant (<code>url</code>), software (<code>url</code>), website (<code>url</code>) - it wins over the field of the row.</td>
+      <td>A field of article (<code>url</code>), book (<code>url</code>), business (<code>url</code>), course (<code>url</code>), dataset (<code>url</code>), event (<code>url</code>), organization (<code>url</code>), person (<code>url</code>), product (<code>url</code>), restaurant (<code>url</code>), service (<code>url</code>), software (<code>url</code>), website (<code>url</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -4374,20 +3750,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="4">value</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{input:field}</a></td>
+      <td class="opt" rowspan="3">value</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7field.html">{input:field}</a></td>
       <td>The value before anything was sent; for a checkbox or radio its own value (<code>on</code> by default).</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7map.html">{pad:map}</a></td>
-      <td>The field with the number - else the first numeric field.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7textarea.html">{input:textarea}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7textarea.html">{input:textarea}</a></td>
       <td>The text before anything was sent, escaped.</td>
     </tr>
     
@@ -4401,7 +3771,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">varied</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7lorem.html">{widget:lorem}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7lorem.html">{widget:lorem}</a></td>
       <td>Bare option: leave the classic opening "Lorem ipsum dolor sit amet" out - for the second text on a page.</td>
     </tr>
     
@@ -4427,14 +3797,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">version</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7jsonld.html">{jsonld:*}</a></td>
       <td>A field of software (<code>softwareVersion</code>) - it wins over the field of the row.</td>
-    </tr>
-    
-  
-    
-    <tr>
-      <td class="opt" rowspan="1">vertical</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{pad:timeline}</a></td>
-      <td>Bare option: dates on the left and cards on the right, one under the other - for a long list.</td>
     </tr>
     
   
@@ -4492,31 +3854,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="9">width</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7img.html">{pad:img}</a></td>
-      <td>The width of the box in CSS pixels. With only one of width and height the picture keeps its proportion; with neither it keeps its size.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7map.html">{pad:map}</a></td>
-      <td>The width in pixels, default 720.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7placeholder.html">{pad:placeholder}</a></td>
-      <td>The width of a box drawn from <code>ratio</code>, default 640.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7timeline.html">{pad:timeline}</a></td>
-      <td>The width in pixels, default 720 (vertical 600).</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="5">width</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart:*}</a></td>
       <td>The width in pixels, default 600 (round kinds 480, gauge 320, calendar 720).</td>
     </tr>
@@ -4549,28 +3887,22 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">window</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7pager.html">{widget:pager}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7pager.html">{widget:pager}</a></td>
       <td>The number of pages shown on each side of the current one; 2 by default. The first and the last page always show, a gap (<code>…</code>) stands for the pages left out.</td>
     </tr>
     
   
     
     <tr>
-      <td class="opt" rowspan="4">words</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7excerpt.html">{widget:excerpt}</a></td>
+      <td class="opt" rowspan="3">words</td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7excerpt.html">{widget:excerpt}</a></td>
       <td>The length in words, default 40. A text no longer than that stays whole.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7lorem.html">{widget:lorem}</a></td>
+      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7widget%EA%A4%B7lorem.html">{widget:lorem}</a></td>
       <td>So many words exactly, as sentences; fewer than five are a title, without a full stop. 50 when no length is given.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7search.html">{pad:search}</a></td>
-      <td>The length of the excerpt in words, default 30.</td>
     </tr>
     
     <tr>
@@ -4606,13 +3938,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="3">year</td>
-      <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7holidays.html">{pad:holidays}</a></td>
-      <td>The year, 1583 to 9999 - this year by default.</td>
-    </tr>
-    
-    <tr>
-      
+      <td class="opt" rowspan="2">year</td>
       <td><a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart:*}</a></td>
       <td>Calendar: draw the whole year instead of the span of the data.</td>
     </tr>

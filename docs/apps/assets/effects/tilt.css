@@ -1,0 +1,9 @@
+.pad-effect-tilt{--pad-effect-rx:-4.8deg;--pad-effect-ry:-8deg;position:relative;display:block;border-radius:var(--pad-effect-radius,12px)}
+.pad-effect-tilt.pe-glare{overflow:hidden;isolation:isolate}
+.pad-effect-tilt.pe-glare::after{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 48%,transparent 62%);background-size:250% 100%;background-position:100% 0;opacity:0}
+@media (prefers-reduced-motion:no-preference){
+.pad-effect-tilt{transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s;transform:perspective(900px);will-change:transform}
+.pad-effect-tilt:hover,.pad-effect-tilt:focus-within{transform:perspective(900px) rotateX(var(--pad-effect-rx)) rotateY(var(--pad-effect-ry)) translateZ(0);box-shadow:0 18px 40px -18px rgba(0,0,0,.35)}
+.pad-effect-tilt.pe-glare::after{transition:background-position .7s ease,opacity .45s}
+.pad-effect-tilt.pe-glare:hover::after,.pad-effect-tilt.pe-glare:focus-within::after{background-position:0 0;opacity:1}
+}

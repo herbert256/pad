@@ -75,7 +75,7 @@
     </div>
     
     <div class="cheat-item">
-      <a class="name" href="index%EF%B9%96type%EA%A4%B7data.html">data:</a> <span class="about">A data store - rows kept by {pad:data} or a file of _data/ read through the format registry.</span>
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7data.html">data:</a> <span class="about">A data store - rows kept by {format:auto} or a file of _data/ read through the format registry.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data:colors</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$colors</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/data:colors</span><span class="hl-brc">}</span></code></pre>
     </div>
     
@@ -181,9 +181,27 @@ sequence:fibonacci(<span class="hl-num">8</span>)</code></pre>
   <div class="cheat">
     
     <div class="cheat-item">
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7ai.html">ai:</a> <span class="about">Text and validated JSON responses.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">ai:anthropic</span> <span class="hl-str">&#039;Name three rivers.&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7avatar.html">avatar:</a> <span class="about">An identity picture: initials, identicons, rings, mosaic, pixelbot, Gravatar, geometric art or a photograph with a local fallback.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">avatar:initials</span> <span class="hl-str">&#039;Ada Lovelace&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">avatar:geometric</span> <span class="hl-str">&#039;ada&#039;</span>, <span class="hl-opt">style</span>=<span class="hl-str">&#039;rings&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="index%EF%B9%96type%EA%A4%B7barcode.html">barcode:</a> <span class="about">A barcode symbology, a file of pad/subs/codes/types/, encoded on the server.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">barcode:ean13</span> <span class="hl-str">&#039;400638133393&#039;</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">barcode:ean13</span> <span class="hl-str">&#039;400638133393&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7calendar.html">calendar:</a> <span class="about">A Gregorian calendar view from pad/subs/calendars/types/ - days, weeks, months, quarters, years and agendas.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">calendar:month</span> <span class="hl-str">&#039;2026-11&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">calendar:week</span> <span class="hl-str">&#039;2026-11-02&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">calendar:year</span> <span class="hl-str">&#039;2026&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -197,6 +215,13 @@ sequence:fibonacci(<span class="hl-num">8</span>)</code></pre>
       <a class="name" href="index%EF%B9%96type%EA%A4%B7diagram.html">diagram:</a> <span class="about">A diagram type, a file of pad/subs/diagrams/types/, laid out on the server.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diagram:state</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/diagram:state</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">diagram:state</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/diagram:state</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7diff.html">diff:</a> <span class="about">A comparison of texts, JSON or keyed records from pad/subs/diffs/types/.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diff:words</span> <span class="hl-var">$old</span>, <span class="hl-var">$new</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diff:json</span> <span class="hl-var">$old</span>, <span class="hl-var">$new</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diff:rows</span> <span class="hl-var">$old</span>, <span class="hl-var">$new</span>, <span class="hl-opt">key</span>=<span class="hl-str">&#039;id&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -220,6 +245,11 @@ sequence:fibonacci(<span class="hl-num">8</span>)</code></pre>
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7format.html">format:</a> <span class="about">Read documents into named data stores.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">format:json</span> <span class="hl-str">&#039;rows&#039;</span><span class="hl-brc">}</span>[<span class="hl-num">1</span>,<span class="hl-num">2</span>,<span class="hl-num">3</span>]<span class="hl-brc">{</span><span class="hl-tag">/format:json</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="index%EF%B9%96type%EA%A4%B7game.html">game:</a> <span class="about">A game, a file of pad/subs/games/types/, played in the browser.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">game:memory</span> <span class="hl-opt">pairs</span>=<span class="hl-num">6</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">game:memory</span><span class="hl-brc">/}</span>
@@ -227,9 +257,20 @@ sequence:fibonacci(<span class="hl-num">8</span>)</code></pre>
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7holidays.html">holidays:</a> <span class="about">Country and regional public holidays.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">holidays:nl</span> <span class="hl-opt">year</span>=<span class="hl-num">2026</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="index%EF%B9%96type%EA%A4%B7icon.html">icon:</a> <span class="about">An icon, a file of pad/subs/icons/types/, drawn as inline SVG - never bare.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">icon:star</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">icon:star</span> <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7image.html">image:</a> <span class="about">Local images as thumbnails, responsive pictures, captioned figures or contact sheets.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">image:thumbnail</span> <span class="hl-str">&#039;photo.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">320</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;A landscape&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">image:picture</span> <span class="hl-str">&#039;photo.jpg&#039;</span>, <span class="hl-opt">widths</span>=<span class="hl-str">&#039;320,640,960&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;A landscape&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -242,6 +283,11 @@ sequence:fibonacci(<span class="hl-num">8</span>)</code></pre>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:article</span> <span class="hl-opt">headline</span>=<span class="hl-var">$title</span>, <span class="hl-opt">author</span>=<span class="hl-var">$author</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">jsonld:article</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;post&#039;</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">jsonld:faq</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;questions&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7map.html">map:</a> <span class="about">Choropleths, markers and proportional bubbles.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">map:europe</span> <span class="hl-opt">width</span>=<span class="hl-num">540</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -264,9 +310,21 @@ sequence:fibonacci(<span class="hl-num">8</span>)</code></pre>
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7search.html">search:</a> <span class="about">Ranked search, exact filters and facets.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">search:en</span> <span class="hl-str">&#039;documents&#039;</span>, <span class="hl-opt">q</span>=<span class="hl-str">&#039;PAD&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="index%EF%B9%96type%EA%A4%B7section.html">section:</a> <span class="about">A section of a landing page, a file of pad/subs/widgets/sections/types/ - pure CSS, coloured by the theme, never bare.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">section:hero</span> <span class="hl-opt">title</span>=<span class="hl-str">&#039;Build faster&#039;</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/section:hero</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">section:hero</span> <span class="hl-opt">title</span>=<span class="hl-str">&#039;Build faster&#039;</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/section:hero</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7sheet.html">sheet:</a> <span class="about">Formula grids computed on the server.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sheet:grid</span><span class="hl-brc">}</span>Name,Amount
+One,<span class="hl-num">12</span>
+Two,=B2*<span class="hl-num">2</span><span class="hl-brc">{</span><span class="hl-tag">/sheet:grid</span><span class="hl-brc">}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -274,6 +332,27 @@ sequence:fibonacci(<span class="hl-num">8</span>)</code></pre>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sound:chime</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">sound:chime</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">sound:pop</span> <span class="hl-opt">on</span>=<span class="hl-str">&#039;click&#039;</span>, <span class="hl-opt">target</span>=<span class="hl-str">&#039;#save&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7table.html">table:</a> <span class="about">A table of rows, grouped records, a pivot or a matrix from pad/subs/tables/types/.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">table:standard</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;orders&#039;</span>, sortable<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">table:grouped</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;orders&#039;</span>, <span class="hl-opt">group</span>=<span class="hl-str">&#039;region&#039;</span>, <span class="hl-opt">totals</span>=<span class="hl-str">&#039;amount&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7time.html">time:</a> <span class="about">Time displays from pad/subs/calendars/times/types/ - countdown, relative time, world clocks and stopwatches.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">time:countdown</span> <span class="hl-str">&#039;2026-12-31&#039;</span>, live<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">time:relative</span> <span class="hl-str">&#039;2026-11-01&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">time:clock</span> <span class="hl-opt">timezone</span>=<span class="hl-str">&#039;Europe/Amsterdam&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">time:stopwatch</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7timeline.html">timeline:</a> <span class="about">Event views from pad/subs/charts/timelines/types/ - horizontal, vertical, roadmap and swimlane.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">timeline:horizontal</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;events&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">timeline:roadmap</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;events&#039;</span>, <span class="hl-opt">lane</span>=<span class="hl-str">&#039;team&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">timeline:swimlane</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;events&#039;</span>, <span class="hl-opt">lane</span>=<span class="hl-str">&#039;team&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -298,30 +377,24 @@ sequence:fibonacci(<span class="hl-num">8</span>)</code></pre>
   <div class="cheat">
     
     <div class="cheat-item">
-      <a class="name" href="index%EF%B9%96type%EA%A4%B7ai.html">AI providers</a> <span class="about">The provider= option of {pad:ai} or padAi.</span>
-      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:ai</span> <span class="hl-str">&#039;Name three rivers of France.&#039;</span>, <span class="hl-opt">provider</span>=<span class="hl-str">&#039;anthropic&#039;</span><span class="hl-brc">/}</span></code></pre>
-    </div>
-    
-    <div class="cheat-item">
       <a class="name" href="index%EF%B9%96type%EA%A4%B7channel.html">Notification channels</a> <span class="about">Delivery channels selected in the fourth argument of padNotify.</span>
       <pre class="code"><code><span class="hl-fn">padNotify</span> <span class="hl-pun">(</span> <span class="hl-var">$recipient</span><span class="hl-pun">,</span> <span class="hl-str">&#039;order-shipped&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;order&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">42</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;mail&#039;</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
 <span class="hl-var">$results</span> <span class="hl-pun">=</span> <span class="hl-fn">padNotifyResults</span> <span class="hl-pun">(</span><span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
     
     <div class="cheat-item">
-      <a class="name" href="index%EF%B9%96type%EA%A4%B7filter.html">Image filters</a> <span class="about">The filter= option of {pad:img} selects a filter or placeholder.</span>
-      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:img</span> <span class="hl-str">&#039;photo.jpg&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;A landscape&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">320</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;grayscale&#039;</span><span class="hl-brc">/}</span></code></pre>
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7distribution.html">Sampling distributions</a> <span class="about">Seeded samples through padSample.</span>
+      <pre class="code"><code><span class="hl-fn">padSample</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;normal&#039;</span><span class="hl-pun">,</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;seed&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">7</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
     
     <div class="cheat-item">
-      <a class="name" href="index%EF%B9%96type%EA%A4%B7format.html">Data formats</a> <span class="about">The format= option of {pad:data}, file extensions and the format helpers.</span>
-      <pre class="code"><code><span class="hl-var">$rows</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatRead</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;toml&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$contents</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
-<span class="hl-var">$contents</span> <span class="hl-pun">=</span> <span class="hl-fn">padFormatWrite</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;toml&#039;</span><span class="hl-pun">,</span> <span class="hl-var">$rows</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7filter.html">Image filters</a> <span class="about">The filter= option of {image:thumbnail} selects a filter or placeholder.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">image:thumbnail</span> <span class="hl-str">&#039;photo.jpg&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;A landscape&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">320</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;grayscale&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
-      <a class="name" href="index%EF%B9%96type%EA%A4%B7formula.html">Spreadsheet functions</a> <span class="about">Functions inside the formulas of {pad:spreadsheet} cells.</span>
-      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:spreadsheet</span> <span class="hl-opt">formulas</span>=<span class="hl-str">&#039;G1=SUM(1, 2, 3)&#039;</span><span class="hl-brc">}</span>
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7formula.html">Spreadsheet functions</a> <span class="about">Functions inside the formulas of {sheet:grid} cells.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sheet:grid</span> <span class="hl-opt">formulas</span>=<span class="hl-str">&#039;G1=SUM(1, 2, 3)&#039;</span><span class="hl-brc">}</span>
 Item,Qty,Price,Date,Flow
 Apples,<span class="hl-num">10</span>,<span class="hl-num">1.20</span>,<span class="hl-num">2024</span>-<span class="hl-num">01</span>-<span class="hl-num">15</span>,-<span class="hl-num">70000</span>
 Pears,<span class="hl-num">5</span>,<span class="hl-num">0.80</span>,<span class="hl-num">2024</span>-<span class="hl-num">02</span>-<span class="hl-num">29</span>,<span class="hl-num">12000</span>
@@ -329,17 +402,17 @@ Cherries,<span class="hl-num">20</span>,<span class="hl-num">3.50</span>,<span c
 Apples,<span class="hl-num">15</span>,<span class="hl-num">1.10</span>,<span class="hl-num">2024</span>-<span class="hl-num">04</span>-<span class="hl-num">01</span>,<span class="hl-num">18000</span>
 Plums,<span class="hl-num">0</span>,<span class="hl-num">2.25</span>,<span class="hl-num">2024</span>-<span class="hl-num">12</span>-<span class="hl-num">31</span>,<span class="hl-num">21000</span>
 Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class="hl-num">2025</span>-<span class="hl-num">06</span>-<span class="hl-num">30</span>,<span class="hl-num">26000</span>
-<span class="hl-brc">{</span><span class="hl-tag">/pad:spreadsheet</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">/sheet:grid</span><span class="hl-brc">}</span></code></pre>
     </div>
     
     <div class="cheat-item">
-      <a class="name" href="index%EF%B9%96type%EA%A4%B7holidays.html">Holiday calendars</a> <span class="about">The country parameter of {pad:holidays}, with optional regions.</span>
-      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:holidays</span> <span class="hl-str">&#039;nl&#039;</span>, <span class="hl-opt">year</span>=<span class="hl-num">2026</span><span class="hl-brc">/}</span></code></pre>
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7geo.html">Geographic operations</a> <span class="about">Plain data operations through padGeo, with longitude before latitude.</span>
+      <pre class="code"><code><span class="hl-fn">padGeo</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;distance&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-num">4.9</span><span class="hl-pun">,</span><span class="hl-num">52.37</span><span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-pun">[</span><span class="hl-num">2.35</span><span class="hl-pun">,</span><span class="hl-num">48.86</span><span class="hl-pun">]</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
     
     <div class="cheat-item">
-      <a class="name" href="index%EF%B9%96type%EA%A4%B7map.html">Map views</a> <span class="about">The view parameter of {pad:map} selects a country or region.</span>
-      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:map</span> <span class="hl-str">&#039;world&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">540</span><span class="hl-brc">/}</span></code></pre>
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7highlighter.html">Syntax languages</a> <span class="about">Languages selected by padHighlight and the highlight tag.</span>
+      <pre class="code"><code><span class="hl-fn">padHighlight</span> <span class="hl-pun">(</span> <span class="hl-var">$source</span><span class="hl-pun">,</span> <span class="hl-str">&#039;python&#039;</span><span class="hl-pun">,</span> <span class="hl-lit">TRUE</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -353,23 +426,23 @@ Figs,<span class="hl-num">8</span>,<span class="hl-num">4.00</span>,<span class=
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7recurrence.html">Calendar recurrences</a> <span class="about">Bounded occurrences between explicit dates through padOccurrences.</span>
+      <pre class="code"><code><span class="hl-fn">padOccurrences</span> <span class="hl-pun">(</span> <span class="hl-str">&#039;weekly&#039;</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;start&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;2026-11-02&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;count&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-num">4</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-str">&#039;2026-11-01&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;2031-12-01&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="index%EF%B9%96type%EA%A4%B7rule.html">Validation rules</a> <span class="about">Rules passed to padValidate or a form field&#039;s rules= option.</span>
       <pre class="code"><code><span class="hl-var">$errors</span> <span class="hl-pun">=</span> <span class="hl-fn">padValidate</span> <span class="hl-pun">(</span> <span class="hl-pun">[</span> <span class="hl-str">&#039;value&#039;</span> <span class="hl-pun">=&gt;</span> <span class="hl-str">&#039;required&#039;</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-var">$values</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
     
     <div class="cheat-item">
-      <a class="name" href="index%EF%B9%96type%EA%A4%B7search.html">Search languages</a> <span class="about">The lang= option of {pad:search} selects stop words and a stemmer.</span>
-      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad:data</span> <span class="hl-str">&#039;catalogDocs&#039;</span><span class="hl-brc">}</span>
-[ <span class="hl-brc">{</span> <span class="hl-str">&quot;title&quot;</span>: <span class="hl-str">&quot;PAD&quot;</span>, <span class="hl-str">&quot;body&quot;</span>: <span class="hl-str">&quot;Templates on the server&quot;</span> <span class="hl-brc">}</span> ]
-<span class="hl-brc">{</span><span class="hl-tag">/pad:data</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pad:search</span> <span class="hl-str">&#039;catalogDocs&#039;</span>, <span class="hl-opt">q</span>=<span class="hl-str">&#039;PAD&#039;</span>, <span class="hl-opt">fields</span>=<span class="hl-str">&#039;title, body&#039;</span>, <span class="hl-opt">lang</span>=<span class="hl-str">&#039;en&#039;</span><span class="hl-brc">}</span>
-  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$title</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">!excerpt</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">/pad:search</span><span class="hl-brc">}</span></code></pre>
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7theme.html">Themes</a> <span class="about">The name parameter of {widget:theme} selects page or box colours.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">&#039;paper&#039;</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the paper theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
     </div>
     
     <div class="cheat-item">
-      <a class="name" href="index%EF%B9%96type%EA%A4%B7theme.html">Themes</a> <span class="about">The name parameter of {widget:theme} selects page or box colours.</span>
-      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">widget:theme</span> <span class="hl-str">&#039;paper&#039;</span><span class="hl-brc">}</span><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A box in the paper theme.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/widget:theme</span><span class="hl-brc">}</span></code></pre>
+      <a class="name" href="index%EF%B9%96type%EA%A4%B7unit.html">Unit conversions</a> <span class="about">Dimension-checked numeric conversion through padConvert.</span>
+      <pre class="code"><code><span class="hl-fn">padConvert</span> <span class="hl-pun">(</span> <span class="hl-num">100</span><span class="hl-pun">,</span> <span class="hl-str">&#039;cm&#039;</span><span class="hl-pun">,</span> <span class="hl-str">&#039;m&#039;</span> <span class="hl-pun">)</span><span class="hl-pun">;</span></code></pre>
     </div>
     
   </div>

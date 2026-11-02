@@ -1,0 +1,329 @@
+/* daterange - one month to choose the first and the last day of a range from, over the two
+   date fields the form posts: a dialog with the month's days as a grid, the way the WAI-ARIA
+   date picker dialog is built. The first day taken goes into the first field and the dialog
+   stays open for the last, the days between marked as the pointer or the focus moves over
+   them; the last day taken goes into the second field and closes it, the focus back on the
+   button that opened it. A day before the first - or, for nights, the first itself - starts
+   the range again from there. Each field says it changed, as a typed day does, and a day
+   typed into a field is the range's too. The arrow keys walk the days, Page Up and Page Down
+   the months (with Shift the years), Home and End the week; Enter or Space takes a day,
+   Escape closes. Days outside min= and max= cannot be taken, and the last field cannot be
+   given a day before the first (its min follows the first). The count of days - or of
+   nights - stands beside the fields. The names of the months and the days are the
+   browser's, in the page's language. */
+PadInputs.register('daterange', function (frame, cfg, kit) {
+  var fields = frame.querySelectorAll('input[type=date]');
+  var opener = frame.querySelector('.pi-dr-open');
+  var anchor = frame.querySelector('.pi-anchor');
+  var count = frame.querySelector('.pi-dr-count');
+  if (fields.length !== 2 || !opener || !anchor) return;
+  var from = fields[0], to = fields[1];
+
+  var lang = document.documentElement.lang || undefined;
+  var first = cfg.weekstart === 'sunday' ? 0 : 1;
+  var nights = !!cfg.nights;
+  var name = kit.label(frame);
+  var monthName = new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric', timeZone: 'UTC' });
+  var dayName = new Intl.DateTimeFormat(lang, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+  var shortName = new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'long', timeZone: 'UTC' });
+  var shortDay = new Intl.DateTimeFormat(lang, { weekday: 'short', timeZone: 'UTC' });
+  var longDay = new Intl.DateTimeFormat(lang, { weekday: 'long', timeZone: 'UTC' });
+  var minFixed = to.min;
+
+  // A day is a number of days since 1970-01-01, in UTC: no clock change in between.
+  function parse(text) {
+    var one = /^(\d{4})-(\d{2})-(\d{2})$/.exec(text || '');
+    if (!one) return null;
+    var day = Date.UTC(+one[1], +one[2] - 1, +one[3]) / 86400000;
+    return iso(day) === text ? day : null;
+  }
+  function iso(day) {
+    var d = new Date(day * 86400000);
+    return String(d.getUTCFullYear()).padStart(4, '0') + '-' + String(d.getUTCMonth() + 1).padStart(2, '0') + '-' + String(d.getUTCDate()).padStart(2, '0');
+  }
+  function parts(day) {
+    var d = new Date(day * 86400000);
+    return { y: d.getUTCFullYear(), m: d.getUTCMonth(), d: d.getUTCDate(), w: d.getUTCDay() };
+  }
+  function addMonths(day, n) {
+    var p = parts(day);
+    var last = new Date(Date.UTC(p.y, p.m + n + 1, 0)).getUTCDate();
+    return Date.UTC(p.y, p.m + n, Math.min(p.d, last)) / 86400000;
+  }
+  function today() {
+    var now = new Date();
+    return Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000;
+  }
+
+  var dialog = kit.el('div', 'pi-popup pi-calendar');
+  dialog.id = kit.id((from.id || 'range') + '-calendar');
+  dialog.setAttribute('role', 'dialog');
+  dialog.setAttribute('aria-modal', 'false');
+  dialog.setAttribute('aria-label', 'Choose ' + (name || 'the days'));
+  dialog.hidden = true;
+
+  var head = kit.el('div', 'pi-cal-head');
+  var back = kit.el('button', 'pi-button pi-cal-step', '‹');
+  back.type = 'button';
+  back.setAttribute('aria-label', 'Previous month');
+  var title = kit.el('div', 'pi-cal-title');
+  title.id = dialog.id + '-title';
+  title.setAttribute('aria-live', 'polite');
+  var ahead = kit.el('button', 'pi-button pi-cal-step', '›');
+  ahead.type = 'button';
+  ahead.setAttribute('aria-label', 'Next month');
+  head.appendChild(back);
+  head.appendChild(title);
+  head.appendChild(ahead);
+
+  var hint = kit.el('p', 'pi-dr-hint pi-muted');
+  hint.id = dialog.id + '-hint';
+  hint.setAttribute('aria-live', 'polite');
+
+  var grid = kit.el('table', 'pi-cal-grid');
+  grid.setAttribute('role', 'grid');
+  grid.setAttribute('aria-labelledby', title.id);
+  grid.setAttribute('aria-describedby', hint.id);
+  var thead = kit.el('thead');
+  var names = kit.el('tr');
+  for (var i = 0; i < 7; i++) {
+    var sample = Date.UTC(2024, 0, 7 + first + i);  // 2024-01-07 is a Sunday
+    var th = kit.el('th', '', shortDay.format(sample));
+    th.setAttribute('scope', 'col');
+    th.setAttribute('abbr', longDay.format(sample));
+    names.appendChild(th);
+  }
+  thead.appendChild(names);
+  var tbody = kit.el('tbody');
+  grid.appendChild(thead);
+  grid.appendChild(tbody);
+
+  var foot = kit.el('div', 'pi-cal-foot');
+  var clear = kit.el('button', 'pi-button', 'Clear');
+  clear.type = 'button';
+  var close = kit.el('button', 'pi-button', 'Close');
+  close.type = 'button';
+  foot.appendChild(clear);
+  foot.appendChild(close);
+
+  dialog.appendChild(head);
+  dialog.appendChild(hint);
+  dialog.appendChild(grid);
+  dialog.appendChild(foot);
+  anchor.appendChild(dialog);
+  opener.setAttribute('aria-controls', dialog.id);
+  opener.hidden = false;
+
+  var focus = today();
+  var picking = 'from';
+  var hover = null;
+
+  function low() { return parse(from.min); }
+  function high() { return parse(from.max); }
+
+  function allowed(day) {
+    var a = low(), b = high();
+    return (a === null || day >= a) && (b === null || day <= b);
+  }
+
+  function within(day) {
+    var a = low(), b = high();
+    if (a !== null && day < a) return a;
+    if (b !== null && day > b) return b;
+    return day;
+  }
+
+  // The last day comes after the first - for nights a day later at least.
+  function lastFor(start) { return nights ? start + 1 : start; }
+
+  function counted() {
+    var a = parse(from.value), b = parse(to.value);
+    if (a === null || b === null || b < lastFor(a)) return '';
+    var n = nights ? b - a : b - a + 1;
+    return n + ' ' + (nights ? (n === 1 ? 'night' : 'nights') : (n === 1 ? 'day' : 'days'));
+  }
+
+  // The last field cannot hold a day before the first: its min follows it, as the browser
+  // checks a date field, and the count beside the fields follows both.
+  function sync() {
+    var a = parse(from.value);
+    var floor = a !== null ? iso(lastFor(a)) : '';
+    to.min = floor && (!minFixed || floor > minFixed) ? floor : minFixed;
+    if (count) count.textContent = counted();
+  }
+
+  function say(text) { hint.textContent = text; }
+
+  function draw(moveFocus) {
+    var p = parts(focus);
+    var start = Date.UTC(p.y, p.m, 1) / 86400000;
+    var lead = (parts(start).w - first + 7) % 7;
+    var a = parse(from.value), b = parse(to.value), now = today();
+    var end = b;
+    if (picking === 'to' && a !== null && hover !== null && hover >= lastFor(a)) end = hover;
+    title.textContent = monthName.format(start * 86400000);
+    tbody.textContent = '';
+    var length = new Date(Date.UTC(p.y, p.m + 1, 0)).getUTCDate();
+    var rows = Math.ceil((lead + length) / 7);
+    var day = start - lead;
+    for (var row = 0; row < rows; row++) {
+      var tr = kit.el('tr');
+      for (var col = 0; col < 7; col++, day++) {
+        var td = kit.el('td');
+        var q = parts(day);
+        if (q.m === p.m) {
+          var button = kit.el('button', 'pi-cal-day', String(q.d));
+          button.type = 'button';
+          button.tabIndex = day === focus ? 0 : -1;
+          button.setAttribute('data-day', String(day));
+          var label = dayName.format(day * 86400000);
+          var isFirst = a !== null && day === a;
+          var isLast = end !== null && a !== null && day === end && end >= a;
+          var between = a !== null && end !== null && day > a && day < end;
+          if (isFirst) { button.classList.add('is-first'); label += ', first day'; }
+          if (isLast) { button.classList.add('is-last'); label += ', last day'; }
+          if (between) button.classList.add('is-between');
+          if (isFirst || isLast || between) td.setAttribute('aria-selected', 'true');
+          if (isFirst || (isLast && end === b)) button.setAttribute('aria-pressed', 'true');
+          button.setAttribute('aria-label', label);
+          if (day === now) button.setAttribute('aria-current', 'date');
+          if (!allowed(day)) button.disabled = true;
+          td.appendChild(button);
+        }
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    var lo = low(), hi = high();
+    back.disabled = lo !== null && start - 1 < lo;
+    ahead.disabled = hi !== null && start + length > hi;
+    if (moveFocus) {
+      var target = tbody.querySelector('[data-day="' + focus + '"]');
+      if (target) target.focus();
+    }
+  }
+
+  function show() {
+    var a = parse(from.value), b = parse(to.value);
+    picking = a !== null && b === null ? 'to' : 'from';
+    hover = null;
+    focus = within(picking === 'to' ? lastFor(a) : (a !== null ? a : today()));
+    say(picking === 'to' ? 'Choose the last day.' : 'Choose the first day.');
+    dialog.hidden = false;
+    opener.setAttribute('aria-expanded', 'true');
+    draw(true);
+  }
+
+  function hide(giveBack) {
+    if (dialog.hidden) return;
+    dialog.hidden = true;
+    opener.setAttribute('aria-expanded', 'false');
+    if (giveBack) opener.focus();
+  }
+
+  function put(field, value) {
+    if (field.value === value) return;
+    field.value = value;
+    kit.changed(field);
+  }
+
+  function take(day) {
+    if (!allowed(day)) return;
+    var a = parse(from.value);
+    if (picking === 'to' && a !== null && day >= lastFor(a)) {
+      put(to, iso(day));
+      sync();
+      hide(true);
+      return;
+    }
+    put(from, iso(day));
+    var b = parse(to.value);
+    if (b !== null && b < lastFor(day)) put(to, '');
+    sync();
+    picking = 'to';
+    hover = null;
+    focus = within(lastFor(day));
+    say(shortName.format(day * 86400000) + ' is the first day. Choose the last day.');
+    draw(true);
+  }
+
+  function move(day) {
+    focus = within(day);
+    hover = picking === 'to' ? focus : null;
+    draw(true);
+  }
+
+  opener.addEventListener('click', function () { if (dialog.hidden) show(); else hide(true); });
+  back.addEventListener('click', function () { focus = within(addMonths(focus, -1)); draw(false); });
+  ahead.addEventListener('click', function () { focus = within(addMonths(focus, 1)); draw(false); });
+  close.addEventListener('click', function () { hide(true); });
+  clear.addEventListener('click', function () {
+    put(from, '');
+    put(to, '');
+    sync();
+    picking = 'from';
+    hover = null;
+    say('Choose the first day.');
+    draw(false);
+  });
+
+  tbody.addEventListener('click', function (event) {
+    var button = event.target.closest('.pi-cal-day');
+    if (button && !button.disabled) take(+button.getAttribute('data-day'));
+  });
+
+  // The pointer previews the range where it moves. A redraw under a pointer at rest - a day
+  // taken with a click, a step of the arrow keys - brings the browser's pointerover for the
+  // new day under it, at the place of the last one: no move, so it changes nothing. The
+  // focus stays in the grid when it was there: the redraw takes the focused day away.
+  var pointerX = null, pointerY = null;
+  function still(event) {
+    var same = event.clientX === pointerX && event.clientY === pointerY;
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    return same;
+  }
+  opener.addEventListener('click', still);
+  tbody.addEventListener('pointermove', still);
+  tbody.addEventListener('pointerover', function (event) {
+    if (still(event)) return;
+    var button = event.target.closest('.pi-cal-day');
+    if (!button || picking !== 'to') return;
+    var day = +button.getAttribute('data-day');
+    if (day === hover) return;
+    hover = day;
+    focus = day;
+    draw(tbody.contains(document.activeElement));
+  });
+
+  tbody.addEventListener('keydown', function (event) {
+    var key = event.key, next = null;
+    var w = (parts(focus).w - first + 7) % 7;
+    if (key === 'ArrowLeft') next = focus - 1;
+    else if (key === 'ArrowRight') next = focus + 1;
+    else if (key === 'ArrowUp') next = focus - 7;
+    else if (key === 'ArrowDown') next = focus + 7;
+    else if (key === 'Home') next = focus - w;
+    else if (key === 'End') next = focus + 6 - w;
+    else if (key === 'PageUp') next = addMonths(focus, event.shiftKey ? -12 : -1);
+    else if (key === 'PageDown') next = addMonths(focus, event.shiftKey ? 12 : 1);
+    else if (key === 'Enter' || key === ' ') { event.preventDefault(); take(focus); return; }
+    if (next === null) return;
+    event.preventDefault();
+    move(next);
+  });
+
+  dialog.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); hide(true); }
+  });
+
+  [from, to].forEach(function (field) {
+    field.addEventListener('change', sync);
+    field.addEventListener('input', sync);
+  });
+  if (from.form) from.form.addEventListener('reset', function () { setTimeout(sync, 0); });
+
+  kit.outside(anchor, function () { hide(false); });
+
+  sync();
+});

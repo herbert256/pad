@@ -1,0 +1,15 @@
+.pad-input-datepicker .pi-date-open{display:inline-flex;align-items:center;justify-content:center;padding:.45em .55em}
+.pad-input-datepicker .pi-calendar{left:0;top:100%;width:max-content}
+.pad-input-datepicker .pi-cal-head{display:flex;align-items:center;justify-content:space-between;gap:.5em;margin-bottom:.35em}
+.pad-input-datepicker .pi-cal-title{font-weight:650;text-align:center;flex:1}
+.pad-input-datepicker .pi-cal-step{padding:.2em .6em;font-size:1.1em}
+.pad-input-datepicker .pi-cal-grid{border-collapse:collapse}
+.pad-input-datepicker .pi-cal-grid th{font-size:.75em;font-weight:600;color:var(--pad-input-muted);padding:.25em 0;text-align:center;width:2.4em}
+.pad-input-datepicker .pi-cal-grid td{padding:1px;text-align:center}
+.pad-input-datepicker .pi-cal-day{width:2.3em;height:2.1em;font:inherit;font-size:.9em;font-variant-numeric:tabular-nums;border:1px solid transparent;border-radius:6px;background:none;color:var(--pad-input-ink);cursor:pointer}
+.pad-input-datepicker .pi-cal-day:hover:not(:disabled){border-color:var(--pad-input-accent)}
+.pad-input-datepicker .pi-cal-day[aria-current=date]{font-weight:700;border-color:var(--pad-input-line)}
+.pad-input-datepicker .pi-cal-day[aria-pressed=true]{background:var(--pad-input-accent);border-color:var(--pad-input-accent);color:var(--pad-input-on)}
+.pad-input-datepicker .pi-cal-day:disabled{color:var(--pad-input-muted);opacity:.45;cursor:default}
+.pad-input-datepicker .pi-cal-foot{display:flex;justify-content:space-between;gap:.5em;margin-top:.4em}
+@media (forced-colors:active){.pad-input-datepicker .pi-cal-day[aria-pressed=true]{border:2px solid Highlight}}

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Signal flags · PAD notations
+    </title>
+    <link rel="stylesheet" href="../_common/pad.css">
+    <link rel="stylesheet" href="../_common/brand.css">
+    <script src="../_common/pad.js"></script>
+    <script src="../_common/brand.js" defer></script>
+    <link rel="stylesheet" href="notations.css">
+    <link rel="stylesheet" href="../assets/notations/signals.css">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
+  </head>
+  <body class="frame app-notations">
+    <aside class="frame-side">
+      <div class="frame-brand">
+        <div class="pad-brand pad-brand-frame">
+          <a class="pad-brand-logo" href="../pad/index.html" title="PAD home" aria-label="PAD home">{}</a>
+          <details class="pad-brand-menu">
+            <summary title="The PAD applications">
+              <span class="pad-brand-name"><span class="pad-brand-pad">PAD</span> <b>notations</b></span><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9.5l6 6 6-6"></path></svg>
+            </summary>
+            <nav class="pad-brand-apps" aria-label="PAD applications">
+              <div class="pad-brand-columns">
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      PAD
+                    </div><a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg><span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg><span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+                    <path d="M8 8v.01"></path></svg><span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="../types/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+                    <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg><span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg><span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg><span><b>sequence</b><small>The sequence subsystem</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Offline
+                    </div><a href="/pad/wasm/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-keyboard" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                    <path d="M6.5 10h.01M10 10h.01M14 10h.01M17.5 10h.01M6.5 14h.01M17.5 14h.01M10 14h4"></path></svg><span><b>wasm</b><small>Run templates with PHP in your browser</small></span></a><a href="../kanban/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-columns" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M12 4v16"></path></svg><span><b>kanban</b><small>A task board on SQLite</small></span></a><a href="../ledger/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-wallet" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.5 7.5v-2a1 1 0 0 0-1-1h-12a2 2 0 0 0 0 4H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5.5a2 2 0 0 1-2-2V6.5"></path>
+                    <path d="M16.5 14.5h.01"></path></svg><span><b>ledger</b><small>A household budget on SQLite</small></span></a><a href="../notes/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file-text" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+                    <path d="M14 3v5h5M8.5 13h7M8.5 17h7M8.5 9h2"></path></svg><span><b>notes</b><small>A Markdown notebook on SQLite</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Showcases
+                    </div><a href="../calendars/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-calendar" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3.5" y="5" width="17" height="15" rx="2"></rect>
+                    <path d="M3.5 10h17M8 3v4M16 3v4"></path></svg><span><b>calendars</b><small>Date views, clocks and countdowns</small></span></a><a href="../charts/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
+                    <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Charts and timelines, drawn on the server</small></span></a><a href="../showcase/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="../games/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7.5 3.5h9V9a4.5 4.5 0 0 1-9 0Z"></path>
+                    <path d="M7.5 5.5H5.5a2.5 2.5 0 0 0 2.6 3.9M16.5 5.5h2a2.5 2.5 0 0 1-2.6 3.9M12 13.5V17M9 17h6l1 3.5H8Z"></path></svg><span><b>games</b><small>Games, puzzles and live simulations</small></span></a><a href="../inputs/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-toggle-on" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="6.5" width="19" height="11" rx="5.5"></rect>
+                    <circle cx="16" cy="12" r="2.5"></circle></svg><span><b>inputs</b><small>Rich form fields to try</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-music" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5.5l11-2V16"></path>
+                    <circle cx="6.5" cy="18" r="2.5"></circle>
+                    <circle cx="17.5" cy="16" r="2.5"></circle></svg><span><b>notations</b><small>Math, music, braille, chess ... drawn on the server</small></span></a><a href="../images/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-image" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <circle cx="8.5" cy="9.5" r="1.5"></circle>
+                    <path d="M4 18l5-5 4 4 2.5-2.5L20 18"></path></svg><span><b>images</b><small>Pictures, avatars, patterns and filters</small></span></a><a href="../tables/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-table" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9.5h18M3 14.5h18M9.5 9.5V20"></path></svg><span><b>tables</b><small>Data tables, spreadsheets and formulas</small></span></a><a href="../widgets/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layout" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18M9 9v11"></path></svg><span><b>widgets</b><small>Page components, sections, effects and colours</small></span></a><a href="../printables/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-printer" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 9V3.5h10V9M7 17H4.5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H17"></path>
+                    <rect x="7" y="14" width="10" height="6.5"></rect></svg><span><b>printables</b><small>Labels, badges, tickets and letters for paper</small></span></a><a href="../sounds/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-volume" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4Z"></path>
+                    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"></path></svg><span><b>sounds</b><small>Sounds made from recipes, no audio files</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Examples
+                    </div><a href="../demo/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5v14l11-7Z"></path></svg><span><b>demo</b><small>Guestbook, todo, contact, counter, clock</small></span></a><a href="../hello/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-message" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"></path></svg><span><b>hello</b><small>Hello World, the page pairing</small></span></a><a href="/pad/live/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg><span><b>live</b><small>Run pages or render templates on this server</small></span></a><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg><span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                    <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg><span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg><span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg><span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+                  </div>
+                </div>
+                <div class="pad-brand-column">
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Front ends
+                    </div><a href="../htmx/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-refresh" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M17.3 2.7v4h-4"></path></svg><span><b>htmx</b><small>PAD + htmx, HTML over the wire</small></span></a><a href="../alpine/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-mountain" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2.5 19.5l7-12 4.5 7.5 2.5-4 5 8.5Z"></path></svg><span><b>alpine</b><small>PAD + Alpine, state from PHP</small></span></a><a href="../react/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-monitor" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2.5" y="3.5" width="19" height="13" rx="1.5"></rect>
+                    <path d="M8 20.5h8M12 16.5v4"></path></svg><span><b>react</b><small>PAD + React, components on islands</small></span></a><a href="../islands/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-map" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6.5L9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"></path>
+                    <path d="M9 4v13.5M15 6.5V20"></path></svg><span><b>islands</b><small>Islands of any framework, built by Vite</small></span></a><a href="../webcomponents/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-package" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.8l8.5 4.6v9.2L12 21.2l-8.5-4.6V7.4Z"></path>
+                    <path d="M3.5 7.4L12 12l8.5-4.6M12 12v9.2M7.8 5.1l8.5 4.6"></path></svg><span><b>webcomponents</b><small>Custom elements with their shadow root</small></span></a>
+                  </div>
+                  <div class="pad-brand-group">
+                    <div class="pad-brand-head">
+                      Tools
+                    </div><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+                    <circle cx="9" cy="7" r="2"></circle>
+                    <circle cx="15" cy="12" r="2"></circle>
+                    <circle cx="7" cy="17" r="2"></circle></svg><span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+                    <path d="M14 6.5l3.5 3.5"></path></svg><span><b>edit</b><small>The editor of the applications</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+                    <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg><span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+                    <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg><span><b>apps</b><small>Every application of this installation</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg><span><b>regression</b><small>The regression suites</small></span></a>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </details>
+        </div>
+      </div>
+      <nav class="frame-nav" aria-label="notations">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> All notations</a>
+        <div class="frame-head">
+          Notations
+        </div><a href="index%EF%B9%96abc.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> ABC music</a> <a href="index%EF%B9%96backgammon.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Backgammon</a> <a href="index%EF%B9%96braille.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Braille</a> <a href="index%EF%B9%96bridge.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Bridge deals</a> <a href="index%EF%B9%96chem.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Chemistry</a> <a href="index%EF%B9%96chess.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Chess</a> <a href="index%EF%B9%96chord.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Chord boxes</a> <a href="index%EF%B9%96cube.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Cube moves</a> <a href="index%EF%B9%96draughts.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Draughts</a> <a href="index%EF%B9%96fretboard.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Fretboard</a> <a href="index%EF%B9%96go.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Go</a> <a href="index%EF%B9%96karnaugh.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Karnaugh maps</a> <a href="index%EF%B9%96math.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Mathematics</a> <a href="index%EF%B9%96morse.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Morse code</a> <a href="index%EF%B9%96piano.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Piano keys</a> <a href="index%EF%B9%96semaphore.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Semaphore</a> <a href="index%EF%B9%96signals.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Signal flags</a> <a href="index%EF%B9%96siteswap.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Siteswap</a> <a href="index%EF%B9%96tablature.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Tablature</a> <a href="index%EF%B9%96xiangqi.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Xiangqi</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <h1>
+          Signal flags
+        </h1>
+        <div class="frame-tools">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="blueprint">
+                Blueprint
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="contrast-dark">
+                Contrast Dark
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="night">
+                Night
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="projection">
+                Projection
+              </option>
+              <option value="readable">
+                Readable
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="solarized-dark">
+                Solarized Dark
+              </option>
+              <option value="solarized-light">
+                Solarized Light
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script>
+        </div>
+      </header>
+      <div class="frame-body">
+        <p class="nt-lead">
+          Text spelt in the flags of the International Code of Signals, the flags ships hoist: a flag for every letter in the code's colours and patterns, a numeral pennant for every digit. Each flag shows its name in the phonetic alphabet on hover - Alfa, Bravo, Charlie - and what it means hoisted alone: O is man overboard, V I require assistance.
+        </p>
+        <p class="nt-tag">
+          Written <code>{notation:signals 'PAD'/}</code>; <code>size=</code> is the width of a flag.
+        </p>
+        <section class="nt-example" id="alphabet" aria-labelledby="alphabet-title">
+          <h2 id="alphabet-title">
+            The flags of the alphabet
+          </h2>
+          <p class="nt-about">
+            A flag for every letter, in the colours and patterns of the code; hover a flag for its name and its meaning hoisted alone.
+          </p>
+          <div class="nt-pair">
+            <div class="nt-cell nt-code pad-play-box">
+              <div class="nt-head">
+                Template
+              </div>
+              <link rel="stylesheet" href="../_common/play.css"><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246c2lnbmFscyAnQUJDREVGR0hJIEpLTE1OT1BRUiBTVFVWV1hZWicsIHNpemU9MzYvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246c2lnbmFscyAnQUJDREVGR0hJIEpLTE1OT1BRUiBTVFVWV1hZWicsIHNpemU9MzYvfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="nt-source"><code><span class="hl-brc">{</span><span class="hl-tag">notation:signals</span> <span class="hl-str">'ABCDEFGHI JKLMNOPQR STUVWXYZ'</span>, <span class="hl-opt">size</span>=<span class="hl-num">36</span><span class="hl-brc">/}</span></code></pre>
+            </div>
+            <div class="nt-cell nt-out">
+              <div class="nt-head">
+                Result
+              </div>
+              <div class="nt-result">
+                <pad-notation><style>:where(.pad-signals){--pad-signals-outline:#4b5563;--pad-signals-text:#4b5563;}@supports (color:light-dark(#000,#fff)){:where(.pad-signals){--pad-signals-outline:light-dark(#4b5563,#9ca3af);--pad-signals-text:light-dark(#4b5563,#9ca3af);}}</style><svg xmlns="http://www.w3.org/2000/svg" class="pad-signals" role="img" aria-labelledby="pad-notation-signals-4dc73cf4-title pad-notation-signals-4dc73cf4-desc" width="378" height="144" viewBox="0 0 630 240"><title id="pad-notation-signals-4dc73cf4-title">ABCDEFGHI JKLMNOPQR STUVWXYZ in signal flags</title><desc id="pad-notation-signals-4dc73cf4-desc">A - Alfa, B - Bravo, C - Charlie, D - Delta, E - Echo, F - Foxtrot, G - Golf, H - Hotel, I - India; J - Juliett, K - Kilo, L - Lima, M - Mike, N - November, O - Oscar, P - Papa, Q - Quebec, R - Romeo; S - Sierra, T - Tango, U - Uniform, V - Victor, W - Whiskey, X - X-ray, Y - Yankee, Z - Zulu.</desc><defs><clipPath id="pad-notation-signals-4dc73cf4-pennant"><polygon points="0,0 80,15 80,25 0,40"/></clipPath></defs><g class="psg-flag"><title>A - Alfa: I have a diver down; keep well clear at slow speed</title><svg x="5" y="6" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="30" height="50" fill="#ffffff"/><polygon points="30,0 60,0 45,25 60,50 30,50" fill="#1c3f94"/><polygon class="psg-edge" points="0.5,0.5 59.5,0.5 45,25 59.5,49.5 0.5,49.5"/></svg><text class="psg-char" x="35" y="74" text-anchor="middle">A</text></g><g class="psg-flag"><title>B - Bravo: I am taking in, discharging or carrying dangerous goods</title><svg x="75" y="6" width="60" height="50" viewBox="0 0 60 50"><polygon points="0,0 60,0 45,25 60,50 0,50" fill="#d0202e"/><polygon class="psg-edge" points="0.5,0.5 59.5,0.5 45,25 59.5,49.5 0.5,49.5"/></svg><text class="psg-char" x="105" y="74" text-anchor="middle">B</text></g><g class="psg-flag"><title>C - Charlie: Affirmative</title><svg x="145" y="6" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="10" fill="#1c3f94"/><rect x="0" y="10" width="60" height="10" fill="#ffffff"/><rect x="0" y="20" width="60" height="10" fill="#d0202e"/><rect x="0" y="30" width="60" height="10" fill="#ffffff"/><rect x="0" y="40" width="60" height="10" fill="#1c3f94"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="175" y="74" text-anchor="middle">C</text></g><g class="psg-flag"><title>D - Delta: Keep clear of me; I am manoeuvring with difficulty</title><svg x="215" y="6" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#f6c400"/><rect x="0" y="12.5" width="60" height="25" fill="#1c3f94"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="245" y="74" text-anchor="middle">D</text></g><g class="psg-flag"><title>E - Echo: I am altering my course to starboard</title><svg x="285" y="6" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="25" fill="#1c3f94"/><rect x="0" y="25" width="60" height="25" fill="#d0202e"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="315" y="74" text-anchor="middle">E</text></g><g class="psg-flag"><title>F - Foxtrot: I am disabled; communicate with me</title><svg x="355" y="6" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#ffffff"/><polygon points="30,0 60,25 30,50 0,25" fill="#d0202e"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="385" y="74" text-anchor="middle">F</text></g><g class="psg-flag"><title>G - Golf: I require a pilot</title><svg x="425" y="6" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#1c3f94"/><rect x="0" y="0" width="10" height="50" fill="#f6c400"/><rect x="20" y="0" width="10" height="50" fill="#f6c400"/><rect x="40" y="0" width="10" height="50" fill="#f6c400"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="455" y="74" text-anchor="middle">G</text></g><g class="psg-flag"><title>H - Hotel: I have a pilot on board</title><svg x="495" y="6" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="30" height="50" fill="#ffffff"/><rect x="30" y="0" width="30" height="50" fill="#d0202e"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="525" y="74" text-anchor="middle">H</text></g><g class="psg-flag"><title>I - India: I am altering my course to port</title><svg x="565" y="6" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#f6c400"/><circle cx="30" cy="25" r="12.5" fill="#151515"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="595" y="74" text-anchor="middle">I</text></g><g class="psg-flag"><title>J - Juliett: I am on fire and have dangerous cargo on board: keep well clear of me</title><svg x="5" y="86" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#1c3f94"/><rect x="0" y="16.67" width="60" height="16.67" fill="#ffffff"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="35" y="154" text-anchor="middle">J</text></g><g class="psg-flag"><title>K - Kilo: I wish to communicate with you</title><svg x="75" y="86" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="30" height="50" fill="#f6c400"/><rect x="30" y="0" width="30" height="50" fill="#1c3f94"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="105" y="154" text-anchor="middle">K</text></g><g class="psg-flag"><title>L - Lima: You should stop your vessel instantly</title><svg x="145" y="86" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#f6c400"/><rect x="30" y="0" width="30" height="25" fill="#151515"/><rect x="0" y="25" width="30" height="25" fill="#151515"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="175" y="154" text-anchor="middle">L</text></g><g class="psg-flag"><title>M - Mike: My vessel is stopped and making no way through the water</title><svg x="215" y="86" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#1c3f94"/><path d="M0 0L60 50M60 0L0 50" stroke="#ffffff" stroke-width="10"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="245" y="154" text-anchor="middle">M</text></g><g class="psg-flag"><title>N - November: Negative</title><svg x="285" y="86" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#ffffff"/><rect x="0" y="0" width="15" height="12.5" fill="#1c3f94"/><rect x="30" y="0" width="15" height="12.5" fill="#1c3f94"/><rect x="15" y="12.5" width="15" height="12.5" fill="#1c3f94"/><rect x="45" y="12.5" width="15" height="12.5" fill="#1c3f94"/><rect x="0" y="25" width="15" height="12.5" fill="#1c3f94"/><rect x="30" y="25" width="15" height="12.5" fill="#1c3f94"/><rect x="15" y="37.5" width="15" height="12.5" fill="#1c3f94"/><rect x="45" y="37.5" width="15" height="12.5" fill="#1c3f94"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="315" y="154" text-anchor="middle">N</text></g><g class="psg-flag"><title>O - Oscar: Man overboard</title><svg x="355" y="86" width="60" height="50" viewBox="0 0 60 50"><polygon points="0,0 0,50 60,50" fill="#f6c400"/><polygon points="0,0 60,0 60,50" fill="#d0202e"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="385" y="154" text-anchor="middle">O</text></g><g class="psg-flag"><title>P - Papa: In harbour: all persons should report on board, the vessel is about to put to sea</title><svg x="425" y="86" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#1c3f94"/><rect x="20" y="16.67" width="20" height="16.67" fill="#ffffff"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="455" y="154" text-anchor="middle">P</text></g><g class="psg-flag"><title>Q - Quebec: My vessel is healthy and I request free pratique</title><svg x="495" y="86" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#f6c400"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="525" y="154" text-anchor="middle">Q</text></g><g class="psg-flag"><title>R - Romeo: No meaning as a single flag</title><svg x="565" y="86" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#d0202e"/><rect x="25" y="0" width="10" height="50" fill="#f6c400"/><rect x="0" y="20" width="60" height="10" fill="#f6c400"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="595" y="154" text-anchor="middle">R</text></g><g class="psg-flag"><title>S - Sierra: I am operating astern propulsion</title><svg x="5" y="166" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#ffffff"/><rect x="20" y="16.67" width="20" height="16.67" fill="#1c3f94"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="35" y="234" text-anchor="middle">S</text></g><g class="psg-flag"><title>T - Tango: Keep clear of me; I am engaged in pair trawling</title><svg x="75" y="166" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="20" height="50" fill="#d0202e"/><rect x="20" y="0" width="20" height="50" fill="#ffffff"/><rect x="40" y="0" width="20" height="50" fill="#1c3f94"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="105" y="234" text-anchor="middle">T</text></g><g class="psg-flag"><title>U - Uniform: You are running into danger</title><svg x="145" y="166" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#ffffff"/><rect x="0" y="0" width="30" height="25" fill="#d0202e"/><rect x="30" y="25" width="30" height="25" fill="#d0202e"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="175" y="234" text-anchor="middle">U</text></g><g class="psg-flag"><title>V - Victor: I require assistance</title><svg x="215" y="166" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#ffffff"/><path d="M0 0L60 50M60 0L0 50" stroke="#d0202e" stroke-width="10"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="245" y="234" text-anchor="middle">V</text></g><g class="psg-flag"><title>W - Whiskey: I require medical assistance</title><svg x="285" y="166" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#1c3f94"/><rect x="10" y="8.33" width="40" height="33.33" fill="#ffffff"/><rect x="20" y="16.67" width="20" height="16.67" fill="#d0202e"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="315" y="234" text-anchor="middle">W</text></g><g class="psg-flag"><title>X - X-ray: Stop carrying out your intentions and watch for my signals</title><svg x="355" y="166" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#ffffff"/><rect x="25" y="0" width="10" height="50" fill="#1c3f94"/><rect x="0" y="20" width="60" height="10" fill="#1c3f94"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="385" y="234" text-anchor="middle">X</text></g><g class="psg-flag"><title>Y - Yankee: I am dragging my anchor</title><svg x="425" y="166" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#d0202e"/><polygon points="-1,0 7.5,0 -42.5,50 -51,50" fill="#f6c400"/><polygon points="16,0 24.5,0 -25.5,50 -34,50" fill="#f6c400"/><polygon points="33,0 41.5,0 -8.5,50 -17,50" fill="#f6c400"/><polygon points="50,0 58.5,0 8.5,50 0,50" fill="#f6c400"/><polygon points="67,0 75.5,0 25.5,50 17,50" fill="#f6c400"/><polygon points="84,0 92.5,0 42.5,50 34,50" fill="#f6c400"/><polygon points="101,0 109.5,0 59.5,50 51,50" fill="#f6c400"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="455" y="234" text-anchor="middle">Y</text></g><g class="psg-flag"><title>Z - Zulu: I require a tug</title><svg x="495" y="166" width="60" height="50" viewBox="0 0 60 50"><polygon points="0,0 60,0 30,25" fill="#f6c400"/><polygon points="60,0 60,50 30,25" fill="#1c3f94"/><polygon points="0,50 60,50 30,25" fill="#d0202e"/><polygon points="0,0 0,50 30,25" fill="#151515"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="525" y="234" text-anchor="middle">Z</text></g></svg></pad-notation>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="nt-example" id="pennants" aria-labelledby="pennants-title">
+          <h2 id="pennants-title">
+            Numeral pennants
+          </h2>
+          <p class="nt-about">
+            The digits are pennants of their own, tapering to the fly.
+          </p>
+          <div class="nt-pair">
+            <div class="nt-cell nt-code pad-play-box">
+              <div class="nt-head">
+                Template
+              </div><a class="pad-play" href="/pad/wasm/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246c2lnbmFscyAnMTIzNDU2Nzg5MCcsIHNpemU9MzYvfVxuPHA+QSBzaGlwJ3MgY2FsbDoge25vdGF0aW9uOnNpZ25hbHMgJ1BEIDQnLCBzaXplPTI0L308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in WASM" aria-label="Try this example in WASM"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 5v14l11-7Z"></path></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7bm90YXRpb246c2lnbmFscyAnMTIzNDU2Nzg5MCcsIHNpemU9MzYvfVxuPHA+QSBzaGlwJ3MgY2FsbDoge25vdGF0aW9uOnNpZ25hbHMgJ1BEIDQnLCBzaXplPTI0L308L3A+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"></path></svg></a>
+              <pre class="nt-source"><code><span class="hl-brc">{</span><span class="hl-tag">notation:signals</span> <span class="hl-str">'1234567890'</span>, <span class="hl-opt">size</span>=<span class="hl-num">36</span><span class="hl-brc">/}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>A ship<span class="hl-str">'s call: {notation:signals '</span>PD <span class="hl-num">4</span>', <span class="hl-opt">size</span>=<span class="hl-num">24</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+            </div>
+            <div class="nt-cell nt-out">
+              <div class="nt-head">
+                Result
+              </div>
+              <div class="nt-result">
+                <pad-notation><svg xmlns="http://www.w3.org/2000/svg" class="pad-signals" role="img" aria-labelledby="pad-notation-signals-48f92504-title pad-notation-signals-48f92504-desc" width="540" height="48" viewBox="0 0 900 80"><title id="pad-notation-signals-48f92504-title">1234567890 in signal flags</title><desc id="pad-notation-signals-48f92504-desc">1 - numeral pennant one, 2 - numeral pennant two, 3 - numeral pennant three, 4 - numeral pennant four, 5 - numeral pennant five, 6 - numeral pennant six, 7 - numeral pennant seven, 8 - numeral pennant eight, 9 - numeral pennant nine, 0 - numeral pennant zero.</desc><defs><clipPath id="pad-notation-signals-48f92504-pennant"><polygon points="0,0 80,15 80,25 0,40"/></clipPath></defs><g class="psg-flag"><title>1 - numeral pennant one</title><svg x="5" y="11" width="80" height="40" viewBox="0 0 80 40"><g clip-path="url(#pad-notation-signals-48f92504-pennant)"><rect x="0" y="0" width="80" height="40" fill="#ffffff"/><circle cx="20.5" cy="20" r="9" fill="#d0202e"/></g><polygon class="psg-edge" points="0.5,0.5 79.5,15 79.5,25 0.5,39.5"/></svg><text class="psg-char" x="45" y="74" text-anchor="middle">1</text></g><g class="psg-flag"><title>2 - numeral pennant two</title><svg x="95" y="11" width="80" height="40" viewBox="0 0 80 40"><g clip-path="url(#pad-notation-signals-48f92504-pennant)"><rect x="0" y="0" width="80" height="40" fill="#1c3f94"/><circle cx="20.5" cy="20" r="9" fill="#ffffff"/></g><polygon class="psg-edge" points="0.5,0.5 79.5,15 79.5,25 0.5,39.5"/></svg><text class="psg-char" x="135" y="74" text-anchor="middle">2</text></g><g class="psg-flag"><title>3 - numeral pennant three</title><svg x="185" y="11" width="80" height="40" viewBox="0 0 80 40"><g clip-path="url(#pad-notation-signals-48f92504-pennant)"><rect x="0" y="0" width="27" height="40" fill="#d0202e"/><rect x="27" y="0" width="26" height="40" fill="#ffffff"/><rect x="53" y="0" width="27" height="40" fill="#1c3f94"/></g><polygon class="psg-edge" points="0.5,0.5 79.5,15 79.5,25 0.5,39.5"/></svg><text class="psg-char" x="225" y="74" text-anchor="middle">3</text></g><g class="psg-flag"><title>4 - numeral pennant four</title><svg x="275" y="11" width="80" height="40" viewBox="0 0 80 40"><g clip-path="url(#pad-notation-signals-48f92504-pennant)"><rect x="0" y="0" width="80" height="40" fill="#d0202e"/><rect x="16" y="0" width="9" height="40" fill="#ffffff"/><rect x="0" y="15.5" width="80" height="9" fill="#ffffff"/></g><polygon class="psg-edge" points="0.5,0.5 79.5,15 79.5,25 0.5,39.5"/></svg><text class="psg-char" x="315" y="74" text-anchor="middle">4</text></g><g class="psg-flag"><title>5 - numeral pennant five</title><svg x="365" y="11" width="80" height="40" viewBox="0 0 80 40"><g clip-path="url(#pad-notation-signals-48f92504-pennant)"><rect x="0" y="0" width="40" height="40" fill="#f6c400"/><rect x="40" y="0" width="40" height="40" fill="#1c3f94"/></g><polygon class="psg-edge" points="0.5,0.5 79.5,15 79.5,25 0.5,39.5"/></svg><text class="psg-char" x="405" y="74" text-anchor="middle">5</text></g><g class="psg-flag"><title>6 - numeral pennant six</title><svg x="455" y="11" width="80" height="40" viewBox="0 0 80 40"><g clip-path="url(#pad-notation-signals-48f92504-pennant)"><rect x="0" y="0" width="80" height="20" fill="#151515"/><rect x="0" y="20" width="80" height="20" fill="#ffffff"/></g><polygon class="psg-edge" points="0.5,0.5 79.5,15 79.5,25 0.5,39.5"/></svg><text class="psg-char" x="495" y="74" text-anchor="middle">6</text></g><g class="psg-flag"><title>7 - numeral pennant seven</title><svg x="545" y="11" width="80" height="40" viewBox="0 0 80 40"><g clip-path="url(#pad-notation-signals-48f92504-pennant)"><rect x="0" y="0" width="80" height="20" fill="#f6c400"/><rect x="0" y="20" width="80" height="20" fill="#d0202e"/></g><polygon class="psg-edge" points="0.5,0.5 79.5,15 79.5,25 0.5,39.5"/></svg><text class="psg-char" x="585" y="74" text-anchor="middle">7</text></g><g class="psg-flag"><title>8 - numeral pennant eight</title><svg x="635" y="11" width="80" height="40" viewBox="0 0 80 40"><g clip-path="url(#pad-notation-signals-48f92504-pennant)"><rect x="0" y="0" width="80" height="40" fill="#ffffff"/><rect x="16" y="0" width="9" height="40" fill="#d0202e"/><rect x="0" y="15.5" width="80" height="9" fill="#d0202e"/></g><polygon class="psg-edge" points="0.5,0.5 79.5,15 79.5,25 0.5,39.5"/></svg><text class="psg-char" x="675" y="74" text-anchor="middle">8</text></g><g class="psg-flag"><title>9 - numeral pennant nine</title><svg x="725" y="11" width="80" height="40" viewBox="0 0 80 40"><g clip-path="url(#pad-notation-signals-48f92504-pennant)"><rect x="0" y="0" width="40" height="20" fill="#ffffff"/><rect x="40" y="0" width="40" height="20" fill="#151515"/><rect x="0" y="20" width="40" height="20" fill="#d0202e"/><rect x="40" y="20" width="40" height="20" fill="#f6c400"/></g><polygon class="psg-edge" points="0.5,0.5 79.5,15 79.5,25 0.5,39.5"/></svg><text class="psg-char" x="765" y="74" text-anchor="middle">9</text></g><g class="psg-flag"><title>0 - numeral pennant zero</title><svg x="815" y="11" width="80" height="40" viewBox="0 0 80 40"><g clip-path="url(#pad-notation-signals-48f92504-pennant)"><rect x="0" y="0" width="27" height="40" fill="#f6c400"/><rect x="27" y="0" width="26" height="40" fill="#d0202e"/><rect x="53" y="0" width="27" height="40" fill="#f6c400"/></g><polygon class="psg-edge" points="0.5,0.5 79.5,15 79.5,25 0.5,39.5"/></svg><text class="psg-char" x="855" y="74" text-anchor="middle">0</text></g></svg></pad-notation>
+                <p>
+                  A ship's call: <pad-notation><svg xmlns="http://www.w3.org/2000/svg" class="pad-signals" role="img" aria-labelledby="pad-notation-signals-fa664fb3-title pad-notation-signals-fa664fb3-desc" width="104" height="32" viewBox="0 0 260 80"><title id="pad-notation-signals-fa664fb3-title">PD 4 in signal flags</title><desc id="pad-notation-signals-fa664fb3-desc">P - Papa, D - Delta; 4 - numeral pennant four.</desc><defs><clipPath id="pad-notation-signals-fa664fb3-pennant"><polygon points="0,0 80,15 80,25 0,40"/></clipPath></defs><g class="psg-flag"><title>P - Papa: In harbour: all persons should report on board, the vessel is about to put to sea</title><svg x="5" y="6" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#1c3f94"/><rect x="20" y="16.67" width="20" height="16.67" fill="#ffffff"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="35" y="74" text-anchor="middle">P</text></g><g class="psg-flag"><title>D - Delta: Keep clear of me; I am manoeuvring with difficulty</title><svg x="75" y="6" width="60" height="50" viewBox="0 0 60 50"><rect x="0" y="0" width="60" height="50" fill="#f6c400"/><rect x="0" y="12.5" width="60" height="25" fill="#1c3f94"/><rect class="psg-edge" x="0.5" y="0.5" width="59" height="49"/></svg><text class="psg-char" x="105" y="74" text-anchor="middle">D</text></g><g class="psg-flag"><title>4 - numeral pennant four</title><svg x="175" y="11" width="80" height="40" viewBox="0 0 80 40"><g clip-path="url(#pad-notation-signals-fa664fb3-pennant)"><rect x="0" y="0" width="80" height="40" fill="#d0202e"/><rect x="16" y="0" width="9" height="40" fill="#ffffff"/><rect x="0" y="15.5" width="80" height="9" fill="#ffffff"/></g><polygon class="psg-edge" points="0.5,0.5 79.5,15 79.5,25 0.5,39.5"/></svg><text class="psg-char" x="215" y="74" text-anchor="middle">4</text></g></svg></pad-notation>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
