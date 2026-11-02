@@ -431,14 +431,14 @@
   // the download link of a {sound:chime}, or a page's own PHP through padSoundSend: the headers
   // set, the rest of the page left out, as padUploadSend sends a file.
 
-  function padSoundAnswer ( $kind, $download = FALSE ) {
+  function padSoundAnswer ( $kind, $download = FALSE, $recipe = NULL ) {
 
     global $padContentType, $padGzip, $padLen, $padCache, $padWebEtag304;
 
     if ( headers_sent () )
       return padError ( "the sound '$kind' cannot be sent - the headers have gone out already, and a sound is the whole answer of a page" );
 
-    $wav = padSoundWavBytes ( padSoundRecipe ( $kind ) );
+    $wav = padSoundWavBytes ( $recipe ?? padSoundRecipe ( $kind ) );
 
     padCloseSession ();
     padEmptyBuffers ( $padSoundIgnored );

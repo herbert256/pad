@@ -21,6 +21,13 @@
   if ( $padInfoXref ?? FALSE )
     padInfoXref ( 'sound', $padSoundKind );
 
+  if ( $padSoundKind === 'metronome' ) {
+    include_once PAD . 'subs/sounds/_lib/metronome.php';
+    $padSoundHtml = padSoundMetronomeTag ();
+    $padData [$pad] = padDefaultData ();
+    return $padSoundHtml;
+  }
+
   if ( ( $_GET ['padSound'] ?? NULL ) === $padSoundKind and ( $_SERVER ['REQUEST_METHOD'] ?? 'GET' ) == 'GET' )
     return padSoundAnswer ( $padSoundKind );
 
