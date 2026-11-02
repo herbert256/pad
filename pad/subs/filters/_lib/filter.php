@@ -218,7 +218,7 @@
         $whole = ( ( $rule [4] ?? '' ) == 'whole' );
         if ( is_string ( $value ) )
           $value = preg_replace ( '/\s*px\s*$/i', '', trim ( $value ) );
-        if ( ! is_numeric ( $value ) or $value < $rule [2] or $value > $rule [3] or ( $whole and floor ( $value + 0 ) != $value + 0 ) )
+        if ( ! is_numeric ( $value ) or ! is_finite ( (float) $value ) or $value < $rule [2] or $value > $rule [3] or ( $whole and floor ( $value + 0 ) != $value + 0 ) )
           return $fail ( ( $whole ? 'a whole number' : 'a number' ) . " from {$rule [2]} to {$rule [3]}" );
         return $whole ? (int) $value : $value + 0;
 
