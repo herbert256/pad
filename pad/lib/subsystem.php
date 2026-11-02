@@ -79,6 +79,7 @@
     'solve' => 'constraints',
     'interval' => 'intervals',
     'color' => 'colors',
+    'timeseries' => 'timeseries',
   ];
 
   // The kinds of the subsystem in pad/subs/<directory>/: the names of the files of its types/,
