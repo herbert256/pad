@@ -28,7 +28,9 @@
       padError ( 'padSample: random must be a callable, and cannot be combined with seed' ); return [];
     }
     $stream = $options ['random'] ?? 'padFakeUnit';
-    $random = function () use ( $stream ) {
+    $used = 0;
+    $random = function () use ( $stream, &$used ) {
+      if ( ++$used > 10000000 ) throw new UnexpectedValueException ( 'shared random-work budget exceeded' );
       $value = $stream ();
       if ( ! is_numeric ( $value ) or ! is_finite ( (float) $value ) or $value < 0 or $value >= 1 )
         throw new UnexpectedValueException ( 'random stream must return a finite number in [0,1)' );
