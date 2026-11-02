@@ -1,5 +1,5 @@
 <?php
-  define ( 'PAD', dirname ( __DIR__, 3 ) . '/pad/' );
+  define ( 'PAD', dirname ( __DIR__, 2 ) . '/pad/' );
   function padUnprotect ( $s ) { return $s; }
   function padProtect ( $s ) { return $s; }
   function padMakeSafe ( $s, $n ) { return substr ( $s, 0, $n ); }

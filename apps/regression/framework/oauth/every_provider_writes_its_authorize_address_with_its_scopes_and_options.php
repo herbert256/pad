@@ -9,6 +9,7 @@
     'apple'     => [ 'client_id' => 'com.example.web', 'team_id' => 'TEAM123456', 'key_id' => 'KEY1234567', 'private_key' => 'unused here' ],
     'gitlab'    => [ 'base' => 'https://git.example.com/' ],
     'forgejo'   => [ 'base' => 'https://forge.example.org' ],
+    'mastodon'  => [ 'base' => 'https://social.example.org' ],
     'microsoft' => [ 'tenant' => 'organizations' ],
     'oidc'      => [ 'issuer' => 'https://id.example.com/realms/main' ],
   ];

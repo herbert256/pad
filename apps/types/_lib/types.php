@@ -67,6 +67,7 @@
       'remove'   => [ 'The terms that do not belong to the sequence type named.', 'sequences',
                       "{remove:prime rows=6}{\$sequence} {/remove:prime}" ],
 
+      'avatar' => [ 'Deterministic local SVG identity artwork.', 'subsystems', "{avatar:rings 'identity', label='Name'/}" ],
       'chart'    => [ 'A chart type, a file of pad/subs/charts/types/, drawn as inline SVG.', 'subsystems',
                       "{chart:pie data='rows', label='name', value='amount'/}\n{chart:pie data='rows', ...}\n{chart:pie data='rows', .../}" ],
       'game'     => [ 'A game, a file of pad/subs/games/types/, played in the browser.', 'subsystems',

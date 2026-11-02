@@ -1,4 +1,13 @@
 <?php
+
+  // xmatch - XMATCH(value, lookup_array, [match_mode], [search_mode]) returns a
+  // one-based position. Match modes: 0 exact, -1 next smaller, 1 next larger, 2 wildcard.
+  // Search modes: 1 forwards, -1 backwards, 2 ascending binary, -2 descending binary.
+  // Binary search requires the stated ordering; an absent value yields #N/A.
+  //
+  //   =XMATCH("Plums", A2:A7)  5
+  //   =XMATCH("Apples", A2:A7, 0, -1)  4
+
   // XMATCH(value, lookup_array, [match_mode], [search_mode]): one-based position.
   return [ 'group' => 'Lookup', 'args' => [ 2, 4 ], 'call' => function ( $args, $env ) {
     $wanted = padFormulaScalar ( $args [0], $env );
@@ -29,7 +38,7 @@
     foreach ( $places as $place ) {
       if ( $error = padFormulaFirstError ( $list [$place] ) ) return $error;
       $same = ( $match === 2 and is_string ( $wanted ) and is_string ( $list [$place] ) )
-        ? preg_match ( padFormulaWild ( $wanted ), $list [$place] ) === 1
+        ? preg_match ( padFormulaWild ( $wanted ) . 'D', $list [$place] ) === 1
         : padFormulaSame ( $wanted, $list [$place] );
       if ( $same ) return (float) ( $place + 1 );
       if ( $match === -1 or $match === 1 ) {

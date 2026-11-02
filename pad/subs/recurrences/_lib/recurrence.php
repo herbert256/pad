@@ -21,9 +21,12 @@
   }
 
   function padRecurrenceDate ( $value, $zone ) {
-    if ( $value instanceof DateTimeInterface ) return DateTimeImmutable::createFromInterface ( $value )->setTimezone ( $zone );
+    if ( $value instanceof DateTimeInterface ) {
+      if ( $value->format ( 'u' ) !== '000000' ) throw new InvalidArgumentException ( 'Recurrence dates require whole seconds' );
+      return DateTimeImmutable::createFromInterface ( $value )->setTimezone ( $zone );
+    }
     if ( ! is_string ( $value ) or ! preg_match ( '/^(\d{4}-\d{2}-\d{2})(?:[T ](\d{2}:\d{2})(?::(\d{2}))?(Z|[+-]\d{2}:\d{2})?)?$/D', $value, $m ) ) throw new InvalidArgumentException ( 'Recurrence dates must be explicit ISO dates or date-times' );
-    $wall = $m [1] . ' ' . ( $m [2] ?? '00:00' ) . ':' . ( $m [3] ?? '00' );
+    $wall = $m [1] . ' ' . ( $m [2] ?? '00:00' ) . ':' . ( ( $m [3] ?? '' ) !== '' ? $m [3] : '00' );
     $offset = $m [4] ?? '';
     if ( $offset !== '' and $offset !== 'Z' and ( (int) substr ( $offset, 4, 2 ) > 59 or (int) substr ( $offset, 1, 2 ) * 60 + (int) substr ( $offset, 4, 2 ) > 840 ) ) throw new InvalidArgumentException ( 'Invalid UTC offset' );
     $date = padRecurrenceWall ( $wall, $offset === '' ? $zone : new DateTimeZone ( $offset === 'Z' ? 'UTC' : $offset ) );
@@ -31,10 +34,17 @@
     return $date->setTimezone ( $zone );
   }
 
+  function padRecurrenceList ( $values ) {
+    if ( is_int ( $values ) or is_string ( $values ) ) $values = [ $values ];
+    if ( ! is_array ( $values ) or ! array_is_list ( $values ) or ! $values ) throw new InvalidArgumentException ( 'Recurrence filters need nonempty lists' );
+    if ( count ( $values ) > 256 ) throw new LengthException ( 'Recurrence filter exceeds 256 entries' );
+    return $values;
+  }
+
   function padRecurrenceDays ( $values ) {
     $names = [ 'MO' => 1, 'TU' => 2, 'WE' => 3, 'TH' => 4, 'FR' => 5, 'SA' => 6, 'SU' => 7 ];
     $out = [];
-    foreach ( (array) $values as $value ) $out [] = isset ( $names [$value] ) ? $names [$value] : padRecurrenceInteger ( $value, 1, 7, 'weekday' );
+    foreach ( padRecurrenceList ( $values ) as $value ) $out [] = is_string ( $value ) && isset ( $names [$value] ) ? $names [$value] : padRecurrenceInteger ( $value, 1, 7, 'weekday' );
     if ( ! $out ) throw new InvalidArgumentException ( 'Empty recurrence weekdays' );
     return array_unique ( $out );
   }
@@ -58,13 +68,15 @@
     $weekdays = padRecurrenceDays ( $rule ['byday'] ?? [ (int) $start->format ( 'N' ) ] );
     $weekstart = padRecurrenceDays ( [ $rule ['weekstart'] ?? 'MO' ] ) [0];
     $monthdays = [];
-    foreach ( (array) ( $rule ['monthday'] ?? [ (int) $start->format ( 'j' ) ] ) as $v ) {
+    foreach ( padRecurrenceList ( $rule ['monthday'] ?? [ (int) $start->format ( 'j' ) ] ) as $v ) {
       $v = padRecurrenceInteger ( $v, -31, 31, 'monthday' );
       if ( ! $v ) throw new InvalidArgumentException ( 'Month day cannot be zero' );
       $monthdays [] = $v;
     }
     $months = [];
-    foreach ( (array) ( $rule ['month'] ?? [ (int) $start->format ( 'n' ) ] ) as $v ) $months [] = padRecurrenceInteger ( $v, 1, 12, 'month' );
+    foreach ( padRecurrenceList ( $rule ['month'] ?? [ (int) $start->format ( 'n' ) ] ) as $v ) $months [] = padRecurrenceInteger ( $v, 1, 12, 'month' );
+    $months = array_values ( array_unique ( $months, SORT_NUMERIC ) );
+    $monthdays = array_values ( array_unique ( $monthdays, SORT_NUMERIC ) );
     if ( ! $months or ! $monthdays ) throw new InvalidArgumentException ( 'Empty recurrence month list' );
     $excluded = [];
     if ( isset ( $rule ['exclude'] ) and ! is_array ( $rule ['exclude'] ) ) throw new InvalidArgumentException ( 'Exclusions must be a list' );
@@ -93,7 +105,7 @@
       };
       if ( $d === 0 and ! $matches ) throw new InvalidArgumentException ( 'DTSTART must match recurrence filters' );
       if ( ! $matches ) continue;
-      $occurrence = padRecurrenceWall ( $day->format ( 'Y-m-d' ) . ' ' . $start->format ( 'H:i:s' ), $zone );
+      $occurrence = $d === 0 ? $start : padRecurrenceWall ( $day->format ( 'Y-m-d' ) . ' ' . $start->format ( 'H:i:s' ), $zone );
       if ( ! $occurrence ) continue;
       if ( $until and $occurrence > $until or $occurrence >= $to ) break;
       if ( ++$seen > $count ) break;
@@ -113,6 +125,8 @@
       $parts [$m [1]] = $m [2];
     }
     if ( array_diff ( array_keys ( $parts ), [ 'FREQ', 'INTERVAL', 'COUNT', 'UNTIL', 'BYDAY', 'BYMONTHDAY', 'BYMONTH', 'WKST' ] ) ) throw new InvalidArgumentException ( 'Unsupported RRULE part' );
+    if ( isset ( $parts ['BYDAY'] ) and ! preg_match ( '/^(?:MO|TU|WE|TH|FR|SA|SU)(?:,(?:MO|TU|WE|TH|FR|SA|SU))*$/D', $parts ['BYDAY'] ) ) throw new InvalidArgumentException ( 'RRULE BYDAY requires weekday names' );
+    if ( isset ( $parts ['WKST'] ) and ! preg_match ( '/^(?:MO|TU|WE|TH|FR|SA|SU)$/D', $parts ['WKST'] ) ) throw new InvalidArgumentException ( 'RRULE WKST requires a weekday name' );
     $kind = strtolower ( $parts ['FREQ'] ?? '' );
     if ( ! in_array ( $kind, [ 'daily', 'weekly', 'monthly', 'yearly' ], TRUE ) ) throw new InvalidArgumentException ( 'Unsupported RRULE frequency' );
     foreach ( [ 'INTERVAL' => 'interval', 'COUNT' => 'count', 'BYDAY' => 'byday', 'BYMONTHDAY' => 'monthday', 'BYMONTH' => 'month', 'WKST' => 'weekstart' ] as $key => $name )

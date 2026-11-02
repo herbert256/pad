@@ -67,6 +67,7 @@ if [ -z "$CI_SUITES" ]; then
   trap 'rm -rf "$tooling"' EXIT
 
   ( php "$padHome/editors/generate.php" --check > "$tooling/editors" 2>&1; echo $? > "$tooling/editors.rc" ) &
+  ( bash "$padHome/tests/subsystems/run.sh" > "$tooling/subsystems" 2>&1; echo $? > "$tooling/subsystems.rc" ) &
 
   if command -v node > /dev/null 2>&1; then
     for tool in lsp:editors/lsp/test.js mcp:editors/mcp/test.js claude:editors/claude/test.js treesitter:editors/tree-sitter-pad/test/check.js validate:apps/regression/pages/forms/_parity.js charts:apps/regression/pages/charts/_client.mjs wasm:wasm/verify-app.mjs; do
@@ -161,6 +162,12 @@ done
 
 if [ -z "$CI_SUITES" ]; then
   wait
+  if [ "$(cat "$tooling/subsystems.rc")" = 0 ]; then
+    printf '%-12s %s\n' subsystems "$(cat "$tooling/subsystems")"
+  else
+    cat "$tooling/subsystems" >&2
+    exit=1
+  fi
   if [ "$(cat "$tooling/editors.rc")" = 0 ]; then
     printf '%-12s %s\n' editors "completion lists match pad/"
   else

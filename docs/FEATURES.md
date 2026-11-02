@@ -2547,3 +2547,20 @@ Output: `Alice, Bob, Charlie`
 ```
 {pad:echo $email | after('@') | before('.')/}
 ```
+
+
+## Subsystem expansion
+
+The subsystem catalogue now includes dimension-checked [units](subsystems/units/README.md),
+registry-driven [syntax languages](subsystems/highlighters.md), structured [comparisons](subsystems/diffs.md),
+bounded [recurrences](subsystems/recurrences.md), [geographic operations](subsystems/geospatial/README.md),
+seeded [sampling distributions](subsystems/distributions/README.md), and deterministic local
+[avatars](subsystems/avatars/index.md). These expose reusable PHP helpers; avatars also use
+the explicit `{avatar:style .../}` namespace. Existing tag entry points remain compatible.
+
+The same expansion adds 85 types across the existing subsystem families. Each type has
+its own implementation commit, usage documentation under `docs/subsystems/`, and relevant
+examples or fixtures. The [root report](../sub.html) records the full feature list, original
+contracts, commit mapping, validation and limits. Independent checks run from
+`bash tests/subsystems/run.sh` and are included in `./ci.sh`;
+[the test guide](../tests/subsystems/README.md) describes browser and external-oracle checks.

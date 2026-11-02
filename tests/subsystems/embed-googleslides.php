@@ -1,5 +1,5 @@
 <?php
-  define ( 'PAD', dirname ( __DIR__, 3 ) . '/pad/' );
+  define ( 'PAD', dirname ( __DIR__, 2 ) . '/pad/' );
   function padDirList ( $p ) { return scandir ( $p ); }
   require PAD . 'lib/subsystem.php'; require PAD . 'lib/embed.php'; require PAD . 'subs/embeds/_lib/embed.php';
   $type = padEmbedProvider ( 'googleslides' );

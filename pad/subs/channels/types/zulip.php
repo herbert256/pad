@@ -17,8 +17,11 @@
         $ids = explode ( ',', $to );
         if ( count ( $ids ) > 100 or array_filter ( $ids, fn ( $id ) => strlen ( $id ) > 15 ) ) return 'Zulip direct recipients exceed limits';
         $to = json_encode ( array_values ( array_unique ( array_map ( 'intval', $ids ) ) ) );
-      }
-      $text = str_replace ( [ '@**', '@_**' ], [ "@\u{200B}**", "@\u{200B}_**" ], $message ['text'] );
+      } else
+        // Zulip parses JSON first: a numeric channel name must remain a string, not an ID.
+        $to = json_encode ( $to );
+      // Single stars mention groups; double stars mention users and channel/topic wildcards.
+      $text = str_replace ( [ '@*', '@_*' ], [ "@\u{200B}*", "@\u{200B}_*" ], $message ['text'] );
       if ( mb_strlen ( $text, 'UTF-8' ) > 10000 ) return 'Zulip text exceeds 10000 characters';
       $body = [ 'type' => $settings ['type'], 'to' => $to, 'content' => $text ];
       if ( $settings ['type'] === 'stream' ) $body ['topic'] = $settings ['topic'];

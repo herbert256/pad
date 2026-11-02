@@ -5,9 +5,13 @@
   // the text it takes out of its answer - Anthropic's thinking block passed over, Gemini's
   // thought part too.
 
+  $_ENV ['AZURE_OPENAI_ENDPOINT'] = 'https://fixture.openai.azure.com';
+  $_ENV ['AZURE_OPENAI_DEPLOYMENT'] = 'fixture-deployment';
+
   $_ENV ['CLOUDFLARE_ACCOUNT_ID'] = '023e105f4ecef8ad9ca31a8372d0c353';
 
   padCurlFake ( [
+    'https://fixture.openai.azure.com/openai/v1/chat/completions' => [ 'data' => [ 'choices' => [ [ 'message' => [ 'content' => 'Paris.' ] ] ] ] ],
     'https://api.anthropic.com/v1/messages' => [ 'data' => [ 'type' => 'message', 'stop_reason' => 'end_turn',
                                                               'content' => [ [ 'type' => 'thinking', 'thinking' => '' ], [ 'type' => 'text', 'text' => 'Paris.' ] ] ] ],
     'https://bedrock-runtime.us-east-1.amazonaws.com/*' => [ 'data' => [ 'output' => [ 'message' => [ 'role' => 'assistant', 'content' => [ [ 'text' => 'Paris.' ] ] ] ], 'stopReason' => 'end_turn' ] ],

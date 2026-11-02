@@ -4,11 +4,33 @@
   function padDiffDocument ( $value ) {
     if ( is_string ( $value ) ) {
       if ( strlen ( $value ) > 1048576 ) throw new LengthException ( 'Diff JSON exceeds 1 MiB' );
-      $value = json_decode ( $value, FALSE, 64, JSON_THROW_ON_ERROR );
+      $decoded = json_decode ( $value, FALSE, 64, JSON_THROW_ON_ERROR );
+      padDiffJsonIntegers ( $value );
+      $value = $decoded;
     }
     $nodes = 0;
     padDiffValidate ( $value, $nodes );
     return $value;
+  }
+
+  // Check integer lexemes before JSON's conversion to float can lose their identity.
+  // JSON was validated already. Skip quoted keys/values, including escaped quotes.
+  function padDiffJsonIntegers ( $json ) {
+    $length = strlen ( $json );
+    for ( $i = 0; $i < $length; $i++ ) {
+      if ( $json [$i] === '"' ) {
+        while ( ++$i < $length and $json [$i] !== '"' ) if ( $json [$i] === '\\' ) $i++;
+      } elseif ( $json [$i] === '-' or ( $json [$i] >= '0' and $json [$i] <= '9' ) ) {
+        $size = strspn ( $json, '0123456789.eE+-', $i );
+        $number = substr ( $json, $i, $size ); $i += $size - 1;
+        if ( strpbrk ( $number, '.eE' ) !== FALSE ) continue;
+        $negative = $number [0] === '-';
+        $digits = $negative ? substr ( $number, 1 ) : $number;
+        $bound = $negative ? substr ( (string) PHP_INT_MIN, 1 ) : (string) PHP_INT_MAX;
+        if ( strlen ( $digits ) > strlen ( $bound ) or ( strlen ( $digits ) === strlen ( $bound ) and strcmp ( $digits, $bound ) > 0 ) )
+          throw new InvalidArgumentException ( 'Diff JSON integer is outside the PHP integer range' );
+      }
+    }
   }
 
   function padDiffValidate ( $value, &$nodes, $depth = 0 ) {
@@ -33,7 +55,7 @@
     $ta = padDiffValueType ( $a ); $tb = padDiffValueType ( $b );
     if ( $ta === $tb and in_array ( $ta, [ 'array', 'object' ], TRUE ) ) {
       $a = (array) $a; $b = (array) $b;
-      $keys = array_unique ( array_merge ( array_keys ( $a ), array_keys ( $b ) ), SORT_REGULAR );
+      $keys = array_unique ( array_merge ( array_keys ( $a ), array_keys ( $b ) ), SORT_STRING );
       if ( $ta === 'object' ) usort ( $keys, fn ( $x, $y ) => strcmp ( (string) $x, (string) $y ) );
       foreach ( $keys as $key ) {
         $here = $path . '/' . padDiffPointer ( $key );
@@ -80,7 +102,7 @@
   function padDiffTextRecords ( $a, $b, $lines ) {
     if ( ! is_string ( $a ) or ! is_string ( $b ) ) throw new InvalidArgumentException ( 'Text diff needs strings' );
     $nodes = 0; padDiffValidate ( $a, $nodes ); padDiffValidate ( $b, $nodes );
-    $split = fn ( $v ) => $lines ? ( $v === '' ? [] : preg_split ( '/\R/', rtrim ( $v, "\r\n" ) ) ) : padDiffTokens ( $v );
+    $split = fn ( $v ) => $lines ? ( $v === '' ? [] : preg_split ( '/\R/u', $v ) ) : padDiffTokens ( $v );
     $aa = $split ( $a ); $bb = $split ( $b );
     if ( count ( $aa ) + count ( $bb ) > 20000 ) throw new LengthException ( 'Text diff exceeds 20000 tokens' );
     $out = []; $old = $new = 0;

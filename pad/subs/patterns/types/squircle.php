@@ -1,5 +1,8 @@
 <?php
-// Superellipse |x/a|^n + |y/a|^n = 1, sampled symmetrically in each repeat.
+// squircle - a grid of superellipses: exponent=2 gives circles, larger exponents approach
+// rounded squares; density= sets each shape's share of the repeat cell.
+//
+//   {pattern:squircle size=48, exponent=4, density=0.8, colors='#f6f3ef, #568b8c'/}
 return [ 'size'=>[48,4,400], 'colors'=>['#f6f3ef','#568b8c'],
  'options'=>['exponent'=>[4,2,10], 'density'=>[0.8,0.1,1]],
  'draw'=>function($p) {

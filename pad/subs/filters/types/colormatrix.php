@@ -1,5 +1,9 @@
 <?php
-  // Four rows of five coefficients, normalized unpremultiplied RGBA plus constant 1.
+  // colormatrix - transform normalized RGBA channels with four rows of five coefficients.
+  // Each row multiplies red, green, blue, alpha and the constant 1; this swaps red and blue.
+  //
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='colormatrix', matrix='0,0,1,0,0, 0,1,0,0,0, 1,0,0,0,0, 0,0,0,1,0', alt='The harbour with red and blue swapped'/}
+  //
   return [ 'form' => 'image', 'loops' => TRUE,
     'options' => [ 'matrix' => [ 'matrix', [1,0,0,0,0, 0,1,0,0,0, 0,0,1,0,0, 0,0,0,1,0], 20, -10, 10 ] ],
     'apply' => function ( $image, $options, $scale ) {

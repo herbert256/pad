@@ -1,6 +1,6 @@
 <?php
 // Run directly with php; no web server required.
-define('PAD', dirname(__DIR__, 3) . '/pad/');
+define('PAD', dirname ( __DIR__, 2 ) . '/pad/');
 define('DATA', '/nonexistent-pad-test-data/');
 require PAD . 'lib/dirs.php';
 require PAD . 'lib/subsystem.php';

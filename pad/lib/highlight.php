@@ -11,10 +11,10 @@
   // padHighlightTokens  the coloured text alone, for a frame of the page's own
   //
   // Their workings - the languages, the patterns, PHP's tokenizer, the escaping - are
-  // tags/_lib/highlight.php, which they read when they colour a text.
+  // subs/highlighters/, reached through the compatibility include in tags/_lib/highlight.php.
   //
-  // The languages: pad, php, html (and xml, svg), css, js (and json5, ts), json, yaml, sql
-  // and bash (and sh, shell). The text is cut into tokens by one combined pattern per
+  // The languages are discovered from subs/highlighters/types/, including Python, Go, Rust,
+  // TypeScript and diff alongside the existing PAD, PHP and web languages. The text is cut into tokens by one combined pattern per
   // language - PHP by PHP's own tokenizer - and every piece, coloured or not, is
   // HTML-escaped, so the result is safe to print raw. A token is a <span class="hl-...">:
   // com(ment), str(ing), num(ber), lit(eral), kwd (keyword), key, var, tag, att(ribute),
@@ -34,6 +34,9 @@
 
     $text = (string) $text;
     $lang = padHighlightLanguage ( $lang );
+
+    // Bound regex retries and token capture memory. Large snippets stay complete and safe.
+    if ( strlen ( $text ) > 65536 ) return padHighlightEscape ( $text );
 
     if ( $lang == 'php' )
       return padHighlightPhp ( $text );
@@ -61,15 +64,16 @@
       $scan = substr ( $text, 0, $from ) . str_replace ( '{--', "{\x01-", substr ( $text, $from ) );
     }
 
-    if ( preg_match_all ( '/' . implode ( '|', $parts ) . '/ms', $scan, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL ) === FALSE )
-      return padHighlightEscape ( $text );
-
+    $pattern = '/' . implode ( '|', $parts ) . '/ms';
     $html = '';
     $at   = 0;
 
-    foreach ( $matches as $match ) {
+    // Keep one token's captures at a time; punctuation-heavy snippets otherwise keep
+    // thousands of copies of every language rule's unmatched capture arrays.
+    while ( ( $matched = preg_match ( $pattern, $scan, $match, PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL, $at ) ) === 1 ) {
 
       list ( $token, $offset ) = $match [0];
+      if ( $token === '' ) return padHighlightEscape ( $text );
 
       $token = substr ( $text, $offset, strlen ( $token ) );
 
@@ -84,6 +88,7 @@
 
     }
 
+    if ( $matched === FALSE ) return padHighlightEscape ( $text );
     return $html . padHighlightEscape ( substr ( $text, $at ) );
 
   }

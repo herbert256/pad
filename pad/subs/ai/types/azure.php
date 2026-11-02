@@ -8,6 +8,7 @@
   $provider ['model'] = padEnv ( 'AZURE_OPENAI_DEPLOYMENT', '' );
   $provider ['url'] = $endpoint . '/openai/v1/chat/completions';
   $provider ['headers'] = fn ( $ask ) => [ 'api-key' => $ask ['key'] ];
+  $provider ['follow'] = FALSE; // Custom api-key headers must never leave the checked endpoint.
   $provider ['check'] = function ( $ask, $url ) use ( $endpoint ) {
     $url ??= $endpoint . '/openai/v1/chat/completions';
     if ( ! is_string ( $url ) or ! preg_match ( '~^https://[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.(?:openai\.azure\.com|services\.ai\.azure\.com)/openai/v1/chat/completions$~iD', $url ) )

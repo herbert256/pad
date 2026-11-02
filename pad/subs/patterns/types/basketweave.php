@@ -1,5 +1,8 @@
 <?php
-// Alternating over/under bundles: four seamless quadrants in a repeating tile.
+// basketweave - alternating over/under strand bundles in a seamless four-quadrant tile.
+// strands= sets the bundle count; gap= leaves space between the strands.
+//
+//   {pattern:basketweave size=48, strands=3, gap=0.15, colors='#f6f0df, #9b7048, #c29666'/}
 return [ 'size'=>[48,8,400], 'colors'=>['#f6f0df','#9b7048','#c29666'],
  'options'=>['strands'=>[3,1,12], 'gap'=>[0.15,0,0.8]],
  'draw'=>function($p) {

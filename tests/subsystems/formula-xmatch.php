@@ -14,6 +14,10 @@
   check ( runFormula ( 'xmatch', 4.0, vector([6.0,3.0,1.0]), -1, -2 ) === 2.0 );
   check ( runFormula ( 'xmatch', 'gr*', vector(['Apple','Grape']), 2 ) === 2.0 );
   check ( runFormula ( 'xmatch', 'a~*', vector(['abc','a*']), 2 ) === 2.0 );
+  // Wildcard mode consumes the entire cell; a final newline is part of the value.
+  check ( runFormula ( 'xmatch', 'a~*', vector(["a*\n",'a*']), 2 ) === 2.0 );
+  check ( runFormula ( 'xmatch', 'a?', vector(["ab\n",'ab']), 2 ) === 2.0 );
+  check ( runFormula ( 'xmatch', 'a*', vector(["a\n"]), 2 ) === 1.0 );
   check ( runFormula ( 'xmatch', 0, $v ) === padFormulaError ( '#N/A' ) );
   echo "formula:xmatch fixtures passed\n";
 ?>

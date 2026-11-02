@@ -1,5 +1,9 @@
 # Focused subsystem checks
 
+`bash tests/subsystems/run.sh` runs the independent PHP and JavaScript fixtures;
+`./ci.sh` includes the same checks. The browser and external barcode oracle checks
+remain explicit commands because they require Chrome or optional external tools.
+
 Run PHP fixtures with `php tests/subsystems/<name>.php` and model fixtures with
 `node tests/subsystems/<name>.cjs`. These test behavior independently of rendering.
 

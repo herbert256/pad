@@ -1,5 +1,8 @@
 <?php
-// Each stroke family is its own rotated seamless tile; arbitrary angles keep their period.
+// crosshatch - two perpendicular stroke families in rotated seamless tiles. angle= rotates
+// the first family, weight= sets the stroke width, and cross=0 leaves one family.
+//
+//   {pattern:crosshatch size=16, angle=45, weight=1, colors='#fff, #444'/}
 return [ 'size'=>[16,2,400], 'colors'=>['#fff','#444'],
  'options'=>['angle'=>[45,-360,360], 'cross'=>[1,0,1], 'weight'=>[1,0.1,10]],
  'draw'=>function($p) {

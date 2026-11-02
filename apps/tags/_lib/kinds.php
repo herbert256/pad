@@ -227,6 +227,17 @@
                         "{{$type}:auto $args}{\$sequence} {/{$type}:auto}" );
     }
 
+    // A feature's complete example may require its paired PHP data file.
+    if ( is_file ( APPS . "tags/examples/$type/$kind.pad" ) )
+      return $example ( "The $kind $type", 'A complete working example.', '', "examples/$type/$kind" );
+
+    if ( $type === 'avatar' )
+      return $example ( "The $kind avatar", 'Local deterministic SVG.', "{avatar:$kind 'Ann Example', label='Ann Example'/}" );
+    if ( $type === 'fake' and $kind === 'ulid' )
+      return $example ( 'A seeded ULID', 'An explicit millisecond timestamp keeps it reproducible.', "{fake:ulid time=1700000000000, seed=7/}" );
+    if ( $type === 'fake' and $kind === 'weighted' )
+      return $example ( 'A weighted choice', 'Zero weights cannot be selected.', "{fake:weighted values=['small','large'], weights=[3,1], seed=7/}" );
+
     switch ( $type ) {
 
       case 'chart':

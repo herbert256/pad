@@ -13,13 +13,16 @@
       'line' => [ 'Line', 'Change over time', [
         'line/visits'       => [ 'Website visits',            'One series, the last point marked - the data JSON, between the tags.' ],
         'line/temperatures' => [ 'Temperatures in three cities', 'A list of fields in value= draws a line each, named at its end.' ],
-        'line/shares'       => [ 'A share price over a year', 'Twelve months of a stock, from a YAML file.' ] ] ],
+        'line/shares'       => [ 'A share price over a year', 'Twelve months of a stock, from a YAML file.' ],
+        'slope/periods' => [ 'Two periods compared', 'slope: endpoint values with labels kept apart; an unpaired value remains a dot.' ],
+        'bump/seasons' => [ 'Ranks through the seasons', 'bump: competition ranks preserve ties, and missing values break the line.' ] ] ],
 
       'area' => [ 'Area & stream', 'Amounts adding up over time', [
         'area/energy'  => [ 'Electricity by source',       'stacked lays the areas on top of each other, the top edge the total.' ],
         'area/devices' => [ 'Visits by device',            'percent stacks every year to 100% - the shift from desktop to mobile.' ],
         'area/music'   => [ 'Two years of listening',      'stream: the genres swell and shrink around a wandering middle, in smooth curves.' ],
-        'area/cities'  => [ 'Temperatures in nine cities', 'multiples: a small chart per city, all on one scale, in a grid.' ] ] ],
+        'area/cities'  => [ 'Temperatures in nine cities', 'multiples: a small chart per city, all on one scale, in a grid.' ],
+        'horizon/deviations' => [ 'Positive and negative departures', 'horizon: signed values fold into three colour bands, one compact row per series.' ] ] ],
 
       'bars' => [ 'Bars', 'Categories compared', [
         'bars/sales'     => [ 'Sales per month',          'Columns from a zero baseline - the data CSV, between the tags.' ],
@@ -30,7 +33,8 @@
         'bars/survey'    => [ 'A survey, answer by answer', 'Horizontal and stacked: every answer a part of the bar.' ],
         'bars/waterfall' => [ 'From revenue to profit',   'waterfall: each step floats from where the one before ended.' ],
         'bars/promoters' => [ 'Net promoter score, a year apart', 'dumbbell: two dots per product joined by a line, ranked from the largest rise down.' ],
-        'bars/course'    => [ 'A course, rated by its students', 'likert: five answers from strongly disagree to strongly agree, centred on neutral and ranked by agreement - no answer left out.' ] ] ],
+        'bars/course'    => [ 'A course, rated by its students', 'likert: five answers from strongly disagree to strongly agree, centred on neutral and ranked by agreement - no answer left out.' ],
+        'pareto/contributions' => [ 'The causes behind the total', 'pareto: bars sorted by contribution, with a cumulative share reaching 100 percent.' ] ] ],
 
       'funnel' => [ 'Funnel & pyramid', 'Steps that narrow', [
         'funnel/shop'       => [ 'A web shop funnel',    'From visit to payment - the share of the first step and of the step before.' ],

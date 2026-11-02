@@ -202,7 +202,7 @@
     if ( $value === NULL )
       return $default;
 
-    $shown = padMakeSafe ( is_float ( $value ) and ! is_finite ( $value ) ? 'non-finite' : ( is_scalar ( $value ) ? (string) $value : 'array' ), 30 );
+    $shown = padMakeSafe ( ( is_float ( $value ) && ! is_finite ( $value ) ) ? 'non-finite' : ( is_scalar ( $value ) ? (string) $value : 'array' ), 30 );
     $fail  = function ( $want ) use ( $filter, $option, $shown, $padCheckSyntax, $default ) {
       if ( $padCheckSyntax )
         padError ( "the img tag's $option '$shown' is no $option for the $filter filter - $want" );

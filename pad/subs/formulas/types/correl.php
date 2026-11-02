@@ -1,4 +1,12 @@
 <?php
+
+  // correl - CORREL(array1, array2) returns the Pearson correlation of paired numbers.
+  // Text and blank cells are ignored as pairs; unequal sizes yield #N/A, a constant
+  // series or fewer than two numeric pairs yields #DIV/0!.
+  //
+  //   =CORREL(B2:B7, B2:B7)  1
+  //   =CORREL(1, 2)  #DIV/0!
+
   return [ 'group' => 'Statistical', 'args' => [ 2, 2 ], 'call' => function ( $args, $env ) {
     $sets = []; $sizes = [];
     foreach ( $args as $arg ) {

@@ -1,5 +1,5 @@
 <?php
-  define ( 'PAD', dirname ( __DIR__, 3 ) . '/pad/' );
+  define ( 'PAD', dirname ( __DIR__, 2 ) . '/pad/' );
   require PAD . 'subs/channels/_lib/notify.php';
   function padMakeSafe ( $s, $n ) { return substr ( $s, 0, $n ); }
   function padCurl ( $request ) { $GLOBALS ['request'] = $request; return $GLOBALS ['reply']; }

@@ -1,6 +1,6 @@
 <?php
 // Independent joins and geometry checks; run directly with PHP.
-define('PAD',dirname(__DIR__,3).'/pad/');define('DATA','/nonexistent-pad-test-data/');
+define('PAD',dirname ( __DIR__, 2 ).'/pad/');define('DATA','/nonexistent-pad-test-data/');
 require PAD.'lib/dirs.php';require PAD.'lib/subsystem.php';require PAD.'lib/encoding.php';require PAD.'subs/maps/_lib/map.php';
 function verify($ok,$why){if(!$ok)throw new RuntimeException($why);}
 $view='fr-regions';$data=json_decode(file_get_contents(PAD.'subs/maps/_lib/'.$view.'.json'),TRUE,512,JSON_THROW_ON_ERROR);

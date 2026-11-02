@@ -10,6 +10,8 @@
   //            a token only when it is set up to
   //   model    the model unless model= says   tokens   the answer's limit unless tokens= says
   //   url      the endpoint, or a function of the request that makes it
+  //   follow   whether to follow HTTP redirects (default TRUE); FALSE confines credentials
+  //            and request content to the checked endpoint
   //   headers  function ( $ask ) - the headers: the key in the provider's own way
   //   body     function ( $ask ) - the request, sent as JSON
   //   text     function ( $answer ) - the text taken out of the answer, '' when there is none
@@ -101,7 +103,7 @@
     $out = padCurl ( [ 'url'     => $url,
                        'post'    => json_encode ( ( $kind ['body'] ) ( $ask ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ),
                        'headers' => ( $kind ['headers'] ) ( $ask ) + [ 'Content-Type' => 'application/json', 'Accept' => 'application/json' ],
-                       'options' => [ 'USERAGENT' => 'PAD', 'TIMEOUT' => 120 ] ] );
+                       'options' => [ 'USERAGENT' => 'PAD', 'TIMEOUT' => 120, 'FOLLOWLOCATION' => $kind ['follow'] ?? TRUE ] ] );
 
     $status = (int) ( $out ['result'] ?? 0 );
     $answer = json_decode ( (string) ( $out ['data'] ?? '' ), TRUE );

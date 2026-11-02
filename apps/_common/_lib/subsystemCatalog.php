@@ -18,6 +18,12 @@
       'format'   => [ 'Data formats', 'The format= option of {pad:data}, file extensions and the format helpers.', 'data', 'toml' ],
       'formula'  => [ 'Spreadsheet functions', 'Functions inside the formulas of {pad:spreadsheet} cells.', 'spreadsheet', 'sum' ],
       'theme'    => [ 'Themes', 'The name parameter of {pad:theme} selects page or box colours.', 'theme', 'paper' ],
+      'unit' => [ 'Unit conversions', 'Dimension-checked numeric conversion through padConvert.', '', 'length' ],
+      'highlighter' => [ 'Syntax languages', 'Languages selected by padHighlight and the highlight tag.', 'highlight', 'python' ],
+      'diff' => [ 'Comparison kinds', 'Typed change records through padDiffCompare, and escaped HTML through padDiffRender.', 'diff', 'json' ],
+      'recurrence' => [ 'Calendar recurrences', 'Bounded occurrences between explicit dates through padOccurrences.', '', 'weekly' ],
+      'geo' => [ 'Geographic operations', 'Plain data operations through padGeo, with longitude before latitude.', '', 'distance' ],
+      'distribution' => [ 'Sampling distributions', 'Seeded samples through padSample.', '', 'normal' ],
       'palette'  => [ 'Colour palettes', 'The name parameter of {pad:palette}, or palette= on a chart.', 'palette', 'viridis' ],
     ];
 
@@ -40,7 +46,11 @@
     $source = (string) padFileGet ( PAD . "subs/$directory/types/$kind.php" );
     preg_match ( '/\A<\?php\s*\n((?:[ \t]*\/\/[^\n]*\n|[ \t]*\n)+)/', $source, $match );
 
-    return trim ( preg_replace ( '/^[ \t]*\/\/ ?/m', '', $match [1] ?? '' ) );
+    $text = trim ( preg_replace ( '/^[ \t]*\/\/ ?/m', '', $match [1] ?? '' ) );
+    if ( $text !== '' ) return $text;
+    foreach ( [ "docs/subsystems/$directory/$kind.md", "docs/subsystems/$directory.md", "docs/subsystems/$directory/README.md", "docs/subsystems/$directory/index.md" ] as $doc )
+      if ( is_file ( dirname ( APPS ) . '/' . $doc ) ) return (string) file_get_contents ( dirname ( APPS ) . '/' . $doc );
+    return ucfirst ( $kind ) . ' is selected through the ' . $family . ' subsystem API.';
 
   }
 
@@ -52,6 +62,31 @@
     $about = '';
 
     switch ( $family ) {
+      case 'unit':
+        $language = 'php';
+        $pairs = [ 'length' => [ 'cm', 'm' ], 'area' => [ 'm2', 'ft2' ], 'volume' => [ 'L', 'mL' ], 'mass' => [ 'kg', 'g' ], 'temperature' => [ 'C', 'F' ], 'digital' => [ 'KiB', 'B' ] ];
+        [ $a, $b ] = $pairs [$kind];
+        $source = "padConvert ( 100, '$a', '$b' );";
+        break;
+      case 'highlighter':
+        $language = 'php'; $source = "padHighlight ( \$source, '$kind', TRUE );";
+        break;
+      case 'diff':
+        $language = 'php'; $args = $kind === 'rows' ? ", [ 'key' => 'id' ]" : '';
+        $source = "\$changes = padDiffCompare ( '$kind', \$before, \$after$args );\npadDiffRender ( \$changes, TRUE );";
+        break;
+      case 'recurrence':
+        $language = 'php'; $extra = $kind === 'rrule' ? ", 'rrule' => 'FREQ=WEEKLY;COUNT=4'" : ", 'count' => 4";
+        $source = "padOccurrences ( '$kind', [ 'start' => '2026-11-02'$extra ], '2026-11-01', '2031-12-01' );";
+        break;
+      case 'distribution':
+        $language = 'php'; $source = "padSample ( '$kind', 100, [ 'seed' => 7 ] );";
+        break;
+      case 'geo':
+        $language = 'php';
+        $args = [ 'distance' => '[4.9,52.37], [2.35,48.86]', 'bearing' => '[4.9,52.37], [2.35,48.86]', 'bbox' => '[[179,10],[-179,20]]', 'contains' => "[1,1], ['type'=>'Polygon', 'coordinates'=>[[[0,0],[2,0],[2,2],[0,2],[0,0]]]]", 'geohash' => '[4.9,52.37]' ];
+        $source = "padGeo ( '$kind', " . $args [$kind] . ' );';
+        break;
       case 'map':
         $source = "{pad:map '$kind', width=540/}";
         $run = TRUE;
@@ -88,6 +123,7 @@
         $definition = padFormatDef ( $kind );
         if ( isset ( $definition ['read'] ) ) $source .= "\$rows = padFormatRead ( '$kind', \$contents );\n";
         if ( isset ( $definition ['write'] ) ) $source .= "\$contents = padFormatWrite ( '$kind', \$rows );";
+        if ( $kind === 'fixedwidth' ) $source = "\$rows = padFormatRead ( 'fixedwidth', \$contents, [ 'columns' => [ 'name' => 12, 'age' => 3 ] ] );";
         $about = 'Supply the document bytes in $contents or the data in $rows. The description below explains the format\'s record shape; XLSX takes binary bytes.';
         break;
       case 'formula':

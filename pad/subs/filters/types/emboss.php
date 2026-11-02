@@ -1,4 +1,9 @@
 <?php
+  // emboss - reveal edges as a gray relief with a directional luminance kernel. Strength
+  // controls the relief; alpha is preserved and the sampling follows pixel density.
+  //
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='emboss', strength=1.5, alt='The harbour in relief'/}
+  //
   return [ 'form' => 'image', 'loops' => TRUE, 'lossless' => TRUE,
     'options' => [ 'strength' => [ 'number', 1, 0, 10 ] ],
     'apply' => function ( $image, $options, $scale ) {

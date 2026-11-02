@@ -1,5 +1,9 @@
 <?php
-  // Gamma in encoded sRGB channel space: gamma > 1 lightens midtones; alpha is untouched.
+  // gamma - adjust the midtones in encoded sRGB channel space. Gamma above 1 lightens;
+  // alpha is untouched.
+  //
+  //   {pad:img 'photos/harbour.jpg', width=400, filter='gamma', gamma=1.8, alt='The harbour with lighter midtones'/}
+  //
   return [ 'form' => 'image', 'loops' => TRUE,
     'options' => [ 'gamma' => [ 'number', 1, 0.01, 100 ] ],
     'apply' => function ( $image, $options, $scale ) {

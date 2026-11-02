@@ -1052,3 +1052,9 @@ types/
 {pull:fib}{$sequence} {/pull:fib}
 {remove:fib even}{$sequence} {/remove:fib}
 ```
+
+### avatar
+
+`{avatar:rings 'identity', label='Name'/}` selects a local SVG style from `pad/subs/avatars/types`: initials, identicon, rings, mosaic and pixelbot. Explicit `avatar:` qualification is required. The existing avatar and identicon tags remain compatibility wrappers. See [avatar documentation](../subsystems/avatars/index.md).
+
+---
