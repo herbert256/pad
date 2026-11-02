@@ -131,10 +131,10 @@
         $text = appSubsystemComment ( $family, $kind );
         if ( preg_match ( '/^  (=\S.*?)(?:[ \t]{2,}\S.*)?$/m', $text, $match ) ) {
           $formula = str_replace ( [ '\\', "'" ], [ '\\\\', "\\'" ], $match [1] );
-          $sample = trim ( (string) padFileGet ( APPS . 'sheets/_data/sample.csv' ) );
+          $sample = trim ( (string) padFileGet ( APPS . 'tables/_data/sample.csv' ) );
           $source = "{sheet:grid formulas='G1$formula'}\n$sample\n{/sheet:grid}";
           $run = TRUE;
-          $about = 'The first example from the function\'s source, computed in G1 on the sheets application\'s sample data.';
+          $about = 'The first example from the function\'s source, computed in G1 on the Tables application\'s sample data.';
         } else {
           $source = strtoupper ( $kind ) . '(...)';
           $about = 'Use this function inside a spreadsheet cell beginning with =; its arguments are described below.';

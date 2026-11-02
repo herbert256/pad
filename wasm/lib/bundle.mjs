@@ -66,7 +66,7 @@ export function collect(apps) {
   }
   walk(join(home, 'apps', '_common'), APP_MAX);
   walk(join(home, 'www', 'assets'), APP_MAX);
-  for (const file of ['brand.css', 'pad.css', 'pad.js'])
+  for (const file of ['brand.css', 'pad.css', 'pad.js', 'showcase-examples.css', 'showcase-examples.js'])
     if (existsSync(join(home, 'www', '_common', file)))
       add(`www/_common/${file}`, readFileSync(join(home, 'www', '_common', file)));
   add('runtime/pad-runtime.php', readFileSync(join(home, 'wasm', 'app', 'pad-runtime.php')));

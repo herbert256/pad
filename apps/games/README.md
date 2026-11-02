@@ -1,5 +1,7 @@
 # Games Application
 
+Games, puzzles and live simulations share one gallery and menu. Toys live under `?toys/index` and `?toys/<name>`, with their original templates in `_toys/`. Crossword and Sudoku examples formerly in Showcase live under `examples/`.
+
 ## Introduction
 
 Every game of the engine's games subsystem, to play: the home page has a card per game, a game's

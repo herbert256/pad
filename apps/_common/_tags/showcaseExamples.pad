@@ -1,0 +1,11 @@
+<section class="demo-catalog" aria-label="Examples">
+  {array:showcaseFamilies}
+  <h2>{$demoFamily}</h2>
+  <p>{$demoDescription}</p>
+  <ul class="demo-cards">
+    {array:demoExamples}
+    <li><a href="?{$demoPage}"><strong>{$demoTitle}</strong><span>{$demoAbout}</span></a></li>
+    {/array:demoExamples}
+  </ul>
+  {/array:showcaseFamilies}
+</section>

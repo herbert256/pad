@@ -3,8 +3,19 @@
 <code>{pad:open/}game:name/{pad:close/}</code>. The server writes
 the board, a script in the page plays it.</p>
 
+<h2>Games</h2>
 <ul class="games-cards">
   {array:games}
   <li><a class="games-card" href="?{$game}"><b>{$name}</b><span>{$line}</span><code>{pad:open/}{$game}/{pad:close/}</code></a></li>
   {/array:games}
 </ul>
+
+<h2>Toys and simulations</h2>
+<p class="games-lead">Explore live simulations and visual experiments alongside the games.</p>
+<ul class="toys-cards">
+  {array:toys}
+  <li><a class="toys-card" href="?toys/{$toy}"><b>{$name}</b><span>{$line}</span><code>{pad:open/}toy:{$toy}/{pad:close/}</code></a></li>
+  {/array:toys}
+</ul>
+
+{common:showcaseExamples/}

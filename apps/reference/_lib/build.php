@@ -2,7 +2,7 @@
 
   // Every page of every application - and the pages of a bracketed route, [toy].pad, by the
   // names the application's own pages link to: a route has no name of its own to ask by, so
-  // ?[toy] answered 404 and what the toys and the games application show on a page each was
+  // ?[toy] answered 404 and what the Games gallery shows on a page each was
   // on no page of the reference.
 
   function referenceBuild () {
@@ -70,7 +70,7 @@
 
   }
 
-  // The pages of a bracketed route an answer links to - ?life, /pad/toys/?life - each once: a
+  // The pages of a bracketed route an answer links to - ?life, /pad/games/?toys/life - each once: a
   // link of the application itself whose page name no file has and a route takes.
 
   function referenceBuildRoutes ( $app, $answer ) {

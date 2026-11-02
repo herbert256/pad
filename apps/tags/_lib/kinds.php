@@ -9,7 +9,7 @@
   // directory of pad/sequence/types/, and what its page says comes from there - the comment
   // at the top of its file, the line of docs/sequences/SEQUENCES.md - and its example from
   // what plays it already: the charts application's examples, the templates of the games
-  // and the toys applications, the inputs application's pages, the tags application's own
+  // and toys gallery, the inputs application's pages, the tags application's own
   // examples of the widgets and the diagrams, or a line made for the kind.
 
   // The types, in the order of their groups: [ group label, tagline, form, syntax after the
@@ -393,8 +393,8 @@
         return $example ( "A game of $kind", 'As the games application plays it.', is_file ( $file ) ? trim ( padFileGet ( $file ) ) : "{game:$kind/}" );
 
       case 'toy':
-        $file = APPS . "toys/_toys/$kind.pad";
-        return $example ( "The $kind toy", 'As the toys application shows it.', is_file ( $file ) ? trim ( padFileGet ( $file ) ) : "{toy:$kind/}" );
+        $file = APPS . "games/_toys/$kind.pad";
+        return $example ( "The $kind toy", 'As the Games gallery shows it.', is_file ( $file ) ? trim ( padFileGet ( $file ) ) : "{toy:$kind/}" );
 
       case 'widget':
       case 'diagram':
@@ -452,8 +452,8 @@
 
       case 'section':
       case 'effect':
-        $file = APPS . "sections/_examples/$type/$kind.pad";
-        return $example ( "The $kind $type", 'As the sections application shows it.', is_file ( $file ) ? trim ( padFileGet ( $file ) ) : "{{$type}:$kind}...{/$type:$kind}" );
+        $file = APPS . "widgets/_examples/$type/$kind.pad";
+        return $example ( "The $kind $type", 'As the Widgets gallery shows it.', is_file ( $file ) ? trim ( padFileGet ( $file ) ) : "{{$type}:$kind}...{/$type:$kind}" );
 
     }
 

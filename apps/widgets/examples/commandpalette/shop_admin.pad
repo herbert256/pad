@@ -1,0 +1,12 @@
+{pad:meta title='Go anywhere in a shop', about='The button, or Ctrl+K and ⌘K, opens the commands - type to narrow them, the arrow keys choose, Enter goes; without scripting the whole list opens.'/}
+<div style="width:100%; max-width:560px; min-height:200px">
+  {format:auto 'commands'}
+    [ { "label": "Orders",            "link": "?examples/commandpalette/shop_admin", "group": "Pages" },
+      { "label": "Customers",         "link": "?examples/commandpalette/shop_admin", "group": "Pages", "keywords": "clients buyers" },
+      { "label": "Kettles in stock",  "link": "?examples/commandpalette/shop_admin", "group": "Pages", "keywords": "products inventory" },
+      { "label": "New order",         "link": "?examples/commandpalette/shop_admin", "group": "Actions" },
+      { "label": "Refund an order",   "link": "?examples/commandpalette/shop_admin", "group": "Actions", "keywords": "money back" },
+      { "label": "Print the packing slips", "link": "?examples/commandpalette/shop_admin", "group": "Actions" } ]
+  {/format:auto}
+  {widget:commandpalette 'Go to', data='commands', placeholder='Search pages and actions'/}
+</div>

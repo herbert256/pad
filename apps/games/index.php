@@ -1,5 +1,5 @@
 <?php
 
-  $title = 'Games';
+  $title = 'Games and toys';
 
 ?>

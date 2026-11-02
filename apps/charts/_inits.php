@@ -102,4 +102,8 @@
 
   }
 
+  include_once COMMON . '_lib/showcaseExamples.php';
+  $showcaseFamilies = showcaseExampleFamilies ();
+  $frameMenu = array_merge ( $frameMenu, showcaseExampleMenu ( $showcaseFamilies, $padPage ) );
+
 ?>

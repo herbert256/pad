@@ -112,3 +112,34 @@ Add a rendering feature as a type of an existing owner first. Create a new
 top-level subsystem only when its responsibility and execution contract do not
 fit an existing owner. Keep provider/data registries separate from view registries
 when their files return different kinds of values.
+
+## Showcase applications
+
+Showcases follow the subsystem owners instead of retaining separate apps for each family:
+
+| Application | Combined galleries |
+| --- | --- |
+| `games` | Games, toys and simulations, plus Crossword and Sudoku examples |
+| `images` | The former Patterns app, image filters, pictures, avatars, emoji and country labels |
+| `tables` | The former Sheets app, formula reference and data-table examples |
+| `widgets` | The former Sections app, page components, text widgets, video, sections and effects; themes and palettes remain available here as page-design companions |
+| `calendars` | Calendar views, relative times and countdowns |
+| `charts` | Numeric charts and timelines |
+
+The general `showcase` keeps families without a dedicated owner app and links to
+these combined galleries. The 63 relocated examples live once under
+`apps/<owner>/examples/<family>/`; a shared catalog and example layout read their
+own metadata, templates and paired PHP. Every owner app exposes them in its menu
+and home page.
+
+Old `/toys/`, `/patterns/`, `/sheets/` and `/sections/` entry points return 308
+redirects to the canonical owner. Moved `/showcase/?<family>/<example>` links also
+redirect. Both query and clean routes retain their parameters; templates and assets
+are maintained in the owner app only. The public `toy:`, `pattern:`, `sheet:` and
+`section:` namespaces stay unchanged.
+
+The app integration checks run with `php tests/subsystems/showcase-apps.php`.
+For desktop and small-screen browser checks, run
+`node tests/subsystems/showcase-browser.cjs` with local Apache and Chrome available.
+`pages.sh` exports the canonical galleries, shared subsystem assets and redirect
+pages for the retired showcase bookmarks.

@@ -7,4 +7,8 @@
     $frameMenu [] = [ 'link' => '?' . $view ['kind'], 'label' => $view ['name'], 'icon' => 'calendar',
                      'current' => $padPage == '[kind]' && ( $kind ?? '' ) == $view ['kind'] ];
 
+  include_once COMMON . '_lib/showcaseExamples.php';
+  $showcaseFamilies = showcaseExampleFamilies ();
+  $frameMenu = array_merge ( $frameMenu, showcaseExampleMenu ( $showcaseFamilies, $padPage ) );
+
 ?>
