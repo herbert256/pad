@@ -6,7 +6,7 @@
 
   function padAvatarMake ( $kind, $identity, $options = [] ) {
 
-    if ( ! is_string ( $kind ) or ! in_array ( $kind, [ 'initials', 'identicon', 'rings', 'mosaic', 'pixelbot', 'geometric', 'gravatar', 'photo' ], TRUE ) )
+    if ( ! is_string ( $kind ) or ! in_array ( $kind, [ 'initials', 'identicon', 'rings', 'mosaic', 'pixelbot', 'geometric', 'gravatar', 'photo', 'silhouette' ], TRUE ) )
       throw new InvalidArgumentException ( 'Unknown avatar style' );
     if ( ! is_scalar ( $identity ) )
       throw new InvalidArgumentException ( 'Avatar identity must be scalar' );
@@ -16,6 +16,11 @@
     include_once __DIR__ . '/identicon.php';
     include_once __DIR__ . '/gravatar.php';
     include_once __DIR__ . '/views.php';
+
+    if ( $kind === 'silhouette' ) {
+      include_once __DIR__ . '/silhouette.php';
+      return padAvatarSilhouette ( $options ['variant'] ?? 'person', $options ['size'] ?? 64, $options ['label'] ?? '' );
+    }
 
     $oldStyle = in_array ( $kind, [ 'initials', 'identicon', 'rings', 'mosaic', 'pixelbot' ], TRUE );
     $size = max ( 8, min ( $oldStyle ? 1024 : 2048, (int) ( $options ['size'] ?? 64 ) ) );
