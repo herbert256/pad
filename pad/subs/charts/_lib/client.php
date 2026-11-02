@@ -24,6 +24,7 @@
   const padChartClientFiles = [
     'pareto'       => [ 'pareto' ],
     'slope' => [ 'slope' ],
+    'bump' => [ 'bump' ],
     'arc'          => [ 'arc' ],                        'area'         => [ 'area' ],
     'bar'          => [ 'pie', 'series' ],              'boxplot'      => [ 'distribution' ],
     'bubble'       => [ 'scatter' ],                    'bullet'       => [ 'bullet' ],
