@@ -153,6 +153,10 @@
       for ( $i = 0; $i < $copies and count ( $all ) < PAD_PRINTABLE_MOST; $i++ )
         $all [] = $item;
 
+    // Duplex and imposed layouts prepare physical face order before the shared renderer.
+    if ( isset ( $plan ['prepare'] ) )
+      $all = ( $plan ['prepare'] ) ( $all );
+
     $html = padPrintableBuild ( $kind, $plan, $all );
 
     $padPrintableNow = $before;
