@@ -1,0 +1,9 @@
+{diagram:faulttree}
+top failure "Service unavailable"
+or gate "Failure causes"
+event power "Power lost"
+event network "Network lost"
+failure -> gate
+gate -> power
+gate -> network
+{/diagram:faulttree}
