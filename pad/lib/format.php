@@ -49,6 +49,9 @@
   //   options    the options of its reader a tag that reads its file gives -
   //              {local:sales.xlsx sheet='Notes'}
 
+  // raw='exact' preserves indentation and boundary bytes for fixed-width/config formats.
+  // Protected template braces are restored; the normal raw deindent/BOM pass is skipped.
+
   function padFormatKinds () {
 
     return padKinds ( 'formats' );
