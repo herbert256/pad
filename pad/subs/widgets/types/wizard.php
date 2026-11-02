@@ -1,7 +1,7 @@
 <?php
 
   // {widget:wizard}{pad:tab 'Address'}...{/pad:tab}{pad:tab 'Payment'}...{/pad:tab}{/widget:wizard} - a form or a story in
-  // steps, one shown at a widget: the steps in a row above it, numbered, the ones done and the
+  // steps, one shown at a time: the steps in a row above it, numbered, the ones done and the
   // current one marked, and under each step a Back and a Next. Radio buttons and CSS, as
   // {widget:tabs} is - no script needed. active= names the step shown first, by its number from 1 or
   // its label; next= and back= are the texts of the two buttons, label= names the wizard for
