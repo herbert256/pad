@@ -80,6 +80,7 @@
     'interval' => 'intervals',
     'color' => 'colors',
     'timeseries' => 'timeseries',
+    'geometry' => 'geometry',
   ];
 
   // The kinds of the subsystem in pad/subs/<directory>/: the names of the files of its types/,
