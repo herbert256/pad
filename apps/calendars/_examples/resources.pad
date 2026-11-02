@@ -1,9 +1,9 @@
-{pad:data 'roomBookings', format='json'}
+{format:auto 'roomBookings', format='json'}
 [
   {"title":"Team planning","resource":"room-a","start":"2026-11-02T09:00:00+01:00","end":"2026-11-02T10:30:00+01:00"},
   {"title":"Design review","resource":"room-a","start":"2026-11-02T10:00:00+01:00","end":"2026-11-02T11:00:00+01:00"},
   {"title":"Interview","resource":"room-b","start":"2026-11-02T09:30:00+01:00","end":"2026-11-02T10:30:00+01:00"},
   {"title":"Workshop setup","resource":"room-b","start":"2026-11-02","end":"2026-11-03","allDay":true}
 ]
-{/pad:data}
+{/format:auto}
 {calendar:resources '2026-11-02', data='roomBookings', resources=['room-a'=>'Room A','room-b'=>'Room B'], timezone='Europe/Amsterdam', days=1, label='Room bookings'/}

@@ -5,7 +5,7 @@
   // first (ink) - a stencil, a stamp, a scanned page made clean, where dither spreads the error
   // on to keep the greys.
   //
-  //   {pad:img 'photos/harbour.jpg', width=400, filter='threshold', threshold=60, colors='#1d1d1b, #f4f1e8', alt='The harbour'/}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, filter='threshold', threshold=60, colors='#1d1d1b, #f4f1e8', alt='The harbour'/}
   //
   // The luminance is that of filter.php (Rec. 601, 0 to 255, as grayscale), the cut threshold
   // x 255 / 100: at 50 the pixels of 128 and more are paper and those of 127 and less ink; at 0

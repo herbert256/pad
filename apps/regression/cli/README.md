@@ -10,7 +10,7 @@ refuses to overwrite, and the new page renders; `lint` lists the pages of `lintm
 one with its template position and a near name, and leaves its bracketed route `[id]` out;
 `serve` answers a page from the server it starts on a free port; `export` writes the
 `regression/site` fixture as static files, its links rewritten - from a subdirectory too - its
-assets copied - and a scratch application with the thumbnails of its `{pad:img}`, their `srcset`
+assets copied - and a scratch application with the thumbnails of its `{image:thumbnail}`, their `srcset`
 and a `{pad:video}` poster pointing into the copy, and a `srcset` whose addresses hold a comma (a
 Cloudinary path, a `data:` URI) kept whole; `test` runs the scratch application's `_tests` -
 a pass, a failing `{pad:assert}`, a test without an answer that `--record` then writes, a pattern

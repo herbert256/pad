@@ -5,7 +5,7 @@
   // its negative, 255 less itself, the rest left as it was - the highlights go dark and strange,
   // the shadows stay.
   //
-  //   {pad:img 'photos/harbour.jpg', width=400, filter='solarize', threshold=40, alt='The harbour, solarized'/}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, filter='solarize', threshold=40, alt='The harbour, solarized'/}
   //
   // Each of red, green and blue on its own, as PIL's ImageOps.solarize and ImageMagick's
   // -solarize do it: the cut is threshold x 255 / 100, so at 50 a channel of 128 or more turns

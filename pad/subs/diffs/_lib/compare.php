@@ -49,7 +49,7 @@
     return is_array ( $v ) ? ( array_is_list ( $v ) ? 'array' : 'object' ) : ( $v instanceof stdClass ? 'object' : gettype ( $v ) );
   }
 
-  function padDiffPointer ( $key ) { return str_replace ( [ '~', '/' ], [ '~0', '~1' ], (string) $key ); }
+  function padDiffRecordPointer ( $key ) { return str_replace ( [ '~', '/' ], [ '~0', '~1' ], (string) $key ); }
 
   function padDiffWalk ( $a, $b, $path, &$out ) {
     $ta = padDiffValueType ( $a ); $tb = padDiffValueType ( $b );
@@ -58,7 +58,7 @@
       $keys = array_unique ( array_merge ( array_keys ( $a ), array_keys ( $b ) ), SORT_STRING );
       if ( $ta === 'object' ) usort ( $keys, fn ( $x, $y ) => strcmp ( (string) $x, (string) $y ) );
       foreach ( $keys as $key ) {
-        $here = $path . '/' . padDiffPointer ( $key );
+        $here = $path . '/' . padDiffRecordPointer ( $key );
         if ( ! array_key_exists ( $key, $a ) ) $out [] = [ 'op' => 'add', 'path' => $here, 'after' => $b [$key] ];
         elseif ( ! array_key_exists ( $key, $b ) ) $out [] = [ 'op' => 'remove', 'path' => $here, 'before' => $a [$key] ];
         else padDiffWalk ( $a [$key], $b [$key], $here, $out );
@@ -90,7 +90,7 @@
     }
     [ $a, $b ] = $maps; $out = [];
     foreach ( array_unique ( array_merge ( array_keys ( $a ), array_keys ( $b ) ) ) as $id ) {
-      $changes = []; $path = '/' . padDiffPointer ( $id );
+      $changes = []; $path = '/' . padDiffRecordPointer ( $id );
       if ( ! array_key_exists ( $id, $a ) ) $changes [] = [ 'op' => 'add', 'path' => $path, 'after' => $b [$id] ];
       elseif ( ! array_key_exists ( $id, $b ) ) $changes [] = [ 'op' => 'remove', 'path' => $path, 'before' => $a [$id] ];
       else padDiffWalk ( (object) $a [$id], (object) $b [$id], $path, $changes );
@@ -114,7 +114,7 @@
     return $out;
   }
 
-  function padDiffStructuredHtml ( $changes, $side, $from, $to ) {
+  function padDiffRecordsHtml ( $changes, $side, $from, $to ) {
     $html = padDiffStyle () . '<table class="pad-diff pad-diff-lines"><thead><tr><th scope="col">Path</th>';
     $html .= $side ? '<th scope="col">' . padDiffEscape ( $from ?: 'Before' ) . '</th><th scope="col">' . padDiffEscape ( $to ?: 'After' ) . '</th>' : '<th scope="col">Change</th>';
     $html .= '</tr></thead><tbody>';

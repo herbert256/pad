@@ -1,6 +1,6 @@
 <?php
 
-  // The options of {pad:spreadsheet} that change its cells, each read into the sheet before it is
+  // The options of {sheet:grid} that change its cells, each read into the sheet before it is
   // computed - see subs/formulas/spreadsheet.php for the tag itself.
   //
   //   padSheetTarget    what a name of formulas=, totals= and formats= points at: a cell (D2),

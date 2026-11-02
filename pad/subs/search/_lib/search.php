@@ -1,6 +1,6 @@
 <?php
 
-  // Site search without a search server - the search subsystem behind {pad:search} and padSearch
+  // Site search without a search server - the search subsystem behind {search:auto} and padSearch
   // (lib/search.php). A source - a Markdown collection, a data store, a page's rows, a _data
   // file, a db() result - is made into an inverted index the first time it is searched and
   // kept in DATA/cache/search/<app>/; the index is made again when what it is made of
@@ -35,11 +35,12 @@
   // padSearchScores    the documents a query finds, with their scores, best first
   // padSearchRun       all of it: a source and a query to the rows found, each with its score
   //                    and an excerpt with the matches marked (padExcerpt, tags/_lib/excerpt.php)
-  // padSearchSource    the source {pad:search 'name'} names; padSearchSign the sign of rows,
+  // padSearchSource    the source {search:auto 'name'} names; padSearchSign the sign of rows,
   //                    padSearchStamp the sign of the code that makes an index
-  // padSearchList      the hits as the list the single {pad:search/} writes
+  // padSearchList      the hits as the list the single {search:auto/} writes
 
   include_once PAD . 'subs/search/_lib/snowball.php';
+  include_once PAD . 'subs/search/_lib/facets.php';
   include_once PAD . 'tags/_lib/excerpt.php';
 
   // Raised when the index's form changes: every kept index is then made again.
@@ -903,7 +904,27 @@
 
   function padSearchRun ( $source, $q, $options ) {
 
+    padSearchInfo ( [ 'total' => 0, 'facets' => [] ] );
+    $filters = padSearchFilterSpec ( $options ['filters'] ?? [] );
+    if ( is_string ( $filters ) )
+      return $filters;
+    $facets = padSearchFacetFields ( $options ['facets'] ?? [] );
+    if ( is_string ( $facets ) )
+      return $facets;
+    padSearchInfo ( [ 'total' => 0, 'facets' => array_fill_keys ( $facets, [] ) ] );
+
     [ $name, $sign, $rows, $keepRows, $fieldsDefault ] = $source + [ 4 => '' ];
+
+    // Filter the corpus before indexing/ranking: excluded documents do not affect BM25.
+    // Read the current metadata even when a collection index was previously cached.
+    if ( $filters ) {
+      if ( is_callable ( $rows ) )
+        $rows = $rows ();
+      $rows = padSearchFilterRows ( $rows, $filters );
+      $name .= ':filters:' . hash ( 'sha256', serialize ( $filters ) );
+      $sign = NULL;
+      $keepRows = FALSE;
+    }
 
     $language = padSearchLanguage ( $options ['lang'] ?? padSearchLocale () );
 
@@ -975,6 +996,10 @@
     elseif ( is_callable ( $rows ) )
       $rows = $rows ();
 
+    $rows = array_values ( (array) $rows );
+    $matched = $facets ? array_intersect_key ( $rows, $scores ) : [];
+    padSearchInfo ( [ 'total' => count ( $scores ), 'facets' => padSearchFacetCounts ( $matched, $facets ) ] );
+
     // The rows found are cut to first before anything is made of them, and an excerpt is
     // made for the first excerpts rows only - the rows a page can show: every hit had its
     // excerpt made, and a search cost what its hits cost, not what the page showed.
@@ -1010,8 +1035,8 @@
 
   }
 
-  // The source of {pad:search 'name'}: the Markdown collection of the name (_content/<name>/),
-  // else a {pad:data} store, a page's array, a field or a _data file of the name - as data=
+  // The source of {search:auto 'name'}: the Markdown collection of the name (_content/<name>/),
+  // else a {format:auto} store, a page's array, a field or a _data file of the name - as data=
   // finds one for {chart:bar}. [ name, sign (NULL for rows: padSearchRun signs them on the
   // fields searched), rows, keep the rows, the fields when none are given ] - or an error
   // message. A collection is searched in title^2, body by default.
@@ -1023,7 +1048,7 @@
     $name = trim ( (string) $name );
 
     if ( $name === '' )
-      return "the search needs a source - {pad:search 'blog'} searches _content/blog/, a data store, a page's array or a _data file of the name";
+      return "the search needs a source - {search:auto 'blog'} searches _content/blog/, a data store, a page's array or a _data file of the name";
 
     if ( $dir = padCollectionDir ( $name ) ) {
 
@@ -1062,7 +1087,7 @@
 
   }
 
-  // How many of the rows found a page can show, for the handling options a {pad:search} pair
+  // How many of the rows found a page can show, for the handling options a {search:auto} pair
   // carries: when they keep the first rows only - first=, page= and rows= - the rows past
   // the last page, or the first, are never shown and need no excerpt. NULL when an option
   // can reorder or filter the rows - sort=, where=, last= ... - or a callback reads them.
@@ -1096,7 +1121,7 @@
   // from every later {pad:excerpt} of the page. The excerpts of a search are made in a scope of
   // their own (padSearchQuiet), where the style was written already, so they carry none
   // and spend nothing; what prints them prints the style (padSearchExcerptStyle, made in a
-  // scope of its own as well): the {pad:search} pair before its first row, the single tag
+  // scope of its own as well): the {search:auto} pair before its first row, the single tag
   // before its list, padSearch in every excerpt.
 
   function padSearchQuiet ( $on ) {
@@ -1131,7 +1156,7 @@
 
   }
 
-  // The hits as the single {pad:search/} writes them: a list, each item the title field - a link
+  // The hits as the single {search:auto/} writes them: a list, each item the title field - a link
   // when link= names a field with one that goes nowhere a script runs - and the excerpt.
 
   function padSearchList ( $rows, $title, $link ) {

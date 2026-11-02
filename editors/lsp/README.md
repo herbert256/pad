@@ -26,7 +26,7 @@ Zero-dependency Node server (stdio, Node 18 or newer). Provides:
 
   | Under the cursor | Goes to |
   |------------------|---------|
-  | `{data:mytag}` | the nearest `_tags/mytag.php` / `.pad` from the page's directory up to the application root, then `_common/_tags/`, then the engine's `pad/tags/mytag.php`; failing those a `{pad:data 'mytag'}` block of the template, `_include/mytag.pad`, or the line that sets `$mytag` |
+  | `{data:mytag}` | the nearest `_tags/mytag.php` / `.pad` from the page's directory up to the application root, then `_common/_tags/`, then the engine's `pad/tags/mytag.php`; failing those a `{format:auto 'mytag'}` block of the template, `_include/mytag.pad`, or the line that sets `$mytag` |
   | `{app:x}` `{common:x}` `{include:x}` `{pad:x}` | that type's file only |
   | `\| money` | `_functions/money.php` up the directories, then `pad/functions/money.php` |
   | `callback='x'` | `_callbacks/x.php` up the directories |

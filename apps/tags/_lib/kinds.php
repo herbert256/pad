@@ -16,6 +16,20 @@
   function tagsKindTypes () {
 
     return [
+      'diff' => [ 'Diffs', 'Text and structured changes', 'single', " \$old, \$new/}", 'diff' ],
+      'table' => [ 'Tables', 'Formatted, grouped and aggregated rows', 'both', " data='rows'/}", 'datatable' ],
+      'time' => [ 'Time displays', 'Relative time, clocks and timers', 'single', '/}', 'time' ],
+      'timeline' => [ 'Timelines', 'Events, milestones and lanes', 'both', " date='date', label='label'}...{/timeline:%s}", 'timeline' ],
+
+      'image' => [ 'Images', 'Responsive pictures, figures and contact sheets', 'single', " 'photos/avatar-demo.jpg', alt='Harbour'/}", 'image' ],
+      'avatar' => [ 'Avatars', 'Identity pictures and private fallbacks', 'single', " 'Ada Lovelace'/}", 'avatar' ],
+
+      'map' => [ 'Maps', 'Choropleths, markers and proportional bubbles', 'both', " width=540/}", '' ],
+      'holidays' => [ 'Holidays', 'Country and regional public holidays', 'both', " year=2026/}", '' ],
+      'search' => [ 'Search languages', 'Ranked search, exact filters and facets', 'both', " 'documents', q='PAD'/}", '' ],
+      'ai' => [ 'AI providers', 'Text and validated JSON responses', 'both', " 'Summarise this text.'/}", '' ],
+      'format' => [ 'Data formats', 'Read documents into named data stores', 'pair', " 'rows'}...{/format:%s}", '' ],
+      'sheet' => [ 'Spreadsheets', 'Formula grids computed on the server', 'both', " data='rows'/}", '' ],
       'calendar' => [ 'Calendars', 'Gregorian dates, events and holidays', 'both', " '2026-11', data='appointments'/}", 'calendar' ],
       'chart'    => [ 'Chart types',       'inline SVG',                 'both',   " data='rows', label='field', value='field'/}", 'chart'   ],
       'game'     => [ 'Games',             'played in the browser',       'both',   '/}',                                           'game'    ],
@@ -25,7 +39,6 @@
       'barcode'  => [ 'Barcode types',     'encoded on the server', 'single', " 'value'/}",                                'barcode' ],
       'embed'    => [ 'Embed providers',   'loaded on a click',      'single', " 'address', title='...'/}",                   'embed'   ],
       'input'    => [ 'Rich form fields',  'A field of {pad:input} each, posted by any form',        'single', " 'name', label='...'/}",                      'input'   ],
-      'avatar'   => [ 'Avatars', 'deterministic local SVG', 'single', " 'identity', label='Name'/}", 'avatar' ],
       'icon'     => [ 'Icons',             'Outlines on a 24 grid',    'single', ' size=24/}',                                  'icon'    ],
       'fake'     => [ 'Fake kinds',        'the same for the same seed',  'both',   '/}',                                           'fake'    ],
       'sequence' => [ 'Sequence types',    'Mathematical sequences, sources and operations, iterated as loops',    'both',   " rows=10}{\$%s} {/sequence:%s}",              'sequence' ],
@@ -48,7 +61,7 @@
       return array_values ( array_filter ( padDirList ( PAD . 'sequence/types' ) ?: [],
                                            fn ( $one ) => $one [0] != '.' and $one [0] != '_' and is_dir ( PAD . "sequence/types/$one" ) ) );
 
-    return isset ( padSubsystems [$type] ) ? padKinds ( padSubsystems [$type] [0] ) : [];
+    return padSubsystemTagKinds ( $type );
 
   }
 
@@ -72,6 +85,15 @@
         $form = ( $type == 'sequence' and in_array ( $kind, tagsKindParameterized () ) ) ? 'both' : $form;
 
         $tail = ( $type == 'sequence' ) ? tagsKindSequenceParm ( $kind ) . $after : $after;
+
+        if ( $type === 'diff' and $kind === 'rows' ) $tail = " \$old, \$new, key='id'/}";
+
+        if ( $type === 'table' )
+          $tail = " data='rows'" . ( [ 'grouped' => ", group='region', totals='amount'", 'pivot' => ", row='region', column='quarter', value='amount'", 'matrix' => ", row='region', column='quarter'" ] [$kind] ?? '' ) . '/}';
+        if ( $type === 'time' && in_array ( $kind, [ 'countdown', 'relative' ], TRUE ) )
+          $tail = " '2026-12-31 00:00'/}";
+        if ( $type === 'image' and $kind === 'contactsheet' )
+          $tail = " data='photos', src='src', caption='caption'/}";
 
         if ( $type === 'calendar' )
           $tail = " '" . ( [ 'day' => '2026-11-04', 'week' => '2026-11-02', 'year' => '2026', 'quarter' => '2026-Q4' ] [$kind] ?? '2026-11' ) . "', data='appointments'/}";
@@ -137,6 +159,10 @@
   // icon, which is an SVG, and a sequence type, the line of SEQUENCES.md.
 
   function tagsKindText ( $type, $kind ) {
+
+    if ( $kind === 'auto' and in_array ( $type, padSubsystemAuto, TRUE ) )
+      return [ '', 'Selects the kind from its parameters or configured default.',
+        'Use auto when the view, country, language, provider or format is supplied at runtime. An explicit kind selects it directly.' ];
 
     if ( $type == 'icon' )
       return [ '', "The $kind icon - an outline on a grid of 24, drawn in the colour of its text.", '' ];
@@ -236,7 +262,7 @@
       return $example ( "The $kind $type", $type === 'embed' && $kind === 'googleslides'
         ? 'Replace the publication URL with your own published presentation.' : 'A complete working example.', '', "examples/$type/$kind" );
 
-    if ( $type === 'avatar' )
+    if ( $type === 'avatar' and in_array ( $kind, [ 'rings', 'mosaic', 'pixelbot' ], TRUE ) )
       return $example ( "The $kind avatar", 'Local deterministic SVG.', "{avatar:$kind 'Ann Example', label='Ann Example'/}" );
     if ( $type === 'fake' and $kind === 'ulid' )
       return $example ( 'A seeded ULID', 'An explicit millisecond timestamp keeps it reproducible.', "{fake:ulid time=1700000000000, seed=7/}" );
@@ -244,6 +270,54 @@
       return $example ( 'A weighted choice', 'Zero weights cannot be selected.', "{fake:weighted values=['small','large'], weights=[3,1], seed=7/}" );
 
     switch ( $type ) {
+
+      case 'diff':
+        $file = APPS . "tags/examples/diff/$kind.pad";
+        return $example ( "A $kind comparison", 'Two versions compared on the server.', trim ( padFileGet ( $file ) ) );
+
+      case 'table':
+        $file = APPS . "tags/examples/table/$kind.pad";
+        return $example ( "A $kind table", 'Rows formatted and aggregated on the server.', trim ( padFileGet ( $file ) ) );
+      case 'time':
+        $file = APPS . "tags/examples/time/$kind.pad";
+        return $example ( "The $kind time display", 'Date-aware server output with browser controls when needed.', trim ( padFileGet ( $file ) ) );
+
+      case 'timeline':
+        $file = APPS . "tags/examples/timeline/$kind.pad";
+        return $example ( "The $kind timeline", 'Events and spans from the same row format.', trim ( padFileGet ( $file ) ) );
+      case 'image':
+        $file = APPS . "tags/examples/image/$kind.pad";
+        return $example ( "An image $kind", 'Local images through the shared filter and thumbnail pipeline.', trim ( padFileGet ( $file ) ) );
+
+      case 'avatar':
+        $file = APPS . "tags/examples/avatar/$kind.pad";
+        return $example ( "A $kind avatar", 'An identity picture with accessible text.', trim ( padFileGet ( $file ) ) );
+
+      case 'map':
+        $selector = $kind === 'auto' ? " 'europe'" : '';
+        return $example ( 'A map view', 'Add data= with country values, or mode=markers/bubbles with latitude and longitude fields.', "{map:$kind$selector width=540/}" );
+      case 'holidays':
+        $selector = $kind === 'auto' ? " 'nl'" : '';
+        return $example ( 'Public holidays', 'Use region= for regional rules or countries= for several calendars with provenance.', "{holidays:$kind$selector year=2026/}" );
+      case 'search':
+        return $example ( 'Search a named data set', 'The language selects stop words and stemming; filters and facets work before paging.',
+          "{format:json 'catalogDocs'}[ { \"title\": \"PAD\", \"body\": \"Templates on the server\" } ]{/format:json}\n{search:$kind 'catalogDocs', q='PAD', fields='title,body'}<p>{\$title}: {!excerpt}</p>{/search:$kind}" );
+      case 'ai':
+        return $example ( 'A provider request', 'Configure the provider first. This example is shown as source because it calls a model service.',
+          "{ai:$kind 'Name three rivers of France.'/}", '', '', FALSE );
+      case 'format':
+        $samples = [ 'auto' => '[{"name":"Ada","score":12}]', 'json' => '[{"name":"Ada","score":12}]',
+          'csv' => "name,score\nAda,12", 'tsv' => "name\tscore\nAda\t12", 'psv' => "name|score\nAda|12",
+          'toml' => "name = \"Ada\"\nscore = 12", 'yaml' => "name: Ada\nscore: 12", 'ini' => "name=Ada\nscore=12",
+          'ndjson' => '{"name":"Ada","score":12}' ];
+        if ( isset ( $samples [$kind] ) )
+          return $example ( 'Parse and store rows', 'The format creates a named store; data: reads its rows.',
+            "{format:$kind 'parsed'}\n" . $samples [$kind] . "\n{/format:$kind}\n{data:parsed}<p>{\$name}: {\$score}</p>{/data:parsed}" );
+        return $example ( 'Read a document', 'Place the document at this application-relative path. The format helper also reads supplied document bytes.',
+          "{format:$kind 'parsed', 'sample.$kind'/}\n{data:parsed}{widget:jsonview/}{/data:parsed}", '', '', FALSE );
+      case 'sheet':
+        return $example ( 'A formula grid', 'Formulas are calculated on the server; TEXTBEFORE and TEXTAFTER support Unicode delimiters.',
+          "{sheet:grid}Name,Amount\nOne,12\nTwo,=B2*2{/sheet:grid}" );
 
       case 'calendar':
         $file = APPS . "calendars/_examples/$kind.pad";
@@ -354,26 +428,32 @@
   }
 
   // The example of each JSON-LD kind: the tag with fields of its own, its script made visible
-  // by the html pipe - a faq's rows from a {pad:data} block, a breadcrumb the trail of its page.
+  // by the html pipe - a faq's rows from a {format:auto} block, a breadcrumb the trail of its page.
 
   function tagsKindJsonLdExamples () {
 
     $pre = fn ( $tag ) => "<pre style=\"white-space:pre-wrap\">$tag</pre>";
 
     return [
+      'map' => [ 'Maps', 'Choropleths, markers and proportional bubbles', 'both', " width=540/}", '' ],
+      'holidays' => [ 'Holidays', 'Country and regional public holidays', 'both', " year=2026/}", '' ],
+      'search' => [ 'Search languages', 'Ranked search, exact filters and facets', 'both', " 'documents', q='PAD'/}", '' ],
+      'ai' => [ 'AI providers', 'Text and validated JSON responses', 'both', " 'Summarise this text.'/}", '' ],
+      'format' => [ 'Data formats', 'Read documents into named data stores', 'pair', " 'rows'}...{/format:%s}", '' ],
+      'sheet' => [ 'Spreadsheets', 'Formula grids computed on the server', 'both', " data='rows'/}", '' ],
       'article'      => $pre ( "{jsonld:article headline='Pages that drive themselves', author='Ann Smith', published='2026-11-01', image='cover.jpg' | html/}" ),
       'breadcrumb'   => $pre ( "{jsonld:breadcrumb | html/}" ),
       'business'     => $pre ( "{jsonld:business type='Bakery', name='The Loaf', street='Main Street 1', city='Utrecht', country='NL', latitude='52.09074', longitude='5.12142', hours='Mo-Fr 08:00-18:00; Sa 08:00-16:00' | html/}" ),
       'course'       => $pre ( "{jsonld:course name='PAD in a day', description='The template language from the first tag to a shop.', provider='PAD Academy', providerurl='https://academy.example', code='PAD101' | html/}" ),
       'event'        => $pre ( "{jsonld:event name='PAD day', starts='2026-11-20 19:30', place='The Hall', address='Main Street 1, Utrecht', price='12.50', currency='EUR', availability='InStock' | html/}" ),
-      'faq'          => "{pad:data 'questions'}\n[ { \"question\": \"Is it free?\", \"answer\": \"Yes, under the GPL.\" } ]\n{/pad:data}\n" . $pre ( "{jsonld:faq data='questions' | html/}" ),
-      'itemlist'     => "{pad:data 'soups'}\n[ { \"title\": \"Pea soup\", \"link\": \"?recipes/pea-soup\" },\n  { \"title\": \"Tomato soup\", \"link\": \"?recipes/tomato-soup\" } ]\n{/pad:data}\n" . $pre ( "{jsonld:itemlist data='soups', name='Soups' | html/}" ),
+      'faq'          => "{format:auto 'questions'}\n[ { \"question\": \"Is it free?\", \"answer\": \"Yes, under the GPL.\" } ]\n{/format:auto}\n" . $pre ( "{jsonld:faq data='questions' | html/}" ),
+      'itemlist'     => "{format:auto 'soups'}\n[ { \"title\": \"Pea soup\", \"link\": \"?recipes/pea-soup\" },\n  { \"title\": \"Tomato soup\", \"link\": \"?recipes/tomato-soup\" } ]\n{/format:auto}\n" . $pre ( "{jsonld:itemlist data='soups', name='Soups' | html/}" ),
       'job'          => $pre ( "{jsonld:job title='Baker', description='Bread from 05:00, four days a week.', posted='2026-11-01', company='The Loaf', city='Utrecht', country='NL', employment='part time', salary='2400-2800', currency='EUR', per='month' | html/}" ),
       'organization' => $pre ( "{jsonld:organization name='PAD', url='https://pad.example', logo='logo.png', profiles='https://github.com/pad', phone='+31 30 123 4567', contact='customer service' | html/}" ),
       'person'       => $pre ( "{jsonld:person name='Ann Smith', job='Engineer', profiles='https://github.com/ann, https://social.example/@ann' | html/}" ),
       'product'      => $pre ( "{jsonld:product name='Aurora kettle', sku='AK-1', brand='Aurora', price='39.95', currency='EUR', availability='InStock' | html/}" ),
       'profile'      => $pre ( "{jsonld:profile name='Ann Smith', handle='ann', image='avatars/ann.jpg', profiles='https://github.com/ann', followers=340, posts=415, created='2025-01-10' | html/}" ),
-      'recipe'       => "{pad:data 'soup'}\n{ \"name\": \"Pea soup\", \"image\": \"soup.jpg\", \"prep\": \"20 min\", \"cook\": \"1 h 30 min\", \"yield\": \"4\",\n  \"ingredients\": [ \"500 g split peas\", \"1 leek, sliced\", \"2 l water\" ],\n  \"steps\": [ \"Soak the peas overnight.\", \"Simmer it all for an hour and a half.\" ] }\n{/pad:data}\n" . $pre ( "{jsonld:recipe data='soup' | html/}" ),
+      'recipe'       => "{format:auto 'soup'}\n{ \"name\": \"Pea soup\", \"image\": \"soup.jpg\", \"prep\": \"20 min\", \"cook\": \"1 h 30 min\", \"yield\": \"4\",\n  \"ingredients\": [ \"500 g split peas\", \"1 leek, sliced\", \"2 l water\" ],\n  \"steps\": [ \"Soak the peas overnight.\", \"Simmer it all for an hour and a half.\" ] }\n{/format:auto}\n" . $pre ( "{jsonld:recipe data='soup' | html/}" ),
       'restaurant'   => $pre ( "{jsonld:restaurant name='De Ketel', cuisine='Dutch', menu='?menu', street='Oudegracht 1', city='Utrecht', country='NL', hours='Tu-Su 17:00-23:00', prices='\$\$' | html/}" ),
       'software'     => $pre ( "{jsonld:software name='Pocket Ledger', type='mobile application', os='Android 12, iOS 17', category='finance application', price=0, rating='4.6', ratings=1523 | html/}" ),
       'video'        => $pre ( "{jsonld:video name='Making pea soup', thumbnail='soup.jpg', uploaded='2026-11-01T10:00:00+01:00', duration='4 min 12 s', player='https://video.example/embed/123', views=2347 | html/}" ),
@@ -394,6 +474,12 @@
   function tagsKindEmbedAddresses () {
 
     return [
+      'map' => [ 'Maps', 'Choropleths, markers and proportional bubbles', 'both', " width=540/}", '' ],
+      'holidays' => [ 'Holidays', 'Country and regional public holidays', 'both', " year=2026/}", '' ],
+      'search' => [ 'Search languages', 'Ranked search, exact filters and facets', 'both', " 'documents', q='PAD'/}", '' ],
+      'ai' => [ 'AI providers', 'Text and validated JSON responses', 'both', " 'Summarise this text.'/}", '' ],
+      'format' => [ 'Data formats', 'Read documents into named data stores', 'pair', " 'rows'}...{/format:%s}", '' ],
+      'sheet' => [ 'Spreadsheets', 'Formula grids computed on the server', 'both', " data='rows'/}", '' ],
       'youtube'         => [ 'https://www.youtube.com/watch?v=aqz-KE-bpKQ',            'Big Buck Bunny' ],
       'vimeo'           => [ 'https://vimeo.com/76979871',                             'The new Vimeo player' ],
       'peertube'        => [ 'https://framatube.org/w/kkGMgK9ZtnKfYAgnEtQxbv',         'What is PeerTube?' ],

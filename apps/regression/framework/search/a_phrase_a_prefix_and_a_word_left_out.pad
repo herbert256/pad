@@ -1,8 +1,8 @@
-{pad:search 'kitchen', q='"hot oven"'}{$slug} {/pad:search}|
-{pad:search 'kitchen', q='"oven hot"'}{$slug} @else@no phrase{/pad:search}|
-{pad:search 'kitchen', q='"a slice of bread"'}{$slug} {/pad:search}|
-{pad:search 'kitchen', q='brea*'}{$slug} {/pad:search}|
-{pad:search 'kitchen', q='bread -cheese'}{$slug} {/pad:search}|
-{pad:search 'kitchen', q='bread -"slice of bread"'}{$slug} {/pad:search}|
-{pad:search 'kitchen', q='hot "coffee"'}{$slug} {/pad:search}|
-{pad:search 'kitchen', q='the and of'}{$slug} @else@only stop words{/pad:search}
+{search:auto 'kitchen', q='"hot oven"'}{$slug} {/search:auto}|
+{search:auto 'kitchen', q='"oven hot"'}{$slug} @else@no phrase{/search:auto}|
+{search:auto 'kitchen', q='"a slice of bread"'}{$slug} {/search:auto}|
+{search:auto 'kitchen', q='brea*'}{$slug} {/search:auto}|
+{search:auto 'kitchen', q='bread -cheese'}{$slug} {/search:auto}|
+{search:auto 'kitchen', q='bread -"slice of bread"'}{$slug} {/search:auto}|
+{search:auto 'kitchen', q='hot "coffee"'}{$slug} {/search:auto}|
+{search:auto 'kitchen', q='the and of'}{$slug} @else@only stop words{/search:auto}

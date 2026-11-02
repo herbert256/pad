@@ -1,9 +1,9 @@
 <?php
 
-  // What the cases of the filters group read of the pictures {pad:img} wrote: a binary answer as
+  // What the cases of the filters group read of the pictures {image:thumbnail} wrote: a binary answer as
   // facts that can be checked by hand and its md5 - the same picture, the same bytes.
   //
-  //   {pad:img 'assets/photo.jpg', width=80, filter='grayscale', alt='x' | php:filtersThumbs(@)/}
+  //   {image:thumbnail 'assets/photo.jpg', width=80, filter='grayscale', alt='x' | php:filtersThumbs(@)/}
   //
   // filtersThumbs  every picture of _thumbs/ the markup names, once: its size, its format,
   //                how many colours it holds, whether every pixel is grey, and its md5

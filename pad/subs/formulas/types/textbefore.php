@@ -8,7 +8,7 @@
   //   =TEXTBEFORE("abc", "/", 1, 0, 0, "missing")  missing
 
   // TEXTBEFORE(text, delimiter, [instance_num], [match_mode], [match_end], [if_not_found]).
-  include_once PAD . 'subs/formulas/_lib/delimited.php';
+  include_once PAD . 'subs/formulas/_lib/text_extract.php';
   return [ 'group' => 'Text', 'args' => [ 2, 6 ],
-    'call' => fn ( $args, $env ) => padFormulaDelimited ( $args, $env, FALSE ) ];
+    'call' => fn ( $args, $env ) => padFormulaTextExtract ( $args, $env, FALSE ) ];
 ?>

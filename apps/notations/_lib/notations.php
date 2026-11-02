@@ -60,12 +60,11 @@
 
   }
 
-  // How the notation is written on its card: bare when the engine reaches it bare - chord
-  // is the chord diagram of the charts bare, so the guitar chord is {notation:chord}.
+  // How the notation is written on its card: named tags require their subsystem prefix.
 
   function notationsTag ( $kind ) {
 
-    return ( padSubsystemBare ( $kind ) === 'notation' ) ? "{{$kind}}" : "{notation:$kind}";
+    return "{notation:$kind}";
 
   }
 

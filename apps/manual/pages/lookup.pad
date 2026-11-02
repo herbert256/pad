@@ -14,7 +14,7 @@ field other than the key.</p>
 
 <h2>Where the set comes from</h2>
 
-<p>The set is named as a data tag names its rows: a <code>{pad:open/}pad:data{pad:close/}</code> block, an
+<p>The set is named as a data tag names its rows: a <code>{pad:open/}format:auto{pad:close/}</code> block, an
 array of the page, or a file in <code>_data/</code>. It is indexed on the key once per request,
 not once per row, so a long list stays cheap to look in; when the set itself changes, the next
 lookup indexes it again.</p>

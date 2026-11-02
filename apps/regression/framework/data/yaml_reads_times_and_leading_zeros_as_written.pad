@@ -1,4 +1,4 @@
-{pad:data 'agenda'}
+{format:auto 'agenda'}
 ---
 - what: Standup
   time: 9:30
@@ -12,5 +12,5 @@
   count: 0x1F
   n: -7
   price: .5
-{/pad:data}
+{/format:auto}
 {data:agenda}{$what} {$time} {$zip} {$count} {pad:echo $n + 1/} {pad:echo $price * 2/}; {/data:agenda}

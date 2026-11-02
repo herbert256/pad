@@ -420,7 +420,7 @@ function located(uri) {
 
 // What the word under the cursor resolves to, in PAD's lookup order. Each target says what
 // it is: 'file' an application's own (_tags, _include, _functions, _callbacks, _common),
-// 'engine' a file under pad/, 'assign' a line that assigns a field, 'store' a {pad:data} or
+// 'engine' a file under pad/, 'assign' a line that assigns a field, 'store' a {format:auto} or
 // {pad:content} block of this template.
 function targets(loc, ctx, docFile, text) {
     const top = { start: { line: 0, character: 0 }, end: { line: 0, character: 0 } };

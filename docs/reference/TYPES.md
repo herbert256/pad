@@ -951,6 +951,59 @@ Drops the values the named sequence type accepts; no store is dropped.
 
 ---
 
+## Data and Service Subsystem Types
+
+### map
+
+Use `map:world`, `map:europe` or another registered view. `map:auto 'europe'` selects
+its view at runtime. Existing country colouring uses `data=`, `key=` and `value=`.
+For coordinates, set `mode='markers'` and name the `latitude`, `longitude` and `label`
+fields; `mode='bubbles', value='amount'` scales circle area by nonnegative amounts.
+Geographic markers require world or regional country maps, not state/province projections.
+
+### holidays
+
+`holidays:nl year=2026` selects Dutch holidays; `holidays:de region='by'` selects Bavaria.
+`holidays:auto 'de-by'` accepts a runtime country/region code. Set
+`countries='nl,de-by,gb-sct'` to merge calendars. Rows remain separate on shared dates,
+sorted by date and place, and include country, place, sourceRegion and language provenance.
+Use either `year=` or `from=`/`to=`. A pair yields rows and a single tag renders a table.
+
+### search
+
+`search:en 'documents', q='PAD'` searches a collection, store or data file using English
+stemming. `search:auto` uses `lang=` or the locale. `fields='title^2,body'` boosts fields.
+`filters=$filterJson` accepts a JSON object string with exact field values or lists;
+PHP helpers also accept arrays. `facets='category,status'` counts matching field values
+before limiting results. Read `padSearchInfo()` for `total` and typed facet counts.
+
+### ai
+
+`ai:anthropic` and the other provider kinds accept a prompt parameter or pair body.
+`ai:auto` uses `provider=` or the configured default. Set `json=TRUE` to validate the
+response as JSON, or `schema=$schemaJson` to validate against the documented bounded
+schema subset. JSON schema strings and PHP arrays are accepted. The result remains
+escaped text; `padAiStore('json')` provides its decoded value. Invalid responses are not
+cached. Provider credentials are required; catalog examples do not call model services.
+
+### format
+
+`format:json 'items'` reads its body as JSON and stores it for `{data:items}`.
+`format:csv`, `format:toml`, `format:psv` and the other registered formats select a reader.
+`format:auto` detects the format or accepts `type=`/`format=`. The second parameter can
+supply a source instead of a body. Closing-tag store names, `data=` values, literal
+`@else@` inside data and value-provenance safeguards are preserved. Handling options
+belong on the subsequent `data:` read, not on the declaration.
+
+### sheet
+
+`sheet:grid` renders an accessible table whose formulas are evaluated on the server.
+Supply CSV as its body or rows with `data=`. Existing `formulas`, `formats`, `totals`,
+`headers`, `caption`, `editable` and `seed` options remain available. The formula registry
+includes `TEXTBEFORE` and `TEXTAFTER` for Unicode-aware delimiter extraction.
+
+---
+
 ## Type Summary Table
 
 | Type | Source | Description |
@@ -1094,8 +1147,25 @@ types/
 {remove:fib even}{$sequence} {/remove:fib}
 ```
 
+### table
+
+`table:standard`, `table:grouped`, `table:pivot` and `table:matrix` render data as formatted tables. Grouped tables add group headers and subtotals; pivots and matrices aggregate row/column intersections using sum, count, avg, min or max. All kinds support column filters, sorting and paging. See [Tables](../../pad/subs/tables/README.md) for options and examples.
+
+### diff
+
+`diff:words`, `diff:lines` and `diff:side` compare texts. `diff:json` compares JSON structures by path, preserving types and distinguishing absent fields from null. `diff:rows` matches records by a unique `key` before comparing their fields. See [Diffs](../../pad/subs/diffs/README.md).
+### timeline:
+
+Event views from `pad/subs/timelines/types/`: `horizontal`, `vertical`, `auto`, `roadmap` and `swimlane`. Shared date/span parsing, labels, detail, colours and accessible names. Roadmap adds month/quarter/year columns with lane grouping and milestone badges; swimlane adds named lanes on a shared time axis. See `pad/subs/timelines/README.md` for options and runnable examples in `apps/tags/examples/timeline/`.
+
+### time:
+
+Time displays from `pad/subs/times/types/`: `countdown`, `relative`, `clock` and `stopwatch`. The date views share the engine's date parser; clocks support IANA timezones and live daylight-saving changes; stopwatches provide independent keyboard-accessible start, pause and reset. See `pad/subs/times/README.md` and `apps/tags/examples/time/`.
+
 ### avatar
 
-`{avatar:rings 'identity', label='Name'/}` selects a local SVG style from `pad/subs/avatars/types`: initials, identicon, rings, mosaic and pixelbot. Explicit `avatar:` qualification is required. The existing avatar and identicon tags remain compatibility wrappers. See [avatar documentation](../subsystems/avatars/index.md).
+The avatar subsystem provides `avatar:initials`, `avatar:identicon`, `avatar:gravatar`, `avatar:geometric`, `avatar:photo`, `avatar:rings`, `avatar:mosaic` and `avatar:pixelbot`. See [the subsystem reference](../../pad/subs/avatars/README.md) for examples and photo fallback behaviour.
 
----
+### image
+
+The image subsystem provides `image:thumbnail`, `image:picture`, `image:figure` and `image:contactsheet`. See [the subsystem reference](../../pad/subs/images/README.md) for responsive variants, focal-point cropping, captions and composite contact sheets.

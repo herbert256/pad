@@ -1,14 +1,14 @@
 <?php
 
-  // Image filters - the filter subsystem: what {pad:img} does to a picture with filter=, a comma
+  // Image filters - the filter subsystem: what {image:thumbnail} does to a picture with filter=, a comma
   // list of filters applied in the order written. A filter is a file of subs/filters/types/,
   // and the files there are the filters there are (padKinds ( 'filters' )); there is no tag of
   // its own: a filter is a word of the img tag's filter= option, as a validation rule is a word
   // of padValidate.
   //
-  //   {pad:img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='...'/}
-  //   {pad:img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='...'/}
-  //   {pad:img 'photos/harbour.jpg', width=400, filter='blurhash', alt='...'/}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='...'/}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='...'/}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, filter='blurhash', alt='...'/}
   //
   // A filter answers what it is and the options it reads:
   //
@@ -37,7 +37,7 @@
   //   'hold' answers the img's style and attributes from the filtered 1x picture, kept in
   //   _thumbs/ as a .json.
   //
-  // The budget, in the spirit of the 64 megapixels {pad:img} resizes at most: what GD does in C
+  // The budget, in the spirit of the 64 megapixels {image:thumbnail} resizes at most: what GD does in C
   // costs little, a loop of PHP over the pixels a microsecond a pixel and more - a dither of a
   // camera's 12 megapixels took 15 seconds and 209 MB, past max_execution_time and a stock
   // memory_limit at the 64, so the file was never written and every view began it again. A

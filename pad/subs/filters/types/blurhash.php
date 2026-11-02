@@ -4,7 +4,7 @@
   // decoded again as a small PNG behind the <img> - the blur of its colours the page shows
   // until the picture has loaded. components= the cosine terms across and down ('4,3').
   //
-  //   {pad:img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}
   //
   // The hash is of the 1x picture as shown - every image filter of the list applied, wherever
   // the placeholder stands in it - made at most 64 pixels on its longer side first, each pixel

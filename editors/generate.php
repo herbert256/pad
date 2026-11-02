@@ -67,6 +67,9 @@
       foreach ( generateNames ( "$pad/subs/$kindDir/types" ) as $kindName )
         $kinds ["$kindType:$kindName"] = $kindLabel;
 
+  foreach ( padSubsystemAuto as $kindType )
+    $kinds ["$kindType:auto"] = 'subsystem parameter selector';
+
   foreach ( padSequenceOperations as $operation )
     $kinds ["$operation:auto"] = 'sequence parameter selector';
 

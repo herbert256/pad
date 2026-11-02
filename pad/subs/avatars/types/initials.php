@@ -1,6 +1,26 @@
 <?php
 
-  // initials - A local avatar showing the initials of a name in a deterministic colour.
+  // {avatar:initials 'Herbert Jebbink'} - an initials avatar as inline SVG, drawn by subs/avatars/_lib/avatar.php.
+  // The first parameter is the name: its first and last word give the letters, a hash of it
+  // the colour, so the same name looks the same everywhere. size= is the width and height in
+  // pixels (default 48), shape= circle (default) or square - with rounded corners - and
+  // label= the accessible name, else the name itself.
   //
+  //   {avatar:initials 'Herbert Jebbink', size=48, shape='circle'}
+  //   {users}{avatar:initials $name, size=32} {$name}{/users}
 
-return padAvatar($identity, $size, $options['shape'] ?? 'circle', $options['label'] ?? ''); ?>
+  $padAvatarName  = trim ( padParmText ( $padParm ) );
+  $padAvatarShape = strtolower ( trim ( (string) padTagParm ( 'shape', 'circle' ) ) );
+
+  if ( $padAvatarName === '' and $padCheckSyntax )
+    padError ( 'the avatar has no name - {avatar:initials \'Herbert Jebbink\'/}' );
+
+  if ( ! in_array ( $padAvatarShape, [ 'circle', 'square' ] ) ) {
+    if ( $padCheckSyntax )
+      padError ( "the avatar has no shape '" . padMakeSafe ( $padAvatarShape, 20 ) . "' - circle or square" );
+    $padAvatarShape = 'circle';
+  }
+
+  return padAvatar ( $padAvatarName, (int) padWidgetNumber ( 'avatar', 'size', 48 ), $padAvatarShape, padParmText ( padTagParm ( 'label' ) ) );
+
+?>

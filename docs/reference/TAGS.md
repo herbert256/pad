@@ -93,7 +93,7 @@ body again for the current row's children - menus, category trees, threaded comm
 ```
 
 **Parameters:**
-- First parameter, or `data=`: the rows - a `{pad:data}` block, a stored sequence, an array of
+- First parameter, or `data=`: the rows - a `{format:auto}` block, a stored sequence, an array of
   the page or of an enclosing row, or a `_data/` file
 - `children` - the field holding a row's children (default `children`)
 
@@ -216,9 +216,9 @@ so it is not parsed again. A stored content block is read with `{content:name}` 
 Store data to the data store for iteration.
 
 ```html
-{pad:data 'store_name'}
+{format:auto 'store_name'}
   Content to iterate
-{/pad:data}
+{/format:auto}
 ```
 
 **Parameters:**
@@ -315,17 +315,17 @@ Site search without a search server: the rows of a source a query finds, ranked 
 (`pad/subs/search/`).
 
 ```html
-{pad:search 'blog', q=$q, fields='title^2, body', lang='en'}
+{search:auto 'blog', q=$q, fields='title^2, body', lang='en'}
   <a href="?blog/post&slug={$slug}">{$title}</a> {$score} {!excerpt}
 @else@
   Nothing found.
-{/pad:search}
-{pad:search 'products', q=$q, link='url'/}                    <!-- a list -->
+{/search:auto}
+{search:auto 'products', q=$q, link='url'/}                    <!-- a list -->
 ```
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The source: a Markdown collection `_content/<name>/`, else a `{pad:data}` store, a page's array (a `db()` result) or a `_data` file of the name |
+| first parameter | The source: a Markdown collection `_content/<name>/`, else a `{format:auto}` store, a page's array (a `db()` result) or a `_data` file of the name |
 | `q` | The query: words (any), `"a phrase"` (required, in order), `prefix*`, `-word` and `-"a phrase"` (left out) |
 | `fields` | The fields searched, each with its boost: `'title^2, body'` - a collection's default; other rows every field that holds text in any row (none is an error under the strict check) |
 | `lang` | The language of the stop words and the stemmer - `en`, `nl`, `de`, `fr`, `es`, `it`, `pt`, `sv`, `da`, `no` (`nb` and `nn` are `no`), `ru`, the files of `pad/subs/search/types/`; default the locale's language, else `en` |
@@ -1232,8 +1232,8 @@ template are errors. From PHP: `padMail ( $to, $template, $subject, $vars, $opti
 The answer of a language model, printed as text (`pad/subs/ai/`).
 
 ```html
-{pad:ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/pad:ai}
-{pad:ai 'Name three rivers of France.', system='Answer briefly.'/}
+{ai:auto provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/ai:auto}
+{ai:auto 'Name three rivers of France.', system='Answer briefly.'/}
 ```
 
 **Parameters:** single, the prompt.
@@ -1507,7 +1507,7 @@ pages that draw it.
 | `sparkline` | See below | `label`, `value` |
 
 **As a pair** the content between the tags is the data, when neither `data` nor `sequence`
-names it - JSON, YAML, XML or CSV, recognised on sight as `{pad:data}` recognises it (`type=`
+names it - JSON, YAML, XML or CSV, recognised on sight as `{format:auto}` recognises it (`type=`
 names it outright). The content is read before the level walks it, so the braces of JSON need
 no `{pad:ignore}`, and the indent it shares under the tag is taken off:
 
@@ -1530,7 +1530,7 @@ is one that nothing reads under the strict check. The handling options (`row`, `
 
 | Option | Description |
 |--------|-------------|
-| `data` | The rows: a `{pad:data}` store, a sequence store, the page's array or a `_data` file of that name, or a literal (`data='[3,1,4]'`); without it, the content of a pair |
+| `data` | The rows: a `{format:auto}` store, a sequence store, the page's array or a `_data` file of that name, or a literal (`data='[3,1,4]'`); without it, the content of a pair |
 | `type` | For a pair: the format of its content - `json`, `yaml`, `xml`, `csv` - when it is not to be recognised on sight |
 | `sequence` | Plot the first `rows` terms (default 10) of a sequence type instead |
 | `value` | The field that holds the number - by default the first numeric field; a comma list draws a series each (eight at most) |
@@ -1683,13 +1683,13 @@ also provides `mini`, `week`, `day`, `agenda`, `quarter` and `year` views; see [
 | Option | Description |
 |--------|-------------|
 | first parameter | The month, `2026-10`; else the request value named by `query`, else this month (`padNow`, so `padNowFreeze` holds it) |
-| `data` | The events: a `{pad:data}` store, a page array or a `_data` file, as for `{chart:bar}` |
+| `data` | The events: a `{format:auto}` store, a page array or a `_data` file, as for `{chart:bar}` |
 | `date` | The field with an event's date - by default the first field that reads as one |
 | `title` | The field with an event's text - by default the first other text field |
 | `link` | A field with a link for the event - http(s), a page or an anchor; never `javascript:` or `data:` |
 | `query` | The request value the links to the months around set, default `month` |
 | `sunday` | Weeks start on Sunday instead of Monday |
-| `holidays` | A country's public holidays marked - `'nl'`, or with its region `'de-by'` (see `{pad:holidays}`): the day's class gets `holiday` (`observance` for a day that is no day off) and its name stands under the number - the local name when the request's locale speaks the country's language; the pair form's days get `$holiday`, the name or `''` - only with `holidays`, so without it a page's own `$holiday` is read there |
+| `holidays` | A country's public holidays marked - `'nl'`, or with its region `'de-by'` (see `{holidays:auto}`): the day's class gets `holiday` (`observance` for a day that is no day off) and its name stands under the number - the local name when the request's locale speaks the country's language; the pair form's days get `$holiday`, the name or `''` - only with `holidays`, so without it a page's own `$holiday` is read there |
 
 **Behavior:** as a single tag it answers a table - the month in its caption between links to
 the month before and after (keeping the other request values, as `{pad:pager}` does; none when the
@@ -1708,15 +1708,15 @@ field of that name - `{level:events}` reaches it then.
 The public holidays of a country, from the rules of its file in `pad/subs/holidays/types/`.
 
 ```html
-{pad:holidays 'nl', year=2026}{$date} {$name} ({$local}){/pad:holidays}
-{pad:holidays 'de-by', year=2026/}                             <!-- a table -->
-{pad:holidays 'gb-sct', from='today', to='+6 months', where='$type eq "public"'}...{/pad:holidays}
+{holidays:auto 'nl', year=2026}{$date} {$name} ({$local}){/holidays:auto}
+{holidays:auto 'de-by', year=2026/}                             <!-- a table -->
+{holidays:auto 'gb-sct', from='today', to='+6 months', where='$type eq "public"'}...{/holidays:auto}
 ```
 
 | Option | Description |
 |--------|-------------|
 | first parameter | The country, its ISO 3166-1 alpha-2 code in any case - at, be, br, ca, ch, cz, de, dk, es, fi, fr, gb, hu, ie, it, jp, lu, mx, nl, no, nz, pl, pt, ro, se, sk, us, za - with a region after it as ISO 3166-2 writes it, `'de-by'` |
-| `region` | The region apart: `{pad:holidays 'de', region='by'}` - Germany's states, the United Kingdom's nations (`sct`, `nir`; `eng` and `wls` are the default), France's `57`, `67`, `68`, `971`-`976`, Finland's Åland (`01`), Portugal's Azores (`20`) and Madeira (`30`), New Zealand's provinces by their region's code (`auk`, `can`, `cit`, `hkb`, `mbh`, `nsn`, `ota`, `stl`, `tki`, `wgn`, `wtc`) |
+| `region` | The region apart: `{holidays:auto 'de', region='by'}` - Germany's states, the United Kingdom's nations (`sct`, `nir`; `eng` and `wls` are the default), France's `57`, `67`, `68`, `971`-`976`, Finland's Åland (`01`), Portugal's Azores (`20`) and Madeira (`30`), New Zealand's provinces by their region's code (`auk`, `can`, `cit`, `hkb`, `mbh`, `nsn`, `ota`, `stl`, `tki`, `wgn`, `wtc`) |
 | `year` | The year, 1583 to 9999 - default this year (`padNow`); a country whose file names the years it knows (New Zealand 2010 to 2052) only those |
 | `from`, `to` | The days between two dates instead of a year - any date `padDateParse` reads, `today`, `+3 months`; one alone is a year from it (or from today); `to` before `from` is an error under the strict check |
 | `lang` | The language of `local` for a country of more than one - be `nl fr de`, lu `lb fr de`, ch `de fr it`, ca `en fr`, fi `fi sv`; the first by default |
@@ -1948,7 +1948,7 @@ PHP that runs before the template - the page's `.php` - runs on a hit too. What 
 leaves for the rest of the page is kept with it and made again on a hit: its `{pad:push}`es, and
 the page booking of a paged tag in it, for a `{pad:pager}` further down. Otherwise a section keeps
 its text, not its effects: what it sets, stores or defines - a `{pad:set}`, `{pad:increment}` or
-`{pad:decrement}`, a `{pad:data}`, `{pad:content}` or `{pad:bool}` store, a `{pad:define}` or `{pad:macro}`, the totals
+`{pad:decrement}`, a `{format:auto}`, `{pad:content}` or `{pad:bool}` store, a `{pad:define}` or `{pad:macro}`, the totals
 of a `callback=` - happens on the miss only, and on a hit the page goes on with the variables
 and stores this request has. Put such a tag before the section, or in a `{pad:nocache}` part, which
 renders every time. A request for one
@@ -2021,14 +2021,14 @@ Tags that draw, format and interact - the showcase application has an example of
 
 ---
 
-### avatar
-An initials avatar as inline SVG - drawn on the server (`tags/_lib/avatar.php`), no image, no
+### avatar:initials
+An initials avatar as inline SVG - drawn on the server (`subs/avatars/_lib/avatar.php`), no image, no
 remote service: the same name is the same picture on every page and in every e-mail.
 
 ```html
-{pad:avatar 'Herbert Jebbink'/}
-{pad:avatar $name, size=32, shape='square'/}
-{array:users}{pad:avatar $email, size=40/} {$name}{/array:users}
+{avatar:initials 'Herbert Jebbink'/}
+{avatar:initials $name, size=32, shape='square'/}
+{array:users}{avatar:initials $email, size=40/} {$name}{/array:users}
 ```
 
 **Parameters:**
@@ -2050,13 +2050,13 @@ No name, or another shape, is an error under the strict check.
 
 ---
 
-### identicon
+### avatar:identicon
 A GitHub-style identicon as inline SVG - a symmetric 5 by 5 pattern and a colour from a SHA-256
-hash of the value (`tags/_lib/identicon.php`): every account its own picture, nothing sent anywhere.
+hash of the value (`subs/avatars/_lib/identicon.php`): every account its own picture, nothing sent anywhere.
 
 ```html
-{pad:identicon $email/}
-{pad:identicon $user.id, size=32, title='Your identicon'/}
+{avatar:identicon $email/}
+{avatar:identicon $user.id, size=32, title='Your identicon'/}
 ```
 
 **Parameters:**
@@ -2077,13 +2077,13 @@ on the light square behind it, `--pad-identicon-background` (`light-dark()` on
 
 ### placeholder
 A grey image placeholder as inline SVG - crossing lines and the size or a text in the middle
-(`tags/_lib/placeholder.php`): wireframes and layouts that wait for their pictures, no placeholder
+(`subs/widgets/_lib/placeholder.php`): wireframes and layouts that wait for their pictures, no placeholder
 service.
 
 ```html
-{pad:placeholder '600x300', text='Hero image'/}
-{pad:placeholder ratio='16:9', fluid/}
-{pad:placeholder ratio='4:3', width=320/}
+{widget:placeholder '600x300', text='Hero image'/}
+{widget:placeholder ratio='16:9', fluid/}
+{widget:placeholder ratio='4:3', width=320/}
 ```
 
 **Parameters:**
@@ -2106,13 +2106,13 @@ under the strict check.
 
 ### progress
 An accessible progress bar - the native `<progress>` element, styled on the server, under a
-line with its label and percentage (`tags/_lib/progress.php`); with `steps` a row of step dots. No
+line with its label and percentage (`subs/widgets/_lib/progress.php`); with `steps` a row of step dots. No
 script, it prints.
 
 ```html
-{pad:progress 72, max=100, label='Upload'/}
-{pad:progress $done, label=$file, color='success', size='small'/}
-{pad:progress 3, max=5, steps, label='Checkout'/}
+{widget:progress 72, max=100, label='Upload'/}
+{widget:progress $done, label=$file, color='success', size='small'/}
+{widget:progress 3, max=5, steps, label='Checkout'/}
 ```
 
 **Parameters:**
@@ -2137,12 +2137,12 @@ an unknown colour or size is an error under the strict check.
 
 ### rating
 A score as stars (or hearts) in inline SVG - whole ones filled, a part of one clipped to the
-score, the score said in words (`tags/_lib/rating.php`).
+score, the score said in words (`subs/widgets/_lib/rating.php`).
 
 ```html
-{pad:rating 4.5, max=5/}
-{data:products}{$product} {pad:rating $score, size=16/}{/data:products}
-{pad:rating 3.75, icon='heart'/}
+{widget:rating 4.5, max=5/}
+{data:products}{$product} {widget:rating $score, size=16/}{/data:products}
+{widget:rating 3.75, icon='heart'/}
 ```
 
 **Parameters:**
@@ -2197,14 +2197,14 @@ error under the strict check, naming the icons close to it (`did you mean arrow-
 
 ---
 
-### gravatar
-The Gravatar picture of an e-mail address as an `<img>` (`tags/_lib/gravatar.php`) - only the
+### avatar:gravatar
+The Gravatar picture of an e-mail address as an `<img>` (`subs/avatars/_lib/gravatar.php`) - only the
 SHA-256 hash of the address leaves the page - or, with `fallback`, a local SVG drawn on the
 server and no request to a third party at all.
 
 ```html
-{pad:gravatar $email, size=64, default='identicon', alt=$name/}
-{pad:gravatar $email, fallback='avatar', alt=$name/}
+{avatar:gravatar $email, size=64, default='identicon', alt=$name/}
+{avatar:gravatar $email, fallback='avatar', alt=$name/}
 ```
 
 **Parameters:**
@@ -2215,7 +2215,7 @@ server and no request to a third party at all.
 | `size` | Width and height in pixels, default 64; `srcset` asks twice that for a sharp screen |
 | `default` | What Gravatar shows for an unknown address: `mp` (default), `identicon`, `monsterid`, `wavatar`, `retro`, `robohash`, `blank`, `404`, or an `https://` image address |
 | `alt` | The image text - the person's name - default `Avatar` |
-| `fallback` | `avatar` draws the `{pad:avatar}` initials of `alt` (or of the address) instead, `identicon` the `{pad:identicon}` of the address - no `<img>`, no outside request |
+| `fallback` | `avatar` draws the `{avatar:initials}` initials of `alt` (or of the address) instead, `identicon` the `{avatar:identicon}` of the address - no `<img>`, no outside request |
 
 **Behavior:** the image is `https://www.gravatar.com/avatar/<sha256>?s=<size>&d=<default>` with
 `width`/`height`, `loading="lazy"`, `decoding="async"` and `referrerpolicy="no-referrer"`, class
@@ -2588,14 +2588,14 @@ under the strict check.
 
 ---
 
-### diff
+### diff:words, diff:lines, diff:side
 What changed between two texts - word by word in the flow of the text, or line by line in
-one column or side by side - with `<del>` and `<ins>` marked and styled (`tags/_lib/diff.php`).
+one column or side by side - with `<del>` and `<ins>` marked and styled (`subs/diffs/_lib/diff.php`).
 
 ```html
-{pad:diff $draft, $final/}
-{pad:diff $old, $new, lines, from='Monday', to='Friday'/}
-{pad:diff $before, $after, side, from='before', to='after'/}
+{diff:words $draft, $final/}
+{diff:lines $old, $new, from='Monday', to='Friday'/}
+{diff:side $before, $after, from='before', to='after'/}
 ```
 
 **Parameters:**
@@ -3409,14 +3409,14 @@ errors under the strict check; the lenient walk shows the items as they are, wit
 
 ---
 
-### img
+### image:thumbnail
 A picture of `www/<application>/` as a thumbnail of the size the page shows it at - resized
-once with GD (`tags/_lib/img.php`) and kept in `www/<application>/_thumbs/`, where the web server
+once with GD (`subs/images/_lib/img.php`) and kept in `www/<application>/_thumbs/`, where the web server
 sends it like any asset.
 
 ```html
-{pad:img 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'/}
-{pad:img 'photos/dunes.jpg', width=300, height=300, fit='contain', format='webp', quality=70, alt=''/}
+{image:thumbnail 'photos/harbour.jpg', width=400, height=300, alt='The harbour at dawn'/}
+{image:thumbnail 'photos/dunes.jpg', width=300, height=300, fit='contain', format='webp', quality=70, alt=''/}
 ```
 
 **Parameters:**
@@ -3436,10 +3436,10 @@ sends it like any asset.
 files of its `types/` the filters there are, written in the order they apply:
 
 ```html
-{pad:img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
-{pad:img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='The harbour'/}
-{pad:img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour in dots'/}
-{pad:img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='The harbour'/}
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour in dots'/}
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}
 ```
 
 | Filter | Does | Its options |
@@ -3949,13 +3949,13 @@ server by the map subsystem in `pad/subs/maps/` from Natural Earth's outlines (`
 `subs/maps/_lib/world.json`) - no JavaScript, no tiles, no remote service.
 
 ```html
-{pad:map 'world', data='sales', key='country', value='amount'/}
-{pad:map 'europe', data='visitors', scale='quantile', title='Visitors per country'/}
-{pad:map 'benelux', data='shops', key='country', value='count'/}
-{pad:map 'south-america', key='code', value='forest', width=320}
+{map:auto 'world', data='sales', key='country', value='amount'/}
+{map:auto 'europe', data='visitors', scale='quantile', title='Visitors per country'/}
+{map:auto 'benelux', data='shops', key='country', value='count'/}
+{map:auto 'south-america', key='code', value='forest', width=320}
   code,forest
   BRA,59.1
-{/pad:map}
+{/map:auto}
 ```
 
 **Parameters:**
@@ -3963,7 +3963,7 @@ server by the map subsystem in `pad/subs/maps/` from Natural Earth's outlines (`
 | Option | Description |
 |--------|-------------|
 | first parameter | The view, a file of `pad/subs/maps/types/`: `world` (default), the continents `europe`, `africa`, `asia`, `north-america`, `south-america`, `oceania`, and the regions `middle-east`, `mediterranean`, `eu`, `nordic`, `benelux`, `baltic`, `british-isles`, `iberia`, `dach`, `balkans`, `central-america`, `caribbean`, `east-asia`, `southeast-asia`, `south-asia`, `central-asia`; and the regions of a country: `us-states`, `nl-provinces`, `de-states`, `au-states` |
-| `data` | The rows - a `{pad:data}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV). A row that is a value alone takes its key as the country: `[ 'NL' => 1200, 'BE' => 800 ]` |
+| `data` | The rows - a `{format:auto}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV). A row that is a value alone takes its key as the country: `[ 'NL' => 1200, 'BE' => 800 ]` |
 | `key` | The field with the country: its ISO 3166 alpha-2 or alpha-3 code or its English name, in any case - on a view of a country's regions the region: its ISO 3166-2 code with or without the country (`US-CA`, `CA`) or its name - else the first field that is no number |
 | `value` | The number - else the first numeric field |
 | `scale` | `linear` (default: seven steps from the lowest value to the highest) or `quantile` (seven steps by rank) - of the values the view draws |
@@ -4017,30 +4017,30 @@ outlying areas, Bonaire, Saba and Sint Eustatius - is named as one it does not s
 
 ---
 
-### timeline
-Events on a time axis as inline SVG (`tags/_lib/timeline.php`) - cards above and below the axis,
+### timeline:*
+Events on a time axis as inline SVG (`subs/timelines/_lib/timeline.php`) - cards above and below the axis,
 spans as bars, or one under the other for a long list.
 
 ```html
-{pad:timeline data='releases', date='when', label='what', text='detail'/}
-{pad:timeline data='plan', from='start', to='end', date='day', label='name', color='kind'/}
-{pad:timeline date='year', label='what', vertical}
+{timeline:horizontal data='releases', date='when', label='what', text='detail'/}
+{timeline:horizontal data='plan', from='start', to='end', date='day', label='name', color='kind'/}
+{timeline:vertical date='year', label='what'}
   year,what
   1969,Moon landing
-{/pad:timeline}
+{/timeline:vertical}
 ```
 
 **Parameters:**
 
 | Option | Description |
 |--------|-------------|
-| `data` | The rows - a `{pad:data}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV) |
+| `data` | The rows - a `{format:auto}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV) |
 | `date` | The field of a moment: a year (`1969`), a month (`2026-10`) or anything `strtotime` reads - else the first field that reads as one |
 | `from`, `to` | The fields of a span, drawn as a bar |
 | `label`, `text` | The title of an event and the line under it - else the first other text fields |
 | `color` | A field that groups the events: a colour each and a legend |
 | `format` | A PHP date format for the dates written - else by the date's precision (`1969`, `Oct 2026`, `Oct 8, 2026`) |
-| `vertical` | Dates on the left, cards on the right, one under the other |
+| `vertical` | Runtime layout selector for `timeline:auto`; explicit views use `timeline:vertical` or `timeline:horizontal` |
 | `width`, `height` | Default 720 (vertical 600) wide; the height follows from the cards unless given (not in the vertical form) |
 | `title` | The accessible name, default `Timeline` |
 
@@ -4054,28 +4054,30 @@ the axis, their label inside or beside. The colours are the chart's categorical 
 timeline without events answers nothing and its `@else@` shows; rows of which none has a
 date are an error under the strict check.
 
+`timeline:roadmap` groups events by `period='month|quarter|year'` (default quarter), with `lane=` subgroups and `milestone=` badges. Spans appear in their starting period with their full date range. `timeline:swimlane` draws named lanes on one shared time axis, with bars and milestone diamonds. Both use the same event fields; point events are milestones by default. See `pad/subs/timelines/README.md`.
+
 ---
 
-### datatable
-Rows as a complete, accessible HTML table (`tags/_lib/datatable.php`) - a header from the field names,
+### table:standard
+Rows as a complete, accessible HTML table (`subs/tables/_lib/table.php`) - a header from the field names,
 numbers right-aligned and formatted alike down their column, a totals row, header links that
 sort and page links that page, all on the server.
 
 ```html
-{pad:datatable data='orders', columns='number, customer, total', totals='total'/}
-{pad:datatable data='orders', format="total:currency('EUR'), date:date('j M')", sortable, striped/}
-{pad:datatable data='cities', rows=10, sortable, caption='Largest cities'/}
-{pad:datatable totals='amount'}
+{table:standard data='orders', columns='number, customer, total', totals='total'/}
+{table:standard data='orders', format="total:currency('EUR'), date:date('j M')", sortable, striped/}
+{table:standard data='cities', rows=10, sortable, caption='Largest cities'/}
+{table:standard totals='amount'}
   month,amount
   Jan,12400
-{/pad:datatable}
+{/table:standard}
 ```
 
 **Parameters:**
 
 | Option | Description |
 |--------|-------------|
-| `data` | The rows - a `{pad:data}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV, told apart on sight, `type=` names it) |
+| `data` | The rows - a `{format:auto}` store, a page array or a `_data` file, as for `{chart:bar}`; as a pair the content is the rows (JSON, YAML, XML or CSV, told apart on sight, `type=` names it) |
 | `columns` | The fields shown and their order, default every field of the first row |
 | `labels` | The header of each column, in the order of `columns` - default the field name as a headline (`order_date` is Order Date) |
 | `format` | A pipe per column, `column:pipe` - `total:money, date:date('j M Y')` - run as `{pad:echo $value \| pipe/}` |
@@ -4107,13 +4109,13 @@ its own, its functions the files of `pad/subs/formulas/types/` (SUM, IF, VLOOKUP
 them), answering what Excel answers. See [Spreadsheets](../FEATURES.md#spreadsheets).
 
 ```html
-{pad:spreadsheet 'shop', formats='B:0.00, D:€ #,##0.00', totals='D'}
+{sheet:grid 'shop', formats='B:0.00, D:€ #,##0.00', totals='D'}
   Item,Price,Qty,Total
   Apples,1.20,3,=B2*C2
   Pears,0.80,5,=B3*C3
-{/pad:spreadsheet}
-{pad:spreadsheet data='orders', formulas='total=B2*C2, F1=SUM(D:D)'/}
-{pad:live 'calc'}{pad:spreadsheet 'calc', editable='B1:B3'}...{/pad:spreadsheet}{/pad:live}
+{/sheet:grid}
+{sheet:grid data='orders', formulas='total=B2*C2, F1=SUM(D:D)'/}
+{pad:live 'calc'}{sheet:grid 'calc', editable='B1:B3'}...{/sheet:grid}{/pad:live}
 ```
 
 **Parameters:**
@@ -4179,13 +4181,13 @@ No heading of those levels writes nothing. Colours are `--pad-toc-*` custom prop
 
 ---
 
-### countdown
-The time left until a moment, in words, inside a `<time datetime>` (`tags/_lib/countdown.php`) -
+### time:countdown
+The time left until a moment, in words, inside a `<time datetime>` (`subs/times/_lib/countdown.php`) -
 optionally ticking every second in the browser.
 
 ```html
-{pad:countdown '2026-12-31 00:00'/}                         <!-- 84 days, 3 hours -->
-{pad:countdown $launch, units=3, live, past='We are live!'/}
+{time:countdown '2026-12-31 00:00'/}                         <!-- 84 days, 3 hours -->
+{time:countdown $launch, units=3, live, past='We are live!'/}
 ```
 
 **Parameters:**
@@ -4207,13 +4209,13 @@ moment in milliseconds; the script counts the same way and carries this request'
 
 ---
 
-### timeago
+### time:relative
 How long ago a moment was, in words, inside a `<time>` with the moment as its `datetime` and, in
-full, as its `title` (`tags/_lib/timeago.php`) - the `ago` pipe's words with the semantic element.
+full, as its `title` (`subs/times/_lib/timeago.php`) - the `ago` pipe's words with the semantic element.
 
 ```html
-{pad:timeago $created/}        <!-- <time datetime="2026-10-08T09:10:00+02:00" title="Thursday 8 October 2026, 09:10">5 minutes ago</time> -->
-{pad:timeago $posted, format='j M Y'/}
+{time:relative $created/}        <!-- <time datetime="2026-10-08T09:10:00+02:00" title="Thursday 8 October 2026, 09:10">5 minutes ago</time> -->
+{time:relative $posted, format='j M Y'/}
 ```
 
 **Parameters:**
@@ -4280,15 +4282,15 @@ strict error that names the nearest country when the text is close to a name.
 ---
 
 ### jsonview
-A JSON value or a PHP array as a tree to fold open and shut (`tags/_lib/jsonview.php`) - each object and
+A JSON value or a PHP array as a tree to fold open and shut (`subs/widgets/_lib/jsonview.php`) - each object and
 list a `<details>`, no script.
 
 ```html
-{pad:jsonview $response, open=1, title='GET /orders/42'/}
-{pad:jsonview data='settings'/}
-{pad:jsonview}
+{widget:jsonview $response, open=1, title='GET /orders/42'/}
+{widget:jsonview data='settings'/}
+{widget:jsonview}
   {"id": 42, "paid": true, "lines": [ ... ]}
-{/pad:jsonview}
+{/widget:jsonview}
 ```
 
 **Parameters:**
@@ -4296,7 +4298,7 @@ list a `<details>`, no script.
 | Option | Description |
 |--------|-------------|
 | first parameter | The value - a `$field` holding a list (a page array, a row) or a text; a text that is a JSON object or list is decoded |
-| `data` | A `{pad:data}` store, a page array or a `_data` file by name - a `.json` file read as it is written |
+| `data` | A `{format:auto}` store, a page array or a `_data` file by name - a `.json` file read as it is written |
 | `open` | The levels shown unfolded, default 2; 0 folds everything |
 | `title` | A label for the outermost level |
 
@@ -4323,7 +4325,7 @@ there are, and the subsystem is `pad/subs/sections/`.
 {section:hero 'Pages that drive themselves', button='Start', link='?start', second='Read more', secondLink='?docs'}
   Write the page, and the page renders itself.
   {pad:slot 'eyebrow'}New in PAD{/pad:slot}
-  {pad:slot 'image'}{pad:placeholder ratio='4:3', fluid/}{/pad:slot}
+  {pad:slot 'image'}{widget:placeholder ratio='4:3', fluid/}{/pad:slot}
 {/section:hero}
 {section:features title='Why PAD', columns=3}
   {section:item 'Fast', icon='zap'}Pages render in milliseconds.{/section:item}
@@ -4743,7 +4745,7 @@ A custom tag written in the template itself - what an `_tags/name.pad` file is, 
 with its fields - a `{pad:define}` can use itself, for rows below the current one. Everything of a
 custom tag works: `{#name}` reads a parameter, `{pad:parms}` declares them, `@content@` takes the
 caller's content in, `{pad:slot}`s take fills. A define exists from the point it is walked, as a
-`{pad:content}` or `{pad:data}` store does - a use before it is an unknown tag. `define:card` asserts the
+`{pad:content}` or `{format:auto}` store does - a use before it is an unknown tag. `define:card` asserts the
 kind. Under the strict check a name that is a built-in or application tag, or already a
 `{pad:macro}`, is an error, and so is a define without a name or without its body.
 
@@ -5334,9 +5336,9 @@ Resolve naming conflicts with explicit prefixes:
 
 ## Options Reference
 
-Options modify tag behavior. Add them to any tag, separated by commas: `{pad:data 'x', ignore}`.
+Options modify tag behavior. Add them to any tag, separated by commas: `{format:auto 'x', ignore}`.
 An option name without a value directly after a single parameter may leave the comma out -
-`{pad:data 'x' ignore}` is the same tag; one with a value, `{pad:pad 'x' toContent='c'}`, is lost. That holds for the options below and an application's own `_options/`; any
+`{format:auto 'x' ignore}` is the same tag; one with a value, `{pad:pad 'x' toContent='c'}`, is lost. That holds for the options below and an application's own `_options/`; any
 other word after a value is a pipe, `{pad:echo 'abc' upper/}` gives `ABC`.
 
 ### Data Flow Options
@@ -5466,3 +5468,7 @@ a row field of the same name is what the `$`-spelling reads - `{$first@orders}` 
 resolves the collision there. Written as a tag - `{property:first@orders}...{/property:first@orders}`,
 `{property:name@users}` - a row field of that name wins; use `{pad:if first@orders}` when the rows can carry
 such a field.
+
+### time:clock and time:stopwatch
+
+`{time:clock timezone='Europe/Amsterdam'/}` shows a live clock with daylight-saving-aware local time. `live=0` and `now=` provide static, reproducible output. `{time:stopwatch 65, label='Practice'/}` provides independent Start, Pause and Reset controls; `autostart` begins immediately. Controllers share a nonce-aware script without inline handlers, and elapsed displays do not announce every tick. See `pad/subs/times/README.md` for formats, accessibility and examples.

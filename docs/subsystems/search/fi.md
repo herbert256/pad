@@ -1,6 +1,6 @@
 # Search: Finnish (fi)
 
-Use `padSearch($rows, $query, ['lang'=>'fi'])` or the existing `{pad:search}` language option. Algorithm: Snowball 3.2.0, compiler/source commit `6389c79f91cd67ed2de3ebdcf84ec8c2d2d23c11`, generated with `make php_out/finnish-stemmer.php`. Runtime and generated class names are PAD-prefixed; typed class constants are removed for PHP 8.1 compatibility. Source and license: https://github.com/snowballstem/snowball . Generated code is checked in; no runtime compiler/native extension/network dependency.
+Use `padSearch($rows, $query, ['lang'=>'fi'])` or the existing `{search:auto}` language option. Algorithm: Snowball 3.2.0, compiler/source commit `6389c79f91cd67ed2de3ebdcf84ec8c2d2d23c11`, generated with `make php_out/finnish-stemmer.php`. Runtime and generated class names are PAD-prefixed; typed class constants are removed for PHP 8.1 compatibility. Source and license: https://github.com/snowballstem/snowball . Generated code is checked in; no runtime compiler/native extension/network dependency.
 
 Stop words are the official Snowball Finnish list (https://snowballstem.org/algorithms/finnish/stop.txt). Existing Unicode tokenization, accent-insensitive term variants, phrase positions and prefix expansion remain in use.
 

@@ -42,7 +42,7 @@ and its `.php` are marked as a pair (Alt+O switches between them); git's view of
 - Go to definition (F12, Ctrl/⌘+click) follows PAD's own lookup: a tag to the nearest
   `_tags/`, a pipe to `_functions/`, a snippet to `_include/`, a field to the PHP that sets it.
 - Tag pairs fold, make the outline (Ctrl/⌘+Shift+O), and rename together: editing `{items}`
-  edits its `{/items}`. Typing the `}` of `{pad:if ...}`, `{pad:data ...}`, `{pad:form ...}` puts in the
+  edits its `{/items}`. Typing the `}` of `{pad:if ...}`, `{format:auto ...}`, `{pad:form ...}` puts in the
   closing tag when the template has none.
 - Checks by PAD itself: a page is rendered under the strict syntax check
   (`editors/render.php`, as the language server does) when it is opened and saved (F7 checks

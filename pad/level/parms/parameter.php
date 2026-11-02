@@ -5,8 +5,8 @@
   // what the handler sees as $padParm and what {parm:...} reads.
 
   // A quoted parameter with an unclaimed bare word behind it is almost always a missing
-  // comma - {pad:data 'v' ignor} names the store "'v' ignor" and everything downstream blames
-  // the wrong thing. A word that IS a known option is the documented space form - {pad:data
+  // comma - {format:auto 'v' ignor} names the store "'v' ignor" and everything downstream blames
+  // the wrong thing. A word that IS a known option is the documented space form - {format:auto
   // 'rawJson' ignore} - and passes; the condition tags stay out entirely, their one
   // parameter being a whole expression where quotes and words mix legitimately.
   //

@@ -1,6 +1,6 @@
 # ee — Estonia
 
-Supported years: **2006–2026**, full years after Christmas Eve became a public holiday in May 2005. `{pad:holidays 'ee', year=2026/}` and `padHolidays('ee', 2026)` include the national day and eleven public holidays with Estonian local names. Regions are unsupported.
+Supported years: **2006–2026**, full years after Christmas Eve became a public holiday in May 2005. `{holidays:auto 'ee', year=2026/}` and `padHolidays('ee', 2026)` include the national day and eleven public holidays with Estonian local names. Regions are unsupported.
 
 Good Friday, Easter Sunday and Pentecost Sunday follow Gregorian Easter. Easter Monday and Pentecost Monday are not public holidays. Weekend dates stay on their actual date; there is no next-Monday substitution. Shortened workdays before certain holidays and commemorative days are outside this full-day holiday definition.
 

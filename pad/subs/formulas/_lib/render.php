@@ -1,6 +1,6 @@
 <?php
 
-  // A computed sheet as the HTML of {pad:spreadsheet}: a <table> with the column letters as its
+  // A computed sheet as the HTML of {sheet:grid}: a <table> with the column letters as its
   // head and the row numbers as the head of each row - th scope="col" and scope="row", so a
   // screen reader names a cell as a spreadsheet does - unless headers=FALSE. A cell shows its
   // value, a number through its column's format; numbers stand right, TRUE and FALSE and

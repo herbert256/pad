@@ -4,11 +4,12 @@
     include_once PAD . 'subs/diffs/_lib/compare.php';
     if ( ! padKind ( 'diffs', $kind ) ) throw new InvalidArgumentException ( 'Unknown diff kind' );
     $type = include PAD . "subs/diffs/types/$kind.php";
+    if ( ! isset ( $type ['compare'] ) ) throw new InvalidArgumentException ( 'Unknown diff comparison kind' );
     return $type ['compare'] ( $before, $after, $options );
   }
 
   function padDiffRender ( $changes, $side = FALSE, $from = 'Before', $to = 'After' ) {
     include_once PAD . 'subs/diffs/_lib/compare.php';
-    return padDiffStructuredHtml ( $changes, $side, $from, $to );
+    return padDiffRecordsHtml ( $changes, $side, $from, $to );
   }
 ?>

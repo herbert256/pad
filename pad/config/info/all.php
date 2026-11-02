@@ -172,7 +172,7 @@
 
   // Lines for what the page does along the way:
   //
-  //   Store     a {pad:data}, {pad:content} or {pad:bool} block stored - its name and value
+  //   Store     a {format:auto}, {pad:content} or {pad:bool} block stored - its name and value
   //   Sequence  a sequence run - its type and the terms it gave
   //   Var       every variable tag - {$x}, {!x}, {#x} ... - its name and pipe as written
   //             ('var start') and the value it writes ('var end')

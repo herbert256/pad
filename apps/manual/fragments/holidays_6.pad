@@ -1,17 +1,17 @@
 <p>Easter Sunday 2027:</p>
 <ul>
-  {pad:holidays 'ro', year=2027, where='$name eq "Easter Sunday"'}<li>Romania {$date}</li>{/pad:holidays}
-  {pad:holidays 'nl', year=2027, where='$name eq "Easter Sunday"'}<li>Netherlands {$date}</li>{/pad:holidays}
+  {holidays:auto 'ro', year=2027, where='$name eq "Easter Sunday"'}<li>Romania {$date}</li>{/holidays:auto}
+  {holidays:auto 'nl', year=2027, where='$name eq "Easter Sunday"'}<li>Netherlands {$date}</li>{/holidays:auto}
 </ul>
 <p>Japan, May 2026:</p>
 <ul>
-  {pad:holidays 'jp', from='2026-05-01', to='2026-05-31'}
+  {holidays:auto 'jp', from='2026-05-01', to='2026-05-31'}
     <li>{$date} {$name}</li>
-  {/pad:holidays}
+  {/holidays:auto}
 </ul>
 <p>New Zealand, April 2038:</p>
 <ul>
-  {pad:holidays 'nz', from='2038-04-01', to='2038-04-30'}
+  {holidays:auto 'nz', from='2038-04-01', to='2038-04-30'}
     <li>{$date} {$name}</li>
-  {/pad:holidays}
+  {/holidays:auto}
 </ul>

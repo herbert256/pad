@@ -12,7 +12,7 @@ Options are specified on PAD tags, separated by commas:
 
 A space does not separate two options: `{local:staff sort="name" first=1}` gives `sort` the value
 `"name" first=1`, and `first` is never read. Only a bare option name - one without a value -
-directly after a single parameter may leave its comma out - `{pad:data 'x' ignore}`; with a value,
+directly after a single parameter may leave its comma out - `{format:auto 'x' ignore}`; with a value,
 `{pad:pad 'x' toContent='c'}` loses the option silently. Multiple options can be combined:
 
 ```
@@ -267,7 +267,7 @@ Shows the named content when the tag answers NULL.
 **Example:**
 ```
 {pad:content 'noAvatar'}<img src="anonymous.png" alt="">{/pad:content}
-{pad:avatar null="noAvatar"}...{/pad:avatar}
+{avatar:initials null="noAvatar"}...{/avatar:initials}
 ```
 
 ### else

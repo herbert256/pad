@@ -21,6 +21,7 @@
     $prefix = is_array ( $definition );
     $directory = $prefix ? $definition [0] : $definition;
     $disk = array_map ( fn ( $file ) => pathinfo ( $file, PATHINFO_FILENAME ), glob ( PAD . "subs/$directory/types/*.*" ) );
+    if ( $prefix and in_array ( $family, padSubsystemAuto, TRUE ) ) $disk [] = 'auto';
     sort ( $disk );
     $members = typesMembers ( $family );
     $expectedMembers = array_map ( fn ( $kind ) => $prefix ? "$family:$kind" : $kind, $disk );
@@ -42,7 +43,7 @@
 
   $catalogChecks ['helper kinds'] &= count ( $helperKeys ) === count ( $helperCatalog );
   foreach ( array_merge ( ...typesByOrder () ) as $row )
-    $catalogChecks ['resolution order'] &= ! isset ( padSubsystemKinds [$row ['name']] );
+    $catalogChecks ['resolution order'] &= ( isset ( padSubsystems [$row ['name']] ) or ! isset ( padSubsystemKinds [$row ['name']] ) );
 
   $route = padPageRoute ( 'kind/formula/stdev.p', APPS . 'tags/' );
   $catalogChecks ['dotted formula route'] = ( $route ['page'] ?? '' ) === 'kind/[family]/[kind]'

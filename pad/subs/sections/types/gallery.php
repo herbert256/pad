@@ -5,7 +5,7 @@
   // under it, cropped to one shape so the rows line up. The pictures are the rows of data= -
   // their fields image, caption, alt and link (where the picture leads) - or {section:item}
   // pairs or single tags, the item's first value the picture and its content the caption; a
-  // content that is a picture itself - an <img>, an <svg>, a {pad:placeholder} - is the picture,
+  // content that is a picture itself - an <img>, an <svg>, a {widget:placeholder} - is the picture,
   // and caption= its caption. A picture without alt= takes its caption as its alt text.
   // columns= as for features (3).
   //

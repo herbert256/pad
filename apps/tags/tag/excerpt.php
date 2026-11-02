@@ -19,6 +19,6 @@ PAD;
     'html'      => 'Bare option: the text is HTML - its tags (and the content of <code>script</code> and <code>style</code>) are dropped and its entities read before it is cut.',
     'ellipsis'  => 'What stands for the text that was cut off, default <code>…</code>.' ];
 
-  $tagSee     = [ 'markdown', 'diff', 'lorem' ];
+  $tagSee     = [ 'markdown', 'diff:words', 'lorem' ];
 
 ?>

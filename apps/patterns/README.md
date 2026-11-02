@@ -9,7 +9,7 @@ the example the pattern's own file gives and the pattern as the background of a 
 with `as='url'`. The patterns are the files of `pad/subs/patterns/types/` - the list, the names,
 the descriptions and the examples are read from them (`_lib/patterns.php`), so a pattern added to
 the engine is here without a change to this application. The filters page does the same for the
-image filters of `{pad:img}`, the other subsystem shown here: every filter on one picture.
+image filters of `{image:thumbnail}`, the other subsystem shown here: every filter on one picture.
 
 ## Files
 
@@ -17,11 +17,11 @@ image filters of `{pad:img}`, the other subsystem shown here: every filter on on
 |------|-------------|
 | `index.pad` | The home page: a card per pattern, the pattern drawn on it |
 | `[kind].pad` / `[kind].php` | A pattern, by the name in the address - `?topography`, a seed with `&seed=8`; any other name is a page not found |
-| `filters.pad` / `filters.php` | Every image filter of `{pad:img}` - the files of `pad/subs/filters/types/` - on the same picture, `www/patterns/photos/tulips.jpg`, with the template from the filter's own file; a placeholder shown with the picture moved out of its box, so what stands behind it shows |
+| `filters.pad` / `filters.php` | Every image filter of `{image:thumbnail}` - the files of `pad/subs/filters/types/` - on the same picture, `www/patterns/photos/tulips.jpg`, with the template from the filter's own file; a placeholder shown with the picture moved out of its box, so what stands behind it shows |
 | `_lib/patterns.php` | The catalog: `padPatternKinds ()` and each type file's comment; the seed a link asks for |
 | `_inits.php` / `_inits.pad` | The shared frame, its menu a page per pattern |
 | `www/patterns/patterns.css` | The cards and the template blocks |
-| `www/patterns/photos/tulips.jpg` | The picture of the filters page; `{pad:img}` writes what it makes of it to `www/patterns/_thumbs/` |
+| `www/patterns/photos/tulips.jpg` | The picture of the filters page; `{image:thumbnail}` writes what it makes of it to `www/patterns/_thumbs/` |
 
 ## Access
 

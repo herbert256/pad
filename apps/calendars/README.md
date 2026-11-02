@@ -14,7 +14,7 @@ The [timegrid example](_examples/timegrid.pad) uses explicit-offset intervals, o
 appointments, an all-day event and an interval crossing midnight. The
 [resources example](_examples/resources.pad) maps bookings to two rooms and shows their
 overlaps separately. Open `?timegrid` or `?resources` in the application. Both examples
-include paired `{pad:data}` blocks, so their editor links run without external data.
+include paired `{format:auto}` blocks, so their editor links run without external data.
 
 Timed views render with a self-closing tag; calendar pair rows, date-field guessing,
 holidays and query navigation belong to the seven date views. See the

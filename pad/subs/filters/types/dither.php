@@ -4,7 +4,7 @@
   // paper alone) from the first of colors= to the second, every pixel's error carried to its
   // neighbours not yet drawn; made at 1x, its pixels sharp, written as a PNG.
   //
-  //   {pad:img 'photos/harbour.jpg', width=400, filter='dither', alt='The harbour'/}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, filter='dither', alt='The harbour'/}
 
   return [
 

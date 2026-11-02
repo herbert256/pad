@@ -6,7 +6,7 @@
   //
   // A path is first looked for from the top of each of them, and only then searched for in
   // depth: the deep search of a store came before the globals were tried at all, so a page's
-  // $items lost {$items.0} to a {pad:data} block holding [{"items":["X","Y"]}] - [X][Y][Cherry] -
+  // $items lost {$items.0} to a {format:auto} block holding [{"items":["X","Y"]}] - [X][Y][Cherry] -
   // and $user.name to a nested "user" of a store. A store the reference names ($type) is
   // still searched in depth first. A plain dotted path - $user.name, no @ - is looked for from
   // the top alone (padFieldAt).

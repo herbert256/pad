@@ -1,7 +1,7 @@
 <?php
 
   // The Live's data is a text in any format PAD reads data in, its type recognised as
-  // {pad:data} recognises it: a record's keys - a YAML mapping, an XML document - become the
+  // {format:auto} recognises it: a record's keys - a YAML mapping, an XML document - become the
   // template's variables, and a list, which has no names of its own - CSV - becomes the
   // variable rows. The posts carry the token of Live preview's own form, fetched first
   // with its cookie.

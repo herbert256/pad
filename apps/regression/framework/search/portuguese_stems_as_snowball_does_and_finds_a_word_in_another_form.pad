@@ -1,9 +1,9 @@
-{pad:data 'paginas'}
+{format:auto 'paginas'}
 [ { "t": "As cidades brasileiras" }, { "t": "Uma cidade portuguesa" }, { "t": "Informações e comunicação" }, { "t": "Viajar com os amigos" } ]
-{/pad:data}
+{/format:auto}
 {!stems}|
-{pad:search 'paginas', q='cidade', lang='pt'}{$t}; {/pad:search}|
-{pad:search 'paginas', q='informação', lang='pt'}{$t}; {/pad:search}|
-{pad:search 'paginas', q='informacoes', lang='pt'}{$t}; {/pad:search}|
-{pad:search 'paginas', q='viagem amigo', lang='pt'}{$t}; {/pad:search}|
-{pad:search 'paginas', q='com os', lang='pt'}{$t}; @else@none{/pad:search}
+{search:auto 'paginas', q='cidade', lang='pt'}{$t}; {/search:auto}|
+{search:auto 'paginas', q='informação', lang='pt'}{$t}; {/search:auto}|
+{search:auto 'paginas', q='informacoes', lang='pt'}{$t}; {/search:auto}|
+{search:auto 'paginas', q='viagem amigo', lang='pt'}{$t}; {/search:auto}|
+{search:auto 'paginas', q='com os', lang='pt'}{$t}; @else@none{/search:auto}

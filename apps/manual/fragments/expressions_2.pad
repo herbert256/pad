@@ -1,6 +1,6 @@
-{pad:data 'stock'}
+{format:auto 'stock'}
   [ {"item": "pen", "qty": 12}, {"item": "ink", "qty": 0}, {"item": "pad", "qty": 5} ]
-{/pad:data}
+{/format:auto}
 {data:stock where='$qty gt 0', %order = 20 - $qty}
   <p>{$item}: {$qty} in stock, order {$order}</p>
 {/data:stock}

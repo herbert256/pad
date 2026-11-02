@@ -17,7 +17,7 @@
   // on the macro, are given in their order or by name and are fields - {$label} - with the
   // defaults filling in what the call left out. Both keep the source unrendered at the
   // definition and render it, in the place and with the fields of each use, every time
-  // they are used. Defined before the first use, as {pad:content} and {pad:data} are: the tag
+  // they are used. Defined before the first use, as {pad:content} and {format:auto} are: the tag
   // only exists once its definition has been walked.
   //
   // The two stores are $padDefineStore and $padMacroStore; lib/type.php resolves a name

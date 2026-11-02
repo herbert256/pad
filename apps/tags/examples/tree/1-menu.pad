@@ -1,5 +1,5 @@
 {pad:meta title='A nested menu', about='One body renders every level; branch leaves the inner list out for a leaf.'/}
-{pad:data 'treeMenu'}
+{format:auto 'treeMenu'}
 [
   { "title": "Home" },
   { "title": "Shop", "children": [
@@ -7,7 +7,7 @@
       { "title": "Music", "children": [ { "title": "Jazz" }, { "title": "Folk" } ] } ] },
   { "title": "Contact" }
 ]
-{/pad:data}
+{/format:auto}
 <ul>
 {pad:tree 'treeMenu'}
   <li>{$title}{pad:branch}<ul>{pad:recurse/}</ul>{/pad:branch}</li>

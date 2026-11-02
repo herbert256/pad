@@ -5,7 +5,7 @@
   // all the formats there are - one is added by adding its file. A format reads text into
   // rows, writes rows as text, or both, and the engine uses it in four places:
   //
-  //   {pad:data 'x', format='toml'}...{/pad:data}    the content read as that format (type= says the
+  //   {format:auto 'x', format='toml'}...{/format:auto}    the content read as that format (type= says the
   //                                          same); some are known on sight (padFormatSniff)
   //   _data/plan.toml, {local:plan.toml}     a data file read by its extension
   //   ?page&padFormat=ics, Accept: text/calendar
@@ -118,7 +118,7 @@
 
   // A text as rows. $kind is a format or one of its extensions; a format that does not read,
   // or none of the name, is an error under every check - the author named it. The input is
-  // a template's text as {pad:data} hands it over - a brace still wearing the stand-in the tag
+  // a template's text as {format:auto} hands it over - a brace still wearing the stand-in the tag
   // scanner gave it (&open; &close;) is a brace again - or the bytes of a binary format.
 
   function padFormatRead ( $kind, $text, $options = [] ) {

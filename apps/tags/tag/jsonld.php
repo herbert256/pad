@@ -25,7 +25,7 @@ PAD;
             . '. The jsonld: prefix selects it - <code>{jsonld:article .../}</code>; a kind is never reached bare.' ];
 
   $tagOptions = [
-    'data' => 'The row or rows of the fields: a {pad:data} store, the page\'s array, a field holding a list or a _data file - one row of fields, or rows, which a kind of one object writes as a <code>@graph</code> and faq, breadcrumb and itemlist as their items. The handling options work on them.',
+    'data' => 'The row or rows of the fields: a {format:auto} store, the page\'s array, a field holding a list or a _data file - one row of fields, or rows, which a kind of one object writes as a <code>@graph</code> and faq, breadcrumb and itemlist as their items. The handling options work on them.',
     'id'   => 'The object\'s <code>@id</code>, an address made absolute - <code>id=\'#org\'</code> - or an IRI of another scheme.',
     'home' => 'breadcrumb without data=: the text of the first step of the trail (Home), as the breadcrumb widget takes it.' ];
 

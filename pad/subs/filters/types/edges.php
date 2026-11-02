@@ -5,7 +5,7 @@
   // second where the change is strongest - white lines on black, or '#fbfaf7, #1d1d1b' for a
   // drawing in ink on paper; amount= percent (100) makes the lines stronger or fainter.
   //
-  //   {pad:img 'photos/harbour.jpg', width=400, filter='edges', colors='#fbfaf7, #1d1d1b', alt='The harbour as a drawing'/}
+  //   {image:thumbnail 'photos/harbour.jpg', width=400, filter='edges', colors='#fbfaf7, #1d1d1b', alt='The harbour as a drawing'/}
   //
   // The brightness is the luminance of filter.php (Rec. 601, as grayscale). Each pixel's
   // change across is the right column of the 3 by 3 around it less the left one, weighed

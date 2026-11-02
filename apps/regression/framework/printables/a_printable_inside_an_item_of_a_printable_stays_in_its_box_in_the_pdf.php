@@ -6,9 +6,9 @@
   // the boxes after it went to a third page: the card's tail and the whole second card.
 
   $html = padUnprotect ( padUnescape ( padCode ( <<<'PAD'
-{pad:data 'cards'}
+{format:auto 'cards'}
 [ { "n": "one", "inner": 1 }, { "n": "two", "inner": 0 } ]
-{/pad:data}
+{/format:auto}
 {printable:cards data='cards'}card {$n}{pad:if $inner}{printable:envelope sender='PAD'}Ann{/printable:envelope}tail{/pad:if}{/printable:cards}
 PAD ) ) );
 

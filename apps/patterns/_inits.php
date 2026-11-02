@@ -13,7 +13,7 @@
     $frameMenu [] = [ 'link' => '?' . $one ['kind'], 'label' => $one ['name'], 'icon' => 'layers',
                       'current' => ( $padPage == '[kind]' and ( $kind ?? '' ) == $one ['kind'] ) ];
 
-  // The filters of {pad:img}, the other subsystem this application shows: one page, every filter
+  // The filters of {image:thumbnail}, the other subsystem this application shows: one page, every filter
   // on the same picture.
 
   $frameMenu [] = [ 'head' => 'Pictures' ];

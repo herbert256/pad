@@ -6,7 +6,7 @@
   // provider is added by adding its file.
   //
   //   $summary = padAi ( "Summarise in one sentence: $body", [ 'provider' => 'anthropic', 'ttl' => 86400 ] );
-  //   {pad:ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/pad:ai}
+  //   {ai:auto provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/ai:auto}
   //
   // padAi           the answer to a prompt, as text - '' when there is none; the options:
   //                 provider (PAD_AI_PROVIDER, else anthropic), model (the provider's own

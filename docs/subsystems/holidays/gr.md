@@ -1,6 +1,6 @@
 # gr — Greece
 
-Supported years: **2022–2026**. `{pad:holidays 'gr', year=2024/}` and `padHolidays('gr', 2024)` return English names plus Greek local names. The nine mandatory nationwide holidays are public; Clean Monday, Good Friday, Easter Sunday and Holy Spirit Monday are observances because they are not universal private-sector days off. They remain visible for calendar presentation without incorrectly removing working days for every employer. No local or sector-specific calendar is implied.
+Supported years: **2022–2026**. `{holidays:auto 'gr', year=2024/}` and `padHolidays('gr', 2024)` return English names plus Greek local names. The nine mandatory nationwide holidays are public; Clean Monday, Good Friday, Easter Sunday and Holy Spirit Monday are observances because they are not universal private-sector days off. They remain visible for calendar presentation without incorrectly removing working days for every employer. No local or sector-specific calendar is implied.
 
 Easter uses the existing Orthodox Julian computus converted to Gregorian dates, not the Western Easter helper. May Day moves only on the verified ministerial dates: 2 May 2022 and 7 May 2024. Other Sunday holidays are not moved. **2027 is intentionally unsupported**: May Day falls in Holy Week and its transfer requires a ministerial decision; a calculation alone cannot choose the legal holiday.
 

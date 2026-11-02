@@ -1,1 +1,1 @@
-{pad:set $k = ''/}{pad:data 'rows'}[{"state":"b"},{"state":"a"}]{/pad:data}[{pad:echo line/}] [{pad:if $k eq class}c{pad:else}n{/pad:if}] [{pad:echo $k ?: toggle/}] [{pad:echo state/}] [{pad:echo life/}] [{data:rows sort=state}{$state}{/data:rows}]
+{pad:set $k = ''/}{format:auto 'rows'}[{"state":"b"},{"state":"a"}]{/format:auto}[{pad:echo line/}] [{pad:if $k eq class}c{pad:else}n{/pad:if}] [{pad:echo $k ?: toggle/}] [{pad:echo state/}] [{pad:echo life/}] [{data:rows sort=state}{$state}{/data:rows}]

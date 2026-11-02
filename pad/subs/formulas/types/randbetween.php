@@ -3,7 +3,7 @@
   // randbetween - RANDBETWEEN(bottom, top) is a whole number from bottom to top, both included -
   // bottom rounded up to a whole number and top down, a bottom then above the top #NUM!. Drawn as
   // RAND draws: a spreadsheet gives another on every computation, here it is the same for the
-  // same seed (the seed= of {pad:spreadsheet}), cell and call, so a page answers the same twice.
+  // same seed (the seed= of {sheet:grid}), cell and call, so a page answers the same twice.
   //
   //   =RANDBETWEEN(1, 6)>=1         TRUE
   //   =RANDBETWEEN(7, 7)            7

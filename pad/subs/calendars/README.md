@@ -87,9 +87,9 @@ and safe `link`. With `allDay=true`, start/end are dates and the end is exclusiv
 `resources` also needs a `resource` ID on each event and a `resources` map of IDs to labels.
 
 ```html
-{pad:data 'bookings', format='json'}
+{format:auto 'bookings', format='json'}
 [{"title":"Planning","resource":"room-a","start":"2026-11-02T09:00:00+01:00","end":"2026-11-02T10:30:00+01:00"}]
-{/pad:data}
+{/format:auto}
 {calendar:timegrid '2026-11-02', data='bookings', timezone='Europe/Amsterdam', days=1/}
 {calendar:resources '2026-11-02', data='bookings', resources=['room-a'=>'Room A','room-b'=>'Room B'], timezone='Europe/Amsterdam'/}
 ```

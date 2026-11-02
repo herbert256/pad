@@ -1,6 +1,6 @@
 {pad:meta title='A comment thread', about='Each comment says how long before the fixed now it was posted; hover a time for the full moment.'/}
 <ul>
   {array:comments}
-    <li><strong>{$name}</strong> - {pad:timeago $posted, now='2026-10-08 12:00'/}: {$text}</li>
+    <li><strong>{$name}</strong> - {time:relative $posted, now='2026-10-08 12:00'/}: {$text}</li>
   {/array:comments}
 </ul>

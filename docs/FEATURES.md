@@ -217,8 +217,8 @@ page) and name (or label, title), each a ListItem numbered by its position, a li
 a list of addresses, and `name=` the list's own name; with a recipe, a course, a restaurant or a
 movie on each page it lists, Google shows the list as a carousel (two items or more, of one kind).
 
-The fields come from the row or rows `data=` names - a `{pad:data}` store, the page's array, a
-field holding a list or a `_data` file (a store holds rows, so a single row in a `{pad:data}` block
+The fields come from the row or rows `data=` names - a `{format:auto}` store, the page's array, a
+field holding a list or a `_data` file (a store holds rows, so a single row in a `{format:auto}` block
 is a list of one) - and from options of their names, which win over the row's. A row is never
 written whole: only what the kind maps, so a password, a cost price or an e-mail address of the
 row never reaches the page. Several rows of a kind of one object make a `@graph`; the handling
@@ -319,12 +319,12 @@ with a reader, a writer or both - added by adding its file, its code in `_lib/`,
 | `rss`, `atom`, `jsonfeed` | - | yes | feeds of rows with title, link, date, summary, body, id - a Markdown collection's rows as they are |
 
 ```
-{pad:data 'plan', format='toml'}            # the content in a format - type= says the same
+{format:auto 'plan', format='toml'}            # the content in a format - type= says the same
   title = "Weekend"
   [[stops]]
   name = "Gravensteen"
-{/pad:data}
-{pad:data 'agenda'}BEGIN:VCALENDAR ...{/pad:data}   # known on sight: iCalendar, vCard, NDJSON, a pipe table, TSV, WebVTT, SRT, an RS
+{/format:auto}
+{format:auto 'agenda'}BEGIN:VCALENDAR ...{/format:auto}   # known on sight: iCalendar, vCard, NDJSON, a pipe table, TSV, WebVTT, SRT, an RS
 {data:sales}...{/data:sales}                      # _data/sales.xlsx - a _data file by its extension
 {local:plan.toml}...{/local:plan.toml}  # {local:sales.xlsx sheet='Notes'}
 ```
@@ -663,8 +663,8 @@ gone. A channel is added by adding its file: its settings and a `send` function.
 
 ### A language model answering in the page
 ```
-{pad:ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/pad:ai}
-{pad:ai 'Name three rivers of France.', model='claude-haiku-5-5', system='Answer briefly.'/}
+{ai:auto provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/ai:auto}
+{ai:auto 'Name three rivers of France.', model='claude-haiku-5-5', system='Answer briefly.'/}
 ```
 ```php
 $summary = padAi ( "Summarise: $body", [ 'provider' => 'openai', 'tokens' => 300 ] );
@@ -715,7 +715,7 @@ of its output, a reasoning item passed over, and is asked with `store` off.
   {$number}: {pad:echo $customer_id | lookup('customers', 'id', 'name') | ?? 'unknown'/}
 {/data:orders}
 ```
-`lookup(set, key, field)` finds the row of another set - a `{pad:data}` block, a page array, a
+`lookup(set, key, field)` finds the row of another set - a `{format:auto}` block, a page array, a
 `_data/` file - whose key equals the value; the set is indexed once per request. A miss is
 `''`; without a field the answer is the row's first field other than the key.
 
@@ -1052,7 +1052,7 @@ request, the hit included; inside a loop it gets its row's fields back. A page-c
 PHP, so there a part sees the request, the session, `_lib` and the application's tags only.
 
 A cached section keeps its text, not its effects: what it sets, stores or defines - `{pad:set}`,
-`{pad:increment}`, `{pad:data}`, `{pad:content}`, `{pad:define}`, `{pad:macro}`, a `callback=`'s totals - happens on
+`{pad:increment}`, `{format:auto}`, `{pad:content}`, `{pad:define}`, `{pad:macro}`, a `callback=`'s totals - happens on
 the miss only. Put it before the section, or in a `{pad:nocache}` part, which renders every time.
 
 ### Remote data with a cache
@@ -1108,19 +1108,19 @@ through; `padCollection('blog')` gives the rows to PHP.
 
 ### Site search
 ```
-{pad:search 'blog', q=$q, fields='title^2, body', lang='en', first=10}   # _content/blog/, ranked by BM25
+{search:auto 'blog', q=$q, fields='title^2, body', lang='en', first=10}   # _content/blog/, ranked by BM25
   <a href="?blog/post&slug={$slug}">{$title}</a> {$score} {!excerpt}
 @else@
   Nothing found for {$q}.
-{/pad:search}
-{pad:search 'products', q=$q, fields='name^3, about', link='url'/}   # a page's array or db() result; a list
+{/search:auto}
+{search:auto 'products', q=$q, fields='name^3, about', link='url'/}   # a page's array or db() result; a list
 ```
 ```php
 $found = padSearch ( 'blog', $q, [ 'fields' => 'title^2, body' ] );
 $found = padSearch ( db ( "ARRAY id, name, about FROM products" ), $q, [ 'name' => 'products', 'lang' => 'nl' ] );
 ```
 Site search without a search server. The source is a Markdown collection (`_content/<name>/`,
-read by `padCollection`), else a `{pad:data}` store, a page's array - a `db()` result - or a
+read by `padCollection`), else a `{format:auto}` store, a page's array - a `db()` result - or a
 `_data` file of the name; `padSearch` takes the rows themselves too. The first search makes an
 inverted index of it, kept in `DATA/cache/search/<app>/` in parts - a search reads those of
 its words, so a large source costs a request little memory - and made again when what it is
@@ -1147,7 +1147,7 @@ after the Snowball 3 source and matching Snowball's own test vocabularies word f
 `lang=` picks one, the locale's language else English; a language is added by adding its file.
 A name that is a collection is the collection: name a page's array otherwise. No exec, no
 shell: it runs in pad pack's WebAssembly PHP as well. Code: the search subsystem in
-`pad/subs/search/` - `search.php` the body of `{pad:search}`, `_lib/search.php` the index, the
+`pad/subs/search/` - `search.php` the body of `{search:auto}`, `_lib/search.php` the index, the
 query and the ranking, `_lib/snowball.php` the stemmers' runtime, `types/` the languages;
 `pad/lib/search.php` the helper.
 
@@ -1278,10 +1278,10 @@ share (`padDiagramGraph`), the files beside it the other kinds, `types/` the kin
 `pad/types/diagram.php` the diagram type. The `showcase` application has an example of each.
 ### Maps
 ```
-{pad:map 'world', data='sales', key='country', value='amount'/}   # choropleth as inline SVG, no script, no tiles
-{pad:map 'eu', data='visitors', scale='quantile'/}                 # the 27 member states, the rest of Europe around them
-{pad:map 'benelux'}{"NL": 1200, "BE": 800, "LU": 90}{/pad:map}         # a pair: the content is the rows
-{pad:map 'us-states', data='people', key='state'/}                 # the states of a country: US-CA, CA or California
+{map:auto 'world', data='sales', key='country', value='amount'/}   # choropleth as inline SVG, no script, no tiles
+{map:auto 'eu', data='visitors', scale='quantile'/}                 # the 27 member states, the rest of Europe around them
+{map:auto 'benelux'}{"NL": 1200, "BE": 800, "LU": 90}{/map:auto}         # a pair: the content is the rows
+{map:auto 'us-states', data='people', key='state'/}                 # the states of a country: US-CA, CA or California
 ```
 The views are the files of `pad/subs/maps/types/` - each answers its box of longitude and latitude
 and, for a region that is a list of countries, those countries and the name its title takes:
@@ -1313,13 +1313,13 @@ quieter, without values.
 
 ### Spreadsheets
 ```
-{pad:spreadsheet 'shop', formats='B:€ #,##0.00, D:€ #,##0.00', totals='D'}
+{sheet:grid 'shop', formats='B:€ #,##0.00, D:€ #,##0.00', totals='D'}
   Item,Price,Qty,Total
   Apples,1.20,3,=B2*C2
   Pears,0.80,5,=B3*C3
-{/pad:spreadsheet}
-{pad:spreadsheet data='orders', formulas='total=B2*C2', formats='total:0.00'/}   # a column filled down the rows
-{pad:live 'calc'}{pad:spreadsheet 'calc', editable='B1:B3'}...{/pad:spreadsheet}{/pad:live}  # edited, computed again on the server
+{/sheet:grid}
+{sheet:grid data='orders', formulas='total=B2*C2', formats='total:0.00'/}   # a column filled down the rows
+{pad:live 'calc'}{sheet:grid 'calc', editable='B1:B3'}...{/sheet:grid}{/pad:live}  # edited, computed again on the server
 ```
 A grid of cells as an accessible `<table>` - the column letters and row numbers around it
 (`headers=FALSE` leaves them out), numbers right-aligned, errors marked and explained in their
@@ -1631,10 +1631,10 @@ application shows every view with its source. See [the subsystem guide](../pad/s
 
 ### Public holidays
 ```
-{pad:holidays 'nl', year=2026}{$date} {$name} ({$local}){/pad:holidays}   # the rows: date, name, local, type, region, substitute
-{pad:holidays 'de-by', year=2026/}                                    # a table; a region by its ISO 3166-2 code - Bavaria
-{pad:holidays 'gb', from='today', to='+3 months'}...{/pad:holidays}       # the days between two dates instead of a year
-{pad:holidays 'be', year=2026, lang='fr', where='$type eq "public"'}...{/pad:holidays}   # names in French; observances out
+{holidays:auto 'nl', year=2026}{$date} {$name} ({$local}){/holidays:auto}   # the rows: date, name, local, type, region, substitute
+{holidays:auto 'de-by', year=2026/}                                    # a table; a region by its ISO 3166-2 code - Bavaria
+{holidays:auto 'gb', from='today', to='+3 months'}...{/holidays:auto}       # the days between two dates instead of a year
+{holidays:auto 'be', year=2026, lang='fr', where='$type eq "public"'}...{/holidays:auto}   # names in French; observances out
 {calendar:month '2026-04', holidays='nl'/}                              # the month with its holidays marked and named
 ```
 ```php
@@ -1659,11 +1659,11 @@ states (`de-by`), the United Kingdom's nations (`gb-sct`, `gb-nir`; England and 
 France's Alsace-Moselle and overseas departments (`fr-57`, `fr-974`); the header of every file
 says what it leaves out. A workday is a Monday to Friday that is no public holiday. The
 arithmetic is integer days, from 1583 to 9999 - no clock, no zone, no service. Code: the
-holidays subsystem in `pad/subs/holidays/` - `holidays.php` the body of `{pad:holidays}`,
+holidays subsystem in `pad/subs/holidays/` - `holidays.php` the body of `{holidays:auto}`,
 `_lib/holidays.php` the rules, `types/` the countries; `pad/lib/holidays.php` the helpers.
 
 A file may name the years its rules are known for, `years`: a year outside them is an error of
-`{pad:holidays}` and of the calendar's `holidays=` under the strict check, and of the helpers -
+`{holidays:auto}` and of the calendar's `holidays=` under the strict check, and of the helpers -
 New Zealand's are 2010 to 2052, the years of its published dates and of the Matariki schedule.
 The calendar marks no day outside them: a month the visitor asked for - the request value its
 links set - is no error there and shows only the days inside those years.
@@ -1853,18 +1853,18 @@ application shows every pattern with a seed to change by link.
 
 ### Image filters
 ```
-{pad:img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
-{pad:img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='The harbour'/}   # in the order written
-{pad:img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour'/}    # SVG dots for the <img>
-{pad:img 'photos/harbour.jpg', width=400, filter='ascii', columns=80, alt='The harbour'/}   # text in a <pre role="img">
-{pad:img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}            # a placeholder behind it
-{pad:img 'logos/shop.png', width=200, filter='thumbhash', alt='The shop'/}                  # ThumbHash: its shape, transparency kept
-{pad:img 'photos/harbour.jpg', width=400, filter='edges', colors='#fbfaf7, #1d1d1b', alt='The harbour'/}   # Sobel: ink on paper
-{pad:img 'scans/letter.png', width=600, filter='threshold', threshold=60, alt='The letter'/}  # ink or paper, a hard cut
-{pad:img 'photos/harbour.jpg', width=400, filter='solarize', threshold=40, alt='The harbour'/} # the highlights turned negative
-{pad:img 'photos/misty.jpg', width=400, filter='autocontrast', cutoff=2, alt='The valley'/}   # its tones from black to white
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='The harbour'/}   # in the order written
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour'/}    # SVG dots for the <img>
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='ascii', columns=80, alt='The harbour'/}   # text in a <pre role="img">
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}            # a placeholder behind it
+{image:thumbnail 'logos/shop.png', width=200, filter='thumbhash', alt='The shop'/}                  # ThumbHash: its shape, transparency kept
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='edges', colors='#fbfaf7, #1d1d1b', alt='The harbour'/}   # Sobel: ink on paper
+{image:thumbnail 'scans/letter.png', width=600, filter='threshold', threshold=60, alt='The letter'/}  # ink or paper, a hard cut
+{image:thumbnail 'photos/harbour.jpg', width=400, filter='solarize', threshold=40, alt='The harbour'/} # the highlights turned negative
+{image:thumbnail 'photos/misty.jpg', width=400, filter='autocontrast', cutoff=2, alt='The valley'/}   # its tones from black to white
 ```
-`filter=` on `{pad:img}` runs the picture through the filter subsystem, `pad/subs/filters/`: a filter
+`filter=` on `{image:thumbnail}` runs the picture through the filter subsystem, `pad/subs/filters/`: a filter
 is a file of its `types/` - no tag of its own, a word of `filter=` as a validation rule is a word of
 `padValidate` - and the files there are the filters there are. grayscale, sepia (`amount=`),
 duotone (`colors=`, dark first), posterize (`levels=`), pixelate (`cell=`), blur (`radius=` CSS
@@ -1883,7 +1883,7 @@ every pixel in PHP (sepia, duotone, posterize, vignette, the dithers, dominant) 
 at most, its 2x picture made only as far as those reach, and halftone draws 50,000 dots at most. An
 unknown filter, an option out of its bounds, a filter that cannot follow the one before and a filter
 past its budget are errors under the strict check, left out without it. Code: `pad/subs/filters/` - `_lib/filter.php` the chain and its options, `_lib/dither.php`,
-`_lib/blurhash.php`, `types/` the filters - and `pad/tags/_lib/img.php`, which applies them. The
+`_lib/blurhash.php`, `types/` the filters - and `pad/subs/images/_lib/img.php`, which applies them. The
 `patterns` application shows every filter on the same picture.
 thumbhash is a placeholder as well: Evan Wallace's ThumbHash (`_lib/thumbhash.php`, the reference
 implementation's encode and decode, MIT) in `data-thumbhash`, base64, and decoded to a PNG of at most
@@ -1951,35 +1951,39 @@ The `notations` application shows every kind with its examples.
 
 ### Showcase tags
 ```
-{pad:avatar 'Herbert Jebbink', size=48, shape='square'/}   # initials in a circle/square, colour from a hash of the name
-{pad:identicon $email, size=64/}                   # a symmetric 5x5 pattern from a sha256 hash, own colour
-{pad:placeholder '600x300', text='Hero image'/}    # grey SVG box with crossing lines; ratio='16:9', fluid
-{pad:progress 72, max=100, label='Upload'/}       # styled <progress> with label and %; steps for dots, color=, size=
-{pad:rating 4.5, max=5/}                           # stars as SVG, half stars clipped, aria '4.5 out of 5'; icon='heart'
+{avatar:initials 'Herbert Jebbink', size=48, shape='square'/}   # initials in a circle/square, colour from a hash of the name
+{avatar:identicon $email, size=64/}                   # a symmetric 5x5 pattern from a sha256 hash, own colour
+{widget:placeholder '600x300', text='Hero image'/}    # grey SVG box with crossing lines; ratio='16:9', fluid
+{widget:progress 72, max=100, label='Upload'/}       # styled <progress> with label and %; steps for dots, color=, size=
+{widget:rating 4.5, max=5/}                           # stars as SVG, half stars clipped, aria '4.5 out of 5'; icon='heart'
 {icon:arrow-right size=20, label='Next'/}   # line icon in currentColor, a file of subs/icons/types/; see Icons
-{pad:gravatar $email, size=64, default='identicon'/} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
+{avatar:gravatar $email, size=64, default='identicon'/} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
 {notation:chess $fen, flip, highlight='e2,e4', arrow='e2-e4'/}   # a FEN as an SVG board, pieces described for a screen reader
 {game:sudoku '53..7....6..195...'/}                   # a game - played in the page; see Games
-{pad:diff $old, $new/}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
+{diff:words $old, $new/}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
 {pad:excerpt $body, words=24, highlight=$q/}         # whole words around the first match, <mark>ed, escaped; html
 {pad:lorem paragraphs=3, seed=7/}                    # placeholder text, classic start, reproducible; words=, sentences=, varied
 {widget:tabs}...{/widget:tabs}  {widget:modal 'x'}...{/widget:modal}         # the widgets - see Widgets
-{pad:img 'photos/harbour.jpg', width=400, height=300, alt='The harbour'/}   # GD thumbnail in www/<app>/_thumbs/, 2x srcset, lazy
+{image:thumbnail 'photos/harbour.jpg', width=400, height=300, alt='The harbour'/}   # GD thumbnail in www/<app>/_thumbs/, 2x srcset, lazy
 {pad:video 'https://youtu.be/ID', title='Launch'/}  # poster + play button, nocookie iframe only after a click; {embed:auto} for more sites
 {pad:pdf file='invoice', download}...{/pad:pdf}   # the content as a PDF (plain PHP writer) instead of the page; preview: a sheet + link
 {printable:labels data='rows', sheet='a4-3x8', pdf}...{/printable:labels}   # sheets for paper, printed alone, the same in the PDF; see Printables
 {diagram:auto direction='LR'}A[Order] --> B{Paid?}{/diagram:auto}   # a flowchart laid out as SVG on the server; the other kinds - see Diagrams
-{pad:map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
+{map:auto 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
 {diagram:auto direction='LR'}A[Order] --> B{Paid?}{/diagram:auto}   # flowchart (or type='sequence') laid out as SVG on the server
-{pad:map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/subs/maps/types/ - world, continents, benelux, eu, middle-east ..., the states of a country: us-states, nl-provinces, de-states, au-states
+{map:auto 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/subs/maps/types/ - world, continents, benelux, eu, middle-east ..., the states of a country: us-states, nl-provinces, de-states, au-states
 {pad:timeline data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans, vertical for long lists
+{table:standard data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
+{timeline:horizontal data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans; timeline:vertical for long lists
+{timeline:roadmap data='releases', lane='team', period='quarter'/} # period columns and milestones
+{timeline:swimlane data='releases', lane='team'/} # lanes sharing a time axis
 {pad:datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
 {pad:toc levels='2,3', title='Contents'/}         # the page's own h2/h3, nested and linked - filled in after the page rendered
-{pad:countdown '2026-12-31 00:00', units=3, live/}   # 84 days, 3 hours, 12 minutes in a <time>; live ticks; past='...'
-{pad:timeago $created/}                           # <time datetime title>5 minutes ago</time> - the ago pipe's words
+{time:countdown '2026-12-31 00:00', units=3, live/}   # 84 days, 3 hours, 12 minutes in a <time>; live ticks; past='...'
+{time:relative $created/}                           # <time datetime title>5 minutes ago</time> - the ago pipe's words
 {pad:emoji 'rocket'/}  {$text | emoji}             # role="img" aria-label="rocket" 🚀; the pipe replaces :shortcodes: in text
 {pad:country 'NL'/}  {pad:country 'NLD', name/}         # the flag (role="img", named Netherlands); name writes the name beside it
-{pad:jsonview $response, open=2/}                 # foldable <details> tree, typed colours, counts on folded nodes; pair: JSON content
+{widget:jsonview $response, open=2/}                 # foldable <details> tree, typed colours, counts on folded nodes; pair: JSON content
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
 
@@ -2585,3 +2589,15 @@ examples or fixtures. The [root report](../sub.html) records the full feature li
 contracts, commit mapping, validation and limits. Independent checks run from
 `bash tests/subsystems/run.sh` and are included in `./ci.sh`;
 [the test guide](../tests/subsystems/README.md) describes browser and external-oracle checks.
+
+### Time displays
+
+`time:countdown` and `time:relative` preserve the original date displays. `time:clock` adds live world clocks in IANA timezones; `time:stopwatch` adds independent start/pause/reset controls. All live scripts carry the request CSP nonce when configured.
+
+### Indicators and loading states
+
+`{widget:progressring 72, label='Upload'/}` draws circular progress.
+`widget:ratingdistribution` shows weighted rating counts and an average.
+`{widget:skeleton shape='card', lines=3, animate/}` reserves space while content loads,
+with an accessible label and reduced-motion support. The existing progress, rating,
+placeholder and JSON viewer are now `widget:` kinds.
