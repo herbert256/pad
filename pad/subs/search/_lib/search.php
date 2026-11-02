@@ -1199,6 +1199,8 @@
 
       $files = [ 'subs/search/_lib/search.php', 'subs/search/_lib/snowball.php', 'subs/search/types/' . $language ['code'] . '.php', 'tags/_lib/excerpt.php' ];
 
+      $files = array_merge ( $files, $language ['files'] ?? [] );
+
       if ( $collection )
         array_push ( $files, 'lib/collection.php', 'lib/markdown.php', 'tags/_lib/markdown.php' );
 
