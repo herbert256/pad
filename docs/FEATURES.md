@@ -1972,7 +1972,9 @@ The `notations` application shows every kind with its examples.
 {pad:map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
 {diagram:auto direction='LR'}A[Order] --> B{Paid?}{/diagram:auto}   # flowchart (or type='sequence') laid out as SVG on the server
 {pad:map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/subs/maps/types/ - world, continents, benelux, eu, middle-east ..., the states of a country: us-states, nl-provinces, de-states, au-states
-{pad:timeline data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans, vertical for long lists
+{timeline:horizontal data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans; timeline:vertical for long lists
+{timeline:roadmap data='releases', lane='team', period='quarter'/} # period columns and milestones
+{timeline:swimlane data='releases', lane='team'/} # lanes sharing a time axis
 {pad:datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
 {pad:toc levels='2,3', title='Contents'/}         # the page's own h2/h3, nested and linked - filled in after the page rendered
 {pad:countdown '2026-12-31 00:00', units=3, live/}   # 84 days, 3 hours, 12 minutes in a <time>; live ticks; past='...'

@@ -1085,3 +1085,7 @@ types/
 {pull:fib}{$sequence} {/pull:fib}
 {remove:fib even}{$sequence} {/remove:fib}
 ```
+
+### timeline:
+
+Event views from `pad/subs/timelines/types/`: `horizontal`, `vertical`, `auto`, `roadmap` and `swimlane`. Shared date/span parsing, labels, detail, colours and accessible names. Roadmap adds month/quarter/year columns with lane grouping and milestone badges; swimlane adds named lanes on a shared time axis. See `pad/subs/timelines/README.md` for options and runnable examples in `apps/tags/examples/timeline/`.

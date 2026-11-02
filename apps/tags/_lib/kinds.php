@@ -16,6 +16,7 @@
   function tagsKindTypes () {
 
     return [
+      'timeline' => [ 'Timelines', 'Events, milestones and lanes', 'both', " date='date', label='label'}...{/timeline:%s}", 'timeline' ],
       'calendar' => [ 'Calendars', 'Gregorian dates, events and holidays', 'both', " '2026-11', data='appointments'/}", 'calendar' ],
       'chart'    => [ 'Chart types',       'inline SVG',                 'both',   " data='rows', label='field', value='field'/}", 'chart'   ],
       'game'     => [ 'Games',             'played in the browser',       'both',   '/}',                                           'game'    ],
@@ -231,6 +232,10 @@
     }
 
     switch ( $type ) {
+
+      case 'timeline':
+        $file = APPS . "tags/examples/timeline/$kind.pad";
+        return $example ( "The $kind timeline", 'Events and spans from the same row format.', trim ( padFileGet ( $file ) ) );
 
       case 'calendar':
         $file = APPS . "calendars/_examples/$kind.pad";

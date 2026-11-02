@@ -1,9 +1,9 @@
-{pad:timeline date='when', label='what' | php:substr_count(@, 'text-anchor')}
+{timeline:horizontal date='when', label='what' | php:substr_count(@, 'text-anchor')}
 when,what
 2026-10-12 09:01,Build
 2026-10-12 09:03,Deploy
-{/pad:timeline} {pad:timeline date='when', label='what' | php:substr_count(@, ':00:30<')}
+{/timeline:horizontal} {timeline:horizontal date='when', label='what' | php:substr_count(@, ':00:30<')}
 when,what
 2026-10-12 09:00:10,Start
 2026-10-12 09:00:50,Done
-{/pad:timeline}
+{/timeline:horizontal}
