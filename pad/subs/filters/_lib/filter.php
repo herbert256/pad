@@ -202,7 +202,7 @@
     if ( $value === NULL )
       return $default;
 
-    $shown = padMakeSafe ( is_scalar ( $value ) ? (string) $value : 'array', 30 );
+    $shown = padMakeSafe ( is_float ( $value ) and ! is_finite ( $value ) ? 'non-finite' : ( is_scalar ( $value ) ? (string) $value : 'array' ), 30 );
     $fail  = function ( $want ) use ( $filter, $option, $shown, $padCheckSyntax, $default ) {
       if ( $padCheckSyntax )
         padError ( "the img tag's $option '$shown' is no $option for the $filter filter - $want" );
@@ -246,6 +246,15 @@
         if ( $value === '' or mb_strlen ( $value ) < 2 or mb_strlen ( $value ) > $rule [2] )
           return $fail ( "from 2 to {$rule [2]} characters, the lightest first" );
         return $value;
+
+      case 'matrix':
+        $list = is_array ( $value ) ? array_values ( $value ) : ( is_string ( $value ) ? preg_split ( '/[\s,]+/', trim ( $value ), -1, PREG_SPLIT_NO_EMPTY ) : [] );
+        if ( count ( $list ) !== $rule [2] )
+          return $fail ( $rule [2] . ' finite matrix coefficients' );
+        foreach ( $list as $coefficient )
+          if ( ! is_numeric ( $coefficient ) or ! is_finite ( (float) $coefficient ) or $coefficient < $rule [3] or $coefficient > $rule [4] )
+            return $fail ( "matrix coefficients from {$rule [3]} to {$rule [4]}" );
+        return array_map ( 'floatval', $list );
 
       case 'pair':
         if ( ! is_scalar ( $value ) or ! preg_match ( '/^\s*(\d+)\s*,\s*(\d+)\s*$/', (string) $value, $match )
