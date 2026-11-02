@@ -16,6 +16,7 @@
   function tagsKindTypes () {
 
     return [
+      'time' => [ 'Time displays', 'Relative time, clocks and timers', 'single', '/}', 'time' ],
       'timeline' => [ 'Timelines', 'Events, milestones and lanes', 'both', " date='date', label='label'}...{/timeline:%s}", 'timeline' ],
       'calendar' => [ 'Calendars', 'Gregorian dates, events and holidays', 'both', " '2026-11', data='appointments'/}", 'calendar' ],
       'chart'    => [ 'Chart types',       'inline SVG',                 'both',   " data='rows', label='field', value='field'/}", 'chart'   ],
@@ -72,6 +73,9 @@
         $form = ( $type == 'sequence' and in_array ( $kind, tagsKindParameterized () ) ) ? 'both' : $form;
 
         $tail = ( $type == 'sequence' ) ? tagsKindSequenceParm ( $kind ) . $after : $after;
+
+        if ( $type === 'time' && in_array ( $kind, [ 'countdown', 'relative' ], TRUE ) )
+          $tail = " '2026-12-31 00:00'/}";
 
         if ( $type === 'calendar' )
           $tail = " '" . ( [ 'day' => '2026-11-04', 'week' => '2026-11-02', 'year' => '2026', 'quarter' => '2026-Q4' ] [$kind] ?? '2026-11' ) . "', data='appointments'/}";
@@ -232,6 +236,10 @@
     }
 
     switch ( $type ) {
+
+      case 'time':
+        $file = APPS . "tags/examples/time/$kind.pad";
+        return $example ( "The $kind time display", 'Date-aware server output with browser controls when needed.', trim ( padFileGet ( $file ) ) );
 
       case 'timeline':
         $file = APPS . "tags/examples/timeline/$kind.pad";

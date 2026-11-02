@@ -1,9 +1,9 @@
 <?php
 
-  // The time left until a moment, in words - the {pad:countdown} tag.
+  // The time left until a moment, in words - the {time:countdown} tag.
   //
-  //   {pad:countdown '2026-12-31 00:00'}              84 days, 3 hours
-  //   {pad:countdown $launch, units=3, past='We are live!', live}
+  //   {time:countdown '2026-12-31 00:00'}              84 days, 3 hours
+  //   {time:countdown $launch, units=3, past='We are live!', live}
   //
   // padCountdownText    the seconds left as the largest units that are there - days,
   //                     hours, minutes, seconds - $units of them from the first that is not

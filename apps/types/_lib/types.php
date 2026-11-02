@@ -93,6 +93,8 @@
                       "{sound:chime/}\n{sound:chime/}\n{sound:pop on='click', target='#save'/}" ],
       'printable' => [ 'A printable, a file of pad/subs/printables/types/ - pages made for paper, the same on the screen, printed and as a PDF, never bare.', 'subsystems',
                       "{printable:labels data='rows', sheet='a4-3x8'}...{/printable:labels}\n{printable:labels data='rows'}...{/printable:labels}" ],
+      'time' => [ 'Time displays from pad/subs/times/types/ - countdown, relative time, world clocks and stopwatches.', 'subsystems',
+                      "{time:countdown '2026-12-31', live/}\n{time:relative '2026-11-01'/}\n{time:clock timezone='Europe/Amsterdam'/}\n{time:stopwatch/}" ],
       'timeline' => [ 'Event views from pad/subs/timelines/types/ - horizontal, vertical, roadmap and swimlane.', 'subsystems',
                       "{timeline:horizontal data='events'/}\n{timeline:roadmap data='events', lane='team'/}\n{timeline:swimlane data='events', lane='team'/}" ],
       'calendar' => [ 'A Gregorian calendar view from pad/subs/calendars/types/ - days, weeks, months, quarters, years and agendas.', 'subsystems',

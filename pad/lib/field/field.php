@@ -124,9 +124,9 @@
     if ( is_float ( $value ) and is_nan ( $value ) and $type == 2 )
       $value = NULL;
 
-    // A date object is a value - the moment {pad:timeago}, {pad:countdown}, ago and date take as it
+    // A date object is a value - the moment {time:relative}, {time:countdown}, ago and date take as it
     // is - and an object that writes itself as text is that text. Both were no field at all:
-    // {pad:timeago $created} with a DateTime from the page's PHP answered "there is no field named
+    // {time:relative $created} with a DateTime from the page's PHP answered "there is no field named
     // '$created'". Any other object stays neither a value nor a list.
 
     if ( $value instanceof Stringable and ! $value instanceof DateTimeInterface and ( $type == 1 or $type == 2 ) )

@@ -387,7 +387,7 @@ Functions for working with dates and timestamps.
 - Two parameters: Format + `strtotime` modifier (e.g., '+1 day')
 
 The value is a Unix timestamp, a date in text or a date object - a `DateTime` the page's PHP
-left (`date`, `localDate` and `ago` take it, as `{pad:timeago}` and `{pad:countdown}` do). A date object
+left (`date`, `localDate` and `ago` take it, as `{time:relative}` and `{time:countdown}` do). A date object
 no pipe turned into text is written `Y-m-d H:i:s`: `{$created}`.
 
 ### Examples

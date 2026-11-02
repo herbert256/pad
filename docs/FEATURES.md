@@ -1977,8 +1977,8 @@ The `notations` application shows every kind with its examples.
 {timeline:swimlane data='releases', lane='team'/} # lanes sharing a time axis
 {pad:datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
 {pad:toc levels='2,3', title='Contents'/}         # the page's own h2/h3, nested and linked - filled in after the page rendered
-{pad:countdown '2026-12-31 00:00', units=3, live/}   # 84 days, 3 hours, 12 minutes in a <time>; live ticks; past='...'
-{pad:timeago $created/}                           # <time datetime title>5 minutes ago</time> - the ago pipe's words
+{time:countdown '2026-12-31 00:00', units=3, live/}   # 84 days, 3 hours, 12 minutes in a <time>; live ticks; past='...'
+{time:relative $created/}                           # <time datetime title>5 minutes ago</time> - the ago pipe's words
 {pad:emoji 'rocket'/}  {$text | emoji}             # role="img" aria-label="rocket" 🚀; the pipe replaces :shortcodes: in text
 {pad:country 'NL'/}  {pad:country 'NLD', name/}         # the flag (role="img", named Netherlands); name writes the name beside it
 {pad:jsonview $response, open=2/}                 # foldable <details> tree, typed colours, counts on folded nodes; pair: JSON content
@@ -2570,3 +2570,7 @@ Output: `Alice, Bob, Charlie`
 ```
 {pad:echo $email | after('@') | before('.')/}
 ```
+
+### Time displays
+
+`time:countdown` and `time:relative` preserve the original date displays. `time:clock` adds live world clocks in IANA timezones; `time:stopwatch` adds independent start/pause/reset controls. All live scripts carry the request CSP nonce when configured.
