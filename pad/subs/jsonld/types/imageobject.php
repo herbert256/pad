@@ -1,0 +1,2 @@
+<?php
+return ['type'=>'ImageObject','fields'=>['name'=>['name','text',TRUE], 'url'=>['contentUrl','url',TRUE], 'caption'=>['caption','text'], 'description'=>['description','text'], 'license'=>['license','url'], 'credit'=>['creditText','text'], 'published'=>['uploadDate','date'], 'width'=>['width.value','count'], 'height'=>['height.value','count']],'objects'=>['width'=>'QuantitativeValue','height'=>'QuantitativeValue']];
