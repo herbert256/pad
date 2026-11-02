@@ -70,7 +70,9 @@
     // without touching what is data in it (padFormatRawText), the bytes of a binary one as
     // they are.
 
-    if ( $def ['raw'] ?? FALSE )
+    if ( ( $def ['raw'] ?? FALSE ) === 'exact' )
+      $text = str_replace ( [ '&open;', '&close;' ], [ '{', '}' ], $text );
+    elseif ( $def ['raw'] ?? FALSE )
       $text = padFormatRawText ( str_replace ( [ '&open;', '&close;' ], [ '{', '}' ], $text ) );
     elseif ( ! ( $def ['binary'] ?? FALSE ) )
       $text = padDataText ( str_replace ( [ '&open;', '&close;' ], [ '{', '}' ], $text ) );

@@ -1,0 +1,5 @@
+# Format: fixedwidth
+
+Explicit bytes, not Unicode characters. `padFormatWrite('fixedwidth', $rows, ['columns'=>['name'=>20,'id'=>['width'=>6,'align'=>'right']]])` writes LF-terminated records. Each column is an integer width or `['width'=>N,'align'=>'left'|'right','pad'=>' ']`. Reads require exact record widths; right/left padding is removed only from the corresponding side. Leading/trailing content spaces on the other side are preserved. Padding itself is indistinguishable from content on the padded edge. Overflow fails unless `overflow=>'truncate'`; truncation cuts bytes and can split UTF-8. Newlines in cells are rejected. CRLF, LF and CR input lines accepted; one terminal line break is ignored. At most 1000 columns and one million bytes per record. Extension .fw, text/plain, rows shape. Exact raw text mode preserves indentation and boundary padding; there is no auto-sniffing.
+
+Both read and write use the existing padFormat helpers and strict/lenient error contract. Run `php tests/subsystems/format-fixedwidth.php`.
