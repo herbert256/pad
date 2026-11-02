@@ -60,7 +60,9 @@
                   <div class="pad-brand-group">
                     <div class="pad-brand-head">
                       Showcases
-                    </div><a href="/pad/charts/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    </div><a href="/pad/calendars/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-calendar" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3.5" y="5" width="17" height="15" rx="2"></rect>
+                    <path d="M3.5 10h17M8 3v4M16 3v4"></path></svg><span><b>calendars</b><small>Day, week, month, quarter, year and agenda views</small></span></a><a href="/pad/charts/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chart-pie" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5H12Z"></path>
                     <path d="M14 2.5a7.5 7.5 0 0 1 7.5 7.5H14Z"></path></svg><span><b>charts</b><small>Every chart type, drawn on the server</small></span></a><a href="/pad/showcase/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-star" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3L14.47 9.2L21.13 9.63L15.99 13.9L17.64 20.37L12 16.8L6.36 20.37L8.01 13.9L2.87 9.63L9.53 9.2Z"></path></svg><span><b>showcase</b><small>The tags that draw, format and interact</small></span></a><a href="/pad/games/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-trophy" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -157,7 +159,7 @@
     <main class="frame-main">
       <header class="frame-top">
         <form class="search" action="" method="get" role="search">
-          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags and kinds</label> <input type="search" id="q" name="q" value="" placeholder="Search 1220 entries" autocomplete="off">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags and kinds</label> <input type="search" id="q" name="q" value="" placeholder="Search 1226 entries" autocomplete="off">
         </form>
         <div class="frame-tools">
           <form method="post" class="pad-themes">
@@ -230,13 +232,13 @@
           </p>
           <ul class="stats">
             <li>
-              <b>1220</b> tags and kinds
+              <b>1226</b> tags and kinds
             </li>
             <li>
-              <b>48</b> groups
+              <b>49</b> groups
             </li>
             <li>
-              <b>1405</b> examples
+              <b>1410</b> examples
             </li>
           </ul>
         </section>
@@ -411,13 +413,13 @@
           </section>
           <section class="card">
             <h3>
-              <a href="?groups#graphics">Charts and codes</a> <span class="count">4</span>
+              <a href="?groups#graphics">Charts and codes</a> <span class="count">3</span>
             </h3>
             <p>
               Charts, maps, diagrams and barcodes as SVG
             </p>
             <div class="tagcloud">
-              <a href="?tag/calendar" title="Writes a month as a calendar table with its events, or hands over its weeks and days as rows for markup of your own.">{pad:calendar}</a><a href="?tag/map" title="Draws a choropleth map as inline SVG - every country, or every state or province of a country, coloured by a value of its row - of the world or one of its 26 regions.">{pad:map}</a><a href="?tag/palette" title="The colours of a palette as swatches with their hex values - 29 of them: viridis and its family, the colour-blind safe Okabe-Ito and Tol schemes, ColorBrewer's scales - the same palettes palette= gives a chart.">{pad:palette}</a><a href="?tag/timeline" title="Draws events on a time axis as inline SVG - cards above and below the axis, spans as bars, or one under the other.">{pad:timeline}</a>
+              <a href="?tag/map" title="Draws a choropleth map as inline SVG - every country, or every state or province of a country, coloured by a value of its row - of the world or one of its 26 regions.">{pad:map}</a><a href="?tag/palette" title="The colours of a palette as swatches with their hex values - 29 of them: viridis and its family, the colour-blind safe Okabe-Ito and Tol schemes, ColorBrewer's scales - the same palettes palette= gives a chart.">{pad:palette}</a><a href="?tag/timeline" title="Draws events on a time axis as inline SVG - cards above and below the axis, spans as bars, or one under the other.">{pad:timeline}</a>
             </div>
           </section>
           <section class="card">
@@ -473,6 +475,17 @@
             </p>
             <div class="tagcloud">
               <a href="?tag/flag" title="Replaces every value of a sequence with 1 or 0: whether it belongs to a sequence type.">{pad:flag}</a><a href="?tag/pull" title="Iterates a stored sequence, optionally through plays and actions.">{pad:pull}</a><a href="?tag/resume" title="Transforms the sequence pushed last, in place, through an action or a play.">{pad:resume}</a>
+            </div>
+          </section>
+          <section class="card">
+            <h3>
+              <a href="?groups#kind-calendar">Calendars</a> <span class="count">7</span>
+            </h3>
+            <p>
+              Gregorian dates, events and holidays
+            </p>
+            <div class="tagcloud">
+              <a href="?tag/calendar/agenda" title="The event and holiday days of a month in date order.">{calendar:agenda}</a><a href="?tag/calendar/day" title="One day with its events and holidays.">{calendar:day}</a><a href="?tag/calendar/mini" title="A compact month for a sidebar, with the same events, holidays and pair rows as month.">{calendar:mini}</a><a href="?tag/calendar/month" title="A month with events, holidays and links to its neighbours.">{calendar:month}</a><a href="?tag/calendar/quarter" title="Three compact months with events and holidays.">{calendar:quarter}</a><a href="?tag/calendar/week" title="Seven days, Monday first or Sunday with sunday.">{calendar:week}</a><a href="?tag/calendar/year" title="Twelve compact months with events and holidays.">{calendar:year}</a>
             </div>
           </section>
           <section class="card">
@@ -808,7 +821,7 @@
         </div>
         <footer class="foot">
           <p>
-            1220 tags and kinds of PAD, with syntax and usage examples. Safe, self-contained examples run here; examples requiring credentials, delivery or application files are shown as source.
+            1226 tags and kinds of PAD, with syntax and usage examples. Safe, self-contained examples run here; examples requiring credentials, delivery or application files are shown as source.
           </p>
         </footer>
       </div>

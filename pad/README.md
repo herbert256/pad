@@ -45,6 +45,7 @@ pad/
 │   ├── jsonld/    # JSON-LD subsystem (a Schema.org kind per file of types/)
 │   ├── maps/      # Map subsystem (a view per file of types/)
 │   ├── printables/ # Printables subsystem (a kind of paper per file of types/)
+│   ├── calendars/ # Gregorian calendar views (a view per file of types/)
 │   ├── notations/ # Notations subsystem (a notation per file of types/)
 │   ├── rules/     # Validation rules (a rule per file of types/)
 │   ├── sounds/    # Sounds subsystem (a recipe per file of types/)
@@ -103,6 +104,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | subs/maps/ | The map subsystem behind `{pad:map}`; a view is a file of `subs/maps/types/` - its box of longitude and latitude, for a region its countries - the outlines and the drawing in `subs/maps/_lib/` |
 | subs/jsonld/ | The JSON-LD subsystem - `{jsonld:article}`, the `jsonld:` type, never bare, and `padJsonLd`; a kind is a file of `subs/jsonld/types/` answering its Schema.org type and how each field maps onto it, `subs/jsonld/_lib/jsonld.php` the mapping, the values (absolute addresses, ISO 8601 dates) and the script, `jsonld.php` the body both forms run |
 | subs/maps/ | The map subsystem behind `{pad:map}`; a view is a file of `subs/maps/types/` - its box of longitude and latitude, for a region its countries, for the states or provinces of a country the outlines file of its own - the outlines and the drawing in `subs/maps/_lib/` |
+| subs/calendars/ | Gregorian month, mini, week, day, agenda, quarter and year views through `{calendar:kind}`. Shared event, holiday and locale handling; pair rows for custom markup. |
 | subs/notations/ | The notations subsystem - `{notation:math}` and the `notation:` type, written as `{notation:math}`, `{notation:braille}` ... - `{notation:chess}` draws the chess notation; a notation is a file of `subs/notations/types/`, its drawing in `subs/notations/_lib/<kind>.php`, its style in `www/assets/notations/<kind>.css`, `notation.php` the body every form runs |
 | subs/rules/ | The validation rules of `padValidate`, `rules=` and the browser's checker - a rule is a file of `subs/rules/types/` (its check, message and argument), its check in the browser `www/assets/rules/<rule>.js` beside the checker's runtime `www/assets/rules/validate.js` |
 | subs/printables/ | The printables subsystem - `{printable:labels}` and the `printable:` type, never bare; a kind is a file of `subs/printables/types/` answering its plan - the paper, the places of the items, the boxes, rectangles and lines they draw - laid out by `subs/printables/_lib/printable.php` as mm-based CSS and the `data-pdf-*` attributes the PDF writer (`tags/_lib/pdf.php`) reads; `assets/printable.css` prints the sheets alone |

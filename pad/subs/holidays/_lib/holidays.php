@@ -1,7 +1,7 @@
 <?php
 
   // Public holidays - the holidays subsystem behind {pad:holidays}, the holidays= option of
-  // {pad:calendar} and the helpers padHolidays, padIsHoliday, padWorkdays and padAddWorkdays
+  // {calendar:month} and the helpers padHolidays, padIsHoliday, padWorkdays and padAddWorkdays
   // (lib/holidays.php). No service, no table to keep up to date: every holiday is a rule, and
   // the rules of a country are the file of subs/holidays/types/ named by its ISO 3166-1
   // alpha-2 code in lower case - nl, de, gb ... - so a country is added by adding its file.
@@ -548,7 +548,7 @@
     $html = padHolidaysStyle () . '<table class="pad-holidays"><caption>' . $h ( $caption ) . '</caption>'
           . '<thead><tr><th scope="col">Date</th><th scope="col">Holiday</th></tr></thead><tbody>';
 
-    include_once PAD . 'tags/_lib/calendar.php';
+    include_once PAD . 'subs/calendars/_lib/calendar.php';
 
     foreach ( $rows as $row ) {
 

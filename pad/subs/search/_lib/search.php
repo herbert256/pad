@@ -1133,7 +1133,7 @@
 
   function padSearchList ( $rows, $title, $link ) {
 
-    include_once PAD . 'tags/_lib/calendar.php';
+    include_once PAD . 'subs/calendars/_lib/calendar.php';
 
     $h    = fn ( $t ) => htmlspecialchars ( padUnprotectQuotes ( (string) $t ), ENT_QUOTES, 'UTF-8' );
     $html = padSearchStyle () . padExcerptStyle () . '<ol class="pad-search">';

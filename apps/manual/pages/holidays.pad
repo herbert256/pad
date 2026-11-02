@@ -4,7 +4,7 @@
 table of dates to keep up to date. A country is a file of <code>pad/subs/holidays/types/</code>,
 named by its two-letter ISO code: at, be, br, ca, ch, cz, de, dk, es, fi, fr, gb, hu, ie, it, jp, lu, mx, nl, no, nz, pl, pt, ro,
 se, sk, us and za. {app:tag 'holidays'/} lists the holidays of a year; four helpers answer a page's PHP;
-{app:tag 'calendar'/} marks them in a month.</p>
+{app:tag 'calendar:month'/} marks them in a month.</p>
 
 {common:example 'fragments/holidays_1'/}
 
@@ -78,7 +78,7 @@ its day. South Africa makes up for a Sunday on the Monday after it.</p>
 
 <h2>In the calendar</h2>
 
-<p><code>holidays=</code> on {app:tag 'calendar'/} marks the days of a country: the cell gets the
+<p><code>holidays=</code> on {app:tag 'calendar:month'/} marks the days of a country: the cell gets the
 class <code>holiday</code> - <code>observance</code> for a day that is no day off - and the
 name stands under the number, in the country's language when the request's locale is in
 it.</p>

@@ -723,6 +723,37 @@ added by adding its file. The `printable:` prefix is required; labels, cards and
 names of fields and pages. `{printable:zigzag}...{/printable:zigzag}` is "there is no printable
 named 'zigzag'".
 
+## Calendar Types
+
+### calendar
+
+A Gregorian calendar view from `PAD/subs/calendars/types/`: `month`, `mini`, `week`,
+`day`, `agenda`, `quarter` or `year`. The first parameter selects a period; without it,
+the view reads its query parameter and then defaults to today. Every view accepts
+`data`, `date`, `title`, `link`, `query`, `sunday` and `holidays`. `agenda` also accepts
+`empty` to include dates without events or holidays.
+
+```html
+{calendar:month '2026-11', data='appointments'/}
+{calendar:week '2026-11-04', data='appointments'/}
+{calendar:day '2026-11-04', data='appointments'/}
+{calendar:agenda '2026-11', data='appointments'}{$date}: {$count}{/calendar:agenda}
+{calendar:quarter '2026-Q4'/}
+{calendar:year '2026', holidays='nl'/}
+{calendar:mini '2026-11'/}
+```
+
+**Resolution:** a PHP file `PAD/subs/calendars/types/<name>.php`, dispatched by
+`PAD/subs/calendars/calendar.php`. The `calendar:` prefix is required.
+
+Pairs of `month` and `mini` yield weeks containing `days`. Pairs of `day`, `week` and
+`agenda` yield day rows with `events`. Pairs of `quarter` and `year` yield months
+containing `weeks`. See [Calendars](../../pad/subs/calendars/README.md) for period formats,
+query keys, row fields, navigation and boundary behavior. The `calendars` application
+shows all seven views with their templates.
+
+---
+
 ## Notation Types
 
 ### notation
@@ -949,6 +980,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `pattern` | PAD/subs/patterns/types/ | Seeded SVG patterns |
 | `sound` | PAD/subs/sounds/types/ | Sounds |
 | `printable` | PAD/subs/printables/types/ | Printables |
+| `calendar` | PAD/subs/calendars/types/ | Gregorian calendar views |
 | `notation` | PAD/subs/notations/types/ | Notations |
 | `section` | PAD/subs/sections/types/ | Landing-page sections |
 | `effect` | PAD/subs/effects/types/ | Effects |
@@ -993,6 +1025,7 @@ types/
 ├── local.php       → Local file
 ├── macro.php       → Macro of the template ({pad:macro})
 ├── make.php        → Sequence make
+├── calendar.php    → Calendar view
 ├── notation.php    → Notation
 ├── pad.php         → PAD tag
 ├── parm.php        → Tag parameter

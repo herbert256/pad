@@ -1,11 +1,11 @@
 <?php
 
-  // The month a {pad:calendar} shows, read from a text - the part of the tag that a page's PHP
+  // The month a {calendar:month} shows, read from a text - the part of the tag that a page's PHP
   // uses too, to know the month the calendar's links ask for (apps/demo/calendar.php). The
-  // rest of the tag is tags/_lib/calendar.php, loaded when a page uses it.
+  // rest of the tag is subs/calendars/_lib/calendar.php, loaded when a page uses it.
   //
   // 'YYYY-MM' of a text, or NULL - for what is no text too: ?month[]=x in the request was
-  // turned into text, and the warning ended the request of every page with a {pad:calendar}.
+  // turned into text, and the warning ended the request of every page with a {calendar:month}.
 
   function padCalendarMonth ( $text ) {
 

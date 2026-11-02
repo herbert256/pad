@@ -62,6 +62,7 @@ applications show them working.
   - [Printables](#printables)
   - [Widgets](#widgets)
   - [Month calendar](#month-calendar)
+  - [Calendar views](#calendar-views)
   - [Public holidays](#public-holidays)
   - [Syntax highlighting](#syntax-highlighting)
   - [QR codes and barcodes](#qr-codes-and-barcodes)
@@ -1543,10 +1544,10 @@ write in for every day - `year=` its twelve months, `month='2026-09'` from that 
 `months=` how many (1 with `month=`), `sunday` the weeks from Sunday, `weeks` the ISO 8601 week
 numbers before them, `holidays=` a country of the holidays subsystem (`'nl'`, `'de-by'`) its public
 holidays red with their names and its observances grey (a month `year=` or `month=` fixes in a
-year the country's file does not know an error under the strict check, as for `{pad:calendar}`; this
+year the country's file does not know an error under the strict check, as for `{calendar:month}`; this
 year, unfixed, with only the days inside those years marked), `color=`, `paper=` and `landscape` - the
 month, the weekdays and the names of the holidays in the language of the page's locale, as
-`{pad:calendar}` writes them; the content between the tags stands over every month, a row of the data
+`{calendar:month}` writes them; the content between the tags stands over every month, a row of the data
 a month, the rows taken in turn.
 
 A folded card (`foldcard`) - a greeting card, an invitation - is printed on one side of a sheet and
@@ -1601,12 +1602,32 @@ page lists every widget with its options, the manual has a widgets page.
 
 ### Month calendar
 ```
-{pad:calendar data='agenda', title='what'/}         # this month (or ?month=2026-11), events, links ‹ ›
-{pad:calendar holidays='de-by'/}                   # the public holidays of a country marked and named - see Public holidays
-{pad:calendar '2026-10', data='agenda'}            # as a pair: weeks as rows, days inside, events per day
+{calendar:month data='agenda', title='what'/}         # this month (or ?month=2026-11), events, links ‹ ›
+{calendar:month holidays='de-by'/}                   # the public holidays of a country marked and named - see Public holidays
+{calendar:month '2026-10', data='agenda'}            # as a pair: weeks as rows, days inside, events per day
   <tr>{data:days}<td class="{$class}">{$day}{array:events}<b>{$what}</b>{/array:events}</td>{/data:days}</tr>
-{/pad:calendar}
+{/calendar:month}
 ```
+
+### Calendar views
+
+The calendar subsystem, `pad/subs/calendars/`, provides seven views through
+`{calendar:kind}`, with pair forms for custom markup.
+
+```html
+{calendar:month data='appointments'/}
+{calendar:mini '2026-11'/}
+{calendar:week '2026-11-04', data='appointments', sunday/}
+{calendar:day '2026-11-04', data='appointments'/}
+{calendar:agenda '2026-11', data='appointments', empty/}
+{calendar:quarter '2026-Q4', holidays='nl'/}
+{calendar:year '2026', holidays='nl'/}
+```
+
+Events, safe links, localized names, public holidays, request navigation and custom
+pair markup are shared across the views. Week and day pairs yield days, month and mini
+pairs yield weeks, year and quarter pairs yield months with nested weeks. The `calendars`
+application shows every view with its source. See [the subsystem guide](../pad/subs/calendars/README.md).
 
 ### Public holidays
 ```
@@ -1614,7 +1635,7 @@ page lists every widget with its options, the manual has a widgets page.
 {pad:holidays 'de-by', year=2026/}                                    # a table; a region by its ISO 3166-2 code - Bavaria
 {pad:holidays 'gb', from='today', to='+3 months'}...{/pad:holidays}       # the days between two dates instead of a year
 {pad:holidays 'be', year=2026, lang='fr', where='$type eq "public"'}...{/pad:holidays}   # names in French; observances out
-{pad:calendar '2026-04', holidays='nl'/}                              # the month with its holidays marked and named
+{calendar:month '2026-04', holidays='nl'/}                              # the month with its holidays marked and named
 ```
 ```php
 padHolidays ( 'nl', 2026 );                         // the rows of a year, region as a third argument or 'de-by'

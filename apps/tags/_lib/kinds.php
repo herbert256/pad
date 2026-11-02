@@ -16,6 +16,7 @@
   function tagsKindTypes () {
 
     return [
+      'calendar' => [ 'Calendars', 'Gregorian dates, events and holidays', 'both', " '2026-11', data='appointments'/}", 'calendar' ],
       'chart'    => [ 'Chart types',       'inline SVG',                 'both',   " data='rows', label='field', value='field'/}", 'chart'   ],
       'game'     => [ 'Games',             'played in the browser',       'both',   '/}',                                           'game'    ],
       'toy'      => [ 'Toys',              'a live simulation',             'both',   '/}',                                           'toy'     ],
@@ -70,6 +71,9 @@
         $form = ( $type == 'sequence' and in_array ( $kind, tagsKindParameterized () ) ) ? 'both' : $form;
 
         $tail = ( $type == 'sequence' ) ? tagsKindSequenceParm ( $kind ) . $after : $after;
+
+        if ( $type === 'calendar' )
+          $tail = " '" . ( [ 'day' => '2026-11-04', 'week' => '2026-11-02', 'year' => '2026', 'quarter' => '2026-Q4' ] [$kind] ?? '2026-11' ) . "', data='appointments'/}";
 
         if ( $syntax === '' ) {
           $syntax = "{{$type}:$kind" . sprintf ( $tail, $kind, $kind );
@@ -227,6 +231,11 @@
     }
 
     switch ( $type ) {
+
+      case 'calendar':
+        $file = APPS . "calendars/_examples/$kind.pad";
+        return $example ( "The $kind calendar", 'With the events shown in the calendars application.',
+                          is_file ( $file ) ? trim ( padFileGet ( $file ) ) : "{calendar:$kind/}" );
 
       case 'chart':
         foreach ( tagsKindAppPages ( 'charts' ) as $page => $source )

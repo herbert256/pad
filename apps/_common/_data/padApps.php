@@ -16,6 +16,7 @@
       'sequence'        => [ 'sequence',      'bar-chart',    'The sequence subsystem' ],
     ],
     'Showcases' => [
+      'calendars'       => [ 'calendars',     'calendar',     'Day, week, month, quarter, year and agenda views' ],
       'charts'          => [ 'charts',        'chart-pie',    'Every chart type, drawn on the server' ],
       'showcase'        => [ 'showcase',      'star',         'The tags that draw, format and interact' ],
       'games'           => [ 'games',         'trophy',       'Games played in the browser' ],

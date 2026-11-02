@@ -9,6 +9,7 @@
   const padSequenceOperations = [ 'sequence', 'action', 'keep', 'make', 'remove' ];
 
   const padSubsystems = [
+    'calendar' => [ 'calendars', FALSE, 'calendar type' ],
     'chart'   => [ 'charts',   TRUE,  'chart type'     ],
     'game'    => [ 'games',    TRUE,  'game'           ],
     'toy'     => [ 'toys',     TRUE,  'toy'            ],
