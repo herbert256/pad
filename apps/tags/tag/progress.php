@@ -20,6 +20,6 @@ PAD;
     'size'  => '<code>small</code>, <code>medium</code> (default) or <code>large</code> - the height of the bar or the dots.',
     'steps' => 'Bare option: a dot per step joined by a line, the steps up to the value filled and the current one ringed.' ];
 
-  $tagSee     = [ 'rating', 'countdown' ];
+  $tagSee     = [ 'rating', 'time:countdown' ];
 
 ?>

@@ -4181,13 +4181,13 @@ No heading of those levels writes nothing. Colours are `--pad-toc-*` custom prop
 
 ---
 
-### countdown
-The time left until a moment, in words, inside a `<time datetime>` (`tags/_lib/countdown.php`) -
+### time:countdown
+The time left until a moment, in words, inside a `<time datetime>` (`subs/times/_lib/countdown.php`) -
 optionally ticking every second in the browser.
 
 ```html
-{pad:countdown '2026-12-31 00:00'/}                         <!-- 84 days, 3 hours -->
-{pad:countdown $launch, units=3, live, past='We are live!'/}
+{time:countdown '2026-12-31 00:00'/}                         <!-- 84 days, 3 hours -->
+{time:countdown $launch, units=3, live, past='We are live!'/}
 ```
 
 **Parameters:**
@@ -4209,13 +4209,13 @@ moment in milliseconds; the script counts the same way and carries this request'
 
 ---
 
-### timeago
+### time:relative
 How long ago a moment was, in words, inside a `<time>` with the moment as its `datetime` and, in
-full, as its `title` (`tags/_lib/timeago.php`) - the `ago` pipe's words with the semantic element.
+full, as its `title` (`subs/times/_lib/timeago.php`) - the `ago` pipe's words with the semantic element.
 
 ```html
-{pad:timeago $created/}        <!-- <time datetime="2026-10-08T09:10:00+02:00" title="Thursday 8 October 2026, 09:10">5 minutes ago</time> -->
-{pad:timeago $posted, format='j M Y'/}
+{time:relative $created/}        <!-- <time datetime="2026-10-08T09:10:00+02:00" title="Thursday 8 October 2026, 09:10">5 minutes ago</time> -->
+{time:relative $posted, format='j M Y'/}
 ```
 
 **Parameters:**
@@ -5468,3 +5468,7 @@ a row field of the same name is what the `$`-spelling reads - `{$first@orders}` 
 resolves the collision there. Written as a tag - `{property:first@orders}...{/property:first@orders}`,
 `{property:name@users}` - a row field of that name wins; use `{pad:if first@orders}` when the rows can carry
 such a field.
+
+### time:clock and time:stopwatch
+
+`{time:clock timezone='Europe/Amsterdam'/}` shows a live clock with daylight-saving-aware local time. `live=0` and `now=` provide static, reproducible output. `{time:stopwatch 65, label='Practice'/}` provides independent Start, Pause and Reset controls; `autostart` begins immediately. Controllers share a nonce-aware script without inline handlers, and elapsed displays do not announce every tick. See `pad/subs/times/README.md` for formats, accessibility and examples.

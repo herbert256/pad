@@ -223,7 +223,7 @@
   // closed the attribute. An escaper reads it as the quote it will be, and escapes that -
   // the pipes, the field's sanitize step, {pad:attrs}, the forms, and the escape helpers of the
   // tags that draw (padChartAttr, padQrAttr and their like), which escaped the stand-in as
-  // the text it was: {barcode:qr ..., color=$c} and {pad:countdown ..., past=$p} wrote an attribute a
+  // the text it was: {barcode:qr ..., color=$c} and {time:countdown ..., past=$p} wrote an attribute a
   // visitor's value closed and filled with an event handler.
 
   function padUnprotectQuotes ( $string ) {

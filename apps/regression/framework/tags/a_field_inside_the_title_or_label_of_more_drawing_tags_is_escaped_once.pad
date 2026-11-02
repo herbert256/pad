@@ -8,7 +8,7 @@ emoji {pad:emoji 'rocket', label='{$t}' | php:substr_count(@, 'Q&amp;A Å')/};
 copy {widget:copy 'abc', label='{$t}' | php:substr_count(@, 'Q&amp;A Å')/};
 modal {widget:modal 'fw-esc-once', title='{$t}', button='{$t}'}x{/widget:modal | php:substr_count(@, 'Q&amp;A Å')};
 video {pad:video 'https://youtu.be/dQw4w9WgXcQ', title='{$t}' | php:substr_count(@, 'Q&amp;A Å')/};
-countdown {pad:countdown '2000-01-01', past='{$t}' | php:substr_count(@, 'Q&amp;A Å')/};
+countdown {time:countdown '2000-01-01', past='{$t}' | php:substr_count(@, 'Q&amp;A Å')/};
 tabs {widget:tabs active='{$t}'}{pad:tab 'B'}b{/pad:tab}{pad:tab '{$t}'}a{/pad:tab}{/widget:tabs | php:substr_count(@, 'Q&amp;A Å')} {widget:tabs active='{$t}'}{pad:tab 'B'}b{/pad:tab}{pad:tab '{$t}'}a{/pad:tab}{/widget:tabs | php:preg_match('/-2-panel. checked/u', @)};
 accordion {widget:accordion open='{$t}'}{pad:tab 'B'}b{/pad:tab}{pad:tab '{$t}'}a{/pad:tab}{/widget:accordion | php:preg_match('/open><summary class..pad-accordion-summary.>Q&amp;A Å/u', @)};
 carousel {widget:carousel label='{$t}'}{pad:tab '{$t}'}a{/pad:tab}{/widget:carousel | php:substr_count(@, 'Q&amp;A Å')};

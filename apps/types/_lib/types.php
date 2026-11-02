@@ -97,6 +97,8 @@
                   "{diff:words \$old, \$new/}\n{diff:json \$old, \$new/}\n{diff:rows \$old, \$new, key='id'/}" ],
       'table' => [ 'A table of rows, grouped records, a pivot or a matrix from pad/subs/tables/types/.', 'subsystems',
                    "{table:standard data='orders', sortable/}\n{table:grouped data='orders', group='region', totals='amount'/}" ],
+      'time' => [ 'Time displays from pad/subs/times/types/ - countdown, relative time, world clocks and stopwatches.', 'subsystems',
+                      "{time:countdown '2026-12-31', live/}\n{time:relative '2026-11-01'/}\n{time:clock timezone='Europe/Amsterdam'/}\n{time:stopwatch/}" ],
       'timeline' => [ 'Event views from pad/subs/timelines/types/ - horizontal, vertical, roadmap and swimlane.', 'subsystems',
                       "{timeline:horizontal data='events'/}\n{timeline:roadmap data='events', lane='team'/}\n{timeline:swimlane data='events', lane='team'/}" ],
       'calendar' => [ 'A Gregorian calendar view from pad/subs/calendars/types/ - days, weeks, months, quarters, years and agendas.', 'subsystems',

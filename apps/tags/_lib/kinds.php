@@ -18,6 +18,7 @@
     return [
       'diff' => [ 'Diffs', 'Text and structured changes', 'single', " \$old, \$new/}", 'diff' ],
       'table' => [ 'Tables', 'Formatted, grouped and aggregated rows', 'both', " data='rows'/}", 'datatable' ],
+      'time' => [ 'Time displays', 'Relative time, clocks and timers', 'single', '/}', 'time' ],
       'timeline' => [ 'Timelines', 'Events, milestones and lanes', 'both', " date='date', label='label'}...{/timeline:%s}", 'timeline' ],
       'calendar' => [ 'Calendars', 'Gregorian dates, events and holidays', 'both', " '2026-11', data='appointments'/}", 'calendar' ],
       'chart'    => [ 'Chart types',       'inline SVG',                 'both',   " data='rows', label='field', value='field'/}", 'chart'   ],
@@ -79,6 +80,8 @@
 
         if ( $type === 'table' )
           $tail = " data='rows'" . ( [ 'grouped' => ", group='region', totals='amount'", 'pivot' => ", row='region', column='quarter', value='amount'", 'matrix' => ", row='region', column='quarter'" ] [$kind] ?? '' ) . '/}';
+        if ( $type === 'time' && in_array ( $kind, [ 'countdown', 'relative' ], TRUE ) )
+          $tail = " '2026-12-31 00:00'/}";
 
         if ( $type === 'calendar' )
           $tail = " '" . ( [ 'day' => '2026-11-04', 'week' => '2026-11-02', 'year' => '2026', 'quarter' => '2026-Q4' ] [$kind] ?? '2026-11' ) . "', data='appointments'/}";
@@ -247,6 +250,10 @@
       case 'table':
         $file = APPS . "tags/examples/table/$kind.pad";
         return $example ( "A $kind table", 'Rows formatted and aggregated on the server.', trim ( padFileGet ( $file ) ) );
+      case 'time':
+        $file = APPS . "tags/examples/time/$kind.pad";
+        return $example ( "The $kind time display", 'Date-aware server output with browser controls when needed.', trim ( padFileGet ( $file ) ) );
+
       case 'timeline':
         $file = APPS . "tags/examples/timeline/$kind.pad";
         return $example ( "The $kind timeline", 'Events and spans from the same row format.', trim ( padFileGet ( $file ) ) );
