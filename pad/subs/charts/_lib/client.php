@@ -22,6 +22,7 @@
   // The files of www/assets/charts/ a kind is drawn with, beside core.js.
 
   const padChartClientFiles = [
+    'pareto'       => [ 'pareto' ],
     'arc'          => [ 'arc' ],                        'area'         => [ 'area' ],
     'bar'          => [ 'pie', 'series' ],              'boxplot'      => [ 'distribution' ],
     'bubble'       => [ 'scatter' ],                    'bullet'       => [ 'bullet' ],
