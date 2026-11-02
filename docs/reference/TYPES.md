@@ -22,7 +22,7 @@ a flowchart. Explicit kinds work as before.
 `{fake:rows 'customer:name, email, total:price', rows=3, seed=7}...{/fake:rows}`
 generates several fields per row. Single kinds use `{fake:email/}`.
 
-Basic `{pad:input}` and helper-only subsystem tags retain their distinct behavior.
+Basic `{input:field}` and helper-only subsystem tags retain their distinct behavior.
 
 ### Sequence selectors
 
@@ -619,14 +619,14 @@ pages as well.
 ### pattern
 
 A seeded SVG background or piece of generative art, the kind the tag names - the pattern
-subsystem in `PAD/subs/patterns/` draws it, the same bytes for the same options.
+subsystem in `PAD/subs/images/patterns/` draws it, the same bytes for the same options.
 
 ```
 {pattern:topography seed=7, levels=16/}
 {pattern:dots size=24, as='url'/}
 ```
 
-**Resolution:** a PHP file `PAD/subs/patterns/types/<name>.php` (`padPatternKinds ()` in
+**Resolution:** a PHP file `PAD/subs/images/patterns/types/<name>.php` (`padPatternKinds ()` in
 `PAD/lib/pattern.php`) that answers its default size and colours, its own options and the
 function that draws it: the files there are the patterns, and a pattern is added by adding its
 file. The type is only ever written with its prefix - a pattern's name alone (dots, grid, waves)
@@ -636,7 +636,7 @@ is no tag, the names being those of fields and pages as well.
 ### toy
 
 A small live simulation or visual toy played in the browser, of the kind the tag names - the toys
-subsystem in `PAD/subs/toys/` sets it up.
+subsystem in `PAD/subs/games/toys/` sets it up.
 
 ```
 {toy:life pattern='gun'/}
@@ -644,7 +644,7 @@ subsystem in `PAD/subs/toys/` sets it up.
 {toy:lsystem 'dragon', iterations=14/}
 ```
 
-**Resolution:** a PHP file `PAD/subs/toys/types/<name>.php` (`padToyType()` in `PAD/lib/toy.php`), its
+**Resolution:** a PHP file `PAD/subs/games/toys/types/<name>.php` (`padToyType()` in `PAD/lib/toy.php`), its
 script `www/assets/toys/<name>.js` and its style, when it has one, `<name>.css` beside it: the files
 of `types/` are the toys, and a toy is added by adding its files. Every named tag requires its type prefix; other namespaces do not shadow it.
 
@@ -656,9 +656,9 @@ An interactive part of the page - tabs, an accordion, a carousel, a modal, a cop
 ... - of the kind the tag names: the widgets subsystem in `PAD/subs/widgets/` builds it.
 
 ```
-{widget:tabs active=2}{pad:tab 'Overview'}...{/pad:tab}{pad:tab 'Specs'}...{/pad:tab}{/widget:tabs}
+{widget:tabs active=2}{widget:tab 'Overview'}...{/widget:tab}{widget:tab 'Specs'}...{/widget:tab}{/widget:tabs}
 {widget:modal 'terms', title='Terms of sale'}...{/widget:modal}
-{widget:tabs}{pad:tab 'Overview'}...{/pad:tab}{/widget:tabs}
+{widget:tabs}{widget:tab 'Overview'}...{/widget:tab}{/widget:tabs}
 ```
 
 **Resolution:** a PHP file `PAD/subs/widgets/types/<name>.php` (`padWidgetType()` in `PAD/lib/widget.php`),
@@ -673,8 +673,8 @@ added by adding its files. Every named tag requires its type prefix; other names
 ### input
 
 A rich form field of the kind the tag names - a slider, a stepper, a date picker, stars, a
-signature ... - the inputs subsystem in `PAD/subs/inputs/` writes it, a field of its `{pad:form}` as
-`{pad:input}` is: a native field a form posts without any script, made more of by its script.
+signature ... - the inputs subsystem in `PAD/subs/inputs/` writes it, a field of its `{input:form}` as
+`{input:field}` is: a native field a form posts without any script, made more of by its script.
 
 ```
 {input:slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}
@@ -684,7 +684,7 @@ signature ... - the inputs subsystem in `PAD/subs/inputs/` writes it, a field of
 
 **Resolution:** a PHP file `PAD/subs/inputs/types/<name>.php`, its script and style in
 `www/assets/inputs/`, the field written by `PAD/subs/inputs/input.php`: the files of `types/` are
-the kinds, and a kind is added by adding its file. Its items are read raw, as `{pad:input}`'s are -
+the kinds, and a kind is added by adding its file. Its items are read raw, as `{input:field}`'s are -
 `label=`, `rules=`, `min=` are the field's, never an option of the engine. Every named tag requires its type prefix; other namespaces do not shadow it.
 
 ## Sound Types
@@ -790,7 +790,7 @@ of `types/` are the notations, and a notation is added by adding its files. Ever
 ### section
 
 A block of a landing page - a hero, the features, the prices, the questions, a footer ... - of the
-kind selected after the colon: the sections subsystem in `PAD/subs/sections/`
+kind selected after the colon: the sections subsystem in `PAD/subs/widgets/sections/`
 builds a hero with `{section:hero}`.
 
 ```
@@ -799,7 +799,7 @@ builds a hero with `{section:hero}`.
 {section:faq}{section:item 'Is it free?'}Yes.{/section:item}{/section:faq}
 ```
 
-**Resolution:** a PHP file `PAD/subs/sections/types/<name>.php` (`padKinds ( 'sections' )`,
+**Resolution:** a PHP file `PAD/subs/widgets/sections/types/<name>.php` (`padKinds ( 'widgets/sections' )`,
 `PAD/lib/subsystem.php`), its style `www/assets/sections/<name>.css`: the files of `types/` are
 the sections, and a section is added by adding its files. Only ever written with its prefix.
 
@@ -811,7 +811,7 @@ the sections, and a section is added by adding its files. Only ever written with
 
 Motion or decoration on a text or a block - a typewriter, a marker stroke, a count-up, a
 reveal on scroll, a loader, confetti ... - of the kind the tag names: the effects subsystem in
-`PAD/subs/effects/` writes it.
+`PAD/subs/widgets/effects/` writes it.
 
 ```
 {effect:typewriter}Hello, world{/effect:typewriter}
@@ -819,9 +819,9 @@ reveal on scroll, a loader, confetti ... - of the kind the tag names: the effect
 {effect:highlighter}the terms{/effect:highlighter}
 ```
 
-**Resolution:** a PHP file `PAD/subs/effects/types/<name>.php`, its style
+**Resolution:** a PHP file `PAD/subs/widgets/effects/types/<name>.php`, its style
 `www/assets/effects/<name>.css` (the scripts of confetti and decipher beside them), the effect written
-by `PAD/subs/effects/effect.php`: the files of `types/` are the effects, and an effect is added by
+by `PAD/subs/widgets/effects/effect.php`: the files of `types/` are the effects, and an effect is added by
 adding its files. Every named tag requires its type prefix; other namespaces do not shadow it.
 
 ---
@@ -1035,16 +1035,16 @@ includes `TEXTBEFORE` and `TEXTAFTER` for Unicode-aware delimiter extraction.
 | `fake` | PAD/subs/fakes/types/ | Fake value kinds |
 | `barcode` | PAD/subs/codes/types/ | Barcode symbologies |
 | `icon` | PAD/subs/icons/types/ | Icons |
-| `toy` | PAD/subs/toys/types/ | Toys |
+| `toy` | PAD/subs/games/toys/types/ | Toys |
 | `widget` | PAD/subs/widgets/types/ | Widgets |
 | `input` | PAD/subs/inputs/types/ | Rich form fields |
-| `pattern` | PAD/subs/patterns/types/ | Seeded SVG patterns |
+| `pattern` | PAD/subs/images/patterns/types/ | Seeded SVG patterns |
 | `sound` | PAD/subs/sounds/types/ | Sounds |
 | `printable` | PAD/subs/printables/types/ | Printables |
 | `calendar` | PAD/subs/calendars/types/ | Gregorian calendar views |
 | `notation` | PAD/subs/notations/types/ | Notations |
-| `section` | PAD/subs/sections/types/ | Landing-page sections |
-| `effect` | PAD/subs/effects/types/ | Effects |
+| `section` | PAD/subs/widgets/sections/types/ | Landing-page sections |
+| `effect` | PAD/subs/widgets/effects/types/ | Effects |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
@@ -1157,15 +1157,15 @@ types/
 
 ### timeline
 
-Event views from `pad/subs/timelines/types/`: `horizontal`, `vertical`, `auto`, `roadmap` and `swimlane`. Shared date/span parsing, labels, detail, colours and accessible names. Roadmap adds month/quarter/year columns with lane grouping and milestone badges; swimlane adds named lanes on a shared time axis. See `pad/subs/timelines/README.md` for options and runnable examples in `apps/tags/examples/timeline/`.
+Event views from `pad/subs/charts/timelines/types/`: `horizontal`, `vertical`, `auto`, `roadmap` and `swimlane`. Shared date/span parsing, labels, detail, colours and accessible names. Roadmap adds month/quarter/year columns with lane grouping and milestone badges; swimlane adds named lanes on a shared time axis. See `pad/subs/charts/timelines/README.md` for options and runnable examples in `apps/tags/examples/timeline/`.
 
 ### time
 
-Time displays from `pad/subs/times/types/`: `countdown`, `relative`, `clock` and `stopwatch`. The date views share the engine's date parser; clocks support IANA timezones and live daylight-saving changes; stopwatches provide independent keyboard-accessible start, pause and reset. See `pad/subs/times/README.md` and `apps/tags/examples/time/`.
+Time displays from `pad/subs/calendars/times/types/`: `countdown`, `relative`, `clock` and `stopwatch`. The date views share the engine's date parser; clocks support IANA timezones and live daylight-saving changes; stopwatches provide independent keyboard-accessible start, pause and reset. See `pad/subs/calendars/times/README.md` and `apps/tags/examples/time/`.
 
 ### avatar
 
-The avatar subsystem provides `avatar:initials`, `avatar:identicon`, `avatar:gravatar`, `avatar:geometric`, `avatar:photo`, `avatar:rings`, `avatar:mosaic` and `avatar:pixelbot`. See [the subsystem reference](../../pad/subs/avatars/README.md) for examples and photo fallback behaviour.
+The avatar subsystem provides `avatar:initials`, `avatar:identicon`, `avatar:gravatar`, `avatar:geometric`, `avatar:photo`, `avatar:rings`, `avatar:mosaic` and `avatar:pixelbot`. See [the subsystem reference](../../pad/subs/images/avatars/README.md) for examples and photo fallback behaviour.
 
 ### image
 

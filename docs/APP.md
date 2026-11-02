@@ -820,7 +820,7 @@ as `$padRequestVars` allows (TRUE, the default: all of them; a list: those names
 
 **Important:**
 - A GET value fills the variable as a POST value does - check the method when it matters:
-  `padRequestIs ( 'post' )`, or `padPosted ( 'contact' )` for a `{pad:form}`
+  `padRequestIs ( 'post' )`, or `padPosted ( 'contact' )` for a `{input:form}`
 - Watch for naming conflicts with other variables (e.g., form field `message` vs success `$message`)
 
 **Example** (`contact.php`):
@@ -838,15 +838,15 @@ as `$padRequestVars` allows (TRUE, the default: all of them; a list: those names
 ```
 
 ### Form Fields and Validation
-`{pad:form}`, `{pad:input}` and `{pad:textarea}` write fields that refill from the post and show the
+`{input:form}`, `{input:field}` and `{input:textarea}` write fields that refill from the post and show the
 message `padValidate` found for them:
 
 ```html
-{pad:form 'contact'}
-  {pad:input 'email', type='email', label='E-mail', required/}
-  {pad:textarea 'message', label='Message', rows=6/}
+{input:form 'contact'}
+  {input:field 'email', type='email', label='E-mail', required/}
+  {input:textarea 'message', label='Message', rows=6/}
   <button>Send</button>
-{/pad:form}
+{/input:form}
 ```
 
 ```php
@@ -863,7 +863,7 @@ message `padValidate` found for them:
 ```
 
 `padValidate($rules, $data = posted, $messages = [])` answers one message per failing field;
-the rules are the files of `pad/subs/rules/types/` - `required`, `email`, `url`, `numeric`,
+the rules are the files of `pad/subs/inputs/rules/types/` - `required`, `email`, `url`, `numeric`,
 `integer`, `min:n`, `max:n`, `between:a,b`, `in:a,b,c`, `regex:/.../`, `same:field`,
 `accepted`, `date`, `time`, `digits:n`, `alpha`, `alphanum`, `starts_with:x`, `ends_with:x`,
 `lowercase`, `uppercase`, `color`, `uuid`, `ip`, `slug`, `json`, `iban`, `not_in:a,b`,
@@ -879,11 +879,11 @@ label, with `aria-invalid` and `aria-describedby`.
 The rules can stand on the fields in the template instead, and the PHP then only acts:
 
 ```html
-{pad:form 'contact', error='Please correct the errors below.'}
-  {pad:input 'email', type='email', label='E-mail', rules='required|email'/}
-  {pad:textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
+{input:form 'contact', error='Please correct the errors below.'}
+  {input:field 'email', type='email', label='E-mail', rules='required|email'/}
+  {input:textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
   <button>Send</button>
-{/pad:form}
+{/input:form}
 ```
 
 ```php
@@ -917,8 +917,8 @@ elseif ( $avatar === FALSE )         // refused - NULL means no file was sent
   $problem = padUploadError ( 'avatar' );
 ```
 
-The refusal also shows beside `{pad:input 'avatar', type='file', label='Picture'/}`, and a
-`{pad:form}` holding a file field posts as `multipart/form-data` by itself.
+The refusal also shows beside `{input:field 'avatar', type='file', label='Picture'/}`, and a
+`{input:form}` holding a file field posts as `multipart/form-data` by itself.
 
 What is stored under `DATA/` no address reaches; a page sends it back with `padUploadSend`,
 which answers the file as the page's whole answer and ends the request:

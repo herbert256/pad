@@ -296,7 +296,7 @@ Iterate a folder of Markdown files - a small flat-file CMS.
 **Behavior:** Reads `_content/<name>/*.md`, looked up like a `_data` file (the page's
 directory, its parents, then `_common`). Each file is a row: its front matter (YAML between
 `---` lines) as fields, plus `slug` (the file name without `.md`), `body` (the Markdown
-written as HTML by the `{pad:markdown}` renderer - print it raw, `{!body}`) and `source` (the
+written as HTML by the `{widget:markdown}` renderer - print it raw, `{!body}`) and `source` (the
 Markdown text). Rows come in file name order; `sort`, `first`, `where` and the other handling
 options work as on any data.
 
@@ -335,7 +335,7 @@ Site search without a search server: the rows of a source a query finds, ranked 
 
 **Behavior:** as a pair it hands over the rows found, the best first: the source's own fields
 with `$score` (BM25F, three decimals) and `$excerpt` added - HTML, the words around the first
-match with every matched word in a `<mark>`, escaped as `{pad:excerpt}` escapes it; print it
+match with every matched word in a `<mark>`, escaped as `{widget:excerpt}` escapes it; print it
 `{!excerpt}` - the style of the marks stands before the first row when the template prints the
 excerpt. The handling options work on them, `first=10` for the ten best - when they keep
 the first rows only (`first`, `page`, `rows`) the excerpts are made for those rows alone;
@@ -587,7 +587,7 @@ window around the current one, gaps, previous and next.
   <article>{$name}</article>
 {/data:products}
 
-{pad:pager 'products', window=2/}
+{widget:pager 'products', window=2/}
 {-- → ‹ 1 … 4 5 [6] 7 8 … 20 › --}
 ```
 
@@ -615,11 +615,11 @@ As a pair it hands the links over as rows for markup of your own - `kind` (`prev
 previous/next); a single page has no rows, so the pair shows its `@else@`:
 
 ```html
-{pad:pager 'products'}
+{widget:pager 'products'}
   {pad:if $href eq ''}<span>{$label}</span>{pad:else}<a href="{$href}">{$label}</a>{/pad:if}
 @else@
   All on one page
-{/pad:pager}
+{/widget:pager}
 ```
 
 A Select table is paged by its SQL limit, so its rows do not hold the total; the pager then
@@ -720,11 +720,11 @@ checks a post by hand. A page carrying a token is not stored in the page cache.
 A form that posts back to the page, carrying the session's CSRF token and its own name.
 
 ```html
-{pad:form 'contact', class='wide'}
-  {pad:input 'email', type='email', label='E-mail', required/}
-  {pad:textarea 'message', label='Message', rows=6/}
+{input:form 'contact', class='wide'}
+  {input:field 'email', type='email', label='E-mail', required/}
+  {input:textarea 'message', label='Message', rows=6/}
   <button>Send</button>
-{/pad:form}
+{/input:form}
 ```
 
 **Items:** the form's name first; `method='get'` for a form that does not post; `error=`
@@ -738,14 +738,14 @@ correct the errors below."); every other item is an attribute of the `<form>` ta
 by GET (`formmethod`) to this site leaves it, and a `{pad:csrf}` the template wrote is never taken
 out - and a hidden `padForm` field
 holding its name - `padPosted('contact')` is TRUE when this form came back. The fields
-inside refill only when their own form came back; a `{pad:form method='get'}` refills from the
+inside refill only when their own form came back; a `{input:form method='get'}` refills from the
 query string. A posting form holding a file field gets `enctype="multipart/form-data"`
 unless it names an enctype itself. With `error=`, a form that came back while `padValidate`
 or the rules of its fields left an error starts with `<div class="error" role="alert">`
 holding the message.
 
 **Rules in the template:** the fields of a named form can carry their own rules -
-`rules='required|email'` on `{pad:input}` and `{pad:textarea}`, the rules of `padValidate`. They are
+`rules='required|email'` on `{input:field}` and `{input:textarea}`, the rules of `padValidate`. They are
 read from the page's template before any PHP runs (`_inits.php` included), and a post of
 the form is checked against them there: `padPosted('contact')` is TRUE only for a post that
 kept them - the PHP that stores and redirects runs for a good post alone - and
@@ -755,10 +755,10 @@ an `{pad:if}` branch that did not render; a field that is there only sometimes k
 the PHP, where `padValidate` adds its messages to those of the template.
 
 ```html
-{pad:form 'contact', error='Please correct the errors below.'}
-  {pad:input 'email', type='email', label='E-mail', rules='required|email'/}
-  {pad:textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
-{/pad:form}
+{input:form 'contact', error='Please correct the errors below.'}
+  {input:field 'email', type='email', label='E-mail', rules='required|email'/}
+  {input:textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
+{/input:form}
 ```
 
 Only the page's own template is read - with its `_inits.pad` and `_exits.pad` - and only what
@@ -786,9 +786,9 @@ shows a message or was left before: the message follows the other field. The ser
 without a field with rules, is an error.
 
 ```html
-{pad:form 'signup', client, error}
-  {pad:input 'email', type='email', label='E-mail', rules='required|email'/}
-{/pad:form}
+{input:form 'signup', client, error}
+  {input:field 'email', type='email', label='E-mail', rules='required|email'/}
+{/input:form}
 ```
 
 ---
@@ -800,11 +800,11 @@ The browser's checker of `padValidate`'s rules, for a form a component draws.
 <div x-data="{ rules: {^rules}, form: {}, errors: {} }">
   <input x-model="form.email" @blur="errors = padValidate.check(rules, form)">
 </div>
-{pad:validator/}
+{input:validator/}
 ```
 
-**Behavior:** Writes the checker - `www/assets/rules/validate.js` with the script of every rule of `pad/subs/rules/types/` - as one inline script - once a page, also when a
-`{pad:form ..., client}` brought it already - carrying the request's nonce when `$padCsp` asks
+**Behavior:** Writes the checker - `www/assets/rules/validate.js` with the script of every rule of `pad/subs/inputs/rules/types/` - as one inline script - once a page, also when a
+`{input:form ..., client}` brought it already - carrying the request's nonce when `$padCsp` asks
 for one. The script defines `padValidate.check(rules, values)` (the message of every field
 that broke a rule), `padValidate.field(spec, value, values)` and `padValidate.form(form)`;
 `rules` is what `padValidateClient($rules)` exports in the page's PHP - the list
@@ -816,14 +816,14 @@ that broke a rule), `padValidate.field(spec, value, values)` and `padValidate.fo
 A form field that refills from what was posted and shows the error `padValidate` found for it.
 
 ```html
-{pad:input 'email', type='email', label='E-mail', required, placeholder='you@example.org'/}
-{pad:input 'terms', type='checkbox', label='I agree', value='yes'/}
+{input:field 'email', type='email', label='E-mail', required, placeholder='you@example.org'/}
+{input:field 'terms', type='checkbox', label='I agree', value='yes'/}
 ```
 
 **Items:** the field name first; `type=` (default `text`), `label=` (a `<label for>` before
 the field, after a checkbox or radio), `value=` (the value before anything was posted),
 `id=` (default: the name), `checked` (a checkbox's state before a post), `rules=` (its rules,
-checked before the page's PHP - see `{pad:form}`); every other item is an attribute of the field.
+checked before the page's PHP - see `{input:form}`); every other item is an attribute of the field.
 
 **Behavior:** After a post of its form the field shows the posted value, escaped - found
 where PHP files the name, so `user[email]` is `$_POST['user']['email']` and `first.name`
@@ -837,11 +837,11 @@ refused its file the same way.
 ---
 
 ### textarea
-`{pad:input}`'s refill, label and error for a text area.
+`{input:field}`'s refill, label and error for a text area.
 
 ```html
-{pad:textarea 'message', label='Message', rows=6, required/}
-{pad:textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
+{input:textarea 'message', label='Message', rows=6, required/}
+{input:textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
 ```
 
 ---
@@ -918,8 +918,8 @@ is FALSE and, under the strict check, an error.
 A "Log in with ..." link styled as a button, for the OAuth subsystem (`pad/subs/oauth/`).
 
 ```html
-{pad:oauth 'github'/}
-{pad:oauth 'oidc', href='?login/company', label='Log in with your company account'/}
+{widget:oauth 'github'/}
+{widget:oauth 'oidc', href='?login/company', label='Log in with your company account'/}
 ```
 
 **Parameters:** the provider, a file of `pad/subs/oauth/types/` - apple, bitbucket, discord, forgejo,
@@ -941,8 +941,8 @@ The notifications the database channel of `padNotify` kept for the user logged i
 newest first, each with a link that marks it read.
 
 ```html
-{pad:notifications/}
-{pad:notifications all}<li>{$title} - {$created}{pad:if $read} (read){/pad:if}</li>{/pad:notifications}
+{widget:notifications/}
+{widget:notifications all}<li>{$title} - {$created}{pad:if $read} (read){/pad:if}</li>{/widget:notifications}
 ```
 
 **Options:** `for` - the recipient, an id or an email, instead of the user logged in; `all` - the
@@ -1315,7 +1315,7 @@ type other than web, and in a request answered with a part of the page - a respo
 `_events/output.php` hook, which sees the page whole, it does nothing. The page's PHP runs before any of the template, so what
 a flush wins is the rendering below it. A `{pad:stack}` in the part that goes out early gets the
 pushes made before the flush only - a push below it cannot reach text the browser already has.
-A `{pad:toc}` lists the headings of the whole page, so a flush with one in the part it would send
+A `{widget:toc}` lists the headings of the whole page, so a flush with one in the part it would send
 sends nothing, nor does any flush after it: the toc goes with the rest of the page.
 
 ---
@@ -1355,15 +1355,15 @@ Take out the whitespace between HTML tags, and at both ends.
 Write Markdown as HTML.
 
 ```html
-{pad:markdown}
+{widget:markdown}
   ## Release notes for {$version}
   - **Faster** first render
   - see [the manual](?manual)
-{/pad:markdown}
+{/widget:markdown}
 
-{pad:markdown $post.body/}
-{pad:markdown html} ... {/pad:markdown}
-{pad:markdown ignore} ... code with braces ... {/pad:markdown}
+{widget:markdown $post.body/}
+{widget:markdown html} ... {/widget:markdown}
+{widget:markdown ignore} ... code with braces ... {/widget:markdown}
 ```
 
 **Behavior:** The content renders first - its fields and tags resolve - and the result is read
@@ -1692,7 +1692,7 @@ also provides `mini`, `week`, `day`, `agenda`, `quarter` and `year` views; see [
 | `holidays` | A country's public holidays marked - `'nl'`, or with its region `'de-by'` (see `{holidays:auto}`): the day's class gets `holiday` (`observance` for a day that is no day off) and its name stands under the number - the local name when the request's locale speaks the country's language; the pair form's days get `$holiday`, the name or `''` - only with `holidays`, so without it a page's own `$holiday` is read there |
 
 **Behavior:** as a single tag it answers a table - the month in its caption between links to
-the month before and after (keeping the other request values, as `{pad:pager}` does; none when the
+the month before and after (keeping the other request values, as `{widget:pager}` does; none when the
 first parameter fixes the month, unless it holds the month the request asked for - `{calendar:month $month}`), a column
 per weekday, a cell per day with its `<time>` and its events as a list; today has
 `aria-current="date"`. A small default look rides along under `:where()`, so the page's CSS
@@ -1705,7 +1705,7 @@ field of that name - `{level:events}` reaches it then.
 ---
 
 ### holidays
-The public holidays of a country, from the rules of its file in `pad/subs/holidays/types/`.
+The public holidays of a country, from the rules of its file in `pad/subs/calendars/holidays/types/`.
 
 ```html
 {holidays:auto 'nl', year=2026}{$date} {$name} ({$local}){/holidays:auto}
@@ -1738,10 +1738,10 @@ error under the strict check, and so is a year its file does not know. The helpe
 Source code coloured on the server (`lib/highlight.php`) - no JavaScript library.
 
 ```html
-{pad:highlight 'php', lines, mark='3, 5-7'}
+{widget:highlight 'php', lines, mark='3, 5-7'}
   <?php echo padArrSum ( $orders, 'total' ); ?>
-{/pad:highlight}
-{pad:highlight file='_data/products.json'/}
+{/widget:highlight}
+{widget:highlight file='_data/products.json'/}
 {pad:echo $query | highlight('sql')/}
 ```
 
@@ -1798,10 +1798,10 @@ The shadow root of a custom element, rendered on the server - declarative shadow
 
 ```html
 <pad-card>
-  {pad:shadow css='www:card.css'}
+  {widget:shadow css='www:card.css'}
     <header><slot name="title"></slot></header>
     <slot></slot>
-  {/pad:shadow}
+  {/widget:shadow}
   <h2 slot="title">{$title}</h2>
 </pad-card>
 ```
@@ -1818,20 +1818,20 @@ styles, slotted light DOM - before any script ran, and a module that defines the
 finds the root in `this.shadowRoot`. A shadow root takes no styles from the page, and a
 `<style>` written in a template would have its braces read as PAD tags: `css=` inlines the files
 instead, each read once a request, a `</style` in one written so it cannot end the element. The
-file rule of `{pad:source}` applies; a file that is not there or is no `.css` file, and a mode that
-is neither open nor closed, are errors. Inside the pair `{#name}` is `{pad:shadow}`'s own parameter -
+file rule of `{widget:source}` applies; a file that is not there or is no `.css` file, and a mode that
+is neither open nor closed, are errors. Inside the pair `{#name}` is `{widget:shadow}`'s own parameter -
 in a custom tag, `{pad:set $value = {#value}/}` before the pair carries the tag's into it.
 
 ---
 
 ### source
-The files behind a page as tabs, each coloured as `{pad:highlight}` colours it - the code shown
+The files behind a page as tabs, each coloured as `{widget:highlight}` colours it - the code shown
 is read from the files that run, so it never drifts from them.
 
 ```html
-{pad:source}                                          the page asked for: its template and PHP
-{pad:source 'examples/props', files='www:props.js'}   another page, then a file in www/<app>/
-{pad:source only='_tags/card.pad, www:card.js'}       those files alone
+{widget:source}                                          the page asked for: its template and PHP
+{widget:source 'examples/props', files='www:props.js'}   another page, then a file in www/<app>/
+{widget:source only='_tags/card.pad, www:card.js'}       those files alone
 ```
 
 | Option | Description |
@@ -1843,7 +1843,7 @@ is read from the files that run, so it never drifts from them.
 **Behavior:** a radio button and a label per file, then a panel per file: the tabs work by
 CSS alone, no script. A label carries `data-side="server"` for a file of the application and
 `"client"` for one under `www/` - what runs on the server, what the browser gets. The rule of
-`{pad:highlight file=}`: never a file outside the application or its `www/` directory, under
+`{widget:highlight file=}`: never a file outside the application or its `www/` directory, under
 `_config/` or a dotfile - such a file, one that is not there and a page that has neither a
 template nor PHP are errors. The default look - tabs, panels - is written once a page under
 `:where()`, so the page's CSS wins; style `.pad-source`, `.pad-source > label` and
@@ -1946,14 +1946,14 @@ selects the store (`'file'`, `'apcu'`, or `FALSE` to render every time);
 `padFragmentForget('top-products')` drops a section, `padFragmentForget()` all of them.
 PHP that runs before the template - the page's `.php` - runs on a hit too. What the section
 leaves for the rest of the page is kept with it and made again on a hit: its `{pad:push}`es, and
-the page booking of a paged tag in it, for a `{pad:pager}` further down. Otherwise a section keeps
+the page booking of a paged tag in it, for a `{widget:pager}` further down. Otherwise a section keeps
 its text, not its effects: what it sets, stores or defines - a `{pad:set}`, `{pad:increment}` or
 `{pad:decrement}`, a `{format:auto}`, `{pad:content}` or `{pad:bool}` store, a `{pad:define}` or `{pad:macro}`, the totals
 of a `callback=` - happens on the miss only, and on a hit the page goes on with the variables
 and stores this request has. Put such a tag before the section, or in a `{pad:nocache}` part, which
 renders every time. A request for one
 response fragment, or the post of a live region, renders the section and stores nothing. A
-rendering that holds the visitor's CSRF token (a `{pad:form}`, `{pad:csrf}`, a live region) or the
+rendering that holds the visitor's CSRF token (a `{input:form}`, `{pad:csrf}`, a live region) or the
 request's `{pad:nonce}` is not stored either: it renders every time. A `{pad:nocache}` part of the
 section renders on every hit.
 
@@ -1979,7 +1979,7 @@ a variable or store the cached text made before it is not there on a hit - the s
 its text, not its effects - so what a part reads is made before the section or in the part.
 A page-cache hit runs no PHP - not the page's, nor an `_inits.php` - so there a part sees what a
 request has without it: request and session values, the configuration, the `_lib` functions and
-the application's tags. The CSRF token of a `{pad:form}` or the `{pad:nonce}` in a part no longer keeps
+the application's tags. The CSRF token of a `{input:form}` or the `{pad:nonce}` in a part no longer keeps
 a section out of the fragment cache - the part renders for each visitor. A page-cache entry with parts is never answered with a 304 from the entry alone, nor
 does a hit renew it. `{pad:nocache}` takes no parameter.
 
@@ -2002,7 +2002,7 @@ form closes at the first `#}` or `--}` after it.
 Render a mount point `<div>` for a React component, filled with data from a provider.
 
 ```html
-{pad:reactData id='products', provider='products'/}
+{widget:reactData id='products', provider='products'/}
 ```
 
 **Parameters:**
@@ -2022,7 +2022,7 @@ Tags that draw, format and interact - the showcase application has an example of
 ---
 
 ### avatar:initials
-An initials avatar as inline SVG - drawn on the server (`subs/avatars/_lib/avatar.php`), no image, no
+An initials avatar as inline SVG - drawn on the server (`subs/images/avatars/_lib/avatar.php`), no image, no
 remote service: the same name is the same picture on every page and in every e-mail.
 
 ```html
@@ -2052,7 +2052,7 @@ No name, or another shape, is an error under the strict check.
 
 ### avatar:identicon
 A GitHub-style identicon as inline SVG - a symmetric 5 by 5 pattern and a colour from a SHA-256
-hash of the value (`subs/avatars/_lib/identicon.php`): every account its own picture, nothing sent anywhere.
+hash of the value (`subs/images/avatars/_lib/identicon.php`): every account its own picture, nothing sent anywhere.
 
 ```html
 {avatar:identicon $email/}
@@ -2198,7 +2198,7 @@ error under the strict check, naming the icons close to it (`did you mean arrow-
 ---
 
 ### avatar:gravatar
-The Gravatar picture of an e-mail address as an `<img>` (`subs/avatars/_lib/gravatar.php`) - only the
+The Gravatar picture of an e-mail address as an `<img>` (`subs/images/avatars/_lib/gravatar.php`) - only the
 SHA-256 hash of the address leaves the page - or, with `fallback`, a local SVG drawn on the
 server and no request to a third party at all.
 
@@ -2385,9 +2385,9 @@ down, on the smallest grid; a word that fits nowhere is left out and named under
 Subsystem syntax: `{toy:kind ...}`.
 A small live simulation or visual toy played in the browser: the server checks the options it is
 given and writes its frame, the toy's script - once per page, with the CSP nonce - runs it. Every
-toy is a file of `pad/subs/toys/types/`, its `.js` (and a `.css` when it needs one) in
+toy is a file of `pad/subs/games/toys/types/`, its `.js` (and a `.css` when it needs one) in
 `www/assets/toys/`, and the files of `types/` are the toys there are (`padToyTypes()`); the
-subsystem is `pad/subs/toys/`.
+subsystem is `pad/subs/games/toys/`.
 
 ```html
 {toy:life pattern='gun', wrap/}
@@ -2620,12 +2620,12 @@ once per page. A missing second text is an error under the strict check.
 
 ### excerpt
 A long text cut to whole words with an ellipsis, centred on the first match of the search
-words when given, every match in a `<mark>` (`tags/_lib/excerpt.php`).
+words when given, every match in a `<mark>` (`subs/widgets/_lib/excerpt.php`).
 
 ```html
-{pad:excerpt $post, words=40/}
-{data:results}<p>{pad:excerpt $body, words=24, highlight=$q/}</p>{/data:results}
-{pad:excerpt $page.html, words=30, html/}
+{widget:excerpt $post, words=40/}
+{data:results}<p>{widget:excerpt $body, words=24, highlight=$q/}</p>{/data:results}
+{widget:excerpt $page.html, words=30, html/}
 ```
 
 **Parameters:**
@@ -2650,12 +2650,12 @@ the strict check.
 
 ### lorem
 Placeholder text: "Lorem ipsum dolor sit amet, ..." and then Latin words, the same text on
-every request for the same seed (`tags/_lib/lorem.php`).
+every request for the same seed (`subs/widgets/_lib/lorem.php`).
 
 ```html
-<h2>{pad:lorem words=4/}</h2>
-<p>{pad:lorem sentences=2/}</p>
-{pad:lorem paragraphs=3, seed=7, varied/}
+<h2>{widget:lorem words=4/}</h2>
+<p>{widget:lorem sentences=2/}</p>
+{widget:lorem paragraphs=3, seed=7, varied/}
 ```
 
 **Parameters:**
@@ -2671,7 +2671,7 @@ every request for the same seed (`tags/_lib/lorem.php`).
 **Behavior:** the words are picked from a Latin word list by the seeded sequence of
 `lib/fake.php` (`padFakeSeed`), the same on every machine; the sequence's state is put back
 afterwards, so a page that seeds `padFake*` for its own data gets the same values with or
-without a `{pad:lorem}`. A comma now and then, never in the opening. A length that is no number
+without a `{widget:lorem}`. A comma now and then, never in the opening. A length that is no number
 from 1 to 10000, or `words` beside `sentences` or `paragraphs`, is an error under the strict
 check.
 
@@ -2713,7 +2713,7 @@ miss, so its `@else@` shows. An email or a username in a row with a name is that
 Without `seed=` the `{fake:rows}` tags of a request share a sequence of their own from one seed:
 the page shows the same values on every request (a date relative to now moves with the day).
 The page's own sequence - its `padFakeSeed` and what it made - is put back afterwards, as
-`{pad:lorem}` puts it back. The kinds are the files of `pad/subs/fakes/types/`, each a few lines that
+`{widget:lorem}` puts it back. The kinds are the files of `pad/subs/fakes/types/`, each a few lines that
 answer the value and read their options with `padFakeOpt`; a kind is added by adding its file.
 A kind there is none of, a field that is no plain name, `rows` that are no number from 0 to
 10000 and an option no kind of the tag reads are errors; `{fake:zebra/}` is "there is no fake
@@ -2734,17 +2734,17 @@ script in `www/assets/widgets/`, and the files of `types/` are the widgets there
 (`padWidgetTypes()`); the subsystem is `pad/subs/widgets/`.
 
 ```html
-{widget:tabs active=2}{pad:tab 'Overview'}...{/pad:tab}{pad:tab 'Specs'}...{/pad:tab}{/widget:tabs}
+{widget:tabs active=2}{widget:tab 'Overview'}...{/widget:tab}{widget:tab 'Specs'}...{/widget:tab}{/widget:tabs}
 {widget:modal 'terms', title='Terms of sale'}...{/widget:modal}
 {widget:modal 'terms', title='Terms of sale'}...{/widget:modal}
 {widget:modal 'terms', title='Terms of sale'}...{/widget:modal}
 ```
 
-Select a widget with its qualified name, such as `{widget:modal 'terms'}`. Its first parameter is the widget's value. `{widget:copy}` selects the copy widget; `{pad:tab}`, the item of the widgets that take a list of labelled parts, is a built-in tag.
+Select a widget with its qualified name, such as `{widget:modal 'terms'}`. Its first parameter is the widget's value. `{widget:copy}` selects the copy widget; `{widget:tab}`, the item of the widgets that take a list of labelled parts, is a built-in tag.
 
 | Widget | What it is | Its options |
 |--------|------------|-------------|
-| `accordion` | Every `{pad:tab}` a `<details>`, opened and closed by the browser | `single`, `open` |
+| `accordion` | Every `{widget:tab}` a `<details>`, opened and closed by the browser | `single`, `open` |
 | `breadcrumb` | Where the page stands - links from home to the page, from its path, its lines or data | `home`, `label`, `data` |
 | `carousel` | Slides that scroll and snap sideways, previous/next and dot links | `label` |
 | `commandpalette` | A search over the commands of an application - a button and Ctrl+K open a dialog, typing narrows the list, Enter runs one | the button's text, `data`, `key`, `placeholder`, `empty` |
@@ -2752,15 +2752,15 @@ Select a widget with its qualified name, such as `{widget:modal 'terms'}`. Its f
 | `copy` | A text with a copy-to-clipboard button | the text, `label` |
 | `drawer` | A panel that slides in from a side of the window, with the button that opens it | the name, `title`, `button`, `side` |
 | `dropdown` | A button and the menu it opens - the popover attribute, anchored under it | the button's text, `align` |
-| `lightbox` | Every `{pad:tab}` a thumbnail that opens its picture large over the page, `:target` | `label` |
+| `lightbox` | Every `{widget:tab}` a thumbnail that opens its picture large over the page, `:target` | `label` |
 | `modal` | A `<dialog>` and the button that opens it | the name, `title`, `button` |
 | `poll` | A vote once per visitor, the results as bars | the name, `options`, `title`, `button`, `results` |
-| `sortable` | A short list put in order by hand - every `{pad:tab}` an item, dragged, moved by buttons or the keyboard, its place posted with the form | the name, `label` |
-| `splitpane` | Two `{pad:tab}` panes and the bar between them, dragged or moved by the arrow keys; the browser's resize grip without scripting | `size`, `min`, `max`, `stacked`, `collapse`, `height` |
+| `sortable` | A short list put in order by hand - every `{widget:tab}` an item, dragged, moved by buttons or the keyboard, its place posted with the form | the name, `label` |
+| `splitpane` | Two `{widget:tab}` panes and the bar between them, dragged or moved by the arrow keys; the browser's resize grip without scripting | `size`, `min`, `max`, `stacked`, `collapse`, `height` |
 | `tabs` | Panels behind a row of tabs - radio buttons and CSS | `active` |
 | `toast` | A notice the visitor dismisses, in the flow or in a corner of the window | the title, `tone`, `place`, `timeout` |
 | `tooltip` | A short tip while the pointer or the focus is on its trigger - CSS alone | the tip, `place` |
-| `wizard` | Every `{pad:tab}` a step, one shown at a time, the steps numbered above, Back and Next under each | `active`, `next`, `back`, `label` |
+| `wizard` | Every `{widget:tab}` a step, one shown at a time, the steps numbered above, Back and Next under each | `active`, `next`, `back`, `label` |
 
 **Every widget:** its markup is built on the server; a script, where it has one, is written once
 per page with the CSP nonce and only makes it smoother. The colours are custom properties on
@@ -2771,17 +2771,17 @@ written once per page. A name that is no widget is an error, "there is no widget
 
 ### tabs
 Panels behind a row of tabs, without JavaScript - a radio button and a label per tab, the CSS
-showing the panel of the checked one (`subs/widgets/_lib/tabs.php`). The items are `{pad:tab}` pairs,
+showing the panel of the checked one (`subs/widgets/_lib/tabs.php`). The items are `{widget:tab}` pairs,
 which `{widget:accordion}`, `{widget:carousel}`, `{widget:wizard}`, `{widget:lightbox}`, `{widget:splitpane}` and `{widget:sortable}` take
-as well - `{pad:tab}` is a built-in tag.
+as well - `{widget:tab}` is a built-in tag.
 
 ```html
 {widget:tabs active='Specs'}
-  {pad:tab 'Overview'}<p>A 1.7 litre kettle ...</p>{/pad:tab}
-  {pad:tab 'Specs'}<table>...</table>{/pad:tab}
+  {widget:tab 'Overview'}<p>A 1.7 litre kettle ...</p>{/widget:tab}
+  {widget:tab 'Specs'}<table>...</table>{/widget:tab}
 {/widget:tabs}
 
-{widget:tabs}{data:plans}{pad:tab $name}<p>{$price}</p>{/pad:tab}{/data:plans}{/widget:tabs}
+{widget:tabs}{data:plans}{widget:tab $name}<p>{$price}</p>{/widget:tab}{/data:plans}{/widget:tabs}
 ```
 
 **Parameters:**
@@ -2789,29 +2789,29 @@ as well - `{pad:tab}` is a built-in tag.
 | Option | Description |
 |--------|-------------|
 | `active` | The tab shown first - its number from 1, or its label; the first one when not given |
-| `{pad:tab 'label'}` | One tab: the first parameter is its label, the content its panel |
+| `{widget:tab 'label'}` | One tab: the first parameter is its label, the content its panel |
 
-**Behavior:** a `{pad:tab}` renders its content and hands it to the nearest `{widget:tabs}`,
+**Behavior:** a `{widget:tab}` renders its content and hands it to the nearest `{widget:tabs}`,
 `{widget:accordion}`, `{widget:carousel}`, `{widget:wizard}`, `{widget:lightbox}`, `{widget:splitpane}` or `{widget:sortable}` below it instead of printing it - it
 may stand in an `{pad:if}` or in a loop that makes a tab per row. The set is a radio group: one stop in the tab order, the
 arrow keys move between the tabs, a screen reader hears the label and 'checked'; each panel is
 a `region` named by its tab. No fragment goes into the address, so two sets on a page keep
 their choices; printed, every panel shows. The ids are made from the labels, the same on every
 request. The colours are `--pad-tabs-accent`, `-text`, `-muted` and `-line` on `.pad-tabs`,
-`light-dark()` defaults, written once per page. A `{pad:tab}` outside an owner, a tab without a
+`light-dark()` defaults, written once per page. A `{widget:tab}` outside an owner, a tab without a
 label, text between the tabs, a set without a tab and an `active=` naming no tab are errors
 under the strict check.
 
 ---
 
 ### accordion
-Items that open and close on a click, without JavaScript - every `{pad:tab}` a `<details>` with its
+Items that open and close on a click, without JavaScript - every `{widget:tab}` a `<details>` with its
 label as the `<summary>` (`subs/widgets/_lib/accordion.php`).
 
 ```html
 {widget:accordion single, open=1}
-  {pad:tab 'Can I return it?'}<p>Within 30 days ...</p>{/pad:tab}
-  {pad:tab 'Is there a warranty?'}<p>Two years ...</p>{/pad:tab}
+  {widget:tab 'Can I return it?'}<p>Within 30 days ...</p>{/widget:tab}
+  {widget:tab 'Is there a warranty?'}<p>Two years ...</p>{/widget:tab}
 {/widget:accordion}
 ```
 
@@ -2822,7 +2822,7 @@ label as the `<summary>` (`subs/widgets/_lib/accordion.php`).
 | `single` | One item open at a time: the items share a `name` - the exclusive accordion of HTML |
 | `open` | The item open at first - its number from 1 or its label; `open` alone opens every item |
 
-**Behavior:** the `{pad:tab}` items are collected as `{widget:tabs}` collects them, so they may come from
+**Behavior:** the `{widget:tab}` items are collected as `{widget:tabs}` collects them, so they may come from
 a loop. The browser opens and closes an item, from the keyboard too, a screen reader hears
 'collapsed' or 'expanded', and a find in the page opens the item it finds in. The colours are
 `--pad-accordion-accent`, `-text`, `-muted`, `-line` and `-hover` on `.pad-accordion`,
@@ -2870,8 +2870,8 @@ on each slide and a dot per slide below - links to the slides' ids, so no JavaSc
 
 ```html
 {widget:carousel label='Landscapes'}
-  {pad:tab 'Sunrise over the hills'}<svg viewBox="0 0 800 400" role="img" aria-label="...">...</svg>{/pad:tab}
-  {pad:tab 'The open sea'}<img src="sea.jpg" alt="Waves under a pale sky">{/pad:tab}
+  {widget:tab 'Sunrise over the hills'}<svg viewBox="0 0 800 400" role="img" aria-label="...">...</svg>{/widget:tab}
+  {widget:tab 'The open sea'}<img src="sea.jpg" alt="Waves under a pale sky">{/widget:tab}
 {/widget:carousel}
 ```
 
@@ -2880,7 +2880,7 @@ on each slide and a dot per slide below - links to the slides' ids, so no JavaSc
 | Option | Description |
 |--------|-------------|
 | `label` | The carousel's name for a screen reader, default `Carousel` |
-| `{pad:tab 'caption'}` | One slide; its label, optional, is the caption under it |
+| `{widget:tab 'caption'}` | One slide; its label, optional, is the caption under it |
 
 **Behavior:** the markup follows the WAI-ARIA carousel pattern - a region with
 `aria-roledescription="carousel"`, every slide a group saying 'slide 2 of 4' with its caption -
@@ -2961,7 +2961,7 @@ answers is one under the strict check.
 A notice the visitor dismisses - a `<dialog>` shown from the start, not modal, with its title,
 its text and a close button whose invoker command (`commandfor`, `command="close"`) has the
 browser close it, the toast's script where the browser has none - no form of its own, so a
-toast stands inside a `{pad:form}` as well, its fields staying in the form (`subs/widgets/_lib/toast.php`).
+toast stands inside a `{input:form}` as well, its fields staying in the form (`subs/widgets/_lib/toast.php`).
 
 ```html
 {widget:toast 'Saved', tone='success'}Your changes are kept.{/widget:toast}
@@ -3063,18 +3063,18 @@ the strict check.
 ---
 
 ### wizard
-A form or a story in steps, one shown at a time - every `{pad:tab}` a step, the steps numbered in a
+A form or a story in steps, one shown at a time - every `{widget:tab}` a step, the steps numbered in a
 row above, the ones done and the current one marked, and a Back and a Next under each; radio
 buttons and CSS, as `{widget:tabs}` is, so no script is needed (`subs/widgets/_lib/wizard.php`).
 
 ```html
-{pad:form 'order'}
+{input:form 'order'}
   {widget:wizard label='Your order'}
-    {pad:tab 'Address'}{pad:input 'street', label='Street'/}{/pad:tab}
-    {pad:tab 'Delivery'}{pad:input 'day', type='date', label='Day'/}{/pad:tab}
-    {pad:tab 'Payment'}<p>Pay by card or by bank.</p><button>Order</button>{/pad:tab}
+    {widget:tab 'Address'}{input:field 'street', label='Street'/}{/widget:tab}
+    {widget:tab 'Delivery'}{input:field 'day', type='date', label='Day'/}{/widget:tab}
+    {widget:tab 'Payment'}<p>Pay by card or by bank.</p><button>Order</button>{/widget:tab}
   {/widget:wizard}
-{/pad:form}
+{/input:form}
 ```
 
 **Parameters:**
@@ -3084,7 +3084,7 @@ buttons and CSS, as `{widget:tabs}` is, so no script is needed (`subs/widgets/_l
 | `active` | The step shown first - its number from 1, or its label; the first one when not given |
 | `next`, `back` | The texts of the two buttons, `Next` and `Back` |
 | `label` | The wizard's name for a screen reader, default `Steps` |
-| `{pad:tab 'label'}` | One step: its name in the row, the content its panel |
+| `{widget:tab 'label'}` | One step: its name in the row, the content its panel |
 
 **Behavior:** the steps are one radio group - one stop in the tab order, the arrow keys move
 between them, a screen reader hears 'Payment, step 3 of 3' - and each panel is a region named
@@ -3101,14 +3101,14 @@ steps, a wizard without a step and an `active=` naming none are errors under the
 ---
 
 ### lightbox
-A gallery whose pictures open large over the page - every `{pad:tab}` a thumbnail in a grid, a link
+A gallery whose pictures open large over the page - every `{widget:tab}` a thumbnail in a grid, a link
 to a view of the picture that the CSS shows over the whole window when the address names it
 (`:target`), so no script is needed (`subs/widgets/_lib/lightbox.php`).
 
 ```html
 {widget:lightbox label='The harbour'}
-  {pad:tab 'At dawn'}<img src="harbour/dawn.jpg" alt="Boats in the morning mist">{/pad:tab}
-  {pad:tab 'At noon'}<img src="harbour/noon.jpg" alt="The quay in bright sun">{/pad:tab}
+  {widget:tab 'At dawn'}<img src="harbour/dawn.jpg" alt="Boats in the morning mist">{/widget:tab}
+  {widget:tab 'At noon'}<img src="harbour/noon.jpg" alt="The quay in bright sun">{/widget:tab}
 {/widget:lightbox}
 ```
 
@@ -3117,7 +3117,7 @@ to a view of the picture that the CSS shows over the whole window when the addre
 | Option | Description |
 |--------|-------------|
 | `label` | The gallery's name for a screen reader, default `Gallery` |
-| `{pad:tab 'caption'}` | One picture - an `<img>` or an `<svg>`, shown small and large; its label, optional, is the caption |
+| `{widget:tab 'caption'}` | One picture - an `<img>` or an `<svg>`, shown small and large; its label, optional, is the caption |
 
 **Behavior:** a view holds the picture as large as the window allows, its caption with
 'n / count', a link to the picture before and after it (the first's before is the last) and a
@@ -3139,7 +3139,7 @@ button that opens it, opened the way `{widget:modal}` opens its dialog (`subs/wi
 
 ```html
 {widget:drawer 'filters', title='Filters', button='Show filters', side='left'}
-  {pad:form 'filter'}...{/pad:form}
+  {input:form 'filter'}...{/input:form}
 {/widget:drawer}
 ```
 
@@ -3207,25 +3207,25 @@ window splitter pattern: an editor beside its preview, a list beside the item it
 
 ```html
 {widget:splitpane size=30, min=20, max=60, collapse}
-  {pad:tab 'Folders'}<ul>...</ul>{/pad:tab}
-  {pad:tab 'Message'}<p>...</p>{/pad:tab}
+  {widget:tab 'Folders'}<ul>...</ul>{/widget:tab}
+  {widget:tab 'Message'}<p>...</p>{/widget:tab}
 {/widget:splitpane}
 
-{widget:splitpane stacked, height='60vh'}{pad:tab 'Source'}...{/pad:tab}{pad:tab 'Preview'}...{/pad:tab}{/widget:splitpane}
+{widget:splitpane stacked, height='60vh'}{widget:tab 'Source'}...{/widget:tab}{widget:tab 'Preview'}...{/widget:tab}{/widget:splitpane}
 ```
 
 **Parameters:**
 
 | Option | Description |
 |--------|-------------|
-| `{pad:tab 'label'}` | A pane - exactly two; the first is the one the bar sizes, the label names each pane and the bar |
+| `{widget:tab 'label'}` | A pane - exactly two; the first is the one the bar sizes, the label names each pane and the bar |
 | `size` | The first pane's share in percent, a whole number - `50` when not given |
 | `min`, `max` | The smallest and the largest share of the first pane, in percent - `10` and `90` |
 | `stacked` | Bare option: the panes one above the other, the bar between them across |
 | `collapse` | Bare option: Enter on the bar or a double click folds the first pane away and back |
 | `height` | The height of the panes, a CSS length - `300px`, `24rem`, `60vh`; `20rem` stacked, the content's height side by side when not given |
 
-**Behavior:** the `{pad:tab}` items are collected as `{widget:tabs}` collects them. Each pane is a region
+**Behavior:** the `{widget:tab}` items are collected as `{widget:tabs}` collects them. Each pane is a region
 named by its label; the bar is a `separator` that controls the first pane, named by its label,
 its value the first pane's share - a screen reader says 'Folders, separator, 30'. The bar takes
 the focus: the arrow keys move it by 5 (Shift by 10) - left and right side by side, turned round
@@ -3241,7 +3241,7 @@ written in a `<style>` of the one splitpane with the nonce, no style attribute. 
 panes stand one above the other. The colours are `--pad-splitpane-accent`, `-text`, `-muted`,
 `-line` and `-surface` on `.pad-splitpane`, taken from the page's palette (`--accent`,
 `--text` ...) where it has one, so every theme colours it, with `light-dark()` defaults. A
-splitpane without two `{pad:tab}`s, a share that is no whole percentage, a `size` outside `min`
+splitpane without two `{widget:tab}`s, a share that is no whole percentage, a `size` outside `min`
 and `max` and a `height` that is no length are errors under the strict check; the lenient walk
 puts what came after the second tab into the second pane.
 
@@ -3350,17 +3350,17 @@ commands and a `key` outside the letters above are errors under the strict check
 
 ### sortable
 A short list put in order by hand - a to-do list ranked, the tracks of a playlist, the steps of
-a recipe - its order posted with the form it stands in: every `{pad:tab}` an item, its parameter the
+a recipe - its order posted with the form it stands in: every `{widget:tab}` an item, its parameter the
 key the item is posted under, its content what the item shows
 (`subs/widgets/_lib/sortable.php`).
 
 ```html
-{pad:form 'ranking'}
+{input:form 'ranking'}
   {widget:sortable 'priority', label='The tasks, most urgent first'}
-    {array:tasks}{pad:tab $id}{$title}{/pad:tab}{/array:tasks}
+    {array:tasks}{widget:tab $id}{$title}{/widget:tab}{/array:tasks}
   {/widget:sortable}
   <button>Save the order</button>
-{/pad:form}
+{/input:form}
 ```
 
 ```php
@@ -3377,7 +3377,7 @@ if ( padPosted ( 'ranking' ) ) {
 |--------|-------------|
 | first parameter | The name the items are posted under - letters, digits, `_` and `-`: `priority[a1]=1`, `priority[b7]=2` |
 | `label` | The name of the list for a screen reader - the name made readable when not given (`Priority`) |
-| `{pad:tab 'key'}` | An item: its key - letters, digits, `_`, `-`, `.` and `:`, never twice - and its content |
+| `{widget:tab 'key'}` | An item: its key - letters, digits, `_`, `-`, `.` and `:`, never twice - and its content |
 
 **Behavior:** every item is posted with its place under its key, from 1, the same with a script
 and without one. Without scripting each item shows a number field, its place, which the visitor
@@ -3403,7 +3403,7 @@ number field whose place changed sends `change`. Printed, the controls go. The c
 taken from the page's palette where it has one, with `light-dark()` defaults. A sortable with no
 item - the loop that makes them found no row - is no list and no error: it shows what its
 content rendered, nothing or the loop's `@else@` -
-`{array:tasks}{pad:tab $id}{$title}{/pad:tab}@else@<p>Nothing to sort</p>{/array:tasks}`. A sortable without
+`{array:tasks}{widget:tab $id}{$title}{/widget:tab}@else@<p>Nothing to sort</p>{/array:tasks}`. A sortable without
 a valid name, an item without a key or with one that is no key, and two items of one key are
 errors under the strict check; the lenient walk shows the items as they are, without the list.
 
@@ -3429,10 +3429,10 @@ sends it like any asset.
 | `format` | `jpeg`, `png` or `webp` - default the source's, a GIF becoming a PNG |
 | `quality` | 1 to 100 for JPEG and WebP, default 80 |
 | `alt` | Required - the text for whoever cannot see the picture; `alt=''` marks it as decoration |
-| `filter` | A comma list of filters of `pad/subs/filters/types/`, applied in the order written - see below |
+| `filter` | A comma list of filters of `pad/subs/images/filters/types/`, applied in the order written - see below |
 | `colors`, `levels`, `cell`, `radius`, `amount`, `columns`, `chars`, `components`, `threshold`, `cutoff` | The options of the filters, each read by the filters that take it |
 
-**Filters:** `filter=` runs the picture through the filter subsystem (`pad/subs/filters/`), the
+**Filters:** `filter=` runs the picture through the filter subsystem (`pad/subs/images/filters/`), the
 files of its `types/` the filters there are, written in the order they apply:
 
 ```html
@@ -3523,8 +3523,8 @@ written instead. The colour behind a picture still loading is `--pad-img-placeho
 ### pattern
 Subsystem syntax: `{pattern:kind ...}`.
 A seeded SVG background or piece of generative art, drawn on the server: every pattern is a
-file of `pad/subs/patterns/types/`, and the files there are the patterns there are
-(`padPatternKinds()`); the subsystem is `pad/subs/patterns/`.
+file of `pad/subs/images/patterns/types/`, and the files there are the patterns there are
+(`padPatternKinds()`); the subsystem is `pad/subs/images/patterns/`.
 
 ```html
 {pattern:topography seed=7, width=960, height=320/}
@@ -3597,9 +3597,9 @@ those the youtube and vimeo providers of the embed subsystem read; [`{embed:auto
 general form, of more sites and without the site's thumbnail.
 
 ```html
-{pad:video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'/}
-{pad:video 'https://vimeo.com/76979871#t=12s', title='The new Vimeo player', poster='photos/still.jpg'/}
-{pad:video 'clips/sunrise.webm', title='Sunrise', poster='photos/sunrise.jpg'/}
+{widget:video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'/}
+{widget:video 'https://vimeo.com/76979871#t=12s', title='The new Vimeo player', poster='photos/still.jpg'/}
+{widget:video 'clips/sunrise.webm', title='Sunrise', poster='photos/sunrise.jpg'/}
 ```
 
 **Parameters:**
@@ -4018,7 +4018,7 @@ outlying areas, Bonaire, Saba and Sint Eustatius - is named as one it does not s
 ---
 
 ### timeline:*
-Events on a time axis as inline SVG (`subs/timelines/_lib/timeline.php`) - cards above and below the axis,
+Events on a time axis as inline SVG (`subs/charts/timelines/_lib/timeline.php`) - cards above and below the axis,
 spans as bars, or one under the other for a long list.
 
 ```html
@@ -4054,7 +4054,7 @@ the axis, their label inside or beside. The colours are the chart's categorical 
 timeline without events answers nothing and its `@else@` shows; rows of which none has a
 date are an error under the strict check.
 
-`timeline:roadmap` groups events by `period='month|quarter|year'` (default quarter), with `lane=` subgroups and `milestone=` badges. Spans appear in their starting period with their full date range. `timeline:swimlane` draws named lanes on one shared time axis, with bars and milestone diamonds. Both use the same event fields; point events are milestones by default. See `pad/subs/timelines/README.md`.
+`timeline:roadmap` groups events by `period='month|quarter|year'` (default quarter), with `lane=` subgroups and `milestone=` badges. Spans appear in their starting period with their full date range. `timeline:swimlane` draws named lanes on one shared time axis, with bars and milestone diamonds. Both use the same event fields; point events are milestones by default. See `pad/subs/charts/timelines/README.md`.
 
 ---
 
@@ -4083,7 +4083,7 @@ sort and page links that page, all on the server.
 | `format` | A pipe per column, `column:pipe` - `total:money, date:date('j M Y')` - run as `{pad:echo $value \| pipe/}` |
 | `totals` | Columns summed - over every row, not only the page shown - in a totals row with Total in its first cell |
 | `sortable` | Each header a link that sorts on the server: `?sort=total&dir=desc` on the same page |
-| `rows` | Rows per page, with page links below (`?page=2`) made from the `{pad:pager}`'s items |
+| `rows` | Rows per page, with page links below (`?page=2`) made from the `{widget:pager}`'s items |
 | `query` | A prefix for the three request names - `query='o_'` reads `o_sort`, `o_dir`, `o_page` - for two tables on one page |
 | `striped` | Every other row shaded |
 | `caption` | The table's `<caption>` |
@@ -4104,8 +4104,8 @@ the columns and `rows` below 1 are strict errors.
 
 ### spreadsheet
 A grid of cells whose formulas are computed on the server, as an accessible table
-(`subs/formulas/spreadsheet.php`) - the formula language is spreadsheet syntax with a parser of
-its own, its functions the files of `pad/subs/formulas/types/` (SUM, IF, VLOOKUP, PMT ... 126 of
+(`subs/tables/formulas/spreadsheet.php`) - the formula language is spreadsheet syntax with a parser of
+its own, its functions the files of `pad/subs/tables/formulas/types/` (SUM, IF, VLOOKUP, PMT ... 126 of
 them), answering what Excel answers. See [Spreadsheets](../FEATURES.md#spreadsheets).
 
 ```html
@@ -4140,7 +4140,7 @@ formula as its first cell (DATE, EOMONTH a date), else General. Numbers stand ri
 marked (`class="err"`) and explained in their title; a formula's cell carries it in `title` and
 `data-formula`, its number in `data-value`. A circle of references answers `#REF!` in every cell
 of it, the title naming the circle (`A1 → B1 → A1`). `editable` cells are `<input>`s labelled by
-the cell and the texts heading its row and column: in a `{pad:form}` they post with it, in a `{pad:live}`
+the cell and the texts heading its row and column: in a `{input:form}` they post with it, in a `{pad:live}`
 region the sheet is a form (`pad-submit`) a change submits - every cell's text once - and the
 region comes back computed, elsewhere the sheet is a form of its own with a Recalculate button; a post
 types into the cells named only, a formula too, 1000 characters at most. Colours are
@@ -4154,12 +4154,12 @@ Without the check, and for a posted formula, the cell shows `#ERROR!`, `#NAME?`,
 ---
 
 ### toc
-A table of contents of the page from its own rendered headings (`tags/_lib/toc.php`), nested and linked,
-written where `{pad:toc}` stands once the whole page has rendered - the headings below it included.
+A table of contents of the page from its own rendered headings (`subs/widgets/_lib/toc.php`), nested and linked,
+written where `{widget:toc}` stands once the whole page has rendered - the headings below it included.
 
 ```html
-{pad:toc/}
-{pad:toc levels='2-4', title='On this page', list='ul'/}
+{widget:toc/}
+{widget:toc levels='2-4', title='On this page', list='ul'/}
 ```
 
 **Parameters:**
@@ -4172,7 +4172,7 @@ written where `{pad:toc}` stands once the whole page has rendered - the headings
 
 **Behavior:** the tag prints a marker, as `{pad:stack}` does, and the marker is replaced once the page
 has rendered - from `exits/exits.php` for the request's page, and when a `{pad:page}` pass ends for a
-page it renders, so a `{pad:toc}` lists the headings of the page that holds it. A heading without an
+page it renders, so a `{widget:toc}` lists the headings of the page that holds it. A heading without an
 id gets one - the slug of its text, `-2`, `-3` behind a repeat, never an id the page has - and a
 heading with an id keeps it. One level deeper nests one list deeper, never more than one step in.
 The nav is labelled by its title, a paragraph rather than a heading, so it lists itself nowhere.
@@ -4182,7 +4182,7 @@ No heading of those levels writes nothing. Colours are `--pad-toc-*` custom prop
 ---
 
 ### time:countdown
-The time left until a moment, in words, inside a `<time datetime>` (`subs/times/_lib/countdown.php`) -
+The time left until a moment, in words, inside a `<time datetime>` (`subs/calendars/times/_lib/countdown.php`) -
 optionally ticking every second in the browser.
 
 ```html
@@ -4211,7 +4211,7 @@ moment in milliseconds; the script counts the same way and carries this request'
 
 ### time:relative
 How long ago a moment was, in words, inside a `<time>` with the moment as its `datetime` and, in
-full, as its `title` (`subs/times/_lib/timeago.php`) - the `ago` pipe's words with the semantic element.
+full, as its `title` (`subs/calendars/times/_lib/timeago.php`) - the `ago` pipe's words with the semantic element.
 
 ```html
 {time:relative $created/}        <!-- <time datetime="2026-10-08T09:10:00+02:00" title="Thursday 8 October 2026, 09:10">5 minutes ago</time> -->
@@ -4233,12 +4233,12 @@ nothing; a moment that is no date is a strict error.
 ---
 
 ### emoji
-An emoji by its GitHub or Slack shortcode, as a labelled image (`tags/_lib/emoji.php`); the `emoji` pipe
+An emoji by its GitHub or Slack shortcode, as a labelled image (`subs/images/_lib/emoji.php`); the `emoji` pipe
 replaces the shortcodes in a text.
 
 ```html
-{pad:emoji 'rocket'/}                   <!-- <span class="pad-emoji" role="img" aria-label="rocket">🚀</span> -->
-{pad:emoji ':tada:', label='Party!'/}
+{image:emoji 'rocket'/}                   <!-- <span class="pad-emoji" role="img" aria-label="rocket">🚀</span> -->
+{image:emoji ':tada:', label='Party!'/}
 {$comment | emoji}                 <!-- 'Shipped :rocket:' becomes 'Shipped 🚀' -->
 ```
 
@@ -4258,12 +4258,12 @@ strict error that names the nearest one (`did you mean ':rocket:'?`).
 ---
 
 ### country
-A country's flag from its ISO 3166-1 code, optionally with its English name (`tags/_lib/country.php`).
+A country's flag from its ISO 3166-1 code, optionally with its English name (`subs/images/_lib/country.php`).
 
 ```html
-{pad:country 'NL'/}             <!-- <span class="pad-country" role="img" aria-label="Netherlands">🇳🇱</span> -->
-{pad:country 'NLD', name/}      <!-- the flag and Netherlands beside it -->
-{pad:country $code, name/}
+{image:country 'NL'/}             <!-- <span class="pad-country" role="img" aria-label="Netherlands">🇳🇱</span> -->
+{image:country 'NLD', name/}      <!-- the flag and Netherlands beside it -->
+{image:country $code, name/}
 ```
 
 **Parameters:**
@@ -4317,9 +4317,9 @@ A block of a landing page - a hero, the features, the prices, what customers say
 call to action, the numbers, the steps, the team, the logos, a newsletter form, the contact details,
 a gallery, the footer, a comparison table, a changelog, the downloads, an agenda, the latest
 articles or highlights beside their pictures - in HTML and CSS alone. Every section is a file of
-`pad/subs/sections/types/`, its style in `www/assets/sections/` (`section.css`, shared, and a sheet
+`pad/subs/widgets/sections/types/`, its style in `www/assets/sections/` (`section.css`, shared, and a sheet
 per kind, each written once per page with the CSP nonce); the files of `types/` are the sections
-there are, and the subsystem is `pad/subs/sections/`.
+there are, and the subsystem is `pad/subs/widgets/sections/`.
 
 ```html
 {section:hero 'Pages that drive themselves', button='Start', link='?start', second='Read more', secondLink='?docs'}
@@ -4362,14 +4362,14 @@ its `@else@` shows, and a single tag writes nothing. An option the section has n
 reported, and so is an item outside a list section, a list section given neither `data=` nor
 items, and items in a section that lists nothing.
 
-**Forms.** The newsletter and the contact form post back to the page as `{pad:form 'newsletter'}`
+**Forms.** The newsletter and the contact form post back to the page as `{input:form 'newsletter'}`
 does: the session's CSRF token when they post here, the hidden `padForm` field with their name.
 The page's PHP asks `padPosted ( 'newsletter' )` and checks the post with
 `padValidate ( [ 'email' => 'required|email' ] )`; the fields refill and show the message, tied to
 the field for a screen reader, and once the post came back right - posted, and no message for any
 of its fields - the section shows `thanks=` in the form's place (`role="status"`). A field's id
 is the section's and its name, so two sections of a kind have fields of their own; two forms of
-one name on a page are told apart as two `{pad:form 'newsletter'}` are - the second carries its
+one name on a page are told apart as two `{input:form 'newsletter'}` are - the second carries its
 place - so only the one that was sent says thanks, refills and shows the messages.
 
 **Comparison.** A table with a column per plan - `plans=`, or the fields of the first row of `data=`
@@ -4466,10 +4466,10 @@ theme sets them on `.pad-section`.
 ### effect
 Subsystem syntax: `{effect:kind ...}`.
 Motion and decoration on a text or a block, CSS first: every effect is a file of
-`pad/subs/effects/types/`, its look `www/assets/effects/<kind>.css`, written once per page with
+`pad/subs/widgets/effects/types/`, its look `www/assets/effects/<kind>.css`, written once per page with
 the CSP nonce after the base every effect shares (`effect.css`); confetti and decipher alone have a
 script, `confetti.js` and `decipher.js` beside them, written the same way. The files of `types/` are the effects there are; the
-subsystem is `pad/subs/effects/`.
+subsystem is `pad/subs/widgets/effects/`.
 
 ```html
 {effect:typewriter}Hello, world{/effect:typewriter}
@@ -4540,10 +4540,10 @@ the effects follow. Every theme is a file of `pad/subs/themes/types/`; the files
 themes there are, and the subsystem is `pad/subs/themes/`.
 
 ```html
-{pad:theme 'paper'/}
-{pad:theme 'terminal'}
+{widget:theme 'paper'/}
+{widget:theme 'terminal'}
   <p>$ pad serve</p>
-{/pad:theme}
+{/widget:theme}
 ```
 
 **Parameters:**
@@ -4557,7 +4557,7 @@ nonce, on `:root:root:root` - outweighing the frame's light and dark rules - and
 has one gets no theme from `$padTheme` or a visitor's choice on its way out. As a pair the theme colours its content alone, a box with
 the theme's background and text, its style once per page - the theme's rules for the page's
 body, blueprint's capital headings, readable's paragraphs of 70 letters, reach what the box holds. `$padTheme = 'paper'` puts every page
-of an application in a theme, `{pad:themes/}` lets the visitor choose (kept in a cookie of the
+of an application in a theme, `{widget:themes/}` lets the visitor choose (kept in a cookie of the
 application, winning over the setting), `$padTheme = FALSE` turns both off. Every theme's text reaches WCAG AA on its
 backgrounds, contrast's and contrast-dark's AAA. A name that is no theme, no name and content on the single form are
 strict errors.
@@ -4570,8 +4570,8 @@ chosen - the choice posted back to the page and kept in a cookie, the pages buil
 in that theme from then on.
 
 ```html
-{pad:themes/}
-{pad:themes label='Colours', button='Use'/}
+{widget:themes/}
+{widget:themes label='Colours', button='Use'/}
 ```
 
 **Parameters:**
@@ -4598,12 +4598,12 @@ as every form then does. Content is a strict error.
 
 ### palette
 The colours of a palette as a row of swatches, each with its hex value in black or white,
-whichever reads better. Every palette is a file of `pad/subs/palettes/types/`; the files there are
-the palettes there are, and the subsystem is `pad/subs/palettes/`.
+whichever reads better. Every palette is a file of `pad/subs/themes/palettes/types/`; the files there are
+the palettes there are, and the subsystem is `pad/subs/themes/palettes/`.
 
 ```html
-{pad:palette 'viridis', steps=7/}
-{pad:palette 'okabe-ito', title='The chart colours'/}
+{widget:palette 'viridis', steps=7/}
+{widget:palette 'okabe-ito', title='The chart colours'/}
 {chart:bar data='sales', value='north, south, west', palette='viridis'/}
 ```
 
@@ -5202,8 +5202,8 @@ nothing, and has nothing to do with `{pad:cease}`. See [sequences](../sequences/
 | `notation` | Output | A text in a notation drawn on the server - the files of `pad/subs/notations/types/`: AsciiMath, chemistry, ABC music, chords, piano, braille, morse, semaphore, signal flags, chess, go, draughts, tablature, Karnaugh maps, bridge deals, siteswaps, cube moves |
 | `chess` | Output | A chess position from FEN as inline SVG - the chess notation |
 | `game` | Output | A little game played in the browser - 22 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
-| `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
-| `pattern` | Output | A seeded SVG background or generative art, the files of `pad/subs/patterns/types/`: stripes, dots, contour lines, Voronoi, circle packing ...; `as='url'` for a style attribute |
+| `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/games/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
+| `pattern` | Output | A seeded SVG background or generative art, the files of `pad/subs/images/patterns/types/`: stripes, dots, contour lines, Voronoi, circle packing ...; `as='url'` for a style attribute |
 | `printable` | Output | Pages made for paper - the files of `pad/subs/printables/types/`: labels, badges, cards, tickets, a certificate, envelopes, letters, invoices ... - printed alone, the same from the PDF writer |
 | `sound` | Output | A short sound made from a recipe - the files of `pad/subs/sounds/types/`: chime, pop, coin, kick ... - a button, a binding or a WAV file |
 | `diff` | Output | The differences between two texts - words inline, or lines in one column or side by side |
@@ -5211,8 +5211,8 @@ nothing, and has nothing to do with `{pad:cease}`. See [sequences](../sequences/
 | `lorem` | Output | Lorem ipsum placeholder text - words, sentences or paragraphs, the same for the same seed |
 | `fake` | Output | A fake value of a kind - a file of `pad/subs/fakes/types/` - or rows of several kinds, the same for the same seed |
 | `widget` | Widget | An interactive part of the page - the files of `pad/subs/widgets/types/`: tabs, accordion, carousel, modal, copy, poll ...; also the `widget:` type with explicit names |
-| `tabs` | Widget | Panels behind a row of tabs - radio buttons and CSS, no JavaScript; `{pad:tab}` is one item |
-| `accordion` | Widget | Items that open on a click - every `{pad:tab}` a `<details>`, one open at a time with `single` |
+| `tabs` | Widget | Panels behind a row of tabs - radio buttons and CSS, no JavaScript; `{widget:tab}` is one item |
+| `accordion` | Widget | Items that open on a click - every `{widget:tab}` a `<details>`, one open at a time with `single` |
 | `modal` | Widget | A `<dialog>` and its opening button - invoker commands, a small script, or a link without scripting |
 | `carousel` | Widget | Slides that scroll and snap sideways, previous/next and dot links - no autoplay |
 | `copy` | Widget | A text with a copy-to-clipboard button, selectable by hand without scripting |
@@ -5220,7 +5220,7 @@ nothing, and has nothing to do with `{pad:cease}`. See [sequences](../sequences/
 | `toast` | Widget | A notice the visitor dismisses - an open `<dialog>` its button closes by an invoker command |
 | `dropdown` | Widget | A button and its menu on the popover attribute - opened, closed and placed by the browser |
 | `tooltip` | Widget | A short tip on hover and on focus, shown by CSS, named by aria-describedby; Escape hides it |
-| `wizard` | Widget | Steps one at a time - every `{pad:tab}` a step, radio buttons and CSS, Back and Next; no JavaScript needed |
+| `wizard` | Widget | Steps one at a time - every `{widget:tab}` a step, radio buttons and CSS, Back and Next; no JavaScript needed |
 | `lightbox` | Widget | A gallery of thumbnails whose pictures open large over the page by `:target` - no JavaScript |
 | `drawer` | Widget | A panel sliding in from a side - a modal `<dialog>` opened as `{widget:modal}`'s, a `:target` overlay without scripting |
 | `breadcrumb` | Widget | The trail from home to the page - from the page's path, the lines of a pair or `data=` rows; no JavaScript |
@@ -5243,11 +5243,11 @@ nothing, and has nothing to do with `{pad:cease}`. See [sequences](../sequences/
 | `emoji` | Output | An emoji by its shortcode, labelled for screen readers; also an `emoji` pipe |
 | `country` | Output | A country's flag emoji and English name from an ISO 3166 code |
 | `jsonview` | Output | A JSON value or PHP array as a foldable, coloured tree of details elements |
-| `section` | Output | A block of a landing page - the files of `pad/subs/sections/types/`: hero, features, pricing, faq, cta, footer ... - pure CSS, coloured by the theme; `{section:item}` an item of a list section |
-| `effect` | Output | Motion and decoration, CSS first - the files of `pad/subs/effects/types/`: typewriter, highlighter, countup, reveal, marquee, spinner, confetti ... - still under reduced motion |
+| `section` | Output | A block of a landing page - the files of `pad/subs/widgets/sections/types/`: hero, features, pricing, faq, cta, footer ... - pure CSS, coloured by the theme; `{section:item}` an item of a list section |
+| `effect` | Output | Motion and decoration, CSS first - the files of `pad/subs/widgets/effects/types/`: typewriter, highlighter, countup, reveal, marquee, spinner, confetti ... - still under reduced motion |
 | `theme` | Output | The page in a theme of `pad/subs/themes/types/` - the frame's colours swapped; as a pair, its content alone |
 | `themes` | Output | A switcher of the themes, the visitor's choice kept in a cookie - applied when chosen |
-| `palette` | Output | The colours of a palette of `pad/subs/palettes/types/` as swatches with their hex values; palette= colours a chart |
+| `palette` | Output | The colours of a palette of `pad/subs/themes/palettes/types/` as swatches with their hex values; palette= colours a chart |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
@@ -5328,8 +5328,8 @@ Resolve naming conflicts with explicit prefixes:
 | `sequence:` | Sequence type | `{sequence:fibonacci}` |
 | `action:` | Sequence action | `{action:reverse}` |
 | `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
-| `section:` | Section kind | `{section:hero title='...'}...{/section:hero}`, as `{section:hero ...}` - a kind is a file of `pad/subs/sections/types/`; never bare |
-| `effect:` | Effect kind | `{effect:typewriter}Hi{/effect:typewriter}`, as `{effect:typewriter}` or `{effect:typewriter}` - a kind is a file of `pad/subs/effects/types/` |
+| `section:` | Section kind | `{section:hero title='...'}...{/section:hero}`, as `{section:hero ...}` - a kind is a file of `pad/subs/widgets/sections/types/`; never bare |
+| `effect:` | Effect kind | `{effect:typewriter}Hi{/effect:typewriter}`, as `{effect:typewriter}` or `{effect:typewriter}` - a kind is a file of `pad/subs/widgets/effects/types/` |
 | `jsonld:` | JSON-LD kind | `{jsonld:article headline=$title/}`, as `{jsonld:article data='post'/}` - a kind is a file of `pad/subs/jsonld/types/`; never bare |
 
 ---
@@ -5471,4 +5471,4 @@ such a field.
 
 ### time:clock and time:stopwatch
 
-`{time:clock timezone='Europe/Amsterdam'/}` shows a live clock with daylight-saving-aware local time. `live=0` and `now=` provide static, reproducible output. `{time:stopwatch 65, label='Practice'/}` provides independent Start, Pause and Reset controls; `autostart` begins immediately. Controllers share a nonce-aware script without inline handlers, and elapsed displays do not announce every tick. See `pad/subs/times/README.md` for formats, accessibility and examples.
+`{time:clock timezone='Europe/Amsterdam'/}` shows a live clock with daylight-saving-aware local time. `live=0` and `now=` provide static, reproducible output. `{time:stopwatch 65, label='Practice'/}` provides independent Start, Pause and Reset controls; `autostart` begins immediately. Controllers share a nonce-aware script without inline handlers, and elapsed displays do not announce every tick. See `pad/subs/calendars/times/README.md` for formats, accessibility and examples.

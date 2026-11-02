@@ -447,7 +447,7 @@ page that links a file makes one stat of it, the file read and hashed again only
 changed. The colours
 a tag makes from its roles stay a small `<style>`. The style sheets of a whole page are moved
 into its `<head>` before tidy reads it (a bare template's go at its start); a fragment, a live
-region's answer and a `{pad:shadow}` root keep theirs where they stand, and a `{pad:live}` answer runs
+region's answer and a `{widget:shadow}` root keep theirs where they stand, and a `{pad:live}` answer runs
 its scripts in order, one of `www/assets/` loaded before the next. With `$padCsp` naming a
 nonce the links and scripts carry it. The text is written into the page instead - a `<style>`
 and a `<script>`, as before the files were linked - in a mail, a notification, an offline
@@ -562,7 +562,7 @@ if ( $user = padOAuthUser ( $provider ) ) {    // back: the state checked, the c
 $problem = padOAuthError ();                    // a no at the provider, a stale state ...
 ```
 ```
-{pad:oauth 'github'/}  {pad:oauth 'google'/}  {pad:oauth 'oidc', href='?login/company', label='Company account'/}
+{widget:oauth 'github'/}  {widget:oauth 'google'/}  {widget:oauth 'oidc', href='?login/company', label='Company account'/}
 ```
 The providers are the files of `pad/subs/oauth/types/` - apple, bitbucket (Bitbucket Cloud: its
 consumer's permissions set at Bitbucket, the key and secret sent as HTTP Basic), discord, forgejo (Codeberg, or
@@ -596,7 +596,7 @@ straight from the token endpoint over TLS, which OpenID Connect Core 3.1.3.7 let
 so an issuer, a `base=` and every endpoint a discovery document names must be https (http on
 localhost alone).
 `padOAuthUrl` gives the address without going there; `padOAuthToken ()` the token answer, for
-calls to the provider's API. `{pad:oauth 'github'/}` is the button - its link `oauth/<provider>`
+calls to the provider's API. `{widget:oauth 'github'/}` is the button - its link `oauth/<provider>`
 unless `href=`, the provider's icon when `pad/subs/icons/` has one. Apple posts its answer back
 from its own site, which brings no `SameSite=Lax` session cookie, so its state also goes in a
 sealed cookie, `__Host-padOAuth` (https, no other subdomain can set it), spent once used like
@@ -618,7 +618,7 @@ Order {$order} shipped                  # the subject, the push title
 :package: Order *{$order}* shipped
 ```
 The channels are the files of `pad/subs/channels/types/`: mail (`padMail`), database (kept under
-`DATA/notifications/<app>/` - `{pad:notifications/}` lists the unread ones of the user logged in, each
+`DATA/notifications/<app>/` - `{widget:notifications/}` lists the unread ones of the user logged in, each
 with a signed link that marks it read; `padNotifications`, `padNotificationRead`), webpush (RFC
 8291 encryption and VAPID with openssl - `padWebPushKeys ()` makes the key pair), slack, discord,
 teams, telegram, ntfy, matrix, sms (a generic HTTP gateway) and those below. The recipient is a row - `email`,
@@ -734,7 +734,7 @@ order of first appearance - a `sort` written after the group sorts the groups.
 ### Page links (pager tag)
 ```
 {data:products page=$pg ?? 1, rows=12}<article>{$name}</article>{/data:products}
-{pad:pager 'products', window=2/}        # ‹ 1 … 4 5 [6] 7 8 … 20 ›
+{widget:pager 'products', window=2/}        # ‹ 1 … 4 5 [6] 7 8 … 20 ›
 ```
 The pager follows the paged tag (it reads the total the page handling booked), links through
 `$padGo` keeping the other query values, sets the variable `page=` was written with (`pg`),
@@ -755,14 +755,14 @@ from the first parameter or `data=`; `children` defaults to `children`.
 
 ### Form rules on the fields and in the browser
 
-A `{pad:form}` with `{pad:input}` fields and `padValidate` in the page's PHP is described in CLAUDE.md's Forms section.
+A `{input:form}` with `{input:field}` fields and `padValidate` in the page's PHP is described in CLAUDE.md's Forms section.
 
 The rules can stand on the fields instead - checked before any PHP runs:
 ```
-{pad:form 'contact', error='Please correct the errors below.'}     # the message above the fields
-  {pad:input 'email', type='email', label='E-mail', rules='required|email'/}
-  {pad:textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
-{/pad:form}
+{input:form 'contact', error='Please correct the errors below.'}     # the message above the fields
+  {input:field 'email', type='email', label='E-mail', rules='required|email'/}
+  {input:textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
+{/input:form}
 ```
 A post of the form is validated against them from the page's text (lib/form.php), so
 `padPosted ( 'contact' )` is TRUE only for a post that kept them - the PHP stores and
@@ -771,7 +771,7 @@ page's own template (and its `_inits.pad`/`_exits.pad`) is read, literal rules o
 a snippet, custom tag, `{pad:page}` or layout, from a variable, in an `action=`/GET form or on a
 file field are errors.
 
-The rules are the files of `pad/subs/rules/types/` - `<rule>.php` answers its check, its message and
+The rules are the files of `pad/subs/inputs/rules/types/` - `<rule>.php` answers its check, its message and
 whether an empty field or a list is judged, `www/assets/rules/<rule>.js` is its check in the
 browser - and the files there are the rules there are: besides `required`, `email`, `url`,
 `numeric`, `integer`, `min:n`, `max:n`, `in:a,b`, `regex:/x/`, `same:field`, `accepted` and
@@ -809,15 +809,15 @@ none: "Toppings must hold at least 2 values". Their argument is a whole number f
 
 Some rules look at another field of the post:
 ```
-{pad:input 'delivery'/}
-{pad:input 'address', rules='required_if:delivery,ship,courier'/}   # required when delivery is one of them
-{pad:input 'note', rules='required_unless:delivery,collect'/}       # required unless it is
-{pad:input 'code', rules='required_with:phone,fax'/}                # required when one of them is filled
-{pad:input 'phone', rules='required_without:email'/}                # required when one of them is empty
-{pad:input 'end', type='date', rules='after:start'/}                # or before:end, after:2026-01-01
-{pad:input 'leave', type='date', rules='after_or_equal:arrive'/}    # the same day too - or before_or_equal:
-{pad:input 'password', rules='different:current_password'/}         # not the other's text - the mirror of same:
-{pad:input 'max_price', rules='numeric|gt:min_price'/}              # above the other - gte:, lt:, lte:; or gt:0
+{input:field 'delivery'/}
+{input:field 'address', rules='required_if:delivery,ship,courier'/}   # required when delivery is one of them
+{input:field 'note', rules='required_unless:delivery,collect'/}       # required unless it is
+{input:field 'code', rules='required_with:phone,fax'/}                # required when one of them is filled
+{input:field 'phone', rules='required_without:email'/}                # required when one of them is empty
+{input:field 'end', type='date', rules='after:start'/}                # or before:end, after:2026-01-01
+{input:field 'leave', type='date', rules='after_or_equal:arrive'/}    # the same day too - or before_or_equal:
+{input:field 'password', rules='different:current_password'/}         # not the other's text - the mirror of same:
+{input:field 'max_price', rules='numeric|gt:min_price'/}              # above the other - gte:, lt:, lte:; or gt:0
 ```
 The other field is found where PHP files the post, by the browser's checker too (`user[kind]`,
 `kinds[]` - which `kinds` finds too - the items `kinds[0]` and `kinds[1]`, `first.name` as
@@ -865,16 +865,16 @@ follows the other field too, or it speaks about the value the field still holds 
 page's PHP added, one of a regex only PCRE reads - and stays, unless the checker has a message
 of its own for the field. For a form a component draws,
 keep the rules in PHP - `padValidate ( $rules )` checks the post, `padValidateClient ( $rules )`
-exports them for `padValidate.check ( rules, values )` in the browser, `{pad:validator}` brings the
+exports them for `padValidate.check ( rules, values )` in the browser, `{input:validator}` brings the
 checker:
 ```
-{pad:form 'signup', client, error}{pad:input 'email', label='E-mail', rules='required|email'/}{/pad:form}
-<div x-data="{ rules: {^rules}, form: {}, errors: {} }">...</div>{pad:validator/}
+{input:form 'signup', client, error}{input:field 'email', label='E-mail', rules='required|email'/}{/input:form}
+<div x-data="{ rules: {^rules}, form: {}, errors: {} }">...</div>{input:validator/}
 ```
 
 ### Rich form fields
 ```
-{pad:form 'trip', error}
+{input:form 'trip', error}
   {input:slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}   # or {input:slider ...}
   {input:stars 'score', label='Your rating', rules='required'/}                    # max=5
   {input:datepicker 'day', label='Day', min='2026-01-01'/}       # a month to choose from; weekstart=
@@ -890,7 +890,7 @@ checker:
   {input:treepicker 'topic', options='Forms > Fields, Pages'/}   # one item of a tree; data= rows, or indented lines
   {input:signature 'signed', label='Signature'/}                 # posts a PNG data URL
   {input:dropzone 'cv', label='Your CV', accept='.pdf', limit='2M'/}   # padUpload takes it
-{/pad:form}
+{/input:form}
 ```
 The kinds are the files of `pad/subs/inputs/types/` - colorpicker, combobox, datepicker, daterange
 (a first and a last day picked from one month, the days or `nights` counted), dropzone,
@@ -901,7 +901,7 @@ login), otp (a box per character), rangeslider (two thumbs on one track), segmen
 group drawn as one bar, without script), signature, slider, stars, stepper, taginput, timepicker,
 treepicker (one item of a hierarchy, nested radios made a tree view) and
 toggle (a switch posting `on=`/`off=`) - their script and style in `www/assets/inputs/`. Each
-is a field of its `{pad:form}` as `{pad:input}` is: named by its first parameter, labelled by `label=`,
+is a field of its `{input:form}` as `{input:field}` is: named by its first parameter, labelled by `label=`,
 refilled from a post of its own form, the message of `padValidate` or of its `rules=` (read
 from the template before the PHP runs, `client` too) after its frame in the words of its label,
 every item it does not take an attribute of its field. Every kind writes a native field a form
@@ -986,11 +986,11 @@ is an unknown tag), and may use themselves. `define:`/`macro:` assert the kind.
 ### Web components (declarative shadow DOM)
 ```
 <pad-card>                                   # in a custom tag, _tags/card.pad
-  {pad:shadow css='www:card.css'}<header><slot name="title"></slot></header><slot></slot>{/pad:shadow}
+  {widget:shadow css='www:card.css'}<header><slot name="title"></slot></header><slot></slot>{/widget:shadow}
   <span slot="title">{#title}</span>@content@
 </pad-card>
 ```
-`{pad:shadow}` writes `<template shadowrootmode="open">` with the stylesheets inlined (`mode='closed'`,
+`{widget:shadow}` writes `<template shadowrootmode="open">` with the stylesheets inlined (`mode='closed'`,
 `focus`): the element shows styled and slotted before any script ran, and a module that defines
 it finds `this.shadowRoot` ready.
 
@@ -1084,13 +1084,13 @@ padPrefetch ( [ 'rates' => 'https://example.com/rates.json', 'weather' => 'SELF:
 
 ### Markdown
 ```
-{pad:markdown}                                    # the content renders, then reads as Markdown
+{widget:markdown}                                    # the content renders, then reads as Markdown
   ## Notes for {$version}
   - **Faster** first render
-{/pad:markdown}
+{/widget:markdown}
 {$post.body | markdown}                       # a value - raw HTML escaped, no sanitize on top
-{pad:markdown html}...{/pad:markdown}                 # the author's own raw HTML let through
-{pad:markdown ignore}...{/pad:markdown}               # braces in code samples
+{widget:markdown html}...{/widget:markdown}                 # the author's own raw HTML let through
+{widget:markdown ignore}...{/widget:markdown}               # braces in code samples
 ```
 A built-in CommonMark subset (lib/markdown.php): headings, emphasis, code, lists, links,
 images, quotes, rules. `javascript:` links lose their URL; the HTML of a value stays a value.
@@ -1136,7 +1136,7 @@ Snowball stemmer and written without accents - a word with accents stemmed witho
 well - so `baking` finds `baked`, `cafe` finds `Café` and `securite` finds `sécurité`; the
 ranking is BM25F - `fields='title^2, body'` weighs a field, k1 1.2, b 0.75. A row found is
 the source's row with `score` (three decimals) and `excerpt` added: the words around the first
-match, every matched word in a `<mark>` (`padExcerpt`, the function of `{pad:excerpt}`;
+match, every matched word in a `<mark>` (`padExcerpt`, the function of `{widget:excerpt}`;
 `words=` its length, `excerpt=` its field) - HTML, so print it `{!excerpt}`. A collection is
 searched in `title^2, body` by default, other rows in their text fields; a field that is HTML -
 an end tag, a comment, a `<br>` or `<img>`, a quoted attribute - is read as its text, a `<` in
@@ -1333,13 +1333,13 @@ rows, its relative references moving as a spreadsheet's fill moves them, `D2:D9=
 format code (`B:0.00, D:€ #,##0.00, E:0%, B5:B8:yyyy-mm-dd`). A cell typed as `12%`,
 `2024-01-15` or `$4.50` keeps that look, and a formula takes its first cell's.
 
-The formulas are spreadsheet syntax, read by a parser of their own (`pad/subs/formulas/_lib/
+The formulas are spreadsheet syntax, read by a parser of their own (`pad/subs/tables/formulas/_lib/
 formula.php` - not padEval): `=A1+B2*2`, ranges `A1:B3`, whole columns `A:A` and rows `2:5`,
 `$A$1`, texts `"x"` with `""` for a quote, `&`, `= <> < > <= >=`, `%` after a value, `^` - read
 from the left, `=2^3^2` is 64, and a minus binds tighter, `=-2^2` is 4 - TRUE and FALSE, and the
 error values `#DIV/0! #N/A #NAME? #NULL! #NUM! #REF! #VALUE!`, which travel as Excel's do; a text
 holds 32767 characters at most, as a cell of Excel does - a longer one is `#VALUE!`, never built. The
-functions are the files of `pad/subs/formulas/types/` - a function is added by adding its file,
+functions are the files of `pad/subs/tables/formulas/types/` - a function is added by adding its file,
 names are read in any case - and answer what Excel answers: SUM, AVERAGE, MIN, MAX, COUNT,
 COUNTA, COUNTBLANK, COUNTIF(S), SUMIF(S), AVERAGEIF(S), MINIFS, MAXIFS, PRODUCT, SUMPRODUCT
 (ranges of one shape multiplied place by place, what is no number 0), MEDIAN, STDEV, VAR (a
@@ -1372,7 +1372,7 @@ never the number of one cell; SUMIFS and COUNTIFS add up and count with criteria
 
 `editable` makes cells `<input>`s - alone every number, date and logical value, or the cells and
 ranges named - and an edit posts back and is computed on the server, no script of the page's
-own: in a `{pad:form}` the cells post with it, in a `{pad:live}` region the sheet is a form a change
+own: in a `{input:form}` the cells post with it, in a `{pad:live}` region the sheet is a form a change
 submits - every cell's text once - and the region comes back computed, anywhere else the sheet
 is a form of its own with a Recalculate button. A post types only into the cells named.
 Under the strict check a template formula that cannot be read - or calls a function that is not
@@ -1403,7 +1403,7 @@ own site. The providers are the files of `pad/subs/embeds/types/` - each says th
 knows (`match`), its frame (`embed`), its origin for `frame-src` and its own options - and a
 provider is added by adding its file. `padEmbedSources ()` lists the origins a Content
 Security Policy needs: `$padCsp = "...; frame-src " . implode ( ' ', padEmbedSources () )`.
-`{pad:video}` is the video-only form of the same providers, its markup as before.
+`{widget:video}` is the video-only form of the same providers, its markup as before.
 Twitch plays only on the host names its player is told: those of `$padHosts`, else the page's
 own, and `domains=` adds names; offline and in a static copy without `$padHosts` the poster
 links to Twitch instead.
@@ -1432,7 +1432,7 @@ and Apple Podcasts, the `sandbox` of Apple's code: the frame may do only what th
   angle: 20
 {/toy:lsystem}
 ```
-The toys are the files of `pad/subs/toys/types/` - `<toy>.php` checks the options and hands them on;
+The toys are the files of `pad/subs/games/toys/types/` - `<toy>.php` checks the options and hands them on;
 `www/assets/toys/<toy>.js` runs it, `<toy>.css` there styles it when it needs to - and the files
 there are the toys there are (`padToyTypes()`): the Game of Life, Langton's ant, an elementary
 cellular automaton, the Mandelbrot set, sorting algorithms, a double pendulum, boids, fireworks,
@@ -1568,23 +1568,23 @@ as graph paper's are; the content between the tags is a line over the staves.
 
 ### Widgets
 ```
-{widget:tabs active='Specs'}{pad:tab 'Overview'}...{/pad:tab}{pad:tab 'Specs'}...{/pad:tab}{/widget:tabs}   # CSS-only tabs: radios, arrow keys
-{widget:accordion single, open=1}{pad:tab 'Question'}Answer{/pad:tab}...{/widget:accordion}   # <details> items, one open
+{widget:tabs active='Specs'}{widget:tab 'Overview'}...{/widget:tab}{widget:tab 'Specs'}...{/widget:tab}{/widget:tabs}   # CSS-only tabs: radios, arrow keys
+{widget:accordion single, open=1}{widget:tab 'Question'}Answer{/widget:tab}...{/widget:accordion}   # <details> items, one open
 {widget:modal 'terms', title='Terms', button='Read the terms'}...{/widget:modal}   # <dialog>, works with and without JS
-{widget:carousel label='Photos'}{pad:tab 'Caption'}<img ...>{/pad:tab}...{/widget:carousel}   # scroll-snap slides, link arrows and dots
+{widget:carousel label='Photos'}{widget:tab 'Caption'}<img ...>{/widget:tab}...{/widget:carousel}   # scroll-snap slides, link arrows and dots
 {widget:copy 'npm install pad', label='Copy'/}             # the text in <pre>, a copy-to-clipboard button
 {widget:poll 'lang', options='PHP, Go', title='Favourite?'/}   # one vote per session, results as bars; DATA/poll/
 {widget:toast 'Saved', tone='success'}Kept.{/widget:toast}   # a notice: an open <dialog>, its button closes it without JS
 {widget:dropdown 'Account'}<a href="?profile">Profile</a>...{/widget:dropdown}   # a popover menu under its button
 {widget:tooltip 'Billed every month'}Starter{/widget:tooltip}  VAT {widget:tooltip 'Value added tax'/}   # a tip on hover and focus
-{widget:wizard}{pad:tab 'Address'}...{/pad:tab}{pad:tab 'Payment'}...{/pad:tab}{/widget:wizard}   # steps one at a time, Back and Next
-{widget:lightbox label='Harbour'}{pad:tab 'Dawn'}<img ...>{/pad:tab}...{/widget:lightbox}   # thumbnails, a picture large on :target
+{widget:wizard}{widget:tab 'Address'}...{/widget:tab}{widget:tab 'Payment'}...{/widget:tab}{/widget:wizard}   # steps one at a time, Back and Next
+{widget:lightbox label='Harbour'}{widget:tab 'Dawn'}<img ...>{/widget:tab}...{/widget:lightbox}   # thumbnails, a picture large on :target
 {widget:drawer 'filters', title='Filters', side='left'}...{/widget:drawer}   # a side panel - a <dialog>, with and without JS
 {widget:breadcrumb/}  {widget:breadcrumb}Home | ?index{/widget:breadcrumb}   # the trail to the page: its path, its lines or data=
-{widget:splitpane size=30, collapse}{pad:tab 'Files'}...{/pad:tab}{pad:tab 'Editor'}...{/pad:tab}{/widget:splitpane}   # two panes, a bar dragged or moved by the keys
+{widget:splitpane size=30, collapse}{widget:tab 'Files'}...{/widget:tab}{widget:tab 'Editor'}...{/widget:tab}{/widget:splitpane}   # two panes, a bar dragged or moved by the keys
 {widget:contextmenu 'Actions for a.pdf', area='tr'}<a href="?open">Open</a>...{/widget:contextmenu}   # right click, Shift+F10 or its dots button
 {widget:commandpalette 'Go to', data='commands'/}   # Ctrl+K: a search box over the commands, Enter runs one
-{pad:form 'f'}{widget:sortable 'order'}{pad:tab 'a1'}...{/pad:tab}...{/widget:sortable}{/pad:form}   # put in order by hand, posted as order[a1]=1
+{input:form 'f'}{widget:sortable 'order'}{widget:tab 'a1'}...{/widget:tab}...{/widget:sortable}{/input:form}   # put in order by hand, posted as order[a1]=1
 {widget:modal 'terms', title='Terms'}...{/widget:modal}   # the widget tag: its first parameter names the widget
 {widget:modal 'terms', title='Terms'}...{/widget:modal} # the widget: type
 ```
@@ -1594,7 +1594,7 @@ functions in `pad/subs/widgets/_lib/<widget>.php`, its style and script in
 Each has two explicit forms: `{widget:modal 'terms'}` (the tag's second
 parameter is the widget's first) and `{widget:modal 'terms'}`. The `widget:` prefix
 selects the widget independently of fields or stores. `{widget:copy}` is a built-in alias
-for the copy widget; `{pad:tab}` - the item of `{widget:tabs}`, `{widget:accordion}`, `{widget:carousel}`, `{widget:wizard}`,
+for the copy widget; `{widget:tab}` - the item of `{widget:tabs}`, `{widget:accordion}`, `{widget:carousel}`, `{widget:wizard}`,
 `{widget:lightbox}`, `{widget:splitpane}` and `{widget:sortable}` - is a built-in tag. A widget works without JavaScript; its script, where it has one, is written once per page
 with the CSP nonce, and its colours are `--pad-<widget>-*` custom properties with light and
 dark defaults. The `showcase` application has examples of each, the tags application's widget
@@ -1643,7 +1643,7 @@ padIsHoliday ( '2026-04-27', 'nl' );                // TRUE - King's Day; an obs
 padWorkdays ( '2026-04-01', '2026-04-30', 'nl' );   // 20 - weekdays that are no public holiday, both ends counted
 padAddWorkdays ( '2026-04-24', 1, 'nl' );           // '2026-04-28' - the Monday is King's Day; 0 is the date itself
 ```
-The countries are the files of `pad/subs/holidays/types/`, named by their ISO 3166-1 alpha-2
+The countries are the files of `pad/subs/calendars/holidays/types/`, named by their ISO 3166-1 alpha-2
 code - at, be, br, ca, ch, cz, de, dk, es, fi, fr, gb, hu, ie, it, jp, lu, mx, nl, no, nz, pl, pt, ro, se, sk, us, za -
 and a country is
 added by adding its file. Each holds its national public holidays as rules, not dates: a fixed
@@ -1659,7 +1659,7 @@ states (`de-by`), the United Kingdom's nations (`gb-sct`, `gb-nir`; England and 
 France's Alsace-Moselle and overseas departments (`fr-57`, `fr-974`); the header of every file
 says what it leaves out. A workday is a Monday to Friday that is no public holiday. The
 arithmetic is integer days, from 1583 to 9999 - no clock, no zone, no service. Code: the
-holidays subsystem in `pad/subs/holidays/` - `holidays.php` the body of `{holidays:auto}`,
+holidays subsystem in `pad/subs/calendars/holidays/` - `holidays.php` the body of `{holidays:auto}`,
 `_lib/holidays.php` the rules, `types/` the countries; `pad/lib/holidays.php` the helpers.
 
 A file may name the years its rules are known for, `years`: a year outside them is an error of
@@ -1705,11 +1705,11 @@ days its yearly decree moves around them; it knows the years since 2013.
 
 ### Syntax highlighting
 ```
-{pad:highlight 'php', lines, mark='3'}<?php echo $x; ?>{/pad:highlight}   # pad php html css js json yaml sql bash
-{pad:highlight file='_data/products.json'/}                           # a file of the app, language from its extension
+{widget:highlight 'php', lines, mark='3'}<?php echo $x; ?>{/widget:highlight}   # pad php html css js json yaml sql bash
+{widget:highlight file='_data/products.json'/}                           # a file of the app, language from its extension
 {$query | highlight('sql')}                                       # a value - escaped, so no sanitize on top
-{pad:source}                                     # the page's own template and PHP as tabs, coloured
-{pad:source 'orders', files='_lib/orders.php, www:orders.js'}           # another page, more files (www: = www/<app>/)
+{widget:source}                                     # the page's own template and PHP as tabs, coloured
+{widget:source 'orders', files='_lib/orders.php, www:orders.js'}           # another page, more files (www: = www/<app>/)
 ```
 
 ### QR codes and barcodes
@@ -1840,13 +1840,13 @@ guilloche `lines=`. The same options give the same bytes on every request and ev
 machine - the random numbers are PAD's own seeded sequence (`padFake`'s, put back afterwards) and
 every number is written to a fixed precision - so stored answers hold a pattern; without `seed=`
 the seed is 1. A pattern is decoration (`aria-hidden`) unless `title=` names it, and draws no
-motion. The patterns are the files of `pad/subs/patterns/types/` - each answers its default size
+motion. The patterns are the files of `pad/subs/images/patterns/types/` - each answers its default size
 and colours, its own options and the function that draws it - and a pattern is added by adding
 its file; their names are never reached bare, as dots, grid and waves are names of fields and
 pages. A pattern is drawn on every request, so a kind that draws a shape per place, and topography
 its grid times its levels, has a budget for the size, the picture and the levels together - past
 it the pattern is not drawn. An unknown pattern, a colour that is none, a number outside its bounds
-and a pattern past its budget are errors under the strict check. Code: the pattern subsystem in `pad/subs/patterns/` - `pattern.php` the
+and a pattern past its budget are errors under the strict check. Code: the pattern subsystem in `pad/subs/images/patterns/` - `pattern.php` the
 body both forms run, `_lib/` the drawing and its helpers, `types/` the patterns;
 `pad/types/pattern.php` the pattern type, `pad/lib/pattern.php` `padPattern`. The `patterns`
 application shows every pattern with a seed to change by link.
@@ -1864,7 +1864,7 @@ application shows every pattern with a seed to change by link.
 {image:thumbnail 'photos/harbour.jpg', width=400, filter='solarize', threshold=40, alt='The harbour'/} # the highlights turned negative
 {image:thumbnail 'photos/misty.jpg', width=400, filter='autocontrast', cutoff=2, alt='The valley'/}   # its tones from black to white
 ```
-`filter=` on `{image:thumbnail}` runs the picture through the filter subsystem, `pad/subs/filters/`: a filter
+`filter=` on `{image:thumbnail}` runs the picture through the filter subsystem, `pad/subs/images/filters/`: a filter
 is a file of its `types/` - no tag of its own, a word of `filter=` as a validation rule is a word of
 `padValidate` - and the files there are the filters there are. grayscale, sepia (`amount=`),
 duotone (`colors=`, dark first), posterize (`levels=`), pixelate (`cell=`), blur (`radius=` CSS
@@ -1882,7 +1882,7 @@ placeholders too - the same picture and options the same bytes on every run. A f
 every pixel in PHP (sepia, duotone, posterize, vignette, the dithers, dominant) works on 2 megapixels
 at most, its 2x picture made only as far as those reach, and halftone draws 50,000 dots at most. An
 unknown filter, an option out of its bounds, a filter that cannot follow the one before and a filter
-past its budget are errors under the strict check, left out without it. Code: `pad/subs/filters/` - `_lib/filter.php` the chain and its options, `_lib/dither.php`,
+past its budget are errors under the strict check, left out without it. Code: `pad/subs/images/filters/` - `_lib/filter.php` the chain and its options, `_lib/dither.php`,
 `_lib/blurhash.php`, `types/` the filters - and `pad/subs/images/_lib/img.php`, which applies them. The
 `patterns` application shows every filter on the same picture.
 thumbhash is a placeholder as well: Evan Wallace's ThumbHash (`_lib/thumbhash.php`, the reference
@@ -1961,11 +1961,11 @@ The `notations` application shows every kind with its examples.
 {notation:chess $fen, flip, highlight='e2,e4', arrow='e2-e4'/}   # a FEN as an SVG board, pieces described for a screen reader
 {game:sudoku '53..7....6..195...'/}                   # a game - played in the page; see Games
 {diff:words $old, $new/}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
-{pad:excerpt $body, words=24, highlight=$q/}         # whole words around the first match, <mark>ed, escaped; html
-{pad:lorem paragraphs=3, seed=7/}                    # placeholder text, classic start, reproducible; words=, sentences=, varied
+{widget:excerpt $body, words=24, highlight=$q/}         # whole words around the first match, <mark>ed, escaped; html
+{widget:lorem paragraphs=3, seed=7/}                    # placeholder text, classic start, reproducible; words=, sentences=, varied
 {widget:tabs}...{/widget:tabs}  {widget:modal 'x'}...{/widget:modal}         # the widgets - see Widgets
 {image:thumbnail 'photos/harbour.jpg', width=400, height=300, alt='The harbour'/}   # GD thumbnail in www/<app>/_thumbs/, 2x srcset, lazy
-{pad:video 'https://youtu.be/ID', title='Launch'/}  # poster + play button, nocookie iframe only after a click; {embed:auto} for more sites
+{widget:video 'https://youtu.be/ID', title='Launch'/}  # poster + play button, nocookie iframe only after a click; {embed:auto} for more sites
 {pad:pdf file='invoice', download}...{/pad:pdf}   # the content as a PDF (plain PHP writer) instead of the page; preview: a sheet + link
 {printable:labels data='rows', sheet='a4-3x8', pdf}...{/printable:labels}   # sheets for paper, printed alone, the same in the PDF; see Printables
 {diagram:auto direction='LR'}A[Order] --> B{Paid?}{/diagram:auto}   # a flowchart laid out as SVG on the server; the other kinds - see Diagrams
@@ -1978,11 +1978,11 @@ The `notations` application shows every kind with its examples.
 {timeline:roadmap data='releases', lane='team', period='quarter'/} # period columns and milestones
 {timeline:swimlane data='releases', lane='team'/} # lanes sharing a time axis
 {table:standard data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
-{pad:toc levels='2,3', title='Contents'/}         # the page's own h2/h3, nested and linked - filled in after the page rendered
+{widget:toc levels='2,3', title='Contents'/}         # the page's own h2/h3, nested and linked - filled in after the page rendered
 {time:countdown '2026-12-31 00:00', units=3, live/}   # 84 days, 3 hours, 12 minutes in a <time>; live ticks; past='...'
 {time:relative $created/}                           # <time datetime title>5 minutes ago</time> - the ago pipe's words
-{pad:emoji 'rocket'/}  {$text | emoji}             # role="img" aria-label="rocket" 🚀; the pipe replaces :shortcodes: in text
-{pad:country 'NL'/}  {pad:country 'NLD', name/}         # the flag (role="img", named Netherlands); name writes the name beside it
+{image:emoji 'rocket'/}  {$text | emoji}             # role="img" aria-label="rocket" 🚀; the pipe replaces :shortcodes: in text
+{image:country 'NL'/}  {image:country 'NLD', name/}         # the flag (role="img", named Netherlands); name writes the name beside it
 {widget:jsonview $response, open=2/}                 # foldable <details> tree, typed colours, counts on folded nodes; pair: JSON content
 ```
 Every one is rendered on the server; the `showcase` application has examples of each.
@@ -2042,10 +2042,10 @@ each. The handling options - `sort=`, `first=`, `where=` - work on the rows of `
 section whose `data=` finds none, with no items of its own, is a miss - its `@else@` shows; an
 option the section has no field for, a slot of a part it has not, an item outside a list
 section and a list section given neither `data=` nor items are reported under the strict check. The newsletter and the contact form post back
-as `{pad:form 'newsletter'}` does - the session's token and the form's name - so the page's PHP asks
+as `{input:form 'newsletter'}` does - the session's token and the form's name - so the page's PHP asks
 `padPosted ( 'newsletter' )` and checks the post with `padValidate`; the fields refill and show
 the messages, and once the post came back right the section says `thanks=` in the form's place -
-the one that was sent, of two of a name on a page, as of two `{pad:form}`s; a field's id is the
+the one that was sent, of two of a name on a page, as of two `{input:form}`s; a field's id is the
 section's and its name.
 A comparison is a table, a row per feature and a column per plan - `plans=`, or the fields of the
 rows of `data=` - each cell a value as written, a check for yes, a dash for no and a question mark
@@ -2074,9 +2074,9 @@ without it, so a theme colours the sections without a word; `--pad-section-hero`
 `-max`, `-font` and `-heading-font` are the rest. `tone=` (plain, soft, accent) and `align=`
 (center, left) on every section, `level=` its heading's level (2), `id=` an anchor. A section is
 written `{section:hero}` or `{section:hero}` - never bare: hero, team, stats and footer are the
-names of fields and pages. The kinds are the files of `pad/subs/sections/types/`, the style
+names of fields and pages. The kinds are the files of `pad/subs/widgets/sections/types/`, the style
 `www/assets/sections/` - `section.css` shared and a sheet per kind, each written once per
-page with the CSP nonce; `pad/subs/sections/section.php` the body every form runs,
+page with the CSP nonce; `pad/subs/widgets/sections/section.php` the body every form runs,
 `_lib/section.php` the parts, items and forms; `pad/types/section.php` the section type. The
 `sections` application shows every one beside its template.
 
@@ -2119,30 +2119,30 @@ properties in a rule of a class of their own, written by the server from checked
 page with the nonce - never a style attribute, which a CSP nonce drops; the
 colours are `--pad-effect-accent`, `-accent2`, `-accent3`, `-text`, `-mark` and `-track` on
 `.pad-effect`, light and dark, falling back to the frame's `--accent`, `--text` and `--line`, so a
-theme colours them. The kinds are the files of `pad/subs/effects/types/` - typewriter, glitch,
+theme colours them. The kinds are the files of `pad/subs/widgets/effects/types/` - typewriter, glitch,
 shimmer, gradient, wave, highlighter, underline, strike, encircle, rotator, decipher, countup, marquee, reveal,
 scrollprogress, tilt, nudge, spotlight, spinner, skeleton, confetti -
 and an effect is added by adding its file. Each has two explicit forms:
 `{effect:typewriter}...{/effect:typewriter}` and `{effect:typewriter}...{/effect:typewriter}`. A pair
 works on its content, rendered first; a single tag on its first parameter, `{effect:typewriter 'Hi'/}`.
-`highlighter` is so named because `{pad:highlight}` colours code. The reveal, the highlighter's and the
+`highlighter` is so named because `{widget:highlight}` colours code. The reveal, the highlighter's and the
 count-up's `scroll` are scroll-driven animations (`animation-timeline: view()`): where a browser
 has none, the block stands there and the stroke or the count runs in time, as without scroll.
 The underline's, the strike's and the encircle's `scroll` too, and the scrollprogress bar, which
 follows `scroll(root)` and is not there at all where a browser has none or less motion is asked for; their `hover` (not the strike's)
 draws the stroke while the pointer is on it or the focus in it, at once under reduced motion; on
 paper and in forced colours the underline and the strike are the text's own line. Code: the effects
-subsystem in `pad/subs/effects/` - `effect.php` the body every form runs, `_lib/effect.php` the
+subsystem in `pad/subs/widgets/effects/` - `effect.php` the body every form runs, `_lib/effect.php` the
 options and the markup, `types/` the kinds, `assets/` their looks; `pad/types/effect.php` the
 effect type, `pad/tags/effect.php` the tag.
 
 ### Themes
 ```
 $padTheme = 'paper';               # _config/config.php: every page of the application in paper
-{pad:theme 'terminal'/}                # this page in terminal - its <style>, where the tag stands
-{pad:theme 'ocean'}...{/pad:theme}         # a pair: its content alone, in a box of the theme
-{pad:themes/}                          # a switcher - the visitor's choice, kept in a cookie
-{pad:themes label='Colours', button='Use'/}
+{widget:theme 'terminal'/}                # this page in terminal - its <style>, where the tag stands
+{widget:theme 'ocean'}...{/widget:theme}         # a pair: its content alone, in a box of the theme
+{widget:themes/}                          # a switcher - the visitor's choice, kept in a cookie
+{widget:themes label='Colours', button='Use'/}
 ```
 A theme swaps the colours of the frame the PAD applications share (`www/_common/pad.css`) for a
 set of its own: the `--frame-*` properties of the side, the bar and the menu and the palette the
@@ -2166,7 +2166,7 @@ newspaper 5.97, mono 6.00, terminal 6.01, ocean 6.22, contrast 7.41, contrast-da
 application lists every pair of every theme. The light and dark themes are the frame's own
 colours, with the four that fall short of AA in its set - the dim grey on the page (4.47), the
 side's headings (3.07 light, 4.09 dark), a link on the accent's tint (4.48) - darkened or
-lightened to it. Which theme a page gets: the visitor's choice from `{pad:themes/}` - in the bar of
+lightened to it. Which theme a page gets: the visitor's choice from `{widget:themes/}` - in the bar of
 the frame every PAD application shares - posted back to the page and taken before the
 application runs (`pad/inits/themes.php`, a 303 back to the page), kept in a cookie of its own,
 `padTheme` (SameSite=Lax, a year), on the directory the PAD applications are served under
@@ -2179,24 +2179,24 @@ coloured by a visitor's choice, and `$padTheme = FALSE` turns both off. That the
 in a page without one before its `<body>` or after its doctype - after the page cache, so a
 cached page is served in the theme of whoever asks, and the ETag is made from what goes out;
 never into an include request, a `{pad:live}` region's or a fragment's answer, a page that is no
-HTML, or a page with a `{pad:theme 'x'/}` of its own, which is in that theme. The switcher is a
+HTML, or a page with a `{widget:theme 'x'/}` of its own, which is in that theme. The switcher is a
 `<select>` alone - its label there for a screen reader - that applies a theme the moment it is
 chosen, a small script posting the form; without JavaScript a button does it - and it
 writes no token of its own, so showing it or choosing starts no session; with `$padCsrf` on it carries the
 session's token as every form then does. Code: `pad/subs/themes/` - `_lib/theme.php`
 (`padThemeCss`, `padThemeChosen`, `padThemeAdd`, `padThemeContrasts`), `theme.php` and
-`themes.php` the bodies of `{pad:theme}` and `{pad:themes}`.
+`themes.php` the bodies of `{widget:theme}` and `{widget:themes}`.
 
 ### Palettes
 ```
-{pad:palette 'viridis', steps=7/}                    # swatches, each with its hex value
-{pad:palette 'okabe-ito'/}                           # a categorical palette: its own colours
+{widget:palette 'viridis', steps=7/}                    # swatches, each with its hex value
+{widget:palette 'okabe-ito'/}                           # a categorical palette: its own colours
 {chart:bar data='sales', value='north, south, west', palette='viridis'/}   # any kind of chart
 {chart:heatmap data='temps', x='month', y='day', value='change', palette='rdbu'/}
 $colors = padPalette ( 'viridis', 7 );           # [ '#440154', '#443a83', ... ] for the page's PHP
 ```
 Colour scales for charts and anything else. The palettes are the files of
-`pad/subs/palettes/types/` - each its name, its type and its colours - and a palette is added by
+`pad/subs/themes/palettes/types/` - each its name, its type and its colours - and a palette is added by
 adding its file. Sequential: viridis, magma, plasma, inferno and cividis, perceptually uniform,
 from matplotlib's published 256-colour tables (`_cm_listed.py`), and ColorBrewer's blues, greens,
 oranges and greys of nine classes and its multi-hue ylgnbu and ylorrd, and batlow, Fabio Crameri's, its lightness rising all the way,
@@ -2218,7 +2218,7 @@ of the first again, so no colour comes twice - four steps are its quarters, one 
 categorical palette gives its colours in order and starts again past its last.
 Without `steps` a categorical palette gives its own colours, a cyclic one twelve, the others
 nine; 1 to 256.
-`padPalette ( $name, $steps )` answers the same list to a page's PHP. `{pad:palette}` writes a row of
+`padPalette ( $name, $steps )` answers the same list to a page's PHP. `{widget:palette}` writes a row of
 swatches - a list for a screen reader, each hex value in black or white, whichever contrasts
 more - its style once per page with the nonce, a swatch's colours a class of its value
 (`pp-c-440154`) with its rule; `title=` names the row.
@@ -2236,8 +2236,8 @@ in the browser (`client`) gets the same: the server hands it the class and the r
 number of slots and `www/assets/charts/palette.js` puts on the ones its
 drawing needs - the same SVG, character for character, which the `charts` line of `./ci.sh` holds
 by drawing every example of the charts application once more in a palette, the palettes in turn.
-Without `palette=` a chart is drawn as before, byte for byte. Code: `pad/subs/palettes/`
-(`_lib/palette.php`, `palette.php` the body of `{pad:palette}`), `pad/lib/palette.php` (`padPalette`),
+Without `palette=` a chart is drawn as before, byte for byte. Code: `pad/subs/themes/palettes/`
+(`_lib/palette.php`, `palette.php` the body of `{widget:palette}`), `pad/lib/palette.php` (`padPalette`),
 `pad/subs/charts/_lib/palette.php` and `client/palette.js` for the charts.
 
 ## Development
@@ -2485,7 +2485,7 @@ Every PAD application - the ones that use `_common`, and the ones that have it o
 with the `common:` prefix - shares one frame from `_common`, which has no wrapper of its own
 (no `_common/_inits.pad`): a side with the brand on top - `{common:padBrand frame/}`, its links
 in the frame's `<head>` - the application's menu under it, and a bar above the page with the
-title and the theme switcher (`{pad:themes/}`, left out with `$padTheme = FALSE`); side and page are
+title and the theme switcher (`{widget:themes/}`, left out with `$padTheme = FALSE`); side and page are
 light - `<html data-theme="light">`, whatever the system prefers - or in the theme the visitor
 chose, Dark among them, kept in the `padTheme` cookie. The bar has no light/dark switch: Default
 is light, and a page with a setting of its own - the editor's - sets `data-theme` through

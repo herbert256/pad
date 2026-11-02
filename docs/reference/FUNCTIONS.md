@@ -206,7 +206,7 @@ Functions that add HTML formatting to text.
 raw HTML of the value is escaped, a link whose URL names a scheme other than http, https,
 mailto, ftp or tel keeps only its text - so a field whose **last** pipe is `markdown` skips the
 sanitize chain, which would otherwise escape the markup just made. The same subset as the
-`{pad:markdown}` tag (TAGS.md); the tag's `html` option, which lets raw HTML through, is for the
+`{widget:markdown}` tag (TAGS.md); the tag's `html` option, which lets raw HTML through, is for the
 template's own text and has no pipe form. A value stays text: `{php:getcwd}` in a post is shown.
 
 ### highlight
@@ -214,7 +214,7 @@ template's own text and has no pipe form. A value stays text: `{php:getcwd}` in 
 `{$query | highlight('sql')}` shows a value as source code, coloured - `pad`, `php`, `html`,
 `css`, `js`, `json`, `yaml`, `sql`, `bash` or `text`. Every piece of the value is escaped, so a
 field whose **last** pipe is `highlight` skips the sanitize chain, as one ending in `markdown`
-does. The same block as the `{pad:highlight}` tag (TAGS.md), without its `lines` and `mark`.
+does. The same block as the `{widget:highlight}` tag (TAGS.md), without its `lines` and `mark`.
 
 ---
 

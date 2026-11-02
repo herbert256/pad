@@ -505,12 +505,12 @@ See [HANDLING.md](HANDLING.md#group).
 ### page
 
 Keeps one page of the rows - `page` counted from 1, `rows` per page (default 10). A
-`{pad:pager}` after the tag writes the links to the other pages. See
+`{widget:pager}` after the tag writes the links to the other pages. See
 [HANDLING.md](HANDLING.md#page).
 
 ```
 {array:products page=$pg ?? 1, rows=12}...{/array:products}
-{pad:pager 'products'/}
+{widget:pager 'products'/}
 ```
 
 ### sort

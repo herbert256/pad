@@ -264,7 +264,7 @@ Paginates data into pages.
 ```
 
 **Page links:** a tag written with `page` books its page, rows and total - the rows the
-options written before `page` left - under its name, and `{pad:pager 'products'}` after it
+options written before `page` left - under its name, and `{widget:pager 'products'}` after it
 writes the links to the other pages (see [TAGS.md](TAGS.md#pager)). Write the page as a
 request variable, `page=$pg ?? 1`, and the links set `pg`.
 

@@ -52,7 +52,7 @@ The table lists what a full-stack framework is expected to ship and where PAD st
 | Feature | Others | PAD |
 |---------|--------|-----|
 | CSRF | Yes | yes - `$padCsrf`, `{pad:csrf}` |
-| Validation | Form requests, validators, forms | yes - `padValidate`, `rules=` on `{pad:form}` fields |
+| Validation | Form requests, validators, forms | yes - `padValidate`, `rules=` on `{input:form}` fields |
 | Password hashing, encryption, signed URLs | Yes | yes - `padHash`, `padEncrypt`, `padSignedUrl` |
 | Rate limiting | `RateLimiter`, `rack-attack` | yes - `padRateLimit` |
 | Authentication (login, logout, remember-me) | Auth / Breeze, Devise, `django.contrib.auth` | **new** - `padLogin`, `padAttempt`, `padAuthRequire`, `padRedirectIntended`, signed remember-me |

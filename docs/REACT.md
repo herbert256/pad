@@ -88,7 +88,7 @@ component with `JSON.parse(elem.getAttribute('data-props'))`.
 
 ---
 
-## Pattern 2: Dynamic Data with {pad:reactData} Tag and Providers
+## Pattern 2: Dynamic Data with {widget:reactData} Tag and Providers
 
 Use this pattern for database-driven or dynamic data.
 
@@ -102,10 +102,10 @@ apps/myapp/
     └── posts.php         # Returns posts array
 ```
 
-### The {pad:reactData} Tag
+### The {widget:reactData} Tag
 
-`{pad:reactData}` is a built-in tag (`pad/tags/reactData.php`) - an application writes no tag of
-its own for it, and a `_tags/reactData.php` would replace the built-in one, since application
+`{widget:reactData}` is a built-in tag (`pad/subs/widgets/types/reactData.php`) - an application writes no tag of
+its own for it, and a `_subs/widgets/types/reactData.php` would replace the built-in one, since application
 tags are found first. It runs `_providers/<provider>.php` (`provider=` defaults to `id=`),
 keeps the result in `$padProviders[<id>]` for the providers after it, and writes
 `<div id="<id>" data="<JSON>">` with the JSON escaped for the attribute. `type='check'` turns
@@ -130,17 +130,17 @@ the result into 1 or 0. The engine's `$padData` is not a name a provider or tag 
 ?>
 ```
 
-### Using {pad:reactData} in Templates
+### Using {widget:reactData} in Templates
 
 **topic.pad:**
 ```html
 <h1>Forum Topic</h1>
 
 <!-- Multiple data sources - each with unique ID -->
-{pad:reactData id='topic', provider='topic', $id=$id/}
-{pad:reactData id='board', provider='board', $boardId=$boardId/}
-{pad:reactData id='user', provider='user', $userId=$userId/}
-{pad:reactData id='posts', provider='posts', $id=$id/}
+{widget:reactData id='topic', provider='topic', $id=$id/}
+{widget:reactData id='board', provider='board', $boardId=$boardId/}
+{widget:reactData id='user', provider='user', $userId=$userId/}
+{widget:reactData id='posts', provider='posts', $id=$id/}
 
 <div id="react-app"></div>
 <script type="text/babel" src="/react/examples/topic.js"></script>
@@ -290,7 +290,7 @@ fetch('?feedback&padFormat=json', {
 
 **One rendered part.** `{pad:fragment 'chart'}...{/pad:fragment}` in a template is answered alone to
 `?page&padFragment=chart` - a component can let PAD render what it does well (a `{chart:bar}`, a
-`{pad:markdown}` text, a table) and put the HTML in place.
+`{widget:markdown}` text, a table) and put the HTML in place.
 
 **State on the server.** Keep what several islands share in the session (`padSession`,
 `padSessionPut`) and let every change answer the whole state; one island tells the others
@@ -312,7 +312,7 @@ with an event on `window`. A reload starts every island from the session again.
 | JavaScript blocks | Wrap in `{pad:ignore}...{/pad:ignore}` tags |
 | Data attribute access | Use `getAttribute('data')` NOT `dataset.data` |
 | JSON arrays | Use `array_values()` in providers for proper arrays |
-| Unique IDs | Each {pad:reactData} needs unique `id` parameter |
+| Unique IDs | Each {widget:reactData} needs unique `id` parameter |
 | Variable access | Providers have access to all page variables |
 
 ---
@@ -388,7 +388,7 @@ apps/myapp/
 │   ├── user.php
 │   └── posts.php
 ├── _tags/
-│   └── json.php              # {app:json/} tag for static data - {pad:reactData/} is built in
+│   └── json.php              # {app:json/} tag for static data - {widget:reactData/} is built in
 └── pages/
     └── forum/
         └── topic.pad
@@ -439,9 +439,9 @@ function MyComponent() {
 ### Multiple Data Sources
 
 ```html
-{pad:reactData id='users', provider='users'/}
-{pad:reactData id='roles', provider='roles'/}
-{pad:reactData id='permissions', provider='permissions'/}
+{widget:reactData id='users', provider='users'/}
+{widget:reactData id='roles', provider='roles'/}
+{widget:reactData id='permissions', provider='permissions'/}
 
 <div id="admin-panel"></div>
 ```
