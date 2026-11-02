@@ -1,5 +1,5 @@
 (function(){if(window.padKanbanReady)return;window.padKanbanReady=true;
- function init(root){if(root.dataset.ready)return;root.dataset.ready='1';var drag=null,status=root.querySelector('[role=status]');
+ function init(root){if(document.readyState==='loading')return;if(root.dataset.ready)return;root.dataset.ready='1';var drag=null,status=root.querySelector('[role=status]');
  function move(card,to){var from=card.closest('section'),dest=Array.from(root.querySelectorAll('section[data-column]')).find(function(s){return s.dataset.column===to;});if(!dest||from===dest)return;
  var detail={id:card.dataset.card,from:from.dataset.column,to:to};if(!root.dispatchEvent(new CustomEvent('pad-kanban-beforemove',{bubbles:true,cancelable:true,detail:detail}))){card.querySelector('select').value=from.dataset.column;return;}
  dest.querySelector('ul').appendChild(card);card.querySelector('select').value=to;card.querySelector('select').focus();status.textContent=card.querySelector('strong').textContent+' moved to '+dest.querySelector('h3').textContent;root.dispatchEvent(new CustomEvent('pad-kanban-move',{bubbles:true,detail:detail}));}
