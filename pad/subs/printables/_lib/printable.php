@@ -150,12 +150,19 @@
       padError ( 'the ' . padPrintableWhat () . ' has ' . count ( $items ) * $copies . ' items - at most ' . PAD_PRINTABLE_MOST . ' a printable' );
 
     foreach ( $items as $item )
-      for ( $i = 0; $i < $copies and count ( $all ) < PAD_PRINTABLE_MOST; $i++ )
+      for ( $i = 0; $i < ( ! empty ( $plan ['documentCopies'] ) ? 1 : $copies ) and count ( $all ) < PAD_PRINTABLE_MOST; $i++ )
         $all [] = $item;
 
     // Duplex and imposed layouts prepare physical face order before the shared renderer.
     if ( isset ( $plan ['prepare'] ) )
       $all = ( $plan ['prepare'] ) ( $all );
+
+    if ( ! empty ( $plan ['documentCopies'] ) and $copies > 1 )
+      $all = array_merge ( ...array_fill ( 0, $copies, $all ) );
+    if ( count ( $all ) > PAD_PRINTABLE_MOST ) {
+      padError ( 'the printable has too many imposed faces' );
+      $all = array_slice ( $all, 0, PAD_PRINTABLE_MOST );
+    }
 
     $html = padPrintableBuild ( $kind, $plan, $all );
 
