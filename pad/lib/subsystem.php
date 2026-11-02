@@ -49,6 +49,7 @@
     'highlighter' => 'highlighters',
     'diff' => 'diffs',
     'recurrence' => 'recurrences',
+    'distribution' => 'distributions',
     'unit' => 'units',
   ];
 
