@@ -185,7 +185,7 @@ What was verified, and on what, is listed at the end of this file.
 | Application | What it shows offline |
 |-------------|-----------------------|
 | `notes` | SQLite from `padSqlSetup`; a `{pad:live}` list (pins) and note (colour); search as you type through a `{pad:fragment}` fetched by `notes.js`; a preview posted with `X-CSRF-Token`; pictures attached (`padUpload`, multipart) and served back (`padUploadSend`); the notes as JSON (`$padExpose`), the database file as a download, a JSON import |
-| `ledger` | A schema in `_migrations/`, run by `_inits.php` when one is pending - a later migration brings a database a visitor kept up to date; `{chart:bar}`s, `{pad:progress}`, a sortable paged `{table:standard}`; a quick entry posted as JSON and answered as JSON; CSV out (`padFormat=csv`) and in |
+| `ledger` | A schema in `_migrations/`, run by `_inits.php` when one is pending - a later migration brings a database a visitor kept up to date; `{chart:bar}`s, `{widget:progress}`, a sortable paged `{table:standard}`; a quick entry posted as JSON and answered as JSON; CSV out (`padFormat=csv`) and in |
 | `kanban` | Drag and drop posted as JSON; the columns asked for again as a `{pad:fragment}`; an `EventSource` on `padSse` keeping every open window in step - through the one service worker when installed, through the BroadcastChannel of the runtimes when opened from the disk |
 
 `pad pack notes,ledger,kanban` packs the three with a launcher.

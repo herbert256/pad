@@ -342,9 +342,9 @@
   // place of: lib/type.php padTypeTag reaches $pqStore before every other store and before a
   // page variable, so {property:name} iterated the sequence from then on. The sequence pair that only
   // names its loop - {sequence:loop 3, name='orders'} - made a later {orders}{$id}{/orders} loop
-  // over 1 2 3 instead of the page's orders, and push='x' after a {pad:data 'x'}, {pad:content 'x'},
+  // over 1 2 3 instead of the page's orders, and push='x' after a {format:auto 'x'}, {pad:content 'x'},
   // {pad:bool 'x'} or {pad:define 'x'} left that store reachable as {data:x} only, in silence, where a
-  // {pad:data 'x'} after the sequence store is refused (tags/_go/store.php). '' when it made none.
+  // {format:auto 'x'} after the sequence store is refused (tags/_go/store.php). '' when it made none.
 
   function pqStoreHeld ( $name ) {
 

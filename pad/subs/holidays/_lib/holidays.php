@@ -1,6 +1,8 @@
 <?php
 
-  // Public holidays - the holidays subsystem behind {pad:holidays}, the holidays= option of
+  include_once PAD . 'subs/holidays/_lib/merge.php';
+
+  // Public holidays - the holidays subsystem behind {holidays:auto}, the holidays= option of
   // {calendar:month} and the helpers padHolidays, padIsHoliday, padWorkdays and padAddWorkdays
   // (lib/holidays.php). No service, no table to keep up to date: every holiday is a rule, and
   // the rules of a country are the file of subs/holidays/types/ named by its ISO 3166-1
@@ -27,7 +29,7 @@
   //   years      [ first, last ] - the years the rules are known to be right for, where the
   //              file says so: a country whose holidays begin with a law or end with a table
   //              (New Zealand's Matariki dates run to 2052). A year outside them is an error
-  //              of {pad:holidays} and of the calendar's holidays= under the strict check, and of
+  //              of {holidays:auto} and of the calendar's holidays= under the strict check, and of
   //              the helpers; a file without it is computed for every year, 1583 to 9999
   //   days       the holidays, each a rule:
   //
@@ -64,7 +66,7 @@
   // padHolidaysDay      a date as a day number - days from 1970-01-01 - and back with
   //                     padHolidaysCivil; padHolidaysWeekday the ISO weekday of one
   // padHolidaysEaster   Easter Sunday of a year; padHolidaysOrthodox the Orthodox one
-  // padHolidaysTable    the rows as the table the single {pad:holidays/} writes
+  // padHolidaysTable    the rows as the table the single {holidays:auto/} writes
   //
   // The arithmetic is integer days, no clock and no zone: the same rules, the same rows, on
   // every server and in pad pack's WebAssembly PHP.

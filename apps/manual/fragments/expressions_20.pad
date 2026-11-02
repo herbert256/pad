@@ -1,6 +1,6 @@
-{pad:data 'cart'}
+{format:auto 'cart'}
   [ {"item": "pen", "qty": 1}, {"item": "book", "qty": 3}, {"item": "lamp", "qty": 0} ]
-{/pad:data}
+{/format:auto}
 {data:cart}
   <p>{$qty} {pad:echo $qty eq 1 ? $item : $item . 's'/}{pad:echo $qty ? '' : ' - sold out'/}</p>
 {/data:cart}

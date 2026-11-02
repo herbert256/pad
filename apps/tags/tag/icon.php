@@ -22,6 +22,6 @@ PAD;
     'stroke' => 'The line width on the 24-unit grid, default 2.',
     'label'  => 'The accessible name: the icon becomes <code>role="img"</code> with <code>aria-label</code> and <code>&lt;title&gt;</code>. Without it the icon is decoration.' ];
 
-  $tagSee     = [ 'emoji', 'widget:rating', 'avatar' ];
+  $tagSee     = [ 'emoji', 'widget:rating', 'avatar:initials' ];
 
 ?>

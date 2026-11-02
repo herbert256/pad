@@ -1,6 +1,6 @@
 <?php
 
-  // The second parameter of {pad:data} is a source as data= is: a value naming an address,
+  // The second parameter of {format:auto} is a source as data= is: a value naming an address,
   // here this server's own, was fetched and stored.
 
   // The value as a visitor sends it, ?v=..., which the request made the variable: the

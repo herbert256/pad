@@ -1,4 +1,4 @@
-<p class="sheets-lead">The 126 functions a formula can call, each a file of
+<p class="sheets-lead">The 128 functions a formula can call, each a file of
 <code>pad/subs/formulas/types/</code> in the engine - a function is added by adding its file, and
 this page lists what each file says of itself. Their names are written in any case. The examples
 read the sample sheet below as if they stood in its cell G1, and each shows what that cell
@@ -94,13 +94,13 @@ shows.</p>
   
     <tr id="rand">
       <th scope="row">RAND</th>
-      <td>RAND() is a number from 0 up to 1. A spreadsheet gives another on every computation; here the number is the same for the same seed (the seed= of {pad:spreadsheet}, 0 unless given), cell and call - a page answers the same twice, so a stored answer holds.</td>
+      <td>RAND() is a number from 0 up to 1. A spreadsheet gives another on every computation; here the number is the same for the same seed (the seed= of {sheet:grid}, 0 unless given), cell and call - a page answers the same twice, so a stored answer holds.</td>
       <td><ul class="sheets-examples"><li><code>=RAND()&lt;1</code> <samp>TRUE</samp></li><li><code>=RAND()&gt;=0</code> <samp>TRUE</samp></li></ul></td>
     </tr>
   
     <tr id="randbetween">
       <th scope="row">RANDBETWEEN</th>
-      <td>RANDBETWEEN(bottom, top) is a whole number from bottom to top, both included - bottom rounded up to a whole number and top down, a bottom then above the top #NUM!. Drawn as RAND draws: a spreadsheet gives another on every computation, here it is the same for the same seed (the seed= of {pad:spreadsheet}), cell and call, so a page answers the same twice.</td>
+      <td>RANDBETWEEN(bottom, top) is a whole number from bottom to top, both included - bottom rounded up to a whole number and top down, a bottom then above the top #NUM!. Drawn as RAND draws: a spreadsheet gives another on every computation, here it is the same for the same seed (the seed= of {sheet:grid}), cell and call, so a page answers the same twice.</td>
       <td><ul class="sheets-examples"><li><code>=RANDBETWEEN(1, 6)&gt;=1</code> <samp>TRUE</samp></li><li><code>=RANDBETWEEN(7, 7)</code> <samp>7</samp></li><li><code>=RANDBETWEEN(1.5, 2.5)</code> <samp>2</samp></li><li><code>=RANDBETWEEN(2, 1)</code> <samp>#NUM!</samp></li></ul></td>
     </tr>
   
@@ -564,8 +564,20 @@ shows.</p>
   
     <tr id="text">
       <th scope="row">TEXT</th>
-      <td>TEXT(value, format) is a number written with a format code - #,##0.00, 0%, 0.00E+00, yyyy-mm-dd, dddd d mmmm, h:mm AM/PM - as the formats= of {pad:spreadsheet} writes a column; a text that reads as a number is that number.</td>
+      <td>TEXT(value, format) is a number written with a format code - #,##0.00, 0%, 0.00E+00, yyyy-mm-dd, dddd d mmmm, h:mm AM/PM - as the formats= of {sheet:grid} writes a column; a text that reads as a number is that number.</td>
       <td><ul class="sheets-examples"><li><code>=TEXT(1234.5, &quot;#,##0.00&quot;)</code> <samp>1,234.50</samp></li><li><code>=TEXT(0.256, &quot;0.0%&quot;)</code> <samp>25.6%</samp></li><li><code>=TEXT(D2, &quot;dddd d mmmm yyyy&quot;)</code> <samp>Monday 15 January 2024</samp></li><li><code>=TEXT(0.75, &quot;h:mm AM/PM&quot;)</code> <samp>6:00 PM</samp></li></ul></td>
+    </tr>
+  
+    <tr id="textafter">
+      <th scope="row">TEXTAFTER</th>
+      <td>TEXTAFTER(text, delimiter, [instance], [match_mode], [match_end], [if_not_found]) extracts text after a literal delimiter. Negative instance counts from the end; missing delimiters return if_not_found, or #N/A when that argument is omitted.</td>
+      <td><ul class="sheets-examples"><li><code>=TEXTAFTER(&quot;Ada Lovelace&quot;, &quot; &quot;)</code> <samp>Lovelace</samp></li><li><code>=TEXTAFTER(&quot;a/b/c&quot;, &quot;/&quot;, -1)</code> <samp>c</samp></li></ul></td>
+    </tr>
+  
+    <tr id="textbefore">
+      <th scope="row">TEXTBEFORE</th>
+      <td>TEXTBEFORE(text, delimiter, [instance], [match_mode], [match_end], [if_not_found]) extracts text before a literal delimiter. Negative instance counts from the end; match_mode=1 ignores case, match_end=1 also matches the boundary of the text.</td>
+      <td><ul class="sheets-examples"><li><code>=TEXTBEFORE(&quot;Ada Lovelace&quot;, &quot; &quot;)</code> <samp>Ada</samp></li><li><code>=TEXTBEFORE(&quot;a/b/c&quot;, &quot;/&quot;, -1)</code> <samp>a/b</samp></li></ul></td>
     </tr>
   
     <tr id="textjoin">

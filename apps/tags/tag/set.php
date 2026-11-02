@@ -14,6 +14,6 @@ PAD;
 
   $tagOptions = [];
 
-  $tagSee     = [ 'increment', 'decrement', 'data', 'content' ];
+  $tagSee     = [ 'increment', 'decrement', 'format:auto', 'content' ];
 
 ?>

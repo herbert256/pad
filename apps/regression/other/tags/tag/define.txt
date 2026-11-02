@@ -1,4 +1,3 @@
-
 <p>The body between <code>&#123;pad:define 'card'&#125;</code> and <code>&#123;/pad:define&#125;</code>
 becomes the template of a new tag, <code>&#123;define:card&#125;</code>, exactly as if it stood in
 <code>_tags/card.pad</code>. Defining prints nothing; every use of the tag renders the body,
@@ -13,11 +12,10 @@ itself, for rows below the current one.</p>
 
 <p>The body is kept as written and rendered at each use, so a field in it is read at the use,
 not at the definition. A define exists from the point it is walked - like a
-<code>&#123;pad:content&#125;</code> or <code>&#123;pad:data&#125;</code> store - so a use above the
+<code>&#123;pad:content&#125;</code> or <code>&#123;format:auto&#125;</code> store - so a use above the
 <code>&#123;pad:define&#125;</code> is an unknown tag. <code>&#123;define:card&#125;</code> asserts
 that the name is a define.</p>
 
 <p>The <code>define:</code> prefix selects this namespace, so the name can also exist as a
 built-in, application tag or macro. Under the strict check a define needs a name and a body. Use a define for markup with a frame - content and slots;
 use a macro when the parameters should read as plain fields.</p>
-

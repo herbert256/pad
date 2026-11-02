@@ -85,7 +85,7 @@
 
   }
 
-  // The rows a data= option names - a {pad:data} store, a sequence store, the page's array, a
+  // The rows a data= option names - a {format:auto} store, a sequence store, the page's array, a
   // field holding a list or a _data file, as {chart:bar} reads them - or NULL without data=.
 
   function padGameRows () {

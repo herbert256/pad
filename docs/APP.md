@@ -621,11 +621,11 @@ Variables prefixed with `$` are level variables (same for all iterations). Varia
 {/local:staff}
 ```
 
-### Inline Data Definition with {pad:data}
+### Inline Data Definition with {format:auto}
 ```
-{pad:data 'colors'}
+{format:auto 'colors'}
   ["red", "green", "blue"]
-{/pad:data}
+{/format:auto}
 
 {data:colors}
   <li>{$colors}</li>
@@ -634,32 +634,32 @@ Variables prefixed with `$` are level variables (same for all iterations). Varia
 
 Supports JSON arrays, objects, and tuples:
 ```
-{pad:data 'users'}
+{format:auto 'users'}
   [{"name": "Alice", "role": "admin"}, {"name": "Bob", "role": "user"}]
-{/pad:data}
+{/format:auto}
 
-{pad:data 'items'}
+{format:auto 'items'}
   ('one', 'two', 'three')
-{/pad:data}
+{/format:auto}
 ```
 
 **Multiple data formats supported (JSON, XML, YAML, CSV):**
 ```
-{pad:data 'myXML'}
+{format:auto 'myXML'}
   <data><row name="bob" phone="123" /></data>
-{/pad:data}
+{/format:auto}
 
-{pad:data 'myYAML'}
+{format:auto 'myYAML'}
   ---
   - name: bob
     phone: 123
-{/pad:data}
+{/format:auto}
 
-{pad:data 'myCSV'}
+{format:auto 'myCSV'}
   name,phone
   bob,123
   alice,456
-{/pad:data}
+{/format:auto}
 ```
 
 ### Switch Tag (Alternating Values)
@@ -1596,7 +1596,7 @@ Output: `Alice, Bob, Charlie`
 | `{pad:while}...{/pad:while}` | While loop | `{pad:while $i lt 10}...{/pad:while}` |
 | `{pad:case}...{/pad:case}` | Switch/case | `{pad:case $x}{pad:when 'a'}...{/pad:case}` |
 | `{pad:get 'page'/}` | Include page | `{pad:get 'fragments/nav'/}` |
-| `{pad:data 'name'}...{/pad:data}` | Define data | `{pad:data 'items'}[1,2,3]{/pad:data}` |
+| `{format:auto 'name'}...{/format:auto}` | Define data | `{format:auto 'items'}[1,2,3]{/format:auto}` |
 | `{property:property@tag}` | Iteration property | `{property:first@items}`, `{property:count@users}` |
 | `{sequence:loop}` | Generate sequence | `{sequence:range '1..10', name='n'}` (see [sequences/](sequences/README.md)) |
 | `{pad:break}` | Hard stop loop | `{pad:break}` or `{pad:break 'outer'/}` |
@@ -1643,4 +1643,4 @@ Output: `Alice, Bob, Charlie`
 7. **Use type prefixes** - `{pull:seq}`, `{data:items}`, `{php:func}` to disambiguate
 8. **`$` vs `%` variables** - `$var` is level (constant), `%var` is occurrence (per-iteration)
 9. **`@` placeholder** - represents current value in pipes: `{pad:echo 5 | @ * 2/}`
-10. **Multiple data formats** - JSON, XML, YAML, CSV all supported in `{pad:data}` blocks
+10. **Multiple data formats** - JSON, XML, YAML, CSV all supported in `{format:auto}` blocks

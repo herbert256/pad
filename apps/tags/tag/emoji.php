@@ -15,6 +15,6 @@ PAD;
   $tagOptions = [
     'label' => 'The name a screen reader says, default the emoji\'s own name.' ];
 
-  $tagSee     = [ 'icon:star', 'country', 'avatar' ];
+  $tagSee     = [ 'icon:star', 'country', 'avatar:initials' ];
 
 ?>

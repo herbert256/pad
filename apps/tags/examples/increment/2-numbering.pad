@@ -1,6 +1,6 @@
 {pad:meta title='Numbering across loops', about='One counter numbers the rows of two separate lists in a single run.'/}
 {pad:set $line = 100/}
-{pad:data 'incrementFruit'}["apple", "pear"]{/pad:data}
-{pad:data 'incrementVeg'}["leek", "kale", "beet"]{/pad:data}
+{format:auto 'incrementFruit'}["apple", "pear"]{/format:auto}
+{format:auto 'incrementVeg'}["leek", "kale", "beet"]{/format:auto}
 <p>{data:incrementFruit}{pad:increment $line/}{$line}: {$incrementFruit}<br>{/data:incrementFruit}</p>
 <p>{data:incrementVeg}{pad:increment $line/}{$line}: {$incrementVeg}<br>{/data:incrementVeg}</p>

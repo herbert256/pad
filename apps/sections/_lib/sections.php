@@ -184,31 +184,31 @@ PAD;
     $templates = [ "{pad:palette '$palette'/}" ];
 
     $templates [] = <<<PAD
-{pad:data 'sales'}
+{format:auto 'sales'}
 quarter,north,east,south,west
 Q1,42,31,25,18
 Q2,48,35,29,22
 Q3,51,39,27,26
 Q4,57,44,33,30
-{/pad:data}
+{/format:auto}
 {chart:bar data='sales', label='quarter', value='north, east, south, west', palette='$palette'/}
 PAD;
 
     if ( $type == 'categorical' )
       $templates [] = <<<PAD
-{pad:data 'traffic'}
+{format:auto 'traffic'}
 source,visits
 Search,4200
 Direct,2600
 Social,1800
 Mail,900
 Other,500
-{/pad:data}
+{/format:auto}
 {chart:donut data='traffic', label='source', value='visits', palette='$palette'/}
 PAD;
     elseif ( $type == 'cyclic' )
       $templates [] = <<<PAD
-{pad:data 'wind'}
+{format:auto 'wind'}
 from,days
 N,38
 NE,29
@@ -218,12 +218,12 @@ S,45
 SW,72
 W,64
 NW,49
-{/pad:data}
+{/format:auto}
 {chart:donut data='wind', label='from', value='days', palette='$palette'/}
 PAD;
     else
       $templates [] = <<<PAD
-{pad:data 'temps'}
+{format:auto 'temps'}
 month,day,change
 Jan,Mon,-4
 Jan,Wed,-1
@@ -237,7 +237,7 @@ Jul,Fri,9
 Oct,Mon,3
 Oct,Wed,0
 Oct,Fri,-2
-{/pad:data}
+{/format:auto}
 {chart:heatmap data='temps', x='month', y='day', value='change', palette='$palette'/}
 PAD;
 

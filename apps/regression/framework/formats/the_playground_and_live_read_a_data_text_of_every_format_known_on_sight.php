@@ -1,7 +1,7 @@
 <?php
 
   // The data text of the playground and of a page the live application saves is read as
-  // {pad:data} reads it: a pipe table, TSV, NDJSON, an iCalendar and a vCard - the formats known
+  // {format:auto} reads it: a pipe table, TSV, NDJSON, an iCalendar and a vCard - the formats known
   // on sight that have no reader in pad/data/ - give their rows as CSV does, where the
   // reader of the type was included as a file of pad/data/ and the request ended on its
   // missing include. Each post carries the token of the application's own form.

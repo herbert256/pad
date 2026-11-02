@@ -1,5 +1,5 @@
-{pad:data}
+{format:auto}
 name
 {array:people}"{!name}"
 {/array:people}
-{/pad:data 'p'}{pad:data}[{array:people}{property:notFirst@people},{/property:notFirst@people}{"n":"{!name}"}{/array:people}]{/pad:data 'q'}A[{data:p}{pad:if $name eq 'Smith, John'}eq{pad:else}ne{/pad:if};{/data:p}]B[{data:p where='$name eq "x=1"'}{$name}@else@none{/data:p}]C[{data:q}{pad:echo php:strlen($n)/};{/data:q}]
+{/format:auto 'p'}{format:auto}[{array:people}{property:notFirst@people},{/property:notFirst@people}{"n":"{!name}"}{/array:people}]{/format:auto 'q'}A[{data:p}{pad:if $name eq 'Smith, John'}eq{pad:else}ne{/pad:if};{/data:p}]B[{data:p where='$name eq "x=1"'}{$name}@else@none{/data:p}]C[{data:q}{pad:echo php:strlen($n)/};{/data:q}]

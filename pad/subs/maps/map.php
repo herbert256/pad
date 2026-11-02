@@ -1,15 +1,15 @@
 <?php
 
-  // The body of a map: {pad:map 'europe', data='sales', key='country', value='amount'/} - the
+  // The body of a map: {map:auto 'europe', data='sales', key='country', value='amount'/} - the
   // caller sets $padMapView, the view named, '' for the world. A view is a file of
   // subs/maps/types/, and the files there are all the views there are (padMapViews,
-  // subs/maps/_lib/map.php). data= names the rows as for {chart:bar} - a {pad:data} store, a page array
+  // subs/maps/_lib/map.php). data= names the rows as for {chart:bar} - a {format:auto} store, a page array
   // or a _data file - and as a pair the content is the rows, JSON, YAML, XML or CSV:
   //
-  //   {pad:map 'europe', key='country', value='visitors'}
+  //   {map:auto 'europe', key='country', value='visitors'}
   //     country,visitors
   //     NL,1200
-  //   {/pad:map}
+  //   {/map:auto}
   //
   // key= names the field with the country - its ISO alpha-2 or alpha-3 code or its English
   // name, in any case - or on a view of a country's regions (us-states, de-states ...) the
@@ -42,6 +42,30 @@
   $padMapRows   = ( isset ( $padPrm [$pad] ['data'] ) or trim ( $padMapSource ) !== '' ) ? padChartRows ( $padMapSource, 'map' ) : [];
   $padData [$pad] = padDefaultData ();
 
+  $padMapMode = padTagParm ( 'mode', 'choropleth' );
+  if ( ! is_string ( $padMapMode ) ) {
+    if ( $padCheckSyntax ) padError ( 'map mode must be choropleth, markers or bubbles' );
+    return '';
+  }
+  $padMapMode = strtolower ( trim ( $padMapMode ) );
+  if ( ! in_array ( $padMapMode, [ 'choropleth', 'markers', 'bubbles' ], TRUE ) ) {
+    if ( $padCheckSyntax ) padError ( 'map mode must be choropleth, markers or bubbles' );
+    return '';
+  }
+
+  if ( $padMapMode !== 'choropleth' ) {
+    $padMapMarkerValue = padTagParm ( 'value', '' );
+    if ( $padMapMode === 'bubbles' and $padMapMarkerValue === '' ) {
+      if ( $padCheckSyntax ) padError ( 'a bubble map needs value= naming its numeric field' );
+      return '';
+    }
+    $padMapMarkers = padMapMarkers ( $padMapRows, $padMapView,
+      padTagParm ( 'latitude', 'latitude' ), padTagParm ( 'longitude', 'longitude' ),
+      padTagParm ( 'label', 'label' ), $padMapMode === 'bubbles' ? $padMapMarkerValue : '' );
+    return padMap ( $padMapView, [], (string) padTagParm ( 'title', padMapView ( $padMapView ) ['name'] ),
+      max ( 100, (int) padTagParm ( 'width', 720 ) ), (int) padTagParm ( 'height', 0 ), 'linear', $padMapMarkers );
+  }
+
   list ( $padMapNumbers, $padMapNames ) = padChartGuess ( $padMapRows );
 
   $padMapUsed   = [];
@@ -53,7 +77,7 @@
   // A row that is a value alone - [ 'NL' => 1200, 'BE' => 800 ], the natural shape of a
   // map's data - is the value of the country its key names: the key was never read, the
   // map drew nothing and its title listed an empty name as not on the map. So is a row of
-  // one field keyed by a name when no field holds the country - such an object in a {pad:data}
+  // one field keyed by a name when no field holds the country - such an object in a {format:auto}
   // store or as the map's content, whose values became rows of one field under the store's
   // name: { "NL": 1200 } was a row [ v => 1200 ] keyed NL, and the map said No values.
 
@@ -76,7 +100,11 @@
 
   }
 
-  $padMapTitle = (string) padTagParm ( 'title', ( $padMapValue !== '' ? ucfirst ( $padMapValue ) . ' by ' . padMapView ( $padMapView ) ['unit'] : padMapView ( $padMapView ) ['name'] ) );
+  // A dictionary's scalar values receive the tag word as their internal field.
+  // Do not expose an implementation selector such as auto or europe as the value label.
+  $padMapTitleField = ( $padMapValue === $padTag [$pad] and ! isset ( $padPrm [$pad] ['value'] ) ) ? 'map' : $padMapValue;
+
+  $padMapTitle = (string) padTagParm ( 'title', ( $padMapTitleField !== '' ? ucfirst ( $padMapTitleField ) . ' by ' . padMapView ( $padMapView ) ['unit'] : padMapView ( $padMapView ) ['name'] ) );
 
   if ( $padMapMissed )
     $padMapTitle .= ' (not on the map: ' . implode ( ', ', array_slice ( array_unique ( $padMapMissed ), 0, 10 ) ) . ')';

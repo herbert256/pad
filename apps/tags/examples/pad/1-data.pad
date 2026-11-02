@@ -1,5 +1,5 @@
 {pad:meta title='A carrier for data=', about='With data= the content renders once per row, under the name the tag is given.'/}
-{pad:data 'colours'}["red", "green", "blue"]{/pad:data}
+{format:auto 'colours'}["red", "green", "blue"]{/format:auto}
 <ul>
   {pad:pad data='colours', name='colour'}
     <li>{property:current@colour/}: {$colours}</li>

@@ -269,7 +269,7 @@
 
   }
 
-  // The rows a data= item names - a {pad:data} store, a sequence store, an array of the page, a
+  // The rows a data= item names - a {format:auto} store, a sequence store, an array of the page, a
   // field holding a list or a _data file, as a game's or a chart's data= - or NULL without it.
 
   function padInputRows () {

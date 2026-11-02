@@ -17,6 +17,6 @@ PAD;
     'slug' => 'Only the file of that name (without <code>.md</code>). A slug that names no file, or is not a plain file name, gives no rows - the <code>@else@</code> branch.',
     'html' => 'Bare option: raw HTML in the Markdown bodies is let through. By default it is escaped.' ];
 
-  $tagSee     = [ 'markdown', 'data', 'array', 'files' ];
+  $tagSee     = [ 'markdown', 'format:auto', 'array', 'files' ];
 
 ?>

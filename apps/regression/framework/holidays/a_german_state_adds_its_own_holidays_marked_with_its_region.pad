@@ -1,5 +1,5 @@
-{pad:holidays 'de', year=2026}{$local}|{/pad:holidays}
-{pad:holidays 'de-by', year=2026, where='$region'}{$date} {$local} [{$region}]|{/pad:holidays}
-{pad:holidays 'de', region='sn', year=2026, where='$region'}{$date} {$local} [{$region}]|{/pad:holidays}
-{pad:holidays 'de-bb', year=2017, where='$local eq "Reformationstag"'}{$date} [{$region}]|{/pad:holidays}
-{pad:holidays 'de-by', year=2017, where='$local eq "Reformationstag"'}{$date} [{$region}]|{/pad:holidays}
+{holidays:auto 'de', year=2026}{$local}|{/holidays:auto}
+{holidays:auto 'de-by', year=2026, where='$region'}{$date} {$local} [{$region}]|{/holidays:auto}
+{holidays:auto 'de', region='sn', year=2026, where='$region'}{$date} {$local} [{$region}]|{/holidays:auto}
+{holidays:auto 'de-bb', year=2017, where='$local eq "Reformationstag"'}{$date} [{$region}]|{/holidays:auto}
+{holidays:auto 'de-by', year=2017, where='$local eq "Reformationstag"'}{$date} [{$region}]|{/holidays:auto}

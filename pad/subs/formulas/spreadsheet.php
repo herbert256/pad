@@ -1,18 +1,18 @@
 <?php
 
-  // The body of {pad:spreadsheet} - pad/tags/spreadsheet.php names it, $padSheetName the name
+  // The body of {sheet:grid} - pad/tags/spreadsheet.php names it, $padSheetName the name
   // the caller found. A grid of cells, its formulas computed on the server, as a table:
   //
-  //   {pad:spreadsheet 'budget', formats='B:€ #,##0.00, D:€ #,##0.00', totals='D'}
+  //   {sheet:grid 'budget', formats='B:€ #,##0.00, D:€ #,##0.00', totals='D'}
   //     Item,Price,Qty,Total
   //     Apples,1.20,3,=B2*C2
   //     Pears,0.80,5,=B3*C3
-  //   {/pad:spreadsheet}
+  //   {/sheet:grid}
   //
-  //   {pad:spreadsheet data='orders', formulas='total=B2*C2'/}
+  //   {sheet:grid data='orders', formulas='total=B2*C2'/}
   //
   // The cells are the pair's content - a line a row, a comma between cells (a tab when a
-  // line holds one), see padSheetRead - or the rows of data=: a {pad:data} store, a page array or
+  // line holds one), see padSheetRead - or the rows of data=: a {format:auto} store, a page array or
   // a _data file. Records come under a first row of their field names and their values are
   // never formulas; a list of rows of values, or cells by their names ([ 'A1' => 10, 'B1' =>
   // '=A1*2' ]), may hold formulas as the content does. The content is read as written, as
@@ -42,7 +42,7 @@
   // The first parameter names the sheet: its edits post as padSheet[<name>][B2]. Unnamed, a
   // sheet is sheet1, sheet2 ... in the order of the page.
   //
-  // The tag is {pad:spreadsheet}, not {array:sheet}: a built-in tag comes before a page's fields, and
+  // The tag is {sheet:grid}, not {array:sheet}: a built-in tag comes before a page's fields, and
   // the cheat sheets of the tags and types applications iterate an array named $sheet.
   //
   // Under $padCheckSyntax a formula of the template that cannot be read - or calls a function
@@ -62,7 +62,7 @@
     $padSheetName = padSheetNextName ();
   elseif ( ! preg_match ( '/^[A-Za-z][A-Za-z0-9_-]{0,57}$/D', $padSheetName ) ) {
     if ( $padCheckSyntax )
-      padError ( "a spreadsheet's name is a letter and then letters, digits, _ and - (58 at most), like {pad:spreadsheet 'budget'}, not '" . padMakeSafe ( $padSheetName, 40 ) . "'" );
+      padError ( "a spreadsheet's name is a letter and then letters, digits, _ and - (58 at most), like {sheet:grid 'budget'}, not '" . padMakeSafe ( $padSheetName, 40 ) . "'" );
     $padSheetName = padSheetNextName ();
   }
 
@@ -86,7 +86,7 @@
   else {
 
     if ( $padCheckSyntax )
-      padError ( "$padSheetWhat has no cells - data='rows', or the rows between {pad:spreadsheet} and {/pad:spreadsheet}" );
+      padError ( "$padSheetWhat has no cells - data='rows', or the rows between {sheet:grid} and {/sheet:grid}" );
 
     $padSheetGrid = padSheetNew ();
 
@@ -141,7 +141,7 @@
           padError ( "the formula " . padMakeSafe ( $padSheetCell ['formula'], 60 ) . " in " . padFormulaCellName ( $padSheetColumn, $padSheetRow )
                    . " of $padSheetWhat cannot be read at position {$padSheetCell ['problem'] [1]}: {$padSheetCell ['problem'] [0]}" );
 
-  // The functions the sheet calls go on the reference record, as the views of {pad:map} do.
+  // The functions the sheet calls go on the reference record, as the views of {map:auto} do.
 
   if ( $padInfoXref ?? FALSE ) {
     $padSheetCalls = [];

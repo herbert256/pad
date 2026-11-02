@@ -210,9 +210,9 @@ Control tag behavior with options:
 ### Data Definition
 
 ```
-{pad:data 'colors'}
+{format:auto 'colors'}
   ["red", "green", "blue"]
-{/pad:data}
+{/format:auto}
 
 {data:colors}{$colors} {/data:colors}
 ```
@@ -707,7 +707,7 @@ Execute code in isolation:
 playground (`apps/playground`, `http://localhost/pad/playground/`): it answers local
 requests only, renders with `$padPhpFunctions = []` and `$padRequestVars = []`, limits run
 time and source and output size, and shows the result in a sandboxed frame. Its data is a
-text in any data format - JSON, YAML, XML, CSV, its type recognised as `{pad:data}` recognises it
+text in any data format - JSON, YAML, XML, CSV, its type recognised as `{format:auto}` recognises it
 - or, switched with the button beside it, PHP code as a page's `.php`, which runs as written,
 unlimited. The URL hash carries the template and its data, so a link shares an
 example; one opened from a link waits for Render.

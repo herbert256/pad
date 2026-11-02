@@ -3,7 +3,7 @@
   // A JSON value, or a PHP array, as a tree to fold open and shut - the {widget:jsonview} tag.
   //
   //   {widget:jsonview $response}                 a page array, a row, a JSON text
-  //   {widget:jsonview 'orders', open=1}          a {pad:data} store, a page array or a _data file
+  //   {widget:jsonview 'orders', open=1}          a {format:auto} store, a page array or a _data file
   //   {widget:jsonview title='Answer'} {"id": 7, "tags": ["a", "b"]} {/widget:jsonview}
   //
   // Every object and list is a <details> with its key in the <summary>: the browser folds
@@ -14,7 +14,7 @@
   //
   // padJsonviewValue  the value an item of the tag stands for: a $field holding a list is
   //                   that list, which an expression cannot hold; a text is the text
-  // padJsonviewNamed  the data a name stands for: a {pad:data} store, a sequence store, a page
+  // padJsonviewNamed  the data a name stands for: a {format:auto} store, a sequence store, a page
   //                   array or a _data file - a .json file read as it is written
   // padJsonviewText   a JSON text decoded, NULL when it is none
   // padJsonviewError  why a text is no JSON

@@ -15,14 +15,15 @@
     return;
 
   // What {pad:ignore} wraps is text, and so is the content of a level carrying the ignore option
-  // - the engine stops seeing PAD markup in it - and the content of {pad:data}, which is read as
+  // - the engine stops seeing PAD markup in it - and the content of {format:auto}, which is read as
   // data: an @else@ there is part of that text, not a branch of the tag. Cut off, it was
   // gone - {pad:ignore}a@else@b{/pad:ignore} printed a, {pad:markdown ignore} lost the rest of a sentence
-  // that showed the marker, and {pad:data 'd'}["a@else@b"]{/pad:data} failed as JSON. A {pad:highlight}
+  // that showed the marker, and {format:auto 'd'}["a@else@b"]{/format:auto} failed as JSON. A {pad:highlight}
   // sample is code shown as it stands, left whole here too - it was put back together by
   // tags/highlight.php, and a second @else@ in it would read as one too many.
 
-  if ( ( $padType [$pad] == 'pad' and in_array ( $padTag [$pad], [ 'ignore', 'data', 'highlight' ] ) )
+  if ( ( $padType [$pad] == 'pad' and in_array ( $padTag [$pad], [ 'ignore', 'highlight' ] ) )
+       or $padType [$pad] === 'format'
        or isset ( $padPrm [$pad] ['ignore'] ) )
     return;
 

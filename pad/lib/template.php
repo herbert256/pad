@@ -218,7 +218,7 @@
 
   // The pairs whose content is text, not template: what {pad:ignore} wraps, a {pad:highlight}
   // sample, and the content of any pair whose opener carries the ignore option - {pad:markdown
-  // ignore}, {pad:data 'd' ignore} - which level/split.php reads as text as it reads the other
+  // ignore}, {format:auto 'd' ignore} - which level/split.php reads as text as it reads the other
   // two. A branch marker inside one - {pad:ignore}{pad:else}{/pad:ignore}, a {pad:when} in a sample - is
   // that text, and belongs to no tag: it was taken by the {pad:if}, {pad:case} or condition tag
   // around it, which cut its content there and left "the pair {pad:ignore} never closes" - and

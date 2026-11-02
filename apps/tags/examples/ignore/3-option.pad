@@ -1,7 +1,7 @@
 {pad:meta title='The option form', about='ignore on another tag protects that tag\'s content - here a data block whose rows hold braces.'/}
-{pad:data 'snippets' ignore}
+{format:auto 'snippets' ignore}
   [ { "code": "{$name}" }, { "code": "{pad:echo 1 + 1}" } ]
-{/pad:data}
+{/format:auto}
 <ul>
   {data:snippets}<li><code>{$code}</code></li>{/data:snippets}
 </ul>

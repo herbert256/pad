@@ -97,7 +97,7 @@
 
     $text ??= (string) @file_get_contents ( dirname ( APPS ) . '/docs/reference/TYPES.md' );
 
-    if ( ! preg_match ( '/^### ' . preg_quote ( $name, '/' ) . '\s*\n(.*?)(?=^#{2,3} |^---)/ms', $text, $match ) )
+    if ( ! preg_match ( '/^### ' . preg_quote ( $name, '/' ) . '\s*\n(.*?)(?=^#{2,3} |^---|\z)/ms', $text, $match ) )
       return '';
 
     // A link of the section to another document - ../DATABASE.md - is to that file in the
@@ -141,7 +141,7 @@
       return array_map ( fn ( $name ) => [ "pad:$name", "$tags$name" ], $names ( PAD . 'tags' ) );
 
     if ( isset ( padSubsystems [$type] ) )
-      return array_map ( fn ( $kind ) => [ "$type:$kind", "$tags$type/$kind" ], padKinds ( padSubsystems [$type] [0] ) );
+      return array_map ( fn ( $kind ) => [ "$type:$kind", "$tags$type/$kind" ], padSubsystemTagKinds ( $type ) );
 
     if ( isset ( padSubsystemKinds [$type] ) )
       return array_map ( fn ( $kind ) => [ $kind, "{$padRoot}tags/?kind/$type/$kind" ], padKinds ( padSubsystemKinds [$type] ) );

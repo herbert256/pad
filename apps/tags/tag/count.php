@@ -10,10 +10,10 @@
 PAD;
 
   $tagParms   = [
-    'name' => 'The quoted name of a <code>{pad:data}</code> set or of a page array. A data set of that name goes before a variable.' ];
+    'name' => 'The quoted name of a <code>{format:auto}</code> set or of a page array. A data set of that name goes before a variable.' ];
 
   $tagOptions = [];
 
-  $tagSee     = [ 'data', 'if', 'bool' ];
+  $tagSee     = [ 'format:auto', 'if', 'bool' ];
 
 ?>

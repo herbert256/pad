@@ -3,7 +3,7 @@
   // Rows by name, and the lookup pipe function that finds one of them by a key - read by the
   // lookup pipe (functions/lookup.php) and by {pad:tree} (tags/tree.php) when a page uses them.
   //
-  // padNamedRows  the rows a name stands for: a {pad:data} block, a stored sequence, an array of
+  // padNamedRows  the rows a name stands for: a {format:auto} block, a stored sequence, an array of
   //               the page or of an enclosing row, or a _data/ file - in that order; NULL
   //               when nothing holds that name. {pad:tree 'menu'} and lookup('customers')
   //               both read their rows through it. With $keep a _data/ file is read once per

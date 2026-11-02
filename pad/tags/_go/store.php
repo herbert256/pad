@@ -1,6 +1,6 @@
 <?php
 
-  // Shared body of {pad:data}, {pad:content} and {pad:bool}: puts the tag's content in a named store,
+  // Shared body of {format:auto}, {pad:content} and {pad:bool}: puts the tag's content in a named store,
   // so that later on {thatName} addresses it (lib/type.php resolves names against the
   // stores).
   //
@@ -8,7 +8,7 @@
   // in that case the first visit just asks for a second one at level end ($padWalk =
   // 'end'). The name is the first parameter; the source is the tag's content, or the
   // second parameter when there is no content. {pad:content} keeps the unprocessed source
-  // when it is stored at the open tag and the rendered text otherwise, {pad:data} runs the
+  // when it is stored at the open tag and the rendered text otherwise, {format:auto} runs the
   // source through padData() unless the level already carries data, {pad:bool} reduces it to
   // TRUE/FALSE with padMakeFlag().
   //
@@ -26,7 +26,8 @@
   if ( $padCheckSyntax and trim ( $padOpt [$pad] [1] ?? '' ) == '' and ! isset ( $padOpt [$pad] [2] ) )
     padError ( "the {" . padTagDisplay () . "} has no name" );
 
-  $padStoreName = 'pad' . ucwords($padTag[$pad]) . 'Store';
+  $padStoreKind = $padType [$pad] === 'format' ? 'data' : $padTag [$pad];
+  $padStoreName = 'pad' . ucwords ( $padStoreKind ) . 'Store';
 
   if ( isset ( $padParm ) or isset ( $padOpt [$pad] [2] ) )
     $padName [$pad] = $padParm;
@@ -36,7 +37,7 @@
   //
   // That parameter is a value unless it is written out - a quoted string, {pad:content 'c',
   // 'Hi {$name}'} - and a value is text: {pad:content 'c', $v} ran what $v held as PAD when
-  // {content:c} rendered, where {pad:content 'c'}{$v}{/pad:content} keeps it text; {pad:data 'd', $v} ran the
+  // {content:c} rendered, where {pad:content 'c'}{$v}{/pad:content} keeps it text; {format:auto 'd', $v} ran the
   // elements of a value that reads as a PAD list, as data=$v does not; {pad:bool} below.
 
   $padStoreValue = FALSE;
@@ -50,23 +51,23 @@
         if ( $padStoreParm ['padPrmKind'] == 'parm' and $padStoreParm ['padPrmName'] === 2 )
           $padStoreValue = ! is_string ( padMetaLiteral ( $padStoreParm ['padPrmOrg'] ) );
 
-    if ( $padTag [$pad] == 'content' and $padStoreValue )
+    if ( $padStoreKind == 'content' and $padStoreValue )
       $padStoreSource = padProtect ( $padStoreSource );
 
   }
-  elseif ($padTag [$pad] == 'content' and $padWalk [$pad] == 'start')
+  elseif ($padStoreKind == 'content' and $padWalk [$pad] == 'start')
     $padStoreSource = $padBase [$pad];
   else
     $padStoreSource = $padContent;
 
-  if ( $padTag [$pad] == 'content') {
+  if ( $padStoreKind == 'content') {
 
     if ( $padWalk [$pad] == 'start' and (string) $padContent !== '' )
       $padStoreData = $padSource [$pad];
     else
       $padStoreData = padMakeContent ($padStoreSource);
 
-  } elseif ( $padTag [$pad] == 'data' ) {
+  } elseif ( $padStoreKind == 'data' ) {
 
     // Judged as padData will read it (padDataText): trimmed and a leading UTF-8 byte order
     // mark taken off, which padData strips before it sniffs the type - a list behind a BOM,
@@ -75,9 +76,12 @@
     $padStoreList = is_string ( $padStoreSource ) ? padDataText ( $padStoreSource ) : $padStoreSource;
 
     // The format of the content: type=, or format= - the word the formats subsystem goes by,
-    // {pad:data 'plan', format='toml'} (lib/format.php) - else known on sight.
+    // {format:auto 'plan', format='toml'} (lib/format.php) - else known on sight.
 
-    $padStoreType = padTagParm ( 'type' ) ?: padTagParm ( 'format' );
+    $padStoreTypeOption = padTagParm ( 'type' );
+    $padStoreFormatOption = padTagParm ( 'format' );
+    $padStoreType = ( $padType [$pad] === 'format' and $padTag [$pad] !== 'auto' )
+      ? $padTag [$pad] : ( $padStoreTypeOption ?: $padStoreFormatOption );
 
     if ( ! padIsDefaultData ( $padData [$pad] ) )
       $padStoreData = $padData [$pad];
@@ -86,12 +90,12 @@
       $padStoreData = [];
     } elseif ( is_string ( $padStoreList ) and padContentType ( $padStoreList ) == 'list' and padSpliceInCode ( $padStoreList ) ) {
 
-      // The content walked before it is stored - the name on the closing tag, {pad:data}( {$x} )
-      // {/pad:data 'e'} - holds its fields' values, and a value standing bare among the elements
+      // The content walked before it is stored - the name on the closing tag, {format:auto}( {$x} )
+      // {/format:auto 'e'} - holds its fields' values, and a value standing bare among the elements
       // ran as one of their expressions: a request value php:strlen(12345) stored 5. Written
       // in quotes, ( '{$x}' ), it is an element's text (lib/level.php padSpliceInCode).
 
-      padError ( "a value spliced into a {pad:data} list would run as an expression: put it in quotes, ( '{\$x}' ), or hand it over as data=\$x" );
+      padError ( "a value spliced into a {format:auto} list would run as an expression: put it in quotes, ( '{\$x}' ), or hand it over as data=\$x" );
       $padStoreData = [];
 
     } elseif ( $padProtectValues and padDataValueRange ( $padStoreSource )
@@ -99,9 +103,9 @@
 
       // A range a visitor names is built whole, a row per member - lib/data.php
       // padDataValueRange. Who chose it is judged as for an address below: a request value
-      // walked into a {pad:data} named at its close, {pad:data}{$v}{/pad:data 'd'}, or spliced into the
-      // second parameter, {pad:data 'd', '{$v}'}, chose 1..100000 as {pad:data 'd', $v} does, and
-      // was built whole - 121 s and 386 MB; {pad:data}1..20000{/pad:data 'd'} is the author's.
+      // walked into a {format:auto} named at its close, {format:auto}{$v}{/format:auto 'd'}, or spliced into the
+      // second parameter, {format:auto 'd', '{$v}'}, chose 1..100000 as {format:auto 'd', $v} does, and
+      // was built whole - 121 s and 386 MB; {format:auto}1..20000{/format:auto 'd'} is the author's.
 
       padError ( "the data value reads as a range of more than $padSeqDefaultTries values - write a range that long in the template" );
       $padStoreData = [];
@@ -110,7 +114,7 @@
              and padDataValueAddress ( $padStoreSource ) ) {
 
       // An address a visitor chose is not fetched, as data= has it (options/data.php):
-      // {pad:data 'd', $v} with a request value, and one walked into a {pad:data} named at its
+      // {format:auto 'd', $v} with a request value, and one walked into a {format:auto} named at its
       // close, had the server fetch whatever the request named.
 
       padError ( "the data value reads as an address to fetch - write the address in the template, data='https://...', or fetch it in the page's PHP with padPrefetch or padCurl" );
@@ -135,7 +139,7 @@
 
     }
 
-  } elseif ( $padTag [$pad] == 'bool' ) {
+  } elseif ( $padStoreKind == 'bool' ) {
 
     // A bool from a value - {pad:bool 'b', $v} - is that value's own truth, not the value run
     // as PAD: padMakeFlag hands a string to padEval, and the parameter was evaluated to the
@@ -156,7 +160,7 @@
       // nothing there, the content is values alone and the flag their text's own truth, as
       // {pad:bool 'b', $a} takes it ('Hello world' TRUE, blank and '0' FALSE). An expression of
       // the author's own is evaluated with the values in it - a number, {$n} gt 2, a word,
-      // {$s} eq 'paid', or a value in quotes, '{$u}' eq 'Ann' - and refused, as the {pad:data}
+      // {$s} eq 'paid', or a value in quotes, '{$u}' eq 'Ann' - and refused, as the {format:auto}
       // list is, when a value stands in its code: one of more than a word, which
       // padSpliceInCode knows, or a single word the author did not write that the evaluator
       // takes for a reference - a function, a tag, a constant: phpversion and
@@ -203,7 +207,7 @@
   if ( $padCheckSyntax ) {
 
     // The store is written here, while the tag runs - before its opening pipe and its
-    // handling options act on the level, which then has nothing left to act on: {pad:data 'x',
+    // handling options act on the level, which then has nothing left to act on: {format:auto 'x',
     // sort='n DESC'} stored the rows unsorted and {pad:content 'c' | upper} the text as it was,
     // and both passed as options that were read. Where the store is used they work, {data:x
     // sort=...}, {content:c | upper}, and toData= on that tag keeps the result.
@@ -222,15 +226,15 @@
 
   // The resolver itself says what {bool:name} reaches now the store holds it (lib/type.php
   // padTypeTag): besides the built-in and application tags above, a _common tag or snippet
-  // comes before every store, and a store earlier in its order before this one - {pad:data
-  // 'lines'} then {lines} rendered _common's lines snippet, {pad:content 'x'} then {pad:data 'x'}
+  // comes before every store, and a store earlier in its order before this one - {format:auto
+  // 'lines'} then {lines} rendered _common's lines snippet, {pad:content 'x'} then {format:auto 'x'}
   // left {data:x} the content, both in silence.
 
   if ( $padCheckSyntax ) {
 
     $padStoreReach = padTypeTag ( $padName [$pad], 0 );
 
-    if ( $padStoreReach and $padStoreReach != $padTag [$pad] and ! in_array ( $padStoreReach, [ 'app', 'pad' ] ) )
+    if ( $padStoreReach and $padStoreReach != $padStoreKind and ! in_array ( $padStoreReach, [ 'app', 'pad' ] ) )
       padError ( "the store name '" . $padName [$pad] . "' is already "
         . ( [ 'common'  => 'a _common tag or snippet', 'pull'   => 'a sequence store',  'bool'   => 'a bool store',
               'content' => 'a content block',          'define' => 'a {pad:define} tag',    'macro'  => 'a {pad:macro}',

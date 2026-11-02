@@ -1,7 +1,7 @@
 <?php
 
   // {table:standard data='orders'} - the rows as a complete HTML table, subs/tables/_lib/table.php. The
-  // rows come from data= - a {pad:data} store, a page array or a _data file, as for {chart:bar} -
+  // rows come from data= - a {format:auto} store, a page array or a _data file, as for {chart:bar} -
   // or, as a pair, from the content: JSON, YAML, XML or CSV, told apart on sight.
   //
   //   {table:standard data='orders', columns='number, customer, total', totals='total'}
@@ -128,7 +128,7 @@
 
   foreach ( $padDatatableFields as $padDatatableIndex => $padDatatableField ) {
 
-    $padDatatableNumeric = padDatatableNumeric ( $padDatatableRows, $padDatatableField );
+    $padDatatableNumeric = ( $padTablePivot and $padDatatableField === 'row_label' ) ? FALSE : padDatatableNumeric ( $padDatatableRows, $padDatatableField );
     $padDatatableTotal   = in_array ( $padDatatableField, $padDatatableTotals, TRUE );
 
     if ( $padDatatableTotal and ! $padDatatableNumeric ) {

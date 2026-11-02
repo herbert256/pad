@@ -1,5 +1,8 @@
 <?php
 
+  if ( is_string ( $family ) and is_string ( $kind ) and isset ( padSubsystems [$family] ) and padSubsystemHas ( $family, $kind ) )
+    padRedirect ( 'tag/' . $family . '/' . $kind );
+
   if ( ! is_string ( $family ) or ! is_string ( $kind ) or ! isset ( appSubsystemCatalog () ["$family:$kind"] ) )
     padAbort ( 404 );
 

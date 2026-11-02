@@ -217,8 +217,8 @@ page) and name (or label, title), each a ListItem numbered by its position, a li
 a list of addresses, and `name=` the list's own name; with a recipe, a course, a restaurant or a
 movie on each page it lists, Google shows the list as a carousel (two items or more, of one kind).
 
-The fields come from the row or rows `data=` names - a `{pad:data}` store, the page's array, a
-field holding a list or a `_data` file (a store holds rows, so a single row in a `{pad:data}` block
+The fields come from the row or rows `data=` names - a `{format:auto}` store, the page's array, a
+field holding a list or a `_data` file (a store holds rows, so a single row in a `{format:auto}` block
 is a list of one) - and from options of their names, which win over the row's. A row is never
 written whole: only what the kind maps, so a password, a cost price or an e-mail address of the
 row never reaches the page. Several rows of a kind of one object make a `@graph`; the handling
@@ -319,12 +319,12 @@ with a reader, a writer or both - added by adding its file, its code in `_lib/`,
 | `rss`, `atom`, `jsonfeed` | - | yes | feeds of rows with title, link, date, summary, body, id - a Markdown collection's rows as they are |
 
 ```
-{pad:data 'plan', format='toml'}            # the content in a format - type= says the same
+{format:auto 'plan', format='toml'}            # the content in a format - type= says the same
   title = "Weekend"
   [[stops]]
   name = "Gravensteen"
-{/pad:data}
-{pad:data 'agenda'}BEGIN:VCALENDAR ...{/pad:data}   # known on sight: iCalendar, vCard, NDJSON, a pipe table, TSV, WebVTT, SRT, an RS
+{/format:auto}
+{format:auto 'agenda'}BEGIN:VCALENDAR ...{/format:auto}   # known on sight: iCalendar, vCard, NDJSON, a pipe table, TSV, WebVTT, SRT, an RS
 {data:sales}...{/data:sales}                      # _data/sales.xlsx - a _data file by its extension
 {local:plan.toml}...{/local:plan.toml}  # {local:sales.xlsx sheet='Notes'}
 ```
@@ -663,8 +663,8 @@ gone. A channel is added by adding its file: its settings and a `send` function.
 
 ### A language model answering in the page
 ```
-{pad:ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/pad:ai}
-{pad:ai 'Name three rivers of France.', model='claude-haiku-5-5', system='Answer briefly.'/}
+{ai:auto provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/ai:auto}
+{ai:auto 'Name three rivers of France.', model='claude-haiku-5-5', system='Answer briefly.'/}
 ```
 ```php
 $summary = padAi ( "Summarise: $body", [ 'provider' => 'openai', 'tokens' => 300 ] );
@@ -715,7 +715,7 @@ of its output, a reasoning item passed over, and is asked with `store` off.
   {$number}: {pad:echo $customer_id | lookup('customers', 'id', 'name') | ?? 'unknown'/}
 {/data:orders}
 ```
-`lookup(set, key, field)` finds the row of another set - a `{pad:data}` block, a page array, a
+`lookup(set, key, field)` finds the row of another set - a `{format:auto}` block, a page array, a
 `_data/` file - whose key equals the value; the set is indexed once per request. A miss is
 `''`; without a field the answer is the row's first field other than the key.
 
@@ -1052,7 +1052,7 @@ request, the hit included; inside a loop it gets its row's fields back. A page-c
 PHP, so there a part sees the request, the session, `_lib` and the application's tags only.
 
 A cached section keeps its text, not its effects: what it sets, stores or defines - `{pad:set}`,
-`{pad:increment}`, `{pad:data}`, `{pad:content}`, `{pad:define}`, `{pad:macro}`, a `callback=`'s totals - happens on
+`{pad:increment}`, `{format:auto}`, `{pad:content}`, `{pad:define}`, `{pad:macro}`, a `callback=`'s totals - happens on
 the miss only. Put it before the section, or in a `{pad:nocache}` part, which renders every time.
 
 ### Remote data with a cache
@@ -1108,19 +1108,19 @@ through; `padCollection('blog')` gives the rows to PHP.
 
 ### Site search
 ```
-{pad:search 'blog', q=$q, fields='title^2, body', lang='en', first=10}   # _content/blog/, ranked by BM25
+{search:auto 'blog', q=$q, fields='title^2, body', lang='en', first=10}   # _content/blog/, ranked by BM25
   <a href="?blog/post&slug={$slug}">{$title}</a> {$score} {!excerpt}
 @else@
   Nothing found for {$q}.
-{/pad:search}
-{pad:search 'products', q=$q, fields='name^3, about', link='url'/}   # a page's array or db() result; a list
+{/search:auto}
+{search:auto 'products', q=$q, fields='name^3, about', link='url'/}   # a page's array or db() result; a list
 ```
 ```php
 $found = padSearch ( 'blog', $q, [ 'fields' => 'title^2, body' ] );
 $found = padSearch ( db ( "ARRAY id, name, about FROM products" ), $q, [ 'name' => 'products', 'lang' => 'nl' ] );
 ```
 Site search without a search server. The source is a Markdown collection (`_content/<name>/`,
-read by `padCollection`), else a `{pad:data}` store, a page's array - a `db()` result - or a
+read by `padCollection`), else a `{format:auto}` store, a page's array - a `db()` result - or a
 `_data` file of the name; `padSearch` takes the rows themselves too. The first search makes an
 inverted index of it, kept in `DATA/cache/search/<app>/` in parts - a search reads those of
 its words, so a large source costs a request little memory - and made again when what it is
@@ -1147,7 +1147,7 @@ after the Snowball 3 source and matching Snowball's own test vocabularies word f
 `lang=` picks one, the locale's language else English; a language is added by adding its file.
 A name that is a collection is the collection: name a page's array otherwise. No exec, no
 shell: it runs in pad pack's WebAssembly PHP as well. Code: the search subsystem in
-`pad/subs/search/` - `search.php` the body of `{pad:search}`, `_lib/search.php` the index, the
+`pad/subs/search/` - `search.php` the body of `{search:auto}`, `_lib/search.php` the index, the
 query and the ranking, `_lib/snowball.php` the stemmers' runtime, `types/` the languages;
 `pad/lib/search.php` the helper.
 
@@ -1278,10 +1278,10 @@ share (`padDiagramGraph`), the files beside it the other kinds, `types/` the kin
 `pad/types/diagram.php` the diagram type. The `showcase` application has an example of each.
 ### Maps
 ```
-{pad:map 'world', data='sales', key='country', value='amount'/}   # choropleth as inline SVG, no script, no tiles
-{pad:map 'eu', data='visitors', scale='quantile'/}                 # the 27 member states, the rest of Europe around them
-{pad:map 'benelux'}{"NL": 1200, "BE": 800, "LU": 90}{/pad:map}         # a pair: the content is the rows
-{pad:map 'us-states', data='people', key='state'/}                 # the states of a country: US-CA, CA or California
+{map:auto 'world', data='sales', key='country', value='amount'/}   # choropleth as inline SVG, no script, no tiles
+{map:auto 'eu', data='visitors', scale='quantile'/}                 # the 27 member states, the rest of Europe around them
+{map:auto 'benelux'}{"NL": 1200, "BE": 800, "LU": 90}{/map:auto}         # a pair: the content is the rows
+{map:auto 'us-states', data='people', key='state'/}                 # the states of a country: US-CA, CA or California
 ```
 The views are the files of `pad/subs/maps/types/` - each answers its box of longitude and latitude
 and, for a region that is a list of countries, those countries and the name its title takes:
@@ -1313,13 +1313,13 @@ quieter, without values.
 
 ### Spreadsheets
 ```
-{pad:spreadsheet 'shop', formats='B:€ #,##0.00, D:€ #,##0.00', totals='D'}
+{sheet:grid 'shop', formats='B:€ #,##0.00, D:€ #,##0.00', totals='D'}
   Item,Price,Qty,Total
   Apples,1.20,3,=B2*C2
   Pears,0.80,5,=B3*C3
-{/pad:spreadsheet}
-{pad:spreadsheet data='orders', formulas='total=B2*C2', formats='total:0.00'/}   # a column filled down the rows
-{pad:live 'calc'}{pad:spreadsheet 'calc', editable='B1:B3'}...{/pad:spreadsheet}{/pad:live}  # edited, computed again on the server
+{/sheet:grid}
+{sheet:grid data='orders', formulas='total=B2*C2', formats='total:0.00'/}   # a column filled down the rows
+{pad:live 'calc'}{sheet:grid 'calc', editable='B1:B3'}...{/sheet:grid}{/pad:live}  # edited, computed again on the server
 ```
 A grid of cells as an accessible `<table>` - the column letters and row numbers around it
 (`headers=FALSE` leaves them out), numbers right-aligned, errors marked and explained in their
@@ -1631,10 +1631,10 @@ application shows every view with its source. See [the subsystem guide](../pad/s
 
 ### Public holidays
 ```
-{pad:holidays 'nl', year=2026}{$date} {$name} ({$local}){/pad:holidays}   # the rows: date, name, local, type, region, substitute
-{pad:holidays 'de-by', year=2026/}                                    # a table; a region by its ISO 3166-2 code - Bavaria
-{pad:holidays 'gb', from='today', to='+3 months'}...{/pad:holidays}       # the days between two dates instead of a year
-{pad:holidays 'be', year=2026, lang='fr', where='$type eq "public"'}...{/pad:holidays}   # names in French; observances out
+{holidays:auto 'nl', year=2026}{$date} {$name} ({$local}){/holidays:auto}   # the rows: date, name, local, type, region, substitute
+{holidays:auto 'de-by', year=2026/}                                    # a table; a region by its ISO 3166-2 code - Bavaria
+{holidays:auto 'gb', from='today', to='+3 months'}...{/holidays:auto}       # the days between two dates instead of a year
+{holidays:auto 'be', year=2026, lang='fr', where='$type eq "public"'}...{/holidays:auto}   # names in French; observances out
 {calendar:month '2026-04', holidays='nl'/}                              # the month with its holidays marked and named
 ```
 ```php
@@ -1659,11 +1659,11 @@ states (`de-by`), the United Kingdom's nations (`gb-sct`, `gb-nir`; England and 
 France's Alsace-Moselle and overseas departments (`fr-57`, `fr-974`); the header of every file
 says what it leaves out. A workday is a Monday to Friday that is no public holiday. The
 arithmetic is integer days, from 1583 to 9999 - no clock, no zone, no service. Code: the
-holidays subsystem in `pad/subs/holidays/` - `holidays.php` the body of `{pad:holidays}`,
+holidays subsystem in `pad/subs/holidays/` - `holidays.php` the body of `{holidays:auto}`,
 `_lib/holidays.php` the rules, `types/` the countries; `pad/lib/holidays.php` the helpers.
 
 A file may name the years its rules are known for, `years`: a year outside them is an error of
-`{pad:holidays}` and of the calendar's `holidays=` under the strict check, and of the helpers -
+`{holidays:auto}` and of the calendar's `holidays=` under the strict check, and of the helpers -
 New Zealand's are 2010 to 2052, the years of its published dates and of the Matariki schedule.
 The calendar marks no day outside them: a month the visitor asked for - the request value its
 links set - is no error there and shows only the days inside those years.
@@ -1969,15 +1969,15 @@ The `notations` application shows every kind with its examples.
 {pad:pdf file='invoice', download}...{/pad:pdf}   # the content as a PDF (plain PHP writer) instead of the page; preview: a sheet + link
 {printable:labels data='rows', sheet='a4-3x8', pdf}...{/printable:labels}   # sheets for paper, printed alone, the same in the PDF; see Printables
 {diagram:auto direction='LR'}A[Order] --> B{Paid?}{/diagram:auto}   # a flowchart laid out as SVG on the server; the other kinds - see Diagrams
-{pad:map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
+{map:auto 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
 {diagram:auto direction='LR'}A[Order] --> B{Paid?}{/diagram:auto}   # flowchart (or type='sequence') laid out as SVG on the server
-{pad:map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/subs/maps/types/ - world, continents, benelux, eu, middle-east ..., the states of a country: us-states, nl-provinces, de-states, au-states
-{pad:timeline data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans, vertical for long lists
+{map:auto 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/subs/maps/types/ - world, continents, benelux, eu, middle-east ..., the states of a country: us-states, nl-provinces, de-states, au-states
+{timeline:horizontal data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans, vertical for long lists
 {table:standard data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
 {timeline:horizontal data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans; timeline:vertical for long lists
 {timeline:roadmap data='releases', lane='team', period='quarter'/} # period columns and milestones
 {timeline:swimlane data='releases', lane='team'/} # lanes sharing a time axis
-{pad:datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
+{table:standard data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
 {pad:toc levels='2,3', title='Contents'/}         # the page's own h2/h3, nested and linked - filled in after the page rendered
 {time:countdown '2026-12-31 00:00', units=3, live/}   # 84 days, 3 hours, 12 minutes in a <time>; live ticks; past='...'
 {time:relative $created/}                           # <time datetime title>5 minutes ago</time> - the ago pipe's words

@@ -293,7 +293,7 @@ multiple of N, 0 and the negative ones included - `{sequence:range '-6..3', keep
 
 **IMPORTANT:** Store names cannot be the same as action names (e.g., can't use `push='first'` because `first` is an action).
 
-Nor the name of something the page made - an array of the page, a `{pad:data}`, `{pad:content}`, `{pad:bool}`,
+Nor the name of something the page made - an array of the page, a `{format:auto}`, `{pad:content}`, `{pad:bool}`,
 `{pad:define}`, `{pad:macro}` or a select table: `push=` (or a single tag's `name=`) is refused under the
 strict check - "the store name 'x' is already an array of the page" - and a pair that only names
 its loop keeps no store. A value the request brought under the name (`?nums[]=1`) is no array the

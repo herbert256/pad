@@ -5,5 +5,5 @@
 [{chart:boxplot data='[]', title='Spread'}@else@no values{/chart:boxplot}]
 [{chart:waterfall data='[]', title='Steps'}@else@no steps{/chart:waterfall}]
 [{chart:bullet data='[]', title='Target'}@else@no target{/chart:bullet}]
-{pad:data 'scores'}[{"p": "X", "a": 1, "b": 2}]{/pad:data}
+{format:auto 'scores'}[{"p": "X", "a": 1, "b": 2}]{/format:auto}
 [{chart:dumbbell data='scores', label='p', from='a', to='b', title='Risers', where='$b gt 5'}@else@nobody{/chart:dumbbell}]

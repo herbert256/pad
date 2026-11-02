@@ -1,14 +1,14 @@
 {pad:meta title='CSV and XML', about='The first CSV line names the fields; XML elements under the root are the rows, attributes the fields.'/}
-{pad:data 'dataPrices'}
+{format:auto 'dataPrices'}
 fruit,price
 Apple,0.40
 Pear,0.55
-{/pad:data}
-{pad:data 'dataStock'}
+{/format:auto}
+{format:auto 'dataStock'}
 <stock>
   <item fruit="Apple" boxes="12"/>
   <item fruit="Pear" boxes="3"/>
 </stock>
-{/pad:data}
+{/format:auto}
 <p>{data:dataPrices}{$fruit} costs {$price}. {/data:dataPrices}</p>
 <p>{data:dataStock}{$fruit}: {$boxes} boxes. {/data:dataStock}</p>

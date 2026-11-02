@@ -21,7 +21,7 @@ PAD;
                 . '. The chart: prefix selects it - <code>{chart:pie data=\'budget\'/}</code>.' ];
 
   $tagOptions = [
-    'data'     => 'The rows: a <code>{pad:data}</code> store, a sequence store, the page\'s array or a <code>_data</code> file of that name, or a literal (<code>data=\'[3,1,4]\'</code>). Left out on a pair, the content is the data.',
+    'data'     => 'The rows: a <code>{format:auto}</code> store, a sequence store, the page\'s array or a <code>_data</code> file of that name, or a literal (<code>data=\'[3,1,4]\'</code>). Left out on a pair, the content is the data.',
     'type'     => 'For a pair: the format of the content - <code>json</code>, <code>yaml</code>, <code>xml</code> or <code>csv</code> - when it is not to be recognised on sight.',
     'sequence' => 'Plot the first <code>rows</code> terms (default 10) of a sequence type instead of rows.',
     'value'    => 'The field with the number - else the first numeric field. A comma list draws a series each (eight at most) for bar, hbar, line, area, stream, radar, rose, marimekko, pyramid and parallel. For a gauge it can be the number itself. Likert: the fields of the answers in their order, two to eight, the most negative first.',
@@ -72,6 +72,6 @@ PAD;
     'parent'   => 'Orgchart: the field with the id of the row above.',
     'sub'      => 'Orgchart: a field for the second line of a box.' ];
 
-  $tagSee     = [ 'chart:sparkline', 'map', 'timeline', 'diagram:auto', 'data', 'sequence:auto' ];
+  $tagSee     = [ 'chart:sparkline', 'map:auto', 'timeline', 'diagram:auto', 'format:auto', 'sequence:auto' ];
 
 ?>
