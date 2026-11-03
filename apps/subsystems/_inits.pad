@@ -1,0 +1,21 @@
+{common:padFrame}
+  {pad:slot 'head'}
+    {pad:asset 'subsystems.css', tag/}
+  {/pad:slot}
+
+  {pad:slot 'title'}
+    <form class="search" action="" method="get" role="search">
+      <input type="hidden" name="search" value="">
+      <label class="sr-only" for="q">Search subsystems</label>
+      <input type="search" id="q" name="q" value="{$subsystemsSearch}" placeholder="Search {$subsystemsCount} subsystems" autocomplete="off">
+    </form>
+  {/pad:slot}
+{/common:padFrame}
+
+@page@
+
+<footer class="foot">
+  <p>{$subsystemsCount} subsystems with their syntax, descriptions and examples. Core tag types are in the <a href="{$padRoot}types/">types application</a>; individual tags and kinds are in the <a href="{$padRoot}tags/">tags application</a>.</p>
+</footer>
+
+{common:padFrameEnd/}

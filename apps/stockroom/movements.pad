@@ -1,0 +1,17 @@
+{pad:meta title='Stock movement journal'/}
+
+<div class="work-head">
+  <div>
+    <h2>The movement journal</h2>
+    <p>Every receipt and issue, with its reference. Latest 500 movements.</p>
+  </div>
+  <a href="?index">Back to stock</a>
+</div>
+
+{pad:array "m.created,i.sku,i.name,m.delta as units,m.note as reference from movements m join items i on i.id=m.item_id order by m.id desc limit 500",
+  toData='journal'
+/}
+
+<section class="work-panel">
+  {table:standard data='journal', sortable, rows=20, filters='sku', caption='Receipts and issues'/}
+</section>

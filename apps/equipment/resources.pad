@@ -1,0 +1,60 @@
+{pad:meta title='Equipment register'/}
+
+{pad:set $problem = ''/}
+
+{pad:if php:padPosted('resource')}
+  {pad:set $attempt = php:db(
+    'INSERT OR IGNORE INTO resources(name,category,location,description) VALUES(&open;0&close;,&open;1&close;,&open;2&close;,&open;3&close;)',
+    [
+      php:padRequest('name'),
+      php:padRequest('category'),
+      php:padRequest('location'),
+      php:padRequest('description')
+    ]
+  )/}
+  {pad:set $saved = php:db('FIELD changes()')/}
+  {pad:if $saved}
+    {pad:set $notice = php:padFlash('Equipment added to the register.')/}
+    {pad:redirect 'resources'/}
+  {pad:else}
+    {pad:set $problem = 'That equipment name already exists. Give each item its own name.'/}
+  {/pad:if}
+{/pad:if}
+
+<div class="work-head">
+  <div>
+    <h2>The equipment register</h2>
+    <p>Every item has a home, a description, and its own booking calendar.</p>
+  </div>
+  <a href="?book">Reserve equipment</a>
+</div>
+
+<div class="work-grid">
+  {pad:array "* from resources order by category,name"}
+    <section class="work-panel work-resource">
+      <span class="work-muted">{$category}</span>
+      <h3>{$name}</h3>
+      <p>{$description}</p>
+      <p><strong>Stored at:</strong> {$location}</p>
+      <a class="work-button" href="?book&amp;resource={$name | urlencode}">Reserve this item</a>
+    </section>
+  {/pad:array}
+</div>
+
+<section class="work-panel">
+  <h3>Add equipment</h3>
+  {pad:if $problem}
+    <p class="work-notice error" role="alert">{$problem}</p>
+  {/pad:if}
+  {input:form 'resource', class='work-form', client, error}
+    {input:field 'name', label='Unique equipment name', rules='required|max:100'/}
+    {input:combobox 'category',
+      label='Category',
+      options='Audio,Video,Presentation,Computing,Other',
+      rules='required|max:60'
+    /}
+    {input:field 'location', label='Storage location', rules='required|max:100'/}
+    {input:textarea 'description', label='Contents and collection notes', rows=3, rules='required|max:1000'/}
+    <button type="submit" class="primary">Add equipment</button>
+  {/input:form}
+</section>

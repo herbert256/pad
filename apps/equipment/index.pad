@@ -1,0 +1,102 @@
+{pad:meta title='Equipment bookings'/}
+
+{pad:set $filter = php:padRequest('state', ''), $month = php:date('Y-m')/}
+
+{pad:if ! php:in_array(php:padRequest('state',''), ['', 'reserved', 'collected', 'returned', 'cancelled'], TRUE)}
+  {pad:set $filter = ''/}
+{/pad:if}
+
+{pad:record "count(*) as matched from bookings where ($filter = '' or status = $filter)"}
+  {pad:set $totalRows = $matched/}
+{/pad:record}
+
+{pad:set $pageNo = php:filter_var(php:padRequest('p', 1), constant:FILTER_VALIDATE_INT)/}
+{pad:set $pageNo = php:max(1, php:min($pageNo, php:max(1, php:ceil($totalRows / 25))))/}
+{pad:set $offset = ($pageNo - 1) * 25, $pageLink = '?index&state=' . php:rawurlencode($filter)/}
+
+<div class="work-head">
+  <div>
+    <h2>Ready for the next project</h2>
+    <p>Reserve equipment, record collection, and keep returns on schedule.</p>
+  </div>
+  <a class="work-button primary" href="?book">Reserve equipment</a>
+</div>
+
+<div class="work-stats">
+  <div>
+    <span>Equipment in the register</span>
+    <strong>{pad:field "count(*) from resources"/}</strong>
+  </div>
+  <div>
+    <span>Upcoming reservations</span>
+    <strong>{pad:field "count(*) from bookings where status = 'reserved'"/}</strong>
+  </div>
+  <div>
+    <span>Currently collected</span>
+    <strong>{pad:field "count(*) from bookings where status = 'collected'"/}</strong>
+  </div>
+  <div>
+    <span>Overdue returns</span>
+    <strong>{pad:field "count(*) from bookings where status = 'collected' and end_day < date('now')"/}</strong>
+  </div>
+</div>
+
+<div class="work-split">
+  <div>
+    <form class="work-filters" method="get">
+      <input type="hidden" name="index" value="">
+      <label>
+        Booking status
+        <select name="state">
+          <option value="">All bookings</option>
+          <option value="reserved"{pad:if $filter eq 'reserved'} selected{/pad:if}>Reserved</option>
+          <option value="collected"{pad:if $filter eq 'collected'} selected{/pad:if}>Collected</option>
+          <option value="returned"{pad:if $filter eq 'returned'} selected{/pad:if}>Returned</option>
+          <option value="cancelled"{pad:if $filter eq 'cancelled'} selected{/pad:if}>Cancelled</option>
+        </select>
+      </label>
+      <button type="submit">Filter</button>
+    </form>
+    {pad:fragment 'bookings'}
+      <div class="work-table-wrap">
+        <table class="work-table">
+          <caption>Equipment reservations</caption>
+          <thead>
+            <tr>
+              <th>Equipment / borrower</th>
+              <th>Collect</th>
+              <th>Return</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pad:array "b.*, r.name from bookings b join resources r on r.id = b.resource_id where ($filter = '' or b.status = $filter) order by b.start_day desc, b.id desc limit 25 offset $offset"}
+              <tr>
+                <td>
+                  <a href="?booking&amp;id={$id}">{$name}</a>
+                  <small>{$borrower} · {$purpose}</small>
+                </td>
+                <td>{$start_day}</td>
+                <td>{$end_day}</td>
+                <td><span class="work-badge {$status}">{$status}</span></td>
+              </tr>
+            @else@
+              <tr>
+                <td colspan="4" class="work-empty">No bookings with this status. Reserve equipment to start planning.</td>
+              </tr>
+            {/pad:array}
+          </tbody>
+        </table>
+      </div>
+      {common:workPager current=$pageNo, total=$totalRows, size=25, base=$pageLink/}
+    {/pad:fragment}
+  </div>
+  <aside class="work-panel">
+    <h3>Collections this month</h3>
+    {pad:array "b.start_day as day, r.name || ' · ' || b.borrower as label from bookings b join resources r on r.id = b.resource_id where b.status in ('reserved','collected') order by b.start_day",
+      toData='collections'
+    /}
+    {calendar:agenda $month, data='collections', date='day', title='label'/}
+    <p class="work-muted">The return date is exclusive: another reservation may start on that day.</p>
+  </aside>
+</div>

@@ -1,0 +1,27 @@
+{pad:set $title = 'Stockroom'/}
+{pad:set $frameMenu = [
+  [ 'link' => $padGo . 'index', 'label' => 'Stock register', 'icon' => 'package' ],
+  [ 'link' => $padGo . 'new', 'label' => 'Add an item', 'icon' => 'plus' ],
+  [ 'link' => $padGo . 'movements', 'label' => 'Movement journal', 'icon' => 'list' ],
+  [ 'link' => $padGo . 'reports', 'label' => 'Reorder report', 'icon' => 'bar-chart' ],
+  [ 'link' => $padGo . 'labels', 'label' => 'Shelf labels', 'icon' => 'printer' ],
+  [ 'link' => $padGo . 'guide', 'label' => 'How it works', 'icon' => 'code' ]
+]/}
+
+{common:padFrame}
+  {pad:slot 'head'}
+    {common:workStyles/}
+  {/pad:slot}
+  {pad:slot 'foot'}
+    <p class="work-side-note">Know what is on the shelf.</p>
+  {/pad:slot}
+{/common:padFrame}
+
+<div class="workbench">
+  {pad:flash}
+    <p class="work-notice {$type}" role="status">{$message}</p>
+  {/pad:flash}
+  @page@
+</div>
+
+{common:padFrameEnd/}

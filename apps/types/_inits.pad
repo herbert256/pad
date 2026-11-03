@@ -6,8 +6,8 @@
   {pad:slot 'title'}
     <form class="search" action="" method="get" role="search">
       <input type="hidden" name="search" value="">
-      <label class="sr-only" for="q">Search types and kind families</label>
-      <input type="search" id="q" name="q" value="{$typesSearch}" placeholder="Search {$typesCount} entries" autocomplete="off">
+      <label class="sr-only" for="q">Search types</label>
+      <input type="search" id="q" name="q" value="{$typesSearch}" placeholder="Search {$typesCount} types" autocomplete="off">
     </form>
   {/pad:slot}
 {/common:padFrame}
@@ -15,7 +15,7 @@
 @page@
 
 <footer class="foot">
-  <p>{$typesPrefixCount} tag types and {$typesFamilyCount} subsystem families selected by options or helpers, with their syntax, descriptions and examples. Their individual tags and kinds are in the <a href="{$padRoot}tags/">tags application</a>.</p>
+  <p>{$typesCount} core tag types, with their syntax, descriptions and examples. Subsystems have their own <a href="{$padRoot}subsystems/">application</a>. Individual tags are in the <a href="{$padRoot}tags/">tags application</a>.</p>
 </footer>
 
 {common:padFrameEnd/}

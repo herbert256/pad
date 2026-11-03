@@ -1,0 +1,19 @@
+{pad:meta title='Subsystems by group'/}
+<h1>Subsystems by group</h1>
+<p class="lead">Subsystems by how their kinds are selected, in {$groupCount} groups.</p>
+
+<nav class="jump" aria-label="Groups">{array:groups}<a href="#{$key}">{$label}</a>{/array:groups}</nav>
+
+{array:groups}
+  <section class="section" id="{$key}">
+    <div class="section-head">
+      <h2>{$label}</h2>
+      <span>{$tagline} - {$count} {pad:echo $count eq 1 ? 'subsystem' : 'subsystems'/}</span>
+    </div>
+    <ul class="list">
+      {array:subsystems}
+        <li><a class="name" href="?{$link}">{$key}</a> <span class="about">{$about}</span></li>
+      {/array:subsystems}
+    </ul>
+  </section>
+{/array:groups}

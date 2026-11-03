@@ -14,7 +14,7 @@
 
 <section class="card table">
   {pad:if $shown gt 0}
-  {pad:datatable data='rows', columns='day, category, account, note, amount', format="amount:money, day:date('D j M')", totals='amount', sortable, rows=15, striped/}
+  {table:standard data='rows', columns='day, category, account, note, amount', format="amount:money, day:date('D j M')", totals='amount', sortable, rows=15, striped/}
   {pad:else}
   <p class="dim">No transactions here.</p>
   {/pad:if}

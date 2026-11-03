@@ -1,0 +1,15 @@
+{pad:meta title='Stockroom shelf labels'/}
+
+<div class="work-head">
+  <div>
+    <h2>Labels for the shelf</h2>
+    <p>A4 sheets, three columns and eight rows. Each label identifies the item and its location.</p>
+  </div>
+  <a href="?index">Back to stock</a>
+</div>
+
+{pad:array "sku,name,location from items order by location,sku", toData='labels'/}
+
+{printable:labels data='labels', sheet='a4-3x8', outline, scale=0.8, pdf}
+  <b>{$name}</b><br>{$sku}<br>Shelf {$location}
+{/printable:labels}

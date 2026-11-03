@@ -1,0 +1,121 @@
+{pad:meta title='Service desk inbox'/}
+
+{pad:set
+  $query = php:padRequest('q', ''),
+  $state = php:padRequest('state', ''),
+  $urgency = php:padRequest('priority', '')
+/}
+
+{pad:if ! php:is_string(php:padRequest('q',''))}
+  {pad:set $query = ''/}
+{/pad:if}
+
+{pad:if ! php:in_array(php:padRequest('state',''), ['', 'open', 'active', 'waiting', 'resolved'], TRUE)}
+  {pad:set $state = ''/}
+{/pad:if}
+
+{pad:if ! php:in_array(php:padRequest('priority',''), ['', 'normal', 'high', 'urgent'], TRUE)}
+  {pad:set $urgency = ''/}
+{/pad:if}
+
+{pad:record "count(*) as matched from tickets where ($state = '' or status = $state) and ($urgency = '' or priority = $urgency) and ($query = '' or instr(lower(subject || ' ' || requester || ' ' || description), lower($query)) > 0)"}
+  {pad:set $totalRows = $matched/}
+{/pad:record}
+
+{pad:set $pageNo = php:filter_var(php:padRequest('p', 1), constant:FILTER_VALIDATE_INT)/}
+{pad:set $pageNo = php:max(1, php:min($pageNo, php:max(1, php:ceil($totalRows / 25))))/}
+{pad:set
+  $offset = ($pageNo - 1) * 25,
+  $pageLink = '?index&q=' . php:rawurlencode($query) . '&state=' . php:rawurlencode($state) . '&priority=' . php:rawurlencode($urgency)
+/}
+
+<div class="work-head">
+  <div>
+    <h2>The support inbox</h2>
+    <p>Triage requests, keep a clear handover, and follow every issue through.</p>
+  </div>
+  <a class="work-button primary" href="?new">New ticket</a>
+</div>
+
+<div class="work-stats">
+  <div>
+    <span>Open requests</span>
+    <strong>{pad:field "count(*) from tickets where status <> 'resolved'"/}</strong>
+  </div>
+  <div>
+    <span>Urgent, unresolved</span>
+    <strong>{pad:field "count(*) from tickets where priority = 'urgent' and status <> 'resolved'"/}</strong>
+  </div>
+  <div>
+    <span>Waiting for a reply</span>
+    <strong>{pad:field "count(*) from tickets where status = 'waiting'"/}</strong>
+  </div>
+  <div>
+    <span>Resolved</span>
+    <strong>{pad:field "count(*) from tickets where status = 'resolved'"/}</strong>
+  </div>
+</div>
+
+<form class="work-filters" method="get">
+  <input type="hidden" name="index" value="">
+  <label>
+    Search requests
+    <input name="q" value="{$query}" placeholder="Subject, person or description">
+  </label>
+  <label>
+    Status
+    <select name="state">
+      <option value="">All statuses</option>
+      {pad:array "distinct status as choice from tickets order by status"}
+        <option value="{$choice}"{pad:if $choice eq $state} selected{/pad:if}>{$choice | ucfirst}</option>
+      {/pad:array}
+    </select>
+  </label>
+  <label>
+    Priority
+    <select name="priority">
+      <option value="">All priorities</option>
+      <option value="normal"{pad:if $urgency eq 'normal'} selected{/pad:if}>normal</option>
+      <option value="high"{pad:if $urgency eq 'high'} selected{/pad:if}>high</option>
+      <option value="urgent"{pad:if $urgency eq 'urgent'} selected{/pad:if}>urgent</option>
+    </select>
+  </label>
+  <button type="submit">Filter</button>
+  <a href="?index">Clear</a>
+</form>
+
+{pad:fragment 'tickets'}
+  <div class="work-table-wrap">
+    <table class="work-table">
+      <caption>Requests · newest first within priority</caption>
+      <thead>
+        <tr>
+          <th>Request</th>
+          <th>Priority</th>
+          <th>Status</th>
+          <th>Owner</th>
+          <th>Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        {pad:array "* from tickets where ($state = '' or status = $state) and ($urgency = '' or priority = $urgency) and ($query = '' or instr(lower(subject || ' ' || requester || ' ' || description), lower($query)) > 0) order by case priority when 'urgent' then 0 when 'high' then 1 else 2 end, id desc limit 25 offset $offset"}
+          <tr>
+            <td>
+              <a href="?ticket&amp;id={$id}">#{$id} · {$subject}</a>
+              <small>{$requester}</small>
+            </td>
+            <td><span class="work-badge {$priority}">{$priority}</span></td>
+            <td><span class="work-badge {$status}">{$status}</span></td>
+            <td>{$owner}</td>
+            <td>{$updated}</td>
+          </tr>
+        @else@
+          <tr>
+            <td colspan="5" class="work-empty">No matching requests. Clear the filters or create a ticket.</td>
+          </tr>
+        {/pad:array}
+      </tbody>
+    </table>
+  </div>
+  {common:workPager current=$pageNo, total=$totalRows, size=25, base=$pageLink/}
+{/pad:fragment}

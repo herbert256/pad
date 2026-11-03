@@ -1,0 +1,67 @@
+{pad:meta title='Add a stock item'/}
+
+{pad:set $problem = ''/}
+
+{pad:if php:padPosted('new-item')}
+  {pad:set $cost = php:round(php:padRequest('unit_cost') * 100)/}
+  {pad:set $attempt = php:db(
+    'INSERT OR IGNORE INTO items(sku,name,category,location,supplier,reorder_level,unit_cost) VALUES(&open;0&close;,&open;1&close;,&open;2&close;,&open;3&close;,&open;4&close;,&open;5&close;,&open;6&close;)',
+    [
+      php:strtoupper(php:trim(php:padRequest('sku'))),
+      php:padRequest('name'),
+      php:padRequest('category'),
+      php:padRequest('location'),
+      php:padRequest('supplier'),
+      php:padRequest('reorder_level'),
+      $cost
+    ]
+  )/}
+  {pad:set $saved = php:db('FIELD changes()')/}
+  {pad:if $saved}
+    {pad:set
+      $newId = php:db('FIELD last_insert_rowid()'),
+      $notice = php:padFlash('Item created. Record a receipt to add opening stock.')
+    /}
+    {pad:redirect 'item', $id=$newId/}
+  {pad:else}
+    {pad:set $problem = 'That SKU already exists. Open its stock card or use a different SKU.'/}
+  {/pad:if}
+{/pad:if}
+
+<div class="work-head">
+  <div>
+    <h2>Add to the stock register</h2>
+    <p>Start with an item card, then receive its opening stock.</p>
+  </div>
+  <a href="?index">Back to stock</a>
+</div>
+
+{pad:if $problem}
+  <p class="work-notice error" role="alert">{$problem}</p>
+{/pad:if}
+
+<section class="work-panel">
+  {input:form 'new-item', class='work-form', client, error}
+    {input:field 'sku', label='SKU', rules='required|max:40|regex:/^[A-Za-z0-9-]+$/', placeholder='CABLE-HDMI'/}
+    {input:field 'name', label='Item name', rules='required|max:120'/}
+    {input:combobox 'category', label='Category', options='Office,IT,Workshop,Shipping,Other', rules='required|max:60'/}
+    {input:field 'location', label='Shelf or location', rules='required|max:60'/}
+    {input:field 'supplier', label='Supplier', rules='required|max:100'/}
+    {input:field 'reorder_level',
+      type='number',
+      label='Reorder level',
+      value=5,
+      min=0,
+      rules='required|integer|between:0,1000000'
+    /}
+    {input:field 'unit_cost',
+      type='number',
+      label='Unit cost (EUR)',
+      value='0.00',
+      min=0,
+      step='0.01',
+      rules='required|numeric|between:0,1000000'
+    /}
+    <button type="submit" class="primary">Create item</button>
+  {/input:form}
+</section>

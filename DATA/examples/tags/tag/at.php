@@ -10,10 +10,10 @@
 PAD;
 
   $tagParms   = [
-    'path' => 'An @ expression: before the <code>@</code> a dotted path - field names, and <code>key=\'value\'</code> steps that pick the row whose field has that value - and after it where to look: a <code>{pad:data}</code> store, a page array, a <code>_data/</code> file or a level.' ];
+    'path' => 'An @ expression: before the <code>@</code> a dotted path - field names, and <code>key=\'value\'</code> steps that pick the row whose field has that value - and after it where to look: a <code>{format:auto}</code> store, a page array, a <code>_data/</code> file or a level.' ];
 
   $tagOptions = [];
 
-  $tagSee     = [ 'data', 'set', 'tree' ];
+  $tagSee     = [ 'format:auto', 'set', 'tree' ];
 
 ?>

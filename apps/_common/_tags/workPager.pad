@@ -1,0 +1,13 @@
+{pad:parms current=1, total=0, size=25, base='?index'/}
+
+<nav class="work-pagination" aria-label="Result pages">
+  <span>{#total} records · Page {#current} of {pad:echo php:max(1, php:ceil(parm:total / parm:size))/}</span>
+  <div class="work-actions">
+    {pad:if parm:current gt 1}
+      <a class="work-button" rel="prev" href="{#base}&amp;p={pad:echo parm:current - 1/}">Previous</a>
+    {/pad:if}
+    {pad:if parm:current * parm:size lt parm:total}
+      <a class="work-button" rel="next" href="{#base}&amp;p={pad:echo parm:current + 1/}">Next</a>
+    {/pad:if}
+  </div>
+</nav>

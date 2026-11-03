@@ -1,0 +1,25 @@
+{pad:set $title = 'Service desk'/}
+{pad:set $frameMenu = [
+  [ 'link' => $padGo . 'index', 'label' => 'Inbox', 'icon' => 'inbox' ],
+  [ 'link' => $padGo . 'new', 'label' => 'New ticket', 'icon' => 'plus' ],
+  [ 'link' => $padGo . 'reports', 'label' => 'Reports', 'icon' => 'bar-chart' ],
+  [ 'link' => $padGo . 'guide', 'label' => 'How it works', 'icon' => 'code' ]
+]/}
+
+{common:padFrame}
+  {pad:slot 'head'}
+    {common:workStyles/}
+  {/pad:slot}
+  {pad:slot 'foot'}
+    <p class="work-side-note">Support that stays on track.</p>
+  {/pad:slot}
+{/common:padFrame}
+
+<div class="workbench">
+  {pad:flash}
+    <p class="work-notice {$type}" role="status">{$message}</p>
+  {/pad:flash}
+  @page@
+</div>
+
+{common:padFrameEnd/}

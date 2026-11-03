@@ -2,11 +2,11 @@
 
 ## Introduction
 
-A page for every type of PAD tag - the prefix before the colon of `{pad:if}`, `{chart:pie}`,
+A page for every type of PAD tag - the prefix before the colon of `{pad:if}`, `{array:items}`,
 `{field:name}`, `{sequence:fibonacci}`: what the type reaches in one line, how it is written
 with its required prefix (every named tag is
 reached by its prefix alone), its section of `docs/reference/TYPES.md` and the comment of its
-handler, the tags it reaches by name - the built-in tags of `pad:`, the kinds of a subsystem,
+handler, the tags it reaches by name - the built-in tags of `pad:`,
 the sequence types, the sequence actions, the pipe functions, the tags of `_common` - each
 linked to its page in the tags application, and live examples. Over the pages stand the
 indexes: by name, by required prefix, by group, a cheat sheet with the syntax of every
@@ -20,7 +20,7 @@ one a page per kind of tag.
 | `index.pad` | The home page: the indexes and every group with its types |
 | `names.pad` | The types from A to Z |
 | `order.pad` | Every required namespace and the types it selects |
-| `groups.pad` | The types by group - tags, stores, values, sequences, subsystems |
+| `groups.pad` | The types by group - tags, stores, values and sequences |
 | `cheatsheet.pad` | The syntax of every type on one page |
 | `search.pad` | `?search&q=word` - the types whose name, line, syntax or members hold every word |
 | `type/[typeName].pad`, `.php` | The page of a type, `?type/field` |
@@ -40,10 +40,13 @@ A handler added to `pad/types/` has its page and its place in every index: its l
 the comment of the handler until `_lib/types.php` says more, and its examples once
 `examples/<type>/` holds them.
 
-## Subsystem options and helpers
+## Subsystems
 
-The **Options and helpers** group covers all twelve `padSubsystemKinds` families as well as
-the 44 tag handlers in the other groups. Each family has a page, an example and links to every
-kind's detail page in the tags application. These families are excluded from the tag-prefix
-list: their pages show actual options and helper calls rather than a colon prefix.
-Membership and examples are shared through `apps/_common/_lib/subsystemCatalog.php`.
+Subsystem families have moved to the **Subsystems** application: tag namespaces such
+as `chart:` and `calendar:`, plus kinds selected by options and PHP helpers. They are
+excluded from every Types index and search result. Existing `?type/<family>` links
+redirect to the corresponding `subsystems/?subsystem/<family>` detail page.
+
+Documentation and example readers are shared through
+`apps/_common/_lib/referenceCatalog.php`. The Types catalog reads `pad/types/` and
+excludes names registered in `padSubsystems` or `padSubsystemKinds`.

@@ -1,9 +1,9 @@
 action:   {sequence:range '1..4', push='catAct'/}{action:auto catAct, reverse}{$sequence},{/action:auto}
 bool:     {pad:bool 'catB'}1{/pad:bool}{bool:catB}yes{/bool:catB}
-break:    {pad:data 'catBr'}[1,2,3,4]{/pad:data}{data:catBr}{$catBr},{pad:if $catBr eq 2}{pad:break 'catBr'/}{/pad:if}{/data:catBr}
+break:    {format:auto 'catBr'}[1,2,3,4]{/format:auto}{data:catBr}{$catBr},{pad:if $catBr eq 2}{pad:break 'catBr'/}{/pad:if}{/data:catBr}
 case:     {pad:case 'blue'}{pad:when 'red'}stop{pad:when 'blue'}go{/pad:case}
-cease:    {pad:data 'catCe'}[1,2,3,4]{/pad:data}{data:catCe}{$catCe},{pad:if $catCe eq 2}{pad:cease 'catCe'/}{/pad:if}{/data:catCe}
-continue: {pad:data 'catCo'}[1,2,3]{/pad:data}{data:catCo}{pad:if $catCo eq 2}{pad:continue 'catCo'/}{/pad:if}{$catCo},{/data:catCo}
+cease:    {format:auto 'catCe'}[1,2,3,4]{/format:auto}{data:catCe}{$catCe},{pad:if $catCe eq 2}{pad:cease 'catCe'/}{/pad:if}{/data:catCe}
+continue: {format:auto 'catCo'}[1,2,3]{/format:auto}{data:catCo}{pad:if $catCo eq 2}{pad:continue 'catCo'/}{/pad:if}{$catCo},{/data:catCo}
 curl:     {pad:curl 'SELF://regression/pages/?pairing&padInclude'/}
 decrement: {pad:set $catI = 5/}{pad:decrement $catI/}{$catI}
 dir:      {pad:dir '{$catDir}'}{$dir}{property:notLast} {/property:notLast}{/pad:dir}

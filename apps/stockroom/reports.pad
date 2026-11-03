@@ -1,0 +1,26 @@
+{pad:meta title='Reorder report'/}
+
+<div class="work-head">
+  <div>
+    <h2>Time to restock</h2>
+    <p>Suggested quantities bring each low item to twice its reorder level, with a minimum target of one.</p>
+  </div>
+  <a class="work-button" href="?labels">Shelf labels</a>
+</div>
+
+{pad:array "category, round(sum(stock*unit_cost)/100.0,2) as value from items group by category", toData='valuation'/}
+
+<div class="work-split">
+  <section class="work-panel">
+    <h3>Reorder list</h3>
+    {pad:array "sku,name,supplier,stock,max(1,reorder_level*2)-stock as order_units,round((max(1,reorder_level*2)-stock)*unit_cost/100.0,2) as estimated_eur from items where stock <= reorder_level order by supplier,name",
+      toData='reorders'
+    /}
+    {table:standard data='reorders', sortable, totals='estimated_eur', caption='Suggested purchase quantities'/}
+    <p class="work-muted">Estimated costs use the current unit cost. No orders are sent to suppliers.</p>
+  </section>
+  <aside class="work-panel work-chart">
+    <h3>Stock value by category</h3>
+    {chart:donut data='valuation', label='category', value='value', title='Stock value in EUR'/}
+  </aside>
+</div>

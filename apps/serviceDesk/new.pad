@@ -1,0 +1,40 @@
+{pad:meta title='New support ticket'/}
+
+{pad:if php:padPosted('new-ticket')}
+  {pad:set $newId = php:db(
+    'INSERT INTO tickets(subject,requester,email,description,priority) VALUES(&open;0&close;,&open;1&close;,&open;2&close;,&open;3&close;,&open;4&close;)',
+    [
+      php:padRequest('subject'),
+      php:padRequest('requester'),
+      php:padRequest('email'),
+      php:padRequest('description'),
+      php:padRequest('priority')
+    ]
+  )/}
+  {pad:set $notice = php:padFlash('Ticket created.')/}
+  {pad:redirect 'ticket', $id=$newId/}
+{/pad:if}
+
+<div class="work-head">
+  <div>
+    <h2>Open a support request</h2>
+    <p>Describe the impact and what you have already tried.</p>
+  </div>
+  <a href="?index">Back to inbox</a>
+</div>
+
+<section class="work-panel">
+  {input:form 'new-ticket', class='work-form', client, error}
+    {input:field 'subject', label='Subject', rules='required|max:160', required/}
+    {input:field 'requester', label='Your name', rules='required|max:80', required/}
+    {input:field 'email', type='email', label='Email', rules='required|email|max:160', required/}
+    {input:segmented 'priority',
+      label='Priority',
+      options='normal,high,urgent',
+      value='normal',
+      rules='required|in:normal,high,urgent'
+    /}
+    {input:textarea 'description', label='What needs attention?', rows=7, rules='required|max:6000', required/}
+    <button class="primary" type="submit">Create ticket</button>
+  {/input:form}
+</section>

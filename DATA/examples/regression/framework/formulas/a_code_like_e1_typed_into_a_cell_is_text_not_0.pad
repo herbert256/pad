@@ -1,4 +1,4 @@
-{pad:spreadsheet 'codes', headers=FALSE}
+{sheet:grid 'codes', headers=FALSE}
   Code,Qty
   E1,3
   e10,4
@@ -6,6 +6,6 @@
   1E3,6
   .5e1,7
   "1,250e2",8
-{/pad:spreadsheet | after('</style>')}{pad:data 'parts'}
+{/sheet:grid | after('</style>')}{format:auto 'parts'}
   [ { "code": "E2", "qty": "2" }, { "code": "e5", "qty": "1e2" } ]
-{/pad:data}{pad:spreadsheet 'parts', data='parts', headers=FALSE/}
+{/format:auto}{sheet:grid 'parts', data='parts', headers=FALSE/}

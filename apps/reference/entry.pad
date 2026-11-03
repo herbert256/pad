@@ -1,0 +1,23 @@
+{common:block}
+  <p><a href="?index#{$type | slug}">{$type}</a> / {$item}</p>
+
+  <h2>{$item}</h2>
+  <div class="reference-description">{!entryDescriptionHtml}</div>
+
+  {pad:if $entryUsage}
+    <h3>Usage</h3>
+    {pad:if $entryAbout}
+      <p>{$entryAbout}</p>
+    {/pad:if}
+    <pre style="white-space:pre-wrap;overflow-wrap:anywhere"><code>{!entryUsage}</code></pre>
+  {/pad:if}
+
+  {pad:if $entryDocumentation}
+    <p><a href="{$entryDocumentation}">Description and examples for {$item}</a></p>
+  {/pad:if}
+
+  {array:entrySources}
+    <h3>{$file}</h3>
+    <pre style="white-space:pre-wrap;overflow-wrap:anywhere"><code>{!source}</code></pre>
+  {/array:entrySources}
+{/common:block}

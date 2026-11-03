@@ -1,0 +1,13 @@
+{pad:meta title='Repeatable rows'/}
+{include:about/}
+<p>Add or remove invoice lines, then send the form to see its nested field values.</p>
+
+{input:form 'try', class='inputs-try'}
+  {pad:set $invoiceLines = [ [ 'description' => 'Notebook', 'quantity' => '2' ], [ 'description' => 'Pencil', 'quantity' => '4' ] ]/}
+  {input:repeatable 'lines', value=array:invoiceLines, label='Invoice lines', minrows=1, maxrows=10/}
+  <button class="inputs-send">Send</button>
+{/input:form}
+
+{include:received/}
+
+{include:template/}

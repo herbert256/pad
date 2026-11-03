@@ -7,14 +7,17 @@
   include_once APPS . 'tags/_lib/kinds.php';
   include_once APPS . 'types/_lib/types.php';
   include_once APPS . 'types/_lib/catalog.php';
+  include_once APPS . 'subsystems/_lib/subsystems.php';
+  include_once APPS . 'subsystems/_lib/catalog.php';
 
   $catalogChecks = [ 'prefix kinds' => TRUE, 'helper kinds' => TRUE, 'family membership' => TRUE,
                      'real usage' => TRUE, 'source-only services' => TRUE, 'resolution order' => TRUE,
                      'dotted formula route' => TRUE, 'type documentation' => TRUE, 'macro syntax' => TRUE,
-                     'chart examples' => TRUE ];
+                     'chart examples' => TRUE, 'catalog separation' => TRUE, 'subsystem examples' => TRUE ];
   $prefixCatalog = tagsKinds ();
   $helperCatalog = appSubsystemCatalog ();
   $typeCatalog = typesCatalog ();
+  $subsystemCatalog = subsystemsCatalog ();
   $helperKeys = [];
 
   foreach ( padSubsystems + padSubsystemKinds as $family => $definition ) {
@@ -23,10 +26,19 @@
     $disk = array_map ( fn ( $file ) => pathinfo ( $file, PATHINFO_FILENAME ), glob ( PAD . "subs/$directory/types/*.*" ) );
     if ( $prefix and in_array ( $family, padSubsystemAuto, TRUE ) ) $disk [] = 'auto';
     sort ( $disk );
-    $members = typesMembers ( $family );
+    $members = subsystemsMembers ( $family );
     $expectedMembers = array_map ( fn ( $kind ) => $prefix ? "$family:$kind" : $kind, $disk );
     $catalogChecks ['family membership'] &= array_column ( $members, 0 ) === $expectedMembers;
-    $catalogChecks ['family membership'] &= isset ( $typeCatalog [$family] ) && $typeCatalog [$family] ['prefix'] === $prefix;
+    $catalogChecks ['family membership'] &= isset ( $subsystemCatalog [$family] ) && $subsystemCatalog [$family] ['prefix'] === $prefix;
+
+    $catalogChecks ['catalog separation'] &= ! isset ( $typeCatalog [$family] );
+    $examples = subsystemsExamples ( $family );
+    $catalogChecks ['subsystem examples'] &= count ( $examples ) > 0;
+    foreach ( $examples as $example ) {
+      $catalogChecks ['subsystem examples'] &= trim ( $example ['padHtml'] ) !== '';
+      if ( $example ['page'] )
+        $catalogChecks ['subsystem examples'] &= is_file ( APPS . 'subsystems/' . $example ['file'] );
+    }
 
     foreach ( $disk as $kind ) {
       $key = "$family:$kind";
@@ -50,8 +62,11 @@
                                       && ( $route ['vars'] ?? [] ) === [ 'family' => 'formula', 'kind' => 'stdev.p' ];
   foreach ( glob ( PAD . 'types/*.php' ) as $file ) {
     $name = basename ( $file, '.php' );
-    $catalogChecks ['type documentation'] &= isset ( $typeCatalog [$name] ) && typesDoc ( $name ) !== '';
+    $catalogChecks ['type documentation'] &= isset ( ( $typeCatalog + $subsystemCatalog ) [$name] ) && typesDoc ( $name ) !== '';
+    $catalogChecks ['catalog separation'] &= isset ( $typeCatalog [$name] ) !== isset ( $subsystemCatalog [$name] );
   }
+
+  $catalogChecks ['catalog separation'] &= count ( $subsystemCatalog ) === count ( padSubsystems + padSubsystemKinds );
 
   $catalogChecks ['macro syntax'] = preg_replace ( '/\s+/', '', strip_tags ( padCode ( typesInfo () ['macro'] [2] ) ) ) === 'One';
 

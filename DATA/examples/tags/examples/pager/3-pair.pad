@@ -1,0 +1,15 @@
+{pad:meta title='Markup of your own', about='As a pair the pager hands the links over as rows: kind, page, label and href.'/}
+<p>{array:letters page=$letterPage ?? 2, rows=4}{$letters} {/array:letters}</p>
+<p>
+{widget:pager 'letters'}
+  {pad:if $href eq ''}
+    <span style="color:#999">{$label}</span>
+  {pad:elseif $kind eq 'current'}
+    <strong>[{$label}]</strong>
+  {pad:else}
+    <a href="{$href}">{$label}</a>
+  {/pad:if}
+@else@
+  Everything fits on one page.
+{/widget:pager}
+</p>

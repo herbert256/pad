@@ -1,9 +1,12 @@
 <?php
 
-  // The page of a type, by the name of its address - ?type/pad, ?type/chart: its line and
+  // The page of a type, by the name of its address - ?type/pad, ?type/field: its line and
   // syntax, its required prefix, its section of TYPES.md and the
   // comment of its handler, the tags it reaches, its examples, the types beside it. A name that
   // is no type is a page not found.
+
+  if ( is_string ( $typeName ) and ( isset ( padSubsystems [$typeName] ) or isset ( padSubsystemKinds [$typeName] ) ) )
+    padRedirect ( 'subsystem/' . $typeName, [], 'subsystems' );
 
   if ( ! is_string ( $typeName ) or ! isset ( typesCatalog () [$typeName] ) )
     padAbort ( 404 );

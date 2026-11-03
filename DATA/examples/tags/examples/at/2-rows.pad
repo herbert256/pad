@@ -1,10 +1,10 @@
 {pad:meta title='A row picked by its key', about='Among the rows of a data set, the one whose id matches answers its field.'/}
-{pad:data 'atStaff'}
+{format:auto 'atStaff'}
 [
   { "id": "a1", "name": "Ann", "city": "Oslo" },
   { "id": "b2", "name": "Bob", "city": "Rome" },
   { "id": "c3", "name": "Cleo", "city": "Lima" }
 ]
-{/pad:data}
+{/format:auto}
 <p>b2 is {pad:at "id='b2'.name@atStaff"/} from {pad:at "id='b2'.city@atStaff"/}.</p>
 <p>The first city in the list: {pad:at 'city@atStaff'/}.</p>

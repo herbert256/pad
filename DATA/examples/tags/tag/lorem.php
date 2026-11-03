@@ -20,6 +20,6 @@ PAD;
     'seed'       => 'Another text, the same again for the same seed - default 0.',
     'varied'     => 'Bare option: leave the classic opening "Lorem ipsum dolor sit amet" out - for the second text on a page.' ];
 
-  $tagSee     = [ 'placeholder', 'excerpt', 'sequence:auto' ];
+  $tagSee     = [ 'widget:placeholder', 'excerpt', 'sequence:auto' ];
 
 ?>

@@ -32,11 +32,11 @@ answers every question htmx asks after it.</p>
 <h2>Posts and forms</h2>
 
 <ul>
-  <li>With <code>$padCsrf</code> on, a post needs the session's token. A {app:tag 'form'/} carries it;
+  <li>With <code>$padCsrf</code> on, a post needs the session's token. A {app:tag 'input:form'/} carries it;
       for an <code>hx-post</code> on anything else put it on the body once:
       <code>&lt;body hx-headers="{pad:open/}^headers{pad:close/}"&gt;</code> with
       <code>$headers = [ 'X-CSRF-Token' =&gt; padCsrfToken () ]</code>.</li>
-  <li>A {app:tag 'form'/} with <code>rules=</code> posted through htmx comes back as its own fragment -
+  <li>A {app:tag 'input:form'/} with <code>rules=</code> posted through htmx comes back as its own fragment -
       refilled, with PAD's messages - and with <code>client</code> the browser checks the same
       rules first ({app:manual 'client_validation'/}).</li>
   <li>Elements of an answer marked <code>hx-swap-oob="true"</code> go where their id is: the

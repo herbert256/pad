@@ -29,6 +29,9 @@ these examples need their original content to demonstrate PAD correctly.
 | [classicModels](classicModels/README.md) | Standard | PAD Select over the Classic Models sample database |
 | [padSelect](padSelect/README.md) | Standard | A showcase of PAD Select over a music catalogue - every example its declarations, template, result and the SQL PAD sent |
 | [cli](cli/README.md) | CLI | The `pad` command - new, serve, render, lint, export, test - and the command-line application |
+| [serviceDesk](serviceDesk/README.md) | Standard | A support inbox with assignment, priority, handover notes, status changes and workload reports. Business logic in PAD templates. |
+| [equipment](equipment/README.md) | Standard | An equipment register and reservation desk with conflict detection, collection and return tracking, an agenda and a complete booking history. Business logic in PAD templates. |
+| [stockroom](stockroom/README.md) | Standard | A stock register with receipts and issues, an immutable movement journal, reorder planning, valuation charts and printable shelf labels. Business logic in PAD templates. |
 | [demo](demo/README.md) | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
 | [develop](develop/README.md) | Standard | Development tools for PAD - the source trimmer, the harvest of the reference and the examples, the error listing |
 | [edit](edit/README.md) | Standard | A browser editor for every application, behind a login - file management, PAD and PHP colouring, completion and checks, preview, history, a terminal, a step debugger |

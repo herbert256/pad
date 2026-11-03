@@ -1,0 +1,9 @@
+{pad:meta title='Subsystems by name'/}
+<h1>Subsystems by name</h1>
+<p class="lead">All {$subsystemsCount} subsystems from A to Z.</p>
+
+<ul class="list">
+  {array:subsystems}
+    <li><a class="name" href="?{$link}">{$key}</a> <span class="about">{$about} <a class="meta" href="?groups#{$group}">{$groupLabel}</a></span></li>
+  {/array:subsystems}
+</ul>

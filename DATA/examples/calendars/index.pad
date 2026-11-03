@@ -1,0 +1,15 @@
+{pad:meta title='Calendars'/}
+<p class="cal-lead">Browse dates, plan timed events, or compare resource bookings. Each view includes
+its event data, template and result.</p>
+<div class="cal-overview">
+  <div class="cal-preview">{calendar:month data='calendarDemo', date='when', title='what'/}</div>
+  <nav class="cal-views" aria-label="Calendar views">
+    {array:calendarViews}
+    <a href="?{$kind}"><strong>{$name}</strong><code>{$tag}</code></a>
+    {/array:calendarViews}
+  </nav>
+</div>
+<p class="cal-note">Date views support public holidays and localized day names.
+Choose <a href="?timegrid">Timegrid</a> for timed events or <a href="?resources">Resources</a> for room bookings.</p>
+
+{common:showcaseExamples/}

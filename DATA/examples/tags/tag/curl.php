@@ -25,6 +25,6 @@ PAD;
     'headers'  => 'An array of request headers.',
     'options'  => 'An array of curl options by name.' ];
 
-  $tagSee     = [ 'get', 'pad', 'data', 'mail' ];
+  $tagSee     = [ 'get', 'pad', 'format:auto', 'mail' ];
 
 ?>

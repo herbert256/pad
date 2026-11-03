@@ -1,0 +1,102 @@
+{pad:meta title='Stock register'/}
+
+{pad:set $query = php:padRequest('q',''), $low = php:padRequest('low','')/}
+
+{pad:if ! php:is_string(php:padRequest('q',''))}
+  {pad:set $query = ''/}
+{/pad:if}
+
+{pad:if ! php:is_string(php:padRequest('low',''))}
+  {pad:set $low = ''/}
+{/pad:if}
+
+{pad:record "count(*) as matched from items where ($query='' or instr(lower(name || ' ' || sku || ' ' || location || ' ' || supplier),lower($query)) > 0) and ($low <> 'yes' or stock <= reorder_level)"}
+  {pad:set $totalRows = $matched/}
+{/pad:record}
+
+{pad:set $pageNo = php:filter_var(php:padRequest('p', 1), constant:FILTER_VALIDATE_INT)/}
+{pad:set $pageNo = php:max(1, php:min($pageNo, php:max(1, php:ceil($totalRows / 25))))/}
+{pad:set
+  $offset = ($pageNo - 1) * 25,
+  $pageLink = '?index&q=' . php:rawurlencode($query) . '&low=' . php:rawurlencode($low)
+/}
+
+<div class="work-head">
+  <div>
+    <h2>On the shelf</h2>
+    <p>Receive supplies, record use, and reorder before the cupboard is empty.</p>
+  </div>
+  <a class="work-button primary" href="?new">Add an item</a>
+</div>
+
+<div class="work-stats">
+  <div>
+    <span>Items tracked</span>
+    <strong>{pad:field "count(*) from items"/}</strong>
+  </div>
+  <div>
+    <span>Units on hand</span>
+    <strong>{pad:field "coalesce(sum(stock),0) from items"/}</strong>
+  </div>
+  <div>
+    <span>Need reordering</span>
+    <strong>{pad:field "count(*) from items where stock <= reorder_level"/}</strong>
+  </div>
+  <div>
+    <span>Stock value (EUR)</span>
+    <strong>{pad:record "coalesce(sum(stock * unit_cost),0)/100.0 as valuation from items"}{$valuation | number_format(2)}{/pad:record}</strong>
+  </div>
+</div>
+
+<form class="work-filters" method="get">
+  <input type="hidden" name="index" value="">
+  <label>
+    Find an item
+    <input name="q" value="{$query}" placeholder="Name, SKU, location or supplier">
+  </label>
+  <label>
+    Stock level
+    <select name="low">
+      <option value="">All items</option>
+      <option value="yes"{pad:if $low eq 'yes'} selected{/pad:if}>At or below reorder level</option>
+    </select>
+  </label>
+  <button type="submit">Filter</button>
+  <a href="?index">Clear</a>
+</form>
+
+{pad:fragment 'stock'}
+  <div class="work-table-wrap">
+    <table class="work-table">
+      <caption>Stock register</caption>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Location</th>
+          <th>On hand</th>
+          <th>Reorder at</th>
+          <th>Supplier</th>
+        </tr>
+      </thead>
+      <tbody>
+        {pad:array "* from items where ($query='' or instr(lower(name || ' ' || sku || ' ' || location || ' ' || supplier),lower($query)) > 0) and ($low <> 'yes' or stock <= reorder_level) order by stock > reorder_level,name limit 25 offset $offset"}
+          <tr>
+            <td>
+              <a href="?item&amp;id={$id}">{$name}</a>
+              <small>{$sku} · {$category}</small>
+            </td>
+            <td>{$location}</td>
+            <td><span class="work-badge{pad:if $stock le $reorder_level} low{/pad:if}">{$stock}{pad:if $stock le $reorder_level} · reorder{/pad:if}</span></td>
+            <td>{$reorder_level}</td>
+            <td>{$supplier}</td>
+          </tr>
+        @else@
+          <tr>
+            <td colspan="5" class="work-empty">No matching items. Clear the filters or add an item to the register.</td>
+          </tr>
+        {/pad:array}
+      </tbody>
+    </table>
+  </div>
+  {common:workPager current=$pageNo, total=$totalRows, size=25, base=$pageLink/}
+{/pad:fragment}

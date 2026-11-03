@@ -1,9 +1,9 @@
 <?php
 
-  include_once COMMON . '_lib/subsystemCatalog.php';
+  include_once COMMON . '_lib/referenceCatalog.php';
 
   // The types application: a page per type of tag - the prefix before the colon of {pad:if},
-  // {chart:pie}, {field:name} - and the indexes over them, as the tags application has a page
+  // {array:items}, {field:name} - and the indexes over them, as the tags application has a page
   // per tag. Nothing lists the types: they are the handlers of pad/types/, and what a page says
   // comes from the engine and its documentation - the line, group and syntax of _lib/types.php,
   // the type's section of docs/reference/TYPES.md, the comment at the top of its handler, the
@@ -35,6 +35,9 @@
         continue;
 
       $name    = substr ( $file, 0, -4 );
+      if ( isset ( padSubsystems [$name] ) or isset ( padSubsystemKinds [$name] ) )
+        continue;
+
       $comment = typesHandlerComment ( $name );
 
       list ( $about, $group, $syntax ) = $info [$name] ?? [ typesFirstSentence ( $comment ), 'tags', "{{$name}:name/}" ];
@@ -54,13 +57,6 @@
 
     }
 
-    foreach ( appSubsystemFamilies () as $name => $family ) {
-      $sample = appSubsystemExample ( $name, $family ['example'] ?: ( padKinds ( $family ['directory'] ) [0] ?? '' ) );
-      $found [$name] = [ 'name' => $name, 'key' => $family ['label'], 'link' => "type/$name",
-                        'about' => $family ['about'], 'group' => 'kinds', 'syntax' => $sample ['source'],
-                        'comment' => '', 'prefix' => FALSE, 'language' => $sample ['language'], 'order' => 0, 'bare' => FALSE ];
-    }
-
     $groups = array_flip ( array_keys ( typesGroups () ) );
 
     uasort ( $found, fn ( $a, $b ) => $groups [ $a ['group'] ] <=> $groups [ $b ['group'] ] ?: strcmp ( $a ['name'], $b ['name'] ) );
@@ -73,18 +69,13 @@
 
   function typesHandlerComment ( $name ) {
 
-    if ( ! preg_match ( '/\A<\?php\s*\n((?:[ \t]*\/\/[^\n]*\n)+)/', padFileGet ( PAD . "types/$name.php" ), $match ) )
-      return '';
-
-    return trim ( implode ( "\n", array_map ( fn ( $line ) => preg_replace ( '/^\s*\/\/ ?/', '', $line ), explode ( "\n", $match [1] ) ) ) );
+    return appReferenceHandlerComment ( $name );
 
   }
 
   function typesFirstSentence ( $text ) {
 
-    $text = preg_replace ( '/\s+/', ' ', preg_replace ( '/^Type handler for /', '', $text ) );
-
-    return ucfirst ( preg_match ( '/^(.+?[.:])(\s|$)/', $text, $match ) ? rtrim ( $match [1], ':' ) . '.' : $text );
+    return appReferenceFirstSentence ( $text );
 
   }
 
@@ -93,19 +84,7 @@
 
   function typesDoc ( $name ) {
 
-    static $text = NULL;
-
-    $text ??= (string) @file_get_contents ( dirname ( APPS ) . '/docs/reference/TYPES.md' );
-
-    if ( ! preg_match ( '/^### ' . preg_quote ( $name, '/' ) . '\s*\n(.*?)(?=^#{2,3} |^---|\z)/ms', $text, $match ) )
-      return '';
-
-    // A link of the section to another document - ../DATABASE.md - is to that file in the
-    // repository: relative, on a page of this application it led nowhere.
-
-    return preg_replace_callback ( '/href="(?![a-z]+:|#|\/)([^"]*\.md(?:#[^"]*)?)"/',
-             fn ( $m ) => 'href="https://github.com/herbert256/pad/blob/master/' . typesDocPath ( 'docs/reference/' . $m [1] ) . '"',
-             padMarkdown ( trim ( $match [1] ) ) );
+    return appReferenceDoc ( $name );
 
   }
 
@@ -113,18 +92,12 @@
 
   function typesDocPath ( $path ) {
 
-    $parts = [];
-
-    foreach ( explode ( '/', $path ) as $part )
-      if ( $part == '..' ) array_pop ( $parts );
-      elseif ( $part != '.' and $part !== '' ) $parts [] = $part;
-
-    return implode ( '/', $parts );
+    return appReferenceDocPath ( $path );
 
   }
 
   // The tags a type reaches that the engine has a list of: the built-in tags of pad:, the
-  // kinds of a subsystem, the sequence types of sequence: and its plays, the sequence actions,
+  // sequence types of sequence: and its plays, the sequence actions,
   // the pipe functions, the tags and snippets of _common - each [ key, link ], the link to its
   // page in the tags application where it has one. The other types reach what the page has:
   // its stores, its fields, its _tags.
@@ -139,12 +112,6 @@
 
     if ( $type == 'pad' )
       return array_map ( fn ( $name ) => [ "pad:$name", "$tags$name" ], $names ( PAD . 'tags' ) );
-
-    if ( isset ( padSubsystems [$type] ) )
-      return array_map ( fn ( $kind ) => [ "$type:$kind", "$tags$type/$kind" ], padSubsystemTagKinds ( $type ) );
-
-    if ( isset ( padSubsystemKinds [$type] ) )
-      return array_map ( fn ( $kind ) => [ $kind, "{$padRoot}tags/?kind/$type/$kind" ], padKinds ( padSubsystemKinds [$type] ) );
 
     $selectors = in_array ( $type, padSequenceOperations, TRUE ) ? [ [ "$type:auto", "$tags$type/auto" ] ] : [];
 
@@ -171,56 +138,13 @@
 
   function typesExamples ( $name ) {
 
-    if ( isset ( appSubsystemFamilies () [$name] ) ) {
-      $family = appSubsystemFamilies () [$name];
-      $sample = appSubsystemExample ( $name, $family ['example'] ?: ( padKinds ( $family ['directory'] ) [0] ?? '' ) );
-      return [ $sample + [ 'page' => '', 'title' => $family ['label'], 'file' => '', 'php' => '', 'phpHtml' => '',
-                          'padHtml' => padHighlightTokens ( $sample ['source'], $sample ['language'] ) ] ];
-    }
-
-    $examples = [];
-    $files    = [];
-
-    foreach ( ( is_dir ( APP . "examples/$name" ) ? padDirList ( APP . "examples/$name" ) : [] ) ?: [] as $file )
-      if ( $file [0] != '.' and ( str_ends_with ( $file, '.pad' ) or str_ends_with ( $file, '.src' ) ) )
-        $files [] = "examples/$name/$file";
-
-    sort ( $files );
-
-    foreach ( $files as $file ) {
-
-      $run   = str_ends_with ( $file, '.pad' );
-      $first = strtok ( (string) padFileGet ( APP . $file ), "\n" );
-      $title = preg_match ( "/title='((?:[^'\\\\]|\\\\.)*)'/", $first, $m ) ? stripslashes ( $m [1] ) : basename ( $file );
-      $about = preg_match ( "/about='((?:[^'\\\\]|\\\\.)*)'/", $first, $m ) ? stripslashes ( $m [1] ) : '';
-      $page  = $run ? substr ( $file, 0, -4 ) : $file;
-      $php   = $run && is_file ( APP . "$page.php" ) ? "$page.php" : '';
-
-      $examples [] = [ 'page'    => $page,
-                       'title'   => $title,
-                       'about'   => $about,
-                       'run'     => $run,
-                       'source'  => '',
-                       'language' => 'pad',
-                       'file'    => $file,
-                       'padHtml' => typesSource ( $file, 'pad' ),
-                       'php'     => $php,
-                       'phpHtml' => $php ? typesSource ( $php, 'php' ) : '' ];
-
-    }
-
-    return $examples;
+    return appReferenceExamples ( $name, 'types' );
 
   }
 
   function typesSource ( $file, $lang ) {
 
-    $source = (string) padFileGet ( APP . $file );
-
-    if ( $lang == 'pad' )
-      $source = preg_replace ( '/\A\{pad:meta [^\n]*\}\R?/', '', $source );
-
-    return padHighlightTokens ( trim ( $source ), $lang );
+    return appReferenceSource ( $file, $lang, 'types' );
 
   }
 

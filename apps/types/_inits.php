@@ -9,8 +9,6 @@
 
   $typesFrame    = $padPage;
   $typesCount    = count ( typesCatalog () );
-  $typesPrefixCount = count ( array_filter ( typesCatalog (), fn ( $one ) => $one ['prefix'] ) );
-  $typesFamilyCount = $typesCount - $typesPrefixCount;
   $typesSearch   = '';
 
   $frameMenu = [];

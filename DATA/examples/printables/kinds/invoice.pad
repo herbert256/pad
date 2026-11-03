@@ -1,11 +1,11 @@
-{pad:data 'invoices'}
+{format:auto 'invoices'}
 [ { "number": "2026-114", "date": "1 November 2026", "due": "1 December 2026",
     "customer": "Ann Smith", "street": "Canal Street 12", "city": "1012 AB Amsterdam",
     "entries": [ { "item": "Label sheets a4-3x8, 100", "amount": "24.00" },
                { "item": "Name badges, 50", "amount": "37.50" },
                { "item": "Shipping", "amount": "6.95" } ],
     "total": "68.45" } ]
-{/pad:data}
+{/format:auto}
 {printable:invoice data='invoices', sender='PAD, Main Street 1, 3511 AB Utrecht', scale=0.45, pdf}
   <header><h2>PAD</h2></header>
   <address>{$customer}<br>{$street}<br>{$city}</address>

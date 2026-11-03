@@ -1,0 +1,58 @@
+{pad:meta title='Equipment: how it works'/}
+
+<div class="work-help">
+  <div class="work-head">
+    <div>
+      <h2>Equipment, built in PAD</h2>
+      <p>An equipment register and reservation desk with conflict detection, collection and return tracking, an agenda and a complete booking history.</p>
+    </div>
+  </div>
+  <section class="work-panel">
+    <h3>Try a complete workflow</h3>
+    <p>Reserve the same item for overlapping dates to see the conflict refusal. Try an adjacent booking, collect the first item, then return it. Cancel a different reservation to release those dates.</p>
+  </section>
+  <section class="work-panel">
+    <h3>Pages</h3>
+    <div class="work-table-wrap">
+      <table class="work-table">
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="?index">index</a></td>
+            <td>See bookings, collections this month and overdue returns.</td>
+          </tr>
+          <tr>
+            <td><a href="?book">book</a></td>
+            <td>Reserve an item for a whole-day interval.</td>
+          </tr>
+          <tr>
+            <td><a href="?resources">resources</a></td>
+            <td>Browse or add equipment with storage and collection notes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="work-panel">
+    <h3>The template is the application</h3>
+    <p>There are no PHP page controllers or application PHP helper libraries. Each page declares its own form rules, reads requests through PAD helpers, makes workflow decisions with PAD tags, binds database values, and renders its result. The only PHP files configure the application and enter PAD.</p>
+    <pre><code>&#123;pad:array &quot;b.start_day as day, r.name as label from bookings b join resources r on r.id=b.resource_id where b.status=&#x27;reserved&#x27;&quot;, toData=&#x27;collections&#x27;/&#125;
+&#123;calendar:agenda $month, data=&#x27;collections&#x27;, date=&#x27;day&#x27;, title=&#x27;label&#x27;/&#125;</code></pre>
+    <p>Database reads use <code>pad:array</code>, <code>pad:record</code> and <code>pad:field</code>. A <code>toData</code> store connects queries to charts, tables, calendars and printables. Reusable layout slots, flash messages, fragments and the shared theme switcher complete the interface.</p>
+  </section>
+  <section class="work-panel">
+    <h3>Data integrity</h3>
+    <p>Each reservation is inserted only when the same SQL statement finds no overlapping active booking. Intervals include the collection date and exclude the return date, so one booking may begin when another ends. The transition query only permits reserved to collected or cancelled, and collected to returned. History is recorded by SQLite triggers.</p>
+    <p>Forms carry CSRF tokens. Literal <code>rules=</code> declarations run on the server before <code>padPosted()</code> returns true; <code>client</code> adds browser feedback from the same rules. Successful writes redirect before rendering. Search values are bound as data and output is escaped.</p>
+  </section>
+  <section class="work-panel">
+    <h3>Storage and scope</h3>
+    <p>The first visit creates <code>DATA/equipment/equipment.sqlite</code> from <code>apps/equipment/_install/schema.sql</code>, including fictional starter records. Changes persist across visits and browser sessions. Keep that database when updating the application.</p>
+    <p>This is one shared workspace for everyone who can access this installation. It does not provide user accounts or separate customer workspaces. All workflows work without application JavaScript; PAD's controls add progressive enhancements.</p>
+  </section>
+</div>

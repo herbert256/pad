@@ -1,0 +1,29 @@
+{pad:meta title='Every PAD subsystem'/}
+<section class="hero">
+  <h1>Every PAD subsystem</h1>
+  <p class="lead">Charts, games, calendars, data formats, validation rules and more: each subsystem
+  brings a family of related kinds. Choose a kind with a tag such as <code>&#123;chart:pie/&#125;</code>,
+  an option or a PHP helper. Explore each subsystem's syntax, available kinds and examples.</p>
+  <ul class="stats">
+    <li><b>{$subsystemsCount}</b> subsystems</li>
+    <li><b>{$memberCount}</b> available kinds</li>
+    <li><b>{$exampleCount}</b> examples</li>
+  </ul>
+</section>
+
+<div class="cards">
+  {array:indexes}
+  <a class="card" href="?{$page}"><h2>{$label}</h2><p>{$text}</p></a>
+  {/array:indexes}
+</div>
+
+<h2>The groups</h2>
+<div class="cards">
+  {array:groups}
+  <section class="card">
+    <h3><a href="?groups#{$key}">{$label}</a> <span class="count">{$count}</span></h3>
+    <p>{$tagline}</p>
+    <div class="tagcloud">{array:subsystems}<a href="?{$link}" title="{$about}">{$key}</a>{/array:subsystems}</div>
+  </section>
+  {/array:groups}
+</div>

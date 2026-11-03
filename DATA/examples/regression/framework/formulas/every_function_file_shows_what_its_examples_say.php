@@ -12,7 +12,7 @@
   $examplesCount = 0;
   $examplesWrong = [];
   $examplesShape = [];
-  $examplesRows  = padSheetRead ( (string) file_get_contents ( APPS . 'sheets/_data/sample.csv' ) );
+  $examplesRows  = padSheetRead ( (string) file_get_contents ( APPS . 'tables/_data/sample.csv' ) );
 
   foreach ( $examplesKinds as $examplesKind ) {
 

@@ -1,0 +1,81 @@
+<article class="tag">
+  <nav class="crumbs" aria-label="Where you are">
+    <a href="?index">Subsystems</a><span>/</span><a href="?groups#{$subsystemGroupKey}">{$subsystemGroupLabel}</a><span>/</span><span aria-current="page">{$subsystemKey}</span>
+  </nav>
+
+  <header class="tag-head">
+    <h1>{$subsystemKey}</h1>
+    <p class="tag-about">{$subsystemAbout}</p>
+    <p class="chips">
+      <a class="chip" href="?groups#{$subsystemGroupKey}">{$subsystemGroupLabel}</a>
+      {pad:if not $subsystemHasPrefix}<span class="chip">Selected by an option or helper</span>{pad:else}<span class="chip chip-form">{$subsystemName}: prefix</span>{/pad:if}
+    </p>
+  </header>
+
+  <section class="block" aria-labelledby="syntax">
+    <h2 id="syntax">Syntax</h2>
+    <pre class="code"><code>{!subsystemSyntaxHtml}</code></pre>
+  </section>
+
+  <section class="block prose" aria-labelledby="description">
+    <h2 id="description">Description</h2>
+    <p>The kinds of this subsystem live in <code>pad/subs/{$subsystemDirectory}/types/</code>.</p>
+    {!subsystemDocHtml}
+    {pad:if $subsystemComment}
+      <h3>The handler</h3>
+      <p><code>pad/subsystems/{$subsystemName}.php</code>: {$subsystemComment}</p>
+    {/pad:if}
+  </section>
+
+  {array:subsystemMembers}
+    {property:first@subsystemMembers}
+      <section class="block" aria-labelledby="members">
+        <h2 id="members">Available kinds</h2>
+        <p>{$subsystemMemberCount} kinds, each with its page in the tags application.</p>
+        <div class="tagcloud">
+    {/property:first@subsystemMembers}
+    {pad:if $link}<a href="{$link}">{$key}</a>{pad:else}<span>{$key}</span>{/pad:if}
+    {property:last@subsystemMembers}
+      </div>
+      </section>
+    {/property:last@subsystemMembers}
+  {/array:subsystemMembers}
+
+  {array:subsystemExamples}
+    {property:first@subsystemExamples}
+      <section class="block" aria-labelledby="examples">
+        <h2 id="examples">Examples</h2>
+    {/property:first@subsystemExamples}
+    <div class="example" id="example-{$number}">
+      <h3>{$title}</h3>
+      {pad:if $about}
+        <p class="example-about">{$about}</p>
+      {/pad:if}
+      <div class="example-grid{pad:if not $run} is-static{/pad:if}">
+        <div class="cell">
+          <div class="cell-head"><span>{pad:if $language == 'php'}PHP{pad:else}Template{/pad:if}</span><span><span class="cell-file">{$file}</span>{pad:if not $run}{!play}{/pad:if}</span></div>
+          <pre class="code"><code>{!padHtml}</code></pre>
+          {pad:if $php}
+            <div class="cell-head"><span>PHP</span><span class="cell-file">{$php}</span></div>
+            <pre class="code"><code>{!phpHtml}</code></pre>
+          {/pad:if}
+        </div>
+        {pad:if $run}
+          <div class="cell">
+            <div class="cell-head"><span>Result</span><span>{pad:if $page}<a class="cell-file" href="?{$page}">open alone</a>{/pad:if}{!play}</span></div>
+            <div class="result">{pad:if $page}{pad:page $page/}{pad:else}{pad:echo $source | code/}{/pad:if}</div>
+          </div>
+        {/pad:if}
+      </div>
+    </div>
+    {property:last@subsystemExamples}
+      </section>
+    {/property:last@subsystemExamples}
+  {/array:subsystemExamples}
+
+  <nav class="prevnext" aria-label="Other subsystems">
+    <a href="?subsystem/{$subsystemPrev}">&larr; {$subsystemPrevLabel}</a>
+    <a href="?names">All subsystems A-Z</a>
+    <a href="?subsystem/{$subsystemNext}">{$subsystemNextLabel} &rarr;</a>
+  </nav>
+</article>

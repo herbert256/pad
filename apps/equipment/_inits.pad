@@ -1,0 +1,25 @@
+{pad:set $title = 'Equipment'/}
+{pad:set $frameMenu = [
+  [ 'link' => $padGo . 'index', 'label' => 'Bookings', 'icon' => 'calendar' ],
+  [ 'link' => $padGo . 'book', 'label' => 'Reserve equipment', 'icon' => 'plus' ],
+  [ 'link' => $padGo . 'resources', 'label' => 'Equipment register', 'icon' => 'package' ],
+  [ 'link' => $padGo . 'guide', 'label' => 'How it works', 'icon' => 'code' ]
+]/}
+
+{common:padFrame}
+  {pad:slot 'head'}
+    {common:workStyles/}
+  {/pad:slot}
+  {pad:slot 'foot'}
+    <p class="work-side-note">The right kit, ready when you need it.</p>
+  {/pad:slot}
+{/common:padFrame}
+
+<div class="workbench">
+  {pad:flash}
+    <p class="work-notice {$type}" role="status">{$message}</p>
+  {/pad:flash}
+  @page@
+</div>
+
+{common:padFrameEnd/}

@@ -1,0 +1,87 @@
+{pad:meta title='Equipment reservation'/}
+
+{pad:set $invalidId = php:padValidate(['id'=>'required|integer|min:1'], php:padRequestOnly(['id']))/}
+
+{pad:if php:count(array:invalidId)}
+  {php:padAbort 404, 'Booking not found.'/}
+{/pad:if}
+
+{pad:set $bookingId = php:padRequest('id'), $problem = ''/}
+
+{pad:if php:padPosted('change-booking')}
+  {pad:set $next = php:padRequest('next_status')/}
+  {pad:set $changed = php:db(
+    "UPDATE bookings SET status=&open;0&close; WHERE id=&open;1&close; AND ((status='reserved' AND &open;0&close; IN ('collected','cancelled')) OR (status='collected' AND &open;0&close;='returned'))",
+    [
+      $next,
+      $bookingId
+    ]
+  )/}
+  {pad:if $changed}
+    {pad:set $notice = php:padFlash('Booking updated.')/}
+    {pad:redirect 'booking', $id=$bookingId/}
+  {pad:else}
+    {pad:set $problem = 'This transition is no longer available. The current booking status is shown below.'/}
+  {/pad:if}
+{/pad:if}
+
+{pad:record "b.*,r.name,r.location,r.description from bookings b join resources r on r.id=b.resource_id where b.id=$bookingId"}
+  <div class="work-head">
+    <div>
+      <h2>{$name}</h2>
+      <p>Reservation #{$id} · {$borrower}</p>
+    </div>
+    <a href="?index">Back to bookings</a>
+  </div>
+  {pad:if $problem}
+    <p class="work-notice error" role="alert">{$problem}</p>
+  {/pad:if}
+  <div class="work-split">
+    <section class="work-panel">
+      <h3>{$purpose}</h3>
+      <p>{$description}</p>
+      <dl>
+        <dt>Collect from</dt>
+        <dd>{$location}</dd>
+        <dt>Collection date</dt>
+        <dd>{$start_day}</dd>
+        <dt>Return date (exclusive)</dt>
+        <dd>{$end_day}</dd>
+        <dt>Contact</dt>
+        <dd>{$email}</dd>
+        <dt>Status</dt>
+        <dd><span class="work-badge {$status}">{$status}</span></dd>
+      </dl>
+      {pad:if $status eq 'reserved' or $status eq 'collected'}
+        {input:form 'change-booking', class='work-form', error}
+          {input:field 'next_status',
+            type='hidden',
+            value='collected',
+            rules='required|in:collected,returned,cancelled'
+          /}
+          <p>Choose the next step. Completed bookings remain in the history.</p>
+          <div class="work-actions">
+            {pad:if $status eq 'reserved'}
+              <button class="primary" type="submit" name="next_status" value="collected">Mark collected</button>
+              <button type="submit" name="next_status" value="cancelled">Cancel reservation</button>
+            {pad:else}
+              <button class="primary" type="submit" name="next_status" value="returned">Mark returned</button>
+            {/pad:if}
+          </div>
+        {/input:form}
+      {pad:else}
+        <p class="work-muted">This booking is complete. <a href="?book">Make another reservation</a>.</p>
+      {/pad:if}
+    </section>
+    <aside class="work-panel">
+      <h3>Booking history</h3>
+      <ol class="work-log">
+        {pad:array "* from history where booking_id=$bookingId order by id desc"}
+          <li><time>{$created}</time>{$event}</li>
+        {/pad:array}
+      </ol>
+    </aside>
+  </div>
+@else@
+  {php:padAbort 404, 'Booking not found.'/}
+{/pad:record}

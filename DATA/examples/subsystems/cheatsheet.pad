@@ -1,0 +1,17 @@
+{pad:meta title='Cheat sheet'/}
+<h1>Cheat sheet</h1>
+<p class="lead">How every subsystem is used, by group.</p>
+
+{array:sheet}
+<section class="section" id="{$key}">
+  <div class="section-head"><h2>{$label}</h2></div>
+  <div class="cheat">
+    {array:subsystems}
+    <div class="cheat-item">
+      <a class="name" href="?{$link}">{$key}</a> <span class="about">{$about}</span>
+      <pre class="code"><code>{!syntaxHtml}</code></pre>
+    </div>
+    {/array:subsystems}
+  </div>
+</section>
+{/array:sheet}

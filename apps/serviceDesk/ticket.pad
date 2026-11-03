@@ -1,0 +1,105 @@
+{pad:meta title='Support ticket'/}
+
+{pad:set $invalidId = php:padValidate(['id'=>'required|integer|min:1'], php:padRequestOnly(['id']))/}
+
+{pad:if php:count(array:invalidId)}
+  {php:padAbort 404, 'Ticket not found.'/}
+{/pad:if}
+
+{pad:set $ticketId = php:padRequest('id'), $conflict = ''/}
+
+{pad:check "tickets where id = $ticketId"}
+  {pad:if php:padPosted('update-ticket')}
+    {pad:set $changed = php:db(
+      'UPDATE tickets SET status=&open;0&close;,owner=&open;1&close;,priority=&open;2&close;,version=version+1,updated=CURRENT_TIMESTAMP WHERE id=&open;3&close; AND version=&open;4&close;',
+      [
+        php:padRequest('status'),
+        php:padRequest('owner'),
+        php:padRequest('priority'),
+        $ticketId,
+        php:padRequest('version')
+      ]
+    )/}
+    {pad:if $changed}
+      {pad:set $notice = php:padFlash('Ticket updated.')/}
+      {pad:redirect 'ticket', $id=$ticketId/}
+    {pad:else}
+      {pad:set $conflict = 'This ticket changed in another window. Reload before saving; your changes have not been applied.'/}
+    {/pad:if}
+  {/pad:if}
+  {pad:if php:padPosted('add-note')}
+    {pad:set $added = php:db(
+      'INSERT INTO activity(ticket_id,kind,body) VALUES(&open;0&close;,&open;1&close;,&open;2&close;)',
+      [
+        $ticketId,
+        'Note',
+        php:padRequest('body')
+      ]
+    )/}
+    {pad:set $notice = php:padFlash('Note added.')/}
+    {pad:redirect 'ticket', $id=$ticketId/}
+  {/pad:if}
+  {pad:record "* from tickets where id = $ticketId"}
+    <div class="work-head">
+      <div>
+        <h2>#{$id} · {$subject}</h2>
+        <p>Opened by {$requester} · {$email}</p>
+      </div>
+      <a href="?index">Back to inbox</a>
+    </div>
+    {pad:if $conflict}
+      <p class="work-notice error" role="alert">{$conflict} <a href="?ticket&amp;id={$ticketId}">Reload ticket</a></p>
+    {/pad:if}
+    <div class="work-split">
+      <div>
+        <section class="work-panel">
+          <h3>Request</h3>
+          <p class="work-prose">{$description}</p>
+          <p class="work-muted">Created {$created}</p>
+        </section>
+        <section class="work-panel">
+          <h3>Activity &amp; handover</h3>
+          <ol class="work-log">
+            {pad:array "* from activity where ticket_id = $ticketId order by id desc limit 100"}
+              <li>
+                <time>{$created}</time>
+                <strong>{$kind}</strong>
+                <p>{$body}</p>
+              </li>
+            {/pad:array}
+          </ol>
+        </section>
+        <section class="work-panel">
+          <h3>Add a handover note</h3>
+          {input:form 'add-note', class='work-form', client, error}
+            {input:textarea 'body', label='Note', rows=4, rules='required|max:4000', required/}
+            <button type="submit">Add note</button>
+          {/input:form}
+        </section>
+      </div>
+      <aside class="work-panel">
+        <h3>Manage request</h3>
+        {input:form 'update-ticket', class='work-form', client, error}
+          {input:field 'version', type='hidden', value=$version, rules='required|integer|min:1'/}
+          {input:combobox 'status',
+            label='Status',
+            options='open,active,waiting,resolved',
+            value=$status,
+            rules='required|in:open,active,waiting,resolved'
+          /}
+          {input:field 'owner', label='Assigned to', value=$owner, rules='required|max:80'/}
+          {input:segmented 'priority',
+            label='Priority',
+            options='normal,high,urgent',
+            value=$priority,
+            rules='required|in:normal,high,urgent'
+          /}
+          <button class="primary" type="submit">Save changes</button>
+        {/input:form}
+        <p class="work-muted">Resolve a completed request, or reopen it when work remains. Every change appears in the activity history.</p>
+      </aside>
+    </div>
+  {/pad:record}
+@else@
+  {php:padAbort 404, 'Ticket not found.'/}
+{/pad:check}

@@ -1,0 +1,34 @@
+{pad:meta title='Support reports'/}
+
+<div class="work-head">
+  <div>
+    <h2>Workload &amp; outcomes</h2>
+    <p>Live totals from the support inbox.</p>
+  </div>
+  <a href="?index">Back to inbox</a>
+</div>
+
+{pad:array "status, count(*) as total from tickets group by status", toData='statusTotals'/}
+{pad:array "owner, count(*) as total from tickets where status <> 'resolved' group by owner order by total desc",
+  toData='ownerTotals'
+/}
+
+<div class="work-grid">
+  <section class="work-panel work-chart">
+    <h3>Requests by status</h3>
+    {chart:donut data='statusTotals', label='status', value='total', title='Requests by status'/}
+  </section>
+  <section class="work-panel work-chart">
+    <h3>Open work by owner</h3>
+    {chart:bar data='ownerTotals', label='owner', value='total', title='Open work by owner'/}
+  </section>
+</div>
+
+{pad:array "owner, count(*) as total, sum(status = 'resolved') as resolved, sum(status <> 'resolved') as outstanding from tickets group by owner order by owner",
+  toData='workload'
+/}
+
+<section class="work-panel">
+  <h3>Team workload</h3>
+  {table:standard data='workload', sortable, caption='Requests per owner'/}
+</section>

@@ -1,0 +1,8 @@
+<table>
+  <tr><th>Artist</th><th>Genre</th></tr>
+  {select:albums join="artists on artists.artist_id = albums.artist_id join genres on genres.genre_code = albums.genre_code", fields="distinct artists.name, genres.genre", order="artists.name, genres.genre", rows=5, page=$pg ?? 1}
+  <tr><td>{$name}</td><td>{$genre}</td></tr>
+  {/select:albums}
+</table>
+
+{widget:pager 'albums'/}

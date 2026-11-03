@@ -1,8 +1,8 @@
-{pad:data 'pagine'}
+{format:auto 'pagine'}
 [ { "t": "Le università italiane" }, { "t": "Studiare all'università di Bologna" }, { "t": "Un viaggio in treno" }, { "t": "Viaggiare con gli amici" } ]
-{/pad:data}
+{/format:auto}
 {!stems}|
-{pad:search 'pagine', q='universita', lang='it'}{$t}; {/pad:search}|
-{pad:search 'pagine', q='viaggi', lang='it'}{$t}; {/pad:search}|
-{pad:search 'pagine', q='"con gli amici"', lang='it'}{$t}; {/pad:search}|
-{pad:search 'pagine', q='con', lang='it'}{$t}; @else@none{/pad:search}
+{search:auto 'pagine', q='universita', lang='it'}{$t}; {/search:auto}|
+{search:auto 'pagine', q='viaggi', lang='it'}{$t}; {/search:auto}|
+{search:auto 'pagine', q='"con gli amici"', lang='it'}{$t}; {/search:auto}|
+{search:auto 'pagine', q='con', lang='it'}{$t}; @else@none{/search:auto}

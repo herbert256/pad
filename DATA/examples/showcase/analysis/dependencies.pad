@@ -1,0 +1,4 @@
+{pad:meta title='Dependency analysis', about='A directed task graph supplies earliest starts and critical-path highlighting to the existing Gantt view.'}
+<p>Total duration: {$dependencyResult.duration} elapsed units. This example has no calendars or resource constraints.</p>
+{chart:gantt data='taskRows', label='id', from='earliestStart', to='earliestFinish', color='group', title='Critical tasks and available slack', width=560, height=300/}
+{table:standard data='taskRows', columns='id,duration,earliestStart,earliestFinish,latestStart,slack,group', caption='Dependency calculation'/}

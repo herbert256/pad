@@ -1,195 +1,99 @@
 <h1>Types by group</h1>
-<p class="lead">Tag types and kind families by what they reach, in 6 groups.</p>
+<p class="lead">Core tag types by what they reach, in 4 groups.</p>
 
-<nav class="jump" aria-label="Groups"><a href="#tags">Tags</a><a href="#stores">Stores and data</a><a href="#values">Values of the page</a><a href="#sequences">Sequences</a><a href="#subsystems">Subsystems</a><a href="#kinds">Options and helpers</a></nav>
+<nav class="jump" aria-label="Groups"><a href="#tags">Tags</a><a href="#stores">Stores and data</a><a href="#values">Values of the page</a><a href="#sequences">Sequences</a></nav>
 
 
-<section class="section" id="tags">
-  <div class="section-head"><h2>Tags</h2><span>Tags with code of their own - the engine&#039;s, the application&#039;s, the template&#039;s - 9 types</span></div>
-  <ul class="list">
-    
-    <li><a class="name" href="?type/app">app:</a> <span class="about">A tag of the application, a file of a _tags/ directory from the page up to the root.</span></li>
-    
-    <li><a class="name" href="?type/common">common:</a> <span class="about">A tag or a snippet of the shared _common application.</span></li>
-    
-    <li><a class="name" href="?type/define">define:</a> <span class="about">A tag defined in the template by {pad:define} - its body the template of the tag.</span></li>
-    
-    <li><a class="name" href="?type/function">function:</a> <span class="about">A pipe function used as a tag, over the content between its tags.</span></li>
-    
-    <li><a class="name" href="?type/include">include:</a> <span class="about">A snippet of the application, a file of an _include/ directory.</span></li>
-    
-    <li><a class="name" href="?type/macro">macro:</a> <span class="about">A tag defined in the template by {pad:macro} - its body rendered once with the options as its fields.</span></li>
-    
-    <li><a class="name" href="?type/pad">pad:</a> <span class="about">A built-in tag of the engine - a file of pad/tags/.</span></li>
-    
-    <li><a class="name" href="?type/php">php:</a> <span class="about">A PHP function called as a tag, its parameters the function&#039;s arguments.</span></li>
-    
-    <li><a class="name" href="?type/script">script:</a> <span class="about">A shell script of a _scripts/ directory, its output the tag&#039;s.</span></li>
-    
-  </ul>
-</section>
+  <section class="section" id="tags">
+    <div class="section-head">
+      <h2>Tags</h2>
+      <span>Tags with code of their own - the engine, application or template - 9 types</span>
+    </div>
+    <ul class="list">
+      
+        <li><a class="name" href="?type/app">app:</a> <span class="about">A tag of the application, a file of a _tags/ directory from the page up to the root.</span></li>
+      
+        <li><a class="name" href="?type/common">common:</a> <span class="about">A tag or a snippet of the shared _common application.</span></li>
+      
+        <li><a class="name" href="?type/define">define:</a> <span class="about">A tag defined in the template by {pad:define} - its body the template of the tag.</span></li>
+      
+        <li><a class="name" href="?type/function">function:</a> <span class="about">A pipe function used as a tag, over the content between its tags.</span></li>
+      
+        <li><a class="name" href="?type/include">include:</a> <span class="about">A snippet of the application, a file of an _include/ directory.</span></li>
+      
+        <li><a class="name" href="?type/macro">macro:</a> <span class="about">A tag defined in the template by {pad:macro} - its body rendered once with the options as its fields.</span></li>
+      
+        <li><a class="name" href="?type/pad">pad:</a> <span class="about">A built-in tag of the engine - a file of pad/tags/.</span></li>
+      
+        <li><a class="name" href="?type/php">php:</a> <span class="about">A PHP function called as a tag, its parameters the function&#039;s arguments.</span></li>
+      
+        <li><a class="name" href="?type/script">script:</a> <span class="about">A shell script of a _scripts/ directory, its output the tag&#039;s.</span></li>
+      
+    </ul>
+  </section>
 
-<section class="section" id="stores">
-  <div class="section-head"><h2>Stores and data</h2><span>What a page keeps under a name and reads back - 6 types</span></div>
-  <ul class="list">
-    
-    <li><a class="name" href="?type/bool">bool:</a> <span class="about">A boolean store - a flag set by {pad:bool}, its pair showing when it is true.</span></li>
-    
-    <li><a class="name" href="?type/content">content:</a> <span class="about">A content store - a piece of template kept by {pad:content} to be shown elsewhere.</span></li>
-    
-    <li><a class="name" href="?type/data">data:</a> <span class="about">A data store - rows kept by {format:auto} or a file of _data/ read through the format registry.</span></li>
-    
-    <li><a class="name" href="?type/local">local:</a> <span class="about">A data file of a _data/ directory, read by its file name.</span></li>
-    
-    <li><a class="name" href="?type/pull">pull:</a> <span class="about">A stored sequence - the terms a {sequence:*} pushed to the store under a name.</span></li>
-    
-    <li><a class="name" href="?type/select">select:</a> <span class="about">A table declared in $padSelect - its rows read from the database, joins and all.</span></li>
-    
-  </ul>
-</section>
+  <section class="section" id="stores">
+    <div class="section-head">
+      <h2>Stores and data</h2>
+      <span>What a page keeps under a name and reads back - 6 types</span>
+    </div>
+    <ul class="list">
+      
+        <li><a class="name" href="?type/bool">bool:</a> <span class="about">A boolean store - a flag set by {pad:bool}, its pair showing when it is true.</span></li>
+      
+        <li><a class="name" href="?type/content">content:</a> <span class="about">A content store - a piece of template kept by {pad:content} to be shown elsewhere.</span></li>
+      
+        <li><a class="name" href="?type/data">data:</a> <span class="about">A data store - rows kept by {format:auto} or a file of _data/ read through the format registry.</span></li>
+      
+        <li><a class="name" href="?type/local">local:</a> <span class="about">A data file of a _data/ directory, read by its file name.</span></li>
+      
+        <li><a class="name" href="?type/pull">pull:</a> <span class="about">A stored sequence - the terms a {sequence:*} pushed to the store under a name.</span></li>
+      
+        <li><a class="name" href="?type/select">select:</a> <span class="about">A table declared in $padSelect - its rows read from the database, joins and all.</span></li>
+      
+    </ul>
+  </section>
 
-<section class="section" id="values">
-  <div class="section-head"><h2>Values of the page</h2><span>Fields, arrays, parameters and properties where the tag stands - 6 types</span></div>
-  <ul class="list">
-    
-    <li><a class="name" href="?type/array">array:</a> <span class="about">An array of the current row or of the page, its elements the rows of the tag.</span></li>
-    
-    <li><a class="name" href="?type/constant">constant:</a> <span class="about">A PHP constant, by its name.</span></li>
-    
-    <li><a class="name" href="?type/field">field:</a> <span class="about">A field of the current row, or a variable of the page.</span></li>
-    
-    <li><a class="name" href="?type/level">level:</a> <span class="about">An array field of a row of an enclosing tag, its elements the rows of the tag.</span></li>
-    
-    <li><a class="name" href="?type/parm">parm:</a> <span class="about">A parameter or option of the tag around it, read by its name.</span></li>
-    
-    <li><a class="name" href="?type/property">property:</a> <span class="about">A property of the tag around it - its count, its current row, whether it is the first.</span></li>
-    
-  </ul>
-</section>
+  <section class="section" id="values">
+    <div class="section-head">
+      <h2>Values of the page</h2>
+      <span>Fields, arrays, parameters and properties where the tag stands - 6 types</span>
+    </div>
+    <ul class="list">
+      
+        <li><a class="name" href="?type/array">array:</a> <span class="about">An array of the current row or of the page, its elements the rows of the tag.</span></li>
+      
+        <li><a class="name" href="?type/constant">constant:</a> <span class="about">A PHP constant, by its name.</span></li>
+      
+        <li><a class="name" href="?type/field">field:</a> <span class="about">A field of the current row, or a variable of the page.</span></li>
+      
+        <li><a class="name" href="?type/level">level:</a> <span class="about">An array field of a row of an enclosing tag, its elements the rows of the tag.</span></li>
+      
+        <li><a class="name" href="?type/parm">parm:</a> <span class="about">A parameter or option of the tag around it, read by its name.</span></li>
+      
+        <li><a class="name" href="?type/property">property:</a> <span class="about">A property of the tag around it - its count, its current row, whether it is the first.</span></li>
+      
+    </ul>
+  </section>
 
-<section class="section" id="sequences">
-  <div class="section-head"><h2>Sequences</h2><span>Number sequences and what is done to them - 6 types</span></div>
-  <ul class="list">
-    
-    <li><a class="name" href="?type/action">action:</a> <span class="about">A sequence action - reverse, sort, sum, first ... - over the terms it is given.</span></li>
-    
-    <li><a class="name" href="?type/flag">flag:</a> <span class="about">Every term a 1 or a 0: whether it belongs to the sequence type named.</span></li>
-    
-    <li><a class="name" href="?type/keep">keep:</a> <span class="about">The terms that belong to the sequence type named, the others left out.</span></li>
-    
-    <li><a class="name" href="?type/make">make:</a> <span class="about">The terms of a sequence type, made as a play - the same terms {sequence:x} gives.</span></li>
-    
-    <li><a class="name" href="?type/remove">remove:</a> <span class="about">The terms that do not belong to the sequence type named.</span></li>
-    
-    <li><a class="name" href="?type/sequence">sequence:</a> <span class="about">A sequence type of the sequence subsystem, its terms the rows of the tag.</span></li>
-    
-  </ul>
-</section>
-
-<section class="section" id="subsystems">
-  <div class="section-head"><h2>Subsystems</h2><span>A kind per file of a directory of the engine - 30 types</span></div>
-  <ul class="list">
-    
-    <li><a class="name" href="?type/ai">ai:</a> <span class="about">Text and validated JSON responses.</span></li>
-    
-    <li><a class="name" href="?type/avatar">avatar:</a> <span class="about">An identity picture: initials, identicons, rings, mosaic, pixelbot, Gravatar, geometric art or a photograph with a local fallback.</span></li>
-    
-    <li><a class="name" href="?type/barcode">barcode:</a> <span class="about">A barcode symbology, a file of pad/subs/codes/types/, encoded on the server.</span></li>
-    
-    <li><a class="name" href="?type/calendar">calendar:</a> <span class="about">A Gregorian calendar view from pad/subs/calendars/types/ - days, weeks, months, quarters, years and agendas.</span></li>
-    
-    <li><a class="name" href="?type/chart">chart:</a> <span class="about">A chart type, a file of pad/subs/charts/types/, drawn as inline SVG.</span></li>
-    
-    <li><a class="name" href="?type/diagram">diagram:</a> <span class="about">A diagram type, a file of pad/subs/diagrams/types/, laid out on the server.</span></li>
-    
-    <li><a class="name" href="?type/diff">diff:</a> <span class="about">A comparison of texts, JSON or keyed records from pad/subs/diffs/types/.</span></li>
-    
-    <li><a class="name" href="?type/effect">effect:</a> <span class="about">An effect, a file of pad/subs/effects/types/ - motion and decoration, CSS first, still under reduced motion.</span></li>
-    
-    <li><a class="name" href="?type/embed">embed:</a> <span class="about">An embed provider, a file of pad/subs/embeds/types/ - loaded only on a click.</span></li>
-    
-    <li><a class="name" href="?type/fake">fake:</a> <span class="about">A fake kind, a file of pad/subs/fakes/types/ - the same values for the same seed, never bare.</span></li>
-    
-    <li><a class="name" href="?type/format">format:</a> <span class="about">Read documents into named data stores.</span></li>
-    
-    <li><a class="name" href="?type/game">game:</a> <span class="about">A game, a file of pad/subs/games/types/, played in the browser.</span></li>
-    
-    <li><a class="name" href="?type/holidays">holidays:</a> <span class="about">Country and regional public holidays.</span></li>
-    
-    <li><a class="name" href="?type/icon">icon:</a> <span class="about">An icon, a file of pad/subs/icons/types/, drawn as inline SVG - never bare.</span></li>
-    
-    <li><a class="name" href="?type/image">image:</a> <span class="about">Local images as thumbnails, responsive pictures, captioned figures or contact sheets.</span></li>
-    
-    <li><a class="name" href="?type/input">input:</a> <span class="about">A rich form field, a file of pad/subs/inputs/types/, posted by any form.</span></li>
-    
-    <li><a class="name" href="?type/jsonld">jsonld:</a> <span class="about">A JSON-LD kind, a file of pad/subs/jsonld/types/ - the structured data of a page as a Schema.org object, never bare.</span></li>
-    
-    <li><a class="name" href="?type/map">map:</a> <span class="about">Choropleths, markers and proportional bubbles.</span></li>
-    
-    <li><a class="name" href="?type/notation">notation:</a> <span class="about">A notation, a file of pad/subs/notations/types/ - a formula, a tune, a word or a position drawn on the server.</span></li>
-    
-    <li><a class="name" href="?type/pattern">pattern:</a> <span class="about">A pattern, a file of pad/subs/patterns/types/ - a seeded SVG background, never bare.</span></li>
-    
-    <li><a class="name" href="?type/printable">printable:</a> <span class="about">A printable, a file of pad/subs/printables/types/ - pages made for paper, the same on the screen, printed and as a PDF, never bare.</span></li>
-    
-    <li><a class="name" href="?type/search">search:</a> <span class="about">Ranked search, exact filters and facets.</span></li>
-    
-    <li><a class="name" href="?type/section">section:</a> <span class="about">A section of a landing page, a file of pad/subs/sections/types/ - pure CSS, coloured by the theme, never bare.</span></li>
-    
-    <li><a class="name" href="?type/sheet">sheet:</a> <span class="about">Formula grids computed on the server.</span></li>
-    
-    <li><a class="name" href="?type/sound">sound:</a> <span class="about">A sound, a file of pad/subs/sounds/types/ - a recipe the browser plays and the server writes as a WAV, never bare.</span></li>
-    
-    <li><a class="name" href="?type/table">table:</a> <span class="about">A table of rows, grouped records, a pivot or a matrix from pad/subs/tables/types/.</span></li>
-    
-    <li><a class="name" href="?type/time">time:</a> <span class="about">Time displays from pad/subs/times/types/ - countdown, relative time, world clocks and stopwatches.</span></li>
-    
-    <li><a class="name" href="?type/timeline">timeline:</a> <span class="about">Event views from pad/subs/timelines/types/ - horizontal, vertical, roadmap and swimlane.</span></li>
-    
-    <li><a class="name" href="?type/toy">toy:</a> <span class="about">A toy, a file of pad/subs/toys/types/ - a live simulation in the browser.</span></li>
-    
-    <li><a class="name" href="?type/widget">widget:</a> <span class="about">A widget, a file of pad/subs/widgets/types/, that works without JavaScript.</span></li>
-    
-  </ul>
-</section>
-
-<section class="section" id="kinds">
-  <div class="section-head"><h2>Options and helpers</h2><span>Subsystem kinds selected by parameters, options, helper calls or spreadsheet formulas - 17 families</span></div>
-  <ul class="list">
-    
-    <li><a class="name" href="?type/channel">Notification channels</a> <span class="about">Delivery channels selected in the fourth argument of padNotify.</span></li>
-    
-    <li><a class="name" href="?type/distribution">Sampling distributions</a> <span class="about">Seeded samples through padSample.</span></li>
-    
-    <li><a class="name" href="?type/filter">Image filters</a> <span class="about">The filter= option of {image:thumbnail} selects a filter or placeholder.</span></li>
-    
-    <li><a class="name" href="?type/formula">Spreadsheet functions</a> <span class="about">Functions inside the formulas of {sheet:grid} cells.</span></li>
-    
-    <li><a class="name" href="?type/geo">Geographic operations</a> <span class="about">Plain data operations through padGeo, with longitude before latitude.</span></li>
-    
-    <li><a class="name" href="?type/graph">Graph algorithms</a> <span class="about">Dependency order, components, shortest and critical paths through padGraph.</span></li>
-    
-    <li><a class="name" href="?type/highlighter">Syntax languages</a> <span class="about">Languages selected by padHighlight and the highlight tag.</span></li>
-    
-    <li><a class="name" href="?type/oauth">OAuth providers</a> <span class="about">The provider parameter of {widget:oauth}, padOAuthStart and padOAuthUser.</span></li>
-    
-    <li><a class="name" href="?type/palette">Colour palettes</a> <span class="about">The name parameter of {widget:palette}, or palette= on a chart.</span></li>
-    
-    <li><a class="name" href="?type/recurrence">Calendar recurrences</a> <span class="about">Bounded occurrences between explicit dates through padOccurrences.</span></li>
-    
-    <li><a class="name" href="?type/rule">Validation rules</a> <span class="about">Rules passed to padValidate or a form field&#039;s rules= option.</span></li>
-    
-    <li><a class="name" href="?type/schema">Schema validation</a> <span class="about">Explicit contracts for JSON values, records and rowsets through padSchema.</span></li>
-    
-    <li><a class="name" href="?type/solve">Constraint solvers</a> <span class="about">Bounded exact cover, bipartite matching and assignment through padSolve.</span></li>
-    
-    <li><a class="name" href="?type/stats">Statistics</a> <span class="about">Bounded descriptive statistics and regression through padStats.</span></li>
-    
-    <li><a class="name" href="?type/textanalysis">Text analysis</a> <span class="about">Unicode counts, n-grams and lexical similarity through padTextAnalysis.</span></li>
-    
-    <li><a class="name" href="?type/theme">Themes</a> <span class="about">The name parameter of {widget:theme} selects page or box colours.</span></li>
-    
-    <li><a class="name" href="?type/unit">Unit conversions</a> <span class="about">Dimension-checked numeric conversion through padConvert.</span></li>
-    
-  </ul>
-</section>
+  <section class="section" id="sequences">
+    <div class="section-head">
+      <h2>Sequences</h2>
+      <span>Number sequences and what is done to them - 6 types</span>
+    </div>
+    <ul class="list">
+      
+        <li><a class="name" href="?type/action">action:</a> <span class="about">A sequence action - reverse, sort, sum, first ... - over the terms it is given.</span></li>
+      
+        <li><a class="name" href="?type/flag">flag:</a> <span class="about">Every term a 1 or a 0: whether it belongs to the sequence type named.</span></li>
+      
+        <li><a class="name" href="?type/keep">keep:</a> <span class="about">The terms that belong to the sequence type named, the others left out.</span></li>
+      
+        <li><a class="name" href="?type/make">make:</a> <span class="about">The terms of a sequence type, made as a play - the same terms {sequence:x} gives.</span></li>
+      
+        <li><a class="name" href="?type/remove">remove:</a> <span class="about">The terms that do not belong to the sequence type named.</span></li>
+      
+        <li><a class="name" href="?type/sequence">sequence:</a> <span class="about">A sequence type of the sequence subsystem, its terms the rows of the tag.</span></li>
+      
+    </ul>
+  </section>

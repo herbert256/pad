@@ -1,6 +1,6 @@
 <?php
 
-  // Shared by the tags and types applications. These families have kinds, but no type:
+  // Shared by the tags and subsystems applications. These families have kinds, but no type:
   // prefix. Read their names from the engine and their descriptions from their files;
   // the examples use the option or helper that actually selects a kind.
 

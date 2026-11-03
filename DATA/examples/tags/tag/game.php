@@ -26,7 +26,7 @@ PAD;
   $tagOptions = [
     'seed'     => 'A whole number: the shuffles, the boards and the puzzles are the same on every load. Without it the browser picks.',
     'title'    => 'The name the game is shown under, else its own.',
-    'data'     => 'The words, the symbols or the questions of a game that takes them, from a <code>{pad:data}</code> store, the page\'s array or a <code>_data</code> file - else they stand between the tags, one a line.',
+    'data'     => 'The words, the symbols or the questions of a game that takes them, from a <code>{format:auto}</code> store, the page\'s array or a <code>_data</code> file - else they stand between the tags, one a line.',
     'opens'    => 'tictactoe, gomoku, reversi, nim, dotsandboxes, mancala, morris: <code>you</code> (the default) or <code>computer</code>.',
     'two'      => 'Bare option, tictactoe, gomoku, reversi, dotsandboxes, mancala, morris: two players at one screen instead of the computer.',
     'size'     => 'gomoku (15), fifteen (4), snake (18), wordsearch: the size of the board.',
@@ -46,6 +46,6 @@ PAD;
     'solve'    => 'Bare option, sudoku: the puzzle drawn with its solution. <code>solution</code> does it for a crossword.',
     'order'    => 'Bare option, quiz: the questions in the order written.' ];
 
-  $tagSee     = [ 'notation:chess', 'chart:bar', 'data' ];
+  $tagSee     = [ 'notation:chess', 'chart:bar', 'format:auto' ];
 
 ?>

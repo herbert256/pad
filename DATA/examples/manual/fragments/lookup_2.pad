@@ -1,6 +1,6 @@
-{pad:data 'countries'}
+{format:auto 'countries'}
   [ {"code": "NL", "label": "Netherlands"}, {"code": "BE", "label": "Belgium"} ]
-{/pad:data}
+{/format:auto}
 
 {array:customers}
   <p>{$name} lives in {$country | lookup('countries', 'code', 'label')}</p>

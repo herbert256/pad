@@ -1,0 +1,89 @@
+{pad:meta title='Reserve equipment'/}
+
+{pad:set $problem = '', $chosen = php:padRequest('resource', '')/}
+
+{pad:if ! php:is_string(php:padRequest('resource',''))}
+  {pad:set $chosen = ''/}
+{/pad:if}
+
+{pad:if php:padPosted('reserve')}
+  {pad:set $start = php:padRequest('start_day'), $end = php:padRequest('end_day')/}
+  {pad:if $end le $start}
+    {pad:set $problem = 'Choose a return date after the collection date.'/}
+  {pad:else}
+    {pad:set $attempt = php:db(
+      "INSERT INTO bookings(resource_id,borrower,email,purpose,start_day,end_day) SELECT r.id,&open;0&close;,&open;1&close;,&open;2&close;,&open;3&close;,&open;4&close; FROM resources r WHERE r.name=&open;5&close; AND NOT EXISTS(SELECT 1 FROM bookings b WHERE b.resource_id=r.id AND b.status IN ('reserved','collected') AND b.start_day < &open;4&close; AND b.end_day > &open;3&close;)",
+      [
+        php:padRequest('borrower'),
+        php:padRequest('email'),
+        php:padRequest('purpose'),
+        $start,
+        $end,
+        php:padRequest('resource')
+      ]
+    )/}
+    {pad:set $saved = php:db('FIELD changes()')/}
+    {pad:if $saved}
+      {pad:set $newId = php:db('FIELD last_insert_rowid()'), $notice = php:padFlash('Equipment reserved.')/}
+      {pad:redirect 'booking', $id=$newId/}
+    {pad:else}
+      {pad:set $problem = 'That equipment is unavailable for these dates, or is not in the register. Choose different dates or another item.'/}
+    {/pad:if}
+  {/pad:if}
+{/pad:if}
+
+<div class="work-head">
+  <div>
+    <h2>Reserve the kit you need</h2>
+    <p>Bookings cover whole days. Collect on the first day and return before the next booking starts.</p>
+  </div>
+  <a href="?index">Back to bookings</a>
+</div>
+
+{pad:if $problem}
+  <p class="work-notice error" role="alert">{$problem}</p>
+{/pad:if}
+
+<div class="work-split">
+  <section class="work-panel">
+    {pad:array "name from resources order by name", toData='equipmentNames'/}
+    {input:form 'reserve', class='work-form', client, error}
+      {input:combobox 'resource',
+        label='Equipment',
+        data='equipmentNames',
+        field='name',
+        value=$chosen,
+        rules='required|max:100'
+      /}
+      {input:field 'borrower', label='Borrower', rules='required|max:80'/}
+      {input:field 'email', label='Email', type='email', rules='required|email|max:160'/}
+      {input:field 'purpose', label='Project or purpose', rules='required|max:160'/}
+      {input:field 'start_day',
+        label='Collection date',
+        type='date',
+        rules='required|dateformat:Y-m-d',
+        value=php:date('Y-m-d')
+      /}
+      {input:field 'end_day',
+        label='Return date (exclusive)',
+        type='date',
+        rules='required|dateformat:Y-m-d',
+        value=php:date('Y-m-d',php:strtotime('+1 day'))
+      /}
+      <button type="submit" class="primary">Reserve equipment</button>
+    {/input:form}
+  </section>
+  <aside class="work-panel">
+    <h3>Already reserved</h3>
+    <ol class="work-log">
+      {pad:array "r.name,b.start_day,b.end_day,b.borrower from bookings b join resources r on r.id=b.resource_id where b.status in ('reserved','collected') and b.end_day >= date('now') order by b.start_day limit 30"}
+        <li>
+          <strong>{$name}</strong>
+          <p>{$start_day} to {$end_day}<br>{$borrower}</p>
+        </li>
+      @else@
+        <li>All equipment is currently available.</li>
+      {/pad:array}
+    </ol>
+  </aside>
+</div>

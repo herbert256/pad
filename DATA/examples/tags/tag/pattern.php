@@ -36,6 +36,6 @@ PAD;
     'rings'   => 'scales: the circles in a scale (3) - 1 a plain fish scale, more the waves of seigaiha.',
     'lines'   => 'guilloche: the lines of a band (12), copies of one wave a step apart along it, every second upside down.' ];
 
-  $tagSee     = [ 'placeholder', 'identicon', 'chart:bar' ];
+  $tagSee     = [ 'widget:placeholder', 'avatar:identicon', 'chart:bar' ];
 
 ?>

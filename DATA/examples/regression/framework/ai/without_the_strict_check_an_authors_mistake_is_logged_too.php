@@ -1,7 +1,7 @@
 <?php
 
   // Without the strict check a missing key, an unknown provider or a wrong option of padAi
-  // and {pad:ai} answers nothing, padAiError says why - and the application's log has it, as it
+  // and {ai:auto} answers nothing, padAiError says why - and the application's log has it, as it
   // has an error of the API: the page goes on, and the log is where the mistake shows.
 
   $padCheckSyntax = FALSE;

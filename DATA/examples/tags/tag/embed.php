@@ -36,6 +36,6 @@ PAD;
     'domains'   => 'Twitch: host names beside the page\'s own its player may play under - a page shown in a frame of another site.',
     'tab'       => 'CodePen: the panes shown - <code>result</code> (default), <code>html</code>, <code>css</code>, <code>js</code>, or two of them.' ];
 
-  $tagSee     = [ 'video', 'map', 'img' ];
+  $tagSee     = [ 'video', 'map:auto', 'image:thumbnail' ];
 
 ?>

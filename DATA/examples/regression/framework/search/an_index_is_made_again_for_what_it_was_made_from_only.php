@@ -9,14 +9,16 @@
   $stock = [ [ 'stockProbeName' => 'Red apple', 'stock' => 10 ], [ 'stockProbeName' => 'Pear', 'stock' => 3 ] ];
 
   $kept = function () {
-    foreach ( glob ( DATA . 'cache/search/' . $GLOBALS ['padApp'] . '/*/*/head.json' ) ?: [] as $head )
-      if ( str_contains ( (string) file_get_contents ( $head ), '"stockProbeName"' ) )
-        return dirname ( $head );
+    // Other search fixtures rebuild their indexes in parallel. Inspect only this key:
+    // a global glob followed by file_get_contents raced another key's normal cleanup.
+    $key = md5 ( "rows:stock\n" . json_encode ( padSearchFields ( 'stockProbeName' ) ) . "\nen" );
+    foreach ( glob ( DATA . 'cache/search/' . $GLOBALS ['padApp'] . "/$key/*/head.json" ) ?: [] as $head )
+      return dirname ( $head );
     return '';
   };
 
   $search = function ( $q ) use ( &$stock ) {
-    return implode ( ' ', array_column ( padSearch ( $stock, $q, [ 'name' => 'stock', 'fields' => 'stockProbeName' ] ), 'stock' ) );
+    return implode ( ' ', array_column ( padSearch ( $stock, $q, [ 'name' => 'stock', 'fields' => 'stockProbeName', 'lang' => 'en' ] ), 'stock' ) );
   };
 
   $was = $search ( 'apple' ) . ' ' . ( $first = $kept () );

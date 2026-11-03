@@ -1,0 +1,154 @@
+{pad:meta title='Stock item'/}
+
+{pad:set $invalidId = php:padValidate(['id'=>'required|integer|min:1'], php:padRequestOnly(['id']))/}
+
+{pad:if php:count(array:invalidId)}
+  {php:padAbort 404, 'Item not found.'/}
+{/pad:if}
+
+{pad:set $itemId = php:padRequest('id'), $problem = '', $requestKey = php:bin2hex(php:random_bytes(16))/}
+
+{pad:check "items where id=$itemId"}
+  {pad:if php:padPosted('movement')}
+    {pad:set $delta = php:padRequest('quantity')/}
+    {pad:if php:padRequest('direction') eq 'issue'}
+      {pad:set $delta = 0 - $delta/}
+    {/pad:if}
+    {pad:set $attempt = php:db(
+      'INSERT OR IGNORE INTO movements(item_id,delta,note,request_key) SELECT id,&open;0&close;,&open;1&close;,&open;2&close; FROM items WHERE id=&open;3&close; AND stock+&open;0&close; >= 0',
+      [
+        $delta,
+        php:padRequest('note'),
+        php:padRequest('request_key'),
+        $itemId
+      ]
+    )/}
+    {pad:set $saved = php:db('FIELD changes()')/}
+    {pad:if $saved}
+      {pad:set $notice = php:padFlash('Stock movement recorded.')/}
+      {pad:redirect 'item', $id=$itemId/}
+    {pad:else}
+      {pad:set $problem = 'No stock was changed. There may be too few units available, or this movement was already recorded.'/}
+    {/pad:if}
+  {/pad:if}
+  {pad:if php:padPosted('item-settings')}
+    {pad:set $cost = php:round(php:padRequest('unit_cost') * 100)/}
+    {pad:set $saved = php:db(
+      'UPDATE items SET location=&open;0&close;,supplier=&open;1&close;,reorder_level=&open;2&close;,unit_cost=&open;3&close;,version=version+1 WHERE id=&open;4&close; AND version=&open;5&close;',
+      [
+        php:padRequest('location'),
+        php:padRequest('supplier'),
+        php:padRequest('reorder_level'),
+        $cost,
+        $itemId,
+        php:padRequest('version')
+      ]
+    )/}
+    {pad:if $saved}
+      {pad:set $notice = php:padFlash('Item settings saved.')/}
+      {pad:redirect 'item', $id=$itemId/}
+    {pad:else}
+      {pad:set $problem = 'This stock card changed in another window. Reload before saving your settings.'/}
+    {/pad:if}
+  {/pad:if}
+  {pad:record "*, unit_cost/100.0 as cost from items where id=$itemId"}
+    <div class="work-head">
+      <div>
+        <h2>{$name}</h2>
+        <p>{$sku} · {$category} · shelf {$location}</p>
+      </div>
+      <a href="?index">Back to stock</a>
+    </div>
+    {pad:if $problem}
+      <p class="work-notice error" role="alert">{$problem} <a href="?item&amp;id={$itemId}">Reload stock card</a></p>
+    {/pad:if}
+    <div class="work-stats">
+      <div>
+        <span>On hand</span>
+        <strong>{$stock}</strong>
+      </div>
+      <div>
+        <span>Reorder at</span>
+        <strong>{$reorder_level}</strong>
+      </div>
+      <div>
+        <span>Unit cost (EUR)</span>
+        <strong>{$cost | number_format(2)}</strong>
+      </div>
+      <div>
+        <span>Stock value (EUR)</span>
+        <strong>{pad:echo $stock * $cost | number_format(2)/}</strong>
+      </div>
+    </div>
+    <div class="work-split">
+      <div>
+        <section class="work-panel">
+          <h3>Record a stock movement</h3>
+          {input:form 'movement', class='work-form', client, error}
+            {input:field 'request_key', type='hidden', value=$requestKey, rules='required|alphanum|min:32|max:32'/}
+            {input:segmented 'direction',
+              label='Movement',
+              options='receive,issue',
+              value='receive',
+              rules='required|in:receive,issue'
+            /}
+            {input:field 'quantity',
+              type='number',
+              label='Quantity',
+              min=1,
+              step=1,
+              value=1,
+              rules='required|integer|between:1,1000000'
+            /}
+            {input:field 'note',
+              label='Reference or reason',
+              placeholder='Delivery reference, team or project',
+              rules='required|max:200'
+            /}
+            <button type="submit" class="primary">Record movement</button>
+          {/input:form}
+        </section>
+        <section class="work-panel">
+          <h3>Movement history</h3>
+          <ol class="work-log">
+            {pad:array "* from movements where item_id=$itemId order by id desc limit 100"}
+              <li>
+                <time>{$created}</time>
+                <strong>{pad:if $delta gt 0}+{/pad:if}{$delta} units</strong>
+                <p>{$note}</p>
+              </li>
+            @else@
+              <li>No movements yet. Record a receipt for the opening stock.</li>
+            {/pad:array}
+          </ol>
+        </section>
+      </div>
+      <aside class="work-panel">
+        <h3>Item settings</h3>
+        {input:form 'item-settings', class='work-form', client, error}
+          {input:field 'version', type='hidden', value=$version, rules='required|integer|min:1'/}
+          {input:field 'location', label='Shelf or location', value=$location, rules='required|max:60'/}
+          {input:field 'supplier', label='Supplier', value=$supplier, rules='required|max:100'/}
+          {input:field 'reorder_level',
+            label='Reorder level',
+            type='number',
+            min=0,
+            value=$reorder_level,
+            rules='required|integer|between:0,1000000'
+          /}
+          {input:field 'unit_cost',
+            label='Unit cost (EUR)',
+            type='number',
+            min=0,
+            step='0.01',
+            value=$cost,
+            rules='required|numeric|between:0,1000000'
+          /}
+          <button type="submit">Save settings</button>
+        {/input:form}
+      </aside>
+    </div>
+  {/pad:record}
+@else@
+  {php:padAbort 404, 'Item not found.'/}
+{/pad:check}

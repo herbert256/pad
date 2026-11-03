@@ -1,8 +1,8 @@
-{pad:data 'orders'}
+{format:auto 'orders'}
   [ {"customer":"Ann","number":101}, {"customer":"Ann","number":102},
     {"customer":"Bob","number":103}, {"customer":"Cleo","number":104},
     {"customer":"Cleo","number":105} ]
-{/pad:data}
+{/format:auto}
 
 {data:orders sort='customer'}
   {pad:ifchanged $customer}<h4>{$customer}</h4>{/pad:ifchanged}

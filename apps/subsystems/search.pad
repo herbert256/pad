@@ -1,0 +1,15 @@
+{pad:meta title='Search'/}
+<h1>Search</h1>
+
+{pad:if $subsystemsSearch eq ''}
+  <p class="lead">Search for a subsystem or one of its kinds.</p>
+{pad:elseif $hits eq 0}
+  <p class="lead">No entry matches <strong>{$subsystemsSearch}</strong>. Try the <a href="?names">list by name</a>.</p>
+{pad:else}
+  <p class="lead">{$hits} {pad:echo $hits eq 1 ? 'entry matches' : 'entries match'/} <strong>{$subsystemsSearch}</strong>.</p>
+  <ul class="list">
+    {array:found}
+      <li><a class="name" href="?{$link}">{$key}</a> <span class="about">{$about} <a class="meta" href="?groups#{$group}">{$groupLabel}</a></span></li>
+    {/array:found}
+  </ul>
+{/pad:if}
